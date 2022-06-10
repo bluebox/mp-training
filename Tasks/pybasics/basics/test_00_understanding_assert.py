@@ -23,22 +23,24 @@ def test_assert_equality():
 
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
-    assert 8>7, "Fill in a value greater than 7"
+    assert 10 > 7, "Fill in a value greater than 7"
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
-    assert 2**43 > 2**30, "Fill in value greater than 2**30"
+    assert 2**31 > 2**30, "Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
     s1 = "Hello, World"
-    s2 = "Hello, World"
+    s2 = s1
     assert s1 == s2
 
-three_things_i_learnt = """
-asseret ==bool
--
--
+three_things_i_learnt ="""
+about assert, 
+how its work,
+boolean values,strings,etc
 """
 
-time_taken_minutes = 1
+print(three_things_i_learnt)
+
+time_taken_minutes = "20 seconds"
 
