@@ -45,7 +45,7 @@ oct , hex , bin convertions
 long is removed by python and handled by int only
 """
 
-time_taken_minutes = "2minutes"
+time_taken_minutes = 2
 
 
 

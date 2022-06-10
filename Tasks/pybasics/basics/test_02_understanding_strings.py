@@ -167,4 +167,4 @@ indexing
 in operator ,etc
 """
 
-time_taken_minutes = __
+time_taken_minutes = 5

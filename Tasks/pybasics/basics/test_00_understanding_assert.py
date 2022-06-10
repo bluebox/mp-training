@@ -42,5 +42,5 @@ boolean values,strings,etc
 
 print(three_things_i_learnt)
 
-time_taken_minutes = "20 seconds"
+time_taken_minutes = 0.2
 
