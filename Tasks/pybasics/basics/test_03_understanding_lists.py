@@ -152,4 +152,4 @@ removing elements
 sorting
 """
 
-time_taken_minutes = 15
+time_taken_minutes = 20

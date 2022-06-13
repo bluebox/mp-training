@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+#from placeholders import *
 
 notes = '''
 Tuples are yet another sequence type along the lines of strings and lists with

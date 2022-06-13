@@ -104,6 +104,6 @@ empty set
 
 """
 
-time_taken_minutes = 10
+time_taken_minutes = 15
 
 

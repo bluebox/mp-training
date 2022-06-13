@@ -163,4 +163,4 @@ slicing
 concatination
 """
 
-time_taken_minutes = 5
+time_taken_minutes = 10

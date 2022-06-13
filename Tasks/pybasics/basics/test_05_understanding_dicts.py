@@ -127,7 +127,7 @@ indexing
 difference in keys and values
 """
 
-time_taken_minutes = 15
+time_taken_minutes = 10
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

@@ -188,4 +188,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = 10
+time_taken_minutes = 20
