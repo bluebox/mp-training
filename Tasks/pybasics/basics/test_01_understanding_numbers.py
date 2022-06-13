@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+#from placeholders import *
 
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.
