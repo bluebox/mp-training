@@ -16,16 +16,16 @@ list, tuple, string etc.
 
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
-    assert __ == type(list_iter).__name__
-    assert __ == hasattr(list_iter, "next")
+    assert 'listiterator' == type(list_iter).__name__
+    assert True == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
-    assert __ == type(string_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert 'iterator' == type(string_iter).__name__
+    assert True == hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert __ == type(tuple_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert 'tupleiterator' == type(tuple_iter).__name__
+    assert True == hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
@@ -36,9 +36,9 @@ def test_int_iterable():
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
+        assert 'one' == list_iter.next()
+        assert 'two' == list_iter.next()
+        assert 'three' == list_iter.next()
         assert __ == list_iter.next() #note what happens when items are finished.
     except __:
         pass
