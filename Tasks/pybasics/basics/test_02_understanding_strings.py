@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+#from placeholders import *
 
 notes = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
@@ -143,7 +143,6 @@ def test_string_combine():
 
 def test_string_formatting():
     greeting = "Hello '{0}'".format("learner")
-    assert "Hello 'learner'" == greeting
 
     truth = "{1} plus {1} makes {0}".format("two","one")
     assert truth == "one plus one makes two"

@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-# from placeholders import *
+from placeholders import *
 
 notes = '''
 Just like C, python has notions on what values are considered true
@@ -50,6 +50,7 @@ def test_truth_values():
     assert "non-empty-list is treated as true" == truth_test([1], "non-empty-list")
     assert "non-empty-dict is treated as true" == truth_test({1:2}, "non-empty-dict")
     assert "non-empty-set is treated as true" == truth_test({1}, "non-empty-set")
+
 
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
