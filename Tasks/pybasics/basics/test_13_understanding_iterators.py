@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+# from placeholders import *
 
 notes = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
@@ -16,31 +16,31 @@ list, tuple, string etc.
 
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
-    assert __ == type(list_iter).__name__
-    assert __ == hasattr(list_iter, "next")
+    assert "list_iterator" == type(list_iter).__name__
+    assert False == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
-    assert __ == type(string_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert "str_iterator" == type(string_iter).__name__
+    assert False == hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert __ == type(tuple_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert "tuple_iterator" == type(tuple_iter).__name__
+    assert False == hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
         iter(10)
-    except __:  # replace by appropriate except so this test passes
+    except TypeError:  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next() #note what happens when items are finished.
-    except __:
+        assert True == list_iter.next()
+        assert True == list_iter.next()
+        assert True == list_iter.next()
+        assert True == list_iter.next() #note what happens when items are finished.
+    except TypeError:
         pass
 
 #note this function which can convert any iterable into a list.
