@@ -23,11 +23,11 @@ def test_assert_equality():
 
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
-    assert 8>7, "Fill in a value greater than 7"
+    assert 13 > 7, "Fill in a value greater than 7"
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
-    assert 2**43 > 2**30, "Fill in value greater than 2**30"
+    assert 2**38 > 2**30, "Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
     s1 = "Hello, World"
@@ -35,10 +35,12 @@ def test_make_assert_true_3():
     assert s1 == s2
 
 three_things_i_learnt = """
-asseret ==bool
--
--
+1. assert is a boolean function that give us true if condition is true else false.
+2. for testing any function we have to go to directory of that function and then use command pytest file_name.
+3. How to create and maintain reusable testing utilities.
 """
 
-time_taken_minutes = 1
+time_taken_minutes = 5
+
+
 
