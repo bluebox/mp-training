@@ -10,7 +10,6 @@ the <optional message>. If is evaluates to True, nothing happens.
  In the tests below, replace the blanks with values so that the resulting expression is True.
 '''
 
-
 def test_assert_true():
     #throws assertion error
     assert True  #This should be True -- replace ___ with True.
