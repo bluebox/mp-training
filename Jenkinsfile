@@ -28,7 +28,7 @@ pipeline {
             }
             steps {
                 echo 'checking pylint stage'
-                sh 'pylint * --ignore=Jenkinsfile'
+                sh 'pylint * --ignore=Jenkinsfile,__pycache__'
             }
         }
 
