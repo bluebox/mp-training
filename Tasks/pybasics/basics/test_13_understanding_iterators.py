@@ -28,7 +28,7 @@ def test_iterator_type():
     assert True == hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert "iterator" == type(tuple_iter).__name__
+    assert "tupleiterator" == type(tuple_iter).__name__
     assert True == hasattr(string_iter, "next")
 
 def test_int_iterable():
