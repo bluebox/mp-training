@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from basics.placeholders import *
 
 notes = '''
 python has support for standard control flow statements similar to other languages.

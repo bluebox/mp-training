@@ -5,7 +5,7 @@ sets are  unordered collection of elements without duplicates. Conceptually they
 the keys are not associated with any values.
 '''
 
-from placeholders import  *
+from basics.placeholders import  *
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
