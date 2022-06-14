@@ -9,7 +9,7 @@ the <optional message>. If is evaluates to True, nothing happens.
 
  In the tests below, replace the blanks with values so that the resulting expression is True.
 '''
-
+#  This is demo comment
 
 def test_assert_true():
     #throws assertion error
