@@ -40,10 +40,10 @@ def test_int_iterable():
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert "one" == next(list_iter)
-        assert "two" == next(list_iter)
-        assert "three" == next(list_iter)
-        assert  False == next(list_iter) 
+        assert "one" == list_iter.next()
+        assert "two" == list_iter.next()
+        assert "three" == list_iter.next()
+        assert  False == list_iter.next() 
         #note what happens when items are finished.
     except StopIteration:
         pass
@@ -54,7 +54,7 @@ def convert_to_list(iterable):
     result = []
     try:
         while True:
-            item = next(seq_iterator)
+            item = seq_iterator.next()
             result.append(item)
     except StopIteration as se:
         return result
