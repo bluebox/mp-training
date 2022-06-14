@@ -1,5 +1,6 @@
 __author__ = 'Hari'
 
+from re import T
 from basics.placeholders import *
 
 from logging import exception
@@ -23,12 +24,12 @@ def test_iterator_type():
     assert  True == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
-    assert "str_iterator" == type(string_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert "iterator" == type(string_iter).__name__
+    assert True == hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert "tuple_iterator" == type(tuple_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert "iterator" == type(tuple_iter).__name__
+    assert True == hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
