@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+# from placeholders import *
 
 notes = '''
 This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an
@@ -42,3 +42,4 @@ asseret ==bool
 
 time_taken_minutes = 1
 
+# /home/achyuthmedplus/Desktop/mp-training/Tasks/pybasics/basics/
