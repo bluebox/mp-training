@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+# from placeholders import *
 
 notes = '''
 Functions are the basic unit of modularization in python. You use functions to group
@@ -26,9 +26,9 @@ def my_min_max(numbers):
 
 # functions are kinds of objects, they have a type too!
 def test_function_type():
-    assert __ == type(my_print).__name__
-    assert __ == type(my_increment).__name__
-    assert __ == type(test_function_type).__name__
+    assert "funct" == type(my_print).__name__
+    assert "funct" == type(my_increment).__name__
+    assert "funct"== type(test_function_type).__name__
 
 # functions are objects which can be 'called'
 def test_function_callable_type():
@@ -143,4 +143,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 70 min
