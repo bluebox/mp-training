@@ -84,8 +84,8 @@ def test_package_import_failure():
     clear_sys_modules()
     try:
         import basics.package2
-    except AttributeError :
-        assert False
+    except ImportError :
+        assert True
 
     # fill up reason for failure. why is package2 not a package
     why_it_failed = "The package is a simple directory having collections of modules. This directory contains Python modules and also having __init__.py file by which the interpreter interprets it as a Package. The package is simply a namespace. The package also contains sub-packages inside it."

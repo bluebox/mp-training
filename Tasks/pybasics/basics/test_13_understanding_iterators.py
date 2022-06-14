@@ -19,7 +19,7 @@ list, tuple, string etc.
 
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
-    assert "list_iterator" == type(list_iter).__name__
+    assert "listiterator" == type(list_iter).__name__
     assert  False == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
@@ -92,7 +92,7 @@ def test_tuple_creation():
 def test_functions_that_work_on_iterables():
     test_dict = {"one": 1, "two":2}
     assert ["one", "two"] == sorted(test_dict)
-    assert ["one", "two"] == list(test_dict)
+    assert ["two","one"] == list(test_dict)
 
 # Go through the functions at http://docs.python.org/2/library/functions.html
 # and enter all the functions that operate on iterables into the funcs list.

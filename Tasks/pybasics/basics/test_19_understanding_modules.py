@@ -66,7 +66,7 @@ def test_module_type():
     assert 'module' == type(placeholders).__name__
 
 def test_module_is_an_object():
-    assert 12 == len(dir(placeholders))
+    assert 9 == len(dir(placeholders))
     assert 'basics.placeholders' == placeholders.__name__
     assert None == placeholders.__doc__
 

@@ -42,7 +42,7 @@ def test_classes_are_objects():
 
     assert "type" == type(Queue).__name__ #note this.
     assert "Queue with push and pop functions." == Queue.__doc__
-    assert 26 == get_attr_count(Queue)
+    assert 18 == get_attr_count(Queue)
 
 def test_classes_are_callable_objects():
     class Queue(object):
@@ -69,9 +69,9 @@ def test_classes_are_object_factories():
     assert True == isinstance(q1, Queue)
     assert True == isinstance(q2, Queue)
 
-    assert 26 == len(dir(Queue))
-    assert 26 == len(dir(q1))
-    assert 26 == len(dir(q2))
+    assert 18 == len(dir(Queue))
+    assert 18 == len(dir(q1))
+    assert 18 == len(dir(q2))
 
 
 # if an __init__ method exists it is called with the object that is

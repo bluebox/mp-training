@@ -21,7 +21,7 @@ def test_numbers_int_arithmetic_operations():
     assert 200 == 10 * 20
     assert  16== 2 ** 4
     assert -10 == 10 - 20
-    assert 2.3333333333333335 == 7/3
+    assert 2.3333333333333335 == (7/3)
 
 def test_numbers_string_to_int():
     """hint: execute  print int.__doc__ in python console
@@ -30,7 +30,7 @@ def test_numbers_string_to_int():
     assert 63 == int("77", 8)
 
 def test_numbers_int_to_string():
-    assert '0o12' == oct(10)
+    assert '012' == oct(10)
     assert "0x64" == hex(100)
     assert "0b11111111" == bin(255)
 
