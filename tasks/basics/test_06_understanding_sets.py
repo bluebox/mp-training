@@ -86,13 +86,13 @@ def test_set_valid_members():
     try:
         test_set.add([])
     except TypeError as te:
-        print (te)
+        print(te)
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
     except TypeError as te:
-        print (te)
+        print(te)
         assert True  
 
     assert {1,'hello',(1,2)} == test_set
