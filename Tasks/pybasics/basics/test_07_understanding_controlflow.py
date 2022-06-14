@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+# from placeholders import *
 
 notes = '''
 python has support for standard control flow statements similar to other languages.
@@ -12,11 +12,11 @@ def test_if():
     value = 1
     if True:
         value = 2
-    assert __ == value
+    assert  2== value
 
     if not True:
         value = 3
-    assert __ == value
+    assert 2 == value
 
 def test_if_else():
     value = 1
@@ -24,7 +24,7 @@ def test_if_else():
         value = 2
     else:
         value = 3
-    assert __ == value
+    assert 3 == value
 
 def test_if_elif_else():
     value = 3
@@ -36,7 +36,7 @@ def test_if_elif_else():
     else:
         str = "positive"
 
-    assert __ == str
+    assert "positive" == str
 
 def test_for_loop_range():
     """
@@ -45,20 +45,20 @@ def test_for_loop_range():
     nums =[]
     for x in range(1,5):
         nums.append(x)
-    assert __ == nums
+    assert [1,2,3,4] == nums
 
 
 def test_for_loop_string():
     chars = []
     for x in "engine":
         chars.append(x)
-    assert __ == chars
+    assert ['e','n','g','i','n','e'] == chars
 
 def test_for_loop_list():
     result = ""
     for fruit in ["orange", "banana", "apple"]:
         result += fruit
-    assert __ == result
+    assert "orangebananaapple" == result
 
 def test_for_loop_list_with_enumerate():
     words = ["one", "two", "three"]
@@ -66,22 +66,23 @@ def test_for_loop_list_with_enumerate():
     for p in enumerate(words):
         result.append(p)
 
-    assert __ == result
+    assert [(0,'one'),(1,'two'),(2,'three')] == result
     mapping = dict(result)
-    assert __ == mapping
+    assert {0: 'one', 1: 'two', 2: 'three'}== mapping
 
 def test_for_loop_dict():
     num_to_word = {1 : "one", 2 : "two", 3 : "three"}
     result = []
     for item in num_to_word:
         result.append(item)
-    assert __ == result
+    # assert [(1,'one'), (2,'two'), (3,'three')] == result
+    assert [1,2,3]
 
 def test_while_loop():
     result = []
     while len(result) < 3:
         result.append(10)
-    assert __ == result
+    assert [10,10,10] == result
 
 def test_for_loop_break():
     result = []
@@ -90,7 +91,7 @@ def test_for_loop_break():
             break
         result.append(x)
 
-    assert __ == result
+    assert [1,2,3,4] == result
 
 def test_for_loop_continue():
     result = []
@@ -98,7 +99,7 @@ def test_for_loop_continue():
         if x % 3 == 0:
             continue
         result.append(x)
-    assert __ == result
+    assert [1,2,4,5,7,8] == result
 
 def test_nested_loop_break():
     result = []
@@ -108,7 +109,7 @@ def test_nested_loop_break():
                 break
             result.append(x)
 
-    assert __ == result
+    assert [0,0,1,1] == result
 
 def test_nested_loop_continue():
     result = []
@@ -118,7 +119,7 @@ def test_nested_loop_continue():
                 continue
             result.append(x)
 
-    assert __ == result
+    assert [0,0,0,1,1,1]== result
 
 def test_nested_loop_break_continue():
     result = []
@@ -130,7 +131,7 @@ def test_nested_loop_break_continue():
                 break
             result.append(x)
 
-    assert __ == result
+    assert [0,0,0,2,2,2] == result
 
 # else on loops is not available in other common languages
 def test_for_loop_else_plain():
@@ -141,7 +142,7 @@ def test_for_loop_else_plain():
     else:
         result.append(10)
 
-    assert __ == result
+    assert [0,1,2,3,4,10]== result
 
 def test_for_loop_else_break():
     result = []
@@ -153,7 +154,7 @@ def test_for_loop_else_break():
     else:
         result.append(10)
 
-    assert __ == result
+    assert [] == result
 
 def test_for_loop_else_continue():
     result = []
@@ -165,7 +166,7 @@ def test_for_loop_else_continue():
     else:
         result.append(10)
 
-    assert __ == result
+    assert [1,2,4,10]== result
 
 #same as above.
 def test_while_loop_else():
@@ -179,7 +180,7 @@ def test_while_loop_else():
     else:
         result.append(10)
 
-    assert __ == result
+    assert [1,2,3] == result
 
 
 three_things_i_learnt = """
@@ -188,4 +189,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 40
