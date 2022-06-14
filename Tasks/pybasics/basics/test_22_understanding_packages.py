@@ -13,9 +13,9 @@ notes = '''
 
 from math import fabs
 from re import T
-from xmlrpc.client import TRANSPORT_ERROR
+# from xmlrpc.client import TRANSPORT_ERROR
 
-from placeholder import F
+# from placeholder import F
 from basics.placeholders import *
 import sys
 

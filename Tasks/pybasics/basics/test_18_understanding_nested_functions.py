@@ -9,7 +9,7 @@ that they have a read only access to variables in the outer function.
 '''
 
 from re import T
-from numpy import outer
+# from numpy import outer
 from basics.placeholders import *
 
 def outer_func(outer_var):

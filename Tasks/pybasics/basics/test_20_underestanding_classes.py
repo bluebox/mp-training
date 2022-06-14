@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholder import F
+# from placeholder import F
 
 
 notes = '''

@@ -18,7 +18,7 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 from re import T
 import sys
 
-from numpy import true_divide
+# from numpy import true_divide
 
 
 

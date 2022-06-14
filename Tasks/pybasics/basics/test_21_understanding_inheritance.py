@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from tkinter.messagebox import NO
+# from tkinter.messagebox import NO
 
 
 notes = '''

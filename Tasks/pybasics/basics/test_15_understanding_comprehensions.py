@@ -63,9 +63,9 @@ def test_dc_basic():
     # assert True == result
 
 # def test_dc_mapping():
-#     result = { x : ord(x)-ord('A') + 1 for x in string.uppercase[:5] }
-#     assert True == len(result)
-#     assert {__}== result
+#     result = { x : ord(x)-ord('A') + 1 for x in "string".upper()[:5] }
+#     assert 5 == len(result)
+#     assert {"s":51,"t":52,"r":50,"i":61,"n":66}== result
 
 def test_dc_nested():
     result = { (x,y): x+y for x in range(2) for y in range(2)}
