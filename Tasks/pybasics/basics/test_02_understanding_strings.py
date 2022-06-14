@@ -158,9 +158,9 @@ def test_string_membership():
 
 
 three_things_i_learnt = """
-string formating
-slicing
-concatination
+-string formating
+-slicing
+-concatination
 """
 
 time_taken_minutes = 10
