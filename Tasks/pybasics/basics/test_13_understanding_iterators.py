@@ -43,7 +43,7 @@ def test_enumerate_iter():
     except StopIteration:
         pass
 
-#note this function which can convert any iterable into a list.
+#note this function which can convert any iterable into a list iterator.
 def convert_to_list(iterable):
     seq_iterator = iter(iterable)
     result = []
