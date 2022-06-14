@@ -20,7 +20,7 @@ list, tuple, string etc.
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
     assert "listiterator" == type(list_iter).__name__
-    assert  False == hasattr(list_iter, "next")
+    assert  True == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert "str_iterator" == type(string_iter).__name__
