@@ -1,6 +1,10 @@
 __author__ = 'Hari'
 
-# from placeholders import *
+<<<<<<< HEAD:Tasks/pybasics/basics/test_05_understanding_dicts.py
+from tasks.placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_05_understanding_dicts.py
 
 notes = '''
 dicts are unordered sets of key value pairs which facilitate

@@ -12,7 +12,11 @@ calling next() to keep moving the function forward and at every stop point where
 have a yield or return the function can return something new.
 '''
 
-# from placeholders import *
+<<<<<<< HEAD:Tasks/pybasics/basics/test_14_understanding_generators.py
+from tasks.placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_14_understanding_generators.py
 
 # The state of the function is saved between yields and re-invoked on call to next.
 

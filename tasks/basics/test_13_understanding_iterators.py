@@ -1,6 +1,10 @@
 __author__ = 'Hari'
 
-#from placeholders import *
+<<<<<<< HEAD:Tasks/pybasics/basics/test_13_understanding_iterators.py
+from tasks.placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_13_understanding_iterators.py
 
 notes = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns

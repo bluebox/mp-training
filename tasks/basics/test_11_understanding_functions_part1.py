@@ -1,6 +1,10 @@
 __author__ = 'Hari'
 
-# from placeholders import *
+<<<<<<< HEAD:Tasks/pybasics/basics/test_11_understanding_functions_part1.py
+from tasks.placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_11_understanding_functions_part1.py
 
 notes = '''
 Functions are the basic unit of modularization in python. You use functions to group
@@ -14,7 +18,11 @@ This is a big topic, we will revisit this topic again.
 
 
 def my_print(x):
+<<<<<<< HEAD:Tasks/pybasics/basics/test_11_understanding_functions_part1.py
     print(x)
+=======
+    print (x)
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_11_understanding_functions_part1.py
 
 
 def my_increment(x):

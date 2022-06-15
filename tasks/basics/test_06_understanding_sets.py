@@ -5,8 +5,12 @@ sets are  unordered collection of elements without duplicates. Conceptually they
 the keys are not associated with any values.
 '''
 
-# from placeholders import  *
+<<<<<<< HEAD:Tasks/pybasics/basics/test_06_understanding_sets.py
+from tasks.placeholders import  *
 
+=======
+from tasks.placeholders import  *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_06_understanding_sets.py
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
@@ -101,9 +105,13 @@ def test_set_valid_members():
         test_set.add((1, []))  # TypeError: unhashable type: 'list'
     except TypeError as te:
         print(te)
+<<<<<<< HEAD:Tasks/pybasics/basics/test_06_understanding_sets.py
         assert True
 
     assert {1, 'hello', (1, 2)} == test_set
+=======
+        assert True  
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_06_understanding_sets.py
 
 
 three_things_i_learnt = """

@@ -5,7 +5,7 @@ notes = '''
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from placeholders import *
+from tasks.placeholders import *
 
 def test_inheritance_basic():
     class A(object): # A inherits from object.
@@ -16,13 +16,13 @@ def test_inheritance_basic():
         def g(self):
             pass
 
-    assert __ == issubclass(A, object)
-    assert __ == issubclass(A, A)
-    assert __ == issubclass(A, B)
+    assert True == issubclass(A, object)
+    assert False == issubclass(A, A)
+    assert False == issubclass(A, B)
 
-    assert __ == issubclass(B, A)
-    assert __ == issubclass(B, B)
-    assert __ == issubclass(B, object)
+    assert True  == issubclass(B, A)
+    assert False == issubclass(B, B)
+    assert True == issubclass(B, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
@@ -35,14 +35,14 @@ def test_inheritance_methods():
             return "B:g()"
 
     b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    assert "A:f()" == b.f()
+    assert "B:g()" == b.g()
 
     a = A()
-    assert __ == a.f()
+    assert "A:f()" == a.f()
     try:
         assert __ == a.g()
-    except __:
+    except AttributeError:
         #print ex  #uncomment this line after filling up
         pass
 
@@ -54,7 +54,7 @@ def test_inheritance_overrides():
         def g(self):
             return "A:g()"
 
-    class B(A):      #B can override A's methods
+    class B(A):  #B can override A's methods
         def g(self):
             return "B:g()"
 

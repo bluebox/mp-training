@@ -1,7 +1,11 @@
 __author__ = 'Hari'
 
-# from placeholders import *
+<<<<<<< HEAD:Tasks/pybasics/basics/test_03_understanding_lists.py
+from tasks.placeholders import *
 
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_03_understanding_lists.py
 
 def test_list_type():
     fruits = ["banana", "orange", "grape"]
