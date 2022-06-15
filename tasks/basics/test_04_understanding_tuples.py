@@ -96,10 +96,6 @@ def test_sequence_conversion():
     word4 = "".join(list_1)
     assert "testing" == word4
 
-three_things_i_learnt = """
--About tuples
--Tuple Slicing
--Tuple Unpacking
-"""
+
 
 time_taken_minutes = 10

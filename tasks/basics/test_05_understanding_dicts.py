@@ -121,11 +121,6 @@ def test_valid_dictionary_keys():
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
-three_things_i_learnt = """
--About Dictonary
--Ordered and Unordered Dictionary
--Keys,Values
-"""
 
 time_taken_minutes = 10
 
