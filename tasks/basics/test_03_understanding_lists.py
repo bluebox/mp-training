@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-#from tasks.placeholders import *
+from tasks.placeholders import *
 
 def test_list_type():
     fruits = ["banana", "orange", "grape"]
