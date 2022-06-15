@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 echo 'checking pytest stage'
-                sh '/var/lib/jenkins/venv/venv-training/bin/pytest -v'
+                sh '/var/lib/jenkins/venv/venv-training/bin/pytest ./tasks -v'
             }
         }
 
