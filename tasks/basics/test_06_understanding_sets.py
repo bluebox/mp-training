@@ -4,8 +4,8 @@ notes = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
-# This is test comment
-from placeholders import  *
+
+from tasks.placeholders import  *
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
