@@ -41,7 +41,6 @@ def test_numbers_long():
     """Long is not the long in c"""
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
-
 three_things_i_learnt = """
 -we have a method in python to convert a decimal number to octal
 - a method to convert decimal tp hexadecemal

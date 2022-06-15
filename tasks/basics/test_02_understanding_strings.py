@@ -157,11 +157,10 @@ def test_string_membership():
     assert True == ('a' in 'apple')
     assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
-
 three_things_i_learnt = """
 -strings are immutable
--strings can be accessed through indexing
--strings can be sliced
+-strings Slicing
+-strings formating
 """
 
 time_taken_minutes = 20
