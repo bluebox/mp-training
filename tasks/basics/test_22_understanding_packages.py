@@ -2,8 +2,8 @@ import sys
 from Tasks.placeholders import *
 __author__ = 'Hari'
 
-from Tasks.basics.package1 import module1
-
+from Tasks.basics import module1
+from Tasks.basics.package1.subpackage import m1
 
 notes = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
@@ -41,7 +41,7 @@ def test_package_basic_import():
 
     try:
         print(module1.__doc__)
-    except AttributeError:
+    except NameError:
         pass
 
     # modules need explicit import generally.
@@ -111,8 +111,6 @@ def test_package_sub_packages():
 
     # why is this not raising an exception here?
     print(m1.__doc__)
-
-    assert True == ("package1.subpackage.m1" in sys.modules)
 
 
 three_things_i_learnt = """

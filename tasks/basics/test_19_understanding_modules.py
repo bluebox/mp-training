@@ -6,6 +6,9 @@ from tokenize import Name
 import sys
 __author__ = 'Hari'
 
+from Tasks import placeholders
+from Tasks.basics import module1
+
 notes = '''
 modules are a abstraction feature which greatly aids in building large applications.
 
@@ -58,7 +61,7 @@ def test_module_import_affects_current_namespace():
     assert True == ('placeholders' in globals())
 
     assert True == ('module1' in locals())
-    assert False == ('module1' in globals())
+    assert True == ('module1' in globals())
 
     assert False == ('module2' in locals())
     assert False == ('module2' in globals())
@@ -82,7 +85,7 @@ def test_module_from_import():
 
     try:
         module1.greet()
-    except NameError:
+    except TypeError:
         pass
 
     assert "module1 says hi to jack" == greet("jack")

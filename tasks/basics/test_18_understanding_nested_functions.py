@@ -61,7 +61,7 @@ def test_inner_func_has_access_to_outer_variables_after_return():
 
 def print_attributes(obj):
     for x in dir(obj):
-        print("attribute: " + x)
+        print("attribute: {0}".format(x))
         print(getattr(obj, x))
 
 
