@@ -9,7 +9,7 @@ fast lookups by key.
 
 def test_dictionary_type():
     test_dict = {1 : "one"}   # note the new syntax
-    assert __ == type(test_dict).__name__
+    assert 'dict' == type(test_dict).__name__
 
 def test_dictionary_empty():
     empty_dict_1 = {}
