@@ -4,7 +4,7 @@ from placeholders import *
 
 def test_list_type():
     fruits = ["banana", "orange", "grape"]
-    assert 'list' == type(fruits).__name__
+    assert "list" == type(fruits).__name__
 
 def test_list_len():
     fruits = ["banana", "orange", "grape"]
