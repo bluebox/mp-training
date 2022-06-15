@@ -5,8 +5,7 @@ sets are  unordered collection of elements without duplicates. Conceptually they
 the keys are not associated with any values.
 '''
 
-from asyncio.windows_events import NULL
-from placeholders import  *
+from tasks.placeholders import  *
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax

@@ -1,8 +1,6 @@
 __author__ = 'Hari'
 
-from asyncio.windows_events import NULL
-from types import NoneType
-from placeholders import *
+from tasks.placeholders import *
 
 notes = '''
 Just like C, python has notions on what values are considered true

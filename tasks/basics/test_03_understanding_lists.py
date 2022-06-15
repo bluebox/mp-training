@@ -1,8 +1,6 @@
 __author__ = 'Hari'
 
-from asyncio.windows_events import NULL
-from msilib.schema import Error
-from placeholders import *
+from tasks.placeholders import *
 
 def test_list_type():
     fruits = ["banana", "orange", "grape"]
