@@ -36,7 +36,7 @@ def test_tuple_can_be_indexed():
 def test_tuple_can_be_sliced():
     colors = ('red', 'blue', 'green')
     assert ('blue','green') == colors[1:3]
-    assert ('blue',)== colors[1:2]  #remember the awkward syntax for single element tuples :)
+    assert ('blue'9+6)== colors[1:2]  #remember the awkward syntax for single element tuples :)
 
 
 def test_tuples_are_immutable():

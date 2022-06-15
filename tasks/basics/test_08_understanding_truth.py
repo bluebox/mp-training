@@ -13,7 +13,7 @@ with base values of the data types like 0, '', [] etc.
 
 #None is a first class object in python
 def test_none_type():
-    assert __ == type(None).__name__
+    assert 'NoneType' == type(None).__name__
 
 #In control flow, builtin objects like string, list, tuple have truth
 #and false values
@@ -27,7 +27,7 @@ def test_truth_none():
     else:
         result = "false"
 
-    assert __ == result
+    assert 'false' == result
 
 # a helper function used to test the truth value of an object.
 def truth_test(object, description):
