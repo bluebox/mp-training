@@ -98,8 +98,8 @@ def test_sequence_conversion():
 
 three_things_i_learnt = """
 -About tuples
--Tuple Unpacking
 -Tuple Slicing
+-Tuple Unpacking
 """
 
 time_taken_minutes = 10

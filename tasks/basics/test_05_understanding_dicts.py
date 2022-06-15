@@ -123,8 +123,8 @@ def test_valid_dictionary_keys():
 
 three_things_i_learnt = """
 -About Dictonary
--Keys,Values
 -Ordered and Unordered Dictionary
+-Keys,Values
 """
 
 time_taken_minutes = 10

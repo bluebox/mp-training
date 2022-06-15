@@ -148,8 +148,9 @@ def test_list_range():
 
 three_things_i_learnt = """
 -About Lists
--Mixed Lists
 -List Slicing
+-Mixed Lists
+
 """
 
 time_taken_minutes =1
