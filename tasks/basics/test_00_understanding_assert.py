@@ -1,6 +1,9 @@
 __author__ = 'Hari'
 
-from placeholders import *
+# from placeholders import *
+
+import pytest
+
 
 notes = '''
 This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an
@@ -17,7 +20,6 @@ def test_assert_true():
 
 def test_assert_true_with_message():
     assert True, "This is the failure message" # replace ___ with True to stop seeing the assertion error
-
 def test_assert_equality():
     assert 7 == 2 + 5   #replace __ with the expected value
 

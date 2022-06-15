@@ -4,7 +4,7 @@ __author__ = 'Hari'
 
 notes = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
-
+# No changes added for pytest
 def test_string_type():
     assert 'str'== type("Hello World").__name__
     assert True== isinstance("Hello World", str)
