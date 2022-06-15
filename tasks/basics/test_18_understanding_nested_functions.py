@@ -8,7 +8,7 @@ nested functions are defined in the scope of a function, behave exactly the same
 that they have a read only access to variables in the outer function.
 '''
 
-from placehlders import *
+from tasks.placeholders import *
 
 def outer_func(outer_var):
     def inner_func(inner_var):
@@ -56,8 +56,9 @@ def test_inner_func_has_access_to_outer_variables_after_return():
 
 def print_attributes(obj):
     for x in dir(obj):
-        print ("attribute: " + x)
-        print (getattr(obj, x))
+        print("attribute: {0}".format(x))
+        print(getattr(obj, x))
+
 
 def test_inner_func_attributes():
     f1 = outer_func(10)
