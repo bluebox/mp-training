@@ -1,7 +1,7 @@
 """This is the 2nd file of python exercise by medplus"""
 __author__ = 'Hari'
 
-#from placeholders import *
+from tasks.placeholders import *
 
 NOTES = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""

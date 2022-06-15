@@ -22,10 +22,14 @@ import symtable
 from tokenize import Name
 # from basics.placeholder import F
 
+<<<<<<< HEAD
 from pyparsing import countedArray
 
 
 # from placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 count = 10
 

@@ -1,7 +1,7 @@
 __author__ = 'Hari'
 
 from tasks.basics import module1
-
+from tasks.basics.package1.subpackage import m1
 
 notes = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
@@ -14,12 +14,16 @@ notes = '''
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 '''
 
+<<<<<<< HEAD
 from math import fabs
 from re import T
 # from xmlrpc.client import TRANSPORT_ERROR
 
 # from placeholder import F
 from basics.placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 import sys
 
 
@@ -45,13 +49,13 @@ def test_package_basic_import():
     assert False == ("package1.module1" in sys.modules)
 
     try:
-        print module1.__doc__
+        print(module1.__doc__)
     except __ :
         pass
 
     #modules need explicit import generally.
     import package1.module1
-    print module1.__doc__
+    print(module1.__doc__)
 
     assert True == ("basics.package1" in sys.modules)
     assert False == ("module1" in sys.modules)
@@ -113,7 +117,7 @@ def test_package_sub_packages():
     assert False == ("basics.package1.subpackage.m1" in sys.modules)
 
     #why is this not raising an exception here?
-    print m1.__doc__
+    print(m1.__doc__)
 
 #     assert __ == ("package1.subpackage.m1" in sys.modules)
 

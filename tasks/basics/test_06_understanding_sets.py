@@ -6,7 +6,11 @@ sets are  unordered collection of elements without duplicates. Conceptually they
 the keys are not associated with any values.
 '''
 
+<<<<<<< HEAD
 # from basics.placeholders import  *
+=======
+from tasks.placeholders import  *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 def test_set_type():
     """Sets and its type"""

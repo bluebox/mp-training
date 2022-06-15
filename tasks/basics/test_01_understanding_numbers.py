@@ -1,7 +1,12 @@
 """This is the 1st file of python exercise by medplus"""
 __author__ = 'Hari'
 
+<<<<<<< HEAD
 # from placeholders import *
+=======
+from tasks.placeholders import *
+
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.

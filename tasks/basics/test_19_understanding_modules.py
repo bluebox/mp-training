@@ -1,5 +1,8 @@
 __author__ = 'Hari'
 
+from tasks import placeholders
+from tasks.basics import module1
+
 notes = '''
 modules are a abstraction feature which greatly aids in building large applications.
 
@@ -18,11 +21,15 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 from re import T
 import sys
 
+<<<<<<< HEAD
 # from numpy import true_divide
 
 
 
 from basics import placeholders
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 def test_module_without_import():
     try:
@@ -123,9 +130,15 @@ s2 = set()
 s3 = set()
 
 s1 = set(dir())
+<<<<<<< HEAD
 from basics.module3 import *
 s2 = set(dir())
 from basics.module4 import *
+=======
+from tasks.basics.module3 import *
+s2 = set(dir())
+from tasks.basics.module4 import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 s3 = set(dir())
 
 def test_module_star_import():

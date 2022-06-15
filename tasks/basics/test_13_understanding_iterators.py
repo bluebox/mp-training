@@ -1,10 +1,14 @@
 __author__ = 'Hari'
 
+<<<<<<< HEAD
 from re import T
 from basics.placeholders import *
 
 from logging import exception
 
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 notes = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns

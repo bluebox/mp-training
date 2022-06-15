@@ -1,10 +1,14 @@
 """This is the 3rd file of python exercise by medplus"""
 __author__ = 'Hari'
 
+<<<<<<< HEAD
 # from Tasks.basics.placeholders
 
 from numpy import empty
 
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 def test_list_type():
     """List and its type"""

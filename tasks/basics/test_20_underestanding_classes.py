@@ -22,7 +22,11 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
+<<<<<<< HEAD
 # from placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 notes_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
@@ -173,9 +177,16 @@ def test_classes_bound_and_unbound_methods():
     # assert True == Queue.push.__self__   #unbound method
     # assert True == q1_push.__self__      #bound method
 
+<<<<<<< HEAD
 #     # now understand the output of these 2 statements.
 #     print( q1.push)
 #     print (Queue.push)
+=======
+    # now understand the output of these 2 statements.
+    print(q1.push)
+    print(Queue.push)
+
+>>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 def test_classes_can_have_state():
     class Queue(object):
