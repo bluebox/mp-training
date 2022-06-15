@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-#from placeholders import *
+from tasks.placeholders import *
 
 notes = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""

@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from tasks.placeholders import *
 
 notes = '''
 Just like C, python has notions on what values are considered true

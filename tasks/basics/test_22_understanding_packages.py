@@ -14,7 +14,7 @@ notes = '''
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 '''
 
-from placeholders import *
+from tasks.placeholders import *
 import sys
 
 # Look at the package1 and package2 directories before starting...
