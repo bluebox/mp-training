@@ -55,7 +55,7 @@ def test_module_import_affects_current_namespace():
     assert True == ('placeholders' in globals())
 
     assert True == ('module1' in locals())
-    assert False == ('module1' in globals())
+    assert True == ('module1' in globals())
 
     assert False == ('module2' in locals())
     assert False == ('module2' in globals())
@@ -65,7 +65,7 @@ def test_module_type():
 
 def test_module_is_an_object():
     assert 9 == len(dir(placeholders))
-    assert 'basics.placeholders' == placeholders.__name__
+    assert 'tasks.placeholders' == placeholders.__name__
     assert None == placeholders.__doc__
 
 def test_module_from_import():
@@ -76,7 +76,7 @@ def test_module_from_import():
 
     try:
         module1.greet()
-    except NameError :
+    except TypeError :
         pass
 
     assert 'module1 says hi to jack' == greet("jack")
@@ -103,16 +103,16 @@ def test_modules_are_cached():
     assert 10 == inner()
 
     def inner2():
-        import basics.module1
+        import module1
         return module1.some_attr
 
     assert 10 == inner2()
 
     assert 'dict' == type(sys.modules).__name__
-    assert True == (module1 is sys.modules['basics.module1'])
+    assert True == (module1 is sys.modules['tasks.basics.module1'])
     assert False == ('new_name' in sys.modules)
     assert True == (new_name is module1)
-    assert True == (new_name is sys.modules['basics.module1'])
+    assert True == (new_name is sys.modules['tasks.basics.module1'])
 
 s1 = set()
 s2 = set()
