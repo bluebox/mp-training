@@ -41,7 +41,7 @@ def test_numbers_long():
 three_things_i_learnt = """
 -we have a method in python to convert a decimal number to octal
 - a method to convert decimal tp hexadecemal
--
+- a operators
 """
 
 time_taken_minutes = 4

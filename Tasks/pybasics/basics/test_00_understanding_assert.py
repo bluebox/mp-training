@@ -40,6 +40,6 @@ asseret ==bool
 -
 """
 
-time_taken_minutes = 1
+time_taken_minutes = 2
 
 # /home/achyuthmedplus/Desktop/mp-training/Tasks/pybasics/basics/

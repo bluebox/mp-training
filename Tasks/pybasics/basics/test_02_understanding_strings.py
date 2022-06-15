@@ -161,7 +161,7 @@ def test_string_membership():
 three_things_i_learnt = """
 -strings are immutable
 -strings can be accessed through indexing
--strings can be sliced
+-string slicing
 """
 
 time_taken_minutes = 20
