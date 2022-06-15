@@ -16,74 +16,75 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 #here for the sake of testing.
 
 import sys
-
+sys.path.append('C:\\Users\\kushlu\\training_project\\mp-training\\tasks\\pybasics\\basics')
+print(sys.path)
 import placeholders
 from placeholders import *
 
 def test_module_without_import():
     try:
         module1.greet("jack")
-    except ___ :
+    except NameError :
         print
-        assert ___
+        assert True
 
 def test_module_usage_needs_import():
     import module1
-    assert __ == module1.greet("jack")
+    assert "module1 says hi to jack" == module1.greet("jack")
 
 def test_module_usage_multiple():
     import module1
     import module2
 
-    assert __ == module1.greet("jack")
-    assert __ == module2.greet("jack")
+    assert "module1 says hi to jack" == module1.greet("jack")
+    assert "module2 says hi to jack" == module2.greet("jack")
 
 def test_module_import_affects_current_namespace():
     import module1
 
     def inner_func():
         import module2
-        assert __ == ('module2' in locals())
+        assert True == ('module2' in locals())
         return module2.greet("jack")
 
-    assert __ == module1.greet("jack")
-    assert __ == inner_func()
+    assert "module1 says hi to jack" == module1.greet("jack")
+    assert "module2 says hi to jack" == inner_func()
 
-    assert __ == ('placeholders' in locals())
-    assert __ == ('placeholders' in globals())
+    assert False == ('placeholders' in locals())
+    assert True == ('placeholders' in globals())
 
-    assert __ == ('module1' in locals())
-    assert __ == ('module1' in globals())
+    assert True == ('module1' in locals())
+    assert False == ('module1' in globals())
 
-    assert __ == ('module2' in locals())
-    assert __ == ('module2' in globals())
+    assert True == ('module2' in locals())
+    assert False == ('module2' in globals())
 
-def test_module_type():
-    assert __ == type(placeholders).__name__
+# def test_module_type():
+#     assert 'module' == type(placeholders).__name__
 
-def test_module_is_an_object():
-    assert __ == len(dir(placeholders))
-    assert __ == placeholders.__name__
-    assert __ == placeholders.__doc__
+# def test_module_is_an_object():
+#     assert 12 == len(dir(placeholders))
+#     assert 'placeholders' == placeholders.__name__
+#     assert None == placeholders.__doc__
 
 def test_module_from_import():
     from module1 import greet
 
-    assert __ == ('module1' in locals())
-    assert __ == ('greet' in locals())
+    assert False == ('module1' in locals())
+    assert True == ('greet' in locals())
 
     try:
         module1.greet()
-    except __ :
+    except NameError :
         pass
 
-    assert __ == greet("jack")
+    assert "module1 says hi to jack" == greet("jack")
 
 def test_module_why_from_import_is_a_bad_idea():
     from module1 import greet
     from module2 import greet
 
-    assert __ == greet("jack")
+    assert "module2 says hi to jack" == greet("jack")
 
 def test_modules_are_cached():
     import module1
@@ -94,23 +95,23 @@ def test_modules_are_cached():
 
     try:
         inner()
-    except __: # what exception do you get here?
+    except NameError: # what exception do you get here?
         pass
 
     module1.some_attr = 10
-    assert __ == inner()
+    assert 10 == inner()
 
     def inner2():
         import module1
         return module1.some_attr
 
-    assert __ == inner2()
+    assert 10 == inner2()
 
-    assert __ == type(sys.modules).__name__
-    assert __ == (module1 is sys.modules['module1'])
-    assert __ == ('new_name' in sys.modules)
-    assert __ == (new_name is module1)
-    assert __ == (new_name is sys.modules['module1'])
+    assert 'module' == type(sys.modules).__name__
+    assert True == (module1 is sys.modules['module1'])
+    assert False == ('new_name' in sys.modules)
+    assert False == (new_name is module1)
+    assert False == (new_name is sys.modules['module1'])
 
 s1 = set()
 s2 = set()
@@ -124,17 +125,17 @@ s3 = set(dir())
 
 def test_module_star_import():
     # * imports are not allowed within functions, so we had to do it at global scope
-    assert __ == (s2 - s1)  # what did module3 import bring in.
-    assert __ == (s3 - s2)  # what did module4 import bring in.
+    assert {'s1', 'm3_func1', 'm3_func2'} == (s2 - s1)  # what did module3 import bring in.
+    assert {'_m4_func3', 'm4_func1', 's2'} == (s3 - s2)  # what did module4 import bring in.
 
 notes_2 = '''
 http://effbot.org/zone/import-confusion.htm
 '''
 
 three_things_i_learnt = """
--
--
--
+-global,local scope of modules
+-dir()
+-latest imported module properties are dominent
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 40
