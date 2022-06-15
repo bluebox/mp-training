@@ -1,4 +1,4 @@
-"""This is the test file of python exercise"""
+"""This is the test file of python exercise by medplus"""
 
 __author__ = 'Hari'
 
