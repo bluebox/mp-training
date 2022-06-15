@@ -7,7 +7,11 @@ Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
+<<<<<<< HEAD
 #from placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 1e720e63e649ebd9ecfe9b7b3b6151e88549042c
 
 def test_exception_flow_1():
     fruit = "orange"

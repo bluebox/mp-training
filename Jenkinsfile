@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 echo 'checking pytest stage'
-                sh '/var/lib/jenkins/venv/venv-training/bin/pytest -v'
+                sh '/var/lib/jenkins/venv/venv-training/bin/pytest ./tasks -v'
             }
         }
 
@@ -50,7 +50,7 @@ pipeline {
             }
             steps {
                 echo 'checking pylint stage'
-                sh '/var/lib/jenkins/venv/venv-training/bin/pylint ./tasks'
+                sh '/var/lib/jenkins/venv/venv-training/bin/pylint --fail-under=7 ./tasks'
             }
         }
 
