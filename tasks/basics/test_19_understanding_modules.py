@@ -1,5 +1,8 @@
 __author__ = 'Hari'
 
+from tasks import placeholders
+from tasks.basics import module1
+
 notes = '''
 modules are a abstraction feature which greatly aids in building large applications.
 
@@ -17,7 +20,6 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 
 import sys
 
-import Tasks.placeholders as placeholders
 from Tasks.placeholders import *
 
 def test_module_without_import():

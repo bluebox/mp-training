@@ -1,8 +1,7 @@
 __author__ = 'Hari'
 
-from importlib.metadata import PackageNotFoundError
 from Tasks.basics import module1
-
+from Tasks.basics.package1.subpackage import m1
 
 notes = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
@@ -40,13 +39,13 @@ def test_package_basic_import():
     assert False == ("package1.module1" in sys.modules)
 
     try:
-        print (module1.__doc__)
+        print(module1.__doc__)
     except NameError :
         pass
 
     #modules need explicit import generally.
     import Tasks.basics.package1.module1
-    print (module1.__doc__)
+    print(module1.__doc__)
 
     assert False == ("package1" in sys.modules)
     assert False == ("module1" in sys.modules)
@@ -108,7 +107,7 @@ def test_package_sub_packages():
     assert False == ("package1.subpackage.m1" in sys.modules)
 
     #why is this not raising an exception here?
-    print (m1.__doc__)
+    print(m1.__doc__)
 
     assert False == ("package1.subpackage.m1" in sys.modules)
 
