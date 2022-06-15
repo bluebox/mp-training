@@ -1,11 +1,7 @@
 """This is the 5th file of python exercise by medplus"""
 __author__ = 'Hari'
 
-<<<<<<< HEAD
-# from basics.placeholders import *
-=======
-from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd
+# from tasks.placeholders import *
 
 NOTES = '''
 dicts are unordered sets of key value pairs which facilitate

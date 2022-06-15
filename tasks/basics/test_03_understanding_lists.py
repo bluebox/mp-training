@@ -1,14 +1,7 @@
 """This is the 3rd file of python exercise by medplus"""
 __author__ = 'Hari'
 
-<<<<<<< HEAD
-# from Tasks.basics.placeholders
-
-from numpy import empty
-
-=======
-from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd
+# from Tasks.placeholders
 
 def test_list_type():
     """List and its type"""
@@ -41,8 +34,7 @@ def test_list_can_be_sliced():
      Slicing works the same as on strings
     """
     fruits = ["banana", "orange", "grape"]
-    assert fruits[0:0] is empty
-
+    assert len(fruits[0:0]) == 0
     #begin : end
     assert ["banana", "orange"] == fruits[0:2]
     assert  ["banana", "orange", "grape"] == fruits[0:5]
@@ -54,7 +46,7 @@ def test_list_can_be_sliced():
     assert ["banana", "orange", "grape"] == fruits[0:]
 
     #: end
-    assert fruits[:0] is empty
+    assert len(fruits[:0]) == 0
     assert ["banana", "orange"] == fruits[:2]
     assert ["banana", "orange", "grape"] == fruits[:5]
 
