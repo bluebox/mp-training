@@ -14,16 +14,7 @@ notes = '''
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 '''
 
-<<<<<<< HEAD
-from math import fabs
-from re import T
-# from xmlrpc.client import TRANSPORT_ERROR
-
-# from placeholder import F
-from basics.placeholders import *
-=======
-from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd
+from Tasks.placeholders import *
 import sys
 
 
