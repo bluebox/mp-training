@@ -39,13 +39,13 @@ def test_package_basic_import():
     assert False == ("package1.module1" in sys.modules)
 
     try:
-        print package1.module1.__doc__
+        print (package1.module1.__doc__)
     except AttributeError :
         pass
 
     #modules need explicit import generally.
     import package1.module1
-    print module1.__doc__
+    print (module1.__doc__)
 
     assert False == ("package1" in sys.modules)
     assert False == ("module1" in sys.modules)
