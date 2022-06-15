@@ -1,8 +1,5 @@
 __author__ = 'Hari'
 
-from tasks.basics import module1
-
-
 notes = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
  then it makes sense to group all of them together. Packages allows you to group related modules together.
@@ -39,13 +36,13 @@ def test_package_basic_import():
     assert __ == ("package1.module1" in sys.modules)
 
     try:
-        print module1.__doc__
+        print package1.module1.__doc__
     except __ :
         pass
 
     #modules need explicit import generally.
     import package1.module1
-    print module1.__doc__
+    print package1.module1.__doc__
 
     assert __ == ("package1" in sys.modules)
     assert __ == ("module1" in sys.modules)
@@ -107,7 +104,7 @@ def test_package_sub_packages():
     assert __ == ("package1.subpackage.m1" in sys.modules)
 
     #why is this not raising an exception here?
-    print m1.__doc__
+    print subpackage.m1.__doc__
 
     assert __ == ("package1.subpackage.m1" in sys.modules)
 
