@@ -1,5 +1,8 @@
 __author__ = 'Hari'
 
+from tasks.basics import module1
+
+
 notes = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
  then it makes sense to group all of them together. Packages allows you to group related modules together.
@@ -42,7 +45,7 @@ def test_package_basic_import():
 
     #modules need explicit import generally.
     import package1.module1
-    print package1.module1.__doc__
+    print module1.__doc__
 
     assert False == ("package1" in sys.modules)
     assert False == ("module1" in sys.modules)

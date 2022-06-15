@@ -2,6 +2,7 @@ __author__ = 'Hari'
 
 from placeholders import *
 
+
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.
 
@@ -32,6 +33,7 @@ def test_numbers_int_to_string():
     assert '012' == oct(10)
     assert '0x64' == hex(100)
     assert '0b11111111' == bin(255)
+
 
 def test_numbers_long():
     """Long is not the long in c"""
