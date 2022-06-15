@@ -1,7 +1,7 @@
+from Tasks.placeholders import *
+import Tasks.placeholders as placeholders
 from Tasks.basics.module4 import *
 from Tasks.basics.module3 import *
-from Tasks.basics.placeholders import *
-import Tasks.basics.placeholders
 from tokenize import Name
 import sys
 __author__ = 'Hari'
@@ -31,23 +31,23 @@ def test_module_without_import():
 
 
 def test_module_usage_needs_import():
-    import module1
+    import Tasks.basics.module1 as module1
     assert "module1 says hi to jack" == module1.greet("jack")
 
 
 def test_module_usage_multiple():
-    import module1
-    import module2
+    import Tasks.basics.module1 as module1
+    import Tasks.basics.module2 as module2
 
     assert "module1 says hi to jack" == module1.greet("jack")
     assert "module2 says hi to jack" == module2.greet("jack")
 
 
 def test_module_import_affects_current_namespace():
-    import module1
+    import Tasks.basics.module1 as module1
 
     def inner_func():
-        import module2
+        import Tasks.basics.module2 as module2
         assert True == ('module2' in locals())
         return module2.greet("jack")
 
@@ -60,7 +60,7 @@ def test_module_import_affects_current_namespace():
     assert True == ('module1' in locals())
     assert False == ('module1' in globals())
 
-    assert True == ('module2' in locals())
+    assert False == ('module2' in locals())
     assert False == ('module2' in globals())
 
 
@@ -70,12 +70,12 @@ def test_module_type():
 
 def test_module_is_an_object():
     assert 12 == len(dir(placeholders))
-    assert 'placeholders' == placeholders.__name__
+    assert 'Tasks.placeholders' == placeholders.__name__
     assert None == placeholders.__doc__
 
 
 def test_module_from_import():
-    from module1 import greet
+    from Tasks.basics.module1 import greet
 
     assert False == ('module1' in locals())
     assert True == ('greet' in locals())
@@ -89,18 +89,18 @@ def test_module_from_import():
 
 
 def test_module_why_from_import_is_a_bad_idea():
-    from module1 import greet
-    from module2 import greet
+    from Tasks.basics.module1 import greet
+    from Tasks.basics.module2 import greet
 
     assert "module2 says hi to jack" == greet("jack")
 
 
 def test_modules_are_cached():
-    import module1
-    import module1 as new_name
+    import Tasks.basics.module1 as module1
+    import Tasks.basics.module1 as new_name
 
     def inner():
-        import module1
+        import Tasks.basics.module1 as module1
         return module1.some_attr
 
     try:
@@ -112,13 +112,13 @@ def test_modules_are_cached():
     assert 10 == inner()
 
     def inner2():
-        import module1
+        import Tasks.basics.module1 as module1
         return module1.some_attr
 
     assert 10 == inner2()
 
     assert 'dict' == type(sys.modules).__name__
-    assert False == (module1 is sys.modules['module1'])
+    assert ___ == (module1 is sys.modules['module1'])
     assert True == ('new_name' in sys.modules)
     assert True == (new_name is module1)
     assert True == (new_name is sys.modules['module1'])
@@ -135,8 +135,10 @@ s3 = set(dir())
 
 def test_module_star_import():
     # * imports are not allowed within functions, so we had to do it at global scope
-    assert " " == (s2 - s1)  # what did module3 import bring in.
-    assert " " == (s3 - s2)  # what did module4 import bring in.
+    assert ({'@py_builtins', '@pytest_ar', 'Name', '__', '___', '__author__', ...} - {'@py_builtins',
+            '@pytest_ar', 'Name', '__', '___', '__author__', ...}) == (s2 - s1)  # what did module3 import bring in.
+    assert ({'@py_builtins', '@pytest_ar', 'Name', '__', '___', '__author__', ...} - {'@py_builtins',
+            '@pytest_ar', 'Name', '__', '___', '__author__', ...}) == (s3 - s2)  # what did module4 import bring in.
 
 
 notes_2 = '''

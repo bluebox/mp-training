@@ -1,3 +1,4 @@
+from Tasks.placeholders import *
 import string
 __author__ = 'Hari'
 
@@ -7,8 +8,6 @@ notes = '''
  dc -> dict comprehensions
  sc -> set comprehensions
 '''
-
-# from placeholders import *
 
 
 def is_even(x):

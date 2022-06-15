@@ -1,6 +1,8 @@
+import sys
+from Tasks.placeholders import *
 __author__ = 'Hari'
 
-from tasks.basics import module1
+from Tasks.basics.package1 import module1
 
 
 notes = '''
@@ -14,42 +16,41 @@ notes = '''
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 '''
 
-from placeholders import *
-import sys
 
 # Look at the package1 and package2 directories before starting...
+
 
 def test_package_basic_import():
     clear_sys_modules()
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert False == ("package1" in locals())
+    assert False == ("module1" in locals())
+    assert False == ("package1.module1" in locals())
 
-    import package1
+    import Tasks.basics.package1
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert False == ("package1" in locals())
+    assert False == ("module1" in locals())
+    assert False == ("package1.module1" in locals())
 
-    assert __ == type(package1).__name__
+    assert ' ' == type(package1).__name__
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+    assert True == ("package1" in sys.modules)
+    assert True == ("module1" in sys.modules)
+    assert True == ("package1.module1" in sys.modules)
 
     try:
-        print module1.__doc__
-    except __ :
+        print(module1.__doc__)
+    except AttributeError:
         pass
 
-    #modules need explicit import generally.
+    # modules need explicit import generally.
     import package1.module1
-    print module1.__doc__
+    print(module1.__doc__)
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+    assert True == ("package1" in sys.modules)
+    assert True == ("module1" in sys.modules)
+    assert True == ("package1.module1" in sys.modules)
 
 
 def clear_sys_modules():
@@ -59,57 +60,60 @@ def clear_sys_modules():
     sys.modules.pop("package1.subpackage", None)
     sys.modules.pop("package1.subpackage.m1", None)
 
+
 def test_package_from_import():
     clear_sys_modules()
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert False == ("package1" in locals())
+    assert False == ("module1" in locals())
+    assert False == ("package1.module1" in locals())
 
-    from package1 import module1
+    from Tasks.basics.package1 import module1
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert False == ("package1" in locals())
+    assert True == ("module1" in locals())
+    assert False == ("package1.module1" in locals())
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+    assert False == ("package1" in sys.modules)
+    assert False == ("module1" in sys.modules)
+    assert False == ("package1.module1" in sys.modules)
 
 
 def test_package_import_failure():
     clear_sys_modules()
     try:
         import package2
-    except __ :
-        assert ___
+    except ModuleNotFoundError:
+        assert True
 
     # fill up reason for failure. why is package2 not a package
-    why_it_failed = __
+    why_it_failed = "__"
+
 
 def test_package_sub_packages():
     clear_sys_modules()
 
-    assert __ == ("package1" in locals())
-    assert __ == ("subpackage" in locals())
-    assert __ == ("package1.subpackage" in locals())
+    assert False == ("package1" in locals())
+    assert False == ("subpackage" in locals())
+    assert False == ("package1.subpackage" in locals())
 
-    from package1 import subpackage
+    from Tasks.basics.package1 import subpackage
 
-    assert __ == ("package1" in locals())
-    assert __ == ("subpackage" in locals())
-    assert __ == ("package1.subpackage" in locals())
+    assert False == ("package1" in locals())
+    assert True == ("subpackage" in locals())
+    assert False == ("package1.subpackage" in locals())
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
-    assert __ == ("package1.subpackage" in sys.modules)
-    assert __ == ("package1.subpackage.m1" in sys.modules)
+    assert False == ("package1" in sys.modules)
+    assert False == ("module1" in sys.modules)
+    assert False == ("package1.module1" in sys.modules)
+    assert False == ("package1.subpackage" in sys.modules)
+    assert False == ("package1.subpackage.m1" in sys.modules)
 
-    #why is this not raising an exception here?
-    print m1.__doc__
+    # why is this not raising an exception here?
+    print(m1.__doc__)
 
-    assert __ == ("package1.subpackage.m1" in sys.modules)
+    assert True == ("package1.subpackage.m1" in sys.modules)
+
 
 three_things_i_learnt = """
 -
@@ -117,6 +121,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
-
-
+time_taken_minutes = 50

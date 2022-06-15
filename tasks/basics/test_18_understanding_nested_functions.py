@@ -1,3 +1,4 @@
+from Tasks.placeholders import *
 __author__ = 'Hari'
 
 notes = '''
@@ -8,12 +9,12 @@ nested functions are defined in the scope of a function, behave exactly the same
 that they have a read only access to variables in the outer function.
 '''
 
-# from placeholders import *
 
 def outer_func(outer_var):
     def inner_func(inner_var):
         return outer_var + inner_var
     return inner_func
+
 
 def test_inner_func_scope():
     # inner_func not accessible by default
@@ -25,13 +26,15 @@ def test_inner_func_scope():
     # this syntax does not work either, it is not just static scoping.
     try:
         outer_func.inner_func()
-    except AttributeError : # fillup the exception
+    except AttributeError:  # fillup the exception
         pass
+
 
 def test_inner_func_can_be_returned():
     f1 = outer_func(10)
     assert 'function' == type(f1).__name__
     assert 30 == f1(20)
+
 
 def test_each_invocation_returns_a_new_func():
     f1 = outer_func(10)
@@ -44,6 +47,7 @@ def test_each_invocation_returns_a_new_func():
     assert True == (f3 is f2)
     assert True == (f3 == f2)
 
+
 def test_inner_func_has_access_to_outer_variables_after_return():
     f1 = outer_func(20)
     f2 = outer_func(50)
@@ -54,14 +58,16 @@ def test_inner_func_has_access_to_outer_variables_after_return():
     assert 80 == f2(30)
     assert 90 == f2(40)
 
+
 def print_attributes(obj):
     for x in dir(obj):
-        print ("attribute: " + x)
-        print (getattr(obj, x))
+        print("attribute: " + x)
+        print(getattr(obj, x))
+
 
 def test_inner_func_attributes():
     f1 = outer_func(10)
-    assert 35 == len(dir(f1)) #how many attributes does f1 have
+    assert 35 == len(dir(f1))  # how many attributes does f1 have
 
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
@@ -85,14 +91,19 @@ def test_inner_func_scoping():
     assert [9, 9, 9, 9, 9, 9, 9, 9, 9, 9] == outer()
 
 # generally you should not write code like this :), this is only to learn
+
+
 def test_outer_scope_is_read_only():
     y = 30
+
     def outer(x):
         def inner1():
             x = 30
             return x
+
         def inner2():
             return x + y
+
         def inner3():
             y = 10
             return x + y
@@ -103,6 +114,8 @@ def test_outer_scope_is_read_only():
 # def is an executable statement. the function name is nothing more than a name
 # binding to a code object! So same scope rules as variables apply to function names.
 # read up more at http://effbot.org/zone/default-values.htm
+
+
 def test_def_is_a_statement():
     def outer(x):
         if x > 10:

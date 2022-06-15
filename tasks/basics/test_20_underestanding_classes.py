@@ -1,3 +1,4 @@
+from Tasks.placeholders import *
 __author__ = 'Hari'
 
 notes = '''
@@ -19,7 +20,6 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
-# from placeholders import *
 
 notes_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
@@ -37,8 +37,8 @@ def test_classes_are_objects():
     def get_attr_count(obj):
         return len(dir(obj))
 
-    assert 'class' == type(Queue).__name__  # note this.
-    assert None == Queue.__doc__
+    assert 'type' == type(Queue).__name__  # note this.
+    assert 'Queue with push and pop functions.' == Queue.__doc__
     assert 26 == get_attr_count(Queue)
 
 
@@ -170,7 +170,7 @@ def test_classes_bound_and_unbound_methods():
     assert False == (q1.push is Queue.push)
 
     # assert False == Queue.push.__self__  # unbound method
-    assert "<Tasks.basics.test_20_underestanding_classes.test_classes_bound_and_unbound_methods.<locals>.Queue object at 0x00000219C165E2B0>" == q1_push.__self__  # bound method
+    assert " " == q1_push.__self__  # bound method
 
     # now understand the output of these 2 statements.
     print(q1.push)

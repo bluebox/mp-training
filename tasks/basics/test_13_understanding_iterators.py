@@ -1,9 +1,6 @@
 __author__ = 'Hari'
 
-# from placeholders import *
-
-from argparse import ArgumentError
-
+from Tasks.placeholders import *
 
 notes = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns

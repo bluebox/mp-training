@@ -1,11 +1,10 @@
+from Tasks.placeholders import *
 __author__ = 'Hari'
 
 notes = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
-
-# from placeholders import  *
 
 
 def test_set_type():

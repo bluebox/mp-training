@@ -1,3 +1,4 @@
+from Tasks.placeholders import *
 import symtable
 import inspect
 __author__ = 'Hari'
@@ -18,8 +19,6 @@ notes = '''
  Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
 '''
 
-
-# from placeholders import *
 
 count = 10
 
