@@ -7,14 +7,7 @@ notes = '''
  dc -> dict comprehensions
  sc -> set comprehensions
 '''
-
-<<<<<<< HEAD:Tasks/pybasics/basics/test_15_understanding_comprehensions.py
 from tasks.placeholders import *
-
-=======
-from tasks.placeholders import *
-import string
->>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_15_understanding_comprehensions.py
 
 def is_even(x):
     return x % 2 == 0

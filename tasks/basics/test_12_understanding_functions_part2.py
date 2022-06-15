@@ -1,11 +1,5 @@
 __author__ = 'Hari'
-
-<<<<<<< HEAD:Tasks/pybasics/basics/test_12_understanding_functions_part2.py
 from tasks.placeholders import *
-=======
-from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_12_understanding_functions_part2.py
-
 
 def demo(first, second=2, third=3):
     return [first, second, third]

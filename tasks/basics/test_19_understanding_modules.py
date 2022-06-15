@@ -19,12 +19,7 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 #here for the sake of testing.
 
 import sys
-<<<<<<< HEAD:Tasks/pybasics/basics/test_19_understanding_modules.py
 from tasks.placeholders import *
-=======
-
-from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_19_understanding_modules.py
 
 def test_module_without_import():
     try:

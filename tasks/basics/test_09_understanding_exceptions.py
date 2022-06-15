@@ -7,11 +7,7 @@ Exceptions are the default runtime error reporting mechanism in python.
 Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
-
-<<<<<<< HEAD:Tasks/pybasics/basics/test_09_understanding_exceptions.py
-=======
 from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_09_understanding_exceptions.py
 
 def test_exception_flow_1():
     fruit = "orange"

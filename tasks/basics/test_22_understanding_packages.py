@@ -1,5 +1,7 @@
 __author__ = 'Hari'
 
+from pickle import FALSE
+from re import T
 from tasks.basics import module1
 from tasks.basics.package1.subpackage import m1
 
@@ -22,32 +24,32 @@ import sys
 def test_package_basic_import():
     clear_sys_modules()
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert False == ("package1" in locals())
+    assert False == ("module1" in locals())
+    assert False == ("package1.module1" in locals())
 
     import package1
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert True == ("package1" in locals())
+    assert True == ("module1" in locals())
+    assert True == ("package1.module1" in locals())
 
-    assert __ == type(package1).__name__
+    assert "package" == type(package1).__name__
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+    assert True  == ("package1" in sys.modules)
+    assert False == ("module1" in sys.modules)
+    assert True == ("package1.module1" in sys.modules)
 
     try:
         print(module1.__doc__)
-    except __ :
+    except AttributeError:
         pass
 
     #modules need explicit import generally.
     import package1.module1
     print(module1.__doc__)
 
-    assert __ == ("package1" in sys.modules)
+    assert True == ("package1" in sys.modules)
     assert __ == ("module1" in sys.modules)
     assert __ == ("package1.module1" in sys.modules)
 

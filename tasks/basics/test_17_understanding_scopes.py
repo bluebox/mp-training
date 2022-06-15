@@ -17,13 +17,7 @@ notes = '''
  Variables which are scoped to the the whole file (module) are called global
  Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
 '''
-
-
-<<<<<<< HEAD:Tasks/pybasics/basics/test_17_understanding_scopes.py
 from tasks.placeholders import *
-=======
-from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd:tasks/basics/test_17_understanding_scopes.py
 
 count = 10
 
