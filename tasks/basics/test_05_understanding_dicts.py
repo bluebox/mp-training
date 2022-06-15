@@ -128,7 +128,7 @@ three_things_i_learnt = """
 -implementation of dictionaries
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 30
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented
