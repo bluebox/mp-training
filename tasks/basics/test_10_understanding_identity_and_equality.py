@@ -88,6 +88,6 @@ three_things_i_learnt = """
 -Difference between Identity and Equality
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 2
 
 
