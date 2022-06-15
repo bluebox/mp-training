@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-#from placeholders import *
+from tasks.placeholders import *
 
 notes = '''
 dicts are unordered sets of key value pairs which facilitate
