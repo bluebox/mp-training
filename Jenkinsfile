@@ -16,7 +16,7 @@ pipeline {
 		                sh 'mkdir /var/lib/jenkins/venv'
 		            }
 		        }
-                sh 'python3.6 -m venv venv/venv-training'
+                sh 'python3.6 -m venv /var/lib/jenkins/venv/venv-training'
                 sh '/var/lib/jenkins/venv/venv-training/bin/pip3 install --upgrade pip'
                 sh '/var/lib/jenkins/venv/venv-training/bin/pip3 install wheel'
                 sh '/var/lib/jenkins/venv/venv-training/bin/pip3 install pytest'
