@@ -1,25 +1,25 @@
 __author__ = 'Hari'
 
-# from placeholders import *
+from tasks.placeholders import *
 
 notes = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
 
 def test_string_type():
-    assert 'str' == type("Hello World").__name__
-    assert True == isinstance("Hello World", str)
+    assert 'str'== type("Hello World").__name__
+    assert True== isinstance("Hello World", str)
 
 def test_single_quoted_strings_are_strings():
-    assert True == isinstance('Hello World', str)
+    assert True== isinstance('Hello World', str)
 
 def test_double_quoted_strings_are_strings():
-    assert True == isinstance("Hello World", str)
+    assert True== isinstance("Hello World", str)
 
 def test_triple_quoted_strings_are_strings():
-    assert True == isinstance("""Hello World""", str)
+    assert True== isinstance("""Hello World""", str)
 
 def test_triple_single_quoted_strings_are_strings():
-    assert True == isinstance('''Hello World''', str)
+    assert True== isinstance('''Hello World''', str)
 
 def test_raw_strings_are_strings():
     assert True == isinstance(r"Hello World", str)
@@ -28,20 +28,20 @@ def test_single_quoted_strings_can_have_double_quotes():
     first = 'The pilot said "Jump"'
     second = "The pilot said \"Jump\""  #note back slash escaping of "
     are_equal = (first == second)
-    assert True == are_equal
+    assert True== are_equal
 
 def test_double_quoted_strings_can_have_single_quotes():
     first = "The pilot said 'Jump'"
     second = 'The pilot said \'Jump\''  #note back slash escaping of '
     are_equal = (first == second)
-    assert True == are_equal
+    assert True== are_equal
 
 def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
     """ Edit tq_str to make are_equal True """
     tq_str = """ Isn't the "Hobbit" great? """
     dq_str = "Isn't the \"Hobbit\" great?"
     are_equal = (tq_str == dq_str)
-    assert False== are_equal
+    assert  False == are_equal
 
 def test_triple_quoted_strings_can_span_lines():
     tq_str = """Hello
@@ -158,9 +158,9 @@ def test_string_membership():
 
 
 three_things_i_learnt = """
--
--
--
+-strings are immutable
+-strings can be accessed through indexing
+-strings can be sliced
 """
 
 time_taken_minutes = 10

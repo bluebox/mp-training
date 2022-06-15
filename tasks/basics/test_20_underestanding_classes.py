@@ -19,7 +19,7 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
-# from placeholders import *
+from tasks.placeholders import *
 
 notes_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
