@@ -13,29 +13,29 @@ def test_dictionary_type():
 
 def test_dictionary_empty():
     empty_dict_1 = {}
-    assert __ == isinstance(empty_dict_1, dict)
+    assert True  == isinstance(empty_dict_1, dict)
 
     empty_dict_2 = dict() # another way of creating empty dict
-    assert __ == len(empty_dict_2)
+    assert 0 == len(empty_dict_2)
     assert empty_dict_1 == empty_dict_2
 
 def test_dictionary_create():
     dict_1 = { 1 : "one", 2 : "two" }
-    assert __ == isinstance(dict_1, dict)
+    assert True == isinstance(dict_1, dict)
 
     #init from a sequence of tuple pairs, useful in many cases.
     dict_2 = dict([(1, "one"), (2, "two")])
-    assert __ == dict_2[1]
-    assert __ == dict_2[2]
+    assert 'one' == dict_2[1]
+    assert 'two' == dict_2[2]
 
 def test_dictionary_length():
     word_to_digit = { "one" : 1, "two" : 2}
-    assert __ == len(word_to_digit) #note that a key value pair is treated as one item
+    assert 2 == len(word_to_digit) #note that a key value pair is treated as one item
 
 def test_dictionary_is_indexed_by_key():
     word_to_digit = { "one" : 1, "two" : 2}
-    assert __ == word_to_digit["one"]
-    assert __ == word_to_digit["two"]
+    assert 1 == word_to_digit["one"]
+    assert 2 == word_to_digit["two"]
 
     try:
         word_to_digit[1]
@@ -48,13 +48,13 @@ def test_dictionary_is_mutable():
     word_to_digit = { "one" : 1, "two" : 2}
 
     word_to_digit["three"] = 3
-    assert __ == word_to_digit
+    assert  { "one" : 1, "two" : 2, "three":3}  == word_to_digit
 
     del word_to_digit["one"]
-    assert __ == word_to_digit
+    assert  {  "two" : 2 , 'three': 3} == word_to_digit
 
     word_to_digit["one"] = 10
-    assert __ == word_to_digit
+    assert { "one" : 10, "two" : 2, "three":3} == word_to_digit
     # A regular dictionary doesn't track the insertion order.
     # So when iterating over it, items are returned in an arbitrary order.
     # When we want to make sure that items are returned to the order they were inserted, we can use OrderedDict.
@@ -64,34 +64,34 @@ def test_dictionary_is_unordered():
     dict2 = { 'two': 2, 'one': 1}
 
     equal = (dict1 == dict2)
-    assert __ == equal # True or False?
+    assert True == equal # True or False?
 
 def test_dictionary_keys_and_values():
     word_to_digit = { "one" : 1, "two" : 2}
-    assert __ == len(word_to_digit.keys())
-    assert __ == len(word_to_digit.values())
+    assert 2 == len(word_to_digit.keys())
+    assert 2 == len(word_to_digit.values())
     keys = list(word_to_digit.keys())
     #sort to get a deterministic order
     keys.sort()
-    assert __ == keys
+    assert ['one','two'] == keys
     values = list(word_to_digit.values())
     values.sort()
-    assert __ == values
+    assert [1,2] == values
 
 def test_dictionary_contains():
     word_to_digit = { "one" : 1, "two" : 2}
 
-    assert __ == ("one" in word_to_digit)
-    assert __ == ("two" in word_to_digit)
+    assert True == ("one" in word_to_digit)
+    assert True == ("two" in word_to_digit)
 
-    assert __ == ("one" in word_to_digit.keys())
-    assert __ == ("two" in word_to_digit.keys())
+    assert True == ("one" in word_to_digit.keys())
+    assert True == ("two" in word_to_digit.keys())
 
-    assert __ == (1 in word_to_digit)
-    assert __ == (2 in word_to_digit)
+    assert False == (1 in word_to_digit)
+    assert False == (2 in word_to_digit)
 
-    assert __ == (1 in word_to_digit.values())
-    assert __ == (2 in word_to_digit.values())
+    assert True == (1 in word_to_digit.values())
+    assert True == (2 in word_to_digit.values())
 
 def test_valid_dictionary_keys():
     test_dict = {}
@@ -109,7 +109,8 @@ def test_valid_dictionary_keys():
         test_dict[key] = "tuple with immutable elements"
     except TypeError as te:
         print (te)
-        assert False # do we reach here?
+        assert False # do we reach here?  
+        # No we don't reach here because tuple can be used as key in dictionary as tuple is immutable datatype
 
     try:
         key = (1, [])
@@ -117,17 +118,18 @@ def test_valid_dictionary_keys():
     except TypeError as te:
         print (te)
         assert True #do we reach here?
+        # yes 
 
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
 three_things_i_learnt = """
--
--
--
+- dictipnary is mutable data type
+- dictionary is unordered
+- key should be immutable datatype
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 15 
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

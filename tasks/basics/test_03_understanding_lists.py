@@ -22,32 +22,32 @@ def test_list_can_be_indexed():
 def test_list_is_mutable():
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
-    assert __ == fruits  #replace __ with expected contents of list
+    assert ["mango", "orange", "grape"]   == fruits  #replace __ with expected contents of list
 
 def test_list_can_be_sliced():
     """
      Slicing works the same as on strings
     """
     fruits = ["banana", "orange", "grape"]
-    assert __ == fruits[0:0]
+    assert [] == fruits[0:0]
 
     #begin : end
-    assert __ == fruits[0:2]
-    assert __ == fruits[0:5]
-    assert __ == fruits[1:-1]
+    assert ["banana", "orange"] == fruits[0:2]
+    assert ["banana", "orange", "grape"] == fruits[0:5]
+    assert ['orange'] == fruits[1:-1]
 
     # begin :
-    assert __ == fruits[0:]
-    assert __ == fruits[2:]
-    assert __ == fruits[0:]
+    assert ["banana", "orange", "grape"] == fruits[0:]
+    assert ["grape"] == fruits[2:]
+    assert ["banana", "orange", "grape"] == fruits[0:]
 
     #: end
     assert [] == fruits[:0]
-    assert __ == fruits[:2]
-    assert __ == fruits[:5]
+    assert ["banana", "orange"] == fruits[:2]
+    assert ["banana", "orange", "grape"] == fruits[:5]
 
     # note the invariant
-    assert __ == fruits[:1] + fruits[1:]
+    assert ["banana", "orange", "grape"] == fruits[:1] + fruits[1:]
 
 
 def test_slice_creates_a_new_list():
@@ -94,60 +94,60 @@ def test_list_common_methods():
     assert ['orange'] == fruits
 
     fruits.insert(0, "banana")
-    assert ['banana'] == fruits
+    assert ['banana','orange'] == fruits
 
     fruits.extend(["litchi", "guava"])
-    assert ['banana',["litchi", "guava"]]  == fruits
+    assert ['banana','orange',"litchi", "guava"]  == fruits
 
     fruits.reverse()
-    assert [['litchi', 'guava'], 'banana'] == fruits
+    assert [ 'guava','litchi','orange', 'banana'] == fruits
 
     fruits.pop()
-    assert  == fruits
+    assert [ 'guava', 'litchi','orange'] == fruits
 
     fruits.pop(0)
-    assert __ == fruits
+    assert [ 'litchi','orange'] == fruits
 
 def test_list_can_contain_lists():
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
     all = [fruits, veggies]
 
-    assert __ == len(all)
-    assert __ == all[0]
-    assert __ == all[1]
+    assert 2 == len(all)
+    assert ["orange", "banana"]  == all[0]
+    assert ["beetroot", "tomato"] == all[1]
 
 def test_list_can_contain_objects_of_different_types():
     mixed = ["string", 10]
-    assert __ == mixed[0]
-    assert __ == mixed[1]
+    assert "string" == mixed[0]
+    assert 10 == mixed[1]
 
 def test_list_sort():
     numbers = [ 5, 4, 3, 8 ]
     numbers.sort()
-    assert __ == numbers
+    assert [3,4,5,8] == numbers
     numbers.sort(reverse=True)
-    assert __ == numbers
+    assert [8,5,4,3] == numbers
 
 # if something unexpected happens see,
 # http://docs.python.org/2/reference/expressions.html#operator-precedence
 # and fix accordingly.
 def test_list_membership():
     numbers = [ 5, 4, 3]
-    assert __ == 5 in numbers
-    assert __ == (10 in numbers)
+    assert True == (5 in numbers)
+    assert False == (10 in numbers)
 
 def test_list_range():
     numbers = range(1,5)
-    assert __ == numbers
+    assert range(1,5) == numbers
 
     numbers = range(1, 5, 2)
-    assert __ == numbers
+    assert range(1,5,2) == numbers
 
 three_things_i_learnt = """
-- 
--
--
+- list are mutable
+- list supports indexing
+- list can be sliced 
 """
 
-time_taken_minutes = __
+time_taken_minutes = 15
