@@ -1,7 +1,6 @@
 __author__ = 'Hari'
 
-from tkinter.tix import Tree
-from placeholders import *
+from tasks.placeholders import *
 
 
 notes = '''
