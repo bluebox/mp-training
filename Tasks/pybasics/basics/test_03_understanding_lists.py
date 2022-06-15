@@ -147,9 +147,9 @@ def test_list_range():
     assert range(1,5,2) == numbers
 
 three_things_i_learnt = """
--
--
--
+-About Lists
+-List Slicing
+-Mixed Lists
 """
 
 time_taken_minutes =1
