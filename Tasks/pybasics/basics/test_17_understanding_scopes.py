@@ -32,13 +32,13 @@ def test_scope_basic():
 
     value = count
 
-    assert __ == ('value' in local_names)
-    assert __ == ('value' in global_names)
+    assert True == ('value' in local_names)
+    assert False == ('value' in global_names)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert False== ('count' in local_names)
+    assert True == ('count' in global_names)
 
-    assert __ == value
+    assert 10 == value
 
 
 def test_scope_undefined_variable():
@@ -46,7 +46,7 @@ def test_scope_undefined_variable():
 
     try:
         my_name = name  #name variable is not in local or  global scope
-    except __ : # fill up the exception
+    except NameError : # fill up the exception
         pass
 
     assert __ == ('my_name' in local_names)

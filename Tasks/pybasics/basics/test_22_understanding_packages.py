@@ -19,17 +19,17 @@ import sys
 def test_package_basic_import():
     clear_sys_modules()
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert False == ("package1" in locals())
+    assert False == ("module1" in locals())
+    assert False== ("package1.module1" in locals())
 
     import package1
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert True == ("package1" in locals())
+    assert  False == ("module1" in locals())
+    assert True == ("package1.module1" in locals())
 
-    assert __ == type(package1).__name__
+    assert "module" == type(package1).__name__
 
     assert __ == ("package1" in sys.modules)
     assert __ == ("module1" in sys.modules)
@@ -37,7 +37,7 @@ def test_package_basic_import():
 
     try:
         print package1.module1.__doc__
-    except __ :
+    except NameError :
         pass
 
     #modules need explicit import generally.

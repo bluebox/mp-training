@@ -5,7 +5,7 @@ sets are  unordered collection of elements without duplicates. Conceptually they
 the keys are not associated with any values.
 '''
 
-#from placeholders import  *
+from placeholders import  *
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
@@ -98,8 +98,8 @@ def test_set_valid_members():
     assert {1,'hello',(1,2)} == test_set
 
 three_things_i_learnt = """
--
--
+- set operations 
+-list to set convertion 
 -
 """
 
