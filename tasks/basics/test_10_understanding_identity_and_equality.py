@@ -1,9 +1,6 @@
 __author__ = 'Hari'
 
-#from placeholders import *
-
-from re import T
-
+from Tasks.placeholders import *
 
 notes = '''
  Identity and equality are 2 concepts which most beginners are confused about.

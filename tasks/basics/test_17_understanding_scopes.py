@@ -20,7 +20,7 @@ import inspect
 from re import T
 import symtable
 
-#from placeholders import *
+from Tasks.placeholders import *
 
 count = 10
 

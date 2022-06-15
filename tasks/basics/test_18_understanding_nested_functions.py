@@ -11,7 +11,7 @@ nested functions are defined in the scope of a function, behave exactly the same
 that they have a read only access to variables in the outer function.
 '''
 
-#from placeholders import *
+from Tasks.placeholders import *
 
 def outer_func(outer_var):
     def inner_func(inner_var):

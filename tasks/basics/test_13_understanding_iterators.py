@@ -1,9 +1,6 @@
 __author__ = 'Hari'
 
-#from placeholders import *
-
-from functools import reduce
-
+from Tasks.placeholders import *
 
 notes = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
@@ -39,10 +36,10 @@ def test_int_iterable():
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert "one" == list_iter.next()
-        assert "two" == list_iter.next()
-        assert "three" == list_iter.next()
-        assert False == list_iter.next() #note what happens when items are finished.
+        assert "one" == list_iter.__next__()
+        assert "two" == list_iter.__next__()
+        assert "three" == list_iter.__next__()
+        assert False == list_iter.__next__() #note what happens when items are finished.
     except AttributeError :
         pass
 
@@ -52,15 +49,15 @@ def convert_to_list(iterable):
     result = []
     try:
         while True:
-            item = seq_iterator.next()
+            item = seq_iterator.__next__()
             result.append(item)
     except AttributeError as se:
         return result
 
 def test_convert():
-    assert [] == convert_to_list("hello")
-    assert [] == convert_to_list((1,2,3,4))
-    assert [] == convert_to_list(range(5))
+    assert ['h','e','l','l','o'] == convert_to_list("hello")
+    assert [1,2,3,4] == convert_to_list((1,2,3,4))
+    assert [0,1,2,3,4] == convert_to_list(range(5))
 
     #string.join also works using the iteration protocol!
     #accepts any iterable
