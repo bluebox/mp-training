@@ -138,9 +138,9 @@ def test_function_params_passed_by_object_reference():
 
 
 three_things_i_learnt = """
--
--
--
+-Functions
+-Doc
+-Callable
 """
 
 time_taken_minutes = 5
