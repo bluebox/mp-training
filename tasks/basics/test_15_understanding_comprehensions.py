@@ -7,11 +7,7 @@ notes = '''
  sc -> set comprehensions
 '''
 
-<<<<<<< HEAD
-#from placeholders import *
-=======
 from tasks.placeholders import *
->>>>>>> 1e720e63e649ebd9ecfe9b7b3b6151e88549042c
 import string
 
 def is_even(x):

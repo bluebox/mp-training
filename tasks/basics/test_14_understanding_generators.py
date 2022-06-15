@@ -12,11 +12,7 @@ calling next() to keep moving the function forward and at every stop point where
 have a yield or return the function can return something new.
 '''
 
-<<<<<<< HEAD
-#from placeholders import *
-=======
 from tasks.placeholders import *
->>>>>>> 1e720e63e649ebd9ecfe9b7b3b6151e88549042c
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():
