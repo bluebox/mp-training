@@ -9,14 +9,14 @@ fast lookups by key.
 
 def test_dictionary_type():
     test_dict = {1 : "one"}   # note the new syntax
-    assert __ == type(test_dict).__name__
+    assert "dictionary" == type(test_dict).__name__
 
 def test_dictionary_empty():
     empty_dict_1 = {}
-    assert __ == isinstance(empty_dict_1, dict)
+    assert True == isinstance(empty_dict_1, dict)
 
     empty_dict_2 = dict() # another way of creating empty dict
-    assert __ == len(empty_dict_2)
+    assert 0 == len(empty_dict_2)
     assert empty_dict_1 == empty_dict_2
 
 def test_dictionary_create():
@@ -127,7 +127,7 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 1
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

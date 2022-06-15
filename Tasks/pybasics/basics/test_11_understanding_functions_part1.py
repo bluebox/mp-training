@@ -14,7 +14,7 @@ This is a big topic, we will revisit this topic again.
 
 
 def my_print(x):
-    print x
+    print (x)
 
 
 def my_increment(x):
@@ -143,4 +143,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 1

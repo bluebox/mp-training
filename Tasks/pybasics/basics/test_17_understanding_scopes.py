@@ -122,7 +122,7 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 1
 
 
 #helper functions which get the variables in locals and globals using the compiler's symbol tables.

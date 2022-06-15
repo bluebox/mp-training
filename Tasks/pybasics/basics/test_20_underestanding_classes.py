@@ -171,8 +171,8 @@ def test_classes_bound_and_unbound_methods():
     assert __ == q1_push.__self__      #bound method
 
     # now understand the output of these 2 statements.
-    print q1.push
-    print Queue.push
+    print (q1.push)
+    print (Queue.push)
 
 def test_classes_can_have_state():
     class Queue(object):
@@ -206,4 +206,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 1

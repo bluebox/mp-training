@@ -56,8 +56,8 @@ def test_inner_func_has_access_to_outer_variables_after_return():
 
 def print_attributes(obj):
     for x in dir(obj):
-        print "attribute: " + x
-        print getattr(obj, x)
+        print ("attribute: " + x)
+        print (getattr(obj, x))
 
 def test_inner_func_attributes():
     f1 = outer_func(10)
@@ -123,4 +123,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 1
