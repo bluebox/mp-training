@@ -13,15 +13,16 @@ the <optional message>. If is evaluates to True, nothing happens.
 
 def test_assert_true():
     #throws assertion error
-    "davvad"
+    #"davvad"
+    g = 10
     assert True  #This should be True -- replace ___ with True.
 
 def test_assert_true_with_message():
-    "bhbhbj"
+    #"bhbhbj"
     assert True #"This is the failure message"#replace_with True to stop seeing the assertion error
 
 def test_assert_equality():
-    "savfds"
+   # "savfds"
     assert 7 == 2 + 5   #replace __ with the expected value
 
 #Fill in __ in the statements below to make the asserts succeed

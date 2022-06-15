@@ -22,7 +22,7 @@ def test_triple_single_quoted_strings_are_strings():
     assert True== isinstance('''Hello World''', str)
 
 def test_raw_strings_are_strings():
-    assert True == isinstance(r"Hello World", str)
+    assert True == isinstance("Hello World", str)
 
 def test_single_quoted_strings_can_have_double_quotes():
     first = 'The pilot said "Jump"'
@@ -49,9 +49,9 @@ World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
 
-def test_string_len():
     assert 13 == len("Hello 'world'")
-    assert 13 == len('Hello \'world\'')
+    assert 13 == len('Hello \'world\'')def test_string_len():
+
 
 def test_triple_quoted_strings_can_span_lines():
     string = """Hello
