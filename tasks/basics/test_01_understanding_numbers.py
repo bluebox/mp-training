@@ -48,4 +48,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = 4
+time_taken_minutes = 10
