@@ -17,8 +17,8 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 
 import sys
 
-import placeholders
-from placeholders import *
+import tasks.placeholders
+from tasks.placeholders import *
 
 def test_module_without_import():
     try:
