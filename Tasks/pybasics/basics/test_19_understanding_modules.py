@@ -17,37 +17,37 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 
 import sys
 
-import placeholders
-from placeholders import *
+# import placeholders
+# from placeholders import *
 
 def test_module_without_import():
     try:
         module1.greet("jack")
-    except ___ :
+    except ImportError:
         print
-        assert ___
+        assert True
 
 def test_module_usage_needs_import():
     import module1
-    assert __ == module1.greet("jack")
+    assert "module1 says hi to jack" == module1.greet("jack")
 
 def test_module_usage_multiple():
     import module1
     import module2
 
-    assert __ == module1.greet("jack")
-    assert __ == module2.greet("jack")
+    assert "module1 says hi to jack" == module1.greet("jack")
+    assert "module2 says hi to jack" == module2.greet("jack")
 
 def test_module_import_affects_current_namespace():
     import module1
 
     def inner_func():
         import module2
-        assert __ == ('module2' in locals())
+        assert True == ('module2' in locals())
         return module2.greet("jack")
 
-    assert __ == module1.greet("jack")
-    assert __ == inner_func()
+    assert "module1 says hi to jack" == module1.greet("jack")
+    assert "module2 says hi to jack" == inner_func()
 
     assert __ == ('placeholders' in locals())
     assert __ == ('placeholders' in globals())
