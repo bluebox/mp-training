@@ -103,8 +103,6 @@ def test_set_valid_members():
         print(te)
         assert True
 
-    assert {1, 'hello', (1, 2)} == test_set
-
 
 three_things_i_learnt = """
 -

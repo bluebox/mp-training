@@ -111,9 +111,9 @@ def test_functions_that_work_on_iterables():
 
 
 def test_find_builtins_that_work_on_iterables():
-    funcs = ['iter', 'list', 'filter', 'len',
-             'range', 'reduce', 'map', 'max', 'min', ]
-    assert 9 == len(funcs)
+    funcs = ['iter', 'filter', 'len',
+             'range', 'reduce', 'map', 'max', 'min']
+    assert 8 == len(funcs)
 
 
 three_things_i_learnt = """

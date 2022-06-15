@@ -2,6 +2,7 @@ __author__ = 'Hari'
 
 # from placeholders import *
 
+
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.
 
@@ -9,18 +10,19 @@ __author__ = 'Hari'
 def test_numbers_types():
     assert 'int' == type(1).__name__
     assert 'float' == type(1.3).__name__
-   # assert 'int' == type(10L).__name__
-   # In Python 3 the long datatype has been removed and all integer values are handled by the Int class. The default size of Int will depend on your CPU architecture.
-   # 32 bit systems the default datatype for integers will be 'Int32'->[-2147483648,2147483647]
-   # 64 bit systems the default datatype for integers will be 'Int64'->[-9223372036854775808,9223372036854775807]
+# assert 'int' == type(10L).__name__
+# In Python 3 the long datatype has been removed and all integer values are handled
+# by the Int class. The default size of Int will depend on your CPU architecture.
+# 32 bit systems the default datatype for integers will be 'Int32'->[-2147483648,2147483647]
+# 64 bit systems the default datatype for integers will be 'Int64'->[-9223372036854775808,9223372036854775807]
 
 
 def test_numbers_int_arithmetic_operations():
     assert 30 == 10 + 20
     assert 200 == 10 * 20
     assert 32 == 2 ** 5
-    assert -10 == 10-20
-    assert 2.3333333333333335 == 7/3
+    assert -10 == 10 - 20
+    assert 2.3333333333333333 == 7 / 3
 
 
 def test_numbers_string_to_int():
