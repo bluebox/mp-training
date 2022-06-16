@@ -3,11 +3,12 @@ __author__ = 'Hari'
 notes = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
 feature is essential to mastering python.
+
 nested functions are defined in the scope of a function, behave exactly the same except
 that they have a read only access to variables in the outer function.
 '''
 
-#from tasks.placeholders import *
+from tasks.placeholders import *
 
 def outer_func(outer_var):
     def inner_func(inner_var):

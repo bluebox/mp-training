@@ -19,6 +19,7 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
+from tasks.placeholders import *
 from unicodedata import name
 #from placeholders import *
 

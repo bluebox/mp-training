@@ -7,7 +7,7 @@ Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
-#from placeholders import *
+from tasks.placeholders import *
 
 def test_exception_flow_1():
     fruit = "orange"
@@ -51,11 +51,11 @@ def test_raise_error():
 def test_missing_except():
     result = []
     fruit = "orange"
-    try:   
+    try:
       result.append("one")
     #what happens now? fix it with an appropriate try except
       fruit.missingmethod()
-    except AttributeError: 
+    except AttributeError:
       result.append("two")
 
     assert ["one", "two"] == result

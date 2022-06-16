@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-#from placeholders import *
+from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
@@ -77,7 +77,7 @@ def test_function_unpacking():
 
     result = demo_sub(*(1,2), **{"k1": "v1"})
     assert ((1, 2), {'k1': 'v1'})== result
-    
+
 
     #you can unpack lists as well
     result = demo_sub(*[1,2], **{"k1":"v1"})

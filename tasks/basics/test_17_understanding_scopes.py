@@ -20,7 +20,7 @@ import inspect
 import symtable
 from unicodedata import name
 
-from placeholders import *
+from tasks.placeholders import *
 
 count = 10
 

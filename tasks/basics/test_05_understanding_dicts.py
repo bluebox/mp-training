@@ -1,13 +1,13 @@
 __author__ = 'Hari'
 
-#from placeholders import *
+from tasks.placeholders import *
 
 notes = '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
 
-def test_dictionary_type(): 
+def test_dictionary_type():
     test_dict = {1 : "one"}   # note the new syntax
     assert 'dict'== type(test_dict).__name__
 
