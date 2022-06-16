@@ -2,7 +2,7 @@
 __author__ = 'Hari'
 
 import sys
-from Tasks import placeholders
+# from Tasks import placeholders
 from Tasks.basics import module1
 
 NOTES = '''

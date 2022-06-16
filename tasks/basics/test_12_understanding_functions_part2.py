@@ -1,7 +1,7 @@
 """This is the 12th file of python exercise by medplus"""
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
