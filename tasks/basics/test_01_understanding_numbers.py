@@ -1,10 +1,11 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from Tasks.placeholders import *
 
 
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.
+
 
 def test_numbers_types():
     assert 'int' == type(1).__name__
@@ -21,7 +22,7 @@ def test_numbers_int_arithmetic_operations():
     assert 200 == 10 * 20
     assert 32 == 2 ** 5
     assert -10 == 10 - 20
-    assert 2.3333333333333335 == 7 / 3
+    assert 2.3333333333333333 == 7 / 3
 
 
 def test_numbers_string_to_int():
@@ -43,9 +44,9 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+-checking datatypes whether 5 is int and 5.5 is float,and performing arithematic operations
+-converted int to string and vice versa by using int() oct() ,hex() and bin() inbuilt functions.
+--converted int 64 bits
 """
 
-time_taken_minutes = 4
+time_taken_minutes = 5
