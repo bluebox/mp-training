@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
@@ -13,10 +13,10 @@ def test_set_type():
 
 def test_set_empty():
     empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
-    assert False == isinstance(empty_set_wrong, set)
+    assert False is isinstance(empty_set_wrong, set)
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
+    assert True is isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
 def test_set_length():
@@ -51,7 +51,7 @@ def test_set_creation():
 def test_set_membership():
     fruits = {"apple", "mango", "kiwi"}
     assert 'apple' == "apple" in fruits
-    assert False == ("dog" in fruits)
+    assert False is ("dog" in fruits)
 
 def test_set_operations():
     set1 = {"one", "two", "three"}
@@ -97,12 +97,12 @@ def test_set_valid_members():
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -set is unordered
 -set is hetrogenius
 -set has unique values
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_IN_MINUTES = 20
 
 

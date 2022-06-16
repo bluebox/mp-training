@@ -1,8 +1,9 @@
 __author__ = 'Hari'
 
+
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
@@ -17,7 +18,7 @@ def test_tuple_length():
 
 def test_tuple_with_no_elements():
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
@@ -60,16 +61,16 @@ def test_tuples_can_be_nested():
 
 def test_tuple_unpacking():
     pair = (10, 20)
-    a, b = pair
-    assert 10 == a
-    assert 20 == b
+    a_a, b_b = pair
+    assert 10 == a_a
+    assert 20 == b_b
 
     triplet = (10, 20, 30)
     try:
-        a, b = triplet
+        a_a, b_b = triplet
         assert True  # should not come here.
-    except ValueError as ve:
-        print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+    except ValueError as v_e:
+        print (v_e ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
@@ -95,10 +96,10 @@ def test_sequence_conversion():
     word4 = "".join(list_1)
     assert 'testing' == word4
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -tuple basics
 -tuple conversions
 -tuples in tuples
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_IN_MINUTES = 30

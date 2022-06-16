@@ -2,9 +2,9 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
-dicts are unordered sets of key value pairs which facilitate
-fast lookups by key.
+NOTES = '''
+DICTS ARE UNORDERED SETS OF KEY VALUE PAIRS WHICH FACILITATE
+FAST LOOKUPS BY KEY.
 '''
 
 def test_dictionary_type():
@@ -55,9 +55,9 @@ def test_dictionary_is_mutable():
 
     word_to_digit["one"] = 10
     assert {'two': 2, 'three': 3, 'one': 10} == word_to_digit
-    # A regular dictionary doesn't track the insertion order.
-    # So when iterating over it, items are returned in an arbitrary order.
-    # When we want to make sure that items are returned to the order they were inserted, we can use OrderedDict.
+    # A REGULAR DICTIONARY DOESN'T TRACK THE INSERTION ORDER.
+    # SO WHEN ITERATING OVER IT, ITEMS ARE RETURNED IN AN ARBITRARY ORDER.
+    # WHEN WE WANT TO MAKE SURE THAT ITEMS ARE RETURNED TO THE ORDER THEY WERE INSERTED, WE CAN USE ORDEREDDICT.
 
 def test_dictionary_is_unordered():
     dict1 = { 'one': 1, 'two': 2 }
@@ -81,17 +81,17 @@ def test_dictionary_keys_and_values():
 def test_dictionary_contains():
     word_to_digit = { "one" : 1, "two" : 2}
 
-    assert True == ("one" in word_to_digit)
-    assert True == ("two" in word_to_digit)
+    assert True is ("one" in word_to_digit)
+    assert True is ("two" in word_to_digit)
 
-    assert True == ("one" in word_to_digit.keys())
-    assert True == ("two" in word_to_digit.keys())
+    assert True is ("one" in word_to_digit.keys())
+    assert True is ("two" in word_to_digit.keys())
 
-    assert False == (1 in word_to_digit)
-    assert False == (2 in word_to_digit)
+    assert False is (1 in word_to_digit)
+    assert False is (2 in word_to_digit)
 
-    assert True == (1 in word_to_digit.values())
-    assert True == (2 in word_to_digit.values())
+    assert True is (1 in word_to_digit.values())
+    assert True is (2 in word_to_digit.values())
 
 def test_valid_dictionary_keys():
     test_dict = {}
@@ -121,7 +121,7 @@ def test_valid_dictionary_keys():
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -in keyword
 -list,tuple in dict
 -sort keyword
@@ -129,9 +129,9 @@ three_things_i_learnt = """
 
 time_taken_minutes = 30
 
-notes2= '''
-It is  a good idea to figure out how dictionaries are generally implemented
-under the hood. Go through the thread at
-http://stackoverflow.com/questions/730620/how-does-a-hash-table-work
-and discuss in the group if required.
+NOTES_2= '''
+IT IS  A GOOD IDEA TO FIGURE OUT HOW DICTIONARIES ARE GENERALLY IMPLEMENTED
+UNDER THE HOOD. GO THROUGH THE THREAD AT
+HTTP://STACKOVERFLOW.COM/QUESTIONS/730620/HOW-DOES-A-HASH-TABLE-WORK
+AND DISCUSS IN THE GROUP IF REQUIRED.
 '''

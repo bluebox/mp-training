@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -12,7 +12,8 @@ calling next() to keep moving the function forward and at every stop point where
 have a yield or return the function can return something new.
 '''
 
-from tasks.placeholders import *
+
+from tasks.placeholders import __author__
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():
@@ -25,8 +26,8 @@ def test_generator_type():
     assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "__next__")
-    assert True == hasattr(demo_generator(), "__next__")
+    assert False is hasattr(demo_generator, "__next__")
+    assert True is hasattr(demo_generator(), "__next__")
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
@@ -34,7 +35,7 @@ def test_generator_is_an_iterator2():
         assert 'how' == next(result)  # builtin which calls the iterator.next()
         assert 'are' == next(result)
         assert 'you?' == next(result)
-        assert True == next(result)
+        assert True is next(result)
     except StopIteration:
         assert True
 
@@ -110,10 +111,10 @@ def test_generator_exception():
     assert [10,20,50,30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -yield
 -function,generator
 -exception flow
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_IN_MINUTES = 40

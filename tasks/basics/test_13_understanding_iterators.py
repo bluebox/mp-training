@@ -1,8 +1,9 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
 
-notes = '''
+from tasks.placeholders import __author__
+
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -17,20 +18,20 @@ list, tuple, string etc.
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
     assert 'list_iterator' == type(list_iter).__name__
-    assert True == hasattr(list_iter, "next")
+    assert False is hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert 'str_iterator' == type(string_iter).__name__
-    assert True == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
     assert 'tuple_iterator' == type(tuple_iter).__name__
-    assert True == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
         iter(10)
-    except TypeError as e:  # replace by appropriate except so this test passes
+    except TypeError :  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
@@ -39,8 +40,8 @@ def test_enumerate_iter():
         assert 'one' == list_iter.next()
         assert 'two' == list_iter.next()
         assert 'three' == list_iter.next()
-        assert True == list_iter.next() #note what happens when items are finished.
-    except StopIteration:
+        assert True is list_iter.next() #note what happens when items are finished.
+    except AttributeError:
         pass
 
 #note this function which can convert any iterable into a list.
@@ -51,7 +52,7 @@ def convert_to_list(iterable):
         while True:
             item = next(seq_iterator)
             result.append(item)
-    except StopIteration as se:
+    except StopIteration :
         return result
 
 def test_convert():
@@ -97,10 +98,10 @@ def test_find_builtins_that_work_on_iterables():
     assert 0 == len(funcs)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -list<>tuple
 -.join
 -iterable not iterable types
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_IN_MINUTES = 40

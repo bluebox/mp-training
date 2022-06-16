@@ -1,6 +1,7 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+
+from tasks.placeholders import __author__
 
 
 def demo(first, second=2, third=3):
@@ -85,10 +86,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -variable lenth argument passing
 -key word passing
 -position,keyword,defalt arguments
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_IN_MINUTES = 30

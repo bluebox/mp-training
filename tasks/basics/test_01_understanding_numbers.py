@@ -1,5 +1,6 @@
 __author__ = 'Hari'
 
+
 from tasks.placeholders import *
 
 
@@ -41,10 +42,10 @@ def test_numbers_long():
     assert 1606938044258990275541962092341162602522202993782792835301376== 2 ** 200
 
 
-three_things_i_learnt = """
+TIME_TAKEN_IN_MINUTES = """
 -arithmetic op are +,-,*,/,**
 -conversions dec<>oct,dec<>hex,dec<>bin
 -type()shows type 
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_IN_MINUTES = 4
