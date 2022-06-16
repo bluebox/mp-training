@@ -1,19 +1,22 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from Tasks.placeholders import *
 
 
 def test_list_type():
+    """list type"""
     fruits = ["banana", "orange", "grape"]
     assert 'list' == type(fruits).__name__
 
 
 def test_list_len():
+    """list length"""
     fruits = ["banana", "orange", "grape"]
     assert 3 == len(fruits)
 
 
 def test_list_can_be_indexed():
+    """list can be indexed"""
     fruits = ["banana", "orange", "grape"]
     assert "banana" == fruits[0]
     assert "orange" == fruits[1]
@@ -24,6 +27,7 @@ def test_list_can_be_indexed():
 
 
 def test_list_is_mutable():
+    """test"""
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
     # replace __ with expected contents of list
@@ -57,6 +61,7 @@ def test_list_can_be_sliced():
 
 
 def test_slice_creates_a_new_list():
+    """slicing creates a new list"""
     fruits = ["banana", "orange", "grape"]
     slice = fruits[0:2]
     slice.append("guava")
@@ -66,6 +71,7 @@ def test_slice_creates_a_new_list():
 
 
 def test_list_merge():
+    """list can be merged"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
     all = fruits + veggies
@@ -77,6 +83,7 @@ def test_list_merge():
 
 
 def test_list_slice_replacement_is_inplace():
+    """slice replacement"""
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
@@ -118,6 +125,7 @@ def test_list_common_methods():
 
 
 def test_list_can_contain_lists():
+    """lists can contain lists"""
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
     all = [fruits, veggies]
@@ -128,12 +136,14 @@ def test_list_can_contain_lists():
 
 
 def test_list_can_contain_objects_of_different_types():
+    """lists can have different objects"""
     mixed = ["string", 10]
     assert "string" == mixed[0]
     assert 10 == mixed[1]
 
 
 def test_list_sort():
+    """list sorting"""
     numbers = [5, 4, 3, 8]
     numbers.sort()
     assert [3, 4, 5, 8] == numbers
@@ -146,12 +156,14 @@ def test_list_sort():
 
 
 def test_list_membership():
+    """list membership check"""
     numbers = [5, 4, 3]
     assert 5 == 5 in numbers
-    assert False == (10 in numbers)
+    assert False is (10 in numbers)
 
 
 def test_list_range():
+    """list range check"""
     numbers = range(1, 5)
     assert range(1, 5) == numbers
 
@@ -159,10 +171,10 @@ def test_list_range():
     assert range(1, 5, 2) == numbers
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
