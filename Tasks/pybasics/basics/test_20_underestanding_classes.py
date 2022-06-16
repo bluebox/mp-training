@@ -19,7 +19,7 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
-from tasks.placeholders import *
+from placeholders import *
 
 notes_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
@@ -37,16 +37,16 @@ def test_classes_are_objects():
     def get_attr_count(obj):
         return len(dir(obj))
 
-    assert "type"== type(Queue).__name__ #note this.
-    assert """Queue with push and pop functions.""" == Queue.__doc__
-    assert  26 == get_attr_count(Queue)
+    assert 'type' == type(Queue).__name__ #note this.
+    assert 'Queue with push and pop functions.' == Queue.__doc__
+    assert 12 == get_attr_count(Queue)
 
 def test_classes_are_callable_objects():
     class Queue(object):
         pass
 
     #classes are callable objects just like function objects
-    assert True == callable(Queue)
+    assert True== callable(Queue)
 
 
 def test_classes_are_object_factories():
@@ -56,8 +56,8 @@ def test_classes_are_object_factories():
     q1 = Queue()  # you can 'call' a class to create an instance
     q2 = Queue()
 
-    # assert  "<class 'type'>" == type(q1).__class__
-    # assert  "<class 'type'>" == type(q2).__class__
+    assert 'Queue' == type(q1).__class__
+    assert 'Queue'== type(q2).__class__
 
     assert False == (q1 is Queue)
     assert False == (q2 is Queue)
@@ -93,12 +93,12 @@ def test_classes_init_with_args():
     q1 = Queue("q1")
     q2 = Queue("q2")
 
-    assert "q1"== q1.name
-    assert "q2"== q2.name
+    assert q1 == q1.name
+    assert q2 == q2.name
 
     try:
         q3 = Queue()
-    except TypeError : #what error do you get?
+    except TypeError: #what error do you get?
         pass
 
 
@@ -118,11 +118,11 @@ def test_class_is_an_executable_statement():
 
     Q_class = create_class(20)
     q1 = Q_class()
-    assert ">10queue" == q1.name
+    assert __ == q1.name
 
-    Q_class  = create_class(5)
+    Q_class = create_class(5)
     q1 = Q_class()
-    assert "<=10queue" == q1.name
+    assert __ == q1.name
 
 
 # the self argument name is just a convention but it is
@@ -143,11 +143,11 @@ def test_classes_methods():
 
     q1 = Queue("q1")
     q1.push(10) #note that we pass only one argument
-    assert 10 == q1.pop()
+    assert __ == q1.pop()
 
     #above is a equivalent to
     Queue.push(q1, 10)
-    assert 10 == Queue.pop(q1)
+    assert __ == Queue.pop(q1)
 
 
 def test_classes_bound_and_unbound_methods():
@@ -165,15 +165,14 @@ def test_classes_bound_and_unbound_methods():
     q1 = Queue("q1")
     q1_push = q1.push
 
-    assert False == (q1.push is Queue.push)
+    assert __ == (q1.push is Queue.push)
 
-    # assert  NameError == Queue.push.__self__   #unbound method
-    # assert NameError == q1_push.__self__      #bound method
+    assert __ == Queue.push.__self__   #unbound method
+    assert __ == q1_push.__self__      #bound method
 
     # now understand the output of these 2 statements.
-    print(q1.push)
-    print(Queue.push)
-
+    print q1.push
+    print Queue.push
 
 def test_classes_can_have_state():
     class Queue(object):
@@ -189,15 +188,15 @@ def test_classes_can_have_state():
         def pop(self):
             return self._queue.pop(0)
 
-    assert 0 == Queue.count
+    assert __ == Queue.count
     q1 = Queue("q1")
-    assert 1 == Queue.count
+    assert __ == Queue.count
     q2 = Queue("q2")
-    assert 2 == Queue.count
+    assert __ == Queue.count
 
     try:
         value = q1.count
-    except AttributeError :
+    except __ :
         pass
 
 
@@ -207,4 +206,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = "15 min"
+time_taken_minutes = ___

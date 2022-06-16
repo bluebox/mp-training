@@ -46,7 +46,8 @@ def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
 def test_triple_quoted_strings_can_span_lines():
     tq_str = """Hello
 World"""
-    dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
+    dq_str = "Hello\nWorld"  
+     # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
 
 def test_string_len():
@@ -66,7 +67,8 @@ def test_strings_can_be_indexed():
     assert 'l' == string[2]
     assert 'l'== string[3]
     assert 'o' == string[4]
-    assert 'o' == string[-1]  # solves the common use case to iterate from end
+    assert 'o' == string[-1]  
+    # solves the common use case to iterate from end
     assert 'l' == string[-2]
     assert 'l' == string[-3]
     assert 'e' == string[-4]
@@ -74,7 +76,8 @@ def test_strings_can_be_indexed():
     assert 'H' == string[-0]  # hint -0 is 0
     assert  5 == len(string)
     try:
-        out_of_bounds = string[5] #raises an error, we will revisit exceptions later
+        out_of_bounds = string[5] #raises an error, 
+        #we will revisit exceptions later
     except IndexError as ie:
         print (ie)   #string index out of range
         assert True  #make this True to proceed.
@@ -153,15 +156,18 @@ def test_string_formatting():
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
-    assert False== ('c' in 'apple')  #is there a precedence issue here?
-    assert True == ('a' in 'apple')
-    assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
+    assert False == ('c' in 'apple') 
+     #is there a precedence issue here?
+    assert True  == ('a' in 'apple')
+    assert True  == ('app' in 'apple')  
+    # '==' and 'in' operators have same precedence are 
+    # interpreted from left to right in the expression
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -strings are immutable
 -strings can be accessed through indexing
 -string slicing
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

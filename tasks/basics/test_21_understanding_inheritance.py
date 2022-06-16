@@ -5,7 +5,7 @@ notes = '''
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tkinter import N
+#from tkinter import N
 from tasks.placeholders import *
 
 def test_inheritance_basic():

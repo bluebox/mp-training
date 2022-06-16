@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an
 expression. It takes the form assert <expr>, <optional message>. If <expr> evaluates to False an AssertionError is raised with
 the <optional message>. If is evaluates to True, nothing happens.
@@ -16,30 +16,30 @@ def test_assert_true():
     assert True  #This should be True -- replace ___ with True.
 
 def test_assert_true_with_message():
-    assert True, "This is the failure message" # replace ___ with True to stop seeing the assertion error
+    assert True #"This is the failure message"
+     # replace ___ with True to stop seeing the assertion error
 
 def test_assert_equality():
-    assert 7 == 2 + 5   #replace __ with the expected value
+    assert 7 == 2 + 5 #replace __ with the expected value
 
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
-    assert 8>7, "Fill in a value greater than 7"
+    num1=8
+    num2=7
+    assert num1>num2 #"Fill in a value greater than 7"
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
-    assert 2**43 > 2**30, "Fill in value greater than 2**30"
+    assert 2**43 > 2**30 #Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
-    s1 = "Hello, World"
-    s2 = "Hello, World"
-    assert s1 == s2
+    num_s1 = "Hello, World"
+    num_s2 = "Hello, World"
+    assert num_s1 == num_s2
 
-three_things_i_learnt = """
-asseret ==bool
--
--
+THREE_THINGS_I_LEARNT= """
+- assertions 
+- comparisons
+- equalities
 """
-
-time_taken_minutes = 2
-
-# /home/achyuthmedplus/Desktop/mp-training/Tasks/pybasics/basics/
+TIME_TAKEN_MINUTES = "2 MINS"
