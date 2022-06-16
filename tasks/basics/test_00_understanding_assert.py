@@ -42,4 +42,4 @@ def test_make_assert_true_3():
     assert s_1 == s_2
 
 THREE_THINGS_I_LEARNT = """asseret ==bool"""
-TIME_TAKE_MINUTES = 1
+TIME_TAKEN_MINUTES = 1

@@ -181,4 +181,4 @@ THREE_THINGS_I_LEARNT = """
 -strings can be sliced
 """
 
-TIME_TAKE_MINUTES = 20
+TIME_TAKEN_MINUTES = 20

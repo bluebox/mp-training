@@ -1,3 +1,4 @@
+"""Code Author"""
 __author__ = 'Hari'
 
 from asyncio.windows_events import NULL
@@ -5,12 +6,14 @@ from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
+    """Demo Function"""
     return [first, second, third]
 
 # keyword arguments allows you to write one api without having a large number
 # of overloads for various scenarios.
 # add extra arguments where necessary.
 def test_function_call_with_keyword_arguments():
+    """Function call with arguments"""
     assert [10,2,3] == demo(10)
     assert [10,20,3] == demo(10, 20)
     assert [10,20,30] == demo(10, 20, 30)
@@ -21,14 +24,17 @@ def test_function_call_with_keyword_arguments():
 
 
 def demo_variable_args(first, *args):
+    """Function with variable arguments"""
     return args
 
 
 def my_merge(separator, *args):
+    """Merge arguments"""
     return separator.join(args)
 
 
 def test_function_with_variable_args():
+    """Functions with variable arguments"""
     result = demo_variable_args("hello", "world")
     assert "tuple" == type(result).__name__ #this is the type of args
     assert ("world",) == result              #this is the value of args
@@ -40,10 +46,12 @@ def test_function_with_variable_args():
 
 
 def demo_with_keyword_args(name, *args, **kwargs):
+    """Keywords with arguments"""
     return kwargs
 
 
 def test_function_with_keyword_args():
+    """Keywords with arguments"""
     result = demo_with_keyword_args("jack", age=10, height=100)
     assert "dict" == type(result).__name__
     assert {"age":10,"height":100} == result
@@ -52,6 +60,7 @@ def test_function_with_keyword_args():
 
 
 def demo_sub(*args, **kwargs):
+    """demo funtion"""
     return args, kwargs
 
 
@@ -85,10 +94,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -Functions
 -args
 -kwargs
 """
 
-time_taken_minutes = 5
+TIME_TAKEN_MINUTES = 5

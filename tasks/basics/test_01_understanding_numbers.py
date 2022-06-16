@@ -48,4 +48,4 @@ THREE_THINGS_I_LEARNT = """
 -we have a method in python to convert a decimal number to octal
 - a method to convert decimal tp hexadecemal
 """
-TIME_TAKE_MINUTES = 4
+TIME_TAKEN_MINUTES = 4
