@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from Tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
@@ -87,10 +87,10 @@ def test_function_unpacking():
     assert ((1, 2), {"k1": "v1"}) == result
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

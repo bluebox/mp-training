@@ -201,10 +201,10 @@ def test_while_loop_else():
     assert [1, 2, 3] == result
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

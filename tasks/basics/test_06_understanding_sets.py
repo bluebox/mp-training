@@ -103,10 +103,10 @@ def test_set_valid_members():
         assert True
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15

@@ -1,3 +1,4 @@
+from importlib.metadata import PackageNotFoundError
 import sys
 from Tasks.placeholders import *
 __author__ = 'Hari'
@@ -86,12 +87,11 @@ def test_package_import_failure():
     """tests weather the module is imported correctly"""
     clear_sys_modules()
     try:
-        import Tasks.basics.package2
+        import package2
     except ModuleNotFoundError:
         assert True
 
     # fill up reason for failure. why is package2 not a package
-
 
     # WHY_IT_FAILED = "package2 doesn't have the __init__.py file. Every
     # python package should contain init file"

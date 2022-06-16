@@ -1,7 +1,7 @@
 from Tasks.placeholders import *
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
 feature is essential to mastering python.
 
@@ -40,12 +40,12 @@ def test_each_invocation_returns_a_new_func():
     f1 = outer_func(10)
     f2 = outer_func(10)
 
-    assert False == (f1 is f2)
-    assert False == (f1 == f2)
+    assert False is (f1 is f2)
+    assert False is (f1 == f2)
 
     f3 = f2
-    assert True == (f3 is f2)
-    assert True == (f3 == f2)
+    assert True is (f3 is f2)
+    assert True is (f3 == f2)
 
 
 def test_inner_func_has_access_to_outer_variables_after_return():
@@ -79,9 +79,9 @@ def test_inner_func_attributes():
 def test_inner_func_scoping():
     def outer():
         funcs = []
-        for x in range(10):
+        for _x in range(10):
             def inner():
-                return x
+                return _x
             funcs.append(inner)
         result = []
         for func in funcs:
@@ -94,20 +94,20 @@ def test_inner_func_scoping():
 
 
 def test_outer_scope_is_read_only():
-    y = 30
+    _y = 30
 
-    def outer(x):
+    def outer(_x):
         def inner1():
-            x = 30
-            return x
+            _x = 30
+            return _x
 
         def inner2():
-            return x + y
+            return _x + _y
 
         def inner3():
-            y = 10
-            return x + y
-        return [inner1(), inner2(), inner3(), x, y]
+            _y = 10
+            return _x + _y
+        return [inner1(), inner2(), inner3(), _x, _y]
 
     assert [30, 50, 30, 20, 30] == outer(20)
 
@@ -117,23 +117,23 @@ def test_outer_scope_is_read_only():
 
 
 def test_def_is_a_statement():
-    def outer(x):
-        if x > 10:
+    def outer(_x):
+        if _x > 10:
             def f():
-                return x * 2
+                return _x * 2
         else:
             def f():
-                return x * 3
+                return _x * 3
         return f
 
     assert 40 == outer(20)()
     assert 15 == outer(5)()
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES = 40

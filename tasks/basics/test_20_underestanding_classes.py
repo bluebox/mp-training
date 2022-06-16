@@ -1,7 +1,7 @@
-from Tasks.placeholders import *
+# from Tasks.placeholders import *
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
 builtin types like dict, list, tuple with your own types with their own specific behavior.
 
@@ -21,7 +21,7 @@ http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
 
-notes_1 = '''
+NOTES_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
  Generally you would define them at the module scope.
 '''
@@ -47,29 +47,29 @@ def test_classes_are_callable_objects():
         pass
 
     # classes are callable objects just like function objects
-    assert True == callable(Queue)
+    assert True is callable(Queue)
 
 
 def test_classes_are_object_factories():
     class Queue(object):
         pass
 
-    q1 = Queue()  # you can 'call' a class to create an instance
-    q2 = Queue()
+    _q1 = Queue()  # you can 'call' a class to create an instance
+    _q2 = Queue()
 
-    assert "<class 'type'>" == type(q1).__class__
-    assert "<class 'type'>" == type(q2).__class__
+    assert "<class 'type'>" == type(_q1).__class__
+    assert "<class 'type'>" == type(_q2).__class__
 
-    assert False == (q1 is Queue)
-    assert False == (q2 is Queue)
-    assert False == (q2 is q1)
+    assert False is (_q1 is Queue)
+    assert False is (_q2 is Queue)
+    assert False is (_q2 is _q1)
 
-    assert True == isinstance(q1, Queue)
-    assert True == isinstance(q2, Queue)
+    assert True is isinstance(_q1, Queue)
+    assert True is isinstance(_q2, Queue)
 
     assert 26 == len(dir(Queue))
-    assert 26 == len(dir(q1))
-    assert 26 == len(dir(q2))
+    assert 26 == len(dir(_q1))
+    assert 26 == len(dir(_q2))
 
 
 # if an __init__ method exists it is called with the object that is
@@ -82,9 +82,9 @@ def test_classes_init_constructor():
             assert True, "Entered here !"
             test_list.append(self)
 
-    q1 = Queue()  # fix the assert to pass this.
+    _q1 = Queue()  # fix the assert to pass this.
     self_argument = test_list[0]
-    assert True == (self_argument is q1)
+    assert True is (self_argument is _q1)
 
 
 def test_classes_init_with_args():
@@ -92,11 +92,11 @@ def test_classes_init_with_args():
         def __init__(self, name):
             self.name = name
 
-    q1 = Queue("q1")
-    q2 = Queue("q2")
+    _q1 = Queue("q1")
+    _q2 = Queue("q2")
 
-    assert "q1" == q1.name
-    assert "q2" == q2.name
+    assert "q1" == _q1.name
+    assert "q2" == _q2.name
 
     try:
         q3 = Queue()
@@ -104,27 +104,28 @@ def test_classes_init_with_args():
         pass
 
 
-# just like def, class is also a runtime statement which bounds a class name with the class body code
+# just like def, class is also a runtime statement which bounds
+#  a class name with the class body code
 def test_class_is_an_executable_statement():
     def create_class(value):
         if (value > 10):
-            class Queue(object):
+            class Queue():
                 def __init__(self):
                     self.name = ">10queue"
         else:
-            class Queue(object):
+            class Queue():
                 def __init__(self):
                     self.name = "<=10queue"
 
         return Queue
 
     Q_class = create_class(20)
-    q1 = Q_class()
-    assert ">10queue" == q1.name
+    _q1 = Q_class()
+    assert ">10queue" == _q1.name
 
     Q_class = create_class(5)
-    q1 = Q_class()
-    assert "<=10queue" == q1.name
+    _q1 = Q_class()
+    assert "<=10queue" == _q1.name
 
 
 # the self argument name is just a convention but it is
@@ -132,7 +133,7 @@ def test_class_is_an_executable_statement():
 # this is in contrast to other languages where the instance is implicit via
 # the 'this' keyword.
 def test_classes_methods():
-    class Queue(object):
+    class Queue():
         def __init__(self, name):
             self.name = name
             self._queue = []
@@ -143,17 +144,17 @@ def test_classes_methods():
         def pop(self):
             return self._queue.pop(0)
 
-    q1 = Queue("q1")
-    q1.push(10)  # note that we pass only one argument
-    assert 10 == q1.pop()
+    _q1 = Queue("q1")
+    _q1.push(10)  # note that we pass only one argument
+    assert 10 == _q1.pop()
 
     # above is a equivalent to
-    Queue.push(q1, 10)
-    assert 10 == Queue.pop(q1)
+    Queue.push(_q1, 10)
+    assert 10 == Queue.pop(_q1)
 
 
 def test_classes_bound_and_unbound_methods():
-    class Queue(object):
+    class Queue():
         def __init__(self, name):
             self.name = name
             self._queue = []
@@ -164,21 +165,21 @@ def test_classes_bound_and_unbound_methods():
         def pop(self):
             return self._queue.pop(0)
 
-    q1 = Queue("q1")
-    q1_push = q1.push
+    _q1 = Queue("q1")
+    _q1_push = _q1.push
 
-    assert False == (q1.push is Queue.push)
+    assert False is (_q1.push is Queue.push)
 
     # assert False == Queue.push.__self__  # unbound method
-    assert " " == q1_push.__self__  # bound method
+    assert " " == _q1_push.__self__  # bound method
 
     # now understand the output of these 2 statements.
-    print(q1.push)
+    print(_q1.push)
     print(Queue.push)
 
 
 def test_classes_can_have_state():
-    class Queue(object):
+    class Queue():
         count = 0
 
         def __init__(self, name):
@@ -193,21 +194,21 @@ def test_classes_can_have_state():
             return self._queue.pop(0)
 
     assert 0 == Queue.count
-    q1 = Queue("q1")
+    _q1 = Queue("q1")
     assert 1 == Queue.count
-    q2 = Queue("q2")
+    _q2 = Queue("q2")
     assert 2 == Queue.count
 
     try:
-        value = q1.count
+        value = _q1.count
     except NameError:
         pass
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30

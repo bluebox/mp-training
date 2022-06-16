@@ -199,6 +199,7 @@ THREE_THINGS_I_LEARNT = """
 -strings are immutable
 -strings can be accessed through indexing
 -strings can be sliced
+-strings are immutable
 """
 
 TIME_TAKEN_MINUTES = 20

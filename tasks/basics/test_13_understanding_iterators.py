@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from Tasks.placeholders import *
 
 notes = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
@@ -18,15 +18,15 @@ list, tuple, string etc.
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
     assert 'list_iterator' == type(list_iter).__name__
-    assert False == hasattr(list_iter, "next")
+    assert False is hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert 'str_iterator' == type(string_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
     tuple_iter = iter((1, 2, 3))
     assert 'tuple_iterator' == type(tuple_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
 
 def test_int_iterable():
@@ -44,7 +44,8 @@ def test_enumerate_iter():
         assert "three" == list_iter.next()
         # note what happens when items are finished.
         assert __ == list_iter.next()
-    except AttributeError as se:
+    except AttributeError as _se:
+        print(_se)
         pass
 
 # note this function which can convert any iterable into a list.
@@ -57,7 +58,8 @@ def convert_to_list(iterable):
         while True:
             item = seq_iterator.next()
             result.append(item)
-    except AttributeError as ae:
+    except AttributeError as _ae:
+        print(_ae)
         return result
 
 
@@ -74,7 +76,8 @@ def test_convert():
 
     try:
         ".".join([1, 2, 4])  # does not accept all element types though!
-    except TypeError as ae:
+    except TypeError as _ae:
+        print(_ae)
         assert True
 
 # list creation also uses the iterator protocol!
@@ -113,10 +116,10 @@ def test_find_builtins_that_work_on_iterables():
     assert 8 == len(funcs)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30
