@@ -1,33 +1,41 @@
+"""This is the 12th file of python exercise by medplus"""
 __author__ = 'Hari'
 
 from Tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
+    """basic docstring for pylint testing"""
+
     return [first, second, third]
 
 # keyword arguments allows you to write one api without having a large number
 # of overloads for various scenarios.
 # add extra arguments where necessary.
 def test_function_call_with_keyword_arguments():
+    """basic docstring for pylint testing"""
     assert [10,2,3] == demo(10)
     assert [10,20,3] == demo(10, 20)
     assert [10,20,30] == demo(10, 20, 30)
-    # assert "TypeError: demo() missing 1 required positional argument: 'first'"== demo(second=20)    #doubt
+    # assert "TypeError: demo() missing 1 required positional
+    #  argument: 'first'"== demo(second=20)    #doubt
     # assert [__] == demo(second=20, third=30)
     assert [10,2,30] == demo(first=10, third=30)
     assert [10,2,30] == demo(10, third=30)
 
 
 def demo_variable_args(first, *args):
+    """basic docstring for pylint testing"""
     return args
 
 
 def my_merge(separator, *args):
+    """basic docstring for pylint testing"""
     return separator.join(args)
 
 
 def test_function_with_variable_args():
+    """basic docstring for pylint testing"""
     result = demo_variable_args("hello", "world")
     assert "tuple" == type(result).__name__ #this is the type of args
     assert ("world",) == result              #this is the value of args
@@ -39,30 +47,37 @@ def test_function_with_variable_args():
 
 
 def demo_with_keyword_args(name, *args, **kwargs):
+    """basic docstring for pylint testing"""
     return kwargs
 
 
 def test_function_with_keyword_args():
+    """basic docstring for pylint testing"""
     result = demo_with_keyword_args("jack", age=10, height=100)
     assert "dict" == type(result).__name__
     assert {"age":10,"height":100} == result
     assert {"age":10,"height":100} == demo_with_keyword_args("jack", "address", age=10, height=100)
-    assert {"address":"address","age":10,"height":100} == demo_with_keyword_args("jack", address="address", age=10, height=100)
+    assert {"address":"address","age":10,"height":100} == demo_with_keyword_args("jack",
+     address="address", age=10, height=100)
 
 
 def demo_sub(*args, **kwargs):
+    """basic docstring for pylint testing"""
     return args, kwargs
 
 
 def demo_unpacking(name, *args, **kwargs):
+    """basic docstring for pylint testing"""
     return demo_sub(*args, **kwargs)
 
 
 def demo_no_unpacking(name, *args, **kwargs):
+    """basic docstring for pylint testing"""
     return demo_sub(args, kwargs)
 
 
 def test_function_unpacking():
+    """basic docstring for pylint testing"""
     result = demo_unpacking("jack", 1, 2, k1="v1", k2="v2")
     assert ((1,2),{"k1":"v1","k2":"v2"}) == result
 
@@ -84,8 +99,8 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 agr,kwargs as arguments, list and dict passing in function, packing using return
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

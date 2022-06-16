@@ -1,9 +1,11 @@
+"""This is the 20th file of python exercise by medplus"""
+
 __author__ = 'Hari'
 
 # from placeholder import F
 
 
-notes = '''
+NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
 builtin types like dict, list, tuple with your own types with their own specific behavior.
 
@@ -22,13 +24,9 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
-<<<<<<< HEAD
-# from placeholders import *
-=======
-from tasks.placeholders import *
->>>>>>> 60a8770156443a866425d99b2119f19709472edd
+# from tasks.placeholders import *
 
-notes_1 = '''
+NOTES_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
  Generally you would define them at the module scope.
 '''
@@ -37,71 +35,81 @@ notes_1 = '''
 #classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
 def test_classes_are_objects():
+    """basic docstring for pylint testing"""
     class Queue(object):
         """Queue with push and pop functions."""
         pass
 
     def get_attr_count(obj):
+        """basic docstring for pylint testing"""
         return len(dir(obj))
 
     assert "type" == type(Queue).__name__ #note this.
     assert "Queue with push and pop functions." == Queue.__doc__
-    assert 18 == get_attr_count(Queue)
+    assert 26 == get_attr_count(Queue)
 
 def test_classes_are_callable_objects():
+    """basic docstring for pylint testing"""
     class Queue(object):
+        """basic Class doctsring"""
         pass
 
     #classes are callable objects just like function objects
-    assert True == callable(Queue)
+    assert True is callable(Queue)
 
 
 def test_classes_are_object_factories():
+    """basic docstring for pylint testing"""
     class Queue(object):
+        """basic Class doctsring"""
         pass
 
-    q1 = Queue()  # you can 'call' a class to create an instance
-    q2 = Queue()
+    q_1 = Queue()  # you can 'call' a class to create an instance
+    q_2 = Queue()
 
-    # assert "Queue" == type(q1).__class__
-    # assert __ == type(q2).__class__
+    # assert "Queue" == type(q_1).__class__
+    # assert __ == type(q_2).__class__
 
-    assert False  == (q1 is Queue)
-    assert False  == (q2 is Queue)
-    assert False  == (q2 is q1)
+    assert False is (q_1 is Queue)
+    assert False is (q_2 is Queue)
+    assert False is (q_2 is q_1)
 
-    assert True == isinstance(q1, Queue)
-    assert True == isinstance(q2, Queue)
+    assert True is isinstance(q_1, Queue)
+    assert True is isinstance(q_2, Queue)
 
-    assert 18 == len(dir(Queue))
-    assert 18 == len(dir(q1))
-    assert 18 == len(dir(q2))
+    assert 26 == len(dir(Queue))
+    assert 26 == len(dir(q_1))
+    assert 26 == len(dir(q_2))
 
 
 # if an __init__ method exists it is called with the object that is
 # being created, so you can initialize it.
 def test_classes_init_constructor():
+    """basic docstring for pylint testing"""
     test_list = []
 
     class Queue(object):
+        """basic Class doctsring"""
         def __init__(self):
             assert self, "Entered here !"
             test_list.append(self)
 
-    q1 = Queue() # fix the assert to pass this.
+    q_1 = Queue() # fix the assert to pass this.
     self_argument = test_list[0]
-    assert True == (self_argument is q1)
+    assert True is (self_argument is q_1)
 
 def test_classes_init_with_args():
+    """basic docstring for pylint testing"""
     class Queue(object):
+        """basic Class doctsring"""
         def __init__(self, name):
             self.name = name
 
-    q1 = Queue("q1")
-    q2 = Queue("q2")
+    q_1 = Queue("q_1")
+    q_2 = Queue("q_2")
 
-    assert "q1" == q1.name
-    assert "q2" == q2.name
+    assert "q_1" == q_1.name
+    assert "q_2" == q_2.name
 
     try:
         q3 = Queue()
@@ -109,27 +117,32 @@ def test_classes_init_with_args():
         pass
 
 
-# #just like def, class is also a runtime statement which bounds a class name with the class body code
+# #just like def, class is also a runtime statement which
+# bounds a class name with the class body code
 def test_class_is_an_executable_statement():
+    """basic docstring for pylint testing"""
     def create_class(value):
-        if (value > 10):
+        if value > 10:
             class Queue(object):
+                """basic Class doctsring"""
                 def __init__(self):
                     self.name = ">10queue"
         else:
             class Queue(object):
+                """basic Class doctsring"""
                 def __init__(self):
+                    """basic Docstring for pylint purpose"""
                     self.name = "<=10queue"
 
         return Queue
 
     Q_class = create_class(20)
-    q1 = Q_class()
-    assert ">10queue" == q1.name
+    q_1 = Q_class()
+    assert ">10queue" == q_1.name
 
     Q_class = create_class(5)
-    q1 = Q_class()
-    assert "<=10queue" == q1.name
+    q_1 = Q_class()
+    assert "<=10queue" == q_1.name
 
 
 # the self argument name is just a convention but it is
@@ -137,59 +150,65 @@ def test_class_is_an_executable_statement():
 # this is in contrast to other languages where the instance is implicit via
 # the 'this' keyword.
 def test_classes_methods():
+    """basic docstring for pylint testing"""
     class Queue(object):
+        """basic Class doctsring"""
         def __init__(self, name):
+            """basic docstring for pylint testing"""
             self.name = name
             self._queue = []
 
         def push(self, obj):
+            """basic docstring for pylint testing"""
             self._queue.append(obj)
 
         def pop(self):
+            """basic docstring for pylint testing"""
             return self._queue.pop(0)
 
-    q1 = Queue("q1")
-    q1.push(10) #note that we pass only one argument
-    assert 10 == q1.pop()
+    q_1 = Queue("q_1")
+    q_1.push(10) #note that we pass only one argument
+    assert 10 == q_1.pop()
 
 #     #above is a equivalent to
-#     Queue.push(q1, 10)
-    # assert False == Queue.pop(q1)
+#     Queue.push(q_1, 10)
+    # assert False is Queue.pop(q_1)
 
 
 def test_classes_bound_and_unbound_methods():
+    """basic docstring for pylint testing"""
     class Queue(object):
+        """basic Class doctsring"""
         def __init__(self, name):
+            """basic docstring for pylint testing"""
             self.name = name
             self._queue = []
 
         def push(self, obj):
+            """basic docstring for pylint testing"""
             self._queue.append(obj)
 
         def pop(self):
+            """basic docstring for pylint testing"""
             return self._queue.pop(0)
 
-    q1 = Queue("q1")
-    q1_push = q1.push
+    q_1 = Queue("q_1")
+    q_1_push = q_1.push
 
-    assert False == (q1.push is Queue.push)
+    assert False is (q_1.push is Queue.push)
 
-    # assert True == Queue.push.__self__   #unbound method
-    # assert True == q1_push.__self__      #bound method
+    # assert True is Queue.push.__self__   #unbound method
+    # assert True is q_1_push.__self__      #bound method
 
-<<<<<<< HEAD
-#     # now understand the output of these 2 statements.
-#     print( q1.push)
-#     print (Queue.push)
-=======
     # now understand the output of these 2 statements.
-    print(q1.push)
+    print(q_1.push)
     print(Queue.push)
 
->>>>>>> 60a8770156443a866425d99b2119f19709472edd
 
 def test_classes_can_have_state():
+    """basic docstring for pylint testing"""
     class Queue(object):
+        """basic Class docstring"""
         count = 0
         def __init__(self, name):
             self.name = name
@@ -197,25 +216,27 @@ def test_classes_can_have_state():
             Queue.count += 1
 
         def push(self, obj):
+            """basic docstring for pylint testing"""
             self._queue.append(obj)
 
         def pop(self):
+            """basic docstring for pylint testing"""
             return self._queue.pop(0)
 
     assert 0 == Queue.count
-    q1 = Queue("q1")
+    q_1 = Queue("q_1")
     assert 1 == Queue.count
-    q2 = Queue("q2")
+    q_2 = Queue("q_2")
     assert 2 == Queue.count
 
     try:
-        value = q1.count
+        value = q_1.count
     except TypeError :
         pass
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 classes,oops concept,objects
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES = 40
