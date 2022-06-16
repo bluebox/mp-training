@@ -109,7 +109,7 @@ def test_inheritance_init():
 
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.
-    class A(object): # A inherits from object.
+    class A():
         def f(self):
             return "A:f()"
 
@@ -120,8 +120,8 @@ def test_inheritance_invoking_using_super():
         def g(self):
             return super(B, self).g() + ":"+ "B:g()"
 
-    b = B()
-    assert "A:g():B:g()"== b.g()
+    ba = B()
+    assert "A:g():B:g()"== ba.g()
 
 
 notes_1 = '''
@@ -129,10 +129,11 @@ notes_1 = '''
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
+"""
+Three_Things_I_want_learn"
 -
 -
 -
 """
 
-time_taken_minutes ="20 mins"
+TIME_TAKEN_IN_MINUTES ="20 mins" 
