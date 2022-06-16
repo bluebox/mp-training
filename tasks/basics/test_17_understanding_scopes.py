@@ -19,7 +19,7 @@ notes = '''
 import inspect
 import symtable
 
-#from placeholders import *
+from Tasks.placeholders import *
 
 count = 10
 
