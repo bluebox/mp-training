@@ -13,10 +13,10 @@ def test_set_type():
 
 def test_set_empty():
     empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
-    assert False == isinstance(empty_set_wrong, set)
+    assert False is isinstance(empty_set_wrong, set)
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
+    assert True is isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
 def test_set_length():
@@ -85,25 +85,25 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print(te)
+    except TypeError as _te_:
+        print(_te_)
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print(te)
+    except TypeError as _te_:
+        print(_te_)
         assert True  
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 sets
 set operations
 empty set
 
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
 
 

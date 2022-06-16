@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
@@ -100,36 +100,36 @@ def test_valid_dictionary_keys():
     try:
         key = []
         test_dict[key] = "list"
-    except TypeError as te:
-        print (te)  #observe the error message.
+    except TypeError as _te_:
+        print (_te_)  #observe the error message.
         assert True
 
     try:
         key = (1,2)
         test_dict[key] = "tuple with immutable elements"
-    except TypeError as te:
-        print (te)
+    except TypeError as _te_:
+        print (_te_)
         assert False # do we reach here?
 
     try:
         key = (1, [])
         test_dict[key] = "tuple with mutable element"
-    except TypeError as te:
-        print (te)
+    except TypeError as _te_:
+        print (_te_)
         assert True #do we reach here?
 
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 dictionary datatype
 indexing
 difference in keys and values
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10
 
-notes2= '''
+NOTES2= '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work

@@ -6,9 +6,9 @@ notes = '''
  dc -> dict comprehensions
  sc -> set comprehensions
 '''
-
-from tasks.placeholders import *
 import string
+from tasks.placeholders import *
+
 
 def is_even(x):
     return x%2 == 0

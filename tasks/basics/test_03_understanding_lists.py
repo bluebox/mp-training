@@ -144,7 +144,7 @@ def test_list_range():
     numbers = range(1, 5, 2)
     assert range(1, 5, 2) == numbers
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 lists updating
 slicing
 adding elements
@@ -152,4 +152,4 @@ removing elements
 sorting
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

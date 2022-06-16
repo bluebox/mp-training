@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -13,28 +13,28 @@ notes = '''
 '''
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert False == (a is b)
-    assert True == (a == b)
+    _a_ = []
+    _b_ = []
+    assert False == (_a_ is _b_)
+    assert True == (_a_ == _b_)
 
     a.append("one")
-    assert False == (a is b)
-    assert False == (a == b)
+    assert False == (_a_ is _b_)
+    assert False == (_a_ == _b_)
 
-    c = []
-    d = c
-    assert True == (c is d)
-    assert True == (c == d)
+    _c_ = []
+    _d_ = c
+    assert True == (_c_ is _d_)
+    assert True == (_c_ == _d_)
 
-    c.append("one")
-    assert True == (c is d)
-    assert True == (c == d)
+    _c_.append("one")
+    assert True == (_c_ is _d_)
+    assert True == (_c_ == _d_)
 
 def test_identity_equality_string():
-    a = b = "hello"
+    _a_ = _b_ = "hello"
 
-    assert True == (a is b)
+    assert True == (_a_ is _b)
     assert True == (a == b)
 
     c = "hello"
@@ -81,12 +81,10 @@ None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -key word "is" is checks the location of variable
 -None value points same location
 -is behave different for small values
 """
 
-time_taken_minutes = 14
-
-
+TIME_TAKEN_MINUTES = 14

@@ -17,7 +17,7 @@ def test_tuple_length():
 
 def test_tuple_with_no_elements():
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
@@ -60,16 +60,18 @@ def test_tuples_can_be_nested():
 
 def test_tuple_unpacking():
     pair = (10, 20)
-    a, b = pair
-    assert 10 == a
-    assert 20 == b
+    _a_, _b_ = pair
+    assert 10 == _a_
+    assert 20 == _b_
 
     triplet = (10, 20, 30)
     try:
-        a, b = triplet
-        assert __ # should not come here.
-    except ValueError as ve:
-        print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+        _a_, _b_ = triplet
+        assert True # should not come here.
+    except ValueError as _ve_:
+        print (_ve_) 
+        # observe what is printed here. 
+        # =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
@@ -95,7 +97,7 @@ def test_sequence_conversion():
     word4 = "".join(list_1)
     assert 'testing' == word4
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 tuples
 length of tuples
 tuple unpacking
@@ -103,4 +105,4 @@ sequence conversion
 -
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10

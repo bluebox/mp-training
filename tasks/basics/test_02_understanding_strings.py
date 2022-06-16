@@ -2,52 +2,52 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = """string is one of the most commonly used data types, it has different
+NOTES = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
 
 def test_string_type():
     assert 'str' == type("Hello World").__name__
-    assert True == isinstance("Hello World", str)
+    assert True is isinstance("Hello World", str)
 
 def test_single_quoted_strings_are_strings():
-    assert True == isinstance('Hello World', str)
+    assert True is isinstance('Hello World', str)
 
 def test_double_quoted_strings_are_strings():
-    assert True == isinstance("Hello World", str)
+    assert True is isinstance("Hello World", str)
 
 def test_triple_quoted_strings_are_strings():
-    assert True == isinstance("""Hello World""", str)
+    assert True is isinstance("""Hello World""", str)
 
 def test_triple_single_quoted_strings_are_strings():
-    assert True == isinstance('''Hello World''', str)
+    assert True is isinstance('''Hello World''', str)
 
 def test_raw_strings_are_strings():
-    assert True == isinstance(r"Hello World", str)
+    assert True is isinstance(r"Hello World", str)
 
 def test_single_quoted_strings_can_have_double_quotes():
     first = 'The pilot said "Jump"'
     second = "The pilot said \"Jump\""  #note back slash escaping of "
     are_equal = (first == second)
-    assert True== are_equal
+    assert True is are_equal
 
 def test_double_quoted_strings_can_have_single_quotes():
     first = "The pilot said 'Jump'"
     second = 'The pilot said \'Jump\''  #note back slash escaping of '
     are_equal = (first == second)
-    assert True== are_equal
+    assert True is are_equal
 
 def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
     """ Edit tq_str to make are_equal True """
     tq_str = """Isn't the "Hobbit" great?"""
     dq_str = "Isn't the \"Hobbit\" great?"
     are_equal = (tq_str == dq_str)
-    assert  False == are_equal
+    assert  False is are_equal
 
 def test_triple_quoted_strings_can_span_lines():
     tq_str = """Hello
 World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
-    assert (tq_str == dq_str)
+    assert tq_str == dq_str
 
 def test_string_len():
     assert 13 == len("Hello 'world'")
@@ -56,7 +56,7 @@ def test_string_len():
 def test_triple_quoted_strings_can_span_lines():
     string = """Hello
     World"""
-    assert True == isinstance(string, str)
+    assert True is isinstance(string, str)
     assert 15 == len(string)
 
 def test_strings_can_be_indexed():
@@ -91,8 +91,8 @@ def test_strings_are_immutable():
     string = "Hello"
     try:
         string[0] = "M"
-    except TypeError as te:
-        print (te)
+    except TypeError as _te_:
+        print (_te_)
         assert True
 
 def test_string_concat():
@@ -153,15 +153,15 @@ def test_string_formatting():
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
-    assert False== ('c' in 'apple')  #is there a precedence issue here?
-    assert True == ('a' in 'apple')
-    assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
+    assert False is ('c' in 'apple')  #is there a precedence issue here?
+    assert True is ('a' in 'apple')
+    assert  True is ('app' in 'apple')  
+    # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
-
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -strings are immutable
 -strings can be accessed through indexing
 -strings can be sliced
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

@@ -42,10 +42,10 @@ def test_numbers_long():
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -we have a method in python to convert a decimal number to octal
 - a method to convert decimal tp hexadecemal
 -
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_MINUTES = 4
