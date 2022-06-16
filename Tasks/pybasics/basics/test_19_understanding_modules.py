@@ -23,67 +23,67 @@ from placeholders import *
 def test_module_without_import():
     try:
         module1.greet("jack")
-    except ___ :
-        print
-        assert ___
+    except NameError:
+        print("import the module1")
+        assert True
 
 def test_module_usage_needs_import():
     import module1
-    assert __ == module1.greet("jack")
+    assert "module1 says hi to jack" == module1.greet("jack")
 
 def test_module_usage_multiple():
     import module1
     import module2
 
-    assert __ == module1.greet("jack")
-    assert __ == module2.greet("jack")
+    assert "module1 says hi to jack"== module1.greet("jack")
+    assert "module2 says hi to jack" == module2.greet("jack")
 
 def test_module_import_affects_current_namespace():
     import module1
 
     def inner_func():
         import module2
-        assert __ == ('module2' in locals())
+        assert True == ('module2' in locals())
         return module2.greet("jack")
 
-    assert __ == module1.greet("jack")
-    assert __ == inner_func()
+    assert 'module1 says hi to jack' == module1.greet("jack")
+    assert 'module2 says hi to jack' == inner_func()
 
-    assert __ == ('placeholders' in locals())
-    assert __ == ('placeholders' in globals())
+    assert True == ('placeholders' in locals())
+    assert True == ('placeholders' in globals())
 
-    assert __ == ('module1' in locals())
-    assert __ == ('module1' in globals())
+    assert True == ('module1' in locals())
+    assert False == ('module1' in globals())
 
-    assert __ == ('module2' in locals())
-    assert __ == ('module2' in globals())
+    assert False == ('module2' in locals())
+    assert False == ('module2' in globals())
 
 def test_module_type():
-    assert __ == type(placeholders).__name__
+    assert 'module' == type(placeholders).__name__
 
 def test_module_is_an_object():
-    assert __ == len(dir(placeholders))
-    assert __ == placeholders.__name__
-    assert __ == placeholders.__doc__
+    assert 4 == len(dir(placeholders))
+    assert "placeholders"== placeholders.__name__
+    assert  ''== placeholders.__doc__
 
 def test_module_from_import():
     from module1 import greet
 
-    assert __ == ('module1' in locals())
-    assert __ == ('greet' in locals())
+    assert True == ('module1' in locals())
+    assert False == ('greet' in locals())
 
     try:
         module1.greet()
-    except __ :
+    except NameError:
         pass
 
-    assert __ == greet("jack")
+    assert NameError == greet("jack")
 
 def test_module_why_from_import_is_a_bad_idea():
     from module1 import greet
     from module2 import greet
 
-    assert __ == greet("jack")
+    assert NameError == greet("jack")
 
 def test_modules_are_cached():
     import module1

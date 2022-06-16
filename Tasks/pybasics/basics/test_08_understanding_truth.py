@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+#from placeholders import *
 
 notes = '''
 Just like C, python has notions on what values are considered true
@@ -13,7 +13,7 @@ with base values of the data types like 0, '', [] etc.
 
 #None is a first class object in python
 def test_none_type():
-    assert __ == type(None).__name__
+    assert 'NoneType'== type(None).__name__
 
 #In control flow, builtin objects like string, list, tuple have truth
 #and false values
@@ -27,7 +27,7 @@ def test_truth_none():
     else:
         result = "false"
 
-    assert __ == result
+    assert "false"== result
 
 # a helper function used to test the truth value of an object.
 def truth_test(object, description):
@@ -37,44 +37,44 @@ def truth_test(object, description):
         return description + " is treated as false"
 
 def test_truth_values():
-    assert __ == truth_test("", "empty string")
-    assert __ == truth_test((), "empty tuple")
-    assert __ == truth_test([], "empty list")
-    assert __ == truth_test({}, "empty dict")
-    assert __ == truth_test(set(), "empty set")
-    assert __ == truth_test(" ", "white space")
-    assert __ == truth_test(0, "0")
-    assert __ == truth_test(1, "1")
-    assert __ == truth_test("a", "non-empty-string")
-    assert __ == truth_test((1,2), "non-empty-tuple")
-    assert __ == truth_test([1], "non-empty-list")
-    assert __ == truth_test({1:2}, "non-empty-dict")
-    assert __ == truth_test({1}, "non-empty-set")
+    assert 'empty string is treated as false'== truth_test("", "empty string")
+    assert  'empty tuple is treated as false'== truth_test((), "empty tuple")
+    assert  'empty list is treated as false'== truth_test([], "empty list")
+    assert   'empty dict is treated as false'== truth_test({}, "empty dict")
+    assert  'empty set is treated as false'== truth_test(set(), "empty set")
+    assert   'white space is treated as true'== truth_test("  ", "white space")
+    assert '0 is treated as false'== truth_test(0, "0")
+    assert '1 is treated as true'== truth_test(1, "1")
+    assert 'non-empty-string is treated as true'== truth_test("a", "non-empty-string")
+    assert 'non-empty-tuple is treated as true'== truth_test((1,2), "non-empty-tuple")
+    assert 'non-empty-list is treated as true' == truth_test([1], "non-empty-list")
+    assert  'non-empty-dict is treated as true'== truth_test({1:2}, "non-empty-dict")
+    assert  'non-empty-set is treated as true'== truth_test({1}, "non-empty-set")
 
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
-    assert __ == ("" == True)
-    assert __ == (() == True)
-    assert __ == ([] == True)
-    assert __ == (set() == True)
-    assert __ == (0 == True)
-    assert __ == ("" == False)
-    assert __ == (() == False)
-    assert __ == ([] == False)
-    assert __ == (set() == False)
-    assert __ == (0 == False)
-    assert __ == (1 == True)
-    assert __ == ("a" == True)
-    assert __ == ((1,2) == True)
-    assert __ == ([1] == True)
-    assert __ == ({1} == True)
+    assert  False == ("" == True)
+    assert  False== (() == True)
+    assert False == ([] == True)
+    assert  False == (set() == True)
+    assert  False == (0 == True)
+    assert  True == ("" == False)
+    assert   True == (() == False)
+    assert  True == ([] == False)
+    assert   True == (set() == False)
+    assert   True == (0 == False)
+    assert   True == (1 == True)
+    assert   True== ("a" == True)
+    assert   True== ((1,2) == True)
+    assert True == ([1] == True)
+    assert  True == ({1} == True)
 
 
 three_things_i_learnt = """
--
--
+-except 0 all other integers is concidered as true
+-all python empty data types are by default false
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 15

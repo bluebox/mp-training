@@ -18,6 +18,7 @@ notes = '''
 
 import inspect
 import symtable
+from unicodedata import name
 
 from placeholders import *
 
@@ -32,13 +33,13 @@ def test_scope_basic():
 
     value = count
 
-    assert __ == ('value' in local_names)
-    assert __ == ('value' in global_names)
+    assert True == ('value' in local_names)
+    assert  False  == ('value' in global_names)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert True == ('count' in local_names)
+    assert True == ('count' in global_names)
 
-    assert __ == value
+    assert count == value
 
 
 def test_scope_undefined_variable():
@@ -49,9 +50,9 @@ def test_scope_undefined_variable():
     except __ : # fill up the exception
         pass
 
-    assert __ == ('my_name' in local_names)
-    assert __ == ('name' in local_names)
-    assert __ == ('name' in global_names)
+    assert   name == ('my_name' in local_names)
+    assert   my_name == ('name' in local_names)
+    assert  False == ('name' in global_names)
 
 def test_variable_shadow():
     local_names = get_locals(test_variable_shadow)

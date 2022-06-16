@@ -5,6 +5,7 @@ notes = '''
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
+from pickle import TRUE
 from placeholders import *
 
 def test_inheritance_basic():
@@ -16,13 +17,13 @@ def test_inheritance_basic():
         def g(self):
             pass
 
-    assert __ == issubclass(A, object)
-    assert __ == issubclass(A, A)
-    assert __ == issubclass(A, B)
+    assert True == issubclass(A, object)
+    assert True == issubclass(A, A)
+    assert False == issubclass(A, B)
 
-    assert __ == issubclass(B, A)
-    assert __ == issubclass(B, B)
-    assert __ == issubclass(B, object)
+    assert  False == issubclass(B, A)
+    assert   True == issubclass(B, B)
+    assert  True== issubclass(B, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
@@ -35,14 +36,14 @@ def test_inheritance_methods():
             return "B:g()"
 
     b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    assert "A:f()" == b.f()
+    assert "B:g()" == b.g()
 
     a = A()
-    assert __ == a.f()
+    assert "A:f()" == a.f()
     try:
-        assert __ == a.g()
-    except __:
+        assert AttributeError == a.g()
+    except AttributeError:
         #print ex  #uncomment this line after filling up
         pass
 
