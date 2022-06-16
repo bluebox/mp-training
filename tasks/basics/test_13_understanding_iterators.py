@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.placeholders import *
 
 notes = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
@@ -16,7 +16,7 @@ list, tuple, string etc.
 
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
-    assert 'listiterator' == type(list_iter).__name__
+    assert 'list_iterator' == type(list_iter).__name__
     assert True == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
@@ -24,7 +24,7 @@ def test_iterator_type():
     assert True == hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert 'tupleiterator' == type(tuple_iter).__name__
+    assert 'tuple_iterator' == type(tuple_iter).__name__
     assert True == hasattr(string_iter, "next")
 
 def test_int_iterable():
@@ -36,10 +36,10 @@ def test_int_iterable():
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert 'one' == list_iter.next()
-        assert 'two' == list_iter.next()
-        assert 'three' == list_iter.next()
-        assert True == list_iter.next() #note what happens when items are finished.
+        assert 'one' == next(list_iter)
+        assert 'two' == next(list_iter)
+        assert 'three' == next(list_iter)
+        assert True == next(list_iter) #note what happens when items are finished.
     except StopIteration:
         pass
 
@@ -49,7 +49,7 @@ def convert_to_list(iterable):
     result = []
     try:
         while True:
-            item = seq_iterator.next()
+            item = next(seq_iterator)
             result.append(item)
     except StopIteration as se:
         return result
@@ -88,7 +88,7 @@ def test_tuple_creation():
 def test_functions_that_work_on_iterables():
     test_dict = {"one": 1, "two":2}
     assert ["one", "two"] == sorted(test_dict)
-    assert ['two', 'one'] == list(test_dict)
+    assert ['one', 'two'] == list(test_dict)
 
 # Go through the functions at http://docs.python.org/2/library/functions.html
 # and enter all the functions that operate on iterables into the funcs list.

@@ -26,7 +26,7 @@ def test_generator_type():
 
 def test_generator_is_an_iterator1():
     assert False == hasattr(demo_generator, "next")
-    assert True == hasattr(demo_generator(), "next")
+    assert False == hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
     result = demo_generator()

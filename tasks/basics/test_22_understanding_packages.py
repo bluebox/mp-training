@@ -26,7 +26,7 @@ def test_package_basic_import():
     assert False == ("module1" in locals())
     assert False == ("package1.module1" in locals())
 
-    import package1
+    from tasks.basics import package1
 
     assert True == ("package1" in locals())
     assert False == ("module1" in locals())
@@ -66,7 +66,7 @@ def test_package_from_import():
     assert False == ("module1" in locals())
     assert False == ("package1.module1" in locals())
 
-    from package1 import module1
+    from tasks.basics.package1 import module1
 
     assert False == ("package1" in locals())
     assert True == ("module1" in locals())
@@ -94,7 +94,7 @@ def test_package_sub_packages():
     assert False == ("subpackage" in locals())
     assert False == ("package1.subpackage" in locals())
 
-    from package1 import subpackage
+    from tasks.basics.package1 import subpackage
 
     assert False == ("package1" in locals())
     assert True == ("subpackage" in locals())

@@ -30,18 +30,18 @@ def test_module_without_import():
         assert AssertionError
 
 def test_module_usage_needs_import():
-    import module1
+    import tasks.basics.module1
     assert "module1 says hi to jack" == module1.greet("jack")
 
 def test_module_usage_multiple():
-    import module1
-    import module2
+    from tasks.basics import module1
+    from tasks.basics import module2
 
     assert "module1 says hi to jack" == module1.greet("jack")
     assert "module2 says hi to jack" == module2.greet("jack")
 
 def test_module_import_affects_current_namespace():
-    import module1
+    from tasks.basics import module1
 
     def inner_func():
         import module2
@@ -69,7 +69,7 @@ def test_module_is_an_object():
     assert None == placeholders.__doc__
 
 def test_module_from_import():
-    from module1 import greet
+    from tasks.basics.module1 import greet
 
     assert False == ('module1' in locals())
     assert True == ('greet' in locals())
@@ -82,16 +82,16 @@ def test_module_from_import():
     assert 'module1 says hi to jack' == greet("jack")
 
 def test_module_why_from_import_is_a_bad_idea():
-    from module1 import greet
-    from module2 import greet
+    from tasks.basics.module1 import greet
+    from tasks.basics.module2 import greet
 
     assert "module2 says hi to jack" == greet("jack")
 
 def test_modules_are_cached():
-    import module1
+    import tasks.basics.module1
     import module1 as new_name
     def inner():
-        import module1
+        import tasks.basics.module1
         return module1.some_attr
 
     try:
@@ -103,7 +103,7 @@ def test_modules_are_cached():
     assert 10 == inner()
 
     def inner2():
-        import module1
+        from tasks.basics import module1
         return module1.some_attr
 
     assert 10 == inner2()

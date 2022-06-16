@@ -138,7 +138,7 @@ def test_list_membership():
 
 def test_list_range():
     numbers = range(1,5)
-    assert [1, 2, 3, 4 ] == numbers
+    assert range(1,5) == numbers
 
     numbers = range(1, 5, 2)
     assert [1, 3] == numbers
