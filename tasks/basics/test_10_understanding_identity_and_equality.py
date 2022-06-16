@@ -1,9 +1,11 @@
+"""Code Author"""
 __author__ = 'Hari'
 
-from operator import truediv
+from statistics import variance
+from tkinter import Variable
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -14,80 +16,80 @@ notes = '''
 '''
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert False == (a is b)
-    assert True == (a == b)
+    """Identity and Equality"""
+    var = []
+    vari = []
+    assert False is (var is vari)
+    assert True is (var == vari)
 
-    a.append("one")
-    assert False == (a is b)
-    assert False == (a == b)
+    var.append("one")
+    assert False is (var is vari)
+    assert False is (var == vari)
 
-    c = []
-    d = c
-    assert True == (c is d)
-    assert True == (c == d)
+    varia = []
+    variab = varia
+    assert True is (varia is variab)
+    assert True is (varia == variab)
 
-    c.append("one")
-    assert True == (c is d)
-    assert True == (c == d)
+    varia.append("one")
+    assert True is (varia is variab)
+    assert True is (varia == variab)
 
 def test_identity_equality_string():
-    a = b = "hello"
+    """String Identity and Equality"""
+    var = vari = "hello"
 
-    assert True == (a is b)
-    assert True == (a == b)
+    assert True is (var is vari)
+    assert True is (var == vari)
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert False == (c is d)
-    assert True == (c == d)
+    varia = "hello"
+    variab = "".join(["hel", "lo"])
+    assert False is (varia is variab)
+    assert True is (varia == variab)
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True == (a is b)
-    assert True == (a == b)
+    """Integer Equality and Identity"""
+    var = vari = 10000
+    assert True is (var is vari)
+    assert True is (var == vari)
 
-    c = 10000
-    d = int("10000")
-    assert False == (c is d)
-    assert True == (c == d)
+    varia = 10000
+    variab = int("10000")
+    assert False is (varia is variab)
+    assert True is (varia == variab)
 
 def test_identity_equality_small_numbers():
-    """
-    why do small numbers behave differently? google and find out!
-    """
-    a = b = 10
-    assert True == (a is b)
-    assert True == ( a == b)
+    """why do small numbers behave differently? google and find out!"""
+    var = vari = 10
+    assert True is (var is vari)
+    assert True is ( var == var)
 
-    c = 10
-    d = int("10")
-    assert True == (c is d)
-    assert True == (c == d)
+    varia = 10
+    variab = int("10")
+    assert True is (varia is variab)
+    assert True is (varia == variab)
 
-def test_identity_equality_None():
-    a = b = None
-    assert True == (a is b)
-    assert True == (a == b)
+def test_identity_equality_none():
+    """None"""
+    var = vari = None
+    assert True is (var is vari)
+    assert True is (var == vari)
 
-    a = None
-    b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    var = None
+    vari = None
+    assert True is (var is vari)
+    assert True is (var == vari)
 
 
-notes_on_none = '''
+NOTES_ON_NONE = '''
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -Equality
 -Identity
 -Difference between Identity and Equality
 """
 
-time_taken_minutes = 2
-
-
+TIME_TAKEN_MINUTES = 2
