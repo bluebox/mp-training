@@ -21,24 +21,24 @@ def demo_generator():
     yield "you?"
 
 def test_generator_type():
-    assert __ == type(demo_generator).__name__  #definition is a function
-    assert __ == type(demo_generator()).__name__ #once you invoke it, you get a generator
+    assert 'function' == type(demo_generator).__name__  #definition is a function
+    assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert __ == hasattr(demo_generator, "next")
-    assert __ == hasattr(demo_generator(), "next")
+    assert False == hasattr(demo_generator, "next")
+    assert False == hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
     try:
-        assert __ == next(result)  # builtin which calls the iterator.next()
+        assert 'how' == next(result)  # builtin which calls the iterator.next()
+        assert 'are' == next(result)
+        assert 'you' == next(result)
         assert __ == next(result)
-        assert __ == next(result)
-        assert __ == next(result)
-    except __:
+    except Exception:
         assert True
 
-    assert __ == ".".join(demo_generator()) #join takes a iterable
+    assert 'how.are.you?' == ".".join(demo_generator()) #join takes a iterable
 
 # Note that this function takes any sequence, and returns a reversed form
 # element by element, so at no point is a new reversed sequence object
@@ -52,7 +52,7 @@ def test_generator_reverse():
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
-    assert __ == result
+    assert ['d', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H'] == result
 
 # range using a generator (xrange does something similar)
 def demo_range(limit):
@@ -65,12 +65,12 @@ def test_generator_range_does_not_allocate_memory():
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
-    assert ___ # did you reach here without any memory exception?
+    assert True # did you reach here without any memory exception?
 
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    __ # fill code here.
+    yield # fill code here.
 
 
 def test_collapse_generator():
