@@ -128,9 +128,9 @@ three_things_i_learnt = """
 -implementation of dictionaries
 """
 
-time_taken_minutes = 30
+Time_taken_minutes = 30
 
-notes2= '''
+notes_2= '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work
