@@ -1,7 +1,11 @@
+import sys
+from Tasks.placeholders import *
+
 __author__ = 'Hari'
 
-from tasks.basics import module1
-from tasks.basics.package1.subpackage import m1
+
+from Tasks.basics import module1
+from Tasks.basics.package1.subpackage import m1
 
 notes = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
@@ -14,33 +18,32 @@ notes = '''
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 '''
 
-from tasks.placeholders import *
-import sys
+
 
 # Look at the package1 and package2 directories before starting...
 
 def test_package_basic_import():
     clear_sys_modules()
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert False == ("package1" in locals())
+    assert False == ("module1" in locals())
+    assert False == ("package1.module1" in locals())
 
-    import package1
+    import Tasks.basics.package1 as package1
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert True == ("package1" in locals())
+    assert False == ("module1" in locals())
+    assert False == ("package1.module1" in locals())
 
-    assert __ == type(package1).__name__
+    assert "module" == type(package1).__name__
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+    assert False == ("package1" in sys.modules)
+    assert False == ("module1" in sys.modules)
+    assert False == ("package1.module1" in sys.modules)
 
     try:
         print(module1.__doc__)
-    except __ :
+    except NameError :
         pass
 
     #modules need explicit import generally.
