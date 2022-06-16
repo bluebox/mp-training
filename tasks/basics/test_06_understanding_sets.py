@@ -1,6 +1,7 @@
+"""Code Author"""
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
@@ -8,18 +9,23 @@ the keys are not associated with any values.
 from tasks.placeholders import  *
 
 def test_set_type():
-    test_set = {"one", "two", "three"}   # note the new syntax
+    """Set Type"""
+    test_set = {"one", "two", "three"}
+    # note the new syntax
     assert "set" == type(test_set).__name__
 
 def test_set_empty():
-    empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
-    assert False == isinstance(empty_set_wrong, set)
+    """Empty Set"""
+    empty_set_wrong = {}
+    #curly braces are used for both sets and dicts, so how do you disambiguate?
+    assert False is isinstance(empty_set_wrong, set)
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
+    assert True is isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
 def test_set_length():
+    """Legth of Set"""
     fruits = {"apple", "apple", "apple"}
     assert 1 == len(fruits)  #are duplicates removed?
 
@@ -27,9 +33,7 @@ def test_set_length():
     assert 3 == len(veggies)
 
 def test_set_creation():
-    """
-    sets can be created from any sequence like list or a tuple.
-    """
+    """sets can be created from any sequence like list or a tuple."""
     test_list = [1, 2, 1, 3]
     set1 = set(test_list)
     assert {1,2,3} == set1
@@ -49,11 +53,13 @@ def test_set_creation():
     assert {(1, 'one'), (2, 'two')} == set5
 
 def test_set_membership():
+    """Set Memebership"""
     fruits = {"apple", "mango", "kiwi"}
     assert "apple" == "apple" in fruits
     assert False == ("dog" in fruits)
 
 def test_set_operations():
+    """Set operations"""
     set1 = {"one", "two", "three"}
     set2  =  {"three", "four"}
 
@@ -74,10 +80,10 @@ def test_set_operations():
 
     diff4 = set1.symmetric_difference(set2)
     assert {"one","two","four"} == diff4
-
     #read up help on other method using the help method in the python console.
 
 def test_set_valid_members():
+    """Elements in Set"""
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
@@ -85,24 +91,22 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as te:
+    except TypeError as t_e:
         print("unhashable type: 'list'")
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
+    except TypeError as t_e:
         print("unhashable type: 'list'")
         assert True  
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -About sets
 -List to sets
 -Dictionary to test
 """
 
-time_taken_minutes = 10
-
-
+TIME_TAKEN_MINUTES = 10

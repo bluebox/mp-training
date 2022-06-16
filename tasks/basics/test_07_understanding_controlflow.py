@@ -1,14 +1,16 @@
+"""Code Author"""
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 python has support for standard control flow statements similar to other languages.
 iteration over sequences like list, string etc. is built into the language itself (c# has
 similar features) and the loops support an else clause which is not common elsewhere.
 '''
 
 def test_if():
+    """If Statement"""
     value = 1
     if True:
         value = 2
@@ -19,6 +21,7 @@ def test_if():
     assert 2 == value
 
 def test_if_else():
+    """If-else Statements"""
     value = 1
     if not True:
         value = 2
@@ -27,6 +30,7 @@ def test_if_else():
     assert 3 == value
 
 def test_if_elif_else():
+    """If-elif-else statements"""
     value = 3
     str = "str"
     if value < 0:
@@ -39,9 +43,7 @@ def test_if_elif_else():
     assert "positive" == str
 
 def test_for_loop_range():
-    """
-    for loops are used to iterate over arbitrary sequences
-    """
+    """for loops are used to iterate over arbitrary sequences"""
     nums =[]
     for x in range(1,5):
         nums.append(x)
@@ -49,18 +51,21 @@ def test_for_loop_range():
 
 
 def test_for_loop_string():
+    """String Looping using for loop"""
     chars = []
     for x in "engine":
         chars.append(x)
     assert ['e','n','g','i','n','e'] == chars
 
 def test_for_loop_list():
+    """List looping using for loop"""
     result = ""
     for fruit in ["orange", "banana", "apple"]:
         result += fruit
     assert "orangebananaapple" == result
 
 def test_for_loop_list_with_enumerate():
+    """For loop List with enumerate"""
     words = ["one", "two", "three"]
     result = []
     for p in enumerate(words):
@@ -71,6 +76,7 @@ def test_for_loop_list_with_enumerate():
     assert {0:"one",1:"two",2:"three"}== mapping
 
 def test_for_loop_dict():
+    """Dictionary Looping"""
     num_to_word = {1 : "one", 2 : "two", 3 : "three"}
     result = []
     for item in num_to_word:
@@ -78,12 +84,14 @@ def test_for_loop_dict():
     assert [1,2,3] == result
 
 def test_while_loop():
+    """While Loop"""
     result = []
     while len(result) < 3:
         result.append(10)
     assert [10,10,10] == result
 
 def test_for_loop_break():
+    """Break Statement"""
     result = []
     for x in range(1,10):
         if x % 5 == 0:
@@ -93,6 +101,7 @@ def test_for_loop_break():
     assert [1,2,3,4] == result
 
 def test_for_loop_continue():
+    """Continue Statement"""
     result = []
     for x in range (1, 10):
         if x % 3 == 0:
@@ -101,6 +110,7 @@ def test_for_loop_continue():
     assert [1,2,4,5,7,8] == result
 
 def test_nested_loop_break():
+    """Nested Loop Break statement"""
     result = []
     for x in range(2):
         for y in range(1,5):
@@ -111,6 +121,7 @@ def test_nested_loop_break():
     assert [0,0,1,1] == result
 
 def test_nested_loop_continue():
+    """Nested For loop continue"""
     result = []
     for x in range(2):
         for y in range(1,5):
@@ -121,6 +132,7 @@ def test_nested_loop_continue():
     assert [0,0,0,1,1,1] == result
 
 def test_nested_loop_break_continue():
+    """Nested Loop Break, Continue"""
     result = []
     for x in range(3):
         for y in range(1,5):
@@ -134,6 +146,7 @@ def test_nested_loop_break_continue():
 
 # else on loops is not available in other common languages
 def test_for_loop_else_plain():
+    """For-Else"""
     result = []
     for x in range(5):
         result.append(x)
@@ -144,6 +157,7 @@ def test_for_loop_else_plain():
     assert [0,1,2,3,4,10] == result
 
 def test_for_loop_else_break():
+    """For-Else-Break"""
     result = []
     for x in range(5):
         if x %3 == 0:
@@ -156,6 +170,7 @@ def test_for_loop_else_break():
     assert [] == result
 
 def test_for_loop_else_continue():
+    """For-Else-Continue"""
     result = []
     for x in range(5):
         if x %3 == 0:
@@ -169,6 +184,7 @@ def test_for_loop_else_continue():
 
 #same as above.
 def test_while_loop_else():
+    """While-else"""
     result = []
     x = 1
     while x in range(5):
@@ -182,10 +198,10 @@ def test_while_loop_else():
     assert [1,2,3] == result
 
 
-three_things_i_learnt = """
+THREE_THING_I_LEARNT = """
 -if-else
 -for loop
 -while loop
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10

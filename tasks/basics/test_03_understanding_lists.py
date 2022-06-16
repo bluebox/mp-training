@@ -3,14 +3,17 @@ __author__ = 'Hari'
 from tasks.placeholders import *
 
 def test_list_type():
+    """List of fruits"""
     fruits = ["banana", "orange", "grape"]
     assert 'list' == type(fruits).__name__
 
 def test_list_len():
+    """Length of list"""
     fruits = ["banana", "orange", "grape"]
     assert 3 == len(fruits)
 
 def test_list_can_be_indexed():
+    """Indexing"""
     fruits = ["banana", "orange", "grape"]
     assert "banana" == fruits[0]
     assert "orange" == fruits[1]
@@ -20,14 +23,13 @@ def test_list_can_be_indexed():
     assert "banana" == fruits[-3]
 
 def test_list_is_mutable():
+    """Lists are mutable"""
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
     assert ["mango","orange","grape"] == fruits  #replace __ with expected contents of list
 
 def test_list_can_be_sliced():
-    """
-     Slicing works the same as on strings
-    """
+    """ Slicing works the same as on strings"""
     fruits = ["banana", "orange", "grape"]
     assert [] == fruits[0:0]
 
@@ -51,6 +53,7 @@ def test_list_can_be_sliced():
 
 
 def test_slice_creates_a_new_list():
+    """Slicing creates a new list"""
     fruits = ["banana", "orange", "grape"]
     slice = fruits[0:2]
     slice.append("guava")
@@ -60,6 +63,7 @@ def test_slice_creates_a_new_list():
 
 
 def test_list_merge():
+    """Merging Lists"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
     all = fruits + veggies
@@ -70,6 +74,7 @@ def test_list_merge():
     assert ['orange', 'grape', 'beetroot'] == fruits[1:] + veggies[:1]
 
 def test_list_slice_replacement_is_inplace():
+    """Replacing elements in List"""
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
@@ -82,12 +87,7 @@ def test_list_slice_replacement_is_inplace():
     assert ["banana1", "litchi","guava", "grape1"] == fruits
 
 def test_list_common_methods():
-    """
-     You can find methods supported by lists by entering help([]) in the python console.
-     Ignore the methods that start with __ for now.
-
-     For help on a specific function like pop enter help([].pop)
-    """
+    """ You can find methods supported by lists by entering help([]) in the python console. Ignore the methods that start with __ for now. For help on a specific function like pop enter help([].pop)"""
     fruits = []
     fruits.append("orange")
 
@@ -109,6 +109,7 @@ def test_list_common_methods():
     assert ["litchi","orange"] == fruits
 
 def test_list_can_contain_lists():
+    """Nested Lists"""
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
     all = [fruits, veggies]
@@ -118,11 +119,13 @@ def test_list_can_contain_lists():
     assert ["beetroot","tomato"]== all[1]
 
 def test_list_can_contain_objects_of_different_types():
+    """Mixed Lists"""
     mixed = ["string", 10]
     assert "string" == mixed[0]
     assert 10 == mixed[1]
 
 def test_list_sort():
+    """List sorting"""
     numbers = [ 5, 4, 3, 8 ]
     numbers.sort()
     assert [3,4,5,8] == numbers
@@ -133,15 +136,17 @@ def test_list_sort():
 # http://docs.python.org/2/reference/expressions.html#operator-precedence
 # and fix accordingly.
 def test_list_membership():
+    """List Membership"""
     numbers = [ 5, 4, 3]
     assert 5 == 5 in numbers
     assert False == (10 in numbers)
 
 def test_list_range():
+    """List in range"""
     numbers = range(1,5)
     assert  range(1,5)== numbers
 
     numbers = range(1, 5, 2)
     assert range(1,5,2) == numbers
 
-time_taken_minutes =1
+TIME_TAKEN_MINUTES =1
