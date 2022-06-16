@@ -60,16 +60,16 @@ def test_tuples_can_be_nested():
 
 def test_tuple_unpacking():
     pair = (10, 20)
-    a, b = pair
-    assert 10 == a
-    assert 20 == b
+    a_1, b_1 = pair
+    assert 10 == a_1
+    assert 20 == b_1
 
     triplet = (10, 20, 30)
     try:
-        a, b = triplet
+        a_1, b_1 = triplet
         assert False # should not come here.
     except ValueError as ve:
-        print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+        print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a_1 distinct statement to being an ordinary function call, so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
@@ -95,10 +95,10 @@ def test_sequence_conversion():
     word4 = "".join(list_1)
     assert "testing" == word4
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 90

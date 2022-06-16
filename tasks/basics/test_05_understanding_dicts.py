@@ -13,7 +13,7 @@ def test_dictionary_type():
 
 def test_dictionary_empty():
     empty_dict_1 = {}
-    assert True == isinstance(empty_dict_1, dict)
+    assert True is isinstance(empty_dict_1, dict)
 
     empty_dict_2 = dict() # another way of creating empty dict
     assert 0 == len(empty_dict_2)
@@ -21,7 +21,7 @@ def test_dictionary_empty():
 
 def test_dictionary_create():
     dict_1 = { 1 : "one", 2 : "two" }
-    assert True == isinstance(dict_1, dict)
+    assert True is isinstance(dict_1, dict)
 
     #init from a sequence of tuple pairs, useful in many cases.
     dict_2 = dict([(1, "one"), (2, "two")])
@@ -64,7 +64,7 @@ def test_dictionary_is_unordered():
     dict2 = { 'two': 2, 'one': 1}
 
     equal = (dict1 == dict2)
-    assert True == equal # True or False?
+    assert True is equal # True or False?
 
 def test_dictionary_keys_and_values():
     word_to_digit = { "one" : 1, "two" : 2}
@@ -81,17 +81,17 @@ def test_dictionary_keys_and_values():
 def test_dictionary_contains():
     word_to_digit = { "one" : 1, "two" : 2}
 
-    assert True == ("one" in word_to_digit)
-    assert True == ("two" in word_to_digit)
+    assert True is ("one" in word_to_digit)
+    assert True is ("two" in word_to_digit)
 
-    assert True == ("one" in word_to_digit.keys())
-    assert True == ("two" in word_to_digit.keys())
+    assert True is ("one" in word_to_digit.keys())
+    assert True is ("two" in word_to_digit.keys())
 
-    assert False == (1 in word_to_digit)
-    assert False == (2 in word_to_digit)
+    assert False is (1 in word_to_digit)
+    assert False is (2 in word_to_digit)
 
-    assert True == (1 in word_to_digit.values())
-    assert True == (2 in word_to_digit.values())
+    assert True is (1 in word_to_digit.values())
+    assert True is (2 in word_to_digit.values())
 
 def test_valid_dictionary_keys():
     test_dict = {}
@@ -121,13 +121,13 @@ def test_valid_dictionary_keys():
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10
 
 notes2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

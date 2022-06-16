@@ -1,6 +1,7 @@
-# __author__ = 'Hari'
+__author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.basics.test_10_understanding_identity_and_equality import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from tasks.placeholders import __author__
 
 NOTES = '''
 This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an
@@ -30,14 +31,14 @@ def test_make_assert_true_2():
     assert 2**43 > 2**30, "Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
-    s1 = "Hello, World"
-    s2 = "Hello, World"
-    assert s1 == s2
+    s_1 = "Hello, World"
+    s_2 = "Hello, World"
+    assert s_1 == s_2
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 asseret ==bool
 -
 -
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_MINUTES = 4

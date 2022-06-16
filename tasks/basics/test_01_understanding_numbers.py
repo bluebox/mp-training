@@ -1,6 +1,7 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.basics.test_10_understanding_identity_and_equality import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from tasks.placeholders import __author__
 
 
 # For most of these tests use the interpreter to fill up the blanks.
@@ -42,10 +43,10 @@ def test_numbers_long():
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -we have a method in python to convert a decimal number to octal
 - a method to convert decimal tp hexadecemal
 -
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10

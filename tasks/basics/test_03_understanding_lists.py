@@ -150,4 +150,5 @@ three_things_i_learnt = """
 - range 
 """
 
-time_taken_minutes = 30
+
+TIME_TAKEN_MINUTES = 90
