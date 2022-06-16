@@ -1,8 +1,9 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
 
-notes = '''
+from tasks.placeholders import __author__
+
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -17,15 +18,15 @@ list, tuple, string etc.
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
     assert 'list_iterator' == type(list_iter).__name__
-    assert False== hasattr(list_iter, "next")
+    assert False is hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert 'str_iterator' == type(string_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
     assert 'tuple_iterator' == type(tuple_iter).__name__
-    assert False== hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
@@ -97,11 +98,11 @@ def test_find_builtins_that_work_on_iterables():
     assert 5== len(funcs)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 # C:\Users\ssred\training-project\mp-training\Tasks\pybasics\basics\test_13_understanding_iterators.py
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES = 40

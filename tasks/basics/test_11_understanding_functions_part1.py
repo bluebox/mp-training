@@ -1,8 +1,8 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
-notes = '''
+NOTES = '''
 Functions are the basic unit of modularization in python. You use functions to group
 together a meaningful action and use it when you need it.
 
@@ -11,7 +11,6 @@ language and makes it easy to expose elegant and usable apis.
 
 This is a big topic, we will revisit this topic again.
 '''
-# C:\Users\ssred\training-project\mp-training\Tasks\pybasics\basics\test_11_understanding_functions_part1.py
 
 def my_print(x):
     print (x)
@@ -31,9 +30,9 @@ def test_function_type():
 
 # functions are objects which can be 'called'
 def test_function_callable_type():
-    assert False== callable(1)
-    assert True == callable(my_increment)
-    assert False == callable(my_increment(10))
+    assert False is callable(1)
+    assert True is callable(my_increment)
+    assert False is callable(my_increment(10))
 
 # functions can be held by references just like any other object
 def test_function_assignment():
@@ -44,7 +43,7 @@ def test_function_assignment():
 # every function returns an object, even when it does not!
 def test_every_function_returns_something():
     result = my_print(10)
-    assert None == result
+    assert None is result
 
     result = my_increment(10)
     assert 11 == result
@@ -65,7 +64,7 @@ def demo2():
 #This makes it easy to access help from console or build specialized help commands like help.
 def test_function_documentation():
     assert 'returns 10' == demo1.__doc__
-    assert None == demo2.__doc__
+    assert None is demo2.__doc__
 
 
 def my_callfunc(func):
@@ -107,8 +106,8 @@ def test_function_defaults_are_evaluated_at_definition_time():
     assert [ 'h','i'] == my_add_to_list1("hi")
     assert ['h','i','b','y','e'] == my_add_to_list1("bye")
 
-    assert None== my_add_to_list2("hi")
-    assert None== my_add_to_list2("bye")
+    assert None is my_add_to_list2("hi")
+    assert None is my_add_to_list2("bye")
 
 
 def demo_parameter_passing1(x):
@@ -135,10 +134,10 @@ def test_function_params_passed_by_object_reference():
     assert ['one','two','something'] == names
 
 
-three_things_i_learnt = """
--
--
+THREE_THINGS_I_LEARNT = """
+-Functions 
+-flow of return statement 
 -
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30

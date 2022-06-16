@@ -1,11 +1,9 @@
 __author__ = 'Hari'
-
-notes = '''
+from placeholders import __author__
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
-
-from tasks.placeholders import *
 
 
 def test_inheritance_basic():
@@ -17,13 +15,13 @@ def test_inheritance_basic():
         def g(self):
             pass
 
-    assert True == issubclass(A, object)
-    assert True == issubclass(A, A)
-    assert False == issubclass(A, B)
+    assert True is issubclass(A, object)
+    assert True is issubclass(A, A)
+    assert False is issubclass(A, B)
 
-    assert True  == issubclass(B, A)
-    assert True == issubclass(B, B)
-    assert  True== issubclass(B, object)
+    assert True  is issubclass(B, A)
+    assert True is issubclass(B, B)
+    assert  True is issubclass(B, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
@@ -124,15 +122,15 @@ def test_inheritance_invoking_using_super():
     assert "A:g():B:g()" == b.g()
 
 
-notes_1 = '''
+NOTES1 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -methods of parent can be accessed by their child 
 -but methods of child canmot nbe accessed by their parent 
 -super keyword is used to access methods of their parent 
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES= 40

@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -11,7 +11,6 @@ You can also think of generators as resumable functions. The caller needs to kee
 calling next() to keep moving the function forward and at every stop point where you
 have a yield or return the function can return something new.
 '''
-
 from tasks.placeholders import *
 
 # The state of the function is saved between yields and re-invoked on call to next.
@@ -111,10 +110,10 @@ def test_generator_exception():
     assert [10,20,50,30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -yield is a kind of return statement 
 -we can have as many yields as we want in a single function
 -
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES = 40

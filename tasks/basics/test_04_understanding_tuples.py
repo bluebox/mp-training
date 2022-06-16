@@ -1,8 +1,6 @@
-__author__ = 'Hari'
-
 from tasks.placeholders import *
-
-notes = '''
+__author__ = 'Hari'
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
@@ -17,7 +15,7 @@ def test_tuple_length():
 
 def test_tuple_with_no_elements():
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
@@ -60,16 +58,18 @@ def test_tuples_can_be_nested():
 
 def test_tuple_unpacking():
     pair = (10, 20)
-    a, b = pair
-    assert 10 == a
-    assert 20 == b
+    a_1, b_1 = pair
+    assert 10 == a_1
+    assert 20 == b_1
 
     triplet = (10, 20, 30)
     try:
-        a, b = triplet
-        assert __ # should not come here.
+        a_1, b_1 = triplet
+        assert True # should not come here.
     except ValueError as ve:
-        print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+        print (ve ) # observe what is printed here. =>In Python 3, printing values changed 
+        # from being a distinct statement to being an ordinary function call, so it now 
+        # needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
@@ -87,18 +87,18 @@ def test_sequence_conversion():
     assert  ['t','e','s','t','i','n','g']== list_2
 
     word2 = str(tup_1)
-    assert "('t','e','s','t','i','n','g')" == word2
+    assert "('t', 'e', 's', 't', 'i', 'n', 'g')" == word2
 
     word3 = "".join(tup_1)
-    assert "('t','e','s','t','i','n','g')"== word3
+    assert "testing"== word3
 
     word4 = "".join(list_1)
-    assert "('t','e','s','t','i','n','g')"== word4
+    assert "testing"== word4
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -string join 
 -string split 
 -
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES= 30

@@ -1,18 +1,19 @@
 __author__ = 'Hari'
 
-notes = '''
-sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
-the keys are not associated with any values.
-'''
-
 from tasks.placeholders import  *
+
+NOTES = '''
+sets are  unordered collection of elements without duplicates. Conceptually they are 
+similar to dicts except thatthe keys are not associated with any values.
+'''
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
     assert 'set'== type(test_set).__name__
 
 def test_set_empty():
-    empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
+    empty_set_wrong = {}  #curly braces are used for both sets and dicts,
+    #  so how do you disambiguate?
     assert False == isinstance(empty_set_wrong, set)
 
     empty_set = set()
@@ -97,10 +98,10 @@ def test_set_valid_members():
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - set operations 
 -list to set convertion 
 -
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
