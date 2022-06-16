@@ -3,7 +3,7 @@ __author__ = 'Hari'
 
 import sys
 # from Tasks import placeholders
-from basics import module1
+from Tasks.basics import module1
 
 NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
