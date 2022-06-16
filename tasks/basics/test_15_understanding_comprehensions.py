@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
  These features make creating lists, dicts and sets from other sequences easy and compact.
  lc -> list comprehensions
  dc -> dict comprehensions
@@ -103,10 +103,10 @@ def test_sc_filtering():
     assert {1,3,5,7,9} == odds
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30
