@@ -3,7 +3,7 @@ __author__ = 'Hari'
 
 import sys
 # from Tasks import placeholders
-from Tasks.basics import module1
+from basics import module1
 
 NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
@@ -34,24 +34,24 @@ def test_module_without_import():
 
 # def test_module_usage_needs_import():
 #     """basic docstring for pylint purpose"""
-#     from Tasks.basics.module1 import greet
+#     from basics.module1 import greet
 #     assert "module1 says hi to jack" == greet("jack")
 
 # def test_module_usage_multiple():
 #     """basic docstring for pylint purpose"""
-#     import Tasks.basics.module1
-#     import Tasks.basics.module2
+#     import basics.module1
+#     import basics.module2
 
-#     assert "module1 says hi to jack" == Tasks.basics.module1.greet("jack")
-#     assert "module2 says hi to jack" == Tasks.basics.module2.greet("jack")
+#     assert "module1 says hi to jack" == basics.module1.greet("jack")
+#     assert "module2 says hi to jack" == basics.module2.greet("jack")
 
 # def test_module_import_affects_current_namespace():
 #     """basic docstring for pylint purpose"""
-#     from Tasks.basics import module1
+#     from basics import module1
 
 #     def inner_func():
 #         """basic docstring for pylint purpose"""
-#         from Tasks.basics import module2
+#         from basics import module2
 #         assert True is ('module2' in locals())
 #         return module2.greet("jack")
 
@@ -79,7 +79,7 @@ def test_module_without_import():
 
 # def test_module_from_import():
 #     """basic docstring for pylint purpose"""
-#     from Tasks.basics.module1 import greet
+#     from basics.module1 import greet
 
 #     assert False is ('module1' in locals())
 #     assert True is ('greet' in locals())
@@ -93,17 +93,17 @@ def test_module_without_import():
 
 # def test_module_why_from_import_is_a_bad_idea():
 #     """basic docstring for pylint purpose"""
-#     from Tasks.basics import module1
-#     from Tasks.basics import module2
+#     from basics import module1
+#     from basics import module2
 
 #     assert "module2 says hi to jack" == module2.greet("jack")
 
 # def test_modules_are_cached():
 #     """basic docstring for pylint purpose"""
-#     from Tasks.basics import module1
-#     import Tasks.basics.module1 as new_name
+#     from basics import module1
+#     import basics.module1 as new_name
 #     def inner():
-#         import Tasks.basics.module1 as bm
+#         import basics.module1 as bm
 #         return bm.some_attr
 
 #     try:
@@ -116,16 +116,16 @@ def test_module_without_import():
 
 #     def inner2():
 #         """basic docstring for pylint purpose"""
-#         import Tasks.basics.module1 as module1
+#         import basics.module1 as module1
 #         return module1.some_attr
 
 #     assert 10 == inner2()
 
 #     assert "dict" == type(sys.modules).__name__
-#     assert True is (module1 is sys.modules['Tasks.basics.module1'])
+#     assert True is (module1 is sys.modules['basics.module1'])
 #     assert False is ('new_name' in sys.modules)
 #     assert True is (new_name is module1)
-#     assert True is (new_name is sys.modules['Tasks.basics.module1'])
+#     assert True is (new_name is sys.modules['basics.module1'])
 
 #     # doubts
 
@@ -134,9 +134,9 @@ def test_module_without_import():
 # s_3 = set()
 
 # s_1 = set(dir())
-# import Tasks.basics.module3
+# import basics.module3
 # s_2 = set(dir())
-# import Tasks.basics.module4
+# import basics.module4
 # s_3 = set(dir())
 
 # def test_module_star_import():

@@ -2,8 +2,8 @@
 __author__ = 'Hari'
 
 import sys
-from tasks.basics import module1
-from tasks.basics.package1.subpackage import m1
+from basics import module1
+from basics.package1.subpackage import m1
 # import tasks.placeholders
 
 NOTES = '''
@@ -28,7 +28,7 @@ def test_package_basic_import():
     assert False is ("module1" in locals())
     assert False is ("package1.module1" in locals())
 
-    from tasks.basics import package1
+    from basics import package1
 
     assert True is ("package1" in locals())
     assert False is ("module1" in locals())
@@ -36,7 +36,7 @@ def test_package_basic_import():
 
     assert "module" == type(package1).__name__
 
-    assert True is ("tasks.basics.package1" in sys.modules)
+    assert True is ("basics.package1" in sys.modules)
     assert False is ("module1" in sys.modules)
     assert False is ("package1.module1" in sys.modules)
 
@@ -46,12 +46,12 @@ def test_package_basic_import():
         pass
 
     #modules need explicit import generally.
-    import tasks.basics.package1.module1
+    import basics.package1.module1
     print(module1.__doc__)
 
-    assert True is ("tasks.basics.package1" in sys.modules)
+    assert True is ("basics.package1" in sys.modules)
     assert False is ("module1" in sys.modules)
-    assert True is ("tasks.basics.package1.module1" in sys.modules)
+    assert True is ("basics.package1.module1" in sys.modules)
 
 
 def clear_sys_modules():
@@ -66,19 +66,19 @@ def test_package_from_import():
     """basic docstring for pylint testing"""
     clear_sys_modules()
 
-    assert False is ("tasks.basics.package1" in locals())
+    assert False is ("basics.package1" in locals())
     assert False is ("module1" in locals())
-    assert False is ("tasks.basics.package1.module1" in locals())
+    assert False is ("basics.package1.module1" in locals())
 
-    from tasks.basics.package1 import module1
+    from basics.package1 import module1
 
-    assert False is ("tasks.basics.package1" in locals())
+    assert False is ("basics.package1" in locals())
     assert True is ("module1" in locals())
-    assert False is ("tasks.basics.package1.module1" in locals())
+    assert False is ("basics.package1.module1" in locals())
 
-    assert True is ("tasks.basics.package1" in sys.modules)
+    assert True is ("basics.package1" in sys.modules)
     assert False is ("module1" in sys.modules)
-    assert True is ("tasks.basics.package1.module1" in sys.modules)
+    assert True is ("basics.package1.module1" in sys.modules)
 
 
 def test_package_import_failure():
@@ -100,21 +100,21 @@ def test_package_sub_packages():
     """basic docstring for pylint testing"""
     clear_sys_modules()
 
-    assert False is ("tasks.basics.package1" in locals())
+    assert False is ("basics.package1" in locals())
     assert False is ("subpackage" in locals())
-    assert False is ("tasks.basics.package1.subpackage" in locals())
+    assert False is ("basics.package1.subpackage" in locals())
 
-    from tasks.basics.package1 import subpackage
+    from basics.package1 import subpackage
 
-    assert False is ("tasks.basics.package1" in locals())
+    assert False is ("basics.package1" in locals())
     assert True is ("subpackage" in locals())
-    assert False is ("tasks.basics.package1.subpackage" in locals())
+    assert False is ("basics.package1.subpackage" in locals())
 
-    assert True is ("tasks.basics.package1" in sys.modules)
+    assert True is ("basics.package1" in sys.modules)
     assert False is ("module1" in sys.modules)
-    assert True is ("tasks.basics.package1.module1" in sys.modules)
-    assert True is ("tasks.basics.package1.subpackage" in sys.modules)
-    assert True is ("tasks.basics.package1.subpackage.m1" in sys.modules)
+    assert True is ("basics.package1.module1" in sys.modules)
+    assert True is ("basics.package1.subpackage" in sys.modules)
+    assert True is ("basics.package1.subpackage.m1" in sys.modules)
 
     #why is this not raising an exception here?
     print(m1.__doc__)
