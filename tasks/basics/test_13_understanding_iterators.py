@@ -39,8 +39,8 @@ def test_enumerate_iter():
         assert "one" == list_iter.next()
         assert "two" == list_iter.next()
         assert "three" == list_iter.next()
-        assert None == list_iter.next() #note what happens when items are finished.
-    except AttributeError as se:
+        assert "Stop" == list_iter.next() #note what happens when items are finished.
+    except Exception as se:
         pass
 
 #note this function which can convert any iterable into a list.
