@@ -13,70 +13,70 @@ NOTES = '''
 '''
 
 def test_identity_equality_lists():
-    _a_ = []
-    _b_ = []
-    assert False == (_a_ is _b_)
-    assert True == (_a_ == _b_)
+    var_a = []
+    var_b = []
+    assert False is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    a.append("one")
-    assert False == (_a_ is _b_)
-    assert False == (_a_ == _b_)
+    var_a.append("one")
+    assert False is (var_a is var_b)
+    assert False is (var_a == var_b)
 
-    _c_ = []
-    _d_ = c
-    assert True == (_c_ is _d_)
-    assert True == (_c_ == _d_)
+    var_c = []
+    var_d = var_c
+    assert True is (var_c is var_d)
+    assert True is (var_c == var_d)
 
-    _c_.append("one")
-    assert True == (_c_ is _d_)
-    assert True == (_c_ == _d_)
+    var_c.append("one")
+    assert True is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_string():
-    _a_ = _b_ = "hello"
+    var_a = var_b = "hello"
 
-    assert True == (_a_ is _b)
-    assert True == (a == b)
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert False == (c is d)
-    assert True == (c == d)
+    var_c = "hello"
+    var_d = "".join(["hel", "lo"])
+    assert False is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True == (a is b)
-    assert True == (a == b)
+    var_a = var_b = 10000
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    c = 10000
-    d = int("10000")
-    assert False == (c is d)
-    assert True == (c == d)
+    var_c = 10000
+    var_d = int("10000")
+    assert False is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert True == (a is b)
-    assert True == ( a == b)
+    var_a = var_b = 10
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    c = 10
-    d = int("10")
-    assert True == (c is d)
-    assert True == (c == d)
+    var_c = 10
+    var_d = int("10")
+    assert True is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_None():
-    a = b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    var_a = var_b = None
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    a = None
-    b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    var_a = None
+    var_b = None
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
 
-notes_on_none = '''
+NOTES_ON_NONE = '''
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
