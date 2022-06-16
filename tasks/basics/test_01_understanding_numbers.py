@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 
 # For most of these tests use the interpreter to fill up the blanks.
@@ -13,7 +13,8 @@ def test_numbers_types():
 # In Python 3 the long datatype has been removed and all integer values are handled
 # by the Int class. The default size of Int will depend on your CPU architecture.
 # 32 bit systems the default datatype for integers will be 'Int32'->[-2147483648,2147483647]
-# 64 bit systems the default datatype for integers will be 'Int64'->[-9223372036854775808,9223372036854775807]
+# 64 bit systems the default datatype for integers
+#  will be 'Int64'->[-9223372036854775808,9223372036854775807]
 
 
 def test_numbers_int_arithmetic_operations():
@@ -42,10 +43,10 @@ def test_numbers_long():
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -we have a method in python to convert a decimal number to octal
 - a method to convert decimal tp hexadecemal
 -
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_MINUTES = 4
