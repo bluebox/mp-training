@@ -1,7 +1,13 @@
+from Tasks.placeholders import *
+import Tasks.placeholders as placeholders
+from Tasks.basics.module4 import *
+from Tasks.basics.module3 import *
+from tokenize import Name
+import sys
 __author__ = 'Hari'
 
-from tasks import placeholders
-from tasks.basics import module1
+from Tasks import placeholders
+from Tasks.basics import module1
 
 notes = '''
 modules are a abstraction feature which greatly aids in building large applications.
@@ -15,8 +21,8 @@ a set of function, data and class definitions which provide a specific functiona
 notes_1 = '''
 All these tests uses module1.py to module4.py. Take a look at them before starting the tests.
 '''
-#this is a global import, generally you use only these. rarely will you use function level imports, but we are doing that
-#here for the sake of testing.
+# this is a global import, generally you use only these. rarely will you use function level imports, but we are doing that
+# here for the sake of testing.
 
 import sys
 
@@ -41,6 +47,7 @@ def test_module_usage_multiple():
     assert "module1 says hi to jack" == module1.greet("jack")
     assert "module2 says hi to jack" == module2.greet("jack")
 
+
 def test_module_import_affects_current_namespace():
     import Tasks.basics.module1 as module1
 
@@ -52,22 +59,25 @@ def test_module_import_affects_current_namespace():
     assert "module1 says hi to jack" == module1.greet("jack")
     assert "module2 says hi to jack" == inner_func()
 
-    # assert False == ('placeholders' in locals())
-    # assert True == ('placeholders' in globals())
+    assert False == ('placeholders' in locals())
+    assert True == ('placeholders' in globals())
 
-    # assert True == ('module1' in locals())
-    # assert False == ('module1' in globals())
+    assert True == ('module1' in locals())
+    assert True == ('module1' in globals())
 
-    # assert True == ('module2' in locals())
-    # assert False == ('module2' in globals())
+    assert False == ('module2' in locals())
+    assert False == ('module2' in globals())
+
 
 def test_module_type():
-    assert "module" == type(placeholders).__name__
+    assert 'module' == type(placeholders).__name__
+
 
 def test_module_is_an_object():
     assert 12 == len(dir(placeholders))
-    assert "Tasks.placeholders" == placeholders.__name__
+    assert 'Tasks.placeholders' == placeholders.__name__
     assert None == placeholders.__doc__
+
 
 def test_module_from_import():
     from Tasks.basics.module1 import greet

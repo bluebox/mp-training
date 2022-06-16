@@ -1,3 +1,4 @@
+from Tasks.placeholders import *
 __author__ = 'Hari'
 
 notes = '''
@@ -19,8 +20,6 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
-from types import NoneType
-from Tasks.placeholders import *
 
 notes_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
@@ -28,7 +27,7 @@ notes_1 = '''
 '''
 
 
-#classes are objects too, they have a type, have attributes, can be passed
+# classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
 def test_classes_are_objects():
     class Queue(object):
@@ -46,7 +45,7 @@ def test_classes_are_callable_objects():
     class Queue(object):
         pass
 
-    #classes are callable objects just like function objects
+    # classes are callable objects just like function objects
     assert True == callable(Queue)
 
 
@@ -72,8 +71,8 @@ def test_classes_are_object_factories():
     assert 26 == len(dir(q2))
 
 
-#if an __init__ method exists it is called with the object that is
-#being created, so you can initialize it.
+# if an __init__ method exists it is called with the object that is
+# being created, so you can initialize it.
 def test_classes_init_constructor():
     test_list = []
 
@@ -82,7 +81,7 @@ def test_classes_init_constructor():
             assert True, "Entered here !"
             test_list.append(self)
 
-    q1 = Queue() # fix the assert to pass this.
+    q1 = Queue()  # fix the assert to pass this.
     self_argument = test_list[0]
     assert True == (self_argument is q1)
 
@@ -99,11 +98,11 @@ def test_classes_init_with_args():
 
     try:
         q3 = Queue()
-    except TypeError : #what error do you get?
+    except TypeError:  # what error do you get?
         pass
 
 
-#just like def, class is also a runtime statement which bounds a class name with the class body code
+# just like def, class is also a runtime statement which bounds a class name with the class body code
 def test_class_is_an_executable_statement():
     def create_class(value):
         if (value > 10):
@@ -143,10 +142,10 @@ def test_classes_methods():
             return self._queue.pop(0)
 
     q1 = Queue("q1")
-    q1.push(10) #note that we pass only one argument
+    q1.push(10)  # note that we pass only one argument
     assert 10 == q1.pop()
 
-    #above is a equivalent to
+    # above is a equivalent to
     Queue.push(q1, 10)
     assert 10 == Queue.pop(q1)
 
@@ -179,6 +178,7 @@ def test_classes_bound_and_unbound_methods():
 def test_classes_can_have_state():
     class Queue(object):
         count = 0
+
         def __init__(self, name):
             self.name = name
             self._queue = []
