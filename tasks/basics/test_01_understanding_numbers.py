@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from Tasks.placeholders import *
 
 
 # For most of these tests use the interpreter to fill up the blanks.
