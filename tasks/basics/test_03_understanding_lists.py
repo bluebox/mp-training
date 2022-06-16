@@ -4,20 +4,20 @@ from tasks.placeholders import *
 
 def test_list_type():
     fruits = ["banana", "orange", "grape"]
-    assert __ == type(fruits).__name__
+    assert 'list' == type(fruits).__name__
 
 def test_list_len():
     fruits = ["banana", "orange", "grape"]
-    assert __ == len(fruits)
+    assert 3 == len(fruits)
 
 def test_list_can_be_indexed():
     fruits = ["banana", "orange", "grape"]
-    assert __ == fruits[0]
-    assert __ == fruits[1]
-    assert __ == fruits[2]
-    assert __ == fruits[-1]
-    assert __ == fruits[-2]
-    assert __ == fruits[-3]
+    assert "banana" == fruits[0]
+    assert "orange" == fruits[1]
+    assert "grape" == fruits[2]
+    assert "grape" == fruits[-1]
+    assert "orange" == fruits[-2]
+    assert "banana" == fruits[-3]
 
 def test_list_is_mutable():
     fruits = ["banana", "orange", "grape"]
