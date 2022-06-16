@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-# from placeholders import *
+from tasks.placeholders import *
 
 
 def demo(first=0, second=2, third=3):
