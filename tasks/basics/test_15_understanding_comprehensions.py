@@ -8,7 +8,7 @@ notes = '''
 '''
 
 from tasks.placeholders import *
-import string
+# import string
 
 def is_even(x):
     return x%2 == 0
@@ -106,10 +106,10 @@ def test_sc_filtering():
     assert {1, 3, 5, 7, 9} == odds
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 50
+TIME_TAKEN_MINUTES = 50
