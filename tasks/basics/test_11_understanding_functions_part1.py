@@ -76,7 +76,7 @@ def demo2():
 def test_function_documentation():
     """basic docstring for pylint testing"""
     assert "returns 10" == demo1.__doc__
-    assert None == demo2.__doc__
+    assert "basic docstring for pylint testing" == demo2.__doc__
 
 
 def my_callfunc(func):

@@ -81,9 +81,9 @@ def test_equality():
     test_a=set()
     assert False is (test_a is False)
     test_a=0
-    assert True is (test_a is False)
+    assert False is (test_a is False)
     test_a=1
-    assert True is (test_a is True)
+    assert False is (test_a is True)
     test_a="a"
     assert False is (test_a is True)
     test_a=(1,2)
