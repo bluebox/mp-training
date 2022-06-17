@@ -62,7 +62,7 @@ def demo1():
 def demo2():
     return 20
 
-#The documentation of every function, if the author wrote it, is available at runtime.
+#The documentation of every function, if the author wrote it, is available at 
 #This makes it easy to access help from console or build specialized help commands like help.
 def test_function_documentation():
     assert 'returns 10' == demo1.__doc__
