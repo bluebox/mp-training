@@ -25,8 +25,8 @@ def test_generator_type():
     assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "next")
-    assert False == hasattr(demo_generator(), "next")
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
@@ -35,7 +35,7 @@ def test_generator_is_an_iterator2():
         assert 'are' == next(result)
         assert 'you?' == next(result)
         assert None == next(result)
-    except Exception as e:
+    except Exception :
         assert True
 
     assert 'how.are.you?' == ".".join(demo_generator()) #join takes a iterable
