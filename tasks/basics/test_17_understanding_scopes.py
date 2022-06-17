@@ -76,7 +76,7 @@ def test_global_write():
         assert True is ('_count' in global_names)
 
         assert 30 == _count
-        assert 30== get_global_count()
+        assert 10== get_global_count()
     finally:
         _count = 10 #reset to original value
 
@@ -110,7 +110,7 @@ def test_scope_writing_globals():
     try:
         _count = 40
         assert 40 == _count
-        assert 40 == get_global_count()
+        assert 10 == get_global_count()
     finally:
         _count = 10
 

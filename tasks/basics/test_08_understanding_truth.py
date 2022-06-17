@@ -19,6 +19,7 @@ def test_none_type():
 
 def test_truth_none():
     '''gives the boolean value of element like str,list..'''
+    value=None
     result = "not-set"
     #is None treated as true or false? =>flase(else loop)
     if value:
@@ -63,7 +64,7 @@ def test_equality():
     assert False is (() is False)
     assert False is ([] is False)
     assert False is (set() is False)
-    assert True is (bool(0))
+    assert False is (bool(0))
     assert True is (bool(1))
     assert False is ("a" is True)
     assert False is ((1,2) is True)
