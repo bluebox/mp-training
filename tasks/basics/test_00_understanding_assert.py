@@ -12,7 +12,7 @@ the <optional message>. If is evaluates to True, nothing happens.
 
 
 def test_assert_true():
-    '''DOCTRING'''
+    '''DOTRING'''
     #throws assertion error
     assert True  #This should be True -- replace ___ with True.
 
