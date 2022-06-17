@@ -114,8 +114,8 @@ def test_def_is_a_statement():
                 return x * 3
         return f
 
-    assert __ == outer(20)()
-    assert __ == outer(5)()
+    assert 40 == outer(20)()
+    assert 15 == outer(5)()
 
 
 three_things_i_learnt = """
@@ -124,4 +124,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 25
