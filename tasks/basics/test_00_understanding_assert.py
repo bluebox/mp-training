@@ -11,7 +11,6 @@ the <optional message>. If is evaluates to True, nothing happens.
 
 
 def test_assert_true():
-    """throws assertion error"""
     assert True  # This should be True -- replace ___ with True.
 
 
@@ -21,7 +20,6 @@ def test_assert_true_with_message():
 
 
 def test_assert_equality():
-    """assert equality"""
     assert 7 == 2 + 5  # replace __ with the expected value
 
 # Fill in __ in the statements below to make the asserts succeed

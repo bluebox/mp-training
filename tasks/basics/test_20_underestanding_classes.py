@@ -170,7 +170,7 @@ def test_classes_bound_and_unbound_methods():
 
     assert False is (_q1.push is Queue.push)
 
-    # assert False == Queue.push.__self__  # unbound method
+    # assert False == Queue.push.__self__  # unbound method #
     # assert " " == _q1_push.__self__  # bound method
 
     # now understand the output of these 2 statements.
