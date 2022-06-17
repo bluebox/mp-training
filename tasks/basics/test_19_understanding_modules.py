@@ -2,8 +2,8 @@
 __author__ = 'Hari'
 
 import sys
-from tasks import placeholders
-from tasks import module1
+from Tasks import placeholders
+from Tasks import module1
 
 NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
