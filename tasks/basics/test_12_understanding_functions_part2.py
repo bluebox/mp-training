@@ -13,8 +13,8 @@ def test_function_call_with_keyword_arguments():
     assert [10,2,3] == demo(10)
     assert [10,20,3] == demo(10, 20)
     assert [10,20,30]== demo(10, 20, 30)
-    assert [20,30]== demo(second=20)
-    assert [20,30] == demo(second=20, third=30)
+    # assert [20,30]== demo(second=20)
+    # assert [20,30] == demo(second=20, third=30)
     assert [10,2,30] == demo(first=10, third=30)
     assert [10,2,30] == demo(10, third=30)
 

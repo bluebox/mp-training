@@ -2,7 +2,7 @@
 __author__ = 'Hari'
 
 # from tkinter.messagebox import NO
-# from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 
 NOTES = '''
@@ -176,3 +176,16 @@ classes, inheritance,oops
 """
 
 TIME_TAKEN_MINUTES = 25
+
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""

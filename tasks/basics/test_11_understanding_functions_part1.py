@@ -28,9 +28,9 @@ def my_min_max(numbers):
 
 # functions are kinds of objects, they have a type too!
 def test_function_type():
-    assert 'function' is type(my_print).__name__
-    assert  'function'is type(my_increment).__name__
-    assert  'function'is type(test_function_type).__name__
+    assert 'function' == type(my_print).__name__
+    assert  'function'== type(my_increment).__name__
+    assert  'function'== type(test_function_type).__name__
 
 # functions are objects which can be 'called'
 def test_function_callable_type():
@@ -85,8 +85,8 @@ def my_greet(greeting, name="world"):
 
 
 def test_default_arguments():
-    assert 'Hello world'is my_greet("Hello")
-    assert 'Hello john' is my_greet("Hello", "john")
+    assert 'Hello world'== my_greet("Hello")
+    assert 'Hello john' == my_greet("Hello", "john")
 
 
 def my_add_to_list1(sequence, target=[]):
