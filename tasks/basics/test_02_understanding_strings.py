@@ -154,9 +154,9 @@ def test_string_formatting():
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
-    assert False is 'c' in 'apple'  #is there a precedence issue here?
-    assert True is 'a' in 'apple'
-    assert  True is 'app' in 'apple'# '==' and 'in' operators have
+    assert False ==('c' in 'apple')  #is there a precedence issue here?
+    assert True ==('a' in 'apple')
+    assert  True == ('app' in 'apple')# '==' and 'in' operators have
     # same precedence are interpreted from left to right in the expression
 
 
