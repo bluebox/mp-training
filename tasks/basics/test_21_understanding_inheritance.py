@@ -1,93 +1,95 @@
 __author__ = 'Hari'
+from tasks.placeholders import __author__
 
-notes = '''
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tasks.placeholders import *
+
+
 
 def test_inheritance_basic():
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClsA(object): # A inherits from object.
+        def mtd_f(self):
             pass
 
-    class B(A):      #B inherits from A or B derives A
-        def g(self):
+    class ClsB(ClsA):      #B inherits from A or B derives A
+        def mtd_g(self):
             pass
 
-    assert True == issubclass(A, object)
-    assert True == issubclass(A, A)
-    assert False == issubclass(A, B)
+    assert True is issubclass(ClsA, object)
+    assert True is issubclass(ClsA, ClsA)
+    assert False is issubclass(ClsA, ClsB)
 
-    assert True == issubclass(B, A)
-    assert True == issubclass(B, B)
-    assert True == issubclass(B, object)
+    assert True is issubclass(ClsB, ClsA)
+    assert True is issubclass(ClsB, ClsB)
+    assert True is issubclass(ClsB, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClsA(object): # A inherits from object.
+        def mtd_f(self):
             return "A:f()"
 
-    class B(A):      #B inherits A's behavior (attributes)
-        def g(self):
+    class ClsB(ClsA):      #B inherits A's behavior (attributes)
+        def mtd_g(self):
             return "B:g()"
 
-    b = B()
-    assert 'A:f()' == b.f()
-    assert 'B:g()' == b.g()
+    var_b = ClsB()
+    assert 'A:f()' == var_b.mtd_f()
+    assert 'B:g()' == var_b.mtd_g()
 
-    a = A()
-    assert 'A:f()' == a.f()
+    var_a = ClsA()
+    assert 'A:f()' == var_a.mtd_f()
     try:
-        assert frm == a.g()
+        assert var_b.l() == var_a.g()
     except AttributeError:
         #print ex  #uncomment this line after filling up
         pass
 
 def test_inheritance_overrides():
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClsA(object): # A inherits from object.
+        def mtd_f(self):
             return "A:f()"
 
-        def g(self):
+        def mtd_g(self):
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
+    class ClsB(ClsA):      #B can override A's methods
+        def mtd_g(self):
             return "B:g()"
 
-    a = A()
-    assert 'A:f()' == a.f()
-    assert 'A:g()' == a.g()
+    var_a = ClsA()
+    assert 'A:f()' == var_a.mtd_f()
+    assert 'A:g()' == var_a.mtd_g()
 
-    b = B()
-    assert 'A:f()' == b.f()
-    assert 'B:g()' == b.g()
+    var_b = ClsB()
+    assert 'A:f()' == var_b.mtd_f()
+    assert 'B:g()' == var_b.mtd_g()
 
 def test_inheritance_init():
-    class A(object):
+    class ClsA(object):
         def __init__(self):
-            self.a1 = []
+            self.var_a1 = []
 
         def append(self, obj):
-            self.a1.append(obj)
+            self.var_a1.append(obj)
 
-    class B(A):
+    class ClsB(ClsA):
         def __init__(self):
-            self.b1 = []
+            self.var_b1 = []
 
-    a = A()
-    assert [] == getattr(a, "a1", None)
-    assert None == getattr(a, "b1", None)
+    var_a = ClsA()
+    assert [] == getattr(var_a, "var_a1", None)
+    assert None is getattr(var_a, "var_b1", None)
 
-    b = B()
-    assert None == getattr(b, "a1", None)
-    assert [] == getattr(b, "b1", None)
+    var_b = ClsB()
+    assert None is getattr(var_b, "var_a1", None)
+    assert [] == getattr(var_b, "var_b1", None)
 
     try:
-        b.append("orange")
+        var_b.append("orange")
     except AttributeError :  #what happened here?
         pass
 
@@ -95,43 +97,63 @@ def test_inheritance_init():
     # chain __init__ to the base class if the derived class overrides it.
 
     #lets redefine B now, to chain the inits to the base class.
-    class B(A):
+    class ClsB(ClsA):
         def __init__(self):
-            A.__init__(self)
-            self.b1 = "b1"
+            ClsA.__init__(self)
+            self.var_b1 = "var_b1"
 
-    b = B()
-    assert [] == getattr(b, "a1", None)
-    assert 'b1' == getattr(b, "b1", None)
-    b.append("orange")
-    assert ['orange'] == b.a1
+    var_b = ClsB()
+    assert [] == getattr(var_b, "var_a1", None)
+    assert 'var_b1' == getattr(var_b, "var_b1", None)
+    var_b.append("orange")
+    assert ['orange'] == var_b.var_a1
 
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClsA(object): # A inherits from object.
+        def mtd_f(self):
             return "A:f()"
 
-        def g(self):
+        def mtd_g(self):
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
-            return super(B, self).g() + ":"+ "B:g()"
+    class ClsB(ClsA):      #B can override A's methods
+        def mtd_g(self):
+            return super(ClsB, self).mtd_g() + ":"+ "B:g()"
 
-    b = B()
-    assert 'A:g():B:g()' == b.g()
+    var_b = ClsB()
+    assert 'A:g():B:g()' == var_b.mtd_g()
 
 
-notes_1 = '''
+NOTES2 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -child methods are not accesseble to parents
 -parent methods can be accessed by child
 -super keyword gives parent class
 """
-
-time_taken_minutes = 35
+NOT="""HJGUJGF"""
+NOT1='''KJDFATERJKH'''
+NOT3="""HDSGTRFIUWEFRHFERUHTIT"""
+OT="""HJGUJGF"""
+NOT1='''KJDFATERJKH'''
+NOT3="""HDSGTRFIUWEFRHFERUHTIT"""
+OT="""HJGUJGF"""
+NOT1='''KJDFATERJKH'''
+NOT3="""HDSGTRFIUWEFRHFERUHTIT"""
+OT="""HJGUJGF"""
+NOT1='''KJDFATERJKH'''
+NOT3="""HDSGTRFIUWEFRHFERUHTIT"""
+OT="""HJGUJGF"""
+NOT1='''KJDFATERJKH'''
+NOT3="""HDSGTRFIUWEFRHFERUHTIT"""
+OT="""HJGUJGF"""
+NOT1='''KJDFATERJKH'''
+NOT3="""HDSGTRFIUWEFRHFERUHTIT"""
+OT="""HJGUJGF"""
+NOT1='''KJDFATERJKH'''
+NOT3="""HDSGTRFIUWEFRHFERUHTIT"""
+TIME_TAKEN_IN_MINUTES = 35
