@@ -1,8 +1,9 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.basics.test_00_understanding_assert import NOTES, THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from tasks.placeholders import __author__
 
-notes = '''
+NOTES = '''
 Just like C, python has notions on what values are considered true
 and what values are considered false.
 
@@ -54,27 +55,27 @@ def test_truth_values():
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
-    assert  False == ("" == True)
-    assert  False== (() == True)
-    assert False == ([] == True)
-    assert  False == (set() == True)
-    assert  False == (0 == True)
-    assert  True == ("" == False)
-    assert   True == (() == False)
-    assert  True == ([] == False)
-    assert   True == (set() == False)
-    assert   True == (0 == False)
-    assert   True == (1 == True)
-    assert   True== ("a" == True)
-    assert   True== ((1,2) == True)
-    assert True == ([1] == True)
-    assert  True == ({1} == True)
+    assert  False is ('' == True)
+    assert  False is (() == True)
+    assert False is ([] == True)
+    assert  False is (set() == True)
+    assert  False is (0 == True)
+    assert  False is ('' == False)
+    assert   False is (() == False)
+    assert   False is ([] == False)
+    assert   False is (set() == False)
+    assert   True is (0 == False)
+    assert   True is (1 == True)
+    assert   False is ("a" == True)
+    assert   False is ((1,2) == True)
+    assert  False is ([1] == True)
+    assert  False is ({1} == True)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -except 0 all other integers is concidered as true
 -all python empty data types are by default false
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15

@@ -1,14 +1,16 @@
 __author__ = 'Hari'
 
-notes = '''
+from tasks.basics.test_00_understanding_assert import NOTES, THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from tasks.placeholders import __author__
+import string
+
+NOTES = '''
  These features make creating lists, dicts and sets from other sequences easy and compact.
  lc -> list comprehensions
  dc -> dict comprehensions
  sc -> set comprehensions
 '''
 
-from tasks.placeholders import *
-import string
 
 def is_even(x):
     return x%2 == 0
@@ -17,14 +19,14 @@ def square(x):
     return x*x
 
 def test_lc_basic():
-    input = [1,2,3]
-    result = [2* x for x in input]
+    inpu = [1,2,3]
+    result = [2* x for x in inpu]
     assert 3 == len(result)
     assert [2,4,6] == result
 
 def test_lc_map_func():
-    input = [1,2,3]
-    result = [square(x) for x in input]
+    inpu = [1,2,3]
+    result = [square(x) for x in inpu]
     assert [1,4,9] == result
 
 def test_lc_trim_words():
@@ -33,8 +35,8 @@ def test_lc_trim_words():
     assert ['one','two','three'] == result
 
 def test_lc_filter_func():
-    input = range(10)
-    result = [x for x in input if is_even(x)]
+    inpu = range(10)
+    result = [x for x in inpu if is_even(x)]
     assert [0,2,4,6,8] == result
 
 def test_lc_filter_map():
@@ -103,10 +105,10 @@ def test_sc_filtering():
     assert {1,3,5,7,9} == odds
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 21
+TIME_TAKEN_MINUTES = 21

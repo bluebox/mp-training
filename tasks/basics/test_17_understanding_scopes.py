@@ -33,7 +33,7 @@ def test_scope_basic():
 
     value = count
 
-    assert True == ('value' in local_names)
+    assert  False == ('value' in local_names)
     assert  False  == ('value' in global_names)
 
     assert True == ('count' in local_names)

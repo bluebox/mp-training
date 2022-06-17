@@ -64,25 +64,23 @@ def demo_no_unpacking(name, *args, **kwargs):
 
 def test_function_unpacking():
     result = demo_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert ((1,2),{k1:'v1',k2:'v2'}) == result
+    assert ((1,2),{'k1':'v1','k2':'v2'}) == result
 
     result = demo_no_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert (((1, 2), {'k1': 'v1', 'k2': 'v2'}), {})== result
+    assert (((1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
 
     result = demo_sub(1,2, k1="v1")
-    assert ((1, 2), {'k1': 'v1'}) == result
+    assert ((1,2),{'k1':'v1'}) == result
 
     result = demo_sub((1,2), {"k1" :"v1"})
     assert (((1, 2), {'k1': 'v1'}), {}) == result
 
     result = demo_sub(*(1,2), **{"k1": "v1"})
-    assert ((1, 2), {'k1': 'v1'})== result
-
+    assert ((1,2),{'k1':'v1'}) == result
 
     #you can unpack lists as well
     result = demo_sub(*[1,2], **{"k1":"v1"})
-    assert ((1, 2), {'k1': 'v1'})== result
-
+    assert ((1,2),{'k1':'v1'}) == result
 
 
 three_things_i_learnt = """

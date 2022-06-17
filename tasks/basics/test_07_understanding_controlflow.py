@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 notes = '''
 python has support for standard control flow statements similar to other languages.
@@ -135,9 +135,9 @@ def test_nested_loop_break_continue():
 # else on loops is not available in other common languages
 def test_for_loop_else_plain():
     result = []
-    for x in range(5):
-        result.append(x)
-        print (x)
+    for x_ in range(5):
+        result.append(x_)
+        print (x_)
     else:
         result.append(10)
 
@@ -145,11 +145,11 @@ def test_for_loop_else_plain():
 
 def test_for_loop_else_break():
     result = []
-    for x in range(5):
-        if x %3 == 0:
+    for x_ in range(5):
+        if x_ %3 == 0:
             break
-        result.append(x)
-        print( x)
+        result.append(x_)
+        print(x_)
     else:
         result.append(10)
 
@@ -182,10 +182,10 @@ def test_while_loop_else():
     assert [1,2,3]== result
 
 
-three_things_i_learnt = """
--
--
+THREE_THINGS_I_LEARNT = """
+-break is used to come out of the loop 
+-for,while are llop statements in python
 -
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

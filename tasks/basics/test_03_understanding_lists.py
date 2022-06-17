@@ -145,9 +145,9 @@ def test_list_range():
     assert range(1,5,2) == numbers
 
 three_things_i_learnt = """
--
--
--
+-lists are mutable
+-list can have different data types unlike array 
+-list can accessed through indexing
 """
 
 time_taken_minutes = 30

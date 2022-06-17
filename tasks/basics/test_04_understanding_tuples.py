@@ -1,8 +1,9 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.basics.test_00_understanding_assert import NOTES
+from tasks.placeholders import __author__
 
-notes = '''
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
@@ -43,7 +44,7 @@ def test_tuples_are_immutable():
     colors = ('red', 'blue', 'green')
     try:
         colors[0] = 'orange'
-    except TypeError as te:
+    except TypeError as t_e:
       #  print te # note the exception -> SyntaxError: Missing parentheses in call to 'print'.
         assert True
 
@@ -68,8 +69,8 @@ def test_tuple_unpacking():
     try:
         a, b = triplet
         assert True # should not come here.
-    except ValueError as ve:
-        print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+    except ValueError as v_e:
+        print (v_e ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
@@ -87,18 +88,18 @@ def test_sequence_conversion():
     assert ['t','e','s','t','i','n','g']== list_2
 
     word2 = str(tup_1)
-    assert "('t','e','s','t','i','n','g')" == word2
+    assert "('t', 'e', 's', 't', 'i', 'n', 'g')" == word2
 
     word3 = "".join(tup_1)
-    assert (testing)== word3
+    assert 'testing'== word3
 
     word4 = "".join(list_1)
-    assert  [testing]== word4
+    assert  'testing'== word4
 
-three_things_i_learnt = """
+THREE_T5HINGS_I_LEARNT = """
 -tuples are immutable
 -variables can assinged through tuples
 -tuples can be sliced
 """
 
-time_taken_minutes = 25
+TIME_TAKEN_MINUTES = 25

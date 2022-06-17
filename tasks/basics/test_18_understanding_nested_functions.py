@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
 feature is essential to mastering python.
 
@@ -8,7 +8,7 @@ nested functions are defined in the scope of a function, behave exactly the same
 that they have a read only access to variables in the outer function.
 '''
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 def outer_func(outer_var):
     def inner_func(inner_var):
@@ -114,14 +114,14 @@ def test_def_is_a_statement():
                 return x * 3
         return f
 
-    assert 5 == outer(20)()
-    assert 40 == outer(5)()
+    assert 40 == outer(20)()
+    assert 15 == outer(5)()
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 24
+TIME_TAKEN_MINUTES = 24

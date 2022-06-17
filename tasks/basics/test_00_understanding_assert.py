@@ -36,8 +36,8 @@ def test_make_assert_true_3():
     s_2 = "Hello, World"
     assert s_1 == s_2
 THREE_THINGS_I_LEARNT = """
-asseret ==bool
--
--
+assert ==bool
+-docstrings make the code readable
+-code will stop executing is assertion is false
 """
-TIME_TAKEN_MINUTES = 1
+TIME_TAKEN_MINUTES = 10
