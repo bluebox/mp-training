@@ -65,7 +65,7 @@ def test_generator_range_does_not_allocate_memory():
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
-    assert True # did you reach here without any memory exception?
+    assert True
 
 
 #write a statement that can collect all results from the generator into a list
