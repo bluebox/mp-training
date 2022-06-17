@@ -17,6 +17,7 @@ def test_numbers_types():
 
 
 def test_numbers_int_arithmetic_operations():
+    """HGHG"""
     assert 30 == 10 + 20
     assert 200 == 10 * 20
     assert 32 == 2 ** 5
@@ -32,6 +33,7 @@ def test_numbers_string_to_int():
 
 
 def test_numbers_int_to_string():
+    """a"""
     assert '0o12' == oct(10)
     assert '0x64' == hex(100)
     assert '0b11111111' == bin(255)
@@ -42,10 +44,10 @@ def test_numbers_long():
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -we have a method in python to convert a decimal number to octal
 - a method to convert decimal tp hexadecemal
 -
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_MINUTES = 40
