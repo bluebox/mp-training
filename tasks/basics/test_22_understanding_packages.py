@@ -1,122 +1,141 @@
 __author__ = 'Hari'
+from tasks.placeholders import __author__
 
-from tasks.basics import module1
-from tasks.basics.package1.subpackage import m1
-
-notes = '''
- Sometimes a collection of modules provides related functionality as part of a larger framework,
- then it makes sense to group all of them together. Packages allows you to group related modules together.
-
- The relationship between packages and modules is similar to that of directories and files in the
- filesystem. Packages can contain sub-packages and modules. In the filesystem a directory containing __init__.py
- is treated as a package when python tries to find packages on sys.path.
-
- A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
+NOTES = '''
+ Inheritance is another standard feature of object oriented programming.This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tasks.placeholders import *
-import sys
 
-# Look at the package1 and package2 directories before starting...
+def test_inheritance_basic():
+    class Aclass():  # A inherits from object.
+        def var_f(self):
+            pass
 
-def test_package_basic_import():
-    clear_sys_modules()
+    class Bclass(Aclass):  # B inherits from A or B derives A
+        def var_g(self):
+            pass
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+    assert True is issubclass(Aclass, object)
+    assert True is issubclass(Aclass, Aclass)
+    assert False is issubclass(Aclass, Bclass)
 
-    import package1
+    assert True is issubclass(Bclass, Aclass)
+    assert True is issubclass(Bclass, Bclass)
+    assert True is issubclass(Bclass, object)
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
+# base class methods are available for derived class objects
 
-    assert __ == type(package1).__name__
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+def test_inheritance_methods():
+    class Aclass():  # A inherits from object.
+        def var_f(self):
+            return "A:f()"
 
+    class Bclass(Aclass):  # B inherits A's behavior (attributes)
+        def var_g(self):
+            return "B:g()"
+
+    var_b = Bclass()
+    assert "A:f()" == var_b.var_f()
+    assert "B:g()" == var_b.var_g()
+
+    var_a = Aclass()
+    assert "A:f()" == var_a.var_f()
     try:
-        print(module1.__doc__)
-    except __ :
+        assert "error" == var_a.var_g()
+    except AttributeError:
+        # print ex  #uncomment this line after filling up
         pass
 
-    #modules need explicit import generally.
-    import package1.module1
-    print(module1.__doc__)
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+def test_inheritance_overrides():
+    class Aclass():  # A inherits from object.
+        def f(self):
+            return "A:f()"
 
+        def g(self):
+            return "A:g()"
 
-def clear_sys_modules():
-    sys.modules.pop("module1", None)
-    sys.modules.pop("package1", None)
-    sys.modules.pop("package1.module1", None)
-    sys.modules.pop("package1.subpackage", None)
-    sys.modules.pop("package1.subpackage.m1", None)
+    class Bclass(Aclass):  # B can override A's methods
+        def g(self):
+            return "B:g()"
 
-def test_package_from_import():
-    clear_sys_modules()
+    var_a = Aclass()
+    assert "A:f()" == var_a.f()
+    assert "A:g()" == var_a.g()
 
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
-
-    from package1 import module1
-
-    assert __ == ("package1" in locals())
-    assert __ == ("module1" in locals())
-    assert __ == ("package1.module1" in locals())
-
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
+    var_b = Bclass()
+    assert "A:f()" == var_b.f()
+    assert "B:g()" == var_b.g()
 
 
-def test_package_import_failure():
-    clear_sys_modules()
+def test_inheritance_init():
+    class Aclass():
+        def __init__(self):
+            self.var_a1 = []
+
+        def append(self, obj):
+            self.var_a1.append(obj)
+
+    class Bclass(Aclass):
+        def __init__(self):
+            self.var_b1 = []
+
+    var_a = Aclass()
+    assert not getattr(var_a, "var_a1", None)
+    assert None is getattr(var_a, "var_b1", None)
+
+    var_b = Bclass()
+    assert None is getattr(var_b, "var_a1", None)
+    assert not getattr(var_b, "var_b1", None)
+
     try:
-        import package2
-    except __ :
-        assert ___
+        var_b.append("orange")
+    except AttributeError:  # what happened here?
+        pass
 
-    # fill up reason for failure. why is package2 not a package
-    why_it_failed = __
+    # Since methods of A depend on init being called, we must always
+    # chain __init__ to the base class if the derived class overrides it.
 
-def test_package_sub_packages():
-    clear_sys_modules()
+    # lets redefine B now, to chain the inits to the base class.
+    class Bclass1(Aclass):
+        def __init__(self):
+            Aclass.__init__(self)
+            self.var_b1 = "b1"
 
-    assert __ == ("package1" in locals())
-    assert __ == ("subpackage" in locals())
-    assert __ == ("package1.subpackage" in locals())
+    var_b = Bclass1()
+    assert not getattr(var_b, "var_a1", None)
+    assert "b1" == getattr(var_b, "var_b1", None)
+    var_b.append("orange")
+    assert ["orange"] == var_b.var_a1
 
-    from package1 import subpackage
 
-    assert __ == ("package1" in locals())
-    assert __ == ("subpackage" in locals())
-    assert __ == ("package1.subpackage" in locals())
+def test_inheritance_invoking_using_super():
+    # super can be used instead of explicitly invoking base.
+    class Aclass():  # A inherits from object.
+        def f(self):
+            return "A:f()"
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
-    assert __ == ("package1.subpackage" in sys.modules)
-    assert __ == ("package1.subpackage.m1" in sys.modules)
+        def g(self):
+            return "A:g()"
 
-    #why is this not raising an exception here?
-    print(m1.__doc__)
+    class Bclass(Aclass):  # B can override A's methods
+        def g(self):
+            return super().g() + ":" + "B:g()"
 
-    assert __ == ("package1.subpackage.m1" in sys.modules)
+    var_b = Bclass()
+    assert "A:g():B:g()" == var_b.g()
 
-three_things_i_learnt = """
+
+NOTES_1 = '''
+ Inheritance if one of the most abused features of object oriented programming especially by novices.
+ Think carefully before using it :). We will cover usage in assignments.
+'''
+
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = ___
-
-
+TIME_TAKEN_MINUTES = 40

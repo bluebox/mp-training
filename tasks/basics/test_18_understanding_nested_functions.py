@@ -1,4 +1,5 @@
 __author__ = 'Hari'
+from tasks.placeholders import __author__
 
 NOTES = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
@@ -9,19 +10,17 @@ that they have a read only access to variables in the outer function.
 '''
 
 
-from tasks.placeholders import __author__
-
-def outer_func(outer_var):
+def outer_func(otr_var):
     def inner_func(inner_var):
-        return outer_var + inner_var
+        return otr_var + inner_var
     return inner_func
 
-    def test_inner_func_scope():
+def test_inner_func_scope():
     # inner_func not accessible by default
-        try:
-            inner_func()
-        except NameError:  # fill up the exception
-            pass
+    try:
+        inner_func()
+    except NameError:  # fill up the exception
+        pass
 
     # this syntax does not work either, it is not just static scoping.
     try:
@@ -30,48 +29,49 @@ def outer_func(outer_var):
         pass
 
 def test_inner_func_can_be_returned():
-    f_1 = outer_func(10)
-    assert 'function' == type(f_1).__name__
-    assert 30 == f_1(20)
+    var_f1 = outer_func(10)
+    assert 'function' == type(var_f1).__name__
+    assert 30 == var_f1(20)
 
 def test_each_invocation_returns_a_new_func():
-    f_1 = outer_func(10)
-    f_2 = outer_func(10)
+    var_f1 = outer_func(10)
+    var_f2 = outer_func(10)
 
-    assert False is (f_1 is f_2)
-    assert False is (f_1 == f_2)
+    assert False is (var_f1 is var_f2)
+    assert False is (var_f1 == var_f2)
 
-    f_3 = f_2
-    assert True is (f_3 is f_2)
-    assert True is (f_3 == f_2)
+    f3 = var_f2
+    assert True is (f3 is var_f2)
+    assert True is (f3 == var_f2)
 
-def test_inner_func_has_access_to_outer_variables_after_return():
-    f_1 = outer_func(20)
-    f_2 = outer_func(50)
+def test_inner_func_has_access_to_otr_variables_after_return():
+    var_f1 = outer_func(20)
+    var_f2 = outer_func(50)
 
-    assert 50 == f_1(30)
-    assert 60 == f_1(40)
+    assert 50 == var_f1(30)
+    assert 60 == var_f1(40)
 
-    assert 80 == f_2(30)
-    assert 90 == f_2(40)
+    assert  80== var_f2(30)
+    assert  90== var_f2(40)
 
 def print_attributes(obj):
-    for x_1 in dir(obj):
-        print("attribute: {0}".format(x_1))
-        print(getattr(obj, x_1))
+    for x in dir(obj):
+        print("attribute: {0}".format(x))
+        print(getattr(obj, x))
 
 
 def test_inner_func_attributes():
-    f_1 = outer_func(10)
-    assert 35 == len(dir(f_1)) #how many attributes does f_1 have
+    var_f1 = outer_func(10)
+    assert 35 == len(dir(var_f1)) #how many attributes does f1 have
 
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
     # function scope variables
-    ref_to_outer_scope = True
+    ref_to_outer_scope = 8
 
 
-# if you understand this, you have understood nested funcs :)
+# if you understand thi
+# s, you have understood nested funcs :)
 def test_inner_func_scoping():
     def outer():
         funcs = []
@@ -80,8 +80,8 @@ def test_inner_func_scoping():
                 return x_1
             funcs.append(inner)
         result = []
-        for f_unc in funcs:
-            result.append(f_unc())
+        for func in funcs:
+            result.append(func())
         return result
 
     assert [9,9,9,9,9,9,9,9,9,9] == outer()
@@ -106,13 +106,13 @@ def test_outer_scope_is_read_only():
 # binding to a code object! So same scope rules as variables apply to function names.
 # read up more at http://effbot.org/zone/default-values.htm
 def test_def_is_a_statement():
-    def outer(x):
-        if x > 10:
+    def outer(x_1):
+        if x_1 > 10:
             def f():
-                return x * 2
+                return x_1 * 2
         else:
             def f():
-                return x * 3
+                return x_1 * 3
         return f
 
     assert 40 == outer(20)()
@@ -120,9 +120,10 @@ def test_def_is_a_statement():
 
 
 THREE_THINGS_I_LEARNT = """
--calling subfunctions by()()
--func()pointer
--2 obj are not == because of inner loop
+-
+
+-
+-
 """
 
-TIME_TAKEN_IN_MINUTES = 30
+TIME_TAKEN_MINUTES = 50
