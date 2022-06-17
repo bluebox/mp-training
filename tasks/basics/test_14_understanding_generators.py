@@ -70,7 +70,10 @@ def test_generator_range_does_not_allocate_memory():
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    yield generator
+    result = []
+    for i in generator:
+        result.append(i)
+    return result
 
      # fill code here.
 
@@ -85,14 +88,14 @@ def test_generator_return():
         yield 2
         return
         yield 3
-    assert [1, 2, 3] == demo_generator_to_list(func())
+    assert [1, 2] == demo_generator_to_list(func())
 
 def test_generator_control_flow():
     def func():
         for x in range(5):
             yield x
         yield 10
-    assert [0, 1, 2, 3, 4] == demo_generator_to_list(func())
+    assert [0, 1, 2, 3, 4, 10] == demo_generator_to_list(func())
 
 def test_generator_exception():
     def func():
@@ -107,7 +110,7 @@ def test_generator_exception():
             yield 50
         yield 30
 
-    assert [10, 20, 40, 50, 30] == demo_generator_to_list(func())
+    assert [10, 20, 50, 30] == demo_generator_to_list(func())
 
 
 three_things_i_learnt = """
