@@ -27,7 +27,7 @@ def test_make_assert_true_1():
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
-    assert 2**43 > 2**30, "Fill in value greater than 2**30"
+    assert 2**43 > 2**30, "Fill in value greater than  2**30"
 
 def test_make_assert_true_3():
     s1 = "Hello, World"
