@@ -1,5 +1,6 @@
 __author__ = 'Hari'
 
+from asyncio import tasks
 from tasks.basics import module1
 from tasks.basics.package1.subpackage import m1
 
@@ -26,7 +27,7 @@ def test_package_basic_import():
     assert False== ("module1" in locals())
     assert False== ("package1.module1" in locals())
 
-    import package1
+    from tasks.basics import package1
 
     assert True == ("package1" in locals())
     assert False == ("module1" in locals())
@@ -40,16 +41,16 @@ def test_package_basic_import():
 
     try:
         print(module1.__doc__)
-    except __ :
+    except UnboundLocalError:
         pass
 
     #modules need explicit import generally.
-    import package1.module1
+    from tasks.basics import module1
     print(module1.__doc__)
 
-    assert True== ("package1" in sys.modules)
-    assert True == ("module1" in sys.modules)
-    assert True== ("package1.module1" in sys.modules)
+    assert False== ("package1" in sys.modules)
+    assert False == ("module1" in sys.modules)
+    assert False== ("package1.module1" in sys.modules)
 
 
 def clear_sys_modules():
@@ -66,11 +67,11 @@ def test_package_from_import():
     assert False == ("module1" in locals())
     assert False == ("package1.module1" in locals())
 
-    from package1 import module1
+    from tasks.basics.package1 import module1
 
     assert False == ("package1" in locals())
     assert True == ("module1" in locals())
-    assert True == ("package1.module1" in locals())
+    assert False== ("package1.module1" in locals())
 
     assert False == ("package1" in sys.modules)
     assert False == ("module1" in sys.modules)
@@ -94,26 +95,26 @@ def test_package_sub_packages():
     assert False == ("subpackage" in locals())
     assert False == ("package1.subpackage" in locals())
 
-    from package1 import subpackage
+    from tasks.basics.package1 import subpackage
 
-    assert __ == ("package1" in locals())
-    assert __ == ("subpackage" in locals())
-    assert __ == ("package1.subpackage" in locals())
+    assert False== ("package1" in locals())
+    assert True == ("subpackage" in locals())
+    assert False == ("package1.subpackage" in locals())
 
-    assert __ == ("package1" in sys.modules)
-    assert __ == ("module1" in sys.modules)
-    assert __ == ("package1.module1" in sys.modules)
-    assert __ == ("package1.subpackage" in sys.modules)
-    assert __ == ("package1.subpackage.m1" in sys.modules)
+    assert False == ("package1" in sys.modules)
+    assert False== ("module1" in sys.modules)
+    assert False== ("package1.module1" in sys.modules)
+    assert False== ("package1.subpackage" in sys.modules)
+    assert False == ("package1.subpackage.m1" in sys.modules)
 
     #why is this not raising an exception here?
     print(m1.__doc__)
 
-    assert __ == ("package1.subpackage.m1" in sys.modules)
+    assert False == ("package1.subpackage.m1" in sys.modules)
 
 three_things_i_learnt = """
--
--
+IMPORTING PACKAGES
+EXCEPTIONS RELATED TO PACKAGES
 -
 """
 

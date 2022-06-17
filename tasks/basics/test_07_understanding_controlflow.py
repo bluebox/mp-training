@@ -1,14 +1,16 @@
+'''controlflow'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 python has support for standard control flow statements similar to other languages.
 iteration over sequences like list, string etc. is built into the language itself (c# has
 similar features) and the loops support an else clause which is not common elsewhere.
 '''
 
 def test_if():
+    '''controlflow'''
     value = 1
     if True:
         value = 2
@@ -19,6 +21,7 @@ def test_if():
     assert 2 == value
 
 def test_if_else():
+    '''controlflow'''
     value = 1
     if not True:
         value = 2
@@ -27,6 +30,7 @@ def test_if_else():
     assert 3 == value
 
 def test_if_elif_else():
+    '''controlflow'''
     value = 3
     str = "str"
     if value < 0:
@@ -49,18 +53,21 @@ def test_for_loop_range():
 
 
 def test_for_loop_string():
+    '''controlflow'''
     chars = []
     for x in "engine":
         chars.append(x)
     assert ['e', 'n', 'g', 'i', 'n', 'e'] == chars
 
 def test_for_loop_list():
+    '''controlflow'''
     result = ""
     for fruit in ["orange", "banana", "apple"]:
         result += fruit
     assert 'orangebananaapple'== result
 
 def test_for_loop_list_with_enumerate():
+    '''controlflow'''
     words = ["one", "two", "three"]
     result = []
     for p in enumerate(words):
@@ -71,6 +78,7 @@ def test_for_loop_list_with_enumerate():
     assert {0: 'one', 1: 'two', 2: 'three'} == mapping
 
 def test_for_loop_dict():
+    '''controlflow'''
     num_to_word = {1 : "one", 2 : "two", 3 : "three"}
     result = []
     for item in num_to_word:
@@ -78,12 +86,14 @@ def test_for_loop_dict():
     assert [1, 2, 3] == result
 
 def test_while_loop():
+    '''controlflow'''
     result = []
     while len(result) < 3:
         result.append(10)
     assert [10, 10, 10] == result
 
 def test_for_loop_break():
+    '''controlflow'''
     result = []
     for x in range(1,10):
         if x % 5 == 0:
@@ -93,6 +103,7 @@ def test_for_loop_break():
     assert  [1, 2, 3, 4]== result
 
 def test_for_loop_continue():
+    '''controlflow'''
     result = []
     for x in range (1, 10):
         if x % 3 == 0:
@@ -101,6 +112,7 @@ def test_for_loop_continue():
     assert [1, 2, 4, 5, 7, 8] == result
 
 def test_nested_loop_break():
+    '''controlflow'''
     result = []
     for x in range(2):
         for y in range(1,5):
@@ -111,6 +123,7 @@ def test_nested_loop_break():
     assert [0, 0, 1, 1] == result
 
 def test_nested_loop_continue():
+    '''controlflow'''
     result = []
     for x in range(2):
         for y in range(1,5):
@@ -121,6 +134,7 @@ def test_nested_loop_continue():
     assert [0, 0, 0, 1, 1, 1] == result
 
 def test_nested_loop_break_continue():
+    '''controlflow'''
     result = []
     for x in range(3):
         for y in range(1,5):
@@ -134,6 +148,7 @@ def test_nested_loop_break_continue():
 
 # else on loops is not available in other common languages
 def test_for_loop_else_plain():
+    '''controlflow'''
     result = []
     for x in range(5):
         result.append(x)
@@ -144,6 +159,7 @@ def test_for_loop_else_plain():
     assert [0, 1, 2, 3, 4, 10]== result
 
 def test_for_loop_else_break():
+    '''controlflow'''
     result = []
     for x in range(5):
         if x %3 == 0:
@@ -156,6 +172,7 @@ def test_for_loop_else_break():
     assert [] == result
 
 def test_for_loop_else_continue():
+    '''controlflow'''
     result = []
     for x in range(5):
         if x %3 == 0:
@@ -169,6 +186,7 @@ def test_for_loop_else_continue():
 
 #same as above.
 def test_while_loop_else():
+    '''controlflow'''
     result = []
     x = 1
     while x in range(5):
@@ -183,7 +201,7 @@ def test_while_loop_else():
 
 
 three_things_i_learnt = """
--
+VARIOUS CONTROL FLOW STATEMENTS
 -
 -
 """

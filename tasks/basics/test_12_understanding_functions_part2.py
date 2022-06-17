@@ -1,6 +1,10 @@
+'''functions'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.placeholders import *
+
+
+from tasks.basics.test_00_understanding_assert import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
 
 
 def demo(first, second=2, third=3):
@@ -10,6 +14,7 @@ def demo(first, second=2, third=3):
 # of overloads for various scenarios.
 # add extra arguments where necessary.
 def test_function_call_with_keyword_arguments():
+    '''functions'''
     assert [10,2,3] == demo(10)
     assert [10,20,3] == demo(10, 20)
     assert [10,20,30] == demo(10, 20, 30)
@@ -20,14 +25,17 @@ def test_function_call_with_keyword_arguments():
 
 
 def demo_variable_args(first, *args):
+    '''functions'''
     return args
 
 
 def my_merge(separator, *args):
+    '''functions'''
     return separator.join(args)
 
 
 def test_function_with_variable_args():
+    '''functions'''
     result = demo_variable_args("hello", "world")
     assert 'tuple' == type(result).__name__ #this is the type of args
     assert ('world',) == result              #this is the value of args
@@ -39,10 +47,12 @@ def test_function_with_variable_args():
 
 
 def demo_with_keyword_args(name, *args, **kwargs):
+    '''functions'''
     return kwargs
 
 
 def test_function_with_keyword_args():
+    '''functions'''
     result = demo_with_keyword_args("jack", age=10, height=100)
     assert 'dict' == type(result).__name__
     assert {'age': 10, 'height': 100} == result
@@ -51,18 +61,22 @@ def test_function_with_keyword_args():
 
 
 def demo_sub(*args, **kwargs):
+    '''functions'''
     return args, kwargs
 
 
 def demo_unpacking(name, *args, **kwargs):
+    '''functions'''
     return demo_sub(*args, **kwargs)
 
 
 def demo_no_unpacking(name, *args, **kwargs):
+    '''functions'''
     return demo_sub(args, kwargs)
 
 
 def test_function_unpacking():
+    '''functions'''
     result = demo_unpacking("jack", 1, 2, k1="v1", k2="v2")
     assert ((1,2),{'k1':"v1", 'k2':"v2"}) == result
 
@@ -84,10 +98,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 45
+TIME_TAKEN_MINUTES= 45

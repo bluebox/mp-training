@@ -1,6 +1,10 @@
+'''generators'''
 __author__ = 'Hari'
 
-notes = '''
+#from tasks.basics.test_00_understanding_assert import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+
+
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -12,30 +16,34 @@ calling next() to keep moving the function forward and at every stop point where
 have a yield or return the function can return something new.
 '''
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():
+    '''generators'''
     yield "how"
     yield "are"
     yield "you?"
 
 def test_generator_type():
+    '''generators'''
     assert 'function' == type(demo_generator).__name__  #definition is a function
     assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "next")
-    assert False == hasattr(demo_generator(), "next")
+    '''generators'''
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
+    '''generators'''
     result = demo_generator()
     try:
         assert 'how' == next(result)  # builtin which calls the iterator.next()
         assert 'are' == next(result)
         assert 'you?'== next(result)
         assert '' == next(result)
-    except StopIteration as Si:
+    except StopIteration as S_i:
         assert True
 
     assert 'how.are.you?' == ".".join(demo_generator()) #join takes a iterable
@@ -44,11 +52,13 @@ def test_generator_is_an_iterator2():
 # element by element, so at no point is a new reversed sequence object
 # created though to the consumer it appears like a sequence.
 def demo_reverse(sequence):
+    '''generators'''
     for index in range(len(sequence)-1, -1, -1):
         yield sequence[index]
 
 
 def test_generator_reverse():
+    '''generators'''
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
@@ -56,12 +66,14 @@ def test_generator_reverse():
 
 # range using a generator (xrange does something similar)
 def demo_range(limit):
+    '''generators'''
     value = 0
     while value < limit:
         yield value
         value = value + 1
 
 def test_generator_range_does_not_allocate_memory():
+    '''generators'''
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
@@ -70,30 +82,38 @@ def test_generator_range_does_not_allocate_memory():
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    l = list(generator)# fill code here.
+    '''generators'''
+    _l = list(generator)# fill code here.
 
 
 def test_collapse_generator():
-    assert None == demo_generator_to_list(demo_range(4))
-    assert None == demo_generator_to_list(demo_generator())
+    '''generators'''
+    assert None is demo_generator_to_list(demo_range(4))
+    assert None is demo_generator_to_list(demo_generator())
 
 def test_generator_return():
+    '''generators'''
     def func():
+        '''FUNCTION1'''
         yield 1
         yield 2
         return
         yield 3
-    assert None== demo_generator_to_list(func())
+    assert None is demo_generator_to_list(func())
 
 def test_generator_control_flow():
+    '''generators'''
     def func():
-        for x in range(5):
-            yield x
+        '''GENERATOR CONTROLFLOW'''
+        for _x in range(5):
+            yield _x
         yield 10
-    assert None == demo_generator_to_list(func())
+    assert None is demo_generator_to_list(func())
 
 def test_generator_exception():
+    '''generators'''
     def func():
+        '''GENERATOR EXCEPTIONS'''
         try:
             yield 10
             raise Exception("some message")
@@ -105,13 +125,13 @@ def test_generator_exception():
             yield 50
         yield 30
 
-    assert None == demo_generator_to_list(func())
+    assert None is demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 yield statement
-generators
+generators controlflow and exceptions
 converting generator to list
 """
 
-time_taken_minutes = 50
+TIME_TAKEN_MINUTES = 50

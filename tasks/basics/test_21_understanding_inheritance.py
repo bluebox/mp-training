@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from tkinter import NO
+#from tkinter import NO
 
 
 notes = '''

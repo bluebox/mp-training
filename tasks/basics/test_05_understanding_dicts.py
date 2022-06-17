@@ -1,17 +1,23 @@
+'''dictionary'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
-notes = '''
+from tasks.basics.test_00_understanding_assert import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+
+
+NOTES = '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
 
 def test_dictionary_type():
+    '''dictionary'''
     test_dict = {1 : "one"}   # note the new syntax
     assert 'dict' == type(test_dict).__name__
 
 def test_dictionary_empty():
+    '''dictionary'''
     empty_dict_1 = {}
     assert True == isinstance(empty_dict_1, dict)
 
@@ -20,6 +26,7 @@ def test_dictionary_empty():
     assert empty_dict_1 == empty_dict_2
 
 def test_dictionary_create():
+    '''dictionary'''
     dict_1 = { 1 : "one", 2 : "two" }
     assert True == isinstance(dict_1, dict)
 
@@ -29,10 +36,12 @@ def test_dictionary_create():
     assert 'two' == dict_2[2]
 
 def test_dictionary_length():
+    '''dictionary'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit) #note that a key value pair is treated as one item
 
 def test_dictionary_is_indexed_by_key():
+    '''dictionary'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 1 == word_to_digit["one"]
     assert 2 == word_to_digit["two"]
@@ -45,6 +54,7 @@ def test_dictionary_is_indexed_by_key():
         assert True
 
 def test_dictionary_is_mutable():
+    '''dictionary'''
     word_to_digit = { "one" : 1, "two" : 2}
 
     word_to_digit["three"] = 3
@@ -57,9 +67,11 @@ def test_dictionary_is_mutable():
     assert {'two': 2, 'three': 3, 'one': 10} == word_to_digit
     # A regular dictionary doesn't track the insertion order.
     # So when iterating over it, items are returned in an arbitrary order.
-    # When we want to make sure that items are returned to the order they were inserted, we can use OrderedDict.
+    # When we want to make sure that items are returned to the order
+    # they were inserted,we can use OrderedDict.
 
 def test_dictionary_is_unordered():
+    '''dictionary'''
     dict1 = { 'one': 1, 'two': 2 }
     dict2 = { 'two': 2, 'one': 1}
 
@@ -67,6 +79,7 @@ def test_dictionary_is_unordered():
     assert True == equal # True or False?
 
 def test_dictionary_keys_and_values():
+    '''dictionary'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit.keys())
     assert 2 == len(word_to_digit.values())
@@ -79,6 +92,7 @@ def test_dictionary_keys_and_values():
     assert [1, 2] == values
 
 def test_dictionary_contains():
+    '''dictionary'''
     word_to_digit = { "one" : 1, "two" : 2}
 
     assert True == ("one" in word_to_digit)
@@ -94,42 +108,43 @@ def test_dictionary_contains():
     assert True== (2 in word_to_digit.values())
 
 def test_valid_dictionary_keys():
+    '''dictionary'''
     test_dict = {}
     test_dict[1] = 1
     test_dict["one"] = "string"
     try:
         key = []
         test_dict[key] = "list"
-    except TypeError as te:
-        print (te)  #observe the error message.
+    except TypeError as te_:
+        print (te_)  #observe the error message.
         assert True
 
     try:
         key = (1,2)
         test_dict[key] = "tuple with immutable elements"
-    except TypeError as te:
-        print (te)
+    except TypeError as t_e:
+        print (t_e)
         assert False # do we reach here?
 
     try:
         key = (1, [])
         test_dict[key] = "tuple with mutable element"
-    except TypeError as te:
-        print (te)
+    except TypeError as t_e:
+        print (t_e)
         assert True #do we reach here?
 
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
-three_things_i_learnt = """
--
+THREE_THINGS_I_LEARNT= """
+dictionary and various features of dicts
 -
 -
 """
 
-time_taken_minutes = 8
+TIME_TAKEN_MINUTES = 8
 
-notes2= '''
+NOTES2= '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work
