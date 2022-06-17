@@ -2,29 +2,31 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+Notes= '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
 
 
 def test_dictionary_type():
+    ''' type'''
     test_dict = {1: "one"}   # note the new syntax
-    assert 'dict' == type(test_dict).__name__
+    assert 'dict' is type(test_dict).__name__
 
 
 def test_dictionary_empty():
     empty_dict_1 = {}
-    assert True == isinstance(empty_dict_1, dict)
+    assert True is isinstance(empty_dict_1, dict)
 
     empty_dict_2 = dict()  # another way of creating empty dict
-    assert 0 == len(empty_dict_2)
-    assert empty_dict_1 == empty_dict_2
+    assert 0 is len(empty_dict_2)
+    assert empty_dict_1 is empty_dict_2
 
 
 def test_dictionary_create():
+    ''' dictionary creation'''
     dict_1 = {1: "one", 2: "two"}
-    assert True == isinstance(dict_1, dict)
+    assert True is  isinstance(dict_1, dict)
 
     # init from a sequence of tuple pairs, useful in many cases.
     dict_2 = dict([(1, "one"), (2, "two")])
@@ -39,6 +41,7 @@ def test_dictionary_length():
 
 
 def test_dictionary_is_indexed_by_key():
+    ''' indexed'''
     word_to_digit = {"one": 1, "two": 2}
     assert 1 == word_to_digit["one"]
     assert 2 == word_to_digit["two"]
@@ -52,6 +55,7 @@ def test_dictionary_is_indexed_by_key():
 
 
 def test_dictionary_is_mutable():
+    ''' mutable'''
     word_to_digit = {"one": 1, "two": 2}
 
     word_to_digit["three"] = 3
@@ -68,14 +72,16 @@ def test_dictionary_is_mutable():
 
 
 def test_dictionary_is_unordered():
+    ''' unordered'''
     dict1 = {'one': 1, 'two': 2}
     dict2 = {'two': 2, 'one': 1}
 
     equal = (dict1 == dict2)
-    assert True == equal  # True or False?
+    assert True is equal  # True or False?
 
 
 def test_dictionary_keys_and_values():
+    ''' values'''
     word_to_digit = {"one": 1, "two": 2}
     assert 2 == len(word_to_digit.keys())
     assert 2 == len(word_to_digit.values())
@@ -89,59 +95,61 @@ def test_dictionary_keys_and_values():
 
 
 def test_dictionary_contains():
+    ''' contains'''
     word_to_digit = {"one": 1, "two": 2}
 
-    assert True == ("one" in word_to_digit)
-    assert True == ("two" in word_to_digit)
+    assert True is ("one" in word_to_digit)
+    assert True is ("two" in word_to_digit)
 
-    assert True == ("one" in word_to_digit.keys())
-    assert True == ("two" in word_to_digit.keys())
+    assert True is ("one" in word_to_digit.keys())
+    assert True is ("two" in word_to_digit.keys())
 
-    assert False == (1 in word_to_digit)
-    assert False == (2 in word_to_digit)
+    assert False is (1 in word_to_digit)
+    assert False is (2 in word_to_digit)
 
-    assert True == (1 in word_to_digit.values())
-    assert True == (2 in word_to_digit.values())
+    assert True is (1 in word_to_digit.values())
+    assert True is (2 in word_to_digit.values())
 
 
 def test_valid_dictionary_keys():
+    ''' dictionary keys'''
     test_dict = {}
     test_dict[1] = 1
     test_dict["one"] = "string"
     try:
         key = []
         test_dict[key] = "list"
-    except TypeError as te:
-        print(te)  # observe the error message.
+    except TypeError as t_e:
+        print(t_e)  # observe the error message.
         assert True
 
     try:
         key = (1, 2)
         test_dict[key] = "tuple with immutable elements"
-    except TypeError as te:
-        print(te)
+    except TypeError as _te:
+        print(_te)
         assert False  # do we reach here?
 
     try:
         key = (1, [])
         test_dict[key] = "tuple with mutable element"
-    except TypeError as te:
-        print(te)
+    except TypeError as _te:
+        print(_te)
         assert True  # do we reach here?
 
     assert {1: 1, 'one': 'string',
             (1, 2): 'tuple with immutable elements'} == test_dict
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
 
-notes2 = '''
+NOTES_2 = '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work

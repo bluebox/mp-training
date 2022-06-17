@@ -33,8 +33,8 @@ def test_inner_func_scope():
 def test_inner_func_can_be_returned():
     """basic docstring for pylint testing"""
     f_1 = outer_func(10)
-    assert "function" == type(f_1).__name__
-    assert 30 == f_1(20)
+    assert "function" is type(f_1).__name__
+    assert 30 is f_1(20)
 
 def test_each_invocation_returns_a_new_func():
     """basic docstring for pylint testing"""
@@ -53,11 +53,11 @@ def test_inner_func_has_access_to_outer_variables_after_return():
     f_1 = outer_func(20)
     f_2 = outer_func(50)
 
-    assert 50 == f_1(30)
-    assert 60 == f_1(40)
+    assert 50 is f_1(30)
+    assert 60 is f_1(40)
 
-    assert 80 == f_2(30)
-    assert 90 == f_2(40)
+    assert 80 is f_2(30)
+    assert 90 is f_2(40)
 
 def print_attributes(obj):
     """basic docstring for pylint testing"""
@@ -124,8 +124,8 @@ def test_def_is_a_statement():
                 return _x * 3
         return f_
 
-    assert 40 == outer(20)()
-    assert 15 == outer(5)()
+    assert 40 is outer(20)()
+    assert 15 is outer(5)()
 
 
 THREE_THINGS_I_LEARNT = """
