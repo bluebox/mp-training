@@ -5,6 +5,7 @@ notes = '''
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
+from pyparsing import NoMatch
 from tasks.placeholders import *
 
 def test_inheritance_basic():
@@ -16,13 +17,13 @@ def test_inheritance_basic():
         def g(self):
             pass
 
-    assert __ == issubclass(A, object)
-    assert __ == issubclass(A, A)
-    assert __ == issubclass(A, B)
+    assert True == issubclass(A, object)
+    assert True == issubclass(A, A)
+    assert False == issubclass(A, B)
 
-    assert __ == issubclass(B, A)
-    assert __ == issubclass(B, B)
-    assert __ == issubclass(B, object)
+    assert True == issubclass(B, A)
+    assert True == issubclass(B, B)
+    assert True == issubclass(B, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
@@ -35,14 +36,14 @@ def test_inheritance_methods():
             return "B:g()"
 
     b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    assert "A:f()" == b.f()
+    assert "B:g()" == b.g()
 
     a = A()
-    assert __ == a.f()
+    assert "A:f()" == a.f()
     try:
         assert __ == a.g()
-    except __:
+    except AttributeError :
         #print ex  #uncomment this line after filling up
         pass
 
@@ -59,12 +60,12 @@ def test_inheritance_overrides():
             return "B:g()"
 
     a = A()
-    assert __ == a.f()
-    assert __ == a.g()
+    assert "A:f()" == a.f()
+    assert "A:g()" == a.g()
 
     b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    assert "A:f()" == b.f()
+    assert "B:g()" == b.g()
 
 def test_inheritance_init():
     class A(object):
@@ -79,16 +80,16 @@ def test_inheritance_init():
             self.b1 = []
 
     a = A()
-    assert __ == getattr(a, "a1", None)
-    assert __ == getattr(a, "b1", None)
+    assert [] == getattr(a, "a1", None)
+    assert None == getattr(a, "b1", None)
 
     b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
+    assert None == getattr(b, "a1", None)
+    assert []== getattr(b, "b1", None)
 
     try:
         b.append("orange")
-    except __ :  #what happened here?
+    except AttributeError :  #what happened here?
         pass
 
     # Since methods of A depend on init being called, we must always
@@ -101,10 +102,10 @@ def test_inheritance_init():
             self.b1 = "b1"
 
     b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
+    assert [] == getattr(b, "a1", None)
+    assert "b1" == getattr(b, "b1", None)
     b.append("orange")
-    assert __ == b.a1
+    assert ['orange'] == b.a1
 
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.
@@ -120,7 +121,7 @@ def test_inheritance_invoking_using_super():
             return super(B, self).g() + ":"+ "B:g()"
 
     b = B()
-    assert __ == b.g()
+    assert "A:g():B:g()" == b.g()
 
 
 notes_1 = '''
@@ -134,4 +135,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 20
