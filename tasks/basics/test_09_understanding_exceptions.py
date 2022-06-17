@@ -1,3 +1,6 @@
+from tasks.basics.test_00_understanding_assert import  THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from tasks.basics.test_05_understanding_dicts import NOTES2
+from tasks.placeholders import __author__
 __author__ = 'Hari'
 
 NOTES = """
@@ -6,10 +9,6 @@ Exceptions are the default runtime error reporting mechanism in python.
 Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
-
-from tasks.basics.test_00_understanding_assert import  THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
-from tasks.basics.test_05_understanding_dicts import NOTES2
-from tasks.placeholders import __author__
 
 def test_exception_flow_1():
     fruit = "orange"
@@ -36,6 +35,7 @@ def test_exception_flow_2():
     except AttributeError:
         result.append("four")
     except ZeroDivisionError:
+        value=0
         result.append("five")
 
     assert ['one','five'] == result
