@@ -29,7 +29,7 @@ def test_make_assert_true_3():
     s_2 = s_1
     assert s_1 == s_2
 THREE_THINGS_I_LEARNT = """
--==,> are compration operators
+-==, > are compration operators
 -** is power
 -= is assignment operator
 """
