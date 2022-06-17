@@ -11,7 +11,7 @@ def test_list_type():
 
 def test_list_len():
     fruits = ["banana", "orange", "grape"]
-    assert 3 == len(fruits)
+    assert 3 is len(fruits)
 
 def test_list_can_be_indexed():
     fruits = ["banana", "orange", "grape"]
