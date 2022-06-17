@@ -1,7 +1,7 @@
 __author__ = 'Hari'
 from tasks.placeholders import *
 
-notes = '''
+Notes = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -13,82 +13,86 @@ notes = '''
 
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert False == (a is b)
-    assert True == (a == b)
+    ''' equality lists'''
+    a_l = []
+    b_l = []
+    assert False is (a_l is b_l)
+    assert True is (a_l == b_l)
 
-    a.append("one")
-    assert False == (a is b)
-    assert False == (a == b)
+    a_l.append("one")
+    assert False is (a_l is b_l)
+    assert False is (a_l == b_l)
 
-    c = []
-    d = c
-    assert True == (c is d)
-    assert True == (c == d)
+    c_l = []
+    d_l= c_l
+    assert True is (c_l is d_l)
+    assert True is (c_l == d_l)
 
-    c.append("one")
-    assert True == (c is d)
-    assert True == (c == d)
+    c_l.append("one")
+    assert True is (c_l is d_l)
+    assert True is (c_l== d_l)
 
 
 def test_identity_equality_string():
-    a = b = "hello"
+    '''equality string'''
+    a_l = b_l = "hello"
 
-    assert True == (a is b)
-    assert True == (a == b)
+    assert True is (a_l is b_l)
+    assert True is (a_l == b_l)
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert False == (c is d)
-    assert True == (c == d)
+    c_l= "hello"
+    d_l = "".join(["hel", "lo"])
+    assert False is (c_l is d_l)
+    assert True == (c_l == d_l)
 
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True == (a is b)
-    assert True == (a == b)
+    '''equality numbers'''
+    a_l = b_l = 10000
+    assert True is (a_l is b_l)
+    assert True is (a_l == b_l)
 
-    c = 10000
-    d = int("10000")
-    assert False == (c is d)
-    assert True == (c == d)
+    c_l = 10000
+    d_l= int("10000")
+    assert False is (c_l is d_l)
+    assert True is (c_l == d_l)
 
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert True == (a is b)
-    assert True == (a == b)
+    a_l = b_l = 10
+    assert True is (a_l is b_l)
+    assert True is (a_l == b_l)
 
-    c = 10
-    d = int("10")
-    assert True == (c is d)
-    assert True == (c == d)
+    c_l = 10
+    d_l = int("10")
+    assert True is (c_l is d_l)
+    assert True is (c_l == d_l)
 
 
 def test_identity_equality_None():
-    a = b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    '''equality none'''
+    a_l= b_l= None
+    assert True is (a_l is b_l)
+    assert True is (a_l== b_l)
 
-    a = None
-    b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    a_l= None
+    b_l= None
+    assert True is (a_l is b_l)
+    assert True is (a_l== b_l)
 
 
-notes_on_none = '''
+NOTES_ON_NONE = '''
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10
