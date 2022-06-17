@@ -25,7 +25,7 @@ from tasks.placeholders import *
 def test_module_without_import():
     try:
         module1.greet("jack")
-    except ___ :
+    except NameError :
         print
         assert ___
 
