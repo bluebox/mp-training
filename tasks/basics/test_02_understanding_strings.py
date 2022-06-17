@@ -75,8 +75,8 @@ def test_strings_can_be_indexed():
     assert  5 == len(string)
     try:
         out_of_bounds = string[5] #raises an error, we will revisit exceptions later
-    except IndexError as ie:
-        print (ie)   #string index out of range
+    except IndexError as i_e:
+        print (i_e)   #string index out of range
         assert True  #make this True to proceed.
 
 def test_chars_are_strings_too():

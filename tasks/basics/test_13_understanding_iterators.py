@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -30,7 +30,7 @@ def test_iterator_type():
 def test_int_iterable():
     try:
         iter(10)
-    except TypeError as e :  # replace by appropriate except so this test passes
+    except TypeError:  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
@@ -39,8 +39,8 @@ def test_enumerate_iter():
         assert "one" == list_iter.next()
         assert "two" == list_iter.next()
         assert "three" == list_iter.next()
-        assert  None == list_iter.next() #note what happens when items are finished.
-    except Exception as e :
+        assert  None is list_iter.next() #note what happens when items are finished.
+    except Exception:
         pass
 
 #note this function which can convert any iterable into a list.
@@ -51,7 +51,7 @@ def convert_to_list(iterable):
         while True:
             item = seq_iterator.next()
             result.append(item)
-    except AttributeError as se:
+    except AttributeError:
         return result
 
 def test_convert():
@@ -66,7 +66,7 @@ def test_convert():
 
     try:
         ".".join([1,2,4]) #does not accept all element types though!
-    except TypeError as e :
+    except TypeError:
         assert True
 
 # list creation also uses the iterator protocol!
@@ -96,10 +96,10 @@ def test_find_builtins_that_work_on_iterables():
     assert 5 == len(funcs)
 
 
-three_things_i_learnt = """
--iterators
+THREE_THINGS_I_LEARNT = """
+-iterating through lists,tuples and strings
 -types of exceptions
 -conversion
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

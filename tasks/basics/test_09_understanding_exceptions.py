@@ -167,4 +167,4 @@ THREE_THINGS_I_LEARNT = """
 -try and except keywords
 """
 
-TIME_TAKEN_MINUTES = 20
+TIME_TAKEN_MINUTES = 30

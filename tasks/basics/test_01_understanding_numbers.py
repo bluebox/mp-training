@@ -43,9 +43,9 @@ def test_numbers_long():
 
 
 THREE_THINGS_I_LEARNT = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+-we can perform conversion using methods
+-decimal value can be converted to octal,hexadecimal,binary.
+-hexadecimal,octal,binary can be converted into decimal.
 """
 
 TIME_TAKEN_MINUTES = 4

@@ -30,14 +30,14 @@ def test_make_assert_true_2():
     assert 2**43 > 2**30, "Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
-    _s1_ = "Hello, World"
-    _s2_ = "Hello, World"
-    assert _s1_ == _s2_
+    s_1 = "Hello, World"
+    s_2 = "Hello, World"
+    assert s_1 == s_2
 
 THREE_THINGS_I_LEARNT = """
-assert ==bool
--
--
+-assert key word
+-assert return boolean value either true or false
+
 """
 
 TIME_TAKEN_MINUTES = 1

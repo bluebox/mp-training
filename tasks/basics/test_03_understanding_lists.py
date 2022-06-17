@@ -145,11 +145,9 @@ def test_list_range():
     assert range(1, 5, 2) == numbers
 
 THREE_THINGS_I_LEARNT = """
-lists updating
-slicing
-adding elements
-removing elements
-sorting
+the elements in the list can be changed and sorted.
+slicing can be performed on lists.
+we can add and remove elements in the list.
 """
 
 TIME_TAKEN_MINUTES = 20

@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
@@ -43,7 +43,7 @@ def test_tuples_are_immutable():
     colors = ('red', 'blue', 'green')
     try:
         colors[0] = 'orange'
-    except TypeError as te:
+    except TypeError as t_e:
       #  print te # note the exception -> SyntaxError: Missing parentheses in call to 'print'.
         assert True
 
@@ -60,16 +60,16 @@ def test_tuples_can_be_nested():
 
 def test_tuple_unpacking():
     pair = (10, 20)
-    _a_, _b_ = pair
-    assert 10 == _a_
-    assert 20 == _b_
+    var_a, var_b = pair
+    assert 10 == var_a
+    assert 20 == var_b
 
     triplet = (10, 20, 30)
     try:
-        _a_, _b_ = triplet
+        var_a, var_b = triplet
         assert True # should not come here.
-    except ValueError as _ve_:
-        print (_ve_) 
+    except ValueError as v_e:
+        print (v_e) 
         # observe what is printed here. 
         # =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
@@ -98,10 +98,10 @@ def test_sequence_conversion():
     assert 'testing' == word4
 
 THREE_THINGS_I_LEARNT = """
-tuples
-length of tuples
-tuple unpacking
-sequence conversion
+tuples are immutable
+method to get length of tuples
+unpacking of tuples
+built-in functions for sequence conversion
 -
 """
 

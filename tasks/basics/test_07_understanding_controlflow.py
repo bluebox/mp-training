@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 python has support for standard control flow statements similar to other languages.
 iteration over sequences like list, string etc. is built into the language itself (c# has
 similar features) and the loops support an else clause which is not common elsewhere.
@@ -43,15 +43,15 @@ def test_for_loop_range():
     for loops are used to iterate over arbitrary sequences
     """
     nums =[]
-    for x in range(1,5):
-        nums.append(x)
+    for var_x in range(1,5):
+        nums.append(var_x)
     assert [1, 2, 3, 4] == nums
 
 
 def test_for_loop_string():
     chars = []
-    for x in "engine":
-        chars.append(x)
+    for var_x in "engine":
+        chars.append(var_x)
     assert ['e','n','g', 'i', 'n', 'e' ] == chars
 
 def test_for_loop_list():
@@ -184,8 +184,8 @@ def test_while_loop_else():
 
 THREE_THINGS_I_LEARNT = """
 -conditional statements
--loops
--
+-while loop
+-for loop
 """
 
 TIME_TAKEN_MINUTES = 20

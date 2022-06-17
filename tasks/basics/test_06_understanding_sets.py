@@ -50,8 +50,8 @@ def test_set_creation():
 
 def test_set_membership():
     fruits = {"apple", "mango", "kiwi"}
-    assert 'apple' == "apple" in fruits
-    assert False == ("dog" in fruits)
+    assert 'apple' is "apple" in fruits
+    assert False is ("dog" in fruits)
 
 def test_set_operations():
     set1 = {"one", "two", "three"}
@@ -98,10 +98,9 @@ def test_set_valid_members():
     assert {1,'hello',(1,2)} == test_set
 
 THREE_THINGS_I_LEARNT = """
-sets
-set operations
-empty set
-
+-sets doesn't contain duplicates
+-initializing a empty set
+-set can be created from list and tuple 
 """
 
 TIME_TAKEN_MINUTES = 15

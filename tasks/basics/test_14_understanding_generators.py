@@ -108,10 +108,10 @@ def test_generator_exception():
     assert [10,20,50,30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+-generator is used to create custom iterators
+-converting generator into list
+-yield keyword
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

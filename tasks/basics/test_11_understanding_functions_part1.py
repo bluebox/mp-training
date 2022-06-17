@@ -45,7 +45,7 @@ def test_function_assignment():
 # every function returns an object, even when it does not!
 def test_every_function_returns_something():
     result = my_print(10)
-    assert None == result
+    assert None is result
 
     result = my_increment(10)
     assert 11 == result
@@ -66,7 +66,7 @@ def demo2():
 #This makes it easy to access help from console or build specialized help commands like help.
 def test_function_documentation():
     assert "returns 10" == demo1.__doc__
-    assert None == demo2.__doc__
+    assert None is demo2.__doc__
 
 
 def my_callfunc(func):
@@ -139,9 +139,9 @@ def test_function_params_passed_by_object_reference():
 
 THREE_THINGS_I_LEARNT = """
 -function handling
-type of a function
-parameters passing
+-type of a function
+-parameters passing
 
 """
 
-TIME_TAKEN_MINUTES  = 15
+TIME_TAKEN_MINUTES  = 20
