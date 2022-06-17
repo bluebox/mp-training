@@ -195,9 +195,9 @@ def test_classes_can_have_state():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-to check wether a object an instance of a class
+-snake case to in crese score
+-global and local scope of class
 """
 
 TIME_TAKEN_MINUTES = 55

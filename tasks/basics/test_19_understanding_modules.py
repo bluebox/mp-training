@@ -136,9 +136,9 @@ def test_module_star_import():
 NOTES_2 = '''http://effbot.org/zone/import-confusion.htm'''
 
 THREE_THINGS_I_LEARNT = """
-IMPORTING MODULES
--
--
+-importing modules
+-functions in modules
+-wild card removel
 """
 
 TIME_TAKEN_MINUTES = 50

@@ -120,10 +120,9 @@ def test_def_is_a_statement():
 
 
 THREE_THINGS_I_LEARNT = """
--
-
--
--
+-passing functions in list to sub function
+-functions in if else
+-passing arguments to sub functions
 """
 
 TIME_TAKEN_MINUTES = 50
