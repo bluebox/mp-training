@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
 builtin types like dict, list, tuple with your own types with their own specific behavior.
 
@@ -19,7 +19,7 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
-from Tasks.placeholders import *
+#from tasks.placeholders import *
 
 NOTES_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
@@ -30,9 +30,10 @@ NOTES_1 = '''
 #classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
 def test_classes_are_objects():
+    """classes"""
     class Queue():
         """Queue with push and pop functions."""
-        pass
+        #pass
 
     def get_attr_count(obj):
         return len(dir(obj))
@@ -42,15 +43,19 @@ def test_classes_are_objects():
     assert 26 == get_attr_count(Queue)
 
 def test_classes_are_callable_objects():
+    """Queue with push and pop functions."""
     class Queue():
-        pass
+        """classes"""
+        #pass
 
     #classes are callable objects just like function objects
-    assert True == callable(Queue)
+    assert True is callable(Queue)
 
 
 def test_classes_are_object_factories():
+    """Queue with push and pop functions."""
     class Queue():
+        """classes"""
         pass
 
     _q1 = Queue()  # you can 'call' a class to create an instance
@@ -74,27 +79,31 @@ def test_classes_are_object_factories():
 #if an __init__ method exists it is called with the object that is
 #being created, so you can initialize it.
 def test_classes_init_constructor():
+    """Queue with push and pop functions."""
     test_list = []
 
-    class Queue(object):
+    class Queue():
+        """classes"""
         def __init__(self):
             assert True, "Entered here !"
             test_list.append(self)
 
     _q1 = Queue() # fix the assert to pass this.
     self_argument = test_list[0]
-    assert True == (self_argument is _q1)
+    assert True is (self_argument is _q1)
 
 def test_classes_init_with_args():
-    class Queue(object):
+    """Queue with push and pop functions."""
+    class Queue():
+        """classes"""
         def __init__(self, name):
             self.name = name
 
     _q1 = Queue("q1")
     _q2 = Queue("q2")
 
-    assert "q1" == q1.name
-    assert "q2" == q2.name
+    assert "q1" == _q1.name
+    assert "q2" == _q2.name
 
     try:
         _q3 = Queue()
@@ -104,9 +113,12 @@ def test_classes_init_with_args():
 
 #just like def, class is also a runtime statement which bounds a class name with the class body code
 def test_class_is_an_executable_statement():
+   
     def create_class(value):
+        """classes"""
         if (value > 10):
             class Queue():
+                """classes"""
                 def __init__(self):
                     self.name = ">10queue"
         else:
@@ -130,15 +142,19 @@ def test_class_is_an_executable_statement():
 # this is in contrast to other languages where the instance is implicit via
 # the 'this' keyword.
 def test_classes_methods():
+    """Queue with push and pop functions."""
     class Queue():
+        """classes"""
         def __init__(self, name):
             self.name = name
             self._queue = []
 
         def push(self, obj):
+            """push method"""
             self._queue.append(obj)
 
         def pop(self):
+            """pop method"""
             return self._queue.pop(0)
 
     _q1 = Queue("q1")
@@ -151,7 +167,9 @@ def test_classes_methods():
 
 
 def test_classes_bound_and_unbound_methods():
+    """Queue with push and pop functions."""
     class Queue():
+        """classes"""
         def __init__(self, name):
             self.name = name
             self._queue = []
@@ -178,6 +196,7 @@ def test_classes_bound_and_unbound_methods():
 
 
 def test_classes_can_have_state():
+    """Queue with push and pop functions."""
     "function calling"
     class Queue():
         """Queue class"""
@@ -203,7 +222,7 @@ def test_classes_can_have_state():
 
     try:
         value = _q1.count
-    except __ :
+    except NameError :
         pass
 
 
@@ -213,4 +232,4 @@ THREE_THINGS_I_LEARNT = """
 -
 """
 
-TIME_TAKEN_MINUTES = 1
+TIME_TAKEN_MINUTES = 40

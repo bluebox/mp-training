@@ -1,4 +1,4 @@
-from Tasks.placeholders import *
+#from Tasks.placeholders import *
 
 
 __author__ = 'Hari'
@@ -99,14 +99,16 @@ def test_inheritance_init():
         """CallingB"""
         def __init__(self):
             self.b_1 = []
+        def method_f3(self):
+            pass
 
     _a = CallingA()
-    assert [] is getattr(_a, "a_1", None)
+    assert [] == getattr(_a, "a_1", None)
     assert None is getattr(_a, "b_1", None)
 
     _b = CallingB()
     assert None is getattr(_b, "a_1", None)
-    assert [] is getattr(_b, "b_1", None)
+    assert [] == getattr(_b, "b_1", None)
 
     try:
         _b.append("orange")
@@ -117,14 +119,18 @@ def test_inheritance_init():
     # chain __init__ to the base class if the derived class overrides it.
 
     #lets redefine B now, to chain the inits to the base class.
-    class CallingB(CallingA):
+    class CallingB2(CallingA):
         """Again defined same class"""
         def __init__(self):
             CallingA.__init__(self)
             self.b_1 = "b1"
+        def method_f1(self):
+            """methods"""
+            
+            pass
 
-    _b = CallingB()
-    assert [] is getattr(_b, "a_1", None)
+    _b = CallingB2()
+    assert [] == getattr(_b, "a_1", None)
     assert "b1" == getattr(_b, "b_1", None)
     _b.append("orange")
     assert ["orange"] == _b.a_1
@@ -145,7 +151,10 @@ def test_inheritance_invoking_using_super():
     class CallingB(CallingA):      #B can override A's methods
         """superclass inheritance"""
         def method_g(self):
-            return super(CallingB, self).method_g() + ":"+ "B:g()"
+            return super().method_g() + ":"+ "B:g()"
+        def method_f2(self):
+            """methods"""
+            #pass
 
     _b = CallingB()
     assert "A:g():B:g()" == _b.method_g()

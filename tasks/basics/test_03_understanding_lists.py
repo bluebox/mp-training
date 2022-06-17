@@ -1,16 +1,19 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from tasks.placeholders import *
 
 def test_list_type():
+    """testing lists"""
     fruits = ["banana", "orange", "grape"]
     assert "list" == type(fruits).__name__
 
 def test_list_len():
+    """testing lists"""
     fruits = ["banana", "orange", "grape"]
     assert 3 == len(fruits)
 
 def test_list_can_be_indexed():
+    """testing lists"""
     fruits = ["banana", "orange", "grape"]
     assert "banana" == fruits[0]
     assert "orange" == fruits[1]
@@ -20,6 +23,7 @@ def test_list_can_be_indexed():
     assert "banana"== fruits[-3]
 
 def test_list_is_mutable():
+    """testing lists"""
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
     assert ["mango", "orange", "grape"] == fruits  #replace __ with expected contents of list
@@ -51,6 +55,7 @@ def test_list_can_be_sliced():
 
 
 def test_slice_creates_a_new_list():
+    """testing lists"""
     fruits = ["banana", "orange", "grape"]
     slice = fruits[0:2]
     slice.append("guava")
@@ -60,6 +65,7 @@ def test_slice_creates_a_new_list():
 
 
 def test_list_merge():
+    """testing lists"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
     all = fruits + veggies
@@ -70,6 +76,7 @@ def test_list_merge():
     assert["orange", "grape", "beetroot"]== fruits[1:] + veggies[:1]
 
 def test_list_slice_replacement_is_inplace():
+    """testing lists"""
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
@@ -109,6 +116,7 @@ def test_list_common_methods():
     assert ["litchi", "orange"] == fruits
 
 def test_list_can_contain_lists():
+    """testing lists"""
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
     all = [fruits, veggies]
@@ -118,11 +126,13 @@ def test_list_can_contain_lists():
     assert ["beetroot", "tomato"] == all[1]
 
 def test_list_can_contain_objects_of_different_types():
+    """testing lists"""
     mixed = ["string", 10]
     assert "string" == mixed[0]
     assert 10 == mixed[1]
 
 def test_list_sort():
+    """testing lists"""
     numbers = [ 5, 4, 3, 8 ]
     numbers.sort()
     assert [3, 4, 5, 8] == numbers
@@ -133,9 +143,10 @@ def test_list_sort():
 # http://docs.python.org/2/reference/expressions.html#operator-precedence
 # and fix accordingly.
 def test_list_membership():
+    """testing lists"""
     numbers = [ 5, 4, 3]
     assert 5 == 5 in numbers
-    assert False == (10 in numbers)
+    assert False is (10 in numbers)
 
 def test_list_range():
     numbers = range(1,5)
@@ -144,10 +155,10 @@ def test_list_range():
     numbers = range(1, 5, 2)
     assert range(1, 5,2) == numbers
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -I learned some new things on assert keyword
 -
 -
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

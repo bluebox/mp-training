@@ -1,15 +1,16 @@
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
 
 Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
-from Tasks.placeholders import *
+#from Tasks.placeholders import *
 
 def test_exception_flow_1():
+    """exceptions"""
     fruit = "orange"
     result = []
     try:
@@ -17,12 +18,13 @@ def test_exception_flow_1():
         result.append("one")
         fruit.missingmethod() # what happens to the control flow here?
         result.append("two")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("three")
 
     assert ["one", "three"] == result
 
 def test_exception_flow_2():
+    """exceptions"""
     fruit = "orange"
     result = []
     try:
@@ -39,6 +41,7 @@ def test_exception_flow_2():
     assert ["one", "five"] == result
 
 def test_raise_error():
+    """exceptions"""
     result = []
     try:
         result.append("one")
@@ -49,6 +52,7 @@ def test_raise_error():
     assert ['one', 'three'] == result
 
 def test_missing_except():
+    """exceptions"""
     result = []
     fruit = "orange"
     try:
@@ -61,6 +65,7 @@ def test_missing_except():
     assert ["one", "two"] == result
 
 def function_with_except(result):
+    """exceptions"""
     fruit = "orange"
     result.append("f:enter")
     try:
@@ -71,38 +76,42 @@ def function_with_except(result):
     result.append("f:return")
 
 def function_without_except(result):
+    """exceptions"""
     fruit = "orange"
     result.append("f:enter")
     fruit.missingmethod()
     result.append("f:return")
 
 def test_function_call_with_except():
+    """exceptions"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("m:except")
     assert ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall'] == result
 
 def test_function_call_without_except():
+    """exceptions"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("m:except")
     assert ['m:beforecall', 'f:enter', "m:except"] == result
 
 def test_else_on_exception():
+    """exceptions"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -111,12 +120,13 @@ def test_else_on_exception():
 
 
 def test_else_on_no_exception():
+    """exceptions"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -124,12 +134,13 @@ def test_else_on_no_exception():
     assert ["m:beforecall", "f:enter", "m:except"]  == result
 
 def test_finally_on_exception():
+    """exceptions"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -141,12 +152,13 @@ def test_finally_on_exception():
 
 
 def test_finally_on_no_exception():
+    """exceptions"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -155,17 +167,17 @@ def test_finally_on_no_exception():
 
     assert ["m:beforecall", "f:enter", "m:except", "m:finally"] == result
 
-notes2 = '''
+NOTES2 = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 1 
+TIME_TAKEN_MINUTES = 1 

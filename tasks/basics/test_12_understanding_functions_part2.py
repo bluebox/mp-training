@@ -1,15 +1,17 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+#from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
+    """functions part2"""
     return [first, second, third]
 
 # keyword arguments allows you to write one api without having a large number
 # of overloads for various scenarios.
 # add extra arguments where necessary.
 def test_function_call_with_keyword_arguments():
+    """functions part2"""
     assert [10, 2, 3] == demo(10)
     assert [10, 20, 3] == demo(10, 20)
     assert [10, 20, 30] == demo(10, 20, 30)
@@ -20,14 +22,17 @@ def test_function_call_with_keyword_arguments():
 
 
 def demo_variable_args(first, *args):
+    """functions part2"""
     return args
 
 
 def my_merge(separator, *args):
+    """functions part2"""
     return separator.join(args)
 
 
 def test_function_with_variable_args():
+    """functions part2"""
     result = demo_variable_args("hello", "world")
     assert "tuple" == type(result).__name__ #this is the type of args
     assert ('world',) == result              #this is the value of args
@@ -39,10 +44,12 @@ def test_function_with_variable_args():
 
 
 def demo_with_keyword_args(name, *args, **kwargs):
+    """functions part2"""
     return kwargs
 
 
 def test_function_with_keyword_args():
+    """functions part2"""
     result = demo_with_keyword_args("jack", age=10, height=100)
     assert "dict" == type(result).__name__
     assert {'age': 10, 'height': 100} == result
@@ -51,18 +58,22 @@ def test_function_with_keyword_args():
 
 
 def demo_sub(*args, **kwargs):
+    """functions part2"""
     return args, kwargs
 
 
 def demo_unpacking(name, *args, **kwargs):
+    """functions part2"""
     return demo_sub(*args, **kwargs)
 
 
 def demo_no_unpacking(name, *args, **kwargs):
+    """functions part2"""
     return demo_sub(args, kwargs)
 
 
 def test_function_unpacking():
+    """functions part2"""
     result = demo_unpacking("jack", 1, 2, k1="v1", k2="v2")
     assert ((1, 2), {'k1': 'v1', 'k2': 'v2'}) == result
 
@@ -84,10 +95,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
