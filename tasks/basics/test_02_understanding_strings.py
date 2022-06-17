@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-#from Tasks.placeholders import *
+#from tasks.placeholders import *
 
 
 NOTES = """string is one of the most commonly used data types, it has different
@@ -66,7 +66,7 @@ def test_string_len():
     assert 13 is len('Hello \'world\'')
 
 
-def test_triple_quoted_strings_can_span_lines():
+def test_triple_quoted_strings_can_span_lines_2():
     string = """Hello
     World"""
     assert True is isinstance(string, str)

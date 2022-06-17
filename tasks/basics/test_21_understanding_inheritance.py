@@ -1,4 +1,4 @@
-#from Tasks.placeholders import *
+#from tasks.placeholders import *
 __author__ = 'Hari'
 
 NOTES = '''
@@ -11,7 +11,8 @@ def test_inheritance_basic():
     class ClassA():  # A inherits from object.
         def method_f(self):
             pass
-
+        def method_f_2(self):
+            pass
     class ClassB(ClassA):  # B inherits from A or B derives A
         def method_g(self):
             pass
@@ -31,7 +32,8 @@ def test_inheritance_methods():
     class ClassA():  # A inherits from object.
         def method_f(self):
             return "A:f()"
-
+        def method_f_2(self):
+            pass
     class ClassB(ClassA):  # B inherits A's behavior (attributes)
         def method_g(self):
             return "B:g()"
@@ -43,7 +45,7 @@ def test_inheritance_methods():
     _a = ClassA()
     assert "A:f()" == _a.method_f()
     try:
-        assert __ == _a.method_g()
+        assert "error" == _a.method_g()
     except AttributeError as _ex:
         print(_ex)  #uncomment this line after filling up
         pass
@@ -72,22 +74,23 @@ def test_inheritance_overrides():
 def test_inheritance_init():
     class ClassA():
         def __init__(self):
-            self.a1 = []
+            self.a_1 = []
 
         def append(self, obj):
-            self.a1.append(obj)
-
+            self.a_1.append(obj)
+        def method_f_2(self):
+            pass
     class ClassB(ClassA):
         def __init__(self):
-            self.b1 = []
+            self.b_1 = []
 
     _a = ClassA()
-    assert [] == getattr(_a, "a1", None)
-    assert None == getattr(_a, "b1", None)
+    assert [] == getattr(_a, "a_1", None)
+    assert None is getattr(_a, "b_1", None)
 
     _b = ClassB()
-    assert None == getattr(_b, "a1", None)
-    assert [] == getattr(_b, "b1", None)
+    assert None is getattr(_b, "a_1", None)
+    assert [] == getattr(_b, "b_1", None)
 
     try:
         _b.append("orange")
@@ -98,16 +101,16 @@ def test_inheritance_init():
     # chain __init__ to the base class if the derived class overrides it.
 
     # lets redefine B now, to chain the inits to the base class.
-    class ClassB(ClassA):
+    class ClassB2(ClassA):
         def __init__(self):
             ClassA.__init__(self)
-            self.b1 = "b1"
+            self.b_1 = "b_1"
 
-    _b = ClassB()
-    assert [] == getattr(_b, "a1", None)
-    assert "b1" == getattr(_b, "b1", None)
+    _b = ClassB2()
+    assert [] == getattr(_b, "a_1", None)
+    assert "b_1" == getattr(_b, "b_1", None)
     _b.append("orange")
-    assert ["orange"] == _b.a1
+    assert ["orange"] == _b.a_1
 
 def test_inheritance_invoking_using_super():
     # super can be used instead of explicitly invoking base.
@@ -120,7 +123,7 @@ def test_inheritance_invoking_using_super():
 
     class ClassB(ClassA):  # B can override A's methods
         def method_g(self):
-            return super(ClassB, self).method_g() + ":" + "B:g()"
+            return super().method_g() + ":" + "B:g()"
 
     _b = ClassB()
     assert "A:g():B:g()" == _b.method_g()

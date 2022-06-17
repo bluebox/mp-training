@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-#from Tasks.placeholders import *
+#from tasks.placeholders import *
 
 
 
@@ -57,19 +57,19 @@ def test_list_can_be_sliced():
 
 def test_slice_creates_a_new_list():
     fruits = ["banana", "orange", "grape"]
-    slice = fruits[0:2]
-    slice.append("guava")
+    slice_1 = fruits[0:2]
+    slice_1.append("guava")
 
     assert ["banana", "orange", "grape"] == fruits  # did this change?  No
-    assert ['banana', 'orange', 'guava'] == slice
+    assert ['banana', 'orange', 'guava'] == slice_1
 
 
 def test_list_merge():
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
-    all = fruits + veggies
+    all_1 = fruits + veggies
 
-    assert ['banana', 'orange', 'grape', 'beetroot', 'tomato'] == all
+    assert ['banana', 'orange', 'grape', 'beetroot', 'tomato'] == all_1
     assert ["banana", "orange", "grape"] == fruits
     assert ["beetroot", "tomato"] == veggies
     assert ["orange", "grape", "beetroot"] == fruits[1:] + veggies[:1]
@@ -119,11 +119,11 @@ def test_list_common_methods():
 def test_list_can_contain_lists():
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
-    all = [fruits, veggies]
+    all_2 = [fruits, veggies]
 
-    assert 2 == len(all)
-    assert ["orange", "banana"] == all[0]
-    assert ["beetroot", "tomato"] == all[1]
+    assert 2 == len(all_2)
+    assert ["orange", "banana"] == all_2[0]
+    assert ["beetroot", "tomato"] == all_2[1]
 
 def test_list_can_contain_objects_of_different_types():
     mixed = ["string", 10]
@@ -144,7 +144,8 @@ def test_list_sort():
 
 def test_list_membership():
     numbers = [5, 4, 3]
-    assert 5 is 5 in numbers
+    _a=5
+    assert 5 is _a in numbers
     assert False is (10 in numbers)
 
 

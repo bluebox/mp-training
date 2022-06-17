@@ -1,4 +1,4 @@
-#from Tasks.placeholders import *
+#from tasks.placeholders import *
 __author__ = 'Hari'
 
 
@@ -56,7 +56,7 @@ def test_set_creation():
 
 def test_set_membership():
     fruits = {"apple", "mango", "kiwi"}
-    assert 'apple' == "apple" in fruits
+    assert True is ("apple" in fruits)
     assert False is ("dog" in fruits)
 
 
@@ -64,8 +64,8 @@ def test_set_operations():
     set_1 = {"one", "two", "three"}
     set_2 = {"three", "four"}
 
-    all = set_1 | set_2  # union
-    assert {"one", "two", "three", "four"} == all
+    all_1 = set_1 | set_2  # union
+    assert {"one", "two", "three", "four"} == all_1
 
     common = set_1 & set_2
     assert {"three"} == common

@@ -1,5 +1,5 @@
 
-#from Tasks.placeholders import *
+#from tasks.placeholders import *
 __author__ = 'Hari'
 
 NOTES = """

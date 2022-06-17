@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-#from Tasks.placeholders import *
+#from tasks.placeholders import *
 
 NOTES = '''
 Just like C, python has notions on what values are considered true
@@ -35,8 +35,8 @@ def test_truth_none():
 # a helper function used to test the truth value of an object.
 
 
-def truth_test(object, description):
-    if object:
+def truth_test(object_1, description):
+    if object_1:
         return description + " is treated as true"
     else:
         return description + " is treated as false"

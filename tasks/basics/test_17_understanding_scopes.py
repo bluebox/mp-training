@@ -1,7 +1,8 @@
 
 import symtable
 import inspect
-from Tasks.placeholders import *
+
+#from tasks.placeholders import *
 __author__ = 'Hari'
 
 NOTES = '''
@@ -21,27 +22,27 @@ NOTES = '''
 '''
 
 
-count = 10
+COUNT = 10
 
 # used to by pass any local shadow variables.
 
 
 def get_global_count():
-    return count
+    return COUNT
 
 
 def test_scope_basic():
     local_names = get_locals(test_scope_basic)
 
-    value = count
+    value = COUNT
 
-    assert True == ('value' in local_names)
-    assert False == ('value' in global_names)
+    assert True is ('value' in local_names)
+    assert False is ('value' in global_names)
 
-    assert False == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert False is ('COUNT' in local_names)
+    assert True is ('COUNT' in global_names)
 
-    assert 10 == value
+    assert 10 is value
 
 
 def test_scope_undefined_variable():
@@ -52,81 +53,81 @@ def test_scope_undefined_variable():
     except NameError:  # fill up the exception
         pass
 
-    assert True == ('my_name' in local_names)
-    assert False == ('name' in local_names)
-    assert False == ('name' in global_names)
+    assert True is ('my_name' in local_names)
+    assert False is ('name' in local_names)
+    assert False is ('name' in global_names)
 
 def test_variable_shadow():
     local_names = get_locals(test_variable_shadow)
-    count = 20
+    COUNT = 20
 
-    assert True == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert True is ('COUNT' in local_names)
+    assert True is ('COUNT' in global_names)
 
-    assert 20 == count
-    assert 10 == get_global_count()
+    assert 20 is COUNT
+    assert 10 is get_global_count()
 
 
 def test_global_write():
     local_names = get_locals(test_global_write)
 
-    global count  # declare that we want to use the read/write to global count
-    count = 30
+    global COUNT  # declare that we want to use the read/write to global count
+    COUNT = 30
 
     try:
-        assert False == ('count' in local_names)
-        assert True == ('count' in global_names)
+        assert False is ('COUNT' in local_names)
+        assert True is ('COUNT' in global_names)
 
-        assert 30 == count
-        assert 30 == get_global_count()
+        assert 30 is COUNT
+        assert 30 is get_global_count()
     finally:
-        count = 10  # reset to original value
+        COUNT = 10  # reset to original value
 
 
 def test_scope_is_bound_at_definition_time():
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
-    assert True == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert True is ('COUNT' in local_names)
+    assert True is ('COUNT' in global_names)
 
     try:
-        value = count
-        count = 30
+        value = COUNT
+        COUNT = 30
     except NameError as _ex:  # what happens when you read a variable before initializing it?
         print (_ex) #uncomment after you fill up above
         assert True
     finally:
-        count = 20
+        COUNT = 20
 
-    assert 20 == count
-    assert 10 == get_global_count()
+    assert 20 is COUNT
+    assert 10 is get_global_count()
 
 
 def test_scope_writing_globals():
     local_names = get_locals(test_scope_writing_globals)
 
-    assert False == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert False is ('COUNT' in local_names)
+    assert True is ('COUNT' in global_names)
 
-    global count
+    global COUNT
 
     try:
-        count = 40
-        assert 40 == count
-        assert 40 == get_global_count()
+        COUNT = 40
+        assert 40 is COUNT
+        assert 40 is get_global_count()
     finally:
-        count = 10
+        COUNT = 10
 
-    assert 10 == get_global_count()
+    assert 10 is get_global_count()
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LERNT = """
+glooby difining
+local difining
+use of global key word
 """
 
-time_taken_minutes = 22
+TIME_TAKEN_MINUTES = 120
 
 
 # helper functions which get the variables in locals and globals using the compiler's symbol tables.
