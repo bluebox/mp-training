@@ -1,8 +1,8 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Just like C, python has notions on what values are considered true
 and what values are considered false.
 
@@ -42,6 +42,10 @@ def truth_test(object, description):
         return description + " is treated as false"
 
 
+zero = 0
+one = 1
+
+
 def test_truth_values():
     assert "empty string is treated as false" == truth_test("", "empty string")
     assert "empty tuple is treated as false" == truth_test((), "empty tuple")
@@ -49,8 +53,8 @@ def test_truth_values():
     assert "empty dict is treated as false" == truth_test({}, "empty dict")
     assert "empty set is treated as false" == truth_test(set(), "empty set")
     assert "white space is treated as true" == truth_test(" ", "white space")
-    assert "0 is treated as false" == truth_test(0, "0")
-    assert "1 is treated as true" == truth_test(1, "1")
+    assert "0 is treated as false" == truth_test(zero, "0")
+    assert "1 is treated as true" == truth_test(one, "1")
     assert "non-empty-string is treated as true" == truth_test(
         "a", "non-empty-string")
     assert "non-empty-tuple is treated as true" == truth_test(
@@ -67,28 +71,27 @@ def test_truth_values():
 
 
 def test_equality():
-    assert False == ("" == True)
-    assert False == (() == True)
-    assert False == ([] == True)
-    assert False == (set() == True)
-    assert False == (0 == True)
-    assert False == ("" == False)
-    assert False == (() == False)
-    assert False == ([] == False)
-    assert False == (set() == False)
-    assert True == (0 == False)
-    assert True == (1 == True)
-    assert False == ("a" == True)
-    assert False == ((1, 2) == True)
-    assert False == ([1] == True)
-    assert False == ({1} == True)
+    assert False is ("" is True)
+    assert False is (() is True)
+    assert False is ([] is True)
+    assert False is (set() is True)
+    assert False is (zero is True)
+    assert False is ("" is False)
+    assert False is (() is False)
+    assert False is ([] is False)
+    assert False is (set() is False)
+    assert True is (zero == False)
+    assert True is (one == True)
+    assert False is ("a" is True)
+    assert False is ((1, 2) is True)
+    assert False is ([1] is True)
+    assert False is ({1} is True)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -Checking  empty string ,empty list and empty set is whether equal to true  or not .
 -Learned that 0 is equal to False and 1 is equal to True.
 -By using helper function test_truth_values Assigning the values to the function truth_test with different aruguments but same datatype. 
 """
 
-
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10

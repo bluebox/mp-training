@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+from tasks.placeholders import *
 
 notes = '''
 python has support for standard control flow statements similar to other languages.
@@ -200,10 +200,11 @@ def test_while_loop_else():
 
     assert [1, 2, 3] == result
 
-three_things_i_learnt = """
+
+THREE_THINGS_I_LEARNT = """
 -we can iterate all the elements in list or a string using range function and index values.
 -in enumerate function we get index  and value stored in the form of tuples.
 -break statement is used to break the loop and continue is used to only skip that iteration.
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

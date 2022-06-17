@@ -1,4 +1,4 @@
-from Tasks.placeholders import *
+from tasks.placeholders import *
 __author__ = 'Hari'
 
 notes = '''
@@ -103,10 +103,10 @@ def test_set_valid_members():
         assert True
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -The symbol for set is similar to the symbol for dict only difference between these two are dict will have key value pairs when it comes to set it contains only values.
 -By using set we can remove duplicates
 -we should use set() syntax for empty_set and {} for dictionaries.
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15

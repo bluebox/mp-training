@@ -1,8 +1,8 @@
 # from placeholders import *
-from Tasks.placeholders import *
+from tasks.placeholders import *
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
 
 Most modern languages like c#, java have a similar exception model, so your
@@ -112,7 +112,8 @@ def test_else_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
+        print(_ae)
         result.append("m:except")
     else:
         result.append("m:else")
@@ -127,7 +128,8 @@ def test_else_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
+        print(_ae)
         result.append("m:except")
     else:
         result.append("m:else")
@@ -141,7 +143,8 @@ def test_finally_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
+        print(_ae)
         result.append("m:except")
     else:
         result.append("m:else")
@@ -158,7 +161,8 @@ def test_finally_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as _ae:
+        print(_ae)
         result.append("m:except")
     else:
         result.append("m:else")
@@ -168,17 +172,17 @@ def test_finally_on_no_exception():
     assert ["m:beforecall", "f:enter", "m:except", "m:finally"] == result
 
 
-notes2 = '''
+NOTES2 = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES = 40

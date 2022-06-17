@@ -1,7 +1,7 @@
-from Tasks.placeholders import *
+# from tasks.placeholders import *
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -31,8 +31,8 @@ def test_generator_type():
 
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "next")
-    assert False == hasattr(demo_generator(), "next")
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
 
 
 def test_generator_is_an_iterator2():
@@ -124,10 +124,10 @@ def test_generator_exception():
     assert [10, 20, 50, 30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -difference between yield and return here return is used to return only one time and when it comes to yield it can return more than one time.
 -by using list(generator) to insert all the elements into the list.
 -once return is used it will return from the function even though after return there are yields are left.
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30

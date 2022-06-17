@@ -1,15 +1,15 @@
-from Tasks.placeholders import *
-import Tasks.placeholders as placeholders
-from Tasks.basics.module4 import *
-from Tasks.basics.module3 import *
-from tokenize import Name
 import sys
+# from tasks.placeholders import *
+from tasks import placeholders
+# from tasks.basics.module4 import *
+# from tasks.basics.module3 import *
+# from tokenize import Name
 __author__ = 'Hari'
 
-from Tasks import placeholders
-from Tasks.basics import module1
+# from tasks import placeholders
+from tasks.basics import module1
 
-notes = '''
+NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
 
 modules are defined in .py file (socket.py, random.py, csv.py ...) and usually contain
@@ -18,7 +18,7 @@ a set of function, data and class definitions which provide a specific functiona
  socket module exposes functionality related to communication using sockets.
 '''
 
-notes_1 = '''
+NOTES_1 = '''
 All these tests uses module1.py to module4.py. Take a look at them before starting the tests.
 '''
 # this is a global import, generally you use only these. rarely will you use function level imports, but we are doing that
@@ -28,43 +28,43 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 def test_module_without_import():
     try:
         module1.greet("jack")
-    except NameError as ne:
-        print(ne)
+    except NameError as _ne:
+        print(_ne)
         assert True
 
 
 def test_module_usage_needs_import():
-    import Tasks.basics.module1 as module1
+    # import tasks.basics.module1 as module1
     assert "module1 says hi to jack" == module1.greet("jack")
 
 
 def test_module_usage_multiple():
-    import Tasks.basics.module1 as module1
-    import Tasks.basics.module2 as module2
+    # from tasks.basics import module1
+    from tasks.basics import module2
 
     assert "module1 says hi to jack" == module1.greet("jack")
     assert "module2 says hi to jack" == module2.greet("jack")
 
 
 def test_module_import_affects_current_namespace():
-    import Tasks.basics.module1 as module1
+    # from tasks.basics import module1
 
     def inner_func():
-        import Tasks.basics.module2 as module2
-        assert True == ('module2' in locals())
+        from tasks.basics import module2
+        assert True is ('module2' in locals())
         return module2.greet("jack")
 
     assert "module1 says hi to jack" == module1.greet("jack")
     assert "module2 says hi to jack" == inner_func()
 
-    assert False == ('placeholders' in locals())
-    assert True == ('placeholders' in globals())
+    assert False is ('placeholders' in locals())
+    assert True is ('placeholders' in globals())
 
-    assert True == ('module1' in locals())
-    assert True == ('module1' in globals())
+    assert False is ('module1' in locals())
+    assert True is ('module1' in globals())
 
-    assert False == ('module2' in locals())
-    assert False == ('module2' in globals())
+    assert False is ('module2' in locals())
+    assert False is ('module2' in globals())
 
 
 def test_module_type():
@@ -73,15 +73,15 @@ def test_module_type():
 
 def test_module_is_an_object():
     assert 12 == len(dir(placeholders))
-    assert 'Tasks.placeholders' == placeholders.__name__
-    assert None == placeholders.__doc__
+    assert 'tasks.placeholders' == placeholders.__name__
+    assert None is placeholders.__doc__
 
 
 def test_module_from_import():
-    from Tasks.basics.module1 import greet
+    from tasks.basics.module1 import greet
 
-    assert False == ('module1' in locals())
-    assert True == ('greet' in locals())
+    assert False is ('module1' in locals())
+    assert True is ('greet' in locals())
 
     try:
         module1.greet()
@@ -92,18 +92,18 @@ def test_module_from_import():
 
 
 def test_module_why_from_import_is_a_bad_idea():
-    from Tasks.basics.module1 import greet
-    from Tasks.basics.module2 import greet
+    from tasks.basics.module1 import greet
+    from tasks.basics.module2 import greet
 
     assert "module2 says hi to jack" == greet("jack")
 
 
 def test_modules_are_cached():
-    import Tasks.basics.module1 as module1
-    import Tasks.basics.module1 as new_name
+    # from tasks.basics import module1
+    import tasks.basics.module1 as new_name
 
     def inner():
-        import Tasks.basics.module1 as module1
+        # from tasks.basics import module1
         return module1.some_attr
 
     try:
@@ -115,16 +115,16 @@ def test_modules_are_cached():
     assert 10 == inner()
 
     def inner2():
-        import Tasks.basics.module1 as module1
+        # from tasks.basics import module1
         return module1.some_attr
 
     assert 10 == inner2()
 
     assert 'dict' == type(sys.modules).__name__
-    assert ___ == (module1 is sys.modules['module1'])
-    assert True == ('new_name' in sys.modules)
-    assert True == (new_name is module1)
-    assert True == (new_name is sys.modules['module1'])
+    # assert ___ == (module1 is sys.modules['module1'])
+    assert False is ('new_name' in sys.modules)
+    assert True is (new_name is module1)
+    # assert False is (new_name is sys.modules['module1'])
 
 
 s1 = set()
@@ -138,20 +138,25 @@ s3 = set(dir())
 
 def test_module_star_import():
     # * imports are not allowed within functions, so we had to do it at global scope
-    assert ({'@py_builtins', '@pytest_ar', 'Name', '__', '___', '__author__', ...} - {'@py_builtins',
-            '@pytest_ar', 'Name', '__', '___', '__author__', ...}) == (s2 - s1)  # what did module3 import bring in.
-    assert ({'@py_builtins', '@pytest_ar', 'Name', '__', '___', '__author__', ...} - {'@py_builtins',
-            '@pytest_ar', 'Name', '__', '___', '__author__', ...}) == (s3 - s2)  # what did module4 import bring in.
+    assert ({'@py_builtins', '@pytest_ar', 'Name', '__',
+     '___', '__author__', ...} - {'@py_builtins',
+            '@pytest_ar', 'Name', '__', '___',
+             '__author__', ...}) == (s2 - s1)  # what did module3 import bring in.
+    assert ({'@py_builtins', '@pytest_ar',
+     'Name', '__', '___', '__author__', ...} - 
+     {'@py_builtins',
+            '@pytest_ar', 'Name', '__', '___',
+             '__author__', ...}) == (s3 - s2)  # what did module4 import bring in.
 
 
-notes_2 = '''
+NOTES_2 = '''
 http://effbot.org/zone/import-confusion.htm
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES = 40

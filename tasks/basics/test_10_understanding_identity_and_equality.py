@@ -1,8 +1,8 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -16,81 +16,80 @@ notes = '''
 def test_identity_equality_lists():
     a = []
     b = []
-    assert False == (a is b)
-    assert True == (a == b)
+    assert False is (a is b)
+    assert True is (a == b)
 
     a.append("one")
-    assert False == (a is b)
-    assert False == (a == b)
+    assert False is (a is b)
+    assert False is (a == b)
 
     c = []
     d = c
-    assert True == (c is d)
-    assert True == (c == d)
+    assert True is (c is d)
+    assert True is (c == d)
 
     c.append("one")
-    assert True == (c is d)
-    assert True == (c == d)
+    assert True is (c is d)
+    assert True is (c == d)
 
 
 def test_identity_equality_string():
     a = b = "hello"
 
-    assert True == (a is b)
-    assert True == (a == b)
+    assert True is (a is b)
+    assert True is (a == b)
 
     c = "hello"
     d = "".join(["hel", "lo"])
-    assert False == (c is d)
-    assert True == (c == d)
+    assert False is (c is d)
+    assert True is (c == d)
 
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True == (a is b)
-    assert True == (a == b)
+    _a = _b = 10000
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    c = 10000
-    d = int("10000")
-    assert False == (c is d)
-    assert True == (c == d)
+    _c = 10000
+    _d = int("10000")
+    assert False is (_c is _d)
+    assert True is (_c == _d)
 
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert True == (a is b)
-    assert True == (a == b)
+    _a = _b = 10
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    c = 10
-    d = int("10")
-    assert True == (c is d)
-    assert True == (c == d)
-
-
-def test_identity_equality_None():
-    a = b = None
-    assert True == (a is b)
-    assert True == (a == b)
-
-    a = None
-    b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    _c = 10
+    _d = int("10")
+    assert True is (_c is _d)
+    assert True is (_c == _d)
 
 
-notes_on_none = '''
+def test_identity_equality_none():
+    _a = _b = None
+    assert True is (_a is _b)
+    assert True is (_a == _b)
+
+    _a = None
+    _b = None
+    assert True is (_a is _b)
+    assert True is (_a == _b)
+
+
+NOTES_ON_NONE = '''
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -when we assign two list with same elements they always store in different memory so when we compare those two lists using is operatoe we get False.
 -small numbers behave differently why because they store in one memory location when they are in range(-5,256).
 -when we assign None to any variable all they are stored in one memory location.
 """
 
-
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 30

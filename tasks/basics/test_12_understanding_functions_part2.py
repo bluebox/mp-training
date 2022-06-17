@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
@@ -87,11 +87,10 @@ def test_function_unpacking():
     assert ((1, 2), {"k1": "v1"}) == result
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -*args in function refers to it can accept any number of arguments has parameters to the function
 -*kwargs in function refers to it can accept any number of key value pairs has parameters to the function
 -if args is returned in function it returns arguments in the tuple and if kwargs is returned in the function it returns arguments in the arguments in the dictionary.
 """
 
-
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
