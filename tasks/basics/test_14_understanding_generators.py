@@ -72,11 +72,8 @@ def test_generator_range_does_not_allocate_memory():
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    result=[]
-    for item in generator:
-        result.append(item)
+    result=list(generator)
     return result
-
 
 def test_collapse_generator():
     assert [0,1,2,3] == demo_generator_to_list(demo_range(4))
@@ -102,7 +99,7 @@ def test_generator_exception():
         try:
             yield 10
             raise Exception("some message")
-        except:
+        except :
             yield 20
         else:
             yield 40
