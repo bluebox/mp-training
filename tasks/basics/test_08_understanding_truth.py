@@ -18,7 +18,7 @@ def test_none_type():
 #and false values
 
 def test_truth_none():
-    value = None
+    '''gives the boolean value of element like str,list..'''
     result = "not-set"
     #is None treated as true or false? =>flase(else loop)
     if value:
@@ -53,17 +53,18 @@ def test_truth_values():
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
+    '''gives the boolean value of element like str,list..'''
     assert False is ("" is True)
     assert False is (() is True)
     assert False is ([] is True)
     assert False is (set() is True)
-    assert False is (0 == True)
+    assert False is (bool(0))
     assert False is ("" is False)
     assert False is (() is False)
     assert False is ([] is False)
     assert False is (set() is False)
-    assert True is (0 == False)
-    assert True is (1 == True)
+    assert True is (bool(0))
+    assert True is (bool(1))
     assert False is ("a" is True)
     assert False is ((1,2) is True)
     assert False is ([1] is True)

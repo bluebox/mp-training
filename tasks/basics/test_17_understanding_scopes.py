@@ -1,3 +1,7 @@
+import inspect
+import symtable
+
+from tasks.placeholders import __author__
 __author__ = 'Hari'
 
 NOTES = '''
@@ -16,10 +20,6 @@ NOTES = '''
  Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
 '''
 
-import inspect
-import symtable
-
-from tasks.placeholders import *
 
 COUNT = 10
 
@@ -57,62 +57,62 @@ def test_scope_undefined_variable():
 
 def test_variable_shadow():
     local_names = get_locals(test_variable_shadow)
-    COUNT = 20
+    _count = 20
 
-    assert True is ('COUNT' in local_names)
-    assert True is ('COUNT' in global_names)
+    assert True is ('_count' in local_names)
+    assert True is ('_count' in global_names)
 
-    assert 20 == COUNT
+    assert 20 == _count
     assert 10 == get_global_count()
 
 def test_global_write():
     local_names = get_locals(test_global_write)
 
-    global COUNT # declare that we want to use the read/write to global count
-    COUNT = 30
+    global _count # declare that we want to use the read/write to global count
+    _count = 30
 
     try:
-        assert False is ('COUNT' in local_names)
-        assert True is ('COUNT' in global_names)
+        assert False is ('_count' in local_names)
+        assert True is ('_count' in global_names)
 
-        assert 30 == COUNT
+        assert 30 == _count
         assert 30== get_global_count()
     finally:
-        COUNT = 10 #reset to original value
+        _count = 10 #reset to original value
 
 def test_scope_is_bound_at_definition_time():
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
-    assert True is ('COUNT' in local_names)
-    assert True is ('COUNT' in global_names)
+    assert True is ('_count' in local_names)
+    assert True is ('_count' in global_names)
 
     try:
-        value = COUNT
-        COUNT = 30
+        value = _count
+        _count = 30
     except UnboundLocalError: # what happens when you read a variable before initializing it?
         #print ex #uncomment after you fill up above
         assert True
     finally:
-        COUNT = 20
+        _count = 20
 
-    assert 20 == COUNT
+    assert 20 == _count
     assert 10 == get_global_count()
 
 
 def test_scope_writing_globals():
     local_names = get_locals(test_scope_writing_globals)
 
-    assert False is ('COUNT' in local_names)
-    assert True is ('COUNT' in global_names)
+    assert False is ('_count' in local_names)
+    assert True is ('_count' in global_names)
 
-    global COUNT
+    global _count
 
     try:
-        COUNT = 40
-        assert 40 == COUNT
+        _count = 40
+        assert 40 == _count
         assert 40 == get_global_count()
     finally:
-        COUNT = 10
+        _count = 10
 
     assert 10 == get_global_count()
 
