@@ -12,12 +12,7 @@ calling next() to keep moving the function forward and at every stop point where
 have a yield or return the function can return something new.
 '''
 
-<<<<<<< HEAD:Tasks/pybasics/basics/test_14_understanding_generators.py
-from unittest import result
-from placeholders import *
-=======
 from tasks.placeholders import *
->>>>>>> d88f1316d1b066539b74bb99acc592f1ed6c3d69:tasks/basics/test_14_understanding_generators.py
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():

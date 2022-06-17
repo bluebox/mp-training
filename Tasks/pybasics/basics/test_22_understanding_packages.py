@@ -39,21 +39,13 @@ def test_package_basic_import():
     assert __ == ("package1.module1" in sys.modules)
 
     try:
-<<<<<<< HEAD:Tasks/pybasics/basics/test_22_understanding_packages.py
-        print (package1.module1.__doc__)
-=======
         print(module1.__doc__)
->>>>>>> d88f1316d1b066539b74bb99acc592f1ed6c3d69:tasks/basics/test_22_understanding_packages.py
     except __ :
         pass
 
     #modules need explicit import generally.
     import package1.module1
-<<<<<<< HEAD:Tasks/pybasics/basics/test_22_understanding_packages.py
-    print (package1.module1.__doc__)
-=======
     print(module1.__doc__)
->>>>>>> d88f1316d1b066539b74bb99acc592f1ed6c3d69:tasks/basics/test_22_understanding_packages.py
 
     assert __ == ("package1" in sys.modules)
     assert __ == ("module1" in sys.modules)
@@ -115,11 +107,7 @@ def test_package_sub_packages():
     assert __ == ("package1.subpackage.m1" in sys.modules)
 
     #why is this not raising an exception here?
-<<<<<<< HEAD:Tasks/pybasics/basics/test_22_understanding_packages.py
-    print (subpackage.m1.__doc__)
-=======
     print(m1.__doc__)
->>>>>>> d88f1316d1b066539b74bb99acc592f1ed6c3d69:tasks/basics/test_22_understanding_packages.py
 
     assert __ == ("package1.subpackage.m1" in sys.modules)
 
