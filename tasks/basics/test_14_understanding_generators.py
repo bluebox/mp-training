@@ -70,12 +70,12 @@ def test_generator_range_does_not_allocate_memory():
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    yield # fill code here.
+    return list(generator) # fill code here.
 
 
 def test_collapse_generator():
-    assert __ == demo_generator_to_list(demo_range(4))
-    assert __ == demo_generator_to_list(demo_generator())
+    assert [0,1,2,3] == demo_generator_to_list(demo_range(4))
+    assert ['how','are','you?'] == demo_generator_to_list(demo_generator())
 
 def test_generator_return():
     def func():
@@ -83,14 +83,14 @@ def test_generator_return():
         yield 2
         return
         yield 3
-    assert [__] == demo_generator_to_list(func())
+    assert [1,2] == demo_generator_to_list(func())
 
 def test_generator_control_flow():
     def func():
         for x in range(5):
             yield x
         yield 10
-    assert __ == demo_generator_to_list(func())
+    assert [0,1,2,3,4,10] == demo_generator_to_list(func())
 
 def test_generator_exception():
     def func():
@@ -105,13 +105,13 @@ def test_generator_exception():
             yield 50
         yield 30
 
-    assert [__] == demo_generator_to_list(func())
+    assert [10,20,50,30] == demo_generator_to_list(func())
 
 
 three_things_i_learnt = """
--
--
--
+-about yield key word
+-leartn about generators
+-retuting statements
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 35
