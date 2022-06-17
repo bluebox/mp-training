@@ -18,7 +18,7 @@ def test_assert_true():
 
 def test_assert_true_with_message():
     # replace ___ with True to stop seeing the assertion error
-    assert True, "This is the failure message"
+    assert True, "This is the failure  message"
 
 
 def test_assert_equality():
