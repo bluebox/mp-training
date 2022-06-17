@@ -1,6 +1,5 @@
-__author__ = 'Hari'
-
 from tasks.placeholders import *
+__author__ = 'Hari'
 
 NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
@@ -17,7 +16,7 @@ def test_tuple_length():
 
 def test_tuple_with_no_elements():
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
