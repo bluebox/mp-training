@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Functions are the basic unit of modularization in python. You use functions to group
 together a meaningful action and use it when you need it.
 
@@ -137,11 +137,11 @@ def test_function_params_passed_by_object_reference():
     assert["one", "two","something"] == names
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 70
+TIME_TAKEN_MINUTES = 70
 

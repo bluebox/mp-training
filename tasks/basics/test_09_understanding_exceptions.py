@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
 
 Most modern languages like c#, java have a similar exception model, so your
@@ -154,17 +154,17 @@ def test_finally_on_no_exception():
         result.append("m:finally")
     assert ['m:beforecall', 'f:enter', 'm:except', 'm:finally'] == result
 
-notes2 = '''
+NOTES2 = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 92
+TIME_TAKEN_MINUTES = 92

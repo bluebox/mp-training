@@ -6,7 +6,7 @@ print(sys.path)
 from tasks import placeholders
 from tasks.basics import module1
 
-notes = '''
+NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
 
 modules are defined in .py file (socket.py, random.py, csv.py ...) and usually contain
@@ -15,7 +15,7 @@ a set of function, data and class definitions which provide a specific functiona
  socket module exposes functionality related to communication using sockets.
 '''
 
-notes_1 = '''
+NOTES_1 = '''
 All these tests uses module1.py to module4.py. Take a look at them before starting the tests.
 '''
 #this is a global import, generally you use only these. rarely will you use function level imports, but we are doing that
@@ -132,14 +132,14 @@ def test_module_star_import():
     assert{'m3_func2', 'm3_func1'} == (s2 - s1)  # what did module3 import bring in.
     assert {'_m4_func3', 'm4_func1'} == (s3 - s2)  # what did module4 import bring in.
 
-notes_2 = '''
+NOTES_2 = '''
 http://effbot.org/zone/import-confusion.htm
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 100
+TIME_TAKEN_MINUTES = 100

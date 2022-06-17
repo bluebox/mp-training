@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
 feature is essential to mastering python.
 
@@ -118,10 +118,10 @@ def test_def_is_a_statement():
     assert 15 == outer(5)()
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 60
+TIME_TAKEN_MINUTES = 60

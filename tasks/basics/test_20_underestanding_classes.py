@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
 builtin types like dict, list, tuple with your own types with their own specific behavior.
 
@@ -21,7 +21,7 @@ http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 
 from tasks.placeholders import *
 
-notes_1 = '''
+NOTES_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
  Generally you would define them at the module scope.
 '''
@@ -201,10 +201,10 @@ def test_classes_can_have_state():
         pass
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 60
+TIME_TAKEN_MINUTES = 60
