@@ -1,8 +1,10 @@
-__author__ = 'Hari'
-
 from tasks.placeholders import *
 
-notes = '''
+__AUTHOR__  = 'Hari'
+
+
+
+NOTES = '''
 Just like C, python has notions on what values are considered true
 and what values are considered false.
 
@@ -37,7 +39,7 @@ def truth_test(object, description):
         return description + " is treated as false"
 
 def test_truth_values():
-    assert "empty string is treated as false" == truth_test("", "empty string")
+    assert "empty string is treated as false" == truth_test(str(""), "empty string")
     assert "empty tuple is treated as false" == truth_test((), "empty tuple")
     assert "empty list is treated as false" == truth_test([], "empty list")
     assert "empty dict is treated as false" == truth_test({}, "empty dict")
@@ -54,27 +56,28 @@ def test_truth_values():
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
-    assert False == ("" is True)
-    assert False == (() is True)
-    assert False == ([] is True)
-    assert False == (set() is True)
-    assert False == (0 is True)
-    assert False == ("" is False)
-    assert False == (() is False)
-    assert False == ([] is False)
-    assert False == (set() is False)
-    assert False == (0 is False)
-    assert True == (1 == True)
-    assert False == ("a" is True)
-    assert False == ((1, 2) is True)
-    assert False == ([1] is True)
-    assert False == ({1} is True)
+    # "==" is teplaced by "is" to make singleton-comparison
+    assert False is (str("") is True)
+    assert False is (() is True)
+    assert False is ([] is True)
+    assert False is (set() is True)
+    assert False is (int(0) is True)
+    assert False is (str("") is False)
+    assert False is (() is False)
+    assert False is ([] is False)
+    assert False is (set() is False)
+    assert False is (int(0) is False)
+    assert True is (int(1) == True)
+    assert False is (str("a") is True)
+    assert False is ((1, 2) is True)
+    assert False is ([1] is True)
+    assert False is ({1} is True)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT  = """
 - character is not equal to true or false
 - numbers are true but numbers in sets, tuples, sets are neither true nor false
 - empty tuple, sets, lists are not true or false
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10

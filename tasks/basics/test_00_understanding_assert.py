@@ -1,8 +1,9 @@
-__author__ = 'Hari'
-
 from tasks.placeholders import *
+__AUTHOR__ = 'Hari'
 
-notes = '''
+
+
+NOTES = '''
 This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an
 expression. It takes the form assert <expr>, <optional message>. If <expr> evaluates to False an AssertionError is raised with
 the <optional message>. If is evaluates to True, nothing happens.
@@ -35,11 +36,12 @@ def test_make_assert_true_3():
     s_2 = "Hello, World"
     assert s_1 == s_2
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 asseret ==bool
 -
 -
 """
 
-Time_taken_minutes = 1
+
+TIME_TAKEN_MINUTES = 1
 

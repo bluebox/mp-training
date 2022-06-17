@@ -1,11 +1,13 @@
-__author__ = 'Hari'
+from tasks.placeholders import *
 
-notes = '''
+__AUTHOR__  = 'Hari'
+
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
 
-from tasks.placeholders import  *
+
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
@@ -85,24 +87,25 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print(te)
+    except TypeError as t_e:
+        print(t_e)
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print(te)
+    except TypeError as t_e:
+        print(t_e)
         assert True  
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+
+THREE_THINGS_I_LEARNT  = """
 -Sets are un_changed
 -Sets does not contain duplicate values
 -Sets values are in sorted default
 """
 
-time_taken_minutes = 14
+TIME_TAKEN_MINUTES = 14
 
 

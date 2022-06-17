@@ -1,8 +1,10 @@
-__author__ = 'Hari'
-
 from tasks.placeholders import *
 
-notes = '''
+__AUTHOR__ = 'Hari'
+
+
+
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
@@ -43,8 +45,8 @@ def test_tuples_are_immutable():
     colors = ('red', 'blue', 'green')
     try:
         colors[0] = 'orange'
-    except TypeError as te:
-      #  print te # note the exception -> SyntaxError: Missing parentheses in call to 'print'.
+    except TypeError as t_e:
+        print(t_e) # note the exception -> SyntaxError: Missing parentheses in call to 'print'.
         assert True
 
 def test_tuples_can_be_nested():
@@ -60,16 +62,16 @@ def test_tuples_can_be_nested():
 
 def test_tuple_unpacking():
     pair = (10, 20)
-    a, b = pair
-    assert 10 == a
-    assert 20 == b
+    var_a, var_b = pair
+    assert 10 == var_a
+    assert 20 == var_b
 
     triplet = (10, 20, 30)
     try:
-        a, b = triplet
+        var_a, var_b = triplet
         assert True# should not come here.
-    except ValueError as ve:
-        print(ve) #observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+    except ValueError as v_e:
+        print(v_e) #observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
         assert True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
@@ -95,10 +97,10 @@ def test_sequence_conversion():
     word4 = "".join(list_1)
     assert 'testing' == word4
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT  = """
 -Tuples  are immutable
 -methods in tuples like join
 -
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30

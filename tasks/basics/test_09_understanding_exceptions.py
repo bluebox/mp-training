@@ -1,12 +1,14 @@
-_author__ = 'Hari'
+from tasks.placeholders import *
 
-notes = """
+__AUTHOR__ = 'Hari'
+
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
 Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
-from tasks.placeholders import *
+
 
 def test_exception_flow_1():
     fruit = "orange"
@@ -16,10 +18,10 @@ def test_exception_flow_1():
         result.append("one")
         fruit.missingmethod() # what happens to the control flow here?
         result.append("two")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("three")
 
-    assert ["one","three"] == result
+    assert ["one", "three"] == result
 
 def test_exception_flow_2():
     fruit = "orange"
@@ -27,25 +29,26 @@ def test_exception_flow_2():
     try:
         result.append("one")
         value = 1/0 #division by zero.
+        value = value + 1
         result.append("two")
         fruit.missingmethod() #missing attribute
         result.append("three")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("four")
-    except ZeroDivisionError as ze:
+    except ZeroDivisionError as z_e:
         result.append("five")
 
-    assert ["one","five"] == result
+    assert ["one", "five"] == result
 
 def test_raise_error():
     result = []
     try:
         result.append("one")
         raise AttributeError("some error here")
-    except AttributeError as se:
+    except AttributeError as a_e:
         result.append("three")
 
-    assert ["one","three"] == result
+    assert ["one", "three"] == result
 
 def test_missing_except():
     result = []
@@ -63,7 +66,7 @@ def function_with_except(result):
     result.append("f:enter")
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("f:except")
 
     result.append("f:return")
@@ -80,9 +83,9 @@ def test_function_call_with_except():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
-    assert ["m:beforecall","f:enter","f:except","f:return","m:aftercall"] == result
+    assert ["m:beforecall", "f:enter", "f:except", "f:return", "m:aftercall"] == result
 
 def test_function_call_without_except():
     result = []
@@ -90,9 +93,9 @@ def test_function_call_without_except():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
-    assert ["m:beforecall","f:enter","m:except"] == result
+    assert ["m:beforecall", "f:enter", "m:except"] == result
 
 def test_else_on_exception():
     result = []
@@ -100,12 +103,12 @@ def test_else_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     else:
         result.append("m:else")
 
-    assert ["m:beforecall","f:enter","f:except","f:return","m:aftercall","m:else"] == result
+    assert ["m:beforecall", "f:enter", "f:except", "f:return", "m:aftercall", "m:else"] == result
 
 
 def test_else_on_no_exception():
@@ -114,12 +117,12 @@ def test_else_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     else:
         result.append("m:else")
 
-    assert ["m:beforecall","f:enter","m:except"] == result
+    assert ["m:beforecall", "f:enter", "m:except"] == result
 
 def test_finally_on_exception():
     result = []
@@ -127,14 +130,15 @@ def test_finally_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     else:
         result.append("m:else")
     finally:
         result.append("m:finally")
 
-    assert ["m:beforecall","f:enter","f:except","f:return","m:aftercall","m:else","m:finally"] == result
+    assert ["m:beforecall", "f:enter", "f:except", "f:return", 
+    "m:aftercall", "m:else", "m:finally"] == result
 
 
 
@@ -144,26 +148,31 @@ def test_finally_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
+        #Unused variable 'a_e' (unused-variable)
+        if False :
+            print(a_e)
+
     else:
         result.append("m:else")
     finally:
         result.append("m:finally")
 
-    assert ["m:beforecall","f:enter","m:except","m:finally"] == result
+    assert ["m:beforecall", "f:enter", "m:except", "m:finally"] == result
 
-notes2 = '''
+NOTES2  = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - exception handling 
 - uses of expect else finally key words
 - 
 """
 
-time_taken_minutes = 30
+
+TIME_TAKEN_MINUTES = 30
