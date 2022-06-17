@@ -49,7 +49,7 @@ def test_set_creation():
     assert {"one", "two"} == set4
 
     set5 = set(test_dict.items())
-    assert {('one', 1), ('two', 2)} == set5
+    assert {(1, 'one'), (2, 'two')} == set5
 
 def test_set_membership():
     """testing tests"""
@@ -72,7 +72,7 @@ def test_set_operations():
     assert {"one","two"} == diff1
 
     diff2 = set2 - set1
-    assert {"three", "four"} == diff2
+    assert {"four"} == diff2
 
     diff3 = set1 - set1
     assert set()== diff3

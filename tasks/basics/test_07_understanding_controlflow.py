@@ -123,6 +123,7 @@ def test_nested_loop_break():
 
 def test_nested_loop_continue():
     """controlflow testing"""
+    result = []
     for _x in range(2):
         for _y in range(1,5):
             if _y%3 == 0:

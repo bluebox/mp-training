@@ -64,7 +64,8 @@ def test_lc_nested_filter():
 # from some source of data
 def test_dc_basic():
     """comprehension"""
-    result = { i : chr(65 +_i) for _i in range(4)} # note the braces
+    
+    result = { _i : chr(65 +_i) for _i in range(4)} # note the braces
     assert 4 == len(result)
     assert {0: 'A', 1: 'B', 2: 'C', 3: 'D'} == result
 

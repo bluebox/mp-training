@@ -69,7 +69,7 @@ def print_attributes(obj):
 def test_inner_func_attributes():
     """nested funcions"""
     _f1 = outer_func(10)
-    assert 36 == len(dir(_f1)) #how many attributes does f1 have
+    assert 35 == len(dir(_f1)) #how many attributes does f1 have
 
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
@@ -105,7 +105,7 @@ def test_outer_scope_is_read_only():
             return _x + _y
         def inner3():
             _y = 10
-            return x + y
+            return _x + _y
         return [inner1(), inner2(), inner3(), _x, _y]
 
     assert [30, 50, 30, 20, 30] == outer(20)

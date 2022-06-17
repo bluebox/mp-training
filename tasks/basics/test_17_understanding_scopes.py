@@ -34,11 +34,11 @@ def test_scope_basic():
 
     _value = _count
 
-    assert True is ('value' in local_names)
+    assert False is ('value' in local_names)
     assert False is ('value' in global_names)
 
     assert False is ('count' in local_names)
-    assert True is ('count' in global_names)
+    assert False is ('count' in global_names)
 
     assert 10 == _value
 
@@ -61,8 +61,8 @@ def test_variable_shadow():
     local_names = get_locals(test_variable_shadow)
     _count = 20
 
-    assert True is ('count' in local_names)
-    assert True is ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert False is ('count' in global_names)
 
     assert 20 == _count
     assert 10 == get_global_count()
@@ -76,7 +76,7 @@ def test_global_write():
 
     try:
         assert False is ('count' in local_names)
-        assert True is ('count' in global_names)
+        assert False is ('count' in global_names)
 
         assert 30 == _count
         assert 30 == get_global_count()
@@ -87,8 +87,8 @@ def test_scope_is_bound_at_definition_time():
     """scopes"""
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
-    assert True is ('count' in local_names)
-    assert True is ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert False is ('count' in global_names)
 
     try:
         _value = _count
@@ -109,7 +109,7 @@ def test_scope_writing_globals():
     local_names = get_locals(test_scope_writing_globals)
 
     assert False is ('count' in local_names)
-    assert True is ('count' in global_names)
+    assert False is ('count' in global_names)
 
     global _count
 
