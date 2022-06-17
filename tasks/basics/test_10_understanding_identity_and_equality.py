@@ -1,8 +1,11 @@
-__author__ = 'Hari'
-
+from tasks.basics.test_00_understanding_assert import NOTES, TIME_TAKEN_MINUTES
 from tasks.placeholders import *
 
-notes = '''
+__AUTHOR__ = 'Hari'
+
+
+
+NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -13,80 +16,80 @@ notes = '''
 '''
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert __ == (a is b)
-    assert __ == (a == b)
+    var_a = []
+    var_b = []
+    assert False is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    a.append("one")
-    assert __ == (a is b)
-    assert __ == (a == b)
+    var_a.append("one")
+    assert False is (var_a is var_b)
+    assert False is (var_a == var_b)
 
-    c = []
-    d = c
-    assert __ == (c is d)
-    assert __ == (c == d)
+    var_c = []
+    var_d = var_c
+    assert True is (var_c is var_d)
+    assert True is (var_c == var_d)
 
-    c.append("one")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    var_c.append("one")
+    assert True is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_string():
-    a = b = "hello"
+    var_a = var_b = "hello"
 
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert __ == (c is d)
-    assert __ == (c == d)
+    var_c = "hello"
+    var_d = "".join(["hel", "lo"])
+    assert False is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert __ == (a is b)
-    assert __ == (a == b)
+    var_a = var_b = 10000
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    c = 10000
-    d = int("10000")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    var_c = 10000
+    var_d = int("10000")
+    assert False is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert __ == (a is b)
-    assert __ == ( a == b)
+    var_a = var_b = 10
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    c = 10
-    d = int("10")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    var_c = 10
+    var_d = int("10")
+    assert True is (var_c is var_d)
+    assert True is (var_c == var_d)
 
 def test_identity_equality_None():
-    a = b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+    var_a = var_b = None
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
-    a = None
-    b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+    var_a = None
+    var_b = None
+    assert True is (var_a is var_b)
+    assert True is (var_a == var_b)
 
 
-notes_on_none = '''
+NOTES = ''' Notes for none
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+-is keyword is different for big and small numbers 
+-None locate at same position for all the variables
+-2 diffeferent varables with same values are not equal when we use is key word 
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 20
 
 
