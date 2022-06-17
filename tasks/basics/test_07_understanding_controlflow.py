@@ -198,7 +198,7 @@ def test_while_loop_else():
     assert [1,2,3] == result
 
 
-THREE_THING_I_LEARNT = """
+THREE_THINGS_I_LEARNT = """
 -if-else
 -for loop
 -while loop
