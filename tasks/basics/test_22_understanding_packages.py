@@ -1,10 +1,10 @@
 """This is the 22nd file of python exercise by medplus"""
 __author__ = 'Hari'
 
-# import sys
-# from Tasks.basics import module1
-# from Tasks.basics.package1.subpackage import m1
-# import Tasks.placeholders
+import sys
+from tasks.basics import module1
+from tasks.basics.package1.subpackage import m1
+import tasks.placeholders
 
 NOTES = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
@@ -28,98 +28,98 @@ def test_package_basic_import():
     assert False is ("module1" in locals())
     assert False is ("package1.module1" in locals())
 
-#     import Tasks.basics.package1 as package1
+    import tasks.basics.package1 as package1
 
-#     assert True is ("package1" in locals())
-#     assert False is ("module1" in locals())
-#     assert False is ("package1.module1" in locals())
+    assert True is ("package1" in locals())
+    assert False is ("module1" in locals())
+    assert False is ("package1.module1" in locals())
 
-#     assert "module" == type(package1).__name__
+    assert "module" == type(package1).__name__
 
-#     assert True is ("Tasks.basics.package1" in sys.modules)
-#     assert False is ("module1" in sys.modules)
-#     assert False is ("package1.module1" in sys.modules)
+    assert True is ("tasks.basics.package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert False is ("package1.module1" in sys.modules)
 
-#     try:
-#         print(module1.__doc__)
-#     except __ :
-#         pass
+    try:
+        print(module1.__doc__)
+    except __ :
+        pass
 
-#     #modules need explicit import generally.
-#     import Tasks.basics.package1.module1
-#     print(module1.__doc__)
+    #modules need explicit import generally.
+    import tasks.basics.package1.module1
+    print(module1.__doc__)
 
-#     assert True is ("Tasks.basics.package1" in sys.modules)
-#     assert False is ("module1" in sys.modules)
-#     assert True is ("Tasks.basics.package1.module1" in sys.modules)
-
-
-# def clear_sys_modules():
-#     """basic docstring for pylint testing"""
-#     sys.modules.pop("module1", None)
-#     sys.modules.pop("package1", None)
-#     sys.modules.pop("package1.module1", None)
-#     sys.modules.pop("package1.subpackage", None)
-#     sys.modules.pop("package1.subpackage.m1", None)
-
-# def test_package_from_import():
-#     """basic docstring for pylint testing"""
-#     clear_sys_modules()
-
-#     assert False is ("Tasks.basics.package1" in locals())
-#     assert False is ("module1" in locals())
-#     assert False is ("Tasks.basics.package1.module1" in locals())
-
-#     from Tasks.basics.package1 import module1
-
-#     assert False is ("Tasks.basics.package1" in locals())
-#     assert True is ("module1" in locals())
-#     assert False is ("Tasks.basics.package1.module1" in locals())
-
-#     assert True is ("Tasks.basics.package1" in sys.modules)
-#     assert False is ("module1" in sys.modules)
-#     assert True is ("Tasks.basics.package1.module1" in sys.modules)
+    assert True is ("tasks.basics.package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert True is ("tasks.basics.package1.module1" in sys.modules)
 
 
-# def test_package_import_failure():
-#     """basic docstring for pylint testing"""
-#     clear_sys_modules()
-#     try:
-#         import basics.package2
-#     except ImportError :
-#         assert True
+def clear_sys_modules():
+    """basic docstring for pylint testing"""
+    sys.modules.pop("module1", None)
+    sys.modules.pop("package1", None)
+    sys.modules.pop("package1.module1", None)
+    sys.modules.pop("package1.subpackage", None)
+    sys.modules.pop("package1.subpackage.m1", None)
 
-#     # fill up reason for failure. why is package2 not a package
-#     why_it_failed = """The package is a simple directory having collections of modules.
-#     This directory contains Python modules and also having __init__.py file by which the
-#     interpreter interprets it as a Package. The package is simply a namespace.
-#     The package also contains sub-packages inside it."""
-#     print(why_it_failed)
+def test_package_from_import():
+    """basic docstring for pylint testing"""
+    clear_sys_modules()
 
-# def test_package_sub_packages():
-#     """basic docstring for pylint testing"""
-#     clear_sys_modules()
+    assert False is ("tasks.basics.package1" in locals())
+    assert False is ("module1" in locals())
+    assert False is ("tasks.basics.package1.module1" in locals())
 
-#     assert False is ("Tasks.basics.package1" in locals())
-#     assert False is ("subpackage" in locals())
-#     assert False is ("Tasks.basics.package1.subpackage" in locals())
+    from tasks.basics.package1 import module1
 
-#     from Tasks.basics.package1 import subpackage
+    assert False is ("tasks.basics.package1" in locals())
+    assert True is ("module1" in locals())
+    assert False is ("tasks.basics.package1.module1" in locals())
 
-#     assert False is ("Tasks.basics.package1" in locals())
-#     assert True is ("subpackage" in locals())
-#     assert False is ("Tasks.basics.package1.subpackage" in locals())
+    assert True is ("tasks.basics.package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert True is ("tasks.basics.package1.module1" in sys.modules)
 
-#     assert True is ("Tasks.basics.package1" in sys.modules)
-#     assert False is ("module1" in sys.modules)
-#     assert True is ("Tasks.basics.package1.module1" in sys.modules)
-#     assert True is ("Tasks.basics.package1.subpackage" in sys.modules)
-#     assert True is ("Tasks.basics.package1.subpackage.m1" in sys.modules)
 
-#     #why is this not raising an exception here?
-#     print(m1.__doc__)
+def test_package_import_failure():
+    """basic docstring for pylint testing"""
+    clear_sys_modules()
+    try:
+        import basics.package2
+    except ImportError :
+        assert True
 
-#     assert __ == ("package1.subpackage.m1" in sys.modules)
+    # fill up reason for failure. why is package2 not a package
+    why_it_failed = """The package is a simple directory having collections of modules.
+    This directory contains Python modules and also having __init__.py file by which the
+    interpreter interprets it as a Package. The package is simply a namespace.
+    The package also contains sub-packages inside it."""
+    print(why_it_failed)
+
+def test_package_sub_packages():
+    """basic docstring for pylint testing"""
+    clear_sys_modules()
+
+    assert False is ("tasks.basics.package1" in locals())
+    assert False is ("subpackage" in locals())
+    assert False is ("tasks.basics.package1.subpackage" in locals())
+
+    from tasks.basics.package1 import subpackage
+
+    assert False is ("tasks.basics.package1" in locals())
+    assert True is ("subpackage" in locals())
+    assert False is ("tasks.basics.package1.subpackage" in locals())
+
+    assert True is ("tasks.basics.package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert True is ("tasks.basics.package1.module1" in sys.modules)
+    assert True is ("tasks.basics.package1.subpackage" in sys.modules)
+    assert True is ("tasks.basics.package1.subpackage.m1" in sys.modules)
+
+    #why is this not raising an exception here?
+    # print(m1.__doc__)
+
+    # assert sys.modules == ("package1.subpackage.m1" in sys.modules)
 
 THREE_THINGS_I_LEARNT = """
 packages, modules, sys module
