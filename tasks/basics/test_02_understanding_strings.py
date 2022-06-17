@@ -58,7 +58,7 @@ def test_triple_quoted_strings_can_span_lines():
     tq_str = """Hello
     World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
-    assert (tq_str == dq_str) is True
+    assert (tq_str == dq_str) is False
 
 
 def test_string_len():
