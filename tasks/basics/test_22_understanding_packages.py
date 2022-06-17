@@ -1,13 +1,12 @@
 import sys
-from Tasks.placeholders import *
-
+#from Tasks.placeholders import *
 __author__ = 'Hari'
 
 
 from Tasks.basics import module1
 from Tasks.basics.package1.subpackage import m1
 
-notes = '''
+NOTES = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
  then it makes sense to group all of them together. Packages allows you to group related modules together.
 
@@ -20,13 +19,14 @@ notes = '''
 # Look at the package1 and package2 directories before starting...
 
 def test_package_basic_import():
+    """modules and packages are not defined in locally"""
     clear_sys_modules()
 
     assert False is ("package1" in locals())
     assert False is ("module1" in locals())
     assert False is ("package1.module1" in locals())
 
-    import Tasks.basics.package1 as package1
+    from Tasks.basics import package1
 
     assert True is ("package1" in locals())
     assert False is ("module1" in locals())
@@ -44,7 +44,7 @@ def test_package_basic_import():
         pass
 
     #modules need explicit import generally.
-    import Tasks.basics.package1.module1
+    #import Tasks.basics.package1.module1
     print(module1.__doc__)
 
     assert False is ("package1" in sys.modules)
@@ -53,6 +53,7 @@ def test_package_basic_import():
 
 
 def clear_sys_modules():
+    """Here some modules are popped"""
     sys.modules.pop("module1", None)
     sys.modules.pop("package1", None)
     sys.modules.pop("package1.module1", None)
@@ -60,6 +61,7 @@ def clear_sys_modules():
     sys.modules.pop("package1.subpackage.m1", None)
 
 def test_package_from_import():
+    """modules and packages are not defined in locally"""
     clear_sys_modules()
 
     assert False is ("package1" in locals())
@@ -78,6 +80,7 @@ def test_package_from_import():
 
 
 def test_package_import_failure():
+    """import failure"""
     clear_sys_modules()
     try:
         import package2
@@ -85,9 +88,10 @@ def test_package_import_failure():
         assert True
 
     # fill up reason for failure. why is package2 not a package
-    why_it_failed = "package2 did't have __init__ file"
+    #WHY_IT_IS_FAILED = "package2 did't have __init__ file"
 
 def test_package_sub_packages():
+    """add sub packages"""
     clear_sys_modules()
 
     assert False is ("package1" in locals())
