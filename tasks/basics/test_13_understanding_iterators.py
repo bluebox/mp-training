@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import *
+#from placeholders import *
 
 from pickle import FALSE
 
@@ -18,46 +18,51 @@ list, tuple, string etc.
 '''
 
 def test_iterator_type():
+    """type"""
     list_iter = iter(["one", "two", "three"])
     assert "list_iterator" == type(list_iter).__name__
-    assert False == hasattr(list_iter, "next")
+    assert False is hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert "str_iterator" == type(string_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
     assert "tuple_iterator" == type(tuple_iter).__name__
-    assert False == hasattr(tuple_iter, "next")
+    assert False is hasattr(tuple_iter, "next")
 
 def test_int_iterable():
+    """iter"""
     try:
         iter(10)
     except TypeError :  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
+    """iter"""
     list_iter = iter(["one", "two", "three"])
     try:
-        assert True == list_iter.next()
-        assert True == list_iter.next()
-        assert True == list_iter.next()
-        assert True == list_iter.next() #note what happens when items are finished.
+        assert True is list_iter.next()
+        assert True is list_iter.next()
+        assert True is list_iter.next()
+        assert True is list_iter.next() #note what happens when items are finished.
     except AttributeError:
         pass
 
 #note this function which can convert any iterable into a list.
 def convert_to_list(iterable):
+    """iterable"""
     seq_iterator = iter(iterable)
     result = []
     try:
         while True:
             item = seq_iterator.next()
             result.append(item)
-    except AttributeError as se:
+    except AttributeError:
         return result
 
 def test_convert():
+    """list"""
     assert [] == convert_to_list("hello")
     assert [] == convert_to_list((1,2,3,4))
     assert [] == convert_to_list(range(5))
@@ -76,6 +81,7 @@ def test_convert():
 # list creation also uses the iterator protocol!
 # note via help(list). we have already used this, you know how it works now!
 def test_list_creation():
+    """list"""
     assert ['h','e','l','l','o'] == list("hello")
     assert [1,2,3,4] == list((1,2,3,4))
     assert [0,1,2,3,4] == list(range(5))
@@ -89,6 +95,7 @@ def test_tuple_creation():
 # with, as long as their parameters support the iterator protocol they will work.
 # Consider the immense productivity gain you have with this approach.
 def test_functions_that_work_on_iterables():
+    """dict"""
     test_dict = {"one": 1, "two":2}
     assert ["one", "two"] == sorted(test_dict)
     assert ["one", "two"] == list(test_dict)
@@ -96,6 +103,7 @@ def test_functions_that_work_on_iterables():
 # Go through the functions at http://docs.python.org/2/library/functions.html
 # and enter all the functions that operate on iterables into the funcs list.
 def test_find_builtins_that_work_on_iterables():
+    """func"""
     funcs = ["sum","sorted","max","min","enumerate"]
     assert 5 == len(funcs)
 
