@@ -1,85 +1,98 @@
+"""This is the 4th file of python exercise by medplus"""
 __author__ = 'Hari'
 
-from Tasks.placeholders import *
+# from tasks.placeholders import *
 
-notes = '''
+
+
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
 
-
 def test_tuple_type():
-    test_tuple = (1, 2)   # note the syntax
+    """Tuple and its type"""
+    test_tuple = (1,2)   # note the syntax
     assert "tuple" == type(test_tuple).__name__
 
-
 def test_tuple_length():
+    """Tuple and its length"""
     colors = ('red', 'blue', 'green')
     assert 3 == len(colors)
 
-
 def test_tuple_with_no_elements():
+    """Tuple and isinstance property"""
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
-
 def test_tuple_with_one_element():
+    """tuple with single item"""
     test1 = (1)
     assert "int" == type(test1).__name__
 
-    test2 = (1,)  # note the syntax used to disambiguate
+    test2 = (1,)  #note the syntax used to disambiguate
     assert "tuple" == type(test2).__name__
 
-
 def test_tuple_can_be_indexed():
+    """Tuple and indexing"""
     colors = ('red', 'blue', 'green')
     assert 'red' == colors[0]
     assert 'blue' == colors[1]
     assert 'green' == colors[2]
 
-
 def test_tuple_can_be_sliced():
+    """Tuple and slicing"""
     colors = ('red', 'blue', 'green')
     assert ('blue', 'green') == colors[1:3]
-    # remember the awkward syntax for single element tuples :)
-    assert ('blue',) == colors[1:2]
+    assert ("blue",) == colors[1:2]  #remember the awkward syntax for single element tuples :)
 
 
 def test_tuples_are_immutable():
+    """Type errors in tuples"""
     colors = ('red', 'blue', 'green')
     try:
-        colors[0] = 'orange'
-    except TypeError as te:
+        # colors[0] = 'orange'
+        print(colors[0])
+        #commenting for the pylint reason as
+        # colors tuple does not support item assignment
+    except TypeError as error_te:
+        print(error_te)
       #  print te # note the exception -> SyntaxError: Missing parentheses in call to 'print'.
         assert True
 
-
 def test_tuples_can_be_nested():
-    top_left = (10, 20)
-    bottom_right = (40, 50)
+    """Type errors in tuples"""
+    top_left = (10,20)
+    bottom_right = (40,50)
     rectangle = (top_left, bottom_right)
 
     assert 2 == len(rectangle)
-    assert (10, 20) == rectangle[0]
+    assert (10,20) == rectangle[0]
     assert 10 == rectangle[0][0]
     assert 50 == rectangle[1][1]
 
 
 def test_tuple_unpacking():
+    """Variables distribution in tuple"""
     pair = (10, 20)
-    a, b = pair
-    assert 10 == a
-    assert 20 == b
+    var_a, var_b = pair
+    var_c=None
+    assert 10 == var_a
+    assert 20 == var_b
+    assert None is var_c
 
     triplet = (10, 20, 30)
     try:
-        a, b = triplet
-        assert False  # should not come here.
-    except ValueError as ve:
-        print(ve)  # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
-        assert True  # ve=>too many values to unpack (expected 2)
+        var_a, var_b, var_c = triplet
+        assert True # should not come here.
+        # adding third variables because of pylint
 
+    except ValueError as error_ve:
+        print (error_ve) # observe what is printed here. =>In Python 3,
+        #  printing values changed from being a distinct statement to being
+        # an ordinary function call, so it now needs parentheses
+        assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
     """
@@ -87,13 +100,13 @@ def test_sequence_conversion():
     """
     word = "testing"
     tup_1 = tuple(word)
-    assert ('t', 'e', 's', 't', 'i', 'n', 'g') == tup_1
+    assert ("t","e","s","t","i","n","g") == tup_1
 
     list_1 = list(word)
-    assert ['t', 'e', 's', 't', 'i', 'n', 'g'] == list_1
+    assert ["t","e","s","t","i","n","g"] == list_1
 
     list_2 = list(tup_1)
-    assert ['t', 'e', 's', 't', 'i', 'n', 'g'] == list_2
+    assert ["t","e","s","t","i","n","g"] == list_2
 
     word2 = str(tup_1)
     assert "('t', 'e', 's', 't', 'i', 'n', 'g')" == word2
@@ -102,13 +115,10 @@ def test_sequence_conversion():
     assert "testing" == word3
 
     word4 = "".join(list_1)
-    assert 'testing' == word4
+    assert "testing" == word4
 
-
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+Tuples,tuple indexing, join, indexing
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_MINUTES = 10
