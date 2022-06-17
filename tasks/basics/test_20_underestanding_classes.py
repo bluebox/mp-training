@@ -152,7 +152,7 @@ def test_classes_methods():
 
 
 def test_classes_bound_and_unbound_methods():
-    class Queue(object):
+    class Queue(object):   
         def __init__(self, name):
             self.name = name
             self._queue = []
