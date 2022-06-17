@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -17,34 +17,38 @@ from tasks.placeholders import *
 
 
 def demo_generator():
+    ''' generator '''
     yield "how"
     yield "are"
     yield "you?"
 
 
 def test_generator_type():
+    ''' generator type'''
     # definition is a function
-    assert 'function' == type(demo_generator).__name__
+    assert 'function' is type(demo_generator).__name__
     # once you invoke it, you get a generator
-    assert 'generator' == type(demo_generator()).__name__
+    assert 'generator' is type(demo_generator()).__name__
 
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "next")
-    assert False == hasattr(demo_generator(), "next")
+    ''' iterator1'''
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
 
 
 def test_generator_is_an_iterator2():
+    ''' iterator2'''
     result = demo_generator()
     try:
-        assert 'how' == next(result)  # builtin which calls the iterator.next()
-        assert "are" == next(result)
-        assert "you?" == next(result)
+        assert 'how' is next(result)  # builtin which calls the iterator.next()
+        assert "are" is next(result)
+        assert "you?" is next(result)
         assert __ == next(result)
     except StopIteration:
         assert True
 
-    assert "how.are.you?" == ".".join(
+    assert "how.are.you?" is ".".join(
         demo_generator())  # join takes a iterable
 
 # Note that this function takes any sequence, and returns a reversed form
@@ -53,11 +57,13 @@ def test_generator_is_an_iterator2():
 
 
 def demo_reverse(sequence):
+    ''' reverse'''
     for index in range(len(sequence)-1, -1, -1):
         yield sequence[index]
 
 
 def test_generator_reverse():
+    ''' generator reverse'''
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
@@ -67,6 +73,7 @@ def test_generator_reverse():
 
 
 def demo_range(limit):
+    ''' demo range '''
     value = 0
     while value < limit:
         yield value
@@ -74,6 +81,7 @@ def demo_range(limit):
 
 
 def test_generator_range_does_not_allocate_memory():
+    ''' generator '''
     for item in demo_range(1000 * (10**6)):
         if item % 5 == 1:
             break
@@ -82,32 +90,37 @@ def test_generator_range_does_not_allocate_memory():
 
 # write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
+    ''' demo generator'''
     return list(generator)  # fill code here.
 
 
 def test_collapse_generator():
-    assert [0, 1, 2, 3] == demo_generator_to_list(demo_range(4))
-    assert ["how", "are", "you?"] == demo_generator_to_list(demo_generator())
+    ''' collapse generator'''
+    assert [0, 1, 2, 3] is demo_generator_to_list(demo_range(4))
+    assert ["how", "are", "you?"] is demo_generator_to_list(demo_generator())
 
 
 def test_generator_return():
+    ''' genrator returns'''
     def func():
         yield 1
         yield 2
         return
         yield 3
-    assert [1, 2] == demo_generator_to_list(func())
+    assert [1, 2] is demo_generator_to_list(func())
 
 
 def test_generator_control_flow():
+    ''' control flow'''
     def func():
-        for x in range(5):
-            yield x
+        for num_x in range(5):
+            yield num_x
         yield 10
-    assert [0, 1, 2, 3, 4, 10] == demo_generator_to_list(func())
+    assert [0, 1, 2, 3, 4, 10] is demo_generator_to_list(func())
 
 
 def test_generator_exception():
+    ''' generator exception'''
     def func():
         try:
             yield 10
@@ -120,13 +133,13 @@ def test_generator_exception():
             yield 50
         yield 30
 
-    assert [10, 20, 50, 30] == demo_generator_to_list(func())
+    assert [10, 20, 50, 30] is demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT= """
 -
 -
 -
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_IN_MINUTES = 30
