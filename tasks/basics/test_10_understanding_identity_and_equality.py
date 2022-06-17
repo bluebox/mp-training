@@ -15,21 +15,21 @@ notes = '''
 def test_identity_equality_lists():
     a = []
     b = []
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert False == (a is b)
+    assert True == (a == b)
 
     a.append("one")
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert False == (a is b)
+    assert False == (a == b)
 
     c = []
     d = c
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert True == (c is d)
+    assert False == (c == d)
 
     c.append("one")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert False == (c is d)
+    assert False == (c == d)
 
 def test_identity_equality_string():
     a = b = "hello"
