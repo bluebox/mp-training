@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
@@ -8,21 +8,24 @@ the keys are not associated with any values.
 from tasks.placeholders import *
 
 def test_set_type():
+    """set type """
     test_set = {"one", "two", "three"}   # note the new syntax
     assert 'set' == type(test_set).__name__
 
 
 def test_set_empty():
+    """ set empty"""
     # curly braces are used for both sets and dicts, so how do you disambiguate?
     empty_set_wrong = {}
-    assert False == isinstance(empty_set_wrong, set)
+    assert False is  isinstance(empty_set_wrong, set)
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
+    assert True is  isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
 
 def test_set_length():
+    """ set length """
     fruits = {"apple", "apple", "apple"}
     assert 1 == len(fruits)  # are duplicates removed?
 
@@ -54,17 +57,20 @@ def test_set_creation():
 
 
 def test_set_membership():
+    """set membership"""
     fruits = {"apple", "mango", "kiwi"}
-    assert 'apple' == "apple" in fruits
-    assert False == ("dog" in fruits)
+    app='apple'
+    assert app == "apple" in fruits
+    assert False is ("dog" in fruits)
 
 
 def test_set_operations():
+    """ set operations """
     set1 = {"one", "two", "three"}
     set2 = {"three", "four"}
 
-    all = set1 | set2  # union
-    assert {"one", "two", "three", "four"} == all
+    s_all = set1 | set2  # union
+    assert {"one", "two", "three", "four"} == s_all
 
     common = set1 & set2
     assert {"three"} == common
@@ -85,6 +91,7 @@ def test_set_operations():
 
 
 def test_set_valid_members():
+    """ set valid members"""
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
@@ -92,22 +99,22 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print(te)
+    except TypeError as type_error:
+        print(type_error)
         assert True
 
     try:
         test_set.add((1, []))  # TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print(te)
+    except TypeError as type_error:
+        print(type_error)
         assert True  
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15

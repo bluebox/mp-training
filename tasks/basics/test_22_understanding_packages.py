@@ -114,12 +114,12 @@ def test_package_sub_packages():
 
     assert False== ("package1.subpackage.m1" in sys.modules)
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT= """
 -
 -
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
 
 
