@@ -2,8 +2,8 @@
 __author__ = 'Hari'
 
 import sys
-# from Tasks import placeholders
-# from Tasks import module1
+from tasks import placeholders
+from tasks import module1
 
 NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
@@ -22,14 +22,14 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 #here for the sake of testing.
 
 
-# from Tasks.placeholders import *
+from Tasks.placeholders import *
 
 def test_module_without_import():
     """basic docstring for pylint purpose"""
-    # try:
-    #     module1.greet("jack")
-    # except NameError as error_ie :
-    #     print(error_ie)
+    try:
+        module1.greet("jack")
+    except NameError as error_ie :
+        print(error_ie)
     assert True
 
 # def test_module_usage_needs_import():
