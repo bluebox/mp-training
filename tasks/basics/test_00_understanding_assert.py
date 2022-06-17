@@ -1,5 +1,5 @@
 __author__ = 'Hari'
-# from Tasks.placeholders import *
+# from tasks.placeholders import *
 
 NOTES = '''
 This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an

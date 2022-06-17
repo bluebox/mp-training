@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-# from Tasks.placeholders import *
+# from tasks.placeholders import *
 
 NOTES = '''
 Functions are the basic unit of modularization in python. You use functions to group

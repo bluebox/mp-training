@@ -1,10 +1,10 @@
 from importlib.metadata import PackageNotFoundError
 import sys
-from Tasks.placeholders import *
+from tasks.placeholders import *
 __author__ = 'Hari'
 
-from Tasks.basics import module1
-from Tasks.basics.package1.subpackage import m1
+from tasks.basics import module1
+from tasks.basics.package1.subpackage import m1
 
 NOTES = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
@@ -29,7 +29,7 @@ def test_package_basic_import():
     assert False is ("module1" in locals())
     assert False is ("package1.module1" in locals())
 
-    from Tasks.basics import package1
+    from tasks.basics import package1
 
     assert True is ("package1" in locals())
     assert False is ("module1" in locals())
@@ -47,7 +47,7 @@ def test_package_basic_import():
         pass
 
     # modules need explicit import generally.
-    import Tasks.basics.package1.module1
+    import tasks.basics.package1.module1
     print(module1.__doc__)
 
     assert False is ("package1" in sys.modules)
@@ -72,7 +72,7 @@ def test_package_from_import():
     assert False is ("module1" in locals())
     assert False is ("package1.module1" in locals())
 
-    from Tasks.basics.package1 import module1
+    from tasks.basics.package1 import module1
 
     assert False is ("package1" in locals())
     assert True is ("module1" in locals())
@@ -105,7 +105,7 @@ def test_package_sub_packages():
     assert False is ("subpackage" in locals())
     assert False is ("package1.subpackage" in locals())
 
-    from Tasks.basics.package1 import subpackage
+    from tasks.basics.package1 import subpackage
 
     assert False is ("package1" in locals())
     assert True is ("subpackage" in locals())
