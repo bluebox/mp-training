@@ -118,7 +118,7 @@ THREE_THINGS_I_LEARNT= """
 -scope inside try and except block
 """
 
-TIME_TAKEN_MINUTES = 30
+TIME_TAKEN_MINUTES = 3
 
 
 #helper functions which get the variables in locals and globals using the compiler's symbol tables.

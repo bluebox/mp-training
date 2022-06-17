@@ -123,4 +123,4 @@ THREE_THINGS_I_LEARNT = """
 -passing arguments in inner and outer functions
 """
 
-TIME_TAKEN__MINUTES = 20
+TIME_TAKEN__MINUTES = 2

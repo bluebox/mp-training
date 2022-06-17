@@ -127,7 +127,7 @@ indexing of dictinaries
 difference between keys and values
 """
 
-TIME_TAKEN_MINUTES = 10
+TIME_TAKEN_MINUTES = 5
 
 NOTES2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

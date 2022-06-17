@@ -105,4 +105,4 @@ built-in functions for sequence conversion
 -
 """
 
-TIME_TAKEN_MINUTES = 10
+TIME_TAKEN_MINUTES = 5

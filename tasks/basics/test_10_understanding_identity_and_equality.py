@@ -87,4 +87,4 @@ THREE_THINGS_I_LEARNT = """
 -is behave different for small values
 """
 
-TIME_TAKEN_MINUTES = 15
+TIME_TAKEN_MINUTES = 5

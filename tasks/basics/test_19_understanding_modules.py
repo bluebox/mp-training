@@ -138,4 +138,4 @@ THREE_THINGS_I_LEARNT = """
 -exceptions occurs using modules
 """
 
-TIME_TAKEN_MINUTES = 40
+TIME_TAKEN_MINUTES = 4

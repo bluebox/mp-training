@@ -90,4 +90,4 @@ THREE_THINGS_I_LEARNT = """
 -unpacking of functions
 """
 
-TIME_TAKEN_MINUTES = 15
+TIME_TAKEN_MINUTES = 1

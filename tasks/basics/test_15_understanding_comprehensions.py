@@ -109,4 +109,4 @@ THREE_THINGS_I_LEARNT = """
 -dict comprehensions
 """
 
-TIME_TAKEN_MINUTES = 20
+TIME_TAKEN_MINUTES = 2

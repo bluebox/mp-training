@@ -150,4 +150,4 @@ slicing can be performed on lists.
 we can add and remove elements in the list.
 """
 
-TIME_TAKEN_MINUTES = 20
+TIME_TAKEN_MINUTES = 5
