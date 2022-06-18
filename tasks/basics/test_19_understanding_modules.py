@@ -20,10 +20,9 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 #here for the sake of testing.
 
 
-#from tasks.placeholders import __author__
+# from tasks.placeholders import __author__
 
 def test_module_without_import():
-    """ab"""
     try:
         module1.greet("jack")
     except NameError as n_e :
@@ -31,12 +30,10 @@ def test_module_without_import():
         assert True
 
 def test_module_usage_needs_import():
-    """g"""
     # from tasks.basics import module1
     assert "module1 says hi to jack" == module1.greet("jack")
 
 def test_module_usage_multiple():
-    """y"""
     # import tasks.basics.module1 as module1
     import tasks.basics.module2 as module2
 
@@ -44,7 +41,6 @@ def test_module_usage_multiple():
     assert "module2 says hi to jack" == module2.greet("jack")
 
 def test_module_import_affects_current_namespace():
-    """j"""
     # from tasks.basics import module1 as module1
 
     def inner_func():
@@ -65,17 +61,14 @@ def test_module_import_affects_current_namespace():
     assert False is ('module2' in globals())
 
 def test_module_type():
-    """type"""
     assert 'module' == type(placeholders).__name__
 
 def test_module_is_an_object():
-    """none"""
     assert 12 == len(dir(placeholders))
     assert 'tasks.placeholders' == placeholders.__name__
     assert None is placeholders.__doc__
 
 def test_module_from_import():
-    """greet"""
     from tasks.basics.module1 import greet
 
     assert False is ('module1' in locals())
@@ -89,14 +82,12 @@ def test_module_from_import():
     assert "module1 says hi to jack" == greet("jack")
 
 def test_module_why_from_import_is_a_bad_idea():
-    """greet"""
-    #from tasks.basics.module1 import greet
+    from tasks.basics.module1 import greet
     from tasks.basics.module2 import greet
 
     assert "module2 says hi to jack" == greet("jack")
 
 def test_modules_are_cached():
-    """module"""
     # import tasks.basics.module1 as module1
     import tasks.basics.module1 as new_name
     def inner():
@@ -134,13 +125,13 @@ s2 = set(dir())
 s3 = set(dir())
 
 def test_module_star_import():
-    """s2-s1"""
     # * imports are not allowed within functions, so we had to do it at global scope
     assert ({'@py_builtins', '@pytest_ar', 'NOTES', 'NOTES_1',
      '__author__', '__builtins__', ...} - {'@py_builtins',
       '@pytest_ar', 'NOTES', 'NOTES_1', '__author__',
        '__builtins__', ...}) == (s2 - s1)  # what did module3 import bring in.
-    assert ({'@py_builtins', '@pytest_ar', 'NOTES', 'NOTES_1', '__author__', '__builtins__', ...} - {'@py_builtins',
+    assert ({'@py_builtins', '@pytest_ar', 'NOTES', 'NOTES_1', 
+    '__author__', '__builtins__', ...} - {'@py_builtins',
      '@pytest_ar', 'NOTES', 'NOTES_1', '__author__',
      '__builtins__', ...}) == (s3 - s2)  # what did module4 import bring in.
 
@@ -153,4 +144,4 @@ THREE_THINGS_I_LEARNT = """
 -
 """
 
-TIME_TAKEN_MINUTES = 40
+TIME_TAKEN_MINUTES = 60
