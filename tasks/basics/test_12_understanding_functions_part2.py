@@ -1,8 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from asyncio.windows_events import NULL
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 
 def demo(first, second=2, third=3):

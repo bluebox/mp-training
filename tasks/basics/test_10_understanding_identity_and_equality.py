@@ -1,8 +1,6 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from statistics import variance
-from tkinter import Variable
 from tasks.placeholders import *
 
 NOTES = '''
