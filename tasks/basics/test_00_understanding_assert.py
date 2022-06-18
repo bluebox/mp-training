@@ -1,7 +1,7 @@
+"""Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
-
+from tasks.placeholders import __author__
 
 NOTES = '''This lesson introduces the basic assert statement in python.
 Assert is generally used to 'assert' the truth of an expression. 
@@ -28,7 +28,8 @@ def test_assert_equality():
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
     """Greater than assertion"""
-    assert 8>7, "Fill in a value greater than 7"
+    var=8
+    assert var>7, "Fill in a value greater than 7"
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
