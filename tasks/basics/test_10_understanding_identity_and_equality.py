@@ -1,7 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
