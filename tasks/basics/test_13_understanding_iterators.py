@@ -18,15 +18,15 @@ list, tuple, string etc.
 def test_iterator_type():
     """Iterator Type"""
     list_iter = iter(["one", "two", "three"])
-    assert "list_iterator" is type(list_iter).__name__
+    assert "list_iterator" == type(list_iter).__name__
     assert False is hasattr(list_iter, "next")
 
     string_iter = iter("hello")
-    assert "str_iterator" is type(string_iter).__name__
+    assert "str_iterator" == type(string_iter).__name__
     assert False is hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert "tuple_iterator" is type(tuple_iter).__name__
+    assert "tuple_iterator" == type(tuple_iter).__name__
     assert False is hasattr(string_iter, "next")
 
 def test_int_iterable():

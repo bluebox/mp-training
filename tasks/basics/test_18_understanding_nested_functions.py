@@ -121,9 +121,9 @@ def test_def_is_a_statement():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-Functions
+-Nested Functions
+-Function scopes
 """
 
 TIME_TAKEN_MINUTES = 10
