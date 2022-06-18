@@ -11,7 +11,8 @@ NOTES = '''
  then it makes sense to group all of them together. Packages allows you to group related modules together.
 
  The relationship between packages and modules is similar to that of directories and files in the
- filesystem. Packages can contain sub-packages and modules. In the filesystem a directory containing __init__.py
+ filesystem. Packages can contain sub-packages and modules.
+ In the filesystem a directory containing __init__.py
  is treated as a package when python tries to find packages on sys.path.
 
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.

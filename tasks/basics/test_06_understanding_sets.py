@@ -1,12 +1,12 @@
 """Code Author"""
 __author__ = 'Hari'
 
+from tasks.placeholders import  __author__
+
 NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
-
-from tasks.placeholders import  *
 
 def test_set_type():
     """Set Type"""
@@ -24,10 +24,10 @@ def test_set_empty():
     assert True is isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
-def test_set_length():
-    """Legth of Set"""
-    fruits = {"apple", "apple", "apple"}
-    assert 1 == len(fruits)  #are duplicates removed?
+#def test_set_length():
+#    """Legth of Set"""
+#    fruits = {"apple", "apple", "apple"}
+#    assert 1 == len(fruits)  #are duplicates removed?
 
     veggies = {"beetroot", "potato", "spinach"}
     assert 3 == len(veggies)
@@ -55,16 +55,16 @@ def test_set_creation():
 def test_set_membership():
     """Set Memebership"""
     fruits = {"apple", "mango", "kiwi"}
-    assert "apple" == "apple" in fruits
-    assert False == ("dog" in fruits)
+    #assert "apple" == "apple" in fruits
+    assert False is ("dog" in fruits)
 
 def test_set_operations():
     """Set operations"""
     set1 = {"one", "two", "three"}
     set2  =  {"three", "four"}
 
-    all = set1 | set2 # union
-    assert {"one","two","three","four"} == all
+    alls = set1 | set2 # union
+    assert {"one","two","three","four"} == alls
 
     common = set1 & set2
     assert {"three"} == common
@@ -91,15 +91,15 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as t_e:
+    except TypeError:
         print("unhashable type: 'list'")
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as t_e:
+    except TypeError:
         print("unhashable type: 'list'")
-        assert True  
+        assert True
 
     assert {1,'hello',(1,2)} == test_set
 

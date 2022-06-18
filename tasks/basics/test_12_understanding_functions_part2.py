@@ -56,7 +56,8 @@ def test_function_with_keyword_args():
     assert "dict" == type(result).__name__
     assert {"age":10,"height":100} == result
     assert {"age":10,"height":100} == demo_with_keyword_args("jack", "address", age=10, height=100)
-    assert {"address":"address","age":10,"height":100} == demo_with_keyword_args("jack", address="address", age=10, height=100)
+    assert {"address":"address",
+    "age":10,"height":100} == demo_with_keyword_args("jack", address="address", age=10, height=100)
 
 
 def demo_sub(*args, **kwargs):

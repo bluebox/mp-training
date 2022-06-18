@@ -1,7 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = '''
 python has support for standard control flow statements similar to other languages.
@@ -32,29 +32,29 @@ def test_if_else():
 def test_if_elif_else():
     """If-elif-else statements"""
     value = 3
-    str = "str"
+    stri = "str"
     if value < 0:
-        str = "negative"
+        stri = "negative"
     elif value == 0:
-        str = "zero"
+        stri = "zero"
     else:
-        str = "positive"
+        stri = "positive"
 
-    assert "positive" == str
+    assert "positive" == stri
 
 def test_for_loop_range():
     """for loops are used to iterate over arbitrary sequences"""
     nums =[]
-    for x in range(1,5):
-        nums.append(x)
+    for var in range(1,5):
+        nums.append(var)
     assert [1,2,3,4] == nums
 
 
 def test_for_loop_string():
     """String Looping using for loop"""
     chars = []
-    for x in "engine":
-        chars.append(x)
+    for var in "engine":
+        chars.append(var)
     assert ['e','n','g','i','n','e'] == chars
 
 def test_for_loop_list():
@@ -68,8 +68,8 @@ def test_for_loop_list_with_enumerate():
     """For loop List with enumerate"""
     words = ["one", "two", "three"]
     result = []
-    for p in enumerate(words):
-        result.append(p)
+    for var in enumerate(words):
+        result.append(var)
 
     assert [(0, 'one'), (1, 'two'), (2, 'three')] == result
     mapping = dict(result)
@@ -93,54 +93,54 @@ def test_while_loop():
 def test_for_loop_break():
     """Break Statement"""
     result = []
-    for x in range(1,10):
-        if x % 5 == 0:
+    for var in range(1,10):
+        if var % 5 == 0:
             break
-        result.append(x)
+        result.append(var)
 
     assert [1,2,3,4] == result
 
 def test_for_loop_continue():
     """Continue Statement"""
     result = []
-    for x in range (1, 10):
-        if x % 3 == 0:
+    for var in range (1, 10):
+        if var % 3 == 0:
             continue
-        result.append(x)
+        result.append(var)
     assert [1,2,4,5,7,8] == result
 
 def test_nested_loop_break():
     """Nested Loop Break statement"""
     result = []
-    for x in range(2):
-        for y in range(1,5):
-            if y%3 == 0:
+    for var in range(2):
+        for varb in range(1,5):
+            if varb%3 == 0:
                 break
-            result.append(x)
+            result.append(var)
 
     assert [0,0,1,1] == result
 
 def test_nested_loop_continue():
     """Nested For loop continue"""
     result = []
-    for x in range(2):
-        for y in range(1,5):
-            if y%3 == 0:
+    for var in range(2):
+        for varb in range(1,5):
+            if varb%3 == 0:
                 continue
-            result.append(x)
+            result.append(var)
 
     assert [0,0,0,1,1,1] == result
 
 def test_nested_loop_break_continue():
     """Nested Loop Break, Continue"""
     result = []
-    for x in range(3):
-        for y in range(1,5):
-            if y%3 == 0:
+    for var in range(3):
+        for varb in range(1,5):
+            if varb%3 == 0:
                 continue
-            if x%2 == 1:
+            if var%2 == 1:
                 break
-            result.append(x)
+            result.append(var)
 
     assert [0,0,0,2,2,2] == result
 
@@ -148,9 +148,9 @@ def test_nested_loop_break_continue():
 def test_for_loop_else_plain():
     """For-Else"""
     result = []
-    for x in range(5):
-        result.append(x)
-        print (x)
+    for var in range(5):
+        result.append(var)
+        print(var)
     else:
         result.append(10)
 
@@ -159,11 +159,11 @@ def test_for_loop_else_plain():
 def test_for_loop_else_break():
     """For-Else-Break"""
     result = []
-    for x in range(5):
-        if x %3 == 0:
+    for var in range(5):
+        if var %3 == 0:
             break
-        result.append(x)
-        print( x)
+        result.append(var)
+        print(var)
     else:
         result.append(10)
 
@@ -172,11 +172,11 @@ def test_for_loop_else_break():
 def test_for_loop_else_continue():
     """For-Else-Continue"""
     result = []
-    for x in range(5):
-        if x %3 == 0:
+    for var in range(5):
+        if var %3 == 0:
             continue
-        result.append(x)
-        print (x)
+        result.append(var)
+        print (var)
     else:
         result.append(10)
 
@@ -186,11 +186,11 @@ def test_for_loop_else_continue():
 def test_while_loop_else():
     """While-else"""
     result = []
-    x = 1
-    while x in range(5):
-        result.append(x)
-        x = x+1
-        if x%4 == 0:
+    var = 1
+    while var in range(5):
+        result.append(var)
+        var = var+1
+        if var%4 == 0:
             break
     else:
         result.append(10)

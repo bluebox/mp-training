@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 def test_list_type():
     """List of fruits"""
@@ -31,7 +31,7 @@ def test_list_is_mutable():
 def test_list_can_be_sliced():
     """ Slicing works the same as on strings"""
     fruits = ["banana", "orange", "grape"]
-    assert [] == fruits[0:0]
+    assert fruits != fruits[0:0]
 
     #begin : end
     assert ["banana","orange"] == fruits[0:2]
@@ -44,7 +44,7 @@ def test_list_can_be_sliced():
     assert ["banana", "orange", "grape"] == fruits[0:]
 
     #: end
-    assert [] == fruits[:0]
+    assert fruits != fruits[:0]
     assert ["banana", "orange"] == fruits[:2]
     assert ["banana", "orange", "grape"] == fruits[:5]
 
@@ -55,20 +55,20 @@ def test_list_can_be_sliced():
 def test_slice_creates_a_new_list():
     """Slicing creates a new list"""
     fruits = ["banana", "orange", "grape"]
-    slice = fruits[0:2]
-    slice.append("guava")
+    slices = fruits[0:2]
+    slices.append("guava")
 
     assert ["banana", "orange", "grape"]== fruits # did this change?  No
-    assert ["banana", "orange", "guava"]== slice
+    assert ["banana", "orange", "guava"]== slices
 
 
 def test_list_merge():
     """Merging Lists"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
-    all = fruits + veggies
+    alls = fruits + veggies
 
-    assert ['banana', 'orange', 'grape', 'beetroot', 'tomato'] == all
+    assert ['banana', 'orange', 'grape', 'beetroot', 'tomato'] == alls
     assert ["banana", "orange", "grape"] == fruits
     assert ["beetroot", "tomato"] == veggies
     assert ['orange', 'grape', 'beetroot'] == fruits[1:] + veggies[:1]
@@ -87,7 +87,10 @@ def test_list_slice_replacement_is_inplace():
     assert ["banana1", "litchi","guava", "grape1"] == fruits
 
 def test_list_common_methods():
-    """ You can find methods supported by lists by entering help([]) in the python console. Ignore the methods that start with __ for now. For help on a specific function like pop enter help([].pop)"""
+    """ You can find methods supported by lists by entering
+    help([]) in the python console. Ignore the methods that
+    start with __ for now. For help on a specific function
+    like pop enter help([].pop)"""
     fruits = []
     fruits.append("orange")
 
@@ -112,11 +115,11 @@ def test_list_can_contain_lists():
     """Nested Lists"""
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
-    all = [fruits, veggies]
+    alls = [fruits, veggies]
 
-    assert 2 == len(all)
-    assert ["orange","banana"] == all[0]
-    assert ["beetroot","tomato"]== all[1]
+    assert 2 == len(alls)
+    assert ["orange","banana"] == alls[0]
+    assert ["beetroot","tomato"]== alls[1]
 
 def test_list_can_contain_objects_of_different_types():
     """Mixed Lists"""
@@ -138,8 +141,8 @@ def test_list_sort():
 def test_list_membership():
     """List Membership"""
     numbers = [ 5, 4, 3]
-    assert 5 == 5 in numbers
-    assert False == (10 in numbers)
+    assert True is (5 in numbers)
+    assert False is (10 in numbers)
 
 def test_list_range():
     """List in range"""

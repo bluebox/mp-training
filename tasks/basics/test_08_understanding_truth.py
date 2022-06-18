@@ -1,7 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = '''
 Just like C, python has notions on what values are considered true

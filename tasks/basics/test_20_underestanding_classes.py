@@ -37,7 +37,6 @@ def test_classes_are_objects():
     """Classes are objects"""
     class Queue():
         """Queue with push and pop functions."""
-        pass
 
     def get_attr_count(obj):
         return len(dir(obj))
@@ -50,7 +49,6 @@ def test_classes_are_callable_objects():
     """Classes are callable objects"""
     class Queue():
         """Queue"""
-        pass
 
     #classes are callable objects just like function objects
     assert True is callable(Queue)
@@ -60,7 +58,6 @@ def test_classes_are_object_factories():
     """Classes are object factories"""
     class Queue():
         """Queue"""
-        pass
 
     q_1 = Queue()  # you can 'call' a class to create an instance
     q_2 = Queue()
@@ -147,7 +144,7 @@ def test_class_is_an_executable_statement():
 # the 'this' keyword.
 def test_classes_methods():
     """Class methods"""
-    class Queue(object):
+    class Queue():
         """Queue"""
         def __init__(self, name):
             self.name = name
@@ -172,7 +169,7 @@ def test_classes_methods():
 
 def test_classes_bound_and_unbound_methods():
     """Bound and unbounded methods"""
-    class Queue(object):
+    class Queue():
         """Queue"""
         def __init__(self, name):
             self.name = name

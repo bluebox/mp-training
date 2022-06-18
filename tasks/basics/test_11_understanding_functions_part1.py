@@ -1,7 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = '''
 Functions are the basic unit of modularization in python. You use functions to group
@@ -91,7 +91,7 @@ def test_functions_can_be_passed_as_objects():
 
 def my_greet(greeting, name="world"):
     """Greeting Function"""
-    return "{0} {1}".format(greeting, name)
+    return f"{greeting} {name}"
 
 
 def test_default_arguments():
@@ -136,7 +136,8 @@ def demo_parameter_passing3(names):
     """Demo Parameter"""
     names.append("something")
 
-# read up after you finish this to make sure you get this right: http://effbot.org/zone/call-by-object.htm
+# read up after you finish this to make sure you get this
+# right: http://effbot.org/zone/call-by-object.htm
 def test_function_params_passed_by_object_reference():
     """Function Parameters passed by object reference"""
     var = 10

@@ -58,7 +58,7 @@ def test_inner_func_has_access_to_outer_variables_after_return():
 
 def print_attributes(obj):
     for var in dir(obj):
-        print("attribute: {0}".format(var))
+        print(f"attribute: {var}")
         print(getattr(obj, var))
 
 
@@ -69,7 +69,7 @@ def test_inner_func_attributes():
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
     # function scope variables
-    ref_to_outer_scope = "__globals__"
+    #ref_to_outer_scope = "__globals__"
 
 
 # if you understand this, you have understood nested funcs :)

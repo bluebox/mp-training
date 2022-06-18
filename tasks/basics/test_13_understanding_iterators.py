@@ -40,7 +40,6 @@ def test_enumerate_iter():
     """Enumerate iter"""
     list_iter = iter(["one", "two", "three"])
     try:
-        """Python 3 doesn't support next(), So I have changed it to __next__()"""
         assert "one" == list_iter.__next__()
         assert "two" == list_iter.__next__()
         assert "three" == list_iter.__next__()
@@ -57,7 +56,7 @@ def convert_to_list(iterable):
         while True:
             item = seq_iterator.__next__()
             result.append(item)
-    except StopIteration as s_e:
+    except StopIteration:
         return result
 
 def test_convert():

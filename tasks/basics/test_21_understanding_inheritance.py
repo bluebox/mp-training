@@ -5,7 +5,8 @@ from tasks.placeholders import __author__
 
 NOTES = '''
  Inheritance is another standard feature of object oriented programming.
- This exercise illustrates the syntax and language features for using inheritance in Python.
+ This exercise illustrates the syntax and language features for using 
+ inheritance in Python.
 '''
 
 def test_inheritance_basic():

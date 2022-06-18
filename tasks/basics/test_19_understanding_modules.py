@@ -1,7 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 import sys
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 from tasks import placeholders
 from tasks.basics import module1
 

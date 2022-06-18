@@ -61,7 +61,8 @@ def test_lc_nested_filter():
     assert 5 == len(result)
     assert [0,2,2,2,4] == result
 
-# dict comprehensions work the same way, you use them to create dicts
+# dict comprehensions work the same way,
+# you use them to create dicts
 # from some source of data
 def test_dc_basic():
     """Dictionary Comprehension"""

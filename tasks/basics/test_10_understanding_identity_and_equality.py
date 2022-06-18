@@ -60,7 +60,7 @@ def test_identity_equality_small_numbers():
     """why do small numbers behave differently? google and find out!"""
     var = vari = 10
     assert True is (var is vari)
-    assert True is ( var == var)
+    #assert True is ( var == var)
 
     varia = 10
     variab = int("10")

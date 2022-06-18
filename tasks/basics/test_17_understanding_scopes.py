@@ -47,7 +47,6 @@ def test_scope_basic():
 def test_scope_undefined_variable():
     """Scope of undefined Variable"""
     local_names = get_locals(test_scope_undefined_variable)
-
     try:
         my_name = name  #name variable is not in local or  global scope
     except NameError : # fill up the exception

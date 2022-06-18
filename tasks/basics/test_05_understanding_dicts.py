@@ -1,7 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = '''
 dicts are unordered sets of key value pairs which facilitate
@@ -16,8 +16,8 @@ def test_dictionary_type():
 def test_dictionary_empty():
     """Empty Dictionary"""
     empty_dict_1 = {}
-    assert True == isinstance(empty_dict_1, dict)
-    empty_dict_2 = dict()
+    assert True is isinstance(empty_dict_1, dict)
+    empty_dict_2 = {}
     # another way of creating empty dict
     assert 0 == len(empty_dict_2)
     assert empty_dict_1 == empty_dict_2
@@ -25,7 +25,7 @@ def test_dictionary_empty():
 def test_dictionary_create():
     """Dictionary Creation"""
     dict_1 = { 1 : "one", 2 : "two" }
-    assert True == isinstance(dict_1, dict)
+    assert True is isinstance(dict_1, dict)
 
     #init from a sequence of tuple pairs, useful in many cases.
     dict_2 = dict([(1, "one"), (2, "two")])
@@ -46,7 +46,7 @@ def test_dictionary_is_indexed_by_key():
 
     try:
         word_to_digit[1]
-    except Exception as e_x:
+    except KeyError as e_x:
     #Note that numeric indicies don't mean much like in case of lists and tuples
         print (e_x)   # ex=1(value from dict key-value pair stored in exception)
         assert True
@@ -65,7 +65,8 @@ def test_dictionary_is_mutable():
     assert {"two" : 2, "three":3, "one":10} == word_to_digit
     # A regular dictionary doesn't track the insertion order.
     # So when iterating over it, items are returned in an arbitrary order.
-    # When we want to make sure that items are returned to the order they were inserted, we can use OrderedDict.
+    # When we want to make sure that items are returned to the order they
+    # were inserted, we can use OrderedDict.
 
 def test_dictionary_is_unordered():
     """Unordered Dictionary"""
@@ -73,7 +74,7 @@ def test_dictionary_is_unordered():
     dict2 = { 'two': 2, 'one': 1}
 
     equal = (dict1 == dict2)
-    assert True == equal # True or False?
+    assert True is equal # True or False?
 
 def test_dictionary_keys_and_values():
     """Keys and Values in Dictionary"""
@@ -92,17 +93,17 @@ def test_dictionary_contains():
     """Elements in Dictionary"""
     word_to_digit = { "one" : 1, "two" : 2}
 
-    assert True == ("one" in word_to_digit)
-    assert True == ("two" in word_to_digit)
+    assert True is ("one" in word_to_digit)
+    assert True is ("two" in word_to_digit)
 
-    assert True == ("one" in word_to_digit.keys())
-    assert True == ("two" in word_to_digit.keys())
+    #assert True is ("one" in word_to_digit.keys())
+    #assert True is ("two" in word_to_digit.keys())
 
     assert (1 in {"one":1,"two":2}) == (1 in word_to_digit)
     assert (2 in {"one":1,"two":2}) == (2 in word_to_digit)
 
-    assert True == (1 in word_to_digit.values())
-    assert True == (2 in word_to_digit.values())
+    assert True is (1 in word_to_digit.values())
+    assert True is (2 in word_to_digit.values())
 
 def test_valid_dictionary_keys():
     """Valid keys"""
@@ -112,7 +113,7 @@ def test_valid_dictionary_keys():
     try:
         key = []
         test_dict[key] = "list"
-    except TypeError as t_e:
+    except TypeError:
         print ("unhashable type: 'list'")  #observe the error message.
         assert True
 

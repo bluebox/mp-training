@@ -1,7 +1,7 @@
 """author of the code"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
@@ -159,21 +159,21 @@ def test_string_combine():
 
 def test_string_formatting():
     """String Fromatting"""
-    greeting = "Hello '{0}'".format("learner")
+    greeting = f"Hello '{'learner'}'"
     assert "Hello 'learner'"== greeting
 
-    truth = "{1} plus {1} makes {0}".format("two","one")
+    truth = f"{'one'} plus {'one'} makes {'two'}"
     assert truth == 'one plus one makes two'
 
-    stmt = "{name} is {age} years old".format(name="Ravi", age=25)
+    stmt = f"{'Ravi'} is {25} years old"
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
     """Checking for substing in string"""
-    assert False== ('c' in 'apple')
+    assert False is ('c' in 'apple')
     #is there a precedence issue here?
-    assert True == ('a' in 'apple')
-    assert True == ('app' in 'apple')
+    assert True is ('a' in 'apple')
+    assert True is ('app' in 'apple')
 
 THREE_THINGS_I_LEARNT = """
 -strings are immutable

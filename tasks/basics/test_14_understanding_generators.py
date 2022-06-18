@@ -98,8 +98,8 @@ def test_generator_exception():
     def func():
         try:
             yield 10
-            raise Exception("some message")
-        except :
+            raise SyntaxError("some message")
+        except SyntaxError:
             yield 20
         else:
             yield 40
