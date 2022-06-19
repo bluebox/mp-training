@@ -1,6 +1,7 @@
+'''understanding assertions'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = '''
 This lesson introduces the basic assert statement in python. assert is generally used to 'assert' the truth of an
@@ -12,24 +13,28 @@ the <optional message>. If is evaluates to True, nothing happens.
 
 
 def test_assert_true():
-    #throws assertion error
+    '''throws assertion error'''
     assert True  #This should be True -- replace ___ with True.
 
 def test_assert_true_with_message():
-    assert True, "This is the failure message" 
-    # replace with True to stop seeing assertion error
+    '''replace with True to stop seeing assertion error'''
+    assert True, "This is the failure message"
 def test_assert_equality():
-    assert 7 == 2 + 5   #replace __ with the expected value
+    '''replace __ with the expected value'''
+    assert 7 == 2 + 5
 
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
+    '''8 is greater than 7'''
     assert 8 > 7, "Fill in a value greater than 7"
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
+    '''** is used for exponential values'''
     assert 2**43 > 2**30, "Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
+    '''== is used to check equality between variables'''
     s_1 = "Hello, World"
     s_2 = "Hello, World"
     assert s_1 == s_2
@@ -40,4 +45,4 @@ THREE_THINGS_I_LEARNT = """
 
 """
 
-TIME_TAKEN_MINUTES = 1
+TIME_TAKEN_MINUTES = 10
