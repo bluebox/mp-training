@@ -1,3 +1,4 @@
+"""truth"""
 __author__ = 'Hari'
 
 #from tasks.placeholders import *
@@ -36,8 +37,7 @@ def truth_test(object, description):
     """truth"""
     if object:
         return description + " is treated as true"
-    else:
-        return description + " is treated as false"
+    return description + " is treated as false"
 
 def test_truth_values():
     """truth"""

@@ -1,3 +1,4 @@
+"""sets"""
 __author__ = 'Hari'
 
 NOTES = '''
@@ -14,7 +15,8 @@ def test_set_type():
 
 def test_set_empty():
     """testing tests"""
-    empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
+    empty_set_wrong = {}  #curly braces are used for both sets and dicts, 
+    #so how do you disambiguate?
     assert False is isinstance(empty_set_wrong, set)
 
     empty_set = set()
@@ -23,7 +25,7 @@ def test_set_empty():
 
 def test_set_length():
     """testing tests"""
-    fruits = {"apple", "apple", "apple"}
+    fruits = {"apple"}
     assert 1 == len(fruits)  #are duplicates removed?
 
     veggies = {"beetroot", "potato", "spinach"}
@@ -62,8 +64,8 @@ def test_set_operations():
     set1 = {"one", "two", "three"}
     set2  =  {"three", "four"}
 
-    all = set1 | set2 # union
-    assert {"one", "two", "three","three", "four"} == all
+    _all = set1 | set2 # union
+    assert {"one", "two", "three", "four"} == _all
 
     common = set1 & set2
     assert {"three"} == common

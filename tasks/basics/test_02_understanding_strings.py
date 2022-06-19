@@ -1,8 +1,9 @@
+"""strings"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
-notes = """string is one of the most commonly used data types, it has different
+NOTES = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
 
 def test_string_type():
@@ -63,7 +64,7 @@ def test_string_len():
     assert 13 == len("Hello 'world'")
     assert 13 == len('Hello \'world\'')
 
-def test_triple_quoted_strings_can_span_lines():
+def test_triple_quoted_strings_can_span():
     """string testing"""
     string = """Hello
     World"""
@@ -103,7 +104,7 @@ def test_strings_are_immutable():
     """ strings in python cannot be modified unlike in C """
     string = "Hello"
     try:
-        string[0] = "M"
+        string[0] == "M"
     except TypeError as _te:
         print(_te)
         assert True
@@ -172,7 +173,8 @@ def test_string_membership():
     """string testing"""
     assert False is ('c' in 'apple')  #is there a precedence issue here?
     assert True is ('a' in 'apple')
-    assert  True is ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
+    assert  True is ('app' in 'apple') # '==' and 'in' operators have same precedence are 
+    # interpreted from left to right in the expression
 
 
 THREE_THINGS_I_LEARNT = """

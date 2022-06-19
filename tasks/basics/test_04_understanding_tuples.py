@@ -1,3 +1,4 @@
+"""tuples"""
 __author__ = 'Hari'
 
 # from tasks.placeholders import *
@@ -20,7 +21,7 @@ def test_tuple_length():
 def test_tuple_with_no_elements():
     """testing tuples"""
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
@@ -49,7 +50,7 @@ def test_tuples_are_immutable():
     """testing tuples"""
     colors = ('red', 'blue', 'green')
     try:
-        colors[0] = 'orange'
+        colors[0] == 'orange'
     except TypeError as _te:
       #  print te # note the exception -> SyntaxError: Missing parentheses in call to 'print'.
         assert True
@@ -75,10 +76,12 @@ def test_tuple_unpacking():
 
     triplet = (10, 20, 30)
     try:
-        _a, _b = triplet
+        _a, _b, _c = triplet
         assert False # should not come here.
     except ValueError as _ve:
-        print(_ve) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
+        print(_ve) # observe what is printed here. =>In Python 3, 
+        #printing values changed from being a distinct statement to being an ordinary function call, 
+        # so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():

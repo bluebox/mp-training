@@ -1,3 +1,6 @@
+"""scopes"""
+import inspect
+import symtable
 __author__ = 'Hari'
 
 NOTES = '''
@@ -16,23 +19,21 @@ NOTES = '''
  Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
 '''
 
-import inspect
-import symtable
 
 #from tasks.placeholders import *
 
-_count = 10
+_COUNT = 10
 
 #used to by pass any local shadow variables.
 def get_global_count():
     """scopes"""
-    return _count
+    return _COUNT
 
 def test_scope_basic():
     """scopes"""
     local_names = get_locals(test_scope_basic)
 
-    _value = _count
+    _value = _COUNT
 
     assert False is ('value' in local_names)
     assert False is ('value' in global_names)
@@ -71,17 +72,17 @@ def test_global_write():
     """scopes"""
     local_names = get_locals(test_global_write)
 
-    global _count # declare that we want to use the read/write to global count
-    _count = 30
+    global _COUNT # declare that we want to use the read/write to global count
+    _COUNT = 30
 
     try:
         assert False is ('count' in local_names)
         assert False is ('count' in global_names)
 
-        assert 30 == _count
+        assert 30 == _COUNT
         assert 30 == get_global_count()
     finally:
-        _count = 10 #reset to original value
+        _COUNT = 10 #reset to original value
 
 def test_scope_is_bound_at_definition_time():
     """scopes"""
@@ -89,7 +90,7 @@ def test_scope_is_bound_at_definition_time():
 
     assert False is ('count' in local_names)
     assert False is ('count' in global_names)
-
+    _count = 0
     try:
         _value = _count
         _count = 30
@@ -149,4 +150,3 @@ def get_globals():
     return top.get_identifiers()
 
 global_names = get_globals()
-

@@ -1,3 +1,4 @@
+"""exceptions"""
 __author__ = 'Hari'
 
 NOTES = """
@@ -33,9 +34,9 @@ def test_exception_flow_2():
         result.append("two")
         fruit.missingmethod() #missing attribute
         result.append("three")
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("four")
-    except ZeroDivisionError as ze:
+    except ZeroDivisionError as _ze:
         result.append("five")
 
     assert ["one", "five"] == result
@@ -46,7 +47,7 @@ def test_raise_error():
     try:
         result.append("one")
         raise AttributeError("some error here")
-    except AttributeError as se:
+    except AttributeError as _se:
         result.append("three")
 
     assert ['one', 'three'] == result
@@ -59,7 +60,7 @@ def test_missing_except():
         result.append("one")
         #what happens now? fix it with an appropriate try except
         fruit.missingmethod()
-    except:
+    except NameError :
         result.append("two")
 
     assert ["one", "two"] == result
@@ -70,7 +71,7 @@ def function_with_except(result):
     result.append("f:enter")
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError as _ae:
         result.append("f:except")
 
     result.append("f:return")
@@ -135,19 +136,19 @@ def test_else_on_no_exception():
 
 def test_finally_on_exception():
     """exceptions"""
-    result = []
+    _re = []
     try:
-        result.append("m:beforecall")
-        function_with_except(result)
-        result.append("m:aftercall")
+        _re.append("m:beforecall")
+        function_with_except(_re)
+        _re.append("m:aftercall")
     except AttributeError as _ae:
-        result.append("m:except")
+        _re.append("m:except")
     else:
-        result.append("m:else")
+        _re.append("m:else")
     finally:
-        result.append("m:finally")
+        _re.append("m:finally")
 
-    assert ["m:beforecall", "f:enter","f:except","f:return","m:aftercall", "m:else","m:finally" ] == result
+    assert ["m:beforecall","f:enter","f:except","f:return","m:aftercall","m:else","m:finally"]==_re
 
 
 
@@ -179,5 +180,4 @@ THREE_THINGS_I_LEARNT = """
 -
 -
 """
-
 TIME_TAKEN_MINUTES = 1 

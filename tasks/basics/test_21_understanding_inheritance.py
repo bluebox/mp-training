@@ -1,6 +1,6 @@
 #from Tasks.placeholders import *
 
-
+"""inheritance"""
 __author__ = 'Hari'
 
 NOTES = '''
@@ -16,13 +16,13 @@ def test_inheritance_basic():
         "A inherits from object."
         def method_f(self):
             """methodF"""
-            pass
+            #pass
 
     class CallingB(CallingA):      #B inherits from A or B derives A
         """B inherits from A or B derives A"""
         def method_g(self):
             """methodG"""
-            pass
+            #pass
 
     assert True is issubclass(CallingA, object)
     assert True is issubclass(CallingA, CallingA)
@@ -100,6 +100,7 @@ def test_inheritance_init():
         def __init__(self):
             self.b_1 = []
         def method_f3(self):
+            """method"""
             pass
 
     _a = CallingA()
@@ -126,8 +127,7 @@ def test_inheritance_init():
             self.b_1 = "b1"
         def method_f1(self):
             """methods"""
-            
-            pass
+            #pass
 
     _b = CallingB2()
     assert [] == getattr(_b, "a_1", None)

@@ -1,3 +1,4 @@
+"""function part2"""
 __author__ = 'Hari'
 
 #from tasks.placeholders import *
@@ -21,7 +22,7 @@ def test_function_call_with_keyword_arguments():
     assert [10, 2, 30] == demo(10, third=30)
 
 
-def demo_variable_args(first, *args):
+def demo_variable_args( *args):
     """functions part2"""
     return args
 
@@ -43,7 +44,7 @@ def test_function_with_variable_args():
     assert "one,two,three" == my_merge(",", "one", "two", "three")
 
 
-def demo_with_keyword_args(name, *args, **kwargs):
+def demo_with_keyword_args( *args, **kwargs):
     """functions part2"""
     return kwargs
 
@@ -62,12 +63,12 @@ def demo_sub(*args, **kwargs):
     return args, kwargs
 
 
-def demo_unpacking(name, *args, **kwargs):
+def demo_unpacking(*args, **kwargs):
     """functions part2"""
     return demo_sub(*args, **kwargs)
 
 
-def demo_no_unpacking(name, *args, **kwargs):
+def demo_no_unpacking( *args, **kwargs):
     """functions part2"""
     return demo_sub(args, kwargs)
 
