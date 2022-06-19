@@ -60,7 +60,7 @@ def test_missing_except():
         result.append("one")
         #what happens now? fix it with an appropriate try except
         fruit.missingmethod()
-    except NameError :
+    except AttributeError:
         result.append("two")
 
     assert ["one", "two"] == result

@@ -111,7 +111,7 @@ def test_generator_exception():
         try:
             yield 10
             raise Exception("some message")
-        except AttributeError:
+        except :
             yield 20
         else:
             yield 40

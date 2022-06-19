@@ -112,14 +112,14 @@ def test_scope_writing_globals():
     assert False is ('count' in local_names)
     assert False is ('count' in global_names)
 
-    global _count
+    global _COUNT
 
     try:
-        _count = 40
-        assert 40 == _count
+        _COUNT = 40
+        assert 40 == _COUNT
         assert 40 == get_global_count()
     finally:
-        _count = 10
+        _COUNT = 10
 
     assert 10 == get_global_count()
 

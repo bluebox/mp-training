@@ -76,7 +76,7 @@ def test_tuple_unpacking():
 
     triplet = (10, 20, 30)
     try:
-        _a, _b, _c = triplet
+        _a, _b= triplet
         assert False # should not come here.
     except ValueError as _ve:
         print(_ve) # observe what is printed here. =>In Python 3, 

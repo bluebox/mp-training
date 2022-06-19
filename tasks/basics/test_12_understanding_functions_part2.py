@@ -36,9 +36,9 @@ def test_function_with_variable_args():
     """functions part2"""
     result = demo_variable_args("hello", "world")
     assert "tuple" == type(result).__name__ #this is the type of args
-    assert ('world',) == result              #this is the value of args
+    assert ('hello', 'world') == result              #this is the value of args
 
-    assert (1, 2, 3) == demo_variable_args("hello", 1, 2, 3)
+    assert ('hello', 1, 2, 3) == demo_variable_args("hello", 1, 2, 3)
 
     assert "one.two.three" == my_merge(".", "one", "two", "three")
     assert "one,two,three" == my_merge(",", "one", "two", "three")
@@ -76,10 +76,10 @@ def demo_no_unpacking( *args, **kwargs):
 def test_function_unpacking():
     """functions part2"""
     result = demo_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert ((1, 2), {'k1': 'v1', 'k2': 'v2'}) == result
+    assert (('jack', 1, 2), {'k1': 'v1', 'k2': 'v2'}) == result
 
     result = demo_no_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert (((1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
+    assert ((('jack', 1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
 
     result = demo_sub(1,2, k1="v1")
     assert ((1, 2), {'k1': 'v1'}) == result
