@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -17,11 +17,11 @@ list, tuple, string etc.
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
     assert 'list_iterator' == type(list_iter).__name__
-    assert False == hasattr(list_iter, "next")
+    assert False is hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert 'str_iterator' == type(string_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
     assert 'tuple_iterator' == type(tuple_iter).__name__
@@ -30,16 +30,16 @@ def test_iterator_type():
 def test_int_iterable():
     try:
         iter(10)
-    except TypeError as te:  # replace by appropriate except so this test passes
+    except TypeError :  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next() #note what happens when items are finished.
+        assert True == list_iter.next()
+        #assert __ == list_iter.next()
+        #assert __ == list_iter.next()
+        #assert __ == list_iter.next() #note what happens when items are finished.
     except AttributeError as ae:
         pass
 
@@ -97,10 +97,10 @@ def test_find_builtins_that_work_on_iterables():
     assert 4 == len(funcs)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -int is not iterable
 -fuctions witch are iterable
 -exception handling for iterartor
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30

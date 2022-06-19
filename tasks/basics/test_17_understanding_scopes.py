@@ -116,13 +116,13 @@ def test_scope_writing_globals():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 40
+TIME_TAKEN_MINUTES = 40
 
 
 #helper functions which get the variables in locals and globals using the compiler's symbol tables.
@@ -139,4 +139,3 @@ def get_globals():
     return top.get_identifiers()
 
 global_names = get_globals()
-
