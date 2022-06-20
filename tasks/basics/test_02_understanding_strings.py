@@ -1,139 +1,147 @@
+'''program file'''
 __author__ = 'Hari'
-
-from tasks.placeholders import *
-
-NOTES = """string is one of the most commonly used data types, it has different
+#from tasks.placeholders import *
+NOTES = """strng is one of the most commonly used data types, it has different
 behavior than a char* in C."""
 
 def test_string_type():
+    '''function'''
     assert 'str'== type("Hello World").__name__
-    assert True== isinstance("Hello World", str)
+    assert True is isinstance("Hello World", str)
 
 def test_single_quoted_strings_are_strings():
-    assert True== isinstance('Hello World', str)
+    '''function'''
+    assert True is isinstance('Hello World', str)
 
 def test_double_quoted_strings_are_strings():
-    assert True== isinstance("Hello World", str)
+    '''function'''
+    assert True is isinstance("Hello World", str)
 
 def test_triple_quoted_strings_are_strings():
-    assert True== isinstance("""Hello World""", str)
+    '''function'''
+    assert True is isinstance("""Hello World""", str)
 
 def test_triple_single_quoted_strings_are_strings():
-    assert True== isinstance('''Hello World''', str)
+    '''function'''
+    assert True is isinstance('''Hello World''', str)
 
 def test_raw_strings_are_strings():
-    assert True == isinstance(r"Hello World", str)
+    '''function'''
+    assert True is isinstance(r"Hello World", str)
 
 def test_single_quoted_strings_can_have_double_quotes():
+    '''function'''
     first = 'The pilot said "Jump"'
     second = "The pilot said \"Jump\""  #note back slash escaping of "
     are_equal = (first == second)
-    assert True== are_equal
+    assert True is are_equal
 
 def test_double_quoted_strings_can_have_single_quotes():
+    '''function'''
     first = "The pilot said 'Jump'"
     second = 'The pilot said \'Jump\''  #note back slash escaping of '
     are_equal = (first == second)
-    assert True== are_equal
+    assert True is are_equal
 
 def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
     """ Edit tq_str to make are_equal True """
     tq_str = """ Isn't the "Hobbit" great? """
     dq_str = "Isn't the \"Hobbit\" great?"
     are_equal = (tq_str == dq_str)
-    assert  False == are_equal
+    assert  False is are_equal
 
 def test_triple_quoted_strings_can_span_lines():
-    tq_str = """Hello
-World"""
+    '''function'''
+    tq_str = """Hello\nWorld"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
 
 def test_string_len():
+    '''function'''
     assert 13 == len("Hello 'world'")
     assert 13 == len('Hello \'world\'')
 
 def test_triple_quoted_strings_can_span_lines():
-    string = """Hello
-    World"""
-    assert True == isinstance(string, str)
-    assert 15 == len(string)
+    '''function'''
+    strng = """Hello World"""
+    assert True is isinstance(strng, str)
+    assert 15 == len(strng)
 
 def test_strings_can_be_indexed():
-    string = "Hello"
-    assert 'H'== string[0]
-    assert 'e'== string[1]
-    assert 'l' == string[2]
-    assert 'l'== string[3]
-    assert 'o' == string[4]
-    assert 'o' == string[-1]  # solves the common use case to iterate from end
-    assert 'l' == string[-2]
-    assert 'l' == string[-3]
-    assert 'e' == string[-4]
-    assert 'H' == string[-5]
-    assert 'H' == string[-0]  # hint -0 is 0
-    assert  5 == len(string)
+    '''function'''
+    strng = "Hello"
+    assert 'H'== strng[0]
+    assert 'e'== strng[1]
+    assert 'l' == strng[2]
+    assert 'l'== strng[3]
+    assert 'o' == strng[4]
+    assert 'o' == strng[-1]  # solves the common use case to iterate from end
+    assert 'l' == strng[-2]
+    assert 'l' == strng[-3]
+    assert 'e' == strng[-4]
+    assert 'H' == strng[-5]
+    assert 'H' == strng[-0]  # hint -0 is 0
+    assert  5 == len(strng)
     try:
-        out_of_bounds = string[5] #raises an error, we will revisit exceptions later
-    except IndexError as ie:
-        print (ie)   #string index out of range
+        out_of_bounds = strng[5] #raises an error, we will revisit exceptions later
+    except IndexError as ie_1 :
+        print (ie_1)   #strng index out of range
         assert True  #make this True to proceed.
 
 def test_chars_are_strings_too():
-    string = "Hello"
-    first_char = string[0]
+    '''function'''
+    strng = "Hello"
+    first_char = strng[0]
     assert 'str' == type(first_char).__name__
     assert 'str' == type('a').__name__
     assert 'str'== type("a").__name__
 
 def test_strings_are_immutable():
+    '''function'''
     """ strings in python cannot be modified unlike in C """
-    string = "Hello"
+    strng = "Hello"
     try:
-        string[0] = "M"
-    except TypeError as te:
-        print (te)
+        strng[0] = "M"
+    except TypeError as te_1:
+        print (te_1)
         assert True
 
 def test_string_concat():
+    '''function'''
     assert "Hello  world"== "Hello " + " world"
     assert 'Hello world'== """Hello """ + 'world'
     assert 'Hello world'== 'Hello ' + "world"
 
-
 def test_string_slicing():
     """ Slicing creates new strings """
-    string = "Hello world"
+    strng = "Hello world"
     #with begin : end
-    assert ''== string[0:0]
-
-    assert 'He' == string[0:2]
-    assert 'ello'== string[1:5]
-    assert 'ello worl'== string[1:-1]
-    assert 'llo wor'== string[2:-2]
-
+    assert ''== strng[0:0]
+    assert 'He' == strng[0:2]
+    assert 'ello'== strng[1:5]
+    assert 'ello worl'== strng[1:-1]
+    assert 'llo wor'== strng[2:-2]
     #with :end
-    assert ''== string[:0]
-    assert 'Hell'== string[:4]
-    assert 'Hello worl'== string[:-1]
-
+    assert ''== strng[:0]
+    assert 'Hell'== strng[:4]
+    assert 'Hello worl'== strng[:-1]
     #with begin:
-    assert 'Hello world'== string[0:]
-    assert 'o world'== string[4:]
-    assert 'd'== string[-1:]
-
+    assert 'Hello world'== strng[0:]
+    assert 'o world'== strng[4:]
+    assert 'd'== strng[-1:]
     #observe the invariant
-    assert 'Hello world' == string[:0] + string[0:]
-    assert 'Hello world' == string[:1] + string[1:]
-    assert 'Hello world'== string[:2] + string[2:]
-    assert 'Hello world'== string[:3] + string[3:]
-
+    assert 'Hello world' == strng[:0] + strng[0:]
+    assert 'Hello world' == strng[:1] + strng[1:]
+    assert 'Hello world'== strng[:2] + strng[2:]
+    assert 'Hello world'== strng[:3] + strng[3:]
 
 def test_string_repeat():
+    '''function'''
     assert 'HelloHelloHello' == "Hello" * 3
     assert 12 == len("Hello " * 2)
 
 def test_string_combine():
+    '''function'''
     """
     Use slicing to pass the assert.
     """
@@ -142,26 +150,24 @@ def test_string_combine():
     assert  bye[0:8] + hello[6:]  == "Goodbye World"
 
 def test_string_formatting():
+    '''function'''
     greeting = "Hello '{0}'".format("learner")
     assert "Hello 'learner'"== greeting
-
     truth = "{1} plus {1} makes {0}".format("two","one")
     assert truth == 'one plus one makes two'
-
-
     stmt = "{name} is {age} years old".format(name="Ravi", age=25)
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
-    assert False== ('c' in 'apple')  #is there a precedence issue here?
-    assert True == ('a' in 'apple')
-    assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
-
+    '''function'''
+    assert False is 'c' in 'apple'  #is there a precedence issue here?
+    assert True is 'a' in 'apple'
+    assert  True is ('app' in 'apple')
+# '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
 THREE_THINGS_I_LEARNT = """
 -strings are immutable
 -strings can be accessed through indexing
 -strings can be sliced
 """
-
 TIME_TAKEN_MINUTES = 20

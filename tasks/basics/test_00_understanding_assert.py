@@ -1,3 +1,4 @@
+"""test_00_file"""
 __author__ = 'Hari'
 '''from tasks.placeholders import *'''
 NOTES = '''
@@ -13,7 +14,7 @@ def test_assert_true():
 
 def test_assert_true_with_message():
     '''assert'''
-    assert True, "This is the failure message" 
+    assert True, "This is the failure message"
 # replace ___ with True to stop seeing the assertion error
 
 def test_assert_equality():

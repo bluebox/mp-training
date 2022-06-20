@@ -1,3 +1,4 @@
+'''program file'''
 __author__ = 'Hari'
 
 NOTES = '''
@@ -11,44 +12,46 @@ You can also think of generators as resumable functions. The caller needs to kee
 calling next() to keep moving the function forward and at every stop point where you
 have a yield or return the function can return something new.
 '''
-
-from tasks.placeholders import *
-
+#from tasks.placeholders import *
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():
+    '''function'''
     yield "how"
     yield "are"
     yield "you?"
 
 def test_generator_type():
+    '''function'''
     assert "function" == type(demo_generator).__name__  #definition is a function
     assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
+    '''function'''
     assert False == hasattr(demo_generator, "next")
     assert False == hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
+    '''function'''
     result = demo_generator()
     try:
         assert "how" == next(result)  # builtin which calls the iterator.next()
         assert "are" == next(result)
         assert "you?" == next(result)
         assert "" == next(result)
-    except StopIteration as se:
+    except StopIteration :
         assert True
-
     assert "how.are.you?" == ".".join(demo_generator()) #join takes a iterable
 
 # Note that this function takes any sequence, and returns a reversed form
 # element by element, so at no point is a new reversed sequence object
 # created though to the consumer it appears like a sequence.
 def demo_reverse(sequence):
+    '''function'''
     for index in range(len(sequence)-1, -1, -1):
         yield sequence[index]
 
-
 def test_generator_reverse():
+    '''function'''
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
@@ -56,32 +59,36 @@ def test_generator_reverse():
 
 # range using a generator (xrange does something similar)
 def demo_range(limit):
+    '''function'''
     value = 0
     while value < limit:
         yield value
         value = value + 1
 
 def test_generator_range_does_not_allocate_memory():
+    '''function'''
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
     assert True # did you reach here without any memory exception?
 
-
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
+    '''function'''
     result=[]
     for item in generator:
         result.append(item) # fill code here.
     return result
 
-
 def test_collapse_generator():
+    '''function'''
     assert [0,1,2,3] == demo_generator_to_list(demo_range(4))
     assert ['how', 'are', 'you?'] == demo_generator_to_list(demo_generator())
 
 def test_generator_return():
+    '''function'''
     def func():
+        '''function'''
         yield 1
         yield 2
         return
@@ -89,14 +96,18 @@ def test_generator_return():
     assert [1,2] == demo_generator_to_list(func())
 
 def test_generator_control_flow():
+    '''function'''
     def func():
-        for x in range(5):
-            yield x
+        '''function'''
+        for x_1 in range(5):
+            yield x_1
         yield 10
     assert [0,1,2,3,4,10] == demo_generator_to_list(func())
 
 def test_generator_exception():
+    '''function'''
     def func():
+        '''function'''
         try:
             yield 10
             raise Exception("some message")
@@ -109,7 +120,6 @@ def test_generator_exception():
         yield 30
 
     assert [10,20,50,30] == demo_generator_to_list(func())
-
 
 THREE_THINGS_I_LEARNT = """
 -

@@ -1,10 +1,11 @@
+'''program file'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
 NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
- The 'is' operator is used to test identity and == is used to test equality.
+ The 'is ' operator is  used to test identity and == is  used to test equality.
 
  Two objects are identical if they are the same object
  Two objects can be equal even if they are not the same object, if they are of the same type and the type defines some
@@ -13,74 +14,68 @@ NOTES = '''
 '''
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert False == (a is b)
-    assert True == (a == b)
-
-    a.append("one")
-    assert False == (a is b)
-    assert False == (a == b)
-
-    c = []
-    d = c
-    assert True == (c is d)
-    assert True == (c == d)
-
-    c.append("one")
-    assert True == (c is d)
-    assert True == (c == d)
+    '''function'''
+    a_1 = []
+    b_1 = []
+    assert False is a_1 is b_1
+    assert True is a_1 == b_1
+    a_1.append("one")
+    assert False is a_1 is  b_1
+    assert False is a_1 == b_1
+    c_1 = []
+    d_1 = c_1
+    assert True is c_1 is d_1
+    assert True is c_1 == d_1
+    c_1.append("one")
+    assert True is c_1 is d_1
+    assert True is c_1 == d_1
 
 def test_identity_equality_string():
-    a = b = "hello"
-
-    assert True == (a is b)
-    assert True == (a == b)
-
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert False == (c is d)
-    assert True == (c == d)
+    '''function'''
+    a_1 = b_1 = "hello"
+    assert True is a_1 is b_1
+    assert True is a_1 == b_1
+    c_1 = "hello"
+    d_1 = "".join(["hel", "lo"])
+    assert False is c_1 is d_1
+    assert True is c_1 == d_1
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True == (a is b)
-    assert True == (a == b)
-
-    c = 10000
-    d = int("10000")
-    assert False == (c is d)
-    assert True == (c == d)
+    '''function'''
+    a_1 = b_1 = 10000
+    assert True is a_1 is b_1
+    assert True is a_1 == b_1
+    c_1 = 10000
+    d_1 = int("10000")
+    assert False is c_1 is  d_1
+    assert True is c_1 == d_1
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert True == (a is b)
-    assert True == ( a == b)
+    a_1 = b_1 = 10
+    assert True is a_1 is  b_1
+    assert True is a_1 == b_1
+    c_1 = 10
+    d_1 = int("10")
+    assert True is c_1 is d_1
+    assert True is c_1 == d_1
 
-    c = 10
-    d = int("10")
-    assert True == (c is d)
-    assert True == (c == d)
+def test_identity_equality_none():
+    '''function'''
+    a_1 = b_1 = None
+    assert True is a_1 is b_1
+    assert True is a_1 == b_1
+    a_1 = None
+    b_1 = None
+    assert True is a_1 is b_1
+    assert True is a_1 == b_1
 
-def test_identity_equality_None():
-    a = b = None
-    assert True == (a is b)
-    assert True == (a == b)
-
-    a = None
-    b = None
-    assert True == (a is b)
-    assert True == (a == b)
-
-
-NOTES_on_none = '''
-None is a builtin constant as you can see above. This allows you to write more
-readable code like if x is None: instead of if x == None:
+NOTES = '''
+None is  a_1 builtin constant as you can see above. This allows you to write more
+readable code like if x is  None: instead of if x == None:
 '''
-
 THREE_THINGS_I_LEARNT = """
 -
 -
@@ -88,5 +83,3 @@ THREE_THINGS_I_LEARNT = """
 """
 
 TIME_TAKEN_MINUTES = 45
-
-
