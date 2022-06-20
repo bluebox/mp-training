@@ -63,7 +63,7 @@ def print_attributes(obj):
 def test_inner_func_attributes():
     '''function'''
     f_2 = outer_func(10)
-    assert 36 == len(dir(f_2)) #how many attributes does f_2 have
+    assert 35 == len(dir(f_2)) #how many attributes does f_2 have
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
     # function scope variables
