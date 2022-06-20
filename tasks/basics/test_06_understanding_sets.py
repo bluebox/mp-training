@@ -1,30 +1,39 @@
+'''Sets'''
 __author__ = 'Hari'
 
-notes = '''
-sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
+# from tasks.basics.test_00_understanding_assert import
+# NOTES_1, THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+
+NOTES_1 = '''
+sets are  unordered collection of elements without
+duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
 
-from tasks.placeholders import  *
+# from tasks.placeholders import  *
 
 def test_set_type():
+    '''Sets'''
     test_set = {"one", "two", "three"}   # note the new syntax
-    assert 'set' == type(test_set).__name__
+    assert type(test_set).__name__ == 'set'
 
 def test_set_empty():
-    empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
-    assert False == isinstance(empty_set_wrong, set)
+    '''Sets'''
+    empty_set_wrong = {}  #curly braces are used for both
+    # sets and dicts, so how do you disambiguate?
+    assert isinstance(empty_set_wrong, set) is False
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
-    assert 0 == len(empty_set)
+    assert isinstance(empty_set, set) is True
+    assert len(empty_set) == 0
 
 def test_set_length():
+    '''Sets'''
     fruits = {"apple", "apple", "apple"}
-    assert 1 == len(fruits)  #are duplicates removed?
+    assert len(fruits) == 1  #are duplicates removed?
 
     veggies = {"beetroot", "potato", "spinach"}
-    assert 3 == len(veggies)
+    assert len(veggies) == 3
 
 def test_set_creation():
     """
@@ -32,77 +41,78 @@ def test_set_creation():
     """
     test_list = [1, 2, 1, 3]
     set1 = set(test_list)
-    assert {1, 2, 3} == set1
+    assert set1 == {1, 2, 3}
 
     test_string = "apple"
     set2 = set(test_string)
-    assert {'p', 'a', 'l', 'e'} == set2
+    assert set2 == {'p', 'a', 'l', 'e'}
 
-    test_dict = { 1: "one", 2 : "two"}
+    test_dict = {1: "one", 2 : "two"}
     set3 = set(test_dict)
-    assert {1, 2} == set3
+    assert set3 == {1, 2}
 
     set4 = set(test_dict.values())
-    assert {'one', 'two'} == set4
+    assert set4 == {'one', 'two'}
 
     set5 = set(test_dict.items())
-    assert {(1, 'one'), (2, 'two')} == set5
+    assert set5 == {(1, 'one'), (2, 'two')}
 
 def test_set_membership():
+    '''Sets'''
     fruits = {"apple", "mango", "kiwi"}
-    assert 'apple' == "apple" in fruits
-    assert False == ("dog" in fruits)
+    assert "apple" in fruits == 'apple'
+    assert ("dog" in fruits) is False
 
 def test_set_operations():
+    '''Sets'''
     set1 = {"one", "two", "three"}
-    set2  =  {"three", "four"}
+    set2 = {"three", "four"}
 
     all = set1 | set2 # union
-    assert {'four', 'one', 'two', 'three'} == all
+    assert all == {'four', 'one', 'two', 'three'}
 
     common = set1 & set2
-    assert {'three'} == common
+    assert common == {'three'}
 
     diff1 = set1 - set2
-    assert {'one', 'two'} == diff1
+    assert diff1 == {'one', 'two'}
 
     diff2 = set2 - set1
-    assert {'four'} == diff2
+    assert diff2 == {'four'}
 
     diff3 = set1 - set1
-    assert set() == diff3
+    assert diff3 == set()
 
     diff4 = set1.symmetric_difference(set2)
-    assert {'four', 'one', 'two'} == diff4
+    assert diff4 == {'four', 'one', 'two'}
 
     #read up help on other method using the help method in the python console.
 
 def test_set_valid_members():
+    '''Sets'''
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
-    test_set.add((1,2))
+    test_set.add((1, 2))
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print(te)
+    except TypeError as te_1:
+        print(te_1)
         assert True
 
     try:
-        test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print(te)
-        assert True  
+        test_set.add((1, []))   #  TypeError: unhashable type: 'list'
+    except TypeError as te_1:
+        print(te_1)
+        assert True
 
-    assert {1,'hello',(1,2)} == test_set
+    assert test_set == {1, 'hello', (1, 2)}
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 1. sets are  unordered collection of elements without duplicates.
 2. elements are sorted in sets
 3. creating  sets from lists or tuple
 """
 
-time_taken_minutes = 8
-
-
+TIME_TAKEN_MINUTES = 8
