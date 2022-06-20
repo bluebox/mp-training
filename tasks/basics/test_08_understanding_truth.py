@@ -36,17 +36,15 @@ def truth_test(obj, description):
     """obj"""
     if obj:
         return description + " is treated as true"
-    #else:
-     #  return description + " is treated as false"
+    return description + " is treated as false"
 
-def test_truth_values():
-    """values"""  
-    assert "empty string is treated as false" is truth_test("", "empty string")
+def test_truth_values(): 
+    assert "empty string is treated as false" == truth_test("", "empty string")
     assert "empty tuple is treated as false" == truth_test((), "empty tuple")
     assert "empty list is treated as false" == truth_test([], "empty list")
     assert "empty dict is treated as false" == truth_test({}, "empty dict")
     assert "empty set is treated as false" == truth_test(set(), "empty set")
-    assert "white space is treated as true" is truth_test(" ", "white space")
+    assert "white space is treated as true" == truth_test(" ", "white space")
     assert "0 is treated as false" == truth_test(0, "0")
     assert "1 is treated as true" == truth_test(1, "1")
     assert "non-empty-string is treated as true" == truth_test("a", "non-empty-string")
@@ -63,17 +61,17 @@ def test_equality():
     assert False is (() is  True)
     assert False is ([] is  True)
     assert False is (set() is True)
-    assert False is (0 is True)
+    assert False is (0 == True)
     assert False is ("" is False)
     assert False is (() is False)
     assert False is ([] is False)
     assert False is (set() is False)
-    assert True is (0 is False)
-    assert True is (1 is True)
+    assert True is (0 == False)
+    assert True is (1 == True)
     assert False is ("a" is True)
     assert False is ((1,2) is True)
-    assert True is ([1] is True)
-    assert True is ({1} is True)
+    assert False is ([1] is True)
+    assert False is ({1} is True)
 
 
 THREE_THINGS_I_LEARNT = """
