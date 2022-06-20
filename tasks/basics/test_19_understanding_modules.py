@@ -73,7 +73,7 @@ def test_module_is_an_object():
     '''modules'''
     assert 12 == len(dir(placeholders))
     assert 'tasks.placeholders' == placeholders.__name__
-    assert None is placeholders.__doc__
+    assert placeholders.__doc__ == 'place'
 
 def test_module_from_import():
     '''modules'''
