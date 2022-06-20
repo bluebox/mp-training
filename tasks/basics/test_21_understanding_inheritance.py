@@ -1,137 +1,140 @@
-__author__ = 'Hari'
+from tasks.placeholders import *
 
-notes = '''
+__AUTHOR__ = 'Hari'
+
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tasks.placeholders import *
 
 def test_inheritance_basic():
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClassA(object): # A inherits from object.
+        def method_f(self):
             pass
 
-    class B(A):      #B inherits from A or B derives A
-        def g(self):
+    class ClassB(ClassA):      #B inherits from A or B derives A
+        def method_g(self):
             pass
 
-    assert __ == issubclass(A, object)
-    assert __ == issubclass(A, A)
-    assert __ == issubclass(A, B)
+    assert True is issubclass(ClassA, object)
+    assert True is issubclass(ClassA, ClassA)
+    assert False is issubclass(ClassA, ClassB)
 
-    assert __ == issubclass(B, A)
-    assert __ == issubclass(B, B)
-    assert __ == issubclass(B, object)
+    assert True is issubclass(ClassB, ClassA)
+    assert True is issubclass(ClassB, ClassB)
+    assert True is issubclass(ClassB, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClassA(object): # A inherits from object.
+        def method_f(self):
             return "A:f()"
 
-    class B(A):      #B inherits A's behavior (attributes)
-        def g(self):
+    class ClassB(ClassA):      #B inherits A's behavior (attributes)
+        def method_g(self):
             return "B:g()"
 
-    b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    obj_b = ClassB()
+    assert "A:f()" == obj_b.method_f()
+    assert "B:g()" == obj_b.method_g()
 
-    a = A()
-    assert __ == a.f()
+    obj_a = ClassA()
+    assert "A:f()" == obj_a.method_f()
     try:
-        assert __ == a.g()
-    except __:
+        assert "A:f()" == obj_a.method_f()
+    except TypeError as T_e:
+        print(T_e)
         #print ex  #uncomment this line after filling up
         pass
 
 def test_inheritance_overrides():
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClassA(object): # A inherits from object.
+        def method_f(self):
             return "A:f()"
 
-        def g(self):
+        def method_g(self):
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
+    class ClassB(ClassA):      #B can override A's methods
+        def method_g(self):
             return "B:g()"
 
-    a = A()
-    assert __ == a.f()
-    assert __ == a.g()
+    obj_a = ClassA()
+    assert "A:f()" == obj_a.method_f()
+    assert "A:g()" == obj_a.method_g()
 
-    b = B()
-    assert __ == b.f()
-    assert __ == b.g()
-
+    obj_b = ClassB()
+    assert "A:f()" == obj_b.method_f()
+    assert "B:g()" == obj_b.method_g()
+CONST = 888
 def test_inheritance_init():
-    class A(object):
+    class ClassA(object):
         def __init__(self):
-            self.a1 = []
+            self.a_1 = []
 
         def append(self, obj):
-            self.a1.append(obj)
+            self.a_1.append(obj)
 
-    class B(A):
+    class ClassB(ClassA):
         def __init__(self):
-            self.b1 = []
+            self.b_1 = []
 
-    a = A()
-    assert __ == getattr(a, "a1", None)
-    assert __ == getattr(a, "b1", None)
+    obj_a = ClassA()
+    assert None is getattr(obj_a, "a1", None)
+    assert None is getattr(obj_a, "b1", None)
 
-    b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
+    obj_b = ClassB()
+    assert None is getattr(obj_b, "a1", None)
+    assert None is getattr(obj_b, "b1", None)
 
     try:
-        b.append("orange")
-    except __ :  #what happened here?
+        obj_b.append("orange")
+    except AttributeError as a_e :  #what happened here?
+        print(a_e)
         pass
 
     # Since methods of A depend on init being called, we must always
     # chain __init__ to the base class if the derived class overrides it.
 
     #lets redefine B now, to chain the inits to the base class.
-    class B(A):
+    class ClassB(ClassA):
         def __init__(self):
-            A.__init__(self)
-            self.b1 = "b1"
+            ClassA.__init__(self)
+            self.b_1 = "b1"
 
-    b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
-    b.append("orange")
-    assert __ == b.a1
+    obj_b = ClassB()
+    assert None is getattr(obj_b, "a1", None)
+    assert None is getattr(obj_b, "b1", None)
+    obj_b.append("orange")
+    assert ['orange'] == obj_b.a_1
 
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.
-    class A(object): # A inherits from object.
-        def f(self):
+    class ClassA(object): # A inherits from object.
+        def method_f(self):
             return "A:f()"
 
-        def g(self):
+        def method_g(self):
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
-            return super(B, self).g() + ":"+ "B:g()"
+    class ClassB(ClassA):      #B can override A's methods
+        def method_g(self):
+            return super(ClassB, self).method_g() + ":"+ "B:g()"
 
-    b = B()
-    assert __ == b.g()
+    obj_b = ClassB()
+    assert "A:g():B:g()" == obj_b.method_g()
 
 
-notes_1 = '''
+NOTES_1 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
--
--
+THREE_THINGS_I_LEARNT = """
+-Inheritance
+-using of inheritance
 -
 """
 
-time_taken_minutes = ___
+TIMETAKENMINUTES = 20
