@@ -1,7 +1,4 @@
-from jinja2 import UndefinedError
-from tasks.placeholders import *
-
-__AUTHOR__ = 'Hari'
+from tasks.placeholders import __author__
 
 NOTES = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
