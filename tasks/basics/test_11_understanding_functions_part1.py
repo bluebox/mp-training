@@ -62,7 +62,7 @@ def demo1():
 def demo2():
     return 20
 
-#The documentation of every function, if the author wrote it, is available at 
+#The documentation of every function, if the author wrote it, is available at
 #This makes it easy to access help from console or build specialized help commands like help.
 def test_function_documentation():
     assert 'returns 10' == demo1.__doc__
@@ -141,7 +141,7 @@ def test_function_params_passed_by_object_reference():
 THREE_THINGS_I_LEARNT = """
 -passing parameter
 -return statements
--.doc
+-doc string
 """
 
 TIME_TAKEN_MINUTES = 30

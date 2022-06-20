@@ -1,6 +1,6 @@
 __author__ = 'Hari'
-
-notes = '''
+from tasks.placeholders import *
+NOTES = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
 feature is essential to mastering python.
 
@@ -8,7 +8,6 @@ nested functions are defined in the scope of a function, behave exactly the same
 that they have a read only access to variables in the outer function.
 '''
 
-from tasks.placeholders import *
 
 def outer_func(outer_var):
     def inner_func(inner_var):
@@ -37,12 +36,12 @@ def test_each_invocation_returns_a_new_func():
     f1 = outer_func(10)
     f2 = outer_func(10)
 
-    assert False == (f1 is f2)
-    assert False == (f1 == f2)
+    assert False is (f1 is f2)
+    assert False is (f1 == f2)
 
     f3 = f2
-    assert True == (f3 is f2)
-    assert True == (f3 == f2)
+    assert True is (f3 is f2)
+    assert True is (f3 == f2)
 
 def test_inner_func_has_access_to_outer_variables_after_return():
     f1 = outer_func(20)
@@ -67,7 +66,7 @@ def test_inner_func_attributes():
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
     # function scope variables
-    ref_to_outer_scope = __
+    #ref_to_outer_scope = __
 
 
 # if you understand this, you have understood nested funcs :)
@@ -118,10 +117,10 @@ def test_def_is_a_statement():
     assert 15 == outer(5)()
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 25
+TIME_TAKEN_MINUTES = 25
