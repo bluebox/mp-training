@@ -16,31 +16,31 @@ list, tuple, string etc.
 
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
-    assert __ == type(list_iter).__name__
-    assert __ == hasattr(list_iter, "next")
+    assert "list_iterator" == type(list_iter).__name__
+    assert False == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
-    assert __ == type(string_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert "str_iterator" == type(string_iter).__name__
+    assert False == hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert __ == type(tuple_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert "tuple_iterator" == type(tuple_iter).__name__
+    assert False == hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
         iter(10)
-    except __:  # replace by appropriate except so this test passes
+    except TypeError:  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next() #note what happens when items are finished.
-    except __:
+        assert "one" == list_iter.next()
+        assert "two" == list_iter.next()
+        assert "three" == list_iter.next()
+        assert "four" == list_iter.next() #note what happens when items are finished.
+    except AttributeError:
         pass
 
 #note this function which can convert any iterable into a list.
@@ -55,14 +55,14 @@ def convert_to_list(iterable):
         return result
 
 def test_convert():
-    assert __ == convert_to_list("hello")
-    assert __ == convert_to_list((1,2,3,4))
-    assert __ == convert_to_list(range(5))
+    assert ['h','e','l','l','o'] == convert_to_list("hello")
+    assert [1,2,3,4] == convert_to_list((1,2,3,4))
+    assert [0,1,2,3,4] == convert_to_list(range(5))
 
     #string.join also works using the iteration protocol!
     #accepts any iterable
-    assert __ == ".".join("hello")
-    assert __ == ".".join(["hello", "world"])
+    assert ["hello"] == ".".join("hello")
+    assert ["hello.world"] == ".".join(["hello", "world"])
     assert __ == ".".join(("hello", "there"))
 
     try:
