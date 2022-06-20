@@ -46,7 +46,7 @@ def test_list_can_be_sliced():
     assert ["banana", "orange"] == fruits[:2]
     assert ["banana", "orange", "grape"] == fruits[:5]
 
-    # note the invariant
+    # note the invariant.
     assert ['banana', 'orange', 'grape'] == fruits[:1] + fruits[1:]
 
 
