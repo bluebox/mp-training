@@ -58,9 +58,9 @@ def convert_to_list(iterable):
         return result
 
 def test_convert():
-    assert [] is convert_to_list("hello")
-    assert [] is convert_to_list((1, 2, 3, 4))
-    assert [] is convert_to_list(range(5))
+    assert [] == convert_to_list("hello")
+    assert [] == convert_to_list((1, 2, 3, 4))
+    assert [] == convert_to_list(range(5))
 
     #string.join also works using the iteration protocol!
     #accepts any iterable
