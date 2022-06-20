@@ -14,63 +14,73 @@ NOTES = '''
 '''
 
 def test_identity_equality_lists():
-    '''function'''
+    '''Identity and equality'''
     a_1 = []
     b_1 = []
-    assert False is a_1 is b_1
-    assert True is a_1 == b_1
+    assert (a_1 is b_1) is False
+    assert (a_1 == b_1) is True
+
     a_1.append("one")
-    assert False is a_1 is  b_1
-    assert False is a_1 == b_1
+    assert (a_1 is b_1) is False
+    assert (a_1 == b_1) is False
+
     c_1 = []
     d_1 = c_1
-    assert True is c_1 is d_1
-    assert True is c_1 == d_1
+    assert (c_1 is d_1) is True
+    assert (c_1 == d_1) is True
+
     c_1.append("one")
-    assert True is c_1 is d_1
-    assert True is c_1 == d_1
+    assert (c_1 is d_1) is True
+    assert (c_1 == d_1) is True
 
 def test_identity_equality_string():
-    '''function'''
+    '''Identity and equality'''
     a_1 = b_1 = "hello"
-    assert True is a_1 is b_1
-    assert True is a_1 == b_1
+
+    assert (a_1 is b_1) is True
+    assert (a_1 == b_1) is True
+
     c_1 = "hello"
     d_1 = "".join(["hel", "lo"])
-    assert False is c_1 is d_1
-    assert True is c_1 == d_1
+    assert (c_1 is d_1) is False
+    assert (c_1 == d_1) is True
 
 def test_identity_equality_numbers():
-    '''function'''
+    '''Identity and equality'''
     a_1 = b_1 = 10000
-    assert True is a_1 is b_1
-    assert True is a_1 == b_1
+    assert (a_1 is b_1) is True
+    assert (a_1 == b_1) is True
+
     c_1 = 10000
     d_1 = int("10000")
-    assert False is c_1 is  d_1
-    assert True is c_1 == d_1
+    assert (c_1 is d_1) is False
+    assert (c_1 == d_1) is True
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
     a_1 = b_1 = 10
-    assert True is a_1 is  b_1
-    assert True is a_1 == b_1
+    assert (a_1 is b_1) is True
+    assert (a_1 == b_1) is True
+
     c_1 = 10
     d_1 = int("10")
-    assert True is c_1 is d_1
-    assert True is c_1 == d_1
+    assert (c_1 is d_1) is True
+    assert (c_1 == d_1) is True
 
 def test_identity_equality_none():
-    '''function'''
+    '''Identity and equality'''
     a_1 = b_1 = None
-    assert True is a_1 is b_1
-    assert True is a_1 == b_1
+    assert (a_1 is b_1) is True
+    assert (a_1 == b_1) is True
+
     a_1 = None
     b_1 = None
-    assert True is a_1 is b_1
-    assert True is a_1 == b_1
+    assert (a_1 is b_1) is True
+    assert (a_1 == b_1) is True
+
+
 
 NOTES = '''
 None is  a_1 builtin constant as you can see above. This allows you to write more
