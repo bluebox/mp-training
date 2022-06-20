@@ -41,7 +41,7 @@ def test_classes_are_callable_objects():
         pass
 
     #classes are callable objects just like function objects
-    assert False is callable(Queue)
+    assert True is callable(Queue)
 
 def test_classes_are_object_factories():
     '''function'''
@@ -55,8 +55,8 @@ def test_classes_are_object_factories():
     assert False is (f_2 is Queue)
     assert False is (c_2 is Queue)
     assert False is (c_2 is f_2)
-    assert False is isinstance(f_2, Queue)
-    assert False is isinstance(c_2, Queue)
+    assert True is isinstance(f_2, Queue)
+    assert True is isinstance(c_2, Queue)
     assert 26 == len(dir(Queue))
     assert 26 == len(dir(f_2))
     assert 26 == len(dir(c_2))
@@ -74,7 +74,7 @@ def test_classes_init_constructor():
             test_list.append(self)
     f_2 = Queue() # fix the assert to pass this.
     self_argument = test_list[0]
-    assert False is (self_argument is f_2)
+    assert True is (self_argument is f_2)
 
 def test_classes_init_with_args():
     '''function'''
