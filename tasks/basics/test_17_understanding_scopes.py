@@ -29,9 +29,11 @@ count = 10
 
 #used to by pass any local shadow variables.
 def get_global_count():
+    """returns count"""
     return count
 
 def test_scope_basic():
+    """local"""
     local_names = get_locals(test_scope_basic)
 
     value = count
@@ -46,6 +48,7 @@ def test_scope_basic():
 
 
 def test_scope_undefined_variable():
+    """local"""
     local_names = get_locals(test_scope_undefined_variable)
 
     try:
@@ -58,6 +61,7 @@ def test_scope_undefined_variable():
     assert False is ('name' in global_names)
 
 def test_variable_shadow():
+    """local"""
     local_names = get_locals(test_variable_shadow)
     count = 20
 
@@ -68,6 +72,7 @@ def test_variable_shadow():
     assert 10 == get_global_count()
 
 def test_global_write():
+    """local"""
     local_names = get_locals(test_global_write)
 
     global count # declare that we want to use the read/write to global count
@@ -83,6 +88,7 @@ def test_global_write():
         count = 10 #reset to original value
 
 def test_scope_is_bound_at_definition_time():
+    """local"""
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
     assert True is ('count' in local_names)
@@ -102,6 +108,7 @@ def test_scope_is_bound_at_definition_time():
 
 
 def test_scope_writing_globals():
+    """ggf"""
     local_names = get_locals(test_scope_writing_globals)
 
     assert False is ('count' in local_names)
@@ -130,12 +137,14 @@ TIME_TAKEN_MINUTES = 65
 
 #helper functions which get the variables in locals and globals using the compiler's symbol tables.
 def get_locals(func):
+    """source"""
     source = inspect.getsource(func)
     top = symtable.symtable(source, "<string>", "exec")
     func = top.get_children()[0]  #since we are passing only the func code.
     return func.get_locals()
 
 def get_globals():
+    """module"""
     module = inspect.getmodule(get_globals)
     source = inspect.getsource(module)
     top = symtable.symtable(source, "<string>", "exec")
