@@ -71,7 +71,7 @@ def test_equality():
 
 
 THREE_THINGS_I_LEARNT = """
-learnt what is None and how None is treated for data structures like list, tuple, dictionaries, etc
+learnt what is None and how None is treated for data structures like list, tuple, dictionaries, etc.
 """
 
 TIME_TAKEN_MINUTES = 10
