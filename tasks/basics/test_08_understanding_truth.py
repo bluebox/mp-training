@@ -54,22 +54,38 @@ def test_truth_values():
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
-    '''function'''
-    assert False == "" == True
-    assert False == () == True
-    assert False == [] == True
-    assert False== set() == True
-    assert False == 0 == True
-    assert False == "" == False
-    assert False == () == False
-    assert False == [] == False
-    assert False == set() == False
-    assert True == 0 == False
-    assert True == 1 == True
-    assert False == "a" == True
-    assert False == (1,2) == True
-    assert False == [1] == True
-    assert False == {1} == True
+    '''Truth'''
+    test_a=""
+    assert False is (test_a is True)
+    test_a=()
+    assert False is (test_a is True)
+    test_a=[]
+    assert False is (test_a is True)
+    test_a=set()
+    assert False is (test_a is True)
+    test_a=0
+    assert False is ( test_a is True)
+    test_a=""
+    assert False is (test_a is False)
+    test_a=()
+    assert False is (test_a is False)
+    test_a=[]
+    assert False is (test_a is False)
+    test_a=set()
+    assert False is (test_a is False)
+    test_a=0
+    assert False is (test_a is False)
+    test_a=1
+    assert False is (test_a is True)
+    test_a="a"
+    assert False is (test_a is True)
+    test_a=(1,2)
+    assert False is (test_a is True)
+    test_a=[1]
+    assert False is (test_a is True)
+    test_a={1}
+    assert False is (test_a is True)
+
 
 THREE_THINGS_I_LEARNT = """
 -
