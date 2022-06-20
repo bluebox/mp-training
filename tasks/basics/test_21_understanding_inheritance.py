@@ -1,11 +1,11 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 def test_inheritance_basic():
     class A(object): # A inherits from object.
@@ -41,7 +41,7 @@ def test_inheritance_methods():
     a = A()
     assert "A:f()" == a.f()
     try:
-        assert "" == a.g()
+        assert __ == a.g()
     except AttributeError:
         #print ex  #uncomment this line after filling up
         pass
@@ -104,7 +104,7 @@ def test_inheritance_init():
     assert [] == getattr(b, "a1", None)
     assert "b1" == getattr(b, "b1", None)
     b.append("orange")
-    assert ["orange"] == b.a1
+    assert ['orange'] == b.a1
 
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.
@@ -123,7 +123,7 @@ def test_inheritance_invoking_using_super():
     assert "A:g():B:g()" == b.g()
 
 
-notes_1 = '''
+NOTES_1 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
@@ -134,5 +134,4 @@ THREE_THINGS_I_LEARNT = """
 -
 """
 
-TIME_TAKEN_MINUTES = 50
-
+TIME_TAKEN_MINUTES = 80

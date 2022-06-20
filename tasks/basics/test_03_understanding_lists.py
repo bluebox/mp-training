@@ -1,16 +1,19 @@
 __author__ = 'Hari'
 
-from placeholders import *
+from placeholders import __author__
 
 def test_list_type():
+    """c"""
     fruits = ["banana", "orange", "grape"]
     assert "list" == type(fruits).__name__
 
 def test_list_len():
+    """c"""
     fruits = ["banana", "orange", "grape"]
     assert 3 == len(fruits)
 
 def test_list_can_be_indexed():
+    """v"""
     fruits = ["banana", "orange", "grape"]
     assert "banana" == fruits[0]
     assert "orange" == fruits[1]
@@ -20,6 +23,7 @@ def test_list_can_be_indexed():
     assert "banana" == fruits[-3]
 
 def test_list_is_mutable():
+    """M"""
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
     assert ["mango", "orange", "grape"] == fruits  #replace __ with expected contents of list
@@ -51,15 +55,15 @@ def test_list_can_be_sliced():
 
 
 def test_slice_creates_a_new_list():
+    """b"""
     fruits = ["banana", "orange", "grape"]
     slice = fruits[0:2]
     slice.append("guava")
-
     assert ["banana", "orange", "grape"] == fruits # did this change?  No
     assert ["banana", "orange", "guava"] == slice
-
-
+    
 def test_list_merge():
+    """h"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
     all = fruits + veggies
@@ -70,6 +74,7 @@ def test_list_merge():
     assert ["orange", "grape", "beetroot"] == fruits[1:] + veggies[:1]
 
 def test_list_slice_replacement_is_inplace():
+    """2"""
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
@@ -134,8 +139,8 @@ def test_list_sort():
 # and fix accordingly.
 def test_list_membership():
     numbers = [ 5, 4, 3]
-    assert True == (5 in numbers)
-    assert False == (10 in numbers)
+    assert True is (5 in numbers)
+    assert False is (10 in numbers)
 
 def test_list_range():
     numbers = range(1,5)
@@ -144,10 +149,10 @@ def test_list_range():
     numbers = range(1, 5, 2)
     assert range(1,5,2) == numbers
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT= """
 -
 -
 -
 """
 
-time_taken_minutes = 25
+TIME_TAKEN_MINUTES= 25

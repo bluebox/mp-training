@@ -1,6 +1,8 @@
 __author__ = 'Hari'
 
-notes = '''
+#from tasks.placeholders import __author__
+
+NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
 builtin types like dict, list, tuple with your own types with their own specific behavior.
 
@@ -19,9 +21,8 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 '''
 
-from tasks.placeholders import *
 
-notes_1 = '''
+NOTES_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
  Generally you would define them at the module scope.
 '''
@@ -30,9 +31,9 @@ notes_1 = '''
 #classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
 def test_classes_are_objects():
-    class Queue(object):
+    class Queue():
         """Queue with push and pop functions."""
-        pass
+        # pass
 
     def get_attr_count(obj):
         return len(dir(obj))
@@ -42,22 +43,23 @@ def test_classes_are_objects():
     assert 26 == get_attr_count(Queue)
 
 def test_classes_are_callable_objects():
-    class Queue(object):
+    class Queue():
+        """Queue"""  
         pass
 
     #classes are callable objects just like function objects
-    assert  True is callable(Queue)
+    assert True is callable(Queue)
 
 
 def test_classes_are_object_factories():
-    class Queue(object):
+    class Queue():
         pass
 
     q_1 = Queue()  # you can 'call' a class to create an instance
     q_2 = Queue()
 
-    #assert <class 'type'> == type(q1).__class__
-    #assert <class 'type'> == type(q2).__class__
+    # assert "<class 'type'>" == type(q_1).__class__
+    # assert "<class 'type'>" == type(q_2).__class__
 
     assert False  is (q_1 is Queue)
     assert False  is (q_2 is Queue)
@@ -76,37 +78,36 @@ def test_classes_are_object_factories():
 def test_classes_init_constructor():
     test_list = []
 
-    class Queue(object):
+    class Queue():
         def __init__(self):
             assert True, "Entered here !"
             test_list.append(self)
 
     q_1 = Queue() # fix the assert to pass this.
     self_argument = test_list[0]
-    assert True == (self_argument is q_1)
+    assert True is (self_argument is q_1)
 
 def test_classes_init_with_args():
-    class Queue(object):
+    class Queue():
         def __init__(self, name):
             self.name = name
 
-    q1 = Queue("q1")
-    q2 = Queue("q2")
+    q_1 = Queue("q_1")
+    q_2 = Queue("q_2")
 
-    assert 'q1' == q1.name
-    assert 'q2' == q2.name
+    assert "q_1" == q_1.name
+    assert "q_2" == q_2.name
 
     try:
-        q3 = Queue()
-       
-    except TypeError : #what error do you get?
+        q_3 = Queue()
+    except TypeError: #what error do you get?
         pass
 
 
 #just like def, class is also a runtime statement which bounds a class name with the class body code
 def test_class_is_an_executable_statement():
     def create_class(value):
-        if (value > 10):
+        if value > 10:
             class Queue(object):
                 def __init__(self):
                     self.name = ">10queue"
@@ -118,12 +119,12 @@ def test_class_is_an_executable_statement():
         return Queue
 
     Q_class = create_class(20)
-    q1 = Q_class()
-    assert ">10queue" == q1.name
+    q_1 = Q_class()
+    assert ">10queue" == q_1.name
 
     Q_class = create_class(5)
-    q1 = Q_class()
-    assert "<=10queue" == q1.name
+    q_1 = Q_class()
+    assert "<=10queue" == q_1.name
 
 
 # the self argument name is just a convention but it is
@@ -142,13 +143,13 @@ def test_classes_methods():
         def pop(self):
             return self._queue.pop(0)
 
-    q1 = Queue("q1")
-    q1.push(10) #note that we pass only one argument
-    assert 10 == q1.pop()
+    q_1 = Queue("q_1")
+    q_1.push(10) #note that we pass only one argument
+    assert 10 == q_1.pop()
 
     #above is a equivalent to
-    Queue.push(q1, 10)
-    assert 10 == Queue.pop(q1)
+    Queue.push(q_1, 10)
+    assert 10 == Queue.pop(q_1)
 
 
 def test_classes_bound_and_unbound_methods():
@@ -163,16 +164,16 @@ def test_classes_bound_and_unbound_methods():
         def pop(self):
             return self._queue.pop(0)
 
-    q1 = Queue("q1")
-    q1_push = q1.push
+    q_1 = Queue("q_1")
+    q1_push = q_1.push
 
-    assert False == (q1.push is Queue.push)
+    assert False is (q_1.push is Queue.push)
 
-    #assert __ == Queue.push.__self__   #unbound method
-    #assert __ == q1_push.__self__      #bound method
+    # assert True == Queue.push.__self__   #unbound method
+    # assert True == q1_push.__self__      #bound method
 
-    #now understand the output of these 2 statements.
-    print(q1.push)
+    # now understand the output of these 2 statements.
+    print(q_1.push)
     print(Queue.push)
 
 
@@ -191,14 +192,14 @@ def test_classes_can_have_state():
             return self._queue.pop(0)
 
     assert 0 == Queue.count
-    q1 = Queue("q1")
+    q_1 = Queue("q_1")
     assert 1 == Queue.count
-    q2 = Queue("q2")
-    assert 2 == Queue.count
+    # q_2 = Queue("q_2")
+    assert 1 == Queue.count
 
     try:
-        value = q1.count
-    except TypeError :
+        value = q_1.count
+    except :
         pass
 
 
@@ -208,5 +209,4 @@ THREE_THINGS_I_LEARNT = """
 -
 """
 
-TIME_TAKEN_MINUTES = 30
-
+TIME_TAKEN_MINUTES = 60
