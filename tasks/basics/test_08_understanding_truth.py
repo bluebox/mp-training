@@ -68,13 +68,15 @@ def test_equality():
     assert False is (() is True)
     assert False is ([] is True)
     assert False is (set() is True)
-    assert False is (0 is True)
+    _x=0
+    _y=1
+    assert False is (_x is True) 
     assert False is ("" is False)
     assert False is (() is False)
     assert False is ([] is False)
     assert False is (set() is False)
-    assert True is (0 == False)
-    assert True is (1 == True)
+    assert True is (_x == False)
+    assert True is (_y == True)
     assert False is ("a" is True)
     assert False is ((1,2) is True)
     assert False is ([1] is True)

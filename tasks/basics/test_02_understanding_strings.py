@@ -171,9 +171,12 @@ def test_string_formatting():
 
 def test_string_membership():
     '''STRINGS'''
-    assert False == ('c' in 'apple')  #is there a precedence issue here?
-    assert True == ('a' in 'apple')
-    assert True == ('app' in 'apple')
+    _c='c'
+    _a='a'
+    _app='app'
+    assert False is (_c in 'apple')  #is there a precedence issue here?
+    assert True is (_a in 'apple')
+    assert True is (_app in 'apple')
     #'==' and 'in' operators have same precedence are interpreted from left-right in the expression
 
 

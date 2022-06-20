@@ -5,7 +5,7 @@ __author__ = 'Hari'
 # pylint: disable=unused-variable
 # pylint: disable=too-few-public-methods
 #from tasks.basics.test_08_understanding_truth import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
-
+# pylint: disable=protected-access
 
 NOTES = '''
  Inheritance is another standard feature of object oriented programming.
