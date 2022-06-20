@@ -16,7 +16,9 @@ does not make sense.
 This assignment only deals with the syntax of classes and its features. You must
 look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
+
 https://www.pythontutorial.net/python-oop/python-type-class/
+
 '''
 
 NOTES_1 = '''
