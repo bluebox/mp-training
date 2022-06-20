@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 python has support for standard control flow statements similar to other languages.
 iteration over sequences like list, string etc. is built into the language itself (c# has
 similar features) and the loops support an else clause which is not common elsewhere.
@@ -43,15 +43,15 @@ def test_for_loop_range():
     for loops are used to iterate over arbitrary sequences
     """
     nums =[]
-    for x in range(1,5):
-        nums.append(x)
+    for x_y in range(1,5):
+        nums.append(x_y)
     assert [1, 2, 3, 4] == nums
 
 
 def test_for_loop_string():
     chars = []
-    for x in "engine":
-        chars.append(x)
+    for x_y in "engine":
+        chars.append(x_y)
     assert ['e', 'n', 'g', 'i', 'n', 'e'] == chars
 
 def test_for_loop_list():
@@ -63,8 +63,8 @@ def test_for_loop_list():
 def test_for_loop_list_with_enumerate():
     words = ["one", "two", "three"]
     result = []
-    for p in enumerate(words):
-        result.append(p)
+    for p_x in enumerate(words):
+        result.append(p_x)
 
     assert [(0, 'one'), (1, 'two'), (2, 'three')] == result
     mapping = dict(result)
@@ -85,71 +85,71 @@ def test_while_loop():
 
 def test_for_loop_break():
     result = []
-    for x in range(1,10):
-        if x % 5 == 0:
+    for x_y in range(1,10):
+        if x_y % 5 == 0:
             break
-        result.append(x)
+        result.append(x_y)
 
     assert [1, 2, 3, 4] == result
 
 def test_for_loop_continue():
     result = []
-    for x in range (1, 10):
-        if x % 3 == 0:
+    for x_y in range (1, 10):
+        if x_y % 3 == 0:
             continue
-        result.append(x)
+        result.append(x_y)
     assert [1,2,4,5,7,8] == result
 
 def test_nested_loop_break():
     result = []
-    for x in range(2):
-        for y in range(1,5):
-            if y%3 == 0:
+    for x_y in range(2):
+        for y_x in range(1,5):
+            if y_x%3 == 0:
                 break
-            result.append(x)
+            result.append(x_y)
 
     assert [0, 0, 1, 1] == result
 
 def test_nested_loop_continue():
     result = []
-    for x in range(2):
-        for y in range(1,5):
-            if y%3 == 0:
+    for x_y in range(2):
+        for y_x in range(1,5):
+            if y_x%3 == 0:
                 continue
-            result.append(x)
+            result.append(x_y)
 
     assert [0, 0, 0, 1, 1, 1] == result
 
 def test_nested_loop_break_continue():
     result = []
-    for x in range(3):
-        for y in range(1,5):
-            if y%3 == 0:
+    for x_y in range(3):
+        for y_x in range(1,5):
+            if y_x%3 == 0:
                 continue
-            if x%2 == 1:
+            if x_y%2 == 1:
                 break
-            result.append(x)
+            result.append(x_y)
 
     assert [0, 0, 0, 2, 2, 2] == result
 
 # else on loops is not available in other common languages
 def test_for_loop_else_plain():
     result = []
-    for x in range(5):
-        result.append(x)
-        print (x)
-    else:
+    for x_y in range(5):
+        result.append(x_y)
+        print (x_y)
+    else :
         result.append(10)
 
     assert [0, 1, 2, 3, 4, 10] == result
 
 def test_for_loop_else_break():
     result = []
-    for x in range(5):
-        if x %3 == 0:
+    for x_y in range(5):
+        if x_y %3 == 0:
             break
-        result.append(x)
-        print( x)
+        result.append(x_y)
+        print( x_y)
     else:
         result.append(10)
 
@@ -157,12 +157,12 @@ def test_for_loop_else_break():
 
 def test_for_loop_else_continue():
     result = []
-    for x in range(5):
-        if x %3 == 0:
+    for x_y in range(5):
+        if x_y %3 == 0:
             continue
-        result.append(x)
-        print (x)
-    else:
+        result.append(x_y)
+        print (x_y)
+    else :
         result.append(10)
 
     assert [1, 2, 4, 10] == result
@@ -170,11 +170,11 @@ def test_for_loop_else_continue():
 #same as above.
 def test_while_loop_else():
     result = []
-    x = 1
-    while x in range(5):
-        result.append(x)
-        x = x+1
-        if x%4 == 0:
+    x_y = 1
+    while x_y in range(5):
+        result.append(x_y)
+        x_y = x_y+1
+        if x_y%4 == 0:
             break
     else:
         result.append(10)
@@ -182,10 +182,10 @@ def test_while_loop_else():
     assert [1,2,3] == result
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 18
+TIME_TAKEN_MINUTES = 0.03
