@@ -1,3 +1,4 @@
+from tasks.placeholders import *
 __author__ = 'Hari'
 
 NOTES = """
@@ -7,8 +8,6 @@ Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
-from tasks.placeholders import *
-
 def test_exception_flow_1():
     fruit = "orange"
     result = []
@@ -17,7 +16,7 @@ def test_exception_flow_1():
         result.append("one")
         fruit.missingmethod() # what happens to the control flow here?
         result.append("two")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("three")
 
     assert ['one', 'three'] == result
@@ -27,13 +26,13 @@ def test_exception_flow_2():
     result = []
     try:
         result.append("one")
-        value = 1/0 #division by zero.
+        1/0 #division by zero.
         result.append("two")
         fruit.missingmethod() #missing attribute
         result.append("three")
-    except AttributeError as ae:
+    except AttributeError :
         result.append("four")
-    except ZeroDivisionError as ze:
+    except ZeroDivisionError :
         result.append("five")
 
     assert ['one','five'] == result
@@ -43,7 +42,7 @@ def test_raise_error():
     try:
         result.append("one")
         raise AttributeError("some error here")
-    except AttributeError as se:
+    except AttributeError :
         result.append("three")
 
     assert ['one','three'] == result
@@ -56,7 +55,7 @@ def test_missing_except():
     #what happens now? fix it with an appropriate try except
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError :
         result.append("two")
 
     assert ["one", "two"] == result
@@ -66,7 +65,7 @@ def function_with_except(result):
     result.append("f:enter")
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError :
         result.append("f:except")
 
     result.append("f:return")
@@ -83,7 +82,7 @@ def test_function_call_with_except():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError :
         result.append("m:except")
     print(result)
     assert ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall'] == result
@@ -94,7 +93,7 @@ def test_function_call_without_except():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError :
         result.append("m:except")
     assert ['m:beforecall', 'f:enter', 'm:except'] == result
 
@@ -104,7 +103,7 @@ def test_else_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -118,7 +117,7 @@ def test_else_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError :
         result.append("m:except")
     else:
         result.append("m:else")
@@ -131,7 +130,7 @@ def test_finally_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -148,7 +147,7 @@ def test_finally_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -157,7 +156,7 @@ def test_finally_on_no_exception():
 
     assert ["m:beforecall","f:enter","m:except","m:finally"] == result
 
-notes2 = '''
+NOTES = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
@@ -165,9 +164,18 @@ http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 
 
 THREE_THINGS_I_LEARNT = """
+<<<<<<< HEAD
 -Raising an EXception
 -Handling Exception
 -No matter what finally block will get executed
 """
 
 TIME_TAKEN_MINUTES = 40
+=======
+-
+-
+-
+"""
+
+TIME_TAKEN_MINUTES = 25
+>>>>>>> 033ed6c53027d56778a8071cefdd5c1e42817705

@@ -1,3 +1,4 @@
+from tasks.placeholders import  *
 __author__ = 'Hari'
 
 NOTES = '''
@@ -12,7 +13,8 @@ def test_set_type():
     assert 'set' == type(test_set).__name__
 
 def test_set_empty():
-    empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
+    empty_set_wrong = {}  #curly braces are used for both sets and dicts, 
+    #so how do you disambiguate?
     assert False == isinstance(empty_set_wrong, set)
 
     empty_set = set()
@@ -50,8 +52,8 @@ def test_set_creation():
 
 def test_set_membership():
     fruits = {"apple", "mango", "kiwi"}
-    assert True == ("apple" in fruits)
-    assert False == ("dog" in fruits)
+    assert True is ("apple" in fruits)
+    assert False is ("dog" in fruits)
 
 def test_set_operations():
     set1 = {"one", "two", "three"}

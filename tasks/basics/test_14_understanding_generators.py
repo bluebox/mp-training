@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -108,10 +108,10 @@ def test_generator_exception():
     assert [10,20,50,30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -about yield key word
 -leartn about generators
 -retuting statements
 """
 
-time_taken_minutes = 35
+TIME_TAKEN_MINUTES = 35

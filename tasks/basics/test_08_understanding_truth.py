@@ -1,6 +1,5 @@
-__author__ = 'Hari'
-
 from tasks.placeholders import *
+__author__ = 'Hari'
 
 NOTES = '''
 Just like C, python has notions on what values are considered true
@@ -33,8 +32,8 @@ def test_truth_none():
 def truth_test(object, description):
     if object:
         return description + " is treated as true"
-    else:
-        return description + " is treated as false"
+    #else:
+        #return description + " is treated as false"
 
 def test_truth_values():
     assert 'empty string is treated as false' == truth_test("", "empty string")
@@ -54,6 +53,7 @@ def test_truth_values():
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
+<<<<<<< HEAD
     assert False is ("" is True)
     assert False is (() is True)
     assert False is ([] is True)
@@ -69,6 +69,23 @@ def test_equality():
     assert False is ((1,2) is True)
     assert False is ([1]is True)
     assert False is ({1} is True)
+=======
+    assert False is ("" == True)
+    assert False is (() == True)
+    assert False is ([] == True)
+    assert False is (set() == True)
+    assert False is (0 == True)
+    assert False is ("" == False)
+    assert False is (() == False)
+    assert False is ([] == False)
+    assert False is (set() == False)
+    assert True is (0 == False)
+    assert True is (1 == True)
+    assert False is ("a" == True)
+    assert False is ((1,2) == True)
+    assert False is ([1] == True)
+    assert False is ({1} == True)
+>>>>>>> 033ed6c53027d56778a8071cefdd5c1e42817705
 
 
 THREE_THINGS_I_LEARNT = """
