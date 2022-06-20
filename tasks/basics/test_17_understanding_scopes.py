@@ -116,9 +116,7 @@ def test_scope_writing_globals():
 
 
 three_things_i_learnt = """
--
--
--
+learnt using of locals and globals in python
 """
 
 time_taken_minutes = ___
