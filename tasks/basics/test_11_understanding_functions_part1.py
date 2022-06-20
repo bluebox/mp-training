@@ -64,7 +64,7 @@ def demo2():
 def test_function_documentation():
     '''function'''
     assert 'returns 10' == demo1.__doc__
-    assert None is  demo2.__doc__
+    assert 'function' ==  demo2.__doc__
 
 def my_callfunc(func):
     '''function'''
