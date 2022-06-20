@@ -1,7 +1,8 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import __author__
+from tasks.placeholders import 
+__AUTHOR__= "hari"
 
 NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
@@ -18,7 +19,6 @@ look up references to actually learn object oriented programming.
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 
 https://www.pythontutorial.net/python-oop/python-type-class/
-
 
 '''
 
