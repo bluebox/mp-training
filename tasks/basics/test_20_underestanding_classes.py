@@ -37,16 +37,16 @@ def test_classes_are_objects():
     def get_attr_count(obj):
         return len(dir(obj))
 
-    assert __ == type(Queue).__name__ #note this.
-    assert __ == Queue.__doc__
-    assert __ == get_attr_count(Queue)
+    assert 'type' == type(Queue).__name__ #note this.
+    assert "Queue with push and pop functions." == Queue.__doc__
+    assert 26 == get_attr_count(Queue)
 
 def test_classes_are_callable_objects():
     class Queue(object):
         pass
 
     #classes are callable objects just like function objects
-    assert __ == callable(Queue)
+    assert True == callable(Queue)
 
 
 def test_classes_are_object_factories():
@@ -56,19 +56,21 @@ def test_classes_are_object_factories():
     q1 = Queue()  # you can 'call' a class to create an instance
     q2 = Queue()
 
-    assert __ == type(q1).__class__
-    assert __ == type(q2).__class__
+    s = type(q1).__class__
+    d = type(q2).__class__
+    assert s == type(q1).__class__
+    assert d == type(q2).__class__
 
-    assert __  == (q1 is Queue)
-    assert __  == (q2 is Queue)
-    assert __  == (q2 is q1)
+    assert False  == (q1 is Queue)
+    assert False  == (q2 is Queue)
+    assert False  == (q2 is q1)
 
-    assert __ == isinstance(q1, Queue)
-    assert __ == isinstance(q2, Queue)
+    assert True == isinstance(q1, Queue)
+    assert True == isinstance(q2, Queue)
 
-    assert __ == len(dir(Queue))
-    assert __ == len(dir(q1))
-    assert __ == len(dir(q2))
+    assert 26 == len(dir(Queue))
+    assert 26 == len(dir(q1))
+    assert 26 == len(dir(q2))
 
 
 #if an __init__ method exists it is called with the object that is
@@ -78,12 +80,12 @@ def test_classes_init_constructor():
 
     class Queue(object):
         def __init__(self):
-            assert ___, "Entered here !"
+            assert self, "Entered here !"
             test_list.append(self)
 
     q1 = Queue() # fix the assert to pass this.
     self_argument = test_list[0]
-    assert __ == (self_argument is q1)
+    assert True == (self_argument is q1)
 
 def test_classes_init_with_args():
     class Queue(object):
@@ -93,13 +95,13 @@ def test_classes_init_with_args():
     q1 = Queue("q1")
     q2 = Queue("q2")
 
-    assert __ == q1.name
-    assert __ == q2.name
+    assert 'q1' == q1.name
+    assert 'q2' == q2.name
 
     try:
         q3 = Queue()
-    except __: #what error do you get?
-        pass
+    except TypeError as te: #what error do you get?
+        print(te)
 
 
 #just like def, class is also a runtime statement which bounds a class name with the class body code
@@ -118,11 +120,11 @@ def test_class_is_an_executable_statement():
 
     Q_class = create_class(20)
     q1 = Q_class()
-    assert __ == q1.name
+    assert ">10queue" == q1.name
 
     Q_class = create_class(5)
     q1 = Q_class()
-    assert __ == q1.name
+    assert "<=10queue" == q1.name
 
 
 # the self argument name is just a convention but it is
@@ -143,11 +145,11 @@ def test_classes_methods():
 
     q1 = Queue("q1")
     q1.push(10) #note that we pass only one argument
-    assert __ == q1.pop()
+    assert 10 == q1.pop()
 
     #above is a equivalent to
     Queue.push(q1, 10)
-    assert __ == Queue.pop(q1)
+    assert 10 == Queue.pop(q1)
 
 
 def test_classes_bound_and_unbound_methods():
@@ -165,10 +167,13 @@ def test_classes_bound_and_unbound_methods():
     q1 = Queue("q1")
     q1_push = q1.push
 
-    assert __ == (q1.push is Queue.push)
-
-    assert __ == Queue.push.__self__   #unbound method
-    assert __ == q1_push.__self__      #bound method
+    assert False == (q1.push is Queue.push)
+    try:
+        assert s == Queue.push.__self__   #unbound method
+    except AttributeError as ae:
+        print(ae)
+    s = q1_push.__self__
+    assert s == q1_push.__self__      #bound method
 
     # now understand the output of these 2 statements.
     print(q1.push)
@@ -189,16 +194,16 @@ def test_classes_can_have_state():
         def pop(self):
             return self._queue.pop(0)
 
-    assert __ == Queue.count
+    assert 0 == Queue.count
     q1 = Queue("q1")
-    assert __ == Queue.count
+    assert 1 == Queue.count
     q2 = Queue("q2")
-    assert __ == Queue.count
+    assert 2 == Queue.count
 
     try:
         value = q1.count
-    except __ :
-        pass
+    except NameError as ne:
+        print(ne)
 
 
 three_things_i_learnt = """
