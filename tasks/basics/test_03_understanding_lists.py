@@ -1,6 +1,5 @@
-"""This is the 3rd file of python exercise by medplus"""
+"""Exercise 03 Python basics"""
 __author__ = 'Hari'
-
 
 # from Tasks.placeholders
 
@@ -11,13 +10,12 @@ def test_list_type():
 
 
 def test_list_len():
-    """List and its length"""
+    """Function"""
     fruits = ["banana", "orange", "grape"]
     assert 3 == len(fruits)
 
-
 def test_list_can_be_indexed():
-    """List and its slicing"""
+    """Function"""
     fruits = ["banana", "orange", "grape"]
     assert "banana" == fruits[0]
     assert "orange" == fruits[1]
@@ -26,13 +24,11 @@ def test_list_can_be_indexed():
     assert "orange" == fruits[-2]
     assert "banana" == fruits[-3]
 
-
 def test_list_is_mutable():
     """List mutable property"""
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
     assert ["mango", "orange", "grape"] == fruits  # replace __ with expected contents of list
-
 
 def test_list_can_be_sliced():
     """
@@ -44,56 +40,44 @@ def test_list_can_be_sliced():
     assert ["banana", "orange"] == fruits[0:2]
     assert ["banana", "orange", "grape"] == fruits[0:5]
     assert ["orange"] == fruits[1:-1]
-
     # begin :
     assert ["banana", "orange", "grape"] == fruits[0:]
     assert ["grape"] == fruits[2:]
     assert ["banana", "orange", "grape"] == fruits[0:]
-
     #: end
     assert len(fruits[:0]) == 0
     assert ["banana", "orange"] == fruits[:2]
     assert ["banana", "orange", "grape"] == fruits[:5]
-
     # note the invariant
     assert ["banana", "orange", "grape"] == fruits[:1] + fruits[1:]
-
 
 def test_slice_creates_a_new_list():
     """List slicing and mutable property"""
     fruits = ["banana", "orange", "grape"]
     slice_fruits = fruits[0:2]
     slice_fruits.append("guava")
-
     assert ["banana", "orange", "grape"] == fruits  # did this change?  No
     assert ["banana", "orange", "guava"] == slice_fruits
-
 
 def test_list_merge():
     """List addition"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
     all_list = fruits + veggies
-
     assert ["banana", "orange", "grape", "beetroot", "tomato"] == all_list
     assert ["banana", "orange", "grape"] == fruits
     assert ["beetroot", "tomato"] == veggies
     assert ["orange", "grape", "beetroot"] == fruits[1:] + veggies[:1]
 
-
 def test_list_slice_replacement_is_inplace():
     """List slice_replacement"""
     fruits = ["banana", "orange", "grape"]
-
     fruits[1:2] = ["litchi", "guava"]
     assert ["banana", "litchi", "guava", "grape"] == fruits
-
     fruits[3:] = ['grape1']
     assert ["banana", "litchi", "guava", "grape1"] == fruits
-
     fruits[:2] = ["banana1", "litchi"]
     assert ["banana1", "litchi", "guava", "grape1"] == fruits
-
 
 def test_list_common_methods():
     """
@@ -103,42 +87,32 @@ def test_list_common_methods():
     """
     fruits = []
     fruits.append("orange")
-
     assert ["orange"] == fruits
-
     fruits.insert(0, "banana")
     assert ["banana", "orange"] == fruits
-
     fruits.extend(["litchi", "guava"])
     assert ["banana", "orange", "litchi", "guava"] == fruits
-
     fruits.reverse()
     assert ["guava", "litchi", "orange", "banana"] == fruits
-
     fruits.pop()
     assert ["guava", "litchi", "orange"] == fruits
-
     fruits.pop(0)
     assert ["litchi", "orange"] == fruits
-
 
 def test_list_can_contain_lists():
     """List inside list"""
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
     all_list = [fruits, veggies]
-
     assert 2 == len(all_list)
     assert ["orange", "banana"] == all_list[0]
     assert ["beetroot", "tomato"] == all_list[1]
-
 
 def test_list_can_contain_objects_of_different_types():
     """List items with different datatypes"""
     mixed = ["string", 10]
     assert "string" == mixed[0]
     assert 10 == mixed[1]
-
 
 def test_list_sort():
     """List sorting property and reverse sorting"""
@@ -147,7 +121,6 @@ def test_list_sort():
     assert [3, 4, 5, 8] == numbers
     numbers.sort(reverse=True)
     assert [8, 5, 4, 3] == numbers
-
 
 # if something unexpected happens see,
 # http://docs.python.org/2/reference/expressions.html#operator-precedence
@@ -158,20 +131,16 @@ def test_list_membership():
     assert True is (5 in numbers)
     assert False is (10 in numbers)
 
-
 def test_list_range():
     """List slice_replacement"""
     numbers = range(1, 5)
     assert range(1, 5) == numbers
-
     numbers = range(1, 5, 2)
     assert range(1, 5, 2) == numbers
-
 
 THREE_THINGS_I_LEARNT = """
 What is list
 Lists are mutable
 Lists can contains different types of objects together
 """
-
 TIME_TAKEN_MINUTES = 14

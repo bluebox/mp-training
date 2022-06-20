@@ -1,4 +1,4 @@
-"""This is the 5th file of python exercise by medplus"""
+"""Exercise 05 Python basics"""
 __author__ = 'Hari'
 
 # from tasks.placeholders import *
@@ -8,39 +8,32 @@ dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
 
-
 def test_dictionary_type():
     """Dictionary and its type"""
     test_dict = {1: "one"}  # note the new syntax
     assert "dict" == type(test_dict).__name__
 
-
 def test_dictionary_empty():
     """Empty Dictionary"""
     empty_dict_1 = {}
     assert True is isinstance(empty_dict_1, dict)
-
     empty_dict_2 = {}  # another way of creating empty dict
     assert 0 == len(empty_dict_2)
     assert empty_dict_1 == empty_dict_2
-
 
 def test_dictionary_create():
     """Dictionary and isinstance"""
     dict_1 = {1: "one", 2: "two"}
     assert True is isinstance(dict_1, dict)
-
     # init from a sequence of tuple pairs, useful in many cases.
     dict_2 = dict([(1, "one"), (2, "two")])
     assert "one" == dict_2[1]
     assert "two" == dict_2[2]
 
-
 def test_dictionary_length():
     """Dictionary and its length"""
     word_to_digit = {"one": 1, "two": 2}
     assert 2 == len(word_to_digit)  # note that a key value pair is treated as one item
-
 
 def test_dictionary_is_indexed_by_key():
     """Dictionary and indexing as arguments"""
@@ -55,17 +48,13 @@ def test_dictionary_is_indexed_by_key():
         print(ex)  # ex=1(value from dict key-value pair stored in exception)
         assert True
 
-
 def test_dictionary_is_mutable():
     """Dictionary with diff datatypes values"""
     word_to_digit = {"one": 1, "two": 2}
-
     word_to_digit["three"] = 3
     assert {"one": 1, "two": 2, "three": 3} == word_to_digit
-
     del word_to_digit["one"]
     assert {"two": 2, "three": 3} == word_to_digit
-
     word_to_digit["one"] = 10
     assert {"one": 10, "two": 2, "three": 3} == word_to_digit
     # A regular dictionary doesn't track the insertion order.
@@ -73,15 +62,12 @@ def test_dictionary_is_mutable():
     # When we want to make sure that items are returned to the order they
     #  were inserted, we can use OrderedDict.
 
-
 def test_dictionary_is_unordered():
     """Comparing dictonaries"""
     dict1 = {'one': 1, 'two': 2}
     dict2 = {'two': 2, 'one': 1}
-
     equal = (dict1 == dict2)
     assert True is equal  # True or False?
-
 
 def test_dictionary_keys_and_values():
     """testing Dictionary Keys and values"""
@@ -96,24 +82,17 @@ def test_dictionary_keys_and_values():
     values.sort()
     assert [1, 2] == values
 
-
 def test_dictionary_contains():
     """Testing dictionary contains"""
     word_to_digit = {"one": 1, "two": 2}
-
     assert True is ("one" in word_to_digit)
     assert True is ("two" in word_to_digit)
-
     assert word_to_digit["one"]
     assert word_to_digit["two"]
-
     assert False is (1 in word_to_digit)
     assert False is (2 in word_to_digit)
-
     assert True is (1 in word_to_digit.values())
     assert True is (2 in word_to_digit.values())
-
-
 def test_valid_dictionary_keys():
     """testing valid dictinoary keys and its type"""
     test_dict = {}
@@ -125,32 +104,26 @@ def test_valid_dictionary_keys():
     except TypeError as error_te:
         print(error_te)  # observe the error message.
         assert True
-
     try:
         key = (1, 2)
         test_dict[key] = "tuple with immutable elements"
     except TypeError as error_te:
         print(error_te)
         assert False  # do we reach here?
-
     try:
         key = (1, [])
         test_dict[key] = "tuple with mutable element"
     except TypeError as error_te:
         print(error_te)
         assert True  # do we reach here?
-
     assert {1: 1, 'one': 'string', (1, 2): 'tuple with immutable elements'} == test_dict
-
 
 THREE_THINGS_I_LEARNT = """
 what are dictionaries
 key value pairs
 Characteristics of dict
 """
-
 TIME_TAKEN_MINUTES = 15
-
 NOTES2 = '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at

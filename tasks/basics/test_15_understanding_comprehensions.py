@@ -1,4 +1,4 @@
-"""This is the 15th file of python exercise by medplus"""
+"""Exercise 15 """
 __author__ = 'Hari'
 
 NOTES = '''

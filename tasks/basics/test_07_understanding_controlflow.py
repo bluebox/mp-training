@@ -1,8 +1,7 @@
-"""This is the 7th file of python exercise by medplus"""
+"""Exercise 07 python basics"""
 __author__ = 'Hari'
 
 # from tasks.placeholders import *
-
 
 NOTES = '''
 python has support for standard control flow statements similar to other languages.
@@ -10,17 +9,14 @@ iteration over sequences like list, string etc. is built into the language itsel
 similar features) and the loops support an else clause which is not common elsewhere.
 '''
 
-
 def test_if():
     """if, control flow basics"""
     value_a = 1
     value_a = 2
     assert 2 == value_a
-
     if not True:
         value_a = 3
     assert 2 == value_a
-
 
 def test_if_else():
     """if else, control flow basics"""
@@ -30,7 +26,6 @@ def test_if_else():
     else:
         value_a = 3
     assert 3 == value_a
-
 
 def test_if_elif_else():
     """if elif, control flow basics"""
@@ -45,7 +40,6 @@ def test_if_elif_else():
 
     assert "positive" == string_str
 
-
 def test_for_loop_range():
     """
     for loops are used to iterate over arbitrary sequences
@@ -55,7 +49,6 @@ def test_for_loop_range():
         list_nums.append(num_x)
     assert [1, 2, 3, 4] == list_nums
 
-
 def test_for_loop_string():
     """for loop, control flow basics"""
     list_chars = []
@@ -63,14 +56,12 @@ def test_for_loop_string():
         list_chars.append(num_x)
     assert ["e", "n", "g", "i", "n", "e"] == list_chars
 
-
 def test_for_loop_list():
     """for loop iteration"""
     str_result = ""
     for item_fruit in ["orange", "banana", "apple"]:
         str_result = str_result + "".join(item_fruit)
     assert "orangebananaapple" == str_result
-
 
 def test_for_loop_list_with_enumerate():
     """enumerate functions"""
@@ -83,7 +74,6 @@ def test_for_loop_list_with_enumerate():
     dict_mapping = dict(list_result)
     assert {0: 'one', 1: 'two', 2: 'three'} == dict_mapping
 
-
 def test_for_loop_dict():
     """For and append in dict"""
     num_to_word = {1: "one", 2: "two", 3: "three"}
@@ -92,14 +82,12 @@ def test_for_loop_dict():
         list_result.append(item)
     assert [1, 2, 3] == list_result
 
-
 def test_while_loop():
     """while loop in dict"""
     list_result = []
     while len(list_result) < 3:
         list_result.append(10)
     assert [10, 10, 10] == list_result
-
 
 def test_for_loop_break():
     """for loop in dict with break"""
@@ -111,7 +99,6 @@ def test_for_loop_break():
 
     assert [1, 2, 3, 4] == list_result
 
-
 def test_for_loop_continue():
     """for loop with continue"""
     list_result = []
@@ -120,7 +107,6 @@ def test_for_loop_continue():
             continue
         list_result.append(num_x)
     assert [1, 2, 4, 5, 7, 8] == list_result
-
 
 def test_nested_loop_break():
     """nested loop and append"""
@@ -133,7 +119,6 @@ def test_nested_loop_break():
 
     assert [0, 0, 1, 1] == list_result
 
-
 def test_nested_loop_continue():
     """continue with nested loop and append"""
     list_result = []
@@ -145,7 +130,6 @@ def test_nested_loop_continue():
 
     assert [0, 0, 0, 1, 1, 1] == list_result
 
-
 def test_nested_loop_break_continue():
     """continue and break in nested loop"""
     list_result = []
@@ -156,9 +140,7 @@ def test_nested_loop_break_continue():
             if num_x % 2 == 1:
                 break
             list_result.append(num_x)
-
     assert [0, 0, 0, 2, 2, 2] == list_result
-
 
 # else on loops is not available in other common languages
 def test_for_loop_else_plain():
@@ -171,9 +153,7 @@ def test_for_loop_else_plain():
     # else:
     # commenting because for loop has no break statement or any
     # obstacles
-
     assert [0, 1, 2, 3, 4, 10] == list_result
-
 
 def test_for_loop_else_break():
     """Loop with else and break"""
@@ -187,7 +167,6 @@ def test_for_loop_else_break():
         list_result.append(10)
 
     assert len(list_result) == 0
-
 
 def test_for_loop_else_continue():
     """loop with else function"""
@@ -203,7 +182,6 @@ def test_for_loop_else_continue():
     # loop is waste for commenting it.
     assert [1, 2, 4, 10] == list_result
 
-
 # same as above.
 def test_while_loop_else():
     """while loop else"""
@@ -216,12 +194,9 @@ def test_while_loop_else():
             break
     else:
         list_result.append(10)
-
     assert [1, 2, 3] == list_result
-
 
 THREE_THINGS_I_LEARNT = """
 loop, if else, operators
 """
-
 TIME_TAKEN_MINUTES = 10

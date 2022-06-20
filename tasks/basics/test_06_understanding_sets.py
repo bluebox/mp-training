@@ -1,12 +1,10 @@
-"""This is the 6th file of python exercise by medplus"""
+"""Exercise 06 Python basics"""
 __author__ = 'Hari'
 
 NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
-
-
 # from tasks.placeholders import  *
 
 def test_set_type():
@@ -14,31 +12,24 @@ def test_set_type():
     test_set = {"one", "two", "three"}  # note the new syntax
     assert "set" == type(test_set).__name__
 
-
 def test_set_empty():
     """Empty set test"""
     empty_set_wrong = {}  # curly braces are used
     # for both sets and dicts,
-
     # so how do you disambiguate?
     assert False is isinstance(empty_set_wrong, set)
-
     empty_set = set()
     assert True is isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
-
 def test_set_length():
     """Sets and its length"""
-
     # commenting because of pylint suggestion of duplicates values
     # in set
     # fruits = {"apple", "apple", "apple"}
     # assert 1 == len(fruits)  #are duplicates removed?
-
     veggies = {"beetroot", "potato", "spinach"}
     assert 3 == len(veggies)
-
 
 def test_set_creation():
     """
@@ -47,21 +38,16 @@ def test_set_creation():
     test_list = [1, 2, 1, 3]
     set1 = set(test_list)
     assert {1, 2, 3} == set1
-
     test_string = "apple"
     set2 = set(test_string)
     assert {"a", "e", "l", "p"} == set2
-
     test_dict = {1: "one", 2: "two"}
     set3 = set(test_dict)
     assert {1, 2} == set3
-
     set4 = set(test_dict.values())
     assert {"one", "two"} == set4
-
     set5 = set(test_dict.items())
     assert {(1, 'one'), (2, 'two')} == set5
-
 
 def test_set_membership():
     """Sets and checking through Traversing"""
@@ -69,32 +55,23 @@ def test_set_membership():
     assert True is ("apple" in fruits)
     assert False is ("dog" in fruits)
 
-
 def test_set_operations():
     """Sets and its operations"""
     set1 = {"one", "two", "three"}
     set2 = {"three", "four"}
-
     set_all = set1 | set2  # union
     assert {"one", "two", "three", "four"} == set_all
-
     common = set1 & set2
     assert {"three"} == common
-
     diff1 = set1 - set2
     assert {"one", "two"} == diff1
-
     diff2 = set2 - set1
     assert {"four"} == diff2
-
     diff3 = set1 - set1
     assert set({}) == diff3
-
     diff4 = set1.symmetric_difference(set2)
     assert {'four', 'one', 'two'} == diff4
-
     # read up help on other method using the help method in the python console.
-
 
 def test_set_valid_members():
     """Sets and testing valid members"""
@@ -102,27 +79,22 @@ def test_set_valid_members():
     test_set.add("hello")
     test_set.add(1)
     test_set.add((1, 2))
-
     try:
         test_set.add([])
     except TypeError as error_te:
         print(error_te)
         assert True
-
     try:
         test_set.add((1, []))
         #  TypeError: unhashable type: 'list'
     except TypeError as error_te:
         print(error_te)
         assert True
-
     assert {1, 'hello', (1, 2)} == test_set
-
 
 THREE_THINGS_I_LEARNT = """
 what are sets
 Characteristics of sets
 function of sets
 """
-
 TIME_TAKEN_MINUTES = 15
