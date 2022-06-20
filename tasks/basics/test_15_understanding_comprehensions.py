@@ -48,8 +48,8 @@ def test_lc_nested():
 
 def test_lc_nested_filter():
     result = [(x_1+y_1) for x_1 in range(3) for y_1 in range(3) if is_even(1+y_1)]
-    assert 5 == len(result)
-    assert [0, 2, 2, 2, 4] == result
+    assert 3 == len(result)
+    assert [1, 2, 3] == result
 
 # dict comprehensions work the same way, you use them to create dicts
 # from some source of data
