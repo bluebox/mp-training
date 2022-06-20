@@ -22,7 +22,7 @@ def test_triple_single_quoted_strings_are_strings():
     assert True== isinstance('''Hello World''', str)
 
 def test_raw_strings_are_strings():
-    assert True == isinstance("Hello World", str)
+    assert True == isinstance(r"Hello World", str)
 
 def test_single_quoted_strings_can_have_double_quotes():
     first = 'The pilot said "Jump"'
@@ -49,9 +49,9 @@ World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
 
+def test_string_len():
     assert 13 == len("Hello 'world'")
-    assert 13 == len('Hello \'world\'')def test_string_len():
-
+    assert 13 == len('Hello \'world\'')
 
 def test_triple_quoted_strings_can_span_lines():
     string = """Hello
@@ -158,10 +158,12 @@ def test_string_membership():
     assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -strings are immutable
 -strings can be accessed through indexing
 -strings can be sliced
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
+
+

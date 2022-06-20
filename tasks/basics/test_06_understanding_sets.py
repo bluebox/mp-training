@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
@@ -93,16 +93,14 @@ def test_set_valid_members():
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
     except TypeError as te:
         print(te)
-        assert True  
+        assert True
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -pre defined functions like .symmetric_difference
 -adding valuse & keys to thr set
 -
 """
 
-time_taken_minutes = 15
-
-
+TIME_TAKEN_MINUTES = 15

@@ -1,6 +1,6 @@
+from tasks.placeholders import *
 __author__ = 'Hari'
 
-from tasks.placeholders import *
 
 NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
@@ -17,7 +17,7 @@ def test_tuple_length():
 
 def test_tuple_with_no_elements():
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
@@ -69,8 +69,9 @@ def test_tuple_unpacking():
         a, b = triplet
         #should not come here.
     except ValueError as ve:
-        print (ve) # observe what is printed here. =>In Python 3, 
-        #printing values changed from being a distinct statement to being an ordinary function call, 
+        print (ve)
+        # observe what is printed here. =>In Python 3,
+        #printing values changed from being a distinct statement to being an ordinary function call,
         #so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 

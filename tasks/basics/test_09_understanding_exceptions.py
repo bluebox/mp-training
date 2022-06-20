@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
 
 Most modern languages like c#, java have a similar exception model, so your
@@ -164,10 +164,10 @@ http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+-Raising an EXception
+-Handling Exception
+-No matter what finally block will get executed
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 40

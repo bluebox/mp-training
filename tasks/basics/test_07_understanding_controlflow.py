@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 python has support for standard control flow statements similar to other languages.
 iteration over sequences like list, string etc. is built into the language itself (c# has
 similar features) and the loops support an else clause which is not common elsewhere.
@@ -182,10 +182,10 @@ def test_while_loop_else():
     assert [1,2,3] == result
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -for each loop
 -while loop
 -control flow
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20

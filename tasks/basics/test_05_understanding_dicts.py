@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
@@ -13,7 +13,7 @@ def test_dictionary_type():
 
 def test_dictionary_empty():
     empty_dict_1 = {}
-    assert True == isinstance(empty_dict_1, dict)
+    assert True is isinstance(empty_dict_1, dict)
 
     empty_dict_2 = dict() # another way of creating empty dict
     assert 0 == len(empty_dict_2)
@@ -57,7 +57,8 @@ def test_dictionary_is_mutable():
     assert {'two': 2, 'three': 3, 'one': 10} == word_to_digit
     # A regular dictionary doesn't track the insertion order.
     # So when iterating over it, items are returned in an arbitrary order.
-    # When we want to make sure that items are returned to the order they were inserted, we can use OrderedDict.
+    # When we want to make sure that items are returned to the order they were inserted, 
+    #we can use OrderedDict.
 
 def test_dictionary_is_unordered():
     dict1 = { 'one': 1, 'two': 2 }
@@ -81,11 +82,11 @@ def test_dictionary_keys_and_values():
 def test_dictionary_contains():
     word_to_digit = { "one" : 1, "two" : 2}
 
-    assert True == ("one" in word_to_digit)
-    assert True == ("two" in word_to_digit)
+    assert True is ("one" in word_to_digit)
+    assert True is ("two" in word_to_digit)
 
-    assert True == ("one" in word_to_digit.keys())
-    assert True == ("two" in word_to_digit.keys())
+    assert True is ("one" in word_to_digit.keys())
+    assert True is ("two" in word_to_digit.keys())
 
     assert False == (1 in word_to_digit)
     assert False == (2 in word_to_digit)
