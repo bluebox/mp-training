@@ -21,8 +21,7 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 
 
 
-from tasks.placeholders import *
-
+from tasks.placeholders import __author__
 def test_module_without_import():
     try:
         module1.greet("jack")

@@ -1,5 +1,5 @@
 __author__ = 'Hari'
-from tasks.placeholders import  *
+from tasks.placeholders import  __author__
 NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.

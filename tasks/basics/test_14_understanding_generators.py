@@ -13,7 +13,7 @@ have a yield or return the function can return something new.
 '''
 
 from re import T
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():

@@ -5,7 +5,7 @@ NOTES = '''
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 def test_inheritance_basic():
     class Aa(): # A inherits from object.

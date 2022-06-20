@@ -9,7 +9,7 @@ that they have a read only access to variables in the outer function.
 '''
 
 from symtable import Function
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 def outer_func(outer_var):
     def inner_func(inner_var):

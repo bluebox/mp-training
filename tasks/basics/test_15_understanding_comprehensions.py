@@ -7,7 +7,7 @@ NOTES = '''
  sc -> set comprehensions
 '''
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 import string
 
 def is_even(x_1):
