@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = """string is one of the most commonly used data types, it has different
+NOTES = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
 
 def test_string_type():
@@ -153,9 +153,9 @@ def test_string_formatting():
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
-    assert False== ('c' in 'apple')  #is there a precedence issue here?
-    assert True == ('a' in 'apple')
-    assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
+    assert False is ('c' in 'apple')  #is there a precedence issue here?
+    assert True is ('a' in 'apple')
+    assert  True is ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
 
 THREE_THINGS_I_LEARNT = """
