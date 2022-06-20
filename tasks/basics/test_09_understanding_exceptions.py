@@ -7,7 +7,7 @@ Most modern languages like c#, java have a_1 similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
-from placeholders import __author__
+from tasks.placeholders import __author__
 
 def test_exception_flow_1():
     """F"""
