@@ -159,7 +159,7 @@ def test_string_formatting():
     stmt = "{name} is {age} years old".format(name="Ravi", age=25)
     assert 'Ravi is 25 years old'== stmt
 
-def test_string_membership():
+def test_string_membership:
     '''function'''
     assert False is 'c' in 'apple'  #is there a precedence issue here?
     assert True is 'a' in 'apple'
