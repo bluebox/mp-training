@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
  These features make creating lists, dicts and sets from other sequences easy and compact.
  lc -> list comprehensions
  dc -> dict comprehensions
@@ -10,21 +10,21 @@ notes = '''
 from tasks.placeholders import *
 import string
 
-def is_even(x):
-    return x%2 == 0
+def is_even(x_1):
+    return x_1%2 == 0
 
-def square(x):
-    return x*x
+def square(x_1):
+    return x_1*x_1
 
 def test_lc_basic():
     input = [1,2,3]
-    result = [2* x for x in input]
+    result = [2* x_1 for x_1 in input]
     assert 3 == len(result)
     assert [2, 4, 6] == result
 
 def test_lc_map_func():
     input = [1,2,3]
-    result = [square(x) for x in input]
+    result = [square(x_1) for x_1 in input]
     assert [1, 4, 9] == result
 
 def test_lc_trim_words():
@@ -34,20 +34,20 @@ def test_lc_trim_words():
 
 def test_lc_filter_func():
     input = range(10)
-    result = [x for x in input if is_even(x)]
+    result = [x_1 for x_1 in input if is_even(x_1)]
     assert [0, 2, 4, 6, 8] == result
 
 def test_lc_filter_map():
-    result = [square(x) for x in range(5) if is_even(x)]
+    result = [square(x_1) for x_1 in range(5) if is_even(x_1)]
     assert [0, 4, 16] == result
 
 def test_lc_nested():
-    result = [(x+y) for x in range(3) for y in range(3)]
+    result = [(x_1+y_1) for x_1 in range(3) for y_1 in range(3)]
     assert 9 == len(result)
     assert [0, 1, 2, 1, 2, 3, 2, 3, 4] == result
 
 def test_lc_nested_filter():
-    result = [(x+y) for x in range(3) for y in range(3) if is_even(x+y)]
+    result = [(x_1+y_1) for x_1 in range(3) for y_1 in range(3) if is_even(1+y_1)]
     assert 5 == len(result)
     assert [0, 2, 2, 2, 4] == result
 
@@ -102,10 +102,11 @@ def test_sc_filtering():
     assert {1, 3, 5, 7, 9} == odds
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 0.03
+ 

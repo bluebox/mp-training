@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -26,8 +26,8 @@ def test_generator_type():
     assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "next")
-    assert False == hasattr(demo_generator(), "next")
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
@@ -35,7 +35,7 @@ def test_generator_is_an_iterator2():
         assert "how" == next(result)  # builtin which calls the iterator.next()
         assert "are" == next(result)
         assert "you?" == next(result)
-        assert None == next(result)
+        assert None is next(result)
     except StopIteration:
         assert True
 
@@ -89,8 +89,8 @@ def test_generator_return():
 
 def test_generator_control_flow():
     def func():
-        for x in range(5):
-            yield x
+        for x_1 in range(5):
+            yield x_1
         yield 10
     assert [0, 1, 2, 3, 4, 10] == demo_generator_to_list(func())
 
@@ -110,10 +110,10 @@ def test_generator_exception():
     assert [10, 20, 50, 30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 9
+TIME_TAKEN_MINUTES = 0.03

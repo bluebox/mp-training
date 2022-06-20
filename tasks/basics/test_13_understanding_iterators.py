@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -17,30 +17,30 @@ list, tuple, string etc.
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
     assert 'list_iterator' == type(list_iter).__name__
-    assert False == hasattr(list_iter, "next")
+    assert False is hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert 'str_iterator'== type(string_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
     assert 'tuple_iterator' == type(tuple_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert False is hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
         iter(10)
-    except TypeError as te:  # replace by appropriate except so this test passes
+    except TypeError :  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
-        assert "one" == list_iter.next()
-        assert "two" == list_iter.next()
-        assert "three" == list_iter.next()
-        assert "Stop" == list_iter.next() #note what happens when items are finished.
-    except Exception as se:
+        assert "one" is list_iter.next()
+        assert "two" is list_iter.next()
+        assert "three" is list_iter.next()
+        assert "Stop" is list_iter.next() #note what happens when items are finished.
+    except Exception :
         pass
 
 #note this function which can convert any iterable into a list.
@@ -51,7 +51,7 @@ def convert_to_list(iterable):
         while True:
             item = seq_iterator.next()
             result.append(item)
-    except AttributeError as se:
+    except AttributeError :
         return result
 
 def test_convert():
@@ -67,7 +67,7 @@ def test_convert():
 
     try:
         ".".join([1,2,4]) #does not accept all element types though!
-    except TypeError as t :
+    except TypeError :
         assert True
 
 # list creation also uses the iterator protocol!
@@ -97,10 +97,10 @@ def test_find_builtins_that_work_on_iterables():
     assert 1 == len(funcs)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 1
+TIME_TAKEN_MINUTES = 0.03
