@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-from placeholders import __author__
+from tasks.placeholders import __author__
 
 
 NOTES = '''

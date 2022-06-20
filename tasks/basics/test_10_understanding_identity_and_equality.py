@@ -1,7 +1,7 @@
 __author__ = 'Hari'
 
 #from operator import truediv
-from placeholders import *
+from tasks.placeholders import *
 
 NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
