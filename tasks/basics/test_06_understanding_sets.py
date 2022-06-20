@@ -60,7 +60,7 @@ def test_set_creation():
 def test_set_membership():
     '''Sets'''
     fruits = {"apple", "mango", "kiwi"}
-    assert "apple" in fruits == 'apple'
+    assert "apple" in fruits == {"apple", "mango", "kiwi"}
     assert ("dog" in fruits) is False
 
 def test_set_operations():

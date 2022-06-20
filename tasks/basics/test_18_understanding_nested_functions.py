@@ -77,7 +77,7 @@ def test_inner_func_attributes():
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
     # function scope variables
-    ref_to_outer_scope = __
+    ref_to_outer_scope = f1_1
 
 
 # if you understand this, you have understood nested funcs :)

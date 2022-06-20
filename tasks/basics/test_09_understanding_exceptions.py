@@ -29,20 +29,21 @@ def test_exception_flow_1():
 
 def test_exception_flow_2():
     '''Exceptions'''
-    fruit = "orange"
-    result = []
+    str_fruit = "orange"
+    list_result = []
     try:
-        result.append("one")
-        # value = 1/0 #division by zero.
-        result.append("two")
-        fruit.missingmethod() #missing attribute
-        result.append("three")
+        list_result.append("one")
+        test_value = 1/0 #division by zero.
+        print(test_value) #printing for pylint
+        list_result.append("two")
+        str_fruit.missingmethod() #missing attribute
+        list_result.append("three")
     except AttributeError:
-        result.append("four")
+        list_result.append("four")
     except ZeroDivisionError:
-        result.append("five")
+        list_result.append("five")
 
-    assert ['one', 'five'] == result
+    assert ["one","five"] == list_result
 
 def test_raise_error():
     '''Exceptions'''

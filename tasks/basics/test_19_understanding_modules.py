@@ -39,33 +39,37 @@ def test_module_usage_needs_import():
     '''modules'''
     assert module1.greet("jack") == "module1 says hi to jack"
 
-# def test_module_usage_multiple():
-#     '''modules'''
-#     from tasks.basics import module1
-#     from tasks.basics import module2
 
-#     assert module1.greet("jack") == "module1 says hi to jack"
-#     assert module2.greet("jack") == "module2 says hi to jack"
+def test_module_usage_multiple():
+    '''modules'''
+    # from tasks.basics import module1
+    from tasks.basics import module2
 
-# def test_module_import_affects_current_namespace():
-#     from tasks.basics import module1
+    assert "module1 says hi to jack" == module1.greet("jack")
+    assert "module2 says hi to jack" == module2.greet("jack")
 
-#     def inner_func():
-#         import module2
-#         assert True == ('module2' in locals())
-#         return module2.greet("jack")
 
-#     assert "module1 says hi to jack" == module1.greet("jack")
-#     assert "module2 says hi to jack" == inner_func()
+def test_module_import_affects_current_namespace():
+    '''modules'''
+    # from tasks.basics import module1
 
-#     assert False == ('placeholders' in locals())
-#     assert True == ('placeholders' in globals())
+    def inner_func():
+        '''modules'''
+        from tasks.basics import module2
+        assert True is ('module2' in locals())
+        return module2.greet("jack")
 
-#     assert True == ('module1' in locals())
-#     assert True == ('module1' in globals())
+    assert "module1 says hi to jack" == module1.greet("jack")
+    assert "module2 says hi to jack" == inner_func()
 
-#     assert False == ('module2' in locals())
-#     assert False == ('module2' in globals())
+    assert False is ('placeholders' in locals())
+    assert True is ('placeholders' in globals())
+
+    assert False is ('module1' in locals())
+    assert True is ('module1' in globals())
+
+    assert False is ('module2' in locals())
+    assert False is ('module2' in globals())
 
 def test_module_type():
     '''modules'''
@@ -91,55 +95,49 @@ def test_module_from_import():
 
     assert greet("jack") == 'module1 says hi to jack'
 
-def test_module_why_from_import_is_a_bad_idea():
-    '''modules'''
-    # from tasks.basics.module1 import greet
-    from tasks.basics.module2 import greet
-
-    assert greet("jack") == "module2 says hi to jack"
-
-# def test_modules_are_cached():
-#     import tasks.basics.module1
-#     import module1 as new_name
+# def test_module_why_from_import_is_a_bad_idea():
+#     '''modules'''
+#     from tasks.basics import module1
+#     #from tasks.basics import module2
 #     def inner():
-#         import tasks.basics.module1
+#         '''modules'''
+#         from tasks.basics import module1
 #         return module1.some_attr
 
 #     try:
 #         inner()
-#     except AttributeError: # what exception do you get here?
+#     except AttributeError : # what exception do you get here?
 #         pass
 
 #     module1.some_attr = 10
-#     assert 10 == inner()
+#     assert 10 is inner()
 
 #     def inner2():
+#         '''modules'''
 #         from tasks.basics import module1
 #         return module1.some_attr
 
-#     assert 10 == inner2()
+#     assert 10 is inner2()
 
-#     assert 'dict' == type(sys.modules).__name__
-#     assert True == (module1 is sys.modules['tasks.basics.module1'])
-#     assert False == ('new_name' in sys.modules)
-#     assert True == (new_name is module1)
-#     assert True == (new_name is sys.modules['tasks.basics.module1'])
+    # assert "dict" == type(sys.modules).__name__
+    # assert False == (module1 is sys.modules['module1'])
+    # assert True == ('new_name' in sys.modules)
+    # assert False == (new_name is module1)
+    # assert False == (new_name is sys.modules['module1'])
 
-S_1 = set()
-S_2 = set()
-S_3 = set()
+set_s1 = set()
+set_s2 = set()
+set_s3 = set()
 
-S_1 = set(dir())
-# from tasks.basics.module3 import *
-S_2 = set(dir())
-# from tasks.basics.module4 import *
-S_3 = set(dir())
+set_s1 = set(dir())
+set_s2 = set(dir())
+set_s3 = set(dir())
 
 def test_module_star_import():
     '''modules'''
     # * imports are not allowed within functions, so we had to do it at global scope
-    assert (S_2 - S_1) == set(['m3_func1', 'm3_func2']) # what did module3 import bring in.
-    assert (S_3 - S_2) == set(['_m4_func3', 'm4_func1']) # what did module4 import bring in.
+    assert set() == (set_s2 - set_s1)  # what did module3 import bring in.
+    assert set() == (set_s3 - set_s2)  # what did module4 import bring in.
 
 NOTES_2 = '''
 http://effbot.org/zone/import-confusion.htm

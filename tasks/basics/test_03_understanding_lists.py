@@ -144,9 +144,9 @@ def test_list_sort():
 # and fix accordingly.
 def test_list_membership():
     '''Lists'''
-    numbers = [5, 4, 3]
-    assert 5 in numbers == 5
-    assert 10 in numbers == False
+    numbers = [ 5, 4, 3]
+    assert 5 == 5 in numbers
+    assert False == (10 in numbers)
 
 def test_list_range():
     '''Lists'''

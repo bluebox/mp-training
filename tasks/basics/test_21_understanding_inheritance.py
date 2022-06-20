@@ -100,12 +100,12 @@ def test_inheritance_init():
             self.b_1 = []
 
     a_1 = Aa()
-    assert getattr(a_1, "a1", None) == []
+    assert getattr(a_1, "a1", None) is None
     assert getattr(a_1, "b1", None) is None
 
     b_1 = Bb()
     assert  getattr(b_1, "a1", None) is None
-    assert getattr(b_1, "b1", None) == []
+    assert getattr(b_1, "b1", None) is None
 
     try:
         b_1.append("orange")
@@ -124,8 +124,8 @@ def test_inheritance_init():
             self.b_1 = "b1"
 
     b_1 = Bb()
-    assert getattr(b_1, "a1", None) == []
-    assert getattr(b_1, "b1", None) == "b1"
+    assert getattr(b_1, "a1", None) is None
+    assert getattr(b_1, "b1", None) is None
     b_1.append("orange")
     assert b_1.a_1 == ['orange']
 

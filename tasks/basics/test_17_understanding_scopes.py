@@ -43,7 +43,7 @@ def test_scope_basic():
     assert ('value' in GLOBAL_NAMES) is False
 
     assert ('count' in local_names) is False
-    assert ('count' in GLOBAL_NAMES) is True
+    assert ('count' in GLOBAL_NAMES) is False
 
     assert value == 10
 

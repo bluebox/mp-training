@@ -24,16 +24,16 @@ list, tuple, string etc.
 def test_iterator_type():
     '''iterator'''
     list_iter = iter(["one", "two", "three"])
-    assert type(list_iter).__name__ == 'list_iterator'
-    assert hasattr(list_iter, "next") is False
+    assert 'list_iterator' == type(list_iter).__name__
+    assert False== hasattr(list_iter, "next")
 
     string_iter = iter("hello")
-    assert type(string_iter).__name__ == 'iterator'
-    assert hasattr(string_iter, "next") is True
+    assert 'str_iterator' == type(string_iter).__name__
+    assert False== hasattr(string_iter, "next")
 
-    tuple_iter = iter((1, 2, 3))
-    assert type(tuple_iter).__name__ == 'tuple_iterator'
-    assert hasattr(string_iter, "next") is True
+    tuple_iter = iter((1,2,3))
+    assert 'tuple_iterator' == type(tuple_iter).__name__
+    assert False== hasattr(string_iter, "next")
 
 def test_int_iterable():
     '''iterator'''

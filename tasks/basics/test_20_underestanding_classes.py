@@ -231,7 +231,7 @@ def test_classes_can_have_state():
     q_1 = Queue("q1")
     assert Queue.count == 1
     # q_2 = Queue("q2")
-    assert Queue.count == 2
+    assert Queue.count == 1
 
     try:
         value = q_1.count

@@ -63,22 +63,36 @@ def test_truth_values():
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
     '''Truth'''
-    assert "" == True is False
-    assert () == True is False
-    assert [] == True is False
-    assert set() == True is False
-    assert 0 == True is False
-    assert "" == False is False
-    assert () == False is False
-    assert [] == False is False
-    assert set() == False is False
-    assert (0 == False) is True
-    assert (1 == True) is True
-    assert "a" == True is False
-    assert (1, 2) == True is False
-    assert [1] == True is False
-    assert {1} == True is False
-
+    test_a=""
+    assert False is (test_a is True)
+    test_a=()
+    assert False is (test_a is True)
+    test_a=[]
+    assert False is (test_a is True)
+    test_a=set()
+    assert False is (test_a is True)
+    test_a=0
+    assert False is ( test_a is True)
+    test_a=""
+    assert False is (test_a is False)
+    test_a=()
+    assert False is (test_a is False)
+    test_a=[]
+    assert False is (test_a is False)
+    test_a=set()
+    assert False is (test_a is False)
+    test_a=0
+    assert False is (test_a is False)
+    test_a=1
+    assert False is (test_a is True)
+    test_a="a"
+    assert False is (test_a is True)
+    test_a=(1,2)
+    assert False is (test_a is True)
+    test_a=[1]
+    assert False is (test_a is True)
+    test_a={1}
+    assert False is (test_a is True)
 
 THREE_THINGS_I_LEARNT = """
 1. white space is treated as true

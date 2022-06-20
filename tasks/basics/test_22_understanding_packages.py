@@ -30,35 +30,34 @@ def test_package_basic_import():
     '''Packages'''
     clear_sys_modules()
 
-    assert ("package1" in locals()) is False
-    assert ("module1" in locals()) is False
-    assert ("package1.module1" in locals()) is False
+    assert False is ("package1" in locals())
+    assert False is ("module1" in locals())
+    assert False is ("package1.module1" in locals())
 
     from tasks.basics import package1
 
-    assert ("package1" in locals()) is True
-    assert ("module1" in locals()) is False
-    assert ("package1.module1" in locals()) is False
+    assert True is ("package1" in locals())
+    assert False is ("module1" in locals())
+    assert False is ("package1.module1" in locals())
 
-    assert type(package1).__name__ == 'module'
+    assert 'module' == type(package1).__name__
 
-    assert ("package1" in sys.modules) is False
-    assert ("module1" in sys.modules) is False
-    assert ("package1.module1" in sys.modules) is False
+    assert False is ("package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert False is ("package1.module1" in sys.modules)
 
     try:
-        print(package1.module1.__doc__)
-    except AttributeError:
+        print(module1.__doc__)
+    except UnboundLocalError:
         pass
 
     #modules need explicit import generally.
-    import package1.module1
+    from tasks.basics import module1
     print(module1.__doc__)
 
-    assert ("package1" in sys.modules) is False
-    assert ("module1" in sys.modules) is False
-    assert ("package1.module1" in sys.modules) is False
-
+    assert False is ("package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert False is ("package1.module1" in sys.modules)
 
 def clear_sys_modules():
     '''Packages'''
