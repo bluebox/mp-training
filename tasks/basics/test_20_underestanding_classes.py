@@ -1,7 +1,7 @@
 """Code Author"""
 __author__ = 'Hari'
 
-from tasks.placeholders import 
+from tasks.placeholders import __author__
 __AUTHOR__= "hari"
 
 NOTES = '''
