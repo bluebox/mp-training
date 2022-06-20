@@ -28,41 +28,45 @@ def test_inner_func_scope():
     except AttributeError : # fillup the exception
         pass
 
+
 def test_inner_func_can_be_returned():
-    f1 = outer_func(10)
-    assert "function" == type(f1).__name__
-    assert 30 == f1(20)
+    """func"""
+    f_1 = outer_func(10)
+    assert "function" == type(f_1).__name__
+    assert 30 == f_1(20)
 
 def test_each_invocation_returns_a_new_func():
-    f1 = outer_func(10)
-    f2 = outer_func(10)
+    f_1 = outer_func(10)
+    f_2 = outer_func(10)
 
-    assert False is (f1 is f2)
-    assert False is (f1 == f2)
+    assert False is (f_1 is f_2)
+    assert False is (f_1 == f_2)
 
-    f3 = f2
-    assert True is (f3 is f2)
-    assert True is (f3 == f2)
+    f_3 = f_2
+    assert True is (f_3 is f_2)
+    assert True is (f_3 == f_2)
 
 def test_inner_func_has_access_to_outer_variables_after_return():
-    f1 = outer_func(20)
-    f2 = outer_func(50)
+    """func"""
+    f_1 = outer_func(20)
+    f_2 = outer_func(50)
 
-    assert 50 == f1(30)
-    assert 60 == f1(40)
+    assert 50 == f_1(30)
+    assert 60 == f_1(40)
 
-    assert 80 == f2(30)
-    assert 90 == f2(40)
+    assert 80 == f_2(30)
+    assert 90 == f_2(40)
 
 def print_attributes(obj):
+    """obj"""
     for x in dir(obj):
         print("attribute: {0}".format(x))
         print(getattr(obj, x))
 
 
 def test_inner_func_attributes():
-    f1 = outer_func(10)
-    assert 35 == len(dir(f1)) #how many attributes does f1 have
+    f_1 = outer_func(10)
+    assert 35 == len(dir(f_1)) #how many attributes does f_1 have
 
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
