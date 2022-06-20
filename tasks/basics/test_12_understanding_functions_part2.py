@@ -1,9 +1,11 @@
+'''functions in python'''
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
+    '''default and positional arguiment'''
     return [first, second, third]
 
 # keyword arguments allows you to write one api without having a large number
@@ -84,10 +86,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 1
+TIME_TAKEN_MINUTES = 1

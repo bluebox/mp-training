@@ -1,8 +1,9 @@
+'''iterators in python'''
 __author__ = 'Hari'
 
-from placeholders import *
+from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -30,7 +31,7 @@ def test_iterator_type():
 def test_int_iterable():
     try:
         iter(10)
-    except TypeError as te:  # replace by appropriate except so this test passes
+    except TypeError:  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
@@ -40,7 +41,7 @@ def test_enumerate_iter():
         assert "two" == next(list_iter)
         assert "three" == next(list_iter)
         assert __ == next(list_iter) #note what happens when items are finished.
-    except StopIteration as se:
+    except StopIteration:
         pass
 
 #note this function which can convert any iterable into a list.
@@ -51,7 +52,7 @@ def convert_to_list(iterable):
         while True:
             item = next(seq_iterator)
             result.append(item)
-    except StopIteration as se:
+    except StopIteration:
         return result
 
 def test_convert():
@@ -67,7 +68,7 @@ def test_convert():
 
     try:
         ".".join([1,2,4]) #does not accept all element types though!
-    except TypeError as te :
+    except TypeError:
         assert True
 
 # list creation also uses the iterator protocol!
@@ -106,10 +107,10 @@ def test_find_builtins_that_work_on_iterables():
     assert 76 == len(funcs)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 1
+TIME_TAKEN_MINUTES = 1

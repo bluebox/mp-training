@@ -1,6 +1,7 @@
+'''generators in python'''
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -35,7 +36,7 @@ def test_generator_is_an_iterator2():
         assert "are" == next(result)
         assert "you?" == next(result)
         assert __ == next(result)
-    except StopIteration as se:
+    except StopIteration:
         assert True
 
     assert "how.are.you?" == ".".join(demo_generator()) #join takes a iterable

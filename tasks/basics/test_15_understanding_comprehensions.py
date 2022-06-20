@@ -1,14 +1,15 @@
+'''comprehension in python'''
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
  These features make creating lists, dicts and sets from other sequences easy and compact.
  lc -> list comprehensions
  dc -> dict comprehensions
  sc -> set comprehensions
 '''
 
-from tasks.placeholders import *
-import string
+from tasks.basics.test_04_understanding_tuples import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from tasks.placeholders import __author__
 
 def is_even(x):
     return x%2 == 0
@@ -105,10 +106,10 @@ def test_sc_filtering():
     assert {1, 3, 5, 7, 9} == odds
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 1
+TIME_TAKEN_MINUTES = 1

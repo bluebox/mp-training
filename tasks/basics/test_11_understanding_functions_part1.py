@@ -1,8 +1,9 @@
+'''functions in python'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
-notes = '''
+NOTES = '''
 Functions are the basic unit of modularization in python. You use functions to group
 together a meaningful action and use it when you need it.
 
@@ -13,37 +14,44 @@ This is a big topic, we will revisit this topic again.
 '''
 
 
-def my_print(x):
-    print (x)
+def my_print(x_1):
+    '''print in functions'''
+    print (x_1)
 
 
-def my_increment(x):
-    return x + 1
+def my_increment(x_1):
+    '''increment in function'''
+    return x_1 + 1
 
 
 def my_min_max(numbers):
+    '''return minimum from function'''
     return min(numbers), max(numbers)
 
 # functions are kinds of objects, they have a type too!
 def test_function_type():
+    '''function types'''
     assert "function" == type(my_print).__name__
     assert "function" == type(my_increment).__name__
     assert "function" == type(test_function_type).__name__
 
 # functions are objects which can be 'called'
 def test_function_callable_type():
-    assert False == callable(1)
-    assert True == callable(my_increment)
-    assert False == callable(my_increment(10))
+    '''callable function'''
+    assert False is callable(1)
+    assert True is callable(my_increment)
+    assert False is callable(my_increment(10))
 
 # functions can be held by references just like any other object
 def test_function_assignment():
+    '''function assignment'''
     demo = my_increment
     result = demo(20)
     assert 21 == result
 
 # every function returns an object, even when it does not!
 def test_every_function_returns_something():
+    '''return value from function'''
     result = my_print(10)
     assert None == result
 
@@ -65,8 +73,9 @@ def demo2():
 #The documentation of every function, if the author wrote it, is available at runtime.
 #This makes it easy to access help from console or build specialized help commands like help.
 def test_function_documentation():
+    '''documentation in of function'''
     assert "returns 10" == demo1.__doc__
-    assert None == demo2.__doc__
+    assert None is demo2.__doc__
 
 
 def my_callfunc(func):
@@ -112,8 +121,8 @@ def test_function_defaults_are_evaluated_at_definition_time():
     assert None == my_add_to_list2("bye")
 
 
-def demo_parameter_passing1(x):
-    x = x + 1
+def demo_parameter_passing1(x_1):
+    x_1 = x_1 + 1
 
 
 def demo_parameter_passing2(names):
@@ -123,11 +132,10 @@ def demo_parameter_passing2(names):
 def demo_parameter_passing3(names):
     names.append("something")
 
-# read up after you finish this to make sure you get this right: http://effbot.org/zone/call-by-object.htm
 def test_function_params_passed_by_object_reference():
-    x = 10
-    demo_parameter_passing1(x)
-    assert 10 == x
+    x_1 = 10
+    demo_parameter_passing1(x_1)
+    assert 10 == x_1
 
     names = ["one", "two"]
     demo_parameter_passing2(names)
@@ -137,10 +145,10 @@ def test_function_params_passed_by_object_reference():
     assert ["one", "two", "something"] == names
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 1
+TIME_TAKEN_MINUTES = 1

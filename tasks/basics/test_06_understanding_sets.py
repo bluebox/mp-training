@@ -1,25 +1,31 @@
+'''sets in python'''
+
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
 
+#from tasks.basics.test_04_understanding_tuples import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
 from tasks.placeholders import  *
 
 def test_set_type():
+    '''types of set'''
     test_set = {"one", "two", "three"}   # note the new syntax
     assert "set" == type(test_set).__name__
 
 def test_set_empty():
+    '''empty sets in python'''
     empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
-    assert False == isinstance(empty_set_wrong, set)
+    assert False is isinstance(empty_set_wrong, set)
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
+    assert True is isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
 def test_set_length():
+    '''set length'''
     fruits = {"apple", "apple", "apple"}
     assert 1 == len(fruits)  #are duplicates removed?
 
@@ -27,9 +33,7 @@ def test_set_length():
     assert 3 == len(veggies)
 
 def test_set_creation():
-    """
-    sets can be created from any sequence like list or a tuple.
-    """
+    '''how to create set in python'''
     test_list = [1, 2, 1, 3]
     set1 = set(test_list)
     assert {1, 2, 3} == set1
@@ -49,11 +53,13 @@ def test_set_creation():
     assert {(2, "two"), (1, "one")} == set5
 
 def test_set_membership():
+    '''set membership'''
     fruits = {"apple", "mango", "kiwi"}
     assert "apple" == "apple" in fruits
-    assert False == ("dog" in fruits)
+    assert False is ("dog" in fruits)
 
 def test_set_operations():
+    '''set operation'''
     set1 = {"one", "two", "three"}
     set2  =  {"three", "four"}
 
@@ -78,6 +84,7 @@ def test_set_operations():
     #read up help on other method using the help method in the python console.
 
 def test_set_valid_members():
+    '''set members'''
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
@@ -85,24 +92,21 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print (te)
+    except TypeError as t_e:
+        print (t_e)
         assert True
-
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print (te)
+    except TypeError as t_e:
+        print (t_e)
         assert True  
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 1
-
-
+TIME_TAKEN_MINUTES = 1
