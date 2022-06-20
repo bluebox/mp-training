@@ -30,7 +30,7 @@ def my_merge(separator, *args):
 def test_function_with_variable_args():
     result = demo_variable_args("hello", "world")
     assert 'tuple' == type(result).__name__ #this is the type of args
-    assert ('worls',) == result              #this is the value of args
+    assert ('world',) == result              #this is the value of args
 
     assert (1,2,3) == demo_variable_args("hello", 1, 2, 3)
 
@@ -70,7 +70,7 @@ def test_function_unpacking():
     assert (((1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
 
     result = demo_sub(1,2, k1="v1")
-    assert (((1, 2), {'k1': 'v1'}), {}) == result
+    assert ((1, 2), {'k1': 'v1'}) == result
 
     result = demo_sub((1,2), {"k1" :"v1"})
     assert (((1, 2), {'k1': 'v1'}), {}) == result

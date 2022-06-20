@@ -13,44 +13,44 @@ NOTES = '''
 '''
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert False is (a is b)
-    assert True is (a == b)
+    _a = []
+    _b = []
+    assert False is (_a is _b)
+    assert True is (_a == _b)
 
-    a.append("one")
-    assert False is (a is b)
-    assert False is (a == b)
+    _a.append("one")
+    assert False is (_a is _b)
+    assert False is (_a == _b)
 
-    c = []
-    d = c
-    assert True is (c is d)
-    assert True is (c == d)
+    _c = []
+    _d = _c
+    assert True is (_c is _d)
+    assert True is (_c == _d)
 
-    c.append("one")
-    assert True is (c is d)
-    assert True is (c == d)
+    _c.append("one")
+    assert True is (_c is _d)
+    assert True is (_c == _d)
 
 def test_identity_equality_string():
-    a = b = "hello"
+    _a = _b = "hello"
 
-    assert True is (a is b)
-    assert True is (a == b)
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert False is (c is d)
-    assert True is (c == d)
+    _c = "hello"
+    _d = "".join(["hel", "lo"])
+    assert False is (_c is _d)
+    assert True is (_c == _d)
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True is (a is b)
-    assert True is (a == b)
+    _a = _b = 10000
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    c = 10000
-    d = int("10000")
-    assert False is (c is d)
-    assert True is (c == d)
+    _c = 10000
+    _d = int("10000")
+    assert False is (_c is _d)
+    assert True is (_c == _d)
 
 def test_identity_equality_small_numbers():
     """

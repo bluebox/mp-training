@@ -1,9 +1,6 @@
 from tasks.placeholders import *
 __author__ = 'Hari'
-<<<<<<< HEAD
 
-=======
->>>>>>> 033ed6c53027d56778a8071cefdd5c1e42817705
 
 NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with

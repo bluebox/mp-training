@@ -163,19 +163,14 @@ http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-THREE_THINGS_I_LEARNT = """
-<<<<<<< HEAD
--Raising an EXception
--Handling Exception
--No matter what finally block will get executed
+
 """
 
 TIME_TAKEN_MINUTES = 40
 =======
--
+--No matter what finally block will get executed
 -
 -
 """
 
 TIME_TAKEN_MINUTES = 25
->>>>>>> 033ed6c53027d56778a8071cefdd5c1e42817705

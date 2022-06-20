@@ -56,16 +56,7 @@ def test_dictionary_is_mutable():
     word_to_digit["one"] = 10
     assert {'two': 2, 'three': 3, 'one': 10} == word_to_digit
     # A regular dictionary doesn't track the insertion order.
-    # So when iterating over it, items are returned in an arbitrary order.
-<<<<<<< HEAD
-    # When we want to make sure that items are returned to the order they were inserted, 
-    #we can use OrderedDict.
-=======
-    # When we want to make sure that items are returned to the order they were inserted,
-    # we can use OrderedDict.
->>>>>>> 033ed6c53027d56778a8071cefdd5c1e42817705
-
-def test_dictionary_is_unordered():
+    # So when iterating over it, items are returned in an arbitrary order.def test_dictionary_is_unordered():
     dict1 = { 'one': 1, 'two': 2 }
     dict2 = { 'two': 2, 'one': 1}
 
