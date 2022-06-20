@@ -19,6 +19,7 @@ http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
 
 https://www.pythontutorial.net/python-oop/python-type-class/
 
+
 '''
 
 NOTES_1 = '''
