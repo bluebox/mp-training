@@ -25,55 +25,55 @@ def test_identity_equality_lists():
     c = []
     d = c
     assert True == (c is d)
-    assert False == (c == d)
+    assert True == (c == d)
 
     c.append("one")
-    assert False == (c is d)
-    assert False == (c == d)
+    assert True == (c is d)
+    assert True == (c == d)
 
 def test_identity_equality_string():
     a = b = "hello"
 
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
     c = "hello"
     d = "".join(["hel", "lo"])
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert False == (c is d)
+    assert True == (c == d)
 
 def test_identity_equality_numbers():
     a = b = 10000
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
     c = 10000
     d = int("10000")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert False == (c is d)
+    assert True == (c == d)
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
     a = b = 10
-    assert __ == (a is b)
-    assert __ == ( a == b)
+    assert True == (a is b)
+    assert True == ( a == b)
 
     c = 10
     d = int("10")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert True == (c is d)
+    assert True == (c == d)
 
 def test_identity_equality_None():
     a = b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
     a = None
     b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
 
 notes_on_none = '''
