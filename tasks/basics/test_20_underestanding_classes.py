@@ -1,3 +1,4 @@
+"""classes"""
 __author__ = 'Hari'
 
 NOTES = '''
@@ -56,7 +57,7 @@ def test_classes_are_object_factories():
     """Queue with push and pop functions."""
     class Queue():
         """classes"""
-        pass
+        #pass
 
     _q1 = Queue()  # you can 'call' a class to create an instance
     _q2 = Queue()
@@ -106,14 +107,14 @@ def test_classes_init_with_args():
     assert "q2" == _q2.name
 
     try:
-        _q3 = Queue()
+        _q3 = Queue("q1")
     except TypeError: #what error do you get?
         pass
 
 
 #just like def, class is also a runtime statement which bounds a class name with the class body code
 def test_class_is_an_executable_statement():
-   
+    """main functions call """
     def create_class(value):
         """classes"""
         if (value > 10):
@@ -123,6 +124,7 @@ def test_class_is_an_executable_statement():
                     self.name = ">10queue"
         else:
             class Queue():
+                "classes"
                 def __init__(self):
                     self.name = "<=10queue"
 

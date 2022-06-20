@@ -1,3 +1,4 @@
+"""functions_part1"""
 __author__ = 'Hari'
 
 #from tasks.placeholders import *
@@ -16,7 +17,7 @@ This is a big topic, we will revisit this topic again.
 def my_print(_x):
     """FUNCTIONS"""
     print (_x)
-
+    
 
 def my_increment(_x): 
     """FUNCTIONS"""
@@ -62,7 +63,6 @@ def test_every_function_returns_something():
 
 
 def demo1():
-    
     """returns 10"""
     return 10
 
@@ -138,11 +138,11 @@ def demo_parameter_passing2(names):
 
 
 def demo_parameter_passing3(names):
-     
     """FUNCTIONS"""
     names.append("something")
 
-# read up after you finish this to make sure you get this right: http://effbot.org/zone/call-by-object.htm
+# read up after you finish this to make sure you 
+# get this right: http://effbot.org/zone/call-by-object.htm
 def test_function_params_passed_by_object_reference():
     """FUNCTIONS"""
     _x = 10

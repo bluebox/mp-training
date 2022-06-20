@@ -1,3 +1,4 @@
+"""lists"""
 __author__ = 'Hari'
 
 # from tasks.placeholders import *
@@ -149,6 +150,7 @@ def test_list_membership():
     assert False is (10 in numbers)
 
 def test_list_range():
+    """testiing list ranges"""
     numbers = range(1,5)
     assert range(1,5) == numbers
 

@@ -1,3 +1,4 @@
+"""modules"""
 __author__ = 'Hari'
 import sys
 from tasks import placeholders
@@ -84,7 +85,7 @@ def test_module_from_import():
     assert True is ('greet' in locals())
 
     try:
-        module1.greet()
+        module1.greet("jack")
     except TypeError :
         pass
 
@@ -92,7 +93,7 @@ def test_module_from_import():
 
 def test_module_why_from_import_is_a_bad_idea():
     """modules"""
-    from tasks.basics.module1 import greet
+    #from tasks.basics.module1 import greet
     from tasks.basics.module2 import greet
 
     assert "module2 says hi to jack" == greet("jack")
@@ -100,7 +101,7 @@ def test_module_why_from_import_is_a_bad_idea():
 def test_modules_are_cached():
     """modules"""
     # from tasks.basics import module1
-    from tasks.basics import module2
+    #from tasks.basics import module2
     def inner():
         # from tasks.basics import module1
         return module1.some_attr

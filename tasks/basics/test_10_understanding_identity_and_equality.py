@@ -1,3 +1,4 @@
+"""identity and equality"""
 __author__ = 'Hari'
 
 #from tasks.placeholders import *

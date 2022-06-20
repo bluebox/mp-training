@@ -1,6 +1,7 @@
+"""controlflow"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.placeholders import *
 
 NOTES = '''
 python has support for standard control flow statements similar to other languages.
@@ -69,8 +70,8 @@ def test_for_loop_list_with_enumerate():
     """controlflow testing"""
     words = ["one", "two", "three"]
     result = []
-    for p in enumerate(words):
-        result.append(p)
+    for _p in enumerate(words):
+        result.append(_p)
 
     assert [(0, 'one'), (1, 'two'), (2, 'three')] == result
     mapping = dict(result)
@@ -94,10 +95,10 @@ def test_while_loop():
 def test_for_loop_break():
     """controlflow testing"""
     result = []
-    for x in range(1,10):
-        if x % 5 == 0:
+    for _x in range(1,10):
+        if _x % 5 == 0:
             break
-        result.append(x)
+        result.append(_x)
 
     assert [1, 2, 3, 4] == result
 
