@@ -66,7 +66,7 @@ def test_triple_quoted_strings_can_span_lines():
     '''function'''
     strng = """Hello World"""
     assert True is isinstance(strng, str)
-    assert 15 == len(strng)
+    assert 11 == len(strng)
 
 def test_strings_can_be_indexed():
     '''function'''
@@ -159,10 +159,10 @@ def test_string_formatting():
     stmt = "{name} is {age} years old".format(name="Ravi", age=25)
     assert 'Ravi is 25 years old'== stmt
 
-def test_string_membership:
+def test_string_membership():
     '''function'''
-    assert False is 'c' in 'apple'  #is there a precedence issue here?
-    assert True is 'a' in 'apple'
+    assert False is ('c' in 'apple')  #is there a precedence issue here?
+    assert True is ('a' in 'apple')
     assert  True is ('app' in 'apple')
 # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
