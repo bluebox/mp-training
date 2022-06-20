@@ -52,7 +52,8 @@ def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
 
 def test_triple_quoted_strings_can_span_lines():
     '''function'''
-    tq_str = """Hello\nWorld"""
+    tq_str = """Hello
+World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
 
