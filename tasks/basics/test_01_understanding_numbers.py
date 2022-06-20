@@ -9,6 +9,8 @@ from tasks.placeholders import *
 def test_numbers_types():
     assert 'int' == type(1).__name__
     assert 'float' == type(1.3).__name__
+
+
 # assert 'int' == type(10L).__name__
 # In Python 3 the long datatype has been removed and all integer values are handled
 # by the Int class. The default size of Int will depend on your CPU architecture.
@@ -43,9 +45,9 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+Conversion of different values
+about long in python
+
 """
 
-time_taken_minutes = 4
+time_taken_minutes = 6

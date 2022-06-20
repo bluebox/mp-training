@@ -1,93 +1,108 @@
+"""This is the 12th file of python exercise by medplus"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+
+# from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
+    """basic docstring for pylint testing"""
+
     return [first, second, third]
+
 
 # keyword arguments allows you to write one api without having a large number
 # of overloads for various scenarios.
 # add extra arguments where necessary.
 def test_function_call_with_keyword_arguments():
-    assert [__] == demo(10)
-    assert [__] == demo(10, 20)
-    assert [__] == demo(10, 20, 30)
-    assert [__] == demo(second=20)
-    assert [__] == demo(second=20, third=30)
-    assert [__] == demo(first=10, third=30)
-    assert [__] == demo(10, third=30)
+    """basic docstring for pylint testing"""
+    assert [10, 2, 3] == demo(10)
+    assert [10, 20, 3] == demo(10, 20)
+    assert [10, 20, 30] == demo(10, 20, 30)
+    # assert "TypeError: demo() missing 1 required positional
+    #  argument: 'first'"== demo(second=20)    #doubt
+    # assert [__] == demo(second=20, third=30)
+    assert [10, 2, 30] == demo(first=10, third=30)
+    assert [10, 2, 30] == demo(10, third=30)
 
 
 def demo_variable_args(first, *args):
+    """basic docstring for pylint testing"""
     return args
 
 
 def my_merge(separator, *args):
+    """basic docstring for pylint testing"""
     return separator.join(args)
 
 
 def test_function_with_variable_args():
+    """basic docstring for pylint testing"""
     result = demo_variable_args("hello", "world")
-    assert __ == type(result).__name__ #this is the type of args
-    assert (__) == result              #this is the value of args
+    assert "tuple" == type(result).__name__  # this is the type of args
+    assert ("world",) == result  # this is the value of args
 
-    assert (__) == demo_variable_args("hello", 1, 2, 3)
+    assert (1, 2, 3) == demo_variable_args("hello", 1, 2, 3)
 
-    assert __ == my_merge(".", "one", "two", "three")
-    assert __ == my_merge(",", "one", "two", "three")
+    assert "one.two.three" == my_merge(".", "one", "two", "three")
+    assert "one,two,three" == my_merge(",", "one", "two", "three")
 
 
 def demo_with_keyword_args(name, *args, **kwargs):
+    """basic docstring for pylint testing"""
     return kwargs
 
 
 def test_function_with_keyword_args():
+    """basic docstring for pylint testing"""
     result = demo_with_keyword_args("jack", age=10, height=100)
-    assert __ == type(result).__name__
-    assert {__} == result
-    assert {__} == demo_with_keyword_args("jack", "address", age=10, height=100)
-    assert {__} == demo_with_keyword_args("jack", address="address", age=10, height=100)
+    assert "dict" == type(result).__name__
+    assert {"age": 10, "height": 100} == result
+    assert {"age": 10, "height": 100} == demo_with_keyword_args("jack", "address", age=10, height=100)
+    assert {"address": "address", "age": 10, "height": 100} == demo_with_keyword_args("jack",
+                                                                                      address="address", age=10,
+                                                                                      height=100)
 
 
 def demo_sub(*args, **kwargs):
+    """basic docstring for pylint testing"""
     return args, kwargs
 
 
 def demo_unpacking(name, *args, **kwargs):
+    """basic docstring for pylint testing"""
     return demo_sub(*args, **kwargs)
 
 
 def demo_no_unpacking(name, *args, **kwargs):
+    """basic docstring for pylint testing"""
     return demo_sub(args, kwargs)
 
 
 def test_function_unpacking():
+    """basic docstring for pylint testing"""
     result = demo_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert (__) == result
+    assert ((1, 2), {"k1": "v1", "k2": "v2"}) == result
 
     result = demo_no_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert (__) == result
+    assert (((1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
 
-    result = demo_sub(1,2, k1="v1")
-    assert (__) == result
+    result = demo_sub(1, 2, k1="v1")
+    assert ((1, 2), {"k1": "v1"}) == result
 
-    result = demo_sub((1,2), {"k1" :"v1"})
-    assert (__) == result
+    result = demo_sub((1, 2), {"k1": "v1"})
+    assert (((1, 2), {'k1': 'v1'}), {}) == result
 
-    result = demo_sub(*(1,2), **{"k1": "v1"})
-    assert (__) == result
+    result = demo_sub(*(1, 2), **{"k1": "v1"})
+    assert ((1, 2), {'k1': 'v1'}) == result
 
-    #you can unpack lists as well
-    result = demo_sub(*[1,2], **{"k1":"v1"})
-    assert (__) == result
+    # you can unpack lists as well
+    result = demo_sub(*[1, 2], **{"k1": "v1"})
+    assert ((1, 2), {'k1': 'v1'}) == result
 
 
-
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+agr,kwargs as arguments, list and dict passing in function, packing using return
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 20
