@@ -3,7 +3,7 @@ __author__ = 'Hari'
 from tasks.placeholders import *
 
 notes = """string is one of the most commonly used data types, it has different
-behavior than a char* in C."""
+behavior than a char* in C. """
 
 def test_string_type():
     assert 'str'== type("Hello World").__name__
