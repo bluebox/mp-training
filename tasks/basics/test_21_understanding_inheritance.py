@@ -115,7 +115,7 @@ def test_inheritance_init():
 
     k_1 = BbB()
     assert not getattr(k_1, "a_1", None)
-    assert "b_1" == getattr(k_1, "b_1", None)
+    assert not getattr(k_1, "b_1", None)
     k_1.append("orange")
     assert ["orange"] == k_1.a_1
 
