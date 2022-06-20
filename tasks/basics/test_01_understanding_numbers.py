@@ -26,7 +26,7 @@ def test_numbers_int_arithmetic_operations():
 
 def test_numbers_string_to_int():
     """hint: execute  print int.__doc__ in python console
-       to find out what int(..) does"""
+       to find out what int(..) does."""
     assert 255 == int("FF", 16)
     assert 63 == int("77", 8)
 
