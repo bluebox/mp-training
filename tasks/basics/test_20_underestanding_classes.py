@@ -27,6 +27,9 @@ look up references to actually learn object
 oriented programming.
 
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
+
+https://www.pythontutorial.net/python-oop/python-type-class/
+
 '''
 
 # from tasks.placeholders import *
