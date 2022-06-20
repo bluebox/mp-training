@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Just like C, python has notions on what values are considered true
 and what values are considered false.
 
@@ -33,8 +33,7 @@ def test_truth_none():
 def truth_test(object, description):
     if object:
         return description + " is treated as true"
-    else:
-        return description + " is treated as false"
+    return description + " is treated as false"
 
 def test_truth_values():
     assert "empty string is treated as false" == truth_test("", "empty string")
@@ -54,25 +53,25 @@ def test_truth_values():
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
-    assert False == ("" == True)
-    assert False == (() == True)
-    assert False == ([] == True)
-    assert False == (set() == True)
-    assert False == (0 == True)
-    assert False == ("" == False)
-    assert False == (() == False)
-    assert False == ([] == False)
-    assert False == (set() == False)
-    assert True == (0 == False)
-    assert True == (1 == True)
-    assert False == ("a" == True)
-    assert False == ((1,2) == True)
-    assert False == ([1] == True)
-    assert False == ({1} == True)
+    assert False is ("" is True)
+    assert False is (() is True)
+    assert False is ([] is True)
+    assert False is (set() is True)
+    assert False is (0 is True)
+    assert False is ("" is False)
+    assert False is (() is False)
+    assert False is ([] is False)
+    assert False is (set() is False)
+    assert True is (0 is False)
+    assert True is (1 is True)
+    assert False is ("a" is True)
+    assert False is ((1,2) is True)
+    assert False is ([1] is True)
+    assert False is ({1} is True)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 learnt what is None and how None is treated for data structures like list, tuple, dictionaries, etc
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10
