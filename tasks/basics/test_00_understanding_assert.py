@@ -21,11 +21,12 @@ def test_assert_true_with_message():
      # replace ___ with True to stop seeing the assertion error
 
 def test_assert_equality():
-    ''' equality'''
+    ''',jbvmhv'''
     assert 7 == 2 + 5 #replace __ with the expected value
 
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
+    '''mhjvfgch'''
     num1=8
     num2=7
     assert num1>num2 #"Fill in a value greater than 7"

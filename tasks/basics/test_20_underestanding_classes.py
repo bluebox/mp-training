@@ -33,6 +33,7 @@ NOTES_1 = '''
 # classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
 def test_classes_are_objects():
+    ''' objects'''
     class Queue(object):
         """Queue with push and pop functions."""
         pass
@@ -46,6 +47,7 @@ def test_classes_are_objects():
 
 
 def test_classes_are_callable_objects():
+    ''' objects '''
     class Queue(object):
         pass
 
@@ -83,7 +85,9 @@ def test_classes_init_constructor():
     test_list = []
 
     class Queue(object):
+        ''' oblgg'''
         def __init__(self):
+            ''' self '''
             assert True, "Entered here !"
             test_list.append(self)
 
@@ -95,7 +99,9 @@ def test_classes_init_constructor():
 def test_classes_init_with_args():
     ''' args '''
     class Queue(object):
+        ''' uebc'''
         def __init__(self, name):
+            '''eavgsrv'''
             self.name = name
 
     _q1 = Queue("q1")
@@ -113,7 +119,9 @@ def test_classes_init_with_args():
 # just like def, class is also a runtime statement which bounds
 #  a class name with the class body code
 def test_class_is_an_executable_statement():
+    ''' statement '''
     def create_class(value):
+        '''kjgj'''
         if (value > 10):
             class Queue():
                 def __init__(self):
@@ -142,13 +150,16 @@ def test_classes_methods():
     ''' methods '''
     class Queue():
         def __init__(self, name):
+            ''' fhhjfj'''
             self.name = name
             self._queue = []
 
         def push(self, obj):
+            ''' fgfh'''
             self._queue.append(obj)
 
         def pop(self):
+            ''' pop '''
             return self._queue.pop(0)
 
     _q1 = Queue("q1")
@@ -167,9 +178,11 @@ def test_classes_bound_and_unbound_methods():
             self._queue = []
 
         def push(self, obj):
+            ''' push'''
             self._queue.append(obj)
 
         def pop(self):
+            ''' pop '''
             return self._queue.pop(0)
 
     _q1 = Queue("q1")
