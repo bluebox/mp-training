@@ -6,7 +6,6 @@ the keys are not associated with any values.
 '''
 
 from tasks.placeholders import  *
-from test_04_understanding_tuples import THREE_THINGS_I_LEARNT, TIME_TAKEN_IN_MINUTES
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
