@@ -1,10 +1,8 @@
-
-"""This is the 20th file of python exercise by medplus"""
+"""Exercise 20 pyhton basics"""
 
 __author__ = 'Hari'
 
 # from placeholder import F
-
 
 NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
@@ -28,8 +26,7 @@ NOTES_1 = '''
  Generally you would define them at the module scope.
 '''
 
-
-# classes are objects too, they have a type, have attributes, can be passed
+#classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
 def test_classes_are_objects():
     """basic docstring for pylint testing"""
@@ -41,7 +38,7 @@ def test_classes_are_objects():
         """basic docstring for pylint testing"""
         return len(dir(obj))
 
-    assert "type" == type(Queue).__name__  # note this.
+    assert "type" == type(Queue).__name__ #note this.
     assert "Queue with push and pop functions." == Queue.__doc__
     assert 26 == get_attr_count(Queue)
 
@@ -51,16 +48,14 @@ def test_classes_are_callable_objects():
         """basic Class doctsring"""
         pass
 
-    # classes are callable objects just like function objects
+    #classes are callable objects just like function objects
     assert True is callable(Queue)
-
 
 def test_classes_are_object_factories():
     """basic docstring for pylint testing"""
     class Queue(object):
         """basic Class doctsring"""
         pass
-
     q_1 = Queue()  # you can 'call' a class to create an instance
     q_2 = Queue()
 
@@ -70,14 +65,11 @@ def test_classes_are_object_factories():
     assert False is (q_1 is Queue)
     assert False is (q_2 is Queue)
     assert False is (q_2 is q_1)
-
     assert True is isinstance(q_1, Queue)
     assert True is isinstance(q_2, Queue)
-
     assert 26 == len(dir(Queue))
     assert 26 == len(dir(q_1))
     assert 26 == len(dir(q_2))
-
 
 # if an __init__ method exists it is called with the object that is
 # being created, so you can initialize it.
@@ -107,12 +99,10 @@ def test_classes_init_with_args():
 
     assert "q_1" == q_1.name
     assert "q_2" == q_2.name
-
     try:
         q3 = Queue()
-    except TypeError:  # what error do you get?
+    except TypeError: #what error do you get?
         pass
-
 
 # #just like def, class is also a runtime statement which
 # bounds a class name with the class body code
@@ -136,11 +126,9 @@ def test_class_is_an_executable_statement():
     Q_class = create_class(20)
     q_1 = Q_class()
     assert ">10queue" == q_1.name
-
     Q_class = create_class(5)
     q_1 = Q_class()
     assert "<=10queue" == q_1.name
-
 
 # the self argument name is just a convention but it is
 # followed widely, so don't change the name of the first argument
@@ -164,13 +152,12 @@ def test_classes_methods():
             return self._queue.pop(0)
 
     q_1 = Queue("q_1")
-    q_1.push(10)  # note that we pass only one argument
+    q_1.push(10) #note that we pass only one argument
     assert 10 == q_1.pop()
 
 #     #above is a equivalent to
 #     Queue.push(q_1, 10)
     # assert False is Queue.pop(q_1)
-
 
 def test_classes_bound_and_unbound_methods():
     """basic docstring for pylint testing"""
@@ -191,16 +178,12 @@ def test_classes_bound_and_unbound_methods():
 
     q_1 = Queue("q_1")
     q_1_push = q_1.push
-
     assert False is (q_1.push is Queue.push)
-
     # assert True is Queue.push.__self__   #unbound method
     # assert True is q_1_push.__self__      #bound method
-
     # now understand the output of these 2 statements.
     print(q_1.push)
     print(Queue.push)
-
 
 def test_classes_can_have_state():
     """basic docstring for pylint testing"""
@@ -219,21 +202,17 @@ def test_classes_can_have_state():
         def pop(self):
             """basic docstring for pylint testing"""
             return self._queue.pop(0)
-
     assert 0 == Queue.count
     q_1 = Queue("q_1")
     assert 1 == Queue.count
     q_2 = Queue("q_2")
     assert 2 == Queue.count
-
     try:
         value = q_1.count
     except TypeError :
         pass
 
-
 THREE_THINGS_I_LEARNT = """
 classes,oops concept,objects
 """
-
 TIME_TAKEN_MINUTES =60

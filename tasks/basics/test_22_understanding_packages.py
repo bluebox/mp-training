@@ -1,4 +1,4 @@
-"""This is the 22nd file of python exercise by medplus"""
+"""Exercise 22 python basics"""
 __author__ = 'Hari'
 
 import sys
@@ -14,7 +14,6 @@ NOTES = '''
  is treated as a package when python tries to find packages on sys.path.
  A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 '''
-
 
 # Look at the package1 and package2 directories before starting...
 
@@ -51,7 +50,6 @@ def test_package_basic_import():
     assert False is ("module1" in sys.modules)
     assert True is ("tasks.basics.package1.module1" in sys.modules)
 
-
 def clear_sys_modules():
     """basic docstring for pylint testing"""
     sys.modules.pop("module1", None)
@@ -60,25 +58,19 @@ def clear_sys_modules():
     sys.modules.pop("package1.subpackage", None)
     sys.modules.pop("package1.subpackage.m1", None)
 
-
 def test_package_from_import():
     """basic docstring for pylint testing"""
     clear_sys_modules()
-
     assert False is ("tasks.basics.package1" in locals())
     assert False is ("module1" in locals())
     assert False is ("tasks.basics.package1.module1" in locals())
-
     from tasks.basics.package1 import module1
-
     assert False is ("tasks.basics.package1" in locals())
     assert True is ("module1" in locals())
     assert False is ("tasks.basics.package1.module1" in locals())
-
     assert True is ("tasks.basics.package1" in sys.modules)
     assert False is ("module1" in sys.modules)
     assert True is ("tasks.basics.package1.module1" in sys.modules)
-
 
 def test_package_import_failure():
     """basic docstring for pylint testing"""

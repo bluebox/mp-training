@@ -1,4 +1,4 @@
-"""This is the 17th file of python exercise by medplus"""
+"""Exercise 17 python basics"""
 __author__ = 'Hari'
 
 import inspect
@@ -20,78 +20,59 @@ NOTES = '''
 
 count = 10
 
-
 # used to by pass any local shadow variables.
 def get_global_count():
-    """basic docstring for pylint testing"""
+    """function"""
     return count
 
-
 def test_scope_basic():
-    """basic docstring for pylint testing"""
+    """function"""
     local_names = get_locals(test_scope_basic)
-
     value = count
-
     assert True is ('value' in local_names)
     assert False is ('value' in global_names)
-
     assert False is ('count' in local_names)
     assert True is ('count' in global_names)
-
     assert 10 == value
 
-
 def test_scope_undefined_variable():
-    """basic docstring for pylint testing"""
+    """function"""
     local_names = get_locals(test_scope_undefined_variable)
-
     try:
         my_name = name  # name variable is not in local or  global scope
     except NameError:  # fill up the exception
         pass
-
     assert True is ('my_name' in local_names)
     assert False is ('name' in local_names)
     assert False is ('name' in global_names)
 
-
 def test_variable_shadow():
-    """basic docstring for pylint testing"""
+    """function"""
     local_names = get_locals(test_variable_shadow)
     count = 20
-
     assert True is ('count' in local_names)
     assert True is ('count' in global_names)
-
     assert 20 == count
     assert 10 == get_global_count()
 
-
 def test_global_write():
-    """basic docstring for pylint testing"""
+    """function"""
     local_names = get_locals(test_global_write)
-
     global count  # declare that we want to use the read/write to global count
     count = 30
-
     try:
         assert False is ('count' in local_names)
         assert True is ('count' in global_names)
-
         assert 30 == count
         assert 30 == get_global_count()
     finally:
         count = 10  # reset to original value
 
-
 def test_scope_is_bound_at_definition_time():
-    """basic docstring for pylint testing"""
+    """function"""
     local_names = get_locals(test_scope_is_bound_at_definition_time)
-
     assert True is ('count' in local_names)
     assert True is ('count' in global_names)
-
     try:
         value = count
         count = 30
@@ -100,52 +81,41 @@ def test_scope_is_bound_at_definition_time():
         assert True
     finally:
         count = 20
-
     assert 20 == count
     assert 10 == get_global_count()
 
-
 def test_scope_writing_globals():
-    """basic docstring for pylint testing"""
+    """function"""
     local_names = get_locals(test_scope_writing_globals)
-
     assert False is ('count' in local_names)
     assert True is ('count' in global_names)
-
     global count
-
     try:
         count = 40
         assert 40 == count
         assert 40 == get_global_count()
     finally:
         count = 10
-
     assert 10 == get_global_count()
-
 
 THREE_THINGS_I_LEARNT = """
 local_names,global_name,global scope,local scope
 """
-
-TIME_TAKEN_MINUTES = 30
-
+TIME_TAKEN_MINUTES = 40
 
 # helper functions which get the variables in locals and globals using the compiler's symbol tables.
 def get_locals(func):
-    """basic docstring for pylint testing"""
+    """function"""
     source = inspect.getsource(func)
     top = symtable.symtable(source, "<string>", "exec")
     func = top.get_children()[0]  # since we are passing only the func code.
     return func.get_locals()
 
-
 def get_globals():
-    """basic docstring for pylint testing"""
+    """function"""
     module = inspect.getmodule(get_globals)
     source = inspect.getsource(module)
     top = symtable.symtable(source, "<string>", "exec")
     return top.get_identifiers()
-
 
 global_names = get_globals()
