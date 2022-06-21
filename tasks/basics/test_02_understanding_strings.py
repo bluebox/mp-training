@@ -164,7 +164,7 @@ def test_string_combine():
 def test_string_formatting():
     '''string formatting'''
     greeting = "Hello {0}".format("learner")
-    assert "Hello 'learner'"== greeting
+    assert "Hello learner"== greeting
 
     truth = "{1} plus {1} makes {0}".format("two","one")
     assert truth == 'one plus one makes two'

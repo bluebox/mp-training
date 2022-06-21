@@ -62,7 +62,7 @@ def test_slice_creates_a_new_list():
     sliced.append("guava")
 
     assert ["banana", "orange", "grape"]== fruits # did this change?  No
-    assert ["banana", "orange","guava"]== slice
+    assert ["banana", "orange", "guava"]== sliced
 
 
 def test_list_merge():
