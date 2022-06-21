@@ -8,7 +8,7 @@ Notes = '''
  Two objects are identical if they are the same object
  Two objects can be equal even if they are not the same object, if they are of the same type and the type defines some
  equality semantics. E.g. all string objects with content "abc" are equal irrespective of where the objects are in memory,
- two lists can be equal if all elements in them are equal in same order etc.
+ two lists can be equal if all elements in them are equal in same order et
 '''
 
 

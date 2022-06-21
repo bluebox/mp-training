@@ -107,7 +107,7 @@ def test_for_loop_break():
             break
         result.append(num_x)
 
-    assert [1, 2, 3, 4] == result
+    assert [1, 2, 3, 4, 5] == result
 
 
 def test_for_loop_continue():
@@ -139,7 +139,7 @@ def test_nested_loop_continue():
         for num_y in range(1, 5):
             if num_y % 3 == 0:
                 continue
-            result.append(x)
+            result.append(num_x)
 
     assert [0, 0, 0, 1, 1, 1] == result
 

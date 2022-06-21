@@ -24,7 +24,7 @@ def test_list_can_be_indexed():
 def test_list_is_mutable():
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
-    # replace __ with expected contents of list
+    # replace __ with expected contents of lis
     assert ["mango", "orange", "grape"] == fruits
 
 

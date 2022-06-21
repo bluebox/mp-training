@@ -17,36 +17,43 @@ def square(x):
     return x*x
 
 def test_lc_basic():
+    ''' basic '''
     input = [1,2,3]
     result = [2* x for x in input]
     assert 3 == len(result)
     assert [2,4,6] == result
 
 def test_lc_map_func():
+    ''' test '''
     input = [1,2,3]
     result = [square(x) for x in input]
     assert [1,4,9] == result
 
 def test_lc_trim_words():
+    ''' trim words '''
     words = ["one\n", "two\n", " three\n"]
     result = [word.strip() for word in words]
     assert ['one', 'two', 'three'] == result
 
 def test_lc_filter_func():
+    ''' filter '''
     input = range(10)
     result = [x for x in input if is_even(x)]
     assert [0, 2, 4, 6, 8] == result
 
 def test_lc_filter_map():
+    ''' filter map '''
     result = [square(x) for x in range(5) if is_even(x)]
     assert [0, 4, 16] == result
 
 def test_lc_nested():
+    ''' nested '''
     result = [(x+y) for x in range(3) for y in range(3)]
     assert 9 == len(result)
     assert [0, 1, 2, 1, 2, 3, 2, 3, 4] == result
 
 def test_lc_nested_filter():
+    ''' filter '''
     result = [(x+y) for x in range(3) for y in range(3) if is_even(x+y)]
     assert 5 == len(result)
     assert [0, 2, 2, 2, 4] == result
@@ -54,6 +61,7 @@ def test_lc_nested_filter():
 # dict comprehensions work the same way, you use them to create dicts
 # from some source of data
 def test_dc_basic():
+    ''' basic '''
     result = { i : chr(65 +i) for i in range(4)} # note the braces
     assert 4 == len(result)
     assert {0: 'A', 1: 'B', 2: 'C', 3: 'D'} == result
@@ -76,6 +84,7 @@ def test_dc_nested():
     assert {(0, 0): 0, (0, 1): 1, (1, 0): 1, (1, 1): 2} == result
 
 def test_dc_conditional():
+    ''' dc '''
     result = { x : x**2 for x in range (5) if x % 2 == 1}
     assert 2 == len(result)
     assert {1: 1, 3: 9} == result
@@ -88,6 +97,7 @@ def test_sc_basic():
     assert {0, 2, 4, 6}== result
 
 def test_sc_nested():
+    ''' nested '''
     result = { x+y for x in range(3) for y in range(3)}
     assert 5 == len(result)
     assert {0, 1, 2, 3, 4}== result

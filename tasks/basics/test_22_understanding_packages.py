@@ -32,7 +32,7 @@ def test_package_basic_import():
     assert False is ("module1" in locals())
     assert False is ("package1.module1" in locals())
 
-    assert 'module' is type(package1).__name__
+    assert 'module' ==  type(package1).__name__
 
     assert False is ("package1" in sys.modules)
     assert False is ("module1" in sys.modules)
@@ -117,8 +117,7 @@ def test_package_sub_packages():
     # why is this not raising an exception here?
     print(m1.__doc__)
 
-THREE_THINGS_I_LEARNT =
-"""
+THREE_THINGS_I_LEARNT = """
 
 -packages 
 -subpackages

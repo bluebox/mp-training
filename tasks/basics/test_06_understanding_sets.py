@@ -15,7 +15,7 @@ def test_set_type():
 
 def test_set_empty():
     """ set empty"""
-    # curly braces are used for both sets and dicts, so how do you disambiguate?
+    # curly braces are used for both sets and dicts, so how do you disambiguate
     empty_set_wrong = {}
     assert False is  isinstance(empty_set_wrong, set)
 

@@ -11,7 +11,7 @@ fast lookups by key.
 def test_dictionary_type():
     ''' type'''
     test_dict = {1: "one"}   # note the new syntax
-    assert 'dict' is type(test_dict).__name__
+    assert 'dict' ==  type(test_dict).__name__
 
 
 def test_dictionary_empty():
@@ -20,7 +20,7 @@ def test_dictionary_empty():
 
     empty_dict_2 = dict()  # another way of creating empty dict
     assert 0 is len(empty_dict_2)
-    assert empty_dict_1 is empty_dict_2
+    assert empty_dict_1 == empty_dict_2
 
 
 def test_dictionary_create():

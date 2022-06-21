@@ -54,6 +54,7 @@ def test_classes_are_callable_objects():
 
 
 def test_classes_are_object_factories():
+    ''' factories '''
     class Queue(object):
         pass
 
@@ -78,6 +79,7 @@ def test_classes_are_object_factories():
 # if an __init__ method exists it is called with the object that is
 # being created, so you can initialize it.
 def test_classes_init_constructor():
+    ''' contructor '''
     test_list = []
 
     class Queue(object):
@@ -91,6 +93,7 @@ def test_classes_init_constructor():
 
 
 def test_classes_init_with_args():
+    ''' args '''
     class Queue(object):
         def __init__(self, name):
             self.name = name
@@ -136,6 +139,7 @@ def test_class_is_an_executable_statement():
 # this is in contrast to other languages where the instance is implicit via
 # the 'this' keyword.
 def test_classes_methods():
+    ''' methods '''
     class Queue():
         def __init__(self, name):
             self.name = name
@@ -182,6 +186,7 @@ def test_classes_bound_and_unbound_methods():
 
 
 def test_classes_can_have_state():
+    ''' state '''
     class Queue():
         count = 0
 

@@ -27,13 +27,13 @@ def test_inner_func_scope():
     # this syntax does not work either, it is not just static scoping.
     try:
         outer_func.inner_func()
-    except AttributeError : # fillup the exception
+    except AttributeError : # fillup the exceptio
         pass
 
 def test_inner_func_can_be_returned():
     """basic docstring for pylint testing"""
     f_1 = outer_func(10)
-    assert "function" is type(f_1).__name__
+    assert "function" == type(f_1).__name__
     assert 30 is f_1(20)
 
 def test_each_invocation_returns_a_new_func():

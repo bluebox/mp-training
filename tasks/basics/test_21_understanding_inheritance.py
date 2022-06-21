@@ -1,131 +1,169 @@
-# from Tasks.placeholders import *
+"""This is the 21st file of python exercise by medplus"""
 __author__ = 'Hari'
+
+# from tkinter.messagebox import NO
+from tasks.placeholders import __author__
+
 
 NOTES = '''
  Inheritance is another standard feature of object oriented programming.
- This exercise illustrates the syntax and language features for using inheritance in Python.
+ This exercise illustrates the syntax and language features for using 
+ inheritance in Python.
 '''
 
 
 def test_inheritance_basic():
-    class Aclass():  # A inherits from object.
-        def _f(self):
+    """basic docstring for pylint testing"""
+    class ClassA(object):
+        """basic docstring for pylint testing"""
+
+        # A inherits from object.
+        def obj_f(self):
+            """basic docstring for pylint testing"""
             pass
 
-    class Bclass(Aclass):  # B inherits from A or B derives A
-        def _g(self):
+    class ClassB(ClassA):
+        """basic docstring for pylint testing"""      #B inherits from A or B derives A
+        def obj_g(self):
+            """basic docstring for pylint testing"""
             pass
 
-    assert True is issubclass(Aclass, object)
-    assert True is issubclass(Aclass, Aclass)
-    assert False is issubclass(Aclass, Bclass)
+    assert True is issubclass(ClassA, object)
+    assert True is issubclass(ClassA, ClassA)
+    assert False is issubclass(ClassA, ClassB)
 
-    assert True is issubclass(Bclass, Aclass)
-    assert True is issubclass(Bclass, Bclass)
-    assert True is issubclass(Bclass, object)
+    assert True is issubclass(ClassB, ClassA)
+    assert True is issubclass(ClassB, ClassB)
+    assert True is issubclass(ClassB, object)
 
 # base class methods are available for derived class objects
-
-
 def test_inheritance_methods():
-    class Aclass():  # A inherits from object.
-        def _f(self):
+    """basic docstring for pylint testing"""
+    class ClassA(object):
+        """basic docstring for pylint testing"""
+        # A inherits from object.
+        def obj_f(self):
+            """basic docstring for pylint testing"""
             return "A:f()"
 
-    class Bclass(Aclass):  # B inherits A's behavior (attributes)
-        def _g(self):
+    class ClassB(ClassA):
+        """basic docstring for pylint testing"""      #B inherits A's behavior (attributes)
+        def obj_g(self):
+            """basic docstring for pylint testing"""
             return "B:g()"
 
-    _b = Bclass()
-    assert "A:f()" == _b._f()
-    assert "B:g()" == _b._g()
+    ins_b = ClassB()
+    assert "A:f()" == ins_b.obj_f()
+    assert "B:g()" == ins_b.obj_g()
 
-    _a = Aclass()
-    assert "A:f()" == _a._f()
+    ins_a = ClassA()
+    assert "A:f()" == ins_a.obj_f()
     try:
-        assert "error" == _a._g()
+        assert "B:g()" == ins_a.obj_g()
     except AttributeError:
-        # print ex  #uncomment this line after filling up
+        #print ex  #uncomment this line after filling up
         pass
-
 
 def test_inheritance_overrides():
-    class Aclass():  # A inherits from object.
-        def f(self):
+    """basic docstring for pylint testing"""
+    class ClassA(object):
+        """basic docstring for pylint testing""" # A inherits from object.
+        def obj_f(self):
+            """basic docstring for pylint testing"""
             return "A:f()"
 
-        def g(self):
+        def obj_g(self):
+            """basic docstring for pylint testing"""
             return "A:g()"
 
-    class Bclass(Aclass):  # B can override A's methods
-        def g(self):
+    class ClassB(ClassA):
+        """basic docstring for pylint testing"""
+        #B can override A's methods
+        def obj_g(self):
+            """basic docstring for pylint testing"""
             return "B:g()"
 
-    _a = Aclass()
-    assert "A:f()" == _a.f()
-    assert "A:g()" == _a.g()
+    ins_a = ClassA()
+    assert "A:f()" == ins_a.obj_f()
+    assert "A:g()" == ins_a.obj_g()
 
-    _b = Bclass()
-    assert "A:f()" == _b.f()
-    assert "B:g()" == _b.g()
-
+    ins_b = ClassB()
+    assert "A:f()" == ins_b.obj_f()
+    assert "B:g()" == ins_b.obj_g()
 
 def test_inheritance_init():
-    class Aclass():
+    """basic docstring for pylint testing"""
+    class ClassA(object):
+        """basic docstring for pylint testing"""
         def __init__(self):
-            self._a1 = []
+            """basic docstring for pylint testing"""
+            self.a1 = []
 
         def append(self, obj):
-            self._a1.append(obj)
+            """basic docstring for pylint testing"""
+            self.a1.append(obj)
 
-    class Bclass(Aclass):
+    class ClassB(ClassA):
+        """basic docstring for pylint testing"""
         def __init__(self):
-            self._b1 = []
+            """basic docstring for pylint testing"""
+            self.b1 = []
 
-    _a = Aclass()
-    assert not getattr(_a, "_a1", None)
-    assert None is getattr(_a, "_b1", None)
+    ins_a = ClassA()
+    assert [] == getattr(ins_a, "a1", None)
+    assert None is getattr(ins_a, "b1", None)
 
-    _b = Bclass()
-    assert None is getattr(_b, "_a1", None)
-    assert not getattr(_b, "_b1", None)
+    ins_b = ClassB()
+    assert None is getattr(ins_b, "a1", None)
+    assert [] == getattr(ins_b, "b1", None)
 
     try:
-        _b.append("orange")
-    except AttributeError:  # what happened here?
-        pass
+        ins_b.append("orange")
+    except AttributeError :
+        """basic docstring for pylint testing"""
+        print("AttributeError")
+        #what happened here?
+        # pass
 
     # Since methods of A depend on init being called, we must always
     # chain __init__ to the base class if the derived class overrides it.
 
-    # lets redefine B now, to chain the inits to the base class.
-    class Bclass1(Aclass):
+    #lets redefine B now, to chain the inits to the base class.
+    class ClassB(ClassA):
+        """basic docstring for pylint testing"""
         def __init__(self):
-            Aclass.__init__(self)
-            self._b1 = "b1"
+            ClassA.__init__(self)
+            self.b1 = "b1"
 
-    _b = Bclass1()
-    assert not getattr(_b, "_a1", None)
-    assert "b1" is getattr(_b, "_b1", None)
-    _b.append("orange")
-    assert ["orange"] == _b._a1
-
+    ins_b = ClassB()
+    assert [] == getattr(ins_b, "a1", None)
+    assert "b1" == getattr(ins_b, "b1", None)
+    ins_b.append("orange")
+    assert ["orange"] == ins_b.a1
 
 def test_inheritance_invoking_using_super():
-    # super can be used instead of explicitly invoking base.
-    class Aclass():  # A inherits from object.
-        def f(self):
+    """basic docstring for pylint testing"""
+    #super can be used instead of explicitly invoking base.
+    class ClassA(object):
+        """basic docstring for pylint testing"""
+        # A inherits from object.
+        def obj_f(self):
+            """basic docstring for pylint testing"""
             return "A:f()"
 
-        def g(self):
+        def obj_g(self):
+            """basic docstring for pylint testing"""
             return "A:g()"
 
-    class Bclass(Aclass):  # B can override A's methods
-        def g(self):
-            return super().g() + ":" + "B:g()"
+    class ClassB(ClassA):
+        """basic docstring for pylint testing"""
+        #B can override A's methods
+        def obj_g(self):
+            """basic docstring for pylint testing"""
+            return super(ClassB, self).obj_g() + ":"+ "B:g()"
 
-    _b = Bclass()
-    assert "A:g():B:g()" == _b.g()
+    ins_b = ClassB()
+    assert "A:g():B:g()" == ins_b.obj_g()
 
 
 NOTES_1 = '''
@@ -134,9 +172,20 @@ NOTES_1 = '''
 '''
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+classes, inheritance,oops
 """
 
-TIME_TAKEN_MINUTES = 40
+TIME_TAKEN_MINUTES = 25
+
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""
+THREE_THINGS_I_LEARNT = """
+classes, inheritance,oops
+"""

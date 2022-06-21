@@ -16,10 +16,12 @@ def test_assert_true():
     assert True  #This should be True -- replace ___ with True.
 
 def test_assert_true_with_message():
-    assert True #"This is the failure message"
+    assert True 
+    #"This is the failure message"
      # replace ___ with True to stop seeing the assertion error
 
 def test_assert_equality():
+    ''' equality'''
     assert 7 == 2 + 5 #replace __ with the expected value
 
 #Fill in __ in the statements below to make the asserts succeed
@@ -30,9 +32,11 @@ def test_make_assert_true_1():
 
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
+    ''' assert'''
     assert 2**43 > 2**30 #Fill in value greater than 2**30"
 
 def test_make_assert_true_3():
+    ''' assert '''
     num_s1 = "Hello, World"
     num_s2 = "Hello, World"
     assert num_s1 == num_s2

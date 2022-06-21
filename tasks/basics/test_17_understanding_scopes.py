@@ -22,7 +22,7 @@ NOTES = '''
 
 count = 10
 
-# used to by pass any local shadow variables.
+# used to by pass any local shadow variable
 
 
 def get_global_count():

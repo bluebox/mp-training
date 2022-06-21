@@ -16,7 +16,7 @@ def test_exception_flow_1():
     try:
         fruit = fruit.upper()
         result.append("one")
-        fruit.missingmethod()  # what happens to the control flow here?
+        fruit.missingmethod()  # what happens to the control flow here
         result.append("two")
     except AttributeError :
         result.append("three")
