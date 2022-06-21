@@ -1,9 +1,8 @@
 __author__ = 'Hari'
-
-from asyncio import FastChildWatcher
+import sys
 from tasks import placeholders
 from tasks.basics import module1
-
+from tasks.placeholders import __author__
 NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
 
@@ -13,15 +12,14 @@ a set of function, data and class definitions which provide a specific functiona
  socket module exposes functionality related to communication using sockets.
 '''
 
-notes_1 = '''
+NOTES_1 = '''
 All these tests uses module1.py to module4.py. Take a look at them before starting the tests.
 '''
-#this is a global import, generally you use only these. rarely will you use function level imports, but we are doing that
 #here for the sake of testing.
 
-import sys
 
-from tasks.placeholders import *
+
+
 
 def test_module_without_import():
     try:
@@ -30,11 +28,11 @@ def test_module_without_import():
         print("import module before using module")
 
 def test_module_usage_needs_import():
-    from tasks.basics import module1
+    #from tasks.basics import module1
     assert "module1 says hi to jack" == module1.greet("jack")
 
 def test_module_usage_multiple():
-    from tasks.basics import module1
+    #from tasks.basics import module1
     from tasks.basics import module2
 
     assert "module1 says hi to jack" == module1.greet("jack")
@@ -88,22 +86,23 @@ def test_module_why_from_import_is_a_bad_idea():
     assert "module2 says hi to jack" == greet("jack")
 
 def test_modules_are_cached():
-    from tasks.basics import module1
+    
+    #from tasks.basics import module1
     from tasks.basics import module1 as new_name
     def inner():
-        from tasks.basics import module1
+        #from tasks.basics import module1
         return module1.some_attr
 
     try:
         inner()
-    except AttributeError as ae: # what exception do you get here?
-        print(ae)
+    except AttributeError as a_e: # what exception do you get here?
+        print(a_e)
 
     module1.some_attr = 10
     assert 10 == inner()
 
     def inner2():
-        from tasks.basics import module1
+        #from tasks.basics import module1
         module1.some_attr = 10
         return module1.some_attr
 
@@ -130,7 +129,7 @@ def test_module_star_import():
     assert {'m3_func1', 'm3_func2'} == (s2 - s1)  # what did module3 import bring in.
     assert {'_m4_func3', 'm4_func1'} == (s3 - s2)  # what did module4 import bring in.
 
-notes_2 = '''
+NOTES_2 = '''
 http://effbot.org/zone/import-confusion.htm
 '''
 
