@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-NOTES = """string is one of the most commonly used data types, it has different
+NOTES = """string is one of the most commonly used data types, it has differen
 behavior than a char* in C."""
 
 def test_string_type():

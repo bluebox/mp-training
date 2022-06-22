@@ -9,7 +9,7 @@ def test_numbers_types():
     assert 'int' == type(1).__name__
     assert 'float' == type(1.3).__name__
 # assert 'int' == type(10L).__name__
-# In Python 3 the long datatype has been removed and all integer values are handled
+# In Python 3 the long datatype has been removed and all integer values are hand
 # by the Int class. The default size of Int will depend on your CPU architecture.
 # 32 bit systems the default datatype for integers will be 'Int32'->[-2147483648,2147483647]
 # 64 bit systems the default datatype
