@@ -70,17 +70,17 @@ def test_function_unpacking():
     assert (((1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
 
     result = demo_sub(1,2, k1="v1")
-    assert (__) == result
+    assert ((1,2),{"k1":"v1"}) == result
 
     result = demo_sub((1,2), {"k1" :"v1"})
-    assert (__) == result
+    assert (((1,2), {"k1" :"v1"}),{}) == result
 
     result = demo_sub(*(1,2), **{"k1": "v1"})
-    assert (__) == result
+    assert ((1,2), {"k1" :"v1"}) == result
 
     #you can unpack lists as well
     result = demo_sub(*[1,2], **{"k1":"v1"})
-    assert (__) == result
+    assert ((1, 2), {'k1': 'v1'}) == result
 
 
 

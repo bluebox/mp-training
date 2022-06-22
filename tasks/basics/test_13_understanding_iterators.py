@@ -49,7 +49,7 @@ def convert_to_list(iterable):
     result = []
     try:
         while True:
-            item = seq_iterator.next()
+            item = seq_iterator.__next__()
             result.append(item)
     except StopIteration as se:
         return result
@@ -61,26 +61,26 @@ def test_convert():
 
     #string.join also works using the iteration protocol!
     #accepts any iterable
-    assert ["hello"] == ".".join("hello")
-    assert ["hello.world"] == ".".join(["hello", "world"])
-    assert __ == ".".join(("hello", "there"))
+    assert "h.e.l.l.o" == ".".join("hello")
+    assert "hello.world" == ".".join(["hello", "world"])
+    assert "hello.there" == ".".join(("hello", "there"))
 
     try:
         ".".join([1,2,4]) #does not accept all element types though!
-    except __ :
+    except TypeError :
         assert True
 
 # list creation also uses the iterator protocol!
 # note via help(list). we have already used this, you know how it works now!
 def test_list_creation():
-    assert __ == list("hello")
-    assert __ == list((1,2,3,4))
-    assert __ == list(range(5))
+    assert ['h','e','l','l','o'] == list("hello")
+    assert [1,2,3,4] == list((1,2,3,4))
+    assert [0,1,2,3,4] == list(range(5))
 
 # tuple constructor function works the same way!
 def test_tuple_creation():
-    assert __ == tuple("hello")
-    assert __ == tuple([1,2,3,5])
+    assert ('h','e','l','l','o') == tuple("hello")
+    assert (1,2,3,5) == tuple([1,2,3,5])
 
 # Note that none of these functions below know which exact type they are working
 # with, as long as their parameters support the iterator protocol they will work.
@@ -88,13 +88,13 @@ def test_tuple_creation():
 def test_functions_that_work_on_iterables():
     test_dict = {"one": 1, "two":2}
     assert ["one", "two"] == sorted(test_dict)
-    assert __ == list(test_dict)
+    assert ["one", "two"] == list(test_dict)
 
 # Go through the functions at http://docs.python.org/2/library/functions.html
 # and enter all the functions that operate on iterables into the funcs list.
 def test_find_builtins_that_work_on_iterables():
-    funcs = [__]
-    assert ___ == len(funcs)
+    funcs = []
+    assert 0 == len(funcs)
 
 
 three_things_i_learnt = """
