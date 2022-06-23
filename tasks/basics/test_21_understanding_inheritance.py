@@ -100,7 +100,7 @@ def test_inheritance_init():
         """basic docstring for pylint testing"""
         def __init__(self):
             """basic docstring for pylint testing"""
-            self.b1 = []
+            self.bns = []
 
     ins_a = ClassA()
     assert [] == getattr(ins_a, "ans", None)
