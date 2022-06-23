@@ -12,19 +12,19 @@ NOTES = '''
 
 def test_inheritance_basic():
     """basic docstring for pylint testing"""
-    class ClassA(object):
+    class ClassA():
         """basic docstring for pylint testing"""
 
         # A inherits from object.
         def obj_f(self):
             """basic docstring for pylint testing"""
-            pass
+#            pass
 
     class ClassB(ClassA):
         """basic docstring for pylint testing"""      #B inherits from A or B derives A
         def obj_g(self):
             """basic docstring for pylint testing"""
-            pass
+#            pass
 
     assert True is issubclass(ClassA, object)
     assert True is issubclass(ClassA, ClassA)
@@ -36,7 +36,7 @@ def test_inheritance_basic():
 # base class methods are available for derived class objects
 def test_inheritance_methods():
     """basic docstring for pylint testing"""
-    class ClassA(object):
+    class ClassA():
         """basic docstring for pylint testing"""
         # A inherits from object.
         def obj_f(self):
@@ -60,7 +60,7 @@ def test_inheritance_methods():
 
 def test_inheritance_overrides():
     """basic docstring for pylint testing"""
-    class ClassA(object):
+    class ClassA():
         """basic docstring for pylint testing""" # A inherits from object.
         def obj_f(self):
             """basic docstring for pylint testing"""
@@ -86,15 +86,15 @@ def test_inheritance_overrides():
 
 def test_inheritance_init():
     """basic docstring for pylint testing"""
-    class ClassA(object):
+    class ClassA():
         """basic docstring for pylint testing"""
         def __init__(self):
             """basic docstring for pylint testing"""
-            self.a1 = []
+            self.ans = []
 
         def append(self, obj):
             """basic docstring for pylint testing"""
-            self.a1.append(obj)
+            self.ans.append(obj)
 
     class ClassB(ClassA):
         """basic docstring for pylint testing"""
@@ -103,16 +103,16 @@ def test_inheritance_init():
             self.b1 = []
 
     ins_a = ClassA()
-    assert [] == getattr(ins_a, "a1", None)
-    assert None is getattr(ins_a, "b1", None)
+    assert [] == getattr(ins_a, "ans", None)
+    assert None is getattr(ins_a, "bns", None)
 
     ins_b = ClassB()
-    assert None is getattr(ins_b, "a1", None)
-    assert [] == getattr(ins_b, "b1", None)
+    assert None is getattr(ins_b, "ans", None)
+    assert [] == getattr(ins_b, "bns", None)
 
     try:
         ins_b.append("orange")
-    except AttributeError :
+    except AttributeError:
         """basic docstring for pylint testing"""
         print("AttributeError")
         #what happened here?
@@ -126,18 +126,18 @@ def test_inheritance_init():
         """basic docstring for pylint testing"""
         def __init__(self):
             ClassA.__init__(self)
-            self.b1 = "b1"
+            self.bns = "bns"
 
     ins_b = ClassB()
-    assert [] == getattr(ins_b, "a1", None)
-    assert "b1" == getattr(ins_b, "b1", None)
+    assert [] == getattr(ins_b, "ans", None)
+    assert "bns" == getattr(ins_b, "bns", None)
     ins_b.append("orange")
-    assert ["orange"] == ins_b.a1
+    assert ["orange"] == ins_b.ans
 
 def test_inheritance_invoking_using_super():
     """basic docstring for pylint testing"""
     #super can be used instead of explicitly invoking base.
-    class ClassA(object):
+    class ClassA():
         """basic docstring for pylint testing"""
         # A inherits from object.
         def obj_f(self):

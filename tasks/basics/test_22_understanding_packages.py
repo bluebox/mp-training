@@ -3,8 +3,6 @@ __author__ = 'Hari'
 
 import sys
 from tasks.basics import module1
-from tasks.basics.package1.subpackage import m1
-import tasks.placeholders
 
 NOTES = '''
  Sometimes a collection of modules provides related functionality as part of a larger framework,
@@ -39,7 +37,7 @@ def test_package_basic_import():
 
     try:
         print(module1.__doc__)
-    except __:
+    except NameError:
         pass
 
     # modules need explicit import generally.
