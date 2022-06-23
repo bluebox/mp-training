@@ -71,8 +71,8 @@ def test_equality():
     assert False is (() is False)
     assert False is ([] is False)
     assert False is (set() is False)
-    assert True is (0 is False)
-    assert True is (1 is True)
+    assert False is (0 is False)
+    assert False is (1 is True)
     _a ="a"
     assert False is (_a is True)
     tup = (1,2)

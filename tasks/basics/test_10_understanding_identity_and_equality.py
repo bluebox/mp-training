@@ -29,7 +29,7 @@ def test_identity_equality_lists():
     assert True is (_c is _d)
     assert True is (_c == _d)
 
-    c.append("one")
+    _c.append("one")
     assert True is (_c is _d)
     assert True is (_c == _d)
 
