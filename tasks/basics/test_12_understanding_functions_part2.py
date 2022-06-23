@@ -1,73 +1,85 @@
+"""function part2"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
 
 def demo(first, second=2, third=3):
+    """functions part2"""
     return [first, second, third]
 
 # keyword arguments allows you to write one api without having a large number
 # of overloads for various scenarios.
 # add extra arguments where necessary.
 def test_function_call_with_keyword_arguments():
-    assert [10,2,3] == demo(10)
-    assert [10,20,3] == demo(10, 20)
-    assert [10,20,30] == demo(10, 20, 30)
-    assert [10,20,3] == demo(10,second=20)  # added argument for first
-    assert [10,20,30] == demo(10,second=20, third=30) # added argument for first
-    assert [10,2,30] == demo(first=10, third=30)
-    assert [10,2,30] == demo(10, third=30)
+    """functions part2"""
+    assert [10, 2, 3] == demo(10)
+    assert [10, 20, 3] == demo(10, 20)
+    assert [10, 20, 30] == demo(10, 20, 30)
+    assert [1,20,3] == demo(1,second=20)
+    assert [2, 20, 30] == demo(2,second=20, third=30)
+    assert [10, 2, 30] == demo(first=10, third=30)
+    assert [10, 2, 30] == demo(10, third=30)
 
 
-def demo_variable_args(first, *args):
+def demo_variable_args( *args):
+    """functions part2"""
     return args
 
 
 def my_merge(separator, *args):
+    """functions part2"""
     return separator.join(args)
 
 
 def test_function_with_variable_args():
+    """functions part2"""
     result = demo_variable_args("hello", "world")
-    assert 'tuple' == type(result).__name__ #this is the type of args
-    assert ("world",) == result              #this is the value of args
+    assert "tuple" == type(result).__name__ #this is the type of args
+    assert ('hello', 'world') == result              #this is the value of args
 
-    assert (1,2,3) == demo_variable_args("hello", 1, 2, 3)
+    assert ('hello', 1, 2, 3) == demo_variable_args("hello", 1, 2, 3)
 
     assert "one.two.three" == my_merge(".", "one", "two", "three")
     assert "one,two,three" == my_merge(",", "one", "two", "three")
 
 
-def demo_with_keyword_args(name, *args, **kwargs):
+def demo_with_keyword_args( *args, **kwargs):
+    """functions part2"""
     return kwargs
 
 
 def test_function_with_keyword_args():
+    """functions part2"""
     result = demo_with_keyword_args("jack", age=10, height=100)
     assert "dict" == type(result).__name__
     assert {'age': 10, 'height': 100} == result
-    assert {'age': 10, 'height': 100}  == demo_with_keyword_args("jack", "address", age=10, height=100)
-    assert  {'age': 10, 'height': 100 ,"address":"address" } == demo_with_keyword_args("jack", address="address", age=10, height=100)
+    assert {'age': 10, 'height': 100} == demo_with_keyword_args("jack", "address", age=10, height=100)
+    assert {"address":"address",'age': 10, 'height': 100} == demo_with_keyword_args("jack", address="address", age=10, height=100)
 
 
 def demo_sub(*args, **kwargs):
+    """functions part2"""
     return args, kwargs
 
 
-def demo_unpacking(name, *args, **kwargs):
+def demo_unpacking(*args, **kwargs):
+    """functions part2"""
     return demo_sub(*args, **kwargs)
 
 
-def demo_no_unpacking(name, *args, **kwargs):
+def demo_no_unpacking( *args, **kwargs):
+    """functions part2"""
     return demo_sub(args, kwargs)
 
 
 def test_function_unpacking():
+    """functions part2"""
     result = demo_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert ((1, 2), {'k1': 'v1', 'k2': 'v2'}) == result
+    assert (('jack', 1, 2), {'k1': 'v1', 'k2': 'v2'}) == result
 
     result = demo_no_unpacking("jack", 1, 2, k1="v1", k2="v2")
-    assert (((1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
+    assert ((('jack', 1, 2), {'k1': 'v1', 'k2': 'v2'}), {}) == result
 
     result = demo_sub(1,2, k1="v1")
     assert ((1, 2), {'k1': 'v1'}) == result
@@ -84,10 +96,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
-- *args takes as many as arguments 
-- *kwargs takes multiple argument with keyword
-- learnt how unpacking works
+THREE_THINGS_I_LEARNT = """
+-
+-
+-
 """
 
-time_taken_minutes = 25
+TIME_TAKEN_MINUTES = 20

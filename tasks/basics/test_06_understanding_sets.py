@@ -1,22 +1,23 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
 
-from tasks.placeholders import  *
+
 
 def test_set_type():
     test_set = {"one", "two", "three"}   # note the new syntax
     assert 'set' == type(test_set).__name__
 
 def test_set_empty():
-    empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
-    assert False == isinstance(empty_set_wrong, set)
+    empty_set_wrong = {}  #curly braces are used for both sets and dicts,
+    #  so how do you disambiguate?
+    assert False is isinstance(empty_set_wrong, set)
 
     empty_set = set()
-    assert True == isinstance(empty_set, set)
+    assert True is isinstance(empty_set, set)
     assert 0 == len(empty_set)
 
 def test_set_length():
@@ -50,8 +51,8 @@ def test_set_creation():
 
 def test_set_membership():
     fruits = {"apple", "mango", "kiwi"}
-    assert True == ("apple" in fruits)
-    assert False == ("dog" in fruits)
+    assert True is ("apple" in fruits)
+    assert False is ("dog" in fruits)
 
 def test_set_operations():
     set1 = {"one", "two", "three"}
@@ -85,24 +86,24 @@ def test_set_valid_members():
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print(te)
+    except TypeError as t_e:
+        print(t_e)
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print(te)
+    except TypeError as t_e:
+        print(t_e)
         assert True  
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - set is immutable datatype
 - set stores unique values
 - set operations can be performed like union , difference, symmetric_difference , 
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
 
 

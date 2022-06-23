@@ -1,6 +1,7 @@
+"""nested functions"""
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 nested functions underlie many advanced features of python. So a basic understanding of this
 feature is essential to mastering python.
 
@@ -8,96 +9,105 @@ nested functions are defined in the scope of a function, behave exactly the same
 that they have a read only access to variables in the outer function.
 '''
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
 def outer_func(outer_var):
+    """nested funcions"""
     def inner_func(inner_var):
         return outer_var + inner_var
     return inner_func
 
 def test_inner_func_scope():
+    """nested funcions"""
     # inner_func not accessible by default
     try:
         inner_func()
-    except NameError as ae:  # fill up the exception
+    except NameError:  # fill up the exception
         pass
 
     # this syntax does not work either, it is not just static scoping.
     try:
         outer_func.inner_func()
-    except AttributeError as ae : # fillup the exception
+    except AttributeError : # fillup the exception
         pass
 
 def test_inner_func_can_be_returned():
-    f1 = outer_func(10)
-    assert "function" == type(f1).__name__
-    assert 30 == f1(20)
+    """nested funcions"""
+    _f1 = outer_func(10)
+    assert "function" == type(_f1).__name__
+    assert 30 == _f1(20)
 
 def test_each_invocation_returns_a_new_func():
-    f1 = outer_func(10)
-    f2 = outer_func(10)
+    """nested funcions"""
+    _f1 = outer_func(10)
+    _f2 = outer_func(10)
 
-    assert False == (f1 is f2)
-    assert False == (f1 == f2)
+    assert False is (_f1 is _f2)
+    assert False is (_f1 == _f2)
 
-    f3 = f2
-    assert True == (f3 is f2)
-    assert True == (f3 == f2)
+    _f3 = _f2
+    assert True is (_f3 is _f2)
+    assert True is (_f3 == _f2)
 
 def test_inner_func_has_access_to_outer_variables_after_return():
-    f1 = outer_func(20)
-    f2 = outer_func(50)
+    """nested funcions"""
+    _f1 = outer_func(20)
+    _f2 = outer_func(50)
 
-    assert 50 == f1(30)
-    assert 60 == f1(40)
+    assert 50 == _f1(30)
+    assert 60 == _f1(40)
 
-    assert 80 == f2(30)
-    assert 90 == f2(40)
+    assert 80 == _f2(30)
+    assert 90 == _f2(40)
 
 def print_attributes(obj):
-    for x in dir(obj):
-        print("attribute: {0}".format(x))
-        print(getattr(obj, x))
+    """nested funcions"""
+    for _x in dir(obj):
+        print("attribute: {0}".format(_x))
+        print(getattr(obj, _x))
 
 
 def test_inner_func_attributes():
-    f1 = outer_func(10)
-    assert 35 == len(dir(f1)) #how many attributes does f1 have
+    """nested funcions"""
+    _f1 = outer_func(10)
+    assert 35 == len(dir(_f1)) #how many attributes does f1 have
 
     # use the print_attributes function to explore the properties
     # fill up the attribute name that you think holds a reference to the
     # function scope variables
-    ref_to_outer_scope = "__globals__"
+    ref_to_outer_scope = "globally"
 
 
 # if you understand this, you have understood nested funcs :)
 def test_inner_func_scoping():
+    """nested funcions"""
     def outer():
         funcs = []
-        for x in range(10):
+        for _x in range(10):
             def inner():
-                return x
+                return _x
             funcs.append(inner)
         result = []
         for func in funcs:
             result.append(func())
         return result
 
-    assert [9, 9, 9, 9, 9, 9, 9, 9, 9, 9] == outer()
+    assert [9,9,9,9,9,9,9,9,9,9] == outer()
 
 # generally you should not write code like this :), this is only to learn
 def test_outer_scope_is_read_only():
-    y = 30
-    def outer(x):
+    """nested funcions"""
+    _y = 30
+    def outer(_x):
         def inner1():
-            x = 30
-            return x
+            _x = 30
+            return _x
         def inner2():
-            return x + y
+            return _x + _y
         def inner3():
-            y = 10
-            return x + y
-        return [inner1(), inner2(), inner3(), x, y]
+            _y = 10
+            return _x + _y
+        return [inner1(), inner2(), inner3(), _x, _y]
 
     assert [30, 50, 30, 20, 30] == outer(20)
 
@@ -105,23 +115,24 @@ def test_outer_scope_is_read_only():
 # binding to a code object! So same scope rules as variables apply to function names.
 # read up more at http://effbot.org/zone/default-values.htm
 def test_def_is_a_statement():
-    def outer(x):
-        if x > 10:
-            def f():
-                return x * 2
+    """nested funcions"""
+    def outer(_x):
+        if _x > 10:
+            def _f():
+                return _x * 2
         else:
-            def f():
-                return x * 3
-        return f
+            def _f():
+                return _x * 3
+        return _f
 
     assert 40 == outer(20)()
     assert 15 == outer(5)()
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = 25
+TIME_TAKEN_MINUTES = 30
