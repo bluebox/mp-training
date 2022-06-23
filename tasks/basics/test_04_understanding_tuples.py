@@ -1,8 +1,7 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
@@ -17,7 +16,7 @@ def test_tuple_length():
 
 def test_tuple_with_no_elements():
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
@@ -36,16 +35,19 @@ def test_tuple_can_be_indexed():
 def test_tuple_can_be_sliced():
     colors = ('red', 'blue', 'green')
     assert ('blue', 'green') == colors[1:3]
-    assert ('blue',)== colors[1:2]  #remember the awkward syntax for single element tuples :)
+    assert ('blue',)== colors[1:2]  #remember the awkward syntax for
+    #  single element tuples :)
 
 
 def test_tuples_are_immutable():
+    ''' hhgbb'''
     colors = ('red', 'blue', 'green')
     try:
         colors[0] = 'orange'
-    except TypeError as te:
-        print(te)
-      #  print te # note the exception -> SyntaxError: Missing parentheses in call to 'print'.
+    except TypeError as t_e:
+        print(t_e)
+      #  print te # note the exception -> SyntaxError:
+      #  Missing parentheses in call to 'print'.
         assert True
 
 def test_tuples_can_be_nested():
@@ -61,9 +63,9 @@ def test_tuples_can_be_nested():
 
 def test_tuple_unpacking():
     pair = (10, 20)
-    a,b = pair
-    assert 10 == a
-    assert 20 == b
+    _a,_b = pair
+    assert 10 == _a
+    assert 20 == _b
 
     triplet = (10, 20, 30)
     try:
@@ -87,19 +89,19 @@ def test_sequence_conversion():
     list_2 = list(tup_1)
     assert ['t','e','s','t','i','n','g'] == list_2
 
-    word2 = str(tup_1)
-    assert "('t', 'e', 's', 't', 'i', 'n', 'g')"  == word2
+    word_2 = str(tup_1)
+    assert "('t', 'e', 's', 't', 'i', 'n', 'g')"  == word_2
 
-    word3 = "".join(tup_1)
-    assert 'testing' == word3
+    word_3 = "".join(tup_1)
+    assert 'testing' == word_3
 
-    word4 = "".join(list_1)
-    assert 'testing' == word4
+    word_4 = "".join(list_1)
+    assert 'testing' == word_4
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - tuples supports indexing
 - tuples are immutable
 - tuples unpacking
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES= 20
