@@ -22,6 +22,9 @@ This assignment only deals with the syntax of classes and its features. You must
 look up references to actually learn object oriented programming.
 
 http://c2.com/cgi/wiki?AlanKaysDefinitionOfObjectOriented
+
+https://www.pythontutorial.net/python-oop/python-type-class/
+
 '''
 
 # from tasks.placeholders import *
@@ -82,8 +85,8 @@ def test_classes_are_object_factories():
     assert 26 == len(dir(q_2))
 
 
-# if an __init__ method exists it is called with the object that is
-# being created, so you can initialize it.
+#if an __init__ method exists it is called with the object that is
+#being created, so you can initialize it.
 def test_classes_init_constructor():
     """basic docstring for pylint testing"""
     test_list = []

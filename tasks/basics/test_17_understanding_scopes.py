@@ -21,6 +21,8 @@ NOTES = '''
  Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
 '''
 
+import inspect
+import symtable
 
 # from tasks.placeholders import *
 
@@ -43,7 +45,7 @@ def test_scope_basic():
     assert False is ('count' in local_names)
     assert True is ('count' in global_names)
 
-    assert 10 == value
+    assert __ == value
 
 
 def test_scope_undefined_variable():
@@ -81,8 +83,8 @@ def test_global_write():
         assert False is ('count' in local_names)
         assert True is ('count' in global_names)
 
-        assert 30 == count
-        assert 30 == get_global_count()
+        assert __ == count
+        assert __ == get_global_count()
     finally:
         count = 10 #reset to original value
 
@@ -102,8 +104,8 @@ def test_scope_is_bound_at_definition_time():
     finally:
         count = 20
 
-    assert 20 == count
-    assert 10 == get_global_count()
+    assert __ == count
+    assert __ == get_global_count()
 
 
 def test_scope_writing_globals():
@@ -117,12 +119,13 @@ def test_scope_writing_globals():
 
     try:
         count = 40
-        assert 40 == count
-        assert 40 == get_global_count()
+        assert __ == count
+        assert __ == get_global_count()
     finally:
         count = 10
 
-    assert 10 == get_global_count()
+    assert __ == get_global_count()
+
 
 
 
@@ -149,3 +152,4 @@ def get_globals():
     return top.get_identifiers()
 
 global_names = get_globals()
+

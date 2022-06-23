@@ -22,7 +22,7 @@ def test_inner_func_scope():
     # inner_func not accessible by default
     try:
         inner_func()
-    except NameError:  # fill up the exception
+    except __:  # fill up the exception
         pass
 
     # this syntax does not work either, it is not just static scoping.
@@ -125,8 +125,8 @@ def test_def_is_a_statement():
                 return x * 3
         return f
 
-    assert 40 == outer(20)()
-    assert 15 == outer(5)()
+    assert __ == outer(20)()
+    assert __ == outer(5)()
 
 
 THREE_THINGS_I_LEARNT = """

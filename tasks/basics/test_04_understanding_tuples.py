@@ -109,10 +109,10 @@ def test_sequence_conversion():
     assert ["t","e","s","t","i","n","g"] == list_2
 
     word2 = str(tup_1)
-    assert "('t', 'e', 's', 't', 'i', 'n', 'g')" == word2
+    assert __ == word2
 
     word3 = "".join(tup_1)
-    assert "testing" == word3
+    assert __ == word3
 
     word4 = "".join(list_1)
     assert "testing" == word4

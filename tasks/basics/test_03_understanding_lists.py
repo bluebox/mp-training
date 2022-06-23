@@ -80,10 +80,10 @@ def test_list_slice_replacement_is_inplace():
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
-    assert ["banana", "litchi", "guava", "grape"] == fruits
+    assert __ == fruits
 
     fruits[3:] = ['grape1']
-    assert ["banana", "litchi", "guava", "grape1"] == fruits
+    assert __ == fruits
 
     fruits[:2] = ["banana1", "litchi"]
     assert ["banana1", "litchi", "guava","grape1"] == fruits
@@ -98,7 +98,7 @@ def test_list_common_methods():
     fruits = []
     fruits.append("orange")
 
-    assert ["orange"] == fruits
+    assert __ == fruits
 
     fruits.insert(0, "banana")
     assert ["banana","orange"] == fruits

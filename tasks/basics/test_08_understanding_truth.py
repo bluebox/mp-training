@@ -30,7 +30,7 @@ def test_truth_none():
     else:
         result = "false"
 
-    assert "false" == result
+    assert __ == result
 
 # a helper function used to test the truth value of an object.
 def truth_test(arg_object, description):

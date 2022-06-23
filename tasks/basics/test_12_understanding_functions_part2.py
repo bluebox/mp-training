@@ -42,8 +42,8 @@ def test_function_with_variable_args():
 
     assert (1,2,3) == demo_variable_args("hello", 1, 2, 3)
 
-    assert "one.two.three" == my_merge(".", "one", "two", "three")
-    assert "one,two,three" == my_merge(",", "one", "two", "three")
+    assert __ == my_merge(".", "one", "two", "three")
+    assert __ == my_merge(",", "one", "two", "three")
 
 
 def demo_with_keyword_args(name, *args, **kwargs):

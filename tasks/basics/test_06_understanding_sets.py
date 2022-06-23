@@ -73,13 +73,13 @@ def test_set_operations():
     assert {"one","two","three","four"} == set_all
 
     common = set1 & set2
-    assert {"three"} == common
+    assert __ == common
 
     diff1 = set1 - set2
-    assert {"one", "two"} == diff1
+    assert __ == diff1
 
     diff2 = set2 - set1
-    assert {"four"} == diff2
+    assert __ == diff2
 
     diff3 = set1 - set1
     assert set({}) == diff3

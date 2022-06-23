@@ -47,16 +47,16 @@ def test_function_assignment():
     """basic docstring for pylint testing"""
     demo = my_increment
     result = demo(20)
-    assert 21 == result
+    assert __ == result
 
 # every function returns an object, even when it does not!
 def test_every_function_returns_something():
     """basic docstring for pylint testing"""
     result = my_print(10)
-    assert None == result
+    assert __ == result
 
     result = my_increment(10)
-    assert 11 == result
+    assert __ == result
 
     result = my_min_max([20, 30, 5])
     assert (5,30) == result
@@ -123,8 +123,8 @@ def test_function_defaults_are_evaluated_at_definition_time():
     assert ["h","i"] == my_add_to_list1("hi")
     assert ["h","i","b","y","e"] == my_add_to_list1("bye")
 
-    assert None == my_add_to_list2("hi")
-    assert None == my_add_to_list2("bye")
+    assert [__] == my_add_to_list2("hi")
+    assert [__] == my_add_to_list2("bye")
 
 
 def demo_parameter_passing1(x):
@@ -147,11 +147,11 @@ def test_function_params_passed_by_object_reference():
     """basic docstring for pylint testing"""
     x = 10
     demo_parameter_passing1(x)
-    assert 10 == x
+    assert __ == x
 
     names = ["one", "two"]
     demo_parameter_passing2(names)
-    assert ["one", "two"] == names
+    assert [__] == names
 
     demo_parameter_passing3(names)
     assert ["one", "two","something"] == names

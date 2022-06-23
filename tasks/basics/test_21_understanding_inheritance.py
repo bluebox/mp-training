@@ -11,6 +11,7 @@ NOTES = '''
  inheritance in Python.
 '''
 
+from tasks.placeholders import *
 
 def test_inheritance_basic():
     """basic docstring for pylint testing"""
