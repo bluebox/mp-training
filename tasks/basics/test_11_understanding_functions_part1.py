@@ -74,7 +74,7 @@ def demo2():
 #This makes it easy to access help from console or build specialized help commands like help.
 def test_function_documentation():
     assert 'returns 10' == demo1.__doc__
-    assert None == demo2.__doc__
+    assert "METHID" == demo2.__doc__
 
 
 def my_callfunc(func):
