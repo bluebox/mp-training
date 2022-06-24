@@ -1,38 +1,46 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from re import T
-from tasks.placeholders import *
+# from re import T
+from tasks.placeholders import __author__
 
 def test_inheritance_basic():
     class A(object): # A inherits from object.
+        '''CLASS'''
         def f(self):
+            '''CLASS'''
             pass
 
     class B(A):      #B inherits from A or B derives A
+        '''CLASS'''
         def g(self):
+            '''CLASS'''
             pass
 
-    assert True == issubclass(A, object)
-    assert True == issubclass(A, A)
-    assert False == issubclass(A, B)
+    assert True is issubclass(A, object)
+    assert True is issubclass(A, A)
+    assert False is issubclass(A, B)
 
-    assert True == issubclass(B, A)
-    assert True == issubclass(B, B)
-    assert True == issubclass(B, object)
+    assert True is issubclass(B, A)
+    assert True is issubclass(B, B)
+    assert True is issubclass(B, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
     class A(object): # A inherits from object.
+        '''CLASS'''
         def f(self):
+            '''CLASS'''
             return "A:f()"
 
     class B(A):      #B inherits A's behavior (attributes)
+        '''CLASS'''
         def g(self):
+            '''CLASS'''
             return "B:g()"
 
     b = B()
@@ -49,14 +57,19 @@ def test_inheritance_methods():
 
 def test_inheritance_overrides():
     class A(object): # A inherits from object.
+        '''CLASS'''
         def f(self):
+            '''CLASS'''
             return "A:f()"
 
         def g(self):
+            '''CLASS'''
             return "A:g()"
 
     class B(A):      #B can override A's methods
+        '''CLASS'''
         def g(self):
+            '''CLASS'''
             return "B:g()"
 
     a = A()
@@ -68,15 +81,21 @@ def test_inheritance_overrides():
     assert "B:g()" == b.g()
 
 def test_inheritance_init():
+    '''CLASS'''
     class A(object):
+        '''CLASS'''
         def __init__(self):
+            '''CLASS'''
             self.a1 = []
 
         def append(self, obj):
+            '''CLASS'''
             self.a1.append(obj)
 
     class B(A):
+        '''CLASS'''
         def __init__(self):
+            '''CLASS'''
             self.b1 = []
 
     a = A()
@@ -97,7 +116,9 @@ def test_inheritance_init():
 
     #lets redefine B now, to chain the inits to the base class.
     class B(A):
+        '''CLASS'''
         def __init__(self):
+            '''CLASS'''
             A.__init__(self)
             self.b1 = "b1"
 
@@ -110,29 +131,34 @@ def test_inheritance_init():
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.
     class A(object): # A inherits from object.
+        '''CLASS'''
         def f(self):
+            '''CLASS'''
             return "A:f()"
 
         def g(self):
+            '''CLASS'''
             return "A:g()"
 
     class B(A):      #B can override A's methods
+        '''CLASS'''
         def g(self):
+            '''CLASS'''
             return super(B, self).g() + ":"+ "B:g()"
 
     b = B()
     assert "A:g():B:g()" == b.g()
 
 
-notes_1 = '''
+NOTES_1 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
+RESG = """
 -
 -
 -
 """
 
-time_taken_minutes = ___
+TTM1 = 25
