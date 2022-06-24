@@ -1,15 +1,16 @@
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
 
 Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 def test_exception_flow_1():
+    '''METHIOD'''
     fruit = "orange"
     result = []
     try:
@@ -23,6 +24,7 @@ def test_exception_flow_1():
     assert ["one","three"] == result
 
 def test_exception_flow_2():
+    '''METHIOD'''
     fruit = "orange"
     result = []
     try:
@@ -39,6 +41,7 @@ def test_exception_flow_2():
     assert ["one","five"] == result
 
 def test_raise_error():
+    '''METHIOD'''
     result = []
     try:
         result.append("one")
@@ -49,6 +52,7 @@ def test_raise_error():
     assert ["one","three"] == result
 
 def test_missing_except():
+    '''METHIOD'''
     result = []
     fruit = "orange"
     try:
@@ -61,6 +65,7 @@ def test_missing_except():
     assert ["one"] == result
 
 def function_with_except(result):
+    '''METHIOD'''
     fruit = "orange"
     result.append("f:enter")
     try:
@@ -71,12 +76,14 @@ def function_with_except(result):
     result.append("f:return")
 
 def function_without_except(result):
+    '''METHIOD'''
     fruit = "orange"
     result.append("f:enter")
     fruit.missingmethod()
     result.append("f:return")
 
 def test_function_call_with_except():
+    '''METHIOD'''
     result = []
     try:
         result.append("m:beforecall")
@@ -87,6 +94,7 @@ def test_function_call_with_except():
     assert ["m:beforecall","f:enter","f:except","f:return","m:aftercall"] == result
 
 def test_function_call_without_except():
+    '''METHIOD'''
     result = []
     try:
         result.append("m:beforecall")
@@ -97,6 +105,7 @@ def test_function_call_without_except():
     assert ["m:beforecall","f:enter","m:except"] == result
 
 def test_else_on_exception():
+    '''METHIOD'''
     result = []
     try:
         result.append("m:beforecall")
@@ -111,6 +120,7 @@ def test_else_on_exception():
 
 
 def test_else_on_no_exception():
+    '''METHIOD'''
     result = []
     try:
         result.append("m:beforecall")
@@ -124,6 +134,7 @@ def test_else_on_no_exception():
     assert ["m:beforecall","f:enter","m:except"] == result
 
 def test_finally_on_exception():
+    '''METHIOD'''
     result = []
     try:
         result.append("m:beforecall")
@@ -141,6 +152,7 @@ def test_finally_on_exception():
 
 
 def test_finally_on_no_exception():
+    '''METHIOD'''
     result = []
     try:
         result.append("m:beforecall")
@@ -162,10 +174,10 @@ http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
+TTIL = """
 -
 -
 -
 """
 
-time_taken_minutes = ___
+TTM = 20
