@@ -1,17 +1,20 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.basics.test_00_understanding_assert import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from tasks.placeholders import __author__
 
-notes = '''
+NOTES = '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
 
 def test_dictionary_type():
+    '''IN METHOD'''
     test_dict = {1 : "one"}   # note the new syntax
     assert "dict" == type(test_dict).__name__
 
 def test_dictionary_empty():
+    '''IN METHOD'''
     empty_dict_1 = {}
     assert True == isinstance(empty_dict_1, dict)
 
@@ -20,6 +23,7 @@ def test_dictionary_empty():
     assert empty_dict_1 == empty_dict_2
 
 def test_dictionary_create():
+    '''IN METHOD'''
     dict_1 = { 1 : "one", 2 : "two" }
     assert True == isinstance(dict_1, dict)
 
@@ -29,10 +33,12 @@ def test_dictionary_create():
     assert "two" == dict_2[2]
 
 def test_dictionary_length():
+    '''IN METHOD'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit) #note that a key value pair is treated as one item
 
 def test_dictionary_is_indexed_by_key():
+    '''IN METHOD'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 1 == word_to_digit["one"]
     assert 2 == word_to_digit["two"]
@@ -121,15 +127,15 @@ def test_valid_dictionary_keys():
     assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 10
 
-notes2= '''
+NOTES2= '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work

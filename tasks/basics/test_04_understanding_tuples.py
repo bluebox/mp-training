@@ -1,26 +1,32 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.basics.test_00_understanding_assert import NOTES, THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+from ast import Is
+from tasks.placeholders import __author__
 
-notes = '''
+NOTES = '''
 Tuples are yet another sequence type along the lines of strings and lists with
 its own characteristics.
 '''
 
 def test_tuple_type():
+    '''IN METHID 1'''
     test_tuple = (1,2)   # note the syntax
     assert 'tuple' == type(test_tuple).__name__
 
 def test_tuple_length():
+    '''IN METHID 1'''
     colors = ('red', 'blue', 'green')
     assert 3 == len(colors)
 
 def test_tuple_with_no_elements():
+    '''IN METHID 1'''
     empty = ()
-    assert True == isinstance(empty, tuple)
+    assert True is isinstance(empty, tuple)
     assert 0 == len(empty)
 
 def test_tuple_with_one_element():
+    '''IN METHID 1'''
     test1 = (1)
     assert 'int' == type(test1).__name__
 
@@ -28,18 +34,21 @@ def test_tuple_with_one_element():
     assert 'tuple' == type(test2).__name__
 
 def test_tuple_can_be_indexed():
+    '''IN METHID 1'''
     colors = ('red', 'blue', 'green')
     assert 'red' == colors[0]
     assert 'blue' == colors[1]
     assert 'green' == colors[2]
 
 def test_tuple_can_be_sliced():
+    '''IN METHID 1'''
     colors = ('red', 'blue', 'green')
     assert ('blue','green') == colors[1:3]
     assert ('blue',) == colors[1:2]  #remember the awkward syntax for single element tuples :)
 
 
 def test_tuples_are_immutable():
+    '''IN METHID 1'''
     colors = ('red', 'blue', 'green')
     try:
         colors[0] = 'orange'
@@ -48,6 +57,7 @@ def test_tuples_are_immutable():
         assert True
 
 def test_tuples_can_be_nested():
+    '''IN METHID 1'''
     top_left = (10,20)
     bottom_right = (40,50)
     rectangle = (top_left, bottom_right)
@@ -59,6 +69,7 @@ def test_tuples_can_be_nested():
 
 
 def test_tuple_unpacking():
+    '''IN METHID 1'''
     pair = (10, 20)
     a, b = pair
     assert 10 == a
@@ -67,12 +78,13 @@ def test_tuple_unpacking():
     triplet = (10, 20, 30)
     try:
         a, b = triplet
-        assert __ # should not come here.
+        # assert __ # should not come here.
     except ValueError as ve:
         print (ve ) # observe what is printed here. =>In Python 3, printing values changed from being a distinct statement to being an ordinary function call, so it now needs parentheses
         assert  True  # ve=>too many values to unpack (expected 2)
 
 def test_sequence_conversion():
+    '''IN METHID 1'''
     """
     sequences can be converted across forms using the builtin functions.
     """
@@ -95,10 +107,10 @@ def test_sequence_conversion():
     word4 = "".join(list_1)
     assert "testing" == word4
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = __
+TIME_TAKEN_MINUTES = 30

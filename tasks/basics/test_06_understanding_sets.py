@@ -1,18 +1,23 @@
 __author__ = 'Hari'
 
-notes = '''
+from tasks.basics.test_00_understanding_assert import NOTES
+
+
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
 
 from distutils.command import config
-from tasks.placeholders import  *
+from tasks.placeholders import  __author__
 
 def test_set_type():
+    '''METHOD'''
     test_set = {"one", "two", "three"}   # note the new syntax
     assert 'set' == type(test_set).__name__
 
 def test_set_empty():
+    '''METHOD'''
     empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
     assert False == isinstance(empty_set_wrong, set)
     empty_set = set()
@@ -20,6 +25,7 @@ def test_set_empty():
     assert 0 == len(empty_set)
 
 def test_set_length():
+    '''METHOD'''
     fruits = {"apple", "apple", "apple"}
     assert 1 == len(fruits)  #are duplicates removed?
 
@@ -49,11 +55,13 @@ def test_set_creation():
     assert {(1,'one'),(2,'two')} == set5
 
 def test_set_membership():
+    '''METHOD'''
     fruits = {"apple", "mango", "kiwi"}
     assert True ==('apple' in fruits)
     assert False ==("dog" in fruits)
 
 def test_set_operations():
+    '''METHOD'''
     set1 = {"one", "two", "three"}
     set2 = {"three", "four"}
 
@@ -78,6 +86,7 @@ def test_set_operations():
     #read up help on other method using the help method in the python console.
 
 def test_set_valid_members():
+    '''METHOD'''
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
@@ -103,6 +112,6 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 10
 
 
