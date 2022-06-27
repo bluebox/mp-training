@@ -3,9 +3,9 @@ import datetime as dt
 
 
 
-count = 1
+COUNT = 1
 series = {}
-totalArea = 1000
+TOTALAREA = 1000
 
 
 class Vehicle:
@@ -44,20 +44,13 @@ def area1(length, breadth):
     return length * breadth
 
 
-wid = input("enter the width of the lot: ")
-dep = input("enter the  depth of the lot: ")
-totalArea = float(wid) * float(dep)
-print("total area ", totalArea, "sq mtrs")
+WID = input("enter the width of the lot: ")
+DEP = input("enter the  depth of the lot: ")
+TOTALAREA = float(WID) * float(DEP)
+print("total area ", TOTALAREA, "sq mtrs")
 
 
 class lotProject:
-    T = 0
-
-    series1 = {"A": {"Buses": [[area1(0.1, T)]], "Car": [[area1(0.6, T)]], "Bike": [[area1(0.3, T)]]},
-               "B": {"Buses": [[area1(0.1, T)]], "Car": [[area1(0.6, T)]], "Bike": [[area1(0.3, T)]]},
-               "C": {"Buses": [[area1(0.1, T)]], "Car": [[area1(0.6, T)]], "Bike": [[area1(0.3, T)]]},
-               "D": {"Buses": [[area1(0.1, T)]], "Car": [[area1(0.6, T)]], "Bike": [[area1(0.3, T)]]}, }
-
     def __init__(self, width, depth, number, series2, status, outTime):
         self.width = width
         self.depth = depth
@@ -67,10 +60,18 @@ class lotProject:
         self.outTime = outTime
         self.T = area1(width, depth)
 
-    series = {"A": {"Car": [[totalArea * 0.6]], "Bike": [[totalArea * 0.3]], "Bus": [[totalArea * 0.1]]},
-              "B": {"Car": [[totalArea * 0.6]], "Bike": [[totalArea * 0.3]], "Bus": [[totalArea * 0.1]]},
-              "C": {"Car": [[totalArea * 0.6]], "Bike": [[totalArea * 0.3]], "Bus": [[totalArea * 0.1]]},
-              "D": {"Car": [[totalArea * 0.6]], "Bike": [[totalArea * 0.3]], "Bus": [[totalArea * 0.1]]}}
+    series = {"A": {"Car": [[TOTALAREA * 0.6]],
+    "Bike": [[TOTALAREA * 0.3]],
+    "Bus": [[TOTALAREA * 0.1]]},
+    "B": {"Car": [[TOTALAREA * 0.6]],
+    "Bike": [[TOTALAREA * 0.3]],
+    "Bus": [[TOTALAREA * 0.1]]},
+    "C": {"Car": [[TOTALAREA * 0.6]],
+    "Bike": [[TOTALAREA * 0.3]],
+    "Bus": [[TOTALAREA * 0.1]]},
+    "D": {"Car": [[TOTALAREA * 0.6]],
+    "Bike": [[TOTALAREA * 0.3]],
+    "Bus": [[TOTALAREA * 0.1]]}}
 
     def fun(self):
         print(self.width)
@@ -88,9 +89,8 @@ class lotProject:
             if lotProject.series[c][type(object).__name__][0][0] - object.width * object.depth >= 0:
                 lotProject.series[c][type(object).__name__][0][0] -= object.width * object.depth
                 lotProject.series[c][type(object).__name__].insert(self.number,
-                                                                   [object.number, object.width * object.depth,
-                                                                    object.inTime, object.name, object.manufacturer,
-                                                                    object.capacity])
+                [object.number, object.width * object.depth,object.inTime,
+                object.name, object.manufacturer,object.capacity])
                 self.status = "occupied"
                 print("Series Lot is " + c, "with vehicle type is", type(object).__name__)
                 print(lotProject.series[c][type(object).__name__])
@@ -151,7 +151,8 @@ def command_handler(command):
         Number = input("enter the car plate number : ")
         Manufacturer = input("enter the Manufacturer : ")
         inTime = str(datetime.now().time())[0:8]
-        object12 = Car(float(milage), Name, int(Capacity), int(width), int(Depth), Number, Manufacturer, inTime)
+        object12 = Car(float(milage), Name, int(Capacity),
+        int(width), int(Depth), Number, Manufacturer, inTime)
         return object12
     elif command == "Bus":
         milage = input("enter the millage of Bus : ")
@@ -162,7 +163,8 @@ def command_handler(command):
         Number = input("enter the Bus plate number : ")
         Manufacturer = input("enter bus Manufacturer : ")
         inTime = str(datetime.now().time())[0:8]
-        object12 = Bus(float(milage), Name, int(Capacity), int(width), int(Depth), Number, Manufacturer, inTime)
+        object12 = Bus(float(milage), Name, int(Capacity),
+        int(width), int(Depth), Number, Manufacturer, inTime)
         return object12
     elif command == "Bike":
         milage = input("enter the millage of Bike : ")
@@ -173,7 +175,8 @@ def command_handler(command):
         Number = input("enter the Bike plate number : ")
         Manufacturer = input("enter Bike Manufacturer : ")
         inTime = str(datetime.now().time())[0:8]
-        object12 = Bike(float(milage), Name, int(Capacity), int(width), int(Depth), Number, Manufacturer, inTime)
+        object12 = Bike(float(milage), Name, int(Capacity),
+        int(width), int(Depth), Number, Manufacturer, inTime)
         return object12
 
 
@@ -192,10 +195,10 @@ def park():
 
 
 def command_handle(command):
-    global count, wid, dep
+    global COUNT, WID, DEP
     if command == "P":
-        Width = wid
-        Depth = dep
+        width = WID
+        depth = DEP
 
         series2 = "A"
         status = "free"
@@ -211,7 +214,7 @@ def command_handle(command):
         # print((t1 - time_zero + t2).time())
         timeout = (t1 - time_zero + t2).time()
 
-        slot1 = lotProject(int(Width), int(Depth), count, series2, status, timeout)
+        slot1 = lotProject(int(width), int(depth), COUNT, series2, status, timeout)
         typ = input("Enter Vehicle Type:\n"
                     "1. Car\n"
                     "2. Bus\n"
@@ -226,20 +229,20 @@ def command_handle(command):
         print(new_type)
         object121 = command_handler(new_type)
         slot1.addVehicle(object121)
-        count += 1
+        COUNT += 1
 
     elif command == "E":
         print(lotProject.series)
         ch = input("enter the series A/B/C/D : ")
-        vehicle_Type = input("enter  vehicle Type Car/Bus/Bike : ")
-        plate_Number = input("enter the plate number to exit the Lot : ")
+        vehicle_type = input("enter  vehicle Type Car/Bus/Bike : ")
+        plate_number = input("enter the plate number to exit the Lot : ")
         a = 0
         b = 0
         flag = 0
         if flag == 0:
-            for x in range(len(lotProject.series[ch][vehicle_Type])):
-                for y in range(len(lotProject.series[ch][vehicle_Type][x])):
-                    if plate_Number == lotProject.series[ch][vehicle_Type][x][y]:
+            for x in range(len(lotProject.series[ch][vehicle_type])):
+                for y in range(len(lotProject.series[ch][vehicle_type][x])):
+                    if plate_number == lotProject.series[ch][vehicle_type][x][y]:
                         a = x
                         # print("a= " + str(a))
                         b = y
@@ -249,11 +252,11 @@ def command_handle(command):
         if flag == 0:
             print("not found")
             park()
-        temp = lotProject.series[ch][vehicle_Type][a][b + 1]
-        currentTime = lotProject.series[ch][vehicle_Type][a][b + 2]
+        temp = lotProject.series[ch][vehicle_type][a][b + 1]
+        currentTime = lotProject.series[ch][vehicle_type][a][b + 2]
         # print(temp)
-        print("poped vechile is: " + str(lotProject.series[ch][vehicle_Type].pop(a)))
-        lotProject.series[ch][vehicle_Type][0][0] += float(temp)
+        print("poped vechile is: " + str(lotProject.series[ch][vehicle_type].pop(a)))
+        lotProject.series[ch][vehicle_type][0][0] += float(temp)
         # print(lotProject.series[ch][vehicle_Type][a][b + 2])
         h = input("enter the random timeout hour: ")
         m = input("enter the random timeout minutes: ")
@@ -283,7 +286,7 @@ def command_handle(command):
 
 
 def main():
-    global totalArea
+    # global TOTALAREA
     park()
 
 
