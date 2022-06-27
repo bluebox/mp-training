@@ -36,13 +36,16 @@ obj=v3
 def allocation(obj):
     """this is the function where we allocate/park our vechile"""
     c_r=checkforspace(obj)
-    if obj.name=='car':
-        j=0
-    elif obj.name=='bus':
-        j= 1
+    if(c_r!=None):
+       if obj.name=='car':
+          j=0
+       elif obj.name=='bus':
+          j= 1
+       else:
+          j= 2
+       Lot.series[c_r][j]=Lot.series[c_r][j]-obj.widthv
     else:
-        j= 2
-    Lot.series[c_r][j]=Lot.series[c_r][j]-obj.widthv
+        print("no space")
 def checkforspace(obj):
     """function to check wheather the vechiles width is sufficient in the lot or not"""
     if obj.name == "car":
@@ -66,22 +69,22 @@ def checkforspace(obj):
             return False
         else:
             c_h = checkseries(obj)
-            pass            
+            pass
     return c_h
 def checkseries(obj):
     """function to check wheather the series contains required space or not"""
     if obj.name=='car':
         for i in obj.series:
             if obj.series[i][0] >= obj.widthv:
-                return i     
+                return i
     elif obj.name=='bus':
         for i in obj.series:
             if obj.series[i][1] >= obj.widthv:
-                return i                     
+                return i
     else:
         for i in obj.series:
             if obj.series[i][2] >= obj.widthv:
-                return i                            
+                return i
 def deallocation(s_e,obj):
     """function for exit of vechiles"""
     if obj.name=='car':
@@ -98,9 +101,16 @@ def payment(obj):
         print("pay 20 rupees")
     elif total_parking_time>=2 and total_parking_time<=10:
         print("pay",end=' ')
-        print(total_parking_time*10+10)    
+        print(total_parking_time*10+10)
 allocation(obj)
 print(obj.series['A'])
-deallocation('A',obj)
-print(obj.series['A'])
-payment(obj)
+#deallocation('A',obj)
+#print(obj.series['A'])
+#payment(obj)
+allocation(obj)
+print(obj.series['B'])
+allocation(obj)
+print(obj.series['C'])
+allocation(obj)
+allocation(obj)
+allocation(obj)
