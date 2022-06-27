@@ -1,76 +1,76 @@
-# from turtle import clear
-from vehicle import Vehicle
+'''this module contains data of parking lot and functions for parking and unparking '''
 from series import series
-from time import time
 
-a=series()
-b=series()
-c=series()
-d=series()
+a_series=series()
+b_series=series()
+c_series=series()
+d_series=series()
 def bill(intime,outtime):
+    '''this function is used to generate bill '''
     total_time=intime-outtime
-    if(total_time==1) :
+    if(total_time<=1) :
         return 20
     elif(total_time<=10) :
         return (20*10)+10
     return 100+(total_time-10)*5
 
 def park(obj,time,type,area):
+    '''this function is used to park '''
     if(type==1):
-        if a.car_area>area :
-            print(a.car_area)
-            a.car_area-=area
+        if a_series.car_area>area :
+            print(a_series.car_area)
+            a_series.car_area-=area
 
-            a.list1.append(obj)
-            print(a.list1)
-        elif b.car_area>area :
-            print(b.car_area)
-            b.car_area-=area
-            b.list1.append(obj)
-        elif c.car_area>area :
-            print(c.car_area)
-            c.car_area-=area
-            c.list1.append(obj)
-        elif d.car_area>area :
-            print(d.car_area)
-            d.car_area-=area
-            d.list1.append(obj)
+            a_series.list1.append(obj)
+        elif b_series.car_area>area :
+            print(b_series.car_area)
+            b_series.car_area-=area
+            b_series.list1.append(obj)
+        elif c_series.car_area>area :
+            print(c_series.car_area)
+            c_series.car_area-=area
+            c_series.list1.append(obj)
+        elif d_series.car_area>area :
+            print(d_series.car_area)
+            d_series.car_area-=area
+            d_series.list1.append(obj)
         else :
             print("there is no space to park your car")
-    if(type==2):
-        if a.bike_area>area :
-            a.bike_area-=area
-            a.list1.append(obj)
-        elif b.bike_area>area:
-            b.bike_area-=area
-            b.list1.append(obj)
-        elif c.bike_area>area:
-            c.bike_area-=area
-            c.list1.append(obj)
-        elif d.bike_area>area:
-            d.bike_area-=area
-            d.list1.append(obj)
+    elif(type==2):
+        if a_series.bike_area>area :
+            a_series.bike_area-=area
+            a_series.list1.append(obj)
+        elif b_series.bike_area>area:
+            b_series.bike_area-=area
+            b_series.list1.append(obj)
+        elif c_series.bike_area>area:
+            c_series.bike_area-=area
+            c_series.list1.append(obj)
+        elif d_series.bike_area>area:
+            d_series.bike_area-=area
+            d_series.list1.append(obj)
         else:
             print("there is no space to park your bike")
-    if type==3 :
-        if a.bus_area>area:
-            a.bus_area-=area
-            a.list1.append(obj)
-        elif b.bus_area>area:
-            b.bus_area-=area
-            b.list1.append(obj)
-        elif c.bus_area>area:
-             c.bus_area-=area
-             c.list1.append(obj)
-        elif d.bus_area>area:
-            d.bus_area-=area
-            d.list1.append(obj)
+    elif type==3 :
+        if a_series.bus_area>area:
+            a_series.bus_area-=area
+            a_series.list1.append(obj)
+        elif b_series.bus_area>area:
+            b_series.bus_area-=area
+            b_series.list1.append(obj)
+        elif c_series.bus_area>area:
+             c_series.bus_area-=area
+             c_series.list1.append(obj)
+        elif d_series.bus_area>area:
+            d_series.bus_area-=area
+            d_series.list1.append(obj)
         else:
             print("there is no space to park your bus")
 
 
-total_lot=[a,b,c,d]
+total_lot=[a_series,b_series,c_series,d_series]
 def unpark(type,num):
+    '''this function is used to unpark vehicle'''
     for ele in total_lot:
         for obj in ele.list1:
             if (obj.number==num):

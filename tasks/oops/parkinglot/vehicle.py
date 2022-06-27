@@ -1,13 +1,16 @@
+'''this module contains a vehicle class'''
 class Vehicle:
-
-    def __init__(self,milage,name,capacity,width,depth,number,manufacturer,time):
-        self.name=name
-        self.milage=milage
-        self.capacity=capacity
-        self.width=width
-        self.manufacturer=manufacturer
-        self.depth=depth
-        self.number=number
-        self.time=time
+    '''a class vehicle '''
+    def __init__(self,v_milage,v_name,v_capacity,v_width,v_depth,v_number,v_manufacturer,v_time):
+        self.v_name=v_name
+        self.v_milage=v_milage
+        self.v_capacity=v_capacity
+        self.v_width=v_width
+        self.v_manufacturer=v_manufacturer
+        self.v_depth=v_depth
+        self.v_number=v_number
+        self.v_time=v_time
     def __str__(self):
-        return self.name
+        '''a method '''
+        return self.v_name
+        
