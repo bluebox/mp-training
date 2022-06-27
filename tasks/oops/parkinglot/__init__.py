@@ -29,7 +29,7 @@ obj = v1
 v2=Lot(20,'bus',10,10,5,1,"ashoka_leyland")
 obj=v2
 v3=Lot(20,'bike',10,10,5,1,'trumph')
-v3.in_time=7
+v3.in_time=5
 obj=v3
 
 
@@ -92,11 +92,13 @@ def deallocation(s_e,obj):
         obj.series[s_e][2]+=obj.widthv
 def payment(obj):
     """function to estimate fare"""
-    if obj.in_time>1 and obj.in_time<2:
+    out_time=int(input())
+    total_parking_time=out_time-obj.in_time
+    if total_parking_time>1 and total_parking_time<2:
         print("pay 20 rupees")
-    elif obj.in_time>=2 and obj.in_time<=10:
-        print("pay",end='')
-        print(obj.in_time*10+10)    
+    elif total_parking_time>=2 and total_parking_time<=10:
+        print("pay",end=' ')
+        print(total_parking_time*10+10)    
 allocation(obj)
 print(obj.series['A'])
 deallocation('A',obj)
