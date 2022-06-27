@@ -1,6 +1,7 @@
+'''understanding dicts'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 NOTES = '''
 dicts are unordered sets of key value pairs which facilitate
@@ -8,20 +9,23 @@ fast lookups by key.
 '''
 
 def test_dictionary_type():
+    '''dictinary type'''
     test_dict = {1 : "one"}   # note the new syntax
     assert 'dict' == type(test_dict).__name__
 
 def test_dictionary_empty():
+    '''empty dictionary'''
     empty_dict_1 = {}
-    assert True == isinstance(empty_dict_1, dict)
+    assert True is isinstance(empty_dict_1, dict)
 
     empty_dict_2 = dict() # another way of creating empty dict
     assert 0 == len(empty_dict_2)
     assert empty_dict_1 == empty_dict_2
 
 def test_dictionary_create():
+    '''creatring'''
     dict_1 = { 1 : "one", 2 : "two" }
-    assert  True == isinstance(dict_1, dict)
+    assert  True is isinstance(dict_1, dict)
 
     #init from a sequence of tuple pairs, useful in many cases.
     dict_2 = dict([(1, "one"), (2, "two")])
@@ -29,10 +33,12 @@ def test_dictionary_create():
     assert 'two'== dict_2[2]
 
 def test_dictionary_length():
+    '''length'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit) #note that a key value pair is treated as one item
 
 def test_dictionary_is_indexed_by_key():
+    '''indexing'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 1 == word_to_digit["one"]
     assert 2 == word_to_digit["two"]
@@ -45,6 +51,7 @@ def test_dictionary_is_indexed_by_key():
         assert True
 
 def test_dictionary_is_mutable():
+    '''mutable'''
     word_to_digit = { "one" : 1, "two" : 2}
 
     word_to_digit["three"] = 3
@@ -57,16 +64,19 @@ def test_dictionary_is_mutable():
     assert {'two': 2, 'three': 3, 'one': 10} == word_to_digit
     # A regular dictionary doesn't track the insertion order.
     # So when iterating over it, items are returned in an arbitrary order.
-    # When we want to make sure that items are returned to the order they were inserted, we can use OrderedDict.
+    # When we want to make sure that items are returned to the order
+    #they were inserted, we can use OrderedDict.
 
 def test_dictionary_is_unordered():
+    '''unordered'''
     dict1 = { 'one': 1, 'two': 2 }
     dict2 = { 'two': 2, 'one': 1}
 
     equal = (dict1 == dict2)
-    assert True == equal # True or False?
+    assert True is equal # True or False?
 
 def test_dictionary_keys_and_values():
+    '''keys and values'''
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit.keys())
     assert 2 == len(word_to_digit.values())
@@ -79,21 +89,23 @@ def test_dictionary_keys_and_values():
     assert [1, 2] == values
 
 def test_dictionary_contains():
+    '''dictinary'''
     word_to_digit = { "one" : 1, "two" : 2}
 
-    assert True == ("one" in word_to_digit)
-    assert True  == ("two" in word_to_digit)
+    assert True is ("one" in word_to_digit)
+    assert True is ("two" in word_to_digit)
 
-    assert True == ("one" in word_to_digit.keys())
-    assert True == ("two" in word_to_digit.keys())
+    assert True is ("one" in word_to_digit.keys())
+    assert True is ("two" in word_to_digit.keys())
 
-    assert False == (1 in word_to_digit)
-    assert False == (2 in word_to_digit)
+    assert False is (1 in word_to_digit)
+    assert False is (2 in word_to_digit)
 
-    assert True == (1 in word_to_digit.values())
-    assert True == (2 in word_to_digit.values())
+    assert True is (1 in word_to_digit.values())
+    assert True is (2 in word_to_digit.values())
 
 def test_valid_dictionary_keys():
+    '''valid keys'''
     test_dict = {}
     test_dict[1] = 1
     test_dict["one"] = "string"
@@ -122,12 +134,12 @@ def test_valid_dictionary_keys():
 
 
 THREE_THINGS_I_LEARNT = """
-dictionary datatype
-indexing
-difference in keys and values
+dictionaries are mutable
+indexing of dictinaries
+difference between keys and values
 """
 
-TIME_TAKEN_MINUTES = 10
+TIME_TAKEN_MINUTES = 5
 
 NOTES2= '''
 It is  a good idea to figure out how dictionaries are generally implemented

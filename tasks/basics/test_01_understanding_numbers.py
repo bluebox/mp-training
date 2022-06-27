@@ -1,22 +1,26 @@
+'''understanding numbers'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.
 
 def test_numbers_types():
+    '''int represents integer values'''
     assert 'int' == type(1).__name__
     assert 'float' == type(1.3).__name__
 # assert 'int' == type(10L).__name__
 # In Python 3 the long datatype has been removed and all integer values are handled
 # by the Int class. The default size of Int will depend on your CPU architecture.
 # 32 bit systems the default datatype for integers will be 'Int32'->[-2147483648,2147483647]
-# 64 bit systems the default datatype for integers will be 'Int64'->[-9223372036854775808,9223372036854775807]
+# 64 bit systems the default datatype for integers will be
+#'Int64'->[-9223372036854775808,9223372036854775807]
 
 
 def test_numbers_int_arithmetic_operations():
+    '''+,*,**,-,/ are arithematic operators'''
     assert 30 == 10 + 20
     assert 200 == 10 * 20
     assert 32 == 2 ** 5
@@ -32,6 +36,7 @@ def test_numbers_string_to_int():
 
 
 def test_numbers_int_to_string():
+    '''oct() is used for decimal to octal conversion'''
     assert '0o12' == oct(10)
     assert '0x64' == hex(100)
     assert '0b11111111' == bin(255)
@@ -43,9 +48,9 @@ def test_numbers_long():
 
 
 THREE_THINGS_I_LEARNT = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+-we can perform conversion using methods
+-decimal value can be converted to octal,hexadecimal,binary.
+-hexadecimal,octal,binary can be converted into decimal.
 """
 
 TIME_TAKEN_MINUTES = 4

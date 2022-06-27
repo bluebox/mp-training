@@ -76,4 +76,4 @@ THREE_THINGS_I_LEARNT = """
 -1 not equals to true but 0 equals false 
 """
 
-TIME_TAKEN_MINUTES = 16
+TIME_TAKEN_MINUTES = 5

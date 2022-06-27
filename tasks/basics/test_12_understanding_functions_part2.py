@@ -84,10 +84,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+-keyword arguments
+-variable arguments
+-unpacking of functions
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 1

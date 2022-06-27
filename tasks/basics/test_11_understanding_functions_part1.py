@@ -2,7 +2,7 @@ __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Functions are the basic unit of modularization in python. You use functions to group
 together a meaningful action and use it when you need it.
 
@@ -13,12 +13,12 @@ This is a big topic, we will revisit this topic again.
 '''
 
 
-def my_print(x):
-    print (x)
+def my_print(var_x):
+    print (var_x)
 
 
-def my_increment(x):
-    return x + 1
+def my_increment(var_x):
+    return var_x + 1
 
 
 def my_min_max(numbers):
@@ -32,9 +32,9 @@ def test_function_type():
 
 # functions are objects which can be 'called'
 def test_function_callable_type():
-    assert False == callable(1)
-    assert True == callable(my_increment)
-    assert False == callable(my_increment(10))
+    assert False is callable(1)
+    assert True is callable(my_increment)
+    assert False is callable(my_increment(10))
 
 # functions can be held by references just like any other object
 def test_function_assignment():
@@ -45,7 +45,7 @@ def test_function_assignment():
 # every function returns an object, even when it does not!
 def test_every_function_returns_something():
     result = my_print(10)
-    assert None == result
+    assert None is result
 
     result = my_increment(10)
     assert 11 == result
@@ -66,7 +66,7 @@ def demo2():
 #This makes it easy to access help from console or build specialized help commands like help.
 def test_function_documentation():
     assert "returns 10" == demo1.__doc__
-    assert None == demo2.__doc__
+    assert None is demo2.__doc__
 
 
 def my_callfunc(func):
@@ -108,12 +108,12 @@ def test_function_defaults_are_evaluated_at_definition_time():
     assert ["h","i"] == my_add_to_list1("hi")
     assert ["h","i","b","y","e"] == my_add_to_list1("bye")
 
-    assert None == my_add_to_list2("hi")
-    assert None == my_add_to_list2("bye")
+    assert None is  my_add_to_list2("hi")
+    assert None is my_add_to_list2("bye")
 
 
-def demo_parameter_passing1(x):
-    x = x + 1
+def demo_parameter_passing1(var_x):
+    var_x = var_x + 1
 
 
 def demo_parameter_passing2(names):
@@ -125,9 +125,9 @@ def demo_parameter_passing3(names):
 
 # read up after you finish this to make sure you get this right: http://effbot.org/zone/call-by-object.htm
 def test_function_params_passed_by_object_reference():
-    x = 10
-    demo_parameter_passing1(x)
-    assert 10 == x
+    var_x = 10
+    demo_parameter_passing1(var_x)
+    assert 10 == var_x
 
     names = ["one", "two"]
     demo_parameter_passing2(names)
@@ -137,11 +137,11 @@ def test_function_params_passed_by_object_reference():
     assert ["one","two","something"] == names
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -function handling
-type of a function
-parameters passing
+-type of a function
+-parameters passing
 
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES  = 2

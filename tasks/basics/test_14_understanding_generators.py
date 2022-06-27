@@ -12,7 +12,7 @@ calling next() to keep moving the function forward and at every stop point where
 have a yield or return the function can return something new.
 '''
 
-from tasks.placeholders import *
+from tasks.placeholders import __author__
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():
@@ -25,8 +25,8 @@ def test_generator_type():
     assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "next")
-    assert False == hasattr(demo_generator(), "next")
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
@@ -35,7 +35,7 @@ def test_generator_is_an_iterator2():
         assert 'are' == next(result)
         assert 'you?' == next(result)
         assert None == next(result)
-    except Exception as e:
+    except Exception :
         assert True
 
     assert 'how.are.you?' == ".".join(demo_generator()) #join takes a iterable
@@ -65,7 +65,7 @@ def test_generator_range_does_not_allocate_memory():
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
-    assert True # did you reach here without any memory exception?
+    assert True
 
 
 #write a statement that can collect all results from the generator into a list
@@ -108,10 +108,10 @@ def test_generator_exception():
     assert [10,20,50,30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+-generator is used to create custom iterators
+-converting generator into list
+-yield keyword
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 2
