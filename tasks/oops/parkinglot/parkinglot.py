@@ -9,7 +9,7 @@ TOTALAREA = 1000
 
 
 class Vehicle:
-    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, inTime):
+    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, in_time):
         self.milage = milage
         self.name = name
         self.capacity = capacity
@@ -17,27 +17,27 @@ class Vehicle:
         self.depth = depth
         self.number = number
         self.manufacturer = manufacturer
-        self.inTime = inTime
+        self.in_time = in_time
 
 
 class Bus(Vehicle):
-    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, inTime):
-        super().__init__(milage, name, capacity, width, depth, number, manufacturer, inTime)
+    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, in_time):
+        super().__init__(milage, name, capacity, width, depth, number, manufacturer, in_time)
 
 
 class Car(Vehicle):
-    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, inTime):
-        super().__init__(milage, name, capacity, width, depth, number, manufacturer, inTime)
+    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, in_time):
+        super().__init__(milage, name, capacity, width, depth, number, manufacturer, in_time)
 
 
 class Bike(Vehicle):
-    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, inTime):
-        super().__init__(milage, name, capacity, width, depth, number, manufacturer, inTime)
+    def __init__(self, milage, name, capacity, width, depth, number, manufacturer, in_time):
+        super().__init__(milage, name, capacity, width, depth, number, manufacturer, in_time)
 
 
-object2 = Bus(10, "bmw", 12, 10, 12, "TS31F4775", "tata", "10:30")
+object_2 = Bus(10, "bmw", 12, 10, 12, "TS31F4775", "tata", "10:30")
 object3 = Car(10, "bmw", 12, 10, 12, "TS31F4775", "tata", "10:30")
-object1 = Bike(10, "pulsar", 15, 10, 21, "TS11A1234", "tvs", "11:45")
+object_1 = Bike(10, "pulsar", 15, 10, 21, "TS11A1234", "tvs", "11:45")
 
 
 def area1(length, breadth):
@@ -89,7 +89,7 @@ class lotProject:
             if lotProject.series[c][type(object).__name__][0][0] - object.width * object.depth >= 0:
                 lotProject.series[c][type(object).__name__][0][0] -= object.width * object.depth
                 lotProject.series[c][type(object).__name__].insert(self.number,
-                [object.number, object.width * object.depth,object.inTime,
+                [object.number, object.width * object.depth,object.in_time,
                 object.name, object.manufacturer,object.capacity])
                 self.status = "occupied"
                 print("Series Lot is " + c, "with vehicle type is", type(object).__name__)
@@ -150,10 +150,10 @@ def command_handler(command):
         Depth = input("enter the depth of car : ")
         Number = input("enter the car plate number : ")
         Manufacturer = input("enter the Manufacturer : ")
-        inTime = str(datetime.now().time())[0:8]
-        object12 = Car(float(milage), Name, int(Capacity),
-        int(width), int(Depth), Number, Manufacturer, inTime)
-        return object12
+        in_time = str(datetime.now().time())[0:8]
+        object_12 = Car(float(milage), Name, int(Capacity),
+        int(width), int(Depth), Number, Manufacturer, in_time)
+        return object_12
     elif command == "Bus":
         milage = input("enter the millage of Bus : ")
         Name = input("enter the name of Bus : ")
@@ -162,10 +162,10 @@ def command_handler(command):
         Depth = input("enter the depth of bus : ")
         Number = input("enter the Bus plate number : ")
         Manufacturer = input("enter bus Manufacturer : ")
-        inTime = str(datetime.now().time())[0:8]
-        object12 = Bus(float(milage), Name, int(Capacity),
-        int(width), int(Depth), Number, Manufacturer, inTime)
-        return object12
+        in_time = str(datetime.now().time())[0:8]
+        object_12 = Bus(float(milage), Name, int(Capacity),
+        int(width), int(Depth), Number, Manufacturer, in_time)
+        return object_12
     elif command == "Bike":
         milage = input("enter the millage of Bike : ")
         Name = input("enter the name of Bike : ")
@@ -174,10 +174,10 @@ def command_handler(command):
         Depth = input("enter the depth of Bike : ")
         Number = input("enter the Bike plate number : ")
         Manufacturer = input("enter Bike Manufacturer : ")
-        inTime = str(datetime.now().time())[0:8]
-        object12 = Bike(float(milage), Name, int(Capacity),
-        int(width), int(Depth), Number, Manufacturer, inTime)
-        return object12
+        in_time = str(datetime.now().time())[0:8]
+        object_12 = Bike(float(milage), Name, int(Capacity),
+        int(width), int(Depth), Number, Manufacturer, in_time)
+        return object_12
 
 
 def park():
@@ -208,13 +208,13 @@ def command_handle(command):
         timestamp = str(timedelta(hours=1, minutes=25, seconds=50))
         # print(timestamp)
 
-        t1 = dt.datetime.strptime(current_time, '%H:%M:%S')
-        t2 = dt.datetime.strptime(timestamp, '%H:%M:%S')
+        t_1 = dt.datetime.strptime(current_time, '%H:%M:%S')
+        t_2 = dt.datetime.strptime(timestamp, '%H:%M:%S')
         time_zero = dt.datetime.strptime('00:00:00', '%H:%M:%S')
-        # print((t1 - time_zero + t2).time())
-        timeout = (t1 - time_zero + t2).time()
+        # print((t_1 - time_zero + t_2).time())
+        timeout = (t_1 - time_zero + t_2).time()
 
-        slot1 = lotProject(int(width), int(depth), COUNT, series2, status, timeout)
+        slot_1 = lotProject(int(width), int(depth), COUNT, series2, status, timeout)
         typ = input("Enter Vehicle Type:\n"
                     "1. Car\n"
                     "2. Bus\n"
@@ -227,8 +227,8 @@ def command_handle(command):
         elif typ == "3":
             new_type = "Bike"
         print(new_type)
-        object121 = command_handler(new_type)
-        slot1.addVehicle(object121)
+        object_121 = command_handler(new_type)
+        slot_1.addVehicle(object_121)
         COUNT += 1
 
     elif command == "E":
@@ -253,7 +253,7 @@ def command_handle(command):
             print("not found")
             park()
         temp = lotProject.series[ch][vehicle_type][a][b + 1]
-        currentTime = lotProject.series[ch][vehicle_type][a][b + 2]
+        curr_time = lotProject.series[ch][vehicle_type][a][b + 2]
         # print(temp)
         print("poped vechile is: " + str(lotProject.series[ch][vehicle_type].pop(a)))
         lotProject.series[ch][vehicle_type][0][0] += float(temp)
@@ -263,13 +263,13 @@ def command_handle(command):
         s = input("enter the random timeout seconds: ")
         timestampout = str(timedelta(hours=int(h), minutes=int(m), seconds=int(s)))
         # print(timestamp)
-        current_time = currentTime
+        current_time = curr_time
 
-        t1 = dt.datetime.strptime(current_time, '%H:%M:%S')
-        t2 = dt.datetime.strptime(timestampout, '%H:%M:%S')
+        t_1 = dt.datetime.strptime(current_time, '%H:%M:%S')
+        t_2 = dt.datetime.strptime(timestampout, '%H:%M:%S')
         time_zero = dt.datetime.strptime('00:00:00', '%H:%M:%S')
-        # print((t1 - time_zero + t2).time())
-        timeout = (t1 - time_zero + t2).time()
+        # print((t_1 - time_zero + t_2).time())
+        timeout = (t_1 - time_zero + t_2).time()
         print("time out at : " + str(timeout))
         print("parked for : " + str(timestampout))
         print("charges will be :" + str(lotProject.chargeCalculation(str(timestampout)))+"/RS")
