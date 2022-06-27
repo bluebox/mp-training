@@ -1,9 +1,10 @@
 __author__ = 'Hari'
-
-from re import M, T
+import sys
 from tasks import placeholders
 from tasks.basics import module1
-from tasks.placeholders import *
+from tasks.placeholders import __author__
+# from tasks.basics.module4 import *
+# from tasks.basics.module3 import *
 NOTES = '''
 modules are a abstraction feature which greatly aids in building large applications.
 
@@ -19,7 +20,6 @@ All these tests uses module1.py to module4.py. Take a look at them before starti
 #this is a global import, generally you use only these. rarely will you use function level imports, but we are doing that
 #here for the sake of testing.
 
-import sys
 
 
 
@@ -27,18 +27,18 @@ def test_module_without_import():
     '''module'''
     try:
         module1.greet("jack")
-    except ___ :
+    except exception :
         print
-        assert ___
+        # assert ___
 
 def test_module_usage_needs_import():
     '''module'''
-    from tasks.basics import module1
+    # from tasks.basics import module1
     assert "module1 says hi to jack" == module1.greet("jack")
 
 def test_module_usage_multiple():
     '''module'''
-    from tasks.basics import module1
+    # from tasks.basics import module1
     from tasks.basics import module2
 
     assert "module1 says hi to jack" == module1.greet("jack")
@@ -74,7 +74,7 @@ def test_module_is_an_object():
     '''module'''
     assert 12 == len(dir(placeholders))
     assert 'tasks.placeholders' == placeholders.__name__
-    assert None == placeholders.__doc__
+    assert None is placeholders.__doc__
 
 def test_module_from_import():
     '''module'''
@@ -84,7 +84,7 @@ def test_module_from_import():
     assert True is ('greet' in locals())
 
     try:
-        module1.greet()
+        module1.greet("jack")
     except TypeError :
         pass
 
@@ -93,17 +93,17 @@ def test_module_from_import():
 def test_module_why_from_import_is_a_bad_idea():
     '''module'''
     from tasks.basics.module1 import greet
-    from tasks.basics.module2 import greet
+    # from tasks.basics.module2 import greet
 
-    assert "module2 says hi to jack" == greet("jack")
+    assert "module1 says hi to jack" == greet("jack")
 
 def test_modules_are_cached():
     '''module'''
-    from tasks.basics import module1
+    # from tasks.basics import module1
     from tasks.basics import module1 as new_name
     def inner():
         '''module'''
-        from tasks.basics import module1
+        # from tasks.basics import module1
         return module1.some_attr
 
     try :
@@ -116,7 +116,7 @@ def test_modules_are_cached():
 
     def inner2():
         '''module'''
-        from tasks.basics import module1
+        # from tasks.basics import module1
         return module1.some_attr
 
     assert 10 == inner2()
@@ -138,11 +138,12 @@ from tasks.basics.module4 import *
 s3 = set(dir())
 
 def test_module_star_import():
+    '''metyhjoda'''
     # * imports are not allowed within functions, so we had to do it at global scope
     assert {"m3_func1","m3_func2"} == (s2 - s1)  # what did module3 import bring in.
     assert {"_m4_func3","m4_func1"} == (s3 - s2)  # what did module4 import bring in.
 
-notes_2 = '''
+NOTES_2 = '''
 http://effbot.org/zone/import-confusion.htm
 '''
 

@@ -1,88 +1,91 @@
 __author__ = 'Hari'
 
+from tasks.placeholders import __author__
 NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
 # from re import T
-from tasks.placeholders import __author__
 
 def test_inheritance_basic():
-    class A(object): # A inherits from object.
+    '''module'''
+    class Aa(object): # A inherits from object.
         '''CLASS'''
-        def f(self):
+        def f_1(self):
             '''CLASS'''
             pass
 
-    class B(A):      #B inherits from A or B derives A
+    class Ba(Aa):      #B inherits from A or B derives A
         '''CLASS'''
-        def g(self):
+        def g_1(self):
             '''CLASS'''
             pass
 
-    assert True is issubclass(A, object)
-    assert True is issubclass(A, A)
-    assert False is issubclass(A, B)
+    assert True is issubclass(Aa, object)
+    assert True is issubclass(Aa, Aa)
+    assert False is issubclass(Aa, Ba)
 
-    assert True is issubclass(B, A)
-    assert True is issubclass(B, B)
-    assert True is issubclass(B, object)
+    assert True is issubclass(Ba, Aa)
+    assert True is issubclass(Ba, Ba)
+    assert True is issubclass(Ba, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
-    class A(object): # A inherits from object.
+    '''module'''
+    class Aa(object): # A inherits from object.
         '''CLASS'''
-        def f(self):
+        def f_1(self):
             '''CLASS'''
             return "A:f()"
 
-    class B(A):      #B inherits A's behavior (attributes)
+    class Ba(Aa):      #B inherits A's behavior (attributes)
         '''CLASS'''
-        def g(self):
+        def g_1(self):
             '''CLASS'''
             return "B:g()"
 
-    b = B()
-    assert "A:f()" == b.f()
-    assert "B:g()" == b.g()
+    b_1 = Ba()
+    assert "A:f()" == b_1.f_1()
+    assert "B:g()" == b_1.g_1()
 
-    a = A()
-    assert "A:f()" == a.f()
+    a_1 = Aa()
+    assert "A:f()" == a_1.f_1()
     try:
-        assert "B:g()" == a.g()
+        assert "B:g()" == a_1.g_1()
     except AttributeError:
         #print ex  #uncomment this line after filling up
         pass
 
 def test_inheritance_overrides():
-    class A(object): # A inherits from object.
+    '''module'''
+    class Aa(object): # A inherits from object.
         '''CLASS'''
-        def f(self):
+        def f_1(self):
             '''CLASS'''
             return "A:f()"
 
-        def g(self):
+        def g_1(self):
             '''CLASS'''
             return "A:g()"
 
-    class B(A):      #B can override A's methods
+    class Ba(Aa):      #B can override A's methods
         '''CLASS'''
-        def g(self):
+        def g_1(self):
             '''CLASS'''
             return "B:g()"
 
-    a = A()
-    assert "A:f()" == a.f()
-    assert "A:g()" == a.g()
+    a_1 = Aa()
+    assert "A:f()" == a_1.f_1()
+    assert "A:g()" == a_1.g_1()
 
-    b = B()
-    assert "A:f()" == b.f()
-    assert "B:g()" == b.g()
+    b_1 = Ba()
+    assert "A:f()" == b_1.f_1()
+    assert "B:g()" == b_1.g_1()
 
 def test_inheritance_init():
     '''CLASS'''
-    class A(object):
+    class Aa(object):
         '''CLASS'''
         def __init__(self):
             '''CLASS'''
@@ -92,22 +95,22 @@ def test_inheritance_init():
             '''CLASS'''
             self.a1.append(obj)
 
-    class B(A):
+    class Ba(Aa):
         '''CLASS'''
         def __init__(self):
             '''CLASS'''
             self.b1 = []
 
-    a = A()
-    assert [] == getattr(a, "a1", None)
-    assert None == getattr(a, "b1", None)
+    a_1 = Aa()
+    assert [] == getattr(a_1, "a1", None)
+    assert None is getattr(a_1, "b1", None)
 
-    b = B()
-    assert None == getattr(b, "a1", None)
-    assert [] == getattr(b, "b1", None)
+    b_1 = Ba()
+    assert None is getattr(b_1, "a1", None)
+    assert [] == getattr(b_1, "b1", None)
 
     try:
-        b.append("orange")
+        b_1.append("orange")
     except AttributeError :  #what happened here?
         pass
 
@@ -115,39 +118,40 @@ def test_inheritance_init():
     # chain __init__ to the base class if the derived class overrides it.
 
     #lets redefine B now, to chain the inits to the base class.
-    class B(A):
+    class Ba(Aa):
         '''CLASS'''
         def __init__(self):
             '''CLASS'''
-            A.__init__(self)
+            Aa.__init__(self)
             self.b1 = "b1"
 
-    b = B()
-    assert [] == getattr(b, "a1", None)
-    assert 'b1' == getattr(b, "b1", None)
-    b.append("orange")
-    assert ['orange'] == b.a1
+    b_1 = Ba()
+    assert [] == getattr(b_1, "a1", None)
+    assert 'b1' == getattr(b_1, "b1", None)
+    b_1.append("orange")
+    assert ['orange'] == b_1.a1
 
 def test_inheritance_invoking_using_super():
+    '''module'''
     #super can be used instead of explicitly invoking base.
-    class A(object): # A inherits from object.
+    class Aa(): # A inherits from object.
         '''CLASS'''
-        def f(self):
+        def f_1(self):
             '''CLASS'''
             return "A:f()"
 
-        def g(self):
+        def g_1(self):
             '''CLASS'''
             return "A:g()"
 
-    class B(A):      #B can override A's methods
+    class Ba(Aa):      #B can override A's methods
         '''CLASS'''
-        def g(self):
+        def g_1(self):
             '''CLASS'''
-            return super(B, self).g() + ":"+ "B:g()"
+            return super(Ba, self).g_1() + ":"+ "B:g()"
 
-    b = B()
-    assert "A:g():B:g()" == b.g()
+    b_1 = Ba()
+    assert "A:g():B:g()" == b_1.g_1()
 
 
 NOTES_1 = '''

@@ -16,25 +16,29 @@ from tasks.placeholders import *
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():
+    '''method'''
     yield "how"
     yield "are"
     yield "you?"
 
 def test_generator_type():
+    '''method'''
     assert "function" == type(demo_generator).__name__  #definition is a function
     assert 'generator' == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert False == hasattr(demo_generator, "next")
-    assert False == hasattr(demo_generator(), "next")
+    '''method'''
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
 
 def test_generator_is_an_iterator2():
+    '''method'''
     result = demo_generator()
     try:
         assert "how" == next(result)  # builtin which calls the iterator.next()
         assert "are" == next(result)
         assert "you?" == next(result)
-        assert False == next(result)
+        assert False is next(result)
     except StopIteration:
         assert True
 
@@ -44,11 +48,13 @@ def test_generator_is_an_iterator2():
 # element by element, so at no point is a new reversed sequence object
 # created though to the consumer it appears like a sequence.
 def demo_reverse(sequence):
+    '''method'''
     for index in range(len(sequence)-1, -1, -1):
         yield sequence[index]
 
 
 def test_generator_reverse():
+    '''method'''
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
@@ -56,12 +62,14 @@ def test_generator_reverse():
 
 # range using a generator (xrange does something similar)
 def demo_range(limit):
+    '''method'''
     value = 0
     while value < limit:
         yield value
         value = value + 1
 
 def test_generator_range_does_not_allocate_memory():
+    '''method'''
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
@@ -70,14 +78,17 @@ def test_generator_range_does_not_allocate_memory():
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
+    pass
     __ # fill code here.
 
 
 def test_collapse_generator():
+    '''method'''
     assert None == demo_generator_to_list(demo_range(4))
     assert None == demo_generator_to_list(demo_generator())
 
 def test_generator_return():
+    '''method'''
     def func():
         yield 1
         yield 2
@@ -86,6 +97,7 @@ def test_generator_return():
     assert None == demo_generator_to_list(func())
 
 def test_generator_control_flow():
+    '''method'''
     def func():
         for x in range(5):
             yield x
@@ -93,6 +105,7 @@ def test_generator_control_flow():
     assert None == demo_generator_to_list(func())
 
 def test_generator_exception():
+    '''method'''
     def func():
         try:
             yield 10
@@ -108,10 +121,10 @@ def test_generator_exception():
     assert None == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+TTIL = """
 -
 -
 -
 """
 
-time_taken_minutes = ___
+RRM = 20
