@@ -31,6 +31,7 @@ NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
+NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 def bill(typ, num):
     flag = 0
     # for i in range(4):
