@@ -1,6 +1,0 @@
-vehicle = [6000, 1000, 3000]
-A = [0.0 for x in range(10)]
-B = [0.0 for x in range(10)]
-C = [0.0 for x in range(10)]
-D = [0.0 for x in range(10)]
-lot = [A, B, C, D]
