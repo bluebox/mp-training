@@ -32,6 +32,23 @@ NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
+def func(time_spent):
+    # print('frgr')
+    if time_spent < 2:
+        print("pay:20rs")
+        return
+    elif 1 < time_spent < 11:
+        pay=20
+        time=time_spent-1
+        pay=pay+time*10
+        print("pay {0}".format(pay))
+        return
+    elif time_spent > 10:
+        pay=110
+        time=time_spent-10
+        pay=pay+time*5
+        print("pay {0}".format(pay))
+        return
 def bill(typ, num):
     flag = 0
     # for i in range(4):
@@ -55,15 +72,7 @@ def bill(typ, num):
     #                     time_spent = pemp
     #                 else:
     #                     time_spent = pemp + 1
-    #                 if time_spent < 2:
-    #                     print("pay:20rs")
-    #                     return
-    #                 elif 1 < time_spent < 11:
-    #                     print("pay {0}".format(time_spent * 10))
-    #                     return
-    #                 elif time_spent > 10:
-    #                     print("pay {0}".format(time_spent * 5))
-    #                     return
+
     count = -1
     if typ == 1:
         for item in A:
@@ -82,6 +91,8 @@ def bill(typ, num):
                 else:
                     time_spent = pemp + 1
                 print('parking space for cars is', vehicle[0])
+                # print("tetetetetete")
+                func(time_spent)
     if typ == 2:
         for item in B:
             if item.v_number == num:
@@ -99,6 +110,7 @@ def bill(typ, num):
                 else:
                     time_spent = pemp + 1
                 print('parking space for bus is', vehicle[1])
+                func(time_spent)
     if typ == 2:
         for item in A:
             if item.v_number == num:
@@ -116,6 +128,7 @@ def bill(typ, num):
                 else:
                     time_spent = pemp + 1
                 print('parking space for bikes is', vehicle[2])
+                func(time_spent)
 
     if flag == 0:
         print('enter correct number')
@@ -136,7 +149,7 @@ def park(obj, tem):
             #         if lot[3][5] != 0.0:
             vehicle[0] -= obj.v_width * obj.v_depth
             A.append(obj)
-            print('car is parked successfully \nremaining area for car is', vehicle[2])
+            print('car is parked successfully \nremaining area for car is', vehicle[0])
         else:
             print('parking lot is full')
 
