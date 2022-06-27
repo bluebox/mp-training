@@ -5,7 +5,7 @@ import datetime as dt
 
 COUNT = 1
 series = {}
-TOTALAREA = 1000
+TOTALAREA = 0
 
 
 class Vehicle:
