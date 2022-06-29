@@ -31,7 +31,19 @@ NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
 NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
-NOTE = '''kjdsfnnnnnnnnnnnnnnnndj'''
+NOTE = '''kjdsfnnnnnnnnnnnnnnnndj''' 
+# import vehicle
+class Vehicle:
+    def __init__(self, v_milage, v_name, v_capacity, v_width,
+                 v_depth, v_number, v_manufacturer, time):
+        self.v_milage = v_milage
+        self.v_name = v_name
+        self.v_capacity = v_capacity
+        self.v_width = v_width
+        self.v_depth = v_depth
+        self.v_number = v_number
+        self.v_manufacturer = v_manufacturer
+        self.v_intime = time
 def func(time_spent):
     # print('frgr')
     if time_spent < 2:
@@ -73,17 +85,17 @@ def bill(typ, num):
     #                 else:
     #                     time_spent = pemp + 1
 
-    count = -1
+    COUNT = -1
     if typ == 1:
         for item in A:
-            count += 1
+            COUNT += 1
             if item.v_number == num:
                 flag = 1
                 print("enter time")
                 exit_time = float(input())
                 entry_time = item.v_intime
                 vehicle[0] += item.v_width * item.v_depth
-                del A[count]
+                del A[COUNT]
                 time_spent = exit_time - entry_time
                 pemp = floor(time_spent)
                 if time_spent - pemp < 0.30:
@@ -185,17 +197,7 @@ def park(obj, tem):
             print('bike is parked successfully \nremaining area for bikes is', vehicle[2])
         else:
             print('parking lot is full')
-# import vehicle
-class Vehicle:
-    def __init__(self, v_milage, v_name, v_capacity, v_width, v_depth, v_number, v_manufacturer, time):
-        self.v_milage = v_milage
-        self.v_name = v_name
-        self.v_capacity = v_capacity
-        self.v_width = v_width
-        self.v_depth = v_depth
-        self.v_number = v_number
-        self.v_manufacturer = v_manufacturer
-        self.v_intime = time
+
 # import lot
 # run entry file
 vehicle = [6000, 1000, 3000]
@@ -261,19 +263,18 @@ while True:
         num = input()
         bill(typ, num)
     if kemp == 'c':
-        count = 0
+        COUNT = 0
         for i in A:
             print(i.v_number)
-            count += 1
+            COUNT += 1
         for i in B:
             print(i.v_number)
-            count += 1
+            COUNT += 1
         for i in C:
             print(i.v_number)
-            count += 1
-        print("There are {} vehicles".format(count))
+            COUNT += 1
+        print("There are {} vehicles".format(COUNT))
     print("do u want to continue y/n")
     var = input()
     if var == 'n':
         break
-# test comment
