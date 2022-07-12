@@ -151,6 +151,7 @@ INSERT INTO insur_table VALUES (2, 'ICICI');
 -- where emp_id = emp.immediate_head_id) from emp_table emp
 -- inner join dept_table dt on emp.dept_id = dt.dept_id
 
+
 -- 10
 -- select emp.name from emp_table emp 
 -- inner join emp_info_table EOT on emp_info = EOT.id
