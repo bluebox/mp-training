@@ -1,0 +1,92 @@
+/*1. Get the list of employee details which should include their name,department and 
+    name of the insurance type 
+*/
+SELECT name,dept_name,insurance_name from Employee_Table 
+join Department_Table on Employee_Table.dept_id=Department_Table.dept_id
+join Insurance_Table on  Employee_Table.insurance_id=Insurance_Table.insurance_id
+
+
+
+
+
+/*Get the list of departments of employees working at particular place(e.g:  Madhapur)*/
+select DISTINCT Department_Table.dept_name  from Employee_Table 
+join Department_Table on Employee_Table.dept_id=Department_Table.dept_id 
+WHERE  emp_id in
+
+( select emp_id from Employee_Office_Table 
+ join Office_Table on Employee_Office_Table.office_id=Office_Table.office_id WHERE place="madhapur");
+
+
+
+
+/*Get the count of employees working in each location*/
+select count(emp_id),place from Employee_Office_Table join Office_Table 
+ on Employee_Office_Table.office_id=Office_Table.office_id GROUP by place
+ 
+ 
+ 
+ /*Get the third highest salaried employee name, insurance name and salary(Joins)*/
+select name,insurance_name,salary FROM Employee_Table join Insurance_Table on 
+Employee_Table.insurance_id=Insurance_Table.insurance_id 
+join Employee_Info_Table on Employee_Table.employee_info=Employee_Info_Table.id where Employee_Table.employee_info in (Select id from Employee_Info_Table order by Salary DESC limit 2,1);
+
+
+/*5.Get the Average salary of employees from each department for a particular location*/
+SELECT AVG(SALARY )  FROM (select * from Employee_Table JOIN Department_Table ON Employee_Table.dept_id=Department_Table.dept_id
+JOIN Employee_Info_Table ON Employee_Table.employee_info=Employee_Info_Table.id
+JOIN (SELECT * FROM Employee_Office_Table JOIN Office_Table ON Employee_Office_Table.office_iD=Office_Table.office_id) AS TJ
+ON Employee_Table.emp_id=TJ.emp_id) where place ="madhapur" GROUP BY dept_id
+
+
+/*6.Get the sum of salaries of the employees joined after 02-01-2022 working in ‘Madhapur’
+*/
+SELECT SUM(SALARY )  FROM (select * from Employee_Table 
+JOIN Employee_Info_Table ON Employee_Table.employee_info=Employee_Info_Table.id
+JOIN (SELECT * FROM Employee_Office_Table JOIN Office_Table ON Employee_Office_Table.office_iD=Office_Table.office_id) AS TJ
+ON Employee_Table.emp_id=TJ.emp_id) where place ="madhapur" AND doj>"02/01/2022";
+
+/*7.Get name, department, salary of employees who joined after 20-02-2022 
+and  salary is greater than 20000 and has insurance either in lic or icici or
+both and whose work location is madhapur.
+
+*/
+SELECT name ,dept_name,salary FROM (select * from Employee_Table 
+JOIN Employee_Info_Table ON Employee_Table.employee_info=Employee_Info_Table.id
+JOIN Department_Table on Department_Table.dept_id=Employee_Table.dept_id
+join Insurance_Table on Employee_Table.insurance_id=Insurance_Table.insurance_id
+JOIN (SELECT * FROM Employee_Office_Table JOIN Office_Table ON Employee_Office_Table.office_iD=Office_Table.office_id) AS TJ
+ON Employee_Table.emp_id=TJ.emp_id) 
+where place ="madhapur" AND doj>"20/02/2022" AND salary>20000 
+and(insurance_name="lic" or insurance_name="icici");
+
+/*8. Get the list of employee names and their respective immediate head name
+*/
+
+SELECT A.name as employee_name,B.name as immediate_head from Employee_Table A,Employee_Table B where A.immediate_head_id=B.emp_id AND A.immediate_head_id not NULL
+
+/*9. Get the list of employee names and their respective immediate head name with  their respective department names.
+  Eg: emp name | emp department name | immediate head name | immediate head department name
+*/
+select a.name as emp_name, a.dept_name as emp_department_name,
+b.name as immediate_head_name,b.dept_name as immediate_head_department_name from (select * from Employee_Table 
+ join Department_Table on Employee_Table.dept_id=Department_Table.dept_id)
+ as a join
+ (select * from Employee_Table 
+  join Department_Table on Employee_Table.dept_id=Department_Table.dept_id)
+  as b where a.immediate_head_id=b.emp_id and a.immediate_head_id not null; 
+
+
+
+/*10. Get the list of employees whose immediate head working in location ‘madhapur’
+       and whose salary is less than twice the salary of their respective immediate   heads.
+*/
+select DISTINCT A.name from 
+(select * from Employee_Table join Employee_Info_Table
+on Employee_Table.employee_info=Employee_Info_Table.id) as A
+                            JOIN
+(select * from Employee_Table join Employee_Info_Table
+on Employee_Table.employee_info=Employee_Info_Table.id
+where emp_id in (select emp_id from Employee_Office_Table join Office_Table on 
+                            Employee_Office_Table.office_id =Office_Table.office_id where 
+                            place ="madhapur" and Employee_Table.immediate_head_id is NULL))as B where A.salary < 2*B.salary and A.immediate_head_id = B.emp_id;
