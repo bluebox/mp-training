@@ -15,3 +15,68 @@ Course: C_id, C_name, F_id, D_id
 Faculty: F_id, F_name, F_number, D_id, F_address
 Department: D_id, D_name
 Student_Record: std_rec_id, std_id, D_id, C_id, reports_to
+
+
+
+"""Creating and Using Database"""
+
+create database Students;
+
+use Students;
+
+
+
+
+"""Creating Tables"""
+
+create table Student(std_id varchar(20),std_name varchar(50), C_id varchar(20), D_id varchar(20), reports_to varchar(20), phone_number int, address varchar(100));
+
+
+create table Course(C_id varchar(20), C_name varchar(20), F_id varchar(20), D_id varchar(20));
+
+
+create table Faculty(F_id varchar(20), F_name varchar(20), F_number int, D_id varchar(20), F_address varchar(100));
+
+
+create table Department(D_id varchar(20), D_name varchar(20));
+
+
+create table Student_Record(std_rec_id varchar(20), std_id varchar(20), D_id varchar(20), C_id varchar(20), reports_to varchar(20));
+
+
+
+
+
+
+"""Adding Key Constraints"""
+
+
+alter table Student add primary key(std_id);
+
+alter table Course add primary key(C_id);
+
+alter table Faculty add primary key(F_id);
+
+alter table Department add primary key(D_id);
+
+alter table Student_Record add primary key(std_rec_id);
+
+
+
+alter table Student add foreign key (C_id) references Course(C_id);
+alter table Student add foreign key (D_id) references Department(D_id);
+
+
+alter table Course add foreign key(F_id) references Faculty(F_id);
+alter table Course add foreign key(D_id) references Department(D_id);
+
+
+alter table Faculty add foreign key(D_id) references Department(D_id);
+
+
+alter table Student_Record add foreign key(std_id) references Student(std_id);
+alter table Student_Record add foreign key(C_id) references Course(C_id);
+alter table Student_Record add foreign key(D_id) references Department(D_id);
+
+
+
