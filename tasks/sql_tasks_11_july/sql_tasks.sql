@@ -154,9 +154,9 @@ INSERT INTO insur_table VALUES (2, 'ICICI');
 
 -- 10
 -- select emp.name from emp_table emp 
--- inner join emp_info_table EOT on emp_info = EOT.id
--- where EOT.salary < (select EOT.salary from emp_table 
--- inner join emp_info_table EOT on emp_info = EOT.id
+-- inner join emp_info_table EOT on emp.emp_id = EOT.id
+-- where 2 * EOT.salary < (select EOT.salary from emp_table 
+-- inner join emp_info_table EOT on emp.emp_id = EOT.id
 -- where emp_id = emp.immediate_head_id
 -- and emp.emp_id in (select emp_id from emp_table aemp
 -- where aemp.emp_id in (
