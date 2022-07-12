@@ -1,0 +1,107 @@
+
+
+"""Creating and Using Database"""
+
+
+create database Employees;
+
+use Employees;
+
+
+"""Creating Tables"""
+
+
+create table Employee_Table(emp_id varchar(20), name varchar(20), immediate_head_id varchar(20), dept_id varchar(20), insurance_id
+varchar(20), employee_info_id varchar(20));
+
+
+create table Department_Table(dept_id varchar(20),dept_name varchar(20));
+
+
+
+create table Insurance_Table(insurance_id varchar(20),insurance_name varchar(20));
+
+
+
+create table Office_Table (office_id varchar(20), office_name varchar(20), place varchar(20));
+
+
+create table Employee_Office_Table(id varchar(20), emp_id varchar(20), office_id varchar(20));
+
+
+create table Employee_Info_Table(employee_info_id varchar(20), DOJ varchar(20), salary varchar(20));
+
+
+"""Adding Key Constraints to Tables"""
+
+
+alter table Employee_Table add Primary key(emp_id);
+alter table Department_Table add Primary Key(dept_id);
+alter table Insurance_Table add Primary Key(insurance_id);
+alter table Office_Table add primary key(office_id);
+alter table Employee_Office_Table add primary key(id);
+alter table Employee_Info_Table add primary key(employee_info_id);
+
+
+
+alter table Employee_Table add foreign key (dept_id) references Department_Table(dept_id);
+alter table Employee_Table add foreign key (insurance_id) references Insurance_Table(insurance_id);
+alter table Employee_Table add foreign key (employee_info_id) references Employee_Info_Table(employee_info_id);
+
+alter table Employee_Office_Table add foreign key (emp_id) references Employee_Table(emp_id)
+alter table Employee_Office_Table add foreign key(office_id) references Office_Table(office_id)
+
+
+"""Inserting Values into tables"""
+
+insert into Employee_Table("Emp1","Arun","Emp1","dep1","in2","Emp1");
+insert into Employee_Table("Emp2","Kumar","Emp1","dep2","in1","Emp2");
+insert into Employee_Table("Emp3","Abhi","Emp2","dep1","in3","Emp3");
+insert into Employee_Table("Emp4","Ram","Emp1","dep3","in2","Emp4");
+insert into Employee_Table("Emp5","Sanjay","Emp4","dep3","in1","Emp5");
+
+
+
+insert into Department_Table("dep1","Software");
+insert into Department_Table("dep2","HR");
+insert into Department_Table("dep3","Finance");
+
+
+
+insert into Insurance_Table("in1","lic");
+insert into Insurance_Table("in2","icici");
+insert into Insurance_Table("in3","sbi");
+
+
+
+insert into Office_Table("off1","Optival","Madhapur");
+insert into Office_Table("off2","Medplus","Hitech City");
+insert into Office_Table("off3","Medplus","Kukatpally");
+
+
+
+
+
+insert into Employeee_Office_Table("EO1","Emp1","off1");
+insert into Employeee_Office_Table("EO2","Emp2","off3");
+insert into Employeee_Office_Table("EO3","Emp3","off2");
+insert into Employeee_Office_Table("EO4","Emp4","off3");
+insert into Employeee_Office_Table("EO5","Emp5","off2");
+
+
+
+
+
+insert into Employeee_Info_Table("Emp1","2022-06-06",45000);
+insert into Employeee_Info_Table("Emp2","2018-05-10",95000);
+insert into Employeee_Info_Table("Emp3","2022-02-01",75000);
+insert into Employeee_Info_Table("Emp4","2022-10-08",65000);
+insert into Employeee_Info_Table("Emp5","2022-07-26",35000);
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+
+
+1.
+
+select ET.name, DT.dept_name, IT.insurance_name from Employee_Table as ET INNER JOIN Department_Table DT ON ET.dept_id = DT.dept_id INNER JOIN Insurance_Table IT ON ET.insurance_id=IT.insurance_id;
+
+
+
+2.
+
+select dt.dept_name from Department_Table dt join Employee_Table et on dt.dept_id=et.dept_id join Employee_Office_Table eot on et.emp_id=eot.emp_id join Office_Table ot on eot.office_id=ot.office_id where ot.place="Madhapur";
+
+
+3.
+
+select ot.place,count(*) as Employee_Count from Employee_Table et join Employee_Office_Table eot on et.emp_id=eot.emp_id join Office_Table ot on eot.office_id=ot.office_id group by(ot.place);
+
+
+4.
+
+select et.name,it.insurance_name,eot.salary from Employee_Table et join Employee_Info_Table eot on et.employee_info_id=eot.employee_info_id join Insurance_Table it on et.insurance_id=it.insurance_id order by salary limit 2,1;
+
+
+5.
+
+select ot.place,Avg(eit.salary) as Average_Salary from Employee_Table et join Employee_Office_Table eot on et.emp_id=eot.emp_id join Office_Table ot on eot.office_id=ot.office_id join Employee_Info_Table eit on et.employee_info_id=eit.employee_info_id group by(ot.place);
+
+
+6.
+
+select ot.place, sum(eit.salary) as Total_Salary from Employee_Info_Table eit join Employee_Table et on et.employee_info_id=eit.employee_info_id join Employee_Office_Table eot on et.emp_id=eot.emp_id join Office_Table ot on eot.office_id=ot.office_id where eit.DOJ > "2022-02-02" and ot.place="Madhapur";
+
+
+7.
+
+select et.name, dt.dept_name, eit.salary, eit.DOJ from Employee_Table et join Department_Table dt on et.dept_id=dt.dept_id join Employee_Info_Table eit on et.employee_info=eit.id join Insurance_Table it on et.insurance_id=it.insurance_id join Employee_Office_Table eot on et.emp_id=eot.emp_id join Office_Table ot on ot.office_id=eot.office_id where DOJ>'2019/05/01' and salary>20000 and place="Madhapur" and (insurance_name="LIC" OR insurance_name="ICIC");
+
+
+
+8.
+
+select e.name, et.name from Employee_Table et join Employee_Table e on et.emp_id=e.immediate_head_id;
+
+
+
+9.
+
+select e.name, d.dept_name, et.name,dt.dept_name from Employee_Table et join Employee_Table e on et.emp_id=e.immediate_head_id join Department_Table d on d.dept_id=e.dept_id join Department_Table dt on et.dept_id=dt.dept_id;
+
+
+
+
+10.
+
+select e.name from Employee_Table et join Employee_Table e on et.emp_id=e.immediate_head_id join Employee_Office_Table eot on et.emp_id=eot.emp_id join Office_Table ot on eot.office_id=ot.office_id join Employee_Info_Table eit on e.employee_info_id=eit.employee_info_id join Employee_Info_Table eitt on et.employee_info_id=eitt.employee_info_id where ot.place="Madhapur" and eit.salary<(2*eitt.salary);
+
