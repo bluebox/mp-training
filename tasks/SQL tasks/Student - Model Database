@@ -14,4 +14,4 @@ Student: std_id, std_name, C_id, D_id, reports_to, phone_number, Address
 Course: C_id, C_name, F_id, D_id
 Faculty: F_id, F_name, F_number, D_id, F_address
 Department: D_id, D_name
-Student_Record: std_rec_id, D_id, C_id, reports_to
+Student_Record: std_rec_id, std_id, D_id, C_id, reports_to
