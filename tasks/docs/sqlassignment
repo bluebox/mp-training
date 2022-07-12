@@ -274,3 +274,17 @@ where employee_info_id = "info01"
 update Employee_Info_Table
 set salary = 80000
 WHERE employee_info_id = "info02"
+
+--10. Get the list of employees whose immediate head working in location ‘madhapur’ and whose salary is less than twice the salary of their respective immediate   heads.*/
+with result as
+(select e.emp_id, eit.salary
+ from employee_table as e,Employee_Info_Table as eit join (Employee_Office_Table join Office_Table on Office_Table.office_id = Employee_Office_Table.office_id) on eit.employee_info_id= e.employee_info_id where eit.employee_info_id= e.employee_info_id And place ="madhapur"
+)
+
+select distinct e.name 
+from result as r, Employee_Table as e ,Employee_Info_Table as eit 
+join Employee_Info_Table
+on eit.employee_info_id= e.employee_info_id
+where (eit.salary*2) < r.salary And 
+r.emp_id = e.immediate_head_id
+
