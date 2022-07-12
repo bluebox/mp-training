@@ -1,0 +1,290 @@
+
+create table Employee_Table( emp_id varchar(100),
+                            name varchar(100),
+                            immediate_head_id varchar(100),
+                            dept_id varchar(100), 
+                            insurance_id varchar(100),   
+                            employee_info_id varchar(100),
+                            PRIMARY KEY(emp_id),
+                            FOREIGN KEY(dept_id) REFERENCES Department_Table (dept_id),
+                            FOREIGN KEY(insurance_id) REFERENCES Insurance_Table (insurance_id),
+                            FOREIGN KEY(employee_info_id ) REFERENCES Employee_Info_Table(employee_info_id)
+                            );
+
+create table Department_Table (dept_id varchar(100),
+                               dept_name varchar(100),
+                              PRIMARY KEY(dept_id));
+
+create table Insurance_Table (insurance_id varchar(100),
+                              insurance_name varchar(100),
+                             PRIMARY KEY(insurance_id));
+
+create table Office_Table(office_id varchar(100),
+                          office_name varchar(100),
+                          place varchar(100),
+                         PRIMARY KEY(office_id));
+
+ create table Employee_Office_Table(id varchar(100),
+                                    emp_id varchar(100),
+                                    office_id varchar(100),
+                                    PRIMARY KEY(id),
+                                    FOREIGN KEY(emp_id) REFERENCES Employee_Table( emp_id),
+                                    FOREIGN KEY(office_id) REFERENCES Office_Table(office_id));
+  
+  create table  Employee_Info_Table(employee_info_id varchar(100),
+                                    DOJ date,
+                                    salary int,
+                                   PRIMARY KEY (employee_info_id));
+
+  
+  
+  INSERT INTO Department_Table (dept_id, dept_name)
+  values
+  (
+    "dep01",
+    "software"
+    ),
+    (
+      "dep02",
+      "pharmacy"
+     ),
+     (
+       "dep03",
+       "delivery"
+      ),
+      (
+        "dep04",
+        "sales"
+        );
+        
+
+   insert into Insurance_Table (insurance_id, insurance_name)
+   values 
+   (
+     "ins01",
+     "lic"
+     ),
+     (
+       "ins02",
+       "icici"
+       );
+
+ insert into Office_Table(office_id, office_name, place)
+ values
+ (
+   "opt01",
+   "optival",
+   "madhapur"
+   ),
+   (
+     "med01",
+     "medplus",
+     "hitechcity"
+     );
+
+ insert into Employee_Info_Table(employee_info_id, DOJ, salary)
+ values
+ (
+   "info01",
+   "01-01-2022",
+   "20000"
+  ),
+  (
+    "info02",
+    "01-02-2022",
+    "25000"
+    ),
+    (
+      "info03",
+      "01-03-2022",
+      "30000"
+      );
+
+insert into Employee_Table(emp_id, name, immediate_head_id,dept_id, insurance_id,employee_info_id)
+values
+(
+  "emp01",
+  "manasa",
+  "emp06",
+  "dep01",
+  "ins01",
+  "info01"
+  ),
+  (
+    "emp02",
+    "bhavana",
+    "emp05",
+    "dep02",
+    "ins02",
+    "info02"
+    ),
+    (
+      "emp03",
+      "shiny",
+      "emp06",
+      "dep03",
+      "ins01",
+      "info03"
+      ),
+      (
+        "emp04",
+        "bannu",
+        "emp05",
+        "dep04",
+        "ins02",
+        "info03"
+        ),
+        (
+
+          "emp05",
+          "sona",
+          null,
+          "dep02",
+          "ins01",
+          "info02"
+          ),
+          (
+
+            "emp06",
+            "muni",
+            null,
+            "dep04",
+            "ins02",
+            "info01"
+            );
+ 
+  insert into Employee_Office_Table(id,emp_id,office_id)
+  values
+  (
+    "101",
+    "emp01",
+    "opt01"
+    ),
+    (
+    "102",
+    "emp02",
+    "med01"
+    ),
+    (
+    "103",
+    "emp03",
+    "opt01"
+    ),
+    (
+    "104",
+    "emp04",
+    "med01"
+    ),
+    (
+    "105",
+    "emp05",
+    "opt01"
+    ),
+    (
+    "106",
+    "emp06",
+    "med01"
+    );
+-- 1. Get the list of employee details which should include their name,department and 
+    name of the insurance type 
+
+SELECT Employee_Table.name,Department_Table.dept_name,Insurance_Table.insurance_name 
+from ((Employee_Table 
+INNER JOIN Department_Table ON Employee_Table.dept_id = Department_Table.dept_id)
+INNER JOIN Insurance_Table ON Employee_Table.insurance_id = Insurance_Table.insurance_id);
+
+
+--2.Get the list of departments of employees working at particular place(e.g:"madhapur"                               Madhapur)
+
+select d.dept_name,o.place from Department_Table as d,Office_Table as o,Employee_Office_Table as eot,Employee_Table as et 
+where o.office_id = eot.office_id and eot.emp_id = et.emp_id and et.dept_id = d.dept_id 
+and o.place = "hitechcity"
+
+
+--3.Get the count of employees working in each location
+
+
+select count(e.emp_id),o.place from Employee_Table as e,Office_Table as o,
+Employee_Office_Table as et where e.emp_id = et.emp_id and et.office_id = o.office_id group by o.place
+
+
+--4.Get the third highest salaried employee name, insurance name and salary(Joins)
+
+
+select Employee_Table.name,Insurance_Table.insurance_name,Employee_Info_Table.salary
+from((Employee_Table
+      inner join Insurance_Table on Employee_Table.insurance_id = Insurance_Table.insurance_id)
+     inner join Employee_Info_Table on Employee_Table.employee_info_id = Employee_Info_Table.employee_info_id )
+     ORDER BY "salary" DESC LIMIT 1 OFFSET 2;
+ --5.Get the Average salary of employees from each department for a particular location
+ 
+select Avg(salary), Department_Table.dept_name from ((Department_Table join
+Employee_Table on Employee_Table.dept_id = Department_Table.dept_id) join Employee_Info_Table 
+on Employee_Info_Table.employee_info_id = Employee_Table.employee_info_id) 
+join Employee_Office_Table on Employee_Table.emp_id = Employee_Office_Table.emp_id 
+group by Department_Table.dept_id
+
+update Employee_Info_Table
+set DOJ = "2022-01-01"
+WHERE employee_info_id = "info01"
+
+
+update Employee_Info_Table
+set DOJ = "2022-02-01"
+WHERE employee_info_id = "info02"
+
+
+update Employee_Info_Table
+set DOJ = "2022-03-01"
+WHERE employee_info_id = "info03"
+
+--6.Get the sum of salaries of the employees joined after 02-01-2022 working in ‘Madhapur’
+
+select sum(salary) from ((Employee_Table join Employee_Info_Table on Employee_Info_Table.employee_info_id = Employee_Table.employee_info_id)
+join Employee_Office_Table on Employee_Office_Table.emp_id = Employee_Table.emp_id) join Office_Table on Employee_Office_Table.office_id = Office_Table.office_id
+where Office_Table.place = "hitechcity" and DOJ > "02-01-2022"
+
+--7.Get name, department, salary of employees who joined after 20-02-2022 and  salary is greater than 20000 and has insurance either in lic or icici or both and whose work location is madhapur.
+
+select e.name,d.dept_name,eio.salary 
+from Employee_Table as e ,Department_Table as d ,Employee_Info_Table as eio ,Employee_Office_Table as eot ,Insurance_Table as i ,Office_Table as o 
+where e.emp_id = eot.emp_id 
+and e.dept_id = d.dept_id and e.employee_info_id = eio.employee_info_id and e.insurance_id = i.insurance_id and eot.office_id = o.office_id and  
+DOJ > "2022-02-20" and eio.salary > 20000 and o.place = "madhapur" and (i.insurance_name = "lic" or i.insurance_name = "icici");
+
+
+--8. Get the list of employee names and their respective immediate head name
+with immediatehead as (select name,emp_id from Employee_Table)
+
+select e.name,i.name from Employee_Table as e ,immediatehead as i 
+where e.immediate_head_id= i.emp_id;
+
+
+--9.Get the list of employee names and their respective immediate head name with  their respective department names.
+
+with immediatehead as (select name,emp_id,dept_id from Employee_Table)
+
+select e.name,d.dept_name,i.name,d.dept_name from Employee_Table as e ,immediatehead as i,Department_Table as d
+where e.immediate_head_id= i.emp_id and e.dept_id = d.dept_id 
+
+update Employee_Info_Table
+set salary = 65000
+where employee_info_id = "info01"
+
+update Employee_Info_Table
+set salary = 80000
+WHERE employee_info_id = "info02"
+
+
+--10. Get the list of employees whose immediate head working in location ‘madhapur’ and whose salary is less than twice the salary of their respective immediate   heads.
+with result as
+(select e.emp_id, eit.salary
+ from employee_table as e,Employee_Info_Table as eit join (Employee_Office_Table join Office_Table on Office_Table.office_id = Employee_Office_Table.office_id) on eit.employee_info_id= e.employee_info_id where eit.employee_info_id= e.employee_info_id And place ="madhapur"
+)
+
+select distinct e.name 
+from result as r, Employee_Table as e ,Employee_Info_Table as eit 
+join Employee_Info_Table
+on eit.employee_info_id= e.employee_info_id
+where r.salary > (eit.salary*2)And 
+r.emp_id = e.immediate_head_id
