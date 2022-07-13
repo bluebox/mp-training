@@ -1,0 +1,125 @@
+/*Medicine_Table
+Medicine_Id
+Medicine_Name
+Expiry_Date
+Manufacturer_Id
+Cost_per_mg
+
+Manufacturer_Table
+Manufacturer_Id 
+Manufacturer_Name 
+Instock 
+Quantity
+
+Medicine_Info_Table
+Medicine_Id
+Available_in
+
+Head_branch_Table
+Head_branch_Id 
+Head_branch_Name 
+location 
+
+Branch_Table
+Branch_Id
+Branch_Name
+Head_branch_Id
+*/
+create table Medicine_Table(Medicine_Id varchar(100),
+                            Medicine_Name varchar(100),
+                            Expiry_Date date,
+                            Manufacturer_Id varchar(100),
+                            Cost_per_mg int,
+                            PRIMARY KEY(Medicine_Id),
+                            FOREIGN KEY (Manufacturer_Id ) REFERENCES Manufacturer_Table(Manufacturer_Id));
+                  
+CREATE TABLE Manufacturer_Table(Manufacturer_Id VARCHAR(100),
+                                Manufacturer_Name VARCHAR(100),
+                                Instock VARCHAR(100),
+                                Quantity VARCHAR(100),
+                                PRIMARY KEY(Manufacturer_Id));
+                                
+
+CREATE TABLE Medicine_Info_Table(Medicine_Id VARCHAR(100),
+                                Available_in VARCHAR(100),
+                                FOREIGN KEY (Medicine_Id) REFERENCES Medicine_Table(Medicine_Id),
+                                FOREIGN KEY (Available_in) REFERENCES Branch_Table(Branch_Id)
+                               );
+
+CREATE TABLE Head_branch_Table(Head_branch_Id VARCHAR(100),
+                               Head_branch_Name VARCHAR(100),
+                               location VARCHAR(100),
+                               PRIMARY KEY (Head_branch_Id));
+
+CREATE TABLE Branch_Table(Branch_Id VARCHAR(100),
+                          Branch_Name VARCHAR(100),
+                          Head_branch_Id VARCHAR(100),
+                          PRIMARY KEY (Branch_Id),
+                          FOREIGN KEY (Head_branch_Id) REFERENCES  Head_branch_Table(Head_branch_Id));
+
+insert into Head_branch_Table
+values
+("H-01","telangana","hyderabad"),
+("H-02","andhrapradesh","amaravathi"),
+("H-03","tamilnadu","chennai"),
+("H-04","kerala","thrivendram"),
+("H-05","karnataka","manglore");
+
+insert into Manufacturer_Table
+values
+("mf01","Accure",("Hydrocodone"),"500mg"),
+("mf02","Zuventus",("Losartan"),"1000mg"),
+("mf03","AIMIL",("Gabapentin"),"200mg"),
+("mf04","Unimax",("Albuterol"),"800mg");
+
+insert into Branch_Table
+values
+("b1","store1","H-01"),
+("b2","store2","H-02"),
+("b3","store3","H-03"),
+("b4","store4","H-04"),
+("b5","store5","H-05"),
+("b6","store6","H-05"),
+("b7","store7","H-04"),
+("b8","store8","H-03"),
+("b9","store9","H-02"),
+("b10","store10","H-01");
+
+insert into Medicine_Table
+values
+("m1","Hydrocodone","2023-05-20","mf01",20),
+("m2","Losartan","2023-08-02","mf02",20),
+("m3","Gabapentin","2028-03-20","mf03",20),
+("m4","Albuterol","2021-01-05","mf04",20),
+("m5","Omeprazole","2025-05-20","mf04",20),
+("m6","Levothyroxine","2024-08-02","mf03",20),
+("m7","Antihistamines","2027-03-20","mf02",20),
+("m8","Atorvastatin","2020-01-05","mf01",20);
+
+insert into Medicine_Info_Table
+values 
+("m1","b1"),
+("m1","b2"),
+("m1","b5"),
+("m2","b3"),
+("m2","b6"),
+("m2","b5"),
+("m3","b4"),
+("m3","b1"),
+("m3","b9"),
+("m4","b8"),
+("m4","b7"),
+("m4","b5"),
+("m5","b1"),
+("m5","b3"),
+("m5","b10"),
+("m6","b5"),
+("m6","b9"),
+("m6","b8"),
+("m7","b8"),
+("m7","b2"),
+("m7","b7"),
+("m8","b3"),
+("m8","b10"),
+("m8","b6");
+
