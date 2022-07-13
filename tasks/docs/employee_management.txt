@@ -1,0 +1,207 @@
+ .....  MYSQL TASKS .....
+
+CREATING TABLES AND INSERTING VALUES INTO THEM.
+
+
+1.
+
+CREATE TABLE insurance_table 
+(
+    insurance_id	varchar(300),
+    insurance_name	varchar(300)
+);
+
+INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('201', 'lic');
+INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('203', 'sbi');
+INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('344', 'medplus');
+INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('342', 'bajaj');
+
+
+
+2.
+
+CREATE TABLE department_table 
+(
+    dept_id	varchar(300),
+    dept_name	varchar(300)
+);
+
+INSERT INTO department_table (dept_id,dept_name) VALUES ('1', 'cs');
+INSERT INTO department_table (dept_id,dept_name) VALUES ('2', 'mech');
+INSERT INTO department_table (dept_id,dept_name) VALUES ('3', 'ece');
+INSERT INTO department_table (dept_id,dept_name) VALUES ('4', 'it');
+
+3.
+
+CREATE TABLE employee_office_table 
+(
+    id	varchar(300),
+    emp_id	varchar(300),
+    office_id	varchar(300)
+);
+
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('201', '1', '501');
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('202', '2', '502');
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('203', '3', '503');
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('204', '4', '504');
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('205', '7', '501');
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('206', '9', '502');
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('207', '10', '503');
+INSERT INTO employee_office_table (id,emp_id,office_id) VALUES ('208', '12', '504');
+
+6. DATE TYPE : EMPLOYEE Info TABLE , DATE_OF_JOIN IN DATE TYPE
+
+
+
+CREATE TABLE employee_info_table 
+(
+    id	varchar(300),
+    doj	date,
+    salary  varchar(300)
+);
+
+INSERT INTO employee_info_table (id,doj,salary) VALUES ('12', '2021-02-21', '200000');
+INSERT INTO employee_info_table (id,doj,salary) VALUES ('23', '2020-09-09', '300000');
+INSERT INTO employee_info_table (id,doj,salary) VALUES ('34', '2020-03-11', '400000');
+INSERT INTO employee_info_table (id,doj,salary) VALUES ('45', '2021-01-19', '600000');
+
+
+
+5.
+
+CREATE TABLE office_table 
+(
+    office_id	varchar(300),
+    office_name	varchar(300),
+    place	varchar(300)
+);
+
+INSERT INTO office_table (office_id,office_name,place) VALUES ('501', 'medplus', 'hitech city');
+INSERT INTO office_table (office_id,office_name,place) VALUES ('502', 'optival', 'kukatpally');
+INSERT INTO office_table (office_id,office_name,place) VALUES ('503', 'custom furnish', 'gachibowli');
+INSERT INTO office_table (office_id,office_name,place) VALUES ('504', 'diagnostics', 'ameerpet');
+
+
+6.
+
+CREATE TABLE employee_table 
+(
+    emp_id	varchar(300),
+    name	varchar(300),
+     immediate_head_id,dept	varchar(300),
+    dept_id	varchar(300),
+    insurance_id	varchar(300),
+    employee_info(	varchar(300)
+);
+
+INSERT INTO employee_table (emp_id,name, immediate_head_id,dept,dept_id,insurance_id,employee_info()
+VALUES
+    ('1', 'sahithi', '7', '1', '201', '12'),
+    ('2', 'samba', '9', '2', '203', '23'),
+    ('3', 'srikar', '10', '3', '344', '34'),
+    ('4', 'bhargavi', '12', '4', '342', '45'),
+    ('7', 'vishwajeet', '23', '1', '344', '34'),
+    ('9', 'vaibhav', '56', '2', '342', '12'),
+    ('10', 'hari', '12', '4', '201', '45'),
+    ('12', 'mani teja', '67', '3', '203', '23');
+
+
+
+    -----------------       QUERIES   -------------
+
+
+
+
+1.  Get the list of employee details which should include their name,department and 
+    name of the insurance type 
+
+select e.name,d.dept_name,i.insurance_name from 
+employee_table as e join department_table as d on e.dept_id=d.dept_id join insurance_table as i on i.insurance_id = e.insurance_id ;
+
+
+
+2 . Get the list of departments of employees working at particular place(e.g:                                Madhapur)
+
+select name,dept_name from employee_table e join employee_office_table eo on e.emp_id=eo.emp_id join office_table o on eo.office_id=o.office_id join department_table d on e.dept_id=d.dept_id where o.place="kukatpally";
+
+
+
+3.  Get the count of employees working in each location
+
+select count(e.emp_id) as count,place from employee_table e join  employee_office_table eo on e.emp_id=eo.emp_id join office_table o on eo.office_id=o.office_id group by place;
+
+
+
+4.  Get the third highest salaried employee name, insurance name and salary(Joins)
+
+
+select name, insurance_name , salary from 
+employee_table e join insurance_table i on 
+e.insurance_id=i.insurance_id join employee_info_table ei 
+on e.employee_info=ei.id 
+order by ei.salary desc 
+limit 1 offset 2;
+
+
+
+5. Get the Average salary of employees from each department for a particular location
+
+
+select avg(salary)as Average_Salary, place from employee_table e join employee_info_table ei 
+on e.employee_info= ei.id join employee_office_table eo on
+eo.emp_id=e.emp_id join office_table o on eo.office_id=o.office_id 
+where o.place="kukatpally";
+
+
+6.  Get the sum of salaries of the employees joined after 02-01-2022 working in ‘Madhapur’
+
+select sum(ei.salary) as Sum_of_Salary,place from employee_table e join employee_info_table ei 
+on e.employee_info= ei.id join employee_office_table eo on
+eo.emp_id=e.emp_id join office_table o on eo.office_id=o.office_id 
+where o.place="kukatpally" and ei.doj > "2020-09-08" ;
+
+7. Get name, department, salary of employees who joined after 20-02-2022 and  salary is greater than 20000 and has insurance either in lic or icici or both and whose work location is madhapur.
+
+
+select e.name as name,
+d.dept_name as Department_name,
+salary as Salary
+
+from employee_table e join employee_info_table ei 
+on e.employee_info= ei.id join employee_office_table eo on
+eo.emp_id=e.emp_id join office_table o on eo.office_id=o.office_id join department_table d on e.dept_id=d.dept_id join insurance_table i on e.insurance_id=i.insurance_id
+where ei.salary>200000 and place="gachibowli" and ei.doj>"2020-01-09" and i.insurance_name in ("lic","medplus");
+;
+
+
+8. Get the list of employee names and their respective immediate head name
+
+
+select A.name as Employee_Name,
+B.name as Head_Name
+from employee_table as A , employee_table as B
+where A.immediate_head_id=B.emp_id;
+
+9.  Get the list of employee names and their respective immediate head name with  their respective department names.
+  Eg: emp name | emp department name | immediate head name | immediate head department name
+
+
+select 
+A.name as Employee_Name,
+d.dept_name as Department_Name, 
+B.name as Head_Name,
+d1.dept_name as Head_Department_Name
+from employee_table as A , employee_table as B join department_table d on A.dept_id=d.dept_id join 
+department_table d1 on B.dept_id=d1.dept_id
+where A.immediate_head_id=B.emp_id;
+
+10 . Get the list of employees whose immediate head working in location ‘madhapur’
+       and whose salary is less than twice the salary of their respective immediate   heads.
+
+
+select t1.name from Employee_Table t1 join Employee_Table t2 on
+t1.immediate_head_id=t2.emp_id join Employee_office_Table t3 on
+t1.emp_id=t3.emp_id join Office_Table t4 on t3.office_id=t4.office_id join
+Employee_Info_Table t5 on t3.id=t5.id join Employee_office_Table t6 on
+t2.emp_id=t6.emp_id join Office_Table t7 on t6.office_id=t7.office_id joinEmployee_Info_Table t8 on t6.id=t8.id where t7.place="Madhapur" and
+t5.salary<(2*t8.salary);
