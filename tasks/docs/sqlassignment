@@ -264,10 +264,10 @@ and A.immediate_head_id = B.emp_id
 
 --9.Get the list of employee names and their respective immediate head name with  their respective department names.
 
-with immediatehead as (select name,emp_id,dept_id from Employee_Table)
+select A.name as employee_name,d.dept_name as department_name , B.name as immediate_head,de.dept_name as immediate_head_department_name 
+from ((Employee_Table A join Employee_Table B on A.immediate_head_id = B.emp_id) join Department_Table D on A.dept_id = D.dept_id )
+join Department_Table de on B.dept_id = de.dept_id;
 
-select e.name,d.dept_name,i.name,d.dept_name from Employee_Table as e ,immediatehead as i,Department_Table as d
-where e.immediate_head_id= i.emp_id and e.dept_id = d.dept_id 
 
 update Employee_Info_Table
 set salary = 65000
@@ -278,15 +278,8 @@ set salary = 80000
 WHERE employee_info_id = "info02"
 
 --10. Get the list of employees whose immediate head working in location ‘madhapur’ and whose salary is less than twice the salary of their respective immediate   heads.*/
-with result as
-(select e.emp_id, eit.salary
- from employee_table as e,Employee_Info_Table as eit join (Employee_Office_Table join Office_Table on Office_Table.office_id = Employee_Office_Table.office_id) on eit.employee_info_id= e.employee_info_id where eit.employee_info_id= e.employee_info_id And place ="madhapur"
-)
-
-select distinct e.name 
-from result as r, Employee_Table as e ,Employee_Info_Table as eit 
-join Employee_Info_Table
-on eit.employee_info_id= e.employee_info_id
-where (eit.salary*2) < r.salary And 
-r.emp_id = e.immediate_head_id
+select A.name as employee_name from ((Employee_Table B join Employee_Table A on A.immediate_head_id = B.emp_id) join Employee_Office_Table eot on B.emp_id = eot.emp_id)
+join Employee_Info_Table eio on A.employee_info_id = eio.employee_info_id
+join Employee_Info_Table inf on inf.employee_info_id = B.employee_info_id 
+join  Office_Table o on o.office_id = eot.office_id where o.place = "madhapur" and (eio.salary*2) < inf.salary ;
 
