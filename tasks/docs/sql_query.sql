@@ -2,9 +2,9 @@
 --1.
 CREATE TABLE Employee_info_table 
 (
-    id varchar(300) primary key,
-    doj varchar(300),
-    salary varchar(300)
+    id int primary key,
+    doj date,
+    salary int
 );
 
 INSERT INTO Employee_info_table (id,doj,salary) VALUES ('12', '2021-06-06', '600000');
@@ -14,7 +14,7 @@ INSERT INTO Employee_info_table (id,doj,salary) VALUES ('34', '2018-03-01', '400
 --2.
 CREATE TABLE department_table 
 (
-    dept_id varchar(300) primary key,
+    dept_id int primary key,
     dept_name varchar(300)
 );
 
@@ -27,9 +27,9 @@ INSERT INTO department_table (dept_id,dept_name) VALUES ('4', 'it');
 
 CREATE TABLE Employee_office_table 
 (
-    id varchar(300) Primary key,
-    emp_id varchar(300),
-    office_id varchar(300)
+    id int Primary key,
+    emp_id int,
+    office_id int
 );
 
 INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('201', '2201', '501');
@@ -46,7 +46,7 @@ INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('209', '1801', '
 --4.
 CREATE TABLE insurance_table 
 (
-    insurance_id varchar(300) primary key,
+    insurance_id int primary key,
     insurance_name varchar(300)
 );
 
@@ -55,13 +55,43 @@ INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('203', 'sbi');
 INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('344', 'medplus');
 INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('342', 'bajaj');
 
+
+
+
 --5.
+
+CREATE TABLE employee_table 
+(
+    emp_id int primary key,
+    name varchar(300),
+    immediate_head_id int,
+    dept_id	int,
+    insurance_id int,
+    employee_info int,
+    foreign key insurance_id reference insurance_table(insurance_id)
+    foreign key employee_info reference Employee_info_table(id)
+    foreign key dept_id reference department_table(dept_id)
+);
+
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2201', 'harsha', '2001', '1', '201', '12');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2202', 'shyam', '2002', '2', '202', '12');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2203', 'dhansuh', '2003', '3', '344', '12');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2204', 'srikar', '2004', '4', '342', '12');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2001', 'vishwajeet', '1801', '1', '201', '23');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2002','hari', '1801', '2', '203', '23');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2003', 'vaibhav', '1801', '3', '344', '23');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2004', 'mani teja', '1801', '4', '342', '23');
+INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('1801', 'sharma', '', '1', '342', '34');
+
+
+--6.
 
 CREATE TABLE Employee_office_table 
 (
-    id	varchar(300),
-    emp_id	varchar(300),
-    office_id	varchar(300)
+    id	int,
+    emp_id	int,
+    office_id int,
+    foreign key emp_id reference employee_table(emp_id)
 );
 
 INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('201', '2201', '501');
@@ -75,27 +105,6 @@ INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('208', '2004', '
 INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('209', '1801', '501');
 
 
---6.
-
-CREATE TABLE employee_table 
-(
-    emp_id	varchar(300),
-    name	varchar(300),
-    immediate_head_id	varchar(300),
-    dept_id	varchar(300),
-    insurance_id	varchar(300),
-    employee_info	varchar(300)
-);
-
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2201', 'harsha', '2001', '1', '201', '12');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2202', 'shyam', '2002', '2', '202', '12');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2203', 'dhansuh', '2003', '3', '344', '12');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2204', 'srikar', '2004', '4', '342', '12');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2001', 'vishwajeet', '1801', '1', '201', '23');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2002','hari', '1801', '2', '203', '23');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2003', 'vaibhav', '1801', '3', '344', '23');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('2004', 'mani teja', '1801', '4', '342', '23');
-INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,employee_info) VALUES ('1801', 'sharma', '', '1', '342', '34');
 
 ------queries
 
