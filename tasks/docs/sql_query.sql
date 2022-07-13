@@ -24,26 +24,6 @@ INSERT INTO department_table (dept_id,dept_name) VALUES ('3', 'ece');
 INSERT INTO department_table (dept_id,dept_name) VALUES ('4', 'it');
 
 --3.
-
-CREATE TABLE Employee_office_table 
-(
-    id int Primary key,
-    emp_id int,
-    office_id int
-);
-
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('201', '2201', '501');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('202', '2202', '502');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('203', '2203', '503');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('204', '2204', '504');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('205', '2001', '501');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('206', '2002', '502');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('207', '2003', '503');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('208', '2004', '504');
-INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('209', '1801', '501');
-
-
---4.
 CREATE TABLE insurance_table 
 (
     insurance_id int primary key,
@@ -54,6 +34,20 @@ INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('201', 'lic');
 INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('203', 'sbi');
 INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('344', 'medplus');
 INSERT INTO insurance_table (insurance_id,insurance_name) VALUES ('342', 'bajaj');
+
+--4.
+CREATE TABLE office_table 
+(
+    office_id int primary key,
+    office_name	varchar(300),
+    place	varchar(300)
+);
+
+INSERT INTO office_table (office_id,office_name,place) VALUES ('501', 'medplus', 'hitech city');
+INSERT INTO office_table (office_id,office_name,place) VALUES ('502', 'optival', 'kukatpally');
+INSERT INTO office_table (office_id,office_name,place) VALUES ('503', 'custom furnish', 'gachibowli');
+INSERT INTO office_table (office_id,office_name,place) VALUES ('504', 'diagnostics', 'ameerpet');
+
 
 
 
@@ -88,10 +82,11 @@ INSERT INTO employee_table (emp_id,name,immediate_head_id,dept_id,insurance_id,e
 
 CREATE TABLE Employee_office_table 
 (
-    id	int,
+    id	int primary key,
     emp_id	int,
     office_id int,
     foreign key emp_id reference employee_table(emp_id)
+    foreign key office_id reference office_table (office_id)
 );
 
 INSERT INTO Employee_office_table (id,emp_id,office_id) VALUES ('201', '2201', '501');
