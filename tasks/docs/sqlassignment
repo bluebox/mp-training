@@ -254,10 +254,12 @@ DOJ > "2022-02-20" and eio.salary > 20000 and o.place = "madhapur" and (i.insura
 
 
 --8. Get the list of employee names and their respective immediate head name
-with immediatehead as (select name,emp_id from Employee_Table)
 
-select e.name,i.name from Employee_Table as e ,immediatehead as i 
-where e.immediate_head_id= i.emp_id;
+
+select distinct A.NAME AS employeename , B.name as immediatehead
+from Employee_Table A,Employee_Table B
+WHERE A.emp_id <> B.emp_id
+and A.immediate_head_id = B.emp_id
 
 
 --9.Get the list of employee names and their respective immediate head name with  their respective department names.
