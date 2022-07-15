@@ -1,0 +1,194 @@
+*****************************************************************
+*			SCHEMA of TABLES:		       *
+*****************************************************************
+
+
+1. Employee_Info_Table:
+   ********************
+create table Employee_Info_Table(
+  id varchar(4),
+  DOJ datetime,
+  salary int,
+  primary key (id)
+  );
+ 
+  
+  
+2. Department_Table:
+   ********************
+
+create table Department_Table(
+  dept_id varchar(4),
+  dept_name varchar(20),
+  primary key (dept_id)
+  );
+  
+  
+  
+3. Insurance_Table:
+   ********************
+
+create table Insurance_Table(
+  isurance_id varchar(4),
+  isurance_name varchar(20),
+  primary key (isurance_id)
+  );
+  
+  
+  
+4. Office_Table:
+   ********************
+
+create table Office_Table(
+  office_id varchar(4),
+  office_name varchar(20),
+  place varchar(10),
+  primary key (office_id)
+  );
+  
+  
+  
+5. Employee_Table
+   *******************
+
+create table Employee_Table(
+  emp_id varchar(4),
+  name varchar(20),
+  immediate_head_id varchar(6),
+  dept_id varchar(4),
+  isurance_id varchar(4),
+  primary key (emp_id),
+  foreign key(dept_id) references Department_Table(dept_id),
+  foreign key(isurance_id) references Insurance_Table(isurance_id)
+  );
+
+
+
+6. Employee_Office_Table
+   *******************
+   
+create table Employee_Office_Table(
+  id varchar(4),
+  emp_id varchar(4),
+  office_id varchar(4),
+  primary key(id),
+  foreign key(emp_id) references Employee_Table(emp_id),
+  foreign key(office_id) references Office_Table(office_id)
+  );
+ 
+
+
+
+   
+
+*****************************************************************
+*			DATA INSERTION:			       *
+*****************************************************************
+
+1. Employee_Info_Table:
+   --------------------
+   insert into Employee_Info_Table values(
+   	"E001",
+   	'2022-06-13',
+   	50000);
+
+   
+
+
+
+  
+*****************************************************************
+*			ALL QUERIES:			       *
+*****************************************************************
+
+query-1
+-------
+
+select name, Department_Table.dept_name, Insurance_Table.isurance_name
+from Employee_Table
+inner join Department_Table on Department_Table.dept_id=Employee_Table.dept_id
+inner join Insurance_Table on Insurance_Table.isurance_id=Employee_Table.isurance_id;
+
+
+query-2
+-------
+
+SELECT dept_name,place from Department_Table,Office_Table,Employee_Office_Table,Employee_Table
+where Office_Table.office_id = Employee_Office_Table.office_id And Employee_Office_Table.emp_id = Employee_Table.emp_id and Employee_Table.dept_id = Department_Table.dept_id and Office_Table.place = "Madhapur";
+
+
+query-3
+-------
+
+select place,count(Employee_Office_Table.office_id) from Employee_Office_Table,Office_Table where Office_Table.office_Id=Employee_office_Table.office_id
+group by Employee_Office_Table.office_id;
+
+
+query-4
+-------
+
+select et.name,eit.salary,it.isurance_name
+from Employee_Table as et, Employee_Info_Table as eit, Insurance_Table as it
+order by eit.salary DESC limit 2,1;
+
+
+query-5
+-------
+
+select place,Avg(Employee_Info_Table.salary) from Employee_Info_Table,Employee_Office_Table,Office_Table where Employee_Info_Table.id=Employee_Office_Table.id
+and Employee_Office_Table.office_id=Office_Table.office_id
+group by Office_Table.place;
+
+
+query-6
+-------
+
+select sum(salary) from Employee_Info_Table where DOJ >= "02/01/2022";
+
+
+query-7
+-------
+
+select ET.name, DT.dept_name,EIT.salary from Employee_Table as ET join Employee_Info_Table as EIT on EIT.id=ET.emp_id join Department_Table as DT on DT.dept_id=ET.dept_id join Insurance_Table as IT on IT.isurance_id=ET.isurance_id join Employee_Office_Table as EOT on EOT.id=ET.emp_id join Office_Table as OT on EOT.office_id=OT.office_id where DOJ > '2022-02-01' and salary>20000 and (isurance_name="LIC" or isurance_name="ICICI") and place="Hitech City";
+
+
+query-8
+-------
+
+select E2.name, E.name from Employee_Table as E join Employee_Table as E2 on E.emp_id=E2.immediate_head_id;
+
+
+query-9
+-------
+
+select E2.name, E.name, D.dept_name from Employee_Table as E join Employee_Table as E2 on E.emp_id=E2.immediate_head_id join Department_Table as D on E.dept_id=D.dept_id;
+
+
+query-10
+-------
+
+select E.name, OT.place from Employee_Table as E join Employee_Office_Table as EOT on E.emp_id=EOT.emp_id join Office_Table as OT on OT.office_id=EOT.office_id join Employee_Info_Table as EIT on E.emp_id=EIT.id where place="Madhapur" and E.salary<(2*EIT.salary);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
