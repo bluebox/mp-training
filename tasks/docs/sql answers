@@ -50,4 +50,5 @@ having g.place ="hitechcity";
 
 9.select k.name,l.dept_name,i.name as head,j.dept_name from Employee_Table i join Department_Table j on i.dept_id = j.dept_id join Employee_Table k on i.emp_id=k.immediate_head_id join Department_Table l on k.dept_id=l.dept_id;
 
-10.select j.name from Employee_Table i join Employee_Table j on i.emp_id=j.immediate_head_id join Employee_Office_Table k on i.emp_id = k.emp_id join office_table l on k.office_id=l.office_id join Employee_Info_Table m on m.id=i.employee_info_id join Employee_Office_Table
+10.select t1.name from employee_table t1 join employee_table t2 on t1.immediate_head_id = t2.emp_id join Employee_office_table t3 on t2.emp_id=t3.emp_id join office_table t4 on t4.office_id = t3.office_id 
+join Employee_Info_Table  t5 on t5.id= t2.employee_info_id join Employee_Info_Table t6 on t6.id=t1.employee_info_id where t4.place="madhapur" and t5.salary>2*t6.salary ;
