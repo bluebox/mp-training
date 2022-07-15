@@ -4,7 +4,7 @@
 --create table Employee_Info_Table(id int primary key , DOJ date , salary varchar );
 --create table  Employee_Table( emp_id int primary key, name varchar, immediate_head_id int ,dept_id int , insurance_id int ,   employee_info_id int , foreign key (dept_id) references Department_Table(dept_id), foreign key (insurance_id) references Insurance_Table(insurance_id),foreign key (employee_info_id) references Employee_Info_Table(id));
 --create table  Employee_Office_Table(id int primary key , emp_id int , office_id int ,foreign key (emp_id) references Employee_Table(emp_id),foreign key (office_id) references Office_Table(office_id));
-
+--tables
 
 
 
