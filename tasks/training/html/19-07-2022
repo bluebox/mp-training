@@ -1,19 +1,42 @@
 
 1) What is HTML?
 
+HTML stands for Hyper Text Markup Language
+HTML is the standard markup language for creating Web pages
+HTML describes the structure of a Web page
+HTML consists of a series of elements
+HTML elements tell the browser how to display the content
+
+
 2) What are tags?
+
+Html tags are keywords which define that how a browser formats and displays the web pages.
 
 3) Do all HTML tags come in a pair?
 
+there are few tags without closing tag such as img,hr,br etc.
+
 4) What are some of the common lists that can be used when designing a page?
+
+1. ordered lists
+2. unordered lists
+3. description lists
 
 5) How do you insert a comment in HTML?
 
+An HTML comment begins with <! –– and the comment closes with ––> .
+
 6) Do all character entities display properly on all systems?
+
+No , some character entites can not be displayed when the operating system doesn't support these characters. If that happens, then those characters will be displayed as boxes.
 
 7) What is an image map?
 
+html <map> tag defines the image map. An image map is an image with clickable areas. The areas are defined with one or more <area> tags.
+
 8 ) What is the advantage of collapsing white space?
+
+
 
 9) Can attribute values be set to anything or are there specific values that they accept?
 
