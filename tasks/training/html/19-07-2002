@@ -1,63 +1,118 @@
 1) What is HTML?
+Hypertext Markup Language is the standard language used to design webpages.
 
 2) What are tags?
+HTML tags are like keywords which defines that how web browser will format and display the content. 
 
 3) Do all HTML tags come in a pair?
+No, not all HTML tags come in a pair. For example- break tag,image tag etc.
 
 4) What are some of the common lists that can be used when designing a page?
+there are three types of lists in html-
+-ordered list-list items are numbered
+-unordered list-list items are marked with bullets 
+-description list- list items have description 
 
 5) How do you insert a comment in HTML?
+Content present inside <--,/--> these tags are considered as comments.
 
 6) Do all character entities display properly on all systems?
+No, there are some character entities that cannot be displayed when the operating system that the browser is running on does not support the characters. When that happens, these characters are displayed as boxes.
 
 7) What is an image map?
+image map is a set of coordinates of an image that help in hyperlinking each part of the image to a different content. For Example- in an image of world map different places can be mapped to different webpages.
 
 8 ) What is the advantage of collapsing white space?
+Collapsing white spaces decreases the transmission time between the server and the client because collapsing features remove unnecessary bytes that are occupied by the white spaces.
 
 9) Can attribute values be set to anything or are there specific values that they accept?
+Some attribute values can be set to anything(example-id) while some have predefined values(example-position)
 
 10) How do you insert a copyright symbol on a browser page?
+we can insert it using "&copy;".
 
 11) How do you create links to sections within the same page?
+using the anchor tag and href we can link different sections of the same page.the format is-
+<a href="#section-id">section</a>
 
 12) Is there any way to keep list elements straight in an HTML file?
+The list-style-position property is used to keep list elements straight in an HTML file.
 
 13) If you see a web address on a magazine, to which web page does it point?
+usually it points to the topmost page
 
 14) What is the use of alternative text in image mapping?
+The alt text adds a text description to an image on a Web page. It is displayed whenever the image fails to load.
 
 15) Do older HTML files work on newer browsers?
+Yes, older html files are compliant to the HTML standard. Most older files work on the newer browsers, though some features may not work.
 
 16) Does a hyperlink apply to text only?
+No, it can be applied to images and videos as well.
 
 17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+an empty box is shown showing that there is a character present there which the operating system is unable to read.
 
 18) How do you change the number type in the middle of a list?
+The type attribute present in the li tag can be used to change the number type of the text at any time during the list.
 
 19) What are style sheets?
+Style sheets are used to enhance the appearence of the page. While the HTML page defines the content and the layout of the page, the style sheets are used to define the look of the webpage.
 
 20) State  bullet types available in HTML 
+There can be 4 types of bulleted list:
+-disc.
+-circle.
+-square.
+-none.
 
 21) How do you create multicolored text in a webpage?
+Using the color attribute you can change the color of the text.
 
 22) Why are there both numerical and named character entity values?
+The numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
 
 23) Write an HTML table tag sequence that outputs the following:
 50 pcs 100 500
 10 pcs 5 50
+ <table>
+        <tr>
+            <td>50</td> 
+            <td>pcs</td>
+            <td>100</td>
+            <td>500</td> 
+        </tr>
+        <tr><td>10</td> 
+            <td>pcs</td>
+            <td>5</td>
+            <td>50</td>
+        </tr>
+    </table>
 
 24) What is the advantage of grouping several checkboxes together?
+The checkboxes don't affect one another. But, grouping these checkboxes together help to organize them.
 
 25) What will happen if you overlap sets of tags?
+Only the first tag will be recognized.
 
 26) What are applets?
+the applet tag is used to embed java applet into html code.
 
 27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+No it will not affect the display of the HTML file
 
 28) Is it possible to set specific colors for table borders?
+You can specify a border color using style sheets.
+the below code snippet can be used to change the border color to red
+.table, th, td {
+    border: 1px solid red);
+    }
 
 29) How do you create a link that will connect to another web page when clicked?
+By using the href tag. The below code shows how we can make a clickable link.
+<a href="url">link</a>
 
 30) What other ways can be used to align images and wrap text?
 
 31> Display &nbsp inside <p> paragraph tag.
+&lt;p&gt;&amp;nbsp &lt;/p&gt;
