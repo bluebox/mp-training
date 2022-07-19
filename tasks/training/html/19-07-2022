@@ -172,6 +172,14 @@ Tables can be used to position text and images. Another useful way to wrap text 
       Using a single tag only, I want to preserve the same format (spaces and 
       line breaks) with using <br> tag.
       
+      <pre>
+“ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+</pre>
+      
 34> Specify an alternate text for the image, the alternate text should say 
       “image not found” if the image don’t get load for any reason
       <img src=”smiley.gif” _______  >
