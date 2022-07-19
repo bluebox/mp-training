@@ -1,6 +1,10 @@
 __author__ = 'Hari'
 
+<<<<<<< HEAD
 #from tasks.placeholders import *
+=======
+from tasks.placeholders import *
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
@@ -12,8 +16,8 @@ NOTES = '''
  two lists can be equal if all elements in them are equal in same order etc.
 '''
 
-
 def test_identity_equality_lists():
+<<<<<<< HEAD
     _a = []
     _b = []
     assert False is (_a is _b)
@@ -52,11 +56,52 @@ def test_identity_equality_numbers():
     _d = int("10000")
     assert False is (_c is _d)
     assert True is (_c == _d)
+=======
+    a = []
+    b = []
+    assert __ == (a is b)
+    assert __ == (a == b)
+
+    a.append("one")
+    assert __ == (a is b)
+    assert __ == (a == b)
+
+    c = []
+    d = c
+    assert __ == (c is d)
+    assert __ == (c == d)
+
+    c.append("one")
+    assert __ == (c is d)
+    assert __ == (c == d)
+
+def test_identity_equality_string():
+    a = b = "hello"
+
+    assert __ == (a is b)
+    assert __ == (a == b)
+
+    c = "hello"
+    d = "".join(["hel", "lo"])
+    assert __ == (c is d)
+    assert __ == (c == d)
+
+def test_identity_equality_numbers():
+    a = b = 10000
+    assert __ == (a is b)
+    assert __ == (a == b)
+
+    c = 10000
+    d = int("10000")
+    assert __ == (c is d)
+    assert __ == (c == d)
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
+<<<<<<< HEAD
     _a = _b = 10
     assert True is (_a is _b)
     assert True is (_a == _b)
@@ -75,6 +120,26 @@ def test_identity_equality_none():
     _b = None
     assert True is (_a is _b)
     assert True is (_a == _b)
+=======
+    a = b = 10
+    assert __ == (a is b)
+    assert __ == ( a == b)
+
+    c = 10
+    d = int("10")
+    assert __ == (c is d)
+    assert __ == (c == d)
+
+def test_identity_equality_None():
+    a = b = None
+    assert __ == (a is b)
+    assert __ == (a == b)
+
+    a = None
+    b = None
+    assert __ == (a is b)
+    assert __ == (a == b)
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 
 NOTES_ON_NONE = '''
@@ -88,4 +153,10 @@ is
 NONe
 """
 
+<<<<<<< HEAD
 TIME_TAKEN_MINUTES = 120
+=======
+time_taken_minutes = ___
+
+
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa

@@ -1,16 +1,20 @@
 __author__ = 'Hari'
 
+<<<<<<< HEAD
 #from tasks.placeholders import *
 
 
+=======
+from tasks.placeholders import *
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 def test_list_type():
     fruits = ["banana", "orange", "grape"]
-    assert 'list' == type(fruits).__name__
-
+    assert __ == type(fruits).__name__
 
 def test_list_len():
     fruits = ["banana", "orange", "grape"]
+<<<<<<< HEAD
     assert 3 is len(fruits)
 
 def test_list_can_be_indexed():
@@ -21,38 +25,48 @@ def test_list_can_be_indexed():
     assert "grape" == fruits[-1]
     assert "orange" == fruits[-2]
     assert "banana" == fruits[-3]
+=======
+    assert __ == len(fruits)
+
+def test_list_can_be_indexed():
+    fruits = ["banana", "orange", "grape"]
+    assert __ == fruits[0]
+    assert __ == fruits[1]
+    assert __ == fruits[2]
+    assert __ == fruits[-1]
+    assert __ == fruits[-2]
+    assert __ == fruits[-3]
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 def test_list_is_mutable():
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
-    # replace __ with expected contents of list
-    assert ["mango", "orange", "grape"] == fruits
-
+    assert __ == fruits  #replace __ with expected contents of list
 
 def test_list_can_be_sliced():
     """
      Slicing works the same as on strings
     """
     fruits = ["banana", "orange", "grape"]
-    assert [] == fruits[0:0]
+    assert __ == fruits[0:0]
 
     #begin : end
-    assert ["banana", "orange"] == fruits[0:2]
-    assert ['banana', 'orange', 'grape'] == fruits[0:5]
-    assert ['orange'] == fruits[1:-1]
+    assert __ == fruits[0:2]
+    assert __ == fruits[0:5]
+    assert __ == fruits[1:-1]
 
     # begin :
-    assert ['banana', 'orange', 'grape'] == fruits[0:]
-    assert ["grape"] == fruits[2:]
-    assert ['banana', 'orange', 'grape'] == fruits[0:]
+    assert __ == fruits[0:]
+    assert __ == fruits[2:]
+    assert __ == fruits[0:]
 
     #: end
     assert [] == fruits[:0]
-    assert ['banana', 'orange'] == fruits[:2]
-    assert ['banana', 'orange', 'grape'] == fruits[:5]
+    assert __ == fruits[:2]
+    assert __ == fruits[:5]
 
     # note the invariant
-    assert ["banana", "orange", "grape"] == fruits[:1] + fruits[1:]
+    assert __ == fruits[:1] + fruits[1:]
 
 
 def test_slice_creates_a_new_list():
@@ -60,8 +74,13 @@ def test_slice_creates_a_new_list():
     slice_1 = fruits[0:2]
     slice_1.append("guava")
 
+<<<<<<< HEAD
     assert ["banana", "orange", "grape"] == fruits  # did this change?  No
     assert ['banana', 'orange', 'guava'] == slice_1
+=======
+    assert __ == fruits # did this change?  No
+    assert __ == slice
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 
 def test_list_merge():
@@ -69,24 +88,30 @@ def test_list_merge():
     veggies = ["beetroot", "tomato"]
     all_1 = fruits + veggies
 
+<<<<<<< HEAD
     assert ['banana', 'orange', 'grape', 'beetroot', 'tomato'] == all_1
     assert ["banana", "orange", "grape"] == fruits
     assert ["beetroot", "tomato"] == veggies
     assert ["orange", "grape", "beetroot"] == fruits[1:] + veggies[:1]
 
+=======
+    assert __ == all
+    assert __ == fruits
+    assert __ == veggies
+    assert __ == fruits[1:] + veggies[:1]
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 def test_list_slice_replacement_is_inplace():
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
-    assert ["banana", "litchi", "guava", "grape"] == fruits
+    assert __ == fruits
 
     fruits[3:] = ['grape1']
-    assert ["banana", "litchi", "guava", "grape1"] == fruits
+    assert __ == fruits
 
     fruits[:2] = ["banana1", "litchi"]
-    assert ["banana1", "litchi", "guava", "grape1"] == fruits
-
+    assert __ == fruits
 
 def test_list_common_methods():
     """
@@ -98,27 +123,27 @@ def test_list_common_methods():
     fruits = []
     fruits.append("orange")
 
-    assert ["orange"] == fruits
+    assert __ == fruits
 
     fruits.insert(0, "banana")
-    assert ['banana', 'orange'] == fruits
+    assert __ == fruits
 
     fruits.extend(["litchi", "guava"])
-    assert ['banana', 'orange', "litchi", "guava"] == fruits
+    assert __ == fruits
 
     fruits.reverse()
-    assert ['guava', 'litchi', "orange", "banana"] == fruits
+    assert __ == fruits
 
     fruits.pop()
-    assert ['guava', 'litchi', "orange"] == fruits
+    assert __ == fruits
 
     fruits.pop(0)
-    assert ['litchi', "orange"] == fruits
-
+    assert __ == fruits
 
 def test_list_can_contain_lists():
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
+<<<<<<< HEAD
     all_2 = [fruits, veggies]
 
     assert 2 == len(all_2)
@@ -129,33 +154,48 @@ def test_list_can_contain_objects_of_different_types():
     mixed = ["string", 10]
     assert "string" == mixed[0]
     assert 10 == mixed[1]
+=======
+    all = [fruits, veggies]
+
+    assert __ == len(all)
+    assert __ == all[0]
+    assert __ == all[1]
+
+def test_list_can_contain_objects_of_different_types():
+    mixed = ["string", 10]
+    assert __ == mixed[0]
+    assert __ == mixed[1]
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 def test_list_sort():
-    numbers = [5, 4, 3, 8]
+    numbers = [ 5, 4, 3, 8 ]
     numbers.sort()
-    assert [3, 4, 5, 8] == numbers
+    assert __ == numbers
     numbers.sort(reverse=True)
-    assert [8, 5, 4, 3] == numbers
+    assert __ == numbers
 
 # if something unexpected happens see,
 # http://docs.python.org/2/reference/expressions.html#operator-precedence
 # and fix accordingly.
-
-
 def test_list_membership():
+<<<<<<< HEAD
     numbers = [5, 4, 3]
     _a=5
     assert 5 is _a in numbers
     assert False is (10 in numbers)
 
+=======
+    numbers = [ 5, 4, 3]
+    assert __ == 5 in numbers
+    assert __ == (10 in numbers)
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 def test_list_range():
-    numbers = range(1, 5)
-    assert range(1, 5) == numbers
+    numbers = range(1,5)
+    assert __ == numbers
 
     numbers = range(1, 5, 2)
-    assert range(1, 5, 2) == numbers
-
+    assert __ == numbers
 
 THREE_THINGS_I_LERNT = """
 Lists
@@ -163,4 +203,8 @@ list_operations
 range_function
 """
 
+<<<<<<< HEAD
 TIME_TAKEN_MINUTES = 25
+=======
+time_taken_minutes = __
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
