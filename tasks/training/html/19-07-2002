@@ -143,4 +143,80 @@ using bootstrap with container,rwo,coloumn
 or by using flexbox
 
 31> Display &nbsp inside <p> paragraph tag.
-<p>&ampnbsp</p>
+    <p>&ampnbsp</p>
+32> Insert a line between two different elements.
+      For example:
+        <h1> Before line </h1>
+        (I need a line here)
+        <p>this para should come after line</p>
+
+    <h1> Before line </h1>
+    <hr>
+    <p>this para should come after line</p>
+
+        
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+
+<pre>
+“ Hello I am MedPlus<br><br>
+Medplus            is a          good company<br>
+We    all    love       Med<br>Plus”
+<pre>
+      
+34> Specify an alternate text for the image, the alternate text should say 
+      “image not found” if the image don’t get load for any reason
+      <img src=”smiley.gif” alt="image not found"  >
+      
+35> Make this format in html! (You can use any text but format and font 
+    size should be similar)
+                                
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+     
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+ 
+
+    <pre>
+    <h1 style="text-align: center;">Lorem Ipsum</h1>
+    <p><i><b>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</i></b>, consectetur, adipisci velit..."</p>
+    <p><small>"There is no one who loves pain itself </small>, who seeks after it and wants to have it, simply because it is pain..."<p>
+    </pre>
+
+36> Print the following pattern in html using <h1> and <p> separately.
+    (note there are spaces before stars)
+    
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
+
+    <h1>&emsp;&nbsp;*</h1>
+   <h1>&emsp;*&nbsp;*</h1>
+   <h1>&nbsp;&ensp;*&nbsp;*&nbsp;*</h1>
+   <h1>&ensp;*&nbsp;*&nbsp;*&nbsp;*</h1>
+   <h1>&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</h1>
+   <h1>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</h1>
+
+    <p>&emsp;&nbsp;*</p>
+   <p>&emsp;*&nbsp;*</p>
+   <p>&nbsp;&ensp;*&nbsp;*&nbsp;*</p>
+   <p>&ensp;*&nbsp;*&nbsp;*&nbsp;*</p>
+   <p>&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</p>
+   <p>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</p>
+
+
+
+ 
