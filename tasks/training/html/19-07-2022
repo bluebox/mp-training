@@ -131,3 +131,5 @@ You can specify a border color using style sheets, but the colors for a table th
 Tables can be used to position text and images. Another useful way to wrap text around an image is to use style sheets.
 
 31> Display &nbsp inside <p> paragraph tag.
+
+<p>sahithi&nbspreddy</p>
