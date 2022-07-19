@@ -57,15 +57,29 @@ we can use list-style-position : inside to keep the elements inside the content 
 
 13) If you see a web address on a magazine, to which web page does it point?
 
+Every web page on the web can have a separate web address. Most of these addresses are relative to the top-most web page. The published web address that appears within magazines typically points this top-most page.
+
 14) What is the use of alternative text in image mapping?
+
+The ALT text adds a text description to an image on a Web page, and should be used for all images, graphical bullets, and graphical horizontal rules. ALT text is accessed by screen reader users to provide them with a text equivalent of images.
 
 15) Do older HTML files work on newer browsers?
 
+Yes, older html files are compliant to the HTML standard. Most older files work on the newer browsers, though some features may not work.
+
+
 16) Does a hyperlink apply to text only?
+
+No,Hyperlink can be applied to text as well as images,vedios,numbers or any other HTML property.
 
 17) If the user’s operating system does not support the needed character, how can the symbol be represented?
 
+The symbols can be represented in the form of an image in the case where the operating system does not support a particular character.
+
+
 18) How do you change the number type in the middle of a list?
+
+ The two attributes of the number type in the middle of a list include the type and value. The type attribute is used for changing the numbering type for any list item, while the value attribute is used for changing the number index for any list item.
 
 19) What are style sheets?
 
