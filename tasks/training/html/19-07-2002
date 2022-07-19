@@ -106,3 +106,44 @@ ans.by using tables and css
 
 31> Display &nbsp inside <p> paragraph tag.
 ans.<p>&ampnbsp</p>
+
+32> Insert a line between two different elements.
+      For example:
+        <h1> Before line </h1>
+        (I need a line here)
+        <p>this para should come after line</p>
+        
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+      
+34> Specify an alternate text for the image, the alternate text should say 
+      “image not found” if the image don’t get load for any reason
+      <img src=”smiley.gif” _______  >
+      
+35> Make this format in html! (You can use any text but format and font 
+    size should be similar)
+                                
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+     
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+ 
+36> Print the following pattern in html using <h1> and <p> separately.
+    (note there are spaces before stars)
+    
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
