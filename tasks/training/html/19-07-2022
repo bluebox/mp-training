@@ -102,6 +102,22 @@ The numerical values are taken from the ASCII values for the various characters,
 50 pcs 100 500
 10 pcs 5 50
 
+
+<table>
+ <tr>
+   <td>50</td>
+    <td>pcs</td>
+     <td>100</td>
+      <td>500</td>
+    </tr>
+    <tr>
+   <td>10</td>
+    <td>pcs</td>
+     <td>5</td>
+      <td>50</td>
+    </tr>
+</table>
+
 24) What is the advantage of grouping several checkboxes together?
 
 The checkboxes don't affect one another. But, grouping these checkboxes together help to organize them. Checkbox buttons can have their name and do not need to belong to a group.
