@@ -1,72 +1,124 @@
 1) What is HTML?
+-->Hyper text markup language is a language which browser can understand, using which we can build web page/ web site 
 
 2) What are tags?
+-->Tags are like keyword in between used to indicate the beginning and end of an HTML element 
 
 3) Do all HTML tags come in a pair?
+No there are some sigle tags like <img>?,<link>
 
 4) What are some of the common lists that can be used when designing a page?
+-->   <ul> Unordered list
+      <ol> Ordered list
+      <dl> Description list
 
 5) How do you insert a comment in HTML?
+<!-- This is a commented line  -->
 
 6) Do all character entities display properly on all systems?
+-->  No, it depends on OS 
 
 7) What is an image map?
+--> image with clickble areas is image map
 
 8 ) What is the advantage of collapsing white space?
+--> Decreases the transmission time between the server and the client
 
 9) Can attribute values be set to anything or are there specific values that they accept?
+--> Values depends on attributes, ex: we can't use color value in text-align
 
 10) How do you insert a copyright symbol on a browser page?
+--> using &copy
 
 11) How do you create links to sections within the same page?
+-->using anchor tag <a> for particular class or id 
+    consider we have class='part5'
+    <a href="part-5">part1</a>
 
 12) Is there any way to keep list elements straight in an HTML file?
+-->No
 
 13) If you see a web address on a magazine, to which web page does it point?
+--> It could point to anywhere depends on web address
 
 14) What is the use of alternative text in image mapping?
+-->It is used to show text when image dosen't load
 
 15) Do older HTML files work on newer browsers?
+--> Yes, new browser will be build in such a way that it should support old files.
 
 16) Does a hyperlink apply to text only?
+--> No
 
 17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+--> it shows like boxes
 
 18) How do you change the number type in the middle of a list?
+--> Using type attribute
 
 19) What are style sheets?
+--> Sheet of css which is used to design the appearence of web page
 
 20) State  bullet types available in HTML 
+--> unordered list <ul>
 
 21) How do you create multicolored text in a webpage?
 
 22) Why are there both numerical and named character entity values?
+-->Numerical entity ios based on ASCII values, it is very difficult to remember all values
+    so it is easy remember name so there is named character entity.
 
 23) Write an HTML table tag sequence that outputs the following:
 50 pcs 100 500
 10 pcs 5 50
+---<body>
+    <table>
+        <tr>
+            <td>50</td>
+            <td>psc</td>
+            <td>100</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>psc</td>
+            <td>5</td>
+            <td>50</td>
+        </tr>
+    </table>
+    
+</body>
 
 24) What is the advantage of grouping several checkboxes together?
+--> It is easy to choose multiple choices
 
 25) What will happen if you overlap sets of tags?
+--> Only 1st tag will be reconized
 
 26) What are applets?
+-->It is a small application that supports and enhances the hosting web application
 
 27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+-->Yes it affects the diplay
 
 28) Is it possible to set specific colors for table borders?
+-->Yes eg : border:2px solid black
 
 29) How do you create a link that will connect to another web page when clicked?
+-->Using anchor tag eg: <a href='google.com'>click</a>
 
 30) What other ways can be used to align images and wrap text?
+--> using align attribute 
 
 31> Display &nbsp inside <p> paragraph tag.
+-->&ampnbsp
 
 32> Insert a line between two different elements.
       For example:
         <h1> Before line </h1>
         (I need a line here)
         <p>this para should come after line</p>
+--> added line b/w elements won't reflect in web page
         
 33>  I Have a paragraph,
       “ Hello I am MedPlus 
@@ -77,10 +129,11 @@
  
       Using a single tag only, I want to preserve the same format (spaces and 
       line breaks) with using <br> tag.
+      using tag <pre> </pre>
       
 34> Specify an alternate text for the image, the alternate text should say 
       “image not found” if the image don’t get load for any reason
-      <img src=”smiley.gif” _______  >
+      <img src=”smiley.gif” _alt='Image not found'_  >
       
 35> Make this format in html! (You can use any text but format and font 
     size should be similar)
@@ -92,6 +145,13 @@
      
      Share something about what is Lorem Ipsum?
      Why do we use it?
+     --> Lorem is use3d to have dummy text
+     we use it to fill the page which helps in good look appearance
+
+--> <h1 style="text-align:center;"> Lorem Ipsum </h1><br>
+    ,<B><i> "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit &ensp ..."</B></i><br>
+
+    <small> "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."</small>
  
 36> Print the following pattern in html using <h1> and <p> separately.
     (note there are spaces before stars)
@@ -102,5 +162,20 @@
       * * * *
      * * * * *
     * * * * * *
+
+  --><div class="center" style="text-align:center ;">
+        <h1>*</h1>
+        <h1>* *</h1>
+        <h1>* * *</h1>
+        <h1>* * * *</h1>
+        <h1>* * * * * </h1>
+    </div>
+
+    --><p>&ensp;&ensp; *</p>
+        <p>&ensp;&ensp;* *</p>
+        <p>&ensp; * * *</p>
+        <p>&emsp13;* * * *</p>
+        <p>* * * * *</p>
+    
 
  
