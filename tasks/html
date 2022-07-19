@@ -1,0 +1,222 @@
+1) What is HTML?
+A) HTML stands for Hyper Text Markup Language. It describe the structure of a Web page. HTML is the standard markup language for creating Web pages.
+
+2) What are tags?
+A) HTML tags are like keywords which defines that how web browser will format and display the content.
+
+
+3) Do all HTML tags come in a pair?
+A) no, for some tags pair is mandotary but their are some tags which is not use closing tag. eg <br>, <hr>, <img> etc. 
+
+4) What are some of the common lists that can be used when designing a page?
+A) The three list types
+    Unordered lists
+      Unordered list markup
+    Ordered lists
+      Ordered list markup : Beginning ordered lists with numbers other than 1
+    Description lists: Description list markup
+
+5) How do you insert a comment in HTML?
+A) <!-- comment message -->
+
+6) Do all character entities display properly on all systems?
+A) No, some character entities cannot be displayed if the operating system does not support these characters
+
+7) What is an image map?
+A) Applying the diffeerent links for different objects in a image
+
+8 ) What is the advantage of collapsing white space?
+A) Collapsing white spaces decreases the transmission time between the server and the client
+
+9) Can attribute values be set to anything or are there specific values that they accept?
+A) Some attribute values can be set to only predefined values. Other attributes can accept any numerical value that represents the number of pixels for a size
+
+10) How do you insert a copyright symbol on a browser page?
+A) by using "&copy"
+
+11) How do you create links to sections within the same page?
+A) <a href= "#id_of_section">some_text</a>
+
+12) Is there any way to keep list elements straight in an HTML file?
+A) By using <ol>,<ul> tags
+
+13) If you see a web address on a magazine, to which web page does it point?
+A) magazine's top-most page.
+
+14) What is the use of alternative text in image mapping?
+A) adds a text description to an image on a Web page
+
+15) Do older HTML files work on newer browsers?
+A) Yes, but some features may not work.
+
+16) Does a hyperlink apply to text only?
+A) No, works for text,image, etc.
+
+17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+A) in the form of some image.
+
+18) How do you change the number type in the middle of a list?
+A) <li type="list_type" value= "3">
+
+19) What are style sheets?
+A) Adds effects , designes, style to web page.
+
+20) State  bullet types available in HTML 
+A)  disc
+    circle
+    square
+    none
+
+21) How do you create multicolored text in a webpage?
+A)  <font color="color_name"></font>
+
+22) Why are there both numerical and named character entity values?
+A)  numerical values are taken from Ascii values but for easy understanding for web designer names are taken.
+23) Write an HTML table tag sequence that outputs the following:
+50 pcs 100 500
+10 pcs 5 50
+A) <!DOCTYPE html>
+<html>
+<body>
+<table style="width:100%">
+  <tr>
+    <td>50 pcs </td>
+    <td>100</td>
+    <td>500</td>
+  </tr>
+  <tr>
+    <td>100 pcs </td>
+    <td>5</td>
+    <td>50</td>
+  </tr>
+</table>
+</body>
+</html>
+
+24) What is the advantage of grouping several checkboxes together?
+A)  we can select any one option 
+
+25) What will happen if you overlap sets of tags?
+A)  If two sets of HTML tags are overlapped, only the first tag will be recognized
+
+26) What are applets?
+A)  Applet is a special type of program that is embedded in the webpage to generate the dynamic content. It runs inside the browser and works at client side
+
+27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+A)  no formatting will appear
+
+28) Is it possible to set specific colors for table borders?
+A)  yes
+
+29) How do you create a link that will connect to another web page when clicked?
+A)  <a href="link" target=”_blank”>
+
+30) What other ways can be used to align images and wrap text?
+A) using css
+
+31> Display &nbsp inside <p> paragraph tag.
+A)  <html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<p>venky &nbsp&nbsp&nbsp hi</p>
+
+</body>
+</html>
+
+32> Insert a line between two different elements.
+      For example:
+        <h1> Before line </h1>
+        (I need a line here)
+        <p>this para should come after line</p>
+A)  <!DOCTYPE html>
+      <html>
+            <body>
+                  <h1> Before line </h1>
+                  <hr>
+                  <p>this para should come after line</p>
+            </body>
+      </html>
+
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+A)    <!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<pre>
+      Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus</pre>
+
+</body>
+</html>
+34> Specify an alternate text for the image, the alternate text should say 
+      “image not found” if the image don’t get load for any reason
+      <img src=”smiley.gif” alt=“image not found” >
+      
+35> Make this format in html! (You can use any text but format and font 
+    size should be similar)
+                                
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+ A)    <!DOCTYPE html>
+<html>
+<body>
+ <h1 align="center">Lorem Ipsum </h1>
+    <strong>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet  </strong>, consectetur, adipisci velit..."<br>
+
+     <small>"There is no one who loves pain itself </small>, who seeks after it and wants to have it, simply because it is pain..."
+     
+     Share something about what is Lorem Ipsum?
+</body>
+</html>
+
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+A)    Lorem Ipsum is a piece of text, used by designers to fill a space where the content will eventually sit. It helps show how text will look once a piece of content is finished, during the planning phase
+ 
+36> Print the following pattern in html using <h1> and <p> separately.
+
+    (note there are spaces before stars)
+    
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
+A)
+
+<html >
+    <head>
+        <title>
+            languages
+        </title>
+    </head>
+    <body style="text-align:center">
+    <h1 >*</h1>
+    <h1 >* *</h1>
+    <h1 >* * *</h1>
+    <h1 >* * * *</h1>
+    <h1 >* * * * *</h1>
+    <h1 >* * * * * *</h1>
+        
+    </body>
+</html>
