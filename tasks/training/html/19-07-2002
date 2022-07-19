@@ -113,6 +113,12 @@ ans.<p>&ampnbsp</p>
         (I need a line here)
         <p>this para should come after line</p>
         
+ ans. <h1> Before line </h1>
+       <hr/>
+        <p>this para should come after line</p>
+        
+        
+        
 33>  I Have a paragraph,
       “ Hello I am MedPlus 
         
@@ -123,9 +129,20 @@ ans.<p>&ampnbsp</p>
       Using a single tag only, I want to preserve the same format (spaces and 
       line breaks) with using <br> tag.
       
+ans. <pre>
+“ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+
+</pre>
+      
 34> Specify an alternate text for the image, the alternate text should say 
       “image not found” if the image don’t get load for any reason
       <img src=”smiley.gif” _______  >
+      
+ ans.    <img src=”smiley.gif” alt="Image not found" >
       
 35> Make this format in html! (You can use any text but format and font 
     size should be similar)
