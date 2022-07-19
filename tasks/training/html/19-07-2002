@@ -154,7 +154,16 @@ ans. <pre>
      
      Share something about what is Lorem Ipsum?
      
-ans.     Lorem Ipsum is a dummy or placeholder text
+ans.   
+           <h1 style="text-align:center;">Lorem Ipsum ( h1 and center align )</h1>
+           <p> <b><i>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+        </i></b></p>
+
+        <p><small>"There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."</small></p>
+
+
+
+Lorem Ipsum is a dummy or placeholder text
       
      Why do we use it?  : to use dummy or placeholder text
  
