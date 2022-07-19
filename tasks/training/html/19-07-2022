@@ -83,11 +83,20 @@ The symbols can be represented in the form of an image in the case where the ope
 
 19) What are style sheets?
 
+A style sheet helps in creating a well-defined template that is both consistent as well as transportable. These style sheet templates can be linked to various web pages, which makes it easier to main and change the look of the web page.
+
 20) State  bullet types available in HTML 
+
+The type attribute for unordered lists can be set to disc, square, or circle.
+
 
 21) How do you create multicolored text in a webpage?
 
+To create text with different colors, use the <font color=”color”>… </font> tags for every character that you want to apply color. 
+
 22) Why are there both numerical and named character entity values?
+
+The numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
 
 23) Write an HTML table tag sequence that outputs the following:
 50 pcs 100 500
@@ -95,16 +104,30 @@ The symbols can be represented in the form of an image in the case where the ope
 
 24) What is the advantage of grouping several checkboxes together?
 
+The checkboxes don't affect one another. But, grouping these checkboxes together help to organize them. Checkbox buttons can have their name and do not need to belong to a group.
+
 25) What will happen if you overlap sets of tags?
+
+If two sets of HTML tags are overlapped, only the first tag will be recognized. You will find this problem when the text does not display properly on the browser screen.
 
 26) What are applets?
 
+An applet is a tiny program that is used within a main application to enhance a user's interaction within that application. 
+
 27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+
+If there is no text between the tags, then there is nothing to format. Therefore no formatting will appear.
 
 28) Is it possible to set specific colors for table borders?
 
+You can specify a border color using style sheets, but the colors for a table that does not use style sheets will be the same as the text color.
+
 29) How do you create a link that will connect to another web page when clicked?
 
+<a href="url">link text</a>
+
 30) What other ways can be used to align images and wrap text?
+
+Tables can be used to position text and images. Another useful way to wrap text around an image is to use style sheets.
 
 31> Display &nbsp inside <p> paragraph tag.
