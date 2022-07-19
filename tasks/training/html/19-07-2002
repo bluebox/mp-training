@@ -1,63 +1,146 @@
 1) What is HTML?
+ html is hyper text markup language used to create web pages
 
 2) What are tags?
+tags in html are used to specify the type of content these are like keywords
 
 3) Do all HTML tags come in a pair?
 
+no,some html tags dont have end tags like br, hr, img.....
+
 4) What are some of the common lists that can be used when designing a page?
+1.ordered lists
+2.unordered lists
+3.description lists
 
 5) How do you insert a comment in HTML?
 
+<!--this content will br commented -->
+
 6) Do all character entities display properly on all systems?
+no,some systems can't read few entities
 
 7) What is an image map?
+image map function is used like anchor element but the image can be devided into areas and different links will open by clicking on different areas of images specified by their coordinates.
 
 8 ) What is the advantage of collapsing white space?
+1. understanding and readability
+2. reduce loading time
+3. removes the unwanted white spaces left by mistake. 
 
 9) Can attribute values be set to anything or are there specific values that they accept?
+sattribute values must be their specifuc values
 
 10) How do you insert a copyright symbol on a browser page?
 
+&copy;  or 	&#169;
+
 11) How do you create links to sections within the same page?
+
+using anchor with specific id 
+<a href="#unique_id">............ </a>
 
 12) Is there any way to keep list elements straight in an HTML file?
 
+display: inline-block ,by using this we can keep list items in a single line
+text-indent property by using this we can keep list items in a straight line
+margin-left & padding-left property by using this we can keep list items in a straight line
+
 13) If you see a web address on a magazine, to which web page does it point?
+ home page
 
 14) What is the use of alternative text in image mapping?
 
+alternative text will display the given text when the image can't load by any reason
+
 15) Do older HTML files work on newer browsers?
+
+yes mostly all the older html files will work in new browsers but some features may be missing
 
 16) Does a hyperlink apply to text only?
 
+no hyperlink is not only for text we can use for image,video,audio ,numbers
+
 17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+
+
+it will be display as empty box or else to display use a image of that character
+
+
 
 18) How do you change the number type in the middle of a list?
 
+by use value attribute like <li vlaue=></li>
+
 19) What are style sheets?
+ Style Sheets provide easy and effective alternatives to specify various attributes for the HTML tags.
 
 20) State  bullet types available in HTML 
+1. disc
+2. circle
+3. square
+4. none
 
 21) How do you create multicolored text in a webpage?
 
+by using css atribute color for different elements 
+
 22) Why are there both numerical and named character entity values?
+
+the numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
 
 23) Write an HTML table tag sequence that outputs the following:
 50 pcs 100 500
 10 pcs 5 50
+<style>
+table,td {
+  border:1px solid black;
+}
+</style>
+<body>
+<table>
+ <tr>
+   <td>50</td>
+    <td>pcs</td>
+     <td>100</td>
+      <td>500</td>
+    </tr>
+    <tr>
+   <td>10</td>
+    <td>pcs</td>
+     <td>5</td>
+      <td>50</td>
+    </tr>
+</table>
 
 24) What is the advantage of grouping several checkboxes together?
 
+grouping these checkboxes together help to organize them.
+
 25) What will happen if you overlap sets of tags?
 
+If two sets of HTML tags are overlapped, only the first tag will be recognized.
+
 26) What are applets?
+an applet is a small code in other one designed for specific task
 
 27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
 
+nothing will be displayed.
+
 28) Is it possible to set specific colors for table borders?
+
+byh using border_color attribute we can set the required color of table border
 
 29) How do you create a link that will connect to another web page when clicked?
 
+using anchor element 
+
+<a href="url">link text</a>
+
 30) What other ways can be used to align images and wrap text?
+using bootstrap with container,rwo,coloumn
+or by using flexbox
 
 31> Display &nbsp inside <p> paragraph tag.
+<p>&ampnbsp</p>
