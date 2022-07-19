@@ -1,0 +1,108 @@
+1) What is HTML?
+ans.HTML is a markup language forpages to  display in a web browser.
+
+2) What are tags?
+ans.HTML tags are basically keywords which tells how web browser will display the content in the tags
+
+3) Do all HTML tags come in a pair?
+ans.No some tags are void type having no pair 
+
+4) What are some of the common lists that can be used when designing a page?
+ans.unordered lists
+    ordered lists
+    discripptioin list
+
+5) How do you insert a comment in HTML?
+ans. using<!-- lkrjenyholgm  -->
+6) Do all character entities display properly on all systems?
+ans. no some os dosent they display as boxes if not supported
+
+7) What is an image map?
+ans.it is basically a set of links as subparts of image
+
+8 ) What is the advantage of collapsing white space?
+ans.removes the white spaces done by mistake to reduce load on server
+
+9) Can attribute values be set to anything or are there specific values that they accept?
+ans.some will be specific like li has specific other will accept any value like id class
+
+10) How do you insert a copyright symbol on a browser page?
+ans.&#169;
+
+11) How do you create links to sections within the same page?
+ans.by using id if the section in anchor tags
+
+12) Is there any way to keep list elements straight in an HTML file?
+ans.yes by using text indent or margin properties
+
+13) If you see a web address on a magazine, to which web page does it point?
+ans.we may or may not see
+
+14) What is the use of alternative text in image mapping?
+ans.to keep the meta data regarding image
+15) Do older HTML files work on newer browsers?
+ans.yes because new browsers are upgraded version of ols
+
+16) Does a hyperlink apply to text only?
+ans.it applys to videos and images and so on
+
+17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+ans.box because pixal shape
+
+18) How do you change the number type in the middle of a list?
+ans.li has type attribute we can change it there
+
+19) What are style sheets?
+ans.it have layout and style settings to give desired look
+
+20) State  bullet types available in HTML 
+ans.yes disk,circle squre
+
+21) How do you create multicolored text in a webpage?
+ans.we can use coler attribute
+
+22) Why are there both numerical and named character entity values?
+ans.named are to remenber askii
+
+23) Write an HTML table tag sequence that outputs the following:
+50 pcs 100 500
+10 pcs 5 50
+ans.
+<table>
+<tr>
+<td>50</td>
+<td>pcs</td>
+<td>100</td>
+<td>500</td>
+</tr>
+<tr>
+<td>10</td>
+<td>pcs</td>
+<td>5</td>
+<td>50</td>
+</tr>
+</table>
+
+24) What is the advantage of grouping several checkboxes together?
+ans.we can keep them in structure organized
+
+25) What will happen if you overlap sets of tags?
+ans.only the first tag is valied
+
+26) What are applets?
+ans.small program consiste of 2-3 instructions
+
+27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+ans.it will not show anything.it will affect the display some times depending on code that is ommited
+
+28) Is it possible to set specific colors for table borders?
+ans.yes by styleing
+
+29) How do you create a link that will connect to another web page when clicked?
+ans.by using ancher tag<a href="">
+
+30) What other ways can be used to align images and wrap text?
+ans.by using tables and css
+
+31> Display &nbsp inside <p> paragraph tag.
+ans.<p>&ampnbsp</p>
