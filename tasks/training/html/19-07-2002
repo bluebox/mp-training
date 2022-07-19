@@ -1,63 +1,73 @@
 1) What is HTML?
-
+hyper-text markup language 
 2) What are tags?
-
+tags are html elements to indicate the beginning and end of an HTML
 3) Do all HTML tags come in a pair?
-
+No  some void elements like image ,spam etc
 4) What are some of the common lists that can be used when designing a page?
+they are ordered list ,unordered list and description list
 
 5) How do you insert a comment in HTML?
-
+by using <!-- comment message -->
 6) Do all character entities display properly on all systems?
-
+no
 7) What is an image map?
-
+it is used to create some clickable area in an image in few specified areas  
 8 ) What is the advantage of collapsing white space?
-
+you can indent lines of text without worrying about multiple spaces
 9) Can attribute values be set to anything or are there specific values that they accept?
+there are few specific values for each attribute 
 
 10) How do you insert a copyright symbol on a browser page?
-
+by using a copyright entity 	&copy;
 11) How do you create links to sections within the same page?
-
+by using # and the id of the code where we wanted to go 
 12) Is there any way to keep list elements straight in an HTML file?
-
+yes
 13) If you see a web address on a magazine, to which web page does it point?
-
+home page 
 14) What is the use of alternative text in image mapping?
+alternative text in image mapping is use to disply some message if there some problem in image which we have inserted.
 
 15) Do older HTML files work on newer browsers?
-
+yes
 16) Does a hyperlink apply to text only?
+No it can be applied to text,image etc 
 
 17) If the user’s operating system does not support the needed character, how can the symbol be represented?
-
+as a box
 18) How do you change the number type in the middle of a list?
 
 19) What are style sheets?
+it is a file where we can apply styles to our html elements 
+
+
+
 
 20) State  bullet types available in HTML 
-
+yes
 21) How do you create multicolored text in a webpage?
-
+by using css
 22) Why are there both numerical and named character entity values?
-
+numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
 23) Write an HTML table tag sequence that outputs the following:
 50 pcs 100 500
 10 pcs 5 50
 
 24) What is the advantage of grouping several checkboxes together?
-
+check box doesnot effect one another it is used to organize them 
 25) What will happen if you overlap sets of tags?
+the first tag will be considered and the second tag wont be considered
 
 26) What are applets?
 
 27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
-
+no message will display 
 28) Is it possible to set specific colors for table borders?
-
+yes
 29) How do you create a link that will connect to another web page when clicked?
-
+by using anchor tag <a href=""></a>
 30) What other ways can be used to align images and wrap text?
 
 31> Display &nbsp inside <p> paragraph tag.
+<p> &amp;nbsp</p>
