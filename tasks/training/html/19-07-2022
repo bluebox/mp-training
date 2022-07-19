@@ -1,0 +1,208 @@
+
+1) What is HTML?
+
+HTML stands for Hyper Text Markup Language
+HTML is the standard markup language for creating Web pages
+HTML describes the structure of a Web page
+HTML consists of a series of elements
+HTML elements tell the browser how to display the content
+
+
+2) What are tags?
+
+Html tags are keywords which define that how a browser formats and displays the web pages.
+
+3) Do all HTML tags come in a pair?
+
+there are few tags without closing tag such as img,hr,br etc.
+
+4) What are some of the common lists that can be used when designing a page?
+
+1. ordered lists
+2. unordered lists
+3. description lists
+
+5) How do you insert a comment in HTML?
+
+An HTML comment begins with <! –– and the comment closes with ––> .
+
+6) Do all character entities display properly on all systems?
+
+No , some character entites can not be displayed when the operating system doesn't support these characters. If that happens, then those characters will be displayed as boxes.
+
+7) What is an image map?
+
+html <map> tag defines the image map. An image map is an image with clickable areas. The areas are defined with one or more <area> tags.
+
+8 ) What is the advantage of collapsing white space?
+
+Collapsing white spaces decreases the transmission time between the server and the client because collapsing features remove unnecessary bytes that are occupied by the white spaces. By mistake, if you leave extra white space, the browser will ignore it and display the UI perfectly.
+
+
+9) Can attribute values be set to anything or are there specific values that they accept?
+
+Some attribute values will have some pre-defined values whereas other attributes can accept any numerical values. It completely depends upon the tag that you are associated with.
+
+10) How do you insert a copyright symbol on a browser page?
+
+The HTML copyright symbol is represented by &copy; or &#169;. You can use this code to embed the copyright symbol onto a web page if this character is not represented on your keyboard.
+
+11) How do you create links to sections within the same page?
+
+we can give id of the section needed in href of an anchor tag.
+
+12) Is there any way to keep list elements straight in an HTML file?
+
+we can use list-style-position : inside to keep the elements inside the content box. The default value is outside.
+
+13) If you see a web address on a magazine, to which web page does it point?
+
+Every web page on the web can have a separate web address. Most of these addresses are relative to the top-most web page. The published web address that appears within magazines typically points this top-most page.
+
+14) What is the use of alternative text in image mapping?
+
+The ALT text adds a text description to an image on a Web page, and should be used for all images, graphical bullets, and graphical horizontal rules. ALT text is accessed by screen reader users to provide them with a text equivalent of images.
+
+15) Do older HTML files work on newer browsers?
+
+Yes, older html files are compliant to the HTML standard. Most older files work on the newer browsers, though some features may not work.
+
+
+16) Does a hyperlink apply to text only?
+
+No,Hyperlink can be applied to text as well as images,vedios,numbers or any other HTML property.
+
+17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+
+The symbols can be represented in the form of an image in the case where the operating system does not support a particular character.
+
+
+18) How do you change the number type in the middle of a list?
+
+ The two attributes of the number type in the middle of a list include the type and value. The type attribute is used for changing the numbering type for any list item, while the value attribute is used for changing the number index for any list item.
+
+19) What are style sheets?
+
+A style sheet helps in creating a well-defined template that is both consistent as well as transportable. These style sheet templates can be linked to various web pages, which makes it easier to main and change the look of the web page.
+
+20) State  bullet types available in HTML 
+
+The type attribute for unordered lists can be set to disc, square, or circle.
+
+
+21) How do you create multicolored text in a webpage?
+
+To create text with different colors, use the <font color=”color”>… </font> tags for every character that you want to apply color. 
+
+22) Why are there both numerical and named character entity values?
+
+The numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
+
+23) Write an HTML table tag sequence that outputs the following:
+50 pcs 100 500
+10 pcs 5 50
+
+
+<table>
+ <tr>
+   <td>50</td>
+    <td>pcs</td>
+     <td>100</td>
+      <td>500</td>
+    </tr>
+    <tr>
+   <td>10</td>
+    <td>pcs</td>
+     <td>5</td>
+      <td>50</td>
+    </tr>
+</table>
+
+24) What is the advantage of grouping several checkboxes together?
+
+The checkboxes don't affect one another. But, grouping these checkboxes together help to organize them. Checkbox buttons can have their name and do not need to belong to a group.
+
+25) What will happen if you overlap sets of tags?
+
+If two sets of HTML tags are overlapped, only the first tag will be recognized. You will find this problem when the text does not display properly on the browser screen.
+
+26) What are applets?
+
+An applet is a tiny program that is used within a main application to enhance a user's interaction within that application. 
+
+27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+
+If there is no text between the tags, then there is nothing to format. Therefore no formatting will appear.
+
+28) Is it possible to set specific colors for table borders?
+
+You can specify a border color using style sheets, but the colors for a table that does not use style sheets will be the same as the text color.
+
+29) How do you create a link that will connect to another web page when clicked?
+
+<a href="url">link text</a>
+
+30) What other ways can be used to align images and wrap text?
+
+Tables can be used to position text and images. Another useful way to wrap text around an image is to use style sheets.
+
+31> Display &nbsp inside <p> paragraph tag.
+
+<p>sahithi&nbspreddy</p>
+<p>&ampnbsp</p>
+
+32> Insert a line between two different elements.
+      For example:
+        <h1> Before line </h1>
+        (I need a line here)
+        <p>this para should come after line</p>
+        
+        
+        <h1> Before line </h1>
+        <hr/>
+        <p>This para should come after line</p>
+        
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+      
+      <pre>
+“ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+</pre>
+      
+34> Specify an alternate text for the image, the alternate text should say 
+      “image not found” if the image don’t get load for any reason
+      <img src=”smiley.gif” _______  >
+      
+       <img src=”smiley.gif” alt="Image not found"  >
+      
+35> Make this format in html! (You can use any text but format and font 
+    size should be similar)
+                                
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+     
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+ 
+36> Print the following pattern in html using <h1> and <p> separately.
+    (note there are spaces before stars)
+    
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
