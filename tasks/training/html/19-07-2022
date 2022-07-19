@@ -157,6 +157,11 @@ Tables can be used to position text and images. Another useful way to wrap text 
         (I need a line here)
         <p>this para should come after line</p>
         
+        
+        <h1> Before line </h1>
+        <hr/>
+        <p>This para should come after line</p>
+        
 33>  I Have a paragraph,
       “ Hello I am MedPlus 
         
@@ -170,6 +175,8 @@ Tables can be used to position text and images. Another useful way to wrap text 
 34> Specify an alternate text for the image, the alternate text should say 
       “image not found” if the image don’t get load for any reason
       <img src=”smiley.gif” _______  >
+      
+       <img src=”smiley.gif” alt="Image not found"  >
       
 35> Make this format in html! (You can use any text but format and font 
     size should be similar)
