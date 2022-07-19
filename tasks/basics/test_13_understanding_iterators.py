@@ -1,8 +1,12 @@
 __author__ = 'Hari'
 
+<<<<<<< HEAD
+#from tasks.placeholders import *
+=======
 from tasks.placeholders import *
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
-notes = '''
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -16,12 +20,25 @@ list, tuple, string etc.
 
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
+<<<<<<< HEAD
+    assert 'list_iterator' == type(list_iter).__name__
+    assert False is hasattr(list_iter, "next")
+
+    string_iter = iter("hello")
+    assert 'str_iterator' == type(string_iter).__name__
+    assert False is hasattr(string_iter, "next")
+
+    tuple_iter = iter((1, 2, 3))
+    assert 'tuple_iterator' == type(tuple_iter).__name__
+    assert False is hasattr(string_iter, "next")
+=======
     assert __ == type(list_iter).__name__
     assert __ == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert __ == type(string_iter).__name__
     assert __ == hasattr(string_iter, "next")
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
     tuple_iter = iter((1,2,3))
     assert __ == type(tuple_iter).__name__
@@ -36,11 +53,20 @@ def test_int_iterable():
 def test_enumerate_iter():
     list_iter = iter(["one", "two", "three"])
     try:
+<<<<<<< HEAD
+        assert "one" == list_iter.__next__()
+        assert "two" == list_iter.__next__()
+        assert "three" == list_iter.__next__()
+        # note what happens when items are finished.
+        assert "error" == list_iter.__next__()
+    except StopIteration as _se:
+=======
         assert __ == list_iter.next()
         assert __ == list_iter.next()
         assert __ == list_iter.next()
         assert __ == list_iter.next() #note what happens when items are finished.
     except __:
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
         pass
 
 #note this function which can convert any iterable into a list.
@@ -49,15 +75,25 @@ def convert_to_list(iterable):
     result = []
     try:
         while True:
-            item = seq_iterator.next()
+            item = seq_iterator.__next__()
             result.append(item)
+<<<<<<< HEAD
+    except StopIteration as _ae:
+=======
     except StopIteration as se:
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
         return result
 
 def test_convert():
+<<<<<<< HEAD
+    assert ['h', 'e', 'l', 'l', 'o'] == convert_to_list("hello")
+    assert [1,2,3,4] == convert_to_list((1, 2, 3, 4))
+    assert [0,1,2,3,4,] == convert_to_list(range(5))
+=======
     assert __ == convert_to_list("hello")
     assert __ == convert_to_list((1,2,3,4))
     assert __ == convert_to_list(range(5))
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
     #string.join also works using the iteration protocol!
     #accepts any iterable
@@ -66,8 +102,13 @@ def test_convert():
     assert __ == ".".join(("hello", "there"))
 
     try:
+<<<<<<< HEAD
+        ".".join([1, 2, 4])  # does not accept all element types though!
+    except TypeError as _ae:
+=======
         ".".join([1,2,4]) #does not accept all element types though!
     except __ :
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
         assert True
 
 # list creation also uses the iterator protocol!
@@ -93,14 +134,24 @@ def test_functions_that_work_on_iterables():
 # Go through the functions at http://docs.python.org/2/library/functions.html
 # and enter all the functions that operate on iterables into the funcs list.
 def test_find_builtins_that_work_on_iterables():
+<<<<<<< HEAD
+    funcs = ['iter', 'filter', 'len',
+             'range', 'reduce', 'map', 'max', 'min']
+    assert 8 is len(funcs)
+=======
     funcs = [__]
     assert ___ == len(funcs)
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 
-three_things_i_learnt = """
--
--
+THREE_THINGS_I_LEARNT = """
+how iter function works
+differrent inbuilt functions working on iter
 -
 """
 
+<<<<<<< HEAD
+TIME_TAKEN_MINUTES = 60
+=======
 time_taken_minutes = ___
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa

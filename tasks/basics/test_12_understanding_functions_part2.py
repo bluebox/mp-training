@@ -1,6 +1,11 @@
 __author__ = 'Hari'
 
+<<<<<<< HEAD
+
+#from tasks.placeholders import *
+=======
 from tasks.placeholders import *
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 
 def demo(first, second=2, third=3):
@@ -84,10 +89,14 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
--
--
+THREE_THINGS_I_LERNT = """
+passing multiple arguments
+using keyword arguments
 -
 """
 
+<<<<<<< HEAD
+TIME_TAKEN_MINUTES = 40
+=======
 time_taken_minutes = ___
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa

@@ -1,6 +1,14 @@
+<<<<<<< HEAD
+
+#from tasks.placeholders import *
+=======
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 __author__ = 'Hari'
 
-notes = '''
+
+
+
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -25,12 +33,27 @@ def test_generator_type():
     assert __ == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
+<<<<<<< HEAD
+    assert False is hasattr(demo_generator, "next")
+    assert False is hasattr(demo_generator(), "next")
+=======
     assert __ == hasattr(demo_generator, "next")
     assert __ == hasattr(demo_generator(), "next")
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
     try:
+<<<<<<< HEAD
+        assert 'how' == next(result)  # builtin which calls the iterator.next()
+        assert "are" == next(result)
+        assert "you?" == next(result)
+        assert "error" == next(result)
+    except StopIteration:
+        assert True
+
+    assert "how.are.you?" == ".".join(demo_generator())  # join takes a iterable
+=======
         assert __ == next(result)  # builtin which calls the iterator.next()
         assert __ == next(result)
         assert __ == next(result)
@@ -39,6 +62,7 @@ def test_generator_is_an_iterator2():
         assert True
 
     assert __ == ".".join(demo_generator()) #join takes a iterable
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
 
 # Note that this function takes any sequence, and returns a reversed form
 # element by element, so at no point is a new reversed sequence object
@@ -87,8 +111,8 @@ def test_generator_return():
 
 def test_generator_control_flow():
     def func():
-        for x in range(5):
-            yield x
+        for _x in range(5):
+            yield _x
         yield 10
     assert __ == demo_generator_to_list(func())
 
@@ -96,8 +120,8 @@ def test_generator_exception():
     def func():
         try:
             yield 10
-            raise Exception("some message")
-        except:
+            raise Exception("go_to_except")
+        except  :
             yield 20
         else:
             yield 40
@@ -107,11 +131,14 @@ def test_generator_exception():
 
     assert [__] == demo_generator_to_list(func())
 
-
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+about generators
+yield used toreturns multiple times
+the yield can be accesed by storing in 
 """
 
+<<<<<<< HEAD
+TIME_TAKEN_MINUTES = 120
+=======
 time_taken_minutes = ___
+>>>>>>> 8849978d1e574815f3c22a9f3deb186f39a28aaa
