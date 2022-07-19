@@ -36,15 +36,24 @@ html <map> tag defines the image map. An image map is an image with clickable ar
 
 8 ) What is the advantage of collapsing white space?
 
+Collapsing white spaces decreases the transmission time between the server and the client because collapsing features remove unnecessary bytes that are occupied by the white spaces. By mistake, if you leave extra white space, the browser will ignore it and display the UI perfectly.
 
 
 9) Can attribute values be set to anything or are there specific values that they accept?
 
+Some attribute values will have some pre-defined values whereas other attributes can accept any numerical values. It completely depends upon the tag that you are associated with.
+
 10) How do you insert a copyright symbol on a browser page?
+
+The HTML copyright symbol is represented by &copy; or &#169;. You can use this code to embed the copyright symbol onto a web page if this character is not represented on your keyboard.
 
 11) How do you create links to sections within the same page?
 
+we can give id of the section needed in href of an anchor tag.
+
 12) Is there any way to keep list elements straight in an HTML file?
+
+we can use list-style-position : inside to keep the elements inside the content box. The default value is outside.
 
 13) If you see a web address on a magazine, to which web page does it point?
 
