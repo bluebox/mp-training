@@ -1,0 +1,106 @@
+1) What is HTML?
+
+2) What are tags?
+
+3) Do all HTML tags come in a pair?
+
+4) What are some of the common lists that can be used when designing a page?
+
+5) How do you insert a comment in HTML?
+
+6) Do all character entities display properly on all systems?
+
+7) What is an image map?
+
+8 ) What is the advantage of collapsing white space?
+
+9) Can attribute values be set to anything or are there specific values that they accept?
+
+10) How do you insert a copyright symbol on a browser page?
+
+11) How do you create links to sections within the same page?
+
+12) Is there any way to keep list elements straight in an HTML file?
+
+13) If you see a web address on a magazine, to which web page does it point?
+
+14) What is the use of alternative text in image mapping?
+
+15) Do older HTML files work on newer browsers?
+
+16) Does a hyperlink apply to text only?
+
+17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+
+18) How do you change the number type in the middle of a list?
+
+19) What are style sheets?
+
+20) State  bullet types available in HTML 
+
+21) How do you create multicolored text in a webpage?
+
+22) Why are there both numerical and named character entity values?
+
+23) Write an HTML table tag sequence that outputs the following:
+50 pcs 100 500
+10 pcs 5 50
+
+24) What is the advantage of grouping several checkboxes together?
+
+25) What will happen if you overlap sets of tags?
+
+26) What are applets?
+
+27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+
+28) Is it possible to set specific colors for table borders?
+
+29) How do you create a link that will connect to another web page when clicked?
+
+30) What other ways can be used to align images and wrap text?
+
+31> Display &nbsp inside <p> paragraph tag.
+
+32> Insert a line between two different elements.
+      For example:
+        <h1> Before line </h1>
+        (I need a line here)
+        <p>this para should come after line</p>
+        
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+      
+34> Specify an alternate text for the image, the alternate text should say 
+      “image not found” if the image don’t get load for any reason
+      <img src=”smiley.gif” _______  >
+      
+35> Make this format in html! (You can use any text but format and font 
+    size should be similar)
+                                
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+     
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+ 
+36> Print the following pattern in html using <h1> and <p> separately.
+    (note there are spaces before stars)
+    
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
+
+ 
