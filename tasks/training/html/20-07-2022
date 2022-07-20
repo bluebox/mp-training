@@ -1,36 +1,116 @@
 1.) What is the advantage of grouping several checkboxes together?
+The checkboxes don't affect one another. But, grouping these checkboxes together help to organize them.
+
 2.) What will happen if you overlap sets of tags?
+Only the first tag will be recognized.
+
 3.) What are applets?
+the applet tag is used to embed java applet into html code.
+
 4.) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+No it will not affect the display of the HTML file
+
 5.) Is it possible to set specific colors for table borders?
+You can specify a border color using style sheets.
+the below code snippet can be used to change the border color to red
+.table, th, td {
+    border: 1px solid red);
+    }
+
 6.) How do you create a link that will connect to another web page when clicked?
+By using the href tag. The below code shows how we can make a clickable link.
+<a href="url">link</a>
+
 7.) What other ways can be used to align images and wrap text?
+Tables can be used to position text and images. Another useful way to wrap text around an image is to use style sheets.
+
 8.) Can a single text link point to two different web pages?
+No a single link can only point to one web page at a time.
+
 9.) What is the difference between the directory and menu lists and the unordered list?
+The <dir> HTML element is used as a container for a directory of files and/or folders, potentially with styles and icons applied by the user agent.This tag is not supported by HTML5
+The <menu> HTML element is described in the HTML specification as a semantic alternative to <ul>.This tag is supported by HTML5.These are not supported by many browsers.
+The Unordered List element. The <ul> HTML element represents an unordered list of items, typically rendered as a bulleted list.These tags are supported by browser and have better SEO.
+
 10.) Can you change the color of bullets?
+Yes, we can change the color of the bullets by using the color attributes in style sheets.
+
 11.) What are the limits of the text field size?
+The text field can have upto 20 words in it.
+
 12.) Do <th> tags always need to come at the start of a row or column?
+Any <tr> tag can be changed to a <th> tag. This causes the text contained within the <th> tag to be displayed as bold in the browser. Although <th> tags are mainly used for headings, they do not need to be used exclusively for headings.
+
 13.) What is the relationship between the border and rule attributes?
+Default cell borders, with a thickness of 1 pixel, are automatically added between cells if the border attribute is set to a nonzero value. Likewise, If the border attribute is not included, a default 1-pixel border appears if the rules attribute is added to the <table> tag.
+
 14.) What is a marquee?
+An HTML marquee is a scrolling piece of text displayed either horizontally across or vertically down your webpage depending on the settings. This is created by using HTML <marquees> tag. Note − The <marquee> tag deprecated in HTML5.
+
 15.) How do you create text on a webpage that will allow you to send an email when clicked?
+By using the mailto attribute in the href tag we can create a link that will allow us to send an email when clicked.
+
 16.) Are <br> tags the only way to separate sections of text?
+No. The <br> tags are not the only one way to separate lines of text. Other tags, like the <p> tag and <blockquote> tag, also separate sections of text.
+
 17.) Are there instances where the text will appear outside of the browser?
+By default, the text is wrapped to appear within the browser window. However, if the text is part of a table cell with a defined width, the text could extend beyond the browser window.
+
 18.) How are active links different from normal links?
+Some browsers recognize an active link when the mouse cursor is placed over that link; others recognize active links when the link has the focus. Those that don't have a mouse cursor over that link is considered a normal link. Some browser recognize active links when the mouse cursor is placed over that link.
+
 19.) Do style sheets limit the number of new style definitions that can be included within the brackets?
+Style sheets do not limit the number of style definitions that can be included within the brackets for a given selector.
 20.) Can I specify fractional weight values such as 670 or 973 for font weight?
+mplementation largely depends on the browser, but the standard does not support fractional weight values. Acceptable values must end with two zeroes.
+
 21.) What is the hierarchy that is being followed when it comes to style sheets?
+Inline styling takes first precedence followed by internal and external. But it's best practice to add all your styles in external style sheet as it's easy to add and edit contents when file grows big and for bigger applications.
+
 22.) Can several selectors with class names be grouped together?
+You can place any valid selector in a group, and all elements in the document that match all the grouped elements will have the same style based on that style property.
+
 23.) What happens if you open the external CSS file in a browser?
+When you try to open the external CSS file in a browser, the browser cannot open the file, because the file has a different extension. The only way to use an external CSS file is to reference it using tag within another HTML document.
+
 24.) How do you make a picture into a background image of a web page?
+To set the background image of a webpage, use the CSS style. Under the CSS <style> tag, add the property background-image. The property sets a graphic such as jpg, png, svg, gif, etc. HTML5 do not support the <body> background attribute, so CSS is used to change set background image.
+
 25.) What happens if the list-style-type property is used on a non-list element like a paragraph?
+f the list-style-type property is used on a non-list element like a paragraph, the property will be ignored and do not affect the paragraph.
+
 26.) When is it appropriate to use frames?
+Frames can make navigating a site much easier. If the main links to the site are located in a frame that appears at the top or along the edge of the browser, the content for those links can be displayed in the remainder of the browser window.
+
 27.) What happens if the number of values in the rows or cols attribute doesn’t add up to 100 percent?
+The browser sizes the frames relative to the total sum of the values. If the cols attribute is set to 100%, 200% the browser displays two vertical frames with the second being twice as big as the first.
+
 28.) Which browsers support HTML5?
+HTML5 is now compatible with all popular browsers (Chrome, Firefox, Safari, IE9, and Opera) and with the introduction of DOCTYPE, it is even possible to have a few HTML features in older versions of Internet Explorer too.
+
 29.) Name two new tags included in the HTML 5
+<audio>	Defines an audio file.
+<canvas>This is used for rendering dynamic bitmap graphics on the fly, such as graphs or games.
+
 30.) Do you know which are two semantic tags are included in HTML5 version?
+Elements such as <header> , <footer> and <article> are all considered semantic because they accurately describe the purpose of the element and the type of content that is inside them.
+
 31.) What is <figure> in HTML5?
+Definition and Usage. The <figure> tag specifies self-contained content, like illustrations, diagrams, photos, code listings, etc. While the content of the <figure> element is related to the main flow, its position is independent of the main flow, and if removed it should not affect the flow of the document.
+
 32.) What is the use of Canvas element?
+The HTML <canvas> element is used to draw graphics, on the fly, via JavaScript. The <canvas> element is only a container for graphics. You must use JavaScript to actually draw the graphics. Canvas has several methods for drawing paths, boxes, circles, text, and adding images.
+
 33.) What are the new FORM elements which are available in HTML5?
+There are five new form elements in the HTML5 forms specification: datalist , output , keygen , progress , and meter .
+
 34.) Tell me two benefits of HTML5 Web Storage
+Advantages of HTML5 Web Storage
+It can store 5 to 10 MB data. That is far more than cookies.
+Web storage data never transferred with an HTTP request, so it increases the performance of the application.
+
 35.) What are two types of Web Storage in HTML5?
+The two storages are session storage and local storage and they would be used to handle different situations. The latest versions of pretty much every browser supports HTML5 Storage including Internet Explorer.
+
 36.) What is the Application Cache in HTML5 and why it is used?
+Application Cache in HTML5: The current version of HTML5 introduces application cache, which means that a web application is cached, and accessible without an internet connection. Now we can make an offline web application that will run without an internet connection by just creating a manifest file in our application.
