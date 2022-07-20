@@ -127,7 +127,7 @@ No there are some sigle tags like <img>?,<link>
  
           We    all    love       Med                                 Plus” 
  
-      Using a single tag only, I want to preserve the same format (spaces and 
+ -->  Using a single tag only, I want to preserve the same format (spaces and 
       line breaks) with using <br> tag.
       using tag <pre> </pre>
       
