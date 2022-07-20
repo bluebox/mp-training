@@ -1,0 +1,36 @@
+1.) What is the advantage of grouping several checkboxes together?
+2.) What will happen if you overlap sets of tags?
+3.) What are applets?
+4.) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+5.) Is it possible to set specific colors for table borders?
+6.) How do you create a link that will connect to another web page when clicked?
+7.) What other ways can be used to align images and wrap text?
+8.) Can a single text link point to two different web pages?
+9.) What is the difference between the directory and menu lists and the unordered list?
+10.) Can you change the color of bullets?
+11.) What are the limits of the text field size?
+12.) Do <th> tags always need to come at the start of a row or column?
+13.) What is the relationship between the border and rule attributes?
+14.) What is a marquee?
+15.) How do you create text on a webpage that will allow you to send an email when clicked?
+16.) Are <br> tags the only way to separate sections of text?
+17.) Are there instances where the text will appear outside of the browser?
+18.) How are active links different from normal links?
+19.) Do style sheets limit the number of new style definitions that can be included within the brackets?
+20.) Can I specify fractional weight values such as 670 or 973 for font weight?
+21.) What is the hierarchy that is being followed when it comes to style sheets?
+22.) Can several selectors with class names be grouped together?
+23.) What happens if you open the external CSS file in a browser?
+24.) How do you make a picture into a background image of a web page?
+25.) What happens if the list-style-type property is used on a non-list element like a paragraph?
+26.) When is it appropriate to use frames?
+27.) What happens if the number of values in the rows or cols attribute doesn’t add up to 100 percent?
+28.) Which browsers support HTML5?
+29.) Name two new tags included in the HTML 5
+30.) Do you know which are two semantic tags are included in HTML5 version?
+31.) What is <figure> in HTML5?
+32.) What is the use of Canvas element?
+33.) What are the new FORM elements which are available in HTML5?
+34.) Tell me two benefits of HTML5 Web Storage
+35.) What are two types of Web Storage in HTML5?
+36.) What is the Application Cache in HTML5 and why it is used?
