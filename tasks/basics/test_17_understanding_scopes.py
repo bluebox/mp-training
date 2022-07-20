@@ -1,6 +1,9 @@
+# from Tasks.placeholders import *
+import symtable
+import inspect
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
  Scopes and namespaces govern the accessibility rules and lifetime of python variables.
 
  Namespaces is a mapping of names to objects. Each python block creates a new namespace. The 3 python blocks are
@@ -16,127 +19,138 @@ notes = '''
  Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
 '''
 
-import inspect
-import symtable
-
-from tasks.placeholders import *
 
 count = 10
 
-#used to by pass any local shadow variables.
+# used to by pass any local shadow variable
+
+
 def get_global_count():
+    ''' count'''
     return count
 
+
 def test_scope_basic():
+    ''' test scope'''
     local_names = get_locals(test_scope_basic)
 
     value = count
 
-    assert __ == ('value' in local_names)
-    assert __ == ('value' in global_names)
+    assert True is ('value' in local_names)
+    assert False is ('value' in global_names)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert True is ('count' in global_names)
 
-    assert __ == value
+    assert 10 is value
 
 
 def test_scope_undefined_variable():
+    ''' test scope'''
     local_names = get_locals(test_scope_undefined_variable)
 
     try:
-        my_name = name  #name variable is not in local or  global scope
-    except __ : # fill up the exception
+        my_name = name  # name variable is not in local or  global scope
+    except NameError:  # fill up the exception
         pass
 
-    assert __ == ('my_name' in local_names)
-    assert __ == ('name' in local_names)
-    assert __ == ('name' in global_names)
+    assert True is ('my_name' in local_names)
+    assert False is ('name' in local_names)
+    assert False is ('name' in global_names)
+
 
 def test_variable_shadow():
+    ''' test variables'''
     local_names = get_locals(test_variable_shadow)
     count = 20
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert True is ('count' in local_names)
+    assert True is ('count' in global_names)
 
-    assert __ == count
-    assert __ == get_global_count()
+    assert 20 is  count
+    assert 10 is get_global_count()
+
 
 def test_global_write():
+    ''' test global'''
     local_names = get_locals(test_global_write)
 
-    global count # declare that we want to use the read/write to global count
+    global count  # declare that we want to use the read/write to global count
     count = 30
 
     try:
-        assert __ == ('count' in local_names)
-        assert __ == ('count' in global_names)
+        assert False is ('count' in local_names)
+        assert True is ('count' in global_names)
 
-        assert __ == count
-        assert __ == get_global_count()
+        assert 30 is count
+        assert 30 is get_global_count()
     finally:
-        count = 10 #reset to original value
+        count = 10  # reset to original value
+
 
 def test_scope_is_bound_at_definition_time():
+    ''' test scope'''
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert True is ('count' in local_names)
+    assert True is ('count' in global_names)
 
     try:
         value = count
         count = 30
-    except __: # what happens when you read a variable before initializing it?
-        #print ex #uncomment after you fill up above
-        assert __
+    except NameError:  # what happens when you read a variable before initializing it?
+        # print ex #uncomment after you fill up above
+        assert True
     finally:
         count = 20
 
-    assert __ == count
-    assert __ == get_global_count()
+    assert 20 is count
+    assert 10 is get_global_count()
 
 
 def test_scope_writing_globals():
+    ''' test scope'''
     local_names = get_locals(test_scope_writing_globals)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert True is ('count' in global_names)
 
     global count
 
     try:
         count = 40
-        assert __ == count
-        assert __ == get_global_count()
+        assert 40 is count
+        assert 40 is get_global_count()
     finally:
         count = 10
 
-    assert __ == get_global_count()
+    assert 10 is get_global_count()
 
 
-
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 40
 
 
-#helper functions which get the variables in locals and globals using the compiler's symbol tables.
+# helper functions which get the variables in locals and globals using the compiler's symbol tables.
 def get_locals(func):
+    ''' locals'''
     source = inspect.getsource(func)
     top = symtable.symtable(source, "<string>", "exec")
-    func = top.get_children()[0]  #since we are passing only the func code.
+    func = top.get_children()[0]  # since we are passing only the func code.
     return func.get_locals()
 
+
 def get_globals():
+    ''' global '''
     module = inspect.getmodule(get_globals)
     source = inspect.getsource(module)
     top = symtable.symtable(source, "<string>", "exec")
     return top.get_identifiers()
 
-global_names = get_globals()
 
+global_names = get_globals()

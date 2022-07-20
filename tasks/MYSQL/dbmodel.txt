@@ -1,0 +1,130 @@
+--------------patients diagnosis-----------
+
+Create table visits
+(
+ visit_id int primary key,
+ patient_id int ,
+ visit_date  date,
+ comments varchar(50)
+);
+
+insert into visits values
+   (101,201,"2022-07-11","monday"),
+   (102,202,"2022-07-12","tuesday"),
+   (103,203,"2022-07-10","wednesday"),
+   (104,204,"2022-07-09","saturday"),
+   (105,205,"2022-07-08","friday");
+   
+   
+create table patients(
+ patient_id int primary key,
+ patient_name varchar(50),
+ demographic_info int
+ );
+ 
+ insert into patients values 
+  (201,"john","1"),
+ (202,"jack","2"),
+ (203,"joss","3"),
+ (204,"jackel","4"),
+ (205,"jhosh","5");
+ 
+ 
+ 
+ create table medication(
+ medication_id int primary key,
+ patient_id int ,
+ medication_name varchar(50) ,
+ foreign key(patient_id) references patients(patient_id)
+ );
+  
+  insert into medication values
+    (301,201,"capsules"),
+    (302,202,"tonics"),
+    (303,203,"inhalers"),
+    (304,204,"injections"),
+    (305,205,"drops");
+  
+
+
+create table  diagnosis(
+  diagnosis_id int primary key,
+  patient_id int ,
+  diagnosis_name varchar(50),
+  foreign key(patient_id) references medication(patient_id)
+  );
+  
+  insert into diagnosis values 
+    (401,201,"cityscan"),m
+    (402,202,"ecg"),
+    (403,203,"eye tests"),
+    (404,204,"gastroscopy"),
+    (405,205,"biopsy");
+  
+ create table doctor_appointment(
+   doctor_name varchar(50) primary key,
+   visit_date date,
+   patient_id int,
+   visit_id int,
+   diagnosis_name varchar(50),
+   foreign key(visit_id) references visits(visit_id),
+   foreign key(patient_id) references patients(patient_id)
+   );
+  
+  insert into doctor_appointment values
+   ("francis","2022-07-11",201,101,"cityscan"),
+   ("jacob","2022-07-12",202,102,"ecg"),
+   ("reo","2022-07-10",203,103,"eyetests"),
+   ("reckle","2022-07-09",204,104,"gastroscopy"),
+   ("jacks","2022-07-08",205,105,"biopsy");
+   
+  
+  ----------------------queries-----------
+  1.Get the list of patient details which should include   their name,visit date and diagnosis name.
+  
+  2.Get the count of patients  taken appointment for each doctor.
+  
+  3.Get the list of diagnosis of patients  who had taken medication of "capsules".
+  
+  4.Get visit date of patients who had taken diagnosis for 
+  "biopsy".
+  
+  5.Get the list of patient ids who had taken diagnosis "eyetests" before "13-07-2022".
+  
+  6.Get  the list of diagnosis ids who had taken medication of "drops" before "13-07-2022" after "30-06-2022
+  
+  7.Get the lists of patient names, visit ids ,diagnosis ids whose visit date is before 13-07-2022 and taken medications other than "drops" and having diagnosis eyetests with demographic info more than 3
+  
+  8.Get the visit ids ,medication ids for patients who are taken  medication of "Biopsy"  got treatment under each doctor.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
