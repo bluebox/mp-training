@@ -40,16 +40,12 @@ form {
     margin-bottom: 2rem;
     cursor: pointer;
 }
-
-.head h5:nth-child(2):after {
-    content: "";
-    display: block;
-    width: 71px;
-    height: 1.5px;
-    background: #000;
-    right: 15%;
-    position: relative;
+.head h5 a{
+    text-decoration: none;
+    color: black;
 }
+
+
 
 /* -------saved Cards code--------- */
 form h5:nth-child(3) {
@@ -145,7 +141,7 @@ button {
     background-color: rgba(13, 187, 21, 0.945);
     border: 1px solid transparent;
     padding: 0.4rem;
-    margin-top: 1.6rem;
+    margin-top: 1rem;
     color: white;
     border-radius: 10px;
     cursor: pointer;
@@ -156,4 +152,89 @@ button:hover {
     background-color: white;
     color: black;
     border: 1px solid black
+}
+.white{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    padding-bottom: 2rem;
+}
+/* ------------------------------------------
+--------------User detail code----------
+------------------------------------------ */
+
+.userdetails{
+    position: absolute;
+    display: none;
+    transition: 0.4s all ease-in;
+}
+
+/* -------------user details form code------------- */
+
+.userdetails form h3{
+    padding-bottom: 1rem;
+        
+}
+
+.paymentoption{
+    display: flex;
+}
+.paymentoption h4{
+    padding: 0rem 0.5rem;
+    margin-bottom: 0.4rem;
+}
+.paymentoption h5{
+cursor: pointer;
+}
+
+.paymentoption h5:nth-child(1)::after{
+    content: "";
+    display: block;
+    position: relative;
+    background-color: black;
+    width: 3rem;
+    height: 0.2rem;
+    transition: 0.3s ease-in;
+}
+/* .paymentoption h5:nth-child(1)::after{
+    width: 2rem !important;
+    left: 4rem !important;
+} */
+
+.paytoggle{
+    width: 2rem !important;
+    left: 4rem !important;
+}
+
+.userdetails form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 10.36px 25.64px rgb(22 25 41 / 8%);
+}
+.userdetails form input{
+    transition: 1s all ease-out;
+    margin: 0.4rem 0rem;
+    padding: 0.2rem 1rem;
+}
+
+
+/* -----icon code------- */
+#cross{
+    cursor: pointer;
+    position: relative;
+    top: -1.4rem;
+    left: 7.4rem;
+}
+
+/* -------extra property classes----- */
+.dis{
+    display: block !important;
+}
+.opa30{
+    opacity: 40% !important;
+    transition: 0.5s all ease;
 }

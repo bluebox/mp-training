@@ -1,0 +1,8 @@
+.head h5:nth-child(2):after {
+    content: "";
+    display: block;
+    /* width: 71px; */
+    height: 1.5px;
+    background: #000;
+    position: relative;
+}
