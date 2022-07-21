@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Payment Form</h1>
+    <form>
+
+        <fieldset id="top">
+            <label>Enter Your First Name: <input type="text" name="first-name" required /></label>
+            <label>Enter Your Last Name: <input type="text" name="last-name" required /></label>
+            <label>Enter Your Email: <input type="email" name="email" required /></label>
+            <label>Enter Phone Number <input type="text" name="phn" required /></label>
+            <label>Enter Amount <input type="text" name="amount" required /></label>
+        </fieldset>
+
+        <fieldset id="bottom">
+
+            <label><h2>Payment Mode:</h2></label>
+            <label><input type="radio" name="payment-type" class="inline" />Cash Payment</label>
+            <label ><input type="radio" name="payment-type" class="inline">Online Payment</label>
+            
+            <label><input type="radio" name="payment-type" id="acc" class="inline" onclick="cardpay()">Card Payment</label>
+              
+            <div id="card" style="display:none">
+                <label>Enter Name: <input type="text" name="name"/></label>
+                <label>Card Number<input type="text" name="cardno"/></label>
+                <label>Enter expiry date<input type="month" name="date"/></label>
+                <label>CVV <input type="text" name="cvv" maxlength = "3" /></label>
+            </div>
+
+            <label>
+              <input type="checkbox" name="send" class="inline" required /> Send a online receipt.
+            </label>
+
+        </fieldset>
+        <input class="button" type="submit" value="Submit" />
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
