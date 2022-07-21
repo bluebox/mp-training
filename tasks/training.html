@@ -1,1 +1,184 @@
 
+.class1{
+    display: flex;
+    justify-content: space-evenly;
+    /* width: 60%; */
+    margin: auto;
+}
+
+.input_field{
+    display: flex;
+    justify-content: space-between;
+    margin: .3rem 0;
+}
+.label1{
+    width: 45%;
+    text-align: end;
+}
+.input{
+    width: 50%;
+}
+.container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.img1{
+    margin: 2rem auto;
+    width: fit-content;
+}
+
+.block{
+    display: flex;
+    justify-content: space-between;
+}
+.form{
+    width: 45%;
+}
+.input2{
+    width: 60%;
+    /* align-self: flex-end; */
+    /* margin-left: auto; */
+}
+
+.input_field1{
+    display: flex;
+}
+.input_field2{
+    display: flex;
+    justify-content: end;
+    margin-left: auto;
+}
+
+
+
+
+
+
+
+
+<html>
+
+<head>
+    <title>Payment Details</title>
+    <link type="image/icon" href="pay.gif">
+    <link rel="stylesheet" href="formstyle.css">
+    <style>
+        .fm1 {
+            /* padding-top: 70px; */
+         
+            /* align-items: center; */
+            /* border-width: 30px; */
+            /* width: 45%; */
+        
+            /* background-color: aqua; */
+
+        }
+
+        h1 {
+            padding-left: 20px;
+        }
+
+        /* input[type=radio] {
+    border: 0px;
+    width: 20%;
+    height: 2em; 
+
+} */
+        .payment {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <DIV class="container">
+        <form class="form">
+            <fieldset>
+                <legend>PERSONAL DETAILS:</legend>
+
+
+                <div class="fm1">
+                    <div class="img1">
+                        <img src="prpic.webp" width="100px" height="100px">
+                    </div>
+                    <DIV class="d1">
+                        <div class="input_field">
+                            <label class="label1" for="type">Name :</label>
+                            <input class="input" type="text" id="mode" name="type" placeholder="Name" >
+                        </div>
+                        <div class="input_field">
+                            <label class="label1" for="type">Address :</label>
+                            <textarea class="input" name="address" id="" rows="1" placeholder="address"></textarea>
+                            <!-- <input class="input" type="text" id="mode" name="type" placeholder="address" > -->
+                        </div>
+                        <div class="input_field">
+                            <label class="label1" for="type">mobile :</label>
+                            <input class="input" type="number" id="mode" name="type" placeholder="mobile" >
+                        </div>
+                        <div class="input_field">
+                            <label class="label1" for="type">Email :</label>
+                            <input class="input" type="email" id="mode" name="type" placeholder="email" >
+                        </div>
+                    </DIV>
+                   
+                </div>
+            </fieldset>
+        </form>
+        <form class="pay">
+
+            <legend>PAYMENT DETAILS:</legend>
+            <div class="class1">
+                <!-- <div class="input_field">
+                    <div class="cash_head">
+                        <input type="radio" id="mode" name="type" class="payment" value="cash">
+                        <label for="type">cash</label>
+                    </div>
+                    <div class="cash_body">
+
+                    </div>
+                </div> -->
+                <div>
+                    <div class="input_field">
+                        <label for="card" class="label">Card :</label>
+                        <select name="card" id="" class="input">
+                            <option value="creditcard">credit card</option>
+                            <option value="debitcard">debit card</option>
+                        </select>
+                    </div>
+
+
+                    <!-- <div class="card_head">
+                        <input type="radio" id="mode1" name="type" class="payment" value="card">
+                        <label for="type">card</label>
+                    </div> -->
+                    <div class="card_body">
+                        <div class="input_field">
+                            <label class="label" for="type">card number :</label>
+                            <input class="input" type="text" id="mode" name="type" >
+                        </div>
+                       <div class="block">
+                            <div class="input_field1">
+                                <label class="label2" for="type">cvv :</label>
+                                <input type="text" id="mode" name="type" class="input2">
+                            </div>
+                            <div class="input_field2">
+                                <label class="label2" for="type">expiry date :</label>
+                                <input type="text" id="mode" name="type" class="input2" >
+                            </div>
+                       </div>
+                        <div class="input_field">
+                            <label class="label" for="type">Name as on card :</label>
+                            <input type="text" id="mode" name="type" class="input" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+    </DIV>
+</body>
+
+</html>
