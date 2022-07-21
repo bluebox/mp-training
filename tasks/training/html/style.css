@@ -1,0 +1,43 @@
+body{
+    margin-top: 6px;
+    background: #ffffff url("payment.jpg") no-repeat right top;
+}
+.Box{
+    width: 65%;
+    height: 98vh;
+    border:1px solid black;
+    margin: auto;
+    background-color: azure;
+    border-radius: 10px;
+    color: #ebebf3;
+    background: #ffffff url("account.webp") no-repeat right top;
+}
+
+.form{
+    margin: 10px;
+    color: black;
+}
+
+.submit{
+    width:100%;
+    border-radius: 7px;
+    /* background-color: rgb(97, 235, 235); */
+}
+
+.container{
+    /* display: flex;
+    justify-content: center; */
+    margin: 20px;
+    padding: 20px;
+}
+
+.Box1{
+    width: 65%;
+    height: 98vh;
+    border:1px solid black;
+    margin: auto;
+    background-color: azure;
+    border-radius: 10px;
+    color: #ebebf3;
+    /* background: #ffffff url("account.webp") no-repeat right top; */
+}
