@@ -1,0 +1,159 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* --------additional customised css------ */
+.disflex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.discol {
+    flex-direction: column;
+}
+
+
+/* -----------Body and Html Code-------- */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(231, 229, 229, 0.774);
+}
+
+/*--------- section form code ------------*/
+.form1 {
+    height: 100vh;
+}
+
+form {
+    background-color: white;
+    box-shadow: 0 10.36px 25.64px rgb(22 25 41 / 8%);
+    padding: 2rem;
+}
+
+
+.head h5 {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+.head h5:nth-child(2):after {
+    content: "";
+    display: block;
+    width: 71px;
+    height: 1.5px;
+    background: #000;
+    right: 15%;
+    position: relative;
+}
+
+/* -------saved Cards code--------- */
+form h5:nth-child(3) {
+    align-self: flex-start;
+}
+
+.card1 {
+    display: flex;
+    align-items: center;
+    background-color: rgba(231, 229, 229, 0.685);
+    justify-content: space-between;
+    width: 40rem;
+    padding: 0rem 0.3rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.card1 {
+    margin: 0.5rem 0rem;
+}
+
+.card1 img {
+    height: 2rem;
+    cursor: pointer;
+}
+
+.card1 p:nth-child(1) {
+    font-size: 0.8rem;
+}
+
+#remcard {
+    font-size: 0.6rem;
+    opacity: 50%;
+    cursor: pointer;
+}
+#remcard:hover{
+    opacity: 100% ;
+}
+
+#visa {
+    padding-left: 0.5rem;
+}
+
+/* -------User details code------- */
+
+#adduser {
+    padding: 2rem 0rem 0.8rem 0rem;
+    align-self: flex-start;
+}
+
+
+
+.carddetails {
+    width: 101%;
+    justify-content: space-between !important;
+}
+
+#username {
+    width: 100%;
+    margin-bottom: 0.7rem;
+    background-color: rgba(231, 229, 229, 0.685);
+    border: 1px solid transparent;
+    padding: 0.3rem;
+}
+
+#cardno {
+    width: 50%;
+    background-color: rgba(231, 229, 229, 0.685);
+    border: 1px solid transparent;
+    
+    padding: 0.3rem ;
+}
+
+#exp {
+    width: 20%;
+    background-color: rgba(231, 229, 229, 0.685);
+    border: 1px solid transparent;
+    padding: 0.3rem;
+}
+
+#Cvv {
+    width: 20%;
+    background-color: rgba(231, 229, 229, 0.685);
+    border: 1px solid transparent;
+    padding: 0.3rem;
+}
+
+
+
+
+/* ----------button code------ */
+button {
+    background-color: rgba(13, 187, 21, 0.945);
+    border: 1px solid transparent;
+    padding: 0.4rem;
+    margin-top: 1.6rem;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.1s all ease-in;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black
+}
