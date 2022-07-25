@@ -7,50 +7,228 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Payment</title>
+        <title>e-commerce
+        </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="container">
-            <div class="Box1" style="height:84vh;">
-                <div class="form">
-                    <div class="form">
-                    <h2>Personal Details</h2>
-                    </div>
-                    <form class="form">
-                    <div class="form">
-                        <label for="exampleFormControlInput1" class="form-label">Name </label>
-                        <input type="text" class="form-control" id="name" placeholder="name">
-                      </div>
-                      <div class="form">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="email@email.com">
-                      </div>
-                      <div class="form">
-                        <label for="address" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="address" placeholder="999 999 9999" required>
-                      </div>
-                      <div class="form">
-                        <label for="exampleFormControlInput1" class="form-label">Address </label>
-                        <input type="text" class="form-control" id="name" placeholder="address">
-                      </div>
-                      <div class="form">
-                        <input type="submit" id="submit" class="submit" >
-                      </div>
+            <div class="nav">
+                <div class="logo" >
+                    <a href="#" ><img src="logo.png" style="width:50px;height:50px"></a>
+                </div>
+                <div class="search-container">
+                    <form action="/action_page.php">
+                      <input style="height:31px;margin-top:9px;" type="text" placeholder="Search.." name="search">
+                      <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
-                      <div class="paymentType" style="display:flex;justify-content:center;width:100%">
-                        <a href="index2.html" style="width:91%;border-radius:10px;"><button type="button" style="width:100%;border-radius:8px;">payment Type</button></a>
-                    </div>
+                  </div>
+                <div class="home" style="margin-top:12px;">
+                    <a href="#">Home</a>
+                </div>
+                <div class="sign" style="margin-top:12px;">
+                    <a href="#">Sign in/sign out</a>
+                </div>
+                <div class="cart">
+                    <a href="#"><img src="cart.png" style="width:45px;height:45px;margin-right:25px;"></a>
+                </div>
             </div>
-           
+            <div class="slideshow-container">
+
+                <div class="mySlides fade">
+                  <div class="numbertext">1 / 3</div>
+                  <!-- <img src="e-commerce/footwears/men/casual/1/11.jpg" style="width:100%"> -->
+                  <div class="text">Caption Text</div>
+                </div>
+                
+                <div class="mySlides fade">
+                  <div class="numbertext">2 / 3</div>
+                  <!-- <img src="e-commerce/footwears/men/casual/1/12.jpg" style="width:100%"> -->
+                  <div class="text">Caption Two</div>
+                </div>
+                
+                <div class="mySlides fade">
+                  <div class="numbertext">3 / 3</div>
+                  <!-- <img src="e-commerce/footwears/men/casual/1/13.jpg" style="width:100%"> -->
+                  <div class="text">Caption Three</div>
+                </div>
+                
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+                
+                </div>
+                <br>
+                
+                <div style="text-align:center">
+                  <span class="dot" onclick="currentSlide(1)"></span> 
+                  <span class="dot" onclick="currentSlide(2)"></span> 
+                  <span class="dot" onclick="currentSlide(3)"></span> 
+                </div>
+                <div class="category">
+                    <h1>
+                        Category
+                    </h1>
+                    <div class="cat" >
+                        <div class="rows" >
+                          <div class="cols">
+                            Mobile Phones
+                          </div>
+                          <div class="cols">
+                            Electronics
+                          </div>
+                          <div class="cols">
+                            Apparel]
+                          </div>
+                          <div class="cols">
+                            FootWear
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              <div>
+                <h2>Mobile</h2>
+                <div class="shortcut">
+                    <a href="#" style="width:23%;">
+                    <div class="col">
+                      <div class="hide">Home Appliances</div>
+                    </div>
+                   
+                    </a>
+                    <a href="#" style="width:23%;">
+                    <div class="col"></div>
+                  </a>
+                  <a href="#" style="width:23%;">
+                    <div class="col">
+                      <div class="hide">Home Appliances</div>
+                    </div>
+                   
+                    </a>
+                    <a href="#" style="width:23%;">
+                    <div class="col"></div>
+                  </a>
+                  </div>
+            </div>
+            <div>
+              <h2>Electronics</h2>
+              <div class="shortcut">
+                <a href="#" style="width:23%;">
+                <div class="col">
+                  <div class="hide">Home Appliances</div>
+                </div>
+               
+                </a>
+                <a href="#" style="width:23%;">
+                <div class="col"></div>
+              </a>
+              <a href="#" style="width:23%;">
+                <div class="col">
+                  <div class="hide">Home Appliances</div>
+                </div>
+               
+                </a>
+                <a href="#" style="width:23%;">
+                <div class="col"></div>
+              </a>
+              </div>
+              </div>  
+              <div>
+                <h2>Apparel</h2>
+                <div class="shortcut">
+                    <a href="#" style="width:23%;">
+                    <div class="col">
+                      <div class="hide">Home Appliances</div>
+                    </div>
+                   
+                    </a>
+                    <a href="#" style="width:23%;">
+                    <div class="col"></div>
+                  </a>
+                  <a href="#" style="width:23%;">
+                    <div class="col">
+                      <div class="hide">Home Appliances</div>
+                    </div>
+                   
+                    </a>
+                    <a href="#" style="width:23%;">
+                    <div class="col"></div>
+                  </a>
+                  </div>
+              </div>  
+              <div>
+                <h2>FootWear</h2>
+                <div class="shortcut">
+                    <a href="#" style="width:23%;">
+                    <div class="col">
+                      <div class="hide">Home Appliances</div>
+                    </div>
+                   
+                    </a>
+                    <a href="#" style="width:23%;">
+                    <div class="col"></div>
+                  </a>
+                  <a href="#" style="width:23%;">
+                    <div class="col">
+                      <div class="hide">Home Appliances</div>
+                    </div>
+                   
+                    </a>
+                    <a href="#" style="width:23%;">
+                    <div class="col"></div>
+                  </a>
+                  </div>
+              </div>
+            <div><h3>Contact Details:</h3>
+            <div class="details">
+             
+              <div class="supportteam">
+                <p>Irfan<br>irfan321@gmail.com<br>8745637488</p>
+              </div>
+              <div class="supportteam">
+                <p>Nikita<br>nikita6847@gmail.com<br>7583638483</p>
+              </div>
+              <div class="supportteam">
+                <p>Bhargavi<br>bhargavi345@gmail.com<br>9475763579</p>
+              </div>
+              </div>
+            </div>
+              
+    
+            </div>
         </div>
-        <script >
+        
+        <script src="">
+            let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
         </script>
     </body>
 </html>
