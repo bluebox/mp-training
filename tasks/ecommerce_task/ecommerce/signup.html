@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Signup</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="signup" style="display:flex;flex-direction:column;justify-content:center;align-items: center;background-color: bisque;" >
+            <div class="head" style="display:flex;justify-content:center;align-items: center;margin-top: 5px;">
+                <h3 >Shopping App</h3>
+            </div>
+            <div class="container" style="height:100vh;width:45%;border:1px solid black;display:flex;margin-top: 10px;border-radius:10px;">
+                <form action="verify.html" style="width:100%;">
+                    <h2 class="signin" style="display:flex;justify-content:center;align-items: center;">Sign-up</h2>
+                    <div class="form-group" >
+                        <label for="exampleInputEmail1">Your Name</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" minlength="5" placeholder="Enter name" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Phone</label>
+                        <input type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter phone number" required>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" minlength="6" placeholder="Password" required>
+                      <div style="display:flex;font-size:smaller;">
+                        <i class="bi bi-info"></i>
+                        <p style="font-size:smaller;">Passwords must be atleast 6 characters</p>
+                        
+                       </div>
+                       <p>We will send you a text to verify your phone.
+                        Message and Data rates may apply.</p>
+                        
+                    </div>
+                    <!-- <div class="form-group">
+                       
+                       </div> -->
+                <button type="submit" class="btn btn-primary" style="width:100%;">Sign-up</button>
+                <div class="login" style="margin-top:10px;">
+                    <p>Already have an account? <a href="signin.html">sign in</a></p>
+                </div>
+                  </form>
+                  
+            </div>
+        </div>
+     
+        
+        <script src="" async defer></script>
+    </body>
 </html>
