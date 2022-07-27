@@ -1,0 +1,227 @@
+*{
+    margin:0;
+    padding: 0;
+    width:100%;
+    height: 100%;
+    scroll-behavior: smooth;
+    /* position: sticky; */
+}
+
+.main{
+    background-color: rgb(197, 131, 144);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+    /* overflow: hidden;
+    position: fixed; */
+    height: 80px;
+    top: 0;
+    
+    
+}
+/* ul{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 35px;
+} */
+.nav{
+    width: 80%;
+}
+.offers{
+    height: auto;
+    width: 100%;
+    
+}
+.search_img{
+    height: 35px;
+    width: 35px;
+}
+
+.logo{
+    width: 12%;
+}
+.nav{
+    width: 60%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.search{
+    width: 15%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+.clothes{
+    background-color:;
+}
+.body{
+    display: flex;
+    flex-wrap: wrap;
+}
+h1{
+    text-align: center;
+}
+.cat_img{
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    overflow-x: auto;
+    height: 300px ;
+}
+.cat{
+    height:fit-content;
+}
+.category{
+    height: fit-content;
+} 
+.clothes 
+{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+height: auto;
+background-color: rgb(193, 148, 184);
+}
+.electronics {
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+height: auto;
+}
+.Footwear 
+{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+height: auto;
+background-color: rgb(63, 97, 95);
+}
+.mobiles
+{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+height: auto;
+}
+h2{
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    margin-top: 20px;
+    background-color: rgb(201, 198, 197);
+}
+.cloth
+{
+    width: 350px;
+    height: 270px;
+} .foot{
+    width: 582px;
+    height: 318px;
+  
+}
+.cloth1{
+    width: 325px;
+    height: 278px;
+    margin: 10px;
+} .foot1{
+    width: 646px;
+    height: 275px;
+    margin: 10px;   
+}
+.body2{
+    display: flex;
+    flex-direction: column;
+}
+.details{
+    display: flex;
+    justify-content: space-between;
+}
+/* .navbar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial;
+  }
+  
+  /* Links inside the navbar */
+  /* .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  } */ */
+  
+  /* The dropdown container */
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  /* Dropdown button */
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: black;
+    /* padding: 14px 16px; */
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+  
+  /* Add a red background color to navbar links on hover */
+  /* .navbar a:hover, .dropdown:hover .dropbtn {
+    /* background-color: red; */
+  
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    height:10px;
+    position: absolute;
+    /* background-color: #f9f9f9; */
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin-left:12px;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+    display: block;
+    width: 10%;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+

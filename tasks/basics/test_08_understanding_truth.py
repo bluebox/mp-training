@@ -40,8 +40,8 @@ def truth_test(object, description):
     '''Truth'''
     if object:
         return description + " is treated as true"
-    else:
-        return description + " is treated as false"
+    #else:
+     #  return description + " is treated as false"
 
 def test_truth_values():
     '''Truth'''

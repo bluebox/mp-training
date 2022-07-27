@@ -95,7 +95,7 @@ def test_list_common_methods():
 
      For help on a specific function like pop enter help([].pop)
     """
-    fruits = []
+    fruits = ["banana", "litchi", "guava", "grape1"]
     fruits.append("orange")
 
     assert ['orange'] == fruits

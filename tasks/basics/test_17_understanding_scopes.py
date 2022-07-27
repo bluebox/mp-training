@@ -100,7 +100,7 @@ def test_scope_is_bound_at_definition_time():
         COUNT = 30
     except UnboundLocalError: # what happens when you read a variable before initializing it?
         #print ex #uncomment after you fill up above
-        assert __
+        assert True
     finally:
         COUNT = 20
 
