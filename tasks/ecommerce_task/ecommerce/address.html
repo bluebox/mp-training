@@ -43,7 +43,7 @@
                 <div class="prod">
                     <div class="pin">
                         <strong style="margin:25px;margin-left:10px;">Select Delivery Address</strong>
-                        <button type="button" class="pinbtn">Add New Address</button>
+                        <button type="button" class="pinbtn" id="myBtn">Add New Address</button>
                     </div>
             <div class="items">
                 <div class="order">
@@ -92,7 +92,7 @@
                 </div>
                 </div>
                 <div class="addnew">
-                    <a href="#" >
+                    <a href="#" id="myBtn1" >
                         <p style="color: rgb(255, 63, 108);margin: 10px;;margin-top:20px;padding-top:10px;border:none;">+ Add New Address</p></a>
                 </div>
                 <div class="newaddress">
@@ -120,9 +120,65 @@
                     </div>
                 </div>
                </div>
+               <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="addres">
+                        <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Name</label>
+                              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Flat/Building/Street</label>
+                              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Flat no./Building name/Street name">
+                            </div>
+                            <div class="form-group form-check">
+                                <label for="exampleInputPassword1">City</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="City">
+                            </div>
+                            <div class="form-group form-check">
+                                <label for="exampleInputPassword1">State</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="State">
+                            </div>
+                            <div class="form-group form-check">
+                                <label for="exampleInputPassword1">PinCode</label>
+                                <input type="tel" class="form-control" id="exampleInputPassword1" placeholder="pincode">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-top:20px;">Submit</button>
+                          </form>
+                    </div>
+                  </div>
+               </div>
             </div>
         
         
-        <script src="" async defer></script>
+        <script >
+
+var modal = document.getElementById("myModal");
+
+var btn = document.getElementById("myBtn");
+var btn1 = document.getElementById("myBtn1");
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+btn1.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
+        </script>
     </body>
 </html>
