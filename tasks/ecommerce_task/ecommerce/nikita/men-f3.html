@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+.column {
+  float: left;
+  width: 40%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+  margin-right: 30px;
+}
+.column1 {
+  float: left;
+  width: 55%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.centered img {
+  width:50%;
+  height:50%;
+}
+.mySlides {
+  display:none;
+  width:45vh;
+  height:55vh;
+}
+.rate{
+  background-color:black;
+  z-index: 100;
+}
+.checked {
+    color: orange;
+}
+.decription{
+  border: 1px solid black;
+  background-color: white;
+  padding:10px;
+  margin-left: 15px;
+}
+.middle {
+        margin-top:10px;
+        float: left;
+        width: 70%;
+    }
+
+    /* Place text to the right */
+    .right {
+        text-align: right;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    
+.experience{
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  padding:10px;
+} 
+.ex1{
+  background-color: pink;
+  border-radius: 5px;
+  width:24%;
+  height: 22%;
+  margin-right:10px;
+  padding: 20px;
+}
+#form {
+  width: 100%;
+  padding: 50px 0;
+  background-color: pink;
+  margin-top: 20px;
+  margin-left: 10px;
+  padding: 10px;
+  display:none;
+}
+.form2{
+  display: inline-flex;
+}
+.form-control{
+  margin-left:20px;
+}
+</style>
+</head>
+<body>
+  <div class="container" style="width:100%">
+    <div class="navbar" id="navbar" style="width:100%">
+    <ul id="nav">
+      <li><div class="logo">
+        <img src="logo21.png" width="80px" height="80px">
+    </div></li>
+    <div class="nav-contents" style="float:right">
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <div class="dropdown">
+          <a class="dropbtn" style="color:white">Product</a>
+          <div class="dropdown-content">
+             <a href="#clothes">Clothes</a>
+            <a href="#footwear">Footwear</a>
+            <a href="#elect">Electronics</a>
+            <a href="#mob">Mobile</a>
+          </div> 
+      </li>
+      <li>
+        <div class="search-container" style="margin-top:15px;">
+            <form action="/action_page.php" style="display:flex;height:auto">
+              <input style="height:auto;" type="text" placeholder="Search.." name="search">
+              <button type="submit" style="height:auto;width:auto"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </li>
+      <li class="list"><a href="signin.html">Signup/login</a></li>
+      <li class="list"><div class="cart">
+        <a href="#"><img src="cart.png" style="width:30px;height:30px;margin-right:25px;color:white"></a>
+    </div></li>
+  </div>
+    </ul>
+  </div>
+<div class="row">
+  
+    <div class="column1" style="height:40vh; margin-top: 50px">
+      <div class="centered" style="margin-left:20px;margin-bottom:20px">
+        <div class="w3-content w3-display-container" >
+          <img class="mySlides" src="men/formal/f3.jpg" style="width:30vh; height:50vh" >
+          <img class="mySlides" src="men/formal/f3a.jpg" style="width:30vh; height:50vh" >
+          <img class="mySlides" src="men/formal/f3b.jpg" style="width:30vh; height:50vh" >
+          <img class="mySlides" src="men/formal/f3.jpg" style="width:30vh; height:50vh" >
+          <img class="mySlides" src="men/formal/f3a.jpg" style="width:30vh; height:50vh" >
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)" style="margin-left:100px">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)"style="margin-left:100px">&#10095;</button>
+          </div>
+          
+      </div><br>
+    </div>
+
+<div class="column"style="height:50vh;margin-top: 50px; background-color:pink"id="des">
+  <div class="centered" style="background-color:white;color:black;text-align: left;height: 45vh;" >
+    <div class="description" style="margin-left:15px ;margin-top: 10px;">
+      <br>
+    <h2>Product Description</h2>
+    <p>Pratham Blue Women's Georgette Semi-stitched Lehenga Choli With Dupatta.<br></p>
+    <div class="rate" style="background-color:white ;">
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+    </div>
+    </div>
+    <h5 style="margin-left:15px ;">Rs.75000.00</h5>
+    <div class="size group" style="margin-left:15px ;">
+      <label for="exampleFormControlSelect1">Select Your Size</label>
+      <select class="form-control" id="exampleFormControlSelect1"style="height:35px;width:50px">
+        <option>XS</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+    </div><br>
+    <button type="button" class="cart" id="cart" style="background-color:crimson;color:white;text-align: center;height:35px;width:177px; margin-left: 10px;" onclick="alert('Added to Cart')">Add to Cart<i class="fa fa-shopping-cart"></i></button>
+    </div>
+  </div>
+</div>
+</div>
+<br>
+<div class="bottom" >
+<div class="reviews" style="color:black ;margin-top: 20px;">
+  <br>
+  <br>
+  <h2 style="margin-left: 10px;">User Reviews</h2>
+  <div class="rate" style="background-color:white ;margin-left: 10px">
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+  </div>
+  <button type="button" id="rev" onclick=show() style="width:200px;height:50px;background-color:crimson; color:white;margin-left: 10px;">Share your experience</button>
+
+  <div class="review">
+    <form>
+        <div id="form" style="display:none ;width:97%">
+            <h1>Share your experience...</h1>
+            <div class="form2">
+            <div class="form-group" >
+              <label for="exampleFormControlInput1">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" style="height:35px;width:500px">
+            </div><br>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Username</label>
+                <input type="text" class="form-control" id="exampleFormControlInput2" style="height:35px;width:500px">
+              </div><br>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Give your rating</label>
+              <select class="form-control" id="exampleFormControlSelect1"style="height:35px;width:50px">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div><br>
+          </div>
+        
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Tell us about your experience-</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="78" style="width:1175px"></textarea>
+            </div><br>
+            <button type="button" style="background-color:crimson ;text-align: center;height:35px;width:500px;margin-left:14px" onclick="alert('Thank You')" id="submit" onclick="this.form.style.display='none'">Submit</button>
+          </div>
+    </form>
+</div>
+<h2>Customer Experiences</h2>
+  <div class="experience">
+    <div class="ex1" id="ex1">
+      <h3><i class='fa fa-user-circle'></i> Natasha Singhania</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempora, minima veniam atque assumenda ipsum mollitia molestiae rerum pariatur ab dolores iure harum dicta illo incidunt blanditiis amet et consectetur.</p>
+    </div>
+    <div class="ex1" id="ex2">
+      <h3><i class='fa fa-user-circle'></i> Nia Kapoor</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempora, minima veniam atque assumenda ipsum mollitia molestiae rerum pariatur ab dolores iure harum dicta illo incidunt blanditiis amet et consectetur.</p>
+    </div>
+    <div class="ex1" id="ex3">
+      <h3><i class='fa fa-user-circle'></i> Imran Yaseen Khan</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempora, minima veniam atque assumenda ipsum mollitia molestiae rerum pariatur ab dolores iure harum dicta illo incidunt blanditiis amet et consectetur.</p>
+    </div>
+    <div class="ex1" id="ex4">
+      <h3><i class='fa fa-user-circle'></i> Bhavani Reddy</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempora, minima veniam atque assumenda ipsum mollitia molestiae rerum pariatur ab dolores iure harum dicta illo incidunt blanditiis amet et consectetur.</p>
+    </div>
+  </div>
+  <div class="theme" style="margin-left:10px ;">
+    <h5>Themes</h5>
+    <button type="button" onclick="myFunction()" style="height:20px;width:20px;background-color: lightblue;"> </button>
+    <button type="button" onclick="myFunction1()" style="height:20px;width:20px;background-color: pink;"></button>
+  </div>
+</div>
+</div>
+  </div>
+</body>
+  `<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+    
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+    
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      x[slideIndex-1].style.display = "block";  
+    }
+    function myFunction() {
+  document.getElementById("ex1").style.backgroundColor = "lightblue";
+  document.getElementById("ex2").style.backgroundColor = "lightblue";
+  document.getElementById("ex3").style.backgroundColor = "lightblue";
+  document.getElementById("ex4").style.backgroundColor = "lightblue";
+  document.getElementById("rev").style.backgroundColor = "darkblue";
+  document.getElementById("des").style.backgroundColor = "lightblue";
+  document.getElementById("cart").style.backgroundColor = "darkblue";
+  document.getElementById("form").style.backgroundColor = "lightblue";
+  document.getElementById("nav").style.backgroundColor = "lightblue";
+
+}
+function myFunction1() {
+  document.getElementById("ex1").style.backgroundColor = "pink";
+  document.getElementById("ex2").style.backgroundColor = "pink";
+  document.getElementById("ex3").style.backgroundColor = "pink";
+  document.getElementById("ex4").style.backgroundColor = "pink";
+  document.getElementById("rev").style.backgroundColor = "crimson";
+  document.getElementById("des").style.backgroundColor = "pink";
+  document.getElementById("cart").style.backgroundColor = "crimson";
+  document.getElementById("form").style.backgroundColor = "pink";
+  document.getElementById("nav").style.backgroundColor = "pink";
+
+}
+function show(){
+  var x = document.getElementById("form");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  };
+}
+
+  </script>
+</html> 
