@@ -185,7 +185,7 @@ h2{
 
   }
   .category{
-    margin-top: 20px;
+ 
     display:flex;
     justify-content: space-evenly;
     height: auto;
@@ -193,6 +193,7 @@ h2{
     align-items: center;
     width: 80%;
     margin:auto;
+    margin-top: 20px;
     } 
     /* background-color: rgb(206, 209, 205); */
 
