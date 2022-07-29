@@ -168,7 +168,7 @@
 }
 
 .order{
-  height:30vh;
+  height:32vh;
   /* width:90%; */
   display: flex;
   justify-content:left;
@@ -179,11 +179,11 @@
 }
 
 .spic{
-  width:30%;
-  height:28vh;
+  width:60%;
+  height:20vh;
   margin: 5px;
-  background-image:url('capgirl.jpg');
-  background-repeat:no-repeat;
+  /* background-image:url('capgirl.jpg'); */
+  /* background-repeat:no-repeat; */
 }
 .details{
   width:75%;
@@ -249,4 +249,19 @@
 
 .placeorder:hover{
   background-color: rgb(250, 123, 152);
+}
+
+.namebtn{
+    width:70px;
+    border-radius:10px;
+}
+
+.addnew{
+    height:10vh;
+    border: 1px dashed black;
+    margin-top: 10px;
+}
+
+a{
+    text-decoration: none;
 }
