@@ -48,7 +48,7 @@
         <div class="prod">
             <div class="pin">
                 <strong style="margin:25px;margin-left:10px;">Check delivery time and services</strong>
-                <button type="button" class="pinbtn">ENTER PIN CODE</button>
+                <button type="button" id="myBtn" class="pinbtn">ENTER PIN CODE</button>
             </div>
             <div class="conv">
                <img src="truck.png" style="height:40px;width:40px">
@@ -60,12 +60,14 @@
                     <h3 style="margin-top:20px;margin-left:10px">3/3 ITEMS SELECTED</h3>
             </div>
             <div class="select2">
-                <a href="#" style="width:25%;margin-top:20px;margin-left:15px;color: black;">REMOVE</a>
+                <a href="#" id="remove" style="width:25%;margin-top:20px;margin-left:15px;color: black;" onclick="removeit()">REMOVE</a>
                 <div style="height:40px;width:0.5px;border:1px solid black;margin-top:10px;margin-left:15px;background-color: black;"></div>
                 <a href="#" style="margin-top:20px;margin-left:15px;color: black;">MOVE TO WISHLIST</a>
         </div>
     </div>
-    <div class="items">
+    <div class="emptycart" id="emptycart">
+       </div>
+    <div class="items" id="itemsone" >
         <div class="order">
             <div class="spic">
                 <input type="checkbox" style="height:15px;width:15px;margin:auto;margin-left:10px;" id="select" name="select" value="selectall">
@@ -202,10 +204,10 @@
                     <strong style="margin-top:22px;margin-left:10px">Help India Fight For Covid-19</strong>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="donate">₹10</button>
-                    <button type="button" class="donate">₹50</button>
-                    <button type="button" class="donate">₹100</button>
-                    <button type="button" class="donate">other</button>
+                    <button type="button" id="btntip" class="donate" onclick="tip()">₹10</button>
+                    <button type="button" class="donate" onclick="tip()">₹50</button>
+                    <button type="button" class="donate" onclick="tip()">₹100</button>
+                    <!-- <button type="button" class="donate">other</button> -->
                 </div>
                 <div class="knowmore" style="margin-top:20px;"><a href="#" style="color:red;margin:10px;margin-top:20px;">Know More</a>
                 </div>
@@ -230,10 +232,78 @@
             </div>
         </div>
        </div>
+       <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <div class="addres">
+                <form>
+                    <div class="form-group form-check">
+                        <label for="exampleInputPassword1">PinCode</label>
+                        <input type="tel" class="form-control" id="exampleInputPassword1" style="height:20px" placeholder="pincode">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top:20px;">Submit</button>
+                  </form>
+            </div>
+          </div>
+       </div>
+      
     </div>
 
 
-        <script src="" async defer></script>
+    <script >
+
+        var modal = document.getElementById("myModal");
+        
+        var btn = document.getElementById("myBtn");
+        
+        var span1 = document.getElementById("close");
+        
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // btn1.onclick = function() {
+        //   modal.style.display = "block";
+        // }
+        
+        span1.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        } 
+
+        // Add and Remove functionality
+        // var items = {
+        //     'footwear':{
+        //         'mens':{
+        //             'casual'
+        //         }
+        //     }
+        // }
+
+        // var removes = document.getElementById("remove");
+        // removes.onclick = function(){
+            //     item.style.display = "none"
+            // }
+            function removeit(){
+                // console.log("hello");
+                let item = document.getElementById("itemsone");
+                let emptyCart = document.getElementById("emptycart")
+                item.style.display = "none";
+                emptyCart.style.display = "block";
+        }
+        function tip(){
+            let val=[]
+            let btntip = document.getElementById("btntip")
+            val.push(btntip.innerText)
+            console.log(val)
+        }
+        
+                </script>
 </body>
 
 </html>
