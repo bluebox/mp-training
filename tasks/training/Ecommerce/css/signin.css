@@ -1,0 +1,85 @@
+body  
+{  
+    margin: 0;  
+    padding: 0;  
+    background-color:#CCD1E4;  
+    font-family: 'Arial';  
+}  
+.signin{  
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 45%;  
+        height: 70%;
+        overflow: hidden;  
+        margin: auto;  
+        margin: 20 30 30 450px;  
+        padding: 100px;  
+        background: white; 
+        border: 2px solid rgb(206, 198, 198); 
+        border-radius: 15px ;  
+          
+}  
+h2{  
+    font-size: 30px;
+    text-align: center;  
+    color: white;  
+    padding: 20px; 
+    margin:20px; 
+}  
+label{  
+    color: gray;  
+    font-size: 17px;  
+}  
+#Uname{  
+    width: 300px;  
+    height: 30px;  
+    border: 2px solid black;  
+    border-radius: 10px;  
+    padding-left: 8px;  
+}  
+
+#Email,#Num, #add
+{
+   
+        width: 300px;  
+        height: 30px;  
+        border: 2px solid black;  
+        border-radius: 10px;  
+        padding-left: 8px;  
+   
+}
+#Pass{  
+    width: 300px;  
+    height: 30px;  
+    border:2px solid black ;  
+    border-radius: 10px; 
+    padding-left: 8px;  
+      
+}  
+#log{ 
+    background-color: #D75281; 
+    width: 300px;  
+    height: 30px;  
+    border: 2px solid rgb(222, 211, 211);  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color:white;  
+  
+  
+}  
+span{  
+    color: gray;  
+    font-size: 17px;  
+}  
+a{  
+    /* float: right;   */
+    /* background-color: grey;   */
+}  
+
+input{
+    margin:10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}

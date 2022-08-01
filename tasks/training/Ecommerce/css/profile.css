@@ -1,0 +1,115 @@
+body{
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-simple-trend-clothing-store-background-home-image_148028.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container{
+    margin:auto;
+    background-image: url("");
+    width:60%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color:rgb(247, 218, 223);
+}
+nav{
+    height: 80px;
+}
+li{
+    /* padding-bottom: 10px; */
+    height: 80px;
+}
+.top{
+    width: 100%;
+    height: 40%;
+
+}
+.middle{
+    width: 100%;
+    /* height: 60%; */
+}
+.bottom{
+    width: 30%;
+    height: 5%;
+    margin: auto;
+    background-color: rgb(92, 30, 30);
+    border-radius: 50px;
+    /* background-color: rgba(255, 192, 203, 0.418); */
+}
+.name{
+    font-size: 230%;
+    color:rgb(5, 58, 102);
+    height: 20%;
+    text-align: center;
+}
+.details{
+    /* font-size: 150%; */
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.photo{
+    width: 45%;
+    height: 100%;
+    /* background-color:rgba(255, 192, 203, 0.377); */
+    align-items: center;
+    /* background-color: black; */
+}
+.main_details{
+    width: 55%;
+    height: 100%;
+    /* background-color: rgba(255, 192, 203, 0.363); */
+    font-size: 170%;
+    color: rgb(1, 1, 22);
+}
+.structure{
+    padding: 2px;
+    margin: 50px;
+}
+#p1{
+    border-radius: 50%;
+    height: 90%;
+    margin-left: 40px;
+    margin-top: 3%;
+}
+.menu{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    list-style-type:None;
+    /* background-color:rgba(255, 192, 203, 0.336); */
+    height: 100%;
+   
+}
+.logout{
+    font-size: 200%;
+    text-align: center;
+    color:white;
+}
+
+li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    padding: 12px;
+    font-size: 150%;
+    list-style-type:None;
+    margin:7px;
+    font-family: Impact,  'Arial Narrow Bold', sans-serif;
+    
+    
+    
+}
+li:hover{
+    border-bottom: 3px solid grey;
+    /* border-color: green; */
+    color:navy;
+    
+}
+.bottom:hover{
+    border: 2px solid black;
+    background-color:steelblue;
+   
+    
+}
