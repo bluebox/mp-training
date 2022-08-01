@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oneplus</title>
+    <link rel="stylesheet" href="../styles/footer.css">
+    <!-- <link rel="stylesheet" href="../../../styles/productspage.css"> -->
+    <link rel="stylesheet" href="../styles/categorypage/elect.css">
+    <link rel="stylesheet" href="../styles/categorypage/efile.css">
+</head>
+<body>
+      <!-- SLIDER -->
+      <div id="header"></div>
+      <script>
+          load("../../navbar/navbar2.html");
+          function load(url) {
+              req = new XMLHttpRequest();
+              req.open("GET", url, false);
+              req.send(null);
+              document.getElementById("header").innerHTML = req.responseText;
+          }
+      </script>
+    <div class="one_plus_page">
+        <div class="sideInfo">
+            <div class="delivery">
+                <h5 id="h4">Delivery by</h5>
+                
+                <p><a  id="links" href="">Get it 2 Days</a></p>
+                <p><a  id="links" href="">Get it Today</a></p>
+                </div><br>
+            <div class="customer_review">
+                <h5>Customer review</h5>
+                <img src="ratingImages/cust_review.png" alt="">
+            </div>
+            <div class="brands">
+                <h4 id="h4">Brands</h4>
+                <a id="links"  href=""> <h5>Oneplus</h5> </a>
+                <a id="links"  href=""><h5>Vivo </h5></a>
+                <a id="links"  href=""><h5>Oppo</h5></a>
+                <a id="links"  href=""><h5>Apple</h5></a>
+                <a id="links"  href=""><h5>Samsung</h5></a>
+    
+            </div>
+            <br>
+            <div class="categories">
+                <h4 id="h4">Categories</h4>
+                <a id="links"  href=""> <h5>Mobiles</h5> </a>
+                <a id="links"  href=""><h5>Electronics</h5></a>
+                <a id="links"  href=""><h5>Fashion</h5></a>
+                <a id="links"  href=""><h5>Footwear</h5></a>
+                <a id="links"  href=""><h5>Samsung</h5></a>
+    
+            </div>
+    
+        </div>
+        <div class="electronicscategory">
+            <div id="eleccom1" onclick="divredirect(1)">
+          
+            </div>
+            <div id="eleccom2" onclick="divredirect(2)">
+          
+            </div>
+            <div id="eleccom3" onclick="divredirect(3)">
+        
+            </div>
+            <div id="eleccom4" onclick="divredirect(4)">
+        
+            </div>  
+            </div>
+              </div>       <!-- footer -->
+         <div id="footer"></div>
+         <script>
+             load("../../../footer/footer.html");
+             function load(url) {
+                 req = new XMLHttpRequest();
+                 req.open("GET", url, false);
+                 req.send(null);
+                 document.getElementById("footer").innerHTML = req.responseText;
+             }
+         </script>
+         </body>
+         <script>
+            function divredirect(a){
+                if (a==1){
+                    window.location.href = "/listingpage/electronics/Wahingmachine.html";
+                }
+                else if (a==2){
+                    window.location.href = "/listingpage/electronics/earphones.html";
+                }
+                else if (a==3){
+                    window.location.href = "/listingpage/electronics/laptops.html";
+                }
+                else if (a==4){
+                    // window.location.href = "http://www.facebook.com";
+                }
+            }
+        </script>
+         </html>

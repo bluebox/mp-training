@@ -1,0 +1,215 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.fold1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+
+}
+
+#rollover {
+    opacity: 60%;
+    font-size: 0.8rem;
+    padding-bottom: 0.5rem;
+}
+
+.productimg {
+    padding: 0rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+
+}
+
+.productimg img {
+    height: 60vh;
+    width: 40vw;
+
+}
+
+.hoverimage {
+    display: flex;
+}
+
+.hoverboxs {
+    height: 13vh;
+    width: 10vw;
+    border: 1px solid black;
+    background-size: 100% 100%;
+    margin-right: 0.8rem;
+}
+
+#box1 {
+    background-image: url("../product page/images/main.jpg");
+}
+
+#box2 {
+    background-image: url("../product page/images/head2.jpg");
+}
+
+#box3 {
+    background-image: url("../product page/images/head3.jpg");
+}
+
+#visit {
+    padding-top: 0.1rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: rgb(28, 111, 179);
+}
+
+.productdetails {
+    margin-left: 2rem;
+    width: 35%;
+}
+
+.productdetails h1 {
+    font-size: 1.4rem;
+    text-align: justify;
+}
+
+.buydesc {
+    width: 30%;
+}
+
+.detailsf2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detailsf2 p {
+    font-size: 0.7rem;
+    color: rgb(28, 111, 179);
+}
+
+.detailsf3 {
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    padding-top: 0.2rem;
+}
+
+.detailsf3 p:nth-child(1) {
+    font-size: 0.9rem;
+    color: white;
+    width: 22%;
+    padding: 0.3rem;
+    border-radius: 1rem 1rem 1rem 0rem;
+    background-color: black;
+}
+
+.detailsf3 p:nth-child(2) {
+    padding-left: 0.4rem;
+    font-size: 0.8rem;
+}
+
+#blue {
+    color: rgb(28, 111, 179);
+}
+
+.detailsf4 {
+    display: flex;
+    padding-top: 0.2rem;
+    padding-bottom: 0.3rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.detailsf4 p:nth-child(1) {
+    color: red;
+    font-size: 1.1rem;
+}
+
+.detailsf4 p:nth-child(2) {
+    font-size: 1.3rem;
+    padding-left: 0.2rem;
+    font-weight: 500;
+
+}
+
+.detailsf5 p {
+    font-size: 0.8rem;
+    opacity: 90%;
+}
+
+.detailsf6 p {
+    font-size: 0.8rem;
+}
+
+#red {
+    font-weight: 400;
+    color: rgba(138, 14, 14, 0.856);
+}
+
+.saveextra {
+    padding-top: 0.5rem;
+
+}
+
+.saveextra p {
+    padding: 0.4rem;
+    border: 0.4px solid black;
+}
+
+#seemore{
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: rgb(28, 111, 179);
+    font-weight: 700;
+}
+
+
+.buydesc{
+    width: 13%;
+    margin-left: 2rem;
+    border: 0.1px solid black;
+    padding: 1rem;
+}
+.buydesc p:nth-child(2){
+    font-size: 0.7rem;
+}
+.buydesc p:nth-child(3){
+    font-size: 0.7rem;
+}
+#date{
+    font-weight: 900;
+}
+.buydesc p:nth-child(5){
+    font-size: 0.8rem;
+}
+.buydesc p:nth-child(6){
+    padding-top: 1rem;
+    padding-bottom: 0.3rem;
+}
+
+.btn{
+    display: flex;
+    flex-direction: column;
+    
+}
+.btn button{
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 0.3rem;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    font-size: 0.7rem;
+}
+.btn button:nth-child(1){
+    margin-top: 0.5rem;
+    background-color: rgb(231, 217, 24);
+}
+.btn button:nth-child(2){
+    background-color: orange;
+}
+
+
+
