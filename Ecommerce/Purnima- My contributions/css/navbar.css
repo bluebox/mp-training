@@ -1,0 +1,373 @@
+*{
+    padding:0;
+    margin: 0;
+    
+}
+#main
+{
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+}
+
+
+
+
+
+
+.btn{
+    display: flex;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-bottom:1%;
+    flex-wrap: wrap;
+   
+    
+}
+.b_nav{
+    width:85px;
+    height: 34px;
+    margin-left:10px;
+    border: none;
+    border-radius: 10%;
+    background-color: #D75281;
+    color: white;
+    font-size: large;
+
+}
+.b_nav:hover{
+    
+    font-weight: bold;
+    border-radius: 13%;
+    background-color:rgb(255, 107, 132);
+    font-size: larger;
+}
+
+#search
+{
+    border: 2.3px solid rgb(187, 180, 180);
+    border-radius: 15px;
+    padding: 10px;
+    
+}
+
+#back
+{
+    background-image: url("/images/wall3.webp");
+    height: 86.5%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tag1
+{
+    position: absolute;
+    left: 190px;
+    top: 300px;
+    font-family: 'Dancing Script', cursive;
+    color:rgb(6, 6, 6);
+    font-size: 50px;;
+}
+
+.tag3
+{
+    position: absolute;
+    left: 190px;
+    top: 390px;
+    font-family: 'Dancing Script', cursive;
+    color:rgb(6, 6, 6);
+    font-size: 50px;;
+}
+
+#hicon
+{
+    color: white;
+}
+
+
+/* @keyframes example {
+    0%   {color:red; left:50px; top:50px;}
+    25%  {color:yellow; left:500px; top:50px;}
+    50%  {color:blue; left:500px; top:500px;}
+    75%  {color:green; left:50px; top:500px;}
+    100% {color:red; left:50px; top:50px;}
+  }
+  
+
+  .tag1, .tag3 {
+    position: relative;
+    animation-name: example;
+    animation-duration: 13s;
+    animation-iteration-count: infinite;
+  }  */
+
+  .pro
+  {
+    height: 400px;
+  }
+  .head
+  {
+    font-size: 60px;
+    text-align: center;
+    margin: 30px;
+  }
+
+  .blocks
+  {
+    height: 140px;
+    width: 140px;
+    background-color: darkgoldenrod;
+    border-radius: 100%;
+  }
+
+  .options
+  {
+    margin-bottom: 200px;
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .blocks
+  {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    /* background-image: url('/images/Mobiles/Samsung/Samsung Galaxy A53/Variant-1/Samsung Galaxy A53-128-6gb.webp');
+    background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* background-size: 120px 120px; */
+  }
+
+  #c1
+  {
+    border-radius: 100%;
+  }
+
+.offers1
+{
+    height: 300px;
+
+    overflow: auto;
+  white-space: nowrap;
+}
+
+.o1
+{
+    height: 280px;
+    width: 700px;
+    background-color: aqua;
+    /* border: 3px solid black; */
+
+    display: inline-block;
+  
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+#o11
+{
+    background-image: url('/images/o1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#o22
+{
+    width: 280px;
+    background-image: url('/images/o12.png');
+    background-size: 280px 340px;
+    background-repeat: no-repeat;
+}
+  
+#o33
+{
+    width:800px;
+    background-image: url('/images/o33.png');
+    background-size: 800px 340px;
+    background-repeat: no-repeat;
+}
+
+
+#o44
+{
+    width:800px;
+    background-image: url('/images/o44.png');
+    background-size: 800px 280px;
+    background-repeat: no-repeat;
+}
+
+#o55
+{
+    width:800px;
+    background-image: url('/images/o55.png');
+    background-size: 800px 280px;
+    background-repeat: no-repeat;
+}
+/* footer */
+
+.footer {
+    background-color: #414141;
+    width: 100%;
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 50px;
+    margin-top: 50px;
+  }
+  
+  .footer .footer-left,
+  .footer .footer-center,
+  .footer .footer-right {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  
+  /* footer left*/
+  
+  .footer .footer-left {
+    width: 33%;
+    padding-right: 15px;
+  }
+  
+  .footer .about {
+    line-height: 20px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+  }
+  
+  .footer .about span {
+    display: block;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .footer .icons {
+    margin-top: 25px;
+  }
+  
+  .footer .icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+  }
+  
+  
+  /* footer center*/
+  
+  .footer .footer-center {
+    width: 30%;
+  }
+  
+  .footer .footer-center i {
+    background-color: #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+  }
+  
+  .footer .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+  }
+  
+  .footer .footer-center p {
+    display: inline-block;
+    color: #ffffff;
+    vertical-align: middle;
+    margin: 0;
+  }
+  
+  .footer .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+  }
+  
+  .footer .footer-center p a {
+    color: #0099ff;
+    text-decoration: none;
+  }
+  
+  
+  /* footer right*/
+  
+  .footer .footer-right {
+    width: 35%;
+  }
+  
+  .footer h2 {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0;
+  }
+  
+  .footer h2 span {
+    color: #0099ff;
+  }
+  
+  .footer .menu {
+    color: #ffffff;
+    margin: 20px 0 12px;
+    padding: 0;
+  }
+  
+  .footer .menu a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .footer .menu a:hover {
+    color: #0099ff;
+  }
+  
+  .footer .name {
+    color: #0099ff;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+  }
+  
+  /* @media (max-width: 767px) {
+    .footer {
+      font-size: 14px;
+    }
+    .footer .footer-left,
+    .footer .footer-center,
+    .footer .footer-right {
+      display: block;
+      width: 100%;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .footer .footer-center i {
+      margin-left: 0;
+    }
+  } */

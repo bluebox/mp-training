@@ -1,0 +1,152 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+
+
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	background-color: #CCD1E4;
+overflow:scroll;
+}
+
+.content {
+	width: 500px;
+	height: 500px;
+	border: 1px solid black;
+	margin: auto;
+	margin-top: 50px;
+	background-color: white;
+	color: black;
+	position: relative;
+	box-shadow: 0px 0px 15px 3px black;
+
+}
+
+
+.content h1 {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: gray;
+}
+
+.content h1::before {
+	content: '';
+	width: 100px;
+	height: 5px;
+	top: 60px;
+	left: 40%;
+	position: absolute;
+	background-color: #D75281;
+
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.inputbx {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+span {
+	margin-bottom: 10px;
+	color: gray;
+	font-weight: 600;
+}
+
+
+.inputbx input {
+	width: 100%;
+	padding: 7px;
+	outline: none;
+	border-radius: 3px;
+
+}
+
+.submitbox {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.submitbox input {
+	width: 45%;
+	padding: 9px;
+	margin-top: 20px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border-radius: 2px;
+	font-weight: 600;
+	border: none;
+
+
+
+}
+
+.submitbox input:hover {
+	background-color: #D75281;
+	cursor: pointer;
+
+}
+
+.socialMedia ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.socialMedia ul li {
+	margin: 9px;
+	list-style-type: none;
+	padding: 9px
+}
+
+h4 {
+	text-align: center;
+	margin-top: 50px;
+	color: gray;
+}
+
+hr {
+	margin-top: px;
+	border: 1px solid #D75281;
+}
+
+#noacc
+{
+    margin: 40px;
+    text-decoration: none;
+  
+}
+.bi-instagram{
+	color: #D75281;
+	font-size: 25px;
+}
+
+.bi-facebook {
+	color: blue;
+	font-size: 25px;
+}
+
+.bi-youtube {
+	color: red;
+	font-size: 25px;
+}
+.bi-twitter{
+	color: deepskyblue;
+	font-size: 25px;
+}
