@@ -1,0 +1,39 @@
+{
+"1":{
+    "name":"puma",
+    "price":"2000",
+    "rating":"5"
+},
+"2":{
+    "name":"nike",
+    "price":"3000",
+    "rating":"5"
+},
+"3":{
+    "name":"adidas",
+    "price":"2500",
+    "rating":"5"
+},
+"4":{
+    "name":"crocs",
+    "price":"2000",
+    "rating":"5"
+},
+"5":{
+    "name":"highlander",
+    "price":"1400",
+    "rating":"5"
+},
+"6":{
+    "name":"wrogn",
+    "price":"2200",
+    "rating":"5"
+},
+"7":{
+    "name":"hrx",
+    "price":"2500",
+    "rating":"5"
+}
+
+
+}

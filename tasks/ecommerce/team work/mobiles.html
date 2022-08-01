@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ecommerce</title>
+    <link rel="stylesheet" href="mobiles.css">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="maindiv">
+        <div class="navbar">
+            <div class="search_div">
+                <div class="space">
+                    <img src="images/mobiles/logo.png" alt="SST" class="logo" height="70px" width="75px">
+                </div>
+                <div class="space2">
+                    <input type="text" placeholder="search for products" class="search">
+                    <button class="btn">search</button>
+                </div>
+                <div class="space3">
+                    <a class="space31" href="#">my account</a>
+                    <svg class="space31" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                        class="bi bi-cart3" viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+
+                </div>
+
+                <!-- <i class="bi bi-cart3"></i> -->
+
+            </div>
+            <div class="menu">
+                <ul class="menu_list">
+                    <li> <a href="index.html">HOME</a></li>
+                    <li> <a href="">BLOG</a></li>
+                    <li> <a href="">SHOP</a></li>
+                    <li> <a href="">ABOUT US</a></li>
+                    <li> <a href="">CONTACT US</a></li>
+                </ul>
+
+
+            </div>
+
+        </div>
+        <!-- <div class="adv">
+            <marquee behavior="" direction="" Scrollamount=10 height="100%">
+
+                <img src="./images/mobiles/11.png" alt="no ads.." style="object-fit: cover;">
+            </marquee>
+
+        </div> -->
+
+        <div class="adv">
+            <button class="sidebtn" onclick="prev()">
+                <p style="font-size: 50px">&#8249;</p>
+            </button>
+            <img class="advlogo" src="images/mobiles/1.png" style="width:90%;height:500px;" alt="no ads..">
+            <button class="sidebtn" onclick="next()">
+                <p style="font-size: 50px">&#8250;</p>
+            </button>
+        </div>
+
+        <div class="main_content">
+            <div class="content left">
+                <div class="filter">filter products</div>
+                <div class="filter">
+                    <p class="heading">SORT PRODUCTS</p>
+                    <div class="sort sortbyname">
+                        <p class="sortbyname_name">SORT BY NAME</p>
+                        <input type="radio" id="name" name="radio" class="sortradio sortbyname_radio">
+                        <label for="radio">name</label>
+                    </div>
+                    <div class="sort sortbyprice">
+                        <p class="sortbyprice_name">SORT BY PRICE</p>
+                        <input type="radio" name="price" name="radio" id="price" value="low" class="sortradio sortbyprice_LTH">
+                        <label for="radio">low to high</label>
+                        <input type="radio" name="price" name="radio" id="price" value="high" class="sortradio sortbyprice_HTL">
+                        <label for="radio">high to low</label>
+                    </div>
+                    <div class="sort sortbyrating">
+                        <p class="sortbyrating_name">SORT BY RATING</p>
+                        <input type="radio" name="rating" name="radio" id="rating" value="low" class="sortradio sortbyrating_LTH">
+                        <label for="radio">low to high</label>
+                        <input type="radio" name="rating" name="radio" id="rating" value="high" class="sortradio sortbyrating_HTL">
+                        <label for="radio">high to low</label>
+                    </div>
+                    <button class="btn clear" onclick="clearfilter()">
+                        clear
+                    </button>
+                    <button class="btn apply" onclick="filterapply()">
+                        apply
+                    </button>
+                </div>
+            </div>
+            <div class="content middle">
+                <!-- <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="cardimg" src="images/mobiles/apple-iphone-11-1.jpg" alt="">
+                    <div class="name">apple iphone 11</div>
+                    <div class="priceandrating">
+                        <p class="price">700$</p>
+                        <p>4 stars</p>
+                    </div>
+                </div> -->
+            </div>
+            <div class="content right">right</div>
+        </div>
+        <footer class="footer">
+            <div class="pages">
+                <button class="btn prev" onclick="prev()">
+                    prev
+                </button>
+                <p class="number">1</p>
+                <button class="btn next" onclick="next()">
+                    next
+                </button>
+            </div>
+            <p>&copy; copyright act all right reserved</p>
+            <img src="images/mobiles/logo.png" alt="SST" class="logo" width="75px">
+
+
+        </footer>
+    </div>
+
+    <script src="./mobile.js"></script>
+
+</body>
+
+</html>
