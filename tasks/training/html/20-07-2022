@@ -1,0 +1,113 @@
+1.) What is the advantage of grouping several checkboxes together?
+A: Although checkboxes don’t affect one another, grouping checkboxes together help to organize them. Checkbox buttons can have their name and do not need to belong to a group. A single web page can have many different groups of checkboxes.
+
+2.) What will happen if you overlap sets of tags?
+A:Although checkboxes don’t affect one another, grouping checkboxes together help to organize them. Checkbox buttons can have their name and do not need to belong to a group. A single web page can have many different groups of checkboxes
+
+3.) What are applets?
+A:An applet is a Java program that runs in a Web browser. An applet can be a fully functional Java application because it has the entire Java API at its disposal.
+
+4.) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+A: If there is no text between the tags, then there is nothing to format. Therefore no formatting will appear.
+
+5.) Is it possible to set specific colors for table borders?
+A:You can specify a border color using style sheets, but the colors for a table that does not use style sheets will be the same as the text color.
+
+6.) How do you create a link that will connect to another web page when clicked?
+A:To create hyperlinks, or links that connect to another web page, use the href tag. The general format for this is: text Replace “site” with the actual page URL that is supposed to be linked to when the text is clicked.
+
+7.) What other ways can be used to align images and wrap text?
+A:Tables can be used to position text and images. Another useful way to wrap text around an image is to use style sheets
+
+8.) Can a single text link point to two different web pages?
+A:No, A single text link cannot point to two different web pages because <a> tag can accept only single href attribute.
+
+9.) What is the difference between the directory and menu lists and the unordered list?
+A:Directory lists:It has been deprecated in HTML5 i.e. the latest version of HTML.They do not support any attributes for the styling of bullets.The attributes of these lists are not supported by any of the browsers.
+ 
+Menu lists:It is supported by HTML 5.They do not support any attributes for the styling of bullets.The attributes of these lists are not supported by any of the browsers.
+
+Unordered list:It is actively supported by HTML 5.Bullets in an unordered list can be styled using the list-style-type attribute.The attributes of the unordered list are supported by all the renowned browsers available in the market.
+
+10.) Can you change the color of bullets?
+A:Click a bullet or number in a list. All the bullets or numbers in the list are selected. On the Home tab, in the Font group, make the changes that you want. For example, click the arrow next to Font Color, and then click the color that you want.
+
+11.) What are the limits of the text field size?
+A:The Text field is one of the most generic and common data entry fields used to capture text type data—letters, numbers, and symbols. Text fields hold up to 255 characters in a single line. You can restrict the number of characters entered by specifying a maximum field size.
+
+12.) Do <th> tags always need to come at the start of a row or column?
+ A:Tags always need to come at the start of a row or column because tags are mainly used for headings. and Headings always comes at the start.
+ 
+13. What is the relationship between the border and rule attributes?
+A. Default cell borders, with a thickness of 1 pixel, are automatically added between cells if the border attribute is set to a nonzero value.
+Similarly, If the border attribute is not included, a default 1-pixel border appears when the rules attribute is added to the <table> tag.
+
+14. What is a marquee?
+A. The HTML <marquee> tag is used for scrolling piece of text or image displayed either horizontally across or vertically down your web site page depending on the settings.
+
+15. How do you create text on a webpage that will allow you to send an email when clicked?
+A. <a href=”mailto:youremailaddress”>text to be clicked</a> create text on a webpage that will allow you to send an email when clicked.
+
+16. Are <br> tags the only way to separate sections of text?
+A. No. The <br> tags are not the only one way to separate lines of text. Other tags, like the <p> tag and <blockquote> tag, also separate sections of text.
+
+17. Are there instances where the text will appear outside of the browser?
+A. By default, the text is wrapped to appear within the browser window. However, if the text is part of a table cell with a defined width, the text could extend beyond the browser window.
+
+18. How are active links different from normal links?
+A. Normal links are links which are there on the page and have not been clicked yet. Active links are those links, which have just been clicked at that instant.
+
+19. Do style sheets limit the number of new style definitions that can be included within the brackets?
+A. Style sheets do not limit the number of style definitions that can be included within the brackets for a given selector.
+
+20. Can I specify fractional weight values such as 670 or 973 for font weight?
+A. Yes you can, but CSS will round off to the nearest actual weight.
+
+21. What is the hierarchy that is being followed when it comes to style sheets?
+A. Inline styling takes first precedence followed by internal and external.
+
+22. Can several selectors with class names be grouped together?
+A. Yes, you can group several selectors with class names.
+
+23. What happens if you open the external CSS file in a browser?
+A. It will just open and display the contents of the css file as it is.
+
+24. How do you make a picture into a background image of a web page?
+A. To set the background image of a webpage, use the CSS style. Under the CSS <style> tag, add the property background-image.
+
+25.) What happens if the list-style-type property is used on a non-list element like a paragraph?
+ans:property will be ignored and do not affect the paragraph.
+
+26.) When is it appropriate to use frames?
+ans:Frames can make navigating a site much easier
+
+27.) What happens if the number of values in the rows or cols attribute doesn’t add up to 100 percent?
+ans:The browser sizes the frames relative to the total sum of the values. If the cols attribute is set to 100%, 200% the browser displays two vertical frames with the second being twice as big as the first.
+
+28.) Which browsers support HTML5?
+ans:(Chrome, Firefox, Safari, IE9, and Opera) 
+
+29.) Name two new tags included in the HTML 5
+ans:-<article> ,<audio>,<aside>
+
+30.) Do you know which are two semantic tags are included in HTML5 version?
+ans:-<header> , <footer>
+
+31.) What is <figure> in HTML5?
+ans:- The <figure> tag specifies self-contained content, like illustrations, diagrams, photos, code listings, etc. 
+
+32.) What is the use of Canvas element?
+ans:-The HTML <canvas> element is used to draw graphics, on the fly, via JavaScript.
+
+33.) What are the new FORM elements which are available in HTML5?
+ans:-datalist , output , keygen , progress , and meter
+
+34.) Tell me two benefits of HTML5 Web Storage
+ans:It can store 5 to 10 MB data. That is far more than cookies.
+Web storage data never transferred with an HTTP request, so it increases the performance of the application.
+
+35.) What are two types of Web Storage in HTML5?
+ans:-The two storages are session storage and local storage 
+
+36.) What is the Application Cache in HTML5 and why it is used?
+ans:- The current version of HTML5 introduces application cache, which means that a web application is cached, and accessible without an internet connection. Now we can make an offline web application that will run without an internet connection by just creating a manifest file in our application.
