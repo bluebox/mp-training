@@ -285,59 +285,10 @@ using <p> tag
 
 
 
+-----------------------------------------------------------------------------------
 
 
 
-
-
-
-------------------------------------
-
-
-difference between & and &#?
-
-ans:-
-
-2) lorem
-3)mention specific number after lorem to get that many number of words lorem20 
-
-3)   TYPES OF LISTS IN  HTML?
-    1)UNORDERED LIST :-the list items are no particular order
-    2) ORDERED LIST :-the list items are in particular order
-    3)description list :-
-    this list are used to display value pairs
-
-
-
-4)nested lists
-    <ol>
-    <li>first types
-        <ol>
-            <li>1-first</li>
-            <li>1-second</li>
-            <li>1-third</li>
-            <li>1-fourth</li>
-        </ol>
-    </li>
-    <li>second types
-        <ol>
-            <li>2-first</li>
-            <li>2-second</li>
-            <li>2-third</li>
-            <li>2-fourth</li>
-        </ol>
-    </li>
-    <li>third types
-        <ol>
-            <li>3-first</li>
-            <li>3-second</li>
-            <li>3-third</li>
-            <li>3-fourth</li>
-        </ol>
-    </li>
-</ol>
-
----------------------------------------
 
 
 
@@ -407,5 +358,9 @@ A.
     </ul>
     <p>
 </body>
+<<<<<<< HEAD
 
 
+=======
+---------------------------------------------------
+>>>>>>> 587a97f67d7f9353345d63517c502ceb63f7941a
