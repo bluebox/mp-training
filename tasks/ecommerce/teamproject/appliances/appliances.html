@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+         
+
+<nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+        <div class="navbar-nav topnav ml-auto">
+            <a class="active" href="#home">Home</a>
+            <a href="#news">Categorie</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="#about" class="split">Logout</a>
+            <a href="#about" class="split">Cart</a>
+        </div>
+    </div>
+</nav>
+        
+        <div class="container-fluid" id = "home-page">
+            <div class="row">
+                
+                <div class="col-12">
+                    <div class="bg-container">
+                        <h1 class="heading">
+                            Home appliances
+                        </h1>
+                        <button class="button-style" id = "explore-more">Explore More</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <div class="empty"></div>
+
+        <div class="container-fluid items-section d-none" id = "item-section">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 mt-3" id = "refrigerator-container">
+                    <div class="air-conditioners shadow-lg">
+                        <img src="https://www.pngall.com/wp-content/uploads/5/Fridge.png" class="w-100 ">
+                        <h1 style="text-align:center; color: black; font-weight: bold;">Refrigirator</h1>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3" id = "television-container">
+                    <div class="air-conditioners shadow-lg">
+                        <img src="https://www.sony.co.in/image/bfcabb1f4a9cfcc3b9cf77e1cd847438?fmt=png-alpha&wid=456" class="w-100">
+                        <img src="https://s3.ap-southeast-1.amazonaws.com/images.asianage.com/images/aa-Cover-7um435jtsevd068qhvgfg6t732-20181026150148.jpeg" class="w-100 image">
+                        <h1 style="text-align:center; color: black; font-weight: bold;margin-top: 20px;">Televisions</h1>
+                        
+                    </div>
+
+                </div>
+
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3" id = "AC-Container">
+                    <div class="air-conditioners shadow-lg">
+                        <img src="https://www.pngmart.com/files/21/AC-PNG-HD.png" class="w-100">
+                        <img src="https://rukminim1.flixcart.com/image/416/416/k6zda4w0/sticker/m/t/b/ac-sticker-wall-sticker-split-ac-stickers-air-conditioner-original-imafpbknav6y8xmt.jpeg?q=70" class="w-100 image">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBIRERARDxUSEREPDw8PDw8PEhIPDw8PGBQZGRgUGBgcIS4lHB44HxgYJjgmKy8xNTU2GiQ7QDs0Py40ODQBDAwMDw8PEA8PETEdGB0xMTExMTE/MTExMTExMTExMTExMTExMTExMTExMTExMTExNDExMTExMTExMTExMTExMf/AABEIAIMBgAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAQUCBgcEA//EAEsQAAECAgQLBQMICAQHAQAAAAABAgMRBAUhUgYSExQWUVRhkZLRFTFBk6FTcZQHIlWBosHC0iMyQpWx4eLwRGOjshckJTRicoQ1/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDsL3yPDSKUiGVMiyRSkgRcpSYbFtRXK5U8FRrVdbwA9b6eu/gp81rFdTuCmxCYGu56+6/lcM9fdfyuNiIA17PX3X8rhnz7r+VxsImBr2evuv5XDPX3X8rjYQBr2evuv5XDPX3X8rjYJiYGv56+6/lcM9fdfyuNgmJga/nr7r+Vwz591/K42EAa9nzrr+Vwz5113KpsJjMCgz9113Koz9113KpfiYFBn7rruVRn7rruVS/mRMChz9113Koz92p3KpezEwKLP3ancFGfu1O4KXsxMCiz9dTuCjP11O4KXsxMCiz9dTuCjP11O4KXsxMCiz9dTuCjP11O4KXsxMCiz9dTuCjP11O4KXsxMCiz9dTuCjP11O4KXswBRZ+up3BRn66ncFL2YmBRZ+up3BRn66ncFL2YmBRZ+up3BSO0F1LwUvpgCg7S95kysp9019yKXoAqoVP1+pYQKRMwpzMaG9PFGOVs/ByJNFKSq6ZjIgG0tdMyPPR3zQ9AFFWkSSKVGDU30t7vBkF6z1Oc5qJ6TPbW77FPPgaxVfSX61hsRbUlLGVff3tA2wGNu4WlGRBjaLd3AgyBjbuFu7gBkDG3dwFu7h/MDIGFu7h/Mma7uH8wMjEi3dw/mLd3ACQRbu4C3dwAkGM1/tBNd3ADIGM13cCbd3AAoUi3+0Fu7gAAt/tBbu4AALd3AWgALf7Qi3+0AkEW/wBoLd3ACQRbu4C3dwAkEW7uAmu7gBIImu7gJru4ASCJru4C3dwAkEW7hNdwEgia7hbuAkEW7hbuAk0igo6FEfDdYrHq1fu9DdpruNNrZuJTXrfax/1yxV/2gbVQIk0QsEKarH2IXDe4DU65fYp6MDYSpBe9f24jnNW2eKkm/wAWLxK6u32KXWCkPFokPW7HdrsVyqn8QLkAFAGIIMgYgIAEASCAFACAJBAAAAAAAAAAAAAAAAAAECYAkGIAyIIAGRBAAyQETEwJBAAmQEyAJAIAk1PChmLGgv1o9q8yKn8TbDWsL2fMhv1Rk4KyX8UA9dVPsQv4a2GrVO+xDZ4C2AaLXr7F+s2+qmI2jUdElJIEO2SJP5iWyNIr99jvcpv0FuKxjbrGt4JIDNZESEyAJEiqrCLSUjsbCRcmqIqybNqrO1FU+L6TSEaskiYyzVP0ar+w6XhrkBdy9xMk1IULY9KkssdUXEaqqyTmuV01ciK1JpJJLZZNCxoDXyVYjnKuO9ERzWtmxHKiL3ePeB7JJqTgJJqTgRMATJNSESTUnAABJNScBipqTgAAxU1JwEk1JwAASTcJATASEkEwAkm4STUgIAmSbiJJqQTEwEk1IJJqTgJiYCSakEk3CYASTUgkm4gATJBIgATIEACbCAAEkEk3AATJNScBJNxAAmSbhJNxAAmwEACZFJhaz/lVddfDXi5ELoqsJmzokXcjXcFAq6kfYhtdGWw0+pHWIbfRVsA59Xa267Us7529x0CHEa9rXsVFa9qOa5O5Wqk0VDn1fJKap3paheso0VzWuY+IjXNa5Ea9yNSaIsk4gbNMGuJRY9+J5jupGbRk/bic7uoGyTEzXMhFvv53dRkIt+Jzu6gbHMGuZGLfic7uoyMW/E53dQNjmJmu5KLffzuGSi3387gNimRM1/Jxb8TmcMnFvxOZwGwkFBk4t9/M4ZOLffzO6gX8xMocnFvv5nDJxb7+ZwF9MTKHJxb7+ZwycW+/mcBfEFFk4t9/M4nJxL7+Z3UC8BR5OJefzOGTiX38zgLyYmUeTiXn8zhkol9/M4C8mJlHkol9/M4ZKJffzOAu5iZS5OJffzOGTiX38zgLqYmUuTiX38zhk4l9/M4C7mRMpcnEvv5nDJxL7+ZwF1MTKXJxL7+ZwyUS+/mUC6mCkyUS+/mcMlEvv5nAXYmUmSiX38zhkol9/M4C7EykyUS+/mcMjEvxOZwF2CjyMS/E5nDIxL8TmcBeAoshEvv53DIxL8TncBeldhD/ANpSJ+zWXvmh4lgxL8Tnceas2PbR4yvc53zFRMZyrKaS8QPJUa2IblRO5DTaj7kNyofcgGiV8zv+su6DSFdChuxu+GxZI1LPmoVteMsU8tV0r9E1vixXsX6lmnoqAbIsZfB3FEka3SMOaJCV6RoyMVkR0F84FIVEiN/WaioyS/UetKUabhXU1EjspKRKXR6NFdTG0tqvSKuJDfCZDVr0azvVzHKktW9QNgT5SKtX/Et8ikp+A+ifKFVy/wCKh/XCjp+A5WuCtD+lqF5dI/KZ6KUCaf8AV6JLxXIx5p9UgOpp8oFXbVD8uL+UyTD6r9qhckT8pypME6Db/wBXoe79HHt99lgXBGhS+bW9BVdStjNTjIDqqYeVftUL62vT7jNMOqBtUD7XQ5LohRfpWr+MVPwmSYHUaX/6tXT8EV8RPuA6zpxQNrgcVJ03oG10fmU5EuB0HwrSrPNen4RoZD8Kzqv66Q5PwgdeTDagbXR+cnTSg7XRvMQ5AuBbPCsqp+uly/CSmBSeFZVR8Y3oB19MNKCskSlUZVVZIiPmqqS7DKhJLGpVHbjIjkxnYs2r3Kk/A5CzAtyORWVlVGMipiq2nI12N4Sk3vL3CLBSjxKPV+Rp9X5zDoyQ6QsamMayK2aq10N3iiKrm9yTRE1AdA00oO10XnTqFw0oO10bzEU44uBbtvqf94Q+gTAt+3VR+8IQHZNM6DtdF8xvUaaUHa6L5jTjehL9uqn94QjJMCHr306qU1f8/CWYHYdNaDtdG50I01oG10bnQ49oTE22qfj4Q0JibbVHx8IDsOmtA2ujc401oG10bnQ49oU/bqo/eEIaFu2+p/j4QHYdNqBtdH5yNN6BtdH5jj+hS7fU/wAfD6E6Fr4VhVHxzOgHYlwzoWKjs5g4qoqo62SoiyVZ+9UQw03oG10fmNArTBGCtEoLINY0BrmQYucq+lsSFEV0VHTYqfrNRyYs1ut8SjdgU36Tqlf/ALGAda04oG1UfmUhcOqBtUDi7ock0Jb9JVT8YwlMCmfSVVfFNUDrDsPavT/FQfqR6/wQxX5QKu2qHyRPynKdCof0nVfxKL9wTAyF41pVfnz+4Dqq/KFV20w/Li/lMV+USrdpZ5cdfwHLNDIP0pVnmr0GhkD6Uq3zHdAOop8o9Wr/AIln1waQn4DL/iJVu0w/Kj/kOWpgbR/Gtat8x3QLgbR/pSrvMcB1JPlEq7aYflx/yEp8odXbTD8uMn4TlmhtG+lau53DQ2j/AEpV3mOA6n/xBq/aYflxfyhmH9CcuKykMc5e5rYcVzlXciNtOVvwMgS+bWlWqupYrmp/BSywWwPhspLI0anVe6DAXHetHjueqKtjEWbUkir47gOw1fWGXhMiscisiJjMXFVJtnJFktp6Mqt5OBR1UzIUajwZo7JQITFc1cZHOaxEVUXxtnaenOQLPKuvJwGUdeTlKzORnIFnlHXk5f5lZhBFXNnoqzxlY1LJfttn6TGcldXsebITPF8TGX/1anVyAeuo22IbhRUsQ1apGWIbXRksA1muYM0U1SA/EiOYvc/5ye9O/wBP4G+1lAmimjVtRla7GbYrVmi7wPQjisrWp4dIyjosaDAbEhtguyuPNUTGXGTFTe1Je89DKbDVcXGkqysd821fC3v1H1exHpJ6I5JzkusDnsfA2C1zkZSYL2oqo1yvcivTwWWLZ7gmBLVRFy8G3unEVJ2y8Wm+5nCuN9ep4qZUNHjOxno9JdyMiK1rfcBpjsDWT/7iCm7KL+UjQ5m0QPM/pOhZrCuN9eozaDcb69QOeaGs2iB5n8gmBrNog+anQ6Hm8G4316jN4Vxvr1A55oazaIHmp0J0MZtEDzWnQ83hXG+vUZtCuN9eoHO9DGbRA85hOhbdogeaw6Jm0K4316k5tCuN9eoHO0wLbtEFN6RWHspGDLXwIEFY8D9Bj4r8qzGk5yuVPdb6G8ZtCuN9epObwrjeK9QOc6FN2iB5rCdCm7RB81h0XN4Vxvr1GbwrjeK9QOdaFN2iB5rBoS3aIHnMOi5vCuN4r1JzeFcbxXqBzrQpm0QPOYNCmbRA85h0XN4VxvFepilFgy/UTioHPdCWbRA85g0IbtFH89h0PN4NxvFepKUeF4Mb9rqBzvQlu0Ufz4fUJgO3aKP8RC6nRM2hXG/a6jN4Vxvr1A0im4ItiJDRI9HY2HCbDRraRDxVk5zp9/fNx5FwETwpFH+IhdToWQhXG+vUZCFcb69QOe6B/wCfR/iIXUnQL/Po/wARC6nQchCuN9eoyEK431A59oCvt6P8RB6jQJfbUf4iD1Og5CFcb6jN4VxvqBz7QFfbUf4mD1GgK+2o/wATB6nQc3hXG+pGbwrjfUDn+gDvbUf4mD1GgK+3o/xMH8x0DN4VxvqRm8K431A0DQJfb0f4mD+YnQFZ4uWo+NJVxc5gzkiTnKeq037N4VxvqeBlQ0dsVYyZTHVyuWcRytt70kvh4e6wDVIOALVciPpNGY1V+c/OITsVPci2mxUPBKDBo8WBCpNHiq9zIiK2IzHerHsdi4s9TV7plvmsK431JbChtVHNY1FTuVJzQD3Y/gnclie4jKKeZYgygHpyikZRTz5VP5TCxJd9gHoR6njjRMpHklrYaIxNWN3uXjZ9R8Y9PT9Vio562TbajN89Z7aloncBs9UwpIhsUJLCsoEGSIWrUA8tJhTQ1utKBOdhtzmzPHSKOigcvrCq++w8bYsViYssaXcrpzlqOi0qrkWdhTx6n3AaetOi3Wfa6kZ9Fus4O6m0LUu4di7gNYz+LcZ9rqM/i3Gfa6mz9i7iOxdwGs9oRLjftEpWMS4nFTZOxdxC1LuA13tKJcTmXoT2o/2ac69DYFqXcYrUu4Cg7Vd7P/U/pJStnezXn/pLxal3DsXcBRRqziKiYjEas7VcuNZqlYYsrKL+0xi+7Gb96mwtqXcZ9i7gNf7UiXE5l6EdqPuJzL0NhWpdxHYu4DX+1H3E5l6DtR9xOZehf9i7h2LuAoO1H3E5l6Hzi09z24r4bHNnOSqq26zY+xdw7F3AagrIfdm7OeJYexlYPamK2ExGznLwnwNi7F3DsXcBrzayendChp7rPuMlraJ4sbzL0L/sXcOxdwGv9qxLicy9B2rEuN5l6F/2LuHYu4Ch7WiezTnXoT2s/wBn9v8ApL3sXcOxdwFH2q/whpPe+af7T4JWMec5MlP9XFVLNU5mypUu4lal3AUa1t/4O5k6GK1uvhDXnl9xdOqXcR2LuApO13ez/wBT+kdrP9mnmf0l52LuHYu4Ci7ViezTnXoO1YlxOZehfdi7iexdwFB2tE9mnMvQxdWr1sWGi6/0kp6k/VWw2Bal3GK1LuAokreJ7JPMX8pPa0T2ac6r9xeJUu4ltS7gKJawiOlNjVlaiKqr87WImUjSR3zWp+y2clXebGypdx7qNU8vACiq2q+6w2+raFiysPvRKvRJWFvAgSAygQ5IeghEJAGDgAPi9DzPYmoAD5qxNRjiJqAAZNNQxE1AAFYmojJpqAAjJpqIWGmogAMmmoZNNQAEpDTUZZNNQADJpqMcmmoACcRNROTbqQkAYZNNQyaaiABOImonJt1IABGTTUMmmogATkm6kIyaagAGTTUMmmoACUhpqJWGmoADFYaajHJpqAAyyTdSDJpqAAZNNROTTUAAyaajFYTdSAARk01GSQ01AAfRsNNR94bE1AAeliH2QADIAAf/2Q==" class="w-100 image">
+                        <h1 style="text-align:center; color: black; font-weight: bold; margin-top: 10px;">Air Conditioners</h1>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="air-conditioners shadow-lg">
+                        <img src="https://img.freepik.com/premium-vector/realistic-washing-machine-mockup-with-fresh-clean-folded-clothing_208581-884.jpg" class="w-100 image">
+                        <h1 style="text-align:center; color: black; font-weight: bold; margin-top: 10px;">Washing Machines</h1>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="air-conditioners shadow-lg">
+                        <img src="https://cdn.shopify.com/s/files/1/0573/5940/1115/products/FoxinFMST-6400ChannelMultimediaTowerSpeakers60Watt_5_1200x.png?v=1650625617" class="w-100 image">
+                        <h1 style="text-align:center; color: black; font-weight: bold;">Speakers</h1>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="air-conditioners shadow-lg">
+                        <img src="https://media.istockphoto.com/photos/electrical-microwave-oven-in-gray-and-black-on-white-picture-id171270104?k=20&m=171270104&s=612x612&w=0&h=G3OlhE-14WsERkLKskzT9WYQgZhGa0ewLioW-sWL2q0=" class="w-100 image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-Sk3T25wmTq1-zo6exfC6JKn7qevedZrwRQ&usqp=CAU" class="w-100 image">
+                        <h1 style="text-align:center; color: black; font-weight: bold; margin-top:5px ;">Electric Ovens</h1>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-12 text-center">
+                    <button class="bg-primary" id = "home-button">Back</button>
+                </div>
+
+
+            </div>
+        </div>
+
+         
+        <div class="container-fluid Refrigerator-section d-none" id = "refrigerator-section">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/215-impro-prm-4s-inv-sapphire-mulia-4-whirlpool-original-imafvf3skgzkyrjc.webp" class="image-size"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Whirlpool 190 L Direct Cool Single Door 4 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.4<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">3,354 Ratings & 403 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹1200 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹15,790</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹20850</p>
+                                    <p class="text-success" style="margin-left: 5px;">24% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacit: 184 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 1545 mm</li>
+                                                <li>Net Depth: 637 mm</li>
+                                                <li>Net Depth: 555mm</li>
+                                                <li>Weight: 46kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/gldf214sbbs2pb-1285-4-2021-37-lloyd-644-571-original-imag74phz8nyqajy.webp" class="image-size-2"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Lloyd 200 L Direct Cool Single Door 4 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.4<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">1,008 Ratings & 128 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹500 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹15,490</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹24390</p>
+                                    <p class="text-success" style="margin-left: 5px;">36% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacit: 200 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 1285 mm</li>
+                                                <li>Net Depth: 644 mm</li>
+                                                <li>Net Depth: 571mm</li>
+                                                <li>Weight: 37kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/hrd-1954csg-e-4-haier-original-imafpey6ukcabrca.webp" class="image-size-2"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Haier 195 L Direct Cool Single Door 3 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.3<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">909 Ratings & 86 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹200 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹15,250</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹19300</p>
+                                    <p class="text-success" style="margin-left: 5px;">20% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacit: 195 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 121.8 cm</li>
+                                                <li>Net Depth: 62.8 cm</li>
+                                                <li>Net Depth: 53 cm</li>
+                                                <li>Weight: 35kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+                
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/rr21a2f2x9u-hl-4-2021-samsung-original-imag4h6zawzrngsz.webp" class="image-size-2"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Samsung 198 L Direct Cool Single Door 4 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.4<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">5,639 Ratings & 744 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹1000 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹16,790</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹21990</p>
+                                    <p class="text-success" style="margin-left: 5px;">23% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacit: 198 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 1325 mm</li>
+                                                <li>Net Depth: 578 mm</li>
+                                                <li>Net Depth: 53 cm</li>
+                                                <li>Weight: 39 kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/rt28b3922s9-hl-1545-2-2022-52-samsung-637-555-original-imagf4mgzb3h5d7a.webp" class="image-size-3"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Samsung 253 L Frost Free Double Door 3 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.4<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">17,583 Ratings & 1,798 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹2000 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹24,290</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹31990</p>
+                                    <p class="text-success" style="margin-left: 5px;">24% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacit: 184 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 1545 mm</li>
+                                                <li>Net Depth: 637 mm</li>
+                                                <li>Net Depth: 555 mm</li>
+                                                <li>Weight: 36 kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/rt28t3932cu-hl-2-samsung-original-imafq9uqqxchuzg3.webp" class="image-size-3"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Samsung 198 L Direct Cool Single Door 5 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.5<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">47,679 Ratings & 5,608 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹500 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹18,000</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹21990</p>
+                                    <p class="text-success" style="margin-left: 5px;">18% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacit: 188 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 132.52 cm</li>
+                                                <li>Net Depth: 71.58 cm</li>
+                                                <li>Net Depth: 57.81 cm</li>
+                                                <li>Weight: 41.4 kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/-original-imagfaygdskh8uay.webp" class="image-size-3"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Godrej 185 L Direct Cool Single Door 2 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.0<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">1,684 Ratings & 187 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹100 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹12,390</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹17330</p>
+                                    <p class="text-success" style="margin-left: 5px;">28% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacit: 185 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 118.4 cm</li>
+                                                <li>Net Depth: 62.3 cm</li>
+                                                <li>Net Depth: 57.81 cm</li>
+                                                <li>Weight: 31.7 kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/gl-i292rpzx-3-2021-lg-original-imag2r62qrvrzmyj.webp" class="image-size-3"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">LG 260 L Frost Free Double Door Top Mount 3 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.5<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">15,386 Ratings & 1,910 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹1000 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹29,990</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹37290</p>
+                                    <p class="text-success" style="margin-left: 5px;">19% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacity: 260 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 1475 mm</li>
+                                                <li>Net Depth: 703 mm</li>
+                                                <li>Net Depth: 585 mm</li>
+                                                <li>Weight: 50 kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3">
+                    <div class="product-container shadow-lg">
+                        <div class="img-btn-container d-flex flex-row">
+                            <img src="./images/Refrigerators/rr24a2y2ys8-nl-3-2021-samsung-original-imafzhedqjhctfdb.webp" class="image-size-3"></br>
+                           
+                        
+                                <div class="product-details shadow-lg">
+
+                                    <h1 style="font-size: 20px; font-family: Bree Serif; color: #0000ff; font-weight: bold;">Samsung 230 L Direct Cool Single Door 3 Star Refrigerator</h1>
+                                    <div class="d-flex flex-row">
+                                        <button class="rating-btn">4.3<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star" viewBox="0 0 16 16">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                        </svg></button>
+                                        <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">14,161 Ratings& 1,470 Reviews</p>
+                                    </div>
+                                    <p class="text-success mt-3">Extra ₹500 off</p>
+                                    <div class="d-flex flex-row">
+                                    <h1 style="font-size: 20px;font-weight:bold;">₹17,090</h1>
+                                    <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;">₹18990</p>
+                                    <p class="text-success" style="margin-left: 5px;">10% off</p>
+                                    </div>
+                                    <div class="specifications">
+                                        <p style="font-family: Roboto; font-size: 15px; color: red; font-weight: bold; text-align: center;">Specifications</p>
+                                        <div class="lists">
+                                            <ul >
+                                                <li>Gross Refrigerator Capacity: 230 L</li>
+                                                <li>Refrigerator Interior Light: Yes</li>
+                                                <li>Net Height: 1475 mm</li>
+                                                <li>Net Depth: 703 mm</li>
+                                                <li>Net Depth: 585 mm</li>
+                                                <li>Weight: 50 kg</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="mt-3">
+                        <button class="buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>Add to Cart</button>
+                        <button class="buttons shadow-lg">Buy Now</button>
+                    </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="col-12 text-center">
+                    <button class="bg-primary" id = "refri-button">Back</button>
+                </div>
+               
+                
+                
+                
+            </div>
+        </div>
+
+
+        <div class="container-fluid Tv-section d-none" id = "television-section">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4  shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/T.V's/Infinix 80 cm (32 inch) HD Ready LED Smart Linux TV 8999.webp" class="tv-image" >
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹14,499</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹24999</p>
+                                <p class="text-success" style="font-size: 15px;">42% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹1000 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">54,445 Ratings & 4,904 Review</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">SAMSUNG 80 cm (32 inch) HD Ready LED Smart</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Netflix|Disney+Hotstar|Youtube</li>
+                                    <li>Operating System: Tizen</li>
+                                    <li>Resolution: HD Ready 1366 x 768 Pixels</li>
+                                    <li>Sound Output: 20 W</li>
+                                    <li>Refresh Rate: 60 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 73.17 cm x 43.92 cm x 8.3 cm</li>
+                                    <li>Width x Height x Depth (with stand): 46.93 cm x 15.47 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4  shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/T.V's/LG 80 cm (32 inch) HD Ready LED Smart WebOS TV  (32LM565BPTA)14599.webp" class="tv-image" >
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹16,990</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹21999</p>
+                                <p class="text-success" style="font-size: 15px;">21% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹2509 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">54,445 Ratings & 4,904 Review</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">LG 80 cm (32 inch) HD Ready LED Smart television</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Netflix|Prime Video|Disney+Hotstar|Youtube</li>
+                                    <li>Operating System: WebOS</li>
+                                    <li>Resolution: HD Ready 1366 x 768 Pixels</li>
+                                    <li>Sound Output: 10 W</li>
+                                    <li>Refresh Rate: 50 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 73.17 cm x 43.92 cm x 8.3 cm</li>
+                                    <li>Width x Height x Depth (with stand): 46.93 cm x 15.47 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4  shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/T.V's/realme 80 cm (32 inch) HD Ready LED Smart Android TV  (TV 32)13999.webp" class="tv-image" >
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹13,499</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹17999</p>
+                                <p class="text-success" style=" font-size: 15px;">42% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹2000 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">1,98,963 Ratings & 22,936 Review</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">realme 80 cm (32 inch) HD Ready LED Smart Android TV</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Netflix|Disney+Hotstar|Youtube</li>
+                                    <li>Operating System: Android (Google Assistant & Chromecast in-built)</li>
+                                    <li>Resolution: HD Ready 1366 x 768 Pixels</li>
+                                    <li>Sound Output: 24 W</li>
+                                    <li>Refresh Rate: 60 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 73.17 cm x 43.92 cm x 8.3 cm</li>
+                                    <li>Width x Height x Depth (with stand): 46.93 cm x 15.47 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3 shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/T.V's/OnePlus Y1 108 cm (43 inch) Full HD LED Sm24599.webp" class="tv-image" >
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹24,999</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹29999</p>
+                                <p class="text-success" style="font-size: 15px;">16% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹1000 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">1,05,204 Ratings & 9,629 Reviews</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">OnePlus Y1 108 cm (43 inch) Full HD LED Smart Android TV with Dolby Audio</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Netflix|Disney+Hotstar|Youtube</li>
+                                    <li>Operating System: Android (Google Assistant & Chromecast in-built)</li>
+                                    <li>Resolution: Full HD 1920 x 1080 Pixels</li>
+                                    <li>Sound Output: 20 W</li>
+                                    <li>Refresh Rate: 60 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 957 mm x 56 mm</li>
+                                    <li>Width x Height x Depth (with stand): 46.93 cm x 15.47 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3 shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/T.V's/SAMSUNG 108 cm (43 inch) Ultra HD (4K) LED Smart Tizen TV  (UA43TU8570UXXL)48999.webp" class="tv-image" >
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹48,990</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹60999</p>
+                                <p class="text-success" style=" font-size: 15px;">19% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹2500 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">35 Ratings & 6 Reviews</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">SAMSUNG 108 cm (43 inch) Ultra HD (4K) LED Smart Tizen TV  (UA43TU8570UXXL)</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Netflix|Disney+Hotstar|Youtube</li>
+                                    <li>Operating System: Tizen</li>
+                                    <li>Resolution: Ultra HD (4K) 3840 x 2160 Pixels</li>
+                                    <li>Sound Output: 20 W</li>
+                                    <li>Refresh Rate: 60 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 96.3 cm x 55.7 cm x 5.6 cm</li>
+                                    <li>Width x Height x Depth (with stand): 96.3 cm x 64.5 cm x 33.4 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+                
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3 shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/T.V's/LG UQ7500 108 cm (43 inch) Ultra HD (4K)30599.webp" class="tv-image" >
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹30,990</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹49980</p>
+                                <p class="text-success" style=" font-size: 15px;">38% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹1000 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">98 Ratings & 17 Review</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">LG UQ7500 108 cm (43 inch) Ultra HD (4K) LED Smart WebOS TV 2022 Edition</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Netflix|Disney+Hotstar|Youtube</li>
+                                    <li>Operating System: Tizen</li>
+                                    <li>Resolution: Ultra HD (4K) 3840 x 2160 Pixels</li>
+                                    <li>Sound Output: 20 W</li>
+                                    <li>Refresh Rate: 60 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 96.3 cm x 55.7 cm x 5.6 cm</li>
+                                    <li>Width x Height x Depth (with stand): 96.3 cm x 64.5 cm x 33.4 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3 shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/T.V's/SAMSUNG 138 cm (55 inch) Ultra HD (4K) Curved LED Smart Tizen TV284000.webp" class="tv-image" >
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹1,46,900</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹169900</p>
+                                <p class="text-success" style=" font-size: 15px;">10% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹5000 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">55 Ratings & 20 Reviews</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">SAMSUNG 123 cm (49 inch) Ultra HD (4K) Curved LED Smart Tizen TV</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Netflix|Disney+Hotstar|Youtube</li>
+                                    <li>Operating System: Tizen</li>
+                                    <li>Resolution: Ultra HD (4K) 3840 x 2160 Pixels</li>
+                                    <li>Sound Output: 20 W</li>
+                                    <li>Refresh Rate: 200 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 1094.7 mm x 638.1 mm x 104.2 mm</li>
+                                    <li>Width x Height x Depth (with stand): 1094.7 mm x 709.7 mm x 334 mm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3 shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="./images/LG 108 cm (43 inch) Ultra HD (4K) LED Smart WebOS TV234325.webp" class="tv-image" >
+                                
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹47,499</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹75,343</p>
+                                <p class="text-success" style=" font-size: 15px;">36% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹2000 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">51 Ratings & 9 Reviews</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">LG 108 cm (43 inch) Ultra HD (4K) LED Smart WebOS TV</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Youtube</li>
+                                    <li>Operating System: Tizen</li>
+                                    <li>Resolution: Ultra HD (4K) 3840 x 2160 Pixels</li>
+                                    <li>Sound Output: 35 W</li>
+                                    <li>Refresh Rate: 50 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 96.3 cm x 55.7 cm x 5.6 cm</li>
+                                    <li>Width x Height x Depth (with stand): 96.3 cm x 64.5 cm x 33.4 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mt-3 shadow-lg">
+                    <div class="tv1">
+                            <div class="d-flex flex-row">
+                                <img src="https://rukminim1.flixcart.com/image/416/416/j4sronk0/television/h/d/a/samsung-55m6300-original-imaevmgkuga2unzy.jpeg?q=70" class="tv-image" >
+                                
+                    
+                            <div class="price-card">
+                                <h1 style="font-size: 20px;font-weight:bold;">₹59,899</h1>
+                                <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 2px;">₹91,990</p>
+                                <p class="text-success" style=" font-size: 15px;">34% off</p>
+                                </div>
+                                <p class="text-success" style="font-size: 15px;">Extra ₹3000 off</p>
+
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+
+                                <p style="font-family: Roboto;font-size: 13px; color: grey;margin: 5px;">1,069 Ratings & 266 Review</p>
+                            </div>
+                        </div>
+                        <div class="name-buttons">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold; margin-top: 10px;">SAMSUNG Series 6 123 cm (49 inch) Full HD Curved LED Smart Tizen TV</h1>
+                        </div>
+                        <div class="feature-card">
+                            <p style="font-family: Roboto; font-size: 20px; color:red;text-align: center;">Features</p>
+                            <div class="lists2">
+                                <ul >
+                                    <li>Supported Apps: Youtube</li>
+                                    <li>Operating System: Tizen</li>
+                                    <li>Resolution: Full HD 1920 x 1080 Pixels</li>
+                                    <li>Sound Output: 20 W</li>
+                                    <li>Refresh Rate: 120 Hz</li>
+                                    <li>Width x Height x Depth (without stand): 96.3 cm x 55.7 cm x 5.6 cm</li>
+                                    <li>Width x Height x Depth (with stand): 96.3 cm x 64.5 cm x 33.4 cm</li>
+                                </ul>
+                            </div>
+                         </div>
+                         <div class="mt-3 d-flex flex-row">
+                            <button class="tv-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>Add to Cart</button>
+                            <button class="tv-buttons shadow-lg">Buy Now</button>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="col-12 text-center">
+                    <button class="bg-primary" id = "tv-button">Back</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid  d-none" id ="AC-section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="Air-Conditioner">
+                    <div class="conditioners d-flex flex-row">
+                        <div class="img-sec">
+                            <h1 style="font-family: Bree Serif; font-size:40px;color: seagreen; font-weight: bold;" id = "short-name">Blue Star 1.2 Ton 3 Star Split Inverter AC</h1>
+                            <div class="img-div">
+                            <img src="./images/A.C's/blue star 1.2 ton 3 star.jpeg" class="ac-image" id = "imageid">
+                            </div>
+                            <div class="mt-5">
+                                <button class="ac-buttons mr-3 shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart mr-2" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                  </svg>Add to Cart</button>
+                                <button class="ac-buttons shadow-lg">Buy Now</button>
+                            </div>
+                            <div class="pre-next-buttons">
+                                <button class=" pre-btn shadow-lg" id = "prev">Previous</button>
+                                <button class="pre-btn shadow-lg" id = "slide-show">Slideshow</button>
+                                <button class="pre-btn shadow-lg" id = "nxt">Next</button>
+                                
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <h1 style="font-size: 20px; font-family: Bree Serif; color: black; font-weight: bold;" id = "full-name">Blue Star 1.2 Ton 3 Star Split Inverter AC - White  (IC315YATU, Copper Condenser)</h1>
+                            <div class="d-flex flex-row mt-3">
+                                <button class="rating-btn2"><span id = "rating">4.3</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-star-fill star2" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg></button>
+                                <p style="font-family: Roboto;font-size: 18px; color: grey;margin: 5px;" id = "reviews">186 Ratings & 15 Reviews</p>
+                            </div>
+                            <h1 style="font-size: 40px;font-weight:bold;" id = "price">₹32,990</h1>
+                            
+                            <div class="d-flex flex-row">
+                                <p style="font-size: 15px; text-decoration:line-through; color: grey; margin-left: 5px;" id = "total-price">₹52000</p>
+                                <p class="text-success" style="margin-left: 5px;" id = "percentage">36% off</p>
+                            </div>
+                            <p class="text-success mt-2" id = "Extra-percentage">Extra ₹1000 off</p>
+                    
+
+                            
+                            <div class="ac-lists">
+                                <p style="font-family: Roboto; font-size: 20px; color: red; font-weight: bold; text-align: center; margin-top: 10px; text-decoration: underline;">Specifications</p>
+                                <ul >
+                                    <li>Condenser coil: <span>copper</span></li>
+                                    <li>Power consumption: <span id = "watts1">940 W</span></li>
+                                    <li>Noise Level: <span id = "dessibels2">50 db</span></li>
+                                    <li>Refrigerant: <span id ="refrigerator-model3"> R-32</span></li>
+                                    <li>Indoor W x H x D:<span id = "height"> 84.5 cm x 30 cm x 19.3 cm</span></li>
+                                    <li>Outdoor W x H x D: <span id = "width">85.8 cm x 53.6 cm x 32.7 cm</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> 
+                </div>
+                <div class="col-12 text-center">
+                    <button class="bg-primary" id = "ac-button">Back</button>
+                </div>
+                
+            </div>
+
+        </div>
+
+    <script src = "dynamic.js"></script>   
+    </body>
+</html>
