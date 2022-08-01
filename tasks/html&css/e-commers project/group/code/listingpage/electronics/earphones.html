@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earphones</title>
+    <link rel="stylesheet" href="laptops.css">
+    <link rel="stylesheet" href="../../styles/footer.css">
+    <link rel="stylesheet" href="../../styles/navbar2.css">
+   <link rel="stylesheet" href="../../../styles/listingpage/mobilephones/oneplus/oneplus.css">
+   <link rel="stylesheet" href="../../styles/listingpage/mobilephones/oneplus/oneplus.css">
+</head>
+
+<body>
+    <!-- SLIDER -->
+    <div id="header"></div>
+    <script>
+        load("../../navbar/navbar2.html");
+        function load(url) {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById("header").innerHTML = req.responseText;
+        }
+    </script>
+    <div class="Laptops_page">
+        <div class="sideInfo">
+            <div class="delivery">
+                <h5 id="h4">Delivery by</h5>
+                <p><a id="links" href="">Get it Today</a></p>
+                <p><a id="links" href="">Get in 2 Days</a></p>
+            </div><br>
+            <div class="customer_review">
+                <h5>Customer review</h5>
+                <img src="../ratingImages/cust_review.png" alt="">
+            </div>
+            <div class="brands">
+                <h4 id="h4">Brands</h4>
+                <a id="links" href="">
+                    <h5>Oneplus</h5>
+                </a>
+                <a id="links" href="">
+                    <h5>Vivo </h5>
+                </a>
+                <a id="links" href="">
+                    <h5>Oppo</h5>
+                </a>
+                <a id="links" href="">
+                    <h5>Apple</h5>
+                </a>
+                <a id="links" href="">
+                    <h5>Samsung</h5>
+                </a>
+
+            </div>
+            <br>
+            <div class="categories">
+                <h4 id="h4">Categories</h4>
+                <a id="links" href="">
+                    <h5>Mobiles</h5>
+                </a>
+                <a id="links" href="">
+                    <h5>Electronics</h5>
+                </a>
+                <a id="links" href="">
+                    <h5>Fashion</h5>
+                </a>
+                <a id="links" href="">
+                    <h5>Footwear</h5>
+                </a>
+
+
+            </div>
+
+        </div>
+
+        <div class="laptops">
+            <div class="LG">
+                <a id="lap" href="http://127.0.0.1:5501/product%20page/products/electronics/headphones/head1.html"> <img src="electronics_images/earphones/boult.jpg" alt="LG">
+                    <p>Boult Audio Probass X1-Air <br> Bluetooth Wireless in Ear Earphones</p>
+                </a>
+                <p>Price: &#8377 2,899.00</p>
+                <img src="../ratingImages/oneplus.png" alt="">
+            </div>
+            <div class="Lenovo">
+                <a id="lap" href="http://127.0.0.1:5501/product%20page/products/electronics/headphones/head2.html"> <img src="electronics_images/earphones/boult2.jpg" alt="lenovo">
+                    <p>Honeywell Moxie V10 <br> Wireless Bluetooth Headphones </p>
+                </a>
+                <p>Price: &#8377 1,999.00</p>
+                <img src="../ratingImages/oneplus.png" alt="">
+            </div>
+            <div class="Dell">
+                <a id="lap" href="http://127.0.0.1:5501/product%20page/products/electronics/headphones/head3.html"> <img src="electronics_images/earphones/boult3.jpg" alt="Dell">
+                    <p>boAt Rockerz 450 Bluetooth <br> On Ear Headphones with Mic</p>
+                </a>
+                <p>Price: &#8377 2,699.00</p>
+                <img src="../ratingImages/oneplus.png" alt="">
+            </div>
+
+        </div>
+    </div>
+   
+    <h1 class="headbrand">Explore Our Brands</h1>
+    <section class="logos">
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+    </section>
+
+    <h1 class="headbrand headbrand2">Search By Categories</h1>
+        <div class="categorylist">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+                </div>
+    </section>
+    <!-- footer -->
+    <div id="footer"></div>
+    <script>
+        load("../../../footer/footer.html");
+        function load(url) {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById("footer").innerHTML = req.responseText;
+        }
+    </script>
+</body>
+
+</html>

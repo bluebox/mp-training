@@ -1,0 +1,54 @@
+.sideInfo{
+    width: 13%;
+    border-right: 2px solid black;
+}
+#links{
+    text-decoration: none;
+    color: rgb(49, 109, 181);
+}
+.brands {
+    line-height: 1px;
+    margin: 10px;
+}
+#h4{
+    padding-bottom: 15px;
+}
+.delivery{
+    line-height: 1px;
+    margin: 10px;
+}
+.customer_review{
+    margin: 10px;
+}
+.categories{
+    line-height: 1px;
+    margin: 10px;
+}
+.Laptops_page{
+    display: flex;
+    
+}
+.laptops{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+}
+#lap{
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    text-align: center;
+}
+#Dell{
+    height: fit-content;
+}
+.laptops div{
+    background-color: rgb(245, 241, 237);
+    padding: 20px;
+    text-align: center;
+    padding-top: 60PX;
+}
+.laptops div:hover{
+    background-color: rgb(245, 229, 211);
+    /* border: 1px solid black; */
+}

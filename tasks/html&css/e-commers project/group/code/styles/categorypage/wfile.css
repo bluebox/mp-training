@@ -1,0 +1,52 @@
+#eleccom1{
+    background-image: url("../../category/images/wearables/casual.png");
+    background-size: 100%;
+    background-position: 100% 100% ;
+    background-repeat: no-repeat;
+}
+#eleccom2{
+    background-image: url("../../category/images/wearables/ethnic.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom3{
+    background-image: url("../../category/images/wearables/semiformal.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom4{
+    background-image: url("../../category/images/wearables/formal.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom6{
+    background-image: url("../../category/images/wearables/casualwomen.png");
+    background-size: 100%;
+    background-position: 100% 100% ;
+    background-repeat: no-repeat;
+}
+#eleccom5{
+    background-image: url("../../category/images/wearables/womenethnic.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom7{
+    background-image: url("../../category/images/wearables/womenformal.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom8{
+    background-image: url("../../category/images/wearables/womenindia.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom9{
+    background-image: url("../../category/images/wearables/womensemiformal.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom10{
+    background-image: url("../../category/images/wearables/womenwestern.png");
+    background-size: cover;
+    background-position: 100%100%;
+}

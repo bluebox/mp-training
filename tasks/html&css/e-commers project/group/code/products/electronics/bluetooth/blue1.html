@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product page</title>
+    <link rel="stylesheet" href="../../../styles/product.css">
+    <link rel="stylesheet" href="../../../styles/footer.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+</head>
+
+<body>
+    <!-- SLIDER -->
+    <div id="header"></div>
+    <script>
+        load("../../../navbar/header.html");
+        function load(url) {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById("header").innerHTML = req.responseText;
+        }
+    </script>
+    <section class="fold1">
+        <div class="productimg">
+            <img src="../../images/products/electronics/bluetooth speaker/type1/blue1.jpg" alt="image not able to load" id="mainimage">
+            <p id="rollover">Roll Over Image to zoom in</p>
+
+            <div class="hoverimage">
+                <div id="box1" class="hoverboxs" onclick="change_image(1)"></div>
+                <div id="box2" class="hoverboxs" onclick="change_image(2)"></div>
+                <div id="box3" class="hoverboxs" onclick="change_image(3)"></div>
+            </div>
+        </div>
+        <div class="productdetails">
+            <h1>OontZ Angle 3 Bluetooth Speaker | Portable Bluetooth Speakers | Powerful 10 Watt Output | 100 Foot Wireless Bluetooth Range | 14 Hours Battery Life </h1>
+            <a href="" id="visit">Visit Headphones Store</a>
+            <div class="detailsf2">
+                <img src="images/stars.png" alt="">
+                <p>88,071 Ratings</p>
+                <p>|</p>
+                <p>1000+ answered questions</p>
+            </div>
+            <div class="detailsf3">
+                <p>Our Choice</p>
+                <p>For <span id="blue">"Boat Headphones"</span></p>
+            </div>
+            <hr>
+            <div class="detailsf4">
+                <p>-59%</p>
+                <p>2899Rs</p>
+
+            </div>
+            <div class="detailsf5">
+                <p>M.R.P <del>4,950Rs</del></p>
+            </div>
+            <div class="detailsf6">
+                <p>Inclusive of all taxes</p>
+            </div>
+            <div class="saveextra">
+                <p><span id="red">Save extra</span> with 3 offers</p>
+                <p><span id="red">Bank Offer:</span>A 10% instant discount upto INR 10,000 on Citi Bank | <a
+                        href="">Details</a></p>
+                <p><span id="red">No cost Emi:</span>Avail No cost EMI on select cards for orders above rs 3000 | <a
+                        href="">Details</a></p>
+                <p><a href="" id="seemore">^ See More</a></p>
+
+            </div>
+        </div>
+        <div class="buydesc">
+            <h3>2899rs</h3>
+            <p><span id="blue">Free Delivery,</span> Saturday, 30july</p>
+            <p id="blue">Details</p>
+            <br>
+            <p>Or fastest delivery <span id="date">Wednesday, 27 July</span>. Order within 9 hrs 27 mins. Details</p>
+            <p id="blue">In stock.</p>
+            <div class="btn">
+                <button>Add to Cart</button>
+                <button>Buy Now</button>
+            </div>
+        </div>
+    </section>
+    <!-- footer -->
+    <div id="footer"></div>
+    <script>
+        load("../../../footer/footer.html");
+        function load(url) {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById("footer").innerHTML = req.responseText;
+        }
+    </script>
+</body>
+<script>
+    var box1=document.getElementById("box1");
+    var box2=document.getElementById("box2");
+    var box3=document.getElementById("box3");
+    box1.style.backgroundImage="url('../../images/products/electronics/bluetooth speaker/type1/blue1.jpg')";
+    box2.style.backgroundImage="url('../../images/products/electronics/bluetooth speaker/type1/blue2.jpg')";
+    box3.style.backgroundImage="url('../../images/products/electronics/bluetooth speaker/type1/blue3.jpg')";
+    function change_image(a) {
+        let image = document.getElementById("mainimage")
+        if (a == 1) {
+            image.src = '../../images/products/electronics/bluetooth speaker/type1/blue1.jpg';
+        }
+        else if (a == 2) {
+            image.src = '../../images/products/electronics/bluetooth speaker/type1/blue2.jpg'
+        }
+        else if (a == 3) {
+            image.src = '../../images/products/electronics/bluetooth speaker/type1/blue3.jpg'
+        }
+    }
+</script>
+
+</html>
