@@ -349,6 +349,14 @@ box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.34);
 .onetext span {
   color: green;
 }
+.oneimg{
+  height:47vh;
+  width: 23vw;
+}
+.onetext  {
+  height: 13vh;
+  width: 10vw;
+}
 .two{
   height: 60vh;
   width: 20vw;
