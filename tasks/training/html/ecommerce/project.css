@@ -1,0 +1,73 @@
+.total_container{
+    display: flex;
+    flex-direction: row;
+    /* height: 100vh; */
+    width: 100vw;
+    background-color: #e3e6f6;
+
+
+}
+.img_container{
+    width: 50vw;
+    height: auto;
+    border: 1px solid gray;
+}
+.big_image{
+    width: 80%;
+    height: 70vh;
+    padding: 50px;
+    padding-left: 70px;
+   
+}
+.small_images{
+    justify-content: space-around;
+    display:flex;
+    width: 50vw;
+    height: auto;
+
+}
+.sm-image{
+    margin-top: 20px;
+    height: 10vh;
+    width: 7.5vw;
+  
+}
+.sm-image img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain,cover;
+
+}
+
+.big_image img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain,cover;
+
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    column-gap: 20px;
+
+}
+.buttons button, a{
+    width: 200px;
+   height: 50px;
+   background-color: pink;
+   border: none;
+   color: black;
+   font-weight: bold;
+}
+.stars{
+    display: flex;
+}
+.gol{
+    color:yellow;
+}
+.details_container{
+    padding-left: 10px;
+    background-color: white;
+}
