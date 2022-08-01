@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<title>Mobiles Phones</title>
+	<style>
+		.topdiv{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-top: 10px;
+			/*width: 200px;*/
+			height: 300px;
+			margin: 20px;
+			justify-content: space-around;
+		}
+.topdiv img{
+	display: block;
+	transition: 10s;
+}
+		.slider{
+			display: flex;
+			height: 100%;
+			width: 25%;
+			border: 2px solid teal;
+			position: initial;
+			float: left;
+
+		}
+
+	.topdivchild:hover{
+		height: 80%;
+		width: 15%;
+		background-color: lightgrey;
+		transform: rotateY(180Deg);
+	}
+
+	.front{
+		position: absolute;
+		backface-visibility: hidden;
+	}
+
+	.back{
+		position: absolute;
+		backface-visibility: hidden;
+	}
+
+		.cardscontainer{
+
+			
+			display: flex;
+			position: inline;
+			height: 500px;
+			width: 100%	;
+			float: left;
+			align-items: center;
+			justify-content: center;
+			gap: 30px;
+			flex-wrap: wrap;
+			border: 1px solid read;
+
+		}
+
+		.cards{
+			display: block;
+			position: inline;
+			height: 300px;
+			width: 280px	;
+			float: right;
+			padding: 10px;
+			box-shadow:  1px 20px 20px grey;
+			flex-wrap: wrap;
+			text-align: center;
+		}
+
+		div.cards:hover{
+			display: block;
+			position: inline;
+			height: 350px;
+			width: 300px	;
+			float: right;
+			padding: 10px;
+			transition: 500ms;
+			box-shadow: 0px 10px 18px 0px pink;
+			color: teal;
+			cursor: pointer;
+
+		}
+
+		img{
+			height: 90%;
+			width: 80%;
+		}
+		.paragraph{
+			font-size: 30px;
+			background-color: teal;
+			color: white;
+			height: 50px;
+			width: 100%;
+			text-align: center;
+			animation: myanimation 10s infinite;
+		}
+@keyframes myanimation {
+  0% {color: white;}
+  25%{color:pink;}
+  50%{color:black;}
+  75%{color:blue;}
+  100%{color: red;}
+}
+
+.textcontent{
+	display: block;
+			border: 5px solid black;
+			font-size: 20px;
+			align-items: center;
+			justify-content: center;
+
+	}
+	</style>
+
+</head>
+<body>
+<!-- NavBar -->
+<body>
+
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="#news">Categorie</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#about" class="split">Logout</a>
+        <a href="#about" class="split">Cart</a>
+      </div>
+			<div class="topdiv">
+				<img src="mobilecoverpic.jpg">
+			</div>
+
+		<div class="cardscontainer">
+			<div class="paragraph"><marquee scrollamount=15>Buy 2 Get 1 Free</marquee>
+			</div>
+
+			<div class="cards">
+				|<a href="applemobiles.html">
+					<img src="Apple/iphone11.jpg" title="iphone11">
+					<p>Apple Mobiles</p>
+				</a>
+			</div>
+			<div class="cards">
+				<a href="oneplusmobiles.html">
+					<img src="OnePlus/oneplus10R5G.png" title="OnePlus 10R 5G">
+					<p>OnePlus Mobiles</p>
+				</a>
+
+			</div>
+			<div class="cards">
+				<a href="oppomobiles.html">
+					<img src="Oppo/oppoA57.jpg" title="Oppo A57">
+					<p>Oppo Mobiles</p>
+				</a>
+			</div>
+			<div class="cards">
+				<a href="samsungmobiles.html">
+					<img src="Samsung/GalaxyS20FE.jpeg" title="Galaxy S20 FE">
+					<p>Samsung Mobiles</p>
+				</a>
+			</div>
+
+			<div class="cards">
+				<a href="vivomobiles.html">
+					<img src="Vivo/VivoY21G.jpg" title="Vivo Y21 G">
+					<p>Vivo Mobiles</p></a>
+			</div>
+		</div>
+
+
+</body>
+</html>

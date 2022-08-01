@@ -1,0 +1,18 @@
+.items{
+    display: flex;
+    justify-content: space-around;
+}
+.item_image{
+    width: 15rem;
+    height: 15rem;
+}
+
+.item{
+    display: flex;
+    justify-content: space-around;
+}
+
+.item_content{
+    width: 15rem;
+    height: 15rem;
+}
