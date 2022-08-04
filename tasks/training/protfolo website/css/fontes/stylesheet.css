@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Corona';
+    src: url('Corona-Regular.woff2') format('woff2'),
+        url('Corona-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ROMANTICE';
+    src: url('ROMANTICE.woff2') format('woff2'),
+        url('ROMANTICE.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

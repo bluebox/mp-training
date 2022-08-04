@@ -1,0 +1,303 @@
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(161, 244, 249);
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;   
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav a.split {
+  float: right;
+  color: white;
+}
+
+
+#mcl{
+    background-color: black;
+    float: left;
+    width: 73%;
+    height: 100%;
+    
+    
+   
+}
+.inside{
+    float:left;
+    width:33.3%;
+    height: 500px;
+
+}
+#mcr{
+    background-color: rgb(1, 1, 1);
+    float:right;
+    width: 27%;
+    height: 1208px;
+}
+
+
+.ro{
+    width: 100%;
+    height: 500px;
+}
+
+
+
+
+
+
+.item{
+    height: 302px;
+    background-color: #04AA6D ;
+   
+}
+
+
+.box1{
+    float: left;
+    
+    background-image:url(qq.jpg);
+    width: 600px;
+   
+    height: 500px;
+    
+    animation-name: adda1;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+   
+}
+
+.box2{
+    float:left;
+   
+    background-image:url(aaaa.jpg);
+    background-size: cover;
+    width: 500px;
+    height: 500px;
+   
+    animation-name: adda2;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+    -moz-animation-delay: 10s;
+}
+
+
+.box3{
+    float:right;
+   
+    background-image:url(ts1.jpg);
+    background-size: cover;
+    width: 475px;
+    height: 500px;
+   
+    animation-name: adda3;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+    -moz-animation-delay: 10s;
+}
+
+@keyframes adda1 {
+    from {
+        width: 0px;
+    }
+
+    to {
+        width:600px;
+    }
+}
+
+
+@keyframes adda2 {
+    from {
+        height: 0px;
+    }
+
+    to {
+        height: 500px;
+    }
+}
+@keyframes adda3 {
+    from {
+        width: 0px;
+    }
+
+    to {
+        width: 634px;
+    }
+}
+
+
+
+.box21{
+    float: top;
+    
+    background-image:url(download.jpg);
+    width: 700px;
+   
+    height: 302px;
+    
+    animation-name: adda21;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+   
+}
+
+.box22{
+    float: top;
+    
+    background-image:url(shoes.jpg);
+    width: 700px;
+   
+    height: 302px;
+    
+    animation-name: adda21;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+}
+.box23{
+    float: top;
+    
+    background-image:url(ele\ \(1\).jpg);
+    width: 700px;
+   
+    height: 302px;
+    
+    animation-name: adda21;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+}
+
+.box24{
+    float: top;
+    
+    background-image:url(clo\ \(1\).jpg);
+    width: 700px;
+   
+    height: 302px;
+    
+    animation-name: adda21;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+@keyframes adda21 {
+    from {
+       height: 0px;
+    }
+
+    to {
+        height: 301px;
+    }
+}
+
+
+
+
+
+
+
+.box25{
+    float: left;
+    
+    background-image:url(apple.jpg);
+    width: 387px;
+   
+    height: 500px;
+    
+    animation-name: adda25;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+}
+
+.box26{
+    float: top;
+    
+    background-image:url(lap.jpg);
+    width: 600px;
+   
+    height: 500px;
+    
+    animation-name: adda26;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+}
+.box27{
+    float: right;
+    
+    background-image:url(micro.jpg);
+    width: 738px;
+   
+    height: 500px;
+    
+    animation-name: adda27;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+@keyframes adda25 {
+    from {
+       width :0px;
+    }
+
+    to {
+        width:  389px;
+    }
+}
+@keyframes adda26 {
+    from {
+       height: 0px;
+    }
+
+    to {
+        height: 550px;
+    }
+}
+@keyframes adda27 {
+    from {
+       width:  0px;
+    }
+
+    to {
+        width:  740px;
+    }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE red>
+<red>
+  
+<head>
+    <style>
+        #specifyColor {
+            accent-color: Red;
+        }#specifyColor1 {
+            accent-color: yellow;
+        }
+        #specifyColor2 {
+            accent-color: green;
+        }
+        .red{
+            color: red;
+        }
+        .yellow{
+            color: yellow;
+        }
+        .green{
+            color:green;
+        }
+    </style>
+</head>
+  
+<body>
+    <center>
+        <form  oninput="col.value = fav_language.value">
+        <h3>  radio button </h3>
+        <p>Please select your favorite Web language:</p>
+ 
+        <input type="radio" id="specifyColor" name="fav_language" value="red">
+         <label for="red">red</label><br>
+        
+        <input type="radio" id="specifyColor1" name="fav_language" value="yellow">
+         <label for="yellow">yellow</label><br>
+        
+        <input type="radio" id="specifyColor2" name="fav_language" value="green">
+         <label for="green">green</label>
+       <br>
+
+       <output name="col" class=col></output>
+       
+    </center>
+</form>
+</body>
+  
+</red>

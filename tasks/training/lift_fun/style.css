@@ -1,0 +1,33 @@
+#container {
+    width: 300px;
+    height:1300px;
+    position: relative;
+    background: yellow;
+  }
+  #animate {
+    width: 49%;
+    height: 100px;
+    position: absolute;
+    background-color: red;
+  }
+  .outside_button_container{
+    width: 51%;
+    height: 240px;
+    background-color: rgb(248, 106, 106);
+    float: right;
+  }
+  .outside_button{
+    width: 100px;
+    height: 50px;
+    margin: 10px;
+    
+    
+  }
+  
+  #button_container{
+    width: 200px;
+    height:1200px;
+    float:right;
+    
+  }
+
