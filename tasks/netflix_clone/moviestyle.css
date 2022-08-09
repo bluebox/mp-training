@@ -1,0 +1,94 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.fullpage{
+    background-color: black;
+    font-family: 'Nunito', sans-serif;font-family: 'Nunito', sans-serif;
+}
+.poster{
+  object-fit: cover;
+}
+.content{
+
+    color: white;
+    position: absolute;
+    margin-top: -300px;
+    padding: 40px;
+}
+.banner{
+    width: 100vw;
+}
+.header{
+    position: absolute;
+    margin-top: -750px;
+    padding: 20px;
+    align-items: center;
+}
+.row1{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll
+}
+.row1::-webkit-scrollbar{
+    display: none;
+}
+.row2::-webkit-scrollbar{
+    display: none;
+}
+.row2{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll
+}
+.large_img{
+    width: 200px;
+    height: 250px;
+    padding: 10px;
+    background-color: black;
+}
+.small_img{
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    background-color: black;
+}
+.large_img:hover{
+    transition: ease-in-out;
+    height: 260px;
+}
+.small_img:hover{
+    height: 210px;
+    width: 210px;
+}
+.head{
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+.btn{
+    margin: 20px;
+    margin-left: 5px;
+}
+button#b1{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+}
+button:hover{
+    color: white;
+    background-color: gray;
+    transition-delay:0.5s;
+    transition: ease-in-out;
+}
+button#b{
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: black;
+    color:white;
+    border: none;
+}
+button#b:hover{
+    background-color: rgb(44, 40, 40);
+}
