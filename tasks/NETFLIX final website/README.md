@@ -1,0 +1,1 @@
+To run json server enter the following command: json-server --watch mainfile.json --port 3000

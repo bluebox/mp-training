@@ -1,0 +1,557 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.body {
+    background-color: black;
+    color: white;
+}
+.main-container{
+    height: 100vh;
+    background-image: url("https://netflixjunkie.com/wp-content/uploads/2021/11/Netflix-Background-1-1140x600.jpg");
+    background-size: cover;
+}
+.overlay{
+position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0,0.4);
+  background-image: radial-gradient(
+    
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6) 
+  );
+}
+.nav-bar{
+    height: 10vh;
+    width: 100%;
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+    
+}
+.logo{
+    height: 60px;
+    width: 160px;
+}
+.selection{
+    height: 30px;
+    width: 100px;
+    background-color: transparent;
+    color: white;
+    border:0px;
+    font-weight: bold;
+}
+.globe{
+    color: white;
+    margin: 10px;
+}
+
+.selection1{
+    height: 30px;
+    width: 100px;
+    background-color: transparent;
+    color: grey;
+    border:0px;
+    font-weight: bold;
+}
+.globe1{
+    color: grey;
+    margin: 10px;
+}
+.lng-container{
+    border: 1px solid white;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.lng-container1{
+    border: 1px solid grey;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.button-style{
+    height: 40px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: #ff1a1a;
+    color: white;
+    font-weight: bold;
+
+}
+.bottom-section{
+    height: 90vh;
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+.outer{
+    height: 70px;
+    width: 500px;
+    background-color: lightblue;
+    background-color: #ff1a1a;
+    border:0px;
+
+}
+.input-style{
+    height: 100%;
+    background-color: white;
+    width: 390px;
+    border: 0px;
+    font-size: 20px;
+    font-family: "Roboto";
+    color:black;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.password-setting{
+    height: 30%;
+    width: 50%;
+    /* background-color: yellow; */
+    
+    
+}
+.input-style1{
+    height: 50px;
+    background-color:transparent;
+    width:250px;
+    border: 0px;
+    font-size: 20px;
+    font-family: "Roboto";
+    color: white;
+    font-weight: bold;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(179, 255, 0);
+}
+.mail-btn{
+    height: 99%;
+    width: 100px;
+    background-color: transparent;
+    border: 0px;
+    font-size: 20px;
+    color: white;
+}
+.mail-btn2{
+    height: 50px;
+    width: 150px;
+    background-color: transparent;
+    border: 1px solid gold;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+
+}
+::placeholder{
+    padding-left: 10px;
+    font-weight: bold;
+    /* color: rgb(0, 255, 247); */
+}
+.input-style1::placeholder{
+    padding-left: 10px;
+    font-weight: bold;
+    color: rgb(0, 255, 247);
+}
+.black-bottom-section{
+    padding-top: 10px;
+    background-color: black;
+    height: 400vh;
+}
+.section1{
+    height: 60vh;
+    width: 100%;
+    /* background-color: yellow; */
+}
+.sub-sec1{
+    height: 60vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.sub-sec2{
+    height: 60vh;
+    width: 50%;
+    opacity: 0.9;
+   
+}
+.sub-sec3{
+    height: 60vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* justify-content: flex-end; */
+   
+}
+.tv-image{
+    height: 400px;
+    width: 500px;
+    
+}
+.hrline{
+    border: 5px solid rgb(45, 44, 44);
+    width: 100%;
+    background-color: rgb(45, 44, 44);
+
+}
+.netflix-video{
+    position: absolute;
+    /* background-color: blue; */
+    height: 215px;
+    width: 364px;
+    margin-top: -315px;
+    margin-left: 66px;
+     z-index: -1; 
+
+}
+.netflix-video2{
+    position: absolute;
+    /* background-color: blue; */
+    height: 250px;
+    width: 300px;
+    margin-top: -350px;
+    margin-left: 96px;
+    z-index: -1;
+    /* object-fit: contain; */
+   
+
+}
+.div1{
+   height: 80px; 
+    width: 60%;
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    
+}
+.plus{
+    color: white;
+    font-weight: bold;
+}
+.sub-div{
+    /* height: 10vh; */
+    padding: 20px;
+    width: 60%;
+    background-color:grey;
+    border-top: 1px solid black;
+    color: hsl(101, 100%, 50%);
+    font-size: 25px;
+    font-family: "Roboto";
+}
+.questions{
+    height: 130h;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+} 
+.con{
+    height: 200px;
+    width: 80%;
+}
+.con1{
+    /* height: 250px; */
+    width: 80%;
+}
+.first{
+height: 250px;
+    width: 25%;
+    padding: 10px;
+}
+.last{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* video{
+    width: 100%;
+    height: 100%;
+} */
+
+
+
+
+
+
+
+
+.login-page-con{
+    height: 100vh;
+    background-image: url("https://variety.com/wp-content/uploads/2020/05/netflix-logo.png?w=681&h=383&crop=1&resize=681%2C383");
+    background-size: cover;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.login-page{
+    height: 70vh;
+    width: 35%;
+    border: 2px solid yellow;
+    padding: 50px;
+    opacity: 1;
+
+    
+    
+}
+.email-id1{
+    height: 40px;
+    width: 80%;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+email-id1::placeholder{
+    color: white;
+    font-weight: bold;
+}
+
+.button-style123{
+    border: 3px solid rgb(57, 255, 47);
+    height: 40px;
+    width: 80px;
+    font-family: "Roboto";
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.button-style123:hover{
+    background-color: yellow;
+}
+.forgot-pass:hover{
+    background-color: yellow;
+    padding: 5px;
+    border-radius: 5px;
+}
+.button-div{
+    height: 10vh;
+    width: 80%;
+    background-color: transparent;
+    text-align: center;
+    padding: 30px;
+}
+
+
+
+
+
+.videos-page{
+    height: 100vh;
+    /* background-color: yellow; */
+}
+.netflix-logo{
+    height: 100px;
+    width: 300px;
+}
+.navbar-bg{
+    height: 100px;
+    width: 100%;
+    background-color: black;
+}
+.anchor-style a{
+color: white;
+font-size: 20px;
+font-family: "Roboto";
+margin-left: 20px;
+
+}
+.icons{
+    height: 100px;
+    width: 500px;
+}
+.icon{
+color: white;
+}
+.icon1{
+    height: 100px;
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.banner-setion{
+    height: 100vh;
+    /* background-color: yellow; */
+    border-top: 2px solid grey;
+
+}
+.top-section{
+    height: 60%;
+   
+    background-color: black;
+    /* background-image: linear-gradient(to right, rgba(0, 0,0,1)40%,rgba(0, 0,0,0.9)50%) ; */
+    padding: 20px;
+}
+.top-section2{
+    position: absolute;
+    height: 60%;
+    inset: 0;
+    /* background-color: red;  */
+    background-image: linear-gradient(to right, rgba(0,0,0,1)40%, rgba(0,0,0,0.8),rgba(0,0,0,0.2),rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+    margin-top: 93px;
+    
+}
+.top-section3{
+    position: absolute;
+    height: 60%;
+    width: 50%;
+    inset: 0;
+    /* background-color: yellow;  */
+    /* background-image: linear-gradient(to right, rgba(0,0,0,1)40%, rgba(0,0,0,0.8),rgba(0,0,0,0.2),rgba(0,0,0,0.2), rgba(0,0,0,0.7)); */
+    margin-top: 93px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid grey;
+    
+}
+
+.below-section{
+    
+    height: 50vh;
+    width: 100vw;
+    background-color: black;
+    padding: 20px;
+    overflow-x: auto;
+    /* background-image: linear-gradient(to right, rgba(0, 0,0,1)40%,rgba(0, 0,0,0.9)50%) ; */
+    
+}
+
+.below-section::-webkit-scrollbar{
+    display: none;
+}
+.content-div{
+    height: 100%;
+    width: 40%;
+    /* background-color: aqua; */
+    padding: 10px;
+    
+}
+.content-div1{
+    height: 100%;
+    width: 60%;
+   
+   
+    /* background-image: url("https://i0.wp.com/financerewind.com/wp-content/uploads/2020/08/The-New-Legends-Of-Monkey-Season-2.jpg?resize=900%2C540&ssl=1"); */
+
+}
+.movie-image{
+    height: 140px ; 
+    width: 300px ;
+
+    
+}
+.movie-image:hover{
+    height: 150px ; 
+    width: 330px ;
+    border: 2px solid white;
+}
+.divs{
+    height: 22vh;
+    width: 97vw;
+    padding: 10px;
+    /* background-color: yellow; */
+    overflow-x: auto;
+   max-width: 150vw;
+    display: flex;
+
+}
+.divs::-webkit-scrollbar{
+    display: none;
+}
+.series-img{
+    height: 100%;
+    width: 100%;
+    
+}
+.size{
+    height: 100%;
+    width: 60%;
+    
+}
+.content{
+    min-height: 200px;
+    width: 600px;
+    max-height: 600px;
+    padding: 10px;
+    /* background-color: yellow;  */
+
+}
+.play-btn{
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+.video-container{
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.video-frame{
+    height: 90vh;
+    width: 95%;
+    /* background-color:; */
+}
+.video-sizes{
+    height: 100%;
+    width: 100%;
+}
+.back-button-style{
+    height: 40px;
+    width: 80px;
+   border: 0px;
+    color: grey;
+    background-color: transparent;
+    /* position: absolute;
+    margin-top:200px;
+    margin-left: -100px; */
+}
+.back-button-style:hover{
+    border: 2px solid white;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+
+}

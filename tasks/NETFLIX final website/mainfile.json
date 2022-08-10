@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "Email": "shyamsammangi1194@gmail.com",
+      "Password": "9666497194",
+      "id": 1
+    },
+    {
+      "Email": "hari@gmail.com",
+      "Password": "12345",
+      "id": 2
+    },
+    {
+      "Email": "harsha123@gmail.com",
+      "Password": "987654",
+      "id": 3
+    },
+    {
+      "Email": "achyuth123@gmail.com",
+      "Password": "321",
+      "id": 4
+    }
+  ]
+}
