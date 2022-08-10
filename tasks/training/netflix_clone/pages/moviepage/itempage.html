@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="../home/mainHome.css"> -->
+    <link rel="stylesheet" href="./itempage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+</head>
+<style>
+    .iframe {
+        width: 100vw;
+        height: 100vh;
+    }
+</style>
+
+<body style="background-color: black;">
+    <!-- <div>
+        <iframe class="iframe"
+            src="">
+        </iframe>
+    </div> -->
+    <header class="header">
+        <ul class="menu_list">
+            <li><img src="../../images/home/netflix-logo.png" alt="" class="logo"></li>
+            <li><a href="../home/mainHome.html">Home</a></li>
+            <li>TV Shows</li>
+            <li>Movies</li>
+            <li>News and Popular</li>
+            <li>My List</li>
+            <li>Audio & Subtitles</li>
+        </ul>
+        <div class="side_nav">
+
+            <div> <i class="far fa-search"></i> </div>
+            <div>Hari</div>
+            <div><i class="fa-solid fa-bell"></i></div>
+            <div><i class="fa-solid fa-user"></i></div>
+            <div style="cursor: pointer;"> <a href="../../index.html">Sign out</a> </div>
+
+        </div>
+    </header>
+    <div class="item_background">
+        <img class="img_background" src="" alt="">
+        <div class="item_description" style="background-color: rgba(49, 45, 45, 0.871)">
+            <h1 class="heading"></h1>
+
+            <p class="description">
+                
+            </p>
+            <div class="buttons">
+                <button class="play_btn"> <a href="../moviepage/videoPage.html"> <i class="fa-solid fa-play"></i>
+                        Play</a> </button>
+                <button style="background-color: rgba(119, 119, 116, 0.618);color: white;"> <i
+                        class="fa-solid fa-circle-info"></i> More info</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        let video = localStorage.getItem("video")
+        console.log(video)
+        video = JSON.parse(video);
+        console.log(video)
+        document.querySelector(".img_background").src = video.image[1];
+        document.querySelector(".heading").textContent = video.name;
+        document.querySelector(".description").textContent = video.description;
+        // document.querySelector(".iframe").src = `${video.videoUrl}?autoplay=1&mute=1`;
+        // document.querySelector(".iframe").src = "https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1";
+
+    </script>
+</body>
+
+</html>
