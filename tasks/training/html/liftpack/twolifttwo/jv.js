@@ -14,7 +14,7 @@ setInterval(() => {
             }          
         }     
     }
-, 2000);
+, 7000);
 
 setInterval(() => {
     for(let i=0;i<8;i++){
@@ -26,13 +26,25 @@ setInterval(() => {
         }          
     }     
 }
-, 2000);  
+, 5000);  
 
 const fun = (ele) => {
     document.getElementById("lift").style.marginTop=Math.abs(4-ele)*20+'vh'
+    setTimeout(()=>{ document.getElementById("lift").setAttribute('src',"elevator1.gif");
+},1000)
+setTimeout(()=>{ document.getElementById("lift").setAttribute('src',"lift2.png");
+},4000)
+
+   
 }
 const fun1 = (ele) => {
     document.getElementById("lift1").style.marginTop=Math.abs(4-ele)*20+'vh'
+    setTimeout(()=>{ document.getElementById("lift1").setAttribute('src',"elevator1.gif");
+},2000)
+setTimeout(()=>{ document.getElementById("lift1").setAttribute('src',"lift2.png");
+},5000)
+
+
 }
 function arr_insert(floor_num){
     a[floor_num]=1

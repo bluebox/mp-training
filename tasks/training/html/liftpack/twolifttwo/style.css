@@ -7,7 +7,7 @@
     height: 100vh;
 }
 .lift{
-    width:15vw;
+    width:10vw;
     height: 100vh;
     
 }
@@ -24,8 +24,8 @@
 .main{
     display:flex;
     flex-direction: row;
-    justify-content: ceter;
-    justify-content: space-around;
+    justify-content: center;
+    justify-content: space-between
 }
 .floor{
     height: 20vh;
@@ -44,7 +44,7 @@ img{
     height: 20vh;
     width: 15vw;
     margin-top: 80vh;
-    transition: all 2s ease-out;
+    transition: all 1s ease-out;
 }
 input{
     width:4vw;
