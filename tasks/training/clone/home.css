@@ -1,0 +1,125 @@
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-family: 'Arial', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background: #000;
+	color: white;
+    overflow-x: hidden;
+    
+}
+
+
+#navbar{
+    /* position: fixed; */
+    top: 0;
+    z-index: 20;
+    /* margin-top: 10px; */
+    /* background: #000; */
+    width: 100%;
+
+}
+#navbar img{
+    height: 6vh;
+   
+	margin-left:3%;
+    margin-right: 5%;
+
+}
+#nav_images{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+
+}
+#banner{
+    /* margin-top: 20vh; */
+    background-image: url(./images/netflix-images/stranger-things.jpg);
+    /* height: auto; */
+    background-size: cover;
+    z-index: -1 ;
+    background-position: center center;
+    box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.643) inset;
+
+}
+#banner_contents{
+    /* margin-top: 20vh; */
+    width: 35%;
+    margin-left: 5vw;  
+    margin-top: 8vh; 
+    font-size: larger;
+    font-weight: bolder;
+
+    padding-bottom: 5vh;
+}
+.banner_btns input{
+    width: 30%;
+    height: 4vh;
+    background-color: rgba(0, 0, 0, 0.511);
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.left{
+    height: 25vh;
+    overflow-y: hidden;
+    padding: 10px;
+    text-align: center;
+    font-size: 4rem;
+    position: absolute;
+    left: 0%;
+    background-color:rgba(0, 0, 0, 0.211) ;
+    z-index: 100; 
+}
+.left:hover , .right:hover{
+    z-index: 100;
+    background-color:rgba(0, 0, 0, 0.685) ;
+
+}
+.right{
+    position: absolute;
+    height: 25vh;
+    overflow-y: hidden;
+    padding: 10px;
+    text-align: center;
+    font-size: 4rem;
+    right: 0%;
+    background-color:rgba(0, 0, 0, 0.211) ;
+
+    z-index: 100;
+    text-align: center;
+}
+.row_posters{
+    display: flex;
+    height: 30vh;
+    overflow-x: scroll;
+    /* overflow-y: hidden; */
+    padding: 10px;
+    /* -webkit-overflow-scrolling: touch; */
+    
+}
+.row_posters::-webkit-scrollbar{
+    display: none;
+}
+.row_poster img{
+    /* width: 100%; */
+    width: 250px;
+    margin-right: 10px;
+    transition: transform 600ms;
+    height: 80%;
+}
+.row_poster img:hover{
+    transform: scale(1.2);
+}
+.net_originals{
+    height: 40vh;
+}

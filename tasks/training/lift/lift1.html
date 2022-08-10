@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lift</title>
+    <link rel="stylesheet" href="lift1.css">
+
+</head>
+
+<body>
+    <div id="main_container">
+        <div id="floors">
+            <div id="floor4" class="floor">
+                <input onclick="changeFloor( 4,this.value)" type="button" value="D">
+                <h2>4</h2>
+            </div>
+            <div id="floor3" class="floor">
+                <input onclick="changeFloor( 3,this.value)"  type="button" value="U">
+                <input onclick="changeFloor( 3,this.value)"  type="button" value="D">
+                <h2>3</h2>
+            </div>
+            <div id="floor2" class="floor">
+                <input onclick="changeFloor( 2,this.value)"  type="button" value="U">
+                <input onclick="changeFloor( 2,this.value)"  type="button" value="D">
+                <h2>2</h2>
+            </div>
+            <div id="floor1" class="floor">
+                <input onclick="changeFloor( 1,this.value)"  type="button" value="U">
+                <input onclick="changeFloor( 1,this.value)"  type="button" value="D">
+                <h2>1</h2>
+            </div>
+            <div id="floor0" class="floor">
+                <input onclick="changeFloor( 0,this.value)" type="button" value="U">
+                <h2>G</h2>
+            </div>
+        </div>
+        <div id="lift">
+            <input onclick="changeFloor(this.value)" type="button" value="4">
+            <input onclick="changeFloor(this.value)" type="button" value="3">
+            <input onclick="changeFloor(this.value)" type="button" value="2">
+            <input onclick="changeFloor(this.value)" type="button" value="1">
+            <input onclick="changeFloor(this.value)" type="button" value="0">
+
+        </div>
+    </div>
+<script src="./lift1.js"></script>
+</body>
+
+</html>
+
