@@ -1,0 +1,54 @@
+*{
+    margin:0;
+    padding:0;
+}
+.floors{
+    width:15vw;
+    height: 100vh;
+}
+.lift{
+    width:15vw;
+    height: 100vh;
+    
+}
+.consol{
+    width:15vw;
+    height: 25vh;
+    margin-top: 40vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid black
+}
+.main{
+    display:flex;
+    flex-direction: row;
+    justify-content: ceter;
+    justify-content: space-around;
+}
+.floor{
+    height: 20vh;
+    border: 1px solid black;
+}
+button{
+    width:4vw;
+    height: 4vh;
+    margin-top: 4vh;
+    margin-left: 5.5vw;
+}
+h1{
+    margin-left: 7vw;
+}
+img{
+    height: 20vh;
+    width: 15vw;
+    margin-top: 80vh;
+    transition: all 2s ease-out;
+}
+input{
+    width:4vw;
+    height: 4vh;
+    margin: 9px;
+   
+}

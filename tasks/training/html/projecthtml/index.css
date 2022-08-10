@@ -1,0 +1,32 @@
+*{
+    background-image: url("https://img.freepik.com/premium-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-72279.jpg?w=2000");
+}
+*{
+    text-align: center;
+}
+#h1{
+    font-size: 90px;
+    outline: #404040 solid 5px;
+}
+#p1{
+    font-size: 40px;
+}
+#p2{
+    font-size: 20px;
+}
+#p3{
+    font-size: 20px;
+}
+#p4{
+    font-size: 20px;
+}
+div{
+    background-color: black;
+    font-size: 30px;
+}
+.div1{
+    background-color: black;
+}
+#id1{
+    background-color: #404040;
+}
