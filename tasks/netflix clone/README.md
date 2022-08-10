@@ -1,0 +1,1 @@
+laucnh the json server  "json-server --watch netflix.json --port 2906" to make it work.

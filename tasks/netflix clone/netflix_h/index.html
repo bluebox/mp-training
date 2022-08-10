@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div>
+                <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png " alt="logo " class="logo" />
+            </div>
+            <div class="nav_items">
+                <div>
+                    <select name="lang" id="lang" class="item1">
+                        <option value="english">English</option>
+                        <option value="Telugu">Telugu</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="item2" onclick="window.open('signin/signin.html','_self')"> sign in</button>
+                </div>
+
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        <section class="section1_bg">
+            <div class="card">
+                <h1> Unlimited movies, TV shows and more.</h1>
+                <p>
+                    Watch anywhere. Cancel anytime
+                </p>
+                <p>Ready to Watch? Enter your email to create or restart your membership.</p>
+
+                <div class="email_ip">
+                    
+                        <input class="input" type="email" name="email" placeholder=" " required>
+                        <label for="email" class="label"> Email address</label>
+                        
+                        <button onclick="email_verify()" > Get Started </button>
+                        
+                    
+                </div>
+                <h1 class="span" ></h1>
+            </div>
+        </section>
+
+        <section class="section2_bg">
+            <div class="s_2_item1">
+                <h1> Enjoy on your TV</h1>
+                <p>Watch on smart TV,PlayStation, Xbox,chromecast, Apple Tv, Blue ray player and many more.</p>
+            </div>
+            <div class="s_2_item2">
+                <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png " alt="tv"
+                    srcset="">
+                <div class="s_2_bgvideo">
+                    <video autoplay=" " loop=" " muted=" ">
+                        <source
+                            src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v "
+                            type="video/mp4 " />
+                </div>
+            </div>
+
+        </section>
+
+        <section>
+            <div class="section2_bg">
+                <div class="s_2b_item1">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg "
+                        alt="" srcset="">
+                </div>
+                <div class="s_2b_item2">
+                    <h1> Download our show to watch ofline</h1>
+                    <p>Save your favorite easily and always have something to watch</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="section2_bg">
+                <div class="s_2c_item1">
+                    <img src="https://occ-0-4023-2164.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABVxdX2WnFSp49eXb1do0euaj-F8upNImjofE77XStKhf5kUHG94DPlTiGYqPeYNtiox-82NWEK0Ls3CnLe3WWClGdiJP.png?r=5cf"
+                        alt="">
+                </div>
+
+                <div class="s_2c_item2">
+                    <h1>Crea a profile for children</h1>
+                    <p>Send children on adventures with their favourite characters in a space made just for them—free
+                        with your membership.</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="faq">
+                <h1> Frequently asked questions</h1>
+                <div class="faq_ques ">
+                    <p> What is Netflix?</p>
+                    <i class="fa fa-plus ques1" aria-hidden="true" onclick="faq(0)"></i>
+                    <i class="fa fa-times ques11" aria-hidden="true" style="display: none; " onclick="faq1(0)"></i>
+                </div>
+                <div class="faq_ans">
+                    <p class="ans1"></p>
+                </div>
+                <div class="faq_ques">
+                    <p> How much does Netflix cost?</p>
+                    <i class="fa fa-plus ques2" aria-hidden="true" onclick="faq(1)"></i>
+                    <i class="fa fa-times ques12" aria-hidden="true" style="display: none; " onclick="faq1(1)"></i>
+                </div>
+                <div class="faq_ans ">
+                    <p class="ans2"></p>
+                </div>
+                <div class="faq_ques">
+                    <p> Where can i watch?</p>
+                    <i class="fa fa-plus ques3" aria-hidden="true" onclick="faq(2)"></i>
+                    <i class="fa fa-times ques13" aria-hidden="true" style="display: none; " onclick="faq1(2)"></i>
+                </div>
+                <div class="faq_ans">
+                    <p class="ans3"></p>
+                </div>
+                <div class="faq_ques">
+                    <p> how do i Cancel ?</p>
+                    <i class="fa fa-plus ques4" aria-hidden="true" onclick="faq(3)"></i>
+                    <i class="fa fa-times ques14" aria-hidden="true" style="display: none; " onclick="faq1(3)"></i>
+                </div>
+                <div class="faq_ans">
+                    <p class="ans4"></p>
+                </div>
+                <div class="faq_ques">
+                    <p> What can i watch on netflix ?</p>
+                    <i class="fa fa-plus ques5" aria-hidden="true" onclick="faq(4)"></i>
+                    <i class="fa fa-times ques15" aria-hidden="true" style="display: none; " onclick="faq1(4)"></i>
+                </div>
+                <div class="faq_ans">
+                    <p class="ans5"></p>
+                </div>
+                <div class="faq_ques">
+                    <p>Is Netflix ok for Kids?</p>
+                    <i class="fa fa-plus ques6" aria-hidden="true" onclick="faq(5)"></i>
+                    <i class="fa fa-times ques16" aria-hidden="true" style="display: none; " onclick="faq1(5)"></i>
+                </div>
+                <div class="faq_ans">
+                    <p class="ans6"></p>
+                </div>
+                
+            </div>
+        </section>
+        </div>
+
+    </main>
+    <footer>
+        <h1> Questions? Call 000-800-040-1843</h1>
+        <div class="footer_items">
+            <div class="footer_item">
+                <p> Faq</p>
+                <p>Investor Relations</p>
+                <p>Privacy Policy</p>
+                <p>Speed Test</p>
+            </div>
+            <div class="footer_item">
+                <p> Help Center</Center>
+                </p>
+                <p>Jobs</p>
+                <p>Cookie Preferences</p>
+                <p>Legal Notices</p>
+            </div>
+            <div class="footer_item">
+                <p> Acounts</p>
+                <p>Ways to watch</p>
+                <p>Corporate information</polic>
+                <p>only on netflix</p>
+            </div>
+            <div class="footer_item">
+                <p> Media Centre</p>
+                <p>Terms of Use</p>
+                <p>Contact Us</p>
+
+            </div>
+        </div>
+        <div class="f_b">
+            <select name="lang" id="lang" class="item1">
+                <option value="english">English</option>
+                <option value="Telugu">Telugu</option>
+            </select>
+        </div>
+        <p class="f_ni">NetFlix India</p>
+    </footer>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>
