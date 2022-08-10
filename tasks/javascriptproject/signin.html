@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg {
+            background-image: url("bgimg.jpg");
+            width: auto;
+            height: 120vh;
+        }
+
+        .signin {
+            width: 35vw;
+            background-color: black;
+            opacity: .9;
+            height: 75vh;
+            margin: auto;
+        }
+
+        img {
+            margin-top: 0;
+            margin-left: 20px;
+        }
+
+        .ele {
+            color: rgb(255, 253, 253);
+            width: 20vw;
+            height: 70vh;
+            margin: 80px;
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */
+            /* margin-top: 40px; */
+            /* justify-content: center; */
+        }
+
+        span {
+            color: white;
+        }
+
+        input {
+            width: 20vw;
+            height: 5vh;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #check {
+            width: 20px;
+            height: 20px;
+            /* display: none; */
+            /* margin-top: 15px; */
+        }
+        span {
+            margin-top: 10 px;
+
+        }
+
+        .hel {
+            /* display: flex; */
+
+        }
+
+        h6 {
+            margin-top: 13px;
+        }
+
+        .bord {
+            border: 1px solid;
+            border-radius: 5px;
+            height: 60px;
+            width: 400px;
+            background-color: #333;
+            color: white;
+            opacity: 10;
+        }
+
+        #bd1 #bd2 {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg">
+        <div class="grad1">
+            <img src="logonew.png" alt="" width="250px" height="150px">
+            <div class="signin">
+                <div class="ele">
+                    <h1><span style="margin-left: 0px;"><br>Sign In</span></h1>
+                    <br>
+                    <input type="email" placeholder=" Email or phone number" class="bord" id="bd1">
+                    <input type="password" placeholder="Password" class="bord" id="bd2">
+                    <input type="submit" name="" id="" value="Signin" style="background-color: red;" class="bord">
+                    <div class="hel " style="display: flex; flex-direction:row">
+                        <!-- <button  id="btn" onclick="btn1()">*</button> -->
+                        <input id="check" type="checkbox">
+                        <h6>Remember_me</h6>
+                       <h6><span style="margin-left: 180px;">Need_help? </span></h6>
+                    </div>
+                    <br>
+                    <h5><span>New to Netflix?</span> <a href="index.html">Sign up now</a></h5><br>
+                    <h6>This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                        <a href="#" onclick="extra()">Learn more.</a>
+                    </h6>
+                    <span id="terms" style="display:none">
+                        <h6>The information collected by Google reCAPTCHA is subject to the Google <a
+                                href="https://policies.google.com/privacy">Privacy Policy</a> and <a
+                                href="https://policies.google.com/terms">Terms of Service</a>, and is used for
+                            providing, maintaining, and improving the
+                            reCAPTCHA service and for general security purposes (it is not used for personalised
+                            advertising by Google).</h6>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <br><br>
+            <h4 style="color: rgb(165, 165, 165);text-align: left ; margin-left: 20vw;font-size: smaller;">Questions?
+                Call 7799587595
+                FAQ</h4>
+            <br>
+            <ul class="footer_list">
+                <li>FAQ</li>
+                <li>Help Centre</li>
+                <li>Account</li>
+                <li>Media Centre</li>
+                <li>Investor Relations</li>
+                <li>Jobs</li>
+                <li>Ways to Watch</li>
+                <li>Terms of Use</li>
+                <li>Privacy</li>
+                <li>Cookie Preferences</li>
+                <li>Corporate Information</li>
+                <li>Contact Us</li>
+                <li>Speed Test </li>
+                <li>Legal Notices</li>
+                <li>Only on Netflix</li>
+
+
+            </ul>
+
+            <p style="color: white;text-align: center;">Netflix india</p>
+        </div>
+    </div>
+
+    <script>
+        function extra() {
+            document.getElementById('terms')
+            if (terms.style.display == "none")
+                terms.style.display = "block"
+            else
+                terms.style.display = "none"
+        }
+    </script>
+</body>
+
+</html>
