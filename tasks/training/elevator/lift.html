@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elevator</title>
+    <link rel="stylesheet" href="liftstyle.css" />
+  </head>
+  <body>
+    <div class="full">
+      <div class="floor">
+        <div class="inside">4</div>
+        <div class="outside">
+          <button class="down_4" onclick="addfloor_down(4)">Down</button>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="inside">3</div>
+        <div class="outside">
+          <button class="up_3" onclick="addfloor_up(3)">Up</button>
+          <button class="down_3" onclick="addfloor_down(3)">Down</button>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="inside">2</div>
+        <div class="outside">
+          <button class="up_2" onclick="addfloor_up(2)">Up</button>
+          <button class="down_2" onclick="addfloor_down(2)">Down</button>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="inside">1</div>
+        <div class="outside">
+          <button class="up_1" onclick="addfloor_up(1)">Up</button>
+          <button class="down_1" onclick="addfloor_down(1)">Down</button>
+        </div>
+      </div>
+      <div class="floor">
+        <div class="inside">G</div>
+        <div class="outside">
+          <button class="up_0" onclick="addfloor_up(0)">Up</button>
+        </div>
+      </div>
+      <div class="lift">
+        <div class="btns">
+          <button class="btn" onclick="add_floor_lift(4)">4</button>
+          <button class="btn" onclick="add_floor_lift(3)">3</button>
+          <button class="btn" onclick="add_floor_lift(2)">2</button>
+          <button class="btn" onclick="add_floor_lift(1)">1</button>
+          <button class="btn" onclick="add_floor_lift(0)">G</button>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+  <script src="lift.js">
+
+  </script>
+</html>
