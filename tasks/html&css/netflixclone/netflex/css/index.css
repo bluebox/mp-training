@@ -1,0 +1,267 @@
+*{
+     color: white;
+     margin: 0%;
+     text-decoration: white;
+     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+body{
+     background-color: black;
+}
+.main{
+
+     background-image: url("../images/background_img.jpg") ;
+     background-repeat: no-repeat ;
+     background-size: cover;
+     filter: brightness(80%);
+     width: 100%;
+     height:100vh;
+     margin-top: -0.59%;
+     
+     
+}
+#header{
+     display: flex;
+     justify-content: space-evenly;
+     padding-top: 2%;
+     
+     
+}
+.iteam{
+     margin-left: 5%;
+     margin-right: 5%;
+
+}
+
+#logo{
+     height: 100%;
+     width:30%;
+     margin-top: -3%;
+     
+}
+.button{
+     height: 3rem;
+     width : 120%;
+     text-align: center;
+     background-color: red;  
+     border-color:red;
+     font-size: 15px;
+     padding: 0%;
+     border-radius: 4%;
+    
+     
+     
+}
+.select{
+     border-color: white;
+     background-color: black;
+}
+.option{
+     background-color: rgb(12, 38, 12);
+}
+.center{
+     margin-top:10%;
+     text-align: center;
+     height:50%;
+     width: 50%;
+     margin-left: 25%;
+     padding:2%;
+     color: white;
+}
+.text{
+     font-size: 300%;
+     margin-bottom: 1%;
+     filter: brightness(100%);
+}
+#sec{
+     font-size: 200%;
+     filter: brightness(100%);
+}
+#para{
+     font-size: 120%;
+     margin-bottom: 4%;
+     filter: brightness(100%);
+
+}
+input, .btn{
+     width:55%;
+     /* height: 2em; */
+     padding:2%;
+     font-size: 100%;
+     border-radius: 2%;
+     border-color:white ;
+     
+
+}
+.btn{
+     width:35%;
+     background-color: crimson;
+     border-color: 2px solid crimson;
+     border-color:crimson ;
+     border-radius: 2%;
+     margin-left: -1.9%;
+     
+}
+/* .button2{
+     height: 2em;
+} */
+input:hover{
+     border-color:rgb(255, 255, 255) ;
+
+}
+hr{
+     height:10px;
+     width:100%;
+     background-color: rgb(38, 39, 39);
+     border:2px solid rgb(38, 39, 39);
+}
+
+.device{
+     background-color: black;
+     display: flex;
+     height: 70vh;
+   
+}
+.left, .right{
+     width: 50%;
+     height: 100%;
+     background-color: black;
+     text-align: center;
+     background-repeat: no-repeat;
+     background-size: 90%;
+}
+.tv{
+     background-image: url("../images/tv.png");    
+}
+.mobile{
+     background-image: url("../images/cell.png");    
+}
+.pc{
+     background-image: url("../images/lap.png");    
+}
+.child{
+     background-image: url("../images/child.png");    
+}
+.head{
+     font-size: 300%;
+     margin-top: 20%;
+     padding: 3%;
+}
+.descript{
+     font-size: larger;
+     margin-top: 3%;
+     padding: 3%;
+}
+
+/* faq's */
+
+:root {
+	--netred: #e50914;
+	--dark-color: #141414;
+	--fontcolor: #f4f4f4;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-family: 'Arial', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background: #000;
+	color: white;
+    overflow-x: hidden;
+    
+}
+
+
+
+
+#footer_sec{
+    height: 55vh;
+}
+#faq_section{
+    width: 70vw;
+    margin: 15vh auto;
+    
+}
+.faq_description{
+background-color: #303030;
+margin-bottom: 1.2vh;
+}
+.faq_title{
+background-color: #303030;
+margin-bottom: 0.4vh;
+cursor: pointer;
+
+}
+.faq_title {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem ;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+.faq_title img{
+    width: 3vw;
+    /* margin-left: ; */
+}
+.faq_description{
+  padding: 1rem ;
+    font-size: 1.5rem;
+    display: none;
+}
+
+
+/* footer-------------------- */
+.footer {
+	max-width: 80%;
+	margin: 3rem auto;
+	overflow: auto;
+}
+
+.footer,
+.footer a {
+	color: rgb(186, 180, 180);
+	font-size: 1rem;
+    text-decoration: none;
+}
+.footer a:hover{
+    text-decoration: underline;
+}
+.footer p {
+	margin-bottom: 1.5rem;
+}
+
+.footer .footer-cols {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-column-gap: 50px;
+}
+
+.footer li {
+	line-height: 1.9;
+    list-style: none;
+}
+form{
+     margin-top: 10%;
+     align-items: center;
+     text-align: center;
+}
+#mail{
+     width:70%;
+     height:9.5vh;
+}
+#gs{
+     width: 12rem;
+     height:9.5vh;
+     padding: 3px;
+     background-color: #e50914;
+     border:2px solid #e50914;
+     font-size: large;
+     margin-top: 2%;
+}
+#paragraph{
+     font-size: large;
+}
