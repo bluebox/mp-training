@@ -1,0 +1,187 @@
+.header{
+    width: 100%;
+    height: 600px;
+    background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/c8c8a0ad-86d6-45f1-b21d-821afa4e5027/121450d3-2d2f-41a9-acd6-b050ca0e0424/IN-en-20220801-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+    border: 1px solid black;
+    
+}
+/* .tv,.download,.watch{
+    width: 100vw;
+    height: 450px;
+    border: 4px solid rgb(90, 88, 88);
+} */
+.signup1234{
+    display: flex;
+    justify-content: space-between;
+}
+.signup123{
+    display: flex;
+    flex-direction: row;
+}
+.signup1234 button{
+    height: 20px;
+}
+.signup1234 select{
+ background-color: transparent;
+}
+
+.watch{
+    width: 100%;
+    height: 450px;
+    background-color: black;
+    border: 4px solid rgb(90, 88, 88);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+}
+.vid{
+    background-image: url("https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile-in.png");
+    width: 50%;
+    align-items: center;
+}
+.vid1{
+    background-image: url("https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png");
+    width: 50%;
+    align-items: center;
+}
+.vid video{
+    margin-left: 20%;
+    margin-top: 4%;
+    height: 57%;
+    width: 74%;
+
+}
+.vid1 video{
+    margin-left: 16%;
+    margin-top: 20%;
+    height: 68%;
+    width: 80%;
+    z-index: -2;
+
+}
+.children{
+    width: 100%;
+    height:500px;
+    border: 4px solid rgb(90, 88, 88);
+    /* background-image: url();  */
+}
+.tv{
+    width: 100%;
+    height: 450px;
+    border: 4px solid rgb(90, 88, 88);
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+}
+
+.tv1{
+    font-size: bold;
+    color:white;
+}
+
+.download{
+    width: 100%;
+    border: 4px solid rgb(90, 88, 88);
+    background-color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.textarea {
+    margin-left: 6%;
+}
+/* .btn1 {
+    /* margin-left: 30%; */
+ */
+.btn1 button{
+    color: aliceblue;
+    background-color: red;
+}
+.searchdiv{
+    display: flex;
+    justify-content: center;
+}
+.children{
+    /* background-image: url("https://occ-0-4875-2186.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABYjXrxZKtrzxQRVQNn2aIByoomnlbXmJ-uBy7du8a5Si3xqIsgerTlwJZG1vMpqer2kvcILy0UJQnjfRUQ5cEr7gQlYqXfxUg7bz.png?r=420");
+    background-size: cover; */
+    width: 100%;
+    border: 4px solid rgb(90, 88, 88);
+    background-color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.content{
+    width: 50%;
+}
+.questions{
+       width: 100%;
+    border: 4px solid rgb(90, 88, 88);
+    background-color: black;
+}
+.q{
+    align-items: center;
+    /* margin-left: 35%; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    
+    justify-content:space-between;
+}
+.ans1{
+    display: none;
+    width: 60%;
+    margin-left: 20%;
+    height: 30px;
+}
+.ans2{
+    display: none;
+    width: 60%;
+    margin-left: 20%;
+}
+.q1,.q2,.q3{
+    align-items: center;
+    display: flex;
+    background-color:rgba(234, 225, 225, 0.843) ;
+    width: 60%;
+    margin-left: 20%;
+   margin-top: 1%;
+   display: flex;
+   /* justify-content: space-between; */
+   flex-direction: column;
+
+}
+.q1 button, .q2 button{
+ 
+    background-color: transparent;
+}
+.btn12{
+    /* background-color: transparent;
+    border-color: rgba(234, 225, 225, 0.843);
+    padding: 0; */
+    margin-right: 4%;
+    padding: 0;
+border: none;
+background: none;
+
+
+
+
+}
+footer{
+    padding: 4%;
+    background-color: black;
+    margin-top: 10px;
+    color: antiquewhite;
+}
+footer h1{
+    margin-left: 10%;
+}
+.footer_items{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2%;
+}

@@ -1,0 +1,39 @@
+.logo{
+    display: flex;
+    position:absolute;
+}
+.logo ul{
+    display: flex;
+    justify-content: space-between;
+    /* position:absolute; */
+}
+.logo ul li {
+    list-style-type: none;
+    margin-left: 25px;
+    /* width: 100px; */
+    height: 20px;
+    /* background-color: rgba(215, 10, 10, 0.919); */
+    color: white;
+}
+.logo ul li:hover {
+    
+    
+    transform: scale(1.2); 
+    height: 20px;
+
+    color: white;
+}
+.navigation{
+    background-color: black;
+    height: 60px;
+    opacity: 0.8;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+}
+.img12{
+    width:300px;
+    height: 350px;
+    margin-top: 100px;
+}
