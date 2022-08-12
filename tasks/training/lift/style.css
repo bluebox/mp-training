@@ -1,0 +1,32 @@
+.building{
+    display: flex;
+    height: 99vh;
+    
+}
+.floors{
+    width:20%
+}
+.floor{
+    background-color: aquamarine;
+    margin-top: 15px;
+    height:18vh;
+}
+.lift{
+    text-align: center;
+    margin-top: 79vh;
+    margin-left: 10px;
+    background-color: gray;
+    height:18vh;
+    width: 20%;
+    transition: margin-top 5s;
+    transition-delay: 3s;
+}
+.keypad{
+    text-align: center;
+    margin-top: 15px;
+    border: 1px solid black;
+    width: 40px;
+    height: 110px;
+    background-color: white;
+    padding-top: 10px;
+}
