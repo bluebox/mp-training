@@ -285,7 +285,7 @@ direction=9;
     setTimeout(() => {
         timer=0;
   let id = null;
-  const elem = document.getElementById("animate");   
+  const elem = document.getElementById("animate1");   
 
 
 pos1=pos+240
@@ -356,7 +356,7 @@ direction=8;
     setTimeout(() => {
         timer=0;
   let id = null;
-  const elem = document.getElementById("animate");   
+  const elem = document.getElementById("animate1");   
 
 
 pos1=pos-240
