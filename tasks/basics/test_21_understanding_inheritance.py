@@ -34,7 +34,7 @@ def test_inheritance_methods():
         def g(self):
             return "B:g()"
 
-    b = B()
+    b = B
     assert "A:f()" == b.f()
     assert "B:g()" == b.g()
 
