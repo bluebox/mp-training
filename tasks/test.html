@@ -1,0 +1,49 @@
+<html>
+    <script type="text/javascript">
+    var scrolling = null;
+ 
+    function scroll_up() {
+        var d = document.getElementById('scroller');
+ 
+        d.scrollTop = d.scrollTop - 5;
+ 
+        scrolling = window.setTimeout(function() {
+            scroll_up();
+        }, 100);
+    }
+ 
+    function scroll_down() {
+        var d = document.getElementById('scroller');
+ 
+        d.scrollTop = d.scrollTop + 5;
+ 
+        scrolling = window.setTimeout(function() {
+            scroll_down();
+        }, 100);
+    }
+ 
+    function stop_scroll() {
+        window.clearTimeout(scrolling);
+    }
+    </script>
+    <body>
+        <div style="color:red;" onmouseover="scroll_up();" onmouseout="stop_scroll();"> scroll up </div>
+        <div id="scroller" style="width:100px; height:70px; overflow:hidden;">
+            Hi,
+ 
+            I am using a menu inside a div tag.
+            What i want to do is to add scroll buttons
+            (up and down ) along side div which move
+            the div up and down on mouse over.
+            How can i achieve this?
+ 
+            It would be very nice of you if you can
+            provide a link to the article or blog
+            where solution is provided to my problem.
+ 
+            Thanks in advance,
+            Saad Alam
+        </div>
+        <div style="color:blue;" onmouseover="scroll_down();" onmouseout="stop_scroll();"> scroll down </div>
+    </body>
+</html>

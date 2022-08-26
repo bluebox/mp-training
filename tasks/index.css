@@ -1,0 +1,196 @@
+*{
+    box-sizing: border-box;
+}
+select{
+    padding: 10px;
+    background-color: black;
+    color:white;
+    font-size: bold;
+    margin-right: 100px;
+    margin-top: 20px;
+    position: absolute;
+    right:100px;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 100px;
+}
+.header{
+    width: 100%;    
+    height: 600px;
+    background-image:linear-gradient(
+        to right, rgba(0, 0, 0, 0.705), rgba(0, 0, 0, 0.705)),  url("https://assets.nflxext.com/ffe/siteui/vlv3/c8c8a0ad-86d6-45f1-b21d-821afa4e5027/121450d3-2d2f-41a9-acd6-b050ca0e0424/IN-en-20220801-popsignuptwoweeks-perspective_alpha_website_large.jpg")
+    ;
+    border: 1px solid #000000;
+    
+}
+.tv,.download,.watch,.create{
+    width: 100%;
+    height: 450px;
+    border: 1px solid rgb(90, 88, 88);
+}
+.tv{
+    display: flex;
+    background-color: rgb(0, 0, 0);
+}
+
+.tv1{
+    font-size: bold;
+    color:white;
+}
+
+.download,.watch,.create{
+    background-color: black;
+}
+.image{
+    position: relative;
+    opacity: .7;
+}
+.questions{
+    align-items: center;
+    background-color: black;
+    color: aliceblue;
+    padding-bottom: 100px;
+    width: 100%;
+    border: 1px solid grey;
+    padding: auto;
+
+}
+.headings{
+    /* margin-left: 25rem;
+    margin-right:25rem; */
+    margin: auto;
+    width:50rem;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(60, 58, 58);
+    padding: 1rem 1rem 1rem 1rem;
+    -webkit-font-smoothing: antialiased;
+    transition:all 3s;
+    margin-top: 10px;
+
+
+}
+
+
+.maindiv{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+}
+.img_down{
+    position: relative;
+    margin:auto
+;
+}
+.img_down_matter{
+    border: 1px solid rgb(87, 87, 87);
+    border-radius:10px ;
+    position: absolute;
+    background-color: #000000;
+    padding:10px 10px;
+    margin-left: 100px;
+    margin-top:-100px;
+    width: 60%
+}
+
+.download{
+    display:flex;
+}
+
+.matter{
+    display:flex;
+    flex-direction: column;
+    margin:auto;
+    margin-left:-100px
+}   
+
+.questions p{
+    display: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    border: 1px solid rgb(73, 73, 73);
+    padding-top:20px;
+
+}
+
+.footer{
+    background-color: #000000;
+    border: 1px solid white;
+    width: 100%;
+}
+
+.footer_list{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: -10px;
+    color: rgb(180, 180, 180);
+    list-style-type: none;
+    text-align: center;
+    line-height:3;
+    margin-left:300px;
+    margin-right:300px;
+}
+
+.create{
+    width: 100%;
+    display:flex;
+    /* padding: 50px; */
+    border: 1px solid rgb(255, 255, 255);
+}
+*{
+    padding: auto;
+    margin: auto;
+}
+
+.tv1 h3{
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.tv1 p{
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.tv_pad{
+    display: flex;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.tv1,.image{
+    width: 40%;
+}
+
+.watch{
+    border: 1px solid white;
+    width: 100%;
+    height: 5%;
+}
+
+.watch_main{
+    display: flex;
+    margin: auto;
+    font-size: 40px;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: bold;
+    width: 100%;
+    position: relative;
+
+}
+
+.watch_img{
+    opacity: 0.7;
+    width: 40%;
+}
+
+.watch_matter{
+    width: 30%;
+    margin-right: 90px;
+}
+
+.create_matter{
+    width: 40%;
+}
