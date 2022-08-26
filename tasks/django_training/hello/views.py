@@ -50,6 +50,6 @@ def nested_arguments(request, parameters):
 
 def extra_args(request, **dict):
 
-    http = 'this is pasing extra arguments to link '+ dict["name"]+" "+dict["place"]
+    http = 'this is passing extra arguments to link '+dict["name"]+" "+dict["place"]
     return HttpResponse(http)
 
