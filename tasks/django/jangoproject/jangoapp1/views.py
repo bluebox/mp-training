@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
 # Create your views here.
 def index(request):
     html='this is index page'
@@ -23,7 +24,6 @@ def custom(request,cust):
 def regex_path(request,parameter):
     html = 'this is a regex page repath '+str(parameter)
     return HttpResponse(html)
-
 def ondate(request,paraa):
     html = 'this is another page'+str(paraa)
     return HttpResponse(html)
@@ -35,3 +35,4 @@ def option(request,number):
 def nestedarg(request,sid,name,branch):
     html = 'given parameters are '+name+str(sid)+branch
     return HttpResponse(html)
+
