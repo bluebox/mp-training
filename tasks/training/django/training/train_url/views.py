@@ -43,6 +43,6 @@ def nestedArgPage(request,name,age,place):
     return HttpResponse(response)
 
 
-def extraArgPage(request,**dict):
+def extraOptionsPage(request,**dict):
     response = 'this is extra arguments page: ' + 'args: ' + str(dict["name"]) +", " + str(dict["age"])  +", " + str(dict["place"])
     return HttpResponse(response)

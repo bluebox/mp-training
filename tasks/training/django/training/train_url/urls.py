@@ -1,7 +1,7 @@
 from timeit import repeat
 from unicodedata import name
 from django.urls import path,register_converter,re_path
-from .views import homePage,intPage,stringPage,uuidPage,slugPage,converterPage,repathPage,nestedArgPage, extraArgPage
+from .views import homePage,intPage,stringPage,uuidPage,slugPage,converterPage,repathPage,nestedArgPage, extraOptionsPage
 from .converter import StudentUsnConverter
 # register converter
 register_converter(StudentUsnConverter , 'usn')
@@ -22,5 +22,5 @@ urlpatterns=[
     path('nested-args/<str:name>/<int:age>/<str:place>/',nestedArgPage , name="nested-page"),
 
     # passing extra arguments
-    path("extra-args/",extraArgPage , {'name':"Aish",'age':21,'place':'bangalore'} , name="extra-args")
+    path("extra-options/",extraOptionsPage , {'name':"Aish",'age':21,'place':'bangalore'} , name="extra-args")
 ]
