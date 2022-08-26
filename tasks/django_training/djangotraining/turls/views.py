@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # test cmment commit message
+
 def defaultview(request):
     return HttpResponse("Hello, world! you are at turls defaultview")
 
