@@ -23,6 +23,7 @@ def custom(request,cust):
 def regex_path(request,parameter):
     html = 'this is a regex page repath '+str(parameter)
     return HttpResponse(html)
+
 def ondate(request,paraa):
     html = 'this is another page'+str(paraa)
     return HttpResponse(html)
