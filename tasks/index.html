@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      p::after {
+        content: " - Remember this";
+      }
+      .check::after {
+        content: " this blog and explore  ";
+      }
+      .check::content {
+        content: "Please visit again";
+      }
+      .check::before {
+        content: "before content";
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Demo of the ::after selector</h1>
+
+    <p>My name is Donald</p>
+    <p>I live in Ducksburg</p>
+    <div>
+      <h1 class="check">checking</h1>
+    </div>
+  </body>
+</html>
