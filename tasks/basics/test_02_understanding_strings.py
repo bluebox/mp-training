@@ -13,7 +13,7 @@ def test_string_type():
 def test_single_quoted_strings_are_strings():
     ''' strings are strings '''
     assert True is isinstance('Hello World', str)
-
+#hello
 def test_double_quoted_strings_are_strings():
     ''' strings'''
 
