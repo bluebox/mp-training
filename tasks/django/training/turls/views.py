@@ -23,3 +23,7 @@ def regcon(request, reg1):
 
 def ExtraOptions(request, arg1, arg2):
     return HttpResponse("The User input arg is: "+arg1+" and The extra argument is: "+arg2)
+
+
+def regex_nest_param(request,arg1):
+    return HttpResponse("This is a nested regex: "+arg1)

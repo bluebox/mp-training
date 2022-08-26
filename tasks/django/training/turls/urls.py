@@ -10,6 +10,7 @@ urlpatterns=[
     path("slug/<slug:slug>", views.slug_param, name="slug_parameter"),
     re_path(r'^repath/(?P<reg>[A-Z]{5}[0-9]{3}$)', views.regex_param,name="regex_param"),
     path("regex_converter/<name:reg1>/", views.regcon, name="regex_converter"),
-    path("extraoptions/<arg1>",views.ExtraOptions,{"arg2":"arg"},name="extra_options")
+    path("extraoptions/<arg1>",views.ExtraOptions,{"arg2":"arg"},name="extra_options"),
+    re_path(r'^nest/(?:page-(?P<arg1>[A-Z]{5}[0-9]{3}))$', views.regex_nest_param, name="regex_nest_param"),
 
 ]
