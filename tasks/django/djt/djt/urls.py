@@ -26,6 +26,7 @@ urlpatterns = [
     path("ind4/", include("page1.urls")),
     path("ind5/<conv:month>", views.index4),
     re_path(r'^ind6/(?P<month>[0-9]{4})/$', views.index3, name='par6'),
+    re_path(r'^ind7/(?:index-(?P<month>[0-9]{4}))/$', views.index3, name='par6'),
 
 
 ]
