@@ -1,0 +1,43 @@
+{% extends 'assignment/base.html' %}
+
+{% block content %}
+
+    <p>tags are used inside &#123;&#37;&#37;&#125; tags</p>
+
+    <h1>block</h1>
+    <p>Defines a block that can be overridden by child templates</p>
+    <p>syntax -></p>
+    <p>&#123;&#37; block 'block_name' &#37;&#125;</p>
+    <p>&#123;&#37; endblock &#37;&#125;</p>
+
+    <h1>comment</h1>
+    <p>Ignores everything between &#123;&#37; comment &#37;&#125; and &#123;&#37; endcomment &#37;&#125;. An optional note may be inserted in the first tag. For example, this is useful when commenting out code for documenting why the code was disabled, check exmaple in code</p>
+    <p>syntax -></p>
+    <p>&#123;&#37; comment 'comment_name' &#37;&#125;</p>
+    <p>&#123;&#37; endcomment &#37;&#125;</p>
+    {% comment %}
+
+    This is a comment, this lines wont be seen in webpage
+
+    {% endcomment %}
+
+    <h1>IF ELSE</h1>
+    <p>syntax -></p>
+    <p>&#123;&#37; if 'condition_name' &#37;&#125;</p>
+    <p>&#123;&#37; endif &#37;&#125;</p>
+    {% if age > 18 %}
+    <p>major student</p>
+    {% else %}
+    <p>minor student</p>
+    {% endif %}
+
+    <h1>FOR IN</h1>
+    <p>syntax -></p>
+    <p>&#123;&#37; for in list&#37;&#125;</p>
+    <p>&#123;&#37; endfor &#37;&#125;</p>
+    <p>hobbies are -></p>
+    {% for value in hobbies %}
+    <p>{{value}}</p>
+    {% endfor %}
+
+{% endblock content %}
