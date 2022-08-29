@@ -9,5 +9,7 @@ urlpatterns = [
 
     path('path4/',views.temp3,name = 'temp3'),
 
-    path('path5/',views.temp4,name = 'temp4')
+    path('path5/',views.temp4,name = 'temp4'),
+
+    path('path6/',views.temp5,name='temp5')
 ]

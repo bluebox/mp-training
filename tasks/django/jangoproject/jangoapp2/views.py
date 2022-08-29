@@ -35,4 +35,7 @@ def temp4(request):
     }
     return render(request,'jangoapp2/temp4.html',context)
 
+def temp5(request):
+    return render(request,'jangoapp2/temp5.html')
+
 
