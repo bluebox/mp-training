@@ -15,5 +15,4 @@ urlpatterns = [
     re_path(r'^par6/(?P<parameter>[0-9]{4})/$', views.par6, name='par6'),
     path('par7/', views.par7, {'parameter': 'Ok'}, name='par7'),
 
-
 ]
