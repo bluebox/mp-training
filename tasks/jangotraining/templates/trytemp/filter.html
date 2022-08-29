@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+the length of the list is
+{{ list1| length }}
+<br>
+ upper case of {{name}} is
+{{ name|upper }}
+<br>
+lower case of {{name}} is
+{{ name|lower }}
+<br>
+{{place}} after using title filter is
+{{ place|title }}
+<br>
+the slug from of  sentence {{slug}} is
+{{ slug|slugify }}
+<br>
+the word count of sentence {{slug}} is
+{{ slug| wordcount}}
+
+</body>
+</html>
