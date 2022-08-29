@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>templates training</title>
+</head>
+<body style="margin:10px">
+
+{% include 'ttraining/navbar.html'%}
+<p> used include tag to add navbar </p>
+
+<p> my name is {{name}} and i am {{age}} years old</p>
+<div>
+    <h3> Using for loop tag in templates</h3>
+{% for i in skill %}
+    <p> {{i}} </p>
+{% endfor %}
+</div>
+{% filter force_escape|lower %}
+    LOWER CASE FILTER APPLIED AND TEXT WILL APPEAR IN LOWER CASE ONLY
+{% endfilter %}
+
+<p> Using length filter {{name}} word length is {{name|length}}</p>
+
+<p> using word count filter to find the length of "{{word_count}}" word count is {{word_count|wordcount}}</p>
+
+</body>
+</html>
