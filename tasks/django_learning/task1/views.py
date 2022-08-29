@@ -14,7 +14,7 @@ def name1(request, nm):
 
 
 def int_para(request, a):
-    html = "Integer parameter " + a
+    html = "Integer parameter " + str(a)
     return HttpResponse(html)
 
 
