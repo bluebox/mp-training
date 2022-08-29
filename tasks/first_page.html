@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/first_page.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <div class="logo">
+                <img height="50px" width="100px" id="img"
+                    src="https://imgix.bustle.com/uploads/image/2017/8/29/c8c8077a-10fc-44d5-93f0-da4e592a299e-netflix-logo-print_pms.jpg?w=800&fit=crop&crop=faces&auto=format%2Ccompress"
+                    alt="no image">
+                <ul class="flex menu">
+                    <li>Home</li>
+                    <li>Tv shows</li>
+                    <li>movies</li>
+                    <li>New & popular</li>
+                    <li>My List</li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="ads">
+            <div class="ads_page">
+            <img src="images/banner.jpg" alt="" height="700px" width="100%"></div>
+            <div class="ads_matter">
+            <h1>Money Heist</h1>
+            <button type="button">PLAY</button>
+            <button type="button">MY LIST</button>
+            <p style="width: 30%;font-family: Arial, Helvetica, sans-serif;">A criminal mastermind who goes by "The Professor" has a plan to pull off the biggest heist in recorded history -- to print billions of euros in the Royal Mint of Spain. To help him carry out the ambitious plan, he recruits eight people with certain abilities and who have nothing to lose.</p></div>
+        </div>
+        <h3>Netflix Originals</h3>
+        <div class="netflix_originals" id="scroll" onmouseover="scroll()" onmouseout="stop()">
+            <img src="images/large-movie1.jpg" alt="">
+            <img src="images/large-movie2.jpg" alt=""><img src="images/large-movie3.jpg" alt=""><img src="images/large-movie4.jpg" alt=""><img src="images/large-movie5.jpg" alt=""><img src="images/large-movie6.jpg" alt=""><img src="images/large-movie7jpg" alt=""><img src="images/large-movie8.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt="">
+            <img src="images/large-movie1.jpg" alt="">
+            <img src="images/large-movie2.jpg" alt=""><img src="images/large-movie3.jpg" alt=""><img src="images/large-movie4.jpg" alt=""><img src="images/large-movie5.jpg" alt=""><img src="images/large-movie6.jpg" alt=""><img src="images/large-movie7jpg" alt=""><img src="images/large-movie8.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt="">
+
+
+        </div>
+        <h3>Trending Now</h3>
+        <div class="trending_now">
+           
+            <img src="images/large-movie1.jpg" alt="">
+            <img src="images/large-movie2.jpg" alt=""><img src="images/large-movie3.jpg" alt=""><img src="images/large-movie4.jpg" alt=""><img src="images/large-movie5.jpg" alt=""><img src="images/large-movie6.jpg" alt=""><img src="images/large-movie7jpg" alt=""><img src="images/large-movie8.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt="">
+
+
+        </div>
+        <h3>Top Rated</h3>
+        <div class="toprated">
+            
+            <img src="images/large-movie1.jpg" alt="">
+            <img src="images/large-movie2.jpg" alt=""><img src="images/large-movie3.jpg" alt=""><img src="images/large-movie4.jpg" alt=""><img src="images/large-movie5.jpg" alt=""><img src="images/large-movie6.jpg" alt=""><img src="images/large-movie7jpg" alt=""><img src="images/large-movie8.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt="">
+
+
+        </div>
+        <h3>Comedy Movies</h3>
+        <div class="comedy_movies">
+            
+            <img src="images/large-movie1.jpg" alt="">
+            <img src="images/large-movie2.jpg" alt=""><img src="images/large-movie3.jpg" alt=""><img src="images/large-movie4.jpg" alt=""><img src="images/large-movie5.jpg" alt=""><img src="images/large-movie6.jpg" alt=""><img src="images/large-movie7jpg" alt=""><img src="images/large-movie8.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt="">
+
+
+        </div>
+        <h3>Horror movies</h3>
+        <div class="horror_movies">
+
+            <img src="images/large-movie1.jpg" alt="">
+            <img src="images/large-movie2.jpg" alt=""><img src="images/large-movie3.jpg" alt=""><img src="images/large-movie4.jpg" alt=""><img src="images/large-movie5.jpg" alt=""><img src="images/large-movie6.jpg" alt=""><img src="images/large-movie7jpg" alt=""><img src="images/large-movie8.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt="">
+
+
+        </div>
+        <h3>romantic movies</h3>
+        <div class="romantic_movies">
+            
+            <img src="images/large-movie1.jpg" alt="">
+            <img src="images/large-movie2.jpg" alt=""><img src="images/large-movie3.jpg" alt=""><img src="images/large-movie4.jpg" alt=""><img src="images/large-movie5.jpg" alt=""><img src="images/large-movie6.jpg" alt=""><img src="images/large-movie7jpg" alt=""><img src="images/large-movie8.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt=""><img src="images/large-movie2.jpg" alt="">
+
+
+        </div>
+
+    </div>
+    <script>
+        const scrol=document.getElementById("scroll");
+        const x=window.scrollX;
+        function scroll(){
+            scrol.scrollRight+=20
+
+            scrolling = window.setTimeout(function() {
+            scroll();
+        }, 100);
+        }
+
+        function stop() {
+        window.clearTimeout(scrolling);
+    }
+    //     function scroll_up() {
+    //     var d = document.getElementById('scroll');
+ 
+    //     d.scrollTop = d.scrollTop - 5;
+ 
+    //     scrolling = window.setTimeout(function() {
+    //         scroll_up();
+    //     }, 100);
+    // }
+ 
+    // function scroll_down() {
+    //     var d = document.getElementById('scroller');
+ 
+    //     d.scrollTop = d.scrollTop + 5;
+ 
+    //     scrolling = window.setTimeout(function() {
+    //         scroll_down();
+    //     }, 100);
+    // }
+
+    </script>
+
+</body>
+
+</html>

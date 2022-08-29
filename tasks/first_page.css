@@ -1,0 +1,103 @@
+
+*{
+    box-sizing: border-box;
+}
+.menu{
+    display: flex;
+    text-decoration: none;
+    margin-top: -47px;
+    margin-left: 260px;
+}
+
+.navbar-flex{
+    display: flex;
+}
+
+.logo{
+    background-color: black;
+    padding-bottom: 5px;
+}
+li{
+    list-style: none;
+    padding: 10px;
+    color: white;
+    top: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+li:hover{
+    opacity: 0.5;
+
+}
+    
+
+#img{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.navigation{
+    position: fixed;
+    width: 100%;
+
+}
+
+.ads_matter{
+    position: absolute;
+    top: 250px;
+    font-size: 20px;
+    margin-left:20px;
+    color: white;
+}
+
+.ads_matter h{
+    /* font-size: 40px;
+    font-family: ; */
+}
+
+.netflix_originals,.horror_movies ,.toprated,.comedy_movies,.trending_now,.romantic_movies{
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+    height: 300px;
+
+}
+
+.netflix_originals::-webkit-scrollbar,.horror_movies::-webkit-scrollbar,.toprated::-webkit-scrollbar,.comedy_movies::-webkit-scrollbar,.trending_now::-webkit-scrollbar,.romantic_movies::-webkit-scrollbar{
+    display: none;
+}
+
+
+.netflix_originals img:hover,.horror_movies img:hover,.toprated img:hover,.comedy_movies img:hover,.trending_now img:hover,.romantic_movies img:hover{
+    transform: scale(105%);
+    /* transition: ease-in-out 0.1s */
+
+}
+
+.container{
+    color:black;
+    background-color: black;
+}
+
+h3{
+    color:white;
+    font-size:20px;
+    /* text-align: center; */
+    margin-left:30px;
+}
+
+button{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color:rgb(19, 19, 19);
+    background-color: rgb(217, 214, 214);
+    padding: 5px;
+    border-radius: 5px;
+    border:1px solid black;
+    margin-left: 10px;
+}
+
+button:hover{
+    transform: scale(115%);
+}

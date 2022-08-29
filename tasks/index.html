@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="icon"
+        href="https://cdn.vox-cdn.com/thumbor/Yq1Vd39jCBGpTUKHUhEx5FfxvmM=/39x0:3111x2048/1200x800/filters:focal(39x0:3111x2048)/cdn.vox-cdn.com/uploads/chorus_image/image/49901753/netflixlogo.0.0.png">
+
+</head>
+
+<body>
+    <script src="/script.js"></script>
+    <div class="maindiv">
+
+
+        <div class="header">
+            <img src="https://imgix.bustle.com/uploads/image/2017/8/29/c8c8077a-10fc-44d5-93f0-da4e592a299e-netflix-logo-print_pms.jpg?w=614&fit=crop&crop=faces&auto=format%2Ccompress&q=50&dpr=2"
+                alt="NETFLIX" height="100px" width="200px" style="margin-left:18px">
+            <select id="language" onchange="langChange()">
+                <option value="english"> English</option>
+                <option value="hindi">हिन्दी</option>
+            </select>
+            <a href="\Netflix_login_design_clone\index.html"
+                style="font-size: 20px;color:white;background-color:rgb(199, 6, 6);text-decoration:none;float:right;margin-right:50px;padding-left:20px;padding-right:20px;border-radius: 5px;padding-top:5px;padding-bottom: 5px;margin-top:20px">Sign
+                in
+            </a>
+            <h2 id="h2"
+                style="color:white;font-size:50px;text-align: center;margin-top:100px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                Unlimited movies, TV <br> shows and more.</h2>
+            <p id="p1"
+                style="color:rgb(251, 251, 251);font-size:20px;text-align: center;margin-top:20px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                Watch anywhere. Cancel anytime. <br>
+                Ready to watch? Enter your email to create or restart your membership.</p>
+            <input style="font-size: 35px;margin-left: 500px;padding: 8px;margin-top: 15px;" type="email" id="input"
+                placeholder="Email address">
+            <label
+                style="font-size: 35px;color: aliceblue;background-color: rgb(197, 0, 0);padding: 10px;font-family: Arial, Helvetica, sans-serif;"
+                for="input">Get Started ></label>
+
+        </div>
+        <div class="tv">
+            <div class="tv_pad">
+                <div class="tv1">
+                    <h3>
+                        Enjoy on your TV.</h3>
+                    <p>
+                        Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+                </div>
+                <div class="image">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png"
+                        alt="no image" height="350px" width="500px" style="margin-top:30px;">
+                    <video style="position: absolute;margin-top:60px;right: 190px;z-index: -1;"
+                        src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"
+                        height="300px" width="360px" autoplay playinline muted loop></video>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="download">
+            <div class="img_down">
+                <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg"
+                    alt="image" height="400px" width="500px">
+                <div class="img_down_matter" style="display:flex;">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/boxshot.png"
+                        alt="image" height="70px" width="60px">
+                    <p style="font-size: 20px;color:white;font-family:Arial, Helvetica, sans-serif;padding-left: 15px;">
+                        Stranger things <br><span style="color: rgba(58, 58, 249, 0.925);">Downloading...</span></p>
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/download-icon.gif"
+                        alt="" height="20%" width="20%">
+                </div>
+
+            </div>
+            <div class="matter">
+                <span style="font-size:50px;color:white;font-family: Arial, Helvetica, sans-serif ;">Download your shows
+                    <br> to
+                    watch offline.</span>
+                <p style="font-size:20px;color:white;font-family: Arial, Helvetica, sans-serif;"> Save your favourites
+                    easily and always have <br>
+                    something to watch.</p>
+            </div>
+
+        </div>
+        <div class="watch">
+
+            <div class="watch_main">
+                <div class="watch_matter">
+                    <h1 style="font-size:50px ;"> Watch everywhere. </h1>
+                    Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.
+                </div>
+                <div class="watch_img">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile-in.png"
+                        alt="no image" height="400px" width="550px">
+                    <video
+                        src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v"
+                        autoplay muted loop
+                        style="height: 300px; width:350px;position:absolute;right:390px;z-index: -1;"></video>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="create">
+            <div class="create_img">
+                <img src="https://occ-0-2086-2186.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABYjXrxZKtrzxQRVQNn2aIByoomnlbXmJ-uBy7du8a5Si3xqIsgerTlwJZG1vMpqer2kvcILy0UJQnjfRUQ5cEr7gQlYqXfxUg7bz.png?r=420"
+                    alt="" height="400px" width="100%">
+
+            </div>
+            <div class="create_matter">
+                <h3 style="font-size:50px;color:white;font-family: Arial, Helvetica, sans-serif ;">Create profiles for
+                    children.</h3>
+                <p style="font-size:20px;color:white;font-family: Arial, Helvetica, sans-serif ;">Send children on
+                    adventures with their favourite characters in a space made just for them—free with your membership.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="questions">
+            <h1 style="text-align: center;font-size:50px;font-family: Arial, Helvetica, sans-serif;">Frequently Asked
+                Questions
+            </h1>
+            <h2 class="headings" onclick="func('#p1')">what is Netflix?</h2>
+            
+            <p class="headings closed" id="p1">Netflix is a streaming service that offers a wide variety of
+                award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected
+                devices. <br>
+                You can watch as much as you want, whenever you want, without a single ad – all for one low monthly
+                price. There's always something new to discover, and new TV shows and movies are added every week!</p>
+            <h2 class="headings" onclick="func('#p2')">how much does netflix costs?</h2>
+            <p class="headings  closed" id="p2">Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming
+                device,
+                all for one fixed
+                monthly fee. Plans range from ₹ 149 to ₹ 649 a month. No extra costs, no contracts.</p>
+            <h2 class="headings" onclick="func('#p3')">where i can watch ?</h2>
+            <p class="headings  closed" id="p3">Watch anywhere, anytime. Sign in with your Netflix account to watch
+                instantly on
+                the web at netflix.com
+                from your personal computer or on any internet-connected device that offers the Netflix app, including
+                smart TVs, smartphones, tablets, streaming media players and game consoles.
+                <br> <br>
+
+                You can also download your favourite shows with the iOS, Android, or Windows 10 app. Use downloads to
+                watch while you're on the go and without an internet connection. Take Netflix with you anywhere.
+            </p>
+
+            <h2 class="headings" onclick="func('#p4')">how do i cancel?</h2>
+            <p class="headings  closed" id="p4">Netflix is flexible. There are no annoying contracts and no commitments.
+                You can
+                easily cancel your
+                account online in two clicks. There are no cancellation fees – start or stop your account anytime.</p>
+            <h2 class="headings" onclick="func('#p5')">what can i watch on netflix?</h2>
+            <p class="headings  closed" id="p5">Netflix has an extensive library of feature films, documentaries, TV
+                shows,
+                anime, award-winning Netflix
+                originals, and more. Watch as much as you want, anytime you want.</p>
+            <h2 class="headings" onclick="func('#p6')">is netflix good for kids?</h2>
+            <p class="headings  closed" id="p6">The Netflix Kids experience is included in your membership to give
+                parents
+                control while kids enjoy
+                family-friendly TV shows and films in their own space. <br> <br>
+
+                Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of
+                content kids can watch and block specific titles you don’t want kids to see.</p>
+            <h4 style="text-align:center;font-size:20px;font-family:Arial, Helvetica, sans-serif;margin-top:40px">Ready
+                to watch? Enter your email to create or restart your membership.</h4>
+            <input style="font-size: 35px;margin-left: 500px;padding: 8px;margin-top: 15px;" type="email" id="input"
+                placeholder="Email address">
+            <label
+                style="font-size: 35px;color: aliceblue;background-color: rgb(197, 0, 0);padding: 10px;font-family: Arial, Helvetica, sans-serif;"
+                for="input">Get Started ></label>
+        </div>
+
+        <div class="footer">
+            <h3 style="color: rgb(165, 165, 165);text-align: center;">Questions? Call 000-800-040-1843
+                FAQ</h3>
+            <ul class="footer_list">
+                <li>FAQ</li>
+                <li>Help Centre</li>
+                <li>Account</li>
+                <li>Media Centre</li>
+                <li>Investor Relations</li>
+                <li>Jobs</li>
+                <li>Ways to Watch</li>
+                <li>Terms of Use</li>
+                <li>Privacy</li>
+                <li>Cookie Preferences</li>
+                <li>Corporate Information</li>
+                <li>Contact Us</li>
+                <li>Speed Test </li>
+                <li>Legal Notices</li>
+                <li>Only on Netflix</li>
+            </ul>
+            <p style="color: white;text-align: center
+            ;">Netflix india</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

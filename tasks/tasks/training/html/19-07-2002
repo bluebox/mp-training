@@ -1,0 +1,366 @@
+1) What is HTML?
+A. HTML (HyperText Markup Language) is the code that is used to structure a web page and its content.
+
+2) What are tags?
+A. HTML tags are like keywords which defines that how web browser will format and display the content.
+ example: <html>, <body>, <h1> etc.
+
+3) Do all HTML tags come in a pair?
+A. No, there are single HTML tags that do not need a closing tag. 
+example: <br>,<hr> etc.
+
+4) 4) What are some of the common lists that can be used when designing a page?
+A. Some of the common lists that are used when designing a web page are Ordered lists, Unordered lists and Description lists.
+ example: 
+
+ Unordered Lists
+ <ul>
+    <li>python</li>
+    <li>java</li>
+</ul>
+
+Ordered Lists
+<ol>
+    <li>python</li>
+    <li>java</li>
+</ol>
+
+Description Lists
+<dl>
+    <dt>python</dt>
+    <dd>Interpreted Language</dd>
+</dl>
+
+5) How do you insert a comment in HTML?
+A. We insert comments using <!-- -->
+
+6) Do all character entities display properly on all systems?
+A. No all charcater entities doesn't display properly on all systems, some older systems may not support the entities.
+
+7) What is an image map?
+A. an image map is a graphic image defined so that a user can click on different areas of the image and be linked to different destinations.
+Example:
+<img src="workplace.jpg" alt="Workplace" usemap="#workmap">
+
+<map name="workmap">
+  <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+  <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+  <area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm">
+</map> 
+
+8) What is the advantage of collapsing white space?
+A. Collapsing white spaces decreases the transmission time between the server and the client because collapsing features remove unnecessary bytes that are occupied by the white spaces.
+
+9) Can attribute values be set to anything or are there specific values that they accept?
+A. Some attribute values can be set to only predefined values. Other attributes can accept any numerical value that represents the number of pixels for a size.
+Example: align can have only 3 value i.e, Left, Right, Center. Where as a margin property can have any number of pixels.
+
+10) How do you insert a copyright symbol on a browser page?
+A. The HTML copyright symbol can be inserted into html page using &copy; or &#169;
+
+11) How do you create links to sections within the same page?
+ A:Since we now know that the anchor tag <a> is used for creating any link.  we also know that “href” can hold the link address. But in our case, we want to link to the section of same page, in that case we will use id to identify different sections of our web page . These ids then can be passed to the href as shown below:
+Syntax:
+<a href="#section1" >section 1</a>
+<body>
+    <div class="nav">
+        <a href="#section1" class="btn">1</a>
+        <a href="#section2" class="btn">2</a>
+        <a href="#section3" class="btn">3</a>
+        <a href="#section4" class="btn">4</a>
+    </div>
+    <div class="section one" id="section1">
+        section 1
+    </div>
+    <div class="section two" id="section2">
+        section 2
+    </div>
+    <div class="section three" id="section3">
+        section 3
+    </div>
+    <div class="section four" id="section4">
+        section 4
+    </div>
+</body>
+
+
+12) Is there any way to keep list elements straight in an HTML file?
+A:Lists are automatically indented, by default & it is important to keep the list aligned according to the display preferences. In order to keep the list items in a straight line, there are a few CSS properties that are not only used to indent the content but also used for styling the list by featuring the customizable options, which are given below:
+
+1.text-indent property
+2.margin-left & padding-left property
+3.display property
+4.list-style-type property
+
+13) If you see a web address on a magazine, to which web page does it point?
+A:Every web page on the web can have a separate web address. Most of these addresses are relative to the top-most web page. The published web address that appears within magazines typically points this top-most page or Home page.
+
+14) What is the use of alternative text in image mapping?
+A:The alternative text, sometimes also known as alt attribute in HTML, provides the metadata regarding that specific image.
+<img src="url" alt="text"/>
+Attribute Value: It contains single value text which is used to specify the alternative text for the supported element if an image is not displaying.
+
+15) Do older HTML files work on newer browsers?
+A:Yes, older html files are compliant to the HTML standard.
+Most older files work on the newer browsers, though some features may not work.
+For instance some Html files are specific to some browsers (eg.some html files are accessible only in Internet Explorer), but with the help of some of the browser updates we can be able to view All Html files in all browse
+
+16) Does a hyperlink apply to text only?
+A:No,Hyperlink can be applied to text as well as images,vedios,numbers or any other HTML property.
+
+17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+A:In cases wherein their operating system does not support a particular character, it is still possible to display that character by showing it as an image instead.
+
+18) How do you change the number type in the middle of a list?
+A:Under ordered list, i.e., <ol> tag, the <li> tag includes two attributes – type and value. The type attribute in the <ol> can be used to change the numbering type for any list item whereas the value attribute can change the number index.
+<ol type="i">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+19) What are style sheets?
+A:Cascading Style Sheets (CSS) provide easy and effective alternatives to specify various attributes for the HTML tags. Using CSS, you can specify a number of style properties for a given HTML element. Each property has a name and a value, separated by a colon (:). Each property declaration is separated by a semi-colon (;).
+
+20) State  bullet types available in HTML 
+A:Bulleted List displays elements in bulleted format . We can use unordered list where we do not need to display items in any particular order. The HTML ul tag is used for the unordered list. There can be 4 types of bulleted list:
+
+1.disc
+2.circle
+3.square
+4.none
+example:
+ <ul type="circle">  
+ <li>HTML</li>  
+ <li>Java</li>  
+ <li>JavaScript</li>  
+ <li>SQL</li>  
+</ul>
+
+21) How do you create multicolored text in a webpage?
+ans:-
+To create text with different colors, use the <style="font-color='color';">tags for every character that you want to apply color.
+
+22) Why are there both numerical and named character entity values?
+ans:-The numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
+
+23) Write an HTML table tag sequence that outputs the following:
+50 pcs 100 500
+10 pcs 5 50
+ans:-
+<table>
+    <tr>
+        <td>50</td>
+        <td>pcs</td>
+        <td>100</td>
+        <td>500</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>pcs</td>
+        <td>5</td>
+        <td>50</td>
+    </tr>
+</table>
+
+
+24) What is the advantage of grouping several checkboxes together?
+ans:-
+Although checkboxes don’t affect one another, grouping checkboxes together help to organize them. Checkbox buttons can have their name and do not need to belong to a group. A single web page can have many different groups of checkboxes.
+
+
+25) What will happen if you overlap sets of tags?
+ans:-code still works without any errors but we wont get the desired output.
+
+
+
+26) What are applets?
+ans:-An applet is a small application that supports and enhances the hosting web application. Commonly created using the Java programming language, applets run within a web browser.
+
+27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+ans:-nothing will display in the output and  it wont afffect the display of the html file
+
+
+28) Is it possible to set specific colors for table borders?
+ans:-yes, You can specify a border color using style sheets, but the colors for a table that does not use style sheets will be the same as the text color.
+
+29) How do you create a link that will connect to another web page when clicked?
+ans:-By using anchor tag 
+
+
+30) What other ways can be used to align images and wrap text?
+ans:-  using float property
+
+31> Display &nbsp inside <p> paragraph tag.
+ ans:- <p>&amp;nbsp</p>
+
+
+32> Insert a line between two different elements.
+      For example:
+        <h1> Before line </h1>
+        (I need a line here)
+        <p>this para should come after line</p>
+ans:-
+        <h1> Before line </h1>
+        <hr>
+        <p>this para should come after line</p>
+           
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+
+ans:-<p>
+        "Hello I am MedPlus <br><br>
+        
+        Medplus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is a   <br>good company <br>
+
+ 
+          We &nbsp;&nbsp;&nbsp;&nbsp;   all  &nbsp;&nbsp;&nbsp;&nbsp; love    &nbsp;&nbsp;&nbsp;&nbsp;   Med <br>                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plus"
+    </p>
+
+34> Specify an alternate text for the image, the alternate text should say 
+      “image not found” if the image don’t get load for any reason
+ ans:-     <img src=”smiley.gif” alt="image not found" >
+      
+35> Make this format in html! (You can use any text but format and font 
+    size should be similar)
+                                
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+     
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+
+
+ans:-    <h1 style="text-align: center;">Lorem Ipsum</h1>
+    <p><i><b>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit..."
+    </b></i> <br> </p>
+    <p style="font-size: 14px;">"There is no one who loves pain itself  who seeks after it and wants to have it, simply because it is pain..."</p>
+
+
+
+ 
+36> Print the following pattern in html using <h1> and <p> separately.
+    (note there are spaces before stars)
+    
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
+ ans:-
+ using <h1> tag
+     <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</h1>
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;</h1>
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</h1>
+    <h1>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</h1>
+    <h1>&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</h1>
+    <h1>*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</h1>
+
+
+using <p> tag
+
+     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;<p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</p>
+    <p>&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</p>
+    <p>*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;&nbsp;*</p>
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
+
+
+
+
+
+
+1. Default length of Lorem:
+A. no default length its changes everytime.
+
+2. If mention len of Lorem with len:
+A. It will give the Lorem with the same number of words according to the number we mentiond.
+
+3. Vertical line:
+A. There are two ways in which we can create a vertical line. They are 
+	1. using the border property
+	2. using the hr tag itself as <hr width="1" size="500">
+
+4. Diff btwn & and &#:
+A. & is used for memorable entities/characters and &# for less memorable characters.
+
+5. Types of Lists:
+A. 1) Unordered Lists
+2) Ordered
+3) Description
+
+6. Diff between Lists
+	3 types
+A. There are three list types in HTML:
+    • unordered list — used to group a set of related items in no particular order 
+    • ordered list — used to group a set of related items in a specific order 
+    • description list — used to display name/value pairs such as terms and definitions 
+
+
+7.  Access files through url
+A. 3 types
+1. using the url or link if the img is not in local system
+2. using the image name if the image and the html file are in same directory
+3. using the path of the image file if the image and html files are in different directories.
+
+8. Difference Between directory, menu lists and unordered lists.
+A. 
+
+Directory Lists 
+Menu Lists
+Unordered list
+It has been deprecated in HTML5 i.e. the latest version of HTML
+It is supported by HTML 5.
+It is actively supported by HTML 5.
+They do not support any attributes for the styling of bullets.
+They do not support any attributes for the styling of bullets.
+Bullets in an unordered list can be styled using the list-style-type attribute
+The attributes of these lists are not supported by any of the browsers.
+The attributes of these lists are not supported by any of the browsers.
+The attributes of the unordered list are supported by all the renowned browsers available in the market.
+They are generally less preferred in search engine results.
+They are generally less preferred in search engine results.
+They are helpful in SEO (Search Engine Optimization) as they produce less noise and return better results in a search.
+9. Useage of different lists:
+A.
+<body>
+    <ul>
+        <li>Air</li>
+        <ol>
+            <li><dl><dt>Polluted Air</dt><dd>Contaminated with pollutants</dd></dl></li>
+            <li><dl><dt>Non-polluted Air</dt><dd>Without pollution</dd></dl></li>
+        </ol>
+        <li>Water</li>
+        <li>Earth</li>
+        <li>Fire</li>
+    </ul>
+    <p>
+</body>
+<<<<<<< HEAD
+
+
+=======
+---------------------------------------------------
+>>>>>>> 587a97f67d7f9353345d63517c502ceb63f7941a
