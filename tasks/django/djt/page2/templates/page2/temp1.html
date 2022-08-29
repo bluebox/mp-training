@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>templates</title>
+    <style>
+        div{
+        background-color : black;
+        color:white;
+        height : 200px;
+        width : 20%;
+        padding:2px;
+        }
+    </style>
+</head>
+<body>
+{% comment "titles"%}
+    variables
+{% endcomment %}
+<div >
+    <h1 >profile</h1>
+    <p>name : {{name}}<br>age : {{age}}<br>
+        profession : {{profession}}<br>
+        company : {{company}}<br></p>
+</div>
+<h1>tags</h1>
+{% for i in "simpletext"%}
+    {%if i != t %}
+    {{count}} = {{i}} <br>
+    {%else%}
+    else statement i = 't'
+{% endif %}
+{% endfor %}
+
+{% comment "filters"%}
+<h1>filters</h1>
+filters
+{% endcomment %}
+{{name|upper}}<br>
+{{name|wordcount}}<br>
+{{name|title}}<br>
+{{name|length}}<br>
+{{name|slugify}}<br>
+{{name|join:"?"}}<br>
+{{name|add:":"}}<br>
+
+</body>
+</html>
