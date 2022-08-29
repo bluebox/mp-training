@@ -12,5 +12,8 @@
   <p> apollo</p>
  {%endif %}
 <a href="{%url 'home' %}">try this</a>
+{% for i in players %}
+  <p>{{i}}</p>
+{% endfor %}
 </body>
 </html>
