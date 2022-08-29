@@ -22,5 +22,7 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('urls/', include('turls.urls')),
     path('templates/', include('tempapp.urls')),
+    path('view/', include('viewapp.urls')),
+    path('class/', include('classView.urls')),
 
 ]
