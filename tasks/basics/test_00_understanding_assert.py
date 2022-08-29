@@ -41,4 +41,3 @@ asseret ==bool
 """
 
 time_taken_minutes = 1
-
