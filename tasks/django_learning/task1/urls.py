@@ -15,10 +15,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from . import views
-from django.urls import path, include
+from django.urls import path, include, register_converter, re_path
+from . import converter
+
+
+register_converter(converter.Username, 'uname')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('home/<para>', views.home, name="home")
+
+    # integer parameter
+    path('int_para/<int:a>', views.int_para),
+
+    # string parameter
+    path('str_para/<str:sa>', views.str_para),
+
+    # multi arguments
+    path('home/<para>/<arg>', views.home, name="home"),
+
+    # user_converter argument type
+    path('name1/<uname:nm>', views.name1, name="name"),
+
+    # regex repath argument
+    re_path(r'^confirm-year/(?P<year>[0-9]{4})$', views.confirm_year, name="confirm_year"),
+
 ]
 

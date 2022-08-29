@@ -15,11 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, register_converter, re_path
-from task1 import views
-from task1 import converter
 from django.http import HttpResponse
-
-register_converter(converter.Username, 'uname')
 
 
 def comments(request, page1):
@@ -39,23 +35,11 @@ urlpatterns = [
 
     path("", home),
 
+    path("", include("task1.urls")),
+
+
     # one parameter
     path("<p>", one_para),
-
-    # integer parameter
-    path('int_para/<int:a>', views.int_para),
-
-    # string parameter
-    path('str_para/<str:sa>', views.str_para),
-
-    # multi arguments
-    path('home/<para>/<arg>', views.home, name="home"),
-
-    # user_converter argument type
-    path('name1/<uname:nm>', views.name1, name="name"),
-
-    # regex repath argument
-    re_path(r'^confirm-year/(?P<year>[0-9]{4})$', views.confirm_year, name="confirm_year"),
 
     # nested arguments
     re_path(r'^comments/(?:page-(?P<page1>[0-9]+)/)?$', comments),
