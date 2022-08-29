@@ -1,0 +1,19 @@
+<html>
+<head>
+<title> tags</title>
+</head>
+<body>
+{%comment "message"%} this is comment tag {%endcomment%}
+{%if a == 1 %}
+ <p>medplus</p>
+{%elif a == 2 %}
+  <p> optival</p>
+ {%else %}
+  <p> apollo</p>
+ {%endif %}
+<a href="{%url 'home' %}">try this</a>
+{% for i in players %}
+  <p>{{i}}</p>
+{% endfor %}
+</body>
+</html>
