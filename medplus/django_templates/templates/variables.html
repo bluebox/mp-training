@@ -11,7 +11,7 @@
     <ul>
         {% if data1 %}
         {% for da in data1 reversed %}
-        <li>
+        <li style='background-color:{% cycle 'lightblue' 'pink' %}'>
             <p>{{ da.first_name }}</p>
             <p>{{ da.last_name }}</p>
         </li>
