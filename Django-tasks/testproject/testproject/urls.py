@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('myapp/', include('myapp.urls')),
     path('myapp2/', include('myapp2.urls')),
+    path('myapp3/', include('myapp3.urls')),
     # nested argumnets
     path("one-parameter/<parameter1>/", include('myapp.urls')),
 
