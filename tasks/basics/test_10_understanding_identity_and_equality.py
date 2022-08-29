@@ -87,9 +87,9 @@ readable code like if x is None: instead of if x == None:
 '''
 
 THREE_THINGS_I_LEARNT = """
--when we assign two list with same elements they always store in different memory so when we compare those two lists using is operatoe we get False.
--small numbers behave differently why because they store in one memory location when they are in range(-5,256).
--when we assign None to any variable all they are stored in one memory location.
+-
+-
+-
 """
 
 TIME_TAKEN_MINUTES = 30

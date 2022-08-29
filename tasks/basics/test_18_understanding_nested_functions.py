@@ -131,9 +131,9 @@ def test_def_is_a_statement():
 
 
 THREE_THINGS_I_LEARNT = """
--How to handle errors in the function by using exception handling.
--learned using nested loops
--learned about the inbuilt function dir() which returns all the attributes inside that function.
+-
+-
+-
 """
 
 TIME_TAKEN_MINUTES = 40

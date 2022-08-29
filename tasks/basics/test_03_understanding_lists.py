@@ -172,9 +172,9 @@ def test_list_range():
 
 
 THREE_THINGS_I_LEARNT = """
--slicing in list to get a certain part of the list
--accesing list elements using indexs and negative indexs
--learned functions like append , extend ,range ,reverse,sort.
+-
+-
+-
 """
 
 TIME_TAKEN_MINUTES = 15

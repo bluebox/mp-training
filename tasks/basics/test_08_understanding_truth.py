@@ -89,9 +89,9 @@ def test_equality():
 
 
 THREE_THINGS_I_LEARNT = """
--Checking  empty string ,empty list and empty set is whether equal to true  or not .
--Learned that 0 is equal to False and 1 is equal to True.
--By using helper function test_truth_values Assigning the values to the function truth_test with different aruguments but same datatype. 
+-
+-
+-
 """
 
 TIME_TAKEN_MINUTES = 10
