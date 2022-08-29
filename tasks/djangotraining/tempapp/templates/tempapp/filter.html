@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body>
+<!--upper filter-->
+<h1>Hello {{ name|upper }}, how are you?</h1>
+<!--first and lower filters-->
+<h1>Hello {{ name|first|lower }}, how are you?</h1>
+<!--length filter-->
+{% if name|length == 4 %}
+   <h1>length of name "{{name}}" is {{name|length}}</h1>
+{% endif %}
+</body>
+</html>

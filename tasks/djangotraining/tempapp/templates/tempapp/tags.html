@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tags</title>
+</head>
+<body>
+
+<!--comment tag-->
+<h1>Welcome Everyone</h1>
+{% comment %}
+  <h1>Welcome ladies and gentlemen</h1>
+{% endcomment %}
+
+
+
+<!--  if tag-->
+{% if name == 'hari' %}
+<h1>My name is {{name}}</h1>
+{% elif name == 'roopa' %}
+<h1>My name is {{name}}</h1>
+{% endif %}
+
+<!--for loop tag-->
+{% for x in data %}
+  <h1>{{ x }}</h1>
+{% endfor %}
+
+</body>
+</html>
