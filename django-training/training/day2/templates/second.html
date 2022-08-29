@@ -1,3 +1,4 @@
+{% load static %}
 <h1>This is the second template</h1>
 <h4> in this template we will see the use of variables,tags and filters</h4>
 <h4> rendering variables from views</h4>
@@ -6,7 +7,7 @@
 <h4> printing numbers using for loop tags </h4>
 {% for i in l %}
         <p>{{ i }}</p>
-{% endfor S%}
+{% endfor %}
 {% comment %} <p> this is a comment</p> {% endcomment %}
 <h4> filters </h4>
 <p> upper: {{ fname|upper }}</p>
@@ -14,3 +15,5 @@
 <p> length: {{ fname|length }}</p>
 <p> word count: {{ fname|wordcount }}</p>
 <p> slugify: {{ s|slugify }}</p>
+<h4> update:static folder</h4>
+<img src="{% static 'download.png' %}" alt="no img ">
