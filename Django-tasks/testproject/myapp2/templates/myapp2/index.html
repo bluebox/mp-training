@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .body{
+    margin:0;
+    padding:0;
+    }
+
+        .container
+        {
+
+        border:1px solid aqua;
+        padding:2px
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+    {%include 'myapp2/navbar.html' %}
+    <h2>TAGS:</h2>
+
+
+
+    <div class="container">
+<!--        <h1>Hey This is rendered from template</h1>-->
+        <p>This is {{name}} and my age is {{age}} and my fav things are:</p>
+        <p>
+            {% for x in fav %}
+                <p> >> {{x}}</p>
+            {% endfor %}
+        </p>
+        <p> I love playing {{fav.1}} </p>
+    </div>
+
+    <div class="container">
+        <h3>If else checking: if in fav 1st element is Harry Potter return Present else return Absent</h3>
+        {% if fav.0 == 'Harry Potter' %}
+        <p>Present</p>
+        {% else %}
+        <p>Not</p>
+        {% endif %}
+    </div>
+
+
+
+
+
+
+
+<h2>FILTERS:</h2>
+
+
+<p>
+    Use of length filter:
+</p>
+<div class="container">
+
+
+The length of the fav data is {{data1 | length}}
+
+</div>
+
+</div>
+</body>
+</html>

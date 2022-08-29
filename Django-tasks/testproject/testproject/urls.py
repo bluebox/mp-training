@@ -19,6 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('myapp/', include('myapp.urls')),
+    path('myapp2/', include('myapp2.urls')),
     # nested argumnets
     path("one-parameter/<parameter1>/", include('myapp.urls')),
 

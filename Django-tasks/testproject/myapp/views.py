@@ -9,7 +9,7 @@ def twoparameter(request, parameter1,parameter2):
     return HttpResponse(html)
 
 # passing extra options from url to view to stop conflict
-def oneparameter(request, parameter1,user_id):
+def oneparameter(request, parameter1):
     html = ""
     html = "this is my app " + str(parameter1)
     print(parameter1)
