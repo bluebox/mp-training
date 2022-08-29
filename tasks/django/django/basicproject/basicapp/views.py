@@ -9,7 +9,7 @@ def index(request):
 
 
 def home(request):
-    http = "thia ia shyam"
+    http = "thia ia shyam from home page"
     return HttpResponse(http)
 
 
@@ -50,13 +50,28 @@ def repath(request, name1):
     http = "this is  regex nested parameter " + str(name1)
     return HttpResponse(http)
 
-def nested_repath(request, name1,name2,name3):
+
+def nested_repath(request, name1, name2, name3):
     print(name1)
     print(type(name1))
     http = "year: " + str(name1) + " " + "month: " + str(name2) + " " + "date: " + str(name3)
     return HttpResponse(http)
+
+
 def comments(request, number):
     print(number)
     print(type(number))
     http = "this is  regex nested parameter " + str(number)
     return HttpResponse(http)
+
+
+def home1(request):
+    http = "thia ia shyam"
+    context = {"data": [1, 2, 13, 4], "name": "shyam", "Gender": "Male", "age": 22, "date": (1999, 12, 16),
+               "basic": True}
+
+    return render(request, 'home.html', {'context':context})
+
+
+def base(request):
+    return render(request, 'basic.html')
