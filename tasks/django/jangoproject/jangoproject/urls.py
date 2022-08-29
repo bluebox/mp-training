@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('jangoapp1.urls')),
     path('app2/',include('jangoapp2.urls')),
+    path('app3/',include('jangoapp3.urls')),
 ]
