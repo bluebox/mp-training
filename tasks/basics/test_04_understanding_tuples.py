@@ -111,9 +111,9 @@ def test_sequence_conversion():
 
 
 THREE_THINGS_I_LEARNT = """
--learned to convert tuple to string and string to list and list to tuple
--learned using join function to join the all the elements in the list and tuple if all the list and tuple elements are characters
--learned to find the length of the tuple using len function 
+-
+-
+-
 """
 
 TIME_TAKEN_MINUTES = 10

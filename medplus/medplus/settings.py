@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'medplus_app',
+    'django_templates'
 ]
 
 MIDDLEWARE = [
