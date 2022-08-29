@@ -54,7 +54,7 @@ ROOT_URLCONF = 'testing.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templatetest/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

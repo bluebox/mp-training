@@ -1,0 +1,34 @@
+{%extends './base.html' %}
+
+{% block content %}
+
+    hello i am {{name}} and my phone number is of {{var_a}} digits.
+    containing numbers
+    {%for i in list_a%}
+    {{i}}
+    {%endfor%}
+    <br>
+    starts with {{list_a.5}}
+    <br>
+    numbers greater than 2 are
+    {%for i in list_a%}
+    {%if i > 2 %}
+    {{i}}
+    {%endif%}
+    {%endfor%}
+<br>
+{% for items,value in dict_a.items %}
+{{items}}-{{items|length}}<br>{{value}}{{value|length}}
+{%endfor%}
+
+<br>
+<br>
+<h1>Hello my name is {{name|capfirst}}</h1>
+<br>
+<h1>original number {{num}}</h1>
+<h1>after add filter {{num|add:"2"}}</h1>
+    <a href="{% url 'secondpage' %}">click here</a>
+
+    <br>
+    default tag {{ value | default:"nothing" }}
+{%endblock%}
