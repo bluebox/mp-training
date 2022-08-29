@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6!z_1b@u0tnvxpww$j%**8q8vb(=e9d+hu#v)y#8w2z-=7yqbz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'medplus_app',
-    'django_templates'
+    'django_templates',
+    'django_urls',
+    'django_views'
 ]
 
 MIDDLEWARE = [
