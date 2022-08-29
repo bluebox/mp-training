@@ -1,0 +1,115 @@
+
+*{
+    text-align: center;
+}
+.h1{
+    font-size: 90px;
+    outline:rgb(137, 0, 0) 5px;
+    background-color: white;
+}
+#p1{
+    font-size: 40px;
+}
+#p2{
+    font-size: 20px;
+}
+#p3{
+    font-size: 20px;
+}
+#p4{
+    font-size: 20px;
+}
+#head1{
+
+    background-color:aliceblue;
+    font-size: 50px;
+}
+
+#para1{
+    color: aliceblue;
+    font:caption;
+    font-size: 40px;
+    font-weight: 100;
+    font-style:initial;
+    position:absolute;
+    bottom: 0px;
+    /* background-color: aliceblue; */
+}
+.parallax{
+
+    background-image: url("https://cutewallpaper.org/21/best-steam-profile-backgrounds/Discussion-Best-Steam-profile-backgrounds-.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:1000px;
+
+
+}
+.div2{
+    background-image: url("https://www.popsci.com/uploads/2020/06/05/3NIEQB3SFVCMNHH6MHZ42FO6PA.jpg?auto=webp");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:1000px;
+
+}
+.div3{
+    background-image: url("https://t3.ftcdn.net/jpg/03/38/86/46/360_F_338864604_VYwLPFajEC8ioSI1gh1bMKDZjnFxWHNs.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:1000px;
+
+}
+
+ul {
+    display: flex;
+    /* text-decoration: none; */
+    justify-content: center;
+    list-style-type: none;
+}
+
+li {
+    margin-left: 20px;
+}
+
+.hobbies{
+    background:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("https://images3.alphacoders.com/212/thumb-1920-212835.jpg");
+    background-image: url("https://images3.alphacoders.com/212/thumb-1920-212835.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 1000px;
+}
+.details{
+    padding: 0%;
+    border: 10ch;
+    margin: 0;
+    border: black;
+
+}
+
+.button:hover{
+    background-color: rgb(149, 156, 145);
+}
+.navigator{
+    display: flex;
+    justify-content: space-between;
+}
+.buttons{
+    display: flex;
+}
+.projects{
+    background:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("/home/mphs/Downloads/files/electronics.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 1100px;
+    font-size: 30px;
+}
+.footerclass{
+    background-color: rgb(84, 67, 67);
+    background-attachment: fixed;
+}

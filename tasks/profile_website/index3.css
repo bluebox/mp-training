@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400;500;600;700&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+.PERSONAL{
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    margin: auto;
+    /* background-color:black; */
+    /* background-image: url("https://img.freepik.com/free-vector/copy-space-wavy-white-background-layers_23-2148845469.jpg?w=2000"); */
+}
+.PAYMENT_BODY{
+    /* background-image: url("https://img.freepik.com/free-vector/copy-space-wavy-white-background-layers_23-2148845469.jpg?w=2000"); */
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    margin: auto;
+    text-transform:uppercase;
+
+}
+.body{
+    background-image: url("https://dt-cdn.net/wp-content/uploads/2020/07/webinars-devops-anz.jpg");
+    /* background-attachment: fixed; */
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    
+}
+.input_field{
+    display: flex;
+    justify-content: space-between;
+    margin-top: .2rem;
+}
+
+.input{
+    height: 1.5rem;
+}
+
+
+.input:hover{
+    border: 2px solid rgb(10, 10, 10);
+    background-color: rgb(216, 245, 223);
+
+}
+.label{
+    font-weight: bold;
+}
+
+.input_radio{
+    width: fit-content;
+    margin-left: 8rem;
+}
+
+.dropdown{
+    width: 45%;
+    height: 2rem;
+}
+
+.button:hover{
+    background-color:aquamarine;
+    /* color: white; */
+}
+.button{
+    font-weight: bold;
+}
+
+.heading{
+    background-image: linear-gradient(to right, red, green, blue);
+    width: fit-content;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: auto;
+    /* font-family: 'Oswald', sans-serif;
+    font-weight: bold; */
+}

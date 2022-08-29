@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payments form</title>
+    <link rel="stylesheet" href="index3.css">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3c/Medplus_logo.jpg">
+</head>
+
+<body class="body">
+    <DIV STYLE="TEXT-ALIGN:CENTER;">
+        <h1><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Medplus_logo.jpg" alt="no image"
+                height="100px" width="320" style="border-radius: 4rem;"></h1>
+        <H2 class="" style="border: 1px solid black;background-color: aliceblue;">PAYMENTS FORM</H2>
+    </DIV>
+    <DIV class="PERSONAL" style="border: 10px solid white; padding:10px; background-color: aquamarine;">
+        <form style="text-align: center; padding: 10px;">
+            <LAbel>
+                <H3 class="heading">PERSONAL DETAILS</H3>
+            </LAbel>
+            <div class="input_field">
+                <label class="label">FULL NAME :</label>
+                <input class="input" required type="text" name="fullname" id="payment"
+                    placeholder="enter the full name">
+            </div>
+            <div class="input_field">
+                <label class="label">MOBILE NUMBER :</label>
+                <input class="input" required type="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" name="fullname"
+                    id="payment" placeholder="enter mobile number">
+            </div>
+            <div class="input_field">
+                <label class="label">ADDRESS :</label>
+                <input class="input" required type="text" name="fullname" id="payment" placeholder="enter address">
+            </div>
+            <div class="input_field">
+                <label class="label">EMAIL ID :</label>
+                <input class="input" required type="email" name="fullname" id="payment" placeholder="enter email">
+            </div>
+    </DIV>
+
+    <br>
+    <DIV class="PAYMENT_BODY"
+        style="text-align: CENTER;padding: 10px; background-color: aquamarine; border: 10px solid white;">
+        <H3 class="heading">PAYMENT DETAILS</H3>
+        <label for="payment_mode"><B>MODE OF PAYMENT</B></label><br>
+        <div class="input_radio">
+            <input type="radio" name="payment" id="cash">
+            <label for="cash"> <b>CASH PAYMENT</b></label>
+        </div>
+        <div class="input_radio">
+            <input type="radio" name="payment" id="online">
+            <label for="pay online credit/debit card"><b> PAY ONLINE </b> </label>
+        </div>
+        <!-- <p>Select card type: <br>
+            <select name="type of card">
+                <option value="Debit card">Debit Card</option>
+                <option value="Credit card">Credit Card</option>
+            </select>
+        </p> -->
+
+        <div class="input_field">
+            <label class="label">Select card type:</label>
+            <select name="type of card" class="dropdown input">
+                <option value="Debit card">Debit Card</option>
+                <option value="Credit card">Credit Card</option>
+            </select>
+        </div>
+
+
+
+        <!-- <label for="pay online credit/debit card"><b> CREDIT/DEBIT CARD </b> </label> -->
+
+        <div class="input_field">
+            <label class="label">Card Number :</label>
+            <input type="tel" pattern="[0-9]{16}" required class="input"  placeholder="xxxx xxxx xxxx xxxx" minlength="16" maxlength="16"/>
+        </div>
+
+
+        <div class="date-number input_field">
+            <label class="label"> Expiry Date :</label>
+            <input type="date" required pattern="[A-Za-z]{3}" class="date-number-field input" placeholder="DD-MM-YY"
+                style="width: 43.5%;" />
+        </div>
+
+        <div class="cvv-number input_field">
+            <label class="label"> CVV number :</label>
+            <input type="number" required class="cvv-number-field input" pattern="[0-9\s]{13,19}"
+                autocomplete="cc-number" maxlength="16" placeholder="xxx" />
+        </div>
+        <div class="nameholder-number input_field">
+            <label class="label"> Card Holder name :</label>
+            <input type="text" required class="card-name-field input" placeholder="Enter your card holder name" />
+        </div>
+        <div class="input_field">
+            <LAbel class="label" style="color: black;"><b> TOTAL AMOUNT :</b></LAbel>
+            <input class="input" type="number" required>
+        </div>
+    </DIV>
+    <div
+        style="border: 1px solid #fff;text-align: center;padding:5px; width: fit-content; margin: auto; border-radius: 1.7rem; margin-top: 1rem;">
+        <button class="button" type="submit" style="padding: 0.5rem 2rem; border-radius: 1rem;">SUBMIT</button>
+    </div>
+    </form>
+</body>
+
+</html>

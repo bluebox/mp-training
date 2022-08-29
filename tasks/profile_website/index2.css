@@ -1,0 +1,8 @@
+*{
+    background-color: aqua;
+}
+ul.a{
+    list-style-type: circle;
+    padding:10px;
+    margin: 10px;
+}
