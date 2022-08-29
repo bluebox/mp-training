@@ -36,6 +36,9 @@ urlpatterns = [
 
     path('blog/<int:year>/', views.year_archive, {'foo': 'bar'}),
 
-    re_path(r'^blog/(page-([0-9]+)/)?$', views.blog_articles,name='bad_nested'),  # bad
-    re_path(r'^comments/(?:page-(?P<page_number>[0-9]+)/)?$', views.blog_articles,name="good_nested"),  # good
+    # normal page-2 / page-3
+    re_path(r'^blog/(?P<parameter>page-([0-9]+))/$', views.blog_articles,name='bad_nested'),  # bad
+
+    # nested parameters
+    re_path(r'^comments/(?:page-(?P<page_number>[0-9]+)/)?$', views.nested_parameters,name="good_nested"),  # good
 ]
