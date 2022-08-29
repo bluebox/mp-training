@@ -7,19 +7,19 @@
 <h1>Players : </h1>
 
 <!-- for loop tag -->
-{% for member in Player_details %}
-<h2>{{member.name|title}} from {{member.country|upper}} </h2>
+{% for i in Player_details %}
+<h2>{{i.name|title}} from {{i.country|upper}} </h2>
 {% endfor %}
 <hr>
 
 <!-- if condition -->
 <h1>listing team members:</h1>
 
-{% for member in Player_details %}
+{% for i in Player_details %}
 
-{% if member.country|title == "India"%}
+{% if i.country|title == "India"%}
 
-<h2>{{member.name}}</h2>
+<h2>{{i.name}}</h2>
 
 {% endif %}
 
