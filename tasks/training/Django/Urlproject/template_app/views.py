@@ -21,7 +21,7 @@ def directing(request):
 
 def filter(request):
     con={"name":"Dhanush"}
-    return render(request,"variable.html",con)
+    return render(request,"filter.html",con)
 
 
 def conditions(request):
