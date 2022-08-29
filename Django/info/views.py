@@ -16,3 +16,8 @@ def profilepage(request):
 
 def loginpage(request):
     return render(request,'loginpage.html')
+
+def evenvalues(request):
+    n=range(1,30+1)
+    print(n)
+    return render(request,'DjangoTag.html',{'N' : n})

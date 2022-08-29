@@ -23,5 +23,5 @@ urlpatterns = [
     path('profile', views.profilepage,name='Profile Page'),
     path('Home Page/<username>/', views.homepage,name='Home Page'),
     path('Login Page', views.loginpage,name='Login Page'),
-        
+    path('Even Values', views.evenvalues,name='Even Values'),
 ]
