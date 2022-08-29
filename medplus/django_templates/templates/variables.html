@@ -7,13 +7,14 @@
     <title>variables</title>
 </head>
 <body>
+    {% filter upper %}
     <h1>The users data</h1>
     <ul>
         {% if data1 %}
         {% for da in data1 reversed %}
-        <li style='background-color:{% cycle 'lightblue' 'pink' %}'>
-            <p>{{ da.first_name }}</p>
-            <p>{{ da.last_name }}</p>
+        <li style="background-color:{% cycle 'lightgreen' 'pink' %}">
+            <p>{{ da.first_name|add:"-first name"}}</p>
+            <p>{{ da.last_name|add:"-last name" }}</p>
         </li>
         {% endfor %}
         {% else %}
@@ -21,6 +22,7 @@
         {% endif %}
         
     </ul>
+    {% endfilter %}
 
 
     
