@@ -1,3 +1,5 @@
+{%load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +27,10 @@
 </div>
 <h1>tags</h1>
 {% for i in "simpletext"%}
-    {%if i != t %}
+    {%if i != 't' %}
     {{count}} = {{i}} <br>
     {%else%}
-    else statement i = 't'
+    else statement i = 't'<br>
 {% endif %}
 {% endfor %}
 
@@ -43,6 +45,8 @@ filters
 {{name|slugify}}<br>
 {{name|join:"?"}}<br>
 {{name|add:":"}}<br>
+
+<img src = "{%static 'page2/images/bike.jpeg'%}">
 
 </body>
 </html>
