@@ -117,9 +117,9 @@ def test_find_builtins_that_work_on_iterables():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-working on iterables and join function works only for string values otherwise it gives TypeError.
+-if all the elements are finished we need to handle the exception by using StopIteration.
+-list,tuple,dict,set all work on iterations.
 """
 
 TIME_TAKEN_MINUTES = 30

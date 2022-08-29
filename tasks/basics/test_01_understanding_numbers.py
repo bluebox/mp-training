@@ -47,9 +47,9 @@ def test_numbers_long():
 
 
 THREE_THINGS_I_LEARNT = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal to hexadecemal
--
+-checking datatypes whether 5 is int and 5.5 is float,and performing arithematic operations
+-converted int to string and vice versa by using int() oct() ,hex() and bin() inbuilt functions.
+--converted int 64 bits
 """
 
 TIME_TAKEN_MINUTES = 4

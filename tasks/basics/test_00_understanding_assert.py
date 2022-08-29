@@ -46,10 +46,10 @@ def test_make_assert_true_3():
     assert s_1 == s_2
 
 
-THREE_THINGS_I_LEARNT = """
-assert ==bool
--
--
-"""
+THREE_THINGS_I_LEARNT = '''
+-assert is used to check whether the statement is true or not.
+-if the statement is wrong then it gives assertionError.
+-if there are two assert statements in the code if any one assert statement is false then it returns assertionError.
+'''
 
 TIME_TAKEN_MINUTES = 1

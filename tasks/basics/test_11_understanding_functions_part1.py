@@ -152,9 +152,9 @@ def test_function_params_passed_by_object_reference():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-passing parameters to the function .
+-function are really useful for reusing it if that function is required.
+-callable returns True if we pass function has the parameter else returns false.
 """
 
 TIME_TAKEN_MINUTES = 15

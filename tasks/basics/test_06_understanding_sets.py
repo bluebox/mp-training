@@ -104,9 +104,9 @@ def test_set_valid_members():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-The symbol for set is similar to the symbol for dict only difference between these two are dict will have key value pairs when it comes to set it contains only values.
+-By using set we can remove duplicates
+-we should use set() syntax for empty_set and {} for dictionaries.
 """
 
 TIME_TAKEN_MINUTES = 15

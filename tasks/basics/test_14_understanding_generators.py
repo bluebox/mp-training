@@ -125,9 +125,9 @@ def test_generator_exception():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-difference between yield and return here return is used to return only one time and when it comes to yield it can return more than one time.
+-by using list(generator) to insert all the elements into the list.
+-once return is used it will return from the function even though after return there are yields are left.
 """
 
 TIME_TAKEN_MINUTES = 30

@@ -134,9 +134,9 @@ def test_valid_dictionary_keys():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-accessing dictionary elements by dictionary values
+-dictionaries are collection of key,value pairs.
+- dictionary doesn’t allow duplicate keys.
 """
 
 TIME_TAKEN_MINUTES = 15

@@ -202,9 +202,9 @@ def test_while_loop_else():
 
 
 THREE_THINGS_I_LEARNT = """
--
--
--
+-we can iterate all the elements in list or a string using range function and index values.
+-in enumerate function we get index  and value stored in the form of tuples.
+-break statement is used to break the loop and continue is used to only skip that iteration.
 """
 
 TIME_TAKEN_MINUTES = 20
