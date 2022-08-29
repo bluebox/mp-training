@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container
+        {
+        border:2px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    {%include 'home2/navbar.html' %}
+    <hr>
+    <h2>TAGS:</h2>
+    <hr>
+
+
+    <div class="container">
+<!--        <h1>Hey This is rendered from template</h1>-->
+        <p>This is {{name}} and my age is {{age}} and my fav things are:</p>
+        <p>
+            {% for x in fav %}
+                <p> >> {{x}}</p>
+            {% endfor %}
+        </p>
+        <p>{{fav.0}}</p>
+    </div>
+
+    <div class="container">
+        <h3>If else checking</h3>
+        {% if fav.0 == 'GOT' %}
+        <p>Present</p>
+        {% else %}
+        <p>Not</p>
+        {% endif %}
+    </div>
+
+
+
+{% for o in fav %}
+    <tr  class="{% cycle 'row1' 'row2' %}">
+        {% cycle 'fav' 'fav' %}
+         {{o}}
+    </tr>
+{% endfor %}
+
+<p>
+
+    {% filter force_escape|lower %}
+    This text will Appear in all Lowercases as We used a Tag.
+    {% endfilter %}
+</p>
+
+    <p>
+    {% for key, value in list2.items %}
+    {{ key }}: {{ value }}
+    {% endfor %}
+    </p>
+
+    <hr>
+
+
+<h2>FILTERS:</h2>
+
+    <hr>
+    <p>
+    Using length filter: The length of the fav list is {{fav | length}}
+    </p>
+
+    <p>
+    Using capfirst filter:  {{fav.0 | capfirst}}
+    </p>
+    <p>
+    Using center filter:  {{fav.0 | center:"20"}}
+    </p>
+    <p>
+    Using cut filter:  {{fav.2 | cut:" "}}
+    </p>
+    <p>
+    Using divisibleby filter:  {{list1.3 | divisibleby:"3"}}
+    </p>
+<div class="container">
+
+
+
+
+</div>
+
+
+</body>
+</html>
