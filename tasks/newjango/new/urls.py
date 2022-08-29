@@ -12,5 +12,6 @@ urlpatterns = [
     re_path(r'^nested/(?P<para2>[0-9]{4})/$', views.nested),
     # re_path(r'^passing_objects/(?P<para>[0-9]{4})/$', views.passing_objects, {"name":"shyam", "age":"23"}),
     path('passing_objects/', views.passing_objects, {"Name":"shyam", "age":"23"}),
+    path('htm', views.accesing, name = 'accessing')
 
 ]

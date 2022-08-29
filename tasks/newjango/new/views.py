@@ -29,3 +29,6 @@ def nested(request, para2):
 def passing_objects(request, **dict_a):
     result = "My name is " + dict_a["Name"] + " and age is " + dict_a["age"]
     return HttpResponse(result)
+
+def accesing(request):
+    return render(request, 'variables.html')
