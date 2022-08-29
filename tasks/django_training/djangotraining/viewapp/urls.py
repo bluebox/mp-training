@@ -5,8 +5,8 @@ from . import views
 
 urlpatterns=[
 
-    path('function', views.function_based, name='f_based'),
-    # path('examples', views.examplesview, name='example'),
-    # path('hello', views.helloview, name='hello'),
-    # path('namedurl',views.namedurlview, name='namedurl'),
+    path('oneMethod', views.one_method, name='getMethod'),
+    path('twoMethod', views.two_method, name='getpostMethod'),
+
+
 ]

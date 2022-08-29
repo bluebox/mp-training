@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
 from django.views.decorators.http import require_http_methods,require_POST
-# Create your views here.
+
+
+
+@require_http_methods(['GET'])
+def one_method(request):
+    return HttpResponse("Function based get request")
 
 
 @require_http_methods(['GET', 'POST'])
-def function_based(request):
+def two_method(request):
+    if request.method=="GET":
+        return HttpResponse("returning from get method")
 
-    return HttpResponse("Function based request")
+    elif request.method=="POST":
+        return HttpResponse("Returning from post method")
