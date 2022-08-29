@@ -3,7 +3,7 @@ from . import views, converter
 
 register_converter(converter.FourDigitYearConverter, 'yyyy')
 
-# comment 
+
 urlpatterns = {
     path('', views.home, name='home'),
     path('cart/<int:id>/<str:s>/<slug:sl>/<uuid:ui>/<n>', views.login2, name='login2'),

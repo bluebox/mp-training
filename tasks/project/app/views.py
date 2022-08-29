@@ -13,7 +13,7 @@ def login2(request, id, s, sl, ui, n):
 
 
 def year_archive(request, year):
-    temp = 'year ' + str(year)
+    temp = 'year= ' + str(year)
     return HttpResponse(temp)
 
 
