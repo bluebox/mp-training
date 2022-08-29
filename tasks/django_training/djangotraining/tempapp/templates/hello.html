@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Goals{% endblock title %}
+
+{% block body %}
+<ul>
+  {% for timeframe in timeframes reversed %} {% if timeframe == 'monthly' %}
+  <li><a href="{% url 'namedurl'  %}">{{ timeframe|upper }}</a></li>
+  {% else %}
+  <li><a href="{% url 'namedurl' %}">{{ timeframe|capfirst }}</a></li>
+  {% endif %} {% endfor %}
+</ul>
+{% endblock body %}

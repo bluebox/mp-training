@@ -11,7 +11,11 @@ def defaultview(request):
 
 
 def examplesview(request):
-    return render(request, 'example.html', )
+    return render(request, 'example.html' )
 
+def helloview(request):
+    return render(request, 'hello.html', {'timeframes':["monthly", "weekly", "yearly"]})
 
-# test commit
+def namedurlview(request):
+    return render(request, 'namedurl.html', {'timeframe': "yearly", 'goal': "Complete the request"})
+
