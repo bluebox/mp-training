@@ -13,7 +13,8 @@ urlpatterns = [
     path('intparam/<int:params>', views.int_param),
     path('validate/<uuid:params>', views.validate),
     re_path(r'^temp/(?P<params>[0-9]{5})/$', views.validate),
-    re_path(r'^pages/(?:page-(?P<params>[0-9]+)/)?$',views.validate)
+    re_path(r'^pages/(?:page-(?P<params>[0-9]+)/)?$',views.validate),
+    path('', views.home),
 ]
 
 

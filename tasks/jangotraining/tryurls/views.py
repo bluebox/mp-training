@@ -21,3 +21,6 @@ def two_param(request,param1,param2):
 def validate(request,params):
     str1="the parameter you passed is "+str(params)
     return  HttpResponse(str1)
+
+def home(request):
+    return render(request,'tryurls/home.html')
