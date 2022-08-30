@@ -47,8 +47,10 @@ urlpatterns = [
     # task2_app urls
     path("task2/", include('task2.urls')),
 
+    path("va/", include('viewapp.urls')),
+
     # one parameter
-    path("<p>", one_para),
+    # path("<p>", one_para),
 
     # nested arguments
     re_path(r'^comments/(?:page-(?P<page1>[0-9]+)/)?$', comments),
