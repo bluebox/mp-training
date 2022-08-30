@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container
+        {
+        border:2px solid blue;
+        border-radius:10px;
+        }
+
+    </style>
+</head>
+<body>
+   
+    <hr>
+    <h2>TAGS:</h2>
+    <hr>
+
+
+    <div class="container">
+<!--        <h1>Hey This is rendered from template</h1>-->
+        <p>hello, my name  is {{name}} and my age is {{age}} and things i like doing are:</p>
+        <p>
+            {% for x in fav %}
+                <p> >> {{x}}</p>
+            {% endfor %}
+        </p>
+        <p>{{fav.0}}</p>
+    </div>
+    <p>The days in week are:<p>
+    {% for x in list1 %}
+                <p> >> {{x}}</p>
+            {% endfor %}
+
+    <div class="container">
+        <h3>If else checking</h3>
+        {% if fav.0 == 'sleep' %}
+        <p>Present</p>
+        {% else %}
+        <p>Not</p>
+        {% endif %}
+    </div>
+
+
+
+<!--{% for o in fav %}-->
+<!--    <tr  class="{% cycle 'row1' 'row2' %}">-->
+<!--        {% cycle 'fav' 'fav' %}-->
+<!--         {{o}}-->
+<!--    </tr>-->
+<!--{% endfor %}-->
+
+    <hr>
+<div class="container">
+<h2>FILTERS:</h2>
+     {% for x in list1 %}
+   <p>{{x}}-----{{ x|first|lower }}</p>
+ {% endfor %}
+    <hr>
+<p>
+  
+</p>
+
+
+
+
+
+</div>
+
+
+</body>
+</html>
