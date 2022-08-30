@@ -2,7 +2,7 @@ from telnetlib import STATUS
 from django.shortcuts import render,HttpResponse
 from django.views.generic import View
 from django.views.decorators.http import require_http_methods
-
+import json
 
 # Create your views here.
 @require_http_methods(["GET"])
@@ -38,3 +38,9 @@ def statuscode(request):
         return HttpResponse("hello i am post",status=201)
     elif request.method=="GET":
         return HttpResponse("hello i am GET component")
+
+def jsonsend(request):
+    dict_a={
+        "user":"yatin"
+    }
+    return HttpResponse(json.dumps(dict_a),content_type="application/json")

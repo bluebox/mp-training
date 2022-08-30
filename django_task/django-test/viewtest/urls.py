@@ -6,6 +6,8 @@ urlpatterns = [
     path('class/', views.Classcomp.as_view()),
     path('functionif/', views.funcompifcondition),
     path('status/', views.statuscode),
+    path('jsonsend/', views.jsonsend),
+
 
 
     
