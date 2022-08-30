@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.views.generic import View
+
 def function(request):
     if request.method =='GET':
         return HttpResponse(request.method)
@@ -11,7 +12,7 @@ def function(request):
     else:
         return HttpResponse("method not found")
 
-@require_http_methods('GET')
+@require_http_methods(['GET'])
 def function1(request):
     return HttpResponse('post request using decorators')
 

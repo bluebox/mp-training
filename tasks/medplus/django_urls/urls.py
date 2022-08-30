@@ -1,8 +1,10 @@
 
 from django.urls import path,re_path
 from . import views
+from django.http import HttpResponse
 
 urlpatterns = [
+    path('',views.django_views,name='django'),
     path('<str:para>', views.one_para,name="one_para"),
     path('two_para/<int:para1>/<int:para2>', views.two_para,name="two_para"),
     path('nested', views.nested,name="nested"),
