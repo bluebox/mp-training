@@ -4,11 +4,14 @@ select * from Movie;
 select * from Hero;
 show tables;
 drop table Movie;
+drop table Hero;
+
 create table Movie(
 	Movie_id varchar(50) primary key,
     Movie_name varchar(50) not null,
     Hero_name varchar(50),
-    Heroine_name varchar(50)
+    Heroine_name varchar(50),
+    foreign key(Hero_name) references Hero(Hero_name)
 );
 
 
@@ -25,7 +28,7 @@ insert into Movie values
 UPDATE 	Movie SET Heroine_name = 'heroine1' where Heroine_name = null;
 
 create table Hero(
-	hero_name varchar(20),
+	hero_name varchar(20) primary key ,
     remuneration int,
     num_of_movies int
 );
