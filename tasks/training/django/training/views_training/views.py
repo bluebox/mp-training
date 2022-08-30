@@ -1,11 +1,12 @@
-from re import template
-from urllib import request
+from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
 from django.views.decorators.http import require_http_methods
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView 
+from django.views.generic.detail import DetailView
+# from .models import TeamMember
 from .models import TeamMember
 # Create your views here.
 
@@ -47,8 +48,14 @@ class GreetingView(View):
     
 
 class ListTeam(ListView):
-    model = TeamMember
+    model =TeamMember
     template_name: 'views_training/teammember_list.html'
     # object_list: "teammates"
     
-    
+
+class DetailMember(DetailView):
+    # template_name: 'views_training/teammember_detail.html'
+    def __init__(self):
+        self.model = TeamMember
+    pk_url_kwarg: "pk"
+    template_name: 'views_training/teammember_detail.html'     

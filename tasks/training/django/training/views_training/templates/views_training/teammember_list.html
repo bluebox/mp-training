@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+<h4>Team Members : </h4>
 {% for member in object_list %}
- <h3>{{member.first_name}}</h3>
+ <a href=" {% url 'detail' member.id %} "> <h5>  {{member.first_name}} {{member.last_name}} </h5> </a>
 {% endfor %}
 
 {% endblock content %}
