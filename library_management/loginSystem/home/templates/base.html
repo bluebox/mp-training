@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> {% endcomment %}
+        <style>
+          body{
+            text-align:center;
+            {% load static %}
+            background-image:url("{% static 'lib4.jpg' %}");
+            background-repeat:
+            background-size: auto;
+            height:100vh;
+          }
+        </style>
+  </head>
+  <body>
+    <div class="main"style="background-color:black;opacity:0.9; color:white;width:40vw;margin:19vh 35vh 15vh 45vh;height:45vh">
+      {% csrf_token %}
+      <h1>Library Management System</h1>
+      <h2>Welcome {{request.user}}</h2>
+      <h2>How can we assist you?</h2>
+      <h2>To view all the books</h2>
+      <a href="/display"><button class="btn">display</button></a>
+      <h2>To borrow or return a book</h2>
+      <a href="/BorrowAndReturn"><button class="btn" >Borrow/Return</button></a>
+      <h2>To Logout</h2>
+      <a href="/logout"><button class="btn">Logout</button></a>
+    </div>
+  </body>
+</html>

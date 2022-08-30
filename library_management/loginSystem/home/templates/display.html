@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  table{
+    border:1px solid black;
+    padding:0px;
+    height:30vh;
+    width:60vw;
+  }
+  th{
+    border:1px solid black;
+  }
+  td{
+    border:1px solid black;
+    padding:10px
+  }
+</style>
+<h1>Welcome {{request.user}}</h1>
+<h3>These are the available books.</h3>
+<table>
+    <tr>
+      <th>Bookname</th>
+      <th>AuthorName</th>
+      <th>Price</th>
+      <th>Genre</th>
+      <th>Status</th>
+    </tr>
+    {% for b in book %}
+    <tr>
+      <td>{{ b.BookName }}</td>
+      <td>{{ b.AuthorName }}</td>
+      <td>{{ b.price }}</td>
+      <td>{{ b.genre }}</td>
+      <td>{{ b.status }}</td>
+    </tr>  
+    {% endfor %}
+
+  </table>
+  <button style="font-size:14px"><a href="/base"> <i class="fa fa-angle-double-left"></i>Back</a></button>
+
+  <button class="btn"><a href="/logout">Logout</a></button>
