@@ -10,7 +10,10 @@ def two_para(request,para1,para2):
 def regex_para(request):
     return HttpResponse(para1+para2)
 def uuid_para(request,para):
-    return HttpResponse()
+    return HttpResponse('uuid para'+para)
 
-def nested(request):
-    return HttpResponse()
+def nested(request,para):
+    return HttpResponse('nested para',para)
+
+def slug_para(request,para):
+    return HttpResponse("slug para"+para)

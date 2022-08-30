@@ -11,15 +11,15 @@ def function(request):
     else:
         return HttpResponse("method not found")
 
-@require_http_methods('get')
+@require_http_methods('GET')
 def function1(request):
     return HttpResponse('post request using decorators')
 
 class SecFun(View):
     def get(self,request):
-        parameters = request.get
+        parameters = request.GET
         return HttpResponse(request.method+' request')
     def post(self,request):
-        form_data = request.post
+        form_data = request.POST
         return HttpResponse(request.method+' request')
 
