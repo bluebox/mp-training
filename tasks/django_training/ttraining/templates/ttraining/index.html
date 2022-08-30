@@ -16,6 +16,15 @@
     <p> {{i}} </p>
 {% endfor %}
 </div>
+<div>
+    {% if var1 %}
+        {{ var1 }}
+    {% elif var2 %}
+        {{ var2 }}
+    {% else  %}
+    {{ var3 }}
+{% endif %}
+</div>
 {% filter force_escape|lower %}
     LOWER CASE FILTER APPLIED AND TEXT WILL APPEAR IN LOWER CASE ONLY
 {% endfilter %}
