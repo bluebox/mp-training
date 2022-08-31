@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Manager</title>
+</head>
+<body>
+    {% block content %}
+    <div>
+        
+        <form action="/wish" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="enter username"><br>
+            <input type="email" name="email" placeholder="enter email id"><br>
+            <input type="password" name="passwd" placeholder="enter password"><br>
+            <input type="tel" name="phone" placeholder="enter phone no."><br>
+            Gender : <input type="radio" name="gender" value="Male">Male &nbsp;
+            <input type="radio" name="gender" value="Female">Female<br>
+            <input type="submit">
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
