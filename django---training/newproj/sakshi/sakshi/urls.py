@@ -22,4 +22,3 @@ urlpatterns = [
     path('aa/', include('temp.urls')),
     path('aa/', include('viwssss.urls')),
 ]
-]
