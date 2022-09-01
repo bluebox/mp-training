@@ -1,0 +1,41 @@
+==> create database FeedbackSystem;
+
+use FeedbackSystem;
+
+==> create table All_Users(
+	first_name varchar(20) NOT NULL,
+	last_name varchar(20),
+	username varchar(35) primary key,
+	password varchar(12) NOT NULL,
+	gender varchar(6) NOT NULL,
+	date_of_birth date NOT NULL,
+	father_name varchar(35) NOT NULL,
+	class int NOT NULL,
+	roll_no int NOT NULL
+    );
+
+==> alter table All_Users add column status boolean default False;
+
+==> alter table All_Users add column user_type varchar(10) NOT NULL;
+    
+==> create table Fedback_Details(
+	username varchar(35),
+	month varchar(10),
+	year int,
+	Q1 int,
+	Q2 int,
+	Q3 int,
+	Q4 int,
+	Q5 int,
+	Q6 int,
+	Q7 int,
+	Q8 int,
+	foreign key(username) references All_Users(username)
+    );
+    
+==> create table Batch_Details(
+	faculty_name varchar(35),
+	class int,
+	subject varchar(35),
+	time time
+    );
