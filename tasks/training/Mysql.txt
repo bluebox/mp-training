@@ -1,0 +1,34 @@
+1. create table employee (
+		id int primary key,
+		name varchar(50) not null);
+
+	i. insert into employee (name) values (‘Dhanush’);
+	   insert into employee (name) values ('Abhishek');
+           	   insert into employee (name) values ("Sharath");
+	   insert into employee (name) values ('Gowtham');
+
+2. create table Employee_detalis(
+		sl_no int primary key,
+		emp_id int,
+		salary float,
+		DOJ date,
+		age int,
+       		constraint fk_emp FOREIGN KEY (emp_id)
+		references employee(id)
+		on delete cascade
+		on update cascade
+)
+
+	i. insert into Employee_detalis values ('1','1','23500.55','2020-12-30','25');
+	   insert into Employee_detalis values ('2','4','23500.55','2020-12-30','25');
+	   insert into Employee_detalis values ('3','5','30000.0','2019-05-25','26');
+
+
+
+
+Queries
+
+--> Each employees details
+1. select * from employee e join Employee_detalis ed on e.id=ed.emp_id;
+2. alter table employee add column designation varchar(50);
+3. update employee set designation='Associate Engineer' where id>0;
