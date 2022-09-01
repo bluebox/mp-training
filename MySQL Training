@@ -1,0 +1,38 @@
+==> create database MyTrainingDB;
+
+==> use MyTrainingDB;
+
+
+==> create Table Employee(
+	EID varchar(25),
+	name varchar(25),
+	post varchar(25),
+	salary int,
+	
+	);
+
+==> Alter table Employee
+	add column email varchar(25) not null unique;
+	
+==> Alter table Employee add primary key(EID);
+
+==> insert into Employee values("MED975", "Shazwan", "Assoc Software Engineer",50000,"shazwanali@gmail.com");
+
+==> Alter table Employee modify column post varchar(35);
+
+==> Alter table Employee modify column email varchar(35);
+
+==> Alter table Employee modify column EID varchar(10);
+
+==> update Employee set post = "Associate Software Engineer", email = "shazwanali911081@gmail.com" where EID = "MED975";
+
+==> select * from Employee limit 3;
+
+
+==> create table SalaryDetails(
+	EID varchar(10) primary key,
+	joining_date date,
+	total_projects int,
+	basic_salary integer,
+	net_salary int
+	);
