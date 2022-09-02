@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
      path('',include('app_url.urls')),
      path('/t/',include('app_template.urls')),
+     path('/v/',include('app_view.urls')),
 ]
