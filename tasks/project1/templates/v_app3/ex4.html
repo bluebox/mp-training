@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {% for bio in bio_info %}
+      <li> {{ bio.email }}</li>
+    {% endfor %}
+</ul>
+ <ul>
+    {% for hob  in hob_info %}
+      <li> {{ hob.hobby }}</li>
+    {% endfor %}
+ </ul>
+
+<h1> welcome to template view</h1>
+</body>
+</html>
