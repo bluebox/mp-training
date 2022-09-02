@@ -1,0 +1,49 @@
+		 SQL MANAGEMENT SYSTEM SCHEMA
+		_______________________________
+
+	        TITLE -> CODING PLATFORM SYSTEM
+	        _______________________________
+	        _______________________________
+	        
+* This system allows users to login into and solve coding problems
+
+responsibilities of a user include :-
+	1. login into system
+	2. edit profile of the existing user
+	3. write solutions to a coding problem
+	4. like or dislike a given problem
+	5. create a coding problem and post into the system
+	
+creation of a problem includes :-
+	1. title of the problem
+	2. description of the problem, which inturn renders HTML code
+	3. including tags to the created problem
+	4. writing test cases, where these test cases will be used to judge whether a solution is accepted or not
+	5. including hints to the created problem
+	
+tables explaination :-
+
+	USER TABLE
+	1. user table is self explaintory, it consists of a foreign key relating to the profile table
+	2. each user has a unique profile id
+	
+	PROFILE TABLE
+	1. every user has a unique profile id
+	2. this table consists of personal details of a particular user
+	3. each and every user/profile can have multiple skills, so i have one to many relationship here using a seperate skills table
+	
+	SOLVED TABLE
+	1. this table consists of all the submitted solutions, whether are accepted or wrong solutions
+	2. user_id, problem_id, solution and status of that submitted is seen here
+	
+	PROBLEMS TABLE
+	1. this table consists of all the created problems
+	2. problems are created by users itself, so i have used one-to-many relationship with the user table. created problems can have any number 		   problem_tags and can also be included in many problems, so here i used many-to-many relationship with tags table
+	
+	TAGS TABLE
+	1. this table consists of problem tags like greedy, linkedlist, etc...
+	
+	TOPIC_TAGS
+	1. this table acts as a junction between problems table and tags table inorder to maintain many-to-many relationship between them
+	
+NOTE :- also planning to add comments and discussions ability for users
