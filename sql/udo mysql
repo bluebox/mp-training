@@ -1,0 +1,13 @@
+[0;1;32m●[0m mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Thu 2022-09-01 12:07:28 IST; 51min ago
+    Process: 773 ExecStartPre=/usr/share/mysql/mysql-systemd-start pre (code=exited, status=0/SUCCESS)
+   Main PID: 899 (mysqld)
+     Status: "Server is operational"
+      Tasks: 40 (limit: 18978)
+     Memory: 458.5M
+     CGroup: /system.slice/mysql.service
+             └─899 /usr/sbin/mysqld
+
+Sep 01 12:07:26 mphs-HP-ProDesk-400-G4-SFF systemd[1]: Starting MySQL Community Server...
+Sep 01 12:07:28 mphs-HP-ProDesk-400-G4-SFF systemd[1]: Started MySQL Community Server.
