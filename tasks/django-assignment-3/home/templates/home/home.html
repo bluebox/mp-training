@@ -1,0 +1,19 @@
+{% extends 'home/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="main">
+    <div>
+        <p>
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        </p>
+    </div>
+</div>
+
+{% endblock content %}

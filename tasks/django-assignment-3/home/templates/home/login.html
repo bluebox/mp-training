@@ -1,0 +1,48 @@
+{% extends 'home/main.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="signupMain">
+    <form class="signUpForm" method="POST">
+        {% csrf_token %}
+
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+
+        {{ form|crispy }}
+
+        <!-- <div class="alreadyHaveAnAccountDiv">
+            <p>already have an Account?</p>
+            <a href="{% url 'login' %}">LOG IN</a>
+        </div>
+        <div class="inputDiv">
+            <label for="username">username</label>
+            <input type="text" class="signupInput" name="username">
+        </div>
+        <div class="inputDiv">
+            <label for="username">email</label>
+            <input type="email" class="signupInput" name="email">
+        </div>
+        <div class="inputDiv">
+            <label for="username">password</label>
+            <input type="password" class="signupInput" name="password">
+        </div>
+        <div class="inputDiv">
+            <label for="username">confirm password</label>
+            <input type="password" class="signupInput" name="confirmPassword">
+        </div>
+        <div class="signupBtnDiv">
+            <button type="submit">SIGN UP</button>
+        </div> -->
+        <p>need an account?</p>
+        <a href="{% url 'signup' %}"></a>
+        <button type="submit">LOG IN</button>
+    </form>
+</div>
+
+{% endblock content %}
