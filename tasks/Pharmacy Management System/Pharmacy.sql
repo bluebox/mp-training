@@ -15,7 +15,6 @@ create table sales(sale_id int primary key, sale_date date not null, cust_id int
 create table prescribe(cust_id int not null, doc_id int not null, drug_id int not null, quantity int not null);
 create table supply(purchase_id int, purchase_date date, drug_id int, dist_id int, company_id int, quantity int, price numeric(20,5));
 create table purchase(purchase_id int primary key, purchase_date date not null, drug_id int not null, drug_name varchar(100) not null);
-create table admin_details(admin_id int primary key, first_name varchar(50) not null, last_name varchar(50), contact varchar(10) not null, email varchar(50) not null unique, address varchar(250) not null);
 
 alter table drug add foreign key (company_id) references manufacturer(company_id);
 alter table drug add foreign key (dist_id) references distributor(dist_id);
