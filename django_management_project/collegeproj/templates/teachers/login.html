@@ -1,0 +1,51 @@
+{% extends "../extra/base.html" %}
+{% block title %}Admin login page|College Management System{%endblock%}
+{%block content%}
+
+
+    <form action="{%url 'logincheck'%}" method="post">
+        {% csrf_token %}
+    username <input type="text" name="username" id="">
+    password <input type="password" name="password" id="">
+    <button type="submit">Login</button>
+    {% if text %}
+    <p id="red">{{text}}</p>
+    {%elif text_logout %}
+    <p id="green">{{text_logout}}</p>
+    {%endif%}
+    </form>
+
+
+
+<style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    form{
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        padding: 4rem;
+        align-self: center;
+        border-radius: 10%;
+    }
+    button{
+        margin-top: 1rem;
+    }
+    #red{
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: red;
+    }
+    #green{
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: green;
+    }
+</style>
+{%endblock%}
+

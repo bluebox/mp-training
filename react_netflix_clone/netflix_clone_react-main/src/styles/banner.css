@@ -1,0 +1,59 @@
+html{
+    overflow-x: hidden;
+}
+.mainbanner{
+    height: 84vh;
+    width: 100%;
+
+    background-color: black;
+    margin-bottom: 1.5rem;
+    /* margin-top: 4.1rem; */
+    padding-top: 3rem;
+    /* background-size: 100%; */
+background-position: center;
+background-blend-mode: hard-light;
+
+}
+
+.mainbannerload{
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    margin-bottom: 1.5rem;
+    /* margin-top: 4.1rem; */
+    padding-top: 3rem;
+    /* background-size: 100%; */
+background-position: center;
+/* background-blend-mode: hard-light; */
+}
+#orginalname{
+    color: white;
+    padding-left: 3rem;
+    padding-top: 3rem;
+    font-size: 5rem;
+    text-align: start;
+}
+#overview{
+    color: white;
+    width: 30%;
+    padding-top: 2rem;
+    text-align: start;
+    padding-left: 3rem;
+}
+.buttons{
+    padding-left: 2.8rem;
+    padding-top: 2.5rem;
+    display: flex;
+}
+.buttons button{
+    padding: 1rem;
+    background-color: rgba(247, 236, 236, 0.248);
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-right: 0.8rem;
+}

@@ -1,0 +1,89 @@
+.homefold2{
+    padding-bottom: 2rem;
+    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)) , url("../resources/netflixclone.jpeg");
+    /* height: 100vh; */
+    
+    
+}
+.mainform{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
+}
+.heading2 img{
+    height: 8rem;
+}
+.form{
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 5rem;
+    flex-direction: column;
+    color: white;
+}
+.form h2{
+align-self: flex-start;
+padding-left: 2rem;
+padding-bottom: 3rem;
+
+}
+.form input{
+    align-self: flex-start;
+    padding: 0.5rem;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0.8rem;
+    margin-left: 2rem;
+
+    background-color: gray;
+    border: transparent;
+}
+.form button{
+    background-color: red;
+border: transparent;
+padding: 0.5rem;
+width: 72%;
+margin-top: 2rem;
+color:white;
+align-self: flex-start;
+margin-left: 2rem;
+}
+.rememberme{
+    display: flex;
+    padding-top: 1rem;
+    flex-direction: row !important;
+}
+.rememberme label{
+    margin-right: 2rem;
+}
+.Checkinp{
+    margin-top: 0.35rem;
+}
+.leftalign{
+    position: relative;
+    right: 2.8rem;
+}
+.aligntogeth{
+    display: flex;  
+    padding-left: 2rem;
+    padding-top: 3rem;
+}
+.aligntogeth h4:nth-child(1){
+    font-size: 1.1rem;
+    color: gray;
+}
+.aligntogeth h4{
+    font-size: 1.1rem;
+}
+.newtonetflix p{
+    color: gray;
+    padding-top: 1rem;
+padding-left: 2rem;
+}
+#red{
+    color: red;
+    padding-left: 2rem;
+    text-align: center;
+}
