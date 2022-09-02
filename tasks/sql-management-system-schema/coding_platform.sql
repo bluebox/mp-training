@@ -66,6 +66,7 @@ CREATE TABLE `discussions`(
     `problem_id` INT NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `discussion` VARCHAR(255) NOT NULL,
+    `created_date_time` DATETIME NOT NULL,
     `upvotes` INT NOT NULL,
     `downvotes` INT NOT NULL
 );
@@ -75,7 +76,8 @@ CREATE TABLE `comments`(
     `comment_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `discussion_id` INT NOT NULL,
     `user_id` INT NOT NULL,
-    `comment` INT NOT NULL
+    `comment` INT NOT NULL,
+    `created_date_time` DATETIME NOT NULL
 );
 ALTER TABLE
     `comments` ADD PRIMARY KEY `comments_comment_id_primary`(`comment_id`);
