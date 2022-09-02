@@ -18,7 +18,7 @@ use FeedbackSystem;
 
 ==> alter table All_Users add column user_type varchar(10) NOT NULL;
     
-==> create table Fedback_Details(
+==> create table Feedback_Details(
 	username varchar(35),
 	month varchar(10),
 	year int,
@@ -39,3 +39,29 @@ use FeedbackSystem;
 	subject varchar(35),
 	time time
     );
+    
+==> alter table Batch_Details add column username varchar(35);
+
+==> create table Faculty_Details(
+	first_name varchar(20) NOT NULL,
+	last_name varchar(20),
+	username varchar(35) primary key,
+	password varchar(12) NOT NULL,
+	gender varchar(6) NOT NULL,
+	date_of_birth date NOT NULL,
+	main_subject varchar(35) NOT NULL,
+    	department varchar(35) NOT NULL,
+    	joining_date date NOT NULL,
+   	qualification varchar(35),
+	experience int NOT NULL,
+	user_type varchar(20)
+    );
+
+==> alter table Faculty_Details add column status boolean default False;
+    
+==> alter table All_Users rename as Student_Details;
+
+==> alter table Batch_Details add foreign key(username) references Faculty_Details(username);
+
+
+
