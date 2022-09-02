@@ -1,9 +1,9 @@
-		 SQL MANAGEMENT SYSTEM SCHEMA
-		_______________________________
+							 SQL MANAGEMENT SYSTEM SCHEMA
+							_______________________________
 
-	        TITLE -> CODING PLATFORM SYSTEM
-	        _______________________________
-	        _______________________________
+							TITLE -> CODING PLATFORM SYSTEM
+							_______________________________
+							_______________________________
 	        
 * This system allows users to login into and solve coding problems
 
@@ -32,6 +32,9 @@ tables explaination :-
 	2. this table consists of personal details of a particular user
 	3. each and every user/profile can have multiple skills, so i have one to many relationship here using a seperate skills table
 	
+	SKILLS TABLE
+	1. this table constists of skill name with a skill id
+	
 	SOLVED TABLE
 	1. this table consists of all the submitted solutions, whether are accepted or wrong solutions
 	2. user_id, problem_id, solution and status of that submitted is seen here
@@ -43,7 +46,14 @@ tables explaination :-
 	TAGS TABLE
 	1. this table consists of problem tags like greedy, linkedlist, etc...
 	
-	TOPIC_TAGS
+	TOPIC_TAGS TABLE
 	1. this table acts as a junction between problems table and tags table inorder to maintain many-to-many relationship between them
 	
-NOTE :- also planning to add comments and discussions ability for users
+	DISCUSSIONS TABLE
+	1. this table contains discussions to a particular problem
+	2. this is a separate table which which contains user_id, problem_id as well as discussion
+	3. this has one-to-many relationship to the comments table, as one discussion can have multiple comments
+	
+	COMMENTS TABLE
+	1. this table stores comments to a particular thread/discussion created by a particular user
+	2. this is linked to discussions table by one-to-many relationship
