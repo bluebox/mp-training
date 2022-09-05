@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'home2.apps.Home2Config',
-    'home_views.apps.HomeViewsConfig'
+    'home_views.apps.HomeViewsConfig',
+    'OrderFood.apps.OrderfoodConfig',
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'student.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'FoodOrder',
+        'USER':'root',
+        'PASSWORD':'password',
+        'HOST':'localhost',
+        'PORT':'3306'
     }
 }
 

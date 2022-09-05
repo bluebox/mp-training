@@ -1,6 +1,4 @@
-
 from django.urls import path
-
 from OrderFood.views import Index
 
 

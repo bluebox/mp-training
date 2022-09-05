@@ -3,6 +3,8 @@ from django.shortcuts import HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.views import View
 import json
+from django.core.exceptions import PermissionDenied
+
 # Create your views here.
 
 def index(request):
@@ -16,8 +18,14 @@ class ViewEx(View):
     def get(self,request):
         return HttpResponse("Heyyyyyyyy get",status=405)
 
+    # def post(self,request):
+    #     return HttpResponse("Heyyyyyyyy post")
+    #
+
+
     def post(self,request):
-        return HttpResponse("Heyyyyyyyy post")
+        raise PermissionDenied
+
 
     def delete(self, request):
         context = {
