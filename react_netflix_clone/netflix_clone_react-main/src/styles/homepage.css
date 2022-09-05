@@ -1,0 +1,124 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+.homefold1{
+    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)) , url("../resources/netflixclone.jpeg");
+    
+    height: 100vh;
+    
+    
+}
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 3rem;
+}
+.heading img{
+    /* padding-top: 2rem; */
+    height: 8rem;
+
+}
+.homefold1 i{
+    position: relative;
+    left: 1.4rem;
+    font-size: 1rem;
+    /* background-color: white; */
+    color: white;
+}
+.homefold1 select{
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 0.3rem;
+padding-left: 1.4rem;
+font-weight: 500;
+}
+.buttons{
+    /* background-color: firebrick; */
+    display: flex;
+    align-items: center;
+    padding-bottom: 2rem;
+    justify-content: center;
+}
+.signin{
+    margin-left: 0.8rem;
+    padding: 0.3rem !important;
+    border-radius: 5px !important;
+    background-color: red !important   ; 
+    padding: 0.3rem 1rem;
+    color: white;
+} 
+.signin a{
+    color: white;
+    text-decoration: none;
+}
+.signin a:hover{
+    color: white;
+}
+.mainthings{
+    margin-top: 4rem;
+    color: white;
+    text-align: center;
+}
+.mainthings h2{
+    font-size: 3.5rem;
+    line-height: 3.6rem;
+
+
+}
+.mainthings h4{
+    padding-top: 1rem;
+    font-size: 1.8rem;
+    font-family: 'Roboto', sans-serif;  
+}
+.mainthings p{
+    padding-top: 1rem;
+}
+.inputmain{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+.inputmain input{
+    padding: 0.5rem;
+    width: 50%;
+}
+.inputmain button{
+    padding: 0.5rem;
+    background-color: red;
+    color: white;
+}
+.homerow{
+    padding: 2rem;
+    
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.rowinside{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    text-align: justify;
+    flex-direction: column;
+}
+.rowinside h5{
+    padding-top: 1rem;
+}
+.rowinside h1{
+  align-self: flex-start;
+    padding-top: 1rem;
+}
+.img img{
+    height: 18rem;
+    width: 20rem;
+}
+
+.mainmain div{
+    margin: 0.7rem 0rem;
+}

@@ -1,0 +1,244 @@
+{% extends './navbar.html'%}
+{%load static%}
+{% block title %}Admin Pannel|College Management System{%endblock%}
+{%block style%}    <link rel="stylesheet" href="{%static 'styles/useradmin/navbar.css' %}">{%endblock%}
+{%block content%}
+            <div class="homepagehead">
+                <h1>Administrative Dashboards</h1>
+                <h4>Home / Administrative</h4>
+            </div>
+            <div class="homepagedivs">
+                <div class="homepagediv" onclick="redirectclick(1)">
+                    <div class="divupper">
+                        <div class="upperleft">
+                            <h2>{{student}}</h2>
+                            <h4>Total Students</h4>
+                        </div>
+                        <div class="upperright">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="divdown">
+                        <p>More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
+</p>
+                    </div>
+                </div>
+                <div class="homepagediv" onclick="redirectclick(2)">
+                    <div class="divupper">
+                        <div class="upperleft">
+                            <h2>{{faculties}}</h2>
+                            <h4>Total Staff</h4>
+                        </div>
+                        <div class="upperright">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+
+                        </div>
+                    </div>
+                    <div class="divdown">
+                        <p>More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
+</p>
+                    </div>
+                </div>
+                <div class="homepagediv" onclick="redirectclick(3)">
+                    <div class="divupper">
+                        <div class="upperleft">
+                            <h2>{{courses}}</h2>
+                            <h4>Total Course</h4>
+                        </div>
+                        <div class="upperright">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="divdown">
+                        <p>More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
+</p>
+                    </div>
+                </div>
+                <div class="homepagediv" onclick="redirectclick(4)">
+                    <div class="divupper">
+                        <div class="upperleft">
+                            <h2>{{subjects}}</h2>
+                            <h4>Total Subjects</h4>
+                        </div>
+                        <div class="upperright">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="divdown">
+                        <p>More Info <i class="fa fa-arrow-right" aria-hidden="true"></i>
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="homepagestats">
+                <div class="graph1">
+                    <h3>Students Gender's Ratio</h3>
+                    <canvas id="barChart1"></canvas>
+                </div>
+                <div class="graph2">
+                    <h3>Staff Gender's Ratio</h3>
+                    <canvas id="barChart2"></canvas>
+                </div>
+            </div>
+        </div>
+        <style>
+
+
+.datasec{
+    width: 80%;
+    background-color: rgb(234, 249, 249);
+}
+.homepagehead {
+    display: flex;
+    align-items: center;
+    padding: 0rem 2rem;
+    justify-content: space-between;
+    padding-top: 1rem;
+}
+.homepagehead h1{
+    font-family: 'Montserrat', sans-serif;
+
+}
+.homepagedivs{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+}
+.homepagediv{
+    width: 23% !important;
+    margin: 0.5rem;
+    background-color: greenyellow;
+    border: 1px solid black;
+    padding: 2rem 1rem 0rem 0rem;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+
+}
+.divupper{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+
+}
+.upperright{
+    font-size: 3rem;
+    opacity: 30%;
+}
+.divdown i{
+    font-size: 1rem;
+}
+.divdown{
+    align-self: center;
+    margin-top:1rem;
+    justify-content: flex-end;
+    padding-bottom: 0.5rem;
+}
+.homepagediv:nth-child(1){
+    background-color: rgb(8, 8, 243) !important;
+}
+.homepagediv:nth-child(2){
+    background-color: rgb(106, 200, 82) !important;
+}
+.homepagediv:nth-child(3){
+    background-color: rgb(148, 39, 227) !important;
+}
+.homepagediv:nth-child(4){
+    background-color: rgb(195, 65, 65) !important;
+}
+
+.homepagestats{
+    display: flex;
+    margin-top: 2rem;
+
+
+}
+.homepagestats div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.homepagestats div h3{
+    text-align: center;
+    margin-bottom: 1rem;
+    background-color: rgb(33, 30, 30);
+    color: white;
+    width: 90%;
+    padding: 0.5rem;
+
+}
+.graph1{
+    width: 50%;
+    
+}
+.graph2{
+    padding-right: 1rem;
+    width: 50%;
+
+}
+        </style>
+{%endblock%}
+
+{%block script%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById("barChart1").getContext('2d');
+var barChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["Male","female"],
+    datasets: [{
+      label: 'data-1',
+      data: [{{student_male}},{{student_female}}],
+      backgroundColor: ["rgba(255,0,0,1)","rgb(8, 8, 243)"]
+    }]}})
+    // ............
+    // ............
+    // ............
+    var ctx = document.getElementById("barChart2").getContext('2d');
+var barChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ["Male","female"],
+    datasets: [{
+      label: 'Male',
+      data: [0,{{fac_male}}],
+      borderColor: ["rgba(255,0,0,1)"],
+        fill:false
+    },
+    {
+        label: 'Female',
+      data: [0,{{fac_female}}],
+      borderColor: ["rgb(8, 8, 243)"],
+      fill:false
+    }
+
+]
+    
+    }})
+
+function redirectclick(target_value){
+    if (target_value==1){
+        window.location.href = "studenttable";
+    }
+    else if(target_value==2){
+        window.location.href = "facultytable";
+    }
+    else if(target_value==3){
+        window.location.href = "coursetable";
+    }
+    else if(target_value==4){
+        window.location.href = "subjecttable";
+    }
+}
+
+</script>
+
+{%endblock%}
+

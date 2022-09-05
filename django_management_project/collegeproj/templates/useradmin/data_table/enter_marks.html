@@ -1,0 +1,122 @@
+{% extends "../navbar.html" %}
+{%load static%}
+{% block title %}Course Table|College Management System{%endblock%}
+{%block style%}
+<link rel="stylesheet" href="{%static 'styles/useradmin/datasec.css'%}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">{%endblock%}
+{%block content%}
+
+
+
+<h3 class="head">Search by</h3>
+<div class="flex">
+    <form action="{%url 'entermarks'%}" method="POST">
+        {% csrf_token %}
+        <div>
+        <label for="course">Choose the course:</label>
+        <select name="course" id="course" >
+            <option value="nill" selected>Nill</option>
+            {%for courses in courses_dynamic_list%}
+            <option value="{{courses.id}}" >{{courses.course_name}}</option>
+    {%endfor%}
+        </select>
+    <label for="semester">Choose the semester:</label>
+    <select name="sem" id="sem">
+        <option value="nill" selected>Nill</option>
+        <option value="1">Sem1</option>
+        <option value="2">sem2</option>
+        <option value="3">sem3</option>
+        <option value="4">sem4</option>
+        <option value="5">sem5</option>
+        <option value="6">sem6</option>
+        <option value="7">sem7</option>
+        <option value="8">sem8</option>
+    </select>
+    
+    <button type="submit" >Search</button>
+</div>
+
+
+</form>
+</div>
+<form action="../markssubmited/{{sem}}/{{course}}/" method="POST">
+    {% csrf_token %}
+
+   {% for i in total_students %}
+       
+   <table class="table table-striped" >
+    <thead>
+    <tr>
+        <th scope="col">Name: {{i.first_name}}{{i.last_name}}</th>
+        <th scope="col">Roll number: {{i.roll_number}}</th>
+    </tr>
+    {% for j in total_subs %}
+    <tr>
+        <td>{{j.sub_name}}</td>
+        <td><input type="number" name="{{i.roll_number}}{{j.sub_name}}" id=""></td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+    {% endfor %}
+    <button type="submit" id="submark">submit Marks</button>
+</form>
+
+
+<style>
+    .btntd a{
+    text-decoration: none;
+    border: 1px solid black;
+        border-radius: 3px;
+    color: black;
+    padding: 0.3rem;
+    margin-right:0.2rem;
+    background-color: transparent;
+    }
+.flex{
+    display: flex;
+    margin-bottom: 2rem;
+    padding: 0rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.head{
+    margin-top: 1rem;
+    margin-left: 2rem;
+}
+.searchbar{
+    margin-top: 1rem;
+}
+.flex button{
+    background-color: transparent;
+    font-size: 0.8rem;
+    padding: 0.15rem;
+    border: 1px solid black;
+    border-radius: 3px;
+    position: relative;
+    top: -2px;
+}
+#submark{
+    margin-left:2rem;
+    padding: 0.5rem;
+    background-color: transparent;
+}
+  </style>
+</style>
+{{text}}
+{%endblock%}
+{%block script%}
+{%if flag_open%}
+<script>
+    var form_opem=document.getElementById("btnform")
+    const myTimeout = setTimeout(form_btnopen, 0.1);
+
+function form_btnopen() {
+    form_opem.click();
+}
+  
+
+</script>
+{%endif%}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+{%endblock%}
