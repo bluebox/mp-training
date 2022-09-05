@@ -82,6 +82,10 @@ CREATE TABLE `comments`(
 ALTER TABLE
     `comments` ADD PRIMARY KEY `comments_comment_id_primary`(`comment_id`);
 ALTER TABLE
+    `solved` ADD CONSTRAINT `solved_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `user`(`user_id`);
+ALTER TABLE
+    `solved` ADD CONSTRAINT `solved_problem_id_foreign` FOREIGN KEY(`problem_id`) REFERENCES `problems`(`problem_id`);
+ALTER TABLE
     `user` ADD CONSTRAINT `user_profile_id_foreign` FOREIGN KEY(`profile_id`) REFERENCES `profile`(`profile_id`);
 ALTER TABLE
     `skills` ADD CONSTRAINT `skills_profile_id_foreign` FOREIGN KEY(`profile_id`) REFERENCES `profile`(`profile_id`);
@@ -93,3 +97,7 @@ ALTER TABLE
     `topic_tags` ADD CONSTRAINT `topic_tags_tag_id_foreign` FOREIGN KEY(`tag_id`) REFERENCES `tag`(`tag_id`);
 ALTER TABLE
     `comments` ADD CONSTRAINT `comments_discussion_id_foreign` FOREIGN KEY(`discussion_id`) REFERENCES `discussions`(`discussion_id`);
+ALTER TABLE
+    `discussions` ADD CONSTRAINT `discussions_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `user`(`user_id`);
+ALTER TABLE
+    `discussions` ADD CONSTRAINT `discussions_problem_id_foreign` FOREIGN KEY(`problem_id`) REFERENCES `problems`(`problem_id`);
