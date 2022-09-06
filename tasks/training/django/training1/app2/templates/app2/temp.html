@@ -1,3 +1,5 @@
+{% load static %}
+
 {% comment %}
 <h1>using comment here</h1>
 {% endcomment %}
@@ -9,6 +11,7 @@
 <!-- for loop tag -->
 {% for i in Player_details %}
 <h2>{{i.name|title}} from {{i.country|upper}} </h2>
+
 {% endfor %}
 <hr>
 
@@ -20,6 +23,9 @@
 {% if i.country|title == "India"%}
 
 <h2>{{i.name}}</h2>
+
+
+<img src="{% static 'images/virat-kohli.webp' %}" alt="My image">
 
 {% endif %}
 
