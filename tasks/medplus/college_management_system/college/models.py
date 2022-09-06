@@ -47,7 +47,7 @@ class students(models.Model):
         return "{} {} {} ".format(self.student_id,self.name,self.department_id)
 
 class student_fee_details(models.Model):
-    student_id = models.ForeignKey(students,on_delete=models.SET_NULL, NULL=True)
+    student_id = models.ForeignKey(students,on_delete=models.CASCADE)
     fee_due = models.IntegerField()
     fee_paid = models.IntegerField()
     total_fee = models.IntegerField()
