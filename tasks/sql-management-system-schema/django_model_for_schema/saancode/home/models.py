@@ -44,8 +44,8 @@ class Problem(models.Model):
     description = models.TextField(max_length=500, unique=True, blank=False, null=False)
     hints = models.TextField(max_length=50, blank=False, null=False)
     test_cases = models.TextField(max_length=500, blank=False, null=False)
-    likes = models.IntegerField(default=0)
-    dislikes = models.IntegerField(default=0)
+    likes = models.PositiveIntegerField(default=0)
+    dislikes = models.PositiveIntegerField(default=0)
     difficulty_level_options = (
         ('E', 'easy'), 
         ('M', 'medium'),
@@ -96,8 +96,8 @@ class Discussion(models.Model):
     title = models.CharField(max_length=30, null=False, blank=False)
     discussion = models.TextField(max_length=500, null=True, blank=True)
     created_date_time = models.DateTimeField(auto_now_add=True, null=False, blank=False)
-    upvotes = models.IntegerField(default=0, null=False, blank=False)
-    downvotes = models.IntegerField(default=0, null=False, blank=False)
+    upvotes = models.PositiveIntegerField(default=0, null=False, blank=False)
+    downvotes = models.PositiveIntegerField(default=0, null=False, blank=False)
 
     def __str__(self):
         return self.title
