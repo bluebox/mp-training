@@ -32,3 +32,4 @@ Queries
 1. select * from employee e join Employee_detalis ed on e.id=ed.emp_id;
 2. alter table employee add column designation varchar(50);
 3. update employee set designation='Associate Engineer' where id>0;
+4. select name from employee where name like '%a_'
