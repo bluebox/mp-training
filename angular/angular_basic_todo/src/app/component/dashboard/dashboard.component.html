@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <h1>to do list in angular</h1>
+    <input type="text" name="task" [(ngModel)]="addTaskValue">
+    <button (click)="addTask()">Add</button>
+</div>
+
+<div>
+    <div class="card flexbo" *ngFor="let task of taskArr">
+        <p>{{task.task_name}}</p>
+
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(task)">
+           edit
+          </button>
+          
+        <button (click)="deleteTask(task)">delete</button>
+    </div>
+</div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" name="edittask" value="{{taskObj.task_name}}" [(ngModel)]="editTaskValue" >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="edittask()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<script>
+    const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
+</script>

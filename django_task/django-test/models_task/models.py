@@ -210,6 +210,7 @@ class assign_subject(models.Model):
     def __str__(self) -> str:
         return (str(self.fac_id) + " " +str(self.sub_code))
 
+# -------------------------------------------------
 
 class enter_marks(models.Model):
     std_id = models.ForeignKey(students,on_delete=models.CASCADE)
