@@ -12,11 +12,11 @@ class professor_attendance(models.Model):
     total_leaves = models.IntegerField()
     total_working_days = models.IntegerField()
     def __str__(self):
-        return self.professor_id
+        return "{} {} {} ".format(self.professor_id ,self.total_leaves,self.total_working_days)
 
 class department(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.TextField()
+    name = models.TextField(max_length=40)
     def __str__(self):
         return "{} {} ".format(self.id, self.name)
 
