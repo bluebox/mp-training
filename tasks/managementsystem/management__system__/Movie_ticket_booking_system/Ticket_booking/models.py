@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 # Create your models here.
 class Admin(models.Model):
     Admin_id = models.CharField(max_length=50,primary_key=True)
@@ -34,13 +34,13 @@ class Reservation(models.Model):
     number_of_tickets = models.IntegerField()
     Customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     Hall_number = models.ForeignKey(Hall, on_delete=models.CASCADE)
-    res_date = models.DateField(max_length=50)
+    res_date = models.DateField(default=datetime.date.today)
     show_time = models.TimeField(max_length=50)
 
 class Transaction(models.Model):
     trans_id = models.CharField(max_length=50,primary_key=True)
     res_id = models.ForeignKey(Reservation, on_delete=models.CASCADE)
-    trans_date = models.DateField()
+    trans_date = models.DateField(default=datetime.date.today)
     Admin_id = models.ForeignKey(Admin, on_delete=models.CASCADE)
     trans_type = models.CharField(max_length=50)
     Total_amount = models.IntegerField()
@@ -57,7 +57,7 @@ class Seating_arrangement(models.Model):
 
 class Report(models.Model):
     Report_id = models.CharField(max_length=50,primary_key=True)
-    report_date = models.DateField(max_length=50)
+    report_date = models.DateField(default=datetime.date.today)
     Hall_number =models.ForeignKey(Hall, on_delete=models.CASCADE)
     no_of_tickets_sold = models.IntegerField()
     income = models.IntegerField()
