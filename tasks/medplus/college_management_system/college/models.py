@@ -8,7 +8,7 @@ class professor(models.Model):
         return "{} {} {} ".format(self.id ,self.name,self.salary)
 
 class professor_attendance(models.Model):
-    professor_id = models.ForeignKey(professor,on_delete=models.SET_NULL,null=True)
+    professor_id = models.ForeignKey(professor,on_delete=models.CASCADE)
     total_leaves = models.IntegerField()
     total_working_days = models.IntegerField()
     def __str__(self):
@@ -34,8 +34,8 @@ class subjects(models.Model):
 
 
 class department_subjects(models.Model):
-    department_id = models.ForeignKey(department,on_delete=models.SET_NULL,null=True)
-    subject_id = models.ForeignKey(subjects,on_delete=models.SET_NULL,null=True)
+    department_id = models.ForeignKey(department,on_delete=models.CASCADE)
+    subject_id = models.ForeignKey(subjects,on_delete=models.CASCADE)
     def __str__(self):
         return "{} {} ".format(self.department_id, self.subject_id)
 
@@ -66,7 +66,7 @@ class students_schedule(models.Model):
 
 
 class students_attendence(models.Model):
-    student_id = models.ForeignKey(students,on_delete=models.SET_NULL,null=True)
+    student_id = models.ForeignKey(students,on_delete=models.CASCADE)
     total_absent = models.IntegerField()
     total_attendance = models.IntegerField()
 
