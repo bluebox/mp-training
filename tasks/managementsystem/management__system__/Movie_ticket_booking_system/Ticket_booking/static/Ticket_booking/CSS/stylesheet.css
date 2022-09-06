@@ -1,0 +1,13 @@
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(190, 32, 32);
+    font-size: 20px;
+}
+.navbar2{
+    display: flex;
+    justify-content: space-between;
+}
+.homeimage img{
+    height: 44rem;
+}
