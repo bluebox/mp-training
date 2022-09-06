@@ -2,7 +2,7 @@ from django.db import models
 
 class professor(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.TextField(max_length=50)
+    name = models.CharField(max_length=50)
     salary = models.IntegerField()
     def __str__(self):
         return "{} {} {} ".format(self.id ,self.name,self.salary)
@@ -16,13 +16,13 @@ class professor_attendance(models.Model):
 
 class department(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.TextField(max_length=40)
+    name = models.CharField(max_length=40)
     def __str__(self):
         return "{} {} ".format(self.id, self.name)
 
 class subjects(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.TextField(max_length=40)
+    name = models.CharField(max_length=40)
     professor_id = models.ForeignKey(professor,on_delete=models.CASCADE)
     semester = models.IntegerField()
     year = models.IntegerField()
@@ -40,7 +40,7 @@ class department_subjects(models.Model):
         return "{} {} ".format(self.department_id, self.subject_id)
 
 class students(models.Model):
-    name = models.TextField(max_length=50)
+    name = models.CharField(max_length=50)
     department_id = models.ForeignKey(department,on_delete=models.CASCADE)
     student_id = models.IntegerField(primary_key=True)
     def __str__(self):
