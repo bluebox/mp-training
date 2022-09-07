@@ -59,6 +59,8 @@ use FeedbackSystem;
 	foreign key(subject_name) references Classes_Details(subject_name)
     );
     
+==> alter table Batch_Details add column batch_id varchar(10) primary key;
+    
 ==> alter table Batch_Details add column username varchar(35);
 
 ==> create table Faculty_Details(
