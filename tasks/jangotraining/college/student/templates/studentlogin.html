@@ -1,0 +1,15 @@
+{% extends 'nav.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<h3> this is a student page </h3>
+don't have account <a href="{% url 'register' %}">register</a>
+{{ name }}
+{% endblock %}
+
+</body>
+</html>

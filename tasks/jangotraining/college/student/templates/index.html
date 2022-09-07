@@ -1,0 +1,25 @@
+{% extends 'nav.html' %}
+{% block content %}
+ login
+<form action="login" method="get">
+<label for="">
+    userid:
+</label>
+<input type="text"  name="user_id">
+<br>
+<label for="">
+    password:
+</label>
+<input type="text" name="password" >
+<br>
+<label for="">
+    login as:
+</label>
+  <select name="users">
+    <option value="Student">Student</option>
+    <option value="Professor">Professor</option>
+    <option value="Hod">Hod</option>
+  </select>
+<input type="submit">
+    </form>
+{% endblock %}
