@@ -6,60 +6,73 @@ notes = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
 
 def test_string_type():
+    '''method 1'''
     assert 'str'== type("Hello World").__name__
     assert True== isinstance("Hello World", str)
 
 def test_single_quoted_strings_are_strings():
+    '''method 1'''
     assert True== isinstance('Hello World', str)
 
 def test_double_quoted_strings_are_strings():
+    '''method 1'''
     assert True== isinstance("Hello World", str)
 
 def test_triple_quoted_strings_are_strings():
+    '''method 1'''
     assert True== isinstance("""Hello World""", str)
 
 def test_triple_single_quoted_strings_are_strings():
+    '''method 1'''
     assert True== isinstance('''Hello World''', str)
 
 def test_raw_strings_are_strings():
+    '''method 1'''
     assert True == isinstance(r"Hello World", str)
 
 def test_single_quoted_strings_can_have_double_quotes():
+    '''method 1'''
     first = 'The pilot said "Jump"'
     second = "The pilot said \"Jump\""  #note back slash escaping of "
     are_equal = (first == second)
-    assert True== are_equal
+    assert True is are_equal
 
 def test_double_quoted_strings_can_have_single_quotes():
+    '''method 1'''
     first = "The pilot said 'Jump'"
     second = 'The pilot said \'Jump\''  #note back slash escaping of '
     are_equal = (first == second)
-    assert True== are_equal
+    assert True is are_equal
 
 def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
+    '''method 1'''
     """ Edit tq_str to make are_equal True """
     tq_str = """ Isn't the "Hobbit" great? """
     dq_str = "Isn't the \"Hobbit\" great?"
     are_equal = (tq_str == dq_str)
-    assert  False == are_equal
+    assert  False is are_equal
 
 def test_triple_quoted_strings_can_span_lines():
+    '''method 1'''
     tq_str = """Hello
 World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
 
 def test_string_len():
+    '''method 1'''
     assert 13 == len("Hello 'world'")
     assert 13 == len('Hello \'world\'')
 
 def test_triple_quoted_strings_can_span_lines():
+    '''method 1'''
     string = """Hello
     World"""
-    assert True == isinstance(string, str)
+    assert True is isinstance(string, str)
     assert 15 == len(string)
 
 def test_strings_can_be_indexed():
+    '''method 1'''
     string = "Hello"
     assert 'H'== string[0]
     assert 'e'== string[1]
@@ -80,6 +93,7 @@ def test_strings_can_be_indexed():
         assert True  #make this True to proceed.
 
 def test_chars_are_strings_too():
+    '''method 1'''
     string = "Hello"
     first_char = string[0]
     assert 'str' == type(first_char).__name__
@@ -87,6 +101,7 @@ def test_chars_are_strings_too():
     assert 'str'== type("a").__name__
 
 def test_strings_are_immutable():
+    '''method 1'''
     """ strings in python cannot be modified unlike in C """
     string = "Hello"
     try:
@@ -96,12 +111,14 @@ def test_strings_are_immutable():
         assert True
 
 def test_string_concat():
+    '''method 1'''
     assert "Hello  world"== "Hello " + " world"
     assert 'Hello world'== """Hello """ + 'world'
     assert 'Hello world'== 'Hello ' + "world"
 
 
 def test_string_slicing():
+    '''method 1'''
     """ Slicing creates new strings """
     string = "Hello world"
     #with begin : end
@@ -130,10 +147,12 @@ def test_string_slicing():
 
 
 def test_string_repeat():
+    '''method 1'''
     assert 'HelloHelloHello' == "Hello" * 3
     assert 12 == len("Hello " * 2)
 
 def test_string_combine():
+    '''method 1'''
     """
     Use slicing to pass the assert.
     """
@@ -142,6 +161,7 @@ def test_string_combine():
     assert  bye[0:8] + hello[6:]  == "Goodbye World"
 
 def test_string_formatting():
+    '''method 1'''
     greeting = "Hello '{0}'".format("learner")
     assert "Hello 'learner'"== greeting
 
@@ -153,15 +173,16 @@ def test_string_formatting():
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
-    assert False== ('c' in 'apple')  #is there a precedence issue here?
-    assert True == ('a' in 'apple')
-    assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
+    '''method 12'''
+    assert False is ('c' in 'apple')  #is there a precedence issue here?
+    assert True is ('a' in 'apple')
+    assert  True is ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -strings are immutable
 -strings can be accessed through indexing
 -strings can be sliced
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
