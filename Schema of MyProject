@@ -2,24 +2,36 @@
 
 use FeedbackSystem;
 
-==> create table All_Users(
+==> create table Subject_Details(
+	subject_code varchar(6) NOT NULL,
+	subject_name varchar(35) PRIMARY KEY
+    );
+
+==> create table Classes_Details(
+	class_code varchar(6) NOT NULL,
+	class_name varchar(35) PRIMARY KEY
+    );
+
+==> create table Student_Details(
 	first_name varchar(20) NOT NULL,
 	last_name varchar(20),
-	username varchar(35) primary key,
+	stud_username varchar(35) primary key,
 	password varchar(12) NOT NULL,
 	gender varchar(6) NOT NULL,
 	date_of_birth date NOT NULL,
 	father_name varchar(35) NOT NULL,
-	class int NOT NULL,
-	roll_no int NOT NULL
+	class_name varchar(35),
+	roll_no int NOT NULL,
+	foreign key(class_name) references Classes_Details(class_name)
     );
 
-==> alter table All_Users add column status boolean default False;
+==> alter table Student_Details add column status boolean default False;
 
-==> alter table All_Users add column user_type varchar(10) NOT NULL;
+==> alter table Student_Details add column user_type varchar(10) NOT NULL;
     
 ==> create table Feedback_Details(
-	username varchar(35),
+	stud_username varchar(35),
+	facul_username varchar(35),
 	month varchar(10),
 	year int,
 	Q1 int,
@@ -30,14 +42,21 @@ use FeedbackSystem;
 	Q6 int,
 	Q7 int,
 	Q8 int,
-	foreign key(username) references All_Users(username)
+	foreign key(stud_username) references Student_Details(stud_username),
+	foreign key(facul_username) references Student_Details(facul_username),
     );
     
+==> alter table Feedback_Details add column GPA float;
+    
 ==> create table Batch_Details(
-	faculty_name varchar(35),
-	class int,
-	subject varchar(35),
-	time time
+	stud_username varchar(35),
+	facul_username varchar(35),
+	class_name varchar(35),
+	subject_name varchar(35),
+	time time,
+	foreign key(facul_username) references Faculty_Details(facul_username),
+	foreign key(class_name) references Classes_Details(class_name),
+	foreign key(subject_name) references Classes_Details(subject_name)
     );
     
 ==> alter table Batch_Details add column username varchar(35);
@@ -45,7 +64,7 @@ use FeedbackSystem;
 ==> create table Faculty_Details(
 	first_name varchar(20) NOT NULL,
 	last_name varchar(20),
-	username varchar(35) primary key,
+	facul_username varchar(35) primary key,
 	password varchar(12) NOT NULL,
 	gender varchar(6) NOT NULL,
 	date_of_birth date NOT NULL,
@@ -58,10 +77,7 @@ use FeedbackSystem;
     );
 
 ==> alter table Faculty_Details add column status boolean default False;
-    
-==> alter table All_Users rename as Student_Details;
 
-==> alter table Batch_Details add foreign key(username) references Faculty_Details(username);
 
 
 
