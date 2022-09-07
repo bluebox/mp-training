@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>This is a test template </h1>
+<h1>Checking {{variable}}</h1>
+
+{% for x in values %}
+<p>{{x}}</p>
+{% endfor %}
+
+{% if data ==  23 %}
+<h1>Condition true </h1>
+{%  else %}
+<h1>Condition false </h1>
+{% endif %}
+
+<a href="{% url 'example' %}" target="_blank">Go to the example page</a>
+
+<h1>Company name : {{name|upper}}</h1>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ timeframe|capfirst }} Goal{% endblock title %}
+
+{% block body %}
+<h1>{{ timeframe|capfirst|add:' Timeframe' }} goal</h1>
+<h2>{{ goal }}</h2>
+{% endblock body %}

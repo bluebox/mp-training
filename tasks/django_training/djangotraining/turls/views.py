@@ -28,9 +28,18 @@ def regex_in_url(request,parameter):
 
 
 def articles(request,yyyy,mm,slug):
-    html="Hello, world! you are at turls converter parameters" + "   " + yyyy +"   "+mm+"   "+slug
+    html="Hello, world! you are at turls multiple regex parameters" + "   " + yyyy +"   "+mm+"   "+slug
     return HttpResponse(html)
 
 def year_archive(request,year,**kwargs):
-
     return HttpResponse(str(year),kwargs['foo'])
+
+def blog_articles(request,parameter):
+    html="Hello, world! you are at turls blog_articles" + parameter
+    return HttpResponse(html)
+
+
+def nested_parameters(request,page_number):
+    html="Hello, world! you are at turls nested_parameters in page " + "   " + page_number
+    return HttpResponse(html)
+
