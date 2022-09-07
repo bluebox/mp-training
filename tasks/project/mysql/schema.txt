@@ -1,0 +1,152 @@
+purpose:
+to enhance the home shifting experience of the customer with an affordable cost and easy manner.
+
+objective:
+to define the database schema for the above purpose or scenario.
+ 
+ entities:
+ 
+
+ CUSTOMER_TABLE:
+ In  this entity we will have basic details of customers
+ attributes:
+ CUST_ID ,
+ FNAME,
+ MNAME,
+ LNAME,
+ PHONE_NUMBER,
+ EMAIL_ADDRESS
+ 
+ keys:
+ PRIMARY KEY CUST_ID
+ 
+ ROLE:
+ Driver need to enter his basic details in the tables
+ 
+ ------------------
+ Driver_TABLE:
+ In  this entity we will have basic details of drivers
+ attributes:
+ DRIVER_ID ,
+ FNAME,
+ MNAME,
+ LNAME,
+ PHONE_NUMBER,
+ LICENSE_NUMBER,
+ MAIL_ADDRESS
+ 
+ keys:
+ PRIMARY KEY DRIVER_ID
+ 
+ 
+ ROLE:
+ Driver need to enter his basic details in the tables
+ 
+ ------------------
+ VEHICLE MODEL TABLE:
+ 
+ In this Entity WE will have vehicle models 
+ attributes:
+ VEHICLE_MODEL_ID,
+ VEHICLE_NAME,
+ VEHICLE_TYPE 
+ 
+ keys:
+ PRIMARY KEY (`VEHICLE_MODEL_ID`)
+ 
+ ------------------
+ VEHICLE_TABLE:
+ In  this entity we will have details of Vehicles 
+ attributes:
+ VEHICLE_ID,
+ VEHICLE_MODEL_ID,
+ DID,
+ ENGINE_NO
+ 
+ 
+ keys:
+ 
+ PRIMARY KEY (`VEHICLE_ID`),
+  CONSTRAINT `FK_VEHICLE_TABLE` FOREIGN KEY (`VEHICLE_MODEL_ID`) REFERENCES `VEHICLE_MODEL_TABLE` (`VEHICLE_MODEL_ID`),
+  CONSTRAINT `FK_VEHICLE_TABLE1` FOREIGN KEY (`DID`) REFERENCES `DRIVER_TABLE` (`DRIVER_ID`)
+ PRIMARY KEY VEHICLE_ID,
+ FOREIGN KEY DID REFERNCES Driver_table(DRIVER_ID)
+ 
+ relationships:
+ DRIVER can have multiple vehicle so there is a one to many reationships between them
+ a vehicle model can have multiple cars abd each can have only one engine number so one to many realationship
+ --------------------
+ CUSTOMER_ADDRESS_TABLE:
+ In  this entity we will have customers addresses
+ attributes:
+ CUST_ID,
+ ADDRESS
+ 
+ keys:
+ FOREIGN KEY CUST_ID REFERNCES CUSTOMER_TABLE(CUST_ID)
+ 
+ relationships:
+ Customer can have multiple address so it is a one to many relationships
+ ------------------------
+ DRIVER_ADDRESS_TABLE:
+ 
+ In  this entity we will have customers addresses
+ attributes:
+ DRIVER_ID,
+ ADDRESS
+ 
+ keys:
+ FOREIGN KEY DRIVER_ID REFERNCES Driver_TABLE(DRIVER_ID)
+ 
+ relationships:
+ a driver  can have multiple address so it is a one to many relationships
+ ----------------------
+ JOURNEY_TABLE:
+ In  this entity we will have basic details of journey
+ attributes:
+ CUST_ID,
+ DRIVER_ID,
+ ADDR_ID,
+ JOURNEY_ID,
+ VEHICLE_ID
+ 
+ keys:
+ PRIMARY KEY JOURNEY_ID
+ FOREIGN KEY ADDR_ID REFERENCES ROUTE_ADDRESS_TABLE(ADDR_ID)
+ FOREIGN KEY CUST_ID REFERENCES CUSTOMER_TABLE(CUST_ID)
+ FOREIGN KEY DRIVER_ID REFERENCES Driver_TABLE(DRIVER_ID)
+ FOREIGN KEY VEHICLE_ID REFERENCES VEHICLE_TABLE(VEHICLE_ID)
+ 
+ relationships:
+ single customer can drive with multple drivers and single drivers can take multiple trips so
+ MANY-TO-MANY RELATIONSHIPS
+ -----------------------------
+ TRANSACTIONAL_DETAILS_TABLE:
+ In  this entity we will have details of customers and their transaction details.
+ attributes:
+ JOURNEY_ID,
+ TRANSACTION_ID,
+ JOURNEY_START_DATE,
+ JOURNEY_END_DATE,
+ JOURNEY_STATRT_TIME,
+ JOURNEY_END_TIME,
+ PRICE
+ 
+ keys:
+ PRIMARY KEY  TRANSACTION_ID
+ FOREIGN KEY JID REFERENCES JOURNEY_TABLE(JOURNEY_ID)
+ 
+ relationships:
+ Each journey has only one transaction_id so it is an ONE-TO-ONE RELATIONSHIP 
+ ------------------------
+ ROUTE_ADDRESS_TABLE:
+ In  this entity we will have basic details of customers
+ attributes:
+ PINCODE_START,
+ PIMCPDE_END,
+ DISTANCE,
+ ADDR_ID
+ 
+ keys:
+ PRIMARY KEY AID
+ ---------------------
