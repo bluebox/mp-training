@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1,h2 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .content{
+      border:2px solid black;
+      text-align: center;
+    }
+    #attendance,#fee_details{
+      display:none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>COLLEGE MANAGEMENT SYSTEM</h1>
+  <hr>
+  <h2>Student's portal</h2>
+  <div class="content">
+    <h3>Welcome to your profile {{ student.name | upper }}</h3>
+    <h3>Student ID : {{ student.student_id }}</h3>
+    <h3>Department ID : {{ student.department_id }} </h3>
+    <h3>Email ID : {{ student.mail_id }} </h3>
+
+    <ul>
+      <li ><a href="#" onclick="function1('attendance')">view your attendance </a> </li>
+      <div id="attendance">
+        <h3> Total Absent : {{attendance.total_absent}}</h3>
+        <h3> Total Attendance : {{attendance.total_attendance}}</h3>
+      </div>
+
+      <li><a href="#" onclick="function1('fee_details')" >view your fee details</a></li>
+      <div id="fee_details">
+        <h3> Total remaining Due : {{fee_details.fee_due}}</h3>
+        <h3> Total Fee Paid : {{fee_details.fee_paid}}</h3>
+
+      </div>
+    </ul>
+  </div>
+  {% include 'footer.html' %}
+
+<script>
+  function function1(para){
+    element1 = document.getElementById(para);
+    element1.style.display= "block";
+  }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  header {
+    width: 100%;
+    min-height: 500px;
+    background-image: url("https://media.cheggcdn.com/media/844/844510d1-7adc-432f-8b72-66f90f536d5c/phpG2ljQ9");
+    background-size: cover;
+
+  }
+
+  nav {
+    background-repeat: no-repeat;
+    background-image: url('https://media.cheggcdn.com/media/c8e/c8eee1fd-2953-4b7c-b031-fbe96fff3be0/phpSHfbmc');
+    background-size: 60px;
+    margin-bottom: 130px;
+  }
+
+  header div a {
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    background-color: rgb(0, 0, 166);
+    color: white;
+    padding: 10px 20px;
+  }
+
+  header div a:hover {
+    opacity: 0.8;
+
+  }
+
+  header div h2 {
+    font-size: 48px;
+    color: white;
+  }
+
+  header div p {
+    font-size: 24px;
+    color: white;
+
+  }
+
+
+  header nav ul li a {
+    color: #51279B;
+    text-decoration: none;
+    margin-left: 100px;
+    font-size: bold;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  header nav ul li a:hover {
+    color: #8662c7;
+  }
+
+  header nav ul {
+    list-style-type: none;
+
+  }
+
+  header nav ul li {
+    margin-top: 30px;
+    display: inline-block;
+
+  }
+
+  header div p {
+    margin-bottom: 20px;
+    color: white;
+  }
+
+  header div {
+    margin-top: 100px;
+    margin-left: 100px;
+  }
+
+  footer{
+    background-color: rgb(16, 16, 17);
+    color:white
+  }
+
+  footer div a{
+    text-decoration: none;
+    color:white
+  }

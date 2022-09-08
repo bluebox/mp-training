@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1,h2,h4{
+          text-align: center;
+        }
+      </style>
+</head>
+<body>
+    <h1>COLLEGE MANAGEMENT SYSTEM</h1>
+    <hr>
+    <H2>ADMIN PORTAL</H2>
+    <hr>
+    <h4>Welcome  Admin {{ admin.admin_id }}</h4>
+
+    <ul>
+      <li><a href="#">Add new Student</a></li>
+      <li><a href="#">View all Students </a></li>
+      <li><a href="#">Add new Employee</a></li>
+      <li><a href="#">View all Employees</a></li>
+    </ul>
+
+
+
+
+
+
+    <!-- footer  -->
+
+
+    {% include 'footer.html' %}
+</body>
+</html>

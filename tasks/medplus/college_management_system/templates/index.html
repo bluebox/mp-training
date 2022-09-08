@@ -1,0 +1,164 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>COLLEGE MANAGEMENT SYSTEM</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+
+<body>
+  <header>
+    <nav id="topbar">
+      <ul>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">Academics</a></li>
+        <li><a href="#">Departments</a></li>
+        <li><a href="#">Research & Innovation</a></li>
+        <li><a href="#">Infrastructure</a></li>
+        <li><a href="#">Placements</a></li>
+        <li><a href="#">Rankings</a></li>
+
+
+      </ul>
+    </nav>
+    <div>
+      <h2>Welcome to College Management <br> System</h2>
+      <p></p>
+      <a href="#">LEARN MORE</a>
+    </div>
+  </header>
+
+
+  <!-- content -->
+  <div class="row">
+
+    <div class="col-lg-4 col-sm-4 text-center">
+      <div class="fbox">
+        <a href="#"><img
+            src="https://sreenidhi.edu.in/homeimages/icon-1.png" class="img-responsive"
+            style="width:180px;margin:0 auto;" alt="Image"></a>
+        <div class="box-title">
+          <p style="font-weight:600;">CLASSROOM / SEMINAR HALLS</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-4  text-center">
+      <div class="fbox">
+        <a href="https://sreenidhi.edu.in/pagecontents.php?catid=5&amp;scatid=47"><img
+            src="https://sreenidhi.edu.in/homeimages/icon-2.png" class="img-responsive"
+            style="width:180px;margin:0 auto;" alt="Image"></a>
+        <div class="box-title">
+          <p style="font-weight:600;">HOSTELS</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-4 text-center">
+      <div class="fbox">
+        <a href="https://sreenidhi.edu.in/pagecontents.php?catid=5&amp;scatid=49"><img
+            src="https://www.sreenidhi.edu.in/homeimages/icon-3.png" class="img-responsive"
+            style="width:180px;margin:0 auto;" alt="Image"></a>
+        <div class="box-title">
+          <p style="font-weight:600;">TRANSPORT FACILITIES</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-4 text-center">
+      <div class="fbox">
+        <a href="https://sreenidhi.edu.in/pagecontents.php?catid=5&amp;scatid=468"><img
+            src="https://www.sreenidhi.edu.in/homeimages/icon-4.png" class="img-responsive"
+            style="width:180px;margin:0 auto;" alt="Image"></a>
+        <div class="box-title">
+          <p style="font-weight:600;">CENTER FOR E-LEARNING</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-4 text-center">
+      <div class="fbox">
+        <a href="https://sreenidhi.edu.in/pagecontents.php?catid=5&amp;scatid=43"><img
+            src="https://www.sreenidhi.edu.in/homeimages/icon-5.png" class="img-responsive"
+            style="width:180px;margin:0 auto;" alt="Image"></a>
+        <div class="box-title">
+          <p style="font-weight:600;">LABS</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-4 text-center">
+      <div class="fbox">
+        <a href="https://sreenidhi.edu.in/pagecontents.php?catid=5&amp;scatid=53"> <img
+            src="https://www.sreenidhi.edu.in/homeimages/icon-6.png" class="img-responsive"
+            style="width:180px;margin:0 auto;" alt="Image"></a>
+        <div class="box-title">
+          <p style="font-weight:600;">SPORTS FACILITIES</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- to login click here -->
+
+
+  <form action="login1" method="post">
+    {% csrf_token %}
+
+    <section class="vh-100" style="background-color: #508bfc;">
+
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+                <h1>Login into portal  </h1> <br>
+                <h5 id="invaild"> </h5>
+                <div class="form-outline mb-4">
+                  <input type="number" id="typeEmailX-2" name="login_id" class="form-control form-control-lg" required
+                    value="{{ login_id }}" />
+                  <label class="form-label" for="typeEmailX-2">login id</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg"
+                    required value="{{ password }}" />
+                  <label class="form-label" for="typePasswordX-2">Password</label>
+                </div>
+                <p>Login As</p>
+                <select name="dropdown" class="form-select" aria-label="Default select example" required
+                  value="{{ dropdown }}">
+
+                  <option value="1">Student</option>
+                  <option value="2">Employee</option>
+                  <option value="3">Administration</option>
+                </select> <br>
+
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </form>
+
+
+  <!-- footer -->
+
+  {% include 'footer.html' %}
+
+
+</body>
+
+</html>
