@@ -6,6 +6,8 @@ use FeedbackSystem;
 	subject_code varchar(6) NOT NULL,
 	subject_name varchar(35) PRIMARY KEY
     );
+    
+==> alter table Subject_Details add column sub_subject_name varchar(35) NOT NULL;
 
 ==> create table Classes_Details(
 	class_code varchar(6) NOT NULL,
@@ -29,7 +31,7 @@ use FeedbackSystem;
 
 ==> alter table Student_Details add column user_type varchar(10) NOT NULL;
     
-==> create table Feedback_Details(
+==> create table Feedback_By_Student(
 	stud_username varchar(35),
 	facul_username varchar(35),
 	month varchar(10),
@@ -43,10 +45,26 @@ use FeedbackSystem;
 	Q7 int,
 	Q8 int,
 	foreign key(stud_username) references Student_Details(stud_username),
-	foreign key(facul_username) references Student_Details(facul_username),
+	foreign key(facul_username) references Faculty_Details(facul_username)
     );
     
-==> alter table Feedback_Details add column GPA float;
+==> ==> create table Feedback_By_Faculty(
+	stud_username varchar(35),
+	facul_username varchar(35),
+	month varchar(10),
+	year int,
+	Q1 int,
+	Q2 int,
+	Q3 int,
+	Q4 int,
+	Q5 int,
+        remarks varchar(200),
+        GPA float,
+	foreign key(stud_username) references Student_Details(stud_username),
+	foreign key(facul_username) references Faculty_Details(facul_username)
+    );
+    
+==> alter table Feedback_By_Student add column GPA float;
     
 ==> create table Batch_Details(
 	stud_username varchar(35),
