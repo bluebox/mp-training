@@ -5,7 +5,7 @@ from tasks.django_learning.modelapp.models import Customer
 
 
 def log(request):
-    # return render(request, 'template/login.html')
+    # return render(request, 'templates/login.html')
     return HttpResponse("uyhedfjhn")
 
 # Create your views here.

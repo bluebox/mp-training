@@ -49,6 +49,8 @@ urlpatterns = [
 
     path("va/", include('viewapp.urls')),
 
+    path("apps/", include('modelapp.urls')),
+
     # one parameter
     # path("<p>", one_para),
 
