@@ -20,13 +20,13 @@
 </div>
   <div class="container">
         <div class="admin" id="log">
-          <a href="{% url 'login' %}">
-          <img class="i" src="{% static 'images/admin.png' %}" alt="" >
+          <a href="{% url 'owner_login' %}">
+          <img class="i" src="{% static 'images/owner.jpg' %}" alt="" >
           <p>Share yor vehicle</p></a>
         </div>
         <div class="template/login.html" id="log">
-          <a href="{% url 'login' %}">
-          <img class="i" src="{% static 'images/doctor.jpg' %}" alt="">
+          <a href="{% url 'customer_login' %}">
+          <img class="i" src="{% static 'images/customer.jpg' %}" alt="">
           <p>Rent a vehicle</p></a>
 
         </div>
@@ -35,6 +35,13 @@
 
 </body>
 <style>
+    body{
+        background-image:url("")
+
+        background-repeat:no-repeat;
+     
+    }
+
   .container{
     
     display: flex;
