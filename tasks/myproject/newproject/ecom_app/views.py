@@ -14,7 +14,7 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'signup.html')
 
 
 def login1(request):
@@ -46,21 +46,29 @@ def signup(request):
         mail = request.POST['email']
         password = request.POST['password']
         conf_pass = request.POST['confirm_password']
+        a = request.POST['person']
+        img = request.POST['img']
         if password == conf_pass:
-            if Customer.objects.filter(uname=uname).exists():
-                if Customer.objects.filter(mail=mail).exists():
-                    messages.info(request,'username or mail already exists')
-                    return redirect('signup')
-            else:
-                if Customer.objects.filter(mail=mail).exists():
-                    messages.info(request,'username or mail already exists')
-                    return redirect('signup')
+            if a == "buyer":
+                if Customer.objects.filter(uname=uname).exists():
+                    if Customer.objects.filter(mail=mail).exists():
+                        messages.info(request,'username or mail already exists')
+                        return redirect('signup')
                 else:
-                    x = Customer.objects.create(uname=uname, f_name=f_name, l_name=l_name, mail =mail, password=password)
-                    x.save()
-                    return render(request,'home.html')
+                    if Customer.objects.filter(mail=mail).exists():
+                        messages.info(request,'username or mail already exists')
+                        return redirect('signup')
+                    else:
+                        x = Customer.objects.create(uname=uname, f_name=f_name, l_name=l_name, mail =mail, password=password)
+                        x.save()
+                        return render(request,'home.html')
+            if a == "seller":
+                return HttpResponse("Welcome  "+uname)
         else:
             messages.info(request, 'Password doesnot matches')
             return redirect('signup')
     else:
-        return render(request, 'index.html')
+        return render(request, 'signup.html')
+
+
+

@@ -14,10 +14,13 @@ class Customer(models.Model):
     mail = models.CharField(max_length=30)
     password = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.uname
 
 class Order_list(models.Model):
-    ord1_id = models.IntegerField(blank=True, primary_key=True)
+    ord1_id = models.AutoField(blank=True, primary_key=True)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
 
 
 class Product_list(models.Model):
@@ -26,9 +29,10 @@ class Product_list(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     product_type = models.CharField(max_length=25)
-    image = models.ImageField(default=None)
+    image = models.ImageField(blank=True, upload_to="images", height_field=None, width_field=None, max_length=100)
 
-
+    def __str__(self):
+        return self.name
 class cust_cart_list(models.Model):
     order_id = models.ForeignKey(Order_list, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product_list, on_delete=models.CASCADE)
@@ -47,6 +51,8 @@ class Employees(models.Model):
     # head_id = models.ForeignKey(Employees , on_delete=models.CASCADE)
     dept = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.name
 
 class Total_delivered_items(models.Model):
     delivery_id = models.AutoField(primary_key=True)
@@ -55,11 +61,13 @@ class Total_delivered_items(models.Model):
 
 
 class pickup(models.Model):
-    id = models.IntegerField(primary_key=True)
-    ofc_name = models.CharField(max_length=30)
+    id = models.AutoField(primary_key=True)
+    brand_name = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
     pincode = models.IntegerField()
 
+    def __str__(self):
+        return self.brand_name
 
 class delivery_person(models.Model):
     emp_id = models.ForeignKey(Employees, on_delete=models.CASCADE)
@@ -73,3 +81,13 @@ class Cust_delivered_items(models.Model):
 
 class Emp_salary(models.Model):
     delivery_id = models.ForeignKey(Total_delivered_items, on_delete=models.CASCADE)
+
+
+class Seller(models.Model):
+    uname = models.CharField(max_length=20)
+    mail = models.CharField(max_length=30)
+    password = models.CharField(max_length=10)
+    pickup_id = models.ForeignKey(pickup, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

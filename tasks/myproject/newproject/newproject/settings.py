@@ -67,7 +67,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'newproject.wsgi.application'
 
 # Database
@@ -82,7 +81,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -124,7 +123,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static") # this is your static folder
+    os.path.join(BASE_DIR, "static")  # this is your static folder
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR,'assets') #this is you assets folder.
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')  # this is you assets folder.
+
+MEDIA_ROOT = '<static>/media'
+MEDIA_URL = '/media/'
