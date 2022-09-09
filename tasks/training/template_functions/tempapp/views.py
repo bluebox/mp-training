@@ -16,3 +16,7 @@ def fortemp(request):
 def iftemp(request):
     data={'condition':True,'value':'successful'}
     return render(request,'if.html',data)
+
+def filters(request):
+    context = {'data':'filters test data'}
+    return render(request,'filters.html',context)

@@ -4,4 +4,5 @@ urlpatterns=[
     path('', views.home, name='home'),
     path('for', views.fortemp, name='fortemp'),
     path('if', views.iftemp, name='iftemp'),
+    path('filter', views.filters, name='filters'),
 ]
