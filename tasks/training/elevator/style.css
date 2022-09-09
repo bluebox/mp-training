@@ -1,0 +1,44 @@
+body{
+    display: flex;
+}
+#building{
+    width:78px;
+    height:700px;
+    background-color: silver;
+    border:2px dotted black;
+}
+
+#rooms{
+    width:300px;
+    height:700px;
+    background-color: silver;
+    border:2px dotted black;
+}
+
+#elevator{
+    position:relative;
+    width:75px;
+    height:100px;
+    background-color: blue;
+    float:right;
+    top:600px;
+}
+#floor{
+width:100%;
+height:98px;
+border-top:1px solid black;
+border-bottom:1px solid black;
+}
+button{
+    border-radius: 15px;
+    font-size: 30px;
+    margin:0 3px;
+}
+#number_panel{
+    display:flex;
+    align-items: center;
+    width:300px;
+    height:250px;
+    background-color: silver;
+    border:2px dotted black;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png">
+    <title>Netflix&nbsp;&nbsp;India&nbsp;&nbsp;--&nbsp;Watch&nbsp;&nbsp;TV&nbsp;&nbsp;Shows</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js" type="text/javascript"></script>
+</head> 
+<body>
+    <div id="main" class="container">
+        <img id="logo" src="https://www.freepnglogos.com/uploads/netflix-logo-text-emblem-31.png" onclick="openSign()">
+        <button id="signup" onclick="openSign()">Sign In</button>
+        <select id="language-select">
+            <option value="eng">English</option>
+            <option valule="hin">Hindi</option>
+        </select>
+        <div id="main-content">
+            <p class="title">
+                Unlimited movies, TV <br> shows and more.
+            </p>
+            <p class="subtitle">
+                Watch anywhere. Cancel anytime.
+            </p>
+            <p class="desc">
+                Ready to watch? Enter your email to create or restart your membership.
+            </p>
+            <div class="log">
+                <input type="email" id="email" placeholder="Email address">
+                <button id="get-started">Get Started ></button>
+            </div>
+        </div>
+    </div>
+    <div id="tv-container" class="container">
+        <div id="tv-data">
+            <p class="title">Enjoy on your TV.</p>
+            <p class="subtitle">Watch on smart TVs, PlayStation, Xbox,<br>Chromecast, Apple TV, Blu-ray players and more.</p>
+        </div>
+        <img id="tv" src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png">
+        <div id="drawer">
+            <video class="our-story-card-video" data-uia="our-story-card-video" autoplay="" playsinline="" muted="" loop=""><source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v" type="video/mp4"></video>
+        </div>
+
+    </div>
+    <div id="download" class="container">
+            <div id="downloadpic">
+            </div>
+            <div id="data-download">
+            <p class="title">Download your shows<br> to watch offline.</p><br>
+            <p class="subtitle">Save your favourites easily and always have something to watch.</p>
+        </div>
+    </div>
+    <div id="c4" class="container">
+        <div id="c4-data">
+                <p class="title">Watch everywhere.</p><br>
+                <p class="subtitle">Stream unlimited movies and TV shows on <br>your phone, tablet, laptop, and TV.</p>
+        </div>
+        <div id="c4-image">
+            <img alt="" class="our-story-card-img" src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile-in.png" data-uia="our-story-card-img" width="500vw" height="400vh">
+            <video id="vc4" data-uia="our-story-card-video" autoplay="" playsinline="" muted="" loop=""><source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v" type="video/mp4"></video>
+            <div data-uia="our-story-card-custom" aria-hidden="true"></div></div></div>
+    </div>
+    <div id="child" class="container">
+        <div id="child-image">
+
+        </div>
+        <div id="child-data">
+            <p class="title">
+                Create profiles for <br>children.
+            </p><br>
+            <p class="subtitle">
+                Send children on adventures with their <br>favourite characters in a space made just for <br>them—free with your membership.
+            </p>
+        </div>
+    </div>
+    <div id="faq" class="container">
+        <p class="title">Frequently Asked Questions</p>
+        <div class="question"  onclick="show_ans(this,1)">
+           <p class="subtitle-question">What is Netflix?</p> <span><p class="symb" id="s1">+</p></span>
+        </div>
+        <div class="ansdesc" id="ans1" style="display: none;">
+            <br><br><br><p class="ans">Netflix is a streaming service that offers a wide variety of award<br>-winning TV shows, movies, anime, documentaries and more – on<br> thousands of internet-connected devices.<br>You can watch as much as you want, whenever you want,<br> without a single ad – all for one low monthly price. There's always<br> something new to discover, and new TV shows and movies are<br> added every week!
+                </p>
+         </div>
+        <div class="question" onclick="show_ans(this,2)">
+            <p class="subtitle-question">How much does Netflix cost?</p>
+            <span><p class="symb" id="s2">+</p></span>
+         </div>
+         <div class="ansdesc" id="ans2" style="display: none;"><br><br><br>
+            <p class="ans">Watch Netflix on your smartphone, tablet, Smart TV, laptop, or <br>streaming device, all for one fixed monthly fee. Plans range from <br>₹ 149 to ₹ 649 a month. No extra costs, no contracts.
+                
+            </p>
+         </div>
+         <div class="question" onclick="show_ans(this,3)">
+            <p class="subtitle-question">Where can I watch?</p>
+            <span><p class="symb" id="s3" id="s3">+</p></span>
+         </div>
+         <div class="ansdesc" id="ans3" style="display: none;"><br><br><br>
+            <p class="ans">Watch anywhere, anytime. Sign in with your Netflix account to<br>  watch instantly on the web at netflix.com from your personal<br>  computer or on any internet-connected device that offers  the <br>Netflix app, including smart TVs, smartphones, tablets, streaming <br>media players and game consoles.
+
+                You can also download your favourite shows with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere.
+                
+            </p>
+         </div>
+         <div class="question" onclick="show_ans(this,4)">
+            <p class="subtitle-question">How do I cancel?</p>
+            <span><p class="symb" id="s4">+</p></span>
+         </div>
+         <div class="ansdesc" id="ans4" style="display: none;"><br><br><br>
+            <p class="ans">Netflix is flexible. There are noannoying contracts and no <br> commitments. You can easily cancel your account online in two<br>  clicks. There are no cancellation fees – start or stop your account<br>  anytime.
+                
+            </p>
+         </div>
+         <div class="question" onclick="show_ans(this,5)">
+            <p class="subtitle-question">What can I watch on Netflix?</p>
+            <span><p class="symb" id="s5">+</p></span> 
+         </div>
+         <div class="ansdesc" id="ans5" style="display: none;"><br><br><br>
+            <p class="ans">
+                Netflix has an extensive library of feature films, documentaries,<br> TV shows, anime, award-winning Netflix originals, and more.<br> Watch as much as you want, anytime you want.
+            </p>
+         </div>
+         <div class="question" onclick="show_ans(this,6)">
+            <p class="subtitle-question">Is Netflix good for kids?</p>
+            <span><p class="symb" id="s6">+</p></span> <br><br>
+         </div>
+         <div class="ansdesc" id="ans6" style="display: none;"><br><br><br>
+            <p class="ans">
+                The Netflix Kids experience is included in your membership to <br>give parents control while kids enjoy family-friendly TV shows<br> and films in their own space.<br><br>
+
+Kids profiles come with PIN-protected parental controls that let<br> you restrict the maturity rating of content kids can watch and <br>block specific titles you don’t want kids to see.
+            </p>
+         </div>
+            <p class="desc">
+                Ready to watch? Enter your email to create or restart your membership.
+            </p>
+            <div class="log">
+                <input type="email" id="email" placeholder="Email address">
+                <button id="get-started">Get Started ></button>
+            </div>
+         </div>
+
+    </div>
+    <div class="container">
+        container7
+    </div>
+</body>
+</html>
