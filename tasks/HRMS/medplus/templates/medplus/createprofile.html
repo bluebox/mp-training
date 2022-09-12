@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create</title>
+</head>
+<body>
+  <h1> hi {{user}} create your profile!!!</h1>
+ <form method="post" action="features">
+      {% csrf_token %}
+     <input type="text" name="username" value = "{{user}}">
+   <input type="text" placeholder="fullname" name="fullname">
+   <input type="date" placeholder="date_of_birth" name="dob">
+   <input type="number" placeholder="contact" name="contact">
+   <button type="submit"> submit </button>
+ </form>
+</body>
+</html>
