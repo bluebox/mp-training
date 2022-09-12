@@ -1,12 +1,13 @@
 from django.contrib import admin
-from .models import CricketBoard, Coach, Team, Batsman, Bowler,WicketKeeper, Captain,Player
 
-# Register your models here.
-admin.site.register(CricketBoard)
-admin.site.register(Coach)
-admin.site.register(Captain)
-admin.site.register(Team)
-admin.site.register(Batsman)
-admin.site.register(Bowler)
-admin.site.register(WicketKeeper)
-admin.site.register(Player)
+from .models import Student, Master, Evaluation, ExamAttemptDetail, Set, SetQuestionNumber, Option, Subject, Question
+
+admin.site.register(Student)
+admin.site.register(Master)
+admin.site.register(Evaluation)
+admin.site.register(ExamAttemptDetail)
+admin.site.register(Set)
+admin.site.register(SetQuestionNumber)
+admin.site.register(Option)
+admin.site.register(Subject)
+admin.site.register(Question)
