@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'training.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'diagnostic',
+        'USER': 'ish',
+        'PASSWORD': 'aish123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -127,4 +131,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'modeltraining.UpdatedUser'
+AUTH_USER_MODEL = 'modeltraining.User'

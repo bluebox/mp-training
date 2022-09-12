@@ -1,19 +1,32 @@
+from statistics import mode
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import  Address, Bill,Role,Profile , Room ,Patient,InPatient,OutPatient
-# ,UpdatedUser
-# Register your models here.
+from . import models
 
-# admin.site.register(UpdatedUser,UserAdmin)
+class CustomUserAdmin(UserAdmin):
+    fieldsets =(
+        *UserAdmin.fieldsets,
+        (
+            'Additional Info',
+            {
+                'fields' : (
+                    'mobile_number','age','addres'
+                )
+            }
+        )
+    )
 
-admin.site.register(Address)
-admin.site.register(Role)
-admin.site.register(Profile)
-admin.site.register(Room)
-admin.site.register(Patient)
-admin.site.register(InPatient)
-admin.site.register(OutPatient)
-admin.site.register(Bill)
+admin.site.register(models.User,CustomUserAdmin)
+
+admin.site.register(models.Roles)
+admin.site.register(models.User_role)
+admin.site.register(models.Lab)
+admin.site.register(models.Test)
+admin.site.register(models.Review)
+admin.site.register(models.Appointment)
+
+admin.site.register(models.Report)
+admin.site.register(models.Bill)
 
 
 
