@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
-def validate_even(value):
+def validate_sem(value):
     if value<1 or value>8:
         raise ValidationError(
             _('%(value)s is not valid semester'),
@@ -27,7 +27,7 @@ class Department(models.Model):
 
 
 class Student(Person):
-    semester = models.IntegerField(validators=[validate_even],default=1)
+    semester = models.IntegerField(validators=[validate_sem],default=1)
     joined_on = models.DateTimeField(auto_now_add=True,null=True,blank=True,db_column="admission_date")
     subjects_enrolled = models.ManyToManyField("Subject",blank=True)
     department =  models.ForeignKey(Department , on_delete=models.SET_NULL,null=True , related_name='students')
