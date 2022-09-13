@@ -1,0 +1,104 @@
+==> create database FeedbackSystem;
+
+use FeedbackSystem;
+
+==> create table Subject_Details(
+	subject_code varchar(6) NOT NULL,
+	subject_name varchar(35),
+	sub_subject_name varchar(35) PRIMARY KEY
+    );
+    
+==> alter table Subject_Details add column sub_subject_name varchar(35) NOT NULL;
+
+==> create table Classes_Details(
+	class_code varchar(6) NOT NULL,
+	class_name varchar(35) PRIMARY KEY
+    );
+
+==> create table Student_Details(
+	first_name varchar(20) NOT NULL,
+	last_name varchar(20),
+	stud_username varchar(35) primary key,
+	password varchar(12) NOT NULL,
+	gender varchar(6) NOT NULL,
+	date_of_birth date NOT NULL,
+	father_name varchar(35) NOT NULL,
+	class_name varchar(35),
+	roll_no int NOT NULL,
+	foreign key(class_name) references Classes_Details(class_name)
+    );
+
+==> create table Faculty_Details(
+	first_name varchar(20) NOT NULL,
+	last_name varchar(20),
+	facul_username varchar(35) primary key,
+	password varchar(12) NOT NULL,
+	gender varchar(6) NOT NULL,
+	date_of_birth date NOT NULL,
+	main_subject varchar(35) NOT NULL,
+    	department varchar(35) NOT NULL,
+    	joining_date date NOT NULL,
+   	qualification varchar(35),
+	experience int NOT NULL,
+	user_type varchar(20)
+    );
+
+==> alter table Student_Details add column status boolean default False;
+
+==> alter table Student_Details add column user_type varchar(10) NOT NULL;
+    
+==> create table Feedback_By_Student(
+	stud_username varchar(35),
+	facul_username varchar(35),
+	month varchar(10),
+	year int,
+	Q1 int,
+	Q2 int,
+	Q3 int,
+	Q4 int,
+	Q5 int,
+	Q6 int,
+	Q7 int,
+	Q8 int,
+	foreign key(stud_username) references Student_Details(stud_username),
+	foreign key(facul_username) references Faculty_Details(facul_username)
+    );
+    
+==> ==> create table Feedback_By_Faculty(
+	stud_username varchar(35),
+	facul_username varchar(35),
+	month varchar(10),
+	year int,
+	Q1 int,
+	Q2 int,
+	Q3 int,
+	Q4 int,
+	Q5 int,
+        remarks varchar(200),
+        GPA float,
+	foreign key(stud_username) references Student_Details(stud_username),
+	foreign key(facul_username) references Faculty_Details(facul_username)
+    );
+    
+==> alter table Feedback_By_Student add column GPA float;
+    
+==> create table Batch_Details(
+	stud_username varchar(35),
+	facul_username varchar(35),
+	class_name varchar(35),
+	subject_name varchar(35),
+	time time,
+	foreign key(facul_username) references Faculty_Details(facul_username),
+	foreign key(class_name) references Classes_Details(class_name),
+	foreign key(subject_name) references Classes_Details(subject_name)
+    );
+    
+==> alter table Batch_Details add column batch_id varchar(10) primary key;
+    
+==> alter table Batch_Details add column username varchar(35);
+
+==> alter table Faculty_Details add column status boolean default False;
+
+
+
+
