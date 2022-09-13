@@ -8,8 +8,6 @@ from django.db import models
 # Create your models here.
 
 
-
-
 class Restaurant(models.Model):
     restaurant_id=models.CharField(max_length=10,primary_key=True)
     restaurant_name=models.CharField(max_length=30)
