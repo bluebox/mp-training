@@ -1,3 +1,4 @@
+import email
 from django.db import models
 
 # Create your models here.
@@ -86,19 +87,22 @@ class PracticeModel(models.Model):
     ('M', 'Medium'),
     ('L', 'Large'),
     )
-    
+
     name = models.CharField(max_length=60,blank=True)
     shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES,null=True)
-    
+
     languages = (
     ('tel','telugu'),
     ('hin','hindi'),
     ('eng','english')
     )
-    
+
     languages_known = models.CharField(max_length=5,choices=languages,default='tel')
-    
+
     Bool = models.BooleanField(default=False,verbose_name='this is a boolean field')
     character = models.CharField(verbose_name='name',max_length=100,help_text='enter full name')
     Date = models.DateField(default=timezone.now)
     deci = models.DecimalField(verbose_name='decimalfield',max_digits=5,decimal_places=2,default=1.0,db_column='decimal value')
+    email = models.EmailField(verbose_name='email id',max_length=100)
+    file = models.FileField(validators=[FileExtensionValidator( ['pdf'] )])
+    image = models.ImageField(validators=[FileExtensionValidator( ['png','jpg'] )])
