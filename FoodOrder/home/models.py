@@ -1,8 +1,13 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
 # Create your models here.
 
 
+def validate_mail(value):
+    if "@gmail.com" in value:
+        return value
+    else:
+        raise ValidationError("Enter a valid mail")
 
 class Restaurant(models.Model):
     restaurant_id=models.CharField(max_length=10,primary_key=True)
@@ -34,7 +39,7 @@ class Customer(models.Model):
     customer_username = models.CharField(max_length=30)
     customer_password = models.CharField(max_length=30)
     customer_phn = models.CharField(max_length=20)
-    customer_email = models.CharField(max_length=40)
+    customer_email = models.CharField(max_length=40, validators=[validate_mail])
 
     def __str__(self):
         return self.customer_name
@@ -46,7 +51,7 @@ class Employee(models.Model):
     emp_username = models.CharField(max_length=30)
     emp_password = models.CharField(max_length=30)
     emp_phn = models.CharField(max_length=20)
-    emp_email = models.CharField(max_length=40)
+    emp_email = models.CharField(max_length=40, validators=[validate_mail])
     is_available=models.BooleanField(default=False)
 
     def __str__(self):
