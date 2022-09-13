@@ -94,9 +94,11 @@ span{
 
 
 </style>
-<form action="">
+
 <div class="main">
     <div class="sign"><br><br><br>
+        <form action="c_login" method="post">
+            {% csrf_token %}
             <h2>Sign In</h2>
             <div class="input">
                 <input id="in" type="text" name="email" placeholder="email">
@@ -104,7 +106,12 @@ span{
                 <br>
                 <input id="in" type="text" name="password" placeholder="password"> <br>
                 <br><br><br>
-                <a href="{% static 'logo.jpg' %}"><button class="btn">Customer login</button></a>
+                  <div style="color:red">
+                    {% for message in messages %}
+                    <strong>{{message}}</strong>
+                    {% endfor %}
+                  </div>
+                <button type="submit" class="btn">Customer login</button>
             </div>
             <div class="check">
                 <div>
@@ -113,12 +120,15 @@ span{
                 </div>
                 <p>Need help?</p>
             </div>
+        </form>
             <div class="new">
                 <h4>New User?<h4>
-                    <a href=""><button class="register">Register now</button></a>
+                    <a href="{% url 'customer_register'%}"><button class="register">Register now</button></a>
             </div>
+
     </div>
+
 </div>
-</form>
+
 </body>
 </html>

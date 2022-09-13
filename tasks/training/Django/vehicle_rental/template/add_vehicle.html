@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <form action="{% url 'add_vehicle' para=id %}" method="post">
+            {% csrf_token %}
+        <div class="greet">
+            <h1>
+                Welcome {{name}} <br>
+                Owner_ID: {{id}}
+            </h1>
+            <h3>Post your vehicle for rent </h3>
+            
+        </div>
+        <label for="vehicle_no">Vehicle number : </label><br>
+        <input type="text" name="vehicle_no" placeholder="vehicle number"> <br><br>
+
+        <label for="vehicle_type">Vehicle type : </label><br>
+        <input type="text" name="vehicle_type" placeholder="vehicle type"> <br><br>
+
+        <label for="vehicle_brand">Vehicle brand : </label><br>
+        <input type="text" name="vehicle_brand" placeholder="vehicle brand"> <br><br>
+
+        <label for="vehicle_model">Vehicle model : </label><br>
+        <input type="text" name="vehicle_model" placeholder="vehicle model"> <br><br>
+
+ 
+
+        <label for="price_per_km">Price/km : </label><br>
+        <input type="text" name="price_per_km" placeholder="Price per km"> <br><br>
+
+        <label for="price_per_hour">Price/hour : </label><br>
+        <input type="text" name="price_per_hour" placeholder="Price per hour"> <br><br>
+
+        <label for="price_per_day">Price/day : </label><br>
+        <input type="text" name="price_per_day" placeholder="Price per day"> <br><br>
+
+        <label for="img">Upload your vehicle image : </label><br>
+        <input type="file" name="img" placeholder="Vehicle image"> <br><br>
+
+        <input type="submit">
+ 
+        <!-- <a href="{% url 'add_vehicle' para=id  %}">Add Vehicle</a> -->
+        </form> 
+    </div>
+
+</body>
+</html>
