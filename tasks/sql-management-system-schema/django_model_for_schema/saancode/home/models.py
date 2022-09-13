@@ -6,6 +6,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import uuid
 
+number = 0
+
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, 
           on_delete = models.CASCADE)
