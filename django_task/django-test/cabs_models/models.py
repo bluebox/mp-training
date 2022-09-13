@@ -7,7 +7,7 @@ class admin_users(models.Model):
     id=models.CharField(max_length=10,primary_key=True)
     name=models.CharField(max_length=255)
     username=models.CharField(max_length=255)
-    password=models.CharField(max_length=255,validators=[password_length])
+    password=models.CharField(max_length=255,validators=[password_length] )
     dob=models.DateField()
 
 
