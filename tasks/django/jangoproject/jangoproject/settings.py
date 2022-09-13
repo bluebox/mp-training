@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jangoapp1',
     'jangoapp2',
-    'jangoapp3'
+    'jangoapp3',
+    'jangoapp4'
 ]
 
 MIDDLEWARE = [
@@ -79,8 +80,10 @@ WSGI_APPLICATION = 'jangoproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/home/mphs/Desktop/mp-training/tasks/django/jangoproject/my.cnf',
+        },
     }
 }
 
