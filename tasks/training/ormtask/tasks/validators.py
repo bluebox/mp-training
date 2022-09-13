@@ -5,10 +5,12 @@ import re
 
 
 def validatePassword(value):
-
+    regcap = re.compile(r'[A-Z]+')
+    reglow = re.compile(r'[a-z]+')
+    regdig = re.compile(r'[0-9]+')
     if len(value) < 8 :
-        regcap = re.compile(r'[A-Z]+')
-        reglow = re.compile(r'[a-z]+')
-        regdig = re.compile(r'[0-9]+')
-        if not regcap.search(value) and not reglow.search(value) and not regdig.search(value):
-            raise ValidationError(_(' value error of  number'), params={'value': value})
+        raise ValidationError(_(' value error of  number'), params={'value': value})
+
+    elif not (regcap.search(value) and reglow.search(value) and regdig.search(value)):
+        raise ValidationError(_(' value error of  number'), params={'value': value})
+
