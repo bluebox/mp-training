@@ -4,7 +4,8 @@ use FeedbackSystem;
 
 ==> create table Subject_Details(
 	subject_code varchar(6) NOT NULL,
-	subject_name varchar(35) PRIMARY KEY
+	subject_name varchar(35),
+	sub_subject_name varchar(35) PRIMARY KEY
     );
     
 ==> alter table Subject_Details add column sub_subject_name varchar(35) NOT NULL;
@@ -25,6 +26,21 @@ use FeedbackSystem;
 	class_name varchar(35),
 	roll_no int NOT NULL,
 	foreign key(class_name) references Classes_Details(class_name)
+    );
+
+==> create table Faculty_Details(
+	first_name varchar(20) NOT NULL,
+	last_name varchar(20),
+	facul_username varchar(35) primary key,
+	password varchar(12) NOT NULL,
+	gender varchar(6) NOT NULL,
+	date_of_birth date NOT NULL,
+	main_subject varchar(35) NOT NULL,
+    	department varchar(35) NOT NULL,
+    	joining_date date NOT NULL,
+   	qualification varchar(35),
+	experience int NOT NULL,
+	user_type varchar(20)
     );
 
 ==> alter table Student_Details add column status boolean default False;
@@ -80,21 +96,6 @@ use FeedbackSystem;
 ==> alter table Batch_Details add column batch_id varchar(10) primary key;
     
 ==> alter table Batch_Details add column username varchar(35);
-
-==> create table Faculty_Details(
-	first_name varchar(20) NOT NULL,
-	last_name varchar(20),
-	facul_username varchar(35) primary key,
-	password varchar(12) NOT NULL,
-	gender varchar(6) NOT NULL,
-	date_of_birth date NOT NULL,
-	main_subject varchar(35) NOT NULL,
-    	department varchar(35) NOT NULL,
-    	joining_date date NOT NULL,
-   	qualification varchar(35),
-	experience int NOT NULL,
-	user_type varchar(20)
-    );
 
 ==> alter table Faculty_Details add column status boolean default False;
 
