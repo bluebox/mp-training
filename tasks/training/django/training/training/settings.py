@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'template_training.apps.TemplateTrainingConfig',
     'views_training.apps.ViewsTrainingConfig',
     'modeltraining.apps.ModeltrainingConfig',
+    'ormTask.apps.OrmtaskConfig',
 ]
 
 MIDDLEWARE = [
