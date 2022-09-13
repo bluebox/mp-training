@@ -22,5 +22,6 @@ urlpatterns = [
     path('t/', include('app2.urls')),
     path('v/', include('app3.urls')),
     path('m/', include('app4.urls')),
+    path('orm/', include('app5.urls')),
 
 ]

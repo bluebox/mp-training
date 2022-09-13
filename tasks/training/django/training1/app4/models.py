@@ -1,15 +1,18 @@
 from django.db import models
 import uuid
+from django.contrib.auth.models import User
 
 
 class Student(models.Model):
     student_id = models.CharField(max_length=20, primary_key=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     reqister_number = models.CharField(max_length=20, null=True, blank=True)
     college_name = models.CharField(max_length=50, null=True, blank=True)
 
 
 class Master(models.Model):
     master_id = models.CharField(max_length=20, primary_key=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     qualification = models.CharField(max_length=20, null=False, blank=False)
     position = models.CharField(max_length=20)
 

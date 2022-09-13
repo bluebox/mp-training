@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "app2.apps.App2Config",
     'app3.apps.App3Config',
     'app4.apps.App4Config',
+    'app5.apps.App5Config',
 
 ]
 
@@ -81,8 +82,12 @@ WSGI_APPLICATION = 'training1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'OnlineExam',
+        'USER': 'Rakhi',
+        'PASSWORD': 'mphs',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
