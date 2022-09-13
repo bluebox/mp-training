@@ -1,12 +1,12 @@
 from datetime import datetime
 from django.db import models
-from .validators import password_length
+from .validators import password_length,username_length
 
 
 class admin_users(models.Model):
     id=models.CharField(max_length=10,primary_key=True)
     name=models.CharField(max_length=255)
-    username=models.CharField(max_length=255)
+    username=models.CharField(max_length=255 ,validators=[username_length] )
     password=models.CharField(max_length=255,validators=[password_length] )
     dob=models.DateField()
 
@@ -17,7 +17,7 @@ class rider_details(models.Model):
     gender=models.CharField(max_length=255)
     country=models.CharField(max_length=255)
     phone_num=models.IntegerField(unique=True)
-    username=models.CharField(max_length=255,unique=True)
+    username=models.CharField(max_length=255,unique=True,validators=[username_length])
     password=models.CharField(max_length=255,validators=[password_length])
     dob=models.DateField()
     joined_date=models.DateField()

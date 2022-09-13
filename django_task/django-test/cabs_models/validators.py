@@ -6,3 +6,10 @@ def password_length(value):
             ('%(value)s is not 8 character long'),
             params={'value': value},
         )
+
+def username_length(value):
+    if len(value)<8:
+        raise ValidationError(
+            ('%(value)s is not 8 character long'),
+            params={'value': value},
+        )
