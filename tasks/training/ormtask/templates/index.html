@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homepage orm tasks</title>
+</head>
+<body>
+    <form action="{% url 'validate' %}" method="post">
+        {% csrf_token %}
+        userid : <input type="integer" name="uid"><br>
+        username : <input type="text" name="username"><br>
+        password : <input type="password" name="upass"><br>
+        <input type="reset"><input type="submit">
+    </form>
+</body>
+</html>
