@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Faculties</title>
+</head>
+<body>
+    <h1>All Data</h1>
+    <hr><br>
+<table width="1500" border="1" cellspacing="0">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Main Subject</th>
+        <th>Department</th>
+        <th>Joining date</th>
+        <th>Qualification</th>
+        <th>Experience</th>
+    </tr>
+    <tr>
+        {% for info in allData %}
+        <td>{{ info.first_name }}</td>
+        <td>{{ info.last_name }}</td>
+        <td>{{ info.facul_username }}</td>
+        <td>{{ info.gender }}</td>
+        <td>{{ info.date_of_birth }}</td>
+        <td>{{ info.main_subject }}</td>
+        <td>{{ info.department }}</td>
+        <td>{{ info.joining_date }}</td>
+        <td>{{ info.qualification }}</td>
+        <td>{{ info.experience }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

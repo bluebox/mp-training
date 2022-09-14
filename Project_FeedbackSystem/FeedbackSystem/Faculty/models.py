@@ -16,3 +16,5 @@ class faculty_details(models.Model):
     experience = models.IntegerField()
     user_type = models.CharField(max_length=15)
 
+    # def __str__(self):
+    #     return self.first_name, self.last_name, self.facul_username, self.password, self.gender, self.date_of_birth, self.main_subject, self.department, self.joining_date, self.qualification, self.experience, self.user_type

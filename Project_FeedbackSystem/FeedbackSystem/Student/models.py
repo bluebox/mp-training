@@ -36,7 +36,7 @@ class feedback_by_faculty(models.Model):
     to_student = models.ForeignKey(student_details, max_length=35, on_delete=models.CASCADE)
     facul_username = models.ForeignKey(faculty_details, max_length=35, on_delete=models.CASCADE)
     month = models.CharField(max_length=12)
-    year = models.IntegerField(max_length=4)
+    year = models.IntegerField()
     Q1 = models.IntegerField()
     Q2 = models.IntegerField()
     Q3 = models.IntegerField()

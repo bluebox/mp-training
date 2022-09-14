@@ -12,6 +12,9 @@ class class_details(models.Model):
     class_code = models.CharField(max_length=6, primary_key=True)
     class_name = models.CharField(max_length=35)
 
+    # def __str__(self):
+    #     return self.class_code, self.class_name
+
 class batch_details(models.Model):
     batch_id = models.IntegerField(primary_key=True)
     faculty_name = models.CharField(max_length=40)
