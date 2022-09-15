@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Faculty</title>
+</head>
+<body>
+
+  <form action="add-faculty" method="POST">
+    {% csrf_token %}
+    <label>First Name: </label>
+    <input type="text" name="fname"><br><br>
+
+    <label>Last Name: </label>
+    <input type="text" name="lname"><br><br>
+
+    <label>User Name: </label>
+    <input type="text" name="username"><br><br>
+
+    <label>Password: </label>
+    <input type="password" name="password"><br><br>
+
+    <label>Gender: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select name="gender">
+      <option>Male</option>
+      <option>Female</option>
+    </select><br><br>
+
+    <label>Date of Birth: </label>
+    <input type="date" name="dateofbirth"><br><br>
+
+    <label>Joining date: </label>
+    <input type="date" name="joiningdate"><br><br>
+
+    <label>Experience: </label>
+    <input type="number" name="experience"><br><br>
+
+    <label>Main Subject: </label>
+    <input type="text" name="mainsubject"><br><br>
+
+    <label>Qualification: </label>
+    <input type="text" name="qualification"><br><br>
+
+    <label>Department: </label>
+    <input type="text" name="department"><br><br>
+
+    <label>User Type: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select name="usertype">
+      <option>Faculty</option>
+      <option>Student</option>
+    </select>
+    <br><br>
+
+  <input type="submit" value="Add Record">
+  </form>
+{{ method }}
+</body>
+</html>
