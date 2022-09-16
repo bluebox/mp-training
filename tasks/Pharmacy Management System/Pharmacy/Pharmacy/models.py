@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import validate_email
 
 # Create your models here.
 
@@ -8,8 +9,11 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=50, null=False, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True)
+    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "customer"
 
     def __str__(self):
         return self.first_name
@@ -19,8 +23,11 @@ class Manufacturer(models.Model):
     company_id = models.CharField(max_length=20, primary_key=True)
     company_name = models.CharField(max_length=50, null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True)
+    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "manufacturer"
 
     def __str__(self):
         return self.company_name
@@ -32,8 +39,11 @@ class Doctor(models.Model):
     last_name = models.CharField(max_length=50, blank=False)
     specialization = models.CharField(max_length=250, null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True)
+    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "doctor"
 
     def __str__(self):
         return self.first_name
@@ -48,8 +58,11 @@ class Employee(models.Model):
     job_type = models.CharField(max_length=50, null=False, blank=False)
     salary = models.IntegerField(null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True)
+    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "employee"
 
     def __str__(self):
         return self.first_name
@@ -59,8 +72,11 @@ class Distributor(models.Model):
     dist_id = models.CharField(max_length=20, primary_key=True)
     dist_name = models.CharField(max_length=50, null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True)
+    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "distributor"
 
     def __str__(self):
         return self.dist_name
@@ -76,6 +92,9 @@ class Drug(models.Model):
     stock = models.IntegerField(null=False, blank=False)
     mfg_date = models.DateField(null=False, blank=False)
 
+    class Meta:
+        verbose_name_plural = "drug"
+
     def __str__(self):
         return self.drug_name
 
@@ -89,6 +108,9 @@ class Sales(models.Model):
     quantity = models.IntegerField(null=False, blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
 
+    class Meta:
+        verbose_name_plural = "sales"
+
     def __str__(self):
         return self.sale_id
 
@@ -100,6 +122,9 @@ class Prescribe(models.Model):
     drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE, null=False, blank=False)
     quantity = models.IntegerField(null=False, blank=False)
 
+    class Meta:
+        verbose_name_plural = "prescribe"
+
     def __str__(self):
         return self.cust_id
 
@@ -109,6 +134,9 @@ class Purchase(models.Model):
     purchase_date = models.DateField(null=False, blank=False)
     drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE, null=False, blank=False)
     drug_name = models.CharField(max_length=100, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "purchase"
 
     def __str__(self):
         return self.purchase_id
@@ -124,6 +152,9 @@ class Supply(models.Model):
     quantity = models.IntegerField(null=False, blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
 
+    class Meta:
+        verbose_name_plural = "supply"
+
     def __str__(self):
         return self.purchase_id
 
@@ -133,6 +164,9 @@ class Cart(models.Model):
     cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False, blank=False)
     quantity = models.IntegerField(null=False, blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "cart"
 
     def __str__(self):
         return self.drug_id
@@ -145,6 +179,9 @@ class Order(models.Model):
     prescription_id = models.ForeignKey(Prescribe, on_delete=models.CASCADE, null=False, blank=False)
     drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE, null=False, blank=False)
     payment_mode = models.CharField(max_length=10)
+
+    class Meta:
+        verbose_name_plural = "order"
 
     def __str__(self):
         return self.order_id
@@ -159,6 +196,9 @@ class Invoice(models.Model):
     payment_mode = models.CharField(max_length=10)
     quantity = models.IntegerField(null=False, blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
+
+    class Meta:
+        verbose_name_plural = "invoice"
 
     def __str__(self):
         return self.bill_id

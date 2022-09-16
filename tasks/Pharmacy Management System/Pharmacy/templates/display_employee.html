@@ -1,0 +1,42 @@
+<style>
+    table,th, tr, td{
+    border:2px solid blue;
+    }
+    a{
+        text-decoration:none;
+            align-content:center;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Employee ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date Of Joining</th>
+        <th>Designation</th>
+        <th>Job Type</th>
+        <th>Salary</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Address</th>
+    </tr>
+    {% for i in det %}
+    <tr>
+        <td>{{i.emp_id}}</td>
+        <td>{{i.first_name}}</td>
+        <td>{{i.last_name}}</td>
+        <td>{{i.doj}}</td>
+        <td>{{i.designation}}</td>
+        <td>{{i.job_type}}</td>
+        <td>{{i.salary}}</td>
+        <td>{{i.contact}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.address}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<br>
+<a href="add_employee_details">Add Employee</a>
