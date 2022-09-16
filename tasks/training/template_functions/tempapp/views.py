@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 def home(request):
     data={'name':' medplus india'}
-    return render(request,'index.html',data)  #using variable in template
+    return render(request,'registerUser.html',data)  #using variable in template
 
 
 def fortemp(request):

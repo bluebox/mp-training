@@ -8,7 +8,7 @@ from .models import ValidatorsTask
 
 def login(request):
     context = {}
-    return render(request, 'index.html', context)
+    return render(request, 'registerUser.html', context)
 
 
 def validate(request):

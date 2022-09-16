@@ -4,7 +4,7 @@ from inventory.models import User
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    return render(request,'registerUser.html')
 
 def wish(request):
     if request.method=='POST':
