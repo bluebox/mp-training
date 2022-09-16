@@ -1,0 +1,23 @@
+<div style="background-color: black;margin: -0.5%;">
+  
+<h3 style="font-size:50px;text-align: center;color:white;padding-top: 260px;">Register</h3>
+<div style="justify-content:center;color:white;padding: 20px;text-align: center;padding-bottom: 317px;font-size: 30px;">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.username.label}}
+    {{form.username}}
+    <br>
+    {{form.email.label}}
+    {{form.email}}
+    <br>
+    {{form.password1.label}}
+    {{form.password1}}
+    <br>
+    {{form.password2.label}}
+    {{form.password2}}
+    <br>
+    <input type="submit" style="font-size: 20px;color: black;background-color: pink;"name="create user">
+    {{form.errors}}
+</form>
+</div>
+</div>
