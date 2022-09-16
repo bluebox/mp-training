@@ -6,9 +6,17 @@
 </head>
 <body>
 {% block content %}
-<h3> this is a student page </h3>
-don't have account <a href="{% url 'register' %}">register</a>
-{{ name }}
+Hello  {{ name }}
+<form method="get" action="{% url 'edit' %}">
+<label> name </label>
+    <input type="text" name="name">
+    <br>
+
+    <label> id </label>
+    <input type="text" name="id">
+    <br>
+    <input type="submit" value="edit">
+</form>
 {% endblock %}
 
 </body>

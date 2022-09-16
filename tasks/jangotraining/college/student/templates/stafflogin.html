@@ -5,11 +5,41 @@
     <title>Title</title>
 </head>
 <body>
+hello {{ name }}
+<br>
 view student data with  id
 <form action="student1" method="get">
 <br>
 <label for="stu_id"> enter student id : </label>
 <input type="text" name="stu_id">
+    <br>
+    <input type="submit" placeholder="login">
+    </form>
+
+
+
+<h3> add a student to the database </h3>
+<br>
+<form action="studentreg" method="get">
+<label for=""> enter student id : </label>
+<input type="text" name="stu_id">
+    <br>
+ <label for=""> enter name : </label>
+<input type="text" name="name">
+    <br>
+     <label for=""> enter number : </label>
+<input type="text" name="number">
+    <br>
+         <label for=""> enter email : </label>
+<input type="text" name="email">
+    <br>
+    ece=1 cse=2 mech=3 it =4
+    <br>
+        <label for=""> enter branch id : </label>
+<input type="text" name="branch">
+    <br>
+
+
     <br>
     <input type="submit">
     </form>
