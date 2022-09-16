@@ -55,3 +55,16 @@ def add_employee_details(request):
 def display_employee(request):
     det = Employee.objects.all()
     return render(request, 'display_employee.html', {'det': det})
+
+
+def delete_employee(request):
+    if request.method == "POST":
+        emp1 = request.POST["Id"]
+    deta = Employee.objects.all()
+    try:
+        emp = Employee.objects.get(emp_id=emp1)
+        emp.delete()
+    except:
+        return render(request, 'delete_employee.html', {'det': deta, 'i': 'No data with id is found'})
+    det = Employee.objects.all()
+    return render(request, 'display_employee.html', {'det': det})
