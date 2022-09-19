@@ -5,12 +5,8 @@ import { Vehicle } from '../interfaces/vehicle'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements Vehicle{
-  title = 'Tasks of angular';
-  price: number = 2;
-  fuel: string = 'petrol';
-  wheels:number = 4;
-  constructor(){    // declaring arrays with single and multi types
+export class AppComponent{
+  constructor(){
     var nums : number[] = [1,2,3,4,5]
 
     for(var i=0;i<nums.length;i++){
@@ -28,5 +24,19 @@ export class AppComponent implements Vehicle{
     for(var i=0;i<cities.length;i++){
       console.log(cities[i])
     }
+
+    var car1:Car = new Car(25000,'petrol',4);
+    console.log(car1)
+  }
+}
+
+class Car implements Vehicle{
+    price: number
+    fuel: string
+    wheels:number
+  constructor( price: number, fuel: string, wheels:number){
+    this.price=price;
+    this.fuel=fuel;
+    this.wheels=wheels
   }
 }
