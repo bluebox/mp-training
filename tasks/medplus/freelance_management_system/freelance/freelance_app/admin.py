@@ -10,3 +10,6 @@ admin.site.register(freelancer_payment_details)
 admin.site.register(freelancer_details)
 admin.site.register(freelancer_feedback_form)
 admin.site.register(client_contract_details)
+
+
+

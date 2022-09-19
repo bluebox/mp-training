@@ -1,0 +1,11 @@
+<p *ngIf="true">TIME : {{date}}</p>
+
+<hr>
+
+<button
+  (click)="enableDisableRule()"
+  [ngClass]="{'green' : green, 'red': red ,'blue':blue}" class="button"
+>
+  {{status}}
+</button>
+
