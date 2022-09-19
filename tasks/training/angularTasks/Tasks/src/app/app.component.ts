@@ -7,6 +7,8 @@ import { Vehicle } from '../interfaces/vehicle'
 })
 export class AppComponent{
   constructor(){
+
+  //creating arrays
     var nums : number[] = [1,2,3,4,5]
 
     for(var i=0;i<nums.length;i++){
@@ -27,9 +29,12 @@ export class AppComponent{
 
     var car1:Car = new Car(25000,'petrol',4);
     console.log(car1)
+
+
+    console.log(week)
   }
 }
-
+ // implementing Vehicle interface
 class Car implements Vehicle{
     price: number
     fuel: string
@@ -39,4 +44,8 @@ class Car implements Vehicle{
     this.fuel=fuel;
     this.wheels=wheels
   }
+}
+ // creating enumaration
+enum week{
+sunday,monday,tuesday,wednesday,thursday,friday,saturday
 }
