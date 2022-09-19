@@ -9,6 +9,7 @@ def validate_mail(value):
     else:
         raise ValidationError("Enter a valid mail")
 
+
 class Restaurant(models.Model):
     restaurant_id=models.CharField(max_length=10,primary_key=True)
     restaurant_name=models.CharField(max_length=30)
@@ -29,7 +30,6 @@ class Reviews(models.Model):
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
     review=models.CharField(max_length=100)
     rating = models.DecimalField(max_digits=2, decimal_places=1)
-
 
 
 class Customer(models.Model):
