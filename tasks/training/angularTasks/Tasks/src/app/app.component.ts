@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Vehicle } from '../interfaces/vehicle'
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -32,6 +34,12 @@ export class AppComponent{
 
 
     console.log(week)
+
+    for(var game in sport){
+      console.log(game)
+    }
+    console.log(sport)
+
   }
 }
  // implementing Vehicle interface
@@ -45,7 +53,11 @@ class Car implements Vehicle{
     this.wheels=wheels
   }
 }
- // creating enumaration
+// creating enumaration using enum for weeks
 enum week{
-sunday,monday,tuesday,wednesday,thursday,friday,saturday
+  sunday,monday,tuesday,wednesday,thursday,friday,saturday
 }
+
+enum sport{
+  cricket=1,volleyball,kabaddi,kho_kho,football}
+
