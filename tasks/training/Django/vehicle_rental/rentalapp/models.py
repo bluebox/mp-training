@@ -35,7 +35,7 @@ class Vehicle(models.Model):
     type = models.CharField(max_length=50)
     brand = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='static/images')
     owner_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
     price_km = models.FloatField()
     price_hour = models.FloatField()

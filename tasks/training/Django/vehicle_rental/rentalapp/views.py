@@ -1,8 +1,11 @@
+from email.mime import image
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.http.response import JsonResponse
+from django.core.files.storage import default_storage
 from .models import Customer, Owner, Vehicle
-
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def home(request):
@@ -62,7 +65,11 @@ def add_vehicle(request,para):
         type = request.POST['vehicle_type']
         brand = request.POST['vehicle_brand']
         model = request.POST['vehicle_model']
-        image = request.POST['img']
+        # Savefile(request)
+        image = request.FILES["img"]
+        # file_name = default_storage.save(file.name,file)
+        # image=file_name
+
         owner_id = para
         price_km = request.POST['price_per_km']
         price_hour = request.POST['price_per_hour']
@@ -77,3 +84,10 @@ def add_vehicle(request,para):
 def show(request):
     vehicle = Vehicle.objects.all()
     return render(request, "show_vehicle.html", {"vehicle" : vehicle})
+
+# @csrf_exempt
+# def Savefile(request):
+#     file = request.FILES["img"]
+#     file_name = default_storage.save(file.name,file)
+
+#     return JsonResponse(file_name,safe=False)
