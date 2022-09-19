@@ -1,0 +1,43 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'shashi';
+
+//  practice on variable and their types 
+  a : number | string;
+  
+  constructor(){
+    this.a = 1
+// practice on array    
+    var alphas:string[]; 
+alphas = ["1","2","3","4"] 
+console.log(alphas[0]); 
+console.log(alphas[1]);
+// practice on enum
+enum friends{
+  keerthi,
+  visakha,
+};
+console.log(friends.keerthi)
+console.log(friends.visakha)
+// `practice on interface --- interface is like a skeleton of the body here we define the 
+// structure(attributes) not its implementation`
+interface IPerson { 
+  firstName:string, 
+  lastName:string, 
+  sayHi: ()=>string 
+} 
+var customer:IPerson = { 
+  firstName:"Tom",
+  lastName:"Hanks", 
+  sayHi: ():string =>{return "Hi there"} 
+} 
+   
+  console.log(customer.sayHi())
+  }
+}
