@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,20 +10,30 @@ export class AppComponent {
   title = 'angular-first';
   date : Date
   array : Array<string>
-  // changeNum : number
+  item : string = 'food'
   constructor(){
     this.date = new Date()
     this.array = ['red','yellow','blue']
 
+  }
+  emitter( data : object) : void {
+    console.warn(data);
+    
   }
   firstMethod(){
     console.log(this.date)
   }
   colorChange(){
     let color = document.getElementsByClassName('box');
-    // color.style.background-color = this.array[this.changeNum]
-    // this.changeNum=this.changeNum+1
+
   }
+
+  outputitem(): void{
+    console.log('output');
+    
+  }
+  tuple : [number | string,string,boolean] = ["string or number",'name',false];
+
   red = true;
   green = false;
   blue = false;
@@ -45,4 +56,5 @@ export class AppComponent {
       this.status = 'red'
     }
   }
+
 }

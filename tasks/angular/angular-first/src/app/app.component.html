@@ -1,4 +1,4 @@
-<p *ngIf="true">TIME : {{date}}</p>
+<p *ngIf="true">TIME : {{ date  }}</p>
 
 <hr>
 
@@ -9,3 +9,4 @@
   {{status}}
 </button>
 
+<app-child-component [item] = "item"  (outputItem)="emitter($event)"></app-child-component>

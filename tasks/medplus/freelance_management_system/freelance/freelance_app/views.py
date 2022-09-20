@@ -19,7 +19,7 @@ from django.shortcuts import  get_object_or_404
 def IndexSerializer(request):
     object1 = freelancer_details.objects.all()
     serializersdata = freelancer_detailsSerializers(object1,many=True)
-    return Response(serializersdata.data)
+    return JsonResponse(serializersdata.data)
 
 @api_view(["POST"])
 def IndexPostSerializer(request):
@@ -27,7 +27,7 @@ def IndexPostSerializer(request):
     serializersdata = freelancer_detailsSerializers(data=request.data)
     if serializersdata.is_valid():
         serializersdata.save()
-    return Response(serializersdata.data)
+    return JsonResponse(serializersdata.data)
 
 @api_view(["POST"])
 def updateSerializer(request,id):
@@ -35,13 +35,13 @@ def updateSerializer(request,id):
     serializersdata = freelancer_detailsSerializers(instance=object1,data=request.data)
     if serializersdata.is_valid():
         serializersdata.save()
-    return Response(serializersdata.data)
+    return JsonResponse(serializersdata.data)
 
 @api_view(["DELETE"])
 def deleteSerializer(request,id):
     object1 = freelancer_details.objects.get(id=id)
     object1.delete()
-    return Response('deleted in the database')
+    return JsonResponse('deleted in the database')
 
 # @api_view()
 # class freelanceViewSet(ViewSet):

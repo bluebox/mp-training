@@ -6,16 +6,22 @@ import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } 
   styleUrls: ['./child-component.component.css']
 })
 export class ChildComponentComponent implements OnInit{
+
+  // event binding 
   @Input() item = "";
 
+
+  //  property binding 
   @Output() outputItem = new EventEmitter();
 
   emitter(){
-    this.outputItem.emit('emitter function')
+    let data = { name:'anil' , age: 25 }
+    this.outputItem.emit(data)
     
   }
   // life cycles in angular 
   constructor() {
+
     console.log('constructor called');
     
    }
@@ -32,6 +38,11 @@ export class ChildComponentComponent implements OnInit{
 
   ngOnDestroy() : void{
     console.log('destroy');
+    
+  }
+
+  ngOncheck(): void{
+    console.log('checks called');
     
   }
   flag : boolean = true;
