@@ -24,6 +24,11 @@ export class AppComponent {
   ena: Months // enum
 
 
+  //20/09/22
+  sendingData: string[]= ["Angular", "React", "Django", "Spring"]
+
+
+
   customer : Person ={  //interface
     name:"Dhanush",
     age: 25
@@ -62,6 +67,14 @@ export class AppComponent {
       return var1+var2
 
    }
+
+   //20/09/2022
+   outDataRcv(data : string){
+    console.log(data)
+  }
 }
+
+
+
 
 
