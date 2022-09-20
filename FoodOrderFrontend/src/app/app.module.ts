@@ -11,6 +11,14 @@ import { FooterComponent } from './footer/footer.component';
 import { IndexComponent } from './index/index.component';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar'; 
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import { PopularfoodComponent } from './index/popularfood/popularfood.component';
+
+
 
 @NgModule({
   declarations: [
@@ -21,12 +29,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent,
     FooterComponent,
     IndexComponent,
-    HomeComponent
+    HomeComponent,
+    PopularfoodComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
