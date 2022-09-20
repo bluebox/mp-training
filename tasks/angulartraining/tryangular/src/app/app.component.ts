@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tryangular';
+  constructor(){
+
+  }
+  item: string[]=["hello ",'1','2','3'];
+  reciver(str1:string){
+    console.log(str1);
+    
+  }
 }

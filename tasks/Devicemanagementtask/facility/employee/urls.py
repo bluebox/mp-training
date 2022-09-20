@@ -10,8 +10,9 @@ urlpatterns = [
     # path('login/issuedto/', views.issuedto,name='issuedto'),
     # path('login/yourcomplaints/', views.yourcomplaints,name='yourcomplaints'),
     # path('login/yourwork/', views.yourwork,name='yourwork'),
-    path('', views.EmployeeView.as_view()),
+    # path('', views.EmployeeView.as_view()),
     path('facility/', views.FacilityView.as_view()),
     # path('facility/', views.facility1),
+    path('employee/', views.EmployeeView.as_view())
 
 ]

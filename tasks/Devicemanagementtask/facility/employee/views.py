@@ -138,21 +138,16 @@ class EmployeeView(View):
 
 class FacilityView(View):
     def post(self, request):
-        # facility=JSONParser().parse(request)
-        # serailizeddata=FacilitySerializer(facility,many=True)
-        #
-        # if serailizeddata.is_valid():
-        #
-        #     serailizeddata.save()
+
         id=request.POST.get('emp_id')
         device_id=request.POST.get('device_id')
         descp=request.POST.get('descp')
-        device=Device.objects.get(device_id=id)
+        device=Device.objects.get(device_id=device_id)
         employee=Employee.objects.get(emp_id=id)
-        complaint=Complaint(emp_id=id,device_id=device,comp_desc=descp)
-        # serailizeddata=FacilitySerializer(facility)
-
-        return JsonResponse("greg")
+        complaint=Complaint(emp_id=employee,device_id=device,comp_desc=descp)
+        complaint.save()
+        print(employee)
+        return JsonResponse()
 
 @csrf_exempt
 def facility1(request):
