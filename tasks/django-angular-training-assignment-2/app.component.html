@@ -1,0 +1,18 @@
+<div>
+  <p>This is parent</p>
+  {{this.childName}}
+
+  <!-- this input button is two way bind with variable called "name" -->
+  <!-- this input is used to run "ngOnChanges hook" when ever the "name" value changes
+  because "ngOnChanges" runs whenever the bind properties values changes -->
+  <input type="text" [(ngModel)]="name" [placeholder]="name">
+
+  <!-- this is child component -->
+  <!-- "inputs" is property in child component binded with "name" variable -->
+  <!-- inputs property is used to access variables of parent component -->
+  <app-child [inputs]="name" (triggerEvent)="clicked($event)" *ngIf="destroyed"></app-child>
+
+  <!-- this button is used to destroy and restore the child component -->
+  <!-- "ngOnDestroy hook" runs whenever this button is clicked -->
+  <button (click)="destroy()"> Destroy </button>
+</div>
