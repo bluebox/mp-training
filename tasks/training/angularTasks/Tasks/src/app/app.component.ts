@@ -8,7 +8,16 @@ import { Vehicle } from '../interfaces/vehicle'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
+
+  value:any=''
+
+  parentT(data:any){
+    this.value=data
+  }
+
+  name:string = 'bolgam ajay';
   constructor(){
+
 
   //creating arrays
     var nums : number[] = [1,2,3,4,5]
