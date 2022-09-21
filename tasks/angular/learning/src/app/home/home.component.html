@@ -1,0 +1,24 @@
+<!-- <p>home works!</p>
+<h2>Single slot content projection</h2>
+<ng-content></ng-content>
+
+
+Question:
+<ng-content select="[question]"></ng-content> -->
+<div id="page-container">
+  <app-top-bar id="header"></app-top-bar>
+
+  <button (click)="getDetails()">Owners</button>
+  
+  <button mat-stroked-button color="accent">Accent</button>
+  <div class="card-div">
+    <div *ngFor="let owner of owners" class="card-details">
+      <app-banner [bannerData]="owner"></app-banner>
+    </div>
+  </div>
+  
+  <app-footer id="footer"></app-footer>
+  
+</div>
+
+

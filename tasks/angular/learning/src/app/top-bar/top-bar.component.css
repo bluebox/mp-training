@@ -1,0 +1,33 @@
+.top-bar {
+  display: flex;
+  justify-content: space-around;
+}
+.cms-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(67, 71, 71);
+  color: #ffffff;
+  font-family: fantasy;
+  position: sticky;
+  margin-bottom: 0;
+  width: 100%;
+  top: 0;
+}
+.headings-container {
+  display: flex;
+}
+
+.hs-logo {
+  width: 70px;
+  margin-right: 10px;
+}
+
+.login-heading {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.logo-heading {
+  margin: 20px;
+  cursor: pointer;
+}
