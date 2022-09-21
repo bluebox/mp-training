@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-index',
@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  
+  @Input() parentData:string="";
+
+  @Output() outputEvent=new EventEmitter()
+  outPut(name:string)
+  {
+    this.outputEvent.emit(name)
+  }
   constructor() { }
 
   ngOnInit(): void {

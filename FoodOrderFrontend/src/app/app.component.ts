@@ -9,6 +9,14 @@ import { Student } from './interface';
 export class AppComponent {
   title = 'FoodOrderFrontend';
 
+  user:string="Admin"
+  data=""
+
+  outputReceived(data:string)
+  {
+      this.data=data
+  }
+
   students: Student[] = [
 
     {id: 1, name: "Hardik"},

@@ -20,6 +20,7 @@ import { PopularfoodComponent } from './index/popularfood/popularfood.component'
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { PopularfoodComponent } from './index/popularfood/popularfood.component'
     FooterComponent,
     IndexComponent,
     HomeComponent,
-    PopularfoodComponent
+    PopularfoodComponent,
+
   ],
   imports: [
     BrowserModule,

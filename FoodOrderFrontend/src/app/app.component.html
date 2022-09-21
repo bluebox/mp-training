@@ -1,1 +1,6 @@
 <app-navbar></app-navbar>
+<app-index [parentData]="user" (outputEvent)="outputReceived($event)"></app-index>
+<app-login></app-login>
+<router-outlet></router-outlet>
+
+{{data}}

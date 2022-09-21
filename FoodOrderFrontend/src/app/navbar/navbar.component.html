@@ -4,12 +4,24 @@
     <span class="example-spacer"></span>
     <div class="example-button-row">
         
-        <button mat-raised-button color="primary">Login</button>
-        <button mat-raised-button color="primary">SignIn</button>
+        <button mat-raised-button color="primary" routerLink="../login">Login</button>
+        <button mat-raised-button color="primary" routerLink="../signin">SignIn</button>
         <button mat-button [matMenuTriggerFor]="belowMenu">Manage Restaurant</button>
         <mat-menu #belowMenu="matMenu" yPosition="below">
-        <button mat-menu-item>Login</button>
-        <button mat-menu-item>Signin</button>
+            <button mat-menu-item routerLink="../restaurants/login">Login</button>
+            <button mat-menu-item routerLink="../restaurants/signin">Signin</button>
+        </mat-menu>
+        <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Manage Employee</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item routerLink="../../employee/login">Login</button>
+            <button mat-menu-item routerLink="../../employee/signin">Signin</button>
+        </mat-menu> -->
+
+
+        <button mat-button [matMenuTriggerFor]="beforeMenu">Manage Employee</button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="../../employee/login">Login</button>
+        <button mat-menu-item routerLink="../../employee/signin">Signin</button>
         </mat-menu>
     </div>
  
