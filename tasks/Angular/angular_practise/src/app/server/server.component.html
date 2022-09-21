@@ -1,1 +1,13 @@
-server component
+<p style = "color:blue">{{str1}} it time {{number1}}   is it ok {{getServerStatus()}} </p>
+{{isIt}}
+<!--button style = "color:blue" [disabled]="isIt">add server</button-->
+
+<button style = "color:blue" (click) = "onClick()">add server</button>
+
+<input type ="text" class="form-control"
+(input)="onUpdate($event)">
+
+{{name1}}
+
+<input type ="text" class="form-control"
+[(ngModel)] = "name1">

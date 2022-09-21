@@ -1,1 +1,8 @@
 <p>servers works!</p>
+<!--app-server></app-server-->
+
+<input type="text" [(ngModel)]="names" >
+
+
+<button [disabled] = "names == ''" (click)="clear()" >clear</button> 
+<p *ngIf = "names!=''">text is = {{names}}</p>

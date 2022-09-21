@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
+  names = ''
+  btnIs =true
+  constructor() { 
+    
+   
 
-  constructor() { }
+  }
+  
 
   ngOnInit(): void {
+  }
+  clear(){
+    this.names =""
   }
 
 }
