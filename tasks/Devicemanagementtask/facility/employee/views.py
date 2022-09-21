@@ -117,8 +117,8 @@ i=0
 
 class EmployeeView(View):
     def get(self, request):
-        id=request.GET.get('id')
-        employee=Employee.objects.get(emp_id=id)
+        name=request.GET.get('name')
+        employee=Employee.objects.get(emp_name=name)
         serializerdata=EmployeeSerializer(employee)
         return JsonResponse(serializerdata.data)
     def post(self,request):
