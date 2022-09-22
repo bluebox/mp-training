@@ -1,0 +1,13 @@
+<header>
+    <!-- <input required [(ngModel)]="id" type="text" placeholder="search id">
+    <button (click)="findWeather()">Find</button> -->
+    <form [formGroup]="myForm" (ngSubmit)="getData(myForm)">
+        <div>
+          <label>
+            ID:
+            <input formControlName="id" placeholder="id">
+          </label>
+        </div>
+        <button type="submit">Send</button>
+      </form>
+</header>
