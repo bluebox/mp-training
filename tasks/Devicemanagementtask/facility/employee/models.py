@@ -91,7 +91,7 @@ class Complaint(models.Model):
     comp_id = models.IntegerField(primary_key=True)
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     device_id = models.ForeignKey(Device, on_delete=models.CASCADE)
-    comp_desc = models.CharField(max_length=200)
+    comp_desc = models.CharField(max_length=200,null=True)
     is_assigned = models.BooleanField(default=False)
 
 

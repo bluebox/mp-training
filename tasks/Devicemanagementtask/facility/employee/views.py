@@ -1,9 +1,11 @@
+import json
+
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
-from .serializers import EmployeeSerializer,FacilitySerializer
+from .serializers import EmployeeSerializer,FacilitySerializer,ComplaintSerializer
 from rest_framework.parsers import JSONParser
 from .forms import Employeeform,Complaintform,IssuedtoForm
 
@@ -142,12 +144,17 @@ class FacilityView(View):
         id=request.POST.get('emp_id')
         device_id=request.POST.get('device_id')
         descp=request.POST.get('descp')
-        device=Device.objects.get(device_id=device_id)
-        employee=Employee.objects.get(emp_id=id)
-        complaint=Complaint(emp_id=employee,device_id=device,comp_desc=descp)
+        print(device_id)
+        device1=Device.objects.get(device_id=1)
+        employee=Employee.objects.get(emp_id=1)
+        facility=Facility.objects.get(facility_id=1)
+        complaint=Complaint(emp_id=employee,device_id=device1,comp_desc=descp,facility_id=facility, comp_id=1)
         complaint.save()
+        ser ailizeddata=ComplaintSerializer(complaint)
+        # if serailizeddata.is_valid():
+        #     serailizeddata.save()
         print(employee)
-        return JsonResponse()
+        return JsonResponse(serailizeddata.data)
 
 @csrf_exempt
 def facility1(request):
