@@ -1,0 +1,145 @@
+{% extends "../navbar.html" %}
+{%load static%}
+{% block title %}Subject Table|College Management System{%endblock%}
+{%block style%}<!-- CSS only -->
+<link rel="stylesheet" href="{%static 'styles/useradmin/datasec.css'%}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">{%endblock%}
+{%block content%}
+
+
+
+
+<h3 class="head">Search by</h3>
+<div class="flex">
+<form method="get">
+    {% csrf_token %}
+    <div>
+    <label for="course">Choose the course:</label>
+    <select name="course" id="course" >
+        <option value="nill" selected>Nill</option>
+        {%for courses in courses_dynamic_list%}
+        <option value="{{courses.id}}" >{{courses.course_name}}</option>
+{%endfor%}
+    </select>
+
+    <label for="semester">Choose the semester:</label>
+    <select name="sem" id="sem">
+        <option value="nill" selected>Nill</option>
+        <option value="1">Sem1</option>
+        <option value="2">sem2</option>
+        <option value="3">sem3</option>
+        <option value="4">sem4</option>
+        <option value="5">sem5</option>
+        <option value="6">sem6</option>
+        <option value="7">sem7</option>
+        <option value="8">sem8</option>
+    </select>
+
+</div>
+<div class="searchbar">
+    <input type="text" name="stdcode" id=""  placeholder="search by sub_code">
+    <button type="submit">Search</button>
+</div>
+</form>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnform">
+    Add New Student
+ </button>
+</div>
+{{dis_text}}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body tabform">
+                <form action="" method="post">
+                    {%csrf_token%}
+                    {{form.as_p}}
+                    <button type="submit">Submit</button>
+    </div>
+</div>
+    </div>
+</div>
+
+<table class="table table-striped" >
+    <thead>
+      <tr>
+        {% for i in data_heading %}
+        <th scope="col">{{i}}</th>
+        {%endfor%}
+        <th scope="col">Actions</th>
+    </tr>
+</thead>
+<tbody>
+    {% for i in total_student %}
+    <tr>
+        <td>{{i.admission_id}}</td>
+        <td>{{i.first_name}} {{i.last_name}}</td>
+        <td>{{i.student_dob}}</td>
+        <td>{{i.username}}</td>
+        <td>{{i.course}}</td>
+        <td>{{i.semester}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.father_name}}</td>
+        <td class="btntd"><a href="{%url 'studenttableid' id=i.id%}">Edit</a><a href="{%url 'studenttabledelid' de='delete' id=i.id%}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<style>
+    .btntd a{
+    text-decoration: none;
+    border: 1px solid black;
+        border-radius: 3px;
+    color: black;
+    padding: 0.3rem;
+    margin-right:0.2rem;
+    background-color: transparent;
+    }
+.flex{
+    display: flex;
+    margin-bottom: 2rem;
+    padding: 0rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.head{
+    margin-top: 1rem;
+    margin-left: 2rem;
+}
+.searchbar{
+    margin-top: 1rem;
+}
+.searchbar button{
+    background-color: transparent;
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+  </style>
+
+{{text}}
+
+{%endblock%}
+{%block script%}
+{%if flag_open%}
+<script>
+    var form_opem=document.getElementById("btnform")
+    const myTimeout = setTimeout(form_btnopen, 0.1);
+
+function form_btnopen() {
+    form_opem.click();
+}
+  
+
+</script>
+{%endif%}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+{%endblock%}

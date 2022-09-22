@@ -1,0 +1,9 @@
+.flexbo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.flexbo button{
+    margin-left: 1rem;
+}

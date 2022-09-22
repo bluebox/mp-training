@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.flex{
+    display: flex;
+    padding: 1rem;
+    margin: 0rem 1rem;
+    align-items: center;
+    justify-content: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /* scrollbar-color: transparent; */
+}
+.flex::-webkit-scrollbar{
+    display: none;
+}
+.flex div:nth-child(1){
+    padding-left: 2rem;
+}
+.cards{
+margin-right: 1rem;
+transition: 0.4s;
+}
+.cards:hover{
+    transform: scale(1.1);
+}
+
+.cards img{
+    height: 20rem ;
+    z-index: 1;
+    width: 16rem ;
+}
+.bigimg img{
+    height: 10rem ;
+    width: 8rem ;
+
+}
+#ttle{
+    text-align: start;
+    padding-left: 1.4rem;
+}
+.medImg img{
+    height: 14rem !important;
+    width: 10rem !important;
+}
+.imgalt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10rem ;
+    width: 8rem ;
+}
+.placebutton{
+    position: relative;
+    top: -2rem;
+    padding: 0.3rem 2rem;
+    background-color: rgba(0, 0, 0, 0.527);
+    color: white;
+    text-decoration: none;
+}
+.placebutton:hover{
+    color: white;
+}

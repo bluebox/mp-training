@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.backfold1{
+    margin-top: 3.2rem;
+/* background-image: url("https://image.tmdb.org/t/p/original/lcTuggU70y6pt6x13Rv1Ffjs93K.jpg"); */
+height: 60vh;
+display: flex;
+padding-top: 2rem;
+color: white;
+flex-direction: column;
+align-items: center;
+background-position: center;
+justify-content: flex-end;
+padding-bottom: 6rem;
+}
+.backfold1 h1{
+    padding-left: 2rem;
+    align-self: flex-start;
+}
+.extrabuttons{
+    padding-left: 2rem;
+    align-self: flex-start;
+}
+.extrabuttons button{
+    background-color: transparent;
+    margin: 0rem 0.4rem;
+    color: white;
+    padding: 0.3rem 0.4rem;
+    border: 1px solid white;
+    border-radius: 100px;
+}
+.extrabuttons button:nth-child(1){
+    background-color: white;
+    padding: 0.3rem 1rem;
+    color: black !important;
+
+}
+
+.backfold2{
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    padding: 0rem 2rem;
+}
+
+.left{
+width: 60%;
+}
+.firstline{
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem;
+}
+.firstline p:nth-child(1){
+    color: rgb(30, 211, 30);
+}
+.firstline p:nth-child(2){
+    padding-left: 0.6rem;
+    color: white;
+    font-weight: 600;
+}
+.firstline p:nth-child(3){
+    margin-left: 0.6rem;
+    color: white;
+    border: 0.1px solid white;
+    padding: 0.1rem;
+
+}
+.firstline p:nth-child(4){
+    padding-left: 0.6rem;
+    color: rgb(190, 190, 190);
+}
+.secondline{
+    padding-left: 1rem;
+}
+.secondline p{
+color: white;
+}
+.secondline::after{
+    content: "";
+    position: relative;
+    width: 10rem;
+    background-color: white;
+    height: 0.2rem;
+    /* top: 1rem; */
+    display: block;
+    
+}
+.right{
+    padding-top: 2rem;
+    width: 30%;
+    color: rgba(255, 255, 255, 0.897)
+}
+.silver{
+    color: rgb(109, 101, 101);
+}
+.paradetails{
+    color: white;
+    font-size: 0.8rem;
+    word-wrap: break-word;
+    width: 80%;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}

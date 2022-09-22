@@ -1,0 +1,20 @@
+Any IDE:
+Vs code / Pycharm (recommended)
+
+Python version:
+3.0+
+
+libraries used:
+import pylint
+import time
+import datetime
+
+pylint can be installed using pip install pylint
+
+"""
+No external requirements ,
+just cd parking_lot
+
+open main and run python file
+"""
+

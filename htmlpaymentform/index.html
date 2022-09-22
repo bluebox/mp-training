@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="card.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <section class="form1 disflex discol">
+        <form action="" class="disflex discol">
+            <h2>Settings</h2>
+            <div class="disflex head">
+            <h5><a href="accounts.html">Account</a></h5>
+            <h5><a href="index.html">Payment</a></h5>
+        </div>
+        
+        <h5>Saved Card</h5>
+        <div class="savedcards">
+            <div class="card1">
+                <img src="images/mastercard.png" alt="">
+                <p>**** **** **** 3196</p>
+                <p id="remcard">Remove Card</p>
+            </div>
+            <div class="card1">
+                <img src="images/visa.png" alt="" id="visa">
+                <p>**** **** **** 8532</p>
+                <p id="remcard">Remove Card</p>
+            </div>
+        </div>
+        <h5 id="adduser">Add New Card Details</h5>
+        <input type="text" name="" id="username" placeholder="Name on Card">
+        <div class="carddetails disflex">
+            <input type="text" id="cardno" placeholder="Card Number">
+            <input type="text" id="exp" placeholder="exp date" maxlength="5">
+            <input type="text" id="Cvv" placeholder="Cvv" maxlength="3">
+        </div>
+    </form>
+    <div class="white">
+    <button id="btnshow">Save Details</button>
+</div>
+    </section>
+    <section class="userdetails" id="userdetails">
+        <form action="">
+            <i class="fa fa-times" aria-hidden="true" id="cross"></i>
+            <h3>Reciever's Details</h3>
+            <input type="text" placeholder="Full name of Sender" id="sendername" name="sendername">
+            <input type="text" placeholder="Account Details" id="senderaccount" name="senderaccount">
+            <input type="text" placeholder="Bank Ifsc Code" id="ifsc" name="ifsc">
+            <input type="text" placeholder="Total amount" id="totalamount" name="totalamount">
+            <button>Submit</button>
+
+        </form>
+
+    </section>
+<script>
+    $( document ).ready(function() {
+        $("#btnshow").click(function(){
+            $("#userdetails").toggleClass("dis");
+            $(".form1").toggleClass("opa30");
+});
+$("#cross").click(function(){
+            $("#userdetails").toggleClass("dis");
+            $(".form1").toggleClass("opa30");
+});
+    });
+
+    
+</script>    
+
+
+
+</body>
+
+</html>

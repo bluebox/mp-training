@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    display: flex;
+    height: 8vh;
+    padding: 1rem 0rem;
+    justify-content: space-between;
+    position: fixed !important;
+    width: 100%;
+    top: 0px;
+    z-index: 1000;
+    background-color: black;
+    align-items: center;
+}
+.navbar img{
+    height: 100%;
+    padding-left: 3rem;
+    width: 10%;
+}
+.navbar h3{
+    color: white;
+    padding-right: 3rem;
+    font-size: 1.3rem;
+}
