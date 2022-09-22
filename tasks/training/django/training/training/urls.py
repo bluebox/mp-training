@@ -21,5 +21,8 @@ urlpatterns = [
     path("",include('train_url.urls')),
     path('templates/',include('template_training.urls')),
     path('views/',include('views_training.urls')),
+    path('models/',include('modeltraining.urls')),
+    path('api/',include('rest_api.urls')),
+
 
 ]
