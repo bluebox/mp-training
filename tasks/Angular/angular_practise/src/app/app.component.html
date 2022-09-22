@@ -21,8 +21,9 @@
      <body>
           <!--[if lt IE 7]>
                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-          <![endif]-->
-          <app-servers></app-servers>
+          <![endif]-->{{childdata}}
+          <app-servers (notify)="parentMethod($event)" [uname]="name"></app-servers>
+          <!-- <app-service></app-service> -->
           <script src="" async defer></script>
      </body>
 </html>

@@ -5,4 +5,10 @@
 
 
 <button [disabled] = "names == ''" (click)="clear()" >clear</button> 
-<p *ngIf = "names!=''">text is = {{names}}</p>
+<p *ngIf = "names!=''; else noserver">text is = {{names}}</p>
+<ng-template #noserver><p>no server</p></ng-template>
+<br>
+
+{{uname}}
+
+<button (click)="passdata()">click me</button>
