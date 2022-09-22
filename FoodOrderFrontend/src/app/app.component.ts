@@ -17,13 +17,5 @@ export class AppComponent {
       this.data=data
   }
 
-  students: Student[] = [
 
-    {id: 1, name: "Hardik"},
-
-    {id: 2, name: "Paresh"},
-
-    {id: 3, name: "Rakesh"},
-
-  ]
 }

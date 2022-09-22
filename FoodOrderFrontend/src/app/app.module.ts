@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,9 +17,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { PopularfoodComponent } from './index/popularfood/popularfood.component';
-
-
-
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatInputModule} from '@angular/material/input'; 
 
 @NgModule({
   declarations: [
@@ -37,14 +38,20 @@ import { PopularfoodComponent } from './index/popularfood/popularfood.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatFormFieldModule,
     NgbModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule,
+    MatSlideToggleModule,
+    MatInputModule
+    
+    
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
