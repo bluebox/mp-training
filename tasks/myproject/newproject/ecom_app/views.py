@@ -1,10 +1,19 @@
 from itertools import count
 
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect
 from .models import *
 from django.http import HttpResponse
+from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from django.contrib import messages
+from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
+from ecom_app.models import Customer
+from ecom_app.serializers import CustomerSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import permissions
 
 # # Create your views here.
 # from ..templates import *
@@ -47,7 +56,7 @@ def signup(request):
         password = request.POST['password']
         conf_pass = request.POST['confirm_password']
         a = request.POST['person']
-        img = request.POST['img']
+        # img = request.POST['img']
         if password == conf_pass:
             if a == "buyer":
                 if Customer.objects.filter(uname=uname).exists():
@@ -71,4 +80,32 @@ def signup(request):
         return render(request, 'signup.html')
 
 
+
+
+
+
+@api_view(['GET','POST'])
+# @csrf_exempt
+# @permission_classes((permissions.AllowAny,))
+def customer_list(request, pk=None):
+    id=pk
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        print(pk)
+        cust = Customer.objects.filter(cust_id=pk)
+        print(cust)
+        serializer = CustomerSerializer(cust, many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+    elif request.method == 'POST':
+        print(request)
+        # data = JSONParser().parse(request)
+
+        serializer = CustomerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 

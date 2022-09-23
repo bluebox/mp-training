@@ -8,14 +8,17 @@ class Customer(models.Model):
     uname = models.CharField(max_length=20)
     f_name = models.CharField(max_length=25)
     l_name = models.CharField(max_length=25)
-    contact = models.IntegerField(default=0)
-    address = models.CharField(max_length=100)
-    pin = models.IntegerField(default=0)
     mail = models.CharField(max_length=30)
     password = models.CharField(max_length=10)
 
     def __str__(self):
         return self.uname
+
+class customer_details(models.Model):
+    cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    contact = models.IntegerField(default=0)
+    address = models.CharField(max_length=100)
+    pin = models.IntegerField(default=0)
 
 class Order_list(models.Model):
     ord1_id = models.AutoField(blank=True, primary_key=True)
