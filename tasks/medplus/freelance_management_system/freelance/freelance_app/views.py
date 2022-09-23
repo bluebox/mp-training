@@ -19,7 +19,7 @@ from django.shortcuts import  get_object_or_404
 def IndexSerializer(request):
     object1 = freelancer_details.objects.all()
     serializersdata = freelancer_detailsSerializers(object1,many=True)
-    return JsonResponse(serializersdata.data)
+    return Response(serializersdata.data)
 
 @api_view(["POST"])
 def IndexPostSerializer(request):
@@ -28,7 +28,7 @@ def IndexPostSerializer(request):
     if serializersdata.is_valid():
         serializersdata.save()
     return JsonResponse(serializersdata.data)
-
+#
 @api_view(["POST"])
 def updateSerializer(request,id):
     object1 = freelancer_details.objects.get(id=id)
@@ -42,6 +42,31 @@ def deleteSerializer(request,id):
     object1 = freelancer_details.objects.get(id=id)
     object1.delete()
     return JsonResponse('deleted in the database')
+
+# class FreelancerViewSet(viewsets.ViewSet):
+#     def list(self,request):
+#         queryset= freelancer_details.objects.all()
+#         serializer = freelancer_detailsSerializers(queryset,many=True)
+#         return Response(serializer.data)
+#
+#     def retrieve(self,request,pk=None):
+#         queryset =  freelancer_details.objects.all()
+#         freelance = get_object_or_404(queryset,pk=pk)
+#         serializer = freelancer_detailsSerializers(freelance)
+#         return Response(serializer.data)
+#
+#     def create(self,request):
+#         serializer = freelancer_detailsSerializers(data=request.data)
+#         serializer.is_valid()
+#         return Response(serializer.data)
+#
+#     def update(self,request,pk=None):
+#         pass
+#     def partial_update(self,request,pk=None):
+#         pass
+#
+#     def destroy(self,request,pk=None):
+#         pass
 
 # @api_view()
 # class freelanceViewSet(ViewSet):

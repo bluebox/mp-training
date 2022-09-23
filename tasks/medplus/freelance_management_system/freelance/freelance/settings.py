@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -39,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,7 +51,8 @@ INSTALLED_APPS = [
     'django_countries',
     "phonenumber_field",
     'freelance_app',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 ROOT_URLCONF = 'freelance.urls'

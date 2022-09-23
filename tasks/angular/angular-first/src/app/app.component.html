@@ -1,4 +1,4 @@
-<p *ngIf="true">TIME : {{ date  }}</p>
+<!-- <p *ngIf="true">TIME : {{ date  }}</p>
 
 <hr>
 
@@ -7,6 +7,7 @@
   [ngClass]="{'green' : green, 'red': red ,'blue':blue}" class="button"
 >
   {{status}}
-</button>
+</button> -->
+<router-outlet></router-outlet>
 
-<app-child-component [item] = "item"  (outputItem)="emitter($event)"></app-child-component>
+<!-- <app-child-component [item] = "item"  (outputItem)="emitter($event)"></app-child-component> -->

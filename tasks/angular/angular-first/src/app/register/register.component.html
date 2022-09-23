@@ -1,0 +1,58 @@
+
+<form  (submit)="loginSubmit()" [formGroup] = "login">
+    <section class="vh-100" style="background-color: #508bfc;">
+
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+                <h1>Login   </h1> <br>
+                <h5 id="invaild"> </h5>
+                <div class="form-outline mb-4">
+                  <input type="email" id="typeEmailX-2" name="login_id" class="form-control form-control-lg" required
+                    />
+                  <label class="form-label" for="typeEmailX-2">Email id</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg"
+                    required  />
+                  <label class="form-label" for="typePasswordX-2">Password</label>
+                </div>
+                <p>Login As</p>
+                <select name="dropdown" class="form-select" aria-label="Default select example" required
+                  >
+
+                  <option value="1">Freelancer</option>
+                  <option value="2">Client</option>
+                </select> <br>
+
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </form>
+
+
+<!-- <form (submit)="submitFun()" [formGroup] = "userdata" >
+    <label for="firstname">First Name : </label>
+    <input type="text" formControlName="firstname" id="firstname"> <br>
+    <small *ngIf="userdata.get('firstname').invalid && userdata.get('firstname').touched ">Enter a valid first name</small>
+    <br>
+    <label for="lastname">Last Name : </label>
+    <input type="text" formControlName = 'lastname' > <br>
+    <small *ngIf="userdata.get('lastname').invalid && userdata.get('lastname').touched ">Enter a valid last name</small> <br>
+    <button   [disabled]="userdata.invalid" type="submit">submit</button>
+</form>
+<button routerLink= "../login" >register</button>
+<br> <br>
+<button (click)="submit()">sendData</button> -->
+<!-- <ul  *ngFor="let i of response ">
+    <li>{{ i.name }}  </li>
+</ul> -->
