@@ -1,2 +1,12 @@
-Name: <input type="text" name="" id="" [(ngModel)]="name">
-<p>{{name}}</p>
+Name: <input type="text" name="" id="" [(ngModel)]="name" required>
+<p>{{name}}</p><br><br><br>
+<!-- Technology Useed: <input type="text" [formControl]="TechnologyUsed" [(ngModel)]="value"> -->
+
+
+<form [formGroup]="userGroup" (ngSubmit)="submit()">
+  First Name: <input type="text" placeholder="first name" formControlName="firstName">
+  <br><br>
+  Last Name: <input type="" placeholder="Last name" formControlName="lastName">
+  <br>
+  <button type="submit">Submit</button>
+</form>

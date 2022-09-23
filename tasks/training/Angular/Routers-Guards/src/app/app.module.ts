@@ -14,7 +14,9 @@ import { FooterComponent } from './Modules/footer/footer.component';
 import { HomeComponent } from './Modules/home/home.component';
 import { DashboardComponent } from './Modules/dashboard/dashboard.component';
 import { FormComponent } from './Components/form/form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './http.service';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,17 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     HomeComponent,
     DashboardComponent,
-    FormComponent
+    FormComponent,
+
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

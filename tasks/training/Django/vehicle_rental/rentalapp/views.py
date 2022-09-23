@@ -1,11 +1,18 @@
 from email.mime import image
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
-from django.http.response import JsonResponse
+from rest_framework import status, viewsets
+from rest_framework.response import Response
+from django.http.response import JsonResponse, Http404
 from django.core.files.storage import default_storage
+from rest_framework.views import APIView
+
 from .models import Customer, Owner, Vehicle
 from django.views.decorators.csrf import csrf_exempt
+
+from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer
+
 
 # Create your views here.
 def home(request):
@@ -91,3 +98,112 @@ def show(request):
 #     file_name = default_storage.save(file.name,file)
 
 #     return JsonResponse(file_name,safe=False)
+
+
+# API
+class OwnerList(APIView):
+    def get(self, request, format=None):
+        owner = Owner.objects.all()
+        serializer = OwnerSerializer(owner, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = OwnerSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class OwnerDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Owner.objects.get(pk=pk)
+        except Owner.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        owner = self.get_object(pk=pk)
+        serializer = OwnerSerializer(owner)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        owner = self.get_object(pk=pk)
+        serializer = OwnerSerializer(owner, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        owner = self.get_object(pk=pk)
+        owner.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class CustomerList(APIView):
+    def get(self, request,format=None):
+        customer = Customer.objects.all()
+        serializer = CustomerSerializer(customer, many=True)
+        return Response(serializer.data)
+
+    def post(selfself, request, format=None):
+        serializer = OwnerSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CustomerList(APIView):
+    def get_object(self, pk):
+        try:
+           return Customer.objects.get(pk=pk)
+        except Customer.DoesNotExist :
+            raise Http404
+
+    def get(self,request, pk, format=None):
+        customer = self.get_object(pk=pk)
+        serializer = CustomerSerializer(customer)
+        return Response(serializer.data)
+
+    def put(self,request, pk, format=None):
+        customer = self.get_object(pk=pk)
+        serializer = CustomerSerializer(customer, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        customer = self.get_object(pk=pk)
+        customer.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class VehicleViewSet(viewsets.ModelViewSet):
+    # queryset = Vehicle.objects.all()
+    # serializer_class = VehicleSerializer(queryset, many=True)
+
+    def list(self, request):
+        queryset = Vehicle.objects.all()
+        serializer = VehicleSerializer(queryset, many=True)
+        return  Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Vehicle.objects.all()
+        vehicle = get_object_or_404(queryset, pk=pk)
+        serializer = VehicleSerializer(vehicle)
+        return Response(serializer.data)
+
+    # def create(self, request):
+    #     pass
+    #
+    # def update(self, request, pk=None):
+    #     pass
+    #
+    # def partial_update(self, request, pk=None):
+    #     pass
+    #
+    # def destroy(self, request, pk=None):
+    #     pass
+
+
