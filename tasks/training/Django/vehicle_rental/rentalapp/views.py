@@ -8,10 +8,10 @@ from django.http.response import JsonResponse, Http404
 from django.core.files.storage import default_storage
 from rest_framework.views import APIView
 
-from .models import Customer, Owner, Vehicle
+from .models import Customer, Owner, Vehicle, Vehicle_status, Bill, Rent_Trip
 from django.views.decorators.csrf import csrf_exempt
-
-from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer
+from . import serializer
+from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer, VehicleStatusSerializer, BillSerializer, Rent_TripSerializer
 
 
 # Create your views here.
@@ -153,7 +153,7 @@ class CustomerList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CustomerList(APIView):
+class CustomerDetail(APIView):
     def get_object(self, pk):
         try:
            return Customer.objects.get(pk=pk)
@@ -179,7 +179,7 @@ class CustomerList(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class VehicleViewSet(viewsets.ModelViewSet):
+class VehicleViewSet(viewsets.ViewSet):
     # queryset = Vehicle.objects.all()
     # serializer_class = VehicleSerializer(queryset, many=True)
 
@@ -194,6 +194,13 @@ class VehicleViewSet(viewsets.ModelViewSet):
         serializer = VehicleSerializer(vehicle)
         return Response(serializer.data)
 
+    def create(self, request):
+        queryset = Vehicle.objects.all()
+        serializer = VehicleSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     # def create(self, request):
     #     pass
     #
@@ -206,4 +213,38 @@ class VehicleViewSet(viewsets.ModelViewSet):
     # def destroy(self, request, pk=None):
     #     pass
 
+class VehicleStatusList(APIView):
+    def get(self, request, format=None):
+        vehicle_status = VehicleStatus.objects.all()
+        serializer = CustomerSerializer(customer, many=True)
+        return Response(serializer.data)
 
+class VehicleStatusDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return VehicleStatus.objects.get(pk=pk)
+        except Vehicle.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        vehicle_status = self.get_object(pk=pk)
+        serializer = VehicleSerializer(vehicle_status)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        vehicle_status = self.get_object(pk=pk)
+        serializer = CustomerSerializer(vehicle_status, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BillList(viewsets.ModelViewSet):
+    queryset = Bill.objects.all()
+    serializer_class = serializer.BillSerializer
+
+
+class Rent_TripList(viewsets.ModelViewSet):
+    queryset = Rent_Trip.objects.all()
+    serializer_class = serializer.Rent_TripSerializer

@@ -23,8 +23,14 @@ urlpatterns = [
     path('add_vehicle/<int:para>', views.add_vehicle, name='add_vehicle'),
     path('show', views.show, name='show'),
 
+
     path('owner/', views.OwnerList.as_view(), name='owner'),
     path('owner/<int>/', views.OwnerDetail.as_view(), name='owner_pk'),
-    path('vehicle/', include(router.urls))
+    path('vehicle/', include(router.urls)),
+    path('vehiclestatus/', views.VehicleStatusList.as_view()),
+    path('vehiclestatus/<string>', views.VehicleStatusDetail.as_view()),
+    path('bill', views.BillList)
+    
+
     # path()
 ]
