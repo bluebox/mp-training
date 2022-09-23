@@ -1,61 +1,61 @@
 <div class="conatiner-fluid">
     <h2 class="heading">User Registration</h2>
     <div class="fields">
-        <form class="usersiginform">
+        <form [formGroup]="sigininForm" class="usersiginform" (ngSubmit)="onSubmit()">
 
             <p><mat-form-field appearance="outline" class="tag">
             <mat-label>ID</mat-label>
-            <input matInput placeholder="">
+            <input matInput placeholder="" formControlName="userId">
             </mat-form-field>
 
            <mat-form-field appearance="outline" class="tag">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="">
+            <input matInput placeholder="" formControlName="name">
             </mat-form-field></p>
 
            <p> <mat-form-field appearance="outline" class="tag">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="">
+            <input matInput placeholder="" formControlName="userName" [class.is-invalid]="sigininForm.get('userName')?.invalid && sigininForm.get('userName')?.touched">
             </mat-form-field> 
 
             <mat-form-field appearance="outline" class="tag">
             <mat-label>Mail</mat-label>
-            <input matInput placeholder="">
+            <input matInput placeholder="" formControlName="userEmail">
             </mat-form-field></p>
 
-
+                <div formGroupName="userAddress">
             <p>
                 <mat-form-field class="example-full-width tag" appearance="fill">
                   <mat-label>Address</mat-label>
-                  <textarea matInput placeholder="Ex. 100 Main St"></textarea>
+                  <textarea matInput placeholder="" formControlName="userAddress1"></textarea>
                 </mat-form-field>
                 <mat-form-field class="example-full-width tag" appearance="fill">
                   <mat-label>Address 2</mat-label>
-                  <textarea matInput></textarea>
+                  <textarea matInput formControlName="userAddress2"></textarea>
                 </mat-form-field>
             </p>
               <table class="example-full-width tag" cellspacing="0"><tr>
                 <td><mat-form-field class="example-full-width" appearance="fill">
                   <mat-label>City</mat-label>
-                  <input matInput placeholder="">
+                  <input matInput placeholder="" formControlName="userCity">
                 </mat-form-field></td>
                 <td><mat-form-field class="example-full-width tag" appearance="fill">
                   <mat-label>State</mat-label>
-                  <input matInput placeholder="">
+                  <input matInput placeholder="" formControlName="userState">
                 </mat-form-field></td>
                 <td><mat-form-field class="example-full-width tag" appearance="fill">
                   <mat-label>Postal Code</mat-label>
-                  <input matInput #postalCode maxlength="5" placeholder="" value="">
+                  <input matInput #postalCode maxlength="5" placeholder="" value="" formControlName="userCode">
                   <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
                 </mat-form-field></td>
               </tr></table>
             
-
+                </div>
         <p>
             <mat-form-field class="example-full-width" appearance="fill" class="tag">
                 <mat-label>Phone</mat-label>
                 <span matPrefix>+91 &nbsp;</span>
-                <input type="tel" matInput placeholder="">
+                <input type="tel" matInput placeholder="" formControlName="userPhn">
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
         </p>
@@ -63,15 +63,18 @@
             
            <p> <mat-form-field appearance="outline" class="tag">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="" type="password">
+            <input matInput placeholder="" type="password" formControlName="userPass">
             </mat-form-field> 
             <mat-form-field appearance="outline" class="tag">
             <mat-label> Confirm Password</mat-label>
-            <input matInput placeholder="" type="password">
+            <input matInput placeholder="" type="password" formControlName="userPass2">
             </mat-form-field> </p>
 
               
-            <button mat-raised-button color="primary" class="tag" type="submit">Register</button>        
+            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!sigininForm.valid">Register</button>        
         </form>
     </div>
 </div>
+
+
+{{sigininForm.value | json}}
