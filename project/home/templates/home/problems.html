@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="problems">
+        {% for problem in problems %}
+        <a href="{% url 'problem' problem.problem_name %}"><p>{{ problem.problem_name }}</p></a>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+body,
+html,
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+}
+
+.headerList {
+    margin: 2rem auto;
+    display: flex;
+}
+
+.leftHeader {
+    margin-left: 0.5rem;
+}
+
+.rightHeader {
+    margin-right: 0.5rem;
+}
+
+li {
+    list-style-type: none;
+    margin: 0.5rem;
+    background-color: rgb(255, 255, 255);
+}
+
+a:hover {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+.signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signinForm {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.problem {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.canvas {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 2fr 20fr 4fr;
+    border: 1px solid black;
+}
+
+.problemLanguageTheme {
+    display: flex;
+    justify-content: space-between;
+}
+
+.codeArea {
+    resize: none;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    display: none;
+    overflow: scroll;
+}

@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="account">
+    <div class="profile_left">
+        <div class="profile">
+            <p>{{user.profile.full_name}}</p>
+            <p>{{user.username}}</p>
+            <a href="{% url 'editProfile' %}"><button class="edit_profile">Edit Profile</button></a>
+            <p>{{user.profile.location}}</p>
+            <p>{{user.profile.gender}}</p>
+            <p>{{user.profile.work}}</p>
+            <p>{{user.profile.education}}</p>
+            <p>{{user.profile.bio}}</p>
+            <a href="{% url 'postQuestion' %}"><button class="postQuestion">Post Question</button></a>
+        </div>
+    </div>
+    <div class="profile_right"></div>
+</div>
+
+{% endblock content %}
