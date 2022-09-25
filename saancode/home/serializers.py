@@ -5,7 +5,17 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
-from django.contrib.auth.password_validation import validate_password
+
+class registerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+    def create(self, validated_data):
+        user = User.objects.create(username = validated_data['username'])
+        user.set_password(validated_data['password'])
+        return user
 
 class ProblemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,3 +53,9 @@ class userSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+class PostDiscussionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Discussion
+        fields = "__all__"

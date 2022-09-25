@@ -19,6 +19,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=100, blank=True)
     work = models.CharField(max_length=50, blank=True)
     education = models.CharField(max_length=50, blank=True)
+    # password = models.CharField(max_length=30)
 
     def __str__(self):
         return self.user.username
@@ -27,6 +28,7 @@ class Profile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     print(kwargs)
     if created:
+        print(instance.password)
         Profile.objects.create(user=instance)
 
 
@@ -56,8 +58,7 @@ class Problem(models.Model):
     difficulty_level = models.CharField(max_length=1, choices=difficulty_level_options, blank=False, default='E', null=False)
 
     def __str__(self):
-        name = "_".join(self.problem_name.split(" "))
-        return name
+        return self.problem_name
 
 
 class ProblemVotes(models.Model):

@@ -1,21 +1,23 @@
+from rest_framework.authtoken.models import Token
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import *
 from .forms import UserRegistrationForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 import requests, json
 from json import dumps
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_framework import permissions
 from .serializers import *
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
-from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 @permission_classes((permissions.AllowAny,))
 @api_view(['GET'])
@@ -28,7 +30,10 @@ def api(request):
     return Response(api_urls)
 
 @api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def problemsList(request):
+
     problems = Problem.objects.all()
     serializer = ProblemSerializer(problems, many = True)
     return Response(serializer.data)
@@ -41,12 +46,33 @@ def categoryApi(request, category):
 
     return Response(serializer.data)
 
-@api_view(['GET'])
-def usersApi(request):
-    users = User.objects.all()
-    serializer = userSerializer(users, many = True)
+@api_view(['POST'])
+def loginApi(request):
+    pass
 
-    return Response(serializer.data)
+@api_view(['POST'])
+def registerApi(request):
+    # try:
+    #     User.objects.get(username = request.data['username'])
+    #     return HttpResponse("username already exists")
+    # except:
+    #     pass
+    # try:
+    #     User.objects.get(email = request.data['email'])
+    #     return HttpResponse("email already exists")
+    # except:
+    #     pass
+
+    serializer = registerSerializer(data = request.data)
+    if not serializer.is_valid():
+        return Response({"status":403, "errors": serializer.errors, "message": "invalid register found"})
+    serializer.save()
+    # user = User.objects.create(username = request.data['username'], email = request.data['email'])
+    # user.set_password(request.data['password1'])
+    # user.save()
+    user = User.objects.get(username = serializer.data['username'])
+    token_obj, _ = Token.objects.get_or_create(user = user)
+    return Response({"status":200, 'token':str(token_obj), "message": "invalid register found"})
 
 @api_view(['GET'])
 def submissionsApi(request, problemName):
@@ -60,8 +86,8 @@ def submissionsApi(request, problemName):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def discussionsApi(request, problemName):
-    problem = Problem.objects.get(problem_name = problemName)
+def discussionsApi(request, problemId):
+    problem = Problem.objects.get(problem_id = problemId)
     discussions = Discussion.objects.filter(problem_id = problem)
     serializer = discussionsSerializer(discussions, many = True)
     
@@ -95,11 +121,14 @@ def problemDetail(request, id):
     return Response(serializer.data)
 
 @api_view(['POST'])
-def postDiscussionApi(request, problemName, username):
+def postDiscussionApi(request, problemId, username):
     creator_id = User.objects.get(username = username)
-    problem = Problem.objects.get(problem_name = problemName)
+    problem = Problem.objects.get(problem_id = problemId)
     discussion = Discussion.objects.create(user_id = creator_id, problem_id = problem, title = request.data['title'], discussion = request.data['discussion'])
-    return HttpResponse("discussion posted successfully")
+    serializer = PostDiscussionSerializer(instance = discussion, data = request.data)
+    if serializer.is_valid():
+        return Response({"status":200, "message":"success", "response": serializer.data})
+    return Response({"status":403, "message":"invalid", "errors": serializer.errors})
 
 
 @api_view(['POST'])
@@ -187,26 +216,14 @@ def problem(request, problem):
     return render(request, 'home/problem.html', {'problem':problem1, "votes":votes, 'likes':likes, 'dislikes':dislikes})
 
 def problemDiscuss(request, problem):
-    p = ""
-    for i in problem:
-        if i == "_":
-            p += " "
-        else:
-            p += i
-    problem1 = Problem.objects.get(problem_name = p)
+    problem1 = Problem.objects.get(problem_name = problem)
     discussions = Discussion.objects.filter(user_id = request.user, problem_id = problem1)
     print(discussions)
     return render(request, 'home/problemDiscuss.html', {'problem':problem1, 'discussions':discussions})
 
 def discussionThread(request, problem, id):
-    p = ""
-    for i in problem:
-        if i == "_":
-            p += " "
-        else:
-            p += i
     print(problem, id)
-    problem1 = Problem.objects.get(problem_name = p)
+    problem1 = Problem.objects.get(problem_name = problem)
     thread1 = Discussion.objects.get(discussion_id = id)
 
     return render(request, 'home/discussionThread.html', {'problem':problem1, 'id':thread1})
@@ -214,17 +231,10 @@ def discussionThread(request, problem, id):
 def postDiscussion(request, problem):
     if (request.method == "POST"):
         print(type(problem))
-        p = ""
-        for i in problem:
-            if i == "_":
-                p += " "
-            else:
-                p += i
-        print(p)
         title = request.POST.get('discussionTitle')
         discussion = request.POST.get('discussionDescription')
         print(Problem.objects.all().first().problem_name)
-        problem1 = Problem.objects.get(problem_name = p)
+        problem1 = Problem.objects.get(problem_name = problem)
         Discussion.objects.create(user_id = request.user, problem_id = problem1, title = title, discussion = discussion)
         return redirect('problemDiscuss', problem)
 
@@ -297,8 +307,13 @@ def signin(request):
 
     if (request.method == "POST"):
         form = UserRegistrationForm(request.POST)
+        print(form)
         if (form.is_valid()):
             form.save()
+            print(form['username'])
+            # createdUserProfile = Profile.objects.get(username = form['username'])
+            # createdUserProfile.password = form['password1']
+            # createdUserProfile.save()
             message = messages.success(request, f'account created, you can now login')
             return redirect('login')
     else:
