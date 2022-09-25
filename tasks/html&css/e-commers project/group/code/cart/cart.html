@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/navbar2.css">
+</head>
+<body>
+            <!-- SLIDER -->
+            <div id="header"></div>
+            <script>
+                load("../navbar/navbar2.html");
+                function load(url) {
+                    req = new XMLHttpRequest();
+                    req.open("GET", url, false);
+                    req.send(null);
+                    document.getElementById("header").innerHTML = req.responseText;
+                }
+                </script>
+    <style>
+        /* body{
+            margin: 0rem;
+            padding: 0rem;
+        } */
+        .emptycart{
+            display: flex;
+            /* justify-content: space-around; */
+            height: 95vh;
+            background-color: rgb(237, 252, 249);
+        }
+        .cartleft{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-right: 30px;
+        }
+        .cartwhite{
+            background-color: white;
+            width: 60vw;
+            margin-bottom: 2rem;
+            height: 25vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .cartemp{
+            background-color: white;
+            height: 10vh;
+            width: 60vw;
+        }
+        .imageright p{
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0rem;
+        }
+        .imageright a{
+            text-decoration: none;
+            color: rgb(39, 153, 206);
+        }
+        .cartbtns{
+            margin-top: 1rem;
+        }
+        .cartbtns button{
+            border: 1px solid transparent;
+            border-radius: 10px;
+            padding: 0.4rem;
+        }
+        .cartbtns button:nth-child(1){
+            background-color: rgb(255, 238, 0);
+            margin-right: 0.3rem;
+        }
+        .cartbtns button:nth-child(2){
+            background-color: rgb(255, 153, 0);
+            
+}
+.cartbuyitems{
+    display: flex;
+    background-color: white;
+}
+.para_white {
+    background-color: white;
+    padding-bottom: 1rem;
+    width: 31.5vw;
+    padding-top: 0.5rem;
+    text-align: center;
+}
+.cartpara{
+    width: 60vw;
+}
+.itright button{
+    background-color: yellow;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+.cartright{
+    line-height: 5px;
+    margin: 10px;
+}
+.cartbuyitems{
+
+padding: 0rem 2rem;
+}
+
+.cartright{
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 40vw; */
+}
+.itleft img{
+    margin-right: 1rem;
+}
+.ctrat{
+    width: 7.4rem;
+}
+    </style>
+    <section class="emptycart">
+        <div class="cartleft">
+            <div class="cartwhite">
+                <div class="imageleft">
+                    <img src="images/emptycart.png" alt="">
+                </div>
+
+                <div class="imageright">
+                    <p>Your Cart is empty</p>
+                    <a href="">Shop today's deals</a>
+                    <div class="cartbtns">
+                        <button>Sign in to your account</button>
+                        <button>Sign up now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cartemp"></div>
+            <div class="cartpara">
+                <p>The price and availability of items at Amazon.com are subject to change. The Cart is a temporary place to store a list of your items and reflects each item's most recent price. Shopping CartLearn more</p>
+                <p>Do you have a gift card or promotional code? We'll ask you to enter your claim code when it's time to pay.</p>
+            </div>
+        </div>
+        <div class="cartright">
+            <div class="para_white">
+                <p>Your recently viewed items</p>
+            </div>
+            <div class="cartbuyitems">
+                <div class="itleft">
+                <img src="images/cart1.jpg" alt="">
+
+                </div>
+                <div class="itright">
+                    <p>OontZ Angle Solo</p>
+                    
+                    <img class="ctrat"src="images/itemscartrating.png" alt="">
+                    <p>Rs 800</p>
+                    <button>Add to cart</button>
+                </div>
+            </div>
+            <div class="cartbuyitems">
+                <div class="itleft">
+                    <img src="images/car2.jpg" alt="">
+                </div>
+                <div class="itright">
+                    <p>Bluetooth</p>
+                    
+                    <img class="ctrat"src="images/itemscartrating.png" alt="">
+                    <p>Rs 80</p>
+
+                    <button>Add to cart</button>
+                </div>
+            </div>
+            <div class="cartbuyitems">
+                <div class="itleft">
+                    <img src="images/cart3.jpg" alt="">
+
+                </div>
+                <div class="itright">
+                    <p>Gaming Keyboard</p>
+                    
+                    <img class="ctrat"src="images/itemscartrating.png" alt="">
+                    <p>Rs 100</p>
+
+                    <button>Add to cart</button>
+                </div>
+            </div>
+            <div class="cartbuyitems">
+                <div class="itleft">
+                    <img src="images/cart4.jpg" alt="">
+
+                </div>
+                <div class="itright">
+                    <p> Headphones</p>
+                    
+                    <img class="ctrat"src="images/itemscartrating.png" alt="">
+
+                    <p>Rs 8900</p>
+                    <button>Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+            <!-- footer -->
+            <div id="footer"></div>
+            <script>
+                load("../footer/footer.html");
+                function load(url) {
+                    req = new XMLHttpRequest();
+                    req.open("GET", url, false);
+                    req.send(null);
+                    document.getElementById("footer").innerHTML = req.responseText;
+                }
+            </script>
+</body>
+</html>

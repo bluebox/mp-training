@@ -1,0 +1,57 @@
+.items{
+    color: black;
+}
+.gridbox{
+    background-color: azure;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+    padding: 0rem 1rem;
+    padding-bottom: 3rem;
+
+}
+.items{
+    background-color: white;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 5px 5px rgb(218, 208, 208);
+    /* justify-content: center; */
+}
+.items img{
+    height: 68%;
+    width: 80%;
+}
+.items a{
+    padding-left: 2rem;
+    align-self: flex-start;
+
+    padding-top: 0.3rem;
+    color: rgb(28, 111, 179);
+    text-decoration: none;
+}
+.items h1{
+    padding:0.6rem 0rem ;
+    font-size: 1.4rem;
+}
+#offer{
+    background-image: url('../homepage/images/Offer2.jpg') !important;
+    background-size: cover;
+    background-position: 50% 100%;
+}
+#offer2{
+    background-image: url('../homepage/images/offer1.webp') !important;
+    background-size: cover;
+    background-position: 50% 100%;
+}
+.banner{
+    height: 30vh;
+
+    background-image: url("../homepage/images/banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductsPage</title>
+    <link rel="stylesheet" href="../styles/productspage.css">
+    <!-- <link rel="stylesheet" href="../styles/header.css"> -->
+    <link rel="stylesheet" href="../styles/footer.css">
+</head>
+<body>
+    <div class="fullpage">
+        <div class="sideInfo">
+            <div class="delivery">
+                <h5 id="h4">Delivery by</h5>
+                <p><a  id="links" href="">Get it by Tommarow</a></p>
+                <p><a  id="links" href="">Get it in 2 Days</a></p>
+                </div><br>
+            <div class="customer_review">
+                <h5>Custorem review</h5>
+                <img src="ratingImages/cust_review.png" alt="">
+            </div>
+            <div class="brands">
+                <h4 id="h4">Brands</h4>
+                <a id="links"  href=""> <h5>Oneplus</h5> </a>
+                <a id="links"  href=""><h5>Vivo </h5></a>
+                <a id="links"  href=""><h5>Oppo</h5></a>
+                <a id="links"  href=""><h5>Apple</h5></a>
+                <a id="links"  href=""><h5>Samsung</h5></a>
+    
+            </div>
+            <br>
+            <div class="categories">
+                <h4 id="h4">Categories</h4>
+                <a id="links"  href=""> <h5>Mobiles</h5> </a>
+                <a id="links"  href=""><h5>Electronics</h5></a>
+                <a id="links"  href=""><h5>Fashion</h5></a>
+                <a id="links"  href=""><h5>Footwear</h5></a>
+                <a id="links"  href=""><h5>Samsung</h5></a>
+    
+            </div>
+    
+        </div>
+        <div class="listMain">
+            <div><a href=""><img src="https://m.media-amazon.com/images/I/71GLMJ7TQiL._AC_UY218_.jpg" alt="">
+                <p class="mainheadinglist">Apple iPhone13(128GB)-blue Color</p>
+                <img src="ratingImages/iphone13.png" alt="" class="starsimg">
+                <p class="mainheadingprice">Price: &#8377 89,999.00</p></a>
+            </div>
+            <div><a href=""><img src="https://m.media-amazon.com/images/I/71f2I8cltBL._AC_UY218_.jpg" alt="">
+                <p class="mainheadinglist">Samsung Galaxy Z Flip3 5G <br>(Cream, 8GB RAM, 128GB Storage)</p>
+                <img src="ratingImages/Samsung.png" alt="" class="starsimg">
+                <p class="mainheadingprice">Price: &#8377 89,999.00</p></a>
+            </div>
+            <div><a href=""><img src="https://images-eu.ssl-images-amazon.com/images/I/41qLZhKF5ZL._AC_SX184_.jpg" alt="">
+                <p class="mainheadinglist">OnePlus Nord 2T 5G <br>(8GB RAM, 128GB Storage) </p>
+                <img src="ratingImages/oneplus.png" alt="" class="starsimg">
+                <p class="mainheadingprice">Price: &#8377 37,099.00</p></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------- -->
+
+        <h1 class="headbrand">Explore Our Brands</h1>
+    <section class="logos">
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+        <div class="logobuy"></div>
+    </section>
+
+    <h1 class="headbrand headbrand2">Search By Categories</h1>
+        <div class="categorylist">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+                </div>
+    </section>
+        <!-- footer -->
+        <div id="footer"></div>
+        <script>
+            load("../footer/footer.html");
+            function load(url) {
+                req = new XMLHttpRequest();
+                req.open("GET", url, false);
+                req.send(null);
+                document.getElementById("footer").innerHTML = req.responseText;
+            }
+        </script>
+</body>
+</html>

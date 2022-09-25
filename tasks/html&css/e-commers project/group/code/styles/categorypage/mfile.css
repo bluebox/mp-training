@@ -1,0 +1,21 @@
+#eleccom1{
+    background-image: url("../../category/images/MobilePhones/iphone.png");
+    background-size: 100%;
+    background-position: 100% 100% ;
+    background-repeat: no-repeat;
+}
+#eleccom2{
+    background-image: url("../../category/images/MobilePhones/samsung.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom3{
+    background-image: url("../../category/images/MobilePhones/oppo.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
+#eleccom4{
+    background-image: url("../../category/images/MobilePhones/oneplus.png");
+    background-size: cover;
+    background-position: 100%100%;
+}
