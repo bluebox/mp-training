@@ -1,6 +1,16 @@
 from django.db import models
 
 
+class employee(models.Model):
+    emp_name = models.CharField(max_length=20)
+    emp_age = models.IntegerField(default=0)
+    emp_number = models.IntegerField(default=000000)
+    emp_address = models.CharField(max_length=200)
+
+    def __str__(self) -> str:
+        return self.emp_name
+
+
 # Create your models here.
 
 class Customer(models.Model):

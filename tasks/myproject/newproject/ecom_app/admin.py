@@ -14,4 +14,5 @@ admin.site.register(delivery_person)
 admin.site.register(Employees)
 admin.site.register(pickup)
 
+admin.site.register(employee)
 

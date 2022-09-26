@@ -11,9 +11,11 @@ from django.contrib import messages
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from ecom_app.models import Customer
-from ecom_app.serializers import CustomerSerializer
+from ecom_app.serializers import CustomerSerializer, Myserializer1
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
+from rest_framework.viewsets import ModelViewSet
+
 
 # # Create your views here.
 # from ..templates import *
@@ -40,6 +42,7 @@ def login1(request):
     else:
         return render(request, 'login.html')
 
+
 # def login(request):
 #     if request.method=='POST':
 #         obj=Customer()
@@ -61,18 +64,19 @@ def signup(request):
             if a == "buyer":
                 if Customer.objects.filter(uname=uname).exists():
                     if Customer.objects.filter(mail=mail).exists():
-                        messages.info(request,'username or mail already exists')
+                        messages.info(request, 'username or mail already exists')
                         return redirect('signup')
                 else:
                     if Customer.objects.filter(mail=mail).exists():
-                        messages.info(request,'username or mail already exists')
+                        messages.info(request, 'username or mail already exists')
                         return redirect('signup')
                     else:
-                        x = Customer.objects.create(uname=uname, f_name=f_name, l_name=l_name, mail =mail, password=password)
+                        x = Customer.objects.create(uname=uname, f_name=f_name, l_name=l_name, mail=mail,
+                                                    password=password)
                         x.save()
-                        return render(request,'home.html')
+                        return render(request, 'home.html')
             if a == "seller":
-                return HttpResponse("Welcome  "+uname)
+                return HttpResponse("Welcome  " + uname)
         else:
             messages.info(request, 'Password doesnot matches')
             return redirect('signup')
@@ -80,24 +84,20 @@ def signup(request):
         return render(request, 'signup.html')
 
 
-
-
-
-
-@api_view(['GET','POST'])
+@api_view(['GET', 'POST'])
 # @csrf_exempt
 # @permission_classes((permissions.AllowAny,))
 def customer_list(request, pk=None):
-    id=pk
+    id = pk
     """
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
         print(pk)
-        cust = Customer.objects.filter(cust_id=pk)
-        print(cust)
-        serializer = CustomerSerializer(cust, many=True)
-        return JsonResponse(serializer.data,safe=False)
+        cust = Customer.objects.filter(cust_id=2)
+        print("customer id is: ", cust)
+        serializer = CustomerSerializer(cust,many=True)
+        return  Response(serializer.data)
 
     elif request.method == 'POST':
         print(request)
@@ -109,3 +109,21 @@ def customer_list(request, pk=None):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
+
+class Customer1(ModelViewSet):
+    x = Customer.objects.all()
+    queryset = x
+    serializer_class = CustomerSerializer
+
+
+class employeeViewModelset1(ModelViewSet):
+    queryset = employee.objects.all()
+    serializer_class = Myserializer1
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    # def highlight(self, request, *args, **kwargs):
+    #     snippet = self.get_object()
+    #     return Response(snippet.highlighted)
+    #
+    # def perform_create(self, serializer):
+    #     serializer.save(owner=self.request.user)
