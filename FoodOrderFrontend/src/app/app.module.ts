@@ -19,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatInputModule} from '@angular/material/input'; 
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {MatCardModule} from '@angular/material/card'; 
+import { FoodService } from './services/food.service';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     MatSlideToggleModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
     
     
   ],
-  providers: [UserService],
+  providers: [UserService,FoodService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Customer } from 'src/app/interfaces/customer';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -15,27 +16,29 @@ export class SigninComponent implements OnInit {
   }
   sigininForm=new FormGroup(
     {
-      userId:new FormControl('', Validators.required),
-      userName:new FormControl('', Validators.required),
-      name:new FormControl('', Validators.required),
-      userPhn:new FormControl('', Validators.required),
-      userEmail:new FormControl('', Validators.required),
-      userAddress: new FormGroup({
-        userAddress1:new FormControl('', Validators.required),
-        userAddress2:new FormControl(''),
-        userCity:new FormControl('', Validators.required),
-        userState:new FormControl('', Validators.required),
-        userCode:new FormControl('', Validators.required)
-      }),
-      userPass:new FormControl('', Validators.required),
-      userPass2:new FormControl('', Validators.required)
+      customer_id:new FormControl('', Validators.required),
+      customer_name:new FormControl('', Validators.required),
+      customer_address1:new FormControl('', Validators.required),
+      customer_address2:new FormControl(''),
+      customer_city:new FormControl('', Validators.required),
+      customer_state:new FormControl('', Validators.required),
+      customer_code:new FormControl('', Validators.required),
+      customer_username:new FormControl('', Validators.required),
+      customer_password:new FormControl('', Validators.required),
+      customer_phn:new FormControl('', Validators.required),
+      customer_email:new FormControl('', Validators.required),
+      // userPass2:new FormControl('', Validators.required)
     }
   )
+
 
 
   onSubmit()
   {
     if (this.sigininForm.valid) {
+      this.user.postUser(this.sigininForm.value).subscribe((data)=>{
+        console.log(data)
+      })
       console.log('form submitted');
       console.log(this.sigininForm.value)
     } else {

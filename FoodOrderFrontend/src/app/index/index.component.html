@@ -1,3 +1,24 @@
+<div class="container">
+<div class="top">
+    <div class="text">
+    <h1>Easy Food</h1>
+    <h2>Discover the best food & drinks near you!</h2>
 
-<h2>Index</h2>
+</div>
+</div>
+
+<div class="second">
+<h2>Best Food</h2>
+<div class="cards">
+    
+        <div class="card" style="width: 18rem;"  *ngFor="let f of food">
+            <img class="image" src="{{f.food_photo}}" (click)="foodClicked(f)" class="card-img-top" alt="{{f.food_name}}"/>
+            <div class="card-body">
+                <p>{{f.food_name}}</p>
+              <p class="card-text">{{f.food_desc}}</p>
+            </div>
+          </div>
+    </div>
+</div>
+</div>
 

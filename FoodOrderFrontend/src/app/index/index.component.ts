@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Food } from '../interfaces/food';
+import { FoodService } from '../services/food.service';
 
 @Component({
   selector: 'app-index',
@@ -8,16 +10,33 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class IndexComponent implements OnInit {
 
   
-  @Input() parentData:string="";
 
-  @Output() outputEvent=new EventEmitter()
-  outPut(name:string)
-  {
-    this.outputEvent.emit(name)
+ 
+
+  public food:Food[]=[];
+  
+  constructor(private element:FoodService) { 
+    
   }
-  constructor() { }
 
   ngOnInit(): void {
+    this.getData()
+   
+  }
+
+  getData()
+  {
+    this.element.getFood().subscribe(data=>{
+      console.log(data);this.food=data
+    ;console.log(this.food)})
+
+
+  }
+
+  foodClicked=(f:Food)=>
+  {
+    this.element.getOneFood(f.food_id).subscribe(data=>{
+      console.log(data)})
   }
 
 }

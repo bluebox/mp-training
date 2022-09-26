@@ -1,1 +1,87 @@
-<p> res signin works!</p>
+
+
+<div class="conatiner-fluid">
+    <h2 class="heading">Restaurant Registration</h2>
+    <div class="fields">
+        <form [formGroup]="sigininForm" class="usersiginform" (ngSubmit)="onSubmit()">
+
+            <p><mat-form-field appearance="outline" class="tag">
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="" formControlName="restaurant_id">
+            </mat-form-field>
+
+           <mat-form-field appearance="outline" class="tag">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="" formControlName="restaurant_name">
+            </mat-form-field></p>
+
+           <p> <mat-form-field appearance="outline" class="tag">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="" formControlName="restaurant_username" [class.is-invalid]="sigininForm.get('userName')?.invalid && sigininForm.get('userName')?.touched">
+            </mat-form-field> 
+
+            <mat-form-field appearance="outline" class="tag">
+            <mat-label>Mail</mat-label>
+            <input matInput placeholder="" formControlName="restaurant_email">
+            </mat-form-field></p>
+
+            <p>
+                <mat-form-field class="example-full-width tag" appearance="fill">
+                  <mat-label>Address</mat-label>
+                  <textarea matInput placeholder="" formControlName="restaurant_address1"></textarea>
+                </mat-form-field>
+                <mat-form-field class="example-full-width tag" appearance="fill">
+                  <mat-label>Address 2</mat-label>
+                  <textarea matInput formControlName="restaurant_address2"></textarea>
+                </mat-form-field>
+            </p>
+              <table class="example-full-width tag" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>City</mat-label>
+                  <input matInput placeholder="" formControlName="restaurant_city">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width tag" appearance="fill">
+                  <mat-label>State</mat-label>
+                  <input matInput placeholder="" formControlName="restaurant_state">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width tag" appearance="fill">
+                  <mat-label>Postal Code</mat-label>
+                  <input matInput #postalCode maxlength="6" placeholder="" value="" formControlName="restaurant_code">
+                  <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                </mat-form-field></td>
+              </tr></table>
+            
+               
+        <p>
+            <mat-form-field class="example-full-width" appearance="fill" class="tag">
+                <mat-label>Phone</mat-label>
+                <span matPrefix>+91 &nbsp;</span>
+                <input type="tel" matInput placeholder="" formControlName="restaurant_phn">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+        </p>
+
+        <p><mat-form-field appearance="outline" class="tag">
+            <mat-label>Opening Time </mat-label>
+            <input matInput placeholder="" formControlName="open_timing" type="time">
+            </mat-form-field>
+
+           <mat-form-field appearance="outline" class="tag">
+            <mat-label>Closing Time</mat-label>
+            <input matInput placeholder="" formControlName="close_timing" type="time">
+            </mat-form-field></p>
+            
+           <p> <mat-form-field appearance="outline" class="tag">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="" type="password" formControlName="restaurant_password">
+            </mat-form-field> 
+            <mat-form-field appearance="outline" class="tag">
+            <mat-label> Confirm Password</mat-label>
+            <input matInput placeholder="" type="password">
+            </mat-form-field> </p>
+
+              
+            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!sigininForm.valid">Register</button>        
+        </form>
+    </div>
+</div>

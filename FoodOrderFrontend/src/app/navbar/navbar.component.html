@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
    
-    <span>Easy Food</span>
+    <span routerLink="" class="title">Easy Food</span>
     <span class="example-spacer"></span>
     <div class="example-button-row">
         
@@ -11,12 +11,7 @@
             <button mat-menu-item routerLink="../restaurants/login">Login</button>
             <button mat-menu-item routerLink="../restaurants/signin">Signin</button>
         </mat-menu>
-        <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Manage Employee</button>
-        <mat-menu #belowMenu="matMenu" yPosition="below">
-            <button mat-menu-item routerLink="../../employee/login">Login</button>
-            <button mat-menu-item routerLink="../../employee/signin">Signin</button>
-        </mat-menu> -->
-
+   
 
         <button mat-button [matMenuTriggerFor]="beforeMenu">Manage Employee</button>
         <mat-menu #beforeMenu="matMenu" xPosition="before">

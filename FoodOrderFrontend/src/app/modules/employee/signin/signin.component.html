@@ -1,2 +1,53 @@
-<p> emp signin works!</p>
+
+<div class="conatiner-fluid">
+    <h2 class="heading">Employee Registration</h2>
+    <div class="fields">
+        <form [formGroup]="sigininForm" class="usersiginform" (ngSubmit)="onSubmit()">
+
+            <p><mat-form-field appearance="outline" class="tag">
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="" formControlName="userId">
+            </mat-form-field>
+
+           <mat-form-field appearance="outline" class="tag">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="" formControlName="name">
+            </mat-form-field></p>
+
+           <p> <mat-form-field appearance="outline" class="tag">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="" formControlName="userName" [class.is-invalid]="sigininForm.get('userName')?.invalid && sigininForm.get('userName')?.touched">
+            </mat-form-field> 
+
+            <mat-form-field appearance="outline" class="tag">
+            <mat-label>Mail</mat-label>
+            <input matInput placeholder="" formControlName="userEmail">
+            </mat-form-field></p>
+
+               
+        <p>
+            <mat-form-field class="example-full-width" appearance="fill" class="tag">
+                <mat-label>Phone</mat-label>
+                <span matPrefix>+91 &nbsp;</span>
+                <input type="tel" matInput placeholder="" formControlName="userPhn">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+        </p>
+
+
+            
+           <p> <mat-form-field appearance="outline" class="tag">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="" type="password" formControlName="userPass">
+            </mat-form-field> 
+            <mat-form-field appearance="outline" class="tag">
+            <mat-label> Confirm Password</mat-label>
+            <input matInput placeholder="" type="password" formControlName="userPass2">
+            </mat-form-field> </p>
+
+              
+            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!sigininForm.valid">Register</button>        
+        </form>
+    </div>
+</div>
 

@@ -1,13 +1,15 @@
 export interface Customer {
-    id:string;
-    name:string;
-    username:string;
-    mail:string;
-    address1:string;
-    address2:string;
-    city:string;
-    state:string;
-    pincode:string;
-    phn:string;
-    password:string;
+    customer_id:string;
+    customer_name:string;
+    customer_address1:string;
+    customer_address2:string;
+    customer_city:string;
+    customer_state:string;
+    customer_code:string;
+    customer_username:string;
+    customer_password:string;
+    customer_phn:string;
+    customer_email:string;
+    
+    
 }

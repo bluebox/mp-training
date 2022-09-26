@@ -1,0 +1,56 @@
+.container
+{
+    margin: 0;
+    padding: 0;
+}
+.card
+{
+    height: 700%;
+    width: 25%;
+    margin:2%;
+}
+
+.top
+{
+    border: 2px solid black;
+    height: 50vh;
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15%;
+   
+}
+.text
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cards
+{
+    padding: 1%;
+    display: flex;
+   
+
+  
+    
+}
+.second
+{
+    border: 2px solid black;
+
+    padding: 1%;
+    height: 70vh;
+    width:100vw;
+
+}
+
+
+
+.image
+{
+    height: 0;
+    width: 100%;
+}
+

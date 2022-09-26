@@ -17,5 +17,9 @@ export class UserService {
     return this.http.get<Customer[]>(this.urlCustomer)
   }
   
+  postUser(data:object)
+  {
+    return this.http.post<Customer>(this.urlCustomer,data)
+  }
 
 }
