@@ -6,15 +6,18 @@ import { AdminPageComponent } from './module/admin-page/admin-page.component';
 import { PagenotfouondComponent } from './pagenotfouond/pagenotfouond.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IndexComponent } from './index/index.component';
+import { FreelanceRegistrationComponent } from './freelance-registration/freelance-registration.component';
 
 const routes: Routes = [
   {path : 'childcomponent' ,component: ChildComponentComponent},
-  // {path : '' ,redirectTo : LoginComponent , pathMatch = 'full'},
+  {path : '' ,component : IndexComponent },
   {path : 'login', component: LoginComponent},
   {path : 'login/:id' , component: LoginComponent},
   {path : 'admin', loadChildren : () => import('./module/module.module').then( m => m.ModuleModule)},
   {path : 'register', component : RegisterComponent},
-  {path : '**', component : PagenotfouondComponent }
+  {path : '**', component : PagenotfouondComponent },
+  {path : 'freelance-registration', component: FreelanceRegistrationComponent}
 ];
 
 @NgModule({

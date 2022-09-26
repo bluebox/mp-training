@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { PagenotfouondComponent } from './pagenotfouond/pagenotfouond.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { IndexComponent } from './index/index.component';
+import { FreelanceRegistrationComponent } from './freelance-registration/freelance-registration.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ChildComponentComponent,
     LoginComponent,
     RegisterComponent,
-    PagenotfouondComponent
+    PagenotfouondComponent,
+    IndexComponent,
+    FreelanceRegistrationComponent
   ],
   imports: [
     BrowserModule,
