@@ -18,8 +18,8 @@ class OwnerSerializer(serializers.ModelSerializer):
 class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
-        # fields = '__all__'
-        exclude = ('image',)
+        fields = '__all__'
+        # exclude = ('image',)
 
 class VehicleStatusSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,12 +29,12 @@ class VehicleStatusSerializer(serializers.ModelSerializer):
 
 class Rent_TripSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Vehicle_status
+        model = Rent_Trip
         fields = '__all__'
 
 
 class BillSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Vehicle_status
+        model = Bill
         fields = '__all__'
 

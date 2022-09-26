@@ -8,7 +8,7 @@ def mail_validator(value):
         raise ValidationError("email should ends with .com")
 
 class Customer(models.Model) :
-    customer_id = models.IntegerField(primary_key=True)
+    customer_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     dl_no = models.CharField(max_length=50)
     contact_no = models.CharField(max_length=50)
@@ -21,7 +21,7 @@ class Customer(models.Model) :
 
 
 class Owner(models.Model):
-    owner_id = models.IntegerField(primary_key=True)
+    owner_id = models.AutoField(primary_key=True)
     name= models.CharField(max_length=50)
     contact_no = models.CharField(max_length=50)
     email = models.CharField(max_length=50, validators=[mail_validator])
@@ -45,13 +45,13 @@ class Vehicle(models.Model):
         return self.vehicle_no
 
 class Vehicle_status(models.Model):
-    sl_no = models.IntegerField(primary_key=True)
+    sl_no = models.AutoField(primary_key=True)
     vehicle_no = models.OneToOneField(Vehicle, on_delete=models.CASCADE)
     is_available = models.BooleanField()
 
 
 class Rent_Trip(models.Model):
-    rent_id = models.IntegerField(primary_key=True)
+    rent_id = models.AutoField(primary_key=True)
     vehicle_no = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     owner_d = models.ForeignKey(Owner, on_delete=models.CASCADE)
@@ -66,7 +66,7 @@ class Rent_Trip(models.Model):
         return self.rent_id
 
 class Bill(models.Model):
-    bill_no = models.IntegerField(primary_key=True)
+    bill_no = models.AutoField(primary_key=True)
     rental_id = models.OneToOneField(Rent_Trip, on_delete=models.CASCADE)
     rental_days = models.IntegerField()
     rental_hours = models.IntegerField()
@@ -75,3 +75,5 @@ class Bill(models.Model):
 
     def __str__(self):
         return self.bill_no
+
+
