@@ -16,6 +16,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from rest_framework import generics
+from django.contrib.auth.hashers import make_password
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -48,28 +49,24 @@ def categoryApi(request, category):
 
 @api_view(['POST'])
 def loginApi(request):
-    pass
+    try:
+        user = User.objects.get(username = request.data['username'])
+        print(request.data['password'], user.check_password(str(request.data['password'])))
+        if user.check_password(str(request.data['password'])):
+            token = Token.objects.all().first()
+            return Response({"status": 200, "token": token})
+        return Response({"status":403, "message": "invalid login credentials"})
+    except:
+        return Response({"status":403, "message": "invalid login credentials"})
 
 @api_view(['POST'])
 def registerApi(request):
-    # try:
-    #     User.objects.get(username = request.data['username'])
-    #     return HttpResponse("username already exists")
-    # except:
-    #     pass
-    # try:
-    #     User.objects.get(email = request.data['email'])
-    #     return HttpResponse("email already exists")
-    # except:
-    #     pass
 
     serializer = registerSerializer(data = request.data)
     if not serializer.is_valid():
         return Response({"status":403, "errors": serializer.errors, "message": "invalid register found"})
+        
     serializer.save()
-    # user = User.objects.create(username = request.data['username'], email = request.data['email'])
-    # user.set_password(request.data['password1'])
-    # user.save()
     user = User.objects.get(username = serializer.data['username'])
     token_obj, _ = Token.objects.get_or_create(user = user)
     return Response({"status":200, 'token':str(token_obj), "message": "invalid register found"})

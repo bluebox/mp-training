@@ -3,19 +3,21 @@ from email.policy import default
 from pyexpat import model
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
+from django.contrib.auth.hashers import make_password
 
 class registerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
-
+    
     def create(self, validated_data):
-        user = User.objects.create(username = validated_data['username'])
-        user.set_password(validated_data['password'])
-        return user
+        validated_data['password'] = make_password(validated_data['password'])
+        return super(registerSerializer, self).create(validated_data)
+    
 
 class ProblemSerializer(serializers.ModelSerializer):
     class Meta:

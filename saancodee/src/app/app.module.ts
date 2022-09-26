@@ -29,7 +29,7 @@ import { RegisterService } from './services/register.service';
     HttpClientModule,
     ReactiveFormsModule
   ]
-,  providers: [RegisterService],
+,  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

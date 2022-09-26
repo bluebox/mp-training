@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {  FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router } from 'express';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -24,11 +25,10 @@ export class RegisterComponent implements OnInit {
     constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
 
   register() {
-    let data = {
+    let postData = {
       username: "sairam",
       email: "sairamyadhav4@gmail.com",
-      password1: "sairam",
-      password2: "sairam"
+      password: "sairam"
     }
 
     // Access-Control-Allow-Headers: Content-Type
@@ -37,9 +37,9 @@ export class RegisterComponent implements OnInit {
 
     const headers = new HttpHeaders().set("Access-Control-Allow-Origin", '*')
 
-    this.http.post("http://127.0.0.1:8000/api/register/", data, {headers:headers}).subscribe((data) => {
+    this.http.post("http://127.0.0.1:8000/api/register/", postData, {headers:headers}).subscribe((data) => {
       this.res = data;
-      console.log(data);
+      // localStorage.setItem('currentUser', JSON.stringify({ token: this.res.token, name: postData.username }));
     })
   }
 
@@ -48,9 +48,9 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
       console.warn(this.registrationForm.valid)
       let data = {
-        username: this.registrationForm.get('username'),
-        email: this.registrationForm.get('email'),
-        password: this.registrationForm.get('password')
+        username: this.registrationForm.value.username,
+        email: this.registrationForm.value.email,
+        password: this.registrationForm.value.password1
       }
   
       // Access-Control-Allow-Headers: Content-Type
@@ -65,10 +65,11 @@ export class RegisterComponent implements OnInit {
   
       // const headers = new HttpHeaders().set("Access-Control-Allow-Origin", '*')
       // headers.set('Access-Control-Allow-Credentials', true)
-  
+      console.log(this.registrationForm.value)
       this.http.post("http://127.0.0.1:8000/api/register/", data, {headers:headers}).subscribe((data) => {
         this.res = data;
-        console.log(data);
+        localStorage.setItem('currentUser', JSON.stringify({ token: this.res.token, name: this.registrationForm.value.username }));
+        this.router.navigate(['login'])
       })
   }
 
