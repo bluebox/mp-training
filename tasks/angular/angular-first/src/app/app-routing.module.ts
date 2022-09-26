@@ -15,9 +15,9 @@ const routes: Routes = [
   {path : 'login', component: LoginComponent},
   {path : 'login/:id' , component: LoginComponent},
   {path : 'admin', loadChildren : () => import('./module/module.module').then( m => m.ModuleModule)},
-  {path : 'register', component : RegisterComponent},
+  {path : 'client-register', component : RegisterComponent},
+  {path : 'freelance-registration', component: FreelanceRegistrationComponent},
   {path : '**', component : PagenotfouondComponent },
-  {path : 'freelance-registration', component: FreelanceRegistrationComponent}
 ];
 
 @NgModule({

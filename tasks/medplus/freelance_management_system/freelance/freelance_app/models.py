@@ -2,7 +2,7 @@
 from django.db import models
 
 class freelancer_details(models.Model):
-    id = models.AutoField(primary_key=True,unique=True)
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email_id = models.EmailField(unique=True)
@@ -13,11 +13,12 @@ class freelancer_details(models.Model):
         return "{} {} {} ".format(self.id,self.first_name,self.last_name)
 
 class client_details(models.Model):
-    client_id = models.AutoField(primary_key=True,unique=True)
+    client_id = models.AutoField(primary_key=True)
     client_name = models.CharField(max_length=100)
     client_country =models.CharField(max_length=20)
     phone_number = models.CharField(max_length=12)
-    email_id = models.EmailField()
+    description = models.TextField(max_length=100,default="")
+    email_id = models.EmailField(unique=True)
     password = models.CharField(max_length=25)
     def __str__(self) -> str:
         return "{} {} ".format(self.client_id,self.client_name)
@@ -29,9 +30,10 @@ class client_jobs(models.Model):
         ('I','Intermediate'),
         ("F","Fresher")
     )
-    job_id =  models.AutoField(primary_key=True,unique=True)
+    job_id =  models.AutoField(primary_key=True)
     client_id = models.ForeignKey(client_details,on_delete=models.CASCADE)
     project_title = models.CharField(max_length=100)
+    description = models.TextField(max_length=100,default="")
     total_pay = models.IntegerField()
     experience_level = models.CharField(max_length=1,choices=options)
     skills_requried = models.CharField(max_length=100)
@@ -40,8 +42,8 @@ class client_jobs(models.Model):
         return "{} {} {} ".format(self.job_id,self.client_id,self.project_title)
 
 class freelancer_proposals(models.Model):
-    proprosal_id =  models.AutoField(primary_key=True,unique=True)
-    freelancer_id = models.ForeignKey(freelancer_details,on_delete=models.CASCADE)
+    proprosal_id =  models.AutoField(primary_key=True)
+    freelancer_id = models.ForeignKey('freelancer_details',on_delete=models.CASCADE)
     job_id = models.ForeignKey(client_jobs,on_delete=models.CASCADE)
     skills = models.TextField(max_length=100)
     cover_letter = models.TextField(max_length=100)
@@ -54,7 +56,7 @@ class client_contract_details(models.Model):
         ("P","Pending"),
         ("C","Completed")
     )
-    contract_id =  models.AutoField(primary_key=True,unique=True)
+    contract_id =  models.AutoField(primary_key=True)
     emp_proposal_id = models.OneToOneField(freelancer_proposals,on_delete=models.CASCADE)
     client_id = models.ForeignKey(client_details,on_delete=models.CASCADE)
     project_deadline = models.DateTimeField()
@@ -65,7 +67,7 @@ class client_contract_details(models.Model):
 
 
 class freelancer_payment_details(models.Model):
-    payment_id =  models.AutoField(primary_key=True,unique=True)
+    payment_id =  models.AutoField(primary_key=True)
     freelancer_id = models.ForeignKey(freelancer_details,on_delete=models.CASCADE)
     contract_id = models.OneToOneField(client_contract_details,on_delete=models.CASCADE)
     Tax = models.IntegerField()

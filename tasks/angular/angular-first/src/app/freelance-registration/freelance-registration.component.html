@@ -1,7 +1,5 @@
-<p>freelance-registration works!</p>
 
-
-<form action="{% url 'freelance_details' %}" method="post" id="formdata">
+<form  method="post" id="formdata">
     <!-- {% csrf_token %} -->
     <section class="h-100 bg-dark">
         <div class="container py-5 h-100">
@@ -309,6 +307,10 @@
                                             <button type="button" class="btn btn-light btn-lg" onclick="fun()">Reset
                                                 all</button> <br>
                                             <input type="submit" value="submit">
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                            <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="" routerLink="../login"
+                                                class="fw-bold text-body"><u>Login here</u></a></p>
                                         </div>
                                     </div>
                                 </div>

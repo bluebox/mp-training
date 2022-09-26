@@ -146,26 +146,169 @@ class freelancerRegister(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class freelanceUpdate(APIView):
-    def get_object(self, pk):
+    def get_object(self, email_id):
         try:
-           return freelancer_details.objects.get(pk=pk)
+           return freelancer_details.objects.get(email_id=email_id)
         except freelancer_details.DoesNotExist :
             raise Http404
 
-    def get(self,request, pk, format=None):
-        customer = self.get_object(pk=pk)
-        serializer = freelancer_details_serializers(customer)
+    def get(self,request, email_id, format=None):
+        freelance = self.get_object(email_id=email_id)
+        serializer = freelancer_details_serializers(freelance)
         return Response(serializer.data)
 
-    def put(self,request, pk, format=None):
-        customer = self.get_object(pk=pk)
-        serializer = freelancer_details_serializers(customer, data=request.data)
+    def put(self,request, email_id, format=None):
+        freelance = self.get_object(email_id=email_id)
+        serializer = freelancer_details_serializers(freelance, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        customer = self.get_object(pk=pk)
-        customer.delete()
+    def delete(self, request, email_id, format=None):
+        freelance = self.get_object(email_id=email_id)
+        freelance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class clientRegister(APIView):
+    def get(self, request,format=None):
+        client = client_details.objects.all()
+        serializer = client_details_serializers(client, many=True)
+        return Response(serializer.data)
+    def  post(self, request, format=None):
+        serializer = client_details_serializers(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class clientUpdate(APIView):
+    def get_object(self, email_id):
+        try:
+           return client_details.objects.get(email_id=email_id)
+        except client_details.DoesNotExist :
+            raise Http404
+
+    def get(self,request, email_id, format=None):
+        client = self.get_object(email_id=email_id)
+        serializer = client_details_serializers(client)
+        return Response(serializer.data)
+
+    def put(self,request, email_id, format=None):
+        client = self.get_object(email_id=email_id)
+        serializer = client_details_serializers(client, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, email_id, format=None):
+        client = self.get_object(email_id=email_id)
+        client.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class clientJobsRegister(APIView):
+    def get(self, request, format=None):
+        client = client_jobs.objects.all()
+        serializer = client_jobs_serializers(client, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = client_jobs_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class clientJobsUpdate(APIView):
+    def get_object(self, job_id):
+        try:
+            return client_jobs.objects.get(job_id=job_id)
+        except client_jobs.DoesNotExist:
+            raise Http404
+
+    def get(self, request, job_id, format=None):
+        client = self.get_object(job_id=job_id)
+        serializer = client_jobs_serializers(client)
+        return Response(serializer.data)
+
+    def put(self, request, job_id, format=None):
+        client = self.get_object(job_id=job_id)
+        serializer = client_jobs_serializers(client, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, job_id, format=None):
+        client = self.get_object(job_id=job_id)
+        client.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+class freelancerProposals(APIView):
+    def get(self, request, format=None):
+        client = freelancer_proposals.objects.all()
+        serializer = client_jobs_serializers(client, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = freelancer_proposals_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class freelancerProposalsUpdate(APIView):
+    def get_object(self, job_id):
+        try:
+            return freelancer_proposals.objects.get(job_id=job_id)
+        except freelancer_proposals.DoesNotExist:
+            raise Http404
+
+    def get(self, request, job_id, format=None):
+        client = self.get_object(job_id=job_id)
+        serializer = freelancer_proposals_serializers(client)
+        return Response(serializer.data)
+
+    def put(self, request, job_id, format=None):
+        client = self.get_object(job_id=job_id)
+        serializer = freelancer_proposals_serializers(client, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, job_id, format=None):
+        client = self.get_object(job_id=job_id)
+        client.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+class proposals(APIView):
+    def get_object(self, freelancer_id):
+        try:
+            return freelancer_proposals.objects.get(freelancer_id=freelancer_id)
+        except freelancer_proposals.DoesNotExist:
+            raise Http404
+
+    def get(self, request, freelancer_id, format=None):
+        client = self.get_object(freelancer_id=freelancer_id)
+        serializer = freelancer_proposals_serializers(client)
+        return Response(serializer.data)
+
+    def put(self, request, freelancer_id, format=None):
+        client = self.get_object(freelancer_id=freelancer_id)
+        serializer = freelancer_proposals_serializers(client, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, freelancer_id, format=None):
+        client = self.get_object(freelancer_id=freelancer_id)
+        client.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
