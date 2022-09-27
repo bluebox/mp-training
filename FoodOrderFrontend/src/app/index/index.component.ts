@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Food } from '../interfaces/food';
+import { Restaurant } from '../interfaces/restaurant';
 import { FoodService } from '../services/food.service';
+import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
   selector: 'app-index',
@@ -14,29 +16,42 @@ export class IndexComponent implements OnInit {
  
 
   public food:Food[]=[];
+  public restaurant:Restaurant[]=[];
   
-  constructor(private element:FoodService) { 
+  constructor(private foodEle:FoodService,private res:RestaurantService) { 
     
   }
 
   ngOnInit(): void {
-    this.getData()
+    this.getDataFood()
+    this.getDataRes()
    
   }
 
-  getData()
+  getDataFood()
   {
-    this.element.getFood().subscribe(data=>{
+    this.foodEle.getFood().subscribe(data=>{
       console.log(data);this.food=data
     ;console.log(this.food)})
 
 
   }
 
+  getDataRes()
+  {
+    this.res.getRes().subscribe(data=>{
+      console.log(data);this.restaurant=data
+    ;console.log(this.restaurant)})
+
+
+  }
+
   foodClicked=(f:Food)=>
   {
-    this.element.getOneFood(f.food_id).subscribe(data=>{
+    this.foodEle.getOneFood(f.food_id).subscribe(data=>{
       console.log(data)})
   }
+
+  resClicked(r:Restaurant){}
 
 }

@@ -46,7 +46,7 @@ export class SigninComponent implements OnInit {
       
       open_timing:new FormControl('', Validators.required),
       close_timing:new FormControl('', Validators.required),
-      
+      restaurant_photo:new FormControl('', Validators.required),
       // userPass2:new FormControl('', Validators.required)
     }
   )

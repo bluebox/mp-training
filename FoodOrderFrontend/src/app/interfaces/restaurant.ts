@@ -16,6 +16,7 @@ export interface Restaurant {
     restaurant_email :string;
     open_timing:string;
     close_timing:string;
+    restaurant_photo: string;
     
     
 }

@@ -11,13 +11,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import { AddFoodComponent } from './add-food/add-food.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     SigninComponent,
-    LoginComponent
+    LoginComponent,
+    AddFoodComponent
   ],
   imports: [
     CommonModule,

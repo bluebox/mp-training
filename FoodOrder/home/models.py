@@ -26,6 +26,7 @@ class Restaurant(models.Model):
     restaurant_email = models.CharField(max_length=40, validators=[validate_mail], unique=True,default=None)
     open_timing=models.CharField(max_length=20,null=True)
     close_timing = models.CharField(max_length=20,null=True)
+    restaurant_photo = models.TextField(max_length=500, null=True)
     def __str__(self):
         return self.restaurant_name
 

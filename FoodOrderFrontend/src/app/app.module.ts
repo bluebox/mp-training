@@ -30,6 +30,7 @@ import { FoodService } from './services/food.service';
     IndexComponent,
     
     PopularfoodComponent,
+         
 
   ],
   imports: [

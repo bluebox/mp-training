@@ -6,22 +6,22 @@
 
             <p><mat-form-field appearance="outline" class="tag">
             <mat-label>ID</mat-label>
-            <input matInput placeholder="" formControlName="userId">
+            <input matInput placeholder="" formControlName="emp_id">
             </mat-form-field>
 
            <mat-form-field appearance="outline" class="tag">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="" formControlName="name">
+            <input matInput placeholder="" formControlName="emp_name">
             </mat-form-field></p>
 
            <p> <mat-form-field appearance="outline" class="tag">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="" formControlName="userName" [class.is-invalid]="sigininForm.get('userName')?.invalid && sigininForm.get('userName')?.touched">
+            <input matInput placeholder="" formControlName="emp_username" [class.is-invalid]="sigininForm.get('userName')?.invalid && sigininForm.get('userName')?.touched">
             </mat-form-field> 
 
             <mat-form-field appearance="outline" class="tag">
             <mat-label>Mail</mat-label>
-            <input matInput placeholder="" formControlName="userEmail">
+            <input matInput placeholder="" formControlName="emp_email">
             </mat-form-field></p>
 
                
@@ -29,7 +29,7 @@
             <mat-form-field class="example-full-width" appearance="fill" class="tag">
                 <mat-label>Phone</mat-label>
                 <span matPrefix>+91 &nbsp;</span>
-                <input type="tel" matInput placeholder="" formControlName="userPhn">
+                <input type="tel" matInput placeholder="" formControlName="emp_phn">
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
         </p>
@@ -38,11 +38,11 @@
             
            <p> <mat-form-field appearance="outline" class="tag">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="" type="password" formControlName="userPass">
+            <input matInput placeholder="" type="password" formControlName="emp_password">
             </mat-form-field> 
             <mat-form-field appearance="outline" class="tag">
             <mat-label> Confirm Password</mat-label>
-            <input matInput placeholder="" type="password" formControlName="userPass2">
+            <input matInput placeholder="" type="password">
             </mat-form-field> </p>
 
               
@@ -50,4 +50,3 @@
         </form>
     </div>
 </div>
-
