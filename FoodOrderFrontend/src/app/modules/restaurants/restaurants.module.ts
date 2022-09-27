@@ -14,7 +14,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AddFoodComponent } from './add-food/add-food.component';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
 import { FormsModule } from '@angular/forms';
-
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -33,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
 
   ]
 })

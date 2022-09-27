@@ -18,4 +18,6 @@ export class FoodService {
   getOneFood(id:string):Observable<Food[]>{
     return this.http.get<Food[]>(this.url + id + "/")
   }
+
+
 }
