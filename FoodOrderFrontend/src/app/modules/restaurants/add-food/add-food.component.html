@@ -1,0 +1,38 @@
+<div class="body">
+    <h2 class="heading">Restaurant Registration</h2>
+    <div class="fields">
+        <form [formGroup]="foodForm" class="usersiginform" (ngSubmit)="onSubmit()">
+
+            <p><mat-form-field appearance="outline" class="tag">
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="" formControlName="food_id">
+            </mat-form-field>
+
+           <mat-form-field appearance="outline" class="tag">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="" formControlName="food_name">
+            </mat-form-field></p>
+
+           <p> <mat-form-field appearance="outline" class="tag">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="" formControlName="food_desc">
+            </mat-form-field> 
+
+            <mat-form-field appearance="outline" class="tag">
+            <mat-label>Photo Url</mat-label>
+            <input matInput placeholder="" formControlName="food_photo">
+            </mat-form-field> 
+
+            <mat-form-field appearance="outline" class="tag">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="" formControlName="food_price" type="decimal">
+            </mat-form-field></p>
+     
+ 
+
+   
+              
+            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!foodForm.valid">Register</button>        
+        </form>
+    </div>
+</div>
