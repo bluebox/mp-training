@@ -138,7 +138,7 @@ class freelancerRegister(APIView):
         serializer = freelancer_details_serializers(freelancer, many=True)
         return Response(serializer.data)
 
-    def post(selfself, request, format=None):
+    def post(self, request, format=None):
         serializer = freelancer_details_serializers(data = request.data)
         if serializer.is_valid():
             serializer.save()

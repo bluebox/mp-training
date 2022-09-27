@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChildComponentComponent } from './child-component.component';
+import { FloginPageComponent } from './flogin-page.component';
 
-describe('ChildComponentComponent', () => {
-  let component: ChildComponentComponent;
-  let fixture: ComponentFixture<ChildComponentComponent>;
+describe('FloginPageComponent', () => {
+  let component: FloginPageComponent;
+  let fixture: ComponentFixture<FloginPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChildComponentComponent ]
+      declarations: [ FloginPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChildComponentComponent);
+    fixture = TestBed.createComponent(FloginPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

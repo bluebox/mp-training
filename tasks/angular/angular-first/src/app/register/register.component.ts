@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ServiceService } from '../service.service';
 @Component({
@@ -9,40 +9,23 @@ import { ServiceService } from '../service.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  data : string = 'tharun';
-  response : any;
-  subsc : Subscription = Subscription.EMPTY
-  userdata : any ;
-  login : any;
-
-  constructor(private sending : Router,private service : ServiceService) {
-    this.subsc=this.service.getConfig().subscribe(data => {this.response= data, console.log(this.response)})
-   }
-
+  receivedData : string = ''
+  clientRegister!: FormGroup;
+  constructor(private fb:FormBuilder,private service : ServiceService) { }
 
   ngOnInit(): void {
-    // this.userdata = new FormGroup({
-    //   'firstname' : new FormControl ('',[Validators.required,Validators.maxLength(25)]),
-    //   'lastname' : new FormControl('', [Validators.required,Validators.maxLength(25)])
-    // }),
-    this.login = new FormGroup({
-      'emailid' : new FormControl ('',[Validators.required,Validators.email]),
-      'password' : new FormControl ('',[Validators.required,Validators.maxLength(25)])
+    this.clientRegister = this.fb.group({
+      'client_name'  : new FormControl ('',Validators.required),
+      'email_id' : new FormControl ('',[Validators.required,Validators.email]),
+      'phone_number'  : new FormControl ('',[Validators.required,Validators.maxLength(12)]),
+      'client_country'  : new FormControl ('',[Validators.required]),
+      'password' : new FormControl ('',[Validators.required,Validators.maxLength(25)]),
     })
   }
-
-
- submit (){
-   this.sending.navigate(['./login',this.data])
- }
- submitFun(){
-  console.log(this.userdata.value);
-  this.userdata.reset();
- }
- loginSubmit(){
-  console.log(this.login.value)
- }
-
-
+  registerSubmit(){
+    this.service.ClientRegistration(this.clientRegister.value).subscribe((data : any) => console.log(data)
+    );
+    console.log(this.clientRegister.value);
+   }
 
 }

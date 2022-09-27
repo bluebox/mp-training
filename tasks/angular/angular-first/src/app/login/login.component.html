@@ -1,41 +1,37 @@
-<form  (submit)="loginSubmit()" [formGroup] = "login">
-    <section class="vh-100" style="background-color: #508bfc;">
+<form (submit)="loginSubmit()" [formGroup]="login">
+  <section class="vh-100" style="background-color: #508bfc;">
 
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div class="card shadow-2-strong" style="border-radius: 1rem;">
-              <div class="card-body p-5 text-center">
-                <h1>Login   </h1> <br>
-                <h5 id="invaild"> </h5>
-                <div class="form-outline mb-4">
-                  <input type="email" id="typeEmailX-2" name="login_id" class="form-control form-control-lg" required
-                    />
-                  <label class="form-label" for="typeEmailX-2">Email id</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="typePasswordX-2" name="password" class="form-control form-control-lg"
-                    required  />
-                  <label class="form-label" for="typePasswordX-2">Password</label>
-                </div>
-                <p>Login As</p>
-                <select name="dropdown" class="form-select" aria-label="Default select example" required
-                  >
-
-                  <option value="1">Freelancer</option>
-                  <option value="2">Client</option>
-                </select> <br>
-
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-
-
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h1>Login </h1> <br>
+              <h5 id="invaild"> </h5>
+              <div class="form-outline mb-4">
+                <input type="email" id="typeEmailX-2" formControlName="email_id" name="login_id" class="form-control form-control-lg" required />
+                <label class="form-label" for="typeEmailX-2">Email id</label>
               </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="typePasswordX-2" formControlName="password" name="password" class="form-control form-control-lg"
+                  required />
+                <label class="form-label" for="typePasswordX-2">Password</label>
+              </div>
+              <select name="dropdown" formControlName="user_type" class="form-select"
+              aria-label="Default select example" required>
+                <option [ngValue]="null" disabled>Login As</option>
+                <option *ngFor="let country of user_type" [ngValue]="country.id">{{country.name}}</option>
+              </select>
+
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+              <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="" routerLink=".."
+                class="fw-bold text-body"><u>Register here</u></a></p>
+
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </form>
-
-
+    </div>
+  </section>
+</form>

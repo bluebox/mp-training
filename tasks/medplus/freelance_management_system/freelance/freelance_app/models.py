@@ -17,7 +17,6 @@ class client_details(models.Model):
     client_name = models.CharField(max_length=100)
     client_country =models.CharField(max_length=20)
     phone_number = models.CharField(max_length=12)
-    description = models.TextField(max_length=100,default="")
     email_id = models.EmailField(unique=True)
     password = models.CharField(max_length=25)
     def __str__(self) -> str:

@@ -1,6 +1,5 @@
 
-<form  method="post" id="formdata">
-    <!-- {% csrf_token %} -->
+<form  [formGroup]="freelanceRegister" (submit)="registerSubmit()"  id="formdata">
     <section class="h-100 bg-dark">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -15,39 +14,36 @@
                             <div class="col-xl-6">
                                 <div class="card-body p-md-5 text-black">
                                     <h3 class="mb-5 text-uppercase">Freelancer registration</h3>
-                                    <!-- {% for message in messages %}
-                    <p style="color: red;">{{ message}}</p> -->
-                                    <!-- {% endfor %} -->
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
 
-                                                <input type="text" id="form3Example1m" name="first_name"
+                                                <input type="text" id="form3Example1m" formControlName="first_name" name="first_name"
                                                     class="form-control form-control-lg" required />
                                                 <label class="form-label" for="form3Example1m">First name</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
-                                                <input type="text" id="form3Example1n" name="last_name"
+                                                <input type="text" id="form3Example1n" formControlName="last_name" name="last_name"
                                                     class="form-control form-control-lg" required />
                                                 <label class="form-label" for="form3Example1n">Last name</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="form3Example97" name="email_id"
+                                        <input type="text" id="form3Example97" formControlName="email_id" name="email_id"
                                             class="form-control form-control-lg" required />
                                         <label class="form-label" for="form3Example97">Email ID</label>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <input type="number" id="form3Example99" name="phone_number"
+                                        <input type="number" id="form3Example98" formControlName="phone_number" name="phone_number"
                                             class="form-control form-control-lg" required />
-                                        <label class="form-label" for="form3Example99">Phone number</label>
+                                        <label class="form-label" for="form3Example98">Phone number</label>
                                     </div>
                                     <p>Country</p>
                                     <div class="form-outline mb-4">
-                                        <select required name="country">
+                                        <select required name="country" formControlName="country">
                                             <option value="Afghanistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
                                             <option value="Algeria">Algeria</option>
@@ -298,15 +294,15 @@
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select> <br> <br>
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example99" name="password"
+                                            <input type="password" id="form3Example99" formControlName="password" name="password"
                                                 class="form-control form-control-lg" required />
                                             <label class="form-label" for="form3Example99">password</label>
 
                                         </div>
                                         <div class="d-flex justify-content-end pt-3">
-                                            <button type="button" class="btn btn-light btn-lg" onclick="fun()">Reset
+                                            <button type="button" class="btn btn-light btn-lg" (click)="reset()" >Reset
                                                 all</button> <br>
-                                            <input type="submit" value="submit">
+                                            <input type="submit" class="btn btn-light btn-lg" value="submit">
                                         </div>
                                         <div class="form-outline mb-4">
                                             <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="" routerLink="../login"
