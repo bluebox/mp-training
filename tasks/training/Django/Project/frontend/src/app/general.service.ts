@@ -23,6 +23,9 @@ export class GeneralService {
   add_vehicle(data : any){
     return this.http.post(baseUrl + 'vehicle/', data)
   }
+  get_vehicle(){
+    return this.http.get(baseUrl + 'vehicle/')
+  }
 }
 
 
