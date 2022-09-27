@@ -2,6 +2,8 @@ from itertools import count
 
 from django.http.response import JsonResponse
 from django.shortcuts import render, redirect
+from rest_framework.views import APIView
+
 from .models import *
 from django.http import HttpResponse
 from rest_framework.parsers import JSONParser
@@ -11,7 +13,7 @@ from django.contrib import messages
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from ecom_app.models import Customer
-from ecom_app.serializers import CustomerSerializer, Myserializer1
+from ecom_app.serializers import CustomerSerializer, Myserializer1, ProductListSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
@@ -127,3 +129,11 @@ class employeeViewModelset1(ModelViewSet):
     #
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user)
+
+class Product_list(APIView):
+    def get(self,request):
+        queryset = Products_Details.objects.all()
+        serializer = ProductListSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+

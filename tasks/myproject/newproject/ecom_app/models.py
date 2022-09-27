@@ -35,6 +35,20 @@ class Order_list(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 
+class Product_Type(models.Model):
+    name = models.CharField(max_length=25)
+    def __str__(self):
+        return self.name
+
+class Products_Details(models.Model):
+    name = models.CharField(max_length=25)
+    price = models.IntegerField()
+    stock = models.IntegerField()
+    product_type = models.ForeignKey(Product_Type, on_delete=models.CASCADE)
+    image = models.ImageField(blank=True, upload_to="image", height_field=None, width_field=None, max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Product_list(models.Model):
     pro_id = models.AutoField(primary_key=True)
@@ -42,18 +56,18 @@ class Product_list(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     product_type = models.CharField(max_length=25)
-    image = models.ImageField(blank=True, upload_to="images", height_field=None, width_field=None, max_length=100)
+    image = models.ImageField(blank=True, upload_to="image", height_field=None, width_field=None, max_length=100)
 
     def __str__(self):
         return self.name
 class cust_cart_list(models.Model):
     order_id = models.ForeignKey(Order_list, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Product_list, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Products_Details, on_delete=models.CASCADE)
 
 
 class return_list(models.Model):
     order_id = models.ForeignKey(Order_list, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Product_list, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Products_Details, on_delete=models.CASCADE)
     cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 

@@ -2,9 +2,11 @@ from django.urls import path,include
 from .views import *
 from rest_framework.routers import *
 router = DefaultRouter()
-router.register('viewset', Customer1, basename='Cust_name')
-router1 = DefaultRouter()
-router1.register('viewset1', employeeViewModelset1, basename='Custname')
+# router.register('viewset', Customer1, basename='Cust_name')
+# router.register('product', Product_list, basename='products_list')
+
+# router1 = DefaultRouter()
+# router1.register('viewset1', employeeViewModelset1, basename='Custname')
 urlpatterns=[
     # # path("home/", home, name='home'),
     # path("login/", login, name='login'),
@@ -13,8 +15,8 @@ urlpatterns=[
     path("home/<int:pk>/", customer_list, name="customer_list"),
 
     path("home/", customer_list, name="customer_list"),
-    path('modelview/', include(router.urls)),
-    path('modelview1/', include(router1.urls)),
-
+    # path('modelview/', include(router.urls)),
+    # path('modelview1/', include(router1.urls)),
+    path('products/', Product_list.as_view(), name="products_list"),
     path('auth/', include('rest_framework.urls', namespace='session_auth')),
 ]
