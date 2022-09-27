@@ -12,7 +12,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { AddFoodComponent } from './add-food/add-food.component';
-
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { AddFoodComponent } from './add-food/add-food.component';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    FormsModule
 
   ]
 })

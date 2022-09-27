@@ -1,4 +1,4 @@
-<div class="body">
+<div class="conatiner-fluid">
     <h2 class="heading">Restaurant Registration</h2>
     <div class="fields">
         <form [formGroup]="foodForm" class="usersiginform" (ngSubmit)="onSubmit()">
@@ -25,14 +25,18 @@
 
             <mat-form-field appearance="outline" class="tag">
             <mat-label>Price</mat-label>
-            <input matInput placeholder="" formControlName="food_price" type="decimal">
+            <input matInput placeholder="" available type="text" formControlName="food_price">
             </mat-form-field></p>
      
  
-
+            <section class="example-section" class="tag check">
+               <input type="checkbox" id="available" name="available" value="true" formControlName="is_available" > &nbsp;
+               <label for="available">Food available</label><br>
+              </section>
+              
    
               
-            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!foodForm.valid">Register</button>        
+            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!foodForm.valid" >Register</button>        
         </form>
     </div>
 </div>

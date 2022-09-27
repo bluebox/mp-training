@@ -8,6 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AddFoodComponent implements OnInit {
 
+  checked = false;
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -21,9 +22,22 @@ export class AddFoodComponent implements OnInit {
     food_price :['', Validators.required],
     food_desc :['', Validators.required],
     food_photo :['', Validators.required],
-    is_available :['', Validators.required],
+    is_available :[''],
     }
-  )
+  );
 
-  onSubmit(){}
+ 
+  
+  onSubmit(){
+    console.log(this.foodForm.value)
+    {
+      if (this.foodForm.valid) {
+        console.log('form submitted');
+      } else {
+        console.log(' notttt form submitted');
+      }
+      
+      this.foodForm.reset()
+    }
+  }
 }
