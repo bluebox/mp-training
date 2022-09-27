@@ -1,17 +1,15 @@
 body{
-  /* background-image: url(); */
+  /* background-image: url("https://images.pexels.com/photos/1654318/pexels-photo-1654318.jpeg?cs=srgb&dl=pexels-maizal-najmi-1654318.jpg&fm=jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Anek Bangla', sans-serif;
 }
 .main{
 display: flex;
 justify-content: center;
-padding-top: 150px
+padding-top: 50px;
 }
-body{
 
-font-family: 'Anek Bangla', sans-serif;
-}
 .header{
 padding: 20px;
 margin: 20px;
@@ -25,11 +23,11 @@ display: flex;
 flex-direction: column;
 align-items: center;
 color: white;
-border-radius: 10px;
+
 align-items: center;
 }
 #in{
-height: 50px;
+height: 30px;
 width: 350px;
 color: rgb(160, 149, 149);
 background-color: rgb(13, 8, 8);
@@ -77,4 +75,3 @@ color:white;
 font-size: medium;
 
 }
-

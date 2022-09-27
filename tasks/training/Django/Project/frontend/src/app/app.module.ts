@@ -3,20 +3,45 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './component/login/login.component';
-import { RegisterComponent } from './component/register/register.component';
+
+import { OwnerloginComponent } from './component/ownerlogin/ownerlogin.component';
+import { OwnerregisterComponent } from './component/ownerregister/ownerregister.component';
+import { CustomerloginComponent } from './component/customerlogin/customerlogin.component';
+import { CustomerregisterComponent } from './component/customerregister/customerregister.component';
+import { GeneralService } from './general.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddvehicleComponent } from './component/owner/addvehicle/addvehicle.component';
+import { ProfileComponent } from './component/owner/profile/profile.component';
+import { PreviousvehiclesComponent } from './component/owner/previousvehicles/previousvehicles.component';
+import { AvailableVehicleComponent } from './component/customer/available-vehicle/available-vehicle.component';
+import { OrderHistoryComponent } from './component/customer/order-history/order-history.component';
+import { HomepageComponent } from './component/homepage/homepage.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent
+    OwnerloginComponent,
+    OwnerregisterComponent,
+    CustomerloginComponent,
+    CustomerregisterComponent,
+    PagenotfoundComponent,
+    AddvehicleComponent,
+    ProfileComponent,
+    PreviousvehiclesComponent,
+    AvailableVehicleComponent,
+    OrderHistoryComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GeneralService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

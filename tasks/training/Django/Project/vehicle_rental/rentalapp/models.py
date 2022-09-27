@@ -10,22 +10,23 @@ def mail_validator(value):
 class Customer(models.Model) :
     customer_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    dl_no = models.CharField(max_length=50)
-    contact_no = models.CharField(max_length=50)
-    email = models.CharField(max_length=50, validators=[mail_validator])
+    dl_no = models.CharField(max_length=50, unique=True)
+    contact_no = models.CharField(max_length=50, unique=True)
+    email = models.CharField(max_length=50, validators=[mail_validator], unique=True)
     address = models.CharField(max_length=200)
+    password= models.CharField(max_length=50, default=0)
 
     def __str__(self):
         return self.name
 
-
-
 class Owner(models.Model):
     owner_id = models.AutoField(primary_key=True)
     name= models.CharField(max_length=50)
-    contact_no = models.CharField(max_length=50)
-    email = models.CharField(max_length=50, validators=[mail_validator])
+    contact_no = models.CharField(max_length=50, unique=True)
+    email = models.CharField(max_length=50, validators=[mail_validator], unique=True)
     address = models.CharField(max_length=200)
+    password= models.CharField(max_length=50, default=0)
+
 
     def __str__(self):
         return self.name
