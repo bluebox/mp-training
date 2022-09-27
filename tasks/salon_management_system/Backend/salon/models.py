@@ -1,4 +1,7 @@
 from django.db import models
+
+# Create your models here.
+from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
@@ -7,6 +10,23 @@ class User(AbstractUser):
 
     class Meta:
         db_table = 'User'
+
+from django.contrib.auth.admin import UserAdmin
+
+# Register your models here.
+
+# class CustomUserAdmin(UserAdmin):
+#     fieldsets =(
+#         *UserAdmin.fieldsets,
+#         (
+#             'Additional Info',
+#             {
+#                 'fields' : (
+#                     'mobile_number','age','address','pincode','is_employee'
+#                 )
+#             }
+#         )
+#     )
         
 class Client(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,default=101)
