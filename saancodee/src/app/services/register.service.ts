@@ -96,6 +96,36 @@ export class RegisterService {
     return this.http.post(url, data, {headers:headers})
   }
 
+  getVote(id:any) {
+    let username = localStorage.getItem('username')
+    let url = `http://127.0.0.1:8000/api/votes/${id}/${username}`
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.get(url, {headers:headers})
+  }
+
+  postVote(id:any, vote:any) {
+    let data = {"vote": vote}
+    let username = localStorage.getItem('username')
+    let url = `http://127.0.0.1:8000/api/votes/${id}/${username}`
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, {headers:headers})
+  }
+
+  getDiscussion(data:any) {
+    let url = `http://127.0.0.1:8000/api/discussion/${data.id}/${data.discussionId}`
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.get(url, {headers:headers})
+  }
+
   getProblem(id:any) {
     let url = `http://127.0.0.1:8000/api/problem-detail/${id}`
     const headers = new HttpHeaders(

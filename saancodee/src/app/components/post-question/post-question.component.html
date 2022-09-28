@@ -23,6 +23,9 @@
             <label for="">test cases</label>
             <input type="text" formControlName="test_cases" name="test_cases">
         </div>
-    <button type="submit"></button>
+        <select formControlName="selected" name="selected" id="selected" multiple>
+            <option *ngFor="let item of list" [ngValue]="item.id">{{item.label}}</option>
+        </select>
+    <button type="submit">Post</button>
     </form>
 </div>

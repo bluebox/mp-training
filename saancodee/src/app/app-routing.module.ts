@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './components/category/category.component';
+import { DiscussionComponent } from './components/discussion/discussion.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:"problems/:id", component:ProblemComponent},
   // {path:"problems/discussions", component:ProblemdiscussionComponent},
   {path:"problems/discussions/:id", component:ProblemdiscussionComponent},
+  {path:"problems/discussions/:id/:discussionId", component:DiscussionComponent},
   {path:"post-question", component:PostQuestionComponent},
   {path:"profile", component:ProfileComponent, canActivate: [AuthGuard]},
   {path:"edit-profile", component:EditProfileComponent, canActivate: [AuthGuard]}

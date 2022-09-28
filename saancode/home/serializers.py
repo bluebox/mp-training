@@ -24,6 +24,11 @@ class ProblemSerializer(serializers.ModelSerializer):
         model = Problem
         fields = "__all__"
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username']
+
 class sortProblemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Problem
@@ -42,12 +47,17 @@ class TagSerializer(serializers.ModelSerializer):
 class editProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['full_name', 'gender', 'location', 'work', 'bio', 'education']
+        fields = ['full_name', 'gender', 'location', 'work', 'bio', 'education', 'mobile', 'github', 'facebook', 'instagram']
 
-class postQuestionSerializer(serializers.Serializer):
+class postQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Problem
         fields = ['problem_name', 'description', 'hints', 'test_cases']
+
+class topicTagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TopicTag
+        fields = ['tag_id', 'tag_name']
 
 class discussionsSerializer(serializers.ModelSerializer):
     class Meta:

@@ -4,13 +4,13 @@
         <th class="th-sm">Problem
   
         </th>
-        <th  clickable (click)="sortProblems()" class="th-sm">Difficulty
+        <th clickable (click)="sortProblems()" class="th-sm">Difficulty
   
         </th>
         <th class="th-sm">Accuracy
   
         </th>
-        <th class="th-sm">Tags
+        <th class="th-sm">Likes Ratio
   
         </th>
       </tr>
@@ -18,7 +18,9 @@
     <tbody>
       <tr *ngFor="let problem of problems">
         <td clickable (click)="getProblem(problem.problem_id)">{{ problem.problem_name }}</td>
-        <td>{{ problem.difficulty_level }}</td>
+        <td class="easy" *ngIf="problem.difficulty_level === 0">Easy</td>
+            <td class="medium" *ngIf="problem.difficulty_level === 1">Medium</td>
+            <td class="hard" *ngIf="problem.difficulty_level === 2">Hard</td>
         <td>{{ problem.likes }}</td>
         <td>{{ problem.dislikes }}</td>
       </tr>

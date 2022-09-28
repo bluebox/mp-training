@@ -19,6 +19,10 @@ class Profile(models.Model):
     bio = models.CharField(max_length=100, blank=True)
     work = models.CharField(max_length=50, blank=True)
     education = models.CharField(max_length=50, blank=True)
+    mobile = models.CharField(max_length=30, default='', blank=True)
+    github = models.CharField(max_length=50, default='', blank=True)
+    facebook = models.CharField(max_length=50, default='', blank=True)
+    instagram = models.CharField(max_length=50, default='', blank=True)
     # password = models.CharField(max_length=30)
 
     def __str__(self):
@@ -47,6 +51,8 @@ class Problem(models.Model):
     description = models.TextField(max_length=500, unique=True, blank=False, null=False)
     hints = models.TextField(max_length=50, blank=False, null=False)
     test_cases = models.TextField(max_length=500, blank=False, null=False)
+    outputs = models.TextField(max_length=500, blank=False, null=False)
+    inbuilt_code = models.TextField(max_length=500, blank=False, null=False)
     # likes = models.IntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
@@ -62,6 +68,22 @@ class Problem(models.Model):
     )
     # difficulty_level = models.CharField(max_length=1, choices=difficulty_level_options, blank=False, default='E', null=False)
     difficulty_level = models.IntegerField(choices=difficulty_level_options, blank=False, default=0, null=False)
+
+    # def deleteLikes(self):
+    #     self.likes -= 1
+    #     self.save()
+
+    # def addLikes(self):
+    #     self.likes += 1
+    #     self.save()
+
+    # def deleteDisLikes(self):
+    #     self.dislikes -= 1
+    #     self.save()
+
+    # def addDisLikes(self):
+    #     self.dislikes += 1
+    #     self.save()
 
     def __str__(self):
         return self.problem_name
@@ -111,8 +133,8 @@ class Solved(models.Model):
 
 class Discussion(models.Model):
     discussion_id = models.AutoField(primary_key=True)
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
-    problem_id = models.ForeignKey(Problem, on_delete=models.DO_NOTHING, null=True)
+    username = models.ForeignKey(User, on_delete=models.CASCADE, null=False, to_field="username", db_column="username")
+    problem_id = models.ForeignKey(Problem, on_delete=models.CASCADE, null=False)
     title = models.CharField(max_length=30, null=False, blank=False)
     discussion = models.TextField(max_length=500, null=True, blank=True)
     created_date_time = models.DateTimeField(auto_now_add=True, null=False, blank=False)

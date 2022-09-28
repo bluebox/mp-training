@@ -17,7 +17,6 @@ export class ProblemsComponent implements OnInit {
       this.problems = data
       console.log(data)
     })
-
    }
 
    sortProblems() {

@@ -18,7 +18,11 @@ export class EditProfileComponent implements OnInit {
       location: [''],
       bio: [''],
       work: [''],
-      education: ['']
+      education: [''],
+      mobile: [''],
+      github: [''],
+      facebook: [''],
+      instagram: ['']
     }
   )
 

@@ -2,3 +2,15 @@ th {
     cursor: pointer;
     background-color: greenyellow;
 }
+
+.easy {
+    color: green;
+}
+
+.medium {
+    color: orange;
+}
+
+.hard {
+    color: red;
+}

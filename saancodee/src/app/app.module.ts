@@ -19,6 +19,7 @@ import { ProblemdiscussionComponent } from './components/problemdiscussion/probl
 import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
 import { PostQuestionComponent } from './components/post-question/post-question.component';
+import { DiscussionComponent } from './components/discussion/discussion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { PostQuestionComponent } from './components/post-question/post-question.
     ProblemdiscussionComponent,
     HomeComponent,
     CategoryComponent,
-    PostQuestionComponent,  
+    PostQuestionComponent,
+    DiscussionComponent,  
   ],
   imports: [
     BrowserModule,

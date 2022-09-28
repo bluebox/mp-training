@@ -9,12 +9,25 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class PostQuestionComponent implements OnInit {
 
+  list = [{ id: 1, label: 'array' }, { id: 2, label: 'search' }]
+  selectOptions: any = [
+    {
+      id: 1,
+      text: 'array'
+    },
+    {
+      id: 2,
+      text: 'search'
+    }
+  ];
+
   questionForm = this.fb.group(
     {
       problem_name: ['', Validators.required],
       description: ['', Validators.required],
       hints: ['', Validators.required],
-      test_cases: ['', Validators.required]
+      test_cases: ['', Validators.required],
+      selected: ['', Validators.required]
     }
   )
 

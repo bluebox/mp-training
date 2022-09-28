@@ -4,21 +4,46 @@
 
 <div class="container">
     <div>
-        <div>
-            <div class="menu">
+        <div class="menu">
+            <div class="">
                 <button><a>Description</a></button>
             </div>
-            <div class="menu">
+            <div class="">
                 <button><a routerLink="/problems/discussions/{{id}}">Discussions</a></button>
             </div>
-            <div class="menu">
+            <div class="">
                 <button><a>Submissions</a></button>
             </div>
         </div>
         <div>
             <h3>{{ problem.problem_name }}</h3>
+            <div *ngIf="votes.vote === 'L'">
+                <button (click)="postVote('LA')" class="active">like {{ votes.like }}</button>
+                <button disabled>dislike {{ votes.dislike }}</button>
+            </div>
+            <div *ngIf="votes.vote === 'D'">
+                <button disabled>like {{ votes.like }}</button>
+                <button (click)="postVote('DA')" class="active">dislike {{ votes.dislike }}</button>
+            </div>
+            <div *ngIf="votes.vote === ''">
+                <button (click)="postVote('L')" class="neutral">like {{ votes.like }}</button>
+                <button (click)="postVote('D')" class="neutral">dislike {{ votes.dislike }}</button>
+            </div>
             <div>
                 <p>{{ problem.description }}</p>
+            </div>
+            <div>
+                <button (click)="loadRelatedTopics()">Ralated Topics</button>
+                <div *ngIf="relatedTopicsFlag">
+                    <div class="topictags" *ngFor="let topics of tags">
+                        <p class="topictag">{{ topics }}</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button (click)="loadHints()">Hints</button>
+                <div class="hints" [innerHTML]="problem.hints" *ngIf="hintsFlag">    
+                </div>
             </div>
         </div>
     </div>

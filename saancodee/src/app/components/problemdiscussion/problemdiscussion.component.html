@@ -20,7 +20,7 @@
                         </div>
                         <div class="flex-grow-1 ms-3">
                           <div class="d-flex flex-row align-items-center mb-2">
-                            <p class="mb-0 me-2">@{{ discussion.user_id }}</p>
+                            <p class="mb-0 me-2">@{{ discussion.username }}</p>
                             <ul class="mb-0 list-unstyled d-flex flex-row" style="color: #1B7B2C;">
                               <li>
                                 <i class="fas fa-star fa-xs"></i>
@@ -40,7 +40,7 @@
                             </ul>
                           </div>
                           <div>
-                            <button type="button" class="btn btn-outline-dark btn-rounded btn-sm"
+                            <button type="button" (click)="onSubmit(discussion.discussion_id)" class="btn btn-outline-dark btn-rounded btn-sm"
                               data-mdb-ripple-color="dark">Visit</button>
                           </div>
                         </div>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-problemdiscussion',
@@ -12,7 +12,7 @@ export class ProblemdiscussionComponent implements OnInit {
   id!:any;
   discussions!:any;
 
-  constructor(private route: ActivatedRoute,  private http: HttpClient) { 
+  constructor(private router:Router, private route: ActivatedRoute,  private http: HttpClient) { 
     this.id = route.snapshot.params['id'];
     let url = `http://127.0.0.1:8000/api/discussions/${this.id}`
     const headers = new HttpHeaders(
@@ -25,6 +25,10 @@ export class ProblemdiscussionComponent implements OnInit {
       console.log(data)
       this.discussions = data
     })
+   }
+
+   onSubmit(id:any) {
+    this.router.navigate(['problems/discussions/', this.id, id])
    }
 
   ngOnInit(): void {

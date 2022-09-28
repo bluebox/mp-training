@@ -6,7 +6,7 @@ from .models import *
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-import requests, json
+import json
 from json import dumps
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
@@ -45,12 +45,9 @@ def sortProblemsApi(request):
 def categoryApi(request, category):
     tag_id = Tag.objects.get(tag_name = category)
     problems = Problem.objects.filter(topictag__tag_id=tag_id)
-    tags = Tag.objects.filter(tag_id = tag_id.tag_id)
-    print(tags)
-    tagSerializer = TagSerializer(tags, many = True)
     serializer = categorySerializer(problems, many = True)
 
-    return Response({"problem" : serializer.data, "tag" : tagSerializer.data})
+    return Response({"problem" : serializer.data})
 
 @api_view(['POST'])
 def loginApi(request):
@@ -95,14 +92,25 @@ def submissionsApi(request, problemName):
     solved = Solved.objects.filter(problem_id = problem)
     print(solved)
     serializer = solvedSerializer(solved, many = True)
+    return Response(serializer.data)
 
+@api_view(['GET'])
+def getDiscussionApi(request, problemId, discussionId):
+    discuss = Discussion.objects.get(discussion_id = discussionId)
+    print(discuss)
+    serializer = discussionsSerializer(discuss, many = False)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def discussionsApi(request, problemId):
     problem = Problem.objects.get(problem_id = problemId)
     discussions = Discussion.objects.filter(problem_id = problem)
+    # users = []
+    # for i in discussions:
+    #     username = User.objects.get(id = i.user_id)
+    #     users.append(username)
     serializer = discussionsSerializer(discussions, many = True)
+    print(serializer.data)
     
     return Response(serializer.data)
 
@@ -135,24 +143,63 @@ def problemDetail(request, id):
     tagsList = list(TopicTag.objects.filter(problem_id = problem.problem_id).iterator())
     tags = []
     for tagIndex in tagsList:
-        tags.append(tagIndex.tag_id.tag_id)
+        tags.append(tagIndex.tag_id.tag_name)
     serializer = ProblemSerializer(problem, many = False)
     return Response({"problems": serializer.data, "tags": tags})
+
+# @api_view(['GET'])
+# def problemVotesApi(request, id):
+#     problem = Problem.objects.get(problem_id = id)
+#     likes = len(ProblemVotes.objects.get(problem_id = problem.problem_id, vote = 'L'))
+#     dislikes = len(ProblemVotes.objects.get(problem_id = problem.problem_id, vote = 'D'))
+
+#     return Response({"likes":likes, "dislikes": dislkes})
 
 @api_view(['GET', 'POST'])
 def votesApi(request, problemId, username):
     creator_id = User.objects.get(username = username)
     problem = Problem.objects.get(problem_id = problemId)
+    voted = ''
     if (request.method == "GET"):
-        try:        
-            vote = None
+        try:
             vote = ProblemVotes.objects.get(problem_id = problem.problem_id, voter_id = creator_id)
-            vote.delete()
+            # vote.delete()
+            voted = vote.vote
         except:
-            vote = ProblemVotes.objects.create(problem_id = problem, voter_id = creator_id, vote = 'L')
+            pass
         votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
         votesDislike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D'))
-        return Response({"like": votesLike, "dislike": votesDislike, "vote": vote.vote})
+        return Response({"like": votesLike, "dislike": votesDislike, "vote": voted})
+
+    if (request.method == "POST"):
+        try:
+            vote = ProblemVotes.objects.get(problem_id = problem.problem_id, voter_id = creator_id)
+            if request.data['vote'] == 'LA':
+                vote.delete()
+                problem.likes -= 1
+                # problem.save()
+                # problem.deleteLikes()
+            # vote.delete()
+                voted = ''
+            elif request.data['vote'] == "DA":
+                vote.delete()
+                # problem.deleteDisLikes()
+                voted = ''
+        except:
+            vote = ProblemVotes.objects.create(problem_id = problem, voter_id = creator_id)
+            if request.data['vote'] == "L":
+                vote.vote = 'L'
+                vote.save()
+                # problem.addLikes()
+                voted = 'L'
+            else:
+                vote.vote = 'D'
+                vote.save()
+                # problem.addDisLikes()
+                voted = 'D'
+        votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
+        votesDislike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D'))
+        return Response({"like": votesLike, "dislike": votesDislike, "vote": voted})
             
 @api_view(['POST'])
 def postDiscussionApi(request, problemId, username):
@@ -181,6 +228,9 @@ def postQuestionApi(request, username):
     except:
         pass
     problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['problem_name'], description = request.data['description'], hints = request.data['hints'], test_cases = request.data['test_cases'])
+    for i in request.data['selected']:
+        tagg = Tag.objects.get(tag_id = int(1))
+        tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
     serializer = postQuestionSerializer(instance = problem, data = request.data)
     if serializer.is_valid():
         serializer.save()
