@@ -1,63 +1,98 @@
-<p>register-customer works!</p>
 
-<form  [formGroup]="customerRegisterForm" class="form-container">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Register</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="username" matInput placeholder="username">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="first_name" matInput placeholder="first_name">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="last_name" matInput placeholder="last_name">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="email" matInput placeholder="email">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="mobile_number" matInput placeholder="mobile_number">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="age" matInput placeholder="age">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="address" matInput placeholder="address">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="pincode" matInput placeholder="pincode">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="password" matInput placeholder="password">
-            </mat-form-field>
-          </div>
 
+<form [formGroup]="customerRegisterForm" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+      <mat-card-title  *ngIf="formNotValid">please Fill All required details</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+            
+          <mat-form-field class="full-width">
+            <input formControlName="username" matInput placeholder="username" />
+
+        </mat-form-field>
+        <small class="text-danger" *ngIf="customerRegisterForm.get('username')?.invalid  && customerRegisterForm.get('username')?.touched " >username is required</small>
         </div>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input
+            formControlName="first_name"
+            matInput
+            placeholder="first_name"
+          />
+        </mat-form-field>
+        <small  *ngIf="customerRegisterForm.get('first_name')?.invalid  && customerRegisterForm.get('first_name')?.touched " >field is required</small>
 
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="submitRegister()" mat-raised-button="" color="primary">Register</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="last_name" matInput placeholder="last_name" />
+        </mat-form-field>
+        
+        <small class="text-danger" *ngIf="customerRegisterForm.get('last_name')?.invalid  && customerRegisterForm.get('last_name')?.touched " >field is required</small>
+
+
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="email" matInput placeholder="email" />
+        </mat-form-field>
+<small class="text-danger" *ngIf="customerRegisterForm.get('email')?.invalid  && customerRegisterForm.get('email')?.touched " >enter valid mail address</small>
+
+
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input
+            formControlName="mobile_number"
+            matInput
+            placeholder="mobile_number"
+          />
+        </mat-form-field>
+        <small class="text-danger" *ngIf="customerRegisterForm.get('mobile_number')?.invalid  && customerRegisterForm.get('mobile_number')?.touched " >enter valid mobile number</small>
+
+
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="age" matInput placeholder="age" />
+        </mat-form-field>
+                <small class="text-danger" *ngIf="customerRegisterForm.get('age')?.invalid  && customerRegisterForm.get('age')?.touched " >hello</small>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="address" matInput placeholder="address" />
+        </mat-form-field>
+       
+        <small class="text-danger" *ngIf="customerRegisterForm.get('address')?.invalid  && customerRegisterForm.get('address')?.touched " >hello</small>
+
+
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="pincode" matInput placeholder="pincode" />
+        <small class="text-danger" *ngIf="customerRegisterForm.get('pincode')?.invalid  && customerRegisterForm.get('pincode-')?.touched " >hello</small>
+        
+
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="password" matInput placeholder="password" />
+        </mat-form-field>
+        <small class="text-danger" *ngIf="customerRegisterForm.get('password')?.invalid && customerRegisterForm.get('password')?.touched  " > password should contain atleast 8 characters </small>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="submitRegister()" mat-raised-button="" color="primary">
+        Register
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -16,11 +16,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './components/login/login.component';
+
 @NgModule({
   declarations: [
     RegisterCustomerComponent,
     RegisterEmployeeComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

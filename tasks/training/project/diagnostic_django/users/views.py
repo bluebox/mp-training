@@ -7,7 +7,9 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from users.serializers import UserSerializer,CustomerSerializer ,EmployeeSerializer
-from .models import User , Customer
+from .models import User , Customer 
+from appointment.models import Branch
+from appointment.serializers import BranchSerializer
 # Create your views here.
 
 # @api_view(['POST','PUT'])
@@ -60,7 +62,9 @@ class RegisterEmployee(APIView):
         print(serializer)
         if serializer.is_valid():
             user = serializer.save()
-            employee_obj = EmployeeSerializer(data = {"staff_id":"MEDS"+str(user.id),"user_id":user.id ,"designation":request.data["designation"] , "qualification":request.data['qualification'],"salary":request.data['salary'],"years_of_experience":request.data['years_of_experience'] or None, 'branch':request.data['branch'], "status":request.data['status'] })
+            
+            employee_obj = EmployeeSerializer(data = {"staff_id":"MEDS"+str(user.id),"user_id":user.id ,"designation":request.data["designation"] , "qualification":request.data['qualification'],"salary":request.data['salary'],"years_of_experience":request.data['years_of_experience'] or None, 'branch':request.data['branch'] })
+            print(employee_obj)
             if employee_obj.is_valid():
                 employee_obj.save()
             else:
@@ -75,3 +79,10 @@ class RegisterEmployee(APIView):
         users = Customer.objects.all()
         serializer = CustomerSerializer(users , many = True)
         return Response(serializer.data,status=200)
+
+class BranchHandler(APIView):
+    def get(self,request):
+        branches = Branch.objects.all()
+        serializer = BranchSerializer( branches,many=True)
+        return Response(serializer.data, status=200)    
+
