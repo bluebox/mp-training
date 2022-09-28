@@ -49,7 +49,7 @@ export class ProblemComponent implements OnInit {
     this.submissionForm.value.stdin = this.problem.test_cases + "\n"
     console.log("running")
     this.service.submitProblem(this.submissionForm.value).subscribe((data) =>{
-      console.log(data)
+      console.log(data, this.problem.outputs)
     })
    }
 

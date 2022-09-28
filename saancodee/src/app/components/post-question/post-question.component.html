@@ -21,7 +21,15 @@
         </div>
         <div>
             <label for="">test cases</label>
-            <input type="text" formControlName="test_cases" name="test_cases">
+            <textarea type="text" formControlName="test_cases" name="test_cases"></textarea>
+        </div>
+        <div>
+            <label for="">outputs</label>
+            <textarea type="text" formControlName="outputs" name="outputs"></textarea>
+        </div>
+        <div>
+            <label for="">inbuilt_code</label>
+            <textarea type="text" formControlName="inbuilt_code" name="inbuilt_code"></textarea>
         </div>
         <select formControlName="selected" name="selected" id="selected" multiple>
             <option *ngFor="let item of list" [ngValue]="item.id">{{item.label}}</option>

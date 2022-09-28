@@ -51,7 +51,7 @@ class Problem(models.Model):
     description = models.TextField(max_length=500, unique=True, blank=False, null=False)
     hints = models.TextField(max_length=50, blank=False, null=False)
     test_cases = models.TextField(max_length=500, blank=False, null=False)
-    outputs = models.TextField(max_length=500, blank=False, null=False)
+    outputs = models.CharField(max_length=500, blank=False, null=False)
     inbuilt_code = models.TextField(max_length=500, blank=False, null=False)
     # likes = models.IntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)

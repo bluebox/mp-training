@@ -27,7 +27,9 @@ export class PostQuestionComponent implements OnInit {
       description: ['', Validators.required],
       hints: ['', Validators.required],
       test_cases: ['', Validators.required],
-      selected: ['', Validators.required]
+      selected: ['', Validators.required],
+      outputs: ['', Validators.required],
+      inbuilt_code: ['', Validators.required]
     }
   )
 

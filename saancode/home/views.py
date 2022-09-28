@@ -6,7 +6,7 @@ from .models import *
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-import json
+import requests, json
 from json import dumps
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
@@ -227,7 +227,7 @@ def postQuestionApi(request, username):
             return HttpResponse("problem with same description already exists")
     except:
         pass
-    problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['problem_name'], description = request.data['description'], hints = request.data['hints'], test_cases = request.data['test_cases'])
+    problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['problem_name'], description = request.data['description'], hints = request.data['hints'], test_cases = request.data['test_cases'], outputs = request.data['outputs'], inbuilt_code = request.data['inbuilt_code'])
     for i in request.data['selected']:
         tagg = Tag.objects.get(tag_id = int(1))
         tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
