@@ -1,1 +1,51 @@
 <p>login works!</p>
+<form [formGroup]="loginForm" class="form-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+            {{errorMessage}}
+      <mat-card-title *ngIf="formNotValid"
+        >please Fill All required details</mat-card-title
+      >
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="username" matInput placeholder="username" />
+          </mat-form-field>
+          <small
+            class="text-danger"
+            *ngIf="
+              loginForm.get('username')?.invalid &&
+              loginForm.get('username')?.touched
+            "
+            >username is required</small
+          >
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="password" matInput placeholder="password" />
+        </mat-form-field>
+
+        <small
+          class="text-danger"
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+          >hello</small
+        >
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="submitLogin()" mat-raised-button="" color="primary">
+        login
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

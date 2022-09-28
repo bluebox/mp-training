@@ -97,13 +97,13 @@ def loginUser(request):
         try:
             user = User.objects.get(username = username)
         except:
-            return Response({'msg':"User Does not Exist"} ,status=400)
+            return Response({'msg':"User Does not Exist"})
 
         user = authenticate(request, username = username, password = password)
         if user is not None:
             login(request, user)
-            return Response({'msg':"logged in"} ,status=200)
+            return Response({'msg':"logged in" } ,status=200)
         else:
-            return Response({'msg':"password incorrect"} ,status=400)
+            return Response({'msg':"password incorrect"})
 
     return Response({"msg":"not created"},status =200)

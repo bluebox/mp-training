@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import {Observable,throwError } from 'rxjs'
+import {map, retry, catchError } from 'rxjs/operators'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,8 +24,23 @@ export class HttpServiceService {
     return this.http.get('http://127.0.0.1:8000/users/branch/')
 
   }
-  loginUser(data:any){
-    return this.http.post<any>('http://127.0.0.1:8000/users/login/',data)
+
+  handleError(err:any):any{
+      // console.log(err);  
+      let errorMessage =""
+      if(err.error instanceof ErrorEvent){
+        errorMessage = `Error: ${err.message}`;
+      }else{
+        errorMessage = `Error Code : ${err.status}\nMessage: ${err.message}`;
+      }
+      alert(errorMessage);
+      return throwError(errorMessage)
+  }
+  loginUser(data:any): Observable<any>{
+    return this.http.post<any>('http://127.0.0.1:8000/users/login/',data).pipe(
+      retry(3),
+      catchError(this.handleError)
+    )
   }
 
   }
