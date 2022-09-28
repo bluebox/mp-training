@@ -1,0 +1,64 @@
+<p>register-customer works!</p>
+
+<form  [formGroup]="studentRegisterForm" class="form-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="username" matInput placeholder="username">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="first_name" matInput placeholder="first_name">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="last_name" matInput placeholder="last_name">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="email" matInput placeholder="email">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="password" matInput placeholder="password">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="mobile_no" matInput placeholder="mobile_number">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="address" matInput placeholder="address">
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="reqister_number" matInput placeholder="register number">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="college_name" matInput placeholder="college">
+            </mat-form-field>
+          </div>
+
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="submitRegister()" mat-raised-button="" color="primary">Register</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
