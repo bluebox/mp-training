@@ -5,6 +5,7 @@
           <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item"><a routerLink="/edit-profile">Edit Profile</a></li>
+              <li class="breadcrumb-item"><a routerLink="/post-question">Post Question</a></li>
             </ol>
           </nav>
         </div>
@@ -16,13 +17,9 @@
             <div class="card-body text-center">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">John Smith</h5>
-              <p class="text-muted mb-1">Full Stack Developer</p>
-              <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-              <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Follow</button>
-                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-              </div>
+              <h5 class="my-3">{{ profile.full_name }}</h5>
+              <p class="text-muted mb-1">{{ profile.work }}</p>
+              <p class="text-muted mb-4">{{ profile.location }}</p>
             </div>
           </div>
           <div class="card mb-4 mb-lg-0">
@@ -60,16 +57,18 @@
                   <p class="mb-0">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Johnatan Smith</p>
+                  <p class="text-muted mb-0">{{ profile.full_name }}</p>
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Email</p>
+                  <p class="mb-0">Gender</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">example@example.com</p>
+                  <p class="text-muted mb-0" *ngIf="profile.gender === 'M'">Male</p>
+                  <p class="text-muted mb-0" *ngIf="profile.gender === 'F'">Femalep>
+
                 </div>
               </div>
               <hr>
@@ -87,7 +86,7 @@
                   <p class="mb-0">Address</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                  <p class="text-muted mb-0">{{ profile.location }}</p>
                 </div>
               </div>
             </div>

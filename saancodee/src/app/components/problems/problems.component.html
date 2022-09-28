@@ -4,7 +4,7 @@
         <th class="th-sm">Problem
   
         </th>
-        <th class="th-sm">Difficulty
+        <th  clickable (click)="sortProblems()" class="th-sm">Difficulty
   
         </th>
         <th class="th-sm">Accuracy
@@ -16,22 +16,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Tiger Nixon</td>
-        <td>System Architect</td>
-        <td>Edinburgh</td>
-        <td>61</td>
-      </tr>
-      <tr>
-        <td>Garrett Winters</td>
-        <td>Accountant</td>
-        <td>Tokyo</td>
-        <td>63</td>
-      </tr>
-      <tr>
-        <td>Ashton Cox</td>
-        <td>Junior Technical Author</td>
-        <td>San Francisco</td>
-        <td>66</td>
+      <tr *ngFor="let problem of problems">
+        <td clickable (click)="getProblem(problem.problem_id)">{{ problem.problem_name }}</td>
+        <td>{{ problem.difficulty_level }}</td>
+        <td>{{ problem.likes }}</td>
+        <td>{{ problem.dislikes }}</td>
       </tr>
   </table>

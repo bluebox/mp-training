@@ -1,27 +1,32 @@
-<form class="container" formGroupName="profileForm">
+<form class="container" (ngSubmit)="onSubmit()" [formGroup]="profileForm">
     <div class="form-outline">
         <label class="form-label" for="typeText">Full Name</label>
-        <input type="text" id="typeText" class="form-control" />
+        <input name="full_name" formControlName="full_name" full_name="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
-        <label class="form-label" for="typeText">Text input</label>
-        <input type="text" id="typeText" class="form-control" />
+        <label class="form-label" for="typeText">Gender</label>
+        <select formControlName="gender" id="gender" name="gender">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+    </div>
+    
+    <div class="form-outline">
+        <label class="form-label" for="typeText">Location</label>
+        <input formControlName="location" name="location" type="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
-        <input type="text" id="form16" class="form-control" data-mdb-showcounter="true" maxlength="20" />
-        <label class="form-label" for="form16">Example label</label>
-        <div class="form-helper"></div>
-      </div>
-    <div class="form-outline">
-        <label class="form-label" for="typeText">Text input</label>
-        <input type="text" id="typeText" class="form-control" />
+        <label class="form-label" style="display: block;" for="typeText">Bio</label>
+        <textarea name="bio" id="bio" cols="30" rows="5" formControlName="bio" style="resize: none;"></textarea>
     </div>
     <div class="form-outline">
-        <label class="form-label" for="typeText">Text input</label>
-        <input type="text" id="typeText" class="form-control" />
+        <label class="form-label" for="typeText">Work</label>
+        <input formControlName="work" type="text" name="work" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
-        <label class="form-label" for="typeText">Text input</label>
-        <input type="text" id="typeText" class="form-control" />
+        <label class="form-label" for="typeText">Education</label>
+        <input name="education" formControlName="education" type="text" id="typeText" class="form-control" />
     </div>
+    
+    <button type="submit">Edit</button>
 </form>

@@ -1,0 +1,45 @@
+<!-- <div>
+    <a routerLink="/problems/discussions/{{id}}">discussions</a>
+</div> -->
+
+<div class="container">
+    <div>
+        <div>
+            <div class="menu">
+                <button><a>Description</a></button>
+            </div>
+            <div class="menu">
+                <button><a routerLink="/problems/discussions/{{id}}">Discussions</a></button>
+            </div>
+            <div class="menu">
+                <button><a>Submissions</a></button>
+            </div>
+        </div>
+        <div>
+            <h3>{{ problem.problem_name }}</h3>
+            <div>
+                <p>{{ problem.description }}</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <form [formGroup]="submissionForm" (ngSubmit)="onSubmit()">
+            <div>
+                <div>
+                    <select formControlName="languages" name="languages" id="languages">
+                        <option value="python3" class="language" name="python3">Python</option>
+                        <option value="java" class="language" name="java">Java</option>
+                        <option value="c++" class="language" name="c++">C++</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea formControlName="code" name="code" id="code" cols="60" rows="10"></textarea>
+                </div>
+                <div>
+                    <input type="text" formControlName="stdin" placeholder="inputs">
+                </div>
+            </div>
+            <button type="submit">submit</button>
+        </form>
+    </div>
+</div>

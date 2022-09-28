@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Contribute saancode by posting questions</h1>
+</div>
+<div>
+    <p>contribute saancode</p>
+</div>
+
+<div class="container">
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="">Title</label>
+            <input type="text" formControlName="problem_name" name="problem_name">
+        </div>
+        <div>
+            <label for="">description</label>
+            <input type="text" formControlName="description" name="description">
+        </div>
+        <div>
+            <label for="">hints</label>
+            <input type="text" formControlName="hints" name="hints">
+        </div>
+        <div>
+            <label for="">test cases</label>
+            <input type="text" formControlName="test_cases" name="test_cases">
+        </div>
+    <button type="submit"></button>
+    </form>
+</div>

@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
       password : ['', [Validators.required, Validators.minLength(7)]]
     }
   )
-  res: Object | undefined;
 
   constructor(private http:HttpClient, private fb: FormBuilder, private router: Router) { }
 
@@ -32,10 +31,16 @@ export class LoginComponent implements OnInit {
       }
     )
 
-    this.http.post("http://127.0.0.1:8000/api/login", data, {headers:headers}).subscribe((data) => {
-      this.res = data
-      console.log(this.res)
-      this.router.navigate(['profile/:username'])
+    this.http.post("http://127.0.0.1:8000/api/login", data, {headers:headers}).subscribe((data:any) => {
+      console.log(data.token)
+      if (data.status == 200) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('username', data.username);
+        this.router.navigate([''])
+      }
+      else {
+        alert("wrong credentials")
+      }
     })
 
     const token = localStorage.getItem('currentUser')

@@ -1,0 +1,56 @@
+<div class="container">
+    <div *ngFor="let discussion of discussions">
+        <section class="vh-100" style="background-color: #eee;">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-md-9 col-lg-7 col-xl-5">
+                  <div class="card" style="border-radius: 15px; background-color: #93e2bb;">
+                    <div class="card-body p-4 text-black">
+                      <div>
+                        <h6 class="mb-4">{{ discussion.title }}</h6>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                          <p class="small mb-0"><i class="far fa-clock me-2"></i>Created at {{ discussion.created_date_time | date:"M d, Y" }}</p>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center mb-4">
+                        <div class="flex-shrink-0">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp"
+                            alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
+                            style="width: 70px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <div class="d-flex flex-row align-items-center mb-2">
+                            <p class="mb-0 me-2">@{{ discussion.user_id }}</p>
+                            <ul class="mb-0 list-unstyled d-flex flex-row" style="color: #1B7B2C;">
+                              <li>
+                                <i class="fas fa-star fa-xs"></i>
+                              </li>
+                              <li>
+                                <i class="fas fa-star fa-xs"></i>
+                              </li>
+                              <li>
+                                <i class="fas fa-star fa-xs"></i>
+                              </li>
+                              <li>
+                                <i class="fas fa-star fa-xs"></i>
+                              </li>
+                              <li>
+                                <i class="fas fa-star fa-xs"></i>
+                              </li>
+                            </ul>
+                          </div>
+                          <div>
+                            <button type="button" class="btn btn-outline-dark btn-rounded btn-sm"
+                              data-mdb-ripple-color="dark">Visit</button>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+    </div>
+</div>

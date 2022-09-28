@@ -16,7 +16,6 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from rest_framework import generics
-from django.contrib.auth.hashers import make_password
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -31,45 +30,62 @@ def api(request):
     return Response(api_urls)
 
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def problemsList(request):
-
     problems = Problem.objects.all()
     serializer = ProblemSerializer(problems, many = True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def sortProblemsApi(request):
+    problems = Problem.objects.all().order_by("difficulty_level")
+    serializer = sortProblemSerializer(problems, many = True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def categoryApi(request, category):
     tag_id = Tag.objects.get(tag_name = category)
     problems = Problem.objects.filter(topictag__tag_id=tag_id)
+    tags = Tag.objects.filter(tag_id = tag_id.tag_id)
+    print(tags)
+    tagSerializer = TagSerializer(tags, many = True)
     serializer = categorySerializer(problems, many = True)
 
-    return Response(serializer.data)
+    return Response({"problem" : serializer.data, "tag" : tagSerializer.data})
 
 @api_view(['POST'])
 def loginApi(request):
     try:
         user = User.objects.get(username = request.data['username'])
-        print(request.data['password'], user.check_password(str(request.data['password'])))
-        if user.check_password(str(request.data['password'])):
-            token = Token.objects.all().first()
-            return Response({"status": 200, "token": token})
-        return Response({"status":403, "message": "invalid login credentials"})
+        if user.check_password(request.data['password']):
+            token_obj, _ = Token.objects.get_or_create(user = user)
+            return Response({"status":200, 'username': request.data['username'], 'token':str(token_obj), "message": "valid register found"})
+        return Response({"status":403})
     except:
-        return Response({"status":403, "message": "invalid login credentials"})
+        return Response({"status":403})
 
 @api_view(['POST'])
 def registerApi(request):
+    # try:
+    #     User.objects.get(username = request.data['username'])
+    #     return HttpResponse("username already exists")
+    # except:
+    #     pass
+    # try:
+    #     User.objects.get(email = request.data['email'])
+    #     return HttpResponse("email already exists")
+    # except:
+    #     pass
 
     serializer = registerSerializer(data = request.data)
     if not serializer.is_valid():
         return Response({"status":403, "errors": serializer.errors, "message": "invalid register found"})
-        
     serializer.save()
+    # user = User.objects.create(username = request.data['username'], email = request.data['email'])
+    # user.set_password(request.data['password1'])
+    # user.save()
     user = User.objects.get(username = serializer.data['username'])
     token_obj, _ = Token.objects.get_or_create(user = user)
-    return Response({"status":200, 'token':str(token_obj), "message": "invalid register found"})
+    return Response({'username': request.data['username'], "status":200, 'token':str(token_obj), "message": "valid register found"})
 
 @api_view(['GET'])
 def submissionsApi(request, problemName):
@@ -93,11 +109,13 @@ def discussionsApi(request, problemId):
 @api_view(['POST'])
 def editProfileApi(request, username):
     profile = User.objects.get(username = username).profile
-    serializer = profileSerializer(instance = profile, data = request.data)
+    serializer = editProfileSerializer(instance = profile, data = request.data)
     if serializer.is_valid():
         serializer.save()
+        return Response(serializer.data)
     print(request.data)
-    return Response(serializer.data)
+    print(serializer.errors)
+    return Response({"data":"invalid", "status": 403})
 
 @api_view(['GET'])
 def profilesApi(request):
@@ -114,9 +132,28 @@ def profileApi(request, username):
 @api_view(['GET'])
 def problemDetail(request, id):
     problem = Problem.objects.get(problem_id = id)
+    tagsList = list(TopicTag.objects.filter(problem_id = problem.problem_id).iterator())
+    tags = []
+    for tagIndex in tagsList:
+        tags.append(tagIndex.tag_id.tag_id)
     serializer = ProblemSerializer(problem, many = False)
-    return Response(serializer.data)
+    return Response({"problems": serializer.data, "tags": tags})
 
+@api_view(['GET', 'POST'])
+def votesApi(request, problemId, username):
+    creator_id = User.objects.get(username = username)
+    problem = Problem.objects.get(problem_id = problemId)
+    if (request.method == "GET"):
+        try:        
+            vote = None
+            vote = ProblemVotes.objects.get(problem_id = problem.problem_id, voter_id = creator_id)
+            vote.delete()
+        except:
+            vote = ProblemVotes.objects.create(problem_id = problem, voter_id = creator_id, vote = 'L')
+        votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
+        votesDislike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D'))
+        return Response({"like": votesLike, "dislike": votesDislike, "vote": vote.vote})
+            
 @api_view(['POST'])
 def postDiscussionApi(request, problemId, username):
     creator_id = User.objects.get(username = username)
@@ -144,12 +181,17 @@ def postQuestionApi(request, username):
     except:
         pass
     problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['problem_name'], description = request.data['description'], hints = request.data['hints'], test_cases = request.data['test_cases'])
-    tags = dict(request.data)["tags"]
-    print(tags, type(tags))
-    for tag in tags:
-        print(tag)
-        t = Tag.objects.get(tag_name = tag)
-        TopicTag.objects.create(problem_id = problem, tag_id = t)
+    serializer = postQuestionSerializer(instance = problem, data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors)
+    # tags = dict(request.data)["tags"]
+    # print(tags, type(tags))
+    # for tag in tags:
+        # print(tag)
+        # t = Tag.objects.get(tag_name = tag)
+        # TopicTag.objects.create(problem_id = problem, tag_id = t)
     return HttpResponse("question posted successfully")
 
 @api_view(['POST'])
@@ -171,7 +213,26 @@ def problems(request):
     problems = Problem.objects.all()
     return render(request, 'home/problems.html', {'problems':problems})
 
-
+@api_view(['POST'])
+def submitProblem(request):
+    print(request.data)
+    language = request.data.get('languages')
+    code = request.data.get('code')
+    stdin = request.data.get('stdin')
+    URL = "https://api.jdoodle.com/v1/execute"
+    CONTENT_TYPE = "application/json"
+    HEADERS = {'Content-Type':CONTENT_TYPE}
+    data = {
+        "clientId": "1e2bb0b54435a27dbbd3407ffd3de205",
+        "clientSecret": "ea7f4d76cb233af9a36c2dfa9ad3177f646659f66f2e5e30ed8dd4a42938faf0",
+        "script": code,
+        "language": language,
+        "stdin" : stdin,
+        "Content-Type" : "application.json"
+    }
+    response = requests.post(URL, headers = HEADERS, json = data)
+    print(response.json())
+    return Response(response.json())
 
 @login_required(login_url = 'login')
 def problem(request, problem):

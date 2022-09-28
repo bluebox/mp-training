@@ -1,0 +1,33 @@
+<div class="container">
+    <table id="dtBasicExample" class="table table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th class="th-sm">Problem
+      
+            </th>
+            <th  clickable class="th-sm">Difficulty
+      
+            </th>
+            <th class="th-sm">Accuracy
+      
+            </th>
+            <th class="th-sm">Tags
+      
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let problem of problems">
+            <td clickable>{{ problem.problem_name }}</td>
+            <td class="easy" *ngIf="problem.difficulty_level === 0">Easy</td>
+            <td class="medium" *ngIf="problem.difficulty_level === 1">Medium</td>
+            <td class="hard" *ngIf="problem.difficulty_level === 2">Hard</td>
+            <td>{{ problem.likes }}</td>
+            <td>
+                <ul class="tags">
+                    <li *ngFor="let tag of tags">{{ tag.tag_name }}</li>
+                </ul>
+            </td>
+          </tr>
+      </table>
+</div>

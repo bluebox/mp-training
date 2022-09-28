@@ -50,12 +50,18 @@ class Problem(models.Model):
     # likes = models.IntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
+    # difficulty_level_options = (
+    #     ('E', 'easy'), 
+    #     ('M', 'medium'),
+    #     ('H', 'hard'),
+    # )
     difficulty_level_options = (
-        ('E', 'easy'), 
-        ('M', 'medium'),
-        ('H', 'hard'),
+        (0, 'easy'), 
+        (1, 'medium'),
+        (2, 'hard'),
     )
-    difficulty_level = models.CharField(max_length=1, choices=difficulty_level_options, blank=False, default='E', null=False)
+    # difficulty_level = models.CharField(max_length=1, choices=difficulty_level_options, blank=False, default='E', null=False)
+    difficulty_level = models.IntegerField(choices=difficulty_level_options, blank=False, default=0, null=False)
 
     def __str__(self):
         return self.problem_name

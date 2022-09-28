@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  authToken!:any;
   registrationForm = this.fb.group(
     {
       username : ['', [Validators.required, Validators.minLength(6)]],
@@ -25,21 +24,15 @@ export class RegisterComponent implements OnInit {
     constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
 
   register() {
-    let postData = {
-      username: "sairam",
-      email: "sairamyadhav4@gmail.com",
-      password: "sairam"
-    }
-
-    // Access-Control-Allow-Headers: Content-Type
-    // Access-Control-Allow-Methods: GET, POST, OPTIONS
-    // Access-Control-Allow-Origin: *
 
     const headers = new HttpHeaders().set("Access-Control-Allow-Origin", '*')
 
-    this.http.post("http://127.0.0.1:8000/api/register/", postData, {headers:headers}).subscribe((data) => {
-      this.res = data;
-      // localStorage.setItem('currentUser', JSON.stringify({ token: this.res.token, name: postData.username }));
+    this.http.post("http://127.0.0.1:8000/api/register/", this.registrationForm.value, {headers:headers}).subscribe((data:any) => {
+      localStorage.setItem('token', data.token);
+      this.router.navigate([''])
+    },
+    (err) => {
+      console.log
     })
   }
 

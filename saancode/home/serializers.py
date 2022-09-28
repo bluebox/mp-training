@@ -24,17 +24,30 @@ class ProblemSerializer(serializers.ModelSerializer):
         model = Problem
         fields = "__all__"
 
+class sortProblemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Problem
+        fields = "__all__"
+
 class profileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = "__all__"
 
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ['tag_name']
+
+class editProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['full_name', 'gender', 'location', 'work', 'bio', 'education']
+
 class postQuestionSerializer(serializers.Serializer):
-    problem_name = serializers.CharField(max_length = 30, allow_blank = False, trim_whitespace = True)
-    description = serializers.CharField(max_length = 500, allow_blank = False)
-    hints = serializers.CharField(max_length = 50, allow_blank = False)
-    test_cases = serializers.CharField(max_length = 500, allow_blank = False)
-    tags = serializers.ListField(child=serializers.CharField(min_length=1, max_length=100), allow_empty = True)
+    class Meta:
+        model = Problem
+        fields = ['problem_name', 'description', 'hints', 'test_cases']
 
 class discussionsSerializer(serializers.ModelSerializer):
     class Meta:
