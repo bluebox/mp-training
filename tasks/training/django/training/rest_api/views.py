@@ -1,13 +1,10 @@
-from cmath import log
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
 from .serializers import AppointmentSerializer
 from .models import Appointment
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
-from rest_api import serializers
 
 # Create your views here.
 

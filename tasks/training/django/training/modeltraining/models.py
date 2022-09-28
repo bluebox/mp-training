@@ -12,7 +12,7 @@ class User(AbstractUser):
     # is_staff = models.BooleanField(default=False)
     mobile_number = models.CharField(max_length=12,default=0)
     age = models.IntegerField(null=True,blank=True)
-    addres = models.TextField(max_length=200)
+    address = models.TextField(max_length=200)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
