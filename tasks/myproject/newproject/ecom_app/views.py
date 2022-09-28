@@ -13,7 +13,7 @@ from django.contrib import messages
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from ecom_app.models import Customer
-from ecom_app.serializers import CustomerSerializer, Myserializer1, ProductListSerializer
+from ecom_app.serializers import CustomerSerializer, Myserializer1, ProductListSerializer, ProductSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
@@ -137,3 +137,29 @@ class Product_list(APIView):
         return Response(serializer.data)
 
 
+class Buyer_List(APIView):
+    def get(self,request):
+        queryset = Customer.objects.all()
+        serializer = CustomerSerializer(queryset, many=True)
+        print(serializer.data)
+        return Response(serializer.data)
+    def post(self, request):
+        serializer = CustomerSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        print(serializer.data)
+        return Response(serializer.data)
+
+
+class Productype(APIView):
+    def get(self,request):
+        queryset = Product_Type.objects.all()
+        serializer = ProductSerializer(queryset, many=True)
+        print(serializer.data)
+        return Response(serializer.data)
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        print(serializer.data)
+        return Response(serializer.data)

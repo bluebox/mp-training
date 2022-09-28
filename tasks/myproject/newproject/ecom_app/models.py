@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.hashers import make_password
 
 class employee(models.Model):
     emp_name = models.CharField(max_length=20)
@@ -24,6 +24,7 @@ class Customer(models.Model):
     def __str__(self):
         return self.uname
 
+
 class customer_details(models.Model):
     cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     contact = models.IntegerField(default=0)
@@ -37,6 +38,7 @@ class Order_list(models.Model):
 
 class Product_Type(models.Model):
     name = models.CharField(max_length=25)
+    image=models.ImageField(upload_to='image',default=None)
     def __str__(self):
         return self.name
 
@@ -50,16 +52,16 @@ class Products_Details(models.Model):
     def __str__(self):
         return self.name
 
-class Product_list(models.Model):
-    pro_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=25)
-    price = models.IntegerField()
-    stock = models.IntegerField()
-    product_type = models.CharField(max_length=25)
-    image = models.ImageField(blank=True, upload_to="image", height_field=None, width_field=None, max_length=100)
-
-    def __str__(self):
-        return self.name
+# class Product_list(models.Model):
+#     pro_id = models.AutoField(primary_key=True)
+#     name = models.CharField(max_length=25)
+#     price = models.IntegerField()
+#     stock = models.IntegerField()
+#     product_type = models.CharField(max_length=25)
+#     image = models.ImageField(blank=True, upload_to="image", height_field=None, width_field=None, max_length=100)
+#
+#     def __str__(self):
+#         return self.name
 class cust_cart_list(models.Model):
     order_id = models.ForeignKey(Order_list, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Products_Details, on_delete=models.CASCADE)
