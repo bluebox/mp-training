@@ -1,0 +1,38 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+.toolbar1{
+    background-color: rgb(37, 37, 37);
+    color : white
+
+}
+.toolbar2{
+    background-color: black;
+    color: white;
+    
+}
+.sp{
+   padding-left: 90%;
+}
+.sp1{
+    padding-left: 12%;
+}
+.sp1 a{
+    color: white;
+    text-decoration: none;
+}
+.sp1 a:hover{
+    color:#eb008b;
+}
+.sp a{
+    color: white;
+    text-decoration: none;
+}
+.sp a:hover{
+    color:#eb008b;
+}
