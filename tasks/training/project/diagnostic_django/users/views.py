@@ -10,6 +10,8 @@ from users.serializers import UserSerializer,CustomerSerializer ,EmployeeSeriali
 from .models import User , Customer 
 from appointment.models import Branch
 from appointment.serializers import BranchSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 # @api_view(['POST','PUT'])
@@ -86,3 +88,22 @@ class BranchHandler(APIView):
         serializer = BranchSerializer( branches,many=True)
         return Response(serializer.data, status=200)    
 
+@csrf_exempt 
+@api_view(['GET','POST'])
+def loginUser(request):
+    if request.method == 'POST':
+        username = request.data.get("username")
+        password = request.data.get('password')
+        try:
+            user = User.objects.get(username = username)
+        except:
+            return Response({'msg':"User Does not Exist"} ,status=400)
+
+        user = authenticate(request, username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return Response({'msg':"logged in"} ,status=200)
+        else:
+            return Response({'msg':"password incorrect"} ,status=400)
+
+    return Response({"msg":"not created"},status =200)
