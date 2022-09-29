@@ -1,0 +1,26 @@
+<div class="conatiner-fluid">
+    <h2 class="heading">Add Food</h2>
+    <div class="fields">
+        <form [formGroup]="foodForm" class="usersiginform" (ngSubmit)="onSubmit()">
+            <label for="res" class="items">Menu Id</label>
+            <select id='res' class="items" name='restaurant_id' formControlName="menu_id">
+                <option *ngFor="let item of menuList" [value]="item.menu_id">
+                    {{item.menu_id}}
+                  </option>  
+                
+
+            </select>
+            <br>
+            <label for="food" class="items">Food Id</label>
+            <select id='food' class="items" name='food_id' formControlName="food_id">
+                <option *ngFor="let item of food" [value]="item.food_id">
+                    {{item.food_id}}
+                  </option>  
+                  
+            </select>
+                    <br>
+            <button mat-raised-button class="items" color="primary" class="tag" type="submit" [disabled]="!foodForm.valid" >Register</button>        
+           <button mat-raised-button mat-dialog-close class="items">Close</button>
+        </form>
+    </div>
+</div>

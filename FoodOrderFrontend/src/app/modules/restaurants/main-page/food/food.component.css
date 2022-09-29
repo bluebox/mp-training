@@ -1,0 +1,117 @@
+.container
+{
+    margin-left: 0;
+    padding: 0;
+    width: 100vw;
+    /* height: 100vh; */
+    overflow-x: hidden;
+    
+}
+
+.food{
+    margin:2.5%;
+}
+
+.top{
+    background-image: url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png');
+}
+.card
+{
+    height: 15rem !important;
+    width: 13rem;
+    margin:2%;
+    min-width: auto;
+    transition: all .2s ease-in-out; 
+}
+
+.card:hover { transform: scale(1.09); }
+
+
+.top
+{
+    /* border: 2px solid black; */
+    height: 70vh;
+    width:100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10%;
+   
+}
+
+.written
+{
+    color: white;
+    margin: 2%;
+}
+.text
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.cards
+{
+    padding: 1%;
+    display: flex;
+   
+
+}
+.second
+{
+    /* border: 2px solid black; */
+
+    padding: 1%;
+    height: 70vh;
+    width:100vw;
+
+}
+.third
+{
+    /* border: 2px solid black; */
+
+    padding: 1%;
+    height: 70vh;
+    width:100vw;
+}
+
+
+.image
+{
+    height: 2rem !important;
+    width: 1rem !important;
+}
+.card-img, .card-img-bottom, .card-img-top {
+    width: 12.86rem;
+    height: 10rem;
+}
+
+
+.block
+{
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.heading
+{
+    
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        left: 0;
+      
+}
+@media (min-width: 768px) {
+.container, .container-md, .container-sm {
+    max-width: none;
+}
+}
+
+.search
+{
+    margin-right:3%;
+    width:100%;
+}

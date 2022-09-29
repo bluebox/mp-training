@@ -1,0 +1,16 @@
+<div class="menu block">
+    <button mat-raised-button (click)="newMenu()">New Menu</button>
+ 
+        <div class="cards menu-list">
+            <div class="card menu-avail" *ngFor="let m of menuItem">
+                    
+                   <div class="title"><button mat-raised-button (click)="menuList()"><h2>{{m.menu_type}}</h2></button></div>
+                    <div class="crud">
+                    <button mat-raised-button (click)="addFood()">Add Food</button>
+                    <button mat-raised-button color="warn">Delete</button>
+                    <button mat-raised-button color="accent">Edit</button>
+                    </div>
+            </div>
+        </div>
+   
+</div>

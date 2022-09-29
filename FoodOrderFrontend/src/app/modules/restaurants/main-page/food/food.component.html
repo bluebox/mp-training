@@ -1,0 +1,18 @@
+<div class="food block">
+   
+<button mat-raised-button color="accent" (click)="onClick()">Add Food</button>
+</div>
+
+<div class="second block">
+    <h2 class="heading">Food Added</h2>
+      <div class="cards">  
+        <div class="card"  *ngFor="let f of food">
+            <img class="image" src="{{f.food_photo}}" class="card-img-top" alt="{{f.food_name}}"/>
+            <div class="card-body">
+              <p>{{f.food_name}}</p>
+              <p class="card-text">{{f.food_desc}}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  

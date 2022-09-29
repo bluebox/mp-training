@@ -31,19 +31,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15%;
+    padding: 10%;
    
 }
 
 .written
 {
     color: white;
+    margin: 2%;
 }
 .text
 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
 }
 .cards
 {
@@ -101,5 +104,11 @@
 .container, .container-md, .container-sm {
     max-width: none;
 }
+}
+
+.search
+{
+    margin-right:3%;
+    width:100%;
 }
 

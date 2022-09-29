@@ -21,7 +21,7 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card'; 
 import { FoodService } from './services/food.service';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,8 @@ import { FoodService } from './services/food.service';
     MatSlideToggleModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
     
     
   ],

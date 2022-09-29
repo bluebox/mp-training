@@ -1,0 +1,32 @@
+.menu-list
+{
+    width:50vw;
+
+}
+.menu-avail
+{
+    margin:2%;
+    display:flex;
+}
+
+.crud
+{
+    margin:3%;
+}
+.card{
+    height: 30vh;
+    width: 30vw;
+    
+
+}
+
+.cards
+{
+    display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.title
+{
+    width: 100vw;
+}

@@ -15,12 +15,28 @@ import { AddFoodComponent } from './add-food/add-food.component';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
 import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import { MainPageComponent } from './main-page/main-page.component';
+import { MenuComponent } from './menu/menu.component';
+import { MenuListComponent } from './menu/menu-list/menu-list.component';
+import { AddFoodtoMenuComponent } from './menu/add-foodto-menu/add-foodto-menu.component';
+import { FoodComponent } from './main-page/food/food.component';
+import { MenublockComponent } from './main-page/menublock/menublock.component';
+
+
 @NgModule({
   declarations: [
     HomeComponent,
     SigninComponent,
     LoginComponent,
-    AddFoodComponent
+    AddFoodComponent,
+    MainPageComponent,
+    MenuComponent,
+    MenuListComponent,
+    AddFoodtoMenuComponent,
+    FoodComponent,
+    MenublockComponent
+ 
+  
   ],
   imports: [
     CommonModule,

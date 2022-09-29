@@ -51,8 +51,18 @@ class Customer(models.Model):
     customer_phn = models.CharField(max_length=20,unique=True)
     customer_email = models.CharField(max_length=40, validators=[validate_mail],unique=True)
 
+    USERNAME_FIELD='customer_email'
+    REQUIRED_FIELDS=[]
     def __str__(self):
         return self.customer_name
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    @property
+    def is_authenticated(self):
+        return True
 
 
 class Employee(models.Model):
@@ -70,8 +80,9 @@ class Employee(models.Model):
 
 class Food(models.Model):
     food_id = models.CharField(max_length=10, primary_key=True)
+    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
     food_name = models.CharField(max_length=30)
-    food_price = models.DecimalField(max_digits=5, decimal_places=2)
+    food_price = models.DecimalField(max_digits=5, decimal_places=2,null=True)
     food_desc = models.CharField(max_length=100)
     food_photo = models.TextField(max_length=500,null=True)
     is_available = models.BooleanField(default=False)
@@ -84,11 +95,16 @@ class Menu(models.Model):
     menu_id = models.CharField(max_length=10, primary_key=True)
     menu_type=models.CharField(max_length=30)
     restaurant_id=models.ForeignKey(Restaurant,on_delete=models.SET_NULL,null=True)
-    food_id=models.ForeignKey(Food,on_delete=models.SET_NULL,null=True)
+
     is_available=models.BooleanField(default=False)
 
     def __str__(self):
-        return self.food_id
+        return self.menu_id
+
+
+class MenuList(models.Model):
+    menu_id = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
+    food_id = models.ForeignKey(Food, on_delete=models.SET_NULL, null=True)
 
 
 class OrderFood(models.Model):
@@ -118,9 +134,9 @@ class Payment(models.Model):
 class OrderDetails(models.Model):
     order_id = models.CharField(max_length=10, primary_key=True)
     order_food_id=models.ForeignKey(OrderFood, on_delete=models.SET_NULL, null=True)
-    # customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    # restaurant_id = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
-    # emp_id = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
+    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
+    emp_id = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
     transaction_id=models.ForeignKey(Payment, on_delete=models.SET_NULL, null=True)
     order_status=models.CharField(max_length=50)
     order_time=models.DateTimeField(auto_now_add=True)

@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Food } from '../interfaces/food';
 import { Restaurant } from '../interfaces/restaurant';
+import { Search } from '../interfaces/searchResult';
 import { FoodService } from '../services/food.service';
 import { RestaurantService } from '../services/restaurant.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-index',
@@ -14,11 +17,13 @@ export class IndexComponent implements OnInit {
   
 
  
-
+  public search:string="";
   public food:Food[]=[];
+
   public restaurant:Restaurant[]=[];
+  public searchResult:Search[]=[];
   
-  constructor(private foodEle:FoodService,private res:RestaurantService) { 
+  constructor(private foodEle:FoodService,private res:RestaurantService, private fsearch:SearchService, private router:Router) { 
     
   }
 
@@ -54,4 +59,14 @@ export class IndexComponent implements OnInit {
 
   resClicked(r:Restaurant){}
 
+
+  searchFood=(item:string)=>
+  {
+    this.fsearch.getSearch(item).subscribe(data=>{
+      console.log(data);this.restaurant=data})
+
+    this.router.navigate(['/customer/searchresult',item])
+
+    
+  }
 }

@@ -11,6 +11,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import { IndexComponent } from './index/index.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 
@@ -18,7 +20,9 @@ import {MatMenuModule} from '@angular/material/menu';
   declarations: [
     HomeComponent,
     LoginComponent,
-    SigninComponent
+    SigninComponent,
+    IndexComponent,
+    SearchResultComponent
   ],
   imports: [
     CommonModule,

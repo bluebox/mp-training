@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { FoodService } from 'src/app/services/food.service';
 
 @Component({
   selector: 'app-add-food',
@@ -8,8 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AddFoodComponent implements OnInit {
 
-  checked = false;
-  constructor(private fb:FormBuilder) { }
+  checked = false
+  constructor(private fb:FormBuilder, private food:FoodService) { }
 
   ngOnInit(): void {
   }
@@ -18,11 +19,12 @@ export class AddFoodComponent implements OnInit {
   foodForm=this.fb.group(
     {
     food_id:['', Validators.required],
+    restaurant_id :['', Validators.required],
     food_name:['', Validators.required],
     food_price :['', Validators.required],
     food_desc :['', Validators.required],
     food_photo :['', Validators.required],
-    is_available :[''],
+    is_available :[false],
     }
   );
 
@@ -30,14 +32,19 @@ export class AddFoodComponent implements OnInit {
   
   onSubmit(){
     console.log(this.foodForm.value)
-    {
-      if (this.foodForm.valid) {
-        console.log('form submitted');
-      } else {
-        console.log(' notttt form submitted');
-      }
-      
-      this.foodForm.reset()
+    
+    if (this.foodForm.valid) {
+      this.food.postFood(this.foodForm.value).subscribe((data)=>{
+        console.log(data)
+      })
+      console.log('form submitted');
+      console.log(this.foodForm.value)
+    } else {
+      console.log('notttt form submitted');
     }
+    
+    this.foodForm.reset()
   }
-}
+    
+  }
+

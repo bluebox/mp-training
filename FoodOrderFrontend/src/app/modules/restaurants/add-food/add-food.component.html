@@ -27,7 +27,10 @@
             <mat-label>Price</mat-label>
             <input matInput placeholder="" available type="text" formControlName="food_price">
             </mat-form-field></p>
-     
+            <mat-form-field appearance="outline" class="tag">
+                <mat-label>Restaurant Id</mat-label>
+                <input matInput placeholder="" formControlName="restaurant_id">
+                </mat-form-field> 
  
             <section class="example-section" class="tag check">
                <input type="checkbox" id="available" name="available" value="true" formControlName="is_available" > &nbsp;
@@ -37,6 +40,7 @@
    
               
             <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!foodForm.valid" >Register</button>        
+           <button mat-raised-button mat-dialog-close>Close</button>
         </form>
     </div>
 </div>

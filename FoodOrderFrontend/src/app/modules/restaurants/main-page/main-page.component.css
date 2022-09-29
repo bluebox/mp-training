@@ -1,0 +1,32 @@
+.main
+{
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 100%;
+}
+
+.block
+{
+    height: 100%;
+    width: 50vw;
+    border:2px solid black;
+    padding: 3%;
+}
+.example-spacer {
+    flex: 1 5;
+  }
+.card
+{
+    margin:3%;
+    padding:2%
+}
+
+.b1
+{
+    margin:2%
+}
+.top
+{
+    display: flex;
+    justify-content: space-between;
+}
