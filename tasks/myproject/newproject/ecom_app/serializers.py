@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from ecom_app.models import Customer, employee, Products_Details, Product_Type
+from ecom_app.models import  Products_Details, Product_Type
 from django.contrib.auth.hashers import make_password
-
+from django.contrib.auth.models import User
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Customer
+        model = User
         fields = "__all__"
         # extra_kwargs = {
         #     'password': {'Write-only': True}
@@ -16,7 +16,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         #     instance.set_password(password)
         # instance.save()
         # return instance
-        return Customer.objects.create(**validated_data)
+        return User.objects.create(**validated_data)
 
 
 # class CustomerSerializer(serializers.ModelSerializer):
@@ -41,10 +41,10 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class Myserializer1(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model =employee
-        fields = '__all__'
+# class Myserializer1(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model =employee
+#         fields = '__all__'
 
 
 

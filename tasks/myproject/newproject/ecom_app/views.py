@@ -2,6 +2,7 @@ from itertools import count
 
 from django.http.response import JsonResponse
 from django.shortcuts import render, redirect
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 
 from .models import *
@@ -12,8 +13,8 @@ from django.contrib.auth import authenticate
 from django.contrib import messages
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
-from ecom_app.models import Customer
-from ecom_app.serializers import CustomerSerializer, Myserializer1, ProductListSerializer, ProductSerializer
+# from ecom_app.models import Customer
+from ecom_app.serializers import CustomerSerializer, ProductListSerializer, ProductSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
@@ -34,8 +35,8 @@ def login1(request):
     if request.method == "POST":
         x = request.POST['name']
         y = request.POST['password']
-        if Customer.objects.filter(f_name=x).exists():
-            if Customer.objects.get(f_name=x).password == y:
+        if User.objects.filter(f_name=x).exists():
+            if User.objects.get(f_name=x).password == y:
                 return render(request, 'home.html')
             else:
                 return HttpResponse("no output")
@@ -64,16 +65,16 @@ def signup(request):
         # img = request.POST['img']
         if password == conf_pass:
             if a == "buyer":
-                if Customer.objects.filter(uname=uname).exists():
-                    if Customer.objects.filter(mail=mail).exists():
+                if User.objects.filter(uname=uname).exists():
+                    if User.objects.filter(mail=mail).exists():
                         messages.info(request, 'username or mail already exists')
                         return redirect('signup')
                 else:
-                    if Customer.objects.filter(mail=mail).exists():
+                    if User.objects.filter(mail=mail).exists():
                         messages.info(request, 'username or mail already exists')
                         return redirect('signup')
                     else:
-                        x = Customer.objects.create(uname=uname, f_name=f_name, l_name=l_name, mail=mail,
+                        x = User.objects.create(uname=uname, f_name=f_name, l_name=l_name, mail=mail,
                                                     password=password)
                         x.save()
                         return render(request, 'home.html')
@@ -96,10 +97,10 @@ def customer_list(request, pk=None):
     """
     if request.method == 'GET':
         print(pk)
-        cust = Customer.objects.filter(cust_id=2)
+        cust = User.objects.filter(cust_id=2)
         print("customer id is: ", cust)
-        serializer = CustomerSerializer(cust,many=True)
-        return  Response(serializer.data)
+        serializer = CustomerSerializer(cust, many=True)
+        return Response(serializer.data)
 
     elif request.method == 'POST':
         print(request)
@@ -113,14 +114,14 @@ def customer_list(request, pk=None):
 
 
 class Customer1(ModelViewSet):
-    x = Customer.objects.all()
+    x = User.objects.all()
     queryset = x
     serializer_class = CustomerSerializer
 
 
-class employeeViewModelset1(ModelViewSet):
-    queryset = employee.objects.all()
-    serializer_class = Myserializer1
+# class employeeViewModelset1(ModelViewSet):
+#     queryset = employee.objects.all()
+#     serializer_class = Myserializer1
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     # def highlight(self, request, *args, **kwargs):
@@ -130,19 +131,22 @@ class employeeViewModelset1(ModelViewSet):
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user)
 
+
 class Product_list(APIView):
-    def get(self,request):
+    def get(self, request):
         queryset = Products_Details.objects.all()
         serializer = ProductListSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
+# user signup
 class Buyer_List(APIView):
-    def get(self,request):
-        queryset = Customer.objects.all()
+    def get(self, request):
+        queryset = User.objects.all()
         serializer = CustomerSerializer(queryset, many=True)
         print(serializer.data)
         return Response(serializer.data)
+
     def post(self, request):
         serializer = CustomerSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -151,12 +155,29 @@ class Buyer_List(APIView):
         return Response(serializer.data)
 
 
+# user login
+class UserLogin(APIView):
+    def post(self, request):
+        uname = request.data['uname']
+        mail = request.dat['mail']
+        password = request.data['password']
+        user = User.objects.filter(uname=uname).first()
+
+        print(user, user.id)
+        serializer = CustomerSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        print(serializer.data)
+        return Response(serializer.data)
+
+
 class Productype(APIView):
-    def get(self,request):
+    def get(self, request):
         queryset = Product_Type.objects.all()
         serializer = ProductSerializer(queryset, many=True)
         print(serializer.data)
         return Response(serializer.data)
+
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

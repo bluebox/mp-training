@@ -13,13 +13,12 @@ urlpatterns=[
     # path("login1/", login1, name='login1'),
     # path("", signup, name="signup")
     path("home/<int:pk>/", customer_list, name="customer_list"),
-
     path("home/", customer_list, name="customer_list"),
     path('modelview/', include(router.urls)),
     # path('modelview1/', include(router1.urls)),
     path('products/', Product_list.as_view(), name="products_list"),
     path('product_type/', Productype.as_view(), name="products_list"),
-
+    path('user_login/', UserLogin.as_view(), name="user_login"),
     path('buyers/', Buyer_List.as_view(), name="products_list"),
     path('auth/', include('rest_framework.urls', namespace='session_auth')),
 ]

@@ -1,39 +1,43 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
-
-class employee(models.Model):
-    emp_name = models.CharField(max_length=20)
-    emp_age = models.IntegerField(default=0)
-    emp_number = models.IntegerField(default=000000)
-    emp_address = models.CharField(max_length=200)
-
-    def __str__(self) -> str:
-        return self.emp_name
+from django.contrib.auth.models import User
+# class employee(models.Model):
+#     emp_name = models.CharField(max_length=20)
+#     emp_age = models.IntegerField(default=0)
+#     emp_number = models.IntegerField(default=000000)
+#     emp_address = models.CharField(max_length=200)
+#
+#     def __str__(self) -> str:
+#         return self.emp_name
 
 
 # Create your models here.
 
-class Customer(models.Model):
-    cust_id = models.AutoField(primary_key=True)
-    uname = models.CharField(max_length=20)
-    f_name = models.CharField(max_length=25)
-    l_name = models.CharField(max_length=25)
-    mail = models.CharField(max_length=30)
-    password = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.uname
+# class Customer(models.Model):
+#     cust_id = models.AutoField(primary_key=True)
+#     uname = models.CharField(max_length=20)
+#     f_name = models.CharField(max_length=25)
+#     l_name = models.CharField(max_length=25)
+#     mail = models.CharField(max_length=30)
+#     password = models.CharField(max_length=10)
+#
+#     def __str__(self):
+#         return self.uname
 
 
 class customer_details(models.Model):
-    cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    cust_id = models.ForeignKey(User, on_delete=models.CASCADE)
     contact = models.IntegerField(default=0)
     address = models.CharField(max_length=100)
     pin = models.IntegerField(default=0)
 
 class Order_list(models.Model):
     ord1_id = models.AutoField(blank=True, primary_key=True)
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+
+
 
 
 class Product_Type(models.Model):
@@ -51,6 +55,13 @@ class Products_Details(models.Model):
 
     def __str__(self):
         return self.name
+class cart_details(models.Model):
+    customer_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Products_Details, on_delete=models.CASCADE)
+
+
+
+
 
 # class Product_list(models.Model):
 #     pro_id = models.AutoField(primary_key=True)
@@ -70,7 +81,7 @@ class cust_cart_list(models.Model):
 class return_list(models.Model):
     order_id = models.ForeignKey(Order_list, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Products_Details, on_delete=models.CASCADE)
-    cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    cust_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Employees(models.Model):
@@ -104,7 +115,7 @@ class delivery_person(models.Model):
 
 
 class Cust_delivered_items(models.Model):
-    cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    cust_id = models.ForeignKey(User, on_delete=models.CASCADE)
     order_id = models.ForeignKey(Order_list, on_delete=models.CASCADE)
 
 
