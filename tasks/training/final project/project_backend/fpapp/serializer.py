@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from fpapp.models import User, Student, Teacher
+from fpapp.models import Subject, User, Student, Teacher
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,3 +19,8 @@ class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = '__all__'
+
+class SubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subject
+        fields ='__all__'
