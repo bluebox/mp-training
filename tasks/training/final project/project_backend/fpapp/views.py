@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
-from fpapp.models import User,Student, Teacher
-from fpapp.serializer import UserSerializer, StudentSerializer, TeacherSerializer
+from fpapp import serializer
+from fpapp.models import Subject, User,Student, Teacher
+from fpapp.serializer import SubjectSerializer, UserSerializer, StudentSerializer, TeacherSerializer
 from rest_framework.views import APIView
 
 # Create your views here.
@@ -51,3 +52,18 @@ class RegisterTeacher(APIView):
             print('invalid')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
 
+
+class SubjectList(APIView):
+    def get(self,rquest):
+        sub =Subject.objects.all()
+        serializer=SubjectSerializer(sub,many= True)
+        return Response(serializer.data)
+
+class SubjectCreate(APIView):
+    def post(self,request):
+        serializer =SubjectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return serializer.data
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
