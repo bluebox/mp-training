@@ -11,5 +11,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  resp : any = window.sessionStorage.getItem('owner_id')
+  data = JSON.parse(this.resp)
 }

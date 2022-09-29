@@ -1,6 +1,6 @@
+<app-o-navbar></app-o-navbar>
 <div class="main">
-  <form [formGroup]="vehicle" (submit)="add_vehicle()">
-
+  <form [formGroup]="vehicle" (submit)="addVehicle()">
     <div class="sign"><br><br><br>
       <h2>Enter your Vehicle details</h2>
         <div class="input">
@@ -20,24 +20,23 @@
             <input id="in" type="text" name="model" placeholder="model" formControlName="model">
           </div><br>
           <div>
-            Upload Vehicle image:<input id="in" type="file" name="image" placeholder="Upload Vehicle picture" formControlName="image">
+            Upload Vehicle image:<input id="in" type="file" (change) = "getImageUrl($event)" name="image" formControlName="image">
           </div><br>
-          <div>
+          <!-- <div>
             <input id="in" type="text" name="owner_id" placeholder="Enter your ID" formControlName="owner_id">
-          </div><br>
+          </div><br> -->
           <div>
             <input id="in" type="text" name="price_km" placeholder="Price/km" formControlName="price_km" z>
           </div><br>
           <div>
-            <input id="in" type="text" name="price_hour" placeholder="Price/hour" formControlName="price_km">
+            <input id="in" type="text" name="price_hour" placeholder="Price/hour" formControlName="price_hour">
           </div><br>
           <div>
             <input id="in" type="text" name="price_day" placeholder="Price/day" formControlName="price_day">
           </div><br>
           <input type="submit" value="Submit">
         </div><br>
-
-
+        <img src="{{imageUrl}}" alt="" width="200" height="200">
     </div>
   </form>
 </div>

@@ -16,6 +16,9 @@ class Customer(models.Model) :
     address = models.CharField(max_length=200)
     password= models.CharField(max_length=50, default=0)
 
+    # USERNAME_FIELD = 'email'
+    # REQUIRED_FIELDS = []
+
     def __str__(self):
         return self.name
 
@@ -27,6 +30,9 @@ class Owner(models.Model):
     address = models.CharField(max_length=200)
     password= models.CharField(max_length=50, default=0)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
 
     def __str__(self):
         return self.name
@@ -36,14 +42,14 @@ class Vehicle(models.Model):
     type = models.CharField(max_length=50)
     brand = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='static/images')
+    image = models.TextField()
     owner_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
     price_km = models.FloatField()
     price_hour = models.FloatField()
     price_day = models.FloatField()
 
     def __str__(self):
-        return self.vehicle_no
+        return (self.vehicle_no)
 
 class Vehicle_status(models.Model):
     sl_no = models.AutoField(primary_key=True)

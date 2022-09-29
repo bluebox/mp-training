@@ -32,7 +32,8 @@ export class CustomerregisterComponent implements OnInit {
     let userObj = this.customer_group.value
     if(userObj.password == userObj.password2){
       delete userObj.password2
-      this.service.register_customer(userObj).subscribe(data=> console.log(data))
+      this.service.registerCustomer(userObj).subscribe(data=> console.log(data))
+      alert("Registration Successfull")
       this.route.navigate(['customerlogin'])
 
     }

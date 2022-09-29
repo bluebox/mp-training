@@ -1,13 +1,13 @@
 <div class="main">
   <div class="sign">
-    <form action="" method="">
+    <form [formGroup]="login">
       <h2>Customer Sign In</h2>
       <div class="input">
-        <input id="in" type="text" name="email" placeholder="email">
-                <br><br>
-        <input id="in" type="text" name="password" placeholder="password"> <br><br><br>
-        <button type="submit" class="btn">Login</button>
-
+        <input id="in" type="text" name="email" placeholder="email" formControlName="email">
+          <br><br>
+        <input id="in" type="text" name="password" placeholder="password" formControlName="password"> <br><br><br>
+        <button type="submit" class="btn" (click)="customerLogin()">Login</button>
+        <p>{{msg}}</p>
         <div class="check">
           <div class="new">
             <h4>New User?</h4>

@@ -29,7 +29,8 @@ register_owner(){
   let userObj = this.owner_group.value
   if(userObj.password == userObj.password2){
     delete userObj.password2
-    this.service.register_owner(userObj).subscribe(data=> console.log(data))
+    this.service.registerOwner(userObj).subscribe(data=> console.log(data))
+    alert("Registration Successfull")
     this.route.navigate(['ownerlogin'])
 
   }

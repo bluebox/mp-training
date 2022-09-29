@@ -34,10 +34,15 @@ urlpatterns = [
     path('bill/<int:pk>', views.BillList.as_view()),
     path('trip/', views.Rent_TripList.as_view()),
     path('trip/<int:pk>/', views.Rent_TripDetail.as_view()),
+    path('customer-login/', views.c_login),
+    path('owner-login', views.o_login),
 
+    path('owner-vehicle', views.GetOwnerVehicles.as_view()),
+    path('delete-vehicle/<str:numid>', views.DeleteVehicle.as_view()),
     path('save-file/', views.save_file, name='SaveFile')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
     # path()
 

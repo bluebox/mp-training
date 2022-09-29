@@ -18,6 +18,9 @@ import { PreviousvehiclesComponent } from './component/owner/previousvehicles/pr
 import { AvailableVehicleComponent } from './component/customer/available-vehicle/available-vehicle.component';
 import { OrderHistoryComponent } from './component/customer/order-history/order-history.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
+import { CustomerProfileComponent } from './component/customer/customer-profile/customer-profile.component';
+import { NavbarComponent } from './component/customer/navbar/navbar.component';
+import { ONavbarComponent } from './component/owner/o-navbar/o-navbar.component';
 
 
 @NgModule({
@@ -34,6 +37,9 @@ import { HomepageComponent } from './component/homepage/homepage.component';
     AvailableVehicleComponent,
     OrderHistoryComponent,
     HomepageComponent,
+    CustomerProfileComponent,
+    NavbarComponent,
+    ONavbarComponent,
   ],
   imports: [
     BrowserModule,

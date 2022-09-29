@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+cloudinary.config(
+  cloud_name = "dpmxe5vcu",
+  api_key = "955253928593556",
+  api_secret = "V1PZRTWZEuQ0sCFFzMhZ7QCF630"
+)
 
 # Application definition
 
@@ -39,7 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rentalapp.apps.RentalappConfig",
     "rest_framework",
-    "corsheaders"
+    "corsheaders",
+    'cloudinary'
 ]
 
 MIDDLEWARE = [

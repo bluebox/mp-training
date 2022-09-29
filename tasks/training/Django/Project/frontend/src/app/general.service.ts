@@ -14,17 +14,45 @@ export class GeneralService {
 
   constructor(private http: HttpClient) { }
 
-  register_owner(data : any){
+  ownerLogin(data: any)
+  {
+    return this.http.post(baseUrl + 'owner-login', data)
+  }
+  registerOwner(data : any){
     return this.http.post(baseUrl + 'owner/',data)
   }
-  register_customer(data : any){
+  updateOwnerProfile(id : any ){
+    return this.http.get(baseUrl + 'customer/' + id)
+  }
+
+
+
+  customerLogin(data: any)
+  {
+    return this.http.post(baseUrl + 'customer-login/', data)
+  }
+
+  registerCustomer(data : any){
     return this.http.post(baseUrl + 'customer/',data)
   }
-  add_vehicle(data : any){
+  updateCustomerProfile(id : any ){
+    return this.http.get(baseUrl + 'customer/' + id)
+  }
+
+
+
+
+  addVehicle(data : any){
     return this.http.post(baseUrl + 'vehicle/', data)
   }
-  get_vehicle(){
+  getVehicle(){
     return this.http.get(baseUrl + 'vehicle/')
+  }
+  getOwnerVehicle(data : any){
+    return this.http.get(baseUrl + 'owner-vehicle?owner_id=' + data)
+  }
+  deleteVehicle(id : any ){
+    return this.http.delete(baseUrl + 'delete-vehicle/' + id )
   }
 }
 

@@ -1,0 +1,11 @@
+.container{
+  background-color: rgb(247, 242, 231);
+
+  margin: 5px;
+  width: 350px;
+}
+.main{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
+}
+

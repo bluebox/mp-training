@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { GeneralService } from 'src/app/general.service';
 @Component({
   selector: 'app-available-vehicle',
@@ -7,16 +9,25 @@ import { GeneralService } from 'src/app/general.service';
 })
 export class AvailableVehicleComponent implements OnInit {
 
-  vehicle_list:any=[]
-  constructor(private service:GeneralService) { }
+  // vehicle_list:any=[]
+  vehicle_obj : Subscription=Subscription.EMPTY
+  response: any
+
+  constructor(private service:GeneralService, http : HttpClient) { }
 
   ngOnInit(): void {
     this.show_vehicles()
   }
 
   show_vehicles(){
-    this.service.get_vehicle().subscribe(data=>{
-      this.vehicle_list=data
-    })
+    this.vehicle_obj=this.service.getVehicle().subscribe(data=>{(this.response=data);
+    console.log(data)}
+)
   }
+
+  // show_vehicles(){
+  //   this.vehicle_obj=this.service.get_vehicle().subscribe(data=>{(window.sessionStorage.setItem('vehicle_no',JSON.stringify(data)));
+  //   console.log(data)}
+  //   )
+  // }
 }

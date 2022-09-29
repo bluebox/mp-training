@@ -1,6 +1,8 @@
+import json
 from email.mime import image
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from rest_framework.views import View
 from django.contrib import messages
 from rest_framework import status, viewsets
 from rest_framework.response import Response
@@ -9,8 +11,11 @@ from django.core.files.storage import default_storage
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from .models import Customer, Owner, Vehicle, Vehicle_status, Bill, Rent_Trip
+from cloudinary import uploader
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.exceptions import AuthenticationFailed
 from . import serializer
+import jwt, datetime
 from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer, VehicleStatusSerializer, BillSerializer, Rent_TripSerializer
 
 #
@@ -183,6 +188,7 @@ class VehicleList(APIView):
     def post(self, request, format=None):
         serializer = VehicleSerializer(data = request.data)
         if serializer.is_valid():
+            print(request.data)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -210,7 +216,7 @@ class VehicleDetail(APIView):
     def delete(self, request, pk, format=None):
         vehicle = self.get_object(pk=pk)
         vehicle.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"message":"success"},safe=False,status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -308,10 +314,84 @@ class BillDetail(APIView):
         serializer = Rent_TripSerializer(bill)
         return Response(serializer.data)
 
+# class OwnerLOginView(APIView):
+#     def post(self, request):
+#         email = request.data['email']
+#         password = request.data['password']
+#
+#         customer = Customer.objects.filter(email=email)
+#
+#         if customer is None:
+#             raise AuthenticationFailed('Email not found')
+#
+#         if not customer.check_password(password):
+#             raise AuthenticationFailed('Password did not match')
+#
+#         payload ={
+#             'id': customer.customer_id,
+#             'exp': datetime.datetime.utcnow()
+#         }
+
+
+def c_login(request):
+        data = json.loads(request.body.decode('utf-8'))
+        email = data['email']
+        password = data['password']
+        print(password)
+        customer = Customer.objects.get(email=email)
+
+        serializer= CustomerSerializer(customer)
+        if customer is None:
+            return JsonResponse({'mes': 'enter valid email'})
+
+        elif customer.password == password :
+            return JsonResponse(serializer.data)
+
+        else:
+            return JsonResponse({'mes': 'invalid password'})
+
+
+
+def o_login(request):
+    data = json.loads(request.body.decode('utf-8'))
+    email = data['email']
+    password = data['password']
+    print(password)
+
+    owner = Owner.objects.get(email=email)
+
+    serializer= OwnerSerializer(owner)
+    if owner is None:
+        return JsonResponse({'mes': 'enter valid email'})
+
+    elif owner.password == password:
+        return JsonResponse(serializer.data)
+
+    else:
+        return JsonResponse({'mes': 'invalid password'})
+
+
+class GetOwnerVehicles(APIView):
+    def get(self, request):
+        print(request)
+        owner_vehicle = Vehicle.objects.filter(owner_id = int(request.GET.get('owner_id')))
+        serializer = VehicleSerializer(owner_vehicle,many=True)
+        return Response(serializer.data)
+        # return Response(serializer.errors)
+
+class DeleteVehicle(View):
+    def delete(self, request,numid):
+        vehicle = Vehicle.objects.get(vehicle_no= numid)
+        vehicle.delete()
+        return  JsonResponse({"message":"success"},safe=False)
+        # serializer = VehicleSerializer(vehicle)
+
+
+
 @csrf_exempt
 @api_view(['POST'])
 def save_file(request):
-    file = request.FILES["img"]
-    file_name = default_storage.save(file.name,file)
-
-    return JsonResponse(file_name,safe=False)
+    # file = request.FILES["img"]
+    url = uploader.upload(request.FILES['img'])
+    # file_name = default_storage.save(file.name,file)
+    return JsonResponse({'url': url['secure_url']},safe=False)

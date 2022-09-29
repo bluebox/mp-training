@@ -1,1 +1,21 @@
-<p>previousvehicles works!</p>
+<app-o-navbar></app-o-navbar>
+<div class="album py-5 bg-light main">
+  <div class="container" *ngFor="let vehicle of resp">
+    <div class="col-md-4">
+      <img src="{{vehicle.image}}" width="250" height="200" alt="ldasjvb">
+    </div>
+    <h4>{{vehicle.brand}}</h4>
+    <p class="card-text">
+      {{vehicle.model}}
+    </p>
+    <p>
+      starting from Rs {{vehicle.price_km}} /km
+    </p>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteVehicle(vehicle.vehicle_no)">Delete</button>
+      </div>
+    </div>
+  </div>
