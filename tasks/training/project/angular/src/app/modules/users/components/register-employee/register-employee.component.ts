@@ -45,11 +45,6 @@ export class RegisterEmployeeComponent implements OnInit {
     this.http.getBranches().subscribe(data => {
       this.branches = data
       console.log(this.branches);
-      for (let branch = 0; branch < this.branches.length; branch++) {
-        this.branchIdList.push(this.branches[branch]['branch_id'])
-        // console.log(this.branchIdList);
-      
-      }
     })
 
   }

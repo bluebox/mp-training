@@ -69,9 +69,9 @@ class RegisterEmployee(APIView):
             print(employee_obj)
             if employee_obj.is_valid():
                 employee_obj.save()
+                return Response({'message':"registered"},employee_obj.data,status=200)
             else:
-                return Response(employee_obj.errors, status=status.HTTP_400_BAD_REQUEST)   
-            return Response(employee_obj.data,status=200)
+                return Response( {'message':"not valid"},employee_obj.errors, status=status.HTTP_400_BAD_REQUEST)   
         else:
             print('invalid')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    

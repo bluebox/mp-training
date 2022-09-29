@@ -1,0 +1,16 @@
+.full-width {
+    width: 50%;
+}
+
+.top-padding {
+    padding-top: 3px;
+}
+
+.form-container {
+    margin-left: 30%;
+}
+
+.field {
+    background-color: aqua;
+    width: 200px;
+}

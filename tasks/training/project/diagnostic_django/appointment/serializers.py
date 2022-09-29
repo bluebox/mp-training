@@ -2,11 +2,6 @@ from rest_framework import serializers
 from  . import models
 
 
-class BranchSerializer(serializers.ModelSerializer):
-    class Meta:
-        model  = models.Branch
-        fields = "__all__"
-
 
 class LabSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,7 +29,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model  = models.Appointment
-        fields = ['branch','slot','test','doctor_id','nurse_id','lab_technician','sample_collector','status']
+        fields = ['user','branch','slot','doctor_id','nurse_id','lab_technician','sample_collector','status']
 
 
 class BillSerializer(serializers.ModelSerializer):

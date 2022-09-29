@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import Customer
+from users.models import Customer , Staff
 
 # Create your models here.
 
@@ -61,20 +61,20 @@ class Appointment(models.Model):
         ('pending', 'pending'),
 
     )
-    appointment_id = models.IntegerField(models.AutoField, primary_key=True)
-    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    branch = models.ForeignKey(Branch , on_delete = models.CASCADE)
+    appointment_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True,blank=True )
+    branch = models.ForeignKey(Branch , on_delete = models.CASCADE, null=True,blank=True )
     date = models.DateTimeField(auto_now_add=True)
     slot = models.CharField(choices=slots, max_length=100)
-    test = models.ManyToManyField(Test, blank=True)
-    doctor_id = models.CharField(max_length = 10, null=True,blank=True)
-    nurse_id = models.CharField(max_length= 10, null=True,blank=True)
-    lab_technician = models.CharField(max_length = 10, null=True,blank=True)
-    sample_collector = models.CharField(max_length=10, null=True,blank=True)
+    # test = models.ManyToManyField(Test, blank=True , null = True)
+    doctor_id = models.ForeignKey(Staff,on_delete = models.SET_NULL, null=True,blank=True , related_name = 'doctor')
+    nurse_id = models.ForeignKey(Staff,on_delete = models.SET_NULL, null=True,blank=True, related_name = 'nurse')
+    lab_technician = models.ForeignKey(Staff,on_delete = models.SET_NULL, null=True,blank=True, related_name = 'lab_technician')
+    sample_collector = models.ForeignKey(Staff,on_delete = models.SET_NULL, null=True,blank=True, related_name = 'sample_collector')
     status = models.CharField(choices = STATUS , default = 'pending',max_length=100 )
 
     def __str__(self):
-        return self.appointment_id
+        return str(self.appointment_id)
 
 
 class Bill(models.Model):
