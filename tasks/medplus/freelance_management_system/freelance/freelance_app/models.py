@@ -1,4 +1,9 @@
+import datetime
 
+from dateutil.relativedelta import relativedelta
+
+date = datetime.datetime.today()
+dateupdated = date + relativedelta(months=1)
 from django.db import models
 
 class freelancer_details(models.Model):
@@ -24,17 +29,12 @@ class client_details(models.Model):
 
 
 class client_jobs(models.Model):
-    options = (
-        ('E','Expert'),
-        ('I','Intermediate'),
-        ("F","Fresher")
-    )
     job_id =  models.AutoField(primary_key=True)
     client_id = models.ForeignKey(client_details,on_delete=models.CASCADE)
     project_title = models.CharField(max_length=100)
     description = models.TextField(max_length=100,default="")
     total_pay = models.IntegerField()
-    experience_level = models.CharField(max_length=1,choices=options)
+    experience_level = models.CharField(max_length=100)
     skills_requried = models.CharField(max_length=100)
 
     def __str__(self) -> str:
@@ -51,15 +51,11 @@ class freelancer_proposals(models.Model):
         return "{} {} {} ".format(self.proprosal_id,self.freelancer_id,self.job_id)
 
 class client_contract_details(models.Model):
-    pro_status = (
-        ("P","Pending"),
-        ("C","Completed")
-    )
     contract_id =  models.AutoField(primary_key=True)
     emp_proposal_id = models.OneToOneField(freelancer_proposals,on_delete=models.CASCADE)
     client_id = models.ForeignKey(client_details,on_delete=models.CASCADE)
-    project_deadline = models.DateTimeField()
-    project_status = models.CharField(max_length=1,choices=pro_status)
+    project_deadline = models.DateTimeField(default=dateupdated)
+    project_status = models.CharField(max_length=50,default='pending')
     def __str__(self) -> str:
         return "{} {} {} ".format(self.contract_id,self.emp_proposal_id,self.client_id)
 

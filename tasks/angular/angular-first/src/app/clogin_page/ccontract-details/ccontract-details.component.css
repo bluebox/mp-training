@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two:700|Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+    background: #048bd9;
+    font-family: 'Poppins',sans-serif;
+  }
+  
+  .center,.start-btn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .start-btn a{
+    font-size: 22px;
+    background: white;
+    color: #02242b;
+    padding: 15px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+  
+  }
+  .modal-box{
+    top: 40%;
+    opacity: 0;
+    visibility: hidden;
+    background: white;
+    height: auto;
+    width: 480px;
+    margin-top:140px;
+    padding: 18px 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+  }
+  
+  .start-btn.show-modal{
+    opacity: 0;
+    visibility: hidden;
+  }
+  .modal-box.show-modal{
+    top: 50%;
+    opacity: 1;
+    visibility: visible;
+    transition: .4s;
+  }
+  .modal-box .fa-times{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #0569d4;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    margin: 10px;
+  
+    color: white;
+    font-size: 18px;
+    border-radius: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+  .fa-times:hover{
+    font-size: 22px;
+  }
+  
+  
+  .form_container{
+    background: #fff;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 3px;
+  }
+  
+  .form_container .form_item{
+    margin-bottom: 25px;
+  }
+  
+  .form_container .form_wrap.form_grp{
+    display: flex;
+  }
+  
+  .form_container .form_wrap.form_grp .form_item{
+    width: 50%;
+  }
+  
+  .form_container .form_wrap.form_grp .form_item:first-child{
+    margin-right: 4%;
+  }
+  
+  .form_container .form_item label{
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form_container .form_item input,
+  .form_container .form_item select{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #dadce0;
+    border-radius: 3px;
+  }
+   
+  .form_container .btn input[type="submit"]{
+    background: #6271f0;
+    border: 1px solid #6271f0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+  }

@@ -1,0 +1,4 @@
+<p>proposal-details works!</p>
+<ul> 
+    <li *ngFor="let object of proposalDetails" >Proposal Id : {{ object.proprosal_id }} <br> freelancer id : {{ object.freelancer_id }} <br>  Bidding_amount  : $ {{ object.requried_pay}} <br> skills : {{ object.skills}} <br> Cover Letter : {{ object.cover_letter}} <br> <button type="button" (click)="CreateContract(object)">ACCEPT PROPOSAL</button> &nbsp; <button type="button">REJECT PROPOSAL</button></li>
+</ul>

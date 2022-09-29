@@ -17,32 +17,35 @@ import { PostAJobComponent } from './clogin_page/post-a-job/post-a-job.component
 import { FreelancerProposalsComponent } from './clogin_page/freelancer-proposals/freelancer-proposals.component';
 import { FeePaymentDetailsComponent } from './clogin_page/fee-payment-details/fee-payment-details.component';
 import { CcontractDetailsComponent } from './clogin_page/ccontract-details/ccontract-details.component';
+import { SendProposalPageComponent } from './flogin_page/send-proposal-page/send-proposal-page.component';
+import { ProposalDetailsComponent } from './clogin_page/proposal-details/proposal-details.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'login/:id', component: LoginComponent },
+  // { path: 'login/:id', component: LoginComponent },
   { path: 'admin', loadChildren: () => import('./module/module.module').then(m => m.ModuleModule) },
   { path: 'client-register', component: RegisterComponent },
-  {
-    path: 'freelance_login_page', component: FloginPageComponent, children: [
-      { path: 'jobs', component: JobsComponent },
-      { path: 'proposals', component: ProposalsComponent},
-      { path: 'payment_details', component: PaymentDetailsComponent},
-      { path: 'fcontract_details', component: FcontractDetailsComponent }
-
-    ]
-  },
-  {
-    path: 'client_login_page', component: CloginPageComponent, children: [
-      { path: 'post_a_job', component: PostAJobComponent},
-      { path: 'freelancer_proposals', component: FreelancerProposalsComponent },
-      { path: 'fee_payment_details', component: FeePaymentDetailsComponent },
-      { path: 'ccontract_details', component: CcontractDetailsComponent }
-
-    ]
-  },
   { path: 'freelance-registration', component: FreelanceRegistrationComponent },
+  {
+    path: 'freelance_login_page', component: FloginPageComponent
+  },
+  { path: 'freelance_login_page/jobs', component: JobsComponent },
+  { path: 'freelance_login_page/jobs/send_proposal_page/:job_id', component: SendProposalPageComponent },
+
+  { path: 'freelance_login_page/proposals', component: ProposalsComponent },
+  { path: 'freelance_login_page/payment_details', component: PaymentDetailsComponent },
+  { path: 'freelance_login_page/fcontract_details', component: FcontractDetailsComponent },
+  {
+    path: 'client_login_page', component: CloginPageComponent
+  },
+  { path: 'client_login_page/post_a_job', component: PostAJobComponent },
+  { path: 'client_login_page/freelancer_proposals', component: FreelancerProposalsComponent },
+  { path: 'client_login_page/fee_payment_details', component: FeePaymentDetailsComponent },
+  { path: 'client_login_page/ccontract_details', component: CcontractDetailsComponent },
+  { path: 'client_login_page/freelancer_proposals/proposal_details/:id', component: ProposalDetailsComponent },
+
+
   { path: '**', component: PagenotfouondComponent },
 ];
 

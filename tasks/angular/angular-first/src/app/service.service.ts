@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServiceService {
+
+
+
   url : string = 'http://localhost:8000/'
   constructor(private http: HttpClient) { }
 
@@ -30,4 +33,38 @@ export class ServiceService {
   ClientLogin(data : string){
     return this.http.get(this.url+'client/'+data + '/')
   }
+
+  getClientJobsUrl (){
+    return this.http.get(this.url+'client_jobs')
+  }
+
+  postAJob(data: any){
+    return this.http.post(this.url+'client_jobs',data)
+  }
+
+  submitSendProposalUrl(data : any){
+    return this.http.post(this.url + 'freelancer_proposals',data)
+  }
+
+  getFreelancerProposals(data : any) {
+    return this.http.get(this.url + 'get_freelancer_proposals?id='+ data  )
+  }
+
+  getJobsOfClientIdUrl(data : any){
+    return this.http.get(this.url+'get_client_jobs?client_id='+ data)
+  }
+
+  getProposalDetails(data : any) {
+    return this.http.get(this.url+'get_proposal_details?job_id='+data);
+  }
+
+  createContract(value: any) {
+    return this.http.post(this.url+'create_contract',value);
+
+  }
+  getContractOfClient(data : any){
+    return this.http.get(this.url+'get_contract_of_client?client_id='+ data)
+  }
+
+  getContractOfFreelancer(data : any) { return this.http.get(this.url+'get_contract_of_freelancer'+data);}
 }

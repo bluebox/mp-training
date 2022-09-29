@@ -22,6 +22,8 @@ import { PostAJobComponent } from './clogin_page/post-a-job/post-a-job.component
 import { FreelancerProposalsComponent } from './clogin_page/freelancer-proposals/freelancer-proposals.component';
 import { FeePaymentDetailsComponent } from './clogin_page/fee-payment-details/fee-payment-details.component';
 import { CcontractDetailsComponent } from './clogin_page/ccontract-details/ccontract-details.component';
+import { SendProposalPageComponent } from './flogin_page/send-proposal-page/send-proposal-page.component';
+import { ProposalDetailsComponent } from './clogin_page/proposal-details/proposal-details.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CcontractDetailsComponent } from './clogin_page/ccontract-details/ccont
     PostAJobComponent,
     FreelancerProposalsComponent,
     FeePaymentDetailsComponent,
-    CcontractDetailsComponent
+    CcontractDetailsComponent,
+    SendProposalPageComponent,
+    ProposalDetailsComponent,
   ],
   imports: [
     BrowserModule,

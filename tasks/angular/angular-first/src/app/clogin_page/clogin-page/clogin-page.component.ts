@@ -11,5 +11,7 @@ export class CloginPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  data : any = window.sessionStorage.getItem('cuser');
+  parse_data = JSON.parse(this.data)
 
 }

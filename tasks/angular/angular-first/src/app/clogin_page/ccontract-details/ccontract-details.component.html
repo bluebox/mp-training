@@ -1,1 +1,18 @@
 <p>ccontract-details works!</p>
+<ng-container *ngIf="contractDetails=='' ; then first else second "></ng-container>
+<ng-template #first>
+    <p>No contract details found </p>
+    <p>To post a job now <a href="" routerLink="../post_a_job">click here</a> </p>
+</ng-template>
+<ng-template #second>
+    <ul #second>
+        <li *ngFor="let jobs of contractDetails">Contract Id : {{ jobs.contract_id }} <br> Freelancer Proposal Id :
+            {{jobs.emp_proposal_id}} <br> Project Deadline {{jobs.project_deadline}} <br> Project Status : {{
+            jobs.project_status }} <br>
+            <button type="menu">update project details</button>
+        </li>
+    </ul>
+</ng-template>
+
+
+

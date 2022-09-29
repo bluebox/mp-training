@@ -215,8 +215,11 @@ class clientJobsRegister(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        print(request.data)
         serializer = client_jobs_serializers(data=request.data)
+
         if serializer.is_valid():
+            print(serializer)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -312,3 +315,38 @@ class proposals(APIView):
         client = self.get_object(freelancer_id=freelancer_id)
         client.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class get_freelancer_proposals(APIView):
+    def get(self,request):
+
+        client = freelancer_proposals.objects.filter(freelancer_id=int(request.GET.get('id')))
+        serializer = freelancer_proposals_serializers(client,many=True)
+        return Response(serializer.data)
+class get_proposal_details(APIView):
+    def get(self,request):
+
+        client = freelancer_proposals.objects.filter(job_id=int(request.GET.get('job_id')))
+        serializer = freelancer_proposals_serializers(client,many=True)
+        return Response(serializer.data)
+
+
+class getClientJobs(APIView):
+    def get(self,request):
+        get_client_jobs = client_jobs.objects.filter(client_id = int(request.GET.get('client_id')))
+        serializers = client_jobs_serializers(get_client_jobs,many=True)
+        return Response(serializers.data)
+
+
+class create_contract(APIView):
+    def post(self,request):
+        serializer = client_contract_details_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+class get_contract_of_client(APIView):
+    def get(self,request):
+        get_client_jobs = client_contract_details.objects.filter(client_id=request.GET.get('client_id'))
+        serializers = client_contract_details_serializers(get_client_jobs,many=True)
+        return Response(serializers.data)

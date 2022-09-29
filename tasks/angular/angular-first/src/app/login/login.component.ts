@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     else {
       this.service.ClientLogin(this.login.value.email_id).subscribe((data: any) => {
-        window.sessionStorage.setItem('cuser', data);
+        window.sessionStorage.setItem('cuser', JSON.stringify(data));
         alert('login successfully');
         this.router.navigate(['client_login_page'])
       }

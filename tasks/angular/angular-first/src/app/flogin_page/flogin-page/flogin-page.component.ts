@@ -12,4 +12,5 @@ export class FloginPageComponent implements OnInit {
   ngOnInit(): void {
   }
   data : any = sessionStorage.getItem('fuser')
+  parse_data = JSON.parse(this.data)
 }

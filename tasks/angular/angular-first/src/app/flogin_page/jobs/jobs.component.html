@@ -1,1 +1,14 @@
 <p>jobs works!</p>
+<ng-container *ngIf="jobsData=='' ; then first else second "></ng-container>
+<ng-template #first>
+    <p>no jobs available </p>
+</ng-template>
+<ng-template #second>
+    <ul #second>
+        <li *ngFor="let jobs of jobsData">{{ jobs }} <button type="button" routerLink="./send_proposal_page/{{jobs.job_id}}" (click)="getJobId(jobs.job_id)" >send proposal</button></li>
+    </ul>
+</ng-template>
+
+
+
+
