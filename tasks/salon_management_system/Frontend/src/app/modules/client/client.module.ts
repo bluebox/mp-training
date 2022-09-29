@@ -14,6 +14,7 @@ import { ReviewComponent } from './components/review/review.component';
 import { HomeComponent } from './components/home/home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { BranchComponent } from './components/branch/branch.component';
 
 
 
@@ -28,7 +29,8 @@ import {MatIconModule} from '@angular/material/icon';
     BookappointmentComponent,
     TransactionsComponent,
     ReviewComponent,
-    HomeComponent
+    HomeComponent,
+    BranchComponent
   ],
   imports: [
     CommonModule,

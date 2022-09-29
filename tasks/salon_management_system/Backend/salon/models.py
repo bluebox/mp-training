@@ -1,3 +1,4 @@
+from random import choices
 from django.db import models
 
 # Create your models here.
@@ -13,11 +14,7 @@ class User(AbstractUser):
    
 class Client(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,default=101)
-    Client_first_name = models.CharField(max_length=50)
-    Client_last_name = models.CharField(max_length=50)
-    Client_Email_id = models.EmailField()
     Client_contact_number = models.CharField(max_length=10)
-    Password = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'Client'
@@ -32,12 +29,9 @@ class Branch(models.Model):
 
 class Employee(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,default=201)
-    emp_name = models.CharField(max_length=50)
     branch_id = models.ForeignKey(Branch,  on_delete=models.CASCADE)
     role = models.CharField(max_length=20)
-    emp_email_id = models.EmailField(max_length=10)
     emp_contact_number = models.CharField(max_length=10)
-    password = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'Employee'
@@ -52,7 +46,7 @@ class services_provided(models.Model):
 
 class Appointment(models.Model):
     Appointment_id = models.IntegerField(primary_key = True)
-    Client_id = models.ForeignKey(Client,  on_delete=models.CASCADE)
+    Client_id = models.ForeignKey(Client,  on_delete=models.CASCADE,null = True)
     Time_of_appointment = models.TimeField()
     appointment_date = models.DateField()
     Appointment_Status = models.CharField(max_length=20)
@@ -63,10 +57,11 @@ class Appointment(models.Model):
         db_table = 'Appointment'
 
 class Transaction(models.Model):
+    trasaction_types = (('Credit Card','Credit Card'),('Debit Card','Debit Card'),('Net Banking','Net Banking'),('UPI','UPI'),('Pay at Salon','Pay at Salon'))
     trans_id = models.IntegerField(primary_key = True)
     Appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     trans_date = models.DateTimeField(auto_now_add=True, blank=True)
-    trans_type = models.CharField(max_length=20)
+    trans_type = models.CharField(max_length=20,choices = trasaction_types)
     Total_amount = models.IntegerField()
     trans_status = models.CharField(max_length=20)
 

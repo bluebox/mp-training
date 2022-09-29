@@ -10,6 +10,9 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { BranchComponent } from './components/branch/branch.component';
 
 
 @NgModule({
@@ -21,11 +24,14 @@ import { HomeComponent } from './components/home/home.component';
     ReviewsComponent,
     ServicesComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    BranchComponent
   ],
   imports: [
     CommonModule,
-    EmployeeRoutingModule
+    EmployeeRoutingModule,
+    MatToolbarModule,
+    MatIconModule
   ]
 })
 export class EmployeeModule { }

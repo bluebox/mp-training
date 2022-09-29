@@ -12,6 +12,7 @@ import { ServicesComponent } from './components/services/services.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { HomeComponent } from './components/home/home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { BranchComponent } from './components/branch/branch.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AppointmentComponent,
     ServicesComponent,
     TransactionsComponent,
-    HomeComponent
+    HomeComponent,
+    BranchComponent
   ],
   imports: [
     CommonModule,

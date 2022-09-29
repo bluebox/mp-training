@@ -1,8 +1,8 @@
 from django.http import JsonResponse
 
-from .models import Branch, User, services_provided
+from .models import Branch, User, services_provided,Employee
 
-from .serializers import BranchSerializer, ServicesSerializer, Userserializer
+from .serializers import BranchSerializer, EmployeeSerializer, ServicesSerializer, Userserializer
 
 from rest_framework.views import APIView
 
@@ -11,6 +11,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from rest_framework import status
+
+from rest_framework.permissions import AllowAny
 
 # @api_view(['GET','POST'])
 # def user_list(request):
@@ -73,4 +75,17 @@ class ServicesList(APIView):
         else:
             print('invalid')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EmployeeList(APIView):
+    def get(self,request):
+        employees = Employee.objects.filter(User__is_staff = 'True')
+        serializer = EmployeeSerializer(employees,many=True)
+        return Response(serializer.data)
+
+class ClientRegistration(APIView):
+    def post(self,request):
+        serializer = Userserializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
 

@@ -5,6 +5,7 @@ import { ClientsComponent } from '../admin/components/clients/clients.component'
 import { ServicesComponent } from '../admin/components/services/services.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { BookappointmentComponent } from './components/bookappointment/bookappointment.component';
+import { BranchComponent } from './components/branch/branch.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
     {path : 'profile',component : ProfileComponent},
     {path : 'appointments',component :AppointmentsComponent },
     {path : 'services',component : ServicesComponent},
+    {path : 'branch',component : BranchComponent},
     {path : 'transactions',component :TransactionsComponent },
     {path : 'bookappointment',component :BookappointmentComponent },
     {path : 'review',component : ReviewComponent}

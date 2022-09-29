@@ -44,3 +44,9 @@
 .sp a:hover{
     color:#eb008b;
 }
+.list1{
+    background-image: url('/assets/images/image1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: -1%;
+}
