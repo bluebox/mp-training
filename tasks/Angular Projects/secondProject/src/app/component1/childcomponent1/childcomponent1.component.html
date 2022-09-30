@@ -1,0 +1,26 @@
+<p>childcomponent1 works!</p>
+ <h1>{{title}}</h1>  
+<table class="table"> 
+    <tr><th>index</th>
+        <th>Even/Odd</th>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Room Price</th>
+        <th>Room Amenities</th>
+        <th>Room checkinTime</th>
+        <th>Room checkoutTime</th>
+        <th> Select Room </th>
+    </tr>
+    <tr [ngClass]="e?'even':'odd'" *ngFor="let rooms of rooms1 ; let e=even; let o=odd let i=index">
+        <td>{{i|percent}}</td>
+        <td>{{o?'Even':'Odd'}}</td>
+        <td>{{rooms.roomNumber}}</td>
+        <td>{{rooms.roomType |uppercase}}</td>
+        <td>{{rooms.price |currency:'INR'}}</td>
+        <td>{{rooms.amenities |lowercase}}</td>
+        <td>{{rooms.checkinTime}}</td>
+        <td>{{rooms.chectOutTime |date:'dd/mmm/yyyy'}}</td>
+        <td><button class="btn btn-primary" (click)="selectRoom(rooms)">select</button></td>
+        
+    </tr>
+</table>

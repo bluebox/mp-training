@@ -1,0 +1,24 @@
+<p>component1 works!</p>
+<app-header [title]="name"></app-header>
+<h1>{{name}}</h1>
+<div [hidden]="bool">my age is :
+  <div   [ngStyle]="{'color': age>18 ?'green':'red'}" [innerText]="age">
+  
+  </div></div>
+
+  <!-- {{ room?.availableRooms ?? 'no rooms'}} -->
+<!-- {{roomlist |json}}  #debug purpose only not for production -->
+<div *ngIf="selectedRoom">
+    {{selectedRoom|json}}
+</div>
+<div>
+    <button (click)="addRoom()">AddRoom</button>
+</div>
+  <div *ngIf="room.availableRooms>0">
+    rooms list
+    <!-- {{roomlist}} -->
+<app-childcomponent1 [rooms1]="roomlist" [title]="title" (selectedRoom)="selectRoom($event)"></app-childcomponent1>
+  </div> 
+  <button (click)="fun1()">Toogle</button> 
+
+
