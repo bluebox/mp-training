@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <form class="example-form" [formGroup]="loginform" (ngSubmit)="registerNewUser()">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="abc@gmail.com" (formControl) = "username">
+            </mat-form-field>
+            <span **ngIf = "username && username.invalid && username.touched">Something went Wron</span>
+          <br><br>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" (formControl) = "password">
+            </mat-form-field>
+        
+              <div class="example-button-row">
+                <button mat-raised-button>Login</button>
+              </div>
+          </form>
+    </body>
+</html>

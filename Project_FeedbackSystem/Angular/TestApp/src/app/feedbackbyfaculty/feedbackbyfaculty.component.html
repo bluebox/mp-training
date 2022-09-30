@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Feedback-Faculty</title>
+</head>
+<body>
+    <form>
+        <h1>Feedback by Faculty</h1>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Faculty Name</mat-label>
+            <input matInput readonly>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>To Student</mat-label>
+              <input matInput readonly value="Test Data">
+            </mat-form-field>
+        <br>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Month</mat-label>
+            <input matInput readonly>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Year</mat-label>
+            <input matInput readonly>
+          </mat-form-field>
+          <div>
+            <h2>Question-1</h2>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Option 1</mat-radio-button><br><br>
+                <mat-radio-button value="2">Option 2</mat-radio-button><br><br>
+                <mat-radio-button value="3">Option 3</mat-radio-button><br><br>
+                <mat-radio-button value="4">Option 4</mat-radio-button>
+              </mat-radio-group>
+          </div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Feel free to give any suggestion"></textarea>
+          </mat-form-field>
+          <br>
+          <div class="example-button-row">
+            <button mat-raised-button>Submit</button>
+          </div>
+        </form>
+</body>
+</html>

@@ -19,6 +19,7 @@
         <th>Joining date</th>
         <th>Qualification</th>
         <th>Experience</th>
+        <th>User Type</th>
     </tr>
     <tr>
         {% for info in allData %}
@@ -32,6 +33,7 @@
         <td>{{ info.joining_date }}</td>
         <td>{{ info.qualification }}</td>
         <td>{{ info.experience }}</td>
+        <td>{{ info.user_type }}</td>
     </tr>
     {% endfor %}
 </table>
