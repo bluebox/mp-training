@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Employee Details</title>
+</head>
+<body>
+    <h1 style="color:Red;">Add Employee Details </h1>
+    <form action="add_employee_details" method="POST">
+        {% csrf_token %}
+        <label for="Employee id">Employee Id: </label>
+        <input type="text" name="Employee Id"><br><br>
+        <label for="fname">First Name: </label>
+        <input type="text" name="fname"><br><br>
+        <label for="lname">Last Name: </label>
+        <input type="text" name="lname"><br><br>
+        <label for="doj">Date of Joining: </label>
+        <input type="date" name="doj"><br><br>
+        <label for="designation">Designation: </label>
+        <input type="text" name="designation"><br><br>
+        <label for="job_type">Job Type: </label>
+        <input type="text" name="job_type"><br><br>
+        <label for="salary">Salary: </label>
+        <input type="number" step=".01" name="salary"><br><br>
+        <label for="contact">Contact: </label>
+        <input type="text" maxlength="13" minlength="13" name="contact"><br><br>
+        <label for="email">Email Id: </label>
+        <input type="email" name="email"><br><br>
+        <label for="address">Address: </label>
+        <textarea name="address"></textarea><br><br>
+        <button type="submit"> Submit</button>
+        <button type="reset"> Reset</button>
+
+    </form>
+<br>
+<br>
+<p style="color:Blue; font-size:larger">{{a}}</p>
+</body>
+</html>

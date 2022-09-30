@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Customer Details</title>
+</head>
+<body>
+    <h1 style="color:Red;">Add Customer Details </h1>
+    <form action="add_customer_details" method="POST">
+        {% csrf_token %}
+        <label for="Customer id">Customer Id: </label>
+        <input type="text" name="Customer Id"><br><br>
+        <label for="fname">First Name: </label>
+        <input type="text" name="fname"><br><br>
+        <label for="lname">Last Name: </label>
+        <input type="text" name="lname"><br><br>
+        <label for="contact">Contact: </label>
+        <input type="text" maxlength="13" minlength="13" name="contact"><br><br>
+        <label for="email">Email Id: </label>
+        <input type="email" name="email"><br><br>
+        <label for="address">Address: </label>
+        <textarea name="address"></textarea><br><br>
+        <button type="submit"> Submit</button>
+        <button type="reset"> Reset</button>
+
+
+    </form>
+
+<br>
+<p style="color:Blue; font-size:larger">{{a}}</p>
+</body>
+</html>
