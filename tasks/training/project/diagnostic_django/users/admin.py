@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
             'Additional Info',
             {
                 'fields' : (
-                    'mobile_number','age','address','pincode','is_employee'
+                    'mobile_number','age','address','pincode','user_type'
                 )
             }
         )

@@ -9,7 +9,8 @@ class User(AbstractUser):
     age = models.IntegerField(null=True, blank=True)
     address = models.TextField(max_length=200)
     pincode = models.CharField(max_length=8, null=True,blank=True)
-    is_employee = models.BooleanField(default=False)
+    user_type = models.CharField(max_length = 10 ,default = 'admin')
+
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
@@ -23,7 +24,6 @@ class User(AbstractUser):
 class Customer(models.Model):
     customer_id = models.CharField(max_length = 10, primary_key = True)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
-
     def __str__(self):
         return self.user_id.username
 

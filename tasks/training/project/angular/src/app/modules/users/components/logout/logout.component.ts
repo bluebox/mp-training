@@ -8,7 +8,7 @@ import { HttpServiceService } from '../../http-service.service';
   styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit {
-   username = this.http.getData('username')
+   username = localStorage.getItem('username')
   constructor(private http: HttpServiceService,
     private router: Router) { }
   ngOnInit(): void {
@@ -16,8 +16,9 @@ export class LogoutComponent implements OnInit {
   logoutUser(){
     this.http.logoutUser({ 'username': this.username }).subscribe(data =>{
       console.log(data);
-      this.http.removeData("username")
-      this.router.navigate([''])
+      localStorage.removeItem("username")
+      localStorage.removeItem("user_type")
+
 
 
     })

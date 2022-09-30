@@ -113,7 +113,7 @@ def loginUser(request):
         user = authenticate(request, username = username, password = password)
         if user is not None:
             login(request, user)
-            return Response({'msg':"logged in" , 'user': user.username} ,status=200)
+            return Response({'msg':"logged in" , 'user': user.username , "user_type": user.user_type} ,status=200)
         else:
             return Response({'msg':"password incorrect" })
 

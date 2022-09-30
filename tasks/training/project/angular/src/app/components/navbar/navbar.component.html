@@ -5,7 +5,8 @@
   <!-- right side -->
   <button routerLink="../about" class="nabButton" mat-button >About</button>
   <button routerLink="../customer/booking" class="nabButton" mat-button >Book Appointment</button>
-  <button routerLink=""  class="nabButton" mat-button >View Appointments</button>
+  <button *ngIf="loggedIn" routerLink="../users/login" class="nabButton" mat-button >Logout</button>
+  
   <button routerLink="../users/login" class="nabButton" mat-button >Login</button>
   <mat-icon class="icon">account_circle</mat-icon>
 </mat-toolbar>

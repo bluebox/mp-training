@@ -28,9 +28,10 @@ export class LoginComponent  {
             console.log(resp)
             this.errorMessage = resp.msg
             if (this.errorMessage == "logged in") {
-              this.http.saveData("username", resp.user)
+              localStorage.setItem("user", resp.user)
               // console.log(this.http.getData('username'));
               localStorage.setItem('user', JSON.stringify(resp.user))
+              localStorage.setItem('user_type', JSON.stringify(resp.user_type))
               this.router.navigate([''])
             }
           },
@@ -47,6 +48,5 @@ export class LoginComponent  {
 
     }
   }
-
 
 }

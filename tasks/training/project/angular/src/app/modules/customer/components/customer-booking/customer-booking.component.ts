@@ -29,7 +29,7 @@ export class CustomerBookingComponent implements OnInit {
   }
   bookAppointment() {
     console.log(this.bookAppointmentForm.value);
-    this.http.bookAppointment({ 'form': this.bookAppointmentForm.value, 'username': this.httpUser.getData('username') }).subscribe(data => {
+    this.http.bookAppointment({ 'form': this.bookAppointmentForm.value, 'username': localStorage.getItem('username') }).subscribe(data => {
       console.log(data);
 
     })
