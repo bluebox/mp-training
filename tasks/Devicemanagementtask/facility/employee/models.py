@@ -31,7 +31,7 @@ class Facility(models.Model):
 
 
 class Employee(models.Model):
-    emp_id = models.IntegerField(primary_key=True)
+    emp_id =models.AutoField(primary_key=True)
     emp_name = models.CharField(max_length=30)
     emp_mobile = models.CharField(max_length=30, null=True,validators=[mobilenumberValidator])
     emp_email = models.CharField(max_length=30, null=True)
@@ -88,7 +88,7 @@ class Employee_Devices(models.Model):
 
 class Complaint(models.Model):
     facility_id = models.ForeignKey(Facility, on_delete=models.CASCADE,default=None)
-    comp_id = models.IntegerField(primary_key=True)
+    comp_id = models.AutoField(primary_key=True)
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     device_id = models.ForeignKey(Device, on_delete=models.CASCADE)
     comp_desc = models.CharField(max_length=200,null=True)
