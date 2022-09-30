@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomerLogin</title>
+</head>
+<body>
+  <form action="{% url 'logincustomer' %}" method="post">
+    {% csrf_token %}
+    Customer id : <input type="text" name="username" placeholder="Enter CustomerId"><br>
+    Password : <input type="password" name="password" placeholder="Enter Password"><br>
+    <input type="reset"> <input type="submit"> <br>
+
+      create account here <a href="{% url 'custregistration' %}"> sign up </a>
+  </form>
+</body>
+</html>
