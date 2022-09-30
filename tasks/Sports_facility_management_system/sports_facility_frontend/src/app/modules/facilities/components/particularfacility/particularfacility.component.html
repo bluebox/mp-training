@@ -1,0 +1,11 @@
+
+<h1>{{facility.facility_name}}</h1>
+<h3> Sports Available</h3>
+<div class="card">
+<div *ngFor="let sport of sports" class="card1" >
+   {{sport.sport_name}}
+   <img src="../../../../../assets/images/{{sport.sport_name}}.png" alt="{{sport.sport_name}}"/>
+</div>
+</div>
+<button class="btn btn-primary m-5"(click)="openBooking(facility.facility_id)"> book now </button>
+

@@ -1,0 +1,49 @@
+<!-- <h1>{{facility.facility_name}}</h1> -->
+<h3> Select Sport</h3>
+<form [formGroup]="bookingForm" (ngOnSubmit)="submitBookingForm()">
+<div class="card">
+    <div *ngFor="let sport of sports">
+
+        <label class="sport_labl">
+            <input type="radio" name="sports" value="{{sport.sport_id}}" />
+            <div class="sportcard" (click)="getSportsId(sport.sport_id)">
+                <img src="../../../../../assets/images/{{sport.sport_name}}.png" alt="{{sport.sport_name}}" />
+                <h6>{{sport.sport_name}}</h6>
+            </div>
+        </label>
+
+    </div>
+</div>
+<h3> Select Date</h3>
+<div class="card">
+    <div *ngFor="let date of datesarray">
+
+        <label class="date_labl">
+            <input type="radio" name="dates" value="{{date[0]}}" />
+            <div  class="sportcard">
+                <h6 *ngFor="let part of date">{{part}}</h6>
+
+            </div>
+        </label>
+
+    </div>
+</div>
+<h3> Select Slot</h3>
+
+<div class="slotcard">
+    <div *ngFor="let slot of slots" class="slotitem">
+
+        <label class="sport_labl">
+            <input type="checkbox" name="slots" value="{{slot.slot_id}}" />
+            <div class="sportcard" (click)="getslotid(slot.slot_id)">
+                <h6>{{slot.slot_time}}</h6>
+            </div>
+        </label>
+
+    </div>
+
+</div>
+<div class="text-center p-3">
+<input type="submit" value="proceed  to checkout" class="btn btn-primary" >
+</div>
+</form>

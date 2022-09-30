@@ -1,0 +1,82 @@
+img{
+    width: 100px;
+    height: 100px;
+}
+
+.card{
+    border: 1px dotted yellow;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+
+}
+.card1{
+    border:1px solid red;
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+
+}   
+
+.datecard{
+    border:1px solid red;
+    padding: 10px;
+    margin: 10px;
+    height: 80px;
+    
+    
+}
+.sport_labl {
+    display : block;
+    width: 200px;
+}
+.sport_labl > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.sport_labl > input + div{ /* DIV STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+.sport_labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+    background-color: #ffd6bb;
+    border: 1px solid #ff6600;
+}
+.sportcard{
+    text-align: center;
+    padding: 10px;
+}
+.date_labl {
+    display : block;
+    width: 200px;
+}
+.date_labl > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.date_labl > input + div{ /* DIV STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+.date_labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+    background-color: #ffd6bb;
+    border: 1px solid #ff6600;
+}
+.datecard{
+    text-align: center;
+    padding: 10px;
+}
+.slotcard{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
+    border: 1px dotted yellow;
+
+}
+
+.slotitem{
+    display: inline;
+
+}

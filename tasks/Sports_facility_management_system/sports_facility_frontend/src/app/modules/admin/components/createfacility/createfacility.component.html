@@ -1,0 +1,12 @@
+<form [formGroup]="create_facility_form" (ngSubmit)="submit()">
+    <div class="formcard">
+        <input formControlName="facility_name" type="text" placeholder="facility Name" />
+        <input formControlName="facility_email" type="text" placeholder="email" />
+        <input formControlName="facility_password" type="text" placeholder="password" />
+        <input formControlName="facility_phone" type="text" placeholder="phone" />
+        <input formControlName="facility_location" type="text" placeholder="location" />
+        <input type="submit" value="submit">
+
+        <h1 *ngIf="errormsg">{{errormsg.facility_phone}}</h1>
+    </div>
+</form>
