@@ -16,7 +16,7 @@ import json
 # @csrf_exempt
 class AppointmentBooking(APIView):
     def get(self,request):
-        appointments = Appointment.objects.all()
+        appointments = Appointment.objects.all().order_by('-date')
         serializer = AppointmentSerializer(appointments , many=True)
         return Response(serializer.data , status = 200 )
 
@@ -40,6 +40,9 @@ class AppointmentBooking(APIView):
             return Response({"message":"appointment not booked"} , status = 200 )
         # return Response({"message":"appointment not booked"} , status = 200 )
 
+class AppointmentHandling(APIView):
+    def get(self,request):
+        pass
 
 @api_view(['GET'])
 def getEmployees(request):
@@ -60,4 +63,3 @@ def getEmployees(request):
         serializer = EmployeeSerializer(doctors,many=True)
         return Response(serializer.data,status=200)
     return Response({"message":"not working"},status=200)
-    

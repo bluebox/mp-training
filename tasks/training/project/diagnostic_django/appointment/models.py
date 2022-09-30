@@ -11,6 +11,7 @@ class Branch(models.Model):
 
     def __str__(self):
         return self.branch_name
+        
 class Lab(models.Model):
     STATUS = (
         ('occupied' , 'occupied'),

@@ -1,0 +1,15 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.icon {
+    margin: 10px;
+    transform: scale(1.5);
+    cursor: pointer;
+    color: #3F1651;
+}
+
+.nabButton {
+    margin: 10px;
+    color: #7710ab;
+}

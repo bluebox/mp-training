@@ -7,16 +7,24 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 // material
 import { MatTableModule } from '@angular/material/table';
+import { AdminNavigationComponent } from './components/admin-navigation/admin-navigation.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     DisplayAppointmentsComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminNavigationComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class AdminModule { }

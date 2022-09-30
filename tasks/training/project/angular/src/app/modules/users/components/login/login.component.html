@@ -1,9 +1,8 @@
-<p>login works!</p>
-<form [formGroup]="loginForm" class="form-container">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-            {{errorMessage}}
+<form style="margin-top: 5%" [formGroup]="loginForm" class="form-container">
+  <mat-card style="background-color: #eee5f390;">
+    <mat-card-header>
+      <mat-card-title style="color: #7710ab">Login</mat-card-title>
+      {{ errorMessage }}
       <mat-card-title *ngIf="formNotValid"
         >please Fill All required details</mat-card-title
       >
@@ -21,11 +20,11 @@
               loginForm.get('username')?.invalid &&
               loginForm.get('username')?.touched
             "
-            >username is required</small
+            >Please enter password</small
           >
         </div>
       </div>
-      
+
       <div class="col-md-6">
         <mat-form-field class="full-width">
           <input formControlName="password" matInput placeholder="password" />
@@ -37,14 +36,24 @@
             loginForm.get('password')?.invalid &&
             loginForm.get('password')?.touched
           "
-          >hello</small
+          >Please enter password</small
         >
       </div>
-      
     </mat-card-content>
     <mat-card-actions>
-      <button (click)="submitLogin()" mat-raised-button="" color="primary">
+      <button
+        (click)="submitLogin()"
+        mat-raised-button=""
+        style="color: #3f1651; background-color: #c3a1d5;margin-left: 3%;"
+      >
         login
+      </button>
+      <button
+        style="color: #3f1651; background-color: #c3a1d5"
+        routerLink="../register-customer"
+        mat-raised-button=""
+      >
+        New User? create new account
       </button>
     </mat-card-actions>
   </mat-card>

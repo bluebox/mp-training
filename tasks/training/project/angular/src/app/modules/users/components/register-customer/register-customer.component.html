@@ -1,12 +1,12 @@
 
 
 <form [formGroup]="customerRegisterForm" class="form-container">
-  <mat-card>
+  <mat-card  style="background-color: #eee5f390;" >
     <mat-card-header>
-      <mat-card-title>Register Customer</mat-card-title>
+      <mat-card-title style="color: #7710ab;">Register Customer</mat-card-title>
       {{errorMessage}}
-      <mat-card-title  *ngIf="formNotValid">please Fill All required details</mat-card-title>
     </mat-card-header>
+    <span style="color: red; margin-left: 1.5%;" *ngIf="formNotValid">please Fill All required details</span>
     <br>
     <mat-card-content>
       <div class="row">
@@ -98,9 +98,13 @@
       </div> -->
     </mat-card-content>
     <mat-card-actions>
-      <button (click)="submitRegister()" mat-raised-button="" color="primary">
+      <button style="color:#3F1651;background-color: #c3a1d5;margin-left: 3%; " (click)="submitRegister()" mat-raised-button="" >
         Register
       </button>
+      <button style="color:#3F1651;background-color: #c3a1d5;" routerLink="../login" mat-raised-button="" >
+        Already have an account?
+      </button>
     </mat-card-actions>
+    
   </mat-card>
 </form>

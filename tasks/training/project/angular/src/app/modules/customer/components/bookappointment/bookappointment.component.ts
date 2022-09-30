@@ -66,7 +66,6 @@ export class BookappointmentComponent implements OnInit {
     console.log(this.bookAppointmentForm.value);
     this.http.bookAppointment({ 'form': this.bookAppointmentForm.value, 'username': this.bookAppointmentForm.get('username')?.value }).subscribe(data=>{
       console.log(data);
-      
     })
   }
 }

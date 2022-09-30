@@ -25,7 +25,7 @@ class Customer(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.customer_id
+        return self.user_id.username
 
 
 class Staff(models.Model):

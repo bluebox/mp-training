@@ -1,6 +1,6 @@
 .full-width {
     width: 70%;
-    margin: 2%;
+    /* margin: 1%; */
 }
 
 .top-padding {
@@ -10,4 +10,5 @@
 .form-container {
     margin: 0 auto;
     width: 50%;
+    margin-top: 2%;
 }
