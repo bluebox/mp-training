@@ -1,0 +1,41 @@
+
+<div class="search block">
+    <p>
+        <mat-toolbar color="primary">
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span></span>
+          <span class="example-spacer"><h2>{{res.restaurant_name}}</h2></span>
+          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+          </button>
+        </mat-toolbar>
+      </p>
+</div>
+
+<div class="details block">
+    <div class="photo blockd"><img src="{{res.restaurant_photo}}" alt="" class="photo"></div>
+    <div class="text blockd">
+        <h2>{{res.restaurant_name}}</h2>
+        <h3>{{res.restaurant_address1}}, {{res.restaurant_city}}</h3>
+        <h3> Rating: {{res.restaurant_avg_rating}}</h3>
+        <h3>Opening Time:{{res.open_timing}}</h3>
+        <h3> Closing Time: {{res.close_timing}}</h3>
+    </div>
+</div>
+
+<div class="order block">
+
+    <div class="food blocki">
+            
+    </div>
+
+    <div class="checkout blocki">
+
+    </div>
+</div>
+
