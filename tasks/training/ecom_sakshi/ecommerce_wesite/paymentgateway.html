@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="">
+
+  <style>
+    body {
+      background-image: url("img/panda-bg.jpg");
+      background-color: rgb(19, 46, 163);
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-left: 250px;
+      height: 100vh;
+
+    }
+
+    #button1 {
+      background-color: #0e8181;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 9px;
+      margin-left: 250px;
+      
+
+    }
+
+    .content {
+
+      border-radius: 10px;
+
+      position: absolute;
+      top: 50%;
+
+      text-align: center;
+
+      left: 50%;
+      z-index: 999;
+      /* padding: 60px 32px; */
+      width: 370px;
+
+      transform: translate(-50%, -50%);
+      background: rgba(172, 53, 53, 0.133);
+
+      border: 1px solid #fff;
+      backdrop-filter: blur (3px);
+      box-shadow: 0 0 6px 0 rgba(29, 29, 29, .203);
+
+    }
+
+    #rd1 {
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+      padding-left: 25px;
+    }
+
+    .formlabel {
+      font-size: medium;
+      font-family: ' monospace';
+      color: aliceblue;
+      padding: 6px;
+      text-align: left !important;
+    }
+
+    .fo {
+      cursor: pointer;
+      border-radius: 10px;
+      width: 300px;
+      height: 30px;
+      font-size: large;
+      padding-left: 10px;
+    }
+
+    #he {
+      margin: auto;
+      font-family: ' monospace';
+      color: aliceblue;
+      /* margin-left: 100px; */
+      padding: 30px;
+
+    }
+
+    [type=radio] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      
+    }
+
+    /* IMAGE STYLES */
+    [type=radio]+img {
+      cursor: pointer;
+      margin-left: 12px;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked+img {
+      outline: 6px solid #0e8181;
+    }
+
+    img {
+      padding: 10px;
+      background-color: aliceblue;
+      border-radius: 10px;
+      height: 40px;
+      width: 40px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+  <section id="typeofpayment" style"m" class="content">
+    <h1 id="he">
+      Payment Gateway</h1>
+
+    <form action="thankyou.html" method="get" id="rd1">
+      <label class="formlabel" for="name">Name</label><br>
+      <input class="fo" type="text" placeholder="NAME..." name="name" id="name" required><br><br>
+      <label class="formlabel" for="address">Email</label><br>
+      <input class="fo" type="email" name="email" id="email" required><br><br>
+      <label class="formlabel" for="amount">Amount</label><br>
+      <input class="fo" type="number" name="amount" id="amount" placeholder="123" required><br><br>
+      <label class="formlabel" for="contact">Contact No</label><br>
+      <input class="fo" type="tel" placeholder="123-45-678" name="contact" id="contact" required><br><br>
+      <label for="fav" class="formlabel">Choose payment method:</label><br><br>
+      <label>
+        <input type="radio" id="html" name="fav" value="obanking" required>
+        <img alt="card" src="img/payment/mob.webp" required>
+      </label><label>
+        <input type="radio" id="html" name="fav" value="card">
+        <img alt="card" src="img/payment/card.jpeg">
+      </label><label>
+        <input type="radio" id="html" name="fav" value="cash">
+        <img alt="cash" src="img/payment/cash.png">
+      </label><label>
+        <input type="radio" id="html" name="fav" value="upi">
+        <img alt="upi" src="img/payment/upi.webp" style="background-color: aliceblue;"><br><br><br> </label>
+      <button type="submit" id="button1" >submit</button><br><br>
+    </form>
+
+
+    <!-- Footer social -->
+
+  </section>
+  <script src="" async defer></script>
+</body>
+
+</html>
