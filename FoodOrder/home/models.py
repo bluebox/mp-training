@@ -115,6 +115,7 @@ class OrderFood(models.Model):
     emp_id=models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField()
     menu_id=models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
+    
 
     def __str__(self):
         return self.order_food_id
