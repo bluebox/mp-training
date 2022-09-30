@@ -49,9 +49,9 @@ class Review(models.Model):
 
 class Appointment(models.Model):
     slots = (
-        ('10 AM', 'Morning'),
-        ('1PM', 'Afternoon'),
-        ('4 PM', 'Evening')
+        ('10 AM', '10 AM'),
+        ('1 PM', '1 PM'),
+        ('4 PM', '4 PM')
     )
     STATUS = (
         ('booked' , 'booked'),

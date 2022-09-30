@@ -2,7 +2,7 @@
 <!-- {{branch_id.value}} -->
 
 <form [formGroup]="bookAppointmentForm" class="form-container">
-  <mat-card>
+  <mat-card class="card-container">
     <mat-card-header>
       <mat-card-title>Book Appointment</mat-card-title>
       <mat-card-title *ngIf="formNotValid"
@@ -11,10 +11,24 @@
     </mat-card-header>
     <br />
     <mat-card-content>
+
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="username" matInput placeholder="username" />
+        </mat-form-field>
+        <small
+          class="text-danger"
+          *ngIf="
+            bookAppointmentForm.get('username')?.invalid &&
+            bookAppointmentForm.get('username')?.touched
+          "
+          >enter valid mail address</small
+        >
+      </div>
       <!-- select -->
       <div class="col-md-6">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Status</mat-label>
           <mat-select formControlName="status" required>
             <mat-option>--</mat-option>
@@ -35,7 +49,7 @@
           <!-- select -->
       <div class="col-md-6">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>sampleCollectors</mat-label>
           <mat-select formControlName="sample_collector" required>
             <mat-option>--</mat-option>
@@ -55,7 +69,7 @@
       <!-- select end  -->    <!-- select -->
       <div class="col-md-6">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>lab_technician</mat-label>
           <mat-select formControlName="lab_technician" required>
             <mat-option>--</mat-option>
@@ -75,7 +89,7 @@
       <!-- select end  -->    <!-- select -->
       <div class="col-md-6">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Nurse</mat-label>
           <mat-select formControlName="nurse_id" required>
             <mat-option>--</mat-option>
@@ -95,7 +109,7 @@
       <!-- select end  -->    <!-- select -->
       <div class="col-md-6">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Slot</mat-label>
           <mat-select formControlName="slot" required>
             <mat-option>--</mat-option>
@@ -115,7 +129,7 @@
       <!-- select end  -->    <!-- select -->
       <div class="col-md-6">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Doctor</mat-label>
           <mat-select formControlName="doctor_id" required>
             <mat-option>--</mat-option>
@@ -135,7 +149,7 @@
       <!-- select end  -->
       <div class="col-md-6">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field class="full-width" appearance="fill">
           <mat-label>Branch</mat-label>
           <mat-select formControlName="branch" required>
             <mat-option> </mat-option>

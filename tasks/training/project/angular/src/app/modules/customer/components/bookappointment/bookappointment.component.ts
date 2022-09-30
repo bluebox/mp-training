@@ -19,12 +19,15 @@ export class BookappointmentComponent implements OnInit {
   sampleCollectors :any
   nurse :any
 
+
   user_data: any
   constructor(private http : CustomerServiceService, private router: Router,
     private httpUser : HttpServiceService) { }
 
+    x:string=''
   bookAppointmentForm: FormGroup = new FormGroup({
     
+    username: new FormControl(this.x||'', Validators.required),
     doctor_id: new FormControl(" ", Validators.required),
     branch: new FormControl(null , Validators.required),
     nurse_id: new FormControl(" ", Validators.required),
@@ -32,7 +35,6 @@ export class BookappointmentComponent implements OnInit {
     sample_collector: new FormControl(" ", Validators.required),
     status: new FormControl(" ", Validators.required),
     slot: new FormControl(" ", Validators.required),
-    
   })
     
   ngOnInit(): any {
@@ -59,26 +61,10 @@ export class BookappointmentComponent implements OnInit {
       
   }
 
-  // submitRegister() {
-  //   // console.log(this.customerRegisterForm.value);
-  //   if (this.bookAppointmentForm.valid ) {
-  //     this.http.registerEmployee(this.user_data).subscribe(data => console.log(data))
-  //   }
-  //   else {
-  //     console.log('fill properly ');
-  //     this.formNotValid = true
-  //     console.log(this.bookAppointmentForm.valid);
-  //   }
-  //   console.log(this.bookAppointmentForm.value);
 
-  // }
-  // DesignationChange(e: any) {
-  //   console.log(e);
-
-  // }
   bookAppointment(){
     console.log(this.bookAppointmentForm.value);
-    this.http.bookAppointment(this.bookAppointmentForm.value).subscribe(data=>{
+    this.http.bookAppointment({ 'form': this.bookAppointmentForm.value, 'username': this.bookAppointmentForm.get('username')?.value }).subscribe(data=>{
       console.log(data);
       
     })

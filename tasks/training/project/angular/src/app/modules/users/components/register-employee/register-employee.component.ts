@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../../http-service.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // interface 
 
@@ -11,13 +12,13 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class RegisterEmployeeComponent implements OnInit {
   formNotValid: boolean = false
-  formError?: string = ""
+  errorMessage: string = ""
   designations: string[] = ['Doctor', 'Nurse', 'Lab Technician', 'Sample Collector', 'Receptionist']
   status: string[] = ["occupied", "available"]
   branches : any
   branchIdList : string[] =[]
   user_data : any
-  constructor(private http: HttpServiceService) { }
+  constructor(private http: HttpServiceService, private router: Router) { }
 
 
   employeeRegisterForm: FormGroup = new FormGroup({
@@ -53,7 +54,13 @@ export class RegisterEmployeeComponent implements OnInit {
     // console.log(this.customerRegisterForm.value);
     if (this.employeeRegisterForm.valid && this.designationControl.valid && this.branchControl.valid ) {
       this.user_data = { ...this.employeeRegisterForm.value  ,"branch": this.branchControl.value, 'designation': this.designationControl.value}
-      this.http.registerEmployee(this.user_data).subscribe(data => console.log(data))
+      this.http.registerEmployee(this.user_data).subscribe(data => {
+        console.log(data)
+        this.errorMessage = data.message
+        if (this.errorMessage == "registered") {
+          this.router.navigate(['home'])
+        }
+      })
     }
     else {
       console.log('fill properly ');

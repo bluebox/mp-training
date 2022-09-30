@@ -1,17 +1,13 @@
 .full-width {
-    width: 100%;
+    width: 70%;
+    margin: 2%;
 }
 
 .top-padding {
     padding-top: 3px;
 }
 
-
 .form-container {
-    margin: 100px;
-}
-
-.field {
-    background-color: aqua;
-    width: 200px;
+    margin: 0 auto;
+    width: 50%;
 }

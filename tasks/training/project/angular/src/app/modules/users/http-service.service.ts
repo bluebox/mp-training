@@ -42,5 +42,22 @@ export class HttpServiceService {
       catchError(this.handleError)
     )
   }
+  logoutUser(data:any){
+    return this.http.post("http://localhost:8000/users/logout/",data)
+  }
+  public saveData(key: string, value: string) {
+    localStorage.setItem(key, value);
+  }
+
+  public getData(key: string) {
+    return localStorage.getItem(key)
+  }
+  public removeData(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  public clearData() {
+    localStorage.clear();
+  }
 
   }

@@ -6,6 +6,8 @@ import { RegisterCustomerComponent } from './components/register-customer/regist
 import { RegisterEmployeeComponent } from './components/register-employee/register-employee.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 // material
 import { MatRadioModule } from '@angular/material/radio';
@@ -16,14 +18,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginComponent } from './components/login/login.component';
-
 @NgModule({
   declarations: [
     RegisterCustomerComponent,
     RegisterEmployeeComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,

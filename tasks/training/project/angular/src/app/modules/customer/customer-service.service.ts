@@ -40,4 +40,5 @@ export class CustomerServiceService {
   bookAppointment(data:any){
     return this.http.post<any>("http://127.0.0.1:8000/appointments/book-appointment/",data)
   }
+  
 }

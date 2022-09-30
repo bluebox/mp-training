@@ -7,8 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
-
-from users.models import Staff
+from users.models import Customer, Staff, User
 from users.serializers import EmployeeSerializer
 from .serializers import AppointmentSerializer, BranchSerializer
 from .models import Appointment, Branch
@@ -22,10 +21,18 @@ class AppointmentBooking(APIView):
         return Response(serializer.data , status = 200 )
 
     def post(self,request):
-        data = request.data
-        data['user'] = 'MEDC7'
+        print(request.data)
+        data = request.data.get('form')
+        username = request.data.get('username')
+        print(username)
+        user = User.objects.get(username = username)
+        print(user)
+        customer = Customer.objects.get(user_id = user.id)
+        print(customer)
+        data['user'] = customer.customer_id
         print(data)
-        apmt = AppointmentSerializer( data =data )
+        apmt = AppointmentSerializer( data = data )
+        print(apmt)
         if apmt.is_valid():
             apmt.save()
             return Response({"message":"appointment_booked"} , status = 200 )

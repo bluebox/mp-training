@@ -1,0 +1,63 @@
+<form [formGroup]="bookAppointmentForm" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Book Appointment</mat-card-title>
+      <!-- <mat-card-title *ngIf="formNotValid"
+        >please Fill All required details</mat-card-title
+      > -->
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <!-- select -->
+      <div class="col-md-6">
+        
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Doctor</mat-label>
+          <mat-select formControlName="slot" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let slot of slots" [value]="slot">
+              {{ slot}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <small
+        *ngIf="
+          bookAppointmentForm.get('slot')?.touched ||
+          bookAppointmentForm.get('slot')?.invalid
+        "
+        >please select Doctor</small
+      >
+      <!-- select end  -->
+      <div class="col-md-6">
+        
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Branch</mat-label>
+          <mat-select formControlName="branch" required>
+            <mat-option> </mat-option>
+            <mat-option
+              *ngFor="let branch of branches"
+              [value]="branch['branch_id']"
+            >
+              {{ branch["branch_name"] }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <small
+        *ngIf="
+          bookAppointmentForm.get('branch')?.touched ||
+          bookAppointmentForm.get('branch')?.invalid
+        "
+        >please select branch</small
+      >
+
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="bookAppointment()" mat-raised-button="" color="primary">
+        Register
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

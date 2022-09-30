@@ -3,7 +3,8 @@
 <form [formGroup]="customerRegisterForm" class="form-container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Register</mat-card-title>
+      <mat-card-title>Register Customer</mat-card-title>
+      {{errorMessage}}
       <mat-card-title  *ngIf="formNotValid">please Fill All required details</mat-card-title>
     </mat-card-header>
     <br>
@@ -88,6 +89,13 @@
         <small class="text-danger" *ngIf="customerRegisterForm.get('password')?.invalid && customerRegisterForm.get('password')?.touched  " > password should contain atleast 8 characters </small>
 
       </div>
+      <!-- <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input formControlName="password1" matInput placeholder="password again" />
+        </mat-form-field>
+        <small class="text-danger" *ngIf="customerRegisterForm.get('password1')?.invalid && customerRegisterForm.get('password1')?.touched  " > password should contain atleast 8 characters </small>
+
+      </div> -->
     </mat-card-content>
     <mat-card-actions>
       <button (click)="submitRegister()" mat-raised-button="" color="primary">

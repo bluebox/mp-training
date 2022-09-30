@@ -23,7 +23,8 @@ export class RegisterCustomerComponent implements OnInit {
     age: new FormControl(" ", Validators.required),
     address: new FormControl(" "),
     pincode: new FormControl(" ", Validators.maxLength(6)),
-    password: new FormControl(" ", Validators.minLength(8))
+    password: new FormControl(" ", Validators.minLength(8)),
+    // password1: new FormControl(" ", Validators.minLength(8))
   })
   ngOnInit(): void {
     
@@ -33,8 +34,8 @@ export class RegisterCustomerComponent implements OnInit {
     if (this.customerRegisterForm.valid) {
       this.http.registerCustomer(this.customerRegisterForm.value).subscribe(data =>{
         this.errorMessage = data.message
-        if (this.errorMessage == "logged in") {
-          this.router.navigate(['users/register-customer'])
+        if (this.errorMessage == "registered") {
+          this.router.navigate(['users/login'])
       }})
     }
     else {

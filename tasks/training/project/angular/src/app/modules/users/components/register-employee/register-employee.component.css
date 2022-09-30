@@ -1,5 +1,6 @@
 .full-width {
-    width: 50%;
+    width: 70%;
+    margin: 2%;
 }
 
 .top-padding {
@@ -7,10 +8,6 @@
 }
 
 .form-container {
-    margin-left: 30%;
-}
-
-.field {
-    background-color: aqua;
-    width: 200px;
+    margin: 0 auto;
+    width: 50%;
 }

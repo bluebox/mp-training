@@ -28,6 +28,9 @@ export class LoginComponent implements OnInit {
         console.log(resp)
         this.errorMessage = resp.msg
         if(this.errorMessage == "logged in"){
+          this.http.saveData("username",resp.user)
+          // console.log(this.http.getData('username'));
+          
           this.router.navigate(['users/register-customer'])
         }
       },

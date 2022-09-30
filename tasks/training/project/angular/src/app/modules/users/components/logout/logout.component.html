@@ -1,0 +1,11 @@
+<p>logout works!</p>
+<button (click)="logoutUser()" mat-stroked-button color="primary">Primary</button>
+
+<mat-card>
+  <mat-card-title>Logout {{username}}</mat-card-title>
+  <mat-card-subtitle>Confirm logout ? </mat-card-subtitle>
+  <mat-card-actions>
+    <button routerLink="../register-employee" mat-button>Cancel</button>
+    <button (click)="logoutUser()" mat-stroked-button color="primary">Confirm</button>
+  </mat-card-actions>
+</mat-card>
