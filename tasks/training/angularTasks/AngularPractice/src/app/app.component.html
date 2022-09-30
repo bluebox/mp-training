@@ -1,0 +1,7 @@
+<h1>Hello this is angular Main Page</h1>
+<!-- <app-child (toParent)="fromChild($event)" [received]="datafromchild"></app-child>
+
+a child can transmit data like {{datafromchild}} -->
+{{data}}
+<p *ngFor="let i of data" >{{i.name}},{{i.age}}</p>
+<router-outlet></router-outlet>

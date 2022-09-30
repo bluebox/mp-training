@@ -1,0 +1,26 @@
+<p>employee-view works!</p>
+
+<div class="dataTable">
+    <form [formGroup]="employeeUpdate">
+        <p class="heading">Update Employee Details</p>
+        <table align="center" >
+            <tr class="row">
+            <td>Employee_id: </td><td>{{employee_data.employee_id}}}</td></tr>
+            <tr class="row">
+            <td>FullName: </td><td>{{employee_data.employee_name}}}</td></tr>
+            <tr class="row">
+            <td>Phone: </td><td>{{employee_data.phone}}}</td></tr>
+            <tr class="row">
+            <td>Email: </td><td>{{employee_data.email}}}</td></tr>
+            <tr class="row">
+            <td>Doj: </td><td>{{employee_data.doj}}}</td></tr>
+            <tr class="row">
+            <td>Role: </td><td>{{employee_data.role_id}}}</td></tr>
+            <tr class="row">
+            <td>Salary: </td><td>{{employee_data.salary}}}</td></tr>
+            <tr class="row">
+            <td>Address: </td><td>{{employee_data.address}}}</td>
+           
+        </table>
+    </form>
+</div>

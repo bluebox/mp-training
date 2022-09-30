@@ -1,0 +1,24 @@
+<body>
+    <div class="dataTable">
+     <h1 class="heading">Profile Edit</h1>
+     <form [formGroup]="customerUpdate" >
+         <table align="center">
+             <tr class="row">
+             <td>UserName: </td><td><input type="text" formControlName="customer_id" ></td></tr>
+             <tr class="row">
+             <td>Password:</td><td> <input type="password" formControlName="password" value=customer_data.password></td></tr>
+             <tr class="row">
+             <td>FullName: </td><td><input type="text" formControlName="customer_name" value="{{customer_data.customer_name}}"></td></tr>
+             <tr class="row">
+             <td>Phone: </td><td><input type="tel" formControlName="phone" value={{customer_data.phone}}></td></tr>
+             <tr class="row">
+             <td>Email: </td><td><input type="email" formControlName="email" value="{{customer_data.email}}"></td></tr>
+             <tr class="row">
+             <td>Address: </td><td><textarea formControlName="address" rows="5" cols="20" value="{{customer_data.address}}"></textarea></td>
+             <tr class="row">
+             <td></td><td><button (click)="update()">save</button>&nbsp; &nbsp;<input type="reset"></td></tr>
+         </table>
+     </form>
+    </div>
+ 
+ </body>

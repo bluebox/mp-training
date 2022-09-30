@@ -1,0 +1,21 @@
+.dataTable{
+    background-color:rgb(59, 59, 80);
+    margin:auto;
+    color:white;
+    padding:1em;
+    height:20rem;
+    width:25rem;
+
+}
+.save,#reset{
+ height:3em;
+ width:5em;
+ color:white;
+ background-color: black;
+}
+
+.heading{
+    font-size: 3em;
+    font-weight: 700;   
+    text-align: center;
+}

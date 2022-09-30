@@ -1,0 +1,14 @@
+<!-- {{arr}} -->
+<button (click)="addEmployee()">addEmployee</button>
+<table *ngIf="employee_list">
+    <tr *ngFor="let i of employee_list">
+        <td>{{i.employee_id}}</td>
+        <td>{{i.employee_name}}</td>
+        <td [ngSwitch]="i.role_id">
+            <p *ngFor="let role of roles"><span>
+                    <p *ngSwitchCase="role.role_id">{{role.role_name}}</p>
+                </span></p>
+        </td>
+    <td><button (click)="updateEmployee(i.employee_id)">Edit</button></td>
+    <td><button (click)="deleteEmployee(i.employee_id)">Delete</button></td></tr>
+</table>

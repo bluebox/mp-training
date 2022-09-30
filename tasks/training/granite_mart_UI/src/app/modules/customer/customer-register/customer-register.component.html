@@ -1,0 +1,25 @@
+<body>
+   <div class="content">
+    <h1 style="align-content:center">User Registration</h1>
+    <form [formGroup]="customerReg" style="margin-right:0px;">
+        <table >
+            <tr>
+            <td>UserName: </td><td><input type="text" formControlName="customer_id"></td></tr>
+            <tr>
+            <td>Password:</td><td> <input type="password" formControlName="password"></td></tr>
+            <tr>
+            <td>FullName: </td><td><input type="text" formControlName="customer_name"></td></tr>
+            <tr>
+            <td>Phone: </td><td><input type="tel" formControlName="phone"></td></tr>
+            <tr>
+            <td>Email: </td><td><input type="email" formControlName="email"></td></tr>
+            <tr>
+            <td>Address: </td><td><textarea formControlName="address" rows="5" cols="20"></textarea></td>
+            <tr>
+            <td></td><td><button (click)="register()">save</button>&nbsp; &nbsp;<input type="reset"></td></tr>
+        </table>
+    </form>
+    <p>already have an account? <span><a [routerLink]="['/customerLogin']">signin</a></span></p>
+   </div>
+
+</body>
