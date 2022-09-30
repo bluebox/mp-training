@@ -13,6 +13,7 @@ import { TransactionsComponent } from './components/transactions/transactions.co
 import { HomeComponent } from './components/home/home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { BranchComponent } from './components/branch/branch.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { BranchComponent } from './components/branch/branch.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule
   ]
 })
 export class AdminModule { }

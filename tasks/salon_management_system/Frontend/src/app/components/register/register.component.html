@@ -1,1 +1,45 @@
-<p>register works!</p>
+<form [formGroup]="ClientRegistrationForm"  class="example-form">
+    <div class="card1">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+            {{errorMessage}}
+            <mat-card-title  *ngIf="formNotValid">please Fill All required details</mat-card-title>
+        </mat-card-header>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input formControlName="username" matInput placeholder="Enter your Username" />
+            <small class="text-danger" *ngIf="ClientRegistrationForm.get('username')?.invalid  && ClientRegistrationForm.get('username')?.touched " >username is required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input formControlName="first_name" matInput placeholder="Enter you First Name" />
+            <small class="text-danger" *ngIf="ClientRegistrationForm.get('first_name')?.invalid  && ClientRegistrationForm.get('first_name')?.touched " >First Name is required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="last_name" matInput placeholder="last_name" />
+
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="Enter your Email id" />
+            <small class="text-danger" *ngIf="ClientRegistrationForm.get('email')?.invalid  && ClientRegistrationForm.get('email')?.touched " >Email is required</small>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+            <small class="text-danger" *ngIf="ClientRegistrationForm.get('Password')?.invalid  && ClientRegistrationForm.get('Password')?.touched " >Password is required</small>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input formControlName="Client_contact_number" matInput placeholder="Place enter your Contact NUmber" />
+        </mat-form-field>
+        <mat-card-actions>
+            <button (click) = "onRegisterSubmit()" mat-raised-button="" color="primary">
+              Register
+            </button>
+          </mat-card-actions>
+    </mat-card>
+    </div>
+</form>

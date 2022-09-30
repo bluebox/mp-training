@@ -50,3 +50,9 @@
     background-size: cover;
     margin: -1%;
 }
+table {
+  width: 100%;
+}
+.column-name{
+    color: black;
+}

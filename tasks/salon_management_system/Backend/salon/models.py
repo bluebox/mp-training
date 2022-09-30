@@ -1,3 +1,4 @@
+from email.policy import default
 from random import choices
 from django.db import models
 
@@ -13,7 +14,8 @@ class User(AbstractUser):
         db_table = 'User'
    
 class Client(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,default=101)
+    client_id = models.CharField(primary_key = True,max_length = 10,default = 'c01')
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     Client_contact_number = models.CharField(max_length=10)
 
     class Meta:
@@ -28,7 +30,8 @@ class Branch(models.Model):
         db_table = 'Branch'
 
 class Employee(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,default=201)
+    emp_id = models.CharField(primary_key = True,max_length = 10,default = 'e01')
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     branch_id = models.ForeignKey(Branch,  on_delete=models.CASCADE)
     role = models.CharField(max_length=20)
     emp_contact_number = models.CharField(max_length=10)
@@ -46,7 +49,7 @@ class services_provided(models.Model):
 
 class Appointment(models.Model):
     Appointment_id = models.IntegerField(primary_key = True)
-    Client_id = models.ForeignKey(Client,  on_delete=models.CASCADE,null = True)
+    client_id = models.ForeignKey(Client,  on_delete=models.CASCADE)
     Time_of_appointment = models.TimeField()
     appointment_date = models.DateField()
     Appointment_Status = models.CharField(max_length=20)

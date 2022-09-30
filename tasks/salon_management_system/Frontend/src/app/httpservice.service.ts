@@ -5,6 +5,9 @@ import {HttpClient} from '@angular/common/http'
   providedIn: 'root'
 })
 export class HttpserviceService {
+  ClientRegistration(value: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http : HttpClient) {  }
 
@@ -14,5 +17,13 @@ export class HttpserviceService {
 
   getServices(){
     return this.http.get(' http://127.0.0.1:8000/services')
+  }
+
+  
+  // registerStudent(data: any){
+  //   return this.http.post<any>('http://127.0.0.1:8000/userstudent',data)
+  // }
+  clientRegister(data : any){
+    return this.http.post<any>('http://127.0.0.1:8000/ClientRegistration',data)
   }
 }

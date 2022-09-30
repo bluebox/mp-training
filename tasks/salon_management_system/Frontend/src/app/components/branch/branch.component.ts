@@ -10,14 +10,13 @@ import { Subscription } from 'rxjs';
 export class BranchComponent implements OnInit {
 
   subscription : Subscription = Subscription.EMPTY
-  branches: any;
-  dataSource: any;
+  branches: unknown;
+  displayedColumns :string[]=['branch_id','branch_name','location'];
+
   constructor(private http : HttpserviceService) { }
 
   ngOnInit(): void {
     this.subscription =this.http.getBranch().subscribe((data) =>{this.branches = data ;console.log(data)});
   }
-
-  // displayedColumns :string[]=['branch_id','branch_name','location'];
 
 }

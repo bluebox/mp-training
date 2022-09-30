@@ -1,15 +1,51 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpserviceService } from 'src/app/httpservice.service';
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent{
+  formNotValid = false
+  formError =""
+  errorMessage = ""
+  hide = true;
 
-  constructor() { }
+  constructor(private http :HttpserviceService ,private router: Router) { }
 
-  ngOnInit(): void {
+  ClientRegistrationForm: FormGroup = new FormGroup({
+    username: new FormControl("", Validators.required),
+    first_name: new FormControl("", Validators.required),
+    last_name: new FormControl(""),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl("", [Validators.minLength(8),Validators.required]),
+    Client_contact_number: new FormControl("", [Validators.maxLength(10), Validators.required]),
+
+  })
+
+
+  onRegisterSubmit() {
+    console.log(this.ClientRegistrationForm.value);
+    if (this.ClientRegistrationForm.valid) {
+      this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
+        this.errorMessage = data.message
+        if (this.errorMessage == "registered") {
+          this.router.navigate(['/login'])
+      }})
+    }
+    else {
+      console.log('please check ');
+      this.formNotValid = true
+      console.log(this.ClientRegistrationForm.valid);
+       
+    }
+    console.log(this.ClientRegistrationForm.value);
+
   }
+  get passwordInput() { return this.ClientRegistrationForm.get('password'); }  
 
 }

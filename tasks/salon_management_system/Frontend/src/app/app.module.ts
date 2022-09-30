@@ -16,6 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpserviceService } from './httpservice.service';
 import {MatTableModule} from '@angular/material/table';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms'; 
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -35,8 +39,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
-    MatSidenavModule
- 
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule
     
   ],
   providers: [HttpserviceService],
