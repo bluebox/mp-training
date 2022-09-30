@@ -6,7 +6,9 @@ body{
 .main{
 display: flex;
 justify-content: center;
-padding-top: 50px
+padding-top: 50px;
+background-color: rgb(195, 226, 226);
+
 }
 body{
 

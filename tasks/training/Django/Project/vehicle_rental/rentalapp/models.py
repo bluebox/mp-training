@@ -61,7 +61,7 @@ class Rent_Trip(models.Model):
     rent_id = models.AutoField(primary_key=True)
     vehicle_no = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    owner_d = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    owner_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
     pickup_time_date = models.DateTimeField()
     return_date_time = models.DateTimeField(null=True)
     odo_start_reading = models.IntegerField(null=True)

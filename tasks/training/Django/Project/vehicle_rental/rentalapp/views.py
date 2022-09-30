@@ -254,15 +254,16 @@ class VehicleStatusDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Rent_TripList(APIView):
-    def get(self, request, format=None):
+    def get(self, request):
 
         rent_trip = Rent_Trip.objects.all()
         serializer = Rent_TripSerializer(rent_trip, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
+    def post(self, request):
 
         serializer = Rent_TripSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -386,7 +387,12 @@ class DeleteVehicle(View):
         return  JsonResponse({"message":"success"},safe=False)
         # serializer = VehicleSerializer(vehicle)
 
-
+class GetBookingId(APIView):
+    def get(self, request, id):
+        booking_id = Rent_Trip.objects.filter(customer_id = id ).order_by('-check_in').first
+        serializer = Rent_TripSerializer(booking_id)
+        print(serializer)
+        return  JsonResponse(serializer.data)
 
 @csrf_exempt
 @api_view(['POST'])

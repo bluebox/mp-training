@@ -22,6 +22,7 @@ export class BookComponent implements OnInit {
   constructor(private service : GeneralService, private router : Router) {
     console.log(this.vehicle_obj.vehicle_no)
     console.log(this.vehicle_obj.owner_id)
+    console.log(this.customer.customer_id)
     this
 
   }
@@ -40,18 +41,26 @@ export class BookComponent implements OnInit {
 
   bookSelectedVehicle(){
 
-    // let veh = {...this.vehicle_obj, }
-    // console.log(this.vehicle.value['pickup_time_date'])
-    // console.log(this.vehicle_obj)
     let veh = {
       "vehicle_no": this.vehicle_obj.vehicle_no,
-      "customer_id": this.customer_obj.customer_id,
+      "customer_id": this.customer.customer_id,
       "owner_id": this.vehicle_obj.owner_id,
       'pickup_time_date': this.vehicle.value['pickup_time_date']
     }
     console.log(veh)
 
-    this.service.bookVehicle(veh).subscribe(data=>console.log(data) )
+    let post=this.service.bookVehicle(veh).subscribe((data : any) =>{
+      window.sessionStorage.setItem('customer_id',JSON.stringify(data)),this.router.navigate(['available-vehicles']), alert('Booked successfully')}
+      , (err) => {alert(' Select date')},  )
+
+    // if(post){
+    //   alert("Booking Successfull")
+    // }
+
+    // let veh = {...this.vehicle_obj, }
+    // console.log(this.vehicle.value['pickup_time_date'])
+    // console.log(this.vehicle_obj)
+
     // this.vehicle = new FormGroup({
     //   "vehicle_no": this.vehicle_obj.vehicle_no,
     //   "customer_id": this.customer_obj.customer_id,

@@ -27,7 +27,7 @@ export class CustomerloginComponent implements OnInit {
   customerLogin(){
     console.log('here')
     this.service.customerLogin(this.login.value).subscribe((data : any) =>{(this.msg=data)
-      window.sessionStorage.setItem('customer_id',JSON.stringify(data));this.route.navigate(['available-vehicles'])}
+      window.sessionStorage.setItem('customer_id',JSON.stringify(data)),this.route.navigate(['available-vehicles'])}
       , (err) => {alert('Invalid credentials')},  )}
 }
 

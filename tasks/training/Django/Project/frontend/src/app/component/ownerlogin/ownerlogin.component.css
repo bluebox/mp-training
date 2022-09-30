@@ -1,12 +1,10 @@
-body{
-  /* background-image: url(); */
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 .main{
 display: flex;
 justify-content: center;
-padding-top: 50px
+padding-top: 50px;
+/* background-image: url(''); */
+background-color: rgb(156, 228, 228);
 }
 body{
 
