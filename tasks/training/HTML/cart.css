@@ -1,0 +1,164 @@
+
+.out-container
+{
+ display:flex;
+/* grid-column-start:3;
+grid-column-end:3;
+grid-row-start:1; */
+  /* grid-row-end:3; */
+  flex-wrap: wrap;
+  background-color: rgba(164, 226, 207, 0.507);
+}
+.container
+{
+    display:grid;
+    grid-template-columns: 1fr 1fr ;
+      box-shadow: 1px 5px 5px rgba(56, 177, 96, 0.507);  
+    width:60%;
+    height:8%;
+    background-image: url("https://www.wordstream.com/wp-content/uploads/2021/07/google-shopping-feed-ecommerce-final.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed; 
+    border-style:groove;
+}
+.container1
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 10px 20px 5px rgba(200, 194, 207, 0.507);
+    margin-left: 30px;
+    width:37%;
+    height:100%;
+    background-color: rgba(200, 194, 207, 0.507);
+    
+    
+}
+.container2
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 10px 20px 5px rgba(200, 194, 207, 0.507);
+    margin-left: 10px;
+    width:100%;
+    height:70%;
+    
+    
+}
+.container3
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 10px 20px 5px rgba(200, 194, 207, 0.507);
+    margin-left: 10px;
+    width:100%;
+    height:70%;
+    
+    
+}
+.img1
+{
+  padding-bottom: 40px;
+    margin:40px;
+}
+
+.box1
+{
+    display:grid;                  
+    grid-template-rows: 1fr  ;               
+    align-items: center;
+    justify-content: space-between;
+    padding:20px 20px;
+    
+}
+.butt
+{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.box1 butt butt2
+{
+margin-left: 10px;
+background-color: crimson;
+border-radius: 20px 20px;
+}
+.box1 butt butt1
+{
+background-color: crimson;
+border-radius: 20px 20px;
+}
+.box1 h2{
+    color: blue;
+}
+.box1 h4{
+    color:crimson;
+}
+.item1
+{
+    display:flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.item1 .img1{
+    width:50%
+}
+.container.matter
+{
+    display:flex;
+    flex-direction:column;
+    width:50%
+}
+.item2
+{
+    display:flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.item2 .img1{
+    width:50%
+}
+.container.matter
+{
+    display:flex;
+    flex-direction:column;
+    width:50%
+}
+.item3
+{
+    display:flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.item3 .img1{
+    width:50%
+}
+.container.matter
+{
+    display:flex;
+    flex-direction:column;
+    width:50%
+}
+.item4
+{
+    display:flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.item4 .img1{
+    width:50%
+}
+.container.matter
+{
+    display:flex;
+    flex-direction:column;
+    width:50%
+}
+
+h3{
+    color:rgb(139, 118, 61);
+}

@@ -1,0 +1,56 @@
+body{
+    height: 90vh;
+}
+
+.container
+{
+    display:flex;
+    width:80vw;
+    height: 90vh;
+}
+.innercont1
+{
+  display:flex;
+  flex-direction: column;
+  width: 20vw;
+  height:80vh;
+  border-style: groove;
+  background-color:lightgrey;
+ 
+}
+.floor
+{
+    width:20vw;
+    height:100px;
+    border:groove;
+    position:relative;
+}
+
+.innercont2
+{
+ display:flex;
+ flex-direction: column;
+  width: 20vw;
+  height:80vh;
+  border-style: groove;
+  position: relative;
+}
+
+.lift
+{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    width:20vw;
+    height:13vh;
+    border:groove;
+    background-color: blue;
+    bottom:0;
+    position: absolute;
+    transition:bottom 1.5s;
+}
+.inlift
+{
+    width:3vw;
+    height:2vh;
+}
+

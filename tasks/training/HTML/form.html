@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+<title>Payment details</title>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<style>
+ h2:hover,h3:hover,p:hover,h4:hover{
+  color: firebrick;
+} 
+p{
+    
+    color:darkmagenta;
+    text-decoration: dotted;
+    text-decoration-color: blueviolet;
+}
+body:hover{
+    background-color: aqua;
+    
+}
+
+</style>
+
+</head>
+<body>
+    <h1 style="color:crimson;text-decoration:underline;">PAYMENT DETAILS FORM</h1>
+    <!-- <h4> basic form </h4> -->
+<form action="#">
+ <fieldset style="border-style:dotted; background-image: linear-gradient(white,yellow);
+ border-radius:0 150px;
+">
+  <legend><h2>Transaction details</h2></legend>
+  <div class="div1" style="display:flex; justify-content: space-around;">
+  <div><h3>PERSON DETAILS</h3>
+  <p>
+    <label >  First name: <input style="background-color:silver; border-radius: 3px;" name="firstName"/><i class="fa fa-user icon"></i></label>
+  </p>
+  <p>
+    <label>Last name : <input style="background-color:silver;border-radius: 3px;" name ="lastname"/></label> 
+    <i class="fa fa-user icon"></i>
+  </p>
+  <p>
+  <label>Address:
+    <input style="background-color:silver;border-top-left-radius: 180px;
+    border-bottom-right-radius: 150px;" name ="Address"/>
+    <i class="fa fa-envelope icon"></i>
+    </label>
+</p>
+  <p style="color:blue">
+    Transaction Type:
+     <label>UPI <input type ="radio" style="border: 20px; border-radius:20px;"   name ="UPI "/></label>
+     <label style="text-align: center;">CARD<input type="radio" name="CARD "/></label><br>
+  </p>
+</div>
+  <div>
+  <h3>ENTER CARD DETAILS</h3>
+  <p>
+    <label> card number: <input type="number" style="background-color:silver;border-radius: 3px;" name="card number"/>
+        <i class="fa fa-credit-card icon"></i></label>
+  </p>
+  <p>EXP date :  
+                <select> 
+                        <option>01 jun</option>
+                        <option>02 jun</option>
+                        <option>03 jun</option>
+                    </select>
+                    <select>
+                        <option>2020</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                    </select>
+  </p>
+  <p>
+    <label>cvv: <input type="number" style="background-color:silver;border-radius: 3px;" name= "CVV"/>
+        <i class="fa fa-user icon"></i>
+    </label>
+</p>
+    <h4>Please enter the otp recieved</h4>
+    <p style="color:brown">
+        <label><input style="background-color:silver;"  name="otp"/></label>
+      </p>
+
+
+</div>
+
+</div>
+<p style="text-align: center;">
+    <button type="submit" style="background-color: rgb(188, 218, 243);height:40px; width:200px; border-radius:30px;">Submit</button>
+    </p>
+</fieldset>
+</form>
+</body>
+
+</html>

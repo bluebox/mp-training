@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views import View
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic import ListView, DetailView, TemplateView
-from .models import Hobbies, Biodata
+from.models import *
 
 
 def index(request):
@@ -27,8 +27,8 @@ class ClassBasedView(View):
 
 
 class Generic(ListView):
-    # model = Biodata
-    queryset = Biodata.objects.order_by('email')
+    # model = Biodata1
+    queryset = Biodata1.objects.order_by('email')
     template_name = "v_app3/ex4.html"
     context_object_name = "bio_info"
 
@@ -38,7 +38,7 @@ class Generic2(TemplateView):
 
 
 class Generic3(DetailView):
-    model = Biodata
+    model = Biodata1
     context_object_name = "bio_info"
     template_name = "v_app3/ex4.html"
 
@@ -48,6 +48,12 @@ class Generic3(DetailView):
     #     return context
 
 
+def validate_odd(value):
+    if value % 2 == 0:
+        raise ValidationError(
+            _('%(value)s is not an even number'),
+            params={'value': value},
+        )
 
 
 

