@@ -1,0 +1,28 @@
+@import "../././../../styles.css";
+
+.signup-container {
+  border: solid 5px rgb(190, 190, 252);
+  padding: 10px;
+}
+
+.heading {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgba(1, 1, 7, 0.5);
+  font-weight: bold;
+  text-align: center;
+}
+
+.form {
+  text-align: center;
+}
+
+label {
+  font-size: 18px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 10px;
+  text-align: left;
+}
+
+.form-control {
+  width: 300px;
+}

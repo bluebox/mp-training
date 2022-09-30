@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Bill Number</th>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Total Bill</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bill of bills">
+      <th scope="row">{{ bill.billNumber }}</th>
+      <td>{{ bill.type }}</td>
+      <td>{{ bill.description }}</td>
+      <td>{{ bill.isPaid }}</td>
+      <td>{{ bill.totalBill }}</td>
+    </tr>
+  </tbody>
+</table>

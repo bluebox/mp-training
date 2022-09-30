@@ -1,0 +1,62 @@
+<mat-grid-list cols="1" rowHeight="1000px">
+  <mat-grid-tile>
+    <div class="signup-container">
+      <form method="POST" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <h1 class="heading">Update Form</h1>
+        <mat-form-field appearance="fill" class="width-50">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-50 ml-2">
+          <mat-label>Surname</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Email address</mat-label>
+          <input
+            matInput
+            placeholder="Ex. pat@example.com"
+            formControlName="email"
+          />
+          <span matSuffix style="padding-right: 40px !important"></span>
+          <mat-error *ngIf="email.hasError('required')">
+            This Field is Required
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="width-50">
+          <mat-label>Phone no</mat-label>
+          <input matInput formControlName="mobileNo" />
+          <span matSuffix style="padding-right: 40px !important"></span>
+          <mat-error *ngIf="mobileNo.hasError('required')">
+            This Field is Required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-50">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="width-50 ml-2">
+          <mat-label>Occupation</mat-label>
+          <input matInput formControlName="occupation" />
+        </mat-form-field>
+        <br />
+
+        <br />
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="width-100"
+          [disabled]="updateForm.invalid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,91 @@
+<mat-grid-list cols="1" rowHeight="800px">
+  <mat-grid-tile>
+    <div class="signup-container">
+      <form method="POST" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <h1 class="heading">Add Employee Form</h1>
+        <mat-form-field appearance="fill" class="width-50">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <br />
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Email address</mat-label>
+          <input
+            matInput
+            placeholder="Ex. pat@example.com"
+            formControlName="email"
+          />
+          <span matSuffix style="padding-right: 40px !important"></span>
+          <mat-error *ngIf="email.hasError('required')">
+            This Field is Required
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill" class="width-50">
+          <mat-label>Phone no</mat-label>
+          <input matInput formControlName="mobileNo" />
+          <span matSuffix style="padding-right: 40px !important"></span>
+          <mat-error *ngIf="mobileNo.hasError('required')">
+            This Field is Required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="width-50 ml-2">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+
+        <br />
+
+        <mat-form-field appearance="fill" class="width-100">
+          <mat-label>Enter password</mat-label>
+          <input matInput type="text" formControlName="password" />
+
+          <span matSuffix style="padding-right: 40px !important"></span>
+          <mat-error *ngIf="password.hasError('required')">
+            This Field is Required
+          </mat-error>
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>Employee Role</mat-label>
+          <mat-select [(value)]="roleId" formControlName="roleId">
+            <mat-option *ngFor="let role of roleTypes" [value]="role">
+              {{ role }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <br />
+
+        <label id="example-radio-group-label">Is Admin: </label>
+
+        <mat-radio-group
+          aria-label="Select an option"
+          formControlName="isAdmin"
+        >
+          <mat-radio-button class="example-radio-button ml-3" value="True"
+            >Yes</mat-radio-button
+          >
+          <mat-radio-button
+            class="example-radio-button ml-3"
+            value="False"
+            [checked]="true"
+            >No</mat-radio-button
+          >
+        </mat-radio-group>
+        <br /><br />
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="width-100"
+          [disabled]="employeeForm.invalid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

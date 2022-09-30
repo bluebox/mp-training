@@ -1,0 +1,15 @@
+.login-img {
+  height: inherit;
+  width: inherit;
+}
+
+.container {
+  /* height: 700px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.5);
+  margin: 40px;
+  /* overflow-y: hidden; */
+}
