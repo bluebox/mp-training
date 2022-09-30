@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div *ngIf="complaints">
+    <div *ngFor="let ele of complaints" >
+        <!-- <div class="assigned" *ngIf="!ele.is_assigned"  class="complaintcart"> -->
+            <mat-card> device id : {{ ele.emp_id}} <br>
+                complaint-description : {{ ele.comp_desc}}
+            </mat-card>
+            <div><button (click)="displaypopupfun(ele.emp_id)">view complaint </button> <button>edit complaint</button>
+            <!-- </div> -->
+
+        </div>
+    </div>
+</div>
+
+<app-popupcard *ngIf="displaypopup && device">
+    {{device.device_id}}
+</app-popupcard>

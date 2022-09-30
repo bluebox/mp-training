@@ -1,0 +1,20 @@
+.btns{
+    margin-left: 40PX;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.nav{
+    display: flex; 
+    justify-content: space-between;
+    margin-right: 40PX;
+
+}
+.btn{
+    height: 25px;
+    border: 0ch;
+    border-radius: 4px;
+     background-color: mediumblue;
+     color:aliceblue;
+}

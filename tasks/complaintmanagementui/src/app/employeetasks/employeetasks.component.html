@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div *ngIf="!tasks"> nothing to do </div>
+<div *ngIf="tasks">
+    <div *ngFor="let ele of tasks" class="complaintcart" (appOncreate)="setdeviceid(ele.device_id)">
+        <mat-card *ngIf="ele.status!=='completed'" > 
+            <!-- <appOncreate></appOncreate>   -->
+            device id : <br>
+          complaint status :  {{ ele.comp_status}} <br>
+            complaint-description : {{ ele.comp_id}}<br>
+            update complaint status :
+            <input id="status" >
+            <br>
+            <button style="margin-left: 190px; width: 120px;" (click)="updatestatus(ele.comp_id)">update</button>
+        </mat-card>
+       <!-- <div><button (click)="displaypopupfun(ele.emp_id)">view complaint </button> <button>edit complaint</button></div> -->
+     
+    </div>
+</div>

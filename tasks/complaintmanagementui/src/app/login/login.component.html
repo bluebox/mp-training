@@ -1,0 +1,59 @@
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- Pills navs -->
+<div class="loginbar">
+
+<!-- Pills navs -->
+
+<!-- Pills content -->
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">  
+
+           
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="email" id="id" class="form-control" />
+                <label class="form-label" for="loginName">Email or username</label>
+            </div>
+            <div >
+                <label for="role" class="role">Login as:</label>
+
+                <select name="role" class="role" id="role">
+                  <option value="employee" class="">Employee</option>
+                  <option value="manager">Manager</option>
+                </select>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="password" class="form-control" />
+                <label class="form-label" for="loginPassword">Password</label>
+            </div>
+
+            <!-- 2 column grid layout -->
+   
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4" (click)="signin()">Sign in</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                Not a member? <button routerLink="../register" class="btn btn primary">Register</button>
+            </div>
+        
+    </div>
+    <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+     
+       
+          
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-3" >Sign in</button>
+       
+    </div>
+</div>
+</div>
+<!-- Pills content -->
