@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { BranchComponent } from './components/branch/branch.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -36,7 +37,8 @@ import { BranchComponent } from './components/branch/branch.component';
     CommonModule,
     ClientRoutingModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ]
 })
 export class ClientModule { }
