@@ -9,6 +9,7 @@ import { Food } from '../interfaces/food';
 export class FoodService {
 
   private url:string="http://127.0.0.1:8000/food/"
+  private url1:string="http://127.0.0.1:8000/restaurant/foodlist/"
   constructor(private http:HttpClient) { }
 
   getFood():Observable<Food[]>{
@@ -23,4 +24,7 @@ export class FoodService {
    return this.http.post<Food>(this.url,data)
  }
 
+ getFoodRes(id:string):Observable<Food[]>{
+  return this.http.get<Food[]>(this.url1 + id + "/")
+ }
 }

@@ -1,6 +1,11 @@
+.container1
+{
+    height: 100%;
+}
+
 .details
 {
-    height: 50vh;
+    height: 50%;
     border:2px solid black;
     display: grid;
     grid-template-columns: 2fr 3fr;
@@ -9,14 +14,20 @@
 .order
 {
     height: 100%;
-    border:2px solid black;
-    display:flex
+    
+    display:flex;
+    
 }
-
+.food
+{
+    height: 100%;
+    overflow: auto;
+}
 .blocki
 {
-    border:2px solid black;
-    width: 50vw;
+    
+    width: 50%;
+    height: 100%;
 }
 
 
@@ -26,4 +37,21 @@
     height: 95%;
     border-radius: 10%;
     margin: 2%;
+}
+
+.food_item
+{
+    border: 0.5px solid grey;
+    border-radius: 12%;
+    margin: 4%;
+    padding: 5%;
+    display: flex;
+}
+.one{
+
+width:50%;
+}
+.checkout
+{
+    padding:5%;
 }

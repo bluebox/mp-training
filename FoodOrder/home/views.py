@@ -62,12 +62,18 @@ class FoodData(APIView):
     def post(self,request):
         print(request.data)
         # data=JSONParser().parse(request)
-        serializer = FoodSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
+        try:
+            serializer = FoodSerializer(data=request.data)
+        except:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class FoodOneData(APIView):
@@ -82,9 +88,6 @@ class FoodOneData(APIView):
         else:
             serializer = FoodSerializer(food)
             return Response(serializer.data)
-
-
-
 
     def post(self,request):
         return HttpResponse("Heyyyyyyyy post", status=405)
@@ -195,7 +198,14 @@ class AddFoodtoMenu(APIView):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+class OneResFoods(APIView):
+    def get(self,request,item):
 
+
+        food= Food.objects.filter(restaurant_id=item)
+
+        serializerRes = FoodSerializer(food, many=True)
+        return Response(serializerRes.data)
 
 # class CustomerLogin(APIView):
 #     def post(self,request):

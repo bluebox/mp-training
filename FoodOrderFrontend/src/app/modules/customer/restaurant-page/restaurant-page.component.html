@@ -1,4 +1,4 @@
-
+<div class="container1">
 <div class="search block">
     <p>
         <mat-toolbar color="primary">
@@ -31,11 +31,23 @@
 <div class="order block">
 
     <div class="food blocki">
-            
+            <div class="food_item" *ngFor="let f of foodL">
+                <div class="one">
+                <h2>{{f.food_name}}</h2>
+                <h3> Price: {{f.food_price}}</h3>
+                <button mat-raised-button class="add" color="accent">Add</button>
+            </div>
+            <div class="pic one">
+                   <img src="{{f.food_photo}}" alt="" class="photo"> 
+            </div>
+            </div>
     </div>
 
     <div class="checkout blocki">
-
+            hiiiiiiiiiiiiiiiiiiiiiiiiiii
     </div>
 </div>
-
+<div class="footer">
+    this is s footer
+</div>
+</div>

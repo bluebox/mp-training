@@ -28,7 +28,7 @@ class Restaurant(models.Model):
     close_timing = models.CharField(max_length=20,null=True)
     restaurant_photo = models.TextField(max_length=500, null=True)
     def __str__(self):
-        return self.restaurant_name
+        return self.restaurant_id
 
 
 class Reviews(models.Model):
