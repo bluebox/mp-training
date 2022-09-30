@@ -1,0 +1,47 @@
+<div class="btn-success">{{message['msg']}}</div>
+
+<div class="login-page">
+    <mat-card class="mat-elevation-z12">
+       <div class="signin">
+            <div class="title">
+              <h1>Login</h1>
+            </div>
+            <form  [formGroup]="login" (ngSubmit)="loginSubmitForm()"  >
+              <mat-form-field>
+                <input matInput placeholder="Email" required class="form-control" name="email" formControlName="email"  >
+                <!-- <mat-error *ngIf="email.invalid">Email is required</mat-error> -->
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Password" type="password" required minlength="4" name="password" formControlName="password" autocomplete="on">
+                <!-- <mat-error *ngIf="password.errors && password.errors['required']">
+                  Password is required
+                </mat-error>
+                <mat-error *ngIf="password.errors && password.errors['minlength']">
+                  Password must be of length 6
+                </mat-error> -->
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+              <mat-checkbox value="remember_me" type="checkbox" (change)="onCheckboxChange($event)" >Remember Me!</mat-checkbox>
+              <div class="btnshape">
+                <button mat-raised-button color="primary" class="login-button" [disabled]="login.invalid || sending">
+                    {{sending ? 'Loading....':'Sign In'}}
+                  </button>
+                  <button mat-raised-button color="primary" class="login-button" routerLink="/user/register">
+                    Sign Up
+                  </button>
+              </div>
+  
+              <div class="btnshape">
+                <button mat-raised-button class="login-button btn1">
+                  Login with Google
+                </button>
+                <a routerLink="/user/forgotpassword">forgot Password</a>
+              </div>
+            </form>
+          </div>
+    </mat-card>
+  </div>
+
+
+  
