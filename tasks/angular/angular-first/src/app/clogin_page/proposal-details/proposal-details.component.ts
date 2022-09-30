@@ -24,7 +24,8 @@ export class ProposalDetailsComponent implements OnInit {
   CreateContract(object: any) {
     this.createcontract = this.fb.group({
       'emp_proposal_id': object.proprosal_id,
-      'client_id': JSON.parse(this.client).client_id
+      'client_id': JSON.parse(this.client).client_id,
+      'contract_amount' : this.proposalDetails.requried_pay
     });
     console.log(this.createcontract.value);
     

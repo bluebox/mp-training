@@ -23,6 +23,8 @@ urlpatterns = [
     path("get_proposal_details", views.get_proposal_details.as_view(), name="get_proposal_details"),
     path("create_contract", views.create_contract.as_view(), name="get_proposal_details"),
     path("get_contract_of_client", views.get_contract_of_client.as_view(), name="get_contract_of_client"),
+    path('client_payment',views.client_payment.as_view(),name='client_payment'),
+    path('get_fee_payment_details',views.client_fee_payment_details_view.as_view(),name='client_payment')
 
 
 ]

@@ -7,12 +7,47 @@
 <ng-template #second>
     <ul #second>
         <li *ngFor="let jobs of contractDetails">Contract Id : {{ jobs.contract_id }} <br> Freelancer Proposal Id :
-            {{jobs.emp_proposal_id}} <br> Project Deadline {{jobs.project_deadline}} <br> Project Status : {{
-            jobs.project_status }} <br>
-            <button type="menu">update project details</button>
+            {{jobs.emp_proposal_id}} <br>Contract Amount : $ {{ jobs.contract_amount }} <br> Project Deadline
+            {{jobs.project_deadline}} <br> Project Status : {{
+            jobs.project_status }} <br> <button class="btn btn-lg btn-outline-primary" (click)="open(content)">update
+                project status</button> <br>
+
+            <ng-template #content let-modal>
+                <div class="style" style="padding: 20px;">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Project Details</h4>
+                        <button type="button" style="margin-right:10px ;" class="btn-close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="change_project_details">
+                            <div class="mb-3">
+                                <label for="dateOfBirth">Change Project Deadline</label>
+                                <div class="input-group">
+                                    <input id="dateOfBirth" formControlName="project_deadline" class="form-control"
+                                        placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                                    <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()"
+                                        type="button"></button>
+                                </div>
+                                <label for="project_status">Project Status : </label>
+                                <div class="input-group">
+                                    <select name="project_status" id="" formControlName="project_status"
+                                        class="form-control">
+                                        <option value="pending" selected>Pending</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-dark"
+                            (click)="modal.close(jobs.contract_id)">Save</button>
+                    </div>
+                </div>
+            </ng-template>
+
         </li>
     </ul>
 </ng-template>
-
-
-
+{{ closeResult}}

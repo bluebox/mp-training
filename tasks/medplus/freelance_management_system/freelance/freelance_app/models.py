@@ -56,6 +56,7 @@ class client_contract_details(models.Model):
     client_id = models.ForeignKey(client_details,on_delete=models.CASCADE)
     project_deadline = models.DateTimeField(default=dateupdated)
     project_status = models.CharField(max_length=50,default='pending')
+    contract_amount = models.IntegerField(default=10)
     def __str__(self) -> str:
         return "{} {} {} ".format(self.contract_id,self.emp_proposal_id,self.client_id)
 
@@ -65,17 +66,17 @@ class freelancer_payment_details(models.Model):
     payment_id =  models.AutoField(primary_key=True)
     freelancer_id = models.ForeignKey(freelancer_details,on_delete=models.CASCADE)
     contract_id = models.OneToOneField(client_contract_details,on_delete=models.CASCADE)
-    Tax = models.IntegerField()
-    earned = models.IntegerField()
+    Tax = models.FloatField()
+    earned = models.FloatField()
     def __str__(self) -> str:
         return "{} {} {} ".format(self.payment_id,self.freelancer_id,self.contract_id)
 
 
 class client_fee_record(models.Model):
     contract_id = models.OneToOneField(client_contract_details,on_delete=models.CASCADE,default=1)
-    handling_fee = models.IntegerField()
-    tax = models.IntegerField()
-    total_payment = models.IntegerField()
+    handling_fee = models.FloatField()
+    tax = models.FloatField()
+    total_payment = models.FloatField()
     def __str__(self) -> str:
         return "{}".format(self.contract_id)
 

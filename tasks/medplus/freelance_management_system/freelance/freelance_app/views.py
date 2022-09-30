@@ -350,3 +350,18 @@ class get_contract_of_client(APIView):
         get_client_jobs = client_contract_details.objects.filter(client_id=request.GET.get('client_id'))
         serializers = client_contract_details_serializers(get_client_jobs,many=True)
         return Response(serializers.data)
+
+
+class client_payment(APIView):
+    def post(self,request):
+        serializer = client_fee_record_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+class client_fee_payment_details_view(APIView):
+    def get(self,request):
+        get_client_jobs = client_fee_record.objects.get(contract_id=request.GET.get('contract_id'))
+        serializers = client_fee_record_serializers(get_client_jobs)
+        return Response(serializers.data)
