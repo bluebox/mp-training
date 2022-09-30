@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
   { path: 'customer', loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule) },
+  { path: 'doctor', loadChildren: () => import('./modules/doctor/doctor.module').then(m => m.DoctorModule) },
   { path: 'admin',
   canActivate :[AdminGaurdGuard]
   , loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
