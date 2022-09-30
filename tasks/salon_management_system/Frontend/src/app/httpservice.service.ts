@@ -23,7 +23,7 @@ export class HttpserviceService {
   // registerStudent(data: any){
   //   return this.http.post<any>('http://127.0.0.1:8000/userstudent',data)
   // }
-  clientRegister(data : any){
-    return this.http.post<any>('http://127.0.0.1:8000/ClientRegistration',data)
+  clientRegister(data : unknown){
+    return this.http.post<unknown>('http://127.0.0.1:8000/ClientRegistration',data)
   }
 }

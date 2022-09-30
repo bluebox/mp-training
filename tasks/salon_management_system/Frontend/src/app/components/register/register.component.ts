@@ -9,10 +9,10 @@ import { HttpserviceService } from 'src/app/httpservice.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent{
-  formNotValid = false
-  formError =""
-  errorMessage = ""
+export class RegisterComponent implements OnInit {
+  formNotValid : boolean = false
+  formError ?: string =""
+  errorMessage : string = ""
   hide = true;
 
   constructor(private http :HttpserviceService ,private router: Router) { }
@@ -27,25 +27,27 @@ export class RegisterComponent{
 
   })
 
-
-  onRegisterSubmit() {
-    console.log(this.ClientRegistrationForm.value);
-    if (this.ClientRegistrationForm.valid) {
-      this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
-        this.errorMessage = data.message
-        if (this.errorMessage == "registered") {
-          this.router.navigate(['/login'])
-      }})
-    }
-    else {
-      console.log('please check ');
-      this.formNotValid = true
-      console.log(this.ClientRegistrationForm.valid);
-       
-    }
-    console.log(this.ClientRegistrationForm.value);
-
+  ngOnInit(): void {
   }
-  get passwordInput() { return this.ClientRegistrationForm.get('password'); }  
+
+//   onRegisterSubmit() {
+//     console.log(this.ClientRegistrationForm.value);
+//     if (this.ClientRegistrationForm.valid) {
+//       this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
+//         this.errorMessage = data.message
+//         if (this.errorMessage == "registered") {
+//           this.router.navigate(['login'])
+//       }})
+//     }
+//     else {
+//       console.log('please check ');
+//       this.formNotValid = true
+//       console.log(this.ClientRegistrationForm.valid);
+       
+//     }
+//     console.log(this.ClientRegistrationForm.value);
+
+//   }
+//   get passwordInput() { return this.ClientRegistrationForm.get('password'); }  
 
 }

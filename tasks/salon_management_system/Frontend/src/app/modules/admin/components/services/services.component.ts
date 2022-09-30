@@ -11,7 +11,6 @@ export class ServicesComponent implements OnInit {
 
   subscription : Subscription = Subscription.EMPTY
   services: any;
-  dataSource: any;
 
   constructor(private http : HttpserviceService) { }
 

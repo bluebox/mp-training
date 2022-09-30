@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class BranchComponent implements OnInit {
 
   subscription : Subscription = Subscription.EMPTY
-  branches: unknown;
+  branches: any;
   displayedColumns :string[]=['branch_id','branch_name','location'];
 
   constructor(private http : HttpserviceService) { }
