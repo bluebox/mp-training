@@ -1,0 +1,20 @@
+<button mat-stroked-button color="primary" (click)="goback()">Back</button>
+<button mat-stroked-button color="primary" (click)="getlist()">start booking for {{movies.Movie_name}}!! </button>
+<table>
+    <tr>
+        <th>Theatre Name</th>
+        <th>Theatre Location</th>
+        <th>Screen Number</th>
+        <th>Movie Time</th>
+        <th>Remaining Seats</th>
+        <th>Book</th>
+    </tr>
+    <tr  *ngFor="let s of screen, let i= index">
+        <td>{{theatrename[i].Theatre_name}}</td>
+        <td>{{theatrename[i].Theatre_location}}</td>
+        <td>{{s.Hall_no}}</td>
+        <td>{{s.startTime}}</td>
+        <td>{{s.T_No_Of_Seats}}</td>
+        <td><button mat-stroked-button color="primary"(click)=OpenSeatNo(s.Hall_id)>book</button></td>
+    </tr>
+</table>

@@ -1,0 +1,20 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HallInterface } from '../interface/hall';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class HallDataService {
+  public url:string= "http://127.0.0.1:8000/Hall/"
+
+  constructor(private http:HttpClient) { }
+  getHallData(){
+    return this.http.get<HallInterface[]>(this.url)
+  }
+  getSingleHall(id: number){
+    return this.http.get<HallInterface>("http://127.0.0.1:8000/Hall/"+id+'.json')}
+  updateHall(id:number,body:any){
+    return this.http.put("http://127.0.0.1:8000/Hall/"+id+'.json',body)
+  }
+}

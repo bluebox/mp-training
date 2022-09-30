@@ -1,0 +1,67 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom" >
+  <a class="navbar-brand" href="#"><img src="assets/data/logo.png" alt="img not available" height="100px" width="100px">MoviesForAll           </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent" >
+    <form>
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let m of movies" value="option1" >{{m.Movie_name}}</mat-option>
+          <!-- <mat-option value="option2">Option 2</mat-option>
+          <mat-option value="option3">Option 3</mat-option> -->
+        </mat-select>
+      </mat-form-field>
+      <button mat-button >Search</button>
+        </form>
+      
+      <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let movie of movies" [value]="movies">
+          {{movie.Movie_name}}
+        </mat-option>
+      </mat-autocomplete> -->
+      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+    <!-- </form> -->
+    <button mat-button (click)="openDialog()">Signup</button>
+    <button mat-button (click)="openLogin()">Login</button>
+    <!-- <button style="float:right" routerLink="/signup" routerLinkActive="active" ariaCurrentWhenActive="page">SignUp/SignIn</button> -->
+  </div>
+</nav>
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/movies" routerLinkActive="active" ariaCurrentWhenActive="page">Movies <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/concerts" routerLinkActive="active" ariaCurrentWhenActive="page">Concerts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Plays</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Sports
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Cricket</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+<div class="nav">
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="movies" class="btn" routerLink="/movies" routerLinkActive="active" ariaCurrentWhenActive="page">Movies</mat-button-toggle>
+    <mat-button-toggle value="concerts" class="btn" routerLink="/concerts" routerLinkActive="active" ariaCurrentWhenActive="page">Concerts</mat-button-toggle>
+    <mat-button-toggle value="plays"class="btn">Plays</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<router-outlet></router-outlet>

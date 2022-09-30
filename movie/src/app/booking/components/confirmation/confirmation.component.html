@@ -1,0 +1,14 @@
+<p>confirmation works!</p>
+<h2>Please Confirm...</h2>
+<h4>Movie-{{movieData.Movie_name}}</h4>
+<h4>Theatre Name={{theareData.Theatre_name}}</h4>
+<h4>Theatre Location={{theareData.Theatre_location}}</h4>
+<!-- <h4>Theatreid={{hallData.Theatre_id}}</h4> -->
+<h4>Screen Number-{{hallData.Hall_no}}</h4>
+<h4>Movie Time-{{hallData.startTime}}</h4>
+<div class="selected" style="display:flex"><h4>Selected seats-</h4><h4 *ngFor="let s of data.selectedSeats">{{s}}&nbsp;</h4></div>
+<h4>Date-{{hallData.Date}}</h4>
+<h4>Total={{data.price}}</h4>
+<button mat-button color="primary" (click)="gotoPayment()">Proceed</button>
+
+
