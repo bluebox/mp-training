@@ -1,0 +1,16 @@
+<div class="container div">
+    <form [formGroup]="postDiscussionForm" (ngSubmit)="onSubmit()">
+        <div class="element">
+            <label for="title">Title</label>
+            <input formControlName="title" type="text" name="" id="">
+        </div>
+
+        <div class="element discussion">
+            <label for="title">Discussion</label>
+            <textarea formControlName="discussion" type="text" rows="30" name="" id=""></textarea>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">POST</button>
+        </div>
+    </form>
+</div>

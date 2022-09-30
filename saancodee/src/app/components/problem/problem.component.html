@@ -2,38 +2,38 @@
     <a routerLink="/problems/discussions/{{id}}">discussions</a>
 </div> -->
 
-<div class="container">
-    <div>
+<div class="division">
+    <div class="">
         <div class="menu">
-            <div class="">
-                <button><a>Description</a></button>
+            <div>
+                <button class="btn btn-outline-danger"><a>Description</a></button>
             </div>
-            <div class="">
-                <button><a routerLink="/problems/discussions/{{id}}">Discussions</a></button>
+            <div>
+                <button class="btn btn-outline-danger"><a routerLink="/problems/discussions/{{id}}">Discussions</a></button>
             </div>
-            <div class="">
-                <button><a>Submissions</a></button>
+            <div>
+                <button class="btn btn-outline-danger"><a routerLink="/submissions/{{ id }}">Submissions</a></button>
             </div>
         </div>
-        <div>
-            <h3>{{ problem.problem_name }}</h3>
+        <div class="problem">
+            <h3 class="heading heading-glow">{{ problem.problem_name }}</h3>
             <div *ngIf="votes.vote === 'L'">
-                <button (click)="postVote('LA')" class="active">like {{ votes.like }}</button>
-                <button disabled>dislike {{ votes.dislike }}</button>
+                <button (click)="postVote('LA')" class="vote btn btn-secondary active">like {{ votes.like }}</button>
+                <button class="vote btn btn-secondary" disabled>dislike {{ votes.dislike }}</button>
             </div>
             <div *ngIf="votes.vote === 'D'">
-                <button disabled>like {{ votes.like }}</button>
-                <button (click)="postVote('DA')" class="active">dislike {{ votes.dislike }}</button>
+                <button class="vote btn btn-secondary" disabled>like {{ votes.like }}</button>
+                <button (click)="postVote('DA')" class="vote btn btn-secondary active">dislike {{ votes.dislike }}</button>
             </div>
             <div *ngIf="votes.vote === ''">
-                <button (click)="postVote('L')" class="neutral">like {{ votes.like }}</button>
-                <button (click)="postVote('D')" class="neutral">dislike {{ votes.dislike }}</button>
+                <button (click)="postVote('L')" class="vote btn btn-secondary neutral">like {{ votes.like }}</button>
+                <button (click)="postVote('D')" class="vote btn btn-secondary neutral">dislike {{ votes.dislike }}</button>
             </div>
             <div>
                 <p>{{ problem.description }}</p>
             </div>
             <div>
-                <button (click)="loadRelatedTopics()">Ralated Topics</button>
+                <button class="btn btn-outline-danger problem-btn" (click)="loadRelatedTopics()">Ralated Topics</button>
                 <div *ngIf="relatedTopicsFlag">
                     <div class="topictags" *ngFor="let topics of tags">
                         <p class="topictag">{{ topics }}</p>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div>
-                <button (click)="loadHints()">Hints</button>
+                <button class="btn btn-outline-danger problem-btn" (click)="loadHints()">Hints</button>
                 <div class="hints" [innerHTML]="problem.hints" *ngIf="hintsFlag">    
                 </div>
             </div>

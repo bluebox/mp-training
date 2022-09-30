@@ -11,8 +11,23 @@ textarea {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
+.problem-btn {
+    margin-bottom: 0.5rem;
+}
+
 .menu {
     display: flex;
+    margin-left: 2rem;
+}
+
+.division {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
 }
 
 .active {
@@ -39,4 +54,12 @@ li {
 
 .hints {
     color: #0D6EFD;
+}
+
+.problem {
+    margin: 2rem;
+}
+
+.btn {
+    margin-right: 0.5rem;
 }

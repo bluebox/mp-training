@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/register.service';
 import { Validators, FormBuilder } from '@angular/forms'
+import { VirtualTimeScheduler } from 'rxjs';
 
 // const app = document.querySelector(".hints");
 
@@ -19,7 +20,7 @@ export class ProblemComponent implements OnInit {
   relatedTopicsFlag: boolean = false;
   hintsFlag: boolean = false;
 
-  submissionForm = this.fb.group(
+  submissionForm:any = this.fb.group(
     {
       languages : ['', [Validators.required]],
       code : ['', [Validators.required]],
@@ -28,7 +29,7 @@ export class ProblemComponent implements OnInit {
     )
   votes!: any;
 
-  constructor(private fb:FormBuilder, public service: RegisterService, private route: ActivatedRoute, private http: HttpClient) { 
+  constructor(private router:Router, private fb:FormBuilder, public service: RegisterService, private route: ActivatedRoute, private http: HttpClient) { 
     this.id = route.snapshot.params['id']
     
     this.service.getProblem(this.id).subscribe((data:any) => {
@@ -45,11 +46,33 @@ export class ProblemComponent implements OnInit {
    }
 
    onSubmit() {
-    console.log(this.problem.test_cases)
+    console.log(this.submissionForm.value.code)
     this.submissionForm.value.stdin = this.problem.test_cases + "\n"
     console.log("running")
-    this.service.submitProblem(this.submissionForm.value).subscribe((data) =>{
-      console.log(data, this.problem.outputs)
+    this.service.submitProblem(this.submissionForm.value, this.id).subscribe((data:any) =>{ 
+      console.log(data, this.problem.outputs, this.problem.test_cases)
+      let res = {
+        "status": 0,
+        'solution': '',
+        "result": '',
+
+      }
+      if (data['output'] == 'wrong answer') {
+        let show = data['output'] + "\ninput: " + data['input'] + '\nexpected: ' + data['expected'] + "\nyours output: " + data['result']
+        res['status'] = 2;
+        res['result'] = show;
+      }
+      else {
+        res['status'] = 1;
+        res['result'] = "all test cases passed"
+      }
+      res['solution'] = this.submissionForm.value.code;
+      // this.res = data;
+      this.service.setSubmission(res);
+      this.service.addToSubmissions(res, this.id).subscribe((data) => {
+        // console.log(data);
+      })
+      this.router.navigate(['submissions', this.id])
     })
    }
 

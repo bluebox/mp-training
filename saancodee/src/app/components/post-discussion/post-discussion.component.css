@@ -1,0 +1,19 @@
+.element {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    margin-top: 0.5rem;
+}
+
+form {
+    height: 100%;
+    width: 100%;
+}
+
+.div {
+    background-color: #F6F6F6;
+    height: 100vh;
+    width: 100vw;
+}

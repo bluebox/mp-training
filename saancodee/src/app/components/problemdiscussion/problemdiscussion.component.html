@@ -1,6 +1,9 @@
 <div class="container">
+  <div class="post">
+    <button class="btn btn-outline-warning btn-lg" (click)="onDiscussionPost()"><a>Add an Answer</a></button>
+  </div>
     <div *ngFor="let discussion of discussions">
-        <section class="vh-100" style="background-color: #eee;">
+        <!-- <section class="vh-100" style="background-color: #eee;">
             <div class="container py-5 h-100">
               <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-md-9 col-lg-7 col-xl-5">
@@ -51,6 +54,19 @@
                 </div>
               </div>
             </div>
-          </section>
+          </section> -->
+          <div class="card">
+            <div class="card-header">
+              created by <span>@{{ discussion.username }}</span>
+            </div>
+            <div class="card-header">
+              created at <span>{{ discussion.created_date_time | date:"M d, Y" }}</span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ discussion.title }}</h5>
+              <p class="card-text">{{ discussion.discussion.slice(0, 20) }}...</p>
+              <button type="button" (click)="onSubmit(discussion.discussion_id)" class="btn btn-primary">Read More</button>
+            </div>
+          </div>
     </div>
 </div>

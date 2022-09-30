@@ -1,0 +1,10 @@
+<div>
+    <div *ngFor="let submission of submissions">
+        <div class="submission">
+            <p class="status" *ngIf="submission.status === 2" style="color: red;">Wrong Answer</p>
+            <p class="status" *ngIf="submission.status === 1" style="color: green;">Accepted</p>
+            <p class="solution" style="white-space: pre-wrap;">{{ submission.solution }}</p>
+            <p class="result">{{ submission.result }}</p>
+        </div>
+    </div>
+</div>

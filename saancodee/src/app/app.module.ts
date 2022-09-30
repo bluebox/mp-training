@@ -20,6 +20,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
 import { PostQuestionComponent } from './components/post-question/post-question.component';
 import { DiscussionComponent } from './components/discussion/discussion.component';
+import { SubmissionComponent } from './components/submission/submission.component';
+import { PostDiscussionComponent } from './components/post-discussion/post-discussion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { DiscussionComponent } from './components/discussion/discussion.componen
     HomeComponent,
     CategoryComponent,
     PostQuestionComponent,
-    DiscussionComponent,  
+    DiscussionComponent,
+    SubmissionComponent,
+    PostDiscussionComponent,  
   ],
   imports: [
     BrowserModule,

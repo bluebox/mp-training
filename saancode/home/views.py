@@ -85,21 +85,35 @@ def registerApi(request):
     return Response({'username': request.data['username'], "status":200, 'token':str(token_obj), "message": "valid register found"})
 
 @api_view(['GET'])
-def submissionsApi(request, problemName):
-    print(problemName)
-    problem = Problem.objects.get(problem_name = problemName)
+def submissionsApi(request, problem_id, username):
+    user = User.objects.get(username = username)
+    print(problem_id)
+    problem = Problem.objects.get(problem_id = problem_id)
     print(problem.problem_id)
-    solved = Solved.objects.filter(problem_id = problem)
+    solved = Solved.objects.filter(problem_id = problem, user_id = user)
     print(solved)
     serializer = solvedSerializer(solved, many = True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def postCommentApi(request, discussionId, username):
+    discussion_id = Discussion.objects.get(discussion_id = discussionId)
+    user_id = User.objects.get(username = username)
+    comment = Comment.objects.create(discussion_id = discussion_id, user_id = user_id)
+    serializer = commentSerializer(instance = comment, data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors)
 
 @api_view(['GET'])
 def getDiscussionApi(request, problemId, discussionId):
     discuss = Discussion.objects.get(discussion_id = discussionId)
     print(discuss)
+    comment = Comment.objects.filter(discussion_id = discussionId)
+    commentSerial = commentSerializer(comment, many = True)
     serializer = discussionsSerializer(discuss, many = False)
-    return Response(serializer.data)
+    return Response({"discussion": serializer.data, "comments": commentSerial.data})
 
 @api_view(['GET'])
 def discussionsApi(request, problemId):
@@ -136,6 +150,13 @@ def profileApi(request, username):
     profile = User.objects.get(username = username).profile
     serialzer = profileSerializer(profile, many = False)
     return Response(serialzer.data)
+
+@api_view(['POST'])
+def postDiscussionApi(request, problem_id, username):
+    problem = Problem.objects.get(problem_id = problem_id)
+    user = User.objects.get(username = username)
+    discussion = Discussion.objects.create(problem_id = problem, username = user, title = request.data['title'], discussion = request.data['discussion'])
+    return HttpResponse("answer submitted successfully")
 
 @api_view(['GET'])
 def problemDetail(request, id):
@@ -264,8 +285,13 @@ def problems(request):
     return render(request, 'home/problems.html', {'problems':problems})
 
 @api_view(['POST'])
-def submitProblem(request):
-    print(request.data)
+def addSubmission(request, problem_id, username):
+    problem_id = Problem.objects.get(problem_id = problem_id)
+    user_id = User.objects.get(username = username)
+    solved = Solved.objects.create(problem_id = problem_id, user_id = user_id, solution = request.data['solution'], status = request.data['status'], result = request.data['result'])    
+
+@api_view(['POST'])
+def submitProblem(request, problem_id):
     language = request.data.get('languages')
     code = request.data.get('code')
     stdin = request.data.get('stdin')
@@ -281,7 +307,24 @@ def submitProblem(request):
         "Content-Type" : "application.json"
     }
     response = requests.post(URL, headers = HEADERS, json = data)
+    problem = Problem.objects.get(problem_id = problem_id).json_test_cases
     print(response.json())
+    output = response.json()['output'].split('\n')
+    output.pop(-1)
+    c = 0
+    for i in problem:
+        if problem[i]['output'] != output[c]:
+            inp = json.dumps(problem[i]['input'])
+            if output[c] == '':
+                print("//////")
+                print(inp)
+                return Response({'output':'wrong answer', 'input': inp, 'expected': problem[i]['output'], 'result': response.json()['output']})
+            return Response({'output':'wrong answer', 'input': inp, 'expected': problem[i]['output'], 'result': output[c]})
+        c += 1
+    print("////////////")
+    print(problem)
+    print("////////////")
+    print(output)
     return Response(response.json())
 
 @login_required(login_url = 'login')

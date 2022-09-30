@@ -31,6 +31,10 @@ export class ProblemdiscussionComponent implements OnInit {
     this.router.navigate(['problems/discussions/', this.id, id])
    }
 
+   onDiscussionPost() {
+    this.router.navigate(['post-discussion/', this.id]);
+   }
+
   ngOnInit(): void {
   }
 

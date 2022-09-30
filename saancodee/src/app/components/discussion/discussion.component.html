@@ -1,1 +1,27 @@
-<p>discussion works!</p>
+<div class="card">
+    <div class="card-header">
+        {{ response.username }}
+    </div>
+    <div class="card-header">
+        {{ response.created_date_time | date:"M d, Y" }}
+    </div>
+    <div class="card-body">
+        <div class="discussion">{{ response.title }}</div>
+        <div class="discussion">{{ response.discussion }}</div>
+</div>
+<button (click)="addComment()">Add Comment</button>
+<div *ngIf="commentFlag">
+    <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
+        comment: <input type="text" formControlName ="comment">
+        <button type="submit">comment</button>
+    </form>
+</div>
+<div>
+    <div *ngFor="let comment of comments">
+        <div>
+            <p>{{ comment.user_id }}</p>
+            <p>{{ comment.comment }}</p>
+        </div>
+    </div>
+</div>
+</div>

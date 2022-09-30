@@ -1,0 +1,9 @@
+.post {
+    margin: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+span {
+    color: #0D6EFD;
+}

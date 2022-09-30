@@ -1,5 +1,6 @@
 from codecs import getencoder
 from re import T
+from tokenize import blank_re
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -51,8 +52,8 @@ class Problem(models.Model):
     description = models.TextField(max_length=500, unique=True, blank=False, null=False)
     hints = models.TextField(max_length=50, blank=False, null=False)
     test_cases = models.TextField(max_length=500, blank=False, null=False)
-    outputs = models.CharField(max_length=500, blank=False, null=False)
-    inbuilt_code = models.TextField(max_length=500, blank=False, null=False)
+    outputs = models.TextField(max_length=500, blank=False, null=False)
+    json_test_cases = models.JSONField(blank=False, null=False)
     # likes = models.IntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
@@ -121,12 +122,10 @@ class Solved(models.Model):
     solution = models.TextField(max_length=500, null=False, blank=False)
     status_choices = (
         (1, 'Accepted'),
-        (2, 'Wrong Answer'),
-        (3, 'Time Limit Exceeded'),
-        (4, 'Input Limit Exceeded'),
-        (5, 'Not Attempted')
+        (2, 'Wrong Answer')
     )
     status = models.IntegerField(choices=status_choices, null=False, blank=False)
+    result = models.TextField(max_length = 100, null = False, blank = False)
 
     def __str__(self):
         return f'{self.user_id.username}_P_{self.problem_id.__str__()}'
@@ -147,7 +146,7 @@ class Discussion(models.Model):
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     discussion_id = models.ForeignKey(Discussion, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
     comment = models.TextField(max_length=500, null=False, blank=False)
 
     def __str__(self):

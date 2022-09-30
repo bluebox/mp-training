@@ -39,10 +39,20 @@ class profileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = "__all__"
 
+class submissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Solved
+        fields = "__all__"
+
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ['tag_name']
+
+class commentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
 
 class editProfileSerializer(serializers.ModelSerializer):
     class Meta:

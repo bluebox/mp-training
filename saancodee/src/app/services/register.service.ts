@@ -2,13 +2,18 @@ import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { json } from 'express';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  constructor(private router: Router, private http: HttpClient) { }
+  submission: BehaviorSubject<any>; 
+
+  constructor(private router: Router, private http: HttpClient) { 
+    this.submission = <BehaviorSubject<any>>new BehaviorSubject(null);
+   }
 
   getToken() {
     return localStorage.getItem('token')
@@ -76,6 +81,23 @@ export class RegisterService {
     return this.http.get(url, {headers:headers})
   }
 
+  addcomment(comment:any, discussionId:any) {
+    let username = localStorage.getItem('username')
+    let data = {
+      "user_id": username,
+      "discussion_id": discussionId,
+      "comment": comment
+    }
+    let url = `http://127.0.0.1:8000/api/comment/post/${discussionId}/${username}`
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    return this.http.post(url, data, {headers:headers})
+  }
+
   postQuestion(data:any) {
     let username = localStorage.getItem('username')
     let url = `http://127.0.0.1:8000/api/post-question/${username}/`
@@ -86,9 +108,47 @@ export class RegisterService {
     return this.http.post(url, data, {headers})
   }
 
-  submitProblem(data:any) {
+  setSubmission(data:any) {
+    this.submission.next(data);
+  }
+
+  addToSubmissions(data:any, id:any) {
+    let username = localStorage.getItem('username')
+    let url = `http://127.0.0.1:8000/api/addSubmission/${id}/${username}`;
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, {headers:headers})
+  }
+
+  getSubmissions(id:any) {
+    let username = localStorage.getItem('username')
+    let url = `http://127.0.0.1:8000/api/submissions/${id}/${username}`;
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.get(url, {headers:headers})
+  }
+
+  postDiscussion(data:any, problem_id:any) {
+    let username = localStorage.getItem('username')
+    let url = `http://127.0.0.1:8000/api/post-discussion/${problem_id}/${username}`;
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, {headers:headers})
+  }
+
+  getSubmission() {
+    return this.submission.asObservable();
+  }
+
+  submitProblem(data:any, id:any) {
     console.log("running")
-    let url = 'http://127.0.0.1:8000/api/submit-problem';
+    let url = `http://127.0.0.1:8000/api/submit-problem/${id}`;
     let headers = new HttpHeaders({
       "Content-Type" : "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -123,7 +183,7 @@ export class RegisterService {
       "Content-Type" : "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
     })
-    return this.http.get(url, {headers:headers})
+    return this.http.get(url, {headers:headers, params: data})
   }
 
   getProblem(id:any) {
