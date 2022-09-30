@@ -1,0 +1,44 @@
+{
+  "name": "angular-captcha",
+  "version": "3.7.4",
+  "description": "BotDetect CAPTCHA Angular Module (TypeScript: Angular 2/4/5/6/7/8+)",
+  "scripts": {
+    "clean": "rimraf *.d.ts *.js *.map *.metadata.json src/**/*.d.ts src/**/*.js src/**/*.map src/**/*.metadata.json src/**/*.js.map",
+    "build": "ngc -p tsconfig.json",
+    "lint": "tslint --project tsconfig.json src/**/*.ts",
+    "prepublish": "ngc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/captcha-com/angular-captcha.git"
+  },
+  "author": "BotDetect Captcha",
+  "bugs": {
+    "url": "https://captcha.com/support"
+  },
+  "homepage": "https://captcha.com/angular-captcha.html#angular:2+",
+  "keywords": [
+    "captcha",
+    "angular captcha",
+    "captcha generator",
+    "angular captcha module",
+    "botdetect"
+  ],
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "codelyzer": "^3.2.0",
+    "rimraf": "^2.6.2",
+    "rxjs": "^5.5.2",
+    "tslint": "^5.1.0",
+    "typescript": "^2.4.2",
+    "zone.js": "^0.8.14"
+  }
+}
