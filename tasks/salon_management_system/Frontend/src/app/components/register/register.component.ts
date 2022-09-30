@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   formError ?: string =""
   errorMessage : string = ""
   hide = true;
+  
 
   constructor(private http :HttpserviceService ,private router: Router) { }
 
@@ -29,25 +30,25 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-//   onRegisterSubmit() {
-//     console.log(this.ClientRegistrationForm.value);
-//     if (this.ClientRegistrationForm.valid) {
-//       this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
-//         this.errorMessage = data.message
-//         if (this.errorMessage == "registered") {
-//           this.router.navigate(['login'])
-//       }})
-//     }
-//     else {
-//       console.log('please check ');
-//       this.formNotValid = true
-//       console.log(this.ClientRegistrationForm.valid);
+  onRegisterSubmit() {
+    console.log(this.ClientRegistrationForm.value);
+    if (this.ClientRegistrationForm.valid) {
+      this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
+        this.errorMessage = data.message
+        if (this.errorMessage == "registered") {
+          this.router.navigate(['login'])
+      }})
+    }
+    else {
+      console.log('please check ');
+      this.formNotValid = true
+      console.log(this.ClientRegistrationForm.valid);
        
-//     }
-//     console.log(this.ClientRegistrationForm.value);
+    }
+    console.log(this.ClientRegistrationForm.value);
 
-//   }
-//   get passwordInput() { return this.ClientRegistrationForm.get('password'); }  
-
+  }
+  get passwordInput() { return this.ClientRegistrationForm.get('password');} 
 }
+
+
