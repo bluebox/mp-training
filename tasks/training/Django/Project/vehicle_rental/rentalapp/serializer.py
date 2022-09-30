@@ -30,7 +30,7 @@ class VehicleStatusSerializer(serializers.ModelSerializer):
 class Rent_TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rent_Trip
-        fields = '__all__'
+        fields = ['vehicle_no', 'customer_id', 'owner_id', 'pickup_time_date' ]
 
 
 class BillSerializer(serializers.ModelSerializer):

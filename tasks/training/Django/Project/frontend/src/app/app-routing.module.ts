@@ -12,6 +12,7 @@ import { AddvehicleComponent } from './component/owner/addvehicle/addvehicle.com
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { CustomerProfileComponent } from './component/customer/customer-profile/customer-profile.component';
 import { PreviousvehiclesComponent } from './component/owner/previousvehicles/previousvehicles.component';
+import { BookComponent } from './component/customer/book/book.component';
 const routes: Routes = [
   {path:'', component: HomepageComponent},
   {path:'customerlogin', component: CustomerloginComponent},
@@ -24,6 +25,8 @@ const routes: Routes = [
   {path:'order-history', component: OrderHistoryComponent},
   {path:'owner-profile', component:ProfileComponent},
   {path:'previousvehicles', component:PreviousvehiclesComponent},
+
+  {path:'book-vehicle', component: BookComponent},
   {path:'**', component: PagenotfoundComponent},
 
 ];

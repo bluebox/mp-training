@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -12,8 +13,9 @@ export class AvailableVehicleComponent implements OnInit {
   // vehicle_list:any=[]
   vehicle_obj : Subscription=Subscription.EMPTY
   response: any
+  resp: any
 
-  constructor(private service:GeneralService, http : HttpClient) { }
+  constructor(private service:GeneralService, http : HttpClient, private route: Router) { }
 
   ngOnInit(): void {
     this.show_vehicles()
@@ -23,6 +25,11 @@ export class AvailableVehicleComponent implements OnInit {
     this.vehicle_obj=this.service.getVehicle().subscribe(data=>{(this.response=data);
     console.log(data)}
 )
+  }
+  bookVehicle(vehicle : any){
+   console.log(vehicle);
+   this.resp = window.sessionStorage.setItem('vehicle',JSON.stringify(vehicle));
+   this.route.navigate(['book-vehicle'])
   }
 
   // show_vehicles(){

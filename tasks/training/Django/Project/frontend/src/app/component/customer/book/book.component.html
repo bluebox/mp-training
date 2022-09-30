@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<div class="album py-5 bg-light main">
+  <div class="container">
+    <div class="col-md-4">
+      <img src="{{ vehicle_obj.image }}" width="500" height="400" alt="ldasjvb" />
+    </div>
+    <h2>{{ vehicle_obj.brand }}</h2>
+    <p class="card-text">
+      <b> {{ vehicle_obj.model }}</b><span> {{ vehicle_obj.vehicle_no }} </span>
+    </p>
+    <section>
+      <p>
+        <i><b>Owner:</b></i> {{ response?.name }} &nbsp;&nbsp;
+        <i><b>Address:</b></i> {{ response?.address }}
+      </p>
+      <p>
+        <i><b>Contact:</b></i>
+        {{ response?.contact_no }}
+      </p>
+    </section>
+    <div class="price">
+      <p>Rs {{ vehicle_obj.price_km }} /km</p>
+      <p>Rs {{ vehicle_obj.price_hour }} /km</p>
+      <p>Rs {{ vehicle_obj.price_day }} /km</p>
+    </div>
+    <form [formGroup]="vehicle" (submit)="bookSelectedVehicle()">
+          <b>Select Date:</b><br /><input  formControlName="pickup_time_date" type="datetime-local" name="" id="" />
+          <button type="submit">submit</button>
+    </form>
+
+     <!-- <form [formGroup]="vehicle">
+      <b>Select Date:</b><br /><input  formControlName="pickup_time_date" type="datetime-local" name="" id="" />
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="pickup_time_date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    </form> -->
+
+    <!-- <mat-form-field appearance="fill"> -->
+      <!-- <mat-label>Enter a date range</mat-label> -->
+      <!-- <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input> -->
+      <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+      <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker> -->
+    <!-- </mat-form-field> -->
+    <!-- <mat-datepicker #picker></mat-datepicker> -->
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> -->
+
+    <!-- <button id="basic" type="button" mat-button>
+      Basic button
+    </button> -->
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-outline-secondary">
+          Book
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

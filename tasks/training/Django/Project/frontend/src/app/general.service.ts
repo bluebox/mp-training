@@ -21,8 +21,11 @@ export class GeneralService {
   registerOwner(data : any){
     return this.http.post(baseUrl + 'owner/',data)
   }
+  getOwner(id : any){
+    return this.http.get(baseUrl + 'owner/'+id +'/')
+  }
   updateOwnerProfile(id : any ){
-    return this.http.get(baseUrl + 'customer/' + id)
+    return this.http.get(baseUrl + 'customer/' + id + '/')
   }
 
 
@@ -53,6 +56,10 @@ export class GeneralService {
   }
   deleteVehicle(id : any ){
     return this.http.delete(baseUrl + 'delete-vehicle/' + id )
+  }
+
+  bookVehicle(data : any){
+  return this.http.post(baseUrl + 'trip/', data)
   }
 }
 

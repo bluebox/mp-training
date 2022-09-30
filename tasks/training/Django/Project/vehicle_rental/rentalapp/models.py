@@ -63,11 +63,11 @@ class Rent_Trip(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     owner_d = models.ForeignKey(Owner, on_delete=models.CASCADE)
     pickup_time_date = models.DateTimeField()
-    return_date_time = models.DateTimeField()
-    odo_start_reading = models.IntegerField()
-    odo_end_reading = models.IntegerField()
-    customer_review = models.CharField(max_length=500)
-    owner_review = models.CharField(max_length=500)
+    return_date_time = models.DateTimeField(null=True)
+    odo_start_reading = models.IntegerField(null=True)
+    odo_end_reading = models.IntegerField(null=True)
+    customer_review = models.CharField(max_length=500, null=True)
+    owner_review = models.CharField(max_length=500, null=True)
 
     def __str__(self):
         return self.rent_id

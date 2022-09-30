@@ -17,7 +17,7 @@ export class AddvehicleComponent implements OnInit {
   constructor(private service: GeneralService,private http: HttpClient, private route : Router) { }
   data_1 : any = window.sessionStorage.getItem('owner_id')
   data = JSON.parse(this.data_1);
-  fromChange:any;
+  own_id:any;
 
   ngOnInit(): void {
     this.vehicle = new FormGroup({
@@ -36,12 +36,12 @@ export class AddvehicleComponent implements OnInit {
   {
     let data = this.vehicle.value
     data.image = this.imageUrl
-    this.fromChange=this.vehicle.value
-    this.fromChange['owner_id'] =this.data.owner_id
-    console.log(this.fromChange)
+    this.own_id=this.vehicle.value
+    this.own_id['owner_id'] =this.data.owner_id
+    console.log(this.own_id)
 
     // owner_id: this.data.owner_id,
-    this.service.addVehicle(this.fromChange).subscribe(data=> {(console.log(data)), alert("Added successfully"), this.route.navigate(['addvehicle'])}, (err)=> alert("Enter valid details"))
+    this.service.addVehicle(this.own_id).subscribe(data=> {(console.log(data)), alert("Added successfully"), this.route.navigate(['addvehicle'])}, (err)=> alert("Enter valid details"))
 
   }
 
