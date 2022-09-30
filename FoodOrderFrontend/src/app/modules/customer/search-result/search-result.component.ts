@@ -5,6 +5,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { Search } from 'src/app/interfaces/searchResult';
 import { Restaurant } from 'src/app/interfaces/restaurant';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -13,14 +14,15 @@ import { Restaurant } from 'src/app/interfaces/restaurant';
 export class SearchResultComponent implements OnInit {
   
   res:Restaurant[]=[];
+  oneRes:Restaurant[]=[];
   
   public name:any
-  constructor( private fsearch:SearchService, private router:ActivatedRoute) { }
+  constructor( private fsearch:SearchService,private route:ActivatedRoute,private router:Router, private resSer:RestaurantService) { }
 
   ngOnInit(): void {
     
 
-    let item=this.router.snapshot.paramMap.get('name')
+    let item=this.route.snapshot.paramMap.get('name')
     this.name=item
     this.getData()
   }
@@ -32,14 +34,19 @@ export class SearchResultComponent implements OnInit {
 
     console.log(typeof(this.res))
     })
-
-
-
-
-
-
-    
   }
+
+  resClicked=(r:Restaurant)=>
+  {
+    this.resSer.getOneRes(r.restaurant_id).subscribe(data=>{
+      console.log(data)
+      this.oneRes=data})
+
+      this.router.navigate(['/customer/restaurantpage',r.restaurant_id])
+
+  }
+
+
 
 
 }

@@ -24,4 +24,8 @@ export class RestaurantService {
   {
     return this.http.post<Restaurant>(this.url,data)
   }
+
+  getOneRes(id:string):Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + id + "/")
+  }
 }

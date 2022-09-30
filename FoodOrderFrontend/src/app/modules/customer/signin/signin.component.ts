@@ -38,11 +38,13 @@ export class SigninComponent implements OnInit {
     if (this.sigininForm.valid) {
       this.user.postUser(this.sigininForm.value).subscribe((data)=>{
         console.log(data)
+        // alert("Registration Done!!")
       })
       console.log('form submitted');
       console.log(this.sigininForm.value)
     } else {
       console.log(' notttt form submitted');
+      // alert(" notttt form submitted ")
     }
     
     this.sigininForm.reset()

@@ -23,24 +23,39 @@ class Index(View):
 
 class CustomerData(APIView):
     def get(self, request):
-        customer=Customer.objects.all();
-        serializer=CustomerSerializer(customer,many=True)
-        return Response(serializer.data)
+        try:
+            customer=Customer.objects.all();
+            serializer=CustomerSerializer(customer,many=True)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.data)
 
 
     def post(self,request):
-        serializer = CustomerSerializer(data=request.data)
-        print(serializer)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer = CustomerSerializer(data=request.data)
+            print(serializer)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
 
 class FoodData(APIView):
     def get(self, request):
-        food=Food.objects.all();
-        serializer=FoodSerializer(food,many=True)
-        return Response(serializer.data)
+        try:
+            food=Food.objects.all();
+            serializer=FoodSerializer(food,many=True)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+
+            return Response(serializer.data)
 
 
 
@@ -58,9 +73,33 @@ class FoodData(APIView):
 class FoodOneData(APIView):
     def get(self, request,id):
         print(id)
-        food=Food.objects.get(food_id=id)
-        serializer=FoodSerializer(food)
-        return Response(serializer.data)
+        try:
+            food=Food.objects.get(food_id=id)
+            serializer=FoodSerializer(food)
+            return Response(serializer.data)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            serializer = FoodSerializer(food)
+            return Response(serializer.data)
+
+
+
+
+    def post(self,request):
+        return HttpResponse("Heyyyyyyyy post", status=405)
+
+
+class FoodOneRes(APIView):
+    def get(self, request,id):
+        print(id)
+        try:
+            food=Restaurant.objects.get(restaurant_id=id)
+            serializer=RestaurantSerializer(food)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.data)
 
 
 
@@ -145,12 +184,17 @@ class AddFoodtoMenu(APIView):
         return Response(serializer.data)
 
     def post(self,request):
-        serializer = MenuListSerializer(data=request.data)
-        print(serializer)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer = MenuListSerializer(data=request.data)
+            print(serializer)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 
 
 # class CustomerLogin(APIView):

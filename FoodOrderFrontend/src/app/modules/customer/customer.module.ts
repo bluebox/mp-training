@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { IndexComponent } from './index/index.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
 
 
 
@@ -22,7 +23,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
     LoginComponent,
     SigninComponent,
     IndexComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    RestaurantPageComponent
   ],
   imports: [
     CommonModule,
