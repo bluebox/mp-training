@@ -112,7 +112,7 @@ def buyproducts(request):
     return render(request, 'stores.html', context)
 
 
-@login_required(login_url='custlogin')
+@api_view(['GET'])
 def productsPage(request, storeid):
     userid = request.session['userid']
     citem = ContainsItem.objects.filter(store_id=storeid)
@@ -236,8 +236,7 @@ def deleteEmployee(request, employee_id):
     return Response('deleted')
 
 
-@login_required()
-@api_view(['GET','POST'])
+@api_view(['GET'])
 def viewStores(request):
     store = GraniteStore.objects.all()
     serialize = storeSerializer(store, many=True)
@@ -248,6 +247,48 @@ def viewStore(request,store_id):
     store = GraniteStore.objects.get(store_id=store_id)
     serialize = storeSerializer(store)
     return Response(serialize.data)
+
+@api_view(['POST'])
+def registerStore(request):
+    serializer = storeSerializer(data=request.data)
+    if serializer.is_valid():
+        store_id = request.data['store_id']
+        store_name = request.data['store_name']
+        established_year = request.data['established_year']
+        store_description = request.data['store_description']
+        contact = request.data['contact']
+        website = request.data['website']
+        address = request.data['address']
+        store = GraniteStore(store_id=store_id, store_name=store_name, established_year=established_year, store_description=store_description,
+                             contact=contact, website=website, address=address)
+        store.save()
+        return Response(storeSerializer(store).data)
+    return Response('failed')
+
+
+@api_view(['POST'])
+def updateStore(request):
+    serializer = storeSerializer(data=request.data)
+    if serializer.is_valid():
+        store_id = request.data['store_id']
+        store_name = request.data['store_name']
+        established_year = request.data['established_year']
+        store_description = request.data['store_description']
+        contact = request.data['contact']
+        website = request.data['website']
+        address = request.data['address']
+        store = GraniteStore(id=GraniteStore.objects.get(store_id=store_id).id, store_name=store_name, established_year=established_year, store_description=store_description,
+                             contact=contact, website=website, address=address)
+        store.save()
+        return Response(storeSerializer(store).data)
+    return Response('failed')
+
+
+@api_view(['POST'])
+def deleteStore(request, store_id):
+    store = GraniteStore.objects.get(employee_id=store_id)
+    store.delete()
+    return Response('deleted')
 
 
 @api_view(['GET'])
@@ -262,6 +303,49 @@ def viewVehicle(request,vehicle_no):
     vehicle = Vehicle.objects.get(vehicle_no=vehicle_no)
     serialize = vehicleSerializer(vehicle)
     return Response(serialize.data)
+
+
+@api_view(['POST'])
+def registerVehicle(request):
+    serializer=vehicleSerializer(data=request.data)
+    if serializer.is_valid():
+        vehicle_no = request.data['vehicle_no']
+        model = request.data['model']
+        owner_name = request.data['owner_name']
+        permit_range = request.data['permit_range']
+        fuel_efficiency = request.data['fuel_efficiency']
+        load_capacity = request.data['load_capacity']
+        vehicle = Vehicle(vehicle_no=vehicle_no, model=model, owner_name=owner_name, permit_range=permit_range,
+                          fuel_efficiency=fuel_efficiency, load_capacity=load_capacity)
+        vehicle.save()
+        return Response(vehicleSerializer(vehicle).data)
+    return Response('failed')
+
+
+@api_view(['POST'])
+def updateVehicle(request):
+    serializer=vehicleSerializer(data=request.data)
+    if serializer.is_valid():
+        vehicle_no = request.data['vehicle_no']
+        model = request.data['model']
+        owner_name = request.data['owner_name']
+        permit_range = request.data['permit_range']
+        fuel_efficiency = request.data['fuel_efficiency']
+        load_capacity = request.data['load_capacity']
+        vehicle = Vehicle(id=Vehicle.objects.get(vehicle_no=vehicle_no).id, model=model, owner_name=owner_name, permit_range=permit_range,
+                          fuel_efficiency=fuel_efficiency, load_capacity=load_capacity)
+        vehicle.save()
+        return Response(vehicleSerializer(vehicle).data)
+    return Response('failed')
+
+
+
+@api_view(['POST'])
+def deleteVehicle(request,vehicle_no):
+    vehicle = Vehicle.objects.get(vehicle_no=vehicle_no)
+    vehicle.delete()
+    return Response(vehicleSerializer(vehicle).data)
+
 
 
 @api_view(['GET'])
@@ -291,6 +375,13 @@ def viewOrder(request, order_id):
     item = Item.objects.get(item_id=order.contains_id.item_id.item_id)
     serializeItem = itemSerializer(item)
     data.append({order.order_id.order_id: [serializeCustomer.data, serializeItem.data]})
+
+    return Response(data)
+
+
+@api_view(['POST'])
+def addOrder(request):
+
 
     return Response(data)
 
