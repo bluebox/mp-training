@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-title>Log in</mat-card-title>
+<div class="container">
+  <form [formGroup]="formlogIn" (ngSubmit)="saveDetails(formlogIn)">
+    <mat-form-field appearance="legacy">
+      <mat-label>Email Address:</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Your email">
+      <mat-icon matSuffix>mail_outline</mat-icon>
+      <mat-hint>Input the fully qualified email address</mat-hint>
+      <mat-error *ngIf="formlogIn.controls['email'].errors?.['required']">Email is required</mat-error>
+      <mat-error *ngIf="formlogIn.controls['email'].errors?.['pattern']">Please enter valid email</mat-error>
+  </mat-form-field>
+  <div style="margin-top:10px;">
+    <div style="margin-right:3%; color:#6b6b6b;">
+        <mat-label>Gender</mat-label>
+    </div>
+    <mat-radio-group formControlName="usertype">
+        <mat-radio-button value="patient">patient</mat-radio-button>
+        <mat-radio-button value="doctor">doctor</mat-radio-button>
+        <mat-radio-button value="staff">staff</mat-radio-button>
+    </mat-radio-group>
+</div>
+      <!-- <mat-form-field appearance="standard">
+          <mat-label>Password</mat-label>
+          <input matInput maxlength="15" inputmode="password" placeholder="Type name" formControlName="name" #nameInput>
+          <mat-hint>Mini character : {{ nameInput.value.length }}/10</mat-hint>
+          <mat-error>password is required</mat-error>
+          <mat-error *ngIf="formlogIn.controls['name'].errors?.['minlength']">
+              password length more than 10 character
+          </mat-error>
+      </mat-form-field> -->
+    <div mat-dialog-actions align="end">
+      <div class="example-button-row">
+        <button mat-raised-button color="primary"  routerLink="/newuser">Back</button>
+      </div>
+      <router-outlet></router-outlet>
+      <div mat-dilog-action>
+      <span class="example-spacer"></span><span class="example-spacer"></span><span class="example-spacer"></span><span class="example-spacer"></span>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formlogIn.valid">Submit</button>
+    </div>
+  </div>
+</form>
+<div>{{ formlogIn.value | json }}</div>
+</div>
+</mat-card>
