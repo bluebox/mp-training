@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ecom_app',
     'rest_framework',
+    'ecom_app',
+  
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,7 @@ MEDIA_URL = '/media/'
 # }
 
 CORS_ALLOW_ALL_ORIGINS = True;
+
+
+# AUTH_USER_MODEL='ecom_app.User'
+

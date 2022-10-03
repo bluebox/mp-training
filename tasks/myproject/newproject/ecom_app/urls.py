@@ -21,4 +21,5 @@ urlpatterns=[
     path('user_login/', UserLogin.as_view(), name="user_login"),
     path('buyers/', Buyer_List.as_view(), name="products_list"),
     path('auth/', include('rest_framework.urls', namespace='session_auth')),
+    path('api-auth/', include('rest_framework.urls'))
 ]

@@ -1,10 +1,12 @@
 from itertools import count
-
+import json
+from rest_framework import serializers
 from django.http.response import JsonResponse
 from django.shortcuts import render, redirect
+from httplib2 import Authentication
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
-
+from rest_framework import status
 from .models import *
 from django.http import HttpResponse
 from rest_framework.parsers import JSONParser
@@ -14,11 +16,11 @@ from django.contrib import messages
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 # from ecom_app.models import Customer
-from ecom_app.serializers import CustomerSerializer, ProductListSerializer, ProductSerializer
+from ecom_app.serializers import CustomerSerializer, CustomerSerializerlogin, ProductListSerializer, ProductSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
-
+from .renders import UserRenderer
 
 # # Create your views here.
 # from ..templates import *
@@ -141,6 +143,7 @@ class Product_list(APIView):
 
 # user signup
 class Buyer_List(APIView):
+ 
     def get(self, request):
         queryset = User.objects.all()
         serializer = CustomerSerializer(queryset, many=True)
@@ -149,27 +152,33 @@ class Buyer_List(APIView):
 
     def post(self, request):
         serializer = CustomerSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        print(serializer.data)
-        return Response(serializer.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        
+        return Response({'msg': "error occured"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # user login
 class UserLogin(APIView):
+    renderer_classes=[UserRenderer]
     def post(self, request):
-        uname = request.data['uname']
-        mail = request.dat['mail']
+        username = request.data['username']
+        email = request.data['email']
         password = request.data['password']
-        user = User.objects.filter(uname=uname).first()
+        user = authenticate(username=username,password=password)
+        print(user)
 
-        print(user, user.id)
-        serializer = CustomerSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        print(serializer.data)
-        return Response(serializer.data)
+        if user is not None:
+            print(user, user.id)
+            user_details=User.objects.get(username=username)
 
+            serializer= CustomerSerializerlogin(user_details)
+
+
+            return Response({'user_id':user_details.id},status=status.HTTP_200_OK)
+
+        return Response({'msg': "error occured"}, status=status.HTTP_400_BAD_REQUEST)
 
 class Productype(APIView):
     def get(self, request):

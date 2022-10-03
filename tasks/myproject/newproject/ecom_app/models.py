@@ -1,6 +1,7 @@
+from enum import unique
 from django.db import models
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
+# from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractUser,User
 # class employee(models.Model):
 #     emp_name = models.CharField(max_length=20)
 #     emp_age = models.IntegerField(default=0)
@@ -24,6 +25,16 @@ from django.contrib.auth.models import User
 #     def __str__(self):
 #         return self.uname
 
+
+
+# class User(AbstractUser):
+#     name = models.CharField(max_length=255)
+#     email = models.EmailField(max_length=255, unique=True)
+#     password = models.CharField(max_length=255)
+#     username = None
+
+#     USERNAME_FIELD= 'email'
+#     REQUIRED_FIELDS= []
 
 class customer_details(models.Model):
     cust_id = models.ForeignKey(User, on_delete=models.CASCADE)
