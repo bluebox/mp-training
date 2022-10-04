@@ -9,14 +9,22 @@ import { ServiceService } from 'src/app/service.service';
 export class FcontractDetailsComponent implements OnInit {
 
   contractDetails: any;
-
-  constructor(private service : ServiceService) { }
-
+  arr : any  = [] 
+  getcontracts: any = window.sessionStorage.getItem('freelancer_proposals')
+  getcontractsparse = JSON.parse(this.getcontracts);
+  constructor(private service: ServiceService) { }
   ngOnInit(): void {
-    this.service.getContractOfFreelancer(this.id_parse.client_id).subscribe((data: any) => { this.contractDetails    = data; console.log(this.contractDetails);
-     }); 
+    for (let i = 0; i < this.getcontractsparse.length; i++) {
+      if (this.getcontractsparse[i].proprosal_status == 'accepted') {
+        this.service.getContractOfFreelancer(this.getcontractsparse[i].proprosal_id).subscribe(data => { this.arr.push(data); console.log(this.arr);
+         });
+     }
+    }
   }
-  id  : any = window.sessionStorage.getItem('fuser')
+
+  
+  id: any = window.sessionStorage.getItem('fuser')
   id_parse = JSON.parse(this.id)
+
 
 }

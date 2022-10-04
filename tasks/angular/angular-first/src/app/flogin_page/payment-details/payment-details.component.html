@@ -1,1 +1,27 @@
-<p>payment-details works!</p>
+<app-fheader></app-fheader>
+<h4 style="text-transform: uppercase;text-align:center;">Your Payment's details</h4>
+<ul>
+    <li *ngFor="let x of recevied_data">
+        <table>
+            <tr>
+                <th>PAYMENT ID : </th>
+                <th class="tabledata">{{ x.payment_id}}</th>
+
+            </tr>
+            <tr>
+                <td>CONTRACT ID :</td>
+                <td class="tabledata">{{x.contract_id}}</td>
+            </tr>
+            <tr>
+                <td>TAX :</td>
+                <td class="tabledata">$ {{ x.Tax}}</td>
+            </tr>
+            <tr>
+                <td>EARNED :</td>
+                <td class="tabledata">$ {{ x.earned}}</td>
+
+            </tr>
+        </table>
+    </li>
+</ul>
+<app-ffooter></app-ffooter>

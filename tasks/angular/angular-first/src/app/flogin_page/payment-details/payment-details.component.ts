@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from 'src/app/service.service';
 
 @Component({
   selector: 'app-payment-details',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment-details.component.css']
 })
 export class PaymentDetailsComponent implements OnInit {
-
-  constructor() { }
-
+  recevied_data: any;
+  data: any=window.sessionStorage.getItem('fuser');
+  data_parse = JSON.parse(this.data).id;
+  constructor(private service : ServiceService) { }
+  
   ngOnInit(): void {
+    this.service.getPaymentDetails(this.data_parse).subscribe((data: any) => { this.recevied_data  = data; });
   }
 
 }

@@ -1,3 +1,5 @@
+import json
+
 from rest_framework.views import APIView
 from django.http import HttpResponse, JsonResponse, Http404
 from django.contrib import messages
@@ -364,4 +366,29 @@ class client_fee_payment_details_view(APIView):
     def get(self,request):
         get_client_jobs = client_fee_record.objects.get(contract_id=request.GET.get('contract_id'))
         serializers = client_fee_record_serializers(get_client_jobs)
+        return Response(serializers.data)
+class get_freelancer_payment_details(APIView):
+    def get(self,request):
+        object = freelancer_payment_details.objects.filter(freelancer_id = request.GET.get('freelancer_id'))
+        print(object)
+        serializers = freelancer_payment_details_serializers(object,many=True)
+        return Response(serializers.data)
+
+
+class update_freelance_proposal(APIView):
+    def put(self, request, proprosal_id, format=None):
+        client =freelancer_proposals.objects.get(proprosal_id=proprosal_id)
+        serializer = freelancer_proposals_serializers(client, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class get_contract_of_freelancer(APIView):
+    def get(self,request):
+        get_client_jobs = client_contract_details.objects.get(emp_proposal_id=request.GET.get('emp_proposal_id'))
+        serializers = client_contract_details_serializers(get_client_jobs)
         return Response(serializers.data)

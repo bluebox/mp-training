@@ -1,35 +1,46 @@
-<p>proposal-details works!</p>
+<app-cheader></app-cheader>
 <ul>
-    <li *ngFor="let object of proposalDetails">Proposal Id : {{ object.proprosal_id }} <br> freelancer id : {{
-        object.freelancer_id }} <br> Bidding_amount : $ {{ object.requried_pay}} <br> skills : {{ object.skills}} <br>
-        Cover Letter : {{ object.cover_letter}} <br> <button type="button" (click)="CreateContract(object)">ACCEPT
-            PROPOSAL</button> &nbsp; <button type="button">REJECT PROPOSAL</button></li>
-</ul>
+    <li *ngFor="let object of proposalDetails">
+        <div>
+            <table>
+                <tr>
+                    <th>PROPOSAL ID : </th>
+                    <th class="tabledata">{{ object.proprosal_id}}</th>
 
+                </tr>
+                <tr>
+                    <td>FREELANCER ID :</td>
+                    <td class="tabledata">{{object.freelancer_id}}</td>
+                </tr>
+                <tr>
+                    <td>BIDDING AMOUNT : </td>
+                    <td class="tabledata">$ {{ object.requried_pay }}</td>
 
-<div class="container">
-    <h2>Large Modal</h2>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Large
-        Modal</button>
+                </tr>
+                <tr>
+                    <td>SKILLS :</td>
+                    <td class="tabledata"> {{ object.skills}}</td>
+                </tr>
+                <tr>
+                    <td>COVER LETTER :</td>
+                    <td class="tabledata"> {{ object.cover_letter}}</td>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                </tr>
+                <div *ngIf="object.proprosal_status==='accepted'">
+                <tr>
+                    <td>PROPROSAL STATUS  :</td>
+                    <td style="color:green;">{{ object.proprosal_status | uppercase }}</td>
+                </tr>
                 </div>
-                <div class="modal-body">
-                    <p>This is a large modal.</p>
-                    <input type="text" id="text">
-                    <label for="text">input </label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+
+            </table>
+            <div *ngIf="object.proprosal_status==='rejected'">
+                <button type="button" (click)="CreateContract(object)">ACCEPT
+                    PROPOSAL</button> &nbsp; <button type="button">REJECT PROPOSAL</button>
             </div>
         </div>
-    </div>
-</div>
+
+    </li>
+</ul>
+
+<app-cfooter></app-cfooter>

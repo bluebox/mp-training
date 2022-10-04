@@ -1,7 +1,41 @@
-<p>proposals works!</p>
-
+<app-fheader></app-fheader>
+<h4 style="text-transform: uppercase;text-align:center;">Your submitted proposals</h4>
 <!-- <h1 > {{ recevied_data }} </h1> -->
 
 <ul>
-    <li *ngFor="let data of recevied_data">{{data.job_id}}</li>
+    <li *ngFor="let data of recevied_data">
+        <table>
+            <tr>
+                <th>PROPOSAL ID :</th>
+                <th class="tabledata">{{data.proprosal_id}}</th>
+            </tr>
+            <tr>
+                <td>JOB ID : </td>
+                <td class="tabledata">{{ data.job_id}}</td>
+
+            </tr>
+
+            <tr>
+                <td>SKILLS : </td>
+                <td class="tabledata"> {{ data.skills }}</td>
+
+            </tr>
+            <tr>
+                <td> COVER LETTER :</td>
+                <td class="tabledata"> {{ data.cover_letter}}</td>
+            </tr>
+            <tr>
+                <td>BIDDING AMOUNT :</td>
+                <td class="tabledata">$ {{ data.requried_pay}}</td>
+
+            </tr>
+            <tr>
+                <td>PROPOSAL STATUS :</td>
+                <td *ngIf="data.proprosal_status=='rejected'" class="tabledata" style="color: red;" > {{ data.proprosal_status | uppercase}}</td>
+                <td  *ngIf="data.proprosal_status=='accepted'" class="tabledata" style="color: green;" > {{ data.proprosal_status | uppercase}}</td>
+
+            </tr>
+        </table>
+    </li>
 </ul>
+<app-ffooter></app-ffooter>

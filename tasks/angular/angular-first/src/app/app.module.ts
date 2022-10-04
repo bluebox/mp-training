@@ -24,6 +24,10 @@ import { FeePaymentDetailsComponent } from './clogin_page/fee-payment-details/fe
 import { CcontractDetailsComponent } from './clogin_page/ccontract-details/ccontract-details.component';
 import { SendProposalPageComponent } from './flogin_page/send-proposal-page/send-proposal-page.component';
 import { ProposalDetailsComponent } from './clogin_page/proposal-details/proposal-details.component';
+import { CfooterComponent } from './clogin_page/cfooter/cfooter.component';
+import { CheaderComponent } from './clogin_page/cheader/cheader.component';
+import { FheaderComponent } from './flogin_page/fheader/fheader.component';
+import { FfooterComponent } from './flogin_page/ffooter/ffooter.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { ProposalDetailsComponent } from './clogin_page/proposal-details/proposa
     CcontractDetailsComponent,
     SendProposalPageComponent,
     ProposalDetailsComponent,
+    CfooterComponent,
+    CheaderComponent,
+    FheaderComponent,
+    FfooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ export class ProposalDetailsComponent implements OnInit {
   
   constructor(private service: ServiceService, private fb: FormBuilder) { }
   createcontract: any = FormGroup
+  updatefreelanceproposal : any = FormGroup
   ngOnInit(): void {
     this.service.getProposalDetails(JSON.parse(this.data)).subscribe(data => { this.proposalDetails = data; console.log(data);});
 
@@ -27,8 +28,15 @@ export class ProposalDetailsComponent implements OnInit {
       'client_id': JSON.parse(this.client).client_id,
       'contract_amount' : this.proposalDetails.requried_pay
     });
+    this.updatefreelanceproposal = this.fb.group({
+      'freelancer_id': object.freelancer_id,
+      'requried_pay': object.requried_pay,
+      'skills': object.skills,
+      'cover_letter': object.cover_letter,
+      'proprosal_status': 'accepted'
+     });
     console.log(this.createcontract.value);
-    
+    this.service.updatefreelanceproposal(object.proprosal_id,this.updatefreelanceproposal.value).subscribe(data => { console.log(data); });
     this.service.createContract(this.createcontract.value).subscribe((data) => { this.contractDetails = data; console.log(this.contractDetails); }, error => console.log(error));
   }
 

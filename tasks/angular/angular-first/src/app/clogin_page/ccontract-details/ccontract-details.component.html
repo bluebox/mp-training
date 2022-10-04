@@ -1,4 +1,4 @@
-<p>ccontract-details works!</p>
+<app-cheader></app-cheader>
 <ng-container *ngIf="contractDetails=='' ; then first else second "></ng-container>
 <ng-template #first>
     <p>No contract details found </p>
@@ -6,12 +6,38 @@
 </ng-template>
 <ng-template #second>
     <ul #second>
-        <li *ngFor="let jobs of contractDetails">Contract Id : {{ jobs.contract_id }} <br> Freelancer Proposal Id :
-            {{jobs.emp_proposal_id}} <br>Contract Amount : $ {{ jobs.contract_amount }} <br> Project Deadline
-            {{jobs.project_deadline}} <br> Project Status : {{
-            jobs.project_status }} <br> <button class="btn btn-lg btn-outline-primary" (click)="open(content)">update
-                project status</button> <br>
+        <li *ngFor="let jobs of contractDetails">
+            <table>
+                <tr>
+                    <th>Contract Id : </th>
+                    <th id="tabledata">{{ jobs.contract_id}}</th>
 
+                </tr>
+                <tr>
+                    <td>Freelancer Proposal Id :</td>
+                    <td id="tabledata">{{jobs.emp_proposal_id}}</td>
+                </tr>
+                <tr>
+                    <td>Contract Amount : </td>
+                    <td id="tabledata">$ {{ jobs.contract_amount }} </td>
+
+                </tr>
+                <tr>
+                    <td>Project Deadline :</td>
+                    <td id="tabledata">$ {{jobs.project_deadline}} </td>
+                </tr>
+                <tr>
+                    <td>Project Status :</td>
+                    <td id="tabledata">{{
+                        jobs.project_status }}</td>
+
+                </tr>
+            </table>
+
+
+
+            <button class="btn btn-lg btn-outline-primary" (click)="open(content)">update
+                project status</button> <br>
             <ng-template #content let-modal>
                 <div class="style" style="padding: 20px;">
                     <div class="modal-header">
@@ -50,4 +76,4 @@
         </li>
     </ul>
 </ng-template>
-{{ closeResult}}
+<app-cfooter></app-cfooter>

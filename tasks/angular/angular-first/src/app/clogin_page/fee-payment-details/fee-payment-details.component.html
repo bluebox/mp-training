@@ -1,1 +1,33 @@
-<p>fee-payment-details works!</p>
+<app-cheader></app-cheader>
+
+<ul>
+    <li *ngFor="let x of arr">
+        <table>
+            <tr>
+                <th>PAYMENT ID : </th>
+                <th class="tabledata">{{ x.id}}</th>
+
+            </tr>
+            <tr>
+                <td>CONTRACT ID :</td>
+                <td class="tabledata">{{x.contract_id}}</td>
+            </tr>
+            <tr>
+                <td>HANDLING FEE : </td>
+                <td class="tabledata">$ {{ x.handling_fee}}</td>
+
+            </tr>
+            <tr>
+                <td>TAX :</td>
+                <td class="tabledata">$ {{ x.tax}}</td>
+            </tr>
+            <tr>
+                <td>TOTAL PAYMENT  :</td>
+                <td class="tabledata">$ {{ x.total_payment}}</td>
+
+            </tr>
+        </table>
+    </li>
+</ul>
+
+<app-cfooter></app-cfooter>

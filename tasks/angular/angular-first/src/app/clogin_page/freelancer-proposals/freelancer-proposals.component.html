@@ -1,11 +1,43 @@
-<p>freelancer-proposals works!</p>
+<app-cheader></app-cheader> <br>
 <ng-container *ngIf="jobsData=='' ; then first else second "></ng-container>
 <ng-template #first>
     <p>No jobs posted </p>
-    <p> post a job now  <a href="" routerLink="../post_a_job"></a> click here</p>
+    <p> post a job now <a href="" routerLink="../post_a_job"></a> click here</p>
 </ng-template>
 <ng-template #second>
     <ul #second>
-        <li *ngFor="let jobs of jobsData">{{ jobs }} <button type="button" routerLink="./proposal_details/{{jobs.job_id}}" (click)="getJobProposals(jobs.job_id)" >view  proposals</button></li>
+        <li *ngFor="let jobs of jobsData">
+            <table>
+                <tr>
+                    <th>JOB ID : </th>
+                    <th id="tabledata">{{ jobs.job_id}}</th>
+
+                </tr>
+                <tr>
+                    <td>Project Title :</td>
+                    <td id="tabledata">{{jobs.project_title}}</td>
+                </tr>
+                <tr>
+                    <td>Project Description : </td>
+                    <td id="tabledata">{{ jobs.description}}</td>
+
+                </tr>
+                <tr>
+                    <td>Pay :</td>
+                    <td id="tabledata">$ {{ jobs.total_pay}}</td>
+                </tr>
+                <tr>
+                    <td>Experience Level :</td>
+                    <td id="tabledata">{{ jobs.experience_level}}</td>
+
+                </tr>
+                <tr>
+                    <td>Required Skills :</td>
+                    <td id="tabledata">{{ jobs.skills_requried}}</td>
+                </tr>
+            </table><button type="button" routerLink="./proposal_details/{{jobs.job_id}}"
+                (click)="getJobProposals(jobs.job_id)">view proposals</button>
+        </li>
     </ul>
 </ng-template>
+<app-cfooter></app-cfooter>

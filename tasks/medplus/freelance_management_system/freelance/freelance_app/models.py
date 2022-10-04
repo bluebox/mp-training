@@ -47,6 +47,7 @@ class freelancer_proposals(models.Model):
     skills = models.TextField(max_length=100)
     cover_letter = models.TextField(max_length=100)
     requried_pay = models.IntegerField()
+    proprosal_status = models.CharField(max_length=20,default='rejected')
     def __str__(self) -> str:
         return "{} {} {} ".format(self.proprosal_id,self.freelancer_id,self.job_id)
 

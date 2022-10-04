@@ -66,7 +66,9 @@ export class ServiceService {
     return this.http.get(this.url + 'get_contract_of_client?client_id=' + data)
   }
 
-  getContractOfFreelancer(data: any) { return this.http.get(this.url + 'get_contract_of_freelancer' + data); }
+  getContractOfFreelancer(data: any) { 
+    return this.http.get(this.url + 'get_contract_of_freelancer?emp_proposal_id=' + data); 
+  }
 
 
 
@@ -77,5 +79,15 @@ export class ServiceService {
   getFeePaymentDetails(data : any) {
     return this.http.get(this.url + 'get_fee_payment_details?contract_id=' + data);     
   }
+  getPaymentDetails(data : any)
+  { 
+    return this.http.get(this.url + 'get_freelancer_payment_details?freelancer_id=' + data); 
+  }
 
+
+  updatefreelanceproposal(proprosal_id: number ,data: any){
+    console.log(data);
+    
+    return this.http.put(this.url + 'update_freelance_proposal' + '/'  + proprosal_id   , data);
+  }
 }

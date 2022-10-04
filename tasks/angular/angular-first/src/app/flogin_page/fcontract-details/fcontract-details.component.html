@@ -1,1 +1,41 @@
-<p>fcontract-details works!</p>
+<app-fheader></app-fheader>
+
+<!-- <ng-container *ngIf="; then first else second "></ng-container>
+<ng-template #first>
+</ng-template> -->
+<h4 style="text-transform: uppercase;text-align:center;">your contract's details</h4>
+<ul>
+    <li *ngFor="let item of arr">
+        <table>
+            <tr>
+                <th> CONTRACT ID : </th>
+                <th class="tabledata">{{ item.contract_id }}</th>
+
+            </tr>
+            <tr>
+                <td>CLIENT ID :</td>
+                <td class="tabledata">{{item.client_id}}</td>
+            </tr>
+            <tr>
+                <td>PROPOSAL ID : </td>
+                <td class="tabledata"> {{ item.emp_proposal_id }}</td>
+
+            </tr>
+            <tr>
+                <td>PROJECT DEADLINE :</td>
+                <td class="tabledata"> {{ item.project_deadline}}</td>
+            </tr>
+            <tr>
+                <td>CONTRACT AMOUNT :</td>
+                <td class="tabledata">$ {{ item.contract_amount}}</td>
+            </tr>
+            <tr>
+                <td>PROJECT STATUS :</td>
+                <td *ngIf="item.project_status==='pending'" style="color: orange;" class="tabledata"> {{ item.project_status | uppercase}}</td>
+                <td *ngIf="item.project_status==='completed'" style="color: green;" class="tabledata"> {{ item.project_status | uppercase}}</td>
+
+            </tr>
+        </table>
+    </li>
+</ul>
+<app-ffooter></app-ffooter>

@@ -1,5 +1,232 @@
-<button routerLink="../freelance-registration" >freelancer</button>
-<br> <br>
-<button routerLink="../client-register" >client</button>
 
-<button  routerLink="../login">login</button>
+
+
+
+
+<!--navigation-->
+<section class="smart-scroll">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand heading-black" routerLink="/">
+                GTR
+            </a>
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span data-feather="grid"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href=""  routerLink="../client-register">Find Talent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll"  routerLink="../freelance-registration">Find Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" routerLink="../login" >login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<!--hero header-->
+<section class="py-7 py-md-0 bg-hero" id="home">
+    <div class="container">
+        <div class="row vh-md-100">
+            <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                <h1 class="heading-black text-capitalize">Join the world's work marketplace</h1>
+                <p class="lead py-3">Find great talent , Build your business ,Take your carrer to the next level .</p>
+                <button class="btn btn-primary d-inline-flex flex-row align-items-center" style="margin-left:10px  ;" routerLink="../client-register" >
+                   find talent
+                    <em class="ml-2" data-feather="arrow-right"></em>
+                </button> &nbsp;
+                <button class="btn btn-primary d-inline-flex flex-row align-items-center" routerLink="../freelance-registration">
+                    find work
+                    <em class="ml-2" data-feather="arrow-right"></em>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- features section -->
+<section class="pt-6 pb-7" id="features" style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <h2 class="heading-black">GTR  offers everything you  need</h2>
+                <p class="text-muted lead"></p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-10 mx-auto">
+                <div class="row feature-boxes">
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-primary">
+                            <div class="icon-box-inner">
+                                <span data-feather="edit-3" width="35" height="35"></span>
+                            </div>
+                        </div>
+                        <h5>Create once. Share everywhere.</h5>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in
+                            nisi commodo, tempus odio a, vestibulum nibh.</p>
+                    </div>
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-success">
+                            <div class="icon-box-inner">
+                                <span data-feather="monitor" width="35" height="35"></span>
+                            </div>
+                        </div>
+                        <h5>Unlimited contracts</h5>
+                        <p class="text-muted">You can work with unlimited contracts.</p>
+                    </div>
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-danger">
+                            <div class="icon-box-inner">
+                                <span data-feather="layout" width="35" height="35"></span>
+                            </div>
+                        </div>
+                        <h5>Beautiful Responsive websites build by our freelancer's</h5>
+                        <p class="text-muted">You can check it out  in the  website</p>
+                    </div>
+                    <div class="col-md-6 box">
+                        <div class="icon-box box-info">
+                            <div class="icon-box-inner">
+                                <span data-feather="globe" width="35" height="35"></span>
+                            </div>
+                        </div>
+                        <h5>Available globally</h5>
+                        <p class="text-muted">work anytime ,anywhere , we are available globally</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row mt-6">
+            <div class="col-md-6 mr-auto">
+                <h2>Knight is more than just a page builder.</h2>
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis pulvinar vestibulum. Donec eleifend, sem sed dictum mattis, turpis purus placerat eros.</p>
+            </div>
+            <div class="col-md-5">
+                <div class="slick-about">
+                    <img src="img/blog-1.jpg" class="img-fluid rounded d-block mx-auto" alt="Work 1"/>
+                    <img src="img/blog-2.jpg" class="img-fluid rounded d-block mx-auto" alt="Work 2"/>
+                    <img src="img/blog-3.jpg" class="img-fluid rounded d-block mx-auto" alt="Work 3"/>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>
+
+
+
+<!--faq section-->
+<section class="py-7" id="faq" style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <h2>Frequently asked questions</h2>
+                <p class="text-muted lead">Answers to most common questions.</p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-10 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 mb-5">
+                        <h6>Is there any fee for signup ?</h6>
+                        <p class="text-muted">No its free ,you can signup for free </p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h6>Do you have hidden fees?</h6>
+                        <p class="text-muted">Yes we charge just 1% of the contract amount excluding of Taxes</p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h6>What are the payment methods you accept?</h6>
+                        <p class="text-muted">we accept all credit ,debit cards and upi payments</p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h6>How often do you release updates?</h6>
+                        <p class="text-muted">For every 3 months we release new updates</p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h6>Is there any charges for submiting job proposals </h6>
+                        <p class="text-muted">No this free of cost.</p>
+                    </div>
+                    <div class="col-md-6 mb-5">
+                        <h6>How can I contact you?</h6>
+                        <p class="text-muted">you can contact us by calling +919999955555 , +919999955554 </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6 mx-auto text-center">
+                <h5 class="mb-4">Have questions?</h5>
+                <a href="#" class="btn btn-primary">Contact us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--footer-->
+<footer class="py-6" style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 mr-auto">
+                <h5>About GTR</h5>
+                <p class="text-muted">GTR is an Freelancing company , built to make work easy to find  best clients and freelaner's</p>
+                <ul class="list-inline social social-sm">
+                    <li class="list-inline-item">
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href=""><i class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href=""><i class="fa fa-dribbble"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-2">
+                <h5>Legal</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Refund policy</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-2">
+                <h5>Partner</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Refer a friend</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-2">
+                <h5>Help</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Log in</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 text-muted text-center small-xl">
+                &copy; 2022 GTR - All Rights Reserved
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- scroll to top -->
+<div class="scroll-top">
+    <i class="fa fa-angle-up" aria-hidden="true"></i>
+</div>

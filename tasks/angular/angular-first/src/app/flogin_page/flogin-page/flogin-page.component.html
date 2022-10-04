@@ -1,9 +1,15 @@
-<h1>welcome {{ parse_data.first_name }} {{ parse_data.last_name }}</h1>
 
-<ul>
-    <li><a routerLink="./jobs"> find a job </a></li>
-    <li><a routerLink="./proposals"> your submited proposals </a></li>
-    <li><a routerLink="./payment_details">  Payment Details </a></li>
-    <li><a routerLink="./fcontract_details"> Your Contract Details </a></li>
+<app-fheader></app-fheader>
+<div class="welcome">
+    <h1>welcome {{ parse_data.first_name }} {{ parse_data.last_name }}</h1>
 
-</ul>
+    <ul>
+        <li><a routerLink="./jobs"> find a job </a></li>
+        <li><a routerLink="./proposals"> your submited proposals </a></li>
+        <li><a routerLink="./payment_details"> Payment Details </a></li>
+        <li><a routerLink="./fcontract_details"> Your Contract Details </a></li>
+
+    </ul>
+</div>
+
+<app-ffooter></app-ffooter>
