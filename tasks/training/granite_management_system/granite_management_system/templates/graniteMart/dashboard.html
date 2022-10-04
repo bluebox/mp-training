@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard{{data.customer_name}}</title>
+</head>
+<body>
+<a href="{% url 'logout' %}">logout</a>
+<a href="{% url 'buyproducts' %}">buy products</a>
+
+    {{data.customer_id}}
+    {{data.customer_name}}
+    {{data.phone}}
+    {{data.email}}
+    {{data.address}}
+
+    <table border="1px solid black">
+        <tr><th>Order_id</th><th>store_name</th><th>item_name</th><th>Price</th></tr>
+    {% for ord in orders %}
+        <tr><td>{{ord.order_id}}<td>{{ord.store.store_name}}</td><td>{{ord.item.item_name}}</td><td>{{ord.item.price}}</td></tr>
+
+    {% endfor %}
+
+    </table>
+
+
+
+</body>
+</html>
