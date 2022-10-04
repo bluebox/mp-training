@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register.service';
+import { fromEvent, map } from 'rxjs';
 
 @Component({
   selector: 'app-post-question',
@@ -33,15 +34,16 @@ export class PostQuestionComponent implements OnInit {
     }
   )
 
-  constructor(private service: RegisterService, private fb:FormBuilder) { }
+  constructor(private service: RegisterService, private fb: FormBuilder) { }
 
-    onSubmit() {
-      this.service.postQuestion(this.questionForm.value).subscribe((data) => {
-        console.log(data)
-      })
-    }
+  onSubmit() {
+    this.service.postQuestion(this.questionForm.value).subscribe((data) => {
+      console.log(data)
+    })
+  }
 
   ngOnInit(): void {
+
   }
 
 }

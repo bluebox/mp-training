@@ -1,119 +1,156 @@
-<div class="container">
-    <h1>Contribute saancode by posting questions</h1>
-</div>
+<div class="document">
+    <div id="scroll"></div>
+    <div class="container">
+        <h1>Contribute saancode by posting questions</h1>
+    </div>
 
-<div class="container">
-    <h1 class="name-and-describe">Name and describe your question</h1>
-    <p style="color: grey;">Its good to provide examples which will help users understand easily.</p>
-    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
-        <div>
-            <div class="box">
-                <div class="inside-box">
-                    <div class="left">
-                        <p class="category-p">Category *</p>
-                        <select formControlName="selected" name="selected" id="selected">
-                            <option *ngFor="let item of list" [ngValue]="item.id">{{item.label}}</option>
-                        </select>
+    <div class="container">
+        <h1 class="name-and-describe">Name and describe your question</h1>
+        <p style="color: grey;">Its good to provide examples which will help users understand easily.</p>
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+            <div>
+                <div class="box">
+                    <div class="inside-box">
+                        <div class="left">
+                            <p class="category-p">Category *</p>
+                            <select formControlName="selected" name="selected" id="selected">
+                                <option *ngFor="let item of list" [ngValue]="item.id">{{item.label}}</option>
+                            </select>
+                        </div>
+                        <div class="left">
+                            <label for="">Title *</label>
+                            <input placeholder="Pick a title" type="text" formControlName="problem_name"
+                                name="problem_name">
+                        </div>
+                        <div class="left">
+                            <label for="">Description *</label>
+                            <textarea type="text" formControlName="description" name="description" rows="15"></textarea>
+                        </div>
                     </div>
-                    <div class="left">
-                        <label for="">Title *</label>
-                        <input placeholder="Pick a title" type="text" formControlName="problem_name"
-                            name="problem_name">
-                    </div>
-                    <div class="left">
-                        <label for="">Description *</label>
-                        <textarea type="text" formControlName="description" name="description" rows="15"></textarea>
+                    <div class="inside-box">
+                        <div class="container">
+                            <div>
+                                <div>
+                                    <svg style="font-size: 16px;" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-lightbulb-fill"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
+                                    </svg>
+                                    <p>1. Great titles are concise, descriptive, and specific.</p>
+                                    <div style="display: flex;">
+                                        <svg style="color: red;" xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path
+                                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                        <p>Shortest Unsorted Continuous Subarray
+                                        </p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <svg style="color: green;" xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" fill="currentColor" class="bi bi-check2-circle"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+                                            <path
+                                                d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+                                        </svg>
+                                        <p>Find Substring</p>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div>
+                                <p>2. Clearly describe your question, and check our question set to make sure your
+                                    problem
+                                    isn’t already there.</p>
+                                <h3>Sample</h3>
+                                <p>
+                                    Given an array of integers, return indices of the two numbers such that they add up
+                                    to a
+                                    specific target.
+
+                                    You may assume that each input would have exactly one solution, and you may not use
+                                    the
+                                    same element twice.
+                                </p>
+                                <h4>Example:</h4>
+                                <p>Given <span class="code">nums = [2, 7, 11, 15]</span>, <span class="code">target =
+                                        9</span>, Because<span class="code">nums[0]</span><span class="code"> +
+                                    </span><span class="code">nums[1]</span> = 2 + 7 = 9, return
+                                    <span class="code">[0, 1]</span>.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="inside-box">
-                    <div class="container">
-                        <div>
+                <div class="box">
+                    <div class="inside-box">
+                        <div class="left">
+                            <label for="">Hints *</label>
+                            <textarea rows="10" type="text" formControlName="hints" name="hints"></textarea>
+                        </div>
+                    </div>
+                    <div class="inside-box">
+                        <div class="container">
                             <div>
                                 <svg style="font-size: 16px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
                                 </svg>
-                                <p>1. Great titles are concise, descriptive, and specific.</p>
-                                <div style="display: flex;">
-                                    <svg style="color: red;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path
-                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                    </svg>
-                                    <p>Shortest Unsorted Continuous Subarray
-                                    </p>
-                                </div>
-                                <div style="display: flex;">
-                                    <svg style="color: green;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                                        <path
-                                            d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
-                                        <path
-                                            d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
-                                    </svg>
-                                    <p>Find Substring</p>
-                                </div>
-                                <hr>
+                                <p>Hints should be placed inside html</p>
+                            </div>
+                            <hr>
+                            <div>
+                                <p>It is your duty, how the way you render hints in your HTML</p>
+                                <h4>Example:</h4>
+                                <p>If you have three hints for your problem, then they must be rendered though a list
+                                    element</p>
+                                <p>
+                                    <span class="code">
+                                        <li>
+                                            hint 1
+                                        </li>
+                                    </span>
+                                    <span class="code">
+                                        <li>
+                                            hint 2
+                                        </li>
+                                    </span>
+                                    <span class="code">
+                                        <li>
+                                            etc...
+                                        </li>
+                                    </span>
+                                </p>
                             </div>
                         </div>
-                        <div>
-                            <p>2. Clearly describe your question, and check our question set to make sure your problem
-                                isn’t already there.</p>
-                            <h3>Sample</h3>
-                            <p>
-                                Given an array of integers, return indices of the two numbers such that they add up to a
-                                specific target.
-
-                                You may assume that each input would have exactly one solution, and you may not use the
-                                same element twice.
-                            </p>
-                            <h4>Example:</h4>
-                            <p>Given <span class="code">nums = [2, 7, 11, 15]</span>, <span class="code">target =
-                                    9</span>, Because<span class="code">nums[0]</span><span class="code"> + </span><span
-                                    class="code">nums[1]</span> = 2 + 7 = 9, return
-                                <span class="code">[0, 1]</span>.
-                            </p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="inside-box">
+                        <div class="left">
+                            <label for="">test cases</label>
+                            <textarea type="text" rows="10" formControlName="test_cases" name="test_cases"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="box">
-                <div class="inside-box">
-                    <div class="left">
-                        <label for="">Hints *</label>
-                        <textarea rows="10" type="text" formControlName="hints" name="hints"></textarea>
-                    </div>
-                </div>
-                <div class="inside-box">
-                    <div class="container">
-                        <div>
-                            <svg style="font-size: 16px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+
+            <div>
+                <label for="">outputs</label>
+                <textarea type="text" formControlName="outputs" name="outputs"></textarea>
             </div>
-        </div>
+            <div>
+                <label for="">inbuilt_code</label>
+                <textarea type="text" formControlName="inbuilt_code" name="inbuilt_code"></textarea>
+            </div>
 
-        <div>
-            <label for="">test cases</label>
-            <textarea type="text" formControlName="test_cases" name="test_cases"></textarea>
-        </div>
-        <div>
-            <label for="">outputs</label>
-            <textarea type="text" formControlName="outputs" name="outputs"></textarea>
-        </div>
-        <div>
-            <label for="">inbuilt_code</label>
-            <textarea type="text" formControlName="inbuilt_code" name="inbuilt_code"></textarea>
-        </div>
-
-        <button type="submit">Post</button>
-    </form>
+            <button type="submit">Post</button>
+        </form>
+    </div>
 </div>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/register.service';
 import { Validators, FormBuilder } from '@angular/forms'
 import { VirtualTimeScheduler } from 'rxjs';
+declare var jQuery: any;
 
 // const app = document.querySelector(".hints");
 
@@ -96,6 +97,11 @@ export class ProblemComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    (function ($) {
+      $(document).ready(function(){
+        console.log("Hello from jQuery!");
+      });
+    })(jQuery);
   }
 
 }
