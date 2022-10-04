@@ -78,9 +78,9 @@ export class IndexComponent implements OnInit {
      if(data.body.email){
 
      }
-     else{
-      this.router.navigate(['/customer/login'])
-     }
+    //  else{
+    //   this.router.navigate(['/customer/login'])
+    //  }
     
     })
     
