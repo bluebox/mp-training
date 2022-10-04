@@ -51,18 +51,7 @@ class Customer(models.Model):
     customer_phn = models.CharField(max_length=20,unique=True)
     customer_email = models.CharField(max_length=40, validators=[validate_mail],unique=True)
 
-    USERNAME_FIELD='customer_email'
-    REQUIRED_FIELDS=[]
-    def __str__(self):
-        return self.customer_name
 
-    @property
-    def is_anonymous(self):
-        return False
-
-    @property
-    def is_authenticated(self):
-        return True
 
 
 class Employee(models.Model):

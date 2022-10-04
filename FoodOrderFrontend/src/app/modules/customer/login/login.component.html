@@ -1,1 +1,22 @@
-<p> cus login works!</p>
+<div class="conatiner-fluid">
+    <h2 class="heading">User Login</h2>
+    <div class="fields">
+        <form [formGroup]="sigininForm" class="usersiginform" (ngSubmit)="onSubmit()">
+
+            <p>
+            <mat-form-field appearance="outline" class="tag">
+            <mat-label>Mail</mat-label>
+            <input matInput placeholder="" formControlName="customer_email">
+            </mat-form-field></p>
+
+            
+           <p> <mat-form-field appearance="outline" class="tag">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="" type="password" formControlName="customer_password">
+            </mat-form-field> </p>
+        
+              
+            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!sigininForm.valid">Register</button>        
+        </form>
+    </div>
+</div>

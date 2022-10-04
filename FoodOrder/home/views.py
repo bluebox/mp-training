@@ -12,6 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions,status
 from .models import Customer, Food, Restaurant, Employee, Menu, MenuList
+import jwt
 from rest_framework.parsers import JSONParser
 
 class Index(View):
@@ -207,16 +208,40 @@ class OneResFoods(APIView):
         serializerRes = FoodSerializer(food, many=True)
         return Response(serializerRes.data)
 
-# class CustomerLogin(APIView):
-#     def post(self,request):
-#         email=request.data['customer_email']
-#         password=request.data['customer_password']
-#         user=Customer.objects.filter(customer_email=email).first()
-#
-#         if user is None:
-#             raise AuthenticationFailed('User not found! Try Again or register!')
-#
-#         if not user.check_password(password):
-#             raise AuthenticationFailed('Wrong password!')
-#
-#         return Response(user)
+
+
+
+
+class CustomerLogin(APIView):
+    def post(self,request):
+        try:
+            email=request.data['customer_email']
+            password=request.data['customer_password']
+            print(email)
+            user=Customer.objects.filter(customer_email=email).first()
+
+            if user is None:
+                raise AuthenticationFailed('User not found! Try Again or register!')
+
+            # if not user.check_password(password):
+            #     raise AuthenticationFailed('Wrong password!')
+
+            payload={
+                "email" : user.customer_email
+            }
+            token=jwt.encode(payload,"secret")
+            response=Response("login success")
+            response.set_cookie(key="jwt",value=token,httponly=True,samesite="Lax")
+            print(token)
+            return response
+
+
+        except:
+            return Response("login Failed")
+
+    def get(self,request):
+        token=request.COOKIES.get("jwt")
+        if not token:
+            return Response("None")
+        payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        return Response(payload)
