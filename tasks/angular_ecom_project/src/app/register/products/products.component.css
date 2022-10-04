@@ -1,0 +1,33 @@
+/* *{
+    height: 0vh;
+    width: 20vw;
+}
+#product{
+    display-flex: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35vh;
+    width:40vw;
+
+}
+img{
+    width:20vh;
+    height:25vh
+}
+#pro{
+    display:flex;
+    flex-direction: row;
+    padding-left: 30px;
+
+    flex-direction : column;
+}
+
+.card{
+    border: 1px solid rebeccapurple;
+    text-align: center;
+}
+
+button .add{
+    width: 7px;
+    padding-right: 11px;
+} */

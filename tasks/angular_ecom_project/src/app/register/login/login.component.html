@@ -1,0 +1,18 @@
+<p>login works!</p>
+<div id="login">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" id="form">
+
+        <label class="label" for="u-name">User Name: </label><br>
+        <input class="input" id="u-name" type="text" formControlName="username" required>
+        <br>
+        <label class="label" for="mail">mail: </label><br>
+        <input class="input" id="mail" type="mail" formControlName="email">
+        <br>
+        <label class="label" for="password">password: </label><br>
+        <input class="input" id="password" type="password" formControlName="password">
+        <br><br>
+
+
+        <h4><button type="submit" style="margin-left:37%">Login</button></h4>
+    </form>
+</div>

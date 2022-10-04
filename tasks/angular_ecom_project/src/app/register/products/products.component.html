@@ -1,0 +1,18 @@
+<!-- <p>products works!</p> -->
+
+
+        <div id="pro">
+            <div *ngFor="let x  of data" id="product" class="card">
+                <img src="http://127.0.0.1:8000{{x.image}}" alt="dfwjhbb">
+                <h3>{{x.name}}</h3>
+
+                <h3>Rs.{{x.price}}</h3>
+                <h3></h3>
+                <button (click)="Cart(x.id)">
+                    <button class="add" (click)="remove()">-</button>
+                    {{cart}}
+                    <button class="add" (click)="add()">+</button>
+                </button>
+            </div>
+
+        </div>

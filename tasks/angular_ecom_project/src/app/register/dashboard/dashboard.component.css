@@ -1,0 +1,45 @@
+#product{
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 20vh;
+    width: 13vw;
+    margin: auto;
+
+}
+img{
+    width:15vh;
+    height:15vh
+}
+.card{
+    border: 1px solid rebeccapurple;
+    margin: 0%;
+    /* position: relative; */
+    text-align: center;
+    
+}
+*{
+    width: 20vw;
+}
+#main-product{
+    display:flex;
+    flex-direction: row;
+}
+#new{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#pro-items{
+    width: 70vw;
+    
+}
+.example-container{
+    height:100%;
+}
+mat-drawer-container{
+    width:70vw
+}
