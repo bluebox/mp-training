@@ -1,22 +1,22 @@
 <body>
-   <div class="content">
-    <h1 style="align-content:center">User Registration</h1>
+   <div class="dataTable">
+    <p class="heading">User Registration</p>
     <form [formGroup]="customerReg" style="margin-right:0px;">
-        <table >
-            <tr>
+        <table align="center">
+            <tr class="row">
             <td>UserName: </td><td><input type="text" formControlName="customer_id"></td></tr>
-            <tr>
+            <tr class="row">
             <td>Password:</td><td> <input type="password" formControlName="password"></td></tr>
-            <tr>
+            <tr class="row">
             <td>FullName: </td><td><input type="text" formControlName="customer_name"></td></tr>
-            <tr>
+            <tr class="row">
             <td>Phone: </td><td><input type="tel" formControlName="phone"></td></tr>
-            <tr>
+            <tr class="row">
             <td>Email: </td><td><input type="email" formControlName="email"></td></tr>
-            <tr>
+            <tr class="row">
             <td>Address: </td><td><textarea formControlName="address" rows="5" cols="20"></textarea></td>
-            <tr>
-            <td></td><td><button (click)="register()">save</button>&nbsp; &nbsp;<input type="reset"></td></tr>
+            <tr class="row">
+            <td></td><td><button class="save" (click)="register()">save</button>&nbsp; &nbsp;<input class="save" type="reset"></td></tr>
         </table>
     </form>
     <p>already have an account? <span><a [routerLink]="['/customerLogin']">signin</a></span></p>

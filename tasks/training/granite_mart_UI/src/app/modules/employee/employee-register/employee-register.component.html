@@ -1,25 +1,28 @@
 <p>employee-register works!</p>
 
+<div class="dataTable">
+<p class="heading">Employee Registration</p>
 
 <form [formGroup]="employeeReg">
-    <table >
-        <tr>
+    <table align="center">
+        <tr class="row">
         <td>Employee_id: </td><td><input type="text" formControlName="employee_id"></td></tr>
-        <tr>
+        <tr class="row">
         <td>FullName: </td><td><input type="text" formControlName="employee_name"></td></tr>
-        <tr>
+        <tr class="row">
         <td>Phone: </td><td><input type="tel" formControlName="phone"></td></tr>
-        <tr>
+        <tr class="row">
         <td>Email: </td><td><input type="email" formControlName="email"></td></tr>
-        <tr>
+        <tr class="row">
         <td>Doj: </td><td><input type="date" formControlName="doj"></td></tr>
-        <tr>
+        <tr class="row">
         <td>Role: </td><td><select formControlName="role"><option *ngFor="let role of roles" [value]="role.role_id">{{role.role_name}}</option></select></td></tr>
-        <tr>
+        <tr class="row">
         <td>Salary: </td><td><input type="text" formControlName="salary"></td></tr>
-        <tr>
+        <tr class="row">
         <td>Address: </td><td><textarea formControlName="address" rows="5" cols="20"></textarea></td>
-        <tr>
-        <td></td><td><button (click)="register()">save</button>&nbsp; &nbsp;<input type="reset"></td></tr>
+        <tr class="row">
+        <td></td><td><input class="save" type="reset">&nbsp; &nbsp;<button class="save" (click)="register()">save</button></td></tr>
     </table>
 </form>
+</div>

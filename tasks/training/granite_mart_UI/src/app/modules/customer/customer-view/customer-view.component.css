@@ -9,11 +9,18 @@
 }
 
 .heading{
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 700;   
     text-align: center;
 }
 .row{
+    width:20em;
     border:1px solid black;
     background-color: rgb(75, 75, 81);
 }
+.save{
+    height:3em;
+    width:5em;
+    color:white;
+    background-color: black;
+   }
