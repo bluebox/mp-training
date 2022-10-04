@@ -112,4 +112,32 @@ export class DataServiceService {
     return this.http.post('http://127.0.0.1:8000/updateEmployee/'+employee_id.toString(),'')
   }
 
+  getVehicles(){
+    return this.http.get('http://127.0.0.1:8000/viewVehicles')
+  }
+
+  getVehicle(vehicle_no:any){
+    return this.http.get('http://127.0.0.1:8000/viewVehicle/'+vehicle_no.toString())
+  }
+
+
+  registerVehicle(data:any){
+    return this.http.post('http://127.0.0.1:8000/registerVehicle',data)
+  }
+
+  updateVehicle(data:any,vehicle_no:any){
+      return this.http.post('http://127.0.0.1:8000/updateVehicle/'+vehicle_no.toString(),data)
+  }
+
+  deleteVehicle(vehicle_no:any){
+    return this.http.post('http://127.0.0.1:8000/deleteVehicle/'+vehicle_no.toString(),'')
+  }
+
+  storeRegistration(data:any){
+    return this.http.post('http://127.0.0.1:8000/registerStore',data)
+  }
+  updateStore(store_id:any,data:any){
+    return this.http.post('http://127.0.0.1:8000/updateStore'+store_id.toString(),data)
+  }
+
 }

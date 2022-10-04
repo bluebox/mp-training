@@ -1,1 +1,22 @@
-<p>item-list works!</p>
+<p class="heading">Products List </p>
+
+<div class="dataTable">
+
+    <div class="item" *ngFor="let i of items_list" (click)="viewItem(i.contains_id)"
+        (mouseleave)="mouseExit(i.contains_id)" (mouseenter)="mouseEnter(i.contains_id)">
+        <div class="display">{{i.contains_details[1].item_name}}</div>
+        <div class="price-store">
+            <p>price: <span>{{i.price}}</span></p>
+            <p>store: <span>{{i.contains_details[0].store_name}}</span></p>
+        </div>
+        <div class="actions">
+            <button>add to cart</button>
+            <button>Buy now</button>
+        </div>
+        <div class="details" [id]="i.contains_id">
+            <p>description:<span>{{i.contains_details[1].item_description}}</span></p>
+        </div>
+    </div>
+    
+
+</div>

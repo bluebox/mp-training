@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-store-register',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreRegisterComponent implements OnInit {
 
-  constructor() { }
+  storeReg=new FormGroup({
+    store_id :new FormControl(''),
+    store_name :new FormControl(''),
+    established_year :new FormControl(''),
+    store_description :new FormControl(''),
+    contact :new FormControl(''),
+    website :new FormControl(''),
+    address :new FormControl(''),
+  })
+  constructor(private service:DataServiceService) { }
 
   ngOnInit(): void {
+  }
+
+  register(){
+    this.service.storeRegistration(this.storeReg.getRawValue()).subscribe(data=>console.log(data))
   }
 
 }

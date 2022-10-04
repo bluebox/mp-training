@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-store-view',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreViewComponent implements OnInit {
 
-  constructor() { }
+  store_id:any
+  store_data:any
+
+  constructor(private aroute:ActivatedRoute, private service:DataServiceService) {
+    this.aroute.params.subscribe(data=>this.store_id=data['store_id'])
+    this.service.getStore(this.store_id).subscribe(data=>this.store_data=data) }
 
   ngOnInit(): void {
   }

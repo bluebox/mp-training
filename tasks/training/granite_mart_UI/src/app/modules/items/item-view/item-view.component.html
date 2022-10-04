@@ -1,1 +1,16 @@
-<p>item-view works!</p>
+
+<div *ngIf="item_details">
+<div class="display" >{{item_details.contains_details[1].item_name}}</div>
+<div class="price-store">
+    <p>price: <span>{{item_details.price}}</span></p>
+    <p>store: <span>{{item_details.contains_details[0].store_name}}</span></p>
+</div>
+<div class="actions">
+    <button>add to cart</button>
+    <button>Buy now</button>
+</div>
+<div class="details" [id]="item_details.contains_id">
+    <p>description:<span>{{item_details.contains_details[1].item_description}}</span></p>
+</div>
+
+</div>

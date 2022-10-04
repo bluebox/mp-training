@@ -1,1 +1,22 @@
-<p *ngFor="let store of storeList">{{store.store_id}},{{store.store_name}}</p>
+<!-- <p *ngFor="let store of storeList">{{store.store_id}},{{store.store_name}}</p> -->
+<div class="dataTable">
+    <p class="heading">Granite Stores List</p>
+    <table align="center">
+        <tr class="row">
+            <th>Store Name</th>
+            <th>description</th>
+            <th>Contact</th>
+            <th>Email id</th>
+            <th>Edit/Delete</th>
+        </tr>
+        <tr class="row" *ngFor="let i of storeList" (click)="viewStore(i.store_id)">
+            <td>{{i.store_name}}</td>
+            <td>{{i.store_desciption}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.address}}</td>
+            <td><button (click)="editStore(i.store_id)">Edit</button>&nbsp;&nbsp;<button
+                    (click)="deleteStore(i.store_id)">Delete</button></td>
+        </tr>
+
+    </table>
+</div>
