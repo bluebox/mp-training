@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGNUP</title>
+</head>
+<body>
+
+
+  <form method="post" action="acs">
+      {% csrf_token %}
+      <input type="text" placeholder="username" name="username">
+      <input type = "text" placeholder="firstname" name="firstname">
+      <input type = "text" placeholder="lastname" name="lastname">
+      <input type = "email" placeholder="email" name ="email">
+      <input type = "password" placeholder="password" name="password">
+      <input type="password1" placeholder="password must be match" name = "password1">
+      <button type = "submit">create account</button>
+  </form>
+</body>
+</html>

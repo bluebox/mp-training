@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>leave requests</title>
+</head>
+<body>
+   {% for i in data %}
+
+   <p>{{i.leave_type}}  ---> {{i.profil_id.username}}  </p>
+    {% endfor %}
+
+   <button type = "button"  style = "border: 2x solid black;background-color:green">approve</button>
+   <button type = "button"  style = "border: 2x solid black;background-color:red">reject</button>
+
+</body>
+</html>

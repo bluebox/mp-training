@@ -1,0 +1,54 @@
+1.html stands for hypertext markup language,its basically a scripting language which is used to design web pages
+2.tags like entry and exit points in html we can give the required content inside tags along with the required attributes examples are: <head> </head>
+3.no
+4.there are multiple lists in html like ordered lists,unordered lists,discriptive lists and so on
+5.--...--> Tag.
+6.its completely depends on operating system
+7.image mapping is a concept in html that generates/displays another image or perform a action when it is clicked.here we give "usemap" to give the name 
+8.it removes the unnessesary bytes so that the interaction between server-client will be faster
+9.they only accepts specific values
+10. 	&copy
+11. by giving id to sections and giving href=#id where ever required
+12.yes by using proper indentation we can achieve that
+13.top most page
+14.when image doesnt load or it corrupts the text written in alt attribute will be displayed
+15.yes
+16.no, it can also points to images, videos etc also
+17.box
+18.by using type attribute
+19.style sheets are basically css format documents
+20.disc,square,circle,none
+21.by applying color attribute each time we type character
+22.those numerical values are ASCII values names are given in order to make it easy for designers
+23.  <table>
+
+        <tr>
+        
+        <td>50 pcs</td>
+        
+        <td>100</td>
+        
+        <td>500</td>
+        
+        </tr>
+        
+        <tr>
+        
+        <td>10 pcs</td>
+        
+        <td>5</td>
+        
+        <td>50</td>
+        
+        </tr>
+        
+        </table>
+24.Although checkboxes don’t affect one another, grouping checkboxes together helps to organize them. Checkbox buttons can have their own name and do not need to belong to a group. A single web page can have many different groups of checkboxes.
+25.only 1st tag is recognized
+26.making the user's experience more interesting, are the result of these small programs called applets.
+27.nothing will happen
+28.yes 
+29.using java script we can create a function and make this possible
+30.yes using style sheets
+31.  <h1 id = "goa"> hello &nbsp &nbsp &nbsp &lt  h1 &gt &lt h1 / &gt </h1>
+
