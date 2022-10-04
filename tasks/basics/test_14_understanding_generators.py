@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Generators are a easy way to create your own custom iterators. They look like
 functions but do a lot of heavy lifting under the covers.
 
@@ -12,7 +12,7 @@ calling next() to keep moving the function forward and at every stop point where
 have a yield or return the function can return something new.
 '''
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():

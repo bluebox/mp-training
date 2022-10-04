@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div id="main-product">
+    <div id="new">
+    <div *ngFor="let x  of data" id="product" class="card">
+        <a routerLink="./pro"><img src="http://127.0.0.1:8000{{x.image}}" alt="dfwjhbb">
+            <!-- <img [src]="x.image" alt="dfwjhbb"> -->
+            
+            <h3>{{x.name}}</h3>
+        </a>
+    </div></div>
+    <div id="pro-items">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form #myform="ngForm" (submit)="register(myform)" >
+    <input type="text" name="name" id="" [(ngModel)]="name">
+    <h1>{{name}}</h1>
+    <button type="submit">submit</button>
+</form> -->

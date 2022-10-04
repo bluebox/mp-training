@@ -1,0 +1,33 @@
+body{
+    height: fit-content;
+}
+*{
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    background-color: rgb(51, 51, 68);
+
+}
+
+.searchicon{
+    position: absolute;
+    z-index: 10;
+    /* COLOR: BLACK; */
+    right:40%
+}
+
+.form-group{
+    width: 60%
+}
+
+#main{
+    display:flex;
+    
+    /* justify-content: space-between; */
+}
+/* 
+#ecom{
+    width:40%;
+    padding-right: 0px;
+    margin-right:0
+} */
