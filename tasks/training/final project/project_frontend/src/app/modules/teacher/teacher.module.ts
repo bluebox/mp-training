@@ -13,12 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddQuestionComponent } from './components/add-question/add-question.component';
 
 
 @NgModule({
   declarations: [
     AddCourseComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddQuestionComponent
 
   ],
   imports: [

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCourseComponent } from './components/add-course/add-course.component';
+import { AddQuestionComponent } from './components/add-question/add-question.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -11,6 +12,9 @@ const routes: Routes = [
       },
       {
         path:'',redirectTo:'courseregister',pathMatch:"full"
+      },
+      {
+        path:'questionregister', component:AddQuestionComponent
       }
     ]
 

@@ -19,9 +19,9 @@ export class AddCourseComponent implements OnInit {
 
   courseAddingForm:FormGroup=new FormGroup({
 
-    course_name: new FormControl( " ", Validators.required),
-    total_marks: new FormControl(""),
-    teacher_id : new FormControl("", Validators.required)
+    course_name: new FormControl("", Validators.required),
+    total_marks: new FormControl("", Validators.required),
+    // teacher_id : new FormControl("", Validators.required)
 
 
   })
@@ -46,4 +46,10 @@ export class AddCourseComponent implements OnInit {
     console.log(this.courseAddingForm.value);
 
   }
+  // addCourse(){
+  //   console.log(this.courseAddingForm.value);
+  //   this.http.addCourse({ 'form': this.courseAddingForm.value, 'username': this.courseAddingForm.get('username')?.value }).subscribe(data=>{
+  //     console.log(data);
+  //   })
+  // }
 }

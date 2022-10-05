@@ -14,9 +14,19 @@ export class TeacherServiceService {
 
   }
 
-  addCourse(data:any){
-    return this.http.post<any>("http://127.0.0.1:8000/course", data)
+  getQuestions():Observable<any>{
 
+    return this.http.get("http://127.0.0.1:8000/courselist")
+  }
+
+
+  addCourse(data:any){
+    return this.http.post<any>("http://127.0.0.1:8000/courseregister", data)
+
+  }
+
+  addQuestion(data:any){
+    return this.http.post<any>("http://127.0.0.1:8000/questionregister",data)
   }
 
 

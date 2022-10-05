@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
             'Additional Info',
             {
                 'fields' : (
-                    'mobile_no','address'
+                    'user_type','mobile_no','address'
                 )
             }
         )

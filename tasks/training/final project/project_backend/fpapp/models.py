@@ -13,6 +13,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     mobile_no = models.CharField(max_length=10, null=True)
     address= models.CharField(max_length=200, null=True)
+    user_type=models.CharField(max_length=50, default="Admin")
 
     def __str__(self):
         return self.username
@@ -39,7 +40,7 @@ class Teacher(models.Model):
 class Course(models.Model):
     course_name = models.CharField(max_length=400, null=False, blank=False)
     total_marks = models.PositiveIntegerField()
-    teacher_id =models.ForeignKey("Teacher", on_delete=models.SET_NULL, null=True, blank=True)
+    # teacher_id =models.ForeignKey("Teacher", on_delete=models.SET_NULL, null=True, blank=True)
     
 
     def __str__(self):
@@ -48,7 +49,6 @@ class Course(models.Model):
 
 class Question(models.Model):
     question_name = models.TextField(max_length=10000, null=False, blank=False)
-    question_number = models.PositiveIntegerField(null=False, blank=False,unique=True, default=NULL)
     option1=models.CharField(max_length=200)
     option2=models.CharField(max_length=200)
     option3=models.CharField(max_length=200)
@@ -56,6 +56,9 @@ class Question(models.Model):
     options=(('Option1','Option1'),('Option2','Option2'),('Option3','Option3'),('Option4','Option4'))
     answer=models.CharField(max_length=200,choices=options)
     course= models.ForeignKey("Course", on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.question_name
 
 
 class Evaluation(models.Model):
@@ -91,9 +94,9 @@ class Evaluation(models.Model):
 #     # Teacher_id = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, blank=True)
 #     subject_id = models.ForeignKey('Subject', on_delete=models.CASCADE, null=True, blank=True)
 
-
 #     def __str__(self):
 #         return self.set_name
+
 
 # class Question(models.Model):
 #     question_id = models.CharField(max_length=20, primary_key=True)

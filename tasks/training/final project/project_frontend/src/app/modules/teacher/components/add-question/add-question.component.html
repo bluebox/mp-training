@@ -1,0 +1,141 @@
+<p>add-question works!</p>
+<form [formGroup]="questionAddingForm" class="form-container">
+    <mat-card class="card-container">
+      <mat-card-header>
+        <mat-card-title>Add Question</mat-card-title>
+        <small *ngIf="formNotValid"
+          >please fill all the required details</small
+        >
+      </mat-card-header>
+      <br />
+      <mat-card-content>
+  
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="question_name" matInput placeholder="question name" />
+          </mat-form-field>
+          <small
+            class="text-danger"
+            *ngIf="
+            questionAddingForm.get('username')?.invalid &&
+            questionAddingForm.get('username')?.touched
+            "
+            >enter question</small
+          >
+        </div>
+        <!-- select -->
+        <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="option1" matInput placeholder="option1" />
+            </mat-form-field>
+            <small
+              class="text-danger"
+              *ngIf="
+              questionAddingForm.get('username')?.invalid &&
+              questionAddingForm.get('username')?.touched
+              "
+              >enter option1</small
+            >
+          </div>
+          
+          <!-- select -->
+
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="option2" matInput placeholder="option2" />
+            </mat-form-field>
+            <small
+              class="text-danger"
+              *ngIf="
+              questionAddingForm.get('username')?.invalid &&
+              questionAddingForm.get('username')?.touched
+              "
+              >enter option2</small
+            >
+          </div>
+
+          <!-- select -->
+
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="option3" matInput placeholder="option3" />
+            </mat-form-field>
+            <small
+              class="text-danger"
+              *ngIf="
+              questionAddingForm.get('username')?.invalid &&
+              questionAddingForm.get('username')?.touched
+              "
+              >enter option3</small
+            >
+          </div>
+
+          <!-- select -->
+
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="option4" matInput placeholder="option4" />
+            </mat-form-field>
+            <small
+              class="text-danger"
+              *ngIf="
+              questionAddingForm.get('username')?.invalid &&
+              questionAddingForm.get('username')?.touched
+              "
+              >option4</small
+            >
+          </div>
+        
+        
+
+
+          <div class="col-md-6">
+        
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Answer</mat-label>
+              <mat-select formControlName="answer" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let  stat of options" [value]="stat">
+                  {{ stat }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <small
+            *ngIf="
+            questionAddingForm.get('status')?.touched ||
+            questionAddingForm.get('status')?.invalid
+            "
+            >please select answer option</small
+          >
+
+
+
+        <div class="col-md-6">
+          
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Course</mat-label>
+            <mat-select formControlName="course" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let course of courses" [value]="course['id']">
+                {{ course['course_name'] }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <small
+          *ngIf="
+          questionAddingForm.get('teacher_id')?.touched &&
+          questionAddingForm.get('teacher_id')?.invalid
+          "
+          >please select course</small>
+  
+        
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="addQuestion()" mat-raised-button="" color="primary">
+          Register
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
