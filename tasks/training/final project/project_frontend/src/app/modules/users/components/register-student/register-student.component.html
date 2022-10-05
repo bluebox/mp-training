@@ -4,38 +4,58 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>Register</mat-card-title>
+        
+        <small *ngIf="formNotValid">Please fill all required details</small>
       </mat-card-header>
       <mat-card-content>
+    
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="full-width">
               <input formControlName="username" matInput placeholder="username">
             </mat-form-field>
+            <small class="text-danger" *ngIf="studentRegisterForm.get('username')?.invalid  && studentRegisterForm.get('username')?.touched " >username is required</small>
+
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
               <input formControlName="first_name" matInput placeholder="first_name">
             </mat-form-field>
+            <small class="text-danger" *ngIf="studentRegisterForm.get('first_name')?.invalid  && studentRegisterForm.get('first_name')?.touched " >This field is required</small>
+
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
               <input formControlName="last_name" matInput placeholder="last_name">
             </mat-form-field>
           </div>
+          <small class="text-danger" *ngIf="studentRegisterForm.get('last_name')?.invalid  && studentRegisterForm.get('last_name')?.touched " >This field is required</small>
+          
+
+
           <div class="col-md-6">
             <mat-form-field class="full-width">
               <input formControlName="email" matInput placeholder="email">
             </mat-form-field>
+            <small class="text-danger" *ngIf="studentRegisterForm.get('email')?.invalid  && studentRegisterForm.get('email')?.touched " >Please enter valid email</small>
+
+
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input formControlName="password" matInput placeholder="password">
+              <input type="password" formControlName="password" matInput placeholder="password">
             </mat-form-field>
+            <small class="text-danger" *ngIf="studentRegisterForm.get('password')?.invalid  && studentRegisterForm.get('password')?.touched " >Password should contain atleast 8 letters</small>
+
+
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
               <input formControlName="mobile_no" matInput placeholder="mobile_number">
             </mat-form-field>
+            <small class="text-danger" *ngIf="studentRegisterForm.get('mobile_no')?.invalid  && studentRegisterForm.get('mobile_no')?.touched " >This field is required</small>
+
+
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
@@ -52,6 +72,8 @@
             <mat-form-field class="full-width">
               <input formControlName="college_name" matInput placeholder="college">
             </mat-form-field>
+            <small class="text-danger" *ngIf="studentRegisterForm.get('college_name')?.invalid  && studentRegisterForm.get('college_name')?.touched " >This field is required</small>
+
           </div>
 
         </div>

@@ -1,0 +1,72 @@
+<p>add-course works!</p>
+
+<form [formGroup]="courseAddingForm" class="form-container">
+    <mat-card class="card-container">
+      <mat-card-header>
+        <mat-card-title>Register Course</mat-card-title>
+        <mat-card-title *ngIf="formNotValid"
+          >please Fill All required details</mat-card-title
+        >
+      </mat-card-header>
+      <br />
+      <mat-card-content>
+  
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="course_name" matInput placeholder="course name" />
+          </mat-form-field>
+          <small
+            class="text-danger"
+            *ngIf="
+            courseAddingForm.get('course_name')?.invalid &&
+            courseAddingForm.get('course_name')?.touched
+            "
+            >enter valid course name</small
+          >
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="total_marks" matInput placeholder="total Marks" />
+            </mat-form-field>
+            <small
+              class="text-danger"
+              *ngIf="
+              courseAddingForm.get('course_name')?.invalid &&
+              courseAddingForm.get('course_name')?.touched
+              "
+              >enter marks</small
+            >
+          </div>
+        <!-- select -->
+     
+        <div class="col-md-6">
+          
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Teacher</mat-label>
+            <mat-select formControlName="teacher_id" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let teacher of teachers" [value]="teacher['user']">
+                {{ teacher['user'] }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <small
+          *ngIf="
+          courseAddingForm.get('teacher_id')?.touched &&
+          courseAddingForm.get('teacher_id')?.invalid
+          "
+          >please select Teacher</small>
+        <!-- select end  -->
+    
+  
+        
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="addCourse()" mat-raised-button="" color="primary">
+          Register
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

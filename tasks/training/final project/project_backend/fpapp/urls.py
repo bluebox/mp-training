@@ -6,7 +6,9 @@ urlpatterns = [
     path('', views.index ),
     path('userstudent', views.RegisterStudent.as_view()),
     path('userteacher', views.RegisterTeacher.as_view()),
-    path('subjectlist', views.SubjectList.as_view()),
-    path('subjectcreate', views.SubjectCreate.as_view())
+    path("userlogin", views.loginUser),
+    path('teacherlist', views.teacher_list),
+    # path('subjectcreate', views.SubjectCreate.as_view())
+    path('course', views.RegisterCourse.as_view())
 
 ]

@@ -3,9 +3,11 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
 from fpapp import serializer
-from fpapp.models import Subject, User,Student, Teacher
-from fpapp.serializer import SubjectSerializer, UserSerializer, StudentSerializer, TeacherSerializer
+from fpapp.models import  Course, User,Student, Teacher
+from fpapp.serializer import  UserSerializer, StudentSerializer, TeacherSerializer, CourseSerializer
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 
@@ -34,6 +36,12 @@ class RegisterStudent(APIView):
 
 
 class RegisterTeacher(APIView):
+    # def get(self, request):
+    #     courses = Teacher.objects.all()
+    #     serializer = TeacherSerializer(courses, many=True)
+    #     print(serializer.data)
+    #     return Response(serializer.data)
+
     def post(self,request):
         print(request.data)
         serializer = UserSerializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"mobile_no":request.data["mobile_no"]
@@ -53,17 +61,71 @@ class RegisterTeacher(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
 
 
-class SubjectList(APIView):
+@api_view(["GET"])
+def teacher_list(request):
+   
+    courses = Teacher.objects.all()
+    serializer = TeacherSerializer(courses, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def loginUser(request):
+
+    if request.method=="POST":
+        username = request.data.get("username")
+        password = request.data.get("password")
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            return Response({"msg":"Rey nuv levvu poraa saami"})
+
+        user= authenticate(request,username=username, password=password)
+
+        if user is not None:
+            login(request,user)
+            return Response({'msg':"logged in"}, status=200)
+        else:
+            return Response({'msg':"password sakkaga type chey bey"})
+
+    
+    return Response({"msg":"not created"}, status=200)
+
+
+
+class RegisterCourse(APIView):
     def get(self,rquest):
-        sub =Subject.objects.all()
-        serializer=SubjectSerializer(sub,many= True)
+        sub =Course.objects.all()
+        serializer=CourseSerializer(sub,many= True)
         return Response(serializer.data)
 
-class SubjectCreate(APIView):
-    def post(self,request):
-        serializer =SubjectSerializer(data=request.data)
+
+    def post(self, request):
+        serializer= CourseSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return serializer.data
+            print(serializer.data)
+            return Response(serializer.data)
+            
         else:
+            print("invalid")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+
+        
+
+
+
+# class SubjectList(APIView):
+#     def get(self,rquest):
+#         sub =Subject.objects.all()
+#         serializer=SubjectSerializer(sub,many= True)
+#         return Response(serializer.data)
+
+# class SubjectCreate(APIView):
+#     def post(self,request):
+#         serializer =SubjectSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return serializer.data
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 

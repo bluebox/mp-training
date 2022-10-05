@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpServiceService } from '../../http-service.service';
 
 @Component({
@@ -9,6 +9,9 @@ import { HttpServiceService } from '../../http-service.service';
 })
 export class RegisterTeacherComponent implements OnInit {
 
+  formNotValid : boolean = false
+  formError ?: string =""
+
   constructor(private http: HttpServiceService) { }
 
   teacherRegisterForm: FormGroup = new FormGroup({
@@ -16,10 +19,10 @@ export class RegisterTeacherComponent implements OnInit {
     first_name: new FormControl("", Validators.required),
     last_name: new FormControl("", Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
-    password: new FormControl("", Validators.minLength(8)),
+    password: new FormControl("", [Validators.minLength(8),Validators.required]),
     mobile_no: new FormControl("", [Validators.maxLength(12), Validators.required]),
     address: new FormControl(""),
-    qualification: new FormControl(""),
+    qualification: new FormControl("", Validators.required),
     position: new FormControl("")
 
   })
@@ -34,6 +37,8 @@ export class RegisterTeacherComponent implements OnInit {
     }
     else {
       console.log('fill properly ');
+      this.formNotValid = true
+      console.log(this.teacherRegisterForm.valid);
     }
     console.log(this.teacherRegisterForm.value);
 
