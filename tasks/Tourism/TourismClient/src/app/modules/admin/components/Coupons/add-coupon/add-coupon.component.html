@@ -1,0 +1,28 @@
+<form class="global-form" [formGroup]="CouponForm" (ngSubmit)="addCouponObj()">
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Coupon Code</mat-label>
+    <input type="text" name="couponcode" matInput formControlName="couponcode" placeholder="Coupon Code"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Discount</mat-label>
+    <input type="number" name="discount" matInput formControlName="discount" placeholder="Discount"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
+      class="">
+    </textarea>
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Valid Till</mat-label>
+    <input type="date" name="valid_till" matInput formControlName="valid_till" placeholder="date time"
+      class="">
+  </mat-form-field>
+
+
+  <button mat-raised-button class="">Add</button>
+</form>

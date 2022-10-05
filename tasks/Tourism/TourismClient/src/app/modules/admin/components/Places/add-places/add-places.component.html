@@ -1,0 +1,23 @@
+<form class="global-form" [formGroup]="PlaceForm" (ngSubmit)="addPlaceObj()">
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Place Name</mat-label>
+    <input type="text" name="place_name" matInput formControlName="place_name" placeholder="place_name"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Image</mat-label>
+    <input type="text" name="image" matInput formControlName="image" placeholder="Image"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
+      class="">
+    </textarea>
+  </mat-form-field>
+
+
+  <button mat-raised-button class="">Add</button>
+</form>

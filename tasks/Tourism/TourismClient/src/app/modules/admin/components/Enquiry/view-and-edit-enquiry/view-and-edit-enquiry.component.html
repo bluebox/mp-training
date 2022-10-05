@@ -1,0 +1,35 @@
+<form class="contact-form" [formGroup]="EnquiryForm" (ngSubmit)="submitEnquiryForm()">
+  <mat-form-field class="contact-form-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input type="text" name="name" matInput formControlName="name" placeholder="name"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="contact-form-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="contact-form-full-width" appearance="fill">
+    <mat-label>Mobile</mat-label>
+    <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
+    class="">
+  </mat-form-field>
+
+  <mat-form-field class="contact-form-full-width" appearance="fill">
+    <mat-label>Subject</mat-label>
+    <input type="text" name="subject" matInput formControlName="subject" placeholder="Subject"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="contact-form-full-width" appearance="fill">
+    <mat-label>Your Message</mat-label>
+    <textarea type="text" name="message" matInput formControlName="message" placeholder="Message"
+      class=""></textarea>
+  </mat-form-field>
+
+  <p><mat-checkbox formControlName="status">Close Enquiry</mat-checkbox></p>
+
+  <button mat-raised-button class="">SUBMIT</button>
+</form>

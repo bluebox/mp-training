@@ -1,0 +1,9 @@
+<h1 class="text-center border-bottom border-primary">
+  Active Enquiry List
+</h1>
+<div *ngIf="enquiryList" >
+  <p *ngFor="let enquiry of enquiryList" > {{enquiry.subject}} <button (click)="editEnquiry(enquiry.id)">edit</button> </p>
+</div>
+<div *ngIf="enquiryList == ''" >
+  <p class="text-danger text-center">No active queries</p>
+</div>

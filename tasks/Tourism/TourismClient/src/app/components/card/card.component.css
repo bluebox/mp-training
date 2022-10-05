@@ -1,0 +1,41 @@
+.tour_card{
+  width: 90%;
+  height: 17rem;
+  -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  /* transform: translateX(-3rem); */
+  position: relative;
+  cursor: pointer;
+}
+
+
+.tour_img {
+  height: 100%;
+  width: 100%;
+  /* transform: translate(-4rem) scale(1.5); */
+  transform: scale(1.5);
+  transition: all .5s;
+}
+
+.tour_caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  transition: all .5s;
+  backface-visibility: hidden;
+}
+
+.tour_card:hover .tour_caption {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+.tour_card:hover .tour_img {
+  transform: scale(1);
+}

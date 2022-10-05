@@ -1,0 +1,6 @@
+
+<button routerLink="../addVehicle" class="d-block ms-auto">Add Vehicle</button>
+
+<div *ngIf="vehicleList" >
+  <p *ngFor="let vehicle of vehicleList" > {{vehicle.vehicle_number}} <button (click)="editTour(vehicle.id)">edit</button> </p>
+</div>

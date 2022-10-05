@@ -1,0 +1,34 @@
+<form class="global-form" [formGroup]="SignUpForm" (ngSubmit)="submitSignUp()">
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input type="text" name="name" matInput formControlName="name" placeholder="name"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="text" name="password" matInput formControlName="password" placeholder="password"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>ConfirmPassword</mat-label>
+    <input type="password" name="password" matInput formControlName="confirm_password" placeholder="confirm password"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Mobile</mat-label>
+    <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
+      class="">
+  </mat-form-field>
+
+  <button mat-raised-button class="">Signup</button>
+</form>
+
+
+
+<button mat-raised-button class="" (click) = 'NavigateToLoginUp()'>Login</button>

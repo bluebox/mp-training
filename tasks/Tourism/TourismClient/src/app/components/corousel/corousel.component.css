@@ -1,0 +1,9 @@
+/* .corousel_component{
+  width: 50%;
+} */
+.carousel-caption{
+  background-color: rgba(4, 4, 4, 0.087);
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  color: rgb(0, 0, 0);
+}

@@ -1,0 +1,198 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.global-form {
+  /* min-width: 150px; */
+  /* max-width: 500px; */
+  width: 100%;
+  max-width: 25rem;
+  margin: 0 auto;
+  /* background-color: yellow; */
+}
+
+.global-form-full-width {
+  width: 100%;
+}
+
+/* body{
+  color: white;
+  background-color: black;
+} */
+
+
+
+@keyframes moveToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-5rem);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.seperator {
+  width: 200px;
+  height: 25px;
+  background-image: url(https://res.cloudinary.com/dklq1vuce/image/upload/v1664472131/CDB21DX064/seprator_image_pic_pv1xrt.png);
+  margin: 10px auto;
+  animation: moveToRight 2s;
+}
+
+
+
+.button,
+.button:link,
+.button:visited {
+  text-decoration: none;
+  font-size: 1rem;
+  /* color: white; */
+  border-radius: 6.25rem;
+  padding: 1rem 2.5rem;
+  display: inline-block;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+
+
+.button:hover {
+  box-shadow: 0 10px 1.25rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.3rem);
+  background-color: rgb(255, 255, 255);
+}
+
+.button:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.button:active {
+  box-shadow: 0 0.4rem 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.1rem);
+}
+
+.button::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  z-index: -1;
+  border-radius: 6.25rem;
+  transition: all 0.4s;
+}
+
+.button-animated {
+  animation: moveToUp ease-out 1s 0.75s;
+  animation-fill-mode: backwards;
+}
+
+.button-text:link,
+.button-text:visited {
+  font-size: 1rem;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #55c57a;
+  padding: 3px;
+}
+
+.button-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 10px 1.25rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.button-text:active {
+  box-shadow: 0 0.5rem 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+}
+
+.button-blue {
+  background-color: rgb(24, 41, 175);
+  color: rgb(255, 255, 255);
+}
+
+.button-blue::after {
+  background-color: rgb(28, 48, 193);
+}
+
+
+.button-white {
+  background-color: rgb(254, 255, 255);
+  color: rgb(6, 80, 4);
+}
+
+.button-white::after {
+  background-color: rgb(255, 255, 255);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes moveToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(5rem);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveToUp {
+  0% {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

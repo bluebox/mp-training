@@ -1,0 +1,48 @@
+<!-- <img *ngIf="tourObject" src = {{tourObject.image}} alt=""> -->
+
+<!-- <div *ngIf="tourObject" class="tour_description">
+
+</div> -->
+
+
+<div class="row mt-4" *ngIf="tourObject">
+  <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
+    <app-corousel class="" [places]="tourObject.places"></app-corousel>
+    <div class=" fs-3 text-center fw-bold">
+      ₹ {{tourObject.price}} <span class="text-muted fs-5 fw-normal">(inclusive of taxes)</span> <br>
+      <a class="button button-blue mt-3 mb-3" (click)="bookTour(tourObject.id)" >Book Now</a>
+    </div>
+
+  </div>
+  <div class="col-12 col-md-6">
+    <h1 class="text-center text-primary text-capitalize fst-italic fw-bold tour_heading">{{tourObject.tour_name}}</h1>
+    <div class="seperator wow slideInLeft animated" style="visibility: visible; animation-name: slideInLeft;">
+    </div>
+    <div class=" w-75 m-auto fs-4 tour_description">
+      <p>This trip starts from {{tourObject.tour_from}} to <strong>{{tourObject.tour_to}}. </strong></p>
+      <br>
+      <strong class="under_line">Places covered in this trip are :</strong> <br>
+      <div class="ms-4" *ngFor="let place of tourObject.places, index as i"> <br>{{i+1}}. {{place.place_name}} <br> </div>
+      <br>
+      <strong>Duration: </strong>
+      <br>
+      <div *ngIf="tourObject.nights" class="ms-4 mt-3">{{tourObject.nights}} nights</div>
+      <div *ngIf="tourObject.days" class="ms-4 mt-3">{{tourObject.days}} days</div>
+      <br>
+      <div *ngIf="tourObject.vehicleid" class="ms-4 mt-3">travelling in {{tourObject.vehicleid}}</div>
+      <br>
+      <a routerLink="../../../contact" class="button button-blue">Enquire</a>
+      <p class="text-muted fs-6">send an enquiry we will contact you immediately.</p>
+
+    </div>
+  </div>
+  <div class="fst-italic fs-5 col-12 col-md-11 m-auto">
+    {{tourObject.description}}
+    {{tourObject.description}}
+    {{tourObject.description}}
+    {{tourObject.description}}
+  </div>
+
+
+
+</div>

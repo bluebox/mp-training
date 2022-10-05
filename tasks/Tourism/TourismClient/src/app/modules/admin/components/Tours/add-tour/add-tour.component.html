@@ -1,0 +1,95 @@
+<form class="global-form" [formGroup]="TourForm" (ngSubmit)="addTourObj()">
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Tour Name</mat-label>
+    <input type="text" name="tour_name" matInput formControlName="tour_name" placeholder="Tour Name"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Tour From</mat-label>
+    <input type="text" name="tour_from" matInput formControlName="tour_from" placeholder="From"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Tour To</mat-label>
+    <input type="text" name="tour_to" matInput formControlName="tour_to" placeholder="To"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Tour Type</mat-label>
+    <input type="text" name="tour_type" matInput formControlName="tour_type" placeholder="TYpe"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Nights</mat-label>
+    <input type="number" name="nights" matInput formControlName="nights" placeholder="Nights"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Days</mat-label>
+    <input type="number" name="days" matInput formControlName="days" placeholder="Days"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Price</mat-label>
+    <input type="number" name="price" matInput formControlName="price" placeholder="Price"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Image</mat-label>
+    <input type="text" name="image" matInput formControlName="image" placeholder="Image"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
+      class="">
+    </textarea>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Places</mat-label>
+    <mat-select [formControl]="places" multiple>
+      <mat-select-trigger>
+        {{places.value?.[0] || ''}}
+        <span *ngIf="(places.value?.length || 0) > 1" class="example-additional-selection">
+          (+{{(places.value?.length || 0) - 1}} {{places.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let place  of placesList" [value]="place.id">{{place.place_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>selected: {{places.value}}</p>
+
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>vehicle Id</mat-label>
+    <input type="number" name="vehicleid" matInput formControlName="vehicleid" placeholder="vehicle Id"
+      class="">
+  </mat-form-field> -->
+
+  <mat-form-field appearance="fill">
+    <mat-label>vehicle Id</mat-label>
+    <select matNativeControl [formControl]="vehicleid">
+      <option value="" selected>------</option>
+      <option *ngFor="let vehicle of vehicleList" value={{vehicle.id}}> {{vehicle.vehicle_number}}</option>
+    </select>
+  </mat-form-field>
+  <p>selected: {{vehicleid.value}}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Coupons</mat-label>
+    <mat-select [formControl]="coupons" multiple>
+      <mat-select-trigger>
+        {{coupons.value?.[0] || ''}}
+        <span *ngIf="(coupons.value?.length || 0) > 1" class="example-additional-selection">
+          (+{{(coupons.value?.length || 0) - 1}} {{coupons.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let coupon of couponsList" [value]="coupon.id">{{coupon.couponcode}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>selected: {{coupons.value}}</p>
+
+  <button mat-raised-button class="">Add</button>
+</form>

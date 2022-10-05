@@ -1,0 +1,6 @@
+
+<button routerLink="../addCoupon" class="d-block ms-auto">Add Coupon</button>
+
+<div *ngIf="couponList" >
+  <p *ngFor="let coupon of couponList" > {{coupon.couponcode}} <button (click)="editCoupon(coupon.id)">edit</button> </p>
+</div>

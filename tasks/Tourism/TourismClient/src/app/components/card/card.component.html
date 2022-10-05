@@ -1,0 +1,5 @@
+<div *ngIf="tourItem" class="tour_card mt-5 bg-warning m-auto" (click) = "goToTourPage(tourItem)">
+  <img class="tour_img" src= {{tourItem.image}} alt="" >
+  <div class="tour_caption">{{tourItem.tour_name}}</div>
+</div>
+

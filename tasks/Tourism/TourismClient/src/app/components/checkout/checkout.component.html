@@ -1,0 +1,104 @@
+<h1 class="text-center text-primary"> Checkout </h1>
+
+<div class="row" *ngIf="tourObject">
+  <div class="col-12 col-md-4  text-dark m-auto mb-4">
+    <img [src]="tourObject.image" alt="tour_image" width="100%">
+    <p class="text-uppercase text-center">{{tourObject.tour_name}}</p>
+  </div>
+  <div class="col-12 col-md-6 text-dark ms-auto me-auto">
+    <div class="d-flex justify-content-between">
+      <p>Price for each person: </p>
+      <p>{{ tourObject.price }}</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Total number of people: </p>
+      <p>{{tourists.length}}</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>coupon applied : </p>
+      <p>{{coupon?.couponcode}}</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>discount : </p>
+      <p>{{discount}}</p>
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>total price : </p>
+      <p>{{(tourObject.price - discount) * tourists.length}}</p>
+    </div>
+  </div>
+  <div *ngFor="let coupon of tourObject.coupons" class="col-10 col-md-8 mb-4 border m-auto p-3">
+    <div class="d-flex justify-content-evenly">
+      <p class="fw-bold me-5">{{coupon.couponcode}}</p>
+      <p >discount: {{coupon.discount * 100}}%</p>
+      <p class="text-uppercase ms-5 border p-1 bg-primary text-light" (click)="updateCoupon(coupon)" style="cursor: pointer;">apply</p>
+    </div>
+    <p class="text-center">{{coupon.description}}</p>
+  </div>
+
+</div>
+
+
+<mat-stepper #stepper>
+  <mat-step [stepControl]="TouristForm" errorMessage="Tourist details is required." [editable]='editable'>
+      <form [formGroup]="TouristForm">
+        <ng-template matStepLabel>Fill out Tourist details</ng-template>
+        <div formArrayName="tourists">
+          <div *ngFor="let skill of tourists.controls; let i=index">
+            <div [formGroupName]="i">
+              Tourist {{i+1}}:
+              <br>
+              Name :
+              <mat-form-field appearance="fill">
+                <mat-label>Name </mat-label>
+                <input type="text" matInput formControlName="name">
+              </mat-form-field>
+              Age:
+              <mat-form-field appearance="fill">
+                <mat-label>Age </mat-label>
+                <input type="number" matInput formControlName="age">
+              </mat-form-field>
+              Gender:
+              <mat-form-field appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" >
+                  <mat-option *ngFor="let gender of Gender" [value]="gender.value">
+                    {{gender.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button (click)="removeTourist(i)">Remove</button>
+            </div>
+          </div>
+        </div>
+        <p>
+          <button type="button" (click)="addTourist()">Add</button>
+        </p>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+  </mat-step>
+  <mat-step [stepControl]="paymentFormGroup" errorMessage="Payment type is required." [editable]='editable'>
+    <form [formGroup]="paymentFormGroup">
+      <ng-template matStepLabel> Payment </ng-template>
+      <mat-radio-group aria-label="paymentType" formControlName="payment_type" class="d-flex flex-column">
+        <mat-radio-button *ngFor="let payment of paymentTypes" [value]="payment.value">{{payment.viewValue}} </mat-radio-button>
+      </mat-radio-group>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>Payment Successful.</p>
+    <p>click on below button to see your bookings</p>
+    <div>
+      <!-- <button mat-button matStepperPrevious>Back</button> -->
+      <button mat-button routerLink="../../bookings">click here</button>
+    </div>
+  </mat-step>
+</mat-stepper>

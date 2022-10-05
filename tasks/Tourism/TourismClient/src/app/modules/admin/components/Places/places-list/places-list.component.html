@@ -1,0 +1,5 @@
+<button routerLink="../addPlace" class="d-block ms-auto">Add place</button>
+
+<div *ngIf="placeList" >
+  <p *ngFor="let place of placeList" > {{place.place_name}} <button (click)="editPlace(place.id)">edit</button> </p>
+</div>
