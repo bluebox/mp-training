@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Facility } from 'src/interfaces/facility';
 import { Slots } from 'src/interfaces/slot';
 import { Sports } from 'src/interfaces/sport';
@@ -13,26 +13,37 @@ import { FacilityService } from '../../services/facility.service';
 })
 export class BookingComponent implements OnInit {
   fid: string = '';
-  sid: string = '1';
-  idd: string = '';
+  idd!: number;
   facility!: Facility;
   sports!: Sports[];
+  equipments!: any[];
   sportid!: number;
+  date: string='';
+  fsid !: number;
   datesarray: any[] = [];
   slots: Slots[] = [];
-  slotsid: string[] = [];
-  bookingForm !: FormGroup;
+  booked_slots: Slots[] = [];
+  booked_slots_ids: number[] = [];
+  slotsid: number[] = [];
+  equipments_booked: any[] = [];
+  equipments_quantity: any[] = [];
+  bookingForm!: FormGroup;
+  user_id: number = 1;
+
+  bookingmsg: any;
+  fsdetails: any;
+  cost_per_slot: any;
 
   constructor(
+    private router: Router,
     private arouter: ActivatedRoute,
     private facilityService: FacilityService
   ) {}
   // booking! :FormGroup
   ngOnInit(): void {
-      this.bookingForm=new FormGroup({
-       sid : new FormControl('' ),
-
-    })
+    this.bookingForm = new FormGroup({
+      sid: new FormControl(''),
+    });
     this.arouter.params.subscribe((data) => {
       this.fid = data['id'];
       console.log(data);
@@ -42,22 +53,15 @@ export class BookingComponent implements OnInit {
       .getFacility(this.fid)
       .subscribe((data) => (this.facility = data));
 
-    this.facilityService
-      .getSportsInFacility(this.fid)
-      .subscribe((data) => (this.sports = data));
-
-    this.facilityService
-      .getSlotsInSportFacility(this.fid, this.sid)
-      .subscribe((data) => (this.slots = data));
+    this.facilityService.getSportsInFacility(this.fid).subscribe((data) => {
+      (this.sports = data), console.log(data);
+    });
 
     this.dates();
   }
-  ngDoCheck(): void {
-    console.log(this.sid, this.slotsid);
-  }
-
-  selectSport(sportid: number): void {
-    this.sportid = sportid;
+  ngDoCheck(): void {}
+  ngOnDestroy(): void {
+    
   }
 
   dates(): void {
@@ -75,18 +79,107 @@ export class BookingComponent implements OnInit {
     }
   }
   getSportsId(id: number): void {
-    this.sid = String(id);
-  }
+    this.sportid = id;
 
+    this.facilityService
+      .getFacilitySportId(this.fid, this.sportid)
+      .subscribe((data) => {
+        this.fsdetails = data;
+        this.fsid = this.fsdetails.facility_sport_id;
+        console.log(this.fsid);
+        this.cost_per_slot = this.fsdetails.cost_per_slot;
+        console.log(this.cost_per_slot);
+      });
+
+    this.facilityService.getEquipments(this.sportid).subscribe((data) => {
+      // (this.equipments = data);
+      let array: any[] = [];
+      data.map((ele: any) => {
+        array.push({ equipment: ele, count: 0 });
+      });
+      this.equipments = array;
+
+      console.log(this.equipments);
+    });
+    if (this.date) {
+      this.facilityService
+        .getSlotsInSportFacility(this.fid, this.sportid)
+        .subscribe((data) => (this.slots = data));
+      this.facilityService
+        .getBookedSlots(this.fsid, this.date)
+        .subscribe((data) => {
+          (this.booked_slots = data), this.getSlotids();
+        });
+    }
+  }
+  getDate(date: string): void {
+    this.date = date;
+    console.log(this.date);
+    if (this.sportid) {
+      this.facilityService
+        .getSlotsInSportFacility(this.fid, this.sportid)
+        .subscribe((data) => (this.slots = data));
+      this.facilityService
+        .getBookedSlots(this.fsid, this.date)
+        .subscribe((data) => {
+          (this.booked_slots = data), this.getSlotids();
+        });
+    }
+  }
   getslotid(id: number): void {
-    this.idd = String(id);
+    this.idd = id;
     const index = this.slotsid.indexOf(this.idd);
     if (index !== -1) {
-      this.slotsid.splice(index,1);
+      this.slotsid.splice(index, 1);
     } else {
       this.slotsid.push(this.idd);
     }
+    console.log(this.slotsid);
   }
 
-  submitBookingForm(): void {}
+  getSlotids(): void {
+    this.booked_slots_ids = [];
+    for (let i = 0; i < this.booked_slots.length; i++) {
+      this.booked_slots_ids.push(this.booked_slots[i].slot_id);
+    }
+  }
+  increasebtn(id: number): void {
+    this.equipments[id].count += 1;
+  }
+
+  reducebtn(id: number): void {
+    if (this.equipments[id].count > 0) {
+      this.equipments[id].count -= 1;
+    }
+  }
+
+  EquipmentsBooked(): void {
+    this.equipments.forEach((item) => {
+      if (item.count > 0) {
+        this.equipments_booked.push(item.equipment.equip_name);
+        this.equipments_quantity.push(item.count);
+      }
+    });
+  }  
+  
+  
+
+  submitBookingForm(): void {
+    this.EquipmentsBooked();
+    
+     const obj = {
+      user_id: this.user_id,
+      facility_sport_id: this.fsid,
+      date: this.date,
+      slots_id: this.slotsid,
+      equipments_booked: this.equipments_booked,
+      equipments_quantity: this.equipments_quantity,
+    };
+    console.log(obj);
+    this.facilityService.postBookingData(obj).subscribe((data) => {
+      (this.bookingmsg = data), console.log(data);sessionStorage.setItem('bookingobj',JSON.stringify(obj));
+    });
+
+    this.router.navigate(['facilities/paymentpage']);
+  }
 }
