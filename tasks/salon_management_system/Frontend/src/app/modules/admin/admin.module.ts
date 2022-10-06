@@ -14,6 +14,9 @@ import { HomeComponent } from './components/home/home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { BranchComponent } from './components/branch/branch.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import {MatTableModule} from '@angular/material/table';
     CommonModule,
     AdminRoutingModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatTabsModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class AdminModule { }

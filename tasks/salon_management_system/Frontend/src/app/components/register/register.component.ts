@@ -35,9 +35,14 @@ export class RegisterComponent implements OnInit {
     if (this.ClientRegistrationForm.valid) {
       this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
         this.errorMessage = data.message
+        // console.log(this.errorMessage)
         if (this.errorMessage == "registered") {
           this.router.navigate(['login'])
-      }})
+      }
+      else{
+        this.router.navigate(['login'])
+      }
+    })
     }
     else {
       console.log('please check ');

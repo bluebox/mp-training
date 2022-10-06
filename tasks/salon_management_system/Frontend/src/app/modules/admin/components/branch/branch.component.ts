@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 export class BranchComponent implements OnInit {
   subscription : Subscription = Subscription.EMPTY
   branches: any;
-  displayedColumns :string[]=['branch_id','branch_name','location'];
+  displayedColumns :string[]=['spa','branch_id','branch_name','location','update','delete'];
   constructor(private http : HttpserviceService) { }
 
   ngOnInit(): void {

@@ -1,5 +1,4 @@
-from email.policy import default
-from random import choices
+
 from django.db import models
 
 # Create your models here.
@@ -12,14 +11,20 @@ class User(AbstractUser):
 
     class Meta:
         db_table = 'User'
+
+    def __str__(self):
+        return self.username
    
 class Client(models.Model):
-    client_id = models.CharField(primary_key = True,max_length = 10,default = 'c01')
+    # client_id = models.CharField(primary_key = True,max_length = 10)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     Client_contact_number = models.CharField(max_length=10)
 
     class Meta:
         db_table = 'Client'
+
+    def __str__(self):
+        return self.user_id
 
 class Branch(models.Model):
     branch_id = models.IntegerField(primary_key = True)
@@ -28,6 +33,9 @@ class Branch(models.Model):
 
     class Meta:
         db_table = 'Branch'
+
+    def __str__(self):
+        return self.branch_name
 
 class Employee(models.Model):
     emp_id = models.CharField(primary_key = True,max_length = 10,default = 'e01')
@@ -39,6 +47,9 @@ class Employee(models.Model):
     class Meta:
         db_table = 'Employee'
 
+    def __str__(self):
+        return self.emp_id
+
 class services_provided(models.Model):
     service_id = models.IntegerField(primary_key = True)
     service_name = models.CharField(max_length=50)
@@ -46,6 +57,9 @@ class services_provided(models.Model):
 
     class Meta:
         db_table = 'services_provided'
+
+    def __str__(self):
+        return self.service_name
 
 class Appointment(models.Model):
     Appointment_id = models.IntegerField(primary_key = True)
@@ -59,6 +73,9 @@ class Appointment(models.Model):
     class Meta:
         db_table = 'Appointment'
 
+    def __str__(self):
+        return self.Appointment_id
+
 class Transaction(models.Model):
     trasaction_types = (('Credit Card','Credit Card'),('Debit Card','Debit Card'),('Net Banking','Net Banking'),('UPI','UPI'),('Pay at Salon','Pay at Salon'))
     trans_id = models.IntegerField(primary_key = True)
@@ -71,6 +88,9 @@ class Transaction(models.Model):
     class Meta:
         db_table = 'Transaction'
 
+    def __str__(self):
+        return self.trans_id
+
 class Reviews(models.Model):
     review_id = models.IntegerField(primary_key = True)
     Appointment_id = models.ForeignKey(Appointment,  on_delete=models.CASCADE)
@@ -79,3 +99,6 @@ class Reviews(models.Model):
 
     class Meta:
         db_table = 'Reviews'
+
+    def __str__(self):
+        return self.review_id

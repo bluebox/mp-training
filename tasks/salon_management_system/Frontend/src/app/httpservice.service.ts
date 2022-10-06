@@ -24,6 +24,10 @@ export class HttpserviceService {
   //   return this.http.post<any>('http://127.0.0.1:8000/userstudent',data)
   // }
   clientRegister(data : any){
-    return this.http.post<any>('http://127.0.0.1:8000/ClientRegistration',data)
+    return this.http.post<any>('http://127.0.0.1:8000/clientregistration',data)
+  }
+
+  getClients(){
+    return this.http.get('http://127.0.0.1:8000/clientlist')
   }
 }

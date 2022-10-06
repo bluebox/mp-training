@@ -11,7 +11,7 @@ export class ServicesComponent implements OnInit {
 
   subscription : Subscription = Subscription.EMPTY
   services: any;
-  dataSource: any;
+  displayedColumns :string[]=['service_id','service_name','Amount_to_be_paid'];
 
   constructor(private http : HttpserviceService) { }
 

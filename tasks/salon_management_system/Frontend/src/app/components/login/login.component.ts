@@ -11,6 +11,11 @@ import { HttpserviceService } from 'src/app/httpservice.service';
 })
 export class LoginComponent {
 
+  hide = true;
+  formNotValid : boolean = false;
+  formError ?: string =""
+  errorMessage : string = ""
+  
   constructor(private http: HttpserviceService,
     private router : Router) { }
 
@@ -19,5 +24,9 @@ export class LoginComponent {
     password: new FormControl("", Validators.required)
   })
 
+  onLoginSubmit(){
+
+  }
+  get passwordInput() { return this.loginForm.get('password');} 
 
 }

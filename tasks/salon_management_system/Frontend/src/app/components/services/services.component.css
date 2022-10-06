@@ -44,3 +44,9 @@
 .sp a:hover{
     color:#eb008b;
 }
+table {
+    width: 100%;
+  }
+  .column-name{
+      color: black;
+  }

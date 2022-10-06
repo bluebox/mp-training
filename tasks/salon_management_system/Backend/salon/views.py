@@ -1,6 +1,7 @@
+
 from django.http import JsonResponse
 
-from .models import Branch, User, services_provided,Employee
+from .models import Branch, User, services_provided,Employee,Client
 
 from .serializers import BranchSerializer, EmployeeSerializer, ServicesSerializer, Userserializer,ClientSerializer
 
@@ -85,15 +86,48 @@ class EmployeeList(APIView):
         serializer = EmployeeSerializer(employees,many=True)
         return Response(serializer.data)
 
+class ClientList(APIView):
+    def get(self,request):
+        # clients = Client.objects.all()
+        clients = Client.objects.all().prefetch_related('user_id')
+        serializer = ClientSerializer(clients,many=True)
+        return Response(serializer.data)
+
 class ClientRegistration(APIView):
+ 
     def post(self,request):
+        print(request.data)
         serializer = Userserializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"password":request.data['password']})
+        print(serializer)
         if serializer.is_valid():
-           Client =  serializer.save()
-           client_obj = ClientSerializer(data={'Client':Client.id,'Client_contact_number':request.data["Client_contact_number"]})
+           user =  serializer.save()
+           print(user)
+           client_obj = ClientSerializer(data={'user_id':user.id,'Client_contact_number':request.data["Client_contact_number"]})
+           print(client_obj)
            if client_obj.is_valid():
                 client_obj.save()
                 return Response({'data':serializer.data,'message':'successfully registered'},status=200)
+           else:
+                return Response({'message':'invalid'})
+        else:
+            return Response({'message':'invalid'})
+
+class EmployeeRegistration(APIView):
+ 
+    def post(self,request):
+        print(request.data)
+        serializer = Userserializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"password":request.data['password'],"is_staff":request.data['is_staff']})
+        print(serializer)
+        if serializer.is_valid():
+           user =  serializer.save()
+           print(user)
+           employee_obj = EmployeeSerializer(data={'user_id':user.id,'branch_id':request.data['branch_id'],'role':request.data['role'],'emp_contact_number':request.data["emp_contact_number"]})
+           print(employee_obj)
+           if employee_obj.is_valid():
+                employee_obj.save()
+                return Response({'data':serializer.data,'message':'successfully registered'},status=200)
+           else:
+                return Response({'message':'invalid'})
         else:
             return Response({'message':'invalid'})
 
