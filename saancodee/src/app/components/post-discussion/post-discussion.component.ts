@@ -24,8 +24,10 @@ export class PostDiscussionComponent implements OnInit {
    }
 
   onSubmit() {
-    this.service.postDiscussion(this.postDiscussionForm.value, this.id).subscribe((data) => {
-      console.log(data)
+    this.service.postDiscussion(this.postDiscussionForm.value, this.id).subscribe((data:any) => {
+      if (data['status'] == 200) {
+        this.router.navigate(['problems/discussions/', this.id])
+      }
     })
   }
 

@@ -11,9 +11,10 @@ import { RegisterService } from 'src/app/services/register.service';
 export class ProblemsComponent implements OnInit {
 
   problems!:any
+  accuracies: any;
 
   constructor(public service: RegisterService, private http: HttpClient, private router: Router) { 
-    this.service.getProblems().subscribe((data) => {
+    this.service.getProblems().subscribe((data:any) => {
       this.problems = data
       console.log(data)
     })
@@ -27,7 +28,8 @@ export class ProblemsComponent implements OnInit {
         'Authorization': 'token ' + localStorage.getItem('token')
       }
     )
-    this.http.get(url, {headers:headers}).subscribe((data) => {
+    this.http.get(url, {headers:headers}).subscribe((data:any) => {
+      console.log(typeof (data))
       this.problems = data
     })
   }

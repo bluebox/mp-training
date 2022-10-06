@@ -3,6 +3,10 @@ th {
     background-color: greenyellow;
 }
 
+tr {
+    cursor: pointer;
+}
+
 .easy {
     color: green;
 }

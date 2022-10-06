@@ -20,6 +20,8 @@ export class DiscussionComponent implements OnInit {
   commentForm = this.fb.group ({
     comment: ['', [Validators.required]]
   })
+  editCommentFlag: Boolean = false;
+  editCommentValue: any;
 
   constructor(private fb:FormBuilder, private router: Router, private route: ActivatedRoute, public service:RegisterService) { 
     this.params = this.route.snapshot.params;
@@ -29,6 +31,17 @@ export class DiscussionComponent implements OnInit {
       this.response = data['discussion'];
       this.comments = data['comments']
     })
+   }
+
+   edit_comment(comment_id:any, comment:any) {
+    console.log(this.editCommentValue)
+    this.service.edit_comment(comment_id, comment).subscribe((data) => {
+      console.log(data)
+    })
+   }
+
+   toggle_edit_comment_flag() {
+    this.editCommentFlag = !this.editCommentFlag
    }
 
    addComment() {

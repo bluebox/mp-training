@@ -8,6 +8,8 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class NavbarComponent implements OnInit {
 
+  is_staff = localStorage.getItem('is_staff')
+
   constructor(public service: RegisterService) { }
 
   ngOnInit(): void {

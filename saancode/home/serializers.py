@@ -93,4 +93,4 @@ class PostDiscussionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discussion
-        fields = "__all__"
+        fields = ['title', 'discussion']

@@ -166,6 +166,15 @@ export class RegisterService {
     return this.http.get(url, {headers:headers})
   }
 
+  edit_comment(comment_id:any, comment:any) {
+    let url = "http://127.0.0.1:8000/api/edit-comment"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, {'comment_id':comment_id, 'comment':comment}, {headers:headers})
+  }
+
   postVote(id:any, vote:any) {
     let data = {"vote": vote}
     let username = localStorage.getItem('username')

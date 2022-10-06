@@ -1,4 +1,5 @@
 from codecs import getencoder
+from email.policy import default
 from re import T
 from tokenize import blank_re
 from django.db import models
@@ -24,6 +25,7 @@ class Profile(models.Model):
     github = models.CharField(max_length=50, default='', blank=True)
     facebook = models.CharField(max_length=50, default='', blank=True)
     instagram = models.CharField(max_length=50, default='', blank=True)
+    streak = models.IntegerField(default=0)
     # password = models.CharField(max_length=30)
 
     def __str__(self):
@@ -49,7 +51,7 @@ class Problem(models.Model):
     problem_id = models.AutoField(primary_key=True, editable=False)
     creator_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     problem_name = models.CharField(max_length=30, blank=False, null=False, unique=True)
-    description = models.TextField(max_length=500, unique=True, blank=False, null=False)
+    description = models.TextField(max_length=1000, unique=True, blank=False, null=False)
     hints = models.TextField(max_length=50, blank=False, null=False)
     test_cases = models.TextField(max_length=500, blank=False, null=False)
     outputs = models.TextField(max_length=500, blank=False, null=False)
@@ -57,6 +59,7 @@ class Problem(models.Model):
     # likes = models.IntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
+    accuracy = models.FloatField(default=0)
     # difficulty_level_options = (
     #     ('E', 'easy'), 
     #     ('M', 'medium'),
@@ -124,6 +127,7 @@ class Solved(models.Model):
         (1, 'Accepted'),
         (2, 'Wrong Answer')
     )
+    solved_date_time = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=status_choices, null=False, blank=False)
     result = models.TextField(max_length = 100, null = False, blank = False)
 
@@ -148,6 +152,7 @@ class Comment(models.Model):
     discussion_id = models.ForeignKey(Discussion, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
     comment = models.TextField(max_length=500, null=False, blank=False)
+    # commented_date_time = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
         return f'{self.user_id.username}C{self.comment[:5]}'

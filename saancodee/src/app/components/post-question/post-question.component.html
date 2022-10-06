@@ -87,6 +87,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="extra-description">
+                    <hr>
+                    <h4>Follow these to make UI better</h4>
+                    <ul style="margin: 0;">
+                        <li>Include entire description inside <span class="code">div</span> tag with class name <span class="code">"problem-description"</span></li>
+                        <li>If using <span class="code">p</span> tag, give it a class <span class="code">"description-p"</span></li>
+                        <li>If using any of the <span class="code">headings</span>, give class name as tag name. Example for <span class="code">h3</span>, class name must be <span class="code">h3</span></li>
+                        <li>If any of the code snippets are used, include them inside span like this <span class="code">&lt;span class="code">code snippet goes here&lt;/span></span></li>
+                    </ul>
+                    <hr>
+                </div>
                 <div class="box">
                     <div class="inside-box">
                         <div class="left">
@@ -134,20 +145,103 @@
                 <div class="box">
                     <div class="inside-box">
                         <div class="left">
-                            <label for="">test cases</label>
-                            <textarea type="text" rows="10" formControlName="test_cases" name="test_cases"></textarea>
+                            <label for="">Test cases *</label>
+                            <textarea type="text" rows="15" formControlName="test_cases" name="test_cases"></textarea>
+                        </div>
+                    </div>
+                    <div class="inside-box">
+                        <div class="container">
+                            <div>
+                                <svg style="font-size: 16px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
+                                </svg>
+                                <p>Test cases must be exactly the way problem statement is</p>
+                            </div>
+                            <hr>
+                            <div>
+                                <h4>Example:</h4>
+                                <h5>If the problem statement is like:</h5>
+                                <p>given an input integer T for test cases. For each test case given an input integer N
+                                </p>
+                                <p>test cases:</p>
+                                <p>3</p>
+                                <p>1</p>
+                                <p>2</p>
+                                <p>3</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div>
-                <label for="">outputs</label>
-                <textarea type="text" formControlName="outputs" name="outputs"></textarea>
-            </div>
-            <div>
-                <label for="">inbuilt_code</label>
-                <textarea type="text" formControlName="inbuilt_code" name="inbuilt_code"></textarea>
+                <div class="box">
+                    <div class="inside-box">
+                        <div class="left">
+                            <label for="">Outputs *</label>
+                            <textarea type="text" rows="15" formControlName="outputs" name="outputs"></textarea>
+                        </div>
+                    </div>
+                    <div class="inside-box">
+                        <div class="container">
+                            <div>
+                                <svg style="font-size: 16px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
+                                </svg>
+                                <p>Outputs must be exactly the way answer is</p>
+                            </div>
+                            <hr>
+                            <div>
+                                <h4>Example:</h4>
+                                <h5>If the problem statement is like:</h5>
+                                <p>given an input integer T for test cases. For each test case given an input integer N.
+                                    For each integer input N, output is single integer O/P</p>
+                                <p>outputs:</p>
+                                <p>1</p>
+                                <p>2</p>
+                                <p>3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="inside-box">
+                        <div class="left">
+                            <label for="">Solution *</label>
+                            <textarea type="text" formControlName="inbuilt_code" rows="15" name="inbuilt_code"></textarea>
+                        </div>
+                    </div>
+                    <div class="inside-box">
+                        <div class="container">
+                            <div>
+                                <svg style="font-size: 16px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z" />
+                                </svg>
+                                <p>Provide a solution for your problem</p>
+                            </div>
+                            <hr>
+                            <div>
+                                <h4>Example:</h4>
+                                <h5>If the problem statement is like:</h5>
+                                <p>given an input integer T for test cases. For each test case given an input integer N.
+                                    For each integer input N, Print 1 if N is even, else print 0</p>
+                                <p>solution:</p>
+                                <span class="code">
+                                    <div>
+                                        for _ in range(int(input())):<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;if int(input()) % 2 == 0:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(1)<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(0)
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <button type="submit">Post</button>

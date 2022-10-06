@@ -24,6 +24,10 @@ a {
     margin-left: 2rem;
 }
 
+.problem-description {
+    background-color: antiquewhite;
+}
+
 .division {
     display: grid;
     grid-template-columns: 1fr 1fr;

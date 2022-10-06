@@ -18,9 +18,15 @@
 </div>
 <div>
     <div *ngFor="let comment of comments">
-        <div>
+        <div class="comment">
             <p>{{ comment.user_id }}</p>
             <p>{{ comment.comment }}</p>
+            <div>
+                <button (click)="toggle_edit_comment_flag();$event.stopImmediatePropagation()">edit</button>
+                <input *ngIf="editCommentFlag" type="text" [(ngModel)]="editCommentValue">
+                <button *ngIf="editCommentFlag" (click)="edit_comment(comment.comment_id, editCommentValue)">edit</button>
+                <!-- <button (click)="delete_comment(comment.comment_id)">delete</button> -->
+            </div>
         </div>
     </div>
 </div>

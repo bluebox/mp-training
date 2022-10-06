@@ -29,7 +29,7 @@
                 <button (click)="postVote('L')" class="vote btn btn-secondary neutral">like {{ votes.like }}</button>
                 <button (click)="postVote('D')" class="vote btn btn-secondary neutral">dislike {{ votes.dislike }}</button>
             </div>
-            <div>
+            <div [innerHTML]="problem.description">
                 <p>{{ problem.description }}</p>
             </div>
             <div>
@@ -56,6 +56,7 @@
                         <option value="java" class="language" name="java">Java</option>
                         <option value="c++" class="language" name="c++">C++</option>
                     </select>
+                    <a style="margin-left: 1rem;" target="_blank" href="https://onecompiler.com/">Edit in Compiler</a>
                 </div>
                 <div>
                     <textarea class="textarea" formControlName="code" name="code" id="code" cols="60" rows="10"></textarea>

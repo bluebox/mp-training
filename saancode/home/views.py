@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import *
 from .forms import UserRegistrationForm
+from home.managers.problem import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 import requests, json
@@ -82,7 +83,7 @@ def registerApi(request):
     # user.save()
     user = User.objects.get(username = serializer.data['username'])
     token_obj, _ = Token.objects.get_or_create(user = user)
-    return Response({'username': request.data['username'], "status":200, 'token':str(token_obj), "message": "valid register found"})
+    return Response({'username': request.data['username'], "status":200, 'token':str(token_obj), 'is_staff': user.is_staff, "message": "valid register found"},)
 
 @api_view(['GET'])
 def submissionsApi(request, problem_id, username):
@@ -197,13 +198,15 @@ def votesApi(request, problemId, username):
             vote = ProblemVotes.objects.get(problem_id = problem.problem_id, voter_id = creator_id)
             if request.data['vote'] == 'LA':
                 vote.delete()
-                problem.likes -= 1
-                # problem.save()
+                problem.likes = problem.likes - 1
+                problem.save()
                 # problem.deleteLikes()
             # vote.delete()
                 voted = ''
             elif request.data['vote'] == "DA":
                 vote.delete()
+                problem.dislikes = problem.dislikes - 1
+                problem.save()
                 # problem.deleteDisLikes()
                 voted = ''
         except:
@@ -211,11 +214,15 @@ def votesApi(request, problemId, username):
             if request.data['vote'] == "L":
                 vote.vote = 'L'
                 vote.save()
+                problem.likes = problem.likes + 1
+                problem.save()
                 # problem.addLikes()
                 voted = 'L'
             else:
                 vote.vote = 'D'
                 vote.save()
+                problem.dislikes = problem.dislikes + 1
+                problem.save()
                 # problem.addDisLikes()
                 voted = 'D'
         votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
@@ -223,13 +230,14 @@ def votesApi(request, problemId, username):
         return Response({"like": votesLike, "dislike": votesDislike, "vote": voted})
             
 @api_view(['POST'])
-def postDiscussionApi(request, problemId, username):
+def postDiscussionApi(request, problem_id, username):
     creator_id = User.objects.get(username = username)
-    problem = Problem.objects.get(problem_id = problemId)
-    discussion = Discussion.objects.create(user_id = creator_id, problem_id = problem, title = request.data['title'], discussion = request.data['discussion'])
+    problem = Problem.objects.get(problem_id = problem_id)
+    discussion = Discussion.objects.create(username = creator_id, problem_id = problem, title = request.data['title'], discussion = request.data['discussion'])
     serializer = PostDiscussionSerializer(instance = discussion, data = request.data)
     if serializer.is_valid():
         return Response({"status":200, "message":"success", "response": serializer.data})
+    discussion.delete()
     return Response({"status":403, "message":"invalid", "errors": serializer.errors})
 
 
@@ -248,10 +256,12 @@ def postQuestionApi(request, username):
             return HttpResponse("problem with same description already exists")
     except:
         pass
-    problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['problem_name'], description = request.data['description'], hints = request.data['hints'], test_cases = request.data['test_cases'], outputs = request.data['outputs'], inbuilt_code = request.data['inbuilt_code'])
-    for i in request.data['selected']:
-        tagg = Tag.objects.get(tag_id = int(1))
-        tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
+    problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['problem_name'], description = request.data['description'], hints = request.data['hints'], test_cases = request.data['test_cases'], outputs = request.data['outputs'], json_test_cases = request.data['inbuilt_code'])
+    # for i in request.data['selected']:
+    #     tagg = Tag.objects.get(tag_id = int(i))
+    #     tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
+    tagg = Tag.objects.get(tag_id = int(request.data['selected']))
+    tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
     serializer = postQuestionSerializer(instance = problem, data = request.data)
     if serializer.is_valid():
         serializer.save()
@@ -279,6 +289,14 @@ def problemVote(request, id):
 def homeView(request):
     return render(request, 'home/home.html')
 
+@api_view(['POST'])
+def edit_comment_api(request):
+    if request.data['comment'] != '':
+        comment = Comment.objects.get(comment_id = request.data['comment_id'])
+        comment.comment = request.data['comment']
+        return Response({"status": 200, "messege": "comment updated successfully"})
+    return Response({"status": 403, "messege": "comment cant be updated to None"})
+
 @login_required(login_url = 'login')
 def problems(request):
     problems = Problem.objects.all()
@@ -286,9 +304,14 @@ def problems(request):
 
 @api_view(['POST'])
 def addSubmission(request, problem_id, username):
-    problem_id = Problem.objects.get(problem_id = problem_id)
+    problem = Problem.objects.get(problem_id = problem_id)
     user_id = User.objects.get(username = username)
-    solved = Solved.objects.create(problem_id = problem_id, user_id = user_id, solution = request.data['solution'], status = request.data['status'], result = request.data['result'])    
+    if int(request.data['status']) == 1:
+        profile = User.objects.get(username = username).profile
+        
+    solved = Solved.objects.create(problem_id = problem, user_id = user_id, solution = request.data['solution'], status = request.data['status'], result = request.data['result'])    
+    problem.accuracy = problemLogic.get_accuracy(problem_id)
+    problem.save()
 
 @api_view(['POST'])
 def submitProblem(request, problem_id):
@@ -307,22 +330,23 @@ def submitProblem(request, problem_id):
         "Content-Type" : "application.json"
     }
     response = requests.post(URL, headers = HEADERS, json = data)
-    problem = Problem.objects.get(problem_id = problem_id).json_test_cases
+    problem = Problem.objects.get(problem_id = problem_id)
+    json_test_cases = problem.json_test_cases
     print(response.json())
     output = response.json()['output'].split('\n')
     output.pop(-1)
     c = 0
-    for i in problem:
-        if problem[i]['output'] != output[c]:
-            inp = json.dumps(problem[i]['input'])
+    for i in json_test_cases:
+        if json_test_cases[i]['output'] != output[c]:
+            inp = json.dumps(json_test_cases[i]['input'])
             if output[c] == '':
                 print("//////")
                 print(inp)
-                return Response({'output':'wrong answer', 'input': inp, 'expected': problem[i]['output'], 'result': response.json()['output']})
-            return Response({'output':'wrong answer', 'input': inp, 'expected': problem[i]['output'], 'result': output[c]})
+                return Response({'output':'wrong answer', 'input': inp, 'expected': json_test_cases[i]['output'], 'result': response.json()['output']})
+            return Response({'output':'wrong answer', 'input': inp, 'expected': json_test_cases[i]['output'], 'result': output[c]})
         c += 1
     print("////////////")
-    print(problem)
+    print(json_test_cases)
     print("////////////")
     print(output)
     return Response(response.json())

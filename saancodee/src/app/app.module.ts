@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { ProblemsComponent } from './components/problems/problems.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -44,7 +44,8 @@ import { PostDiscussionComponent } from './components/post-discussion/post-discu
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 ,  providers: [RegisterService, AuthGuard, {
   provide: HTTP_INTERCEPTORS,

@@ -16,12 +16,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let problem of problems">
+      <tr clickable *ngFor="let problem of problems">
         <td clickable (click)="getProblem(problem.problem_id)">{{ problem.problem_name }}</td>
         <td class="easy" *ngIf="problem.difficulty_level === 0">Easy</td>
             <td class="medium" *ngIf="problem.difficulty_level === 1">Medium</td>
             <td class="hard" *ngIf="problem.difficulty_level === 2">Hard</td>
-        <td>{{ problem.likes }}</td>
-        <td>{{ problem.dislikes }}</td>
+        <td>{{ problem.accuracy }}%</td>
+        <td *ngIf="problem.likes > 0">{{ (problem.likes / (problem.likes + problem.dislikes)) * 100}}%</td>
+        <td *ngIf="problem.likes == 0">0%</td>
       </tr>
   </table>
