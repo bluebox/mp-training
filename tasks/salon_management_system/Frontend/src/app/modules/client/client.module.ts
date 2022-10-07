@@ -12,11 +12,11 @@ import { BookappointmentComponent } from './components/bookappointment/bookappoi
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { ReviewComponent } from './components/review/review.component';
 import { HomeComponent } from './components/home/home.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import { BranchComponent } from './components/branch/branch.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { BranchComponent} from './components/branch/branch.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
