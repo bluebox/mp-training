@@ -1,17 +1,17 @@
 <mat-card>
-  <mat-card-title>Doctors Form</mat-card-title>
+  <mat-card-title>Doctor's Registration Form</mat-card-title>
 <div class="container">
   <form [formGroup]="formdoc" (ngSubmit)="saveDetails(formdoc)">
-      <mat-form-field appearance="standard">
-          <mat-label>Name</mat-label>
+    <p>  <mat-form-field appearance="standard">
+         <mat-label>Name</mat-label>
           <input matInput maxlength="15" inputmode="text" placeholder="Type name" formControlName="name" #nameInput>
           <mat-hint>Mini character : {{ nameInput.value.length }}/10</mat-hint>
           <mat-error>Name is required</mat-error>
           <mat-error *ngIf="formdoc.controls['name'].errors?.['minlength']">
               Please enter more than 10 character
           </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="standard">
+      </mat-form-field></p>
+     <p> <mat-form-field appearance="standard">
         <mat-label>Contact Number</mat-label>
         <input matInput maxlength="10" inputmode="tel" placeholder="Type phone no" formControlName="phno" #phonenoInput>
         <mat-hint>Mini character : {{phonenoInput.value.length }}/10</mat-hint>
@@ -19,8 +19,8 @@
         <mat-error *ngIf="formdoc.controls['phno'].errors?.['minlength']">
             Please enter 10 Number
         </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="standard">
+    </mat-form-field></p>
+    <p><mat-form-field appearance="standard">
       <mat-label>years of experience</mat-label>
       <input matInput maxlength="3" inputmode="numeric" placeholder="Type years of experience" formControlName="yoex" >
       <mat-hint>Mini character : {{phonenoInput.value.length }}/1</mat-hint>
@@ -28,36 +28,26 @@
       <mat-error *ngIf="formdoc.controls['yoex'].errors?.['minlength']">
           Please enter atleast 1 Number
       </mat-error>
-  </mat-form-field>
-      <mat-form-field appearance="legacy">
-          <mat-label>Email Address:</mat-label>
-          <input matInput type="email" formControlName="email" placeholder="Your email">
+  </mat-form-field></p>
+
+     <p > <mat-form-field appearance="legacy" style="margin-left: 20% ;" >
+          <mat-label >Email Address:</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Your email" >
           <mat-icon matSuffix>mail_outline</mat-icon>
           <mat-hint>Input the fully qualified email address</mat-hint>
           <mat-error *ngIf="formdoc.controls['email'].errors?.['required']">Email is required</mat-error>
           <mat-error *ngIf="formdoc.controls['email'].errors?.['pattern']">Please enter valid email</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field appearance="standard" style="margin-left: 2% ;" >
           <mat-label>Address:</mat-label>
           <textarea matInput placeholder="address" formControlName="address"></textarea>
-      </mat-form-field>
+      </mat-form-field></p><p>
       <mat-form-field appearance="standard">
         <mat-label>Salary Id:</mat-label>
         <input matInput maxlength="15" inputmode="text" placeholder="Type your salary id if any" formControlName="insuraceid">
     </mat-form-field>
-
-      <mat-form-field appearance="fill" hintLabel="Country name required">
-          <mat-label>Country</mat-label>
-          <mat-select matNativeControl name="country" formControlName="country">
-              <mat-option value="india">India</mat-option>
-              <mat-option value="france">France</mat-option>
-              <mat-option value="germany">Germany</mat-option>
-              <mat-option value="japan">Japan</mat-option>
-              <mat-option value="Mongolia">Mongolia</mat-option>
-          </mat-select>
-      </mat-form-field>
-
+      
       <div style="margin-top:10px;">
           <div style="margin-right:3%; color:#6b6b6b;">
               <mat-label>Gender</mat-label>
