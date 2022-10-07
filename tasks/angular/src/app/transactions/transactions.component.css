@@ -1,0 +1,11 @@
+table, th, td {
+    border:1px solid rgb(20, 8, 30);
+    padding: 10px;
+    color: red;
+    text-align: center;
+  }
+
+td {
+    color: black;
+    font-weight: bold;
+}

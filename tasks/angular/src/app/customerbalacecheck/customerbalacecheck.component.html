@@ -1,0 +1,13 @@
+<form [formGroup]="balanceForm" (ngSubmit)="getAccountBalance()">
+<select class="options-style" formControlName="account_type">
+    <option selected disabled> Select type of Account</option>
+    <option value = "savings">Savings Account</option>
+    <option value = "current">Current Account</option>
+</select><br>
+<br>
+<div class = "sty">
+<h1 style="color: red; font-size:30px;">₹ {{userBalance}}</h1>
+</div>
+<input type ="submit" value = "View balance" style = "background-color:red; color:white; border-radius:5px;margin-top:10px;">
+</form>
+

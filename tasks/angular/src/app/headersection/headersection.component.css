@@ -1,0 +1,39 @@
+.sty{
+    background-image: linear-gradient(to right, #3d5c5c,#1f2e2e, #000000
+
+    );
+    
+}
+
+.image{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    margin-left: 30px;
+}
+.styling{
+    color: red;
+    
+}
+/* .styling:hover{
+    color: black !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 20px !important;
+} */
+
+.anchor-styling{
+    color: white !important;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+
+.anchor-styling:hover{
+    /* background-color: #669999; */
+    color: #0ff9ed !important;
+    padding: 5px;
+    border-radius: 10px;
+    /* border: 2px solid black ; */
+
+}

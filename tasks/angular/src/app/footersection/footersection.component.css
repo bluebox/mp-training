@@ -1,0 +1,30 @@
+*{
+    background-color: black;
+}
+.first{
+    margin: 20px;
+}
+.last-section{
+    height: 20vh;
+    background-color:black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+    
+}
+.follow{
+    font-family: "Roboto";
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+}
+.icon-sty{
+    color: yellow;
+    font-size: 50px;
+    
+    margin: 10px;
+  
+
+}

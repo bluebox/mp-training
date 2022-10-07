@@ -1,0 +1,27 @@
+<p>transactions works!</p>
+
+<table  class="mb-5">
+    <tr>
+        <th>Transaction ID</th>
+        <th>Transaction Amount</th>
+        <th>Sender ID</th>
+        <th>Receiver ID</th>
+        <th>Sender Status</th>
+        <th>Receiver Status</th>
+        <th>Transaction Date & Time</th>
+    </tr>
+  
+    <tr *ngFor = "let each of transactionData">
+
+        <td>{{each.transaction_id}}</td>
+        <td>{{each.transaction_amount}}</td>
+        <td><a href="">{{each.sender_id}}</a></td>
+        <td><a href="">{{each.receiver_id}}</a></td>
+        <td>{{each.sender_status}}</td>
+        <td>{{each.receiver_status}}</td>
+        <td>{{each.transaction_time}}</td>
+        
+
+    <tr>
+
+</table>

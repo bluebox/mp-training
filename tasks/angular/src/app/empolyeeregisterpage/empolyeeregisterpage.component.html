@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>employee Register Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+      
+                  <div class="mb-md-5 mt-md-4 pb-5">
+      
+                    <h2 class="fw-bold mb-2 text-uppercase">Registration</h2>
+<form [formGroup] = "empLoginForm" (ngSubmit)="registerSubmit()">
+    <div class="form-outline form-white mb-4">
+        <label class="form-label" for="typeEmailX" >Employee Name</label>
+        <input type="text" id="typeEmailX" formControlName = "employee_name" class="form-control form-control-lg" name = "customer_email"/>
+       
+        <br>
+        <span *ngIf = "employee_name && employee_name.invalid && employee_name.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid email </span>
+      </div>
+
+       <div class="form-outline form-white mb-4">
+        <label class="form-label" for="typeEmailX" >Employee Email</label>
+      <input type="text" id="typeEmailX" formControlName = "emp_email" class="form-control form-control-lg" name = "customer_email"/>
+      
+      <br>
+      <span *ngIf = "emp_email && emp_email.invalid && emp_email.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid email </span>
+    </div>
+
+
+    <div class="form-outline form-white mb-4">
+        <label class="form-label" for="typePasswordX">Password</label>
+      <input type="password" id="typePasswordX" formControlName = "emp_password" class="form-control form-control-lg" name = "customer_password"/>
+     
+      <br>
+      <span *ngIf = "emp_password && emp_password.invalid && emp_password.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid password </span>
+    </div>
+
+    <div class="form-outline form-white mb-4">
+        <label class="form-label" for="typeEmailX" >Employee Address</label>
+        <textarea type="text" id="typeEmailX" formControlName = "employee_address" class="form-control form-control-lg" name = "customer_email"></textarea>
+        
+        <br>
+        <span *ngIf = "employee_address && employee_address.invalid && employee_address.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid email </span>
+      </div>
+
+      <h1 style="color: green; font-family:Roboto;font-size:30px">{{error}}</h1>
+
+    <button  class="btn btn-outline-light btn-lg px-5" type="submit" [disabled]="empLoginForm.invalid">Register</button>
+
+    <a routerLink="../emplogin" class="btn btn-outline-light btn-lg px-5 mt-3">Go to Login</a>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</body>
+</html>
