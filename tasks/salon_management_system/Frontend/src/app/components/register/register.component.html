@@ -1,6 +1,6 @@
-<form [formGroup]="ClientRegistrationForm"  class="example-form">
+<div class="body"><form [formGroup]="ClientRegistrationForm"  class="example-form">
     <div class="card1">
-    <mat-card>
+    <mat-card class="card2">
         <mat-card-header>
             <mat-card-title>Register</mat-card-title>
             {{errorMessage}}
@@ -26,21 +26,22 @@
             <input formControlName="email" matInput placeholder="Enter your Email id" />
             <small class="text-danger" *ngIf="ClientRegistrationForm.get('email')?.invalid  && ClientRegistrationForm.get('email')?.touched " >Email is required</small>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
             <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </mat-form-field>
             <small class="text-danger" *ngIf="ClientRegistrationForm.get('Password')?.invalid  && ClientRegistrationForm.get('Password')?.touched " >Password is required</small>
+        </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Mobile Number</mat-label>
             <input formControlName="Client_contact_number" matInput placeholder="Place enter your Contact NUmber" />
         </mat-form-field>
         <mat-card-actions>
-            <button (click) = "onRegisterSubmit()" mat-raised-button="" color="primary">
-              Register
+            <button (click) = "onRegisterSubmit()" mat-raised-button="" color="primary" style="margin-left: 205px;">
+             Register
             </button>
         </mat-card-actions>
-        <p>Already have an account?<a routerLink = '../login'>login</a></p>
+        <p style="text-align: center;">Already have an account?<a routerLink = '../login'>login</a></p>
     </mat-card>
     </div>
 </form>
+</div>

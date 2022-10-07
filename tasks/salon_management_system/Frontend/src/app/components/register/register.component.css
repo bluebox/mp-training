@@ -8,4 +8,8 @@
     width :30%;
     padding-left: 33%;
     padding-top: 150px;
+    padding-bottom: 200px;
+  }
+  .body{
+    background-color: rgb(36, 33, 33);
   }

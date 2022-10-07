@@ -18,5 +18,7 @@ export class HomeComponent implements OnInit {
     // this.subscription =this.http.getBranch().subscribe((data) =>{this.branches;console.log(this.branches)});
   }
 
-  
+  alertmessage(){
+    alert("You need to register to book an appointment")
+  }
 }

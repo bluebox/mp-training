@@ -9,7 +9,8 @@ urlpatterns = [
     path('employees/',views.EmployeeList.as_view()),
     path('clientlist/',views.ClientList.as_view()),
     path('clientregistration',views.ClientRegistration.as_view()),
-    path('login',views.LoginUser.as_view()),
+    # path('login',views.LoginUser.as_view()),
+    path('appointments/',views.AppointmentList.as_view()),
     path('employeeregistration',views.EmployeeRegistration.as_view())
 
     # path('usercreate/',views.UserCreate.as_view()),

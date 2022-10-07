@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from 'src/app/components/register/register.component';
 import { ProfileComponent } from '../employee/components/profile/profile.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { BranchComponent } from './components/branch/branch.component';
@@ -8,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegisteremployeeComponent } from './components/registeremployee/registeremployee.component';
 import { ServicesComponent } from './components/services/services.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 
@@ -23,6 +25,7 @@ const routes: Routes = [
     {path : 'services',component : ServicesComponent},
     {path : 'branch',component : BranchComponent},
     {path : 'transactions',component : TransactionsComponent},
+    {path : 'registeremployee',component : RegisteremployeeComponent}
 ]}
   
 ];

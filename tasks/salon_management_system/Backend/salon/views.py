@@ -1,9 +1,10 @@
 
+from email import message_from_string
 from django.http import JsonResponse
 
-from .models import Branch, User, services_provided,Employee,Client
+from .models import Appointment, Branch, User, services_provided,Employee,Client
 
-from .serializers import BranchSerializer, EmployeeSerializer, ServicesSerializer, Userserializer,ClientSerializer
+from .serializers import AppointmentSerializer, BranchSerializer, EmployeeSerializer, ServicesSerializer, Userserializer,ClientSerializer
 
 from rest_framework.views import APIView
 
@@ -79,6 +80,20 @@ class ServicesList(APIView):
             print('invalid')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class AppointmentList(APIView):
+    def get(self,request):
+        appointments = Appointment.objects.all()
+        serializer = AppointmentSerializer(appointments,many = True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        serializer = AppointmentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
 
 class EmployeeList(APIView):
     def get(self,request):
@@ -113,39 +128,42 @@ class ClientRegistration(APIView):
             return Response({'message':'invalid'})
 
 class EmployeeRegistration(APIView):
- 
+
     def post(self,request):
         print(request.data)
-        serializer = Userserializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"password":request.data['password'],"is_staff":request.data['is_staff']})
+        serializer = Userserializer(data={'username':request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"password":request.data['password'],"is_staff":request.data["is_staff"]})
         print(serializer)
         if serializer.is_valid():
-           user =  serializer.save()
-           print(user)
-           employee_obj = EmployeeSerializer(data={'user_id':user.id,'branch_id':request.data['branch_id'],'role':request.data['role'],'emp_contact_number':request.data["emp_contact_number"]})
-           print(employee_obj)
-           if employee_obj.is_valid():
-                employee_obj.save()
-                return Response({'data':serializer.data,'message':'successfully registered'},status=200)
-           else:
+            user = serializer.save()
+            print(user)
+            employee_object = EmployeeSerializer(data = {'user_id':user.id,'branch_id':request.data['branch_id'],'role':request.data['role'],'emp_contact_number':request.data['emp_contact_number']})
+            print(employee_object)
+            if employee_object.is_valid():
+                employee_object.save()
+                return Response({'data':serializer.data},status=200)
+            else:
                 return Response({'message':'invalid'})
         else:
             return Response({'message':'invalid'})
 
-class LoginUser(APIView):
-    def post(self,request):
-        if request.method == 'POST':
-            username = request.data.get("username")
-            password = request.data.get('password')
-            try:
-                user = User.objects.get(username = username)
-            except:
-                return Response({'msg':"User Does not Exist"})
 
-            user = authenticate(request, username = username, password = password)
-            if user is not None:
-                login(request, user)
-                return Response({'msg':"logged in" , 'user': user.username} ,status=200)
-            else:
-                return Response({'msg':"password incorrect" })
 
-        return Response({"msg":"not created"},status =200)
+
+# class LoginUser(APIView):
+#     def post(self,request):
+#         if request.method == 'POST':
+#             username = request.data.get("username")
+#             password = request.data.get('password')
+#             try:
+#                 user = User.objects.get(username = username)
+#             except:
+#                 return Response({'msg':"User Does not Exist"})
+
+#             user = authenticate(request, username = username, password = password)
+#             if user is not None:
+#                 login(request, user)
+#                 return Response({'msg':"logged in" , 'user': user.username} ,status=200)
+#             else:
+#                 return Response({'msg':"password incorrect" })
+
+#         return Response({"msg":"not created"},status =200)

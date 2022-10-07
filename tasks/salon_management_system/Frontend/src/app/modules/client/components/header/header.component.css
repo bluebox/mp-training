@@ -36,3 +36,12 @@
 .sp a:hover{
     color:#eb008b;
 }
+button{
+    border: none;
+    background-color: white;
+  }
+  .button1{
+    border: none;
+    background-color: rgb(37, 37, 37);
+    color: white;
+  }

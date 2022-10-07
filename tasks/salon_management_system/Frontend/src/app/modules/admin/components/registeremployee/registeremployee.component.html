@@ -1,0 +1,68 @@
+<form [formGroup]="employeeRegistrationForm"  class="example-form">
+    <div class="card1">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Add Employee</mat-card-title>
+        </mat-card-header>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput placeholder="Enter your Username" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('username')?.invalid  && employeeRegistrationForm.get('username')?.touched " >username is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="first_name" matInput placeholder="Enter you First Name" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('first_name')?.invalid  && employeeRegistrationForm.get('first_name')?.touched " >First Name is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="last_name" matInput placeholder="last_name" />
+
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Enter your Email id" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >Email is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('Password')?.invalid  && employeeRegistrationForm.get('Password')?.touched " >Password is required</small>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Branch Id</mat-label>
+        <input formControlName="branch_id" matInput placeholder="Enter Branch id" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >Email is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Role of The Employee</mat-label>
+        <input formControlName="role" matInput placeholder="Enter Employee role" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >Email is required</small>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input formControlName="emp_contact_number" matInput placeholder="Place enter contact number" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Is an Employee?</mat-label>
+        <input formControlName="is_staff" matInput placeholder="Place enter true or false" />
+    </mat-form-field>
+
+    <!-- <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Is an Employee</mat-label>
+        <mat-select>
+          <mat-option value=1>Yes</mat-option>
+          <mat-option value=0>No</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      <mat-card-actions>
+        <button (click) = "onRegisterSubmit()" mat-raised-button="" color="primary">
+          Register new Employee
+        </button>
+    </mat-card-actions>
+</mat-card>
+</div>
+</form>

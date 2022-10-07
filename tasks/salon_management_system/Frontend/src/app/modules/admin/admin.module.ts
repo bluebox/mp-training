@@ -17,6 +17,13 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { RegisteremployeeComponent } from './components/registeremployee/registeremployee.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -30,7 +37,8 @@ import {MatButtonModule} from '@angular/material/button';
     ServicesComponent,
     TransactionsComponent,
     HomeComponent,
-    BranchComponent
+    BranchComponent,
+    RegisteremployeeComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +47,14 @@ import {MatButtonModule} from '@angular/material/button';
     MatTableModule,
     MatTabsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule
   ]
 })
 export class AdminModule { }

@@ -1,8 +1,8 @@
-from dataclasses import fields
+from dataclasses import field, fields
 
 from rest_framework import serializers
 
-from .models import Branch, Employee, User, services_provided,Client
+from .models import Branch, Employee, User, services_provided,Client,Appointment
 
 class Userserializer(serializers.ModelSerializer):
     class Meta:
@@ -33,3 +33,8 @@ class ServicesSerializer(serializers.ModelSerializer):
 
         fields = "__all__"
 
+class AppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+
+        fields = "__all__"

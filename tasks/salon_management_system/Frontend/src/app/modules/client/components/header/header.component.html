@@ -1,7 +1,13 @@
 <mat-toolbar >
     <mat-toolbar-row class="toolbar1">
       <span>SALON</span>
-      <span class="sp"><mat-icon routerLink = '../client/profile'>account_circle</mat-icon></span>
+      <span class="sp">
+        <button mat-button [matMenuTriggerFor]="menu" class = 'button1'><mat-icon>account_circle</mat-icon></button>
+        <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink = "../client/profile">My profile</button>
+        <button mat-menu-item>Log out</button>
+        </mat-menu>
+      </span>
     </mat-toolbar-row>
   
     <mat-toolbar-row class="toolbar2">

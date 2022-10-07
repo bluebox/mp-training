@@ -11,6 +11,10 @@ export class HttpserviceService {
 
   constructor(private http : HttpClient) {  }
 
+  getUser(){
+    return this.http.get('http://127.0.0.1:8000/user/')
+  }
+
   getBranch(){
     return this.http.get('http://127.0.0.1:8000/branch/')
   }
@@ -30,4 +34,9 @@ export class HttpserviceService {
   getClients(){
     return this.http.get('http://127.0.0.1:8000/clientlist')
   }
+
+  newEmployee(data : any){
+    return this.http.post<any>('http://127.0.0.1:8000/employeeregistration',data)
+  }
+  
 }

@@ -24,7 +24,7 @@ class Client(models.Model):
         db_table = 'Client'
 
     def __str__(self):
-        return self.user_id
+        return str(self.user_id)
 
 class Branch(models.Model):
     branch_id = models.IntegerField(primary_key = True)
@@ -38,7 +38,7 @@ class Branch(models.Model):
         return self.branch_name
 
 class Employee(models.Model):
-    emp_id = models.CharField(primary_key = True,max_length = 10,default = 'e01')
+    # emp_id = models.CharField(primary_key = True,max_length = 10)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     branch_id = models.ForeignKey(Branch,  on_delete=models.CASCADE)
     role = models.CharField(max_length=20)
@@ -48,7 +48,7 @@ class Employee(models.Model):
         db_table = 'Employee'
 
     def __str__(self):
-        return self.emp_id
+        return str(self.emp_id)
 
 class services_provided(models.Model):
     service_id = models.IntegerField(primary_key = True)
@@ -73,8 +73,6 @@ class Appointment(models.Model):
     class Meta:
         db_table = 'Appointment'
 
-    def __str__(self):
-        return self.Appointment_id
 
 class Transaction(models.Model):
     trasaction_types = (('Credit Card','Credit Card'),('Debit Card','Debit Card'),('Net Banking','Net Banking'),('UPI','UPI'),('Pay at Salon','Pay at Salon'))
@@ -89,7 +87,7 @@ class Transaction(models.Model):
         db_table = 'Transaction'
 
     def __str__(self):
-        return self.trans_id
+        return str(self.trans_id)
 
 class Reviews(models.Model):
     review_id = models.IntegerField(primary_key = True)
@@ -101,4 +99,4 @@ class Reviews(models.Model):
         db_table = 'Reviews'
 
     def __str__(self):
-        return self.review_id
+        return str(self.review_id)
