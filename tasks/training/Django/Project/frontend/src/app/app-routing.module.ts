@@ -25,9 +25,9 @@ const routes: Routes = [
   {path:'order-history', component: OrderHistoryComponent},
   {path:'owner-profile', component:ProfileComponent},
   {path:'previousvehicles', component:PreviousvehiclesComponent},
-
   {path:'book-vehicle', component: BookComponent},
   {path:'**', component: PagenotfoundComponent},
+
 
 ];
 

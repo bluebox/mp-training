@@ -1,2 +1,15 @@
 <app-navbar></app-navbar>
-<p>order-history works!</p>
+<div class="for" *ngFor="let order of response">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Order ID : {{ order.rent_id }}</h5>
+    <h4 class="card-title">Vehicle : {{ order.vehicle_no }}</h4>
+
+    <p class="card-text">Booking date : {{ order.booking_date.substring(0,10)  }}</p>
+    <small>From : {{ order.pickup_date}}</small> &nbsp;&nbsp;&nbsp;
+    <small>To : {{ order.return_date}}</small>
+
+    <a href="#" class="btn btn-primary">View detail</a>
+  </div>
+</div>
+</div>

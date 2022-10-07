@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Token } from '@angular/compiler';
 
 const baseUrl ='http://localhost:8000/';
 
@@ -14,6 +15,9 @@ export class GeneralService {
 
   constructor(private http: HttpClient) { }
 
+
+
+
   ownerLogin(data: any)
   {
     return this.http.post(baseUrl + 'owner-login', data)
@@ -24,10 +28,20 @@ export class GeneralService {
   getOwner(id : any){
     return this.http.get(baseUrl + 'owner/'+id +'/')
   }
-  updateOwnerProfile(id : any ){
-    return this.http.get(baseUrl + 'customer/' + id + '/')
+  updateOwnerProfile(data : any){
+    return this.http.put(baseUrl + 'owner/'+ data.owner_id +'/', data)
   }
 
+  getprofileDetails(){
+    let customer = window.sessionStorage.getItem('token');
+
+    let token = customer?.split(':')[1];
+    // console.log(token?.substring(1, token.length));
+    let headers = new HttpHeaders().set('Authorization', 'Token ' + token?.substring(1, token.length));
+    return this.http.get(baseUrl + 'customerdetails/',
+      { 'headers': headers }
+      );
+  }
 
 
   customerLogin(data: any)
@@ -38,8 +52,17 @@ export class GeneralService {
   registerCustomer(data : any){
     return this.http.post(baseUrl + 'customer/',data)
   }
-  updateCustomerProfile(id : any ){
-    return this.http.get(baseUrl + 'customer/' + id)
+  updateCustomerProfile(data : any ){
+    let customer = window.sessionStorage.getItem('token');
+    let token = customer?.split(':')[1];
+    console.log(token);
+    // console.log(token?.substring(1, token.length));
+    let headers = new HttpHeaders().set('Authorization', 'Token ' + token?.substring(1, token.length));
+
+    return this.http.put(baseUrl + 'customerdetails/', data, { 'headers': headers })
+  }
+  getCustomer(id : any){
+    return this.http.get(baseUrl + 'customer/'+ id + '/')
   }
 
 
@@ -59,7 +82,28 @@ export class GeneralService {
   }
 
   bookVehicle(data : any){
-  return this.http.post(baseUrl + 'trip/', data)
+    let customer = window.sessionStorage.getItem('token');
+    let token = customer?.split(':')[1];
+    console.log(token);
+    let headers = new HttpHeaders().set('Authorization', 'Token ' + token?.substring(1, token.length));
+
+  return this.http.post(baseUrl + 'trip/', data, { 'headers': headers })
+  }
+
+  orderHistory(){
+    let customer = window.sessionStorage.getItem('token');
+    let token = customer?.split(':')[1];
+    console.log(token);
+    let headers = new HttpHeaders().set('Authorization', 'Token ' + token?.substring(1, token.length));
+
+    return this.http.get(baseUrl + 'trip/', { 'headers': headers })
+  }
+
+  logOutCustomer(){
+    return this.http.delete(baseUrl + 'logout-customer/')
+  }
+  logOutOwner(){
+    return this.http.delete(baseUrl + 'logout-owner/')
   }
 }
 

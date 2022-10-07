@@ -26,6 +26,7 @@ export class CustomerregisterComponent implements OnInit {
       password2 : new FormControl('', Validators.minLength(8)),
       address : new FormControl('', Validators.maxLength(100), )
     })
+    console.log()
   }
   register_customer(){
 

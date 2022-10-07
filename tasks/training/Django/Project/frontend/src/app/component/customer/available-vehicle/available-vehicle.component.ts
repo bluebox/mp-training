@@ -15,11 +15,13 @@ export class AvailableVehicleComponent implements OnInit {
   response: any
   resp: any
 
+
   constructor(private service:GeneralService, http : HttpClient, private route: Router) { }
 
   ngOnInit(): void {
     this.show_vehicles()
   }
+
 
   show_vehicles(){
     this.vehicle_obj=this.service.getVehicle().subscribe(data=>{(this.response=data);
@@ -32,9 +34,4 @@ export class AvailableVehicleComponent implements OnInit {
    this.route.navigate(['book-vehicle'])
   }
 
-  // show_vehicles(){
-  //   this.vehicle_obj=this.service.get_vehicle().subscribe(data=>{(window.sessionStorage.setItem('vehicle_no',JSON.stringify(data)));
-  //   console.log(data)}
-  //   )
-  // }
 }

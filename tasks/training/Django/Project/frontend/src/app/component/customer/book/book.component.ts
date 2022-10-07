@@ -18,56 +18,63 @@ export class BookComponent implements OnInit {
 
   customer_obj : any = window.sessionStorage.getItem('customer_id');
   customer = JSON.parse(this.customer_obj);
-
+  pickupDate : any
+  returnDate : any
+  newReturnDate : any
+  newPickDate : any
+  msg : any
   constructor(private service : GeneralService, private router : Router) {
-    console.log(this.vehicle_obj.vehicle_no)
-    console.log(this.vehicle_obj.owner_id)
-    console.log(this.customer.customer_id)
-    this
+
+    // this.service.getOwner(20)
 
   }
   ngOnInit(): void {
-    this.service.getOwner(this.vehicle_obj.owner_id).subscribe(data=> {(this.response=data),
-      console.log(this.response)})
 
       if(this.vehicle_obj){
         this.vehicle = new FormGroup({
-          pickup_time_date: new FormControl('', Validators.required)
+        pickup_date: new FormControl('', Validators.required),
+        return_date: new FormControl('', Validators.required)
+
         })
       }
+  }
+  dateCheck(){
+    let date = new Date();
+    this.pickupDate = this.vehicle.value['pickup_date'];
+    this.returnDate= this.vehicle.value['return_date'];
 
+    this.newPickDate = new Date(this.pickupDate);
+    this.newReturnDate = new Date(this.returnDate);
+    console.log("pickup=" + this.newPickDate + "return" + this.newReturnDate + "today="+ date)
+
+    if(this.newPickDate > date && this.newReturnDate >= this.newPickDate){
+      this.bookSelectedVehicle()
+    }
+    else{
+      alert('Choose Valid date')
+    }
   }
 
+  dateConverter(pDate: any) {
+    var date = new Date(pDate);
+      let month = ("0" + (date.getMonth() + 1)).slice(-2);
+      let p_day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), month, p_day].join("-");
+  }
 
   bookSelectedVehicle(){
 
     let veh = {
       "vehicle_no": this.vehicle_obj.vehicle_no,
-      "customer_id": this.customer.customer_id,
       "owner_id": this.vehicle_obj.owner_id,
-      'pickup_time_date': this.vehicle.value['pickup_time_date']
+      'pickup_date': this.dateConverter(this.newPickDate),
+      'return_date': this.dateConverter(this.returnDate)
     }
-    console.log(veh)
 
-    let post=this.service.bookVehicle(veh).subscribe((data : any) =>{
-      window.sessionStorage.setItem('customer_id',JSON.stringify(data)),this.router.navigate(['available-vehicles']), alert('Booked successfully')}
-      , (err) => {alert(' Select date')},  )
-
-    // if(post){
-    //   alert("Booking Successfull")
-    // }
-
-    // let veh = {...this.vehicle_obj, }
-    // console.log(this.vehicle.value['pickup_time_date'])
-    // console.log(this.vehicle_obj)
-
-    // this.vehicle = new FormGroup({
-    //   "vehicle_no": this.vehicle_obj.vehicle_no,
-    //   "customer_id": this.customer_obj.customer_id,
-    //   "owner_id": this.vehicle_obj.owner_id,
-    //   'pickup_time_date': new FormControl('', Validators.required)
-    // })
+    let post=this.service.bookVehicle(veh).subscribe((data : any) =>{(this.msg=data)
+      window.sessionStorage.setItem('customer_id',JSON.stringify(this.msg)),  console.log(data)}
+      , (err) => {alert(' Select date')},)
 
   }
-
 }
+

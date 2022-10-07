@@ -3,17 +3,51 @@
 </div>
  -->
  <app-navbar></app-navbar>
-<div class="container">
+<!-- <div class="container">
 
   <div class="details">
-    <div class="name">{{ data.name }} </div>
-    <div class="name">{{ data.email }} <button>Update</button></div>
-    <div class="name">{{ data.contact_no}}<button>Update</button></div>
-    <div class="name">{{ data.dl_no}}<button>Update</button></div>
-    <div class="name">{{ data.address }}<button>Update</button></div>
+    <div class="name">Name : {{ response.name }} </div>
+    <div class="name">Email : {{ data.email }} <button (click)="updateCustomerDetails('email')">Update</button></div>
+    <div class="name">Contact number : {{ data.contact_no}}<button (click)="updateCustomerDetails('number')">Update</button></div>
+    <div class="name">DL Number : {{ data.dl_no}}</div>
+    <div class="name">Address : {{ data.address }}<button (click)="updateCustomerDetails('address')">Update</button></div>
   </div>
-  <div class="edit">
-    <button> Edit your profile</button>
+
+</div> -->
+
+<form [formGroup]="customer_group" (submit)="updateCustomerDetails()">
+
+  <div class="sign"><br><br><br>
+    <b><u><h1>Profile details</h1></u></b>
+          <div class="input">
+            <!-- Customer ID:
+            <div>
+            <input id="in" type="text" name="name" placeholder="Customer ID" formControlName="customer_id">
+            </div><br> -->
+            Name :
+            <div>
+            <input id="in" type="text" name="name" placeholder="Name" formControlName="name">
+            </div><br>
+            Email :
+            <div>
+             <input id="in" type="text" name="email" placeholder="email" formControlName="email">
+            </div><br>
+            DL number :
+            <div>
+            <input id="in" type="text" name="dl_no" placeholder="DL number" formControlName="dl_no">
+            </div><br>
+            Contact Number :
+            <div>
+              <input id="in" type="text" name="contact" placeholder="contact number" formControlName="contact_no">
+            </div><br>
+            Address :
+            <div>
+              <input id="in" type="text" name="address" placeholder="address" formControlName="address">
+          </div><br>
+              <input type="submit" value="Submit">
+          </div><br>
+
+
   </div>
-</div>
+  </form>
 

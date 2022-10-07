@@ -22,13 +22,13 @@ export class CustomerloginComponent implements OnInit {
       password : new FormControl('')
 
     })
-
   }
   customerLogin(){
     console.log('here')
     this.service.customerLogin(this.login.value).subscribe((data : any) =>{(this.msg=data)
-      window.sessionStorage.setItem('customer_id',JSON.stringify(data)),this.route.navigate(['available-vehicles'])}
-      , (err) => {alert('Invalid credentials')},  )}
+    window.sessionStorage.setItem('token',JSON.stringify(this.msg)),
+    this.route.navigate(['available-vehicles'])},
+    (err) => {alert('Invalid credentials')},  )}
 }
 
 

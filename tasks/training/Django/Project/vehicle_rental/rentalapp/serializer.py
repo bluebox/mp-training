@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.models import User
 
 class CustomerSerializer(serializers.ModelSerializer):
 
@@ -38,3 +39,7 @@ class BillSerializer(serializers.ModelSerializer):
         model = Bill
         fields = '__all__'
 
+class User_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username','password','is_active','is_staff','is_superuser')

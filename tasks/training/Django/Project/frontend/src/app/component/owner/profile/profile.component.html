@@ -5,19 +5,15 @@
     <div class="name">Name: {{ data.name }}
     </div>
     <div class="name">Email: {{ data.email }}
-      <button>Update</button>
+      <button (click)="update('email')"> update</button>
     </div>
-    <div class="name">Cuntact Number: {{ data.contact_no}}
-      <button>Update</button>
+    <div class="name">Contact Number: {{ data.contact_no}}
+      <button (click)="update('number')">Update</button>
     </div>
-    <div class="name">DL Number:{{ data.dl_no}}
-      <button>Update</button>
-    </div>
+
     <div class="name">Address: {{ data.address }}
-      <button>Update</button>
+      <button (click)="update('address')">Update</button>
     </div>
   </div>
-  <div class="name">
-    <button> Edit your profile</button>
-  </div>
+
 </div>

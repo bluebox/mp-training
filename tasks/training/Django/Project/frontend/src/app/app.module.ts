@@ -30,6 +30,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { LoginNavbarComponent } from './component/login-navbar/login-navbar.component';
 
 
 
@@ -53,6 +54,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NavbarComponent,
     ONavbarComponent,
     BookComponent,
+    LoginNavbarComponent,
 
   ],
   imports: [

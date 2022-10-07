@@ -1,43 +1,60 @@
 <app-navbar></app-navbar>
-<div class="album py-5 bg-light main">
+<div class="container">
+<div class="col-md-8 offset-md-2">
   <div class="container">
-    <div class="col-md-4">
-      <img src="{{ vehicle_obj.image }}" width="500" height="400" alt="ldasjvb" />
+    <div class="col-md-8 offset-md-2">
+      <img
+        src="{{ vehicle_obj.image }}"
+        width="500"
+        height="400"
+        alt="ldasjvb"
+      />
     </div>
-    <h2>{{ vehicle_obj.brand }}</h2>
+    <div class="col-md-8 offset-md-2"><br>
+    <h1>{{ vehicle_obj.brand }}</h1>
     <p class="card-text">
-      <b> {{ vehicle_obj.model }}</b><span> {{ vehicle_obj.vehicle_no }} </span>
+      <b> {{ vehicle_obj.model }}</b
+      ><span> {{ vehicle_obj.vehicle_no }} </span>
     </p>
+    <div class="price">
+      <p style="color: Blue ;">Rs {{ vehicle_obj.price_day }} /day</p>
+    </div>
     <section>
-      <p>
-        <i><b>Owner:</b></i> {{ response?.name }} &nbsp;&nbsp;
-        <i><b>Address:</b></i> {{ response?.address }}
+      <p >
+        <i><b>Owner:</b></i> {{ response?.name }} <br>
+
       </p>
       <p>
+        <i><b>Address:</b></i> {{ response?.address }} <br><br>
         <i><b>Contact:</b></i>
         {{ response?.contact_no }}
       </p>
     </section>
-    <div class="price">
-      <p>Rs {{ vehicle_obj.price_km }} /km</p>
-      <p>Rs {{ vehicle_obj.price_hour }} /km</p>
-      <p>Rs {{ vehicle_obj.price_day }} /km</p>
-    </div>
-    <form [formGroup]="vehicle" (submit)="bookSelectedVehicle()">
-          <b>Select Date:</b><br /><input  formControlName="pickup_time_date" type="datetime-local" name="" id="" /><br>
-          <button type="submit" class="btn btn-sm btn-outline-secondary">
-            Book
-          </button>
 
+    <form [formGroup]="vehicle" (submit)="dateCheck()">
+      <b>Select From Date:</b><br /><input
+        formControlName="pickup_date"
+        type="date"
+        name=""
+        id=""
+      /><br />
+      <b>Select To Date:</b><br /><input
+        formControlName="return_date"
+        type="date"
+        name=""
+        id=""
+      /><br />
+      <button type="submit" class="btn btn-sm btn-outline-secondary">
+        Book
+      </button>
     </form>
-
-
-
-
+    <div *ngIf="msg">
+      <h3 style="color: red ;">{{msg.message}}</h3>
+    </div>
     <div class="d-flex justify-content-between align-items-center">
-      <div class="btn-group">
-
-      </div>
+      <div class="btn-group"></div>
     </div>
   </div>
+  </div>
+</div>
 </div>

@@ -27,8 +27,6 @@ export class AddvehicleComponent implements OnInit {
       model: new FormControl('', Validators.required),
       owner_id: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
-      price_km: new FormControl('', Validators.required),
-      price_hour: new FormControl('', Validators.required),
       price_day: new FormControl('', Validators.required),
     })
   }
@@ -41,7 +39,7 @@ export class AddvehicleComponent implements OnInit {
     console.log(this.own_id)
 
     // owner_id: this.data.owner_id,
-    this.service.addVehicle(this.own_id).subscribe(data=> {(console.log(data)), alert("Added successfully"), this.route.navigate(['addvehicle'])}, (err)=> alert("Enter valid details"))
+    this.service.addVehicle(this.own_id).subscribe(data=> {(console.log(data)), alert("Added successfully"), window.location.reload()}, (err)=> alert("Enter valid details"))
 
   }
 

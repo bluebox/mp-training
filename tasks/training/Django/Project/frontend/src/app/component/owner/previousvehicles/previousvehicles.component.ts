@@ -15,10 +15,13 @@ export class PreviousvehiclesComponent implements OnInit {
   resp : any
   getOwner : any = window.sessionStorage.getItem('owner_id')
   owner = JSON.parse(this.getOwner)
-    constructor(private service :GeneralService) { }
+    constructor(private service :GeneralService) {
+      console.log(this.owner.owner)
+     }
 
   ngOnInit(): void {
     this.getOwnerVehicle()
+
   }
 
   getOwnerVehicle(){
@@ -30,7 +33,9 @@ export class PreviousvehiclesComponent implements OnInit {
   }
   deleteVehicle(id: any){
     this.service.deleteVehicle(id).subscribe(data => {confirm('This Vehicle will be deleted!! are you sure?'), this.ngOnInit()})
+  }
 
+  viewVehicleDetails(id: any){
 
   }
 
