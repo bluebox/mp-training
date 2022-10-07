@@ -12,14 +12,14 @@ import { FacilityService } from '../../services/facility.service';
   styleUrls: ['./booking.component.css'],
 })
 export class BookingComponent implements OnInit {
-  fid: string = '';
+  fid: string = ''; //facilityid
   idd!: number;
-  facility!: Facility;
+  facility!: Facility; 
   sports!: Sports[];
   equipments!: any[];
   sportid!: number;
-  date: string='';
-  fsid !: number;
+  date: string = '';
+  fsid!: number;
   datesarray: any[] = [];
   slots: Slots[] = [];
   booked_slots: Slots[] = [];
@@ -33,6 +33,11 @@ export class BookingComponent implements OnInit {
   bookingmsg: any;
   fsdetails: any;
   cost_per_slot: any;
+  total_cost_for_slots!: number;
+  total_cost_for_equipments: number = 0;
+
+
+
 
   constructor(
     private router: Router,
@@ -60,9 +65,7 @@ export class BookingComponent implements OnInit {
     this.dates();
   }
   ngDoCheck(): void {}
-  ngOnDestroy(): void {
-    
-  }
+  ngOnDestroy(): void {}
 
   dates(): void {
     for (let i = 0; i < 5; i++) {
@@ -95,7 +98,7 @@ export class BookingComponent implements OnInit {
       // (this.equipments = data);
       let array: any[] = [];
       data.map((ele: any) => {
-        array.push({ equipment: ele, count: 0 });
+        array.push({ equipment: ele, count: 0, cost: 0 });
       });
       this.equipments = array;
 
@@ -135,6 +138,8 @@ export class BookingComponent implements OnInit {
       this.slotsid.push(this.idd);
     }
     console.log(this.slotsid);
+    this.total_cost_for_slots = this.cost_per_slot * this.slotsid.length;
+    this.totalCostForEquipments()
   }
 
   getSlotids(): void {
@@ -142,14 +147,19 @@ export class BookingComponent implements OnInit {
     for (let i = 0; i < this.booked_slots.length; i++) {
       this.booked_slots_ids.push(this.booked_slots[i].slot_id);
     }
+    ;
   }
   increasebtn(id: number): void {
     this.equipments[id].count += 1;
+    this.costForEquipments(id);
+    // this.totalCostForEquipments()
   }
 
   reducebtn(id: number): void {
     if (this.equipments[id].count > 0) {
       this.equipments[id].count -= 1;
+      this.costForEquipments(id);
+      // this.totalCostForEquipments()
     }
   }
 
@@ -160,14 +170,27 @@ export class BookingComponent implements OnInit {
         this.equipments_quantity.push(item.count);
       }
     });
-  }  
-  
-  
+  }
+
+  costForEquipments(id: number): void {
+    this.equipments[id].cost =
+      this.equipments[id].equipment.rent_per_slot * this.equipments[id].count;
+    this.totalCostForEquipments();
+  }
+
+  totalCostForEquipments(): void {
+    this.total_cost_for_equipments = 0;
+    this.equipments.forEach((item) => {
+      this.total_cost_for_equipments +=
+        item.cost * this.slotsid.length;
+    });
+    console.log(this.total_cost_for_equipments);
+  }
 
   submitBookingForm(): void {
     this.EquipmentsBooked();
-    
-     const obj = {
+
+    const obj = {
       user_id: this.user_id,
       facility_sport_id: this.fsid,
       date: this.date,
@@ -175,11 +198,20 @@ export class BookingComponent implements OnInit {
       equipments_booked: this.equipments_booked,
       equipments_quantity: this.equipments_quantity,
     };
+    const costobj = {
+      cost_for_slot:this.total_cost_for_slots,
+      cost_for_equipments:this.total_cost_for_equipments,
+      total_cost:this.total_cost_for_slots+this.total_cost_for_equipments,
+
+    }
     console.log(obj);
     this.facilityService.postBookingData(obj).subscribe((data) => {
-      (this.bookingmsg = data), console.log(data);sessionStorage.setItem('bookingobj',JSON.stringify(obj));
+      (this.bookingmsg = data), console.log(data);
+      sessionStorage.setItem('bookingobj', JSON.stringify(obj));
+      sessionStorage.setItem('totalcost', JSON.stringify(costobj));
+      this.router.navigate(['facilities/paymentpage']);
     });
-
-    this.router.navigate(['facilities/paymentpage']);
+    
+    
   }
 }

@@ -29,15 +29,19 @@
     </div>
 </div>
 <h3> Select Slot</h3>
-
+<div class="slot_cost">
+    <h2 *ngIf="cost_per_slot"> cost per slot = {{cost_per_slot}}</h2>
+    <h2 *ngIf="total_cost_for_slots"> Total cost for slots = {{total_cost_for_slots}}</h2>
+</div>
 <div class="slotcard">
     <div *ngFor="let slot of slots" class="slotitem">
 
         <label class="sport_labl">
-            <input type="checkbox" name="slots" value="{{slot.slot_id}}" [attr.disabled]="booked_slots_ids.indexOf(slot.slot_id) > -1 ? true : null" />
-            <div class="sportcard" [ngClass]=" booked_slots_ids.indexOf(slot.slot_id) > -1 ? 'class2' : 'class1' " 
+            <input type="checkbox" name="slots" value="{{slot.slot_id}}"
+                [attr.disabled]="booked_slots_ids.indexOf(slot.slot_id) > -1 ? true : null" />
+            <div class="sportcard" [ngClass]=" booked_slots_ids.indexOf(slot.slot_id) > -1 ? 'class2' : 'class1' "
                 (click)="getslotid(slot.slot_id)">
-                <h6 >{{slot.slot_time}}</h6>
+                <h6>{{slot.slot_time}}</h6>
             </div>
         </label>
 
@@ -45,16 +49,18 @@
 
 </div>
 <h3> Add ons </h3>
+<h2 *ngIf="total_cost_for_equipments > 0 ">Total cost for equipments = {{total_cost_for_equipments}}</h2>
 <div class="equipcard">
     <div *ngFor="let equipment of equipments; let i = index" class="equipcard2">
-        <h1> {{equipment.equipment.equip_name}}</h1>
-        
-        
-     
-        
-        <button type="button" class="btn btn-primary " (click)="reducebtn(i)">-</button>
-        <h1>{{equipment.count}}</h1>
-        <button type="button" class="btn btn-primary "  (click)="increasebtn(i)">+</button>
+
+        <div class="eqipcost">
+            <h1 style="margin:0px"> {{equipment.equipment.equip_name}}</h1>
+            <p> cost per slot: {{equipment.equipment.rent_per_slot}}</p>
+        </div>
+        <button type="button" class="m-3  button" (click)="reducebtn(i)">-</button>
+        <h1 style="padding-top:12px;">{{equipment.count}}</h1>
+        <button type="button" class=" m-3 button " (click)="increasebtn(i)">+</button>
+        <h3> Total rent for {{equipment.equipment.equip_name}}= {{equipment.cost}}</h3>
 
     </div>
 

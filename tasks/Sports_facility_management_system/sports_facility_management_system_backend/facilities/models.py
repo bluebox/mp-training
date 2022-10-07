@@ -1,4 +1,6 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+
 
 # Create your models here.
 
@@ -45,13 +47,16 @@ class Slot(models.Model):
 
 class SlotsInSportFacility(models.Model):
     id = models.AutoField(primary_key=True)
-    slot = models.ForeignKey(Slot, on_delete=models.CASCADE)
-    facility_sport = models.ForeignKey(SportsInFacility, on_delete=models.CASCADE)
+    slot_id = models.ForeignKey(Slot, on_delete=models.CASCADE)
+    facility_sport_id = models.ForeignKey(SportsInFacility, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.slot_id)
 
 
 class Equipment(models.Model):
     equip_id = models.AutoField(primary_key=True)
-    equip_name = models.CharField(max_length=255)
+    equip_name = models.CharField(max_length=255, unique=True)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     rent_per_slot = models.IntegerField()
 
@@ -70,24 +75,29 @@ class User(models.Model):
 class BookingData(models.Model):
     booking_id = models.AutoField(primary_key=True)
     facility_sport_id = models.ForeignKey(SportsInFacility, models.DO_NOTHING)
-    user = models.ForeignKey(User, models.DO_NOTHING)
-    date_time = models.CharField(max_length=255)
+    user_id = models.ForeignKey(User, models.DO_NOTHING)
+    date = models.CharField(max_length=255)
     reviews = models.TextField(blank=True, null=True)
-    ratings = models.IntegerField(blank=True, null=True)
+    ratings = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
 
 
 class SlotsBookedForBookingId(models.Model):
     booking_id = models.ForeignKey(BookingData, models.DO_NOTHING)
     slot_id = models.ForeignKey(Slot, models.DO_NOTHING)
 
+    def __str__(self):
+        return "booking_id : " + str(self.booking_id) + "slot_id : " + str(self.slot_id)
+
 
 class EquipmentsRentedForBookingId(models.Model):
     booking_id = models.ForeignKey(BookingData, models.DO_NOTHING)
-    equip = models.ForeignKey(Equipment, models.DO_NOTHING)
+
+    equip_id = models.ForeignKey(Equipment, models.DO_NOTHING)
+    quantity = models.IntegerField()
 
 
 class Invoice(models.Model):
     invoice_id = models.AutoField(primary_key=True)
     booking_id = models.ForeignKey(BookingData, models.DO_NOTHING)
     total_cost = models.IntegerField()
-    invoice_pdf = models.TextField()
+    invoice_pdf = models.TextField(null=True, blank=True)

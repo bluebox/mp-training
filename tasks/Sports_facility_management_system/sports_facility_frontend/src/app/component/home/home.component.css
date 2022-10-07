@@ -1,0 +1,8 @@
+div{
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: auto auto auto;
+    margin:0px 20px;
+    padding-top:270px ;
+    
+}
