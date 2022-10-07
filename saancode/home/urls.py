@@ -7,7 +7,8 @@ from rest_framework.authtoken import views
 urlpatterns = [
     path('', homeView, name='home'),
     path('api/', api, name='api'),
-    path('api/edit-comment', edit_comment_api),
+    path('api/edit-discussion', edit_discussion_api),
+    path('api/delete-discussion', delete_discussion_api),
     path('api/post-discussion/<str:problem_id>/<str:username>', postDiscussionApi),
     path('api/submissions/<str:problem_id>/<str:username>', submissionsApi),
     path('api/addSubmission/<str:problem_id>/<str:username>', addSubmission),

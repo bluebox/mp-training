@@ -1,33 +1,49 @@
+<div *ngIf="editPopUpFlag" class="edit-pop-up">
+    <input [(ngModel)]="editedTitle" type="text" name="edit-title" placeholder="title">
+    <textarea [(ngModel)]="editedDiscussion" name="edit-discussion" id="" cols="30" rows="10"
+        placeholder="discussion"></textarea>
+    <div class="edit-buttons">
+        <button (click)="edit_confirm(response.discussion_id)">edit</button>
+        <button (click)="cancel_edit()">cancel</button>
+    </div>
+</div>
+
+<div *ngIf="deletePopUpFlag" class="delete-pop-up">
+    <p>Are you sure? cannot be undone once deleted</p>
+    <div>
+        <button (click)="delete_confirm(response.discussion_id)" class="delete-buttons">delete</button>
+        <button (click)="cancel_delete()" class="delete-buttons">cancel</button>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-header">
-        {{ response.username }}
+        <div>
+            <span>created by: <span class="code">{{ response.username }} </span></span>
+            <span>created at: <span class="code">{{ response.created_date_time | date:"M d, Y" }}</span></span>
+        </div>
+        <div>
+            <button title="edit" (click)="edit_discussion()"><i class="bi bi-pencil"></i></button>
+            <button title="delete" (click)="delete_discussion()"><i class="bi bi-trash"></i></button>
+        </div>
     </div>
-    <div class="card-header">
-        {{ response.created_date_time | date:"M d, Y" }}
-    </div>
-    <div class="card-body">
-        <div class="discussion">{{ response.title }}</div>
+    <div class="card-discussion-body">
+        <h5 class="discussion">{{ response.title }}</h5>
         <div class="discussion">{{ response.discussion }}</div>
-</div>
-<button (click)="addComment()">Add Comment</button>
-<div *ngIf="commentFlag">
-    <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
-        comment: <input type="text" formControlName ="comment">
-        <button type="submit">comment</button>
-    </form>
-</div>
-<div>
-    <div *ngFor="let comment of comments">
-        <div class="comment">
-            <p>{{ comment.user_id }}</p>
-            <p>{{ comment.comment }}</p>
-            <div>
-                <button (click)="toggle_edit_comment_flag();$event.stopImmediatePropagation()">edit</button>
-                <input *ngIf="editCommentFlag" type="text" [(ngModel)]="editCommentValue">
-                <button *ngIf="editCommentFlag" (click)="edit_comment(comment.comment_id, editCommentValue)">edit</button>
-                <!-- <button (click)="delete_comment(comment.comment_id)">delete</button> -->
+    </div>
+    <!-- <button (click)="addComment()">Add Comment</button> -->
+    <div >
+        <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
+            comment: <input type="text" formControlName="comment">
+            <button type="submit">comment</button>
+        </form>
+    </div>
+    <div>
+        <div *ngFor="let comment of comments">
+            <div class="comment">
+                <p>{{ comment.user_id }}</p>
+                <p>{{ comment.comment }}</p>
             </div>
         </div>
     </div>
-</div>
 </div>

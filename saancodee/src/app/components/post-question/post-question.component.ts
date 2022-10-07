@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/services/register.service';
-import { fromEvent, map } from 'rxjs';
+import { fromEvent } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+  tap
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-question',

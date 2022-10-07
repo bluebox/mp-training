@@ -29,6 +29,7 @@ const routes: Routes = [
   {path:"post-question", component:PostQuestionComponent},
   {path:"profile", component:ProfileComponent, canActivate: [AuthGuard]},
   {path:"edit-profile", component:EditProfileComponent, canActivate: [AuthGuard]}
+  // {path:"**", }
 ];
 
 @NgModule({

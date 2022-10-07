@@ -20,8 +20,10 @@ export class DiscussionComponent implements OnInit {
   commentForm = this.fb.group ({
     comment: ['', [Validators.required]]
   })
-  editCommentFlag: Boolean = false;
-  editCommentValue: any;
+  editPopUpFlag: Boolean = false;
+  editedTitle: any = '';
+  editedDiscussion:any = '';
+  deletePopUpFlag: Boolean = false;
 
   constructor(private fb:FormBuilder, private router: Router, private route: ActivatedRoute, public service:RegisterService) { 
     this.params = this.route.snapshot.params;
@@ -33,15 +35,44 @@ export class DiscussionComponent implements OnInit {
     })
    }
 
-   edit_comment(comment_id:any, comment:any) {
-    console.log(this.editCommentValue)
-    this.service.edit_comment(comment_id, comment).subscribe((data) => {
+   delete_discussion() {
+    this.deletePopUpFlag = !this.deletePopUpFlag
+   }
+
+   cancel_delete() {
+    this.deletePopUpFlag = !this.deletePopUpFlag
+   }
+
+   delete_confirm(discussion_id:any) {
+    let data = {"discussion_id": discussion_id}
+    console.log(data)
+    this.service.deleteDiscussion(data).subscribe((data:any) => {
       console.log(data)
+      if (data.status == 200) {
+        alert("deleted succesfully")
+        history.back()
+      }
     })
    }
 
-   toggle_edit_comment_flag() {
-    this.editCommentFlag = !this.editCommentFlag
+   edit_discussion() {
+    this.editPopUpFlag = !this.editPopUpFlag;
+   }
+
+   cancel_edit() {
+    this.editPopUpFlag = !this.editPopUpFlag;
+   }
+
+   edit_confirm(discussion_id:any) {
+    let data = {"discussion_id": discussion_id, "title":this.editedTitle, "discussion": this.editedDiscussion}
+    console.log(data)
+    this.service.editDiscussion(data).subscribe((data:any) => {
+      console.log(data)
+      if (data.status == 200) {
+        alert("updated succesfully")
+        location.reload();
+      }
+    })
    }
 
    addComment() {

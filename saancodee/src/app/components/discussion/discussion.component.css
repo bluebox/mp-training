@@ -1,3 +1,49 @@
 .comment {
     border: 1px solid grey;
 }
+
+.edit-pop-up {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-discussion-body {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+textarea {
+    width: 100%;
+    height: 75%;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code {
+    background-color: rgb(236, 227, 227);
+    color: #0D6EFD;
+}
+
+.delete-pop-up {
+    z-index: 1;
+    position: fixed;
+    background-color: grey;
+    color: blue;
+    border-radius: 1rem;
+    top: 50%;
+    transition: all 1s;
+    padding: 1rem;
+    left: 50%;
+    border: 1px solid rgb(142, 140, 140);
+    transform: translate(-50%, -50%);
+}

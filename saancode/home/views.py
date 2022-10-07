@@ -290,12 +290,19 @@ def homeView(request):
     return render(request, 'home/home.html')
 
 @api_view(['POST'])
-def edit_comment_api(request):
-    if request.data['comment'] != '':
-        comment = Comment.objects.get(comment_id = request.data['comment_id'])
-        comment.comment = request.data['comment']
-        return Response({"status": 200, "messege": "comment updated successfully"})
-    return Response({"status": 403, "messege": "comment cant be updated to None"})
+def delete_discussion_api(request):
+    deletedDiscussion = Discussion.objects.get(discussion_id = request.data['discussion_id'])
+    deletedDiscussion.delete()
+    return Response({"status":200, "messege":"successfully deleted thread"})
+
+@api_view(['POST'])
+def edit_discussion_api(request):
+    print(request.data)
+    editedDiscussion = Discussion.objects.get(discussion_id = request.data['discussion_id'])
+    editedDiscussion.discussion = request.data['discussion']
+    editedDiscussion.title = request.data['title']
+    editedDiscussion.save()
+    return Response({"status": 200, "messege": "discussion updated successfully"})
 
 @login_required(login_url = 'login')
 def problems(request):
