@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Add Employee From</h1>
+<div mat-dialog-content>
+    <form [formGroup]="drugForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Drug Id</mat-label>
+            <input formControlName="drug_id" matInput placeholder="Drug Id">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Drug Name</mat-label>
+            <input formControlName="drug_name" matInput placeholder="Drug Name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Distributor Id</mat-label>
+            <mat-select formControlName="dist_name" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let dis of dis_data" [value]="dis['dist_id']">
+                {{ dis['dist_name'] }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+          
+        <mat-form-field appearance="outline">
+            <mat-label>Manufacture Name</mat-label>
+            <mat-select formControlName="company_name" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let man of man_data" [value]="man['company_id']">
+                {{ man['company_name'] }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label >MRP</mat-label>
+            <input formControlName="mrp" matInput type="Number" placeholder="MRP">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label >Discount</mat-label>
+            <input formControlName="discount" matInput type="Number" placeholder="Discount">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label >Stock</mat-label>
+            <input formControlName="stock" matInput type="Number" placeholder="Stock">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Manufactured Date</mat-label>
+            <input formControlName="mfg_date" matInput [matDatepicker]="picker" placeholder="dd-MM-yyyy">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" (click)="addDrug()" >{{actionBtn}}</button>
+
+</div>
+
+

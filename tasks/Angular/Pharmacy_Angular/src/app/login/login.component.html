@@ -1,0 +1,39 @@
+<body class="main">
+    <div class="container">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <mat-tab-group>
+                    <mat-tab label="Login"> 
+                        <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput placeholder="Email" [(ngModel)]="log_email">
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Password" [(ngModel)]="log_password">
+                      </mat-form-field>
+                      <button mat-raised-button color="primary" style="margin-right: 50px;" >Login</button>
+                      <button mat-raised-button color="warn">Cancel</button>
+                     </mat-tab>
+                    <mat-tab label="SignUp"> 
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput placeholder="Email" [(ngModel)]="sign_email">
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Password" [(ngModel)]="sign_password">
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput placeholder="Confirm Password" [(ngModel)]="sign_con_password">
+                          </mat-form-field>
+                          <button mat-raised-button color="primary" style="margin-right: 50px;" >SignUp</button>
+                          <button mat-raised-button color="warn">Cancel</button>    
+                    </mat-tab>
+                  </mat-tab-group>                  
+            </mat-card-content>
+          </mat-card>
+    </div>
+    
+    </body>

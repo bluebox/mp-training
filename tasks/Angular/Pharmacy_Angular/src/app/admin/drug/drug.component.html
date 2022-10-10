@@ -1,0 +1,96 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>supervised_user_circle</mat-icon>
+    </button>
+    <span>My App</span>
+    <a routerLink="/homepage" style="text-decoration:none; color:white"><button  mat-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      Home
+    </button></a>
+    <span class="example-spacer"></span>
+ 
+    <button mat-raised-button color="warn" (click)="openDialog()">Add Drug</button>
+    </mat-toolbar>
+  
+    <div class="container">
+      <div style="margin-top:10px">
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Joe" #input>
+        </mat-form-field>
+        
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+        
+            <!-- ID Column -->
+            <ng-container matColumnDef="drug_id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Drug Id </th>
+              <td mat-cell *matCellDef="let row"> {{row.drug_id}} </td>
+            </ng-container>
+        
+            <!-- Progress Column -->
+            <ng-container matColumnDef="drug_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Drug Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.drug_name}} </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="dist_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Distributor Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.dist_name}} </td>
+            </ng-container>
+  
+  
+            <ng-container matColumnDef="company_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Manufacturer Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.company_name}} </td>
+            </ng-container>
+  
+  
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="mrp">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> MRP </th>
+              <td mat-cell *matCellDef="let row"> {{row.mrp}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="discount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Discount </th>
+                <td mat-cell *matCellDef="let row"> {{row.discount}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
+                <td mat-cell *matCellDef="let row"> {{row.stock}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="mfg_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Manufactured Date </th>
+                <td mat-cell *matCellDef="let row"> {{row.mfg_date | date: 'dd-MM-yyyy'}} </td>
+              </ng-container>
+              <ng-container matColumnDef="exp_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Manufactured Date </th>
+                <td mat-cell *matCellDef="let row"> {{row.exp_date | date: 'dd-MM-yyyy'}} </td>
+              </ng-container>
+  
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-icon-button color="primary" (click)="editDrug(row)"><mat-icon>edit</mat-icon></button>
+                <button mat-icon-button color="warn" (click)="deleteDrug(row.emp_id)"><mat-icon>delete</mat-icon></button>
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+        
+      </div>
+    </div>
+  

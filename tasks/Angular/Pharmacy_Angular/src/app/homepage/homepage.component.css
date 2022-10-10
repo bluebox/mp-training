@@ -1,0 +1,13 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  mat-grid-tile {
+    background: lightblue;
+  }
+
+  mat-grid-list{
+    margin:10px;
+    margin-bottom:30px;
+  }
+  

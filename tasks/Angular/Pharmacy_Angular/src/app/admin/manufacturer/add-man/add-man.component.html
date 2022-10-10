@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Add Manufacturer From</h1>
+<div mat-dialog-content>
+    <form [formGroup]="manufacturerForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Manufacturer Id</mat-label>
+            <input formControlName="company_id" matInput placeholder="Manufacturer Id">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Company Name</mat-label>
+            <input formControlName="company_name" matInput placeholder="First Name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label >Contact</mat-label>
+            <input formControlName="contact" matInput type="Number" placeholder="Contact">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email"  matInput type="email" placeholder="Email Id">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <textarea formControlName="address" matInput placeholder="Address" style="resize: none;"></textarea>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" (click)="addManufacturer()" >{{actionBtn}}</button>
+
+</div>
+
+
