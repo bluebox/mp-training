@@ -1,4 +1,4 @@
-
+<app-navbar></app-navbar>
 <form [formGroup]="loginForm" class="form-container">
     <mat-card>
         <mat-card-header>
@@ -6,11 +6,11 @@
             <br><br>
             {{errorMessage}}
             
-      <mat-card-title *ngIf="formNotValid"
-        >Please Fill All required details</mat-card-title
+      <small *ngIf="formNotValid"
+        >Please Fill All required details</small
       >
     </mat-card-header>
-    <br />
+    <br/>
     <mat-card-content>
       <div class="row">
         <div class="col-md-6">
@@ -46,8 +46,11 @@
     </mat-card-content>
     <mat-card-actions>
       <button (click)="submitLogin()" mat-raised-button="" color="primary">
-        login
+        Login
       </button>
+      <!-- <button  routerLink="../registerstudent" mat-raised-button="" color="primary" >
+        New user? create an account
+      </button> -->
     </mat-card-actions>
   </mat-card>
 </form>

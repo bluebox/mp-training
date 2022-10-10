@@ -27,29 +27,29 @@ export class AddCourseComponent implements OnInit {
   })
 
   ngOnInit(): any {
-    this.http.getCourses().subscribe(data=>{
+    this.http.getTeachers().subscribe(data=>{
       this.teachers =data
       console.log(this.teachers)
     })
   }
 
-  addCourse(){
-    // console.log(this.courseAddingForm.value);
-    if (this.courseAddingForm.valid) {
-      this.http.addCourse(this.courseAddingForm.value).subscribe(data => console.log(data))
-    }
-    else {
-      console.log('fill properly ');
-      this.formNotValid = true
-      // console.log(this.courseAddingForm.valid);
-    }
-    console.log(this.courseAddingForm.value);
-
-  }
   // addCourse(){
+  //   // console.log(this.courseAddingForm.value);
+  //   if (this.courseAddingForm.valid) {
+  //     this.http.addCourse(this.courseAddingForm.value).subscribe(data => console.log(data))
+  //   }
+  //   else {
+  //     console.log('fill properly ');
+  //     this.formNotValid = true
+  //     // console.log(this.courseAddingForm.valid);
+  //   }
   //   console.log(this.courseAddingForm.value);
-  //   this.http.addCourse({ 'form': this.courseAddingForm.value, 'username': this.courseAddingForm.get('username')?.value }).subscribe(data=>{
-  //     console.log(data);
-  //   })
+
   // }
+  addCourse(){
+    console.log(this.courseAddingForm.value);
+    this.http.AddCourse({ 'form': this.courseAddingForm.value, 'username': localStorage.getItem('username') }).subscribe(data=>{
+      console.log(data);
+    })
+  }
 }

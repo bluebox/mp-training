@@ -33,7 +33,7 @@ export class AddQuestionComponent implements OnInit {
 
   ngOnInit(): any {
 
-    this.http.getQuestions().subscribe(data=>{
+    this.http.getCourses().subscribe(data=>{
       this.courses=data
       console.log(this.courses)
     })

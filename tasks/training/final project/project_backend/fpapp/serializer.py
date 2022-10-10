@@ -35,6 +35,20 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class QuestionSerializer(serializers.ModelSerializer):
+
     class Meta:
         model=Question
         fields='__all__'
+
+class QuestionSerializer1(serializers.ModelSerializer):
+    course_name= serializers.CharField(source='course.course_name')
+    class Meta:
+        model=Question
+        fields=('question_name','course_name')
+
+class QuestionSerializer2(serializers.ModelSerializer):
+    c_name= serializers.CharField(source='course.course_name')
+    class Meta:
+        model=Question
+        fields=('question_name','option1','option2','option3','option4','c_name')
+

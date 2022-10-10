@@ -1,4 +1,4 @@
-<p>register-teacher works!</p>
+<app-navbar></app-navbar>
 
 <form  [formGroup]="teacherRegisterForm" class="form-container">
     <mat-card>
@@ -63,6 +63,9 @@
       </mat-card-content>
       <mat-card-actions>
         <button (click)="submitRegister()" mat-raised-button="" color="primary">Register</button>
+        <button  routerLink="../userlogin" mat-raised-button="" color="primary" >
+          Already have an account?
+        </button>
       </mat-card-actions>
     </mat-card>
   </form>

@@ -1,8 +1,5 @@
 
 from asyncio.windows_events import NULL
-from email.policy import default
-from enum import unique
-from xml.etree.ElementInclude import default_loader
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
@@ -40,7 +37,7 @@ class Teacher(models.Model):
 class Course(models.Model):
     course_name = models.CharField(max_length=400, null=False, blank=False)
     total_marks = models.PositiveIntegerField()
-    # teacher_id =models.ForeignKey("Teacher", on_delete=models.SET_NULL, null=True, blank=True)
+    teacher_id =models.ForeignKey("Teacher", on_delete=models.SET_NULL, null=True, blank=True)
     
 
     def __str__(self):

@@ -15,6 +15,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './components/login/login.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { AppComponent } from 'src/app/app.component';
+import { AppModule } from 'src/app/app.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { NavbarComponent } from '../components/navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { StudentLoginhomepageComponent } from './components/student-loginhomepage/student-loginhomepage.component';
+import { TeacherLoginhomepageComponent } from './components/teacher-loginhomepage/teacher-loginhomepage.component';
+import { UsershomepageComponent } from './components/usershomepage/usershomepage.component';
 
 
 @NgModule({
@@ -22,7 +32,12 @@ import { LoginComponent } from './components/login/login.component';
     DashboardComponent,
     RegisterStudentComponent,
     RegisterTeacherComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    StudentLoginhomepageComponent,
+    TeacherLoginhomepageComponent,
+    UsershomepageComponent
+    
   ],
   imports: [
     CommonModule,
@@ -35,7 +50,10 @@ import { LoginComponent } from './components/login/login.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule
+        
   ]
 })
 export class UsersModule { }

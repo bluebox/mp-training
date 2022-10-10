@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpServiceService } from '../../http-service.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   formNotValid: boolean = false
   errorMessage: string = ''
-  k: string = ''
+  k: any
 
 
 
@@ -36,16 +37,25 @@ export class LoginComponent implements OnInit {
         this.errorMessage = resp.msg
         if (this.errorMessage == "logged in") {
 
+          // this.http.saveData("username",resp.user)
+
 
           localStorage.setItem('user', JSON.stringify(resp.user))
-          localStorage.setItem('user_type', JSON.stringify(resp.user_type))
+          localStorage.setItem('username', (resp.user))
+          console.log(localStorage.getItem("username"))
+
+          localStorage.setItem('user_type', (resp.user_type))
           console.log(localStorage.getItem("user_type"))
+          this.k = localStorage.getItem("user_type");
 
-          localStorage.getItem("user_type")
+          console.log(typeof(localStorage.getItem("user_type")));
+          console.log(this.k)
+          
 
-          if(localStorage.getItem("user_type") === "Student") {
+          // if (localStorage.getItem("user_type") === "Student") {
+          if(this.k == "Student"){
 
-            console.log("te");
+            console.log("te11");
 
             this.router.navigate(['registerstudent']);
           }

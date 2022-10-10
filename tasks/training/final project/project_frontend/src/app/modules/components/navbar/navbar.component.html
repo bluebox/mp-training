@@ -1,0 +1,15 @@
+<div class="body">
+<mat-toolbar>
+    <!-- <mat-icon routerLink="" class="icon">Home</mat-icon> -->
+    <span class="title">ONLINE EXAMINATION </span>
+    <span class="example-spacer"></span>
+    <!-- right side -->
+    <button routerLink="" class="nabButton" mat-button > <mat-icon>home</mat-icon> Home</button>
+    <button routerLink="../studentloginhomepage" class="nabButton" mat-button >Student</button>
+    <button routerLink="../teacherloginhomepage" class="nabButton" mat-button >Teacher</button>
+    <!-- <button routerLink="" class="nabButton" mat-button >Admin</button> -->
+    <button *ngIf="loggedIn" routerLink="" class="nabButton" mat-button >Logout</button>
+    <!-- <button routerLink="" class="nabButton" mat-button ><mat-icon class="icon">account_circle</mat-icon>Login</button> -->
+    <!-- <mat-icon class="icon">account_circle</mat-icon> -->
+  </mat-toolbar>
+</div>

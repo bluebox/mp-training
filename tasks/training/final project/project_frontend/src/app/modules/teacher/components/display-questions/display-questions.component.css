@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+  }
+
+  .questiontable{
+    width:auto;
+    
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+.mat-header-cell{
+    text-align : center;
+}
+.mat-cell{
+    text-align: center;
+}
+th,tr{
+    
+    background-color:rgb(250, 237, 220);
+}
+
+th{
+    color:black
+}

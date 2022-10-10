@@ -11,6 +11,11 @@ urlpatterns = [
     path('courselist', views.course_list),
     # path('subjectcreate', views.SubjectCreate.as_view())
     path('courseregister', views.RegisterCourse.as_view()),
-    path('questionregister', views.RegisterQuestion.as_view())
+    path('questionregister', views.RegisterQuestion.as_view()),
+    path('courselist/delete',views.delete_course),
+    path('question/delete',views.delete_question),
+    path('addcourse', views.AddCourse.as_view()),
+    path('displayquestion', views.DisplayQuestion.as_view()),
+    path('attemptexam',views.AttemptExam.as_view())
 
 ]

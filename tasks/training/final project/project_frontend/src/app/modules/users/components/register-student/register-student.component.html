@@ -1,5 +1,5 @@
-<p>register-customer works!</p>
 
+<app-navbar></app-navbar>
 <form  [formGroup]="studentRegisterForm" class="form-container">
     <mat-card>
       <mat-card-header>
@@ -81,6 +81,10 @@
       </mat-card-content>
       <mat-card-actions>
         <button (click)="submitRegister()" mat-raised-button="" color="primary">Register</button>
+        <button  routerLink="../userlogin" mat-raised-button="" color="primary" >
+          Already have an account?
+        </button>
       </mat-card-actions>
+      
     </mat-card>
   </form>
