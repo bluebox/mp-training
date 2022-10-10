@@ -49,4 +49,18 @@ table {
   }
   .column-name{
       color: black;
+      font-size: 20px;
+  }
+
+  .icon-name{
+    color : black;
+    background-color: white;
+    margin: none;
+   
+  }
+  .icon-name button{
+    color: black;
+    background-color: #eb008b;
+    margin: none;
+    border: none;
   }

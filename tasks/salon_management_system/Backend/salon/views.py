@@ -54,6 +54,7 @@ class BranchList(APIView):
         serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data)
 
+class NewBranch(APIView):
     def post(self,request):
         serializer = BranchSerializer(data=request.data)
         print(serializer)
@@ -63,6 +64,8 @@ class BranchList(APIView):
         else:
             print('invalid')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class ServicesList(APIView):
     def get(self,request):
@@ -104,9 +107,17 @@ class EmployeeList(APIView):
 class ClientList(APIView):
     def get(self,request):
         # clients = Client.objects.all()
-        clients = Client.objects.all().prefetch_related('user_id')
+        # clients = Client.objects.all().values('id','username','first_name','last_name','email','')
+        clients = User.objects.all().values('id','username','first_name','last_name','email','Client__user_id','Client__Client_contact_number')
+        serializer = Userserializer(clients,many=True)
+        return Response(serializer.data)
+
+class ListOfClients(APIView):
+    def get(self,request):
+        clients = Client.objects.all().values('User__id','User__username',"User__first_name","User__email","user_id","Client_contact_number")
         serializer = ClientSerializer(clients,many=True)
         return Response(serializer.data)
+
 
 class ClientRegistration(APIView):
  

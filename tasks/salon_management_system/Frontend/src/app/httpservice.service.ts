@@ -39,4 +39,11 @@ export class HttpserviceService {
     return this.http.post<any>('http://127.0.0.1:8000/employeeregistration',data)
   }
   
+  addBranch(data : any){
+    return this.http.post<any>('http://127.0.0.1:8000/newbranch/',data)
+  }
+
+  addService(data : any){
+    return this.http.post<any>('http://127.0.0.1:8000/services/',data)
+  }
 }

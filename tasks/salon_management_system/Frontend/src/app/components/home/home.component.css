@@ -36,3 +36,20 @@
 .sp a:hover{
     color:#eb008b;
 }
+.body{
+    background-image: url('/assets/images/homepage1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 30px;
+    font-family: ui-monospace;
+    font-style: italic;
+    padding: 20px;
+}
+.content-home{
+   text-align:left ;
+   padding-left: 5%;
+   line-height: 1.5;
+   padding-right: 60%;
+   padding-bottom: 42px;
+   padding-top: 35px;
+}

@@ -1,0 +1,31 @@
+
+<form [formGroup] = "newServiceForm">
+    <div class="card1">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Add a new Branch</mat-card-title>
+        </mat-card-header>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Service ID</mat-label>
+            <input formControlName="service_id" matInput placeholder="Enter new service id" />
+            <small class="text-danger" *ngIf="newServiceForm.get('branch_id')?.invalid  && newServiceForm.get('branch_id')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>service Name</mat-label>
+            <input formControlName="service_name" matInput placeholder="Enter new service Name" />
+            <small class="text-danger" *ngIf="newServiceForm.get('branch_name')?.invalid  && newServiceForm.get('branch_name')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Cost</mat-label>
+            <input formControlName="Amount_to_be_paid" matInput placeholder="Enter amount to be paid" />
+            <small class="text-danger" *ngIf="newServiceForm.get('location')?.invalid  && newServiceForm.get('location')?.touched " >required</small>
+        </mat-form-field>
+        <mat-card-actions>
+            <button (click) = "addService()" mat-raised-button="" color="primary">
+             Add
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+    </div>
+</form>

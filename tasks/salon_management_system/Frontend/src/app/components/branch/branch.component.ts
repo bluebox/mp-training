@@ -19,4 +19,8 @@ export class BranchComponent implements OnInit {
     this.subscription =this.http.getBranch().subscribe((data) =>{this.branches = data ;console.log(data)});
   }
 
+  alertmessage(){
+    alert("You need to register to book an appointment")
+  }
+
 }

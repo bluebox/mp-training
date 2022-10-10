@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Frontend';
+
+  alertmessage(){
+    alert("You need to register to book an appointment")
+  }
 }

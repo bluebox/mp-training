@@ -11,7 +11,7 @@ export class ServicesComponent implements OnInit {
 
   subscription : Subscription = Subscription.EMPTY
   services: any;
-  displayedColumns :string[]=['service_id','service_name','Amount_to_be_paid'];
+  displayedColumns :string[]=['spa','service_id','service_name','Amount_to_be_paid'];
   constructor(private http : HttpserviceService) {
 
    }
@@ -20,4 +20,7 @@ export class ServicesComponent implements OnInit {
     this.subscription =this.http.getServices().subscribe((data) =>{this.services = data ;console.log(data)});
   }
 
+  alertmessage(){
+    alert("You need to register to book an appointment")
+  }
 }

@@ -24,6 +24,8 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
+import { NewbranchComponent } from './components/newbranch/newbranch.component';
+import { NewserviceComponent } from './components/newservice/newservice.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {MatSelectModule} from '@angular/material/select';
     TransactionsComponent,
     HomeComponent,
     BranchComponent,
-    RegisteremployeeComponent
+    RegisteremployeeComponent,
+    NewbranchComponent,
+    NewserviceComponent
   ],
   imports: [
     CommonModule,
