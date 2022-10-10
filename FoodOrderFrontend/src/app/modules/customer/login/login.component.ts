@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  cusId:any;
   constructor(private user:LoginService,private route:Router) { }
 
   ngOnInit(): void {
@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
         }
         // alert("Registration Done!!")
       })
+      this.user.loginCheck().subscribe(data=>{
+        console.log(data);this.cusId=data
+      ;console.log(this.cusId)})
         alert("Registration Done!!")
         console.log('form submitted');
         console.log(this.sigininForm.value)

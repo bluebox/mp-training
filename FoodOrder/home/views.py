@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from rest_framework import authentication, permissions,status
 from .models import Customer, Food, Restaurant, Employee, Menu, MenuList
 import jwt
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.parsers import JSONParser
 
 class Index(View):
@@ -227,7 +228,7 @@ class CustomerLogin(APIView):
             #     raise AuthenticationFailed('Wrong password!')
 
             payload={
-                "email" : user.customer_email
+                "id" : user.customer_id
             }
             token=jwt.encode(payload,"secret")
             response=Response("login success")
