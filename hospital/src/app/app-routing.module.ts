@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { NewuserComponent } from './newuser/newuser.component';
 import { PatientComponent } from './patient/patient.component';
 import { StaffComponent } from './staff/staff.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+// import { book_appointmentComponent } from './appointment/appointment.component';
 
 const routes: Routes = [
   // {path: '', redirectTo: 'index', pathMatch: 'full'},
@@ -15,7 +17,9 @@ const routes: Routes = [
   {path: 'staff',component: StaffComponent},
   {path:'login', component:LoginComponent},
   {path:'newuser',component:NewuserComponent},
-  {path: 'listofpatient',component:ListofpatientComponent}
+  {path: 'listofpatient',component:ListofpatientComponent},
+  {path:'appointment',component:AppointmentComponent},
+  // {path:'slot',component:BookappointmentComponent},
 ];
 
 @NgModule({

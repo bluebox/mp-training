@@ -20,6 +20,8 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { TestComponent } from './test/test.component';
 import { BillComponent } from './bill/bill.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
+import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
+import { UpdateSlotsComponent } from './update-slots/update-slots.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { DiagnosisComponent } from './diagnosis/diagnosis.component';
     TestComponent,
     BillComponent,
     DiagnosisComponent,
+    BookAppointmentComponent,
+    UpdateSlotsComponent,
 
   ],
   imports: [

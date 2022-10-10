@@ -11,20 +11,38 @@ import { ServercomunicationService } from '../servercomunication.service';
 export class AppointmentComponent implements OnInit {
   form_appointment: FormGroup = new FormGroup({});
   doctor: any;
+  slot: any;
   constructor(private fb: FormBuilder,private api:ServercomunicationService) { }
 
   ngOnInit(): void {
-    this.getData();
-
-    console.log(this.getData());
+    this.get_Doc_Data();
+    this.get_Slot_Data();
+    console.log(this.get_Doc_Data());
+    console.log(this.get_Slot_Data());
   }
-  getData()
+  get_Doc_Data()
 {
   this.api.getAllDoctor().subscribe(
     (data)=>{
       console.log(data);
       this.doctor=data;
       console.log(this.doctor[0].d_id)
+    },
+    error=>{
+
+  console.log(error);
+
+  // this.service.getAPatient().subscribe((data: Patient[])=>this.patients=data[0])
+  // console.log(this.patients)
+})
+}
+get_Slot_Data()
+{
+  this.api.getAllSlot().subscribe(
+    (data)=>{
+      console.log(data);
+      this.slot=data;
+      console.log(this.slot[0].slot_id)
     },
     error=>{
 
