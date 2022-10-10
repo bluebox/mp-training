@@ -44,5 +44,5 @@
         <input name="education" formControlName="education" type="text" id="typeText" class="form-control" />
     </div>
     
-    <button type="submit">Edit</button>
+    <button type="submit" [disabled]="!profileForm.valid">Edit</button>
 </form>

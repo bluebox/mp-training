@@ -36,9 +36,32 @@ def problemsList(request):
     serializer = ProblemSerializer(problems, many = True)
     return Response(serializer.data)
 
+@api_view(['POST'])
+def delete_comment_api(request):
+    Comment.objects.get(comment_id = request.data.get('comment_id')).delete()
+    return Response({"status": 200})
+
 @api_view(['GET'])
 def sortProblemsApi(request):
-    problems = Problem.objects.all().order_by("difficulty_level")
+    params = []
+    print(request.GET.get('accuracy', '0'))
+    difficulty = request.GET.get('difficulty', '0')
+    accuracy = request.GET.get('accuracy', '0')
+    problems = None
+    if difficulty == "1" and accuracy == "1":
+        problems = Problem.objects.all().order_by('difficulty_level', 'accuracy')
+        params.append("difficulty_level")
+    elif accuracy == "1":
+        problems = Problem.objects.all().order_by('accuracy')
+    elif difficulty == "1":
+        problems = Problem.objects.all().order_by('difficulty_level')
+    if difficulty == "-1" and accuracy == "-1":
+        problems = Problem.objects.all().order_by('-difficulty_level', '-accuracy')
+        params.append("difficulty_level")
+    elif accuracy == "-1":
+        problems = Problem.objects.all().order_by('-accuracy')
+    elif difficulty == "-1":
+        problems = Problem.objects.all().order_by('-difficulty_level')
     serializer = sortProblemSerializer(problems, many = True)
     return Response(serializer.data)
 
@@ -247,25 +270,26 @@ def postQuestionApi(request, username):
     creator_id = User.objects.get(username = username)
 
     try:
-        if (Problem.objects.get(problem_name = request.data['problem_name'])):
+        if (Problem.objects.get(problem_name = request.data['data']['problem_name'])):
             return HttpResponse("problem with same name already exists")
     except:
         pass
     try:
-        if (Problem.objects.get(description = request.data['description'])):
+        if (Problem.objects.get(description = request.data['data']['description'])):
             return HttpResponse("problem with same description already exists")
     except:
         pass
-    problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['problem_name'], description = request.data['description'], hints = request.data['hints'], test_cases = request.data['test_cases'], outputs = request.data['outputs'], json_test_cases = request.data['inbuilt_code'])
-    # for i in request.data['selected']:
-    #     tagg = Tag.objects.get(tag_id = int(i))
-    #     tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
-    tagg = Tag.objects.get(tag_id = int(request.data['selected']))
-    tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
-    serializer = postQuestionSerializer(instance = problem, data = request.data)
+    problem = Problem.objects.create(creator_id = creator_id, problem_name = request.data['data']['problem_name'], description = request.data['data']['description'], hints = request.data['data']['hints'], test_cases = request.data['data']['test_cases'], outputs = request.data['data']['outputs'], json_test_cases = request.data['data']['inbuilt_code'])
+    for i in request.data['data']['selected']:
+        tagg = Tag.objects.get(tag_name = str(i))
+        tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
+    # tagg = Tag.objects.get(tag_id = int(request.data['selected']))
+    # tag = TopicTag.objects.create(problem_id = problem, tag_id = tagg)
+    serializer = postQuestionSerializer(instance = problem, data = request.data['data'])
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+    problem.delete()
     return Response(serializer.errors)
     # tags = dict(request.data)["tags"]
     # print(tags, type(tags))
@@ -476,8 +500,9 @@ def postQuestion(request):
         print(request.POST)
         user = User.objects.get(username=request.user)
         newProblem = Problem.objects.create(creator_id = request.user, problem_name = request.POST.get('problem_name'), description = request.POST.get('description'), hints = request.POST.get('hints'), test_cases = request.POST.get('test_cases'))
-        tags = dict(request.POST)["postProblemTags"]
+        tags = dict(request.POST)['tags']
         print(tags, type(tags))
+        tags = set(tags)
         for tag in tags:
             print(tag)
             t = Tag.objects.get(tag_name = tag)

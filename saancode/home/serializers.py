@@ -62,7 +62,7 @@ class editProfileSerializer(serializers.ModelSerializer):
 class postQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Problem
-        fields = ['problem_name', 'description', 'hints', 'test_cases', 'outputs', 'inbuilt_code']
+        fields = ['problem_name', 'description', 'hints', 'test_cases', 'outputs', 'json_test_cases']
 
 class topicTagSerializer(serializers.ModelSerializer):
     class Meta:

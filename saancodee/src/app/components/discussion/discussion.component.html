@@ -1,11 +1,13 @@
 <div *ngIf="editPopUpFlag" class="edit-pop-up">
-    <input [(ngModel)]="editedTitle" type="text" name="edit-title" placeholder="title">
-    <textarea [(ngModel)]="editedDiscussion" name="edit-discussion" id="" cols="30" rows="10"
-        placeholder="discussion"></textarea>
-    <div class="edit-buttons">
-        <button (click)="edit_confirm(response.discussion_id)">edit</button>
-        <button (click)="cancel_edit()">cancel</button>
-    </div>
+    <form [formGroup]="editDiscussionForm" class="edit-discussion-form">
+        <input formControlName="editedTitle" type="text" placeholder="title">
+        <textarea style="white-space: pre-wrap" formControlName="editedDiscussion" id="" cols="30"
+            rows="10" placeholder="discussion"></textarea>
+        <div class="edit-buttons">
+            <button type="submit" [disabled]="!editDiscussionForm.valid" (click)="edit_confirm(response.discussion_id)">edit</button>
+            <button type="button" (click)="cancel_edit()">cancel</button>
+        </div>
+    </form>
 </div>
 
 <div *ngIf="deletePopUpFlag" class="delete-pop-up">
@@ -20,7 +22,7 @@
     <div class="card-header">
         <div>
             <span>created by: <span class="code">{{ response.username }} </span></span>
-            <span>created at: <span class="code">{{ response.created_date_time | date:"M d, Y" }}</span></span>
+            <span>created at: <span class="code">{{ response.created_date_time | date:'mediumDate' }}</span></span>
         </div>
         <div>
             <button title="edit" (click)="edit_discussion()"><i class="bi bi-pencil"></i></button>
@@ -29,20 +31,21 @@
     </div>
     <div class="card-discussion-body">
         <h5 class="discussion">{{ response.title }}</h5>
-        <div class="discussion">{{ response.discussion }}</div>
+        <div style="white-space: pre-wrap;" innerHTML={{response.discussion}} class="discussion"></div>
     </div>
     <!-- <button (click)="addComment()">Add Comment</button> -->
-    <div >
+    <div>
         <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
-            comment: <input type="text" formControlName="comment">
-            <button type="submit">comment</button>
+            <textarea type="text" formControlName="comment"></textarea>
+            <button type="submit" [disabled]="!commentForm.valid">comment</button>
         </form>
     </div>
     <div>
-        <div *ngFor="let comment of comments">
-            <div class="comment">
+        <div *ngFor="let comment of comments; let i = index;">
+            <div style="white-space: pre-wrap;" class="comment">
                 <p>{{ comment.user_id }}</p>
                 <p>{{ comment.comment }}</p>
+                <button *ngIf="checkCommentedUser(comment.user_id)" (click)="delete_comment(comment.comment_id)">delete</button>
             </div>
         </div>
     </div>

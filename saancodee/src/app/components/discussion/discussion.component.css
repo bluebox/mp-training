@@ -11,6 +11,16 @@
     flex-direction: column;
 }
 
+.edit-discussion-form {
+    width: 100%;
+    height: 100%;
+}
+
+.edit-discussion-form > input{
+    width: 100%;
+    /* height: 100%; */
+}
+
 .card-discussion-body {
     display: flex;
     flex-direction: column;

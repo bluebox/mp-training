@@ -60,7 +60,7 @@
               created by <span>@{{ discussion.username }}</span>
             </div>
             <div class="card-header">
-              created at <span>{{ discussion.created_date_time | date:"M d, Y" }}</span>
+              created at <span>{{ discussion.created_date_time | date:'mediumDate' }}</span>
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ discussion.title }}</h5>

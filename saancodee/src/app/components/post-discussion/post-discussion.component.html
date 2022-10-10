@@ -10,7 +10,7 @@
             <textarea formControlName="discussion" type="text" rows="30" name="" id=""></textarea>
         </div>
         <div>
-            <button type="submit" class="btn btn-success">POST</button>
+            <button type="submit" [disabled]="!postDiscussionForm.valid" class="btn btn-success">POST</button>
         </div>
     </form>
 </div>

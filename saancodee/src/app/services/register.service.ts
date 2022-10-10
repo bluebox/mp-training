@@ -185,6 +185,16 @@ export class RegisterService {
     return this.http.post(url, data, {headers: headers})
   }
 
+  deleteComment(id:any) {
+    console.log();
+    let url = "http://127.0.0.1:8000/api/delete-comment"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, {"comment_id":id}, {headers: headers})
+  }
+
   editDiscussion(data:any) {
     console.log(data);
     let url = "http://127.0.0.1:8000/api/edit-discussion"

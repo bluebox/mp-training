@@ -20,6 +20,12 @@ export class DiscussionComponent implements OnInit {
   commentForm = this.fb.group ({
     comment: ['', [Validators.required]]
   })
+
+  editDiscussionForm = this.fb.group({
+    editedTitle: ['', Validators.required],
+    editedDiscussion: ['', Validators.required]
+  })
+
   editPopUpFlag: Boolean = false;
   editedTitle: any = '';
   editedDiscussion:any = '';
@@ -31,7 +37,7 @@ export class DiscussionComponent implements OnInit {
     this.service.getDiscussion(this.data).subscribe((data:any) => {
       console.log(data)
       this.response = data['discussion'];
-      this.comments = data['comments']
+      this.comments = data['comments'];
     })
    }
 
@@ -59,12 +65,27 @@ export class DiscussionComponent implements OnInit {
     this.editPopUpFlag = !this.editPopUpFlag;
    }
 
+   checkCommentedUser(user_id:any) {
+    if (localStorage.getItem('username') == user_id) {
+      return true;
+    }
+    return false;
+   }
+
+   delete_comment(id:any) {
+    this.service.deleteComment(id).subscribe((data) => {
+      console.log(data)
+    })
+    alert("comment deleted successfully");
+    location.reload();
+   }
+
    cancel_edit() {
     this.editPopUpFlag = !this.editPopUpFlag;
    }
 
    edit_confirm(discussion_id:any) {
-    let data = {"discussion_id": discussion_id, "title":this.editedTitle, "discussion": this.editedDiscussion}
+    let data = {"discussion_id": discussion_id, "title":this.editDiscussionForm.value.editedTitle, "discussion": this.editDiscussionForm.value.editedDiscussion}
     console.log(data)
     this.service.editDiscussion(data).subscribe((data:any) => {
       console.log(data)
