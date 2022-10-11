@@ -9,11 +9,14 @@ import { Router } from '@angular/router';
 export class CustomerListComponent implements OnInit {
   
   Customers_list:any
+
+  loginValue:any=localStorage.getItem('login')
   constructor(private service:DataServiceService,private router:Router) { }
 
   ngOnInit(): void {
     this.service.getCustomers().subscribe(data=>{
-      this.Customers_list=data
+      this.Customers_list=data;
+      console.log(data)
     });
   }
 

@@ -6,24 +6,19 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 })
 export class DataServiceService {
 
-  private customers='http://127.0.0.1:8000/viewCustomers';
-  private customer='http://127.0.0.1:8000/viewCustomer/';
-  private employees='http://127.0.0.1:8000/viewEmployees';
-  private employee='http://127.0.0.1:8000/viewEmployee/';
-  private stores='http://127.0.0.1:8000/viewStores';
-  private store='http://127.0.0.1:8000/viewStore/';
-  private orders='http://127.0.0.1:8000/viewOrders';
-  private order='http://127.0.0.1:8000/viewOrder/';
+  private customer='http://127.0.0.1:8000/customer/customer';
+  private employees='http://127.0.0.1:8000/employee/employee';
+  private store='http://127.0.0.1:8000/item/store';
+  private order='http://127.0.0.1:8000/order/order';
   private vehicles='http://127.0.0.1:8000/viewVehicles';
   private vehicle='http://127.0.0.1:8000/viewVehicle/';
-  private items='http://127.0.0.1:8000/viewItems';
-  private item='http://127.0.0.1:8000/viewItem/';
+  private item='http://127.0.0.1:8000/item/item';
 
 
   constructor(private http:HttpClient) { }
 
   getCustomers(){
-    return this.http.get(this.customers)
+    return this.http.get(this.customer+'s')
   }
 
   getEmployees(){
@@ -31,36 +26,36 @@ export class DataServiceService {
   }
 
   getStores(){
-    return this.http.get(this.stores)
+    return this.http.get(this.store)
   }
 
   getOrders(){
-    return this.http.get(this.orders)
+    return this.http.get(this.order)
   }
 
-  getItems(){
-    return this.http.get(this.items)
+  getItems(data:any){
+    return this.http.get(this.item)
   }
 
 
   getCustomer(customer_id:any){
-    return this.http.get(this.customer+customer_id.toString())
+    return this.http.get(this.customer+'/'+customer_id.toString())
   }
 
   getEmployee(employee_id:any){
-    return this.http.get(this.employee+employee_id.toString())
+    return this.http.get(this.employees+'/'+employee_id.toString())
   }
 
   getStore(store_id:any){
-    return this.http.get(this.store+store_id.toString())
+    return this.http.get(this.store+'/'+store_id.toString())
   }
 
   getOrder(order_id:any){
-    return this.http.get(this.order+order_id.toString())
+    return this.http.get(this.order+'/'+order_id.toString())
   }
 
   getItem(item_id:any){
-    return this.http.get(this.item+item_id.toString())
+    return this.http.get(this.item+'/'+item_id.toString())
   }
 
   loginCustomer(data:any){
@@ -80,36 +75,36 @@ export class DataServiceService {
   registerCustomer(data:any){
     console.log(data)
    
-    return this.http.post("http://127.0.0.1:8000/registerCustomer",data)
+    return this.http.post(this.customer,data)
   }
 
   updateCustomer(data:any,username:any){
-    return this.http.post('http://127.0.0.1:8000/updateCustomer/'+username.toString(),data)
+    return this.http.put(this.customer+'/'+username.toString(),data)
   }
 
   deleteCustomer(username:any){
 
-    return this.http.post('http://127.0.0.1:8000/deleteCustomer/'+username.toString(),'')
+    return this.http.delete(this.customer+'/'+username.toString())
   }
 
   registerEmployee(data:any){
     console.log(data)
    
-    return this.http.post("http://127.0.0.1:8000/registerEmployee",data)
+    return this.http.post(this.employees,data)
   }
 
   getRoles(){   
-    return this.http.get("http://127.0.0.1:8000/getRoles")
+    return this.http.get("http://127.0.0.1:8000/granite_mart/getRoles")
   }
 
   deleteEmployee(employee_id:any){
 
-    return this.http.post('http://127.0.0.1:8000/deleteEmployee/'+employee_id.toString(),'')
+    return this.http.delete(this.employees+'/'+employee_id.toString())
   }
 
-  updateEmployee(employee_id:any){
+  updateEmployee(employee_id:any,data:any){
 
-    return this.http.post('http://127.0.0.1:8000/updateEmployee/'+employee_id.toString(),'')
+    return this.http.put(this.employees+'/'+employee_id.toString(),data)
   }
 
   getVehicles(){
@@ -134,10 +129,15 @@ export class DataServiceService {
   }
 
   storeRegistration(data:any){
-    return this.http.post('http://127.0.0.1:8000/registerStore',data)
+    return this.http.post(this.store,data)
   }
+  
   updateStore(store_id:any,data:any){
-    return this.http.post('http://127.0.0.1:8000/updateStore'+store_id.toString(),data)
+    return this.http.post(this.store+store_id.toString(),data)
+  }
+
+  authenticate(data:any){
+    return this.http.post("http://127.0.0.1:8000/granite_mart/api/token/",data)
   }
 
 }

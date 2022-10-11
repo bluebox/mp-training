@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './modules/admin.guard';
+import { AdminDashboardComponent } from './modules/admin/admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './modules/admin/admin-login/admin-login.component';
+import { AdminRegisterComponent } from './modules/admin/admin-register/admin-register.component';
+import { AdminUpdateComponent } from './modules/admin/admin-update/admin-update.component';
 import { CustomerListComponent } from './modules/customer/customer-list/customer-list.component';
 import { CustomerLoginComponent } from './modules/customer/customer-login/customer-login.component';
 import { CustomerRegisterComponent } from './modules/customer/customer-register/customer-register.component';
@@ -22,6 +27,11 @@ import { VehiclesUpdateComponent } from './modules/vehicles/vehicles-update/vehi
 import { VehiclesViewComponent } from './modules/vehicles/vehicles-view/vehicles-view.component';
 
 const routes: Routes = [
+  {path:'',redirectTo:'customerLogin',pathMatch:'full'},
+  {path:'adminLogin',component:AdminLoginComponent,canActivate:[AdminGuard]},
+  // {path:'adminDashboard',component:AdminDashboardComponent},
+  {path:'adminRegistration',component:AdminRegisterComponent},
+  {path:'adminUpdate',component:AdminUpdateComponent},
   {path:'customersList',component:CustomerListComponent},
   {path:'viewCustomer/:customer_id',component:CustomerViewComponent},
   {path:'customerRegistration',component:CustomerRegisterComponent},

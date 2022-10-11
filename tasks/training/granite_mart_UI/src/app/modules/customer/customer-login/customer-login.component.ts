@@ -10,11 +10,10 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class CustomerLoginComponent implements OnInit {
   customerLogin = new FormGroup({
-    customer_id: new FormControl(''),
+    username: new FormControl(''),
     password: new FormControl('')
   })
-  
-  login_value:any=''
+  token_pair:any
   constructor(private service:DataServiceService,private router:Router) { }
 
   ngOnInit(): void {
@@ -23,9 +22,15 @@ export class CustomerLoginComponent implements OnInit {
 
 
   login(){
-    console.log(this.customerLogin.getRawValue())
-    this.service.loginCustomer(this.customerLogin.getRawValue()).subscribe(data=>{this.router.navigate(['viewCustomer',data])})
     
+    this.service.authenticate(this.customerLogin.getRawValue()).subscribe(result=>{this.token_pair=result;
+    console.log(this.token_pair.access)
+    if(this.token_pair.access){
+      sessionStorage.setItem('token',this.token_pair.access)
+      sessionStorage.setItem('refresh',this.token_pair.refresh)
+      localStorage.setItem('login','true')
+      // this.router.navigate(['adminDashboard'])
+    }})
   }
 
 }

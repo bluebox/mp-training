@@ -24,6 +24,8 @@ export class CustomerUpdateComponent implements OnInit {
   });
 
 
+  loginValue:any=localStorage.getItem('login')
+
   constructor(private aroute:ActivatedRoute, private service:DataServiceService,private router:Router) { 
 
     this.aroute.params.subscribe(data=>{this.username=data['username']})

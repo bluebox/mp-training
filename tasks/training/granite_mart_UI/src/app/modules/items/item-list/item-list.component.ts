@@ -10,8 +10,10 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 export class ItemListComponent implements OnInit {
 
   items_list:any
+
+  loginValue:any=localStorage.getItem('login')
   constructor(private service:DataServiceService,private router:Router) {
-    this.service.getItems().subscribe(data=>{this.items_list=data;console.log(this.items_list[0])})
+    this.service.getItems(sessionStorage.getItem('token')).subscribe(data=>{this.items_list=data;console.log(this.items_list[0])})
 
    }
 

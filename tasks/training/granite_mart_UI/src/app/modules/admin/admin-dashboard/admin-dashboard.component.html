@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminDashboard</title>
+</head>
+<body>
+    <div class="navigation"> 
+        <p class="logo">Granite Mart</p>
+        <ul *ngIf="loginValue">
+            <li class="navigateto"><a (click)="logout()">logout</a></li>
+            <li class="navigateto"><a [routerLink]="['/vehiclesList']">vehicles</a></li>
+            <li class="navigateto"><a [routerLink]="['/itemsList']">items</a></li>
+            <li class="navigateto"><a [routerLink]="['/storeList']">stores</a></li>
+            <li class="navigateto"><a [routerLink]="['/employeesList']">employees</a></li>
+            <li class="navigateto"><a [routerLink]="['/customersList']">customers</a></li>
+        </ul>
+        <ul *ngIf="!loginValue">
+            <li class="navigateto"><a [routerLink]="['/adminLogin']">admin login</a></li>
+        </ul>
+    </div>
+</body>
+</html>

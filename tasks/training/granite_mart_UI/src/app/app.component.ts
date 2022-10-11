@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'granite_mart_UI';
+  loginValue=localStorage.getItem('login')
 }

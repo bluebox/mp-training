@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemUpdateComponent implements OnInit {
 
+
+  loginValue:any=localStorage.getItem('login')
   constructor() { }
 
   ngOnInit(): void {

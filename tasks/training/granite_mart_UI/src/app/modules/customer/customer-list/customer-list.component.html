@@ -3,7 +3,9 @@
     <table align="center">
         <tr class="row" *ngFor="let i of Customers_list" (click)="onclick(i.username)"><td>Name :</td> <td>{{i.customer_name}}</td>
         <td>Contact: </td><td>{{i.phone}}</td>
-        <td>Email id:</td> <td>{{i.email}}</td><td><button (click)="editProfile(i.username)">Edit</button>&nbsp;&nbsp;<button (click)="deleteProfile(i.username)">Delete</button></td></tr>
+        <td>Email id:</td> <td>{{i.email}}</td><td><button (click)="editProfile(i.username)">Edit</button>&nbsp;&nbsp;<button (click)="deleteProfile(i.username)">Delete</button>
+        </td>
+    </tr>
     
     </table>
     

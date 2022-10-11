@@ -8,6 +8,8 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class OrdersListComponent implements OnInit {
   orderList:any
+
+  loginValue:any=localStorage.getItem('login')
   constructor(private service:DataServiceService) { }
 
   ngOnInit(): void {

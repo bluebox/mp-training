@@ -15,11 +15,10 @@ export class ItemViewComponent implements OnInit {
     this.aroute.params.subscribe(data => {
       this.contains_id = data['contains_id']
       
-      this.service.getItem(this.contains_id).subscribe(data => {
-         this.item_details = data;
-          console.log(this.item_details)
-         })
-      console.log(this.item_details)
+    this.service.getItem(this.contains_id).subscribe(data => {
+      this.item_details = data; })
+    console.log(this.item_details[0])
+      
     })
    
   }
@@ -27,6 +26,9 @@ export class ItemViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addToCart(contains_id:any){
+    console.log("called method")
 
+  }
 
 }

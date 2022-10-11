@@ -1,13 +1,31 @@
 .item{
-    width:10em;
-    background-color:rgb(80, 80, 80);
-    height:fit-content ;
-    display:grid;
-    border:1px solid white;
-    border-radius:3%;
+    width:12rem;
+    height:16rem;
+    background-color: aquamarine;
+    margin:auto;
+    border:1px solid black;
+    border-radius: 10px;
     overflow: hidden;
-    margin:2em;
 }
+
+.dataTable{
+    background-color:rgb(59, 59, 80);
+    margin:auto;
+    color:white;
+    padding:1em;
+    height:40rem;
+    width:65rem;
+
+
+}
+
+.heading{
+    font-size: 2em;
+    font-weight: 700;   
+    text-align: center;
+}
+
+
 .display{
     width:100%;
     height:8em;
@@ -27,7 +45,12 @@
 }
 
 .details{
-    display:none;
+    margin:auto;
+    margin-top:2em;
+    height:18em;
+    width:32em;
+    padding-left:3%;
+    padding-top:1%;
     background-color: white;
     color:black;
 }

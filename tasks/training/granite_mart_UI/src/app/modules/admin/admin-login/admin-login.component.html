@@ -1,16 +1,13 @@
 <p id="title">Granite Mart</p>
 <div class="dataTable">
-    <h1 class=".heading">Customer Login</h1>
-    <form [formGroup]="customerLogin">
+    <h1 class=".heading">AdminLogin</h1>
+    <form [formGroup]="adminLogin">
 
         <table align="center">
             <tr class="row"><td>UserName: </td><td><input type="text" formControlName="username"></td></tr>
             <tr class="row"><td>Password: </td><td><input type="password" formControlName="password"></td></tr>
             <tr class="row"><td></td><td><input class="save" type="reset">&nbsp;&nbsp;<button class="save" (click)="login()">login</button></td></tr>
         </table>
-        <p>Are You New User?<span><a [routerLink]="['/customerRegistration']">Signup</a></span></p>
-        <p>Are You admin?<span><a [routerLink]="['/adminLogin']">Admin Login</a></span></p>
-
-   
+        
     </form>
 </div>

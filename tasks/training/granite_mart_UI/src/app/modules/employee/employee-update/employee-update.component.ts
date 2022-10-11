@@ -25,6 +25,7 @@ export class EmployeeUpdateComponent implements OnInit {
 employee_id:any=''
 roles:any
 employee_data:any
+loginValue:any=localStorage.getItem('login')
 constructor(public service:DataServiceService,private router:Router,private aroute:ActivatedRoute) { 
       this.service.getRoles().subscribe(data=>
         {this.roles=data})

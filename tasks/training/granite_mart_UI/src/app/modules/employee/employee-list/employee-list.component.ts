@@ -9,6 +9,8 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 export class EmployeeListComponent implements OnInit {
   roles:any
   employee_list:any
+
+  loginValue:any=localStorage.getItem('login')
   constructor(private service:DataServiceService,private router:Router) { 
       this.service.getRoles().subscribe(data=>this.roles=data)
   }
