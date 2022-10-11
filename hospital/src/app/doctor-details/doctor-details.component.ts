@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServercomunicationService } from '../servercomunication.service';
 import {Doctor} from '../interfaces/doctor';
+import { BookingService } from '../booking.service';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Appointment } from '../interfaces/appointment';
 @Component({
   selector: 'app-doctor-details',
   templateUrl: './doctor-details.component.html',
@@ -9,12 +12,25 @@ import {Doctor} from '../interfaces/doctor';
 })
 export class DoctorDetailsComponent implements OnInit {
   doctor: any;
+  doctors:any;
   id:any;
-  constructor(private api:ServercomunicationService ) {}
+  constructor(private _bottomSheetRef: MatBottomSheetRef<DoctorDetailsComponent>,private api:ServercomunicationService,private book: BookingService ) {}
 
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
   ngOnInit(): void {
     this.getData();
+
+    console.log(this.doctors);
     console.log(this.getData());
+  }
+
+  getDocDetails(){
+    this.doctors=this.book.getDocDetails()
+    console.log(this.doctors);
+
   }
   getData()
   {

@@ -1,4 +1,10 @@
-<p>doctor-details works!</p>
-doctor's name :{{ doctor.name }}
-doctor 's experience:{{ doctor.name }}
-doctor's fee:(comming soon)
+<!-- <p>doctor-details works!</p>
+doctor's name :{{ doctors.name }}
+doctor 's experience:{{ doctors.name }}
+doctor's fee:(comming soon) -->
+<button (click)="getDocDetails()">Hii</button>
+<div *ngfor="let d of doctors">
+  <div>
+  {{d.name}}
+</div>
+</div>

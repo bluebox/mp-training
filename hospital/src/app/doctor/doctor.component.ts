@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgMaterialModule } from '../ng-material/ng-material.module';
 @Component({
   selector: 'app-doctor',
   templateUrl: './doctor.component.html',

@@ -29,6 +29,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
         MatButtonModule,
         MatCardModule,
         MatToolbarModule,
+        MatBottomSheetModule,
 
     ],
     exports: [
