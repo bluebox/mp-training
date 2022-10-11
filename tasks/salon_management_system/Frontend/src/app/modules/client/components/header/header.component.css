@@ -45,3 +45,6 @@ button{
     background-color: rgb(37, 37, 37);
     color: white;
   }
+  .toolbar{
+    border-bottom: 3px solid #eb008b;
+  }

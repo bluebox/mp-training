@@ -11,7 +11,7 @@ export class BranchComponent implements OnInit {
 
   subscription : Subscription = Subscription.EMPTY
   branches: any;
-  displayedColumns :string[]=['branch_id','branch_name','location'];
+  displayedColumns :string[]=['spa','branch_id','branch_name','location'];
 
   constructor(private http : HttpserviceService) { }
 

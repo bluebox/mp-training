@@ -1,5 +1,6 @@
 
 from email import message_from_string
+from http.client import HTTPResponse
 from django.http import JsonResponse
 
 from .models import Appointment, Branch, User, services_provided,Employee,Client
@@ -104,20 +105,22 @@ class EmployeeList(APIView):
         serializer = EmployeeSerializer(employees,many=True)
         return Response(serializer.data)
 
+class ListOfEmployees(APIView):
+    def get(self,request):
+        employees = User.objects.filter(is_staff = 'True',is_superuser = "False").values('id','username',"first_name","last_name","email","employee__emp_id","employee__role","employee__emp_contact_number","employee__branch_id")
+        return Response(employees)
+
 class ClientList(APIView):
     def get(self,request):
-        # clients = Client.objects.all()
-        # clients = Client.objects.all().values('id','username','first_name','last_name','email','')
-        clients = User.objects.all().values('id','username','first_name','last_name','email','Client__user_id','Client__Client_contact_number')
-        serializer = Userserializer(clients,many=True)
+        clients = Client.objects.all()
+        serializer = ClientSerializer(clients,many=True)
+
         return Response(serializer.data)
 
 class ListOfClients(APIView):
     def get(self,request):
-        clients = Client.objects.all().values('User__id','User__username',"User__first_name","User__email","user_id","Client_contact_number")
-        serializer = ClientSerializer(clients,many=True)
-        return Response(serializer.data)
-
+        clients = User.objects.filter(is_staff = 'False').values('id','username',"first_name","last_name","email","client__Client_contact_number")
+        return Response(clients)
 
 class ClientRegistration(APIView):
  
@@ -147,7 +150,7 @@ class EmployeeRegistration(APIView):
         if serializer.is_valid():
             user = serializer.save()
             print(user)
-            employee_object = EmployeeSerializer(data = {'user_id':user.id,'branch_id':request.data['branch_id'],'role':request.data['role'],'emp_contact_number':request.data['emp_contact_number']})
+            employee_object = EmployeeSerializer(data = {'user_id':user.id,'emp_id':request.data['emp_id'],'branch_id':request.data['branch_id'],'role':request.data['role'],'emp_contact_number':request.data['emp_contact_number']})
             print(employee_object)
             if employee_object.is_valid():
                 employee_object.save()

@@ -3,4 +3,9 @@ table {
   }
   .column-name{
       color: black;
+      text-align: center;
   }
+  .column-value{
+    text-align: center;
+  }
+  

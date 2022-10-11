@@ -1,4 +1,5 @@
 
+from email.policy import default
 from django.db import models
 
 # Create your models here.
@@ -38,7 +39,7 @@ class Branch(models.Model):
         return self.branch_name
 
 class Employee(models.Model):
-    # emp_id = models.CharField(primary_key = True,max_length = 10)
+    emp_id = models.CharField(primary_key = True,max_length = 10)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     branch_id = models.ForeignKey(Branch,  on_delete=models.CASCADE)
     role = models.CharField(max_length=20)
@@ -66,7 +67,7 @@ class Appointment(models.Model):
     client_id = models.ForeignKey(Client,  on_delete=models.CASCADE)
     Time_of_appointment = models.TimeField()
     appointment_date = models.DateField()
-    Appointment_Status = models.CharField(max_length=20)
+    Appointment_Status = models.CharField(max_length=20,default="booked")
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     services = models.ManyToManyField(services_provided)
 

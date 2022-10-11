@@ -54,4 +54,30 @@ table {
 }
 .column-name{
     color: black;
+    font-size: 15px;
+    text-align: center;
+   }
+.icon-name{
+    color : black;
+    background-color: white;
+    margin: none;
+   
+  }
+  .icon-name-spa{
+    color: black;
+    background-color: white;
+    margin:none;
+  }
+/* button{
+    border: none;
+    background-color: black;
+    color: white;
+} */
+.icon-name{
+    border: none;
+    background-color: black;
+    color: white;
 }
+.column-value{
+    text-align: center;
+  }

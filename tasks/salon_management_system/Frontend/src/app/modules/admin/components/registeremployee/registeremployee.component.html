@@ -30,16 +30,21 @@
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         <small class="text-danger" *ngIf="employeeRegistrationForm.get('Password')?.invalid  && employeeRegistrationForm.get('Password')?.touched " >Password is required</small>
     </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Employee ID</mat-label>
+        <input formControlName="emp_id" matInput placeholder="Enter Employee id" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('emp_id')?.invalid  && employeeRegistrationForm.get('emp_id')?.touched " >Employee ID is required</small>
+    </mat-form-field>
     
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Branch Id</mat-label>
         <input formControlName="branch_id" matInput placeholder="Enter Branch id" />
-        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >Email is required</small>
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >branch id is required</small>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Role of The Employee</mat-label>
         <input formControlName="role" matInput placeholder="Enter Employee role" />
-        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >Email is required</small>
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >role is required</small>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="outline">

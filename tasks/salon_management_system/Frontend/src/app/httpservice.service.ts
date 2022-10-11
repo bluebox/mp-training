@@ -32,7 +32,11 @@ export class HttpserviceService {
   }
 
   getClients(){
-    return this.http.get('http://127.0.0.1:8000/clientlist')
+    return this.http.get('http://127.0.0.1:8000/listclients')
+  }
+
+  getEmployee(){
+    return this.http.get('http://127.0.0.1:8000/listemployees')
   }
 
   newEmployee(data : any){

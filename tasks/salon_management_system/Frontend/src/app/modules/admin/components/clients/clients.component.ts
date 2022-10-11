@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { HttpserviceService } from 'src/app/httpservice.service';
 
 @Component({
   selector: 'app-clients',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientsComponent implements OnInit {
 
-  constructor() { }
+  subscription : Subscription = Subscription.EMPTY
+  clients :any;
+  displayedColumns :string[]=['id','username','first_name',"last_name","email","client__Client_contact_number"];
+  constructor(private http:HttpserviceService) { }
 
   ngOnInit(): void {
+    this.subscription =this.http.getClients().subscribe((data) =>{this.clients = data ;console.log(data)});
   }
-
+  
 }

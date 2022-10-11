@@ -1,0 +1,26 @@
+.body{
+    background-image: url("/assets/images/clienthome3.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover;
+    width: 100%;
+}
+.content-home{
+    padding-top: 260px;
+    padding-bottom: 270px;
+    padding-left: 100px;
+}
+h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 50px;
+    color: black;
+    padding-bottom: 20px;
+}
+
+button{
+    border: none;
+    font-size: 20px;
+    margin-left: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+}

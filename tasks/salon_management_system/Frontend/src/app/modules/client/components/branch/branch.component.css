@@ -2,5 +2,10 @@ table {
     width: 100%;
   }
   .column-name{
-      color: black;
+    color: black;
+    font-size: 15px;
+    text-align: center;
+   }
+   .column-value{
+    text-align: center;
   }

@@ -6,8 +6,10 @@ table {
     width: 100%;
   }
   .column-name{
-      color: black;
-  }
+    color: black;
+    font-size: 15px;
+    text-align: center;
+   }
   .icon-name{
     color : black;
     background-color: white;
@@ -34,4 +36,7 @@ table {
 .add button{
     background-color: #eb008b;
     
+}
+.column-value{
+  text-align: center;
 }

@@ -36,3 +36,6 @@
 .sp a:hover{
     color:#eb008b;
 }
+.toolbar{
+    border-bottom: 1px solid gray;
+}

@@ -14,7 +14,9 @@ urlpatterns = [
     # path('login',views.LoginUser.as_view()),
     path('appointments/',views.AppointmentList.as_view()),
     path('employeeregistration',views.EmployeeRegistration.as_view()),
-    path('listclients',views.ListOfClients.as_view())
+    path('listclients',views.ListOfClients.as_view()),
+    path('listemployees',views.ListOfEmployees.as_view()),
+    
 
     # path('usercreate/',views.UserCreate.as_view()),
 

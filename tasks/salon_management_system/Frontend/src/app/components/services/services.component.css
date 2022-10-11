@@ -48,9 +48,10 @@ table {
     width: 100%;
   }
   .column-name{
-      color: black;
-      font-size: 20px;
-  }
+    color: black;
+    font-size: 15px;
+    text-align: center;
+   }
 
   .icon-name{
     color : black;
@@ -58,9 +59,17 @@ table {
     margin: none;
    
   }
-  .icon-name button{
+  .icon-name-spa{
     color: black;
-    background-color: #eb008b;
-    margin: none;
+    background-color: white;
+    margin:none;
+  }
+  .icon-name{
     border: none;
+    background-color: black;
+    color: white;
+}
+ 
+.column-value{
+    text-align: center;
   }

@@ -16,15 +16,7 @@ export class RegisteremployeeComponent implements OnInit {
 
   constructor(private http :HttpserviceService ,private router: Router) { }
 
-  // ClientRegistrationForm: FormGroup = new FormGroup({
-  //   username: new FormControl("", Validators.required),
-  //   first_name: new FormControl("", Validators.required),
-  //   last_name: new FormControl(""),
-  //   email: new FormControl('', [Validators.email, Validators.required]),
-  //   password: new FormControl("", [Validators.minLength(8),Validators.required]),
-  //   Client_contact_number: new FormControl("", [Validators.maxLength(10), Validators.required]),
 
-  // })
 
   employeeRegistrationForm : FormGroup = new FormGroup({
     username: new FormControl("", Validators.required),
@@ -32,6 +24,7 @@ export class RegisteremployeeComponent implements OnInit {
     last_name: new FormControl(""),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl("", [Validators.minLength(8),Validators.required]),
+    emp_id :new FormControl("",Validators.required),
     branch_id : new FormControl(""),
     role : new FormControl("",Validators.required),
     emp_contact_number : new FormControl("",[Validators.maxLength(10), Validators.required]),
@@ -43,16 +36,12 @@ export class RegisteremployeeComponent implements OnInit {
   }
   onRegisterSubmit() {
     console.log(this.employeeRegistrationForm.value);
+    console.log(this.employeeRegistrationForm.valid)
     if (this.employeeRegistrationForm.valid) {
       this.http.newEmployee(this.employeeRegistrationForm.value).subscribe(data =>{
-        this.errorMessage = data.message
-        console.log(this.errorMessage)
-        if (this.errorMessage == "registered") {
-          this.router.navigate(['login'])
-      }
-      // else{
-      //   this.router.navigate(['login'])
-      // }
+        // this.errorMessage = data.message
+        // console.log(this.errorMessage)
+        this.router.navigate(['admin/home'])
     })
     }
     else {

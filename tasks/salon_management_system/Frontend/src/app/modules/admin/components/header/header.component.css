@@ -1,3 +1,4 @@
+
 .example-icon {
     padding: 0 14px;
   }
@@ -36,3 +37,8 @@
 .sp a:hover{
     color:#eb008b;
 }
+button{
+    border: none;
+    background-color: black;
+    color: #eb008b;
+  }
