@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ServercomunicationService } from '../servercomunication.service';
-import {Doctor} from '../interfaces/doctor';
+// import {Doctor} from '../interfaces/doctor';
 import { BookingService } from '../booking.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Appointment } from '../interfaces/appointment';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-doctor-details',
   templateUrl: './doctor-details.component.html',
@@ -17,17 +19,18 @@ export class DoctorDetailsComponent implements OnInit {
   constructor(private _bottomSheetRef: MatBottomSheetRef<DoctorDetailsComponent>,private api:ServercomunicationService,private book: BookingService ) {}
 
   ngOnInit(): void {
-    this.getData();
-
-    console.log(this.doctors);
-    console.log(this.getData());
+    // this.getData();
+    this.getDocDetails()
+    // console.log(this.doctors);
+    // console.log(this.getData());
   }
-
-  getDocDetails(event: MouseEvent): any{
-    this.doctors=this.book.getDocDetails()
-    console.log(this.doctors);
+  hide(event: MouseEvent): any{
     this._bottomSheetRef.dismiss();
     event.preventDefault();
+ }
+  getDocDetails(): any{
+    this.doctors=this.book.getDocDetails()
+    console.log(this.doctors);
   }
   getData()
   {

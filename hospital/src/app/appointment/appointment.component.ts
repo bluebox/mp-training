@@ -4,7 +4,6 @@ import { BookingService } from '../booking.service';
 import { ServercomunicationService } from '../servercomunication.service';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import { DoctorDetailsComponent } from '../doctor-details/doctor-details.component';
-import { from } from 'rxjs';
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',

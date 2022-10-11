@@ -2,9 +2,15 @@
 doctor's name :{{ doctors.name }}
 doctor 's experience:{{ doctors.name }}
 doctor's fee:(comming soon) -->
-<button (click)="getDocDetails($event)">X</button>
-<div *ngfor="let d of doctors">
+<button (click)="hide($event)">X</button>
+<!-- <div *ngfor="let doc of doctors">
   <div>
-  {{d.name}}
+  {{doc.name}}
 </div>
-</div>
+</div> -->
+<ul class="doctors">
+  <li *ngFor="let hero of doctors">
+
+     <p> {{hero.dob}}-------- {{hero.name}}</p>
+  </li>
+</ul>
