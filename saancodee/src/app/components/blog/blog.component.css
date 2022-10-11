@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+.blog-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    height: 100vh;
+}
+
+.inner-blog-container {
+    height: 100%;
+    border: 1px solid black;
+}
+
+.blog-title {
+    word-wrap: break-word;
+}
+
+.blog-card {
+    margin: 1rem;
+}
+
+.blog-params {
+    display: flex;
+}
+
+.blog-param {
+    margin-right: 0.5rem;
+}
+
+.right-grid {
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+.search {
+    margin: 1rem;
+}
+
+.search-btn {
+    height: 100%;
+    margin: 0;
+    background-color: #0D6EFD;
+    color: white;
+}
+
+.categories {
+    margin: 1rem;
+}
+
+.categories > p {
+    font-style: italic;
+    font-size: 2rem;
+}
+
+.category {
+    display: flex;
+    justify-content: space-between;
+}

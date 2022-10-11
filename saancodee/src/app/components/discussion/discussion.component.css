@@ -2,6 +2,11 @@
     border: 1px solid grey;
 }
 
+.discussion-div {
+    background-color: #EEEEEE;
+    padding: 1rem;
+}
+
 .edit-pop-up {
     position: fixed;
     z-index: 1;

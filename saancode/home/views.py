@@ -31,6 +31,18 @@ def api(request):
     return Response(api_urls)
 
 @api_view(['GET'])
+def blogs_api(request):
+    blogs = Blog.objects.all().order_by("created_date_time")
+    serializer = BlogsSerializer(instance=blogs, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def blog_api(request):
+    blog = Blog.objects.get(blog_id = request.data.get('id'))
+    serializer = BlogsSerializer(instance=blog)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def problemsList(request):
     problems = Problem.objects.all()
     serializer = ProblemSerializer(problems, many = True)

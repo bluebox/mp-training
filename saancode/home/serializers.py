@@ -69,6 +69,11 @@ class topicTagSerializer(serializers.ModelSerializer):
         model = TopicTag
         fields = ['tag_id', 'tag_name']
 
+class BlogsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = "__all__"
+
 class discussionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discussion

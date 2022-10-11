@@ -1,10 +1,11 @@
 <div *ngIf="editPopUpFlag" class="edit-pop-up">
     <form [formGroup]="editDiscussionForm" class="edit-discussion-form">
         <input formControlName="editedTitle" type="text" placeholder="title">
-        <textarea style="white-space: pre-wrap" formControlName="editedDiscussion" id="" cols="30"
-            rows="10" placeholder="discussion"></textarea>
+        <textarea style="white-space: pre-wrap" formControlName="editedDiscussion" id="" cols="30" rows="10"
+            placeholder="discussion"></textarea>
         <div class="edit-buttons">
-            <button type="submit" [disabled]="!editDiscussionForm.valid" (click)="edit_confirm(response.discussion_id)">edit</button>
+            <button type="submit" [disabled]="!editDiscussionForm.valid"
+                (click)="edit_confirm(response.discussion_id)">edit</button>
             <button type="button" (click)="cancel_edit()">cancel</button>
         </div>
     </form>
@@ -18,8 +19,65 @@
     </div>
 </div>
 
+<section style="background-color: #eee;">
+    <div class="container my-5 py-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-start align-items-center">
+                            <div>
+                                <h6 class="fw-bold text-danger mb-1">{{ response.username }}</h6>
+                                <p class="text-muted small mb-0">
+                                    Shared publicly - {{ response.created_date_time | date: "mediumDate" }}
+                                </p>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold text-primary mb-1">{{ response.title }}</h6>
+                        <div class="discussion-div">
+                            <p style="white-space: pre-wrap;" class="mt-3 mb-4 pb-2">
+                                {{ response.discussion }}
+                            </p>
+                        </div>
+
+                        <div class="small d-flex justify-content-start">
+                            <a style="cursor: pointer;" class="d-flex align-items-center me-3">
+                                <i class="bi bi-pencil"></i>
+                                <p title="edit" (click)="edit_discussion()" class="mb-0">edit</p>
+                            </a>
+                            <a style="cursor: pointer;" class="d-flex align-items-center me-3">
+                                <i class="bi bi-trash"></i>
+                                <p title="delete" (click)="delete_discussion()" class="mb-0">delete</p>
+                            </a>
+                            <a href="#!" class="d-flex align-items-center me-3">
+                                <i class="fas fa-share me-2"></i>
+                                <p class="mb-0">Share</p>
+                            </a>
+                        </div>
+                    </div>
+                    <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
+                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                            <div class="d-flex flex-start w-100">
+                                <div class="form-outline w-100">
+                                    <textarea type="text" formControlName="comment" class="form-control" id="textAreaExample" rows="4"
+                                        style="background: #fff;"></textarea>
+                                    <label class="form-label" for="textAreaExample">Message</label>
+                                </div>
+                            </div>
+                            <div class="float-end mt-2 pt-1">
+                                <button type="submit" [disabled]="!commentForm.valid" class="btn btn-primary btn-sm">Post comment</button>
+                                <!-- <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="card">
-    <div class="card-header">
+    <!-- <div class="card-header">
         <div>
             <span>created by: <span class="code">{{ response.username }} </span></span>
             <span>created at: <span class="code">{{ response.created_date_time | date:'mediumDate' }}</span></span>
@@ -33,19 +91,20 @@
         <h5 class="discussion">{{ response.title }}</h5>
         <div style="white-space: pre-wrap;" innerHTML={{response.discussion}} class="discussion"></div>
     </div>
-    <!-- <button (click)="addComment()">Add Comment</button> -->
+    <button (click)="addComment()">Add Comment</button>
     <div>
         <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
             <textarea type="text" formControlName="comment"></textarea>
             <button type="submit" [disabled]="!commentForm.valid">comment</button>
         </form>
-    </div>
+    </div> -->
     <div>
         <div *ngFor="let comment of comments; let i = index;">
             <div style="white-space: pre-wrap;" class="comment">
                 <p>{{ comment.user_id }}</p>
                 <p>{{ comment.comment }}</p>
-                <button *ngIf="checkCommentedUser(comment.user_id)" (click)="delete_comment(comment.comment_id)">delete</button>
+                <button *ngIf="checkCommentedUser(comment.user_id)"
+                    (click)="delete_comment(comment.comment_id)">delete</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BlogItemComponent } from './components/blog-item/blog-item.component';
+import { BlogComponent } from './components/blog/blog.component';
 import { CategoryComponent } from './components/category/category.component';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path:"register", component:RegisterComponent},
   {path:"post-discussion/:id", component:PostDiscussionComponent},
   {path:"problems", component:ProblemsComponent},
+  {path:"blog/:id", component:BlogItemComponent},
+  {path:"blogs", component:BlogComponent},
   {path:"problems/category/:id", component:CategoryComponent},
   {path:"problems/:id", component:ProblemComponent},
   {path:"submissions/:id", component:SubmissionComponent},

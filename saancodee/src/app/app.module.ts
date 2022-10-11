@@ -22,6 +22,8 @@ import { PostQuestionComponent } from './components/post-question/post-question.
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 import { PostDiscussionComponent } from './components/post-discussion/post-discussion.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogItemComponent } from './components/blog-item/blog-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,9 @@ import { PostDiscussionComponent } from './components/post-discussion/post-discu
     PostQuestionComponent,
     DiscussionComponent,
     SubmissionComponent,
-    PostDiscussionComponent,  
+    PostDiscussionComponent,
+    BlogComponent,
+    BlogItemComponent,  
   ],
   imports: [
     BrowserModule,

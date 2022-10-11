@@ -1,5 +1,7 @@
+from cgi import print_form
 from codecs import getencoder
 from email.policy import default
+from random import choices
 from re import T
 from tokenize import blank_re
 from django.db import models
@@ -146,6 +148,24 @@ class Discussion(models.Model):
 
     def __str__(self):
         return self.title
+
+class Blog(models.Model):
+    blog_id = models.AutoField(primary_key = True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
+    created_date_time = models.DateTimeField(auto_now_add = True)
+    title = models.CharField(max_length = 50, null=False, blank=False)
+    discussion = models.TextField(max_length=2000, null=False, blank=False)
+    tag_choices = (
+        ('web development', 'web development'),
+        ('game development', 'game development'),
+        ('devops', 'devops'),
+        ('Artificial intelligence', 'Artificial intelligence'),
+        ('block chain', 'block chain'),
+        ('mobile development', 'mobile development'),
+        ('data structures', 'data structures'),
+    )
+    tag = models.CharField(max_length=30, choices=tag_choices, null=False, blank=False)
+    likes = models.IntegerField(default=0)
         
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
