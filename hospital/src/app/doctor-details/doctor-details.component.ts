@@ -3,9 +3,6 @@ import { ServercomunicationService } from '../servercomunication.service';
 // import {Doctor} from '../interfaces/doctor';
 import { BookingService } from '../booking.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { Appointment } from '../interfaces/appointment';
-import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-doctor-details',
   templateUrl: './doctor-details.component.html',
