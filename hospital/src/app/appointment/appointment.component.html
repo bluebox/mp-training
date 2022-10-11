@@ -3,7 +3,7 @@
   <mat-form-field appearance="fill" >
     <mat-label>Available Slot</mat-label>
       <mat-select matNativeControl name="slot" formControlName="slot">
-        <mat-option *ngFor="let post of doctors" value="{{ post.d_id }}"
+        <mat-option *ngFor="let post of slot" value="{{ post.id }}"
            >
       {{ post.name}}
     </mat-option>
@@ -11,8 +11,8 @@
   </mat-form-field>
   <mat-form-field appearance="fill" hintLabel="Doctor name required">
     <mat-label>Doctor</mat-label>
-    <mat-select matNativeControl name="doctor" formControlName="doctor">
-        <mat-option *ngFor="let post of doctor" value="{{ post.d_id }}"
+    <mat-select matNativeControl name="doctors" formControlName="doctor">
+        <mat-option *ngFor="let post of doctors" value="{{ post.dob }}"
            >
       {{ post.d_id }}
     </mat-option>
@@ -26,4 +26,3 @@
     <mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error>
   </mat-form-field> -->
 </form>
-<app-doctor-details></app-doctor-details>

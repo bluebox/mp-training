@@ -35,7 +35,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     NavbarComponent,
     FooterComponent,
     SalaryComponent,
-    //
+    AppointmentComponent,
     TestComponent,
     BillComponent,
     DiagnosisComponent,
@@ -53,7 +53,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     NgMaterialModule,
     HttpClientModule,
     MatBottomSheetModule,
-    // AppointmentComponent,
+
   ],
   providers: [ServercomunicationService],
   bootstrap: [AppComponent]

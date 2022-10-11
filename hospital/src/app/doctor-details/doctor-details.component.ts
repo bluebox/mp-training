@@ -16,10 +16,6 @@ export class DoctorDetailsComponent implements OnInit {
   id:any;
   constructor(private _bottomSheetRef: MatBottomSheetRef<DoctorDetailsComponent>,private api:ServercomunicationService,private book: BookingService ) {}
 
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
-  }
   ngOnInit(): void {
     this.getData();
 
@@ -27,10 +23,11 @@ export class DoctorDetailsComponent implements OnInit {
     console.log(this.getData());
   }
 
-  getDocDetails(){
+  getDocDetails(event: MouseEvent): any{
     this.doctors=this.book.getDocDetails()
     console.log(this.doctors);
-
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
   }
   getData()
   {

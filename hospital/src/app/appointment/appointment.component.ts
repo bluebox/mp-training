@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookingService } from '../booking.service';
 import { ServercomunicationService } from '../servercomunication.service';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet;
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import { DoctorDetailsComponent } from '../doctor-details/doctor-details.component';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -21,9 +22,9 @@ export class AppointmentComponent implements OnInit {
     {name: "ayan4", dob:"1995"}
   ]
   slot: any;
-  constructor(private bottomSheet: MatBottomSheet,private fb: FormBuilder,private api:ServercomunicationService,private book:BookingService) { }
+  constructor(private _bottomSheet: MatBottomSheet,private fb: FormBuilder,private api:ServercomunicationService,private book:BookingService) { }
   openBottomSheet(): void {
-    this.bottomSheet.open(DoctorDetailsComponent);
+    this._bottomSheet.open(DoctorDetailsComponent);
   }
   ngOnInit(): void {
     this.get_Doc_Data();
