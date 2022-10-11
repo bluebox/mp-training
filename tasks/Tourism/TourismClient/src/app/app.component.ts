@@ -10,7 +10,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnChanges{
   title = 'ToruismClient';
   constructor(private router: Router, private auth: AuthService) {
-    this.auth.isLogin.subscribe(data=>console.log(data))
+    // this.auth.isLogin.subscribe(data=>console.log(data))
     // this.router.events
     //   .forEach(e => e instanceof NavigationEnd)
     //   .then((data)=> console.log(data))

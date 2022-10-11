@@ -1,15 +1,29 @@
 <form class="global-form" [formGroup]="PlaceForm" (ngSubmit)="addPlaceObj()">
+  <img *ngIf="imageUrl && imageUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+    <span *ngIf="!imageUrl">Choose image</span>
+    <span *ngIf="imageUrl">change image</span>
+  </button>
+  <input hidden type="file" name="profile" #fileInput placeholder="profile"
+    class="" (change)="onchange($event)"/>
+
+  <!-- <div class="d-flex align-items-center justify-content-between border file_input">
+     <label for="image" class="file_label">Place Image: </label>
+
+  </div> -->
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Place Name</mat-label>
     <input type="text" name="place_name" matInput formControlName="place_name" placeholder="place_name"
       class="">
   </mat-form-field>
 
-  <mat-form-field class="global-form-full-width" appearance="fill">
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Image</mat-label>
     <input type="text" name="image" matInput formControlName="image" placeholder="Image"
       class="">
-  </mat-form-field>
+  </mat-form-field> -->
+
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Description</mat-label>

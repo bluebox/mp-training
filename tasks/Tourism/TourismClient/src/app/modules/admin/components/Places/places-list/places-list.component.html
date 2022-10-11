@@ -1,5 +1,16 @@
 <button routerLink="../addPlace" class="d-block ms-auto">Add place</button>
 
-<div *ngIf="placeList" >
-  <p *ngFor="let place of placeList" > {{place.place_name}} <button (click)="editPlace(place.id)">edit</button> </p>
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let place of pageItems" >
+    <td>{{place.place_name}}</td>
+    <td><button (click)="editPlace(place.id)" class="bg-light border-0"><i class="fa-solid fa-pen text-primary"></i></button></td>
+    <td><button (click)="deletePlace(place.id)" class="bg-light border-0"><i class="fa-solid fa-trash text-danger"></i></button></td>
+  </tr>
+</table>
+
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
 </div>

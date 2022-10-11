@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Route, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -9,37 +9,50 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
 
   isAdmin:boolean = false
+  isAthenticated!: boolean
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService,
+    private route: Router,
+    private activatedRoute: ActivatedRoute
+    ) {
+      // console.log("guard");
+      // this.auth.isAuthenticated.subscribe(res => this.isAthenticated = res)
+      // console.log("guard");
 
+
+
+      this.activatedRoute.params.subscribe(data => {
+        console.log("guard params");
+        this.auth.isAuthenticated.subscribe(res => {
+          this.isAthenticated = res
+        })
+      })
+  }
+
+  ngOnInit() {
+    console.log("guard");
+    this.activatedRoute.params.subscribe(data => {
+      this.auth.isAuthenticated.subscribe(res => this.isAthenticated = res)
+    })
   }
 
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+    {
 
-      if(this.auth.isAuthenticated){
-        this.auth.getAccessToken().subscribe(data=>{
-          let dataString = JSON.stringify(data)
-          let dataObj = JSON.parse(dataString)
-          if(dataObj.token){
-            this.auth.getUserDetails(dataObj.token).subscribe(data=>{
-              let resString = JSON.stringify(data)
-              let resObj = JSON.parse(resString)
-              if(resObj){
-                console.log(resObj.isAdmin);
-                // this.isAdmin = resObj.isAdmin
-                console.log("true");
-                return resObj.isAdmin;
-              }
-            })
-          }
-        })
+      // return this.auth.checkIfUserAuthenticated().then(res => {
+      //   return res;
+      // })
+
+      if(this.auth.isLogin){
+        return true
       }
-      console.log("false");
-      return true;
-
+      else{
+        this.route.navigate(['login'], {queryParams: { returnUrl: state.url}})
+        return false
+      }
   }
 
 }

@@ -1,0 +1,60 @@
+
+<form class="global-form" [formGroup]="ProfileEditForm" (ngSubmit)="editProfile()">
+
+  <img *ngIf="imageUrl && imageUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+    <span *ngIf="!imageUrl">Choose image</span>
+    <span *ngIf="imageUrl">change image</span>
+  </button>
+  <input hidden type="file" name="profile" #fileInput placeholder="profile"
+    class="" (change)="onchange($event)"/>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" name="email" matInput placeholder=""
+      class="" [disabled]="true" [value]="currentUser.email">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input type="text" name="name" matInput formControlName="name" placeholder="name"
+      class="">
+  </mat-form-field>
+
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Profile Pic</mat-label>
+
+  </mat-form-field> -->
+
+
+  <!-- <div class="d-flex align-items-center justify-content-between border file_input">
+    <label for="profile" class="file_label">Profile Pic: </label>
+    <button type="button" mat-raised-button (click)="fileInput.click()">
+      <span *ngIf="!imageUrl">Choose File</span>
+      <span *ngIf="imageUrl">file selected</span>
+    </button>
+    <input hidden type="file" name="profile" #fileInput placeholder="profile"
+      class="" (change)="onchange($event)"/>
+  </div> -->
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="text" name="password" matInput formControlName="password" placeholder="password"
+      class="">
+  </mat-form-field> -->
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>ConfirmPassword</mat-label>
+    <input type="password" name="password" matInput formControlName="confirm_password" placeholder="confirm password"
+      class="">
+  </mat-form-field> -->
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Mobile</mat-label>
+    <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
+      class="">
+  </mat-form-field>
+
+  <button mat-raised-button class="" >Update</button>
+</form>

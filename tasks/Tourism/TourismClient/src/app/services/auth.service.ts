@@ -11,38 +11,59 @@ import { AsyncSubject, BehaviorSubject, map, Observable, Subject } from 'rxjs';
 })
 export class AuthService {
 
-  isAuthenticated: boolean = false;
-  isLogin = new BehaviorSubject<boolean>(false);
-  user: any;
+  isAuthenticated = new Subject<boolean>();
+
+  isLogin!: boolean;
+  currentLoginUser = new Subject<any>();
+  currentUser: any;
   // this.isLogin.next(false);
 
 
   constructor(private http: HttpClient) {
-    let token = this.getCookie('refresh_token')
-    console.log('no token');
-    if (token && token != "") {
-      console.log(token);
-      this.user = this.getDecodedAccessToken(token)
-      this.isAuthenticated = true
-      this.isLogin.next(true)
-    }
-    // this.isLogin.next(true);
+    console.log("constructor");
+    this.getUserDetails().subscribe(
+      user => {
+        let userString = JSON.stringify(user)
+        let userObj = JSON.parse(userString)
+        // console.log(userObj);
+        this.currentUser = userObj
+        this.currentLoginUser.next(userObj)
+        this.isAuthenticated.next(true);
+        this.isLogin = true;
+      },
+      err => {
+        console.log(err.error.detail);
+        this.isAuthenticated.next(false)
+        this.currentUser = null;
+        this.currentLoginUser.next(null)
+        this.isLogin = false
+      }
+    )
   }
 
-  ngOnInIt() {
-    // this.isLogin.subscribe(data => console.log(data))
-    // this.isLogin.complete()
+  checkIfUserAuthenticated(): Promise<boolean> {
+    return new Promise((resolve)=> {
+      this.isAuthenticated.subscribe(res=>{
+        if(res){
+          console.log("guard subscribe true");
+          resolve(true)
+        }
+        else{
+          resolve(false)
+        }
+      }, err => {resolve(false)})
+    })
+
   }
 
-
-  changeAuthenticationToFalse() {
-    this.isAuthenticated = false
-  }
-  changeAuthenticationToTrue() {
-    this.isAuthenticated = true
-  }
-  changeAuthentication() {
-    this.isAuthenticated = !this.isAuthenticated
+  editUserProfile(userObj:any){
+    return this.http.put('/api/bookings/user/', userObj).pipe(
+      map(user => {
+        this.currentLoginUser.next(user);
+        this.currentUser = user;
+        return user
+      })
+    )
   }
 
   getCookie(cname:string) {
@@ -73,8 +94,19 @@ export class AuthService {
 
   registerAndGetToken(user: FormGroup) {
     console.log(user);
-    let response = this.http.post('/api/bookings/users/', user)
-    return response
+    return this.http.post('/api/bookings/users/', user).pipe(
+      map(res => {
+        this.isLogin = true
+        this.isAuthenticated.next(true)
+        let userString = JSON.stringify(res)
+        let userObj = JSON.parse(userString)
+        let user = userObj.substring(1, userObj.length-1);
+        let userObject = JSON.parse(user)
+        this.currentUser = userObject.fields
+        this.currentLoginUser.next(userObject.fields)
+        return userObject.fields;
+      })
+    )
   }
 
 
@@ -82,7 +114,10 @@ export class AuthService {
     return this.http.post('/api/bookings/logout/', {}).pipe(
       map(res => {
         if(res)
-          this.isLogin.next(false)
+          this.isAuthenticated.next(false)
+          this.isLogin = false
+          this.currentUser = null;
+          this.currentLoginUser.next(null)
         return res
       })
     )
@@ -91,25 +126,25 @@ export class AuthService {
   loginVerification(credentials: FormGroup) {
     return this.http.post('/api/bookings/login/', credentials).pipe(
       map(res=> {
-        if(res){
-          this.isLogin.next(true);
-        }
-        return res;
+        this.isAuthenticated.next(true);
+        this.isLogin = true
+        let userString = JSON.stringify(res)
+        let userObj = JSON.parse(userString)
+        let user = userObj.substring(1, userObj.length-1);
+        let userObject = JSON.parse(user)
+        this.currentUser = userObject.fields
+        this.currentLoginUser.next(userObject.fields)
+        return userObject.fields;
       })
     )
   }
 
-  getAccessToken() {
-    return this.http.post('/api/bookings/login/refresh/', {})
-  }
+  // getAccessToken() {
+  //   return this.http.post('/api/bookings/login/refresh/', {})
+  // }
 
-  getUserDetails(token:string) {
-    const headers= new HttpHeaders()
-    .set('Authorization', 'Token '+ token)
-    return this.http.get('/api/bookings/getuser/', {
-        headers : headers
-      }
-    )
+  getUserDetails() {
+    return this.http.get('/api/bookings/user/')
   }
 
   // postFeedback(token:string) {

@@ -1,12 +1,13 @@
 
+import datetime
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
-from toursapp.models import Coupon, Enquiry, Place, Tour, Vehicle
-from toursapp.serializers import CouponSerializer, EnquirySerializer, PlaceSerializer, TourDetailSerializer, TourSerializer, \
+from rest_framework.exceptions import APIException
+from toursapp.models import Coupon, Employee, Enquiry, Package, Place, Tour, Vehicle
+from toursapp.serializers import CouponSerializer, EmployeeSerializer, EnquirySerializer, PackageDetailSerializer, PackageSerializer, PlaceSerializer, TourDetailSerializer, TourSerializer, \
     VehicleSerializer
 
 
@@ -55,6 +56,12 @@ class VehicleDetails(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk, format=None):
+        vehicle = self.get_object(pk)
+        vehicle.delete()
+        serializer = VehicleSerializer(vehicle)
+        return Response(serializer.data)
 
 
 
@@ -174,7 +181,7 @@ class PlacesListViewSet(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        raise APIException(serializer.errors)
     
 class PlaceDetails(APIView):
     """
@@ -210,7 +217,8 @@ class PlaceDetails(APIView):
 class CouponsListViewSet(APIView):
 
     def get(self, request, format=None):
-        coupons = Coupon.objects.all()
+        # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
+        coupons = Coupon.objects.filter()
         serializer = CouponSerializer(coupons, many=True)
         return Response(serializer.data)
 
@@ -251,3 +259,130 @@ class CouponDetails(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class PackagesList(APIView):
+
+    def get(self, request, format=None):
+        packages = Package.objects.all()
+        serializer = PackageSerializer(packages, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = PackageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PackageDetailed(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = (IsAuthenticated,)
+
+
+    def get_object(self, pk):
+        try:
+            return Package.objects.get(id=pk)
+        except Package.DoesNotExist:
+            raise Http404
+
+
+    def get(self, request, pk, format=None):
+        package = self.get_object(pk)
+        serializer = PackageDetailSerializer(package)
+        return Response(serializer.data)
+
+
+class PackageDetails(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = (IsAuthenticated,)
+
+
+    def get_object(self, pk):
+        try:
+            return Package.objects.get(id=pk)
+        except Package.DoesNotExist:
+            raise Http404
+
+
+    def get(self, request, pk, format=None):
+        package = self.get_object(pk)
+        serializer = PackageSerializer(package)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        package = self.get_object(pk)
+        serializer = PackageSerializer(package, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        package = self.get_object(pk)
+        package.delete()
+        serializer = PackageSerializer(package)
+        return Response(serializer.data)
+        # return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+class EmployeeList(APIView):
+
+    def get(self, request, format=None):
+        packages = Employee.objects.all()
+        serializer = EmployeeSerializer(packages, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = EmployeeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EmployeeDetails(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = (IsAuthenticated,)
+
+
+    def get_object(self, pk):
+        try:
+            return Employee.objects.get(id=pk)
+        except Employee.DoesNotExist:
+            raise Http404
+
+
+    def get(self, request, pk, format=None):
+        employee = self.get_object(pk)
+        serializer = EmployeeSerializer(employee)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        employee = self.get_object(pk)
+        serializer = EmployeeSerializer(employee, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        employee = self.get_object(pk)
+        employee.delete()
+        serializer = EmployeeSerializer(employee)
+        return Response(serializer.data)
+        # return Response(status=status.HTTP_204_NO_CONTENT)

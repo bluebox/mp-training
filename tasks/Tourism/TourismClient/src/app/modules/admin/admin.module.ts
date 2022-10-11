@@ -24,6 +24,22 @@ import { PlacesListComponent } from './components/Places/places-list/places-list
 import { EnquiryListComponent } from './components/Enquiry/enquiry-list/enquiry-list.component';
 import { ViewAndEditEnquiryComponent } from './components/Enquiry/view-and-edit-enquiry/view-and-edit-enquiry.component';
 import { EnquiriesComponent } from './components/Enquiry/enquiries/enquiries.component';
+import { BookingListComponent } from './components/Bookings/booking-list/booking-list.component';
+import { BookingsComponent } from './components/Bookings/bookings/bookings.component';
+import { UsersListComponent } from './components/Users/users-list/users-list.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CancellationListComponent } from './components/Cancellation/cancellation-list/cancellation-list.component';
+import { EditCancellationComponent } from './components/Cancellation/edit-cancellation/edit-cancellation.component';
+import { CancellationsComponent } from './components/Cancellation/cancellations/cancellations.component';
+import { FeedbacksComponent } from './components/FeedBacks/feedbacks/feedbacks.component';
+import { PackagesComponent } from './components/Packages/packages/packages.component';
+import { PackageListComponent } from './components/Packages/package-list/package-list.component';
+import { AddPackageComponent } from './components/Packages/add-package/add-package.component';
+import { EmployeesComponent } from './components/Employees/employees/employees.component';
+import { EmployeeListComponent } from './components/Employees/employee-list/employee-list.component';
+import { AddEmlployeeComponent } from './components/Employees/add-emlployee/add-emlployee.component';
+import { EditUserComponent } from './components/Users/edit-user/edit-user.component';
+import { EditBookingComponent } from './components/Bookings/edit-booking/edit-booking.component';
 
 
 @NgModule({
@@ -44,7 +60,22 @@ import { EnquiriesComponent } from './components/Enquiry/enquiries/enquiries.com
     PlacesListComponent,
     EnquiryListComponent,
     ViewAndEditEnquiryComponent,
-    EnquiriesComponent
+    EnquiriesComponent,
+    BookingListComponent,
+    BookingsComponent,
+    UsersListComponent,
+    CancellationListComponent,
+    EditCancellationComponent,
+    CancellationsComponent,
+    FeedbacksComponent,
+    PackagesComponent,
+    PackageListComponent,
+    AddPackageComponent,
+    EmployeesComponent,
+    EmployeeListComponent,
+    AddEmlployeeComponent,
+    EditUserComponent,
+    EditBookingComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +85,7 @@ import { EnquiriesComponent } from './components/Enquiry/enquiries/enquiries.com
     MatSelectModule,
     HttpClientModule,
     MatCheckboxModule,
+    MatPaginatorModule,
   ]
 })
 export class AdminModule { }

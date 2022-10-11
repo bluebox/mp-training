@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from bookingsapp.models import BookingDetails, Feedback, PaymentDetails, User
+from bookingsapp.models import BookingDetails, CancellationDetails, Feedback, PaymentDetails, User
 from toursapp.serializers import TourSerializer
 
 
@@ -11,6 +11,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class FeedbackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = '__all__'
+
+class FeedbackDetailSerializer(serializers.ModelSerializer):
     user_id = UserSerializer()
 
     class Meta:
@@ -37,4 +42,17 @@ class BookingDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BookingDetails
+        fields = '__all__'
+
+
+class CancellationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CancellationDetails
+        fields = '__all__'
+class CancellationDetailSerializer(serializers.ModelSerializer):
+    bookingid = BookingDetailSerializer()
+
+    class Meta:
+        model = CancellationDetails
         fields = '__all__'

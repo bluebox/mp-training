@@ -1,0 +1,47 @@
+<form class="global-form" [formGroup]="UserForm" (ngSubmit)="addUserObj()">
+
+  <img *ngIf="imageUrl && imageUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+    <span *ngIf="!imageUrl">Choose image</span>
+    <span *ngIf="imageUrl">change image</span>
+  </button>
+  <input hidden type="file" name="profile" #fileInput placeholder="profile"
+    class="" (change)="onchange($event)"/>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>name</mat-label>
+    <input type="text" name="name" matInput formControlName="name" placeholder="name"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>email</mat-label>
+    <input type="email" name="email" matInput formControlName="email" placeholder="email"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>mobile</mat-label>
+    <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>password</mat-label>
+    <input type="text" name="password" matInput formControlName="password" placeholder="password"
+      class="">
+  </mat-form-field>
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>address</mat-label>
+    <textarea rows="5" type="text" name="address" matInput formControlName="address" placeholder="address"
+      class="">
+    </textarea>
+  </mat-form-field> -->
+  <p><mat-checkbox formControlName="isAdmin">isAdmin</mat-checkbox></p>
+
+  <p><mat-checkbox formControlName="is_active">is_active</mat-checkbox></p>
+
+
+  <button mat-raised-button class="">Add</button>
+</form>

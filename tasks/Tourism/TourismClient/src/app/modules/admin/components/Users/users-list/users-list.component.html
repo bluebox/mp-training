@@ -1,0 +1,43 @@
+<!-- <div class="" *ngIf="activeUsers">
+  <div class="row border-bottom border-primary mb-3" *ngFor="let user of pageUsers" #users>
+    <div class="col-6 d-flex align-items-center">profile pic: </div>
+    <div class="col-6"><img [src]="user.image" alt="" width="50"></div>
+    <div class="col-6">Name:</div>
+    <div class="col-6">{{user.name}}</div>
+    <div class="col-6">Email:</div>
+    <div class="col-6">{{user.email}}</div>
+    <div class="col-6">mobile: </div>
+    <div class="col-6">{{user.mobile}}</div>
+    <div class="col-6">Password: </div>
+    <div class="col-6">{{user.password}}</div>
+    <div class="col-6" *ngIf="!user.isAdmin" ><button (click)="changeUserRole(user.id)">Make Admin</button> </div>
+    <div class="col-6" *ngIf="user.isAdmin" ><button (click)="changeUserRole(user.id)">Remove Admin</button> </div>
+    <div class="col-6">{{user.isAdmin ? "Admin" : "Not Admin"}}</div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{length/pageSize}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
+</div> -->
+
+
+
+<button routerLink="../addUser" class="d-block ms-auto">Add User</button>
+
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let user of pageItems" >
+    <td>{{user.email}}</td>
+    <td><button (click)="editUser(user.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
+    <td><button (click)="deleteUser(user.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
+  </tr>
+</table>
+
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
+</div>
+

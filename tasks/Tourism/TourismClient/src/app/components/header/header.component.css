@@ -58,11 +58,11 @@ div.borderXwidth a:hover:before, div.borderXwidth a:hover:after
 }
 
 
-.bg-custom{
+/* .bg-custom{
   position: sticky;
   top: 0;
   z-index: 100;
-  /* background-color: rgb(156, 248, 179); */
-  /* background-image: linear-gradient(to right, rgb(22, 209, 22), rgb(14, 103, 14)); */
-}
+  background-color: rgb(156, 248, 179);
+  background-image: linear-gradient(to right, rgb(22, 209, 22), rgb(14, 103, 14));
+} */
 

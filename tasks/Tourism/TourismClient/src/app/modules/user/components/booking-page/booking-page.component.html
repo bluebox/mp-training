@@ -1,0 +1,64 @@
+<!-- <p>{{booking | json}}</p> -->
+<div *ngIf="booking" class="row">
+  <div class="col-12 col-md-8 m-auto">
+    <img [src]="booking.tourid.image" alt="tour_image" width="100%" height="100%" />
+  </div>
+  <div class="col-12 ms-5">
+    <div class="row text-start fs-4">
+      <div class="mb-2 mt-4 col-12 text-uppercase text-center fs-2 mt-3 mb-3">{{booking.tourid.tour_name}}</div>
+      <div class="mb-2 mt-4 col-5 fw-bold">{{booking.tourid.tour_from}} Tour</div>
+      <div class="mb-2 mt-4 col-2">---></div>
+      <div class="mb-2 mt-4 col-5 fw-bold">{{booking.tourid.tour_to}} Tour</div>
+      <div class="mb-2 mt-4 col-12">Transaction Id: {{booking.paymentid.transaction_id}}</div>
+      <div class="mb-2 mt-4 col-5 ">Trip Date: {{(booking.tourid?.start_date).split('T')[0]}}</div>
+      <div class="mb-2 mt-4 col-2 "></div>
+      <div class="mb-2 mt-4 col-5 ">Time: {{(booking.tourid?.start_date).split('T')[1]}}</div>
+      <div class="mb-2 mt-4 col-5 ">Total Price: {{booking.paymentid.total_price}}</div>
+      <div class="mb-2 mt-4 col-2 "></div>
+      <div class="mb-2 mt-4 col-5 ">Number of Tourists: {{booking.no_of_people}}</div>
+      <div class="mb-2 mt-4 col-12 ">
+        <p class="fw-bold">passenger_details:</p>
+        <div class="row">
+          <div class="col-3 mb-3 mt-3"> s.no</div>
+          <div class="col-3 mb-3 mt-3"> name</div>
+          <div class="col-3 mb-3 mt-3">age</div>
+          <div class="col-3 mb-3 mt-3">gender</div>
+        </div>
+        <div class="row" *ngFor="let passenger of passenger_details, index as i">
+          <div class="col-3 mb-3 mt-3">{{i+1}}.</div>
+          <div class="col-3 mb-3 mt-3">{{passenger.name}}</div>
+          <div class="col-3 mb-3 mt-3">{{passenger.age}}</div>
+          <div class="col-3 mb-3 mt-3">{{passenger.gender}}</div>
+        </div>
+      </div>
+      <div class="mb-2 col-6 text-danger" *ngIf="booking.isCancelled">cancelled</div>
+      <div class="mb-2 col-6"><button mat-raised-button class="bg-danger text-light" *ngIf="!booking.isCancelled" (click)="open(content)">cancel</button></div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Feedback Update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+          <p>Cancellation Charges: {{cancellation_charges}}</p>
+          <hr>
+          <label for="reason">Reason for cancelling:</label>
+          <textarea name="reason" rows="4" style="width: 100%;" (change)="updateReason($event)"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>

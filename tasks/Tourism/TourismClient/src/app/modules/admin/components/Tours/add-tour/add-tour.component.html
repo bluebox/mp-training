@@ -1,4 +1,13 @@
 <form class="global-form" [formGroup]="TourForm" (ngSubmit)="addTourObj()">
+
+  <img *ngIf="imageUrl && imageUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+    <span *ngIf="!imageUrl">Choose image</span>
+    <span *ngIf="imageUrl">change image</span>
+  </button>
+  <input hidden type="file" name="profile" #fileInput placeholder="profile"
+    class="" (change)="onchange($event)"/>
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Tour Name</mat-label>
     <input type="text" name="tour_name" matInput formControlName="tour_name" placeholder="Tour Name"
@@ -21,6 +30,10 @@
       class="">
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Start Date</mat-label>
+    <input matInput type="datetime-local" formControlName="start_date"/>
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Nights</mat-label>
     <input type="number" name="nights" matInput formControlName="nights" placeholder="Nights"
       class="">
@@ -36,11 +49,11 @@
       class="">
   </mat-form-field>
 
-  <mat-form-field class="global-form-full-width" appearance="fill">
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Image</mat-label>
     <input type="text" name="image" matInput formControlName="image" placeholder="Image"
       class="">
-  </mat-form-field>
+  </mat-form-field> -->
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Description</mat-label>
     <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
@@ -90,6 +103,21 @@
     </mat-select>
   </mat-form-field>
   <p>selected: {{coupons.value}}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>guides</mat-label>
+    <mat-select [formControl]="guides" multiple>
+      <mat-select-trigger>
+        {{guides.value?.[0] || ''}}
+        <span *ngIf="(guides.value?.length || 0) > 1" class="example-additional-selection">
+          (+{{(guides.value?.length || 0) - 1}} {{guides.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let guide of guideList" [value]="guide.id">{{guide.email}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>selected: {{guides.value}}</p>
+
 
   <button mat-raised-button class="">Add</button>
 </form>

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataServiceService } from 'src/app/services/data-service.service';
+import { ContactusComponent } from '../contactus/contactus.component';
 import { FormsDefinition } from '../Forms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
@@ -12,51 +15,59 @@ import { FormsDefinition } from '../Forms';
 })
 export class LoginComponent implements OnInit {
 
+  loginVerificationSubscription!: Subscription;
+  authenticationSubscription!: Subscription;
+  routeSsubscription!: Subscription;
+  backendError: string | null | undefined;
+
   constructor(private route: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private dataService: DataServiceService
     ) {
-      if(this.auth.isAuthenticated){
-        this.route.navigate(['user'])
-      }
+      this.authenticationSubscription = this.auth.isAuthenticated.subscribe(res => {
+        if(res)
+          this.route.navigate(['admin'])
+      })
   }
 
-  email!: FormControl
-  password!: FormControl
-
   loginForm: FormGroup = new FormGroup({
-    email : new FormControl(this.email, [Validators.required, Validators.email]),
-    password : new FormControl('', [Validators.required])
-  })
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
+
+  });
 
   ngOnInit(): void {
-
+    // this.routeSsubscription = this.activatedRoute.params.subscribe(data => {
+    //   this.authenticationSubscription = this.auth.isAuthenticated.subscribe(res => {
+    //     if(res)
+    //       this.route.navigate(['admin'])
+    //   })
+    // })
+    // console.log(new ContactusComponent(this.dataService));
   }
 
   submitLogin() {
-    this.subscription = this.auth.loginVerification(this.loginForm.value).subscribe(data=>{
-      let res = JSON.stringify(data)
-      let token = JSON.parse(res)
-      console.log(token['access_token']);
-      console.log(this.auth.getDecodedAccessToken(token['access_token']));
-      // console.log((this.auth.getCookie('refresh_token')));
-      this.auth.changeAuthentication();
-      this.route.navigate(['user'])
-    })
-    // if(this.auth.getCookie('refresh_token')){
-    //   console.log(this.auth.getCookie('refresh_token'));
-    //   console.log(this.auth.isAuthenticated);
-    //   if(this.auth.isAuthenticated){
-    //     this.route.navigate(['user'])
-    //   }
-    // }
-
+    this.loginVerificationSubscription = this.auth.loginVerification(this.loginForm.value).subscribe(
+      data =>{
+        this.backendError = null;
+        let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
+        this.route.navigate([ returnUrl || 'user' ])
+      },
+      err => this.backendError = err.error.detail
+    )
   }
 
-  subscription!: Subscription;
 
   ngOnDestroy() {
-    if(this.subscription){
-      this.subscription.unsubscribe()
+    if(this.loginVerificationSubscription){
+      this.loginVerificationSubscription.unsubscribe()
+    }
+    if(this.authenticationSubscription){
+      this.authenticationSubscription.unsubscribe()
+    }
+    if(this.routeSsubscription){
+      this.routeSsubscription.unsubscribe()
     }
   }
 

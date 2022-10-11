@@ -1,0 +1,63 @@
+<form class="global-form" [formGroup]="BookingForm" (ngSubmit)="addBookingObj()">
+
+  <mat-form-field appearance="fill">
+    <mat-label>userid</mat-label>
+    <select matNativeControl formControlName="userid">
+      <option value="" selected>------</option>
+      <option *ngFor="let user of userList" value={{user.id}}> user_object{{user.id}}</option>
+    </select>
+  </mat-form-field>
+  <p>selected: {{BookingForm.get('userid')?.value}}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>tourid</mat-label>
+    <select matNativeControl formControlName="tourid">
+      <option value="" selected>------</option>
+      <option *ngFor="let tour of tourList" value={{tour.id}}> tour_object{{tour.id}}</option>
+    </select>
+  </mat-form-field>
+  <p>selected: {{BookingForm.get('tourid')?.value}}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>paymentid</mat-label>
+    <select matNativeControl formControlName="paymentid">
+      <option value="" selected>------</option>
+      <option *ngFor="let payment of paymentList" value={{payment.id}}> payment_object{{payment.id}}</option>
+    </select>
+  </mat-form-field>
+  <p>selected: {{BookingForm.get('paymentid')?.value}}</p>
+
+
+
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>no_of_people</mat-label>
+    <input type="number" name="no_of_people" matInput formControlName="no_of_people" placeholder="no_of_people"
+      class="">
+  </mat-form-field>
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Discount</mat-label>
+    <input type="number" name="discount" matInput formControlName="discount" placeholder="Discount"
+      class="">
+  </mat-form-field> -->
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>passenger_details</mat-label>
+    <textarea rows="5" type="text" name="passenger_details" matInput formControlName="passenger_details" placeholder="passenger_details"
+      class="">
+    </textarea>
+  </mat-form-field>
+
+  <p><mat-checkbox formControlName="isCancelled">isCancelled</mat-checkbox></p>
+
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Valid Till</mat-label>
+    <input type="date" name="valid_till" matInput formControlName="valid_till" placeholder="date time"
+      class="">
+  </mat-form-field> -->
+
+
+  <button mat-raised-button class="">Add</button>
+</form>

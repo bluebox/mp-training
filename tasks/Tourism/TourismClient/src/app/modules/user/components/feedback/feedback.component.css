@@ -1,0 +1,72 @@
+.story {
+  width: 85%;
+  margin: 0 auto;
+  box-shadow: 0 1.9rem 3.75rem rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 3px;
+  padding: 3rem;
+  padding-left: 5.625rem;
+  font-size: 1rem;
+  transform: skewX(-12deg);
+  /* background-color: rgb(225, 220, 220); */
+}
+
+.story-shape {
+  width: 9.375rem;
+  height: 9.375rem;
+  float: left;
+  -webkit-shape-outside: circle(50% at 50% 50%);
+  shape-outside: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  transform: translateX(-3rem) skewX(12deg);
+  position: relative;
+}
+
+.story-img {
+  height: 100%;
+  /* transform: translate(-2.5rem) scale(1.5); */
+  transform: scale(1.5);
+  transition: all .5s;
+}
+
+.story-text {
+  transform: skewX(12deg);
+}
+
+.story-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-align: center;
+  opacity: 0;
+  transition: all .5s;
+  backface-visibility: hidden;
+}
+
+.story:hover .story-caption {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.story:hover .story-img {
+  /* transform: translate(-2.5rem) scale(1); */
+  transform:scale(1);
+  filter: blur(3px) brightness(80%);
+}
+
+
+.feedback_rating{
+  /* color: green; */
+  font-size: 2rem;
+}
+
+.feedback_heading{
+  font-size: 1.2rem;
+  color:rgb(47, 44, 44);
+  font-weight: bold;
+}

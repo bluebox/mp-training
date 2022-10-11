@@ -1,6 +1,17 @@
 
 <button routerLink="../addTour" class="d-block ms-auto">Add Tour</button>
 
-<div *ngIf="tourList" >
-  <p *ngFor="let tour of tourList" > {{tour.tour_name}} <button (click)="editTour(tour.id)">edit</button> </p>
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let tour of pageItems" >
+    <td>{{tour.tour_name}} : {{tour.id}}</td>
+    <!-- <td *ngFor="let item of tour | keyvalue">{{item.value}}</td> -->
+    <td><button class="border-0 bg-light" (click)="editTour(tour.id)"><i class="fa-solid fa-pen text-primary"></i></button></td>
+    <td><button class="border-0 bg-light" (click)="deleteTour(tour.id)"><i class="fa-solid fa-trash text-danger"></i></button></td>
+   </tr>
+</table>
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
 </div>

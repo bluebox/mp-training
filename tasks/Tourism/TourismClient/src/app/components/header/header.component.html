@@ -1,26 +1,109 @@
-<nav class="navbar navbar-expand-md navbar-light p-0 m-0 bg-custom ">
+<nav class="navbar navbar-expand-sm navbar-light p-0 m-0 bg-custom ">
   <a class="navbar-brand" href="#"><img src="../../../assets/logo.svg" alt="logo" width="150px"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="container borderXwidth navbar-nav">
-      <a mat-button class="selected" routerLink="">Home</a>
-      <a mat-button [matMenuTriggerFor]="animals">Tours <span class="material-icons">arrow_drop_down</span></a>
+      <a mat-button class="selected" routerLink="../user">Home</a>
       <a mat-button routerLink="../contact">Contact</a>
       <a *ngIf="!isAuthenticated" mat-button routerLink="../signup"> SignUp </a>
 
-      <a *ngIf="isAuthenticated" mat-button routerLink="../bookings">Bookings</a>
-      <a *ngIf="isAuthenticated" mat-button (click) ="submitLogout()">Logout</a>
+      <a *ngIf="isAuthenticated" mat-button routerLink="../user/bookings">Bookings</a>
+      <!-- <a *ngIf="isAuthenticated" mat-button (click) ="submitLogout()">Logout</a> -->
       <a *ngIf="!isAuthenticated" mat-button routerLink="../login">Login</a>
-      <a *ngIf="isAuthenticated" mat-button routerLink="../login"><img src="" alt=""></a>
+      <div class="" mat-button [matMenuTriggerFor]="menu" style="cursor: pointer;">
+        <!-- <div class="" mat-button (click)="open(profile)" style="cursor: pointer;"> -->
+          <img *ngIf="isAuthenticated" [src]="currentUser?.image" alt="profle_pic" width="50" height="50"
+            style="border-radius: 50%; cursor: pointer;" />
+        <!-- </div> -->
+      </div>
+      <!-- <a *ngIf="isAuthenticated" mat-button routerLink="">
+      </a> -->
     </div>
   </div>
+  <!-- <p>{{currentUser | json}} user</p> -->
 </nav>
 
 
-<mat-menu #animals="matMenu">
+<!-- off-canvas -->
+<ng-template #profile let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title">Profile</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p class="border p-3" style="cursor: pointer;font-size: 1.5rem;" routerLink="../user/editProfile"
+      (click)="offcanvas.close('Close click')">Edit Profile </p>
+    <p (click)="submitLogout(); offcanvas.close('Close click')" class="border p-3"
+      style="cursor: pointer;font-size: 1.5rem;">Logout</p>
+    <!-- <p  class="border" style="cursor: pointer;font-size: 1.5rem;">Change Password</p> -->
+    <div class="text-end">
+      <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Close</button>
+    </div>
+  </div>
+</ng-template>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="submitLogout()">Logout</button>
+  <button mat-menu-item routerLink="../user/editProfile">Edit Profile</button>
+</mat-menu>
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo offcanvas</button> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<mat-menu #profile="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
   <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
 </mat-menu>
@@ -65,4 +148,4 @@
   <button mat-menu-item>Blue Spiny Lizard</button>
   <button mat-menu-item disabled>Velociraptor</button>
 </mat-menu>
-
+ -->

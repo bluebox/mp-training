@@ -1,5 +1,6 @@
 <div class="login_styling">
   <div class="mt-5">
+    <h1 class="text-danger text-center" *ngIf="backendError" >{{backendError}}</h1>
     <h1 class="text-center login_heading">Login To Your Account</h1>
     <form class="global-form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
       <mat-form-field class="global-form-full-width" appearance="fill">
@@ -23,7 +24,7 @@
         <mat-label>Password</mat-label>
         <input type="password" matInput formControlName="password" placeholder="password">
       </mat-form-field>
-      <button mat-raised-button type="submit" class="login_button">Login</button>
+      <button mat-raised-button type="submit" class="login_button" [disabled]="loginForm.invalid" >Login</button>
     </form>
   </div>
   <div class="login_sidebar text-center">

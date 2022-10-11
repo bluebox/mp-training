@@ -8,13 +8,13 @@ export class UniversalAppInterceptor implements HttpInterceptor {
   constructor( private authService: AuthService) { }
 
   intercept(req: HttpRequest<{}>, next: HttpHandler) {
-    const token = this.authService.getAccessToken();
-    req = req.clone({
-      url:  req.url,
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    // const token = this.authService.getAccessToken();
+    // req = req.clone({
+    //   url:  req.url,
+    //   setHeaders: {
+    //     Authorization: `Bearer ${token}`
+    //   }
+    // });
     return next.handle(req);
   }
 }

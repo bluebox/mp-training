@@ -1,0 +1,17 @@
+
+<button routerLink="../addCancellation" class="d-block ms-auto">Add Cancellation</button>
+
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let cancellation of pageItems" >
+      <td>For booking id: {{cancellation.bookingid}}</td>
+     <td><button (click)="editCancellation(cancellation.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
+     <td><button (click)="deleteCancellation(cancellation.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
+     </tr>
+</table>
+
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
+</div>

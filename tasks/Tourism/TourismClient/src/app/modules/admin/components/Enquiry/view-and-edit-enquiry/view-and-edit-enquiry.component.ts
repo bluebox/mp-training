@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DataService } from '../../../services/data.service';
 
 @Component({
@@ -10,14 +11,19 @@ import { DataService } from '../../../services/data.service';
 })
 export class ViewAndEditEnquiryComponent implements OnInit {
 
+  routesubscription!: Subscription;
+  getEnquirysubscription!: Subscription;
+  editEnquirysubscription!: Subscription;
+
   constructor(private dataservice: DataService,
     private route: ActivatedRoute,
     private router: Router
     ) {
-    this.route.params.subscribe(res => {
+    this.routesubscription = this.route.params.subscribe(res => {
       if(parseInt(res['id'])){
         this.id = parseInt(res['id'])
-        this.dataservice.getEnquiry(parseInt(res['id'])).subscribe(data=> {
+        this.getEnquirysubscription = this.dataservice.getEnquiry(parseInt(res['id'])).subscribe(
+          data=> {
           let enquiryString = JSON.stringify(data)
           let enquiryObj = JSON.parse(enquiryString)
           this.EnquiryForm.get('name')?.setValue(enquiryObj.name);
@@ -26,7 +32,9 @@ export class ViewAndEditEnquiryComponent implements OnInit {
           this.EnquiryForm.get('subject')?.setValue(enquiryObj.subject);
           this.EnquiryForm.get('message')?.setValue(enquiryObj.message);
           this.EnquiryForm.get('status')?.setValue(enquiryObj.status);
-        });
+        },
+        err => alert(err.error.detail)
+        );
 
       }
     })
@@ -46,10 +54,25 @@ export class ViewAndEditEnquiryComponent implements OnInit {
   }
 
   submitEnquiryForm(){
-    this.dataservice.editEnquiry(this.EnquiryForm.value, this.id).subscribe(data=>{
+    this.editEnquirysubscription = this.dataservice.editEnquiry(this.EnquiryForm.value, this.id).subscribe(
+      data=>{
       console.log(data)
       this.router.navigate(['admin/enquiries/enquiryList'])
-    })
+    },
+    err => alert(err.error.detail)
+    )
+  }
+
+  ngOnDestroy(){
+    if(this.routesubscription){
+      this.routesubscription.unsubscribe()
+    }
+    if(this.getEnquirysubscription){
+      this.getEnquirysubscription.unsubscribe()
+    }
+    if(this.editEnquirysubscription){
+      this.editEnquirysubscription.unsubscribe()
+    }
   }
 
 }

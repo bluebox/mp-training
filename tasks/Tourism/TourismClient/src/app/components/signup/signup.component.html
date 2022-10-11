@@ -1,3 +1,5 @@
+<h1 class="text-danger text-center" *ngIf="backendError" >{{backendError}}</h1>
+
 <form class="global-form" [formGroup]="SignUpForm" (ngSubmit)="submitSignUp()">
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Name</mat-label>
@@ -10,25 +12,40 @@
     <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
       class="">
   </mat-form-field>
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Profile Pic</mat-label>
+
+  </mat-form-field> -->
+
+  <div class="d-flex align-items-center justify-content-between border file_input">
+    <label for="profile" class="file_label">Profile Pic: </label>
+    <button type="button" mat-raised-button (click)="fileInput.click()">
+      <span *ngIf="!imageUrl">Choose File</span>
+      <span *ngIf="imageUrl">file selected</span>
+    </button>
+    <input hidden type="file" name="profile" #fileInput placeholder="profile"
+      class="" (change)="onchange($event)"/>
+  </div>
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Password</mat-label>
     <input type="text" name="password" matInput formControlName="password" placeholder="password"
       class="">
   </mat-form-field>
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>ConfirmPassword</mat-label>
     <input type="password" name="password" matInput formControlName="confirm_password" placeholder="confirm password"
       class="">
   </mat-form-field>
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Mobile</mat-label>
     <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
       class="">
   </mat-form-field>
 
-  <button mat-raised-button class="">Signup</button>
+  <button mat-raised-button class="" [disabled]="SignUpForm.invalid" >Signup</button>
 </form>
-
-
 
 <button mat-raised-button class="" (click) = 'NavigateToLoginUp()'>Login</button>

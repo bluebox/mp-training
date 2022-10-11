@@ -1,0 +1,51 @@
+<form class="global-form" [formGroup]="PackageForm" (ngSubmit)="addPackageObj()">
+
+  <img *ngIf="imageUrl && imageUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+    <span *ngIf="!imageUrl">Choose image</span>
+    <span *ngIf="imageUrl">change image</span>
+  </button>
+  <input hidden type="file" name="image" #fileInput placeholder="image"
+    class="" (change)="onchange($event)"/>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>package_name</mat-label>
+    <input type="text" name="package_name" matInput formControlName="package_name" placeholder="package_name"
+      class="">
+  </mat-form-field>
+
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>package_type</mat-label>
+    <input type="text" name="package_type" matInput formControlName="package_type" placeholder="package_type"
+      class="">
+  </mat-form-field>
+  <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
+      class="">
+    </textarea>
+  </mat-form-field>
+
+  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
+    <mat-label>Valid Till</mat-label>
+    <input type="date" name="valid_till" matInput formControlName="valid_till" placeholder="date time"
+      class="">
+  </mat-form-field> -->
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tours</mat-label>
+    <mat-select [formControl]="tours" multiple>
+      <mat-select-trigger>
+        {{tours.value?.[0] || ''}}
+        <span *ngIf="(tours.value?.length || 0) > 1" class="example-additional-selection">
+          (+{{(tours.value?.length || 0) - 1}} {{tours.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let tour of tourList" [value]="tour.id">{{tour.tour_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>selected: {{tours.value}}</p>
+
+
+  <button mat-raised-button class="">Add</button>
+</form>

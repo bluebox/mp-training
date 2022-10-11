@@ -1,23 +1,26 @@
 import datetime
 import json
 from sqlite3 import apilevel
+
+from django.db.models import Subquery, Avg
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render
 from django.template.defaulttags import csrf_token
-from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from pytz import utc
 
 from rest_framework import status, exceptions
 from rest_framework.response import Response
 # from bookingsapp import serializers
 from django.core import serializers
 
-from bookingsapp.models import BookingDetails, Feedback, User, UserToken
-from bookingsapp.serializers import BookingDetailSerializer, BookingSerializer, FeedbackSerializer, PaymentSerializer, UserSerializer
+from bookingsapp.models import BookingDetails, CancellationDetails, Feedback, PaymentDetails, User, UserToken
+from bookingsapp.serializers import BookingDetailSerializer, BookingSerializer, CancellationDetailSerializer, CancellationSerializer, FeedbackDetailSerializer, FeedbackSerializer, PaymentSerializer, UserSerializer
 from rest_framework.views import APIView
 
 import uuid
 
-
+from toursapp.models import Tour
 from .JwtAuthentication import JWTAuthentication, create_access_token, create_refresh_token, decode_refresh_token
 
 # from .JwtAuthentication import call
@@ -31,6 +34,15 @@ import cloudinary
 
 
 # cloudinary.uploader.upload(open('/anjunabeach.jpeg', 'rb'))
+
+def getAverageRatingAndTotalRatings(request):
+    if request.method == 'GET':
+        total_ratings = Feedback.objects.all().count()
+        average_rating = Feedback.objects.all().aggregate(Avg('rating'))
+        return JsonResponse({
+            'average_rating': round(average_rating['rating__avg'], 1),
+            'total_ratings': total_ratings
+        })
 
 class uploadImage(APIView):
     
@@ -56,25 +68,27 @@ class UserList(APIView):
         print(request.data)
 
         serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            user = User.objects.get(email=request.data['email'])
-            access_token = create_access_token(user.id)
-            refresh_token = create_refresh_token(user.id)
-            UserToken.objects.create(
-                user_id = user.id, 
-                token = refresh_token,
-                expired_at = datetime.datetime.utcnow() + datetime.timedelta(days = 5)
-            )
-            response = Response()
+        if not serializer.is_valid():
+            raise exceptions.APIException(json.dumps(serializer.errors))
+        # if serializer.is_valid():
+        serializer.save()
+        user = User.objects.get(email=request.data['email'])
+        access_token = create_access_token(user.id)
+        refresh_token = create_refresh_token(user.id)
+        UserToken.objects.create(
+            user_id = user.id, 
+            token = refresh_token,
+            expired_at = datetime.datetime.utcnow() + datetime.timedelta(days = 5)
+        )
+        response = Response()
 
-            response.set_cookie(key='refresh_token', value=refresh_token, httponly=False)
-            response.data = {
-                'token': access_token,
-            }
-            return response
-            # return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
+        response.set_cookie(key='access_token', value=access_token, httponly=True)
+        response.data = serializers.serialize('json', [user])
+        return response
+        # else:
+        #     raise exceptions.APIException(serializer.errors)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserDetail(APIView):
@@ -112,6 +126,53 @@ class UserDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class UpdateUserByAdmin(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = (IsAuthenticated,)
+
+
+    def get_object(self, pk):
+        try:
+            return User.objects.get(id=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+
+    def get(self, request, pk=None, format=None):
+        user = self.get_object(pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+    def put(self, request,pk=None, format=None):
+        user = self.get_object(pk)
+        serializer = UserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None, format=None):
+        user = self.get_object(pk)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# @api_view(['PUT'])
+# def UpdateUserByAdmin(request, pk=None):
+#     if request.method == 'PUT':
+#         user = User.objects.get(id=pk)
+#         is_admin: bool = not user.isAdmin
+#         user.isAdmin = is_admin
+#         user.save()
+#         serializer = UserSerializer([user], many=True)
+#         return Response(serializer.data)
+#     raise exceptions.APIException(request.method + " method doesn't work")
+
+
 class Login(APIView):
     def post(self, request):
         email = request.data['email']
@@ -135,30 +196,31 @@ class Login(APIView):
             expired_at=datetime.datetime.utcnow() + datetime.timedelta(days=5)
         )
         response = Response()
-        response.set_cookie(key='refresh_token', value=refresh_token, httponly=False)
-        response.data = {
-            'access_token': access_token
-        }
+        response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
+        response.set_cookie(key='access_token', value=access_token, httponly=True)
+        # userObj = json.loads(user)
+        
+        response.data = serializers.serialize('json', [user])
         return response
 
 
-class RefreshJwtTokenViewSet(APIView):
+# class RefreshJwtTokenViewSet(APIView):
 
-    def post(self, request):
-        refresh_token = request.COOKIES.get('refresh_token')
-        user_id = decode_refresh_token(refresh_token)
-        if not UserToken.objects.filter(
-            user_id=user_id,
-            token=refresh_token,
-            expired_at__gt=datetime.datetime.now(tz=datetime.timezone.utc)
-        ).exists():
-            raise exceptions.AuthenticationFailed('Unauthenticated')
+#     def post(self, request):
+#         refresh_token = request.COOKIES.get('refresh_token')
+#         user_id = decode_refresh_token(refresh_token)
+#         if not UserToken.objects.filter(
+#             user_id=user_id,
+#             token=refresh_token,
+#             expired_at__gt=datetime.datetime.now(tz=datetime.timezone.utc)
+#         ).exists():
+#             raise exceptions.AuthenticationFailed('Unauthenticated')
 
-        access_token = create_access_token(user_id)
+#         access_token = create_access_token(user_id)
 
-        return JsonResponse({
-            'token': access_token
-            })
+#         return JsonResponse({
+#             'token': access_token
+#             })
 
 
 class LogoutViewSet(APIView):
@@ -171,17 +233,17 @@ class LogoutViewSet(APIView):
 
         response = Response()
         response.delete_cookie(key='refresh_token')
+        response.delete_cookie(key='access_token')
 
         response.data = {
             'message': 'successfully logged out',
         }
-
         return response
 
 
 def getFeedbacks(request):
     feedbacks = Feedback.objects.all()
-    serializer = FeedbackSerializer(feedbacks, many=True)
+    serializer = FeedbackDetailSerializer(feedbacks, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 
@@ -192,27 +254,29 @@ class FeedbackViewSet(APIView):
     def post(self, request, format=None):
         email = request.user
         user = User.objects.get(email=email)
+        comment = request.data['comment']
+        rating = request.data['rating']
+        user_id = user.id
+        data = {
+            'user_id': user_id,
+            'comment': comment,
+            'rating': rating
+        }
         if Feedback.objects.filter(user_id=user.id).exists():
             feedback = Feedback.objects.get(user_id=user.id)
-            serializer = FeedbackSerializer(data=feedback)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            serializer = FeedbackSerializer(feedback, data=data)
+            if not serializer.is_valid():
+                raise exceptions.APIException(serializer.errors)
+                # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            comment = request.data['comment']
-            rating = request.data['rating']
-            user_id = user.id
-            data = {
-                'user_id': user_id,
-                'comment': comment,
-                'rating': rating
-            }
+            
             serializer = FeedbackSerializer(data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            if not serializer.is_valid():
+                raise exceptions.APIException(serializer.errors)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 
@@ -220,10 +284,10 @@ class PaymentViewset(APIView):
 
     # authentication_classes=[JWTAuthentication]
 
-    # def get(self, request, format=None):
-    #     tours = Tour.objects.all()
-    #     serializer = TourDetailSerializer(tours, many=True)
-    #     return Response(serializer.data)
+    def get(self, request, format=None):
+        payment = PaymentDetails.objects.all()
+        serializer = PaymentSerializer(payment, many=True)
+        return Response(serializer.data)
 
     def post(self, request, format=None):
         # user = User.objects.get(email=request.user)
@@ -235,7 +299,7 @@ class PaymentViewset(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PaymentDetails(APIView):
+class PaymentDetailsViewset(APIView):
     """
     Retrieve, update or delete a snippet instance.
     """
@@ -267,12 +331,18 @@ class PaymentDetails(APIView):
 
 class BookingViewset(APIView):
 
-    # authentication_classes=[JWTAuthentication]
+    authentication_classes=[JWTAuthentication]
 
     def get(self, request, format=None):
-        tours = BookingDetails.objects.all()
-        serializer = BookingDetailSerializer(tours, many=True)
-        return Response(serializer.data)
+        user = User.objects.get(email=request.user)
+        if user.isAdmin:
+            activeBookings = BookingDetails.objects.filter(tourid__start_date__gt=datetime.datetime.utcnow())
+            serializer = BookingDetailSerializer(activeBookings, many=True)
+            return Response(serializer.data)
+        else:
+            tours = BookingDetails.objects.filter(userid=user.id)
+            serializer = BookingDetailSerializer(tours, many=True)
+            return Response(serializer.data)
 
     def post(self, request, format=None):
         # user = User.objects.get(email=request.user)
@@ -282,6 +352,81 @@ class BookingViewset(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BookingDetailsViewset(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+
+    authentication_classes = [JWTAuthentication]
+    # permission_classes = (IsAuthenticated,)
+
+
+    def get_object(self, pk):
+        try:
+            return BookingDetails.objects.get(id=pk)
+        except BookingDetails.DoesNotExist:
+            raise Http404
+
+
+    def get(self, request, pk, format=None):
+        booking = self.get_object(pk)
+        serializer = BookingDetailSerializer(booking)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        # try: 
+        booking = self.get_object(pk)
+        booking.isCancelled = True
+        cancellation_charges = request.data['cancellation_charges']
+        reason_for_cancellation = request.data['reason_for_cancellation']
+        # cancellation_charges = float(booking.tourid.price) * 0.15
+        cancelled = CancellationDetails(bookingid=booking,
+                                        refund_status='processing',
+                                        cancellation_charges=cancellation_charges,
+                                        reason_for_cancellation=reason_for_cancellation
+                                        )
+        cancelled.save()
+        booking.save()
+        serializer = BookingDetailSerializer([booking], many=True)
+        return Response(serializer.data)
+
+
+class BookingAdminViewset(APIView):
+
+    authentication_classes=[JWTAuthentication]
+
+    def get(self, request, format=None):
+        activeBookings = BookingDetails.objects.filter(tourid__start_date__gt=datetime.datetime.utcnow())
+        serializer = BookingDetailSerializer(activeBookings, many=True)
+        return Response(serializer.data)
+    
+class BookingAdminDetailViewset(APIView):
+
+    def get_object(self, pk):
+        try:
+            return BookingDetails.objects.get(id=pk)
+        except BookingDetails.DoesNotExist:
+            raise Http404
+    def get(self, request, pk, format=None):
+        booking = self.get_object(pk)
+        serializer = BookingSerializer(booking)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        booking = self.get_object(pk)
+        serializer = BookingSerializer(booking, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        booking = self.get_object(pk)
+        booking.delete()
+        serializer = BookingSerializer(booking)
+        return Response(serializer.data)
 
 
 class FeedbackDetails(APIView):
@@ -313,3 +458,43 @@ class FeedbackDetails(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+class CancellationList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request):
+        cancellations = CancellationDetails.objects.all()
+        serializer = CancellationSerializer(cancellations, many=True)
+        return Response(serializer.data)
+
+class CancellationDetail(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+
+    def get_object(self, pk):
+        try:
+            return CancellationDetails.objects.get(id=pk)
+        except CancellationDetails.DoesNotExist:
+            raise Http404
+    def get(self, request, pk, format=None):
+        cancellation = self.get_object(pk)
+        serializer = CancellationSerializer(cancellation)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        cancellation = self.get_object(pk)
+        serializer = CancellationSerializer(cancellation, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        cancellation = self.get_object(pk)
+        cancellation.delete()
+        serializer = CancellationSerializer(cancellation)
+        return Response(serializer.data)
+        

@@ -1,6 +1,17 @@
 
 <button routerLink="../addCoupon" class="d-block ms-auto">Add Coupon</button>
 
-<div *ngIf="couponList" >
-  <p *ngFor="let coupon of couponList" > {{coupon.couponcode}} <button (click)="editCoupon(coupon.id)">edit</button> </p>
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let coupon of pageItems" >
+      <td>{{coupon.couponcode}}</td>
+     <td><button (click)="editCoupon(coupon.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
+     <td><button (click)="deleteCoupon(coupon.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
+     </tr>
+</table>
+
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
 </div>

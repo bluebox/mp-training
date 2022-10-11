@@ -17,6 +17,20 @@ import { PlacesListComponent } from './components/Places/places-list/places-list
 import { EnquiriesComponent } from './components/Enquiry/enquiries/enquiries.component';
 import { ViewAndEditEnquiryComponent } from './components/Enquiry/view-and-edit-enquiry/view-and-edit-enquiry.component';
 import { EnquiryListComponent } from './components/Enquiry/enquiry-list/enquiry-list.component';
+import { BookingListComponent } from './components/Bookings/booking-list/booking-list.component';
+import { BookingsComponent } from './components/Bookings/bookings/bookings.component';
+import { UsersListComponent } from './components/Users/users-list/users-list.component';
+import { CancellationsComponent } from './components/Cancellation/cancellations/cancellations.component';
+import { CancellationListComponent } from './components/Cancellation/cancellation-list/cancellation-list.component';
+import { EditCancellationComponent } from './components/Cancellation/edit-cancellation/edit-cancellation.component';
+import { PackagesComponent } from './components/Packages/packages/packages.component';
+import { AddPackageComponent } from './components/Packages/add-package/add-package.component';
+import { PackageListComponent } from './components/Packages/package-list/package-list.component';
+import { EmployeesComponent } from './components/Employees/employees/employees.component';
+import { AddEmlployeeComponent } from './components/Employees/add-emlployee/add-emlployee.component';
+import { EmployeeListComponent } from './components/Employees/employee-list/employee-list.component';
+import { EditUserComponent } from './components/Users/edit-user/edit-user.component';
+import { EditBookingComponent } from './components/Bookings/edit-booking/edit-booking.component';
 
 const routes: Routes = [
   {path:"", component: DashboardComponent, children: [
@@ -51,6 +65,36 @@ const routes: Routes = [
       {path:"viewEnquiry", component: ViewAndEditEnquiryComponent},
       {path:"viewEnquiry/:id", component: ViewAndEditEnquiryComponent},
       {path:"enquiryList", component: EnquiryListComponent},
+    ]},
+    {path:"bookings", component: BookingsComponent, children: [
+      {path:"", redirectTo:'bookingList', pathMatch:'full'},
+      {path:"addBooking", component: EditBookingComponent},
+      {path:"editBooking/:id", component: EditBookingComponent},
+      {path:"bookingList", component: BookingListComponent},
+    ]},
+    {path:"users", component: BookingsComponent, children: [
+      {path:"", redirectTo:'userList', pathMatch:'full'},
+      {path:"addUser", component: EditUserComponent},
+      {path:"editUser/:id", component: EditUserComponent},
+      {path:"userList", component: UsersListComponent},
+    ]},
+    {path:"cancellation", component: CancellationsComponent, children: [
+      {path:"", redirectTo:'cancellationList', pathMatch:'full'},
+      {path:"addCancellation", component: EditCancellationComponent},
+      {path:"addCancellation/:id", component: EditCancellationComponent},
+      {path:"cancellationList", component: CancellationListComponent},
+    ]},
+    {path:"package", component: PackagesComponent, children: [
+      {path:"", redirectTo:'packageList', pathMatch:'full'},
+      {path:"addPackage", component: AddPackageComponent},
+      {path:"addPackage/:id", component: AddPackageComponent},
+      {path:"packageList", component: PackageListComponent},
+    ]},
+    {path:"employees", component: EmployeesComponent, children: [
+      {path:"", redirectTo:'employeeList', pathMatch:'full'},
+      {path:"addEmployee", component: AddEmlployeeComponent},
+      {path:"addEmployee/:id", component: AddEmlployeeComponent},
+      {path:"employeeList", component: EmployeeListComponent},
     ]},
   ]}
 ];

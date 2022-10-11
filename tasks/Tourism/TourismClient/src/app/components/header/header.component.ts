@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbOffcanvas, NgbOffcanvasConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,22 +12,42 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit {
 
   isAuthenticated: boolean = false
+  currentUser: any
+  authenticationSubscription!: Subscription;
+  loginUserSubscription!: Subscription;
 
-  constructor(private auth: AuthService, private route: Router) {
-  }
-
-  ngDoCheck(){
-    this.isAuthenticated = this.auth.isAuthenticated
-    // if(this.isAuthenticated){
-    //   this.auth.getUserDetails().subscribe(data=>{
-    //     let userString = JSON.stringify(data)
-    //     let userObj = JSON.parse(userString)
-    //     this.loginUser = userObj;
-    //   })
-    // }
+  constructor(private auth: AuthService, private route: Router,
+    private activatedRoute: ActivatedRoute,
+    config: NgbOffcanvasConfig,
+    private offcanvasService: NgbOffcanvas
+    ) {
+      config.position = 'end';
+      // config.backdropClass = 'bg-info';
+      config.keyboard = false;
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(data => {
+      this.authenticationSubscription = this.auth.isAuthenticated.subscribe(res => {
+        this.isAuthenticated=res
+        // console.log(this.auth.currentUser);
+        // this.currentUser = this.auth.currentUser
+      })
+      this.loginUserSubscription = this.auth.currentLoginUser.subscribe(user => {
+        console.log(user);
+        this.currentUser = user
+      })
+    })
+
+
+  }
+
+  open(content: any) {
+    this.offcanvasService.open(content);
+  }
+
+  editProfile() {
+
   }
 
   submitLogout(){
@@ -34,11 +56,21 @@ export class HeaderComponent implements OnInit {
       console.log(data);
       if(data){
         console.log(data);
-        this.auth.changeAuthentication();
+        // this.auth.changeAuthentication();
+        // offcanvas.close('Close click')
         this.route.navigate(['login'])
       }
     })
 
+  }
+
+  ngOnDestroy() {
+    if(this.loginUserSubscription){
+      this.loginUserSubscription.unsubscribe()
+    }
+    if(this.authenticationSubscription){
+      this.authenticationSubscription.unsubscribe()
+    }
   }
 
 }

@@ -1,5 +1,6 @@
 from email.policy import default
 from enum import unique
+from itertools import groupby
 from django.db import models
 
 # from django.contrib.auth.base_user import AbstractBaseUser
@@ -71,7 +72,7 @@ class Feedback(models.Model):
     # bookingid = models.OneToOneField(BookingDetails, on_delete=models.CASCADE)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     comment = models.TextField()
-    rating = models.DecimalField(max_digits=2, decimal_places=1)
+    rating = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -83,8 +84,8 @@ class Feedback(models.Model):
 class CancellationDetails(models.Model):
     bookingid = models.OneToOneField(BookingDetails, on_delete=models.CASCADE)
     refund_status = models.TextField()
-    cancellation_charges = models.DecimalField(max_digits=10, decimal_places=2)
-    reason_for_cancellation = models.TextField()
+    cancellation_charges = models.FloatField()
+    reason_for_cancellation = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

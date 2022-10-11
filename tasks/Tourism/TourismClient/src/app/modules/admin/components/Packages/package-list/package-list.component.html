@@ -1,0 +1,17 @@
+
+<button routerLink="../addPackage" class="d-block ms-auto">Add Package</button>
+
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let package of pageItems" >
+      <td>{{package.package_name}}</td>
+     <td><button (click)="editPackage(package.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
+     <td><button (click)="deletePackage(package.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
+     </tr>
+</table>
+
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
+</div>

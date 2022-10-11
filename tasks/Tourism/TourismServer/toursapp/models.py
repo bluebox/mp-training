@@ -22,10 +22,12 @@ class Vehicle(models.Model):
 class Employee(models.Model):
     # empid = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=55)
+    image = models.TextField(default="https://res.cloudinary.com/dklq1vuce/image/upload/v1665298218/employee_profile_pic_cl6agt.jpg")
     mobile = models.BigIntegerField()
+    email = models.EmailField(null=True)
     address = models.TextField()
     salary = models.DecimalField(max_digits=15, decimal_places=2)
-    vehicleid = models.ForeignKey(Vehicle, on_delete=models.DO_NOTHING, null=True, blank=True)
+    # vehicleid = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name +" "+ str(self.mobile)
@@ -68,15 +70,16 @@ class Tour(models.Model):
     tour_from = models.CharField(max_length=50)
     tour_to = models.CharField(max_length=50)
     tour_type = models.CharField(max_length=50)
-    # start_date = models.DateTimeField()
+    start_date = models.DateTimeField(null=True)
     nights = models.IntegerField()
     days = models.IntegerField()
     price = models.DecimalField(max_digits=15, decimal_places=2)
     image = models.TextField()
     description = models.TextField()
-    places = models.ManyToManyField(Place, null=True)
+    places = models.ManyToManyField(Place)
     vehicleid = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=True, blank=True)
-    coupons = models.ManyToManyField(Coupon, null=True)
+    coupons = models.ManyToManyField(Coupon)
+    guides = models.ManyToManyField(Employee)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -86,11 +89,10 @@ class Tour(models.Model):
     class Meta:
         db_table = 'tours'
 
-
 class Package(models.Model):
     # packageid = models.BigAutoField(primary_key=True)
     package_name = models.CharField(max_length=30)
-    package_type = models.CharField(max_length=30)
+    package_type = models.CharField(max_length=30, null=True, blank=True)
     image = models.TextField()
     description = models.TextField()
     tours = models.ManyToManyField(Tour)
@@ -98,7 +100,7 @@ class Package(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.package_name +" "+self.package_type
+        return self.package_name
 
     class Meta:
         db_table = 'packages'

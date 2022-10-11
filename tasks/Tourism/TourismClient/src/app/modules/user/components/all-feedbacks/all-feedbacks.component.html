@@ -1,0 +1,12 @@
+<p class="ms-4" *ngIf="ratingObj">
+  <span class="fw-bold fst-italic">
+    <ngb-rating [max]="5" [(rate)]="ratingObj.average_rating" [readonly]="true" class="fs-1 mt-3 me-2"
+      [ngStyle]="{'color': ratingObj?.average_rating >=3 ? 'green' : 'red'}"></ngb-rating>
+  </span> <br>
+  {{ratingObj.average_rating}}
+  <span class="text-muted">(based on {{ratingObj.total_ratings}} ratings)</span>
+</p>
+<!-- <h1 class="text-center mt-5 mb-3 text-primary text-uppercase">Feedbacks on Us</h1> -->
+<div *ngFor="let feedback of feedbacks" class="m-3">
+  <app-feedback [feedback]="feedback"></app-feedback>
+</div>

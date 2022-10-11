@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,41 +16,53 @@ export class SignupComponent implements OnInit {
 
   constructor(private route: Router,
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private dataService: DataServiceService
     ) { }
 
-  shortLink: string = "";
+  imageUrl: string | undefined;
   loading: boolean = false; // Flag variable
   subscription!: Subscription
-  authToken!: string
-
+  imagesSubscription!: Subscription
+  backendError: string | null | undefined;
 
   SignUpForm: FormGroup = new FormGroup({
     name : new FormControl('', [Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
+    image : new FormControl(''),
     password : new FormControl('', [Validators.required]),
     confirm_password : new FormControl('', [Validators.required]),
     mobile : new FormControl('', [Validators.required]),
   })
 
-  // uploadPic: FormGroup = new FormGroup({
-  //   profile: new FormControl()
-  // })
+  onchange(e:any){
+    console.log(e.target.files[0]);
+    this.imagesSubscription = this.dataService.uploadImage(e.target.files[0]).subscribe(data => {
+      let dataString = JSON.stringify(data)
+      this.imageUrl = JSON.parse(dataString)
+    })
+  }
+
 
   submitSignUp() {
     let userObj = this.SignUpForm.value
     if(userObj.password == userObj.confirm_password){
       delete userObj.confirm_password
-      this.subscription = this.auth.registerAndGetToken(this.SignUpForm.value).subscribe(data => {
-        let res = JSON.stringify(data)
-        let token = JSON.parse(res)
-        if(token){
-          this.auth.changeAuthentication()
-          this.route.navigate([''])
-        }
-      })
+      this.SignUpForm.get('image')?.setValue(this.imageUrl)
+      this.subscription = this.auth.registerAndGetToken(this.SignUpForm.value).subscribe(
+        data => {
+          let res = JSON.stringify(data)
+          let token = JSON.parse(res)
+          this.backendError = null
+          if(token){
+            this.route.navigate(['user'])
+          }
+        },
+        err => this.backendError = err.error.detail
+      )
     }else{
-      console.log('Passwords not matched');
+      this.backendError = 'Passwords not matched'
+      // console.log('Passwords not matched');
     }
   }
 
@@ -65,6 +78,9 @@ export class SignupComponent implements OnInit {
   ngOnDestroy(): void {
     if(this.subscription){
       this.subscription.unsubscribe();
+    }
+    if(this.imagesSubscription){
+      this.imagesSubscription.unsubscribe();
     }
   }
 

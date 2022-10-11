@@ -1,0 +1,8 @@
+<h1 class="text-center text-primary" *ngIf="tourType == ''">All Tours</h1>
+<h1 class="text-center text-primary" *ngIf="tourType == 'snow'">Snow Adventure Tours</h1>
+<h1 class="text-center text-primary" *ngIf="tourType == 'forest'">Forest Adventure Tours</h1>
+<h1 class="text-center text-primary" *ngIf="tourType == 'sea'">Water Adventure Tours</h1>
+<div class="row">
+  <app-card *ngFor = "let tour of toursList" [tourItem]="tour" class="col-12 col-md-6 col-lg-4"></app-card>
+  <!-- <app-card *ngFor = "let tour of toursList" [tourItem]="tour" class="col-12 col-md-6 col-lg-4"></app-card> -->
+</div>

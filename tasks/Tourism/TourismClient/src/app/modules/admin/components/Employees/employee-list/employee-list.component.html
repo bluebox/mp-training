@@ -1,0 +1,17 @@
+
+<button routerLink="../addEmployee" class="d-block ms-auto">Add Employee</button>
+
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let employee of pageItems" >
+      <td>{{employee.email}}</td>
+     <td><button (click)="editEmployee(employee.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
+     <td><button (click)="deleteEmployee(employee.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
+     </tr>
+</table>
+
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
+</div>

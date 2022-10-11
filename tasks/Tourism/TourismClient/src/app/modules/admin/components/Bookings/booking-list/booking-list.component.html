@@ -1,0 +1,46 @@
+<!-- <div class="container" *ngIf="activeBookings">
+  <div class="row border pt-2 pb-2 mb-3" *ngFor="let booking of activeBookings" [ngStyle]="{'background-color': booking.isCancelled ? '#c9ccd1' : 'white'} ">
+    <div class="col-4">
+      <img [src]="booking.tourid.image" alt="tour_image" width="100%" height="100%" />
+    </div>
+    <div class="col-8" >
+      <div class="row text-start">
+        <div class="mb-2 col-6 text-uppercase">{{booking.tourid.tour_name}}</div>
+        <div class="mb-2 col-6 text-uppercase">user: {{booking.userid.email}}</div>
+        <div class="mb-2 col-5 fw-bold">{{booking.tourid.tour_from}} Tour</div>
+        <div class="mb-2 col-2">-----</div>
+        <div class="mb-2 col-5 fw-bold">{{booking.tourid.tour_to}} Tour</div>
+        <div class="mb-2 col-12">Transaction Id: {{booking.paymentid.transaction_id}}</div>
+        <div class="mb-2 col-5 ">Trip Date: {{(booking.tourid?.start_date).split('T')[0]}}</div>
+        <div class="mb-2 col-2 "></div>
+        <div class="mb-2 col-5 ">Time: {{(booking.tourid?.start_date).split('T')[1]}}</div>
+        <div class="mb-2 col-5 ">Total Price: {{booking.paymentid.total_price}}</div>
+        <div class="mb-2 col-2 "></div>
+        <div class="mb-2 col-5 ">Number of Tourists: {{booking.no_of_people}}</div>
+        <div class="mb-2 col-6"><button class="" (click)="cancelBooking(booking.id)" *ngIf="!booking.isCancelled">cancel</button></div>
+        <div class="mb-2 col-6"><button class="text-danger" *ngIf="booking.isCancelled">Cancelled</button></div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+<button routerLink="../addBooking" class="d-block ms-auto">Add Booking</button>
+
+<table *ngIf="pageItems" class="table table-bordered">
+  <tr *ngFor="let booking of pageItems" >
+      <td>For booking id: {{booking.id}}</td>
+     <td><button (click)="editBooking(booking.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
+     <td><button (click)="deleteBooking(booking.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
+     </tr>
+</table>
+
+
+<div class="text-center">
+  <button (click)="changePage(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
+  page {{page}} of {{totalPages}}
+  <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
+</div>
