@@ -12,6 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 @NgModule({
     declarations: [],
     imports: [
@@ -28,6 +29,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
         MatButtonModule,
         MatCardModule,
         MatToolbarModule,
+
     ],
     exports: [
         CommonModule,
@@ -43,6 +45,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
         MatButtonModule,
         MatCardModule,
         MatToolbarModule,
+        MatBottomSheetModule,
     ]
 })
 export class NgMaterialModule { }

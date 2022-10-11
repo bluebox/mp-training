@@ -21,7 +21,8 @@ import { TestComponent } from './test/test.component';
 import { BillComponent } from './bill/bill.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
-import { UpdateSlotsComponent } from './update-slots/update-slots.component';
+import { SlotsComponent } from './slots/slots.component';
+import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,9 @@ import { UpdateSlotsComponent } from './update-slots/update-slots.component';
     BillComponent,
     DiagnosisComponent,
     BookAppointmentComponent,
-    UpdateSlotsComponent,
-
+    // UpdateSlotsComponent,
+    SlotsComponent,
+    DoctorDetailsComponent,
   ],
   imports: [
     BrowserModule,

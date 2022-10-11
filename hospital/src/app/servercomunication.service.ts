@@ -54,6 +54,11 @@ export class ServercomunicationService {
     console.log('diagnosis list get')
     return this.http.get(`${this.url}slot/slot/${id}`,{headers: this.httpHeaders});
   }
+  getADoctor(id: any):Observable<any>
+  {
+    console.log('doc details get')
+    return this.http.get(`${this.url}slot/slot/${id}`,{headers: this.httpHeaders});
+  }
   getAPatient(id: any):Observable<any>
   {
     console.log('one patient')
@@ -98,8 +103,8 @@ register_slot(data: any) {
   //     return this.http.delete(baseUrl);
   //   }
 
-  //   findByTitle(title: any) {
-  //     return this.http.get(`${baseUrl}?title=${title}`);
+  //   findByIdDoctor(id: any) {
+  //     return this.http.get(`${baseUrl}?id=${id}`);
   //   }
   // }
 

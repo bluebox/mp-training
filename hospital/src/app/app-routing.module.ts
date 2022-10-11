@@ -8,10 +8,10 @@ import { NewuserComponent } from './newuser/newuser.component';
 import { PatientComponent } from './patient/patient.component';
 import { StaffComponent } from './staff/staff.component';
 import { AppointmentComponent } from './appointment/appointment.component';
-// import { book_appointmentComponent } from './appointment/appointment.component';
+import { SlotsComponent } from './slots/slots.component';
 
 const routes: Routes = [
-  // {path: '', redirectTo: 'index', pathMatch: 'full'},
+  {path: '', redirectTo: 'newuser', pathMatch: 'full'},
   {path: 'doctor', component: DoctorComponent},
   {path:'patient', component:PatientComponent},
   {path: 'staff',component: StaffComponent},
@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'newuser',component:NewuserComponent},
   {path: 'listofpatient',component:ListofpatientComponent},
   {path:'appointment',component:AppointmentComponent},
-  // {path:'slot',component:BookappointmentComponent},
+  {path:'slot',component:SlotsComponent},
 ];
 
 @NgModule({
