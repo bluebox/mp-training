@@ -3,9 +3,6 @@ table {
   }
 
   .questiontable{
-    margin-top: 80px;
-    margin-left: 80px;
-    margin-right: 80px;
     width:auto;
     
     padding-left: 70px;
@@ -18,10 +15,10 @@ table {
 .mat-cell{
     text-align: center;
 }
-th,tr{
+/* th,tr{
     
     background-color:rgb(250, 237, 220);
-}
+} */
 
 th{
     color:black
@@ -30,6 +27,6 @@ th{
     /* margin: 10px; */
     color:white;
     /* margin-top: 45px; */
-    background-color: rgb(239, 37, 44);
+    background-color: rgb(24, 172, 59);
     size:10px;
 }

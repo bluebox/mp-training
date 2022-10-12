@@ -1,11 +1,13 @@
-<p>take-exam works!</p>
+<!-- <p>take-exam works!</p> -->
+<!-- <app-student-navbar></app-student-navbar> -->
+
 <div class="container">
   <div class="card p-4">
       <div class=" text-center card-title bg-dark text-light">
           <h1>Course:</h1>
       </div>
       <div class="card-body">
-          <form (ngSubmit)="onSubmit()" >
+          <form  >
               <div *ngFor="let question of h; let i = index">
                   <h4><strong>{{i+1}}.{{question.question_name}}</strong></h4>
                   
@@ -28,7 +30,12 @@
                   <br>
               </div>
               <br>
-              <input type="submit" value="Submit" class="btn btn-block btn-success mt-4">
+            <mat-card-actions> 
+                <!-- <input type="submit" value="Submit" class="btn btn-block btn-success mt-4"> -->
+                <button type="submit" (click)="onSubmit()">submit</button>
+            </mat-card-actions>
+             
+              <!-- <button type="submit">submit</button> -->
           </form>
       </div>
   </div>

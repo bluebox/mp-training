@@ -12,10 +12,11 @@ const routes: Routes = [
   {
     path:"", component:DashboardComponent,children:[
       { path:'courseregister',component:AddCourseComponent},
+      { path:'editcourse/:id', component:AddCourseComponent},
       { path:'questionregister', component:AddQuestionComponent},
       { path:'display-course', component:DisplayCourseComponent},
       { path:'display-question', component:DisplayQuestionsComponent},
-      { path:'',redirectTo:'courseregister',pathMatch:"full"},
+      // { path:'',redirectTo:'courseregister',pathMatch:"full"},
     ]
 
   }

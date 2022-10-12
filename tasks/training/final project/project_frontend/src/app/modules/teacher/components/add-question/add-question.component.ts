@@ -16,7 +16,9 @@ export class AddQuestionComponent implements OnInit {
   courses:any
   options:string[]=["option1","option2","option3","option4"]
 
-  constructor(private http :TeacherServiceService, private router:Router) { }
+  constructor(private http :TeacherServiceService, private router:Router) {
+    
+   }
 
   questionAddingForm:FormGroup=new FormGroup({
 

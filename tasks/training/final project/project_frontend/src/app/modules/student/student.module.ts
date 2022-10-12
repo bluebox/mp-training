@@ -10,6 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { TakeExamComponent } from './components/take-exam/take-exam.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { ViewResultComponent } from './components/view-result/view-result.component';
+import { MatCardModule } from '@angular/material/card';
+import { MyMarksComponent } from './components/my-marks/my-marks.component';
+import { TotalAttemptsComponent } from './components/total-attempts/total-attempts.component';
+import { StudentNavbarComponent } from './components/student-navbar/student-navbar.component';
+import {MatListModule} from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { StudentHomepageComponent } from './components/student-homepage/student-homepage.component';
 
 
 @NgModule({
@@ -17,7 +26,12 @@ import { MatRadioModule } from '@angular/material/radio';
     DashboardcomponentComponent,
     AttemptExamComponent,
     ShowExamComponent,
-    TakeExamComponent
+    TakeExamComponent,
+    ViewResultComponent,
+    MyMarksComponent,
+    TotalAttemptsComponent,
+    StudentNavbarComponent,
+    StudentHomepageComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +39,12 @@ import { MatRadioModule } from '@angular/material/radio';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatListModule,
+    MatSidenavModule
+    
   ]
 })
 export class StudentModule { }

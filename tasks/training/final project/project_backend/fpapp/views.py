@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
@@ -227,6 +228,18 @@ class StartExam(APIView):
         print(serializer.data)
 
         return Response(serializer.data)
+
+class CheckMarks(APIView):
+
+    def get(self,request):
+        request.data.save()
+        return Response(request.data)
+
+
+    def post(self,request):
+        print(request.data)
+        return Response(request.data)
+
 
 
 

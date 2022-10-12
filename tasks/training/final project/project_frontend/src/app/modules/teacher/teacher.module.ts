@@ -23,6 +23,8 @@ import { UsersModule } from '../users/users.module';
 import { LoginComponent } from '../users/components/login/login.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { TeacherNavbarComponent } from './components/teacher-navbar/teacher-navbar.component';
+import { TeacherHomepageComponent } from './components/teacher-homepage/teacher-homepage.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DisplayCourseComponent,
     DisplayQuestionsComponent,
     UpdateCourseComponent,
+    TeacherNavbarComponent,
+    TeacherHomepageComponent,
     
     
   ],
@@ -53,6 +57,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatIconModule,
     MatPaginatorModule, 
+    
     
     
   ]

@@ -17,6 +17,7 @@ urlpatterns = [
     path('addcourse', views.AddCourse.as_view()),
     path('displayquestion', views.DisplayQuestion.as_view()),
     path('attemptexam',views.AttemptExam.as_view()),
-    path('startexam', views.StartExam.as_view())
+    path('startexam', views.StartExam.as_view()),
+    path('checkmarks', views.CheckMarks.as_view())
 
 ]

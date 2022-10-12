@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TeacherServiceService } from '../../teacher-service.service';
+// import { DisplayCourseComponent } from '../display-course/display-course.component';
 
 @Component({
   selector: 'app-add-course',

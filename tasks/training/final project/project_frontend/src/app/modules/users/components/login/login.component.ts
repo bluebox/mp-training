@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
 
             console.log("te11");
 
-            this.router.navigate(['registerstudent']);
+            this.router.navigate(['student']);
           }
 
           else if(localStorage.getItem("user_type") == "Teacher") {
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
             console.log("te");
 
-            this.router.navigate(['registerteacher']);
+            this.router.navigate(['teacher']);
           }
 
         }

@@ -18,6 +18,7 @@ export class TakeExamComponent implements OnInit {
   score:number=0
   answers_user: string[] = new Array(10);
   answer_main:string[]=new Array(10)
+  // total_scores:number[]=new Array(10)
   event:any
   k:any
   j:string='o'
@@ -34,6 +35,7 @@ export class TakeExamComponent implements OnInit {
       this.answer_main[this.i]=this.k.answer
     }
     console.log(this.answer_main)
+    localStorage.setItem('length', JSON.stringify(this.h.length))
     
   }
 
@@ -46,18 +48,20 @@ export class TakeExamComponent implements OnInit {
       }
     }   
     console.log(this.score)
+    this.http.total_scores.push(this.score)
+
+    console.log(this.http.total_scores)
+
+
     localStorage.setItem("score",JSON.stringify(this.score));
-    this.router.navigate(['student/showexam']);
+    this.router.navigate(['student/viewresult']);
  }
 
 
  onChange(i:number, event){
 
-  // console.log(event.target.value)
-
   this.answers_user[i] = event.target.value;
   console.log(this.answers_user)
 }
-
 
 }

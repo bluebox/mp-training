@@ -7,6 +7,7 @@ import { Observable, throwError } from 'rxjs'
   providedIn: 'root'
 })
 export class StudentServiceService {
+  total_scores:number[]=[]
 
   constructor(private router:Router, private http:HttpClient) { }
 
@@ -25,6 +26,15 @@ export class StudentServiceService {
 
   getQuestionWdCourse():Observable<any>{
     return this.http.get("http://127.0.0.1:8000/startexam")
+  }
+
+  sendAttemts(data:any){
+    return this.http.post("http://127.0.0.1:8000/checkmarks",data)
+  }
+
+ 
+  getQuestions(){
+    return this.http.get("http://127.0.0.1:8000/questionregister")
   }
 
 

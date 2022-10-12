@@ -1,6 +1,4 @@
-<!-- <p>show-exam works!</p> -->
-<app-student-navbar></app-student-navbar>
-
+<p>my-marks works!</p>
 <div class="questiontable">
     <table mat-table [dataSource]="courses" class="mat-elevation-z8">
     
@@ -16,7 +14,7 @@
         <!-- Name Column-->
         <ng-container matColumnDef="exam">
           <th mat-header-cell *matHeaderCellDef>Action  </th>
-          <td  style="color: green;" mat-cell *matCellDef="let question "> <button   (click)="sendCourseName(question.course_name)" class="nabButton" mat-button>Attend Exam</button>
+          <td  style="color: green;" mat-cell *matCellDef="let question "> <button (click)="sendMarks(question.course_name)" class="nabButton" mat-button>View Marks</button>
             </td>
     
     
