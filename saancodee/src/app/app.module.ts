@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,8 +24,7 @@ import { PostQuestionComponent } from './components/post-question/post-question.
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 import { PostDiscussionComponent } from './components/post-discussion/post-discussion.component';
-import { BlogComponent } from './components/blog/blog.component';
-import { BlogItemComponent } from './components/blog-item/blog-item.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,14 +42,14 @@ import { BlogItemComponent } from './components/blog-item/blog-item.component';
     DiscussionComponent,
     SubmissionComponent,
     PostDiscussionComponent,
-    BlogComponent,
-    BlogItemComponent,  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatExpansionModule,
+    BrowserAnimationsModule,
     FormsModule
   ]
 ,  providers: [RegisterService, AuthGuard, {

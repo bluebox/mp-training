@@ -15,6 +15,8 @@ declare var jQuery: any;
 })
 export class ProblemComponent implements OnInit {
 
+  panelOpenState = false;
+
   id!:any
   problem:any;
   tags:any;

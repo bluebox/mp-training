@@ -185,27 +185,6 @@ export class RegisterService {
     return this.http.post(url, data, {headers: headers})
   }
 
-  getBlogs() {
-    let url = "http://127.0.0.1:8000/api/blogs"
-    let headers = new HttpHeaders({
-      "Content-Type" : "application/json",
-      'Authorization': 'token ' + localStorage.getItem('token')
-    })
-    return this.http.get(url, {headers:headers})
-  }
-
-  getBlogData(id:any) {
-    let url = "http://127.0.0.1:8000/api/blog"
-    let headers = new HttpHeaders({
-      "Content-Type" : "application/json",
-      'Authorization': 'token ' + localStorage.getItem('token')
-    })
-    let data = {
-      "id": id
-    }
-    return this.http.post(url, data, {headers:headers})
-  } 
-
   deleteComment(id:any) {
     console.log();
     let url = "http://127.0.0.1:8000/api/delete-comment"

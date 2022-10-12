@@ -166,6 +166,26 @@ class Blog(models.Model):
     )
     tag = models.CharField(max_length=30, choices=tag_choices, null=False, blank=False)
     likes = models.IntegerField(default=0)
+
+class BlogComment(models.Model):
+    comment_id = models.AutoField(primary_key = True)
+    blog_id = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
+    comment = models.TextField(max_length = 1000, blank=False, null = False)
+    created_date_time = models.DateTimeField(auto_now_add = True)
+    likes = models.IntegerField(default=0)
+
+class BlogCommentReply(models.Model):
+    reply_id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
+    comment_id = models.ForeignKey(BlogComment, on_delete=models.CASCADE)
+    reply = models.CharField(max_length=500)
+
+class BlogCommentLike(models.Model):
+    like_id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
+    comment_id = models.ForeignKey(BlogComment, on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
         
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)

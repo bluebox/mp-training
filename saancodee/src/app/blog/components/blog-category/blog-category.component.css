@@ -1,0 +1,24 @@
+.search {
+    margin: 1rem;
+}
+
+.search-btn {
+    height: 100%;
+    margin: 0;
+    background-color: #0D6EFD;
+    color: white;
+}
+
+.categories {
+    margin: 1rem;
+}
+
+.categories > p {
+    font-style: italic;
+    font-size: 2rem;
+}
+
+.category {
+    display: flex;
+    justify-content: space-between;
+}

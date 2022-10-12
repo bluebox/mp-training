@@ -1,0 +1,31 @@
+<div class="blog-container">
+    <div class="inner-blog-container"></div>
+    <div class="inner-blog-container">
+        <div *ngFor="let blog of blogs; let i = index;" class="blog-card">
+            <h3 class="title">{{ blog.title }}</h3>
+            <div class="blog-params">
+                <div class="blog-param">
+                    <p class="blog-username">{{ blog.user_id }}</p>
+                </div>
+                <div class="blog-param">
+                    <i *ngIf="blog.tag === 'game development'" class="bi bi-controller"></i>
+                    <i *ngIf="blog.tag === 'web development'" class="bi bi-file-earmark-code"></i>
+                    <i *ngIf="blog.tag === 'devops'" class="bi bi-infinity"></i>
+                    <i *ngIf="blog.tag === 'Artificial intelligence'" class="bi bi-robot"></i>
+                    <i *ngIf="blog.tag === 'data structures'" class="bi bi-stack"></i>
+                    <i *ngIf="blog.tag === 'mobile development'" class="bi bi-phone"></i>
+                    <i *ngIf="blog.tag === 'block chain'" class="bi bi-boxes"></i>
+                    <p style="display: inline;" class="blog-tag">{{ blog.tag }}</p>
+                </div>
+                <div class="blog-param">
+                    <p class="blog-date">{{ blog.created_date_time | date:"mediumDate" }}</p>
+                </div>
+            </div>
+            <p class="blog-discussion">{{ blog.discussion.substring(0, 20) }}...</p>
+            <button (click)="getBlog(blog.blog_id)" class="blog-read-more-button btn btn-success">read more ></button>
+        </div>
+    </div>
+    <div class="inner-blog-container right-grid">
+        <app-blog-category></app-blog-category>
+    </div>
+</div>

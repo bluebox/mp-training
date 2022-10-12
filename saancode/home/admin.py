@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, Discussion, Profile, Skill, Problem, Tag, TopicTag, Solved, Comment, ProblemVotes
+from .models import Blog, BlogComment, BlogCommentLike, BlogCommentReply, Discussion, Profile, Skill, Problem, Tag, TopicTag, Solved, Comment, ProblemVotes
 from django.contrib.auth.models import User
 
 admin.site.register(Profile)
@@ -12,3 +12,6 @@ admin.site.register(Discussion)
 admin.site.register(ProblemVotes)
 admin.site.register(Comment)
 admin.site.register(Blog)
+admin.site.register(BlogComment)
+admin.site.register(BlogCommentReply)
+admin.site.register(BlogCommentLike)
