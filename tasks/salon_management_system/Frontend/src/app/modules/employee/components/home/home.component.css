@@ -1,0 +1,17 @@
+.body{
+    background-image: url('/assets/images/image1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1{
+    padding-top: 320px;
+    padding-bottom: 410px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 70px;
+    color:black;
+    text-decoration:underline;
+    
+}

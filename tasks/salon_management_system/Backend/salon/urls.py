@@ -1,6 +1,6 @@
-
-from salon import views
+"""Urls"""
 from django.urls import path
+from salon import views
 
 urlpatterns = [
     path('user/',views.UserList.as_view()),
@@ -16,8 +16,6 @@ urlpatterns = [
     path('employeeregistration',views.EmployeeRegistration.as_view()),
     path('listclients',views.ListOfClients.as_view()),
     path('listemployees',views.ListOfEmployees.as_view()),
-    
-
-    # path('usercreate/',views.UserCreate.as_view()),
-
+    path('empbranch',views.EmpBranch.as_view()),
+    path('newappointment',views.NewAppointment.as_view())
 ]

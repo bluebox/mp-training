@@ -17,6 +17,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { BranchComponent} from './components/branch/branch.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 
 
@@ -40,7 +47,14 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatCardModule,
+    MatDatepickerModule
   ]
 })
 export class ClientModule { }

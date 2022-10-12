@@ -1,1 +1,60 @@
-<p>bookappointment works!</p>
+<!-- <p>bookappointment works!</p>
+<ul *ngFor = "let services of services">
+<li>{{services.service_name}}
+</li>
+</ul> -->
+<!-- <form action="">
+
+<mat-form-field appearance="outline">
+    <mat-label>services</mat-label>
+    <mat-select [formControl]="service" multiple>
+      <mat-option *ngFor="let services of services" [value]="services.service_id">{{services.service_name}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+
+</form> -->
+<form [formGroup]="bookAppointmentForm"  class="example-form">
+    <div class="card1">
+    <mat-card>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>client_id</mat-label>
+        <input formControlName="client_id" matInput placeholder="Enter your client_id" />
+        <small class="text-danger" *ngIf="bookAppointmentForm.get('client_id')?.invalid  && bookAppointmentForm.get('client_id')?.touched " >required</small>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>time</mat-label>
+        <mat-select formControlName="Time_of_appointment" name="Time_of_appointment">
+          <mat-option *ngFor="let time of times" [value]="time.value">
+            {{time.viewValue}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>date</mat-label>
+      <input formControlName="appointment_date" matInput placeholder="Enter your client_id" />
+      <mat-hint>YYYY-MM-DD</mat-hint>
+      <small class="text-danger" *ngIf="bookAppointmentForm.get('appointment_date')?.invalid  && bookAppointmentForm.get('appointment_date')?.touched " >required</small>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>services</mat-label>
+      <mat-select formControlName="services" multiple>
+        <mat-option *ngFor="let services of allservices" [value]="services.service_id">{{services.service_name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+ 
+    
+
+
+    
+
+    <mat-card-actions>
+        <button (click) = "onSubmit()" mat-raised-button="" color="primary">
+          BOOK
+        </button>
+    </mat-card-actions>
+</mat-card>
+</div>
+</form>
