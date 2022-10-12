@@ -44,9 +44,9 @@
 
     @import url("https://fonts.googleapis.com/css? family-Montserrat:400, 500, 600,700 Poppins:408, 500&display-swap");
 *{
-margin: 0;
+margin: 0px;
 
-padding: 0;
+padding: 0px;
 
 box-sizing: border-box;
 
@@ -81,13 +81,13 @@ height: 100%;
 border-radius: 10px;
 
 position: absolute;
-top: 50%;
+top: 57%;
 
 text-align: center;
 
 left: 50%; 
 z-index: 999; 
-padding: 60px 32px; 
+padding: 30px 32px; 
 width: 370px; 
 transform: translate(-50%, -50%); 
 background: rgba(255, 255, 255, 0.133);

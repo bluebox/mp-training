@@ -1,18 +1,19 @@
+import datetime
+
 from django.http import HttpResponse
-from django.views.generic import ListView
-from rest_framework import generics
+from rest_framework import exceptions
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from .jwtauthentication import create_access_token, create_refresh_token
 from .managers import booking_form, slots_booked, get_slots_booked, get_equipments, get_facility_sport_id, \
-    post_equipments_booked, post_invoices
-from .models import FacilityDetail, Sport, SportsInFacility, Slot, SlotsInSportFacility, SlotsBookedForBookingId, \
-    BookingData, EquipmentsRentedForBookingId
-from .serilizers import FacilityDetailSerializer, SportsInFacilitySerializer, SportsSerializer, SlotsDetailsSerializer, \
-    SlotsSerializer, CreateFacilitySerializer, CreateSportsInFacilitySerializer, BookingFormSerializer
-import json
-import io
-from itertools import islice
+    post_equipments_booked, post_invoices, search_facilities, get_sports, facilities_containing_sport, \
+    check_access_token, get_user_booking, cancel_booking, give_feedback
+from .models import FacilityDetail, Sport, SportsInFacility, SlotsInSportFacility, SlotsBookedForBookingId, \
+    EquipmentsRentedForBookingId, User, UserToken
+from .serilizers import FacilityDetailSerializer, SportsSerializer, SlotsSerializer, CreateFacilitySerializer, \
+    CreateSportsInFacilitySerializer
 
 
 class FacilitiesDetailsView(APIView):
@@ -172,3 +173,113 @@ class GEtFacilitySportId(APIView):
 #             msg = "error occurred"
 #         json_data = JSONRenderer().render(msg)
 #         return HttpResponse(json_data, content_type='application/json', status=400)
+
+class UserLogin(APIView):
+    def post(self, request):
+        user_phone = request.data['user_phone']
+        user_password = request.data['user_password']
+
+        if User.objects.filter(user_phone=user_phone).exists():
+            user = User.objects.get(user_phone=user_phone)
+            if user.user_password != user_password:
+                raise exceptions.APIException("incorrect user_password ")
+        else:
+            raise exceptions.APIException("phone number not registered,check ")
+
+        access_token = create_access_token(user.user_id)
+        refresh_token = create_refresh_token(user.user_id)
+
+        UserToken.objects.create(
+            user_id=user.user_id,
+            token=refresh_token,
+            expired_at=datetime.datetime.utcnow() + datetime.timedelta(days=5)
+        )
+        response = Response()
+        response.data = {
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+        }
+        return response
+
+
+class SearchFacilities(APIView):
+
+    def get(self, request):
+
+        try:
+            result = search_facilities(request)
+            return result
+        except:
+            msg = "not found"
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+
+
+class GetSports(APIView):
+
+    def get(self, request):
+
+        try:
+            sports = get_sports()
+            return sports
+        except:
+            msg = "not found"
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+
+
+class GetFacilitiesInSports(APIView):
+    def get(self, request, sid):
+
+        try:
+            facilities = facilities_containing_sport(sid)
+            return facilities
+        except:
+            msg = "not found"
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+
+
+class CheckAccessToken(APIView):
+
+    def get(self, request):
+        refresh_token = request.GET.get('refresh_token')
+        try:
+            user_id = check_access_token(refresh_token)
+            msg = user_id
+        except:
+            msg = "access token does not exist"
+        json_data = JSONRenderer().render(msg)
+        return HttpResponse(json_data, content_type='application/json')
+
+
+class GetUserBookings(APIView):
+
+    def get(self, request, uid):
+        return get_user_booking(uid)
+
+
+class CancelBooking(APIView):
+
+    def post(self, request, bid):
+        try:
+            msg = cancel_booking(bid)
+
+        except:
+            msg = "error occurred try again"
+
+        json_data = JSONRenderer().render(msg)
+        return HttpResponse(json_data, content_type='application/json')
+
+
+class UpdateFeedback(APIView):
+    def post(self, request, bid):
+        try:
+            msg = give_feedback(request,bid)
+
+        except:
+            msg = "error occurred try again"
+
+        json_data = JSONRenderer().render(msg)
+        return HttpResponse(json_data, content_type='application/json')
+

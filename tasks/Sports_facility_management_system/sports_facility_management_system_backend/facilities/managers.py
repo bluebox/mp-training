@@ -1,14 +1,10 @@
-import io
-
 from django.http import HttpResponse
-from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
-from rest_framework.response import Response
 
 from facilities.models import BookingData, SlotsBookedForBookingId, Slot, SportsInFacility, Equipment, Sport, \
-    FacilityDetail, EquipmentsRentedForBookingId
+    FacilityDetail, EquipmentsRentedForBookingId, UserToken
 from facilities.serilizers import BookingFormSerializer, EquipmentSerializer, SportsInFacilitySerializer, \
-    InvoiceSerializer
+    InvoiceSerializer, FacilityDetailSerializer, SportsSerializer, UserBookingsSerializer
 
 
 def booking_form(request):
@@ -103,3 +99,60 @@ def get_booking_details(request):
     no_slots_booked = SlotsBookedForBookingId.filter(booking_id=booking_id)
     equipments_rented = EquipmentsRentedForBookingId.filter(booking_id=booking_id)
     cost_per_slot = SportsInFacility.booking_id.cost_per_slot * len(no_slots_booked)
+
+
+def search_facilities(request):
+    facilities = FacilityDetail.objects.filter(facility_name__icontains=request.GET.get('q'))[0:8]
+    serializer = FacilityDetailSerializer(facilities, many=True)
+    json_data = JSONRenderer().render(data=serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+def get_sports():
+    sports = Sport.objects.all()
+    serializer = SportsSerializer(sports, many=True)
+    json_data = JSONRenderer().render(data=serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+def facilities_containing_sport(sid):
+    sports = Sport.objects.filter(sport_id=sid)
+    serializer = SportsSerializer(sports, many=True)
+    json_data = JSONRenderer().render(data=serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+def check_access_token(token):
+    refresh_token = UserToken.objects.get(token=token)
+    user_id = refresh_token.user_id
+    print(user_id)
+    return user_id
+
+
+def get_user_booking(user_id):
+    booking_details = BookingData.objects.filter(user_id=user_id)
+    serializer = UserBookingsSerializer(booking_details, many=True)
+    json_data = JSONRenderer().render(data=serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+def cancel_booking(bid):
+    try:
+        booking_details = BookingData.objects.get(booking_id=bid)
+        booking_details.delete()
+        msg = "cancelled booking successfully"
+    except:
+        msg = "no booking found"
+    return msg
+
+
+def give_feedback(request,bid):
+    try:
+        booking_details = BookingData.objects.get(booking_id=bid)
+        booking_details.reviews = request.data['review']
+        booking_details.ratings = request.data['rating']
+        booking_details.save()
+        msg = "booking updated successfully"
+    except:
+        msg = "no booking found"
+    return msg

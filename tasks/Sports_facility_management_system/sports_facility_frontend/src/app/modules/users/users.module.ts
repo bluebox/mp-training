@@ -10,7 +10,7 @@ import { UserhomeComponent } from './components/userhome/userhome.component';
 
 import { FacilitiesModule } from '../facilities/facilities.module';
 
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -21,7 +21,8 @@ import { FacilitiesModule } from '../facilities/facilities.module';
   imports: [
     CommonModule,
     UsersRoutingModule,
-    FacilitiesModule
+    FacilitiesModule,
+    ReactiveFormsModule
     
   ]
 })

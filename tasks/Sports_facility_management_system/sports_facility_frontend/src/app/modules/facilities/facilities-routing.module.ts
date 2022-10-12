@@ -5,6 +5,7 @@ import { BookingComponent } from './components/booking/booking.component';
 import { FacilityComponent } from './components/facility/facility.component';
 import { IndexComponent } from './components/index/index.component';
 import { ParticularfacilityComponent } from './components/particularfacility/particularfacility.component';
+import { ParticularsportComponent } from './components/particularsport/particularsport.component';
 import { PaymentpageComponent } from './components/paymentpage/paymentpage.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
     children: [
       {path:'hyderabad',component: FacilityComponent},
       { path: 'hyderabad/:id', component: ParticularfacilityComponent },
+      {path:'hyderabad/sport/:id',component: ParticularsportComponent},
       { path: 'booking/:id', component: BookingComponent },
       {path:'paymentpage',component: PaymentpageComponent},
       { path: '**', component: ErrorComponent },

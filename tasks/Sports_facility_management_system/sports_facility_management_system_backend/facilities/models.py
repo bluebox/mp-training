@@ -71,6 +71,16 @@ class User(models.Model):
     user_email = models.CharField(max_length=255)
     user_password = models.CharField(max_length=255)
 
+    USERNAME_FIELD = 'user_id'
+    REQUIRED_FIELDS = []
+
+
+class UserToken(models.Model):
+    user_id = models.IntegerField()
+    token = models.CharField(max_length=255)
+    expired_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
 
 class BookingData(models.Model):
     booking_id = models.AutoField(primary_key=True)
@@ -79,10 +89,12 @@ class BookingData(models.Model):
     date = models.CharField(max_length=255)
     reviews = models.TextField(blank=True, null=True)
     ratings = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    slots = models.ManyToManyField(Slot, through='SlotsBookedForBookingId')
+    equipments_booked = models.ManyToManyField(Equipment, through='EquipmentsRentedForBookingId', blank=True)
 
 
 class SlotsBookedForBookingId(models.Model):
-    booking_id = models.ForeignKey(BookingData, models.DO_NOTHING)
+    booking_id = models.ForeignKey(BookingData, on_delete=models.CASCADE)
     slot_id = models.ForeignKey(Slot, models.DO_NOTHING)
 
     def __str__(self):
@@ -90,7 +102,7 @@ class SlotsBookedForBookingId(models.Model):
 
 
 class EquipmentsRentedForBookingId(models.Model):
-    booking_id = models.ForeignKey(BookingData, models.DO_NOTHING)
+    booking_id = models.ForeignKey(BookingData, on_delete=models.CASCADE)
 
     equip_id = models.ForeignKey(Equipment, models.DO_NOTHING)
     quantity = models.IntegerField()
@@ -98,6 +110,6 @@ class EquipmentsRentedForBookingId(models.Model):
 
 class Invoice(models.Model):
     invoice_id = models.AutoField(primary_key=True)
-    booking_id = models.ForeignKey(BookingData, models.DO_NOTHING)
+    booking_id = models.ForeignKey(BookingData, on_delete=models.CASCADE)
     total_cost = models.IntegerField()
     invoice_pdf = models.TextField(null=True, blank=True)

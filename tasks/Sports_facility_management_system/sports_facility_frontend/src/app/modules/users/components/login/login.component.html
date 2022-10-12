@@ -4,18 +4,18 @@
     <div class="content">
         <header>Login Page</header>
 
-        <form action="#">
+        <form [formGroup]="create_user_login_form" (ngSubmit)="submit()">
 
             <div class="field">
                 <span class="fa fa-user"></span>
-                <input type="text" required placeholder="Enter registered Phone number" />
+                <input formControlName="user_phone" type="text" required placeholder="Enter registered Phone number" />
 
             </div>
 
             <div class="field space">
 
                 <span class="fa fa-lock"></span>
-                <input type="password" class="pass-key" required placeholder="Password">
+                <input formControlName="user_password" type="password" class="pass-key" required placeholder="Password">
                 <span class="show">SHOW</span>
             </div>
 
@@ -26,9 +26,10 @@
             </div>
 
             <div class="field">
-                <input type="submit" value="LOGIN" onclick="window.location='index.html'" />
+                <input type="submit" value="LOGIN" />
                 
             </div>
+            <h3 *ngIf="errormsg" class="errormsg">{{errormsg}} </h3>
 
 
 

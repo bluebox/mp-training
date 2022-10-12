@@ -11,7 +11,7 @@
     background: rgb(226, 225, 243);
     box-shadow: 0 5px 15px rgb(143, 167, 171);
     z-index: 999;
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     left: 0;
   }
@@ -87,4 +87,38 @@
   .dropdown-content a:hover {background-color: #ddd;}
   
   .dropdown:hover .dropdown-content {display: block;}
+
+
   
+
+ 
+  #searchresults{
+    position: absolute;
+    top: 55px;
+    left: 460px;
+    z-index: 1;
+    border: 1px solid  rgb(111, 111, 119);
+    width: 190px;
+
+  } 
+  #searchresults button{
+
+    background-color: rgb(226, 225, 243);
+    margin: 0px 0px 0px;
+    display: block;
+    width: 100%;
+    border: 0px;  
+  }
+
+  .sportbutton{
+    border: 0px;
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    /* padding: 6px 16px; */
+    font-weight: 800;
+  }
+
+  .ml-4{
+    margin-right: 20px;
+  }

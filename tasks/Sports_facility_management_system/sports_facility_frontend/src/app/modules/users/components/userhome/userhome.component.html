@@ -1,1 +1,43 @@
-<p>userhome works!</p>
+<h1> my Bookings</h1>
+<h2 > Upcoming Bookings</h2>
+<div *ngFor="let booking of bookingDetails" >
+    <div *ngIf="booking.isupcoming" class="card">
+        <div class="datecard">
+            <h1> {{booking.date}}</h1>
+        </div>
+
+        <div class="detailscard">
+            <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
+            <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+
+            <div class="detailscard2">
+                <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
+                    alt="sport" />
+                <i class="fa fa-phone phone" aria-hidden="true"></i>
+                <button class="btn btn-outline-primary" (click)="deletebooking(booking.booking_id)"> cancel </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<h2> past booking</h2>
+<div *ngFor="let booking of bookingDetails" >
+    <div *ngIf="!booking.isupcoming" class="card">
+        <div class="datecard">
+            <h1> {{booking.date}}</h1>
+        </div>
+
+        <div class="detailscard">
+            <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
+            <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+
+            <div class="detailscard2">
+                <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
+                    alt="sport" />
+                <i class="fa fa-phone phone" aria-hidden="true"></i>
+                <button class="btn btn-outline-primary" (click)="givefeedback(booking.booking_id)"> feedback </button>
+
+            </div>
+        </div>
+    </div>
+</div>

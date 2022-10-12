@@ -14,7 +14,7 @@ import { FacilityService } from '../../services/facility.service';
 export class BookingComponent implements OnInit {
   fid: string = ''; //facilityid
   idd!: number;
-  facility!: Facility; 
+  facility!: Facility;
   sports!: Sports[];
   equipments!: any[];
   sportid!: number;
@@ -35,9 +35,8 @@ export class BookingComponent implements OnInit {
   cost_per_slot: any;
   total_cost_for_slots!: number;
   total_cost_for_equipments: number = 0;
-
-
-
+  token_status: any;
+  user_verfied: boolean = false;
 
   constructor(
     private router: Router,
@@ -62,6 +61,15 @@ export class BookingComponent implements OnInit {
       (this.sports = data), console.log(data);
     });
 
+    let refresh_token = localStorage.getItem('refresh_token');
+
+    this.facilityService.CheckRefreshToken(refresh_token).subscribe((data) => {
+      this.token_status = data;
+      if (this.token_status != 'access token does not exist') {
+        this.user_verfied = true;
+      }
+    });
+
     this.dates();
   }
   ngDoCheck(): void {}
@@ -74,9 +82,11 @@ export class BookingComponent implements OnInit {
       date.setDate(date.getDate() + i);
       const month = date.toLocaleString('default', { month: 'long' });
       const day = date.getDate();
-      simpilifiedDate.push(day + ',' + month);
+      const year = date.getFullYear();
+      simpilifiedDate.push(day + ',' + month +','+ year);
       const weekday = date.toLocaleString('default', { weekday: 'long' });
       simpilifiedDate.push(weekday);
+      
 
       this.datesarray.push(simpilifiedDate);
     }
@@ -139,7 +149,7 @@ export class BookingComponent implements OnInit {
     }
     console.log(this.slotsid);
     this.total_cost_for_slots = this.cost_per_slot * this.slotsid.length;
-    this.totalCostForEquipments()
+    this.totalCostForEquipments();
   }
 
   getSlotids(): void {
@@ -147,7 +157,6 @@ export class BookingComponent implements OnInit {
     for (let i = 0; i < this.booked_slots.length; i++) {
       this.booked_slots_ids.push(this.booked_slots[i].slot_id);
     }
-    ;
   }
   increasebtn(id: number): void {
     this.equipments[id].count += 1;
@@ -181,37 +190,37 @@ export class BookingComponent implements OnInit {
   totalCostForEquipments(): void {
     this.total_cost_for_equipments = 0;
     this.equipments.forEach((item) => {
-      this.total_cost_for_equipments +=
-        item.cost * this.slotsid.length;
+      this.total_cost_for_equipments += item.cost * this.slotsid.length;
     });
     console.log(this.total_cost_for_equipments);
   }
 
   submitBookingForm(): void {
-    this.EquipmentsBooked();
+    if (this.user_verfied) {
+      this.EquipmentsBooked();
 
-    const obj = {
-      user_id: this.user_id,
-      facility_sport_id: this.fsid,
-      date: this.date,
-      slots_id: this.slotsid,
-      equipments_booked: this.equipments_booked,
-      equipments_quantity: this.equipments_quantity,
-    };
-    const costobj = {
-      cost_for_slot:this.total_cost_for_slots,
-      cost_for_equipments:this.total_cost_for_equipments,
-      total_cost:this.total_cost_for_slots+this.total_cost_for_equipments,
-
+      const obj = {
+        user_id: this.user_id,
+        facility_sport_id: this.fsid,
+        date: this.date,
+        slots_id: this.slotsid,
+        equipments_booked: this.equipments_booked,
+        equipments_quantity: this.equipments_quantity,
+      };
+      const costobj = {
+        cost_for_slot: this.total_cost_for_slots,
+        cost_for_equipments: this.total_cost_for_equipments,
+        total_cost: this.total_cost_for_slots + this.total_cost_for_equipments,
+      };
+      console.log(obj);
+      this.facilityService.postBookingData(obj).subscribe((data) => {
+        (this.bookingmsg = data), console.log(data);
+        sessionStorage.setItem('bookingobj', JSON.stringify(obj));
+        sessionStorage.setItem('totalcost', JSON.stringify(costobj));
+        this.router.navigate(['facilities/paymentpage']);
+      });
+    } else {
+      this.router.navigate(['user/login']);
     }
-    console.log(obj);
-    this.facilityService.postBookingData(obj).subscribe((data) => {
-      (this.bookingmsg = data), console.log(data);
-      sessionStorage.setItem('bookingobj', JSON.stringify(obj));
-      sessionStorage.setItem('totalcost', JSON.stringify(costobj));
-      this.router.navigate(['facilities/paymentpage']);
-    });
-    
-    
   }
 }

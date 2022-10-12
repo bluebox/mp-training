@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PaymentpageComponent } from './components/paymentpage/paymentpage.component';
+import { ParticularsportComponent } from './components/particularsport/particularsport.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PaymentpageComponent } from './components/paymentpage/paymentpage.compo
     BookingComponent,
     HeaderComponent,
     FooterComponent,
-    PaymentpageComponent
+    PaymentpageComponent,
+    ParticularsportComponent
   ],
   imports: [
     CommonModule,

@@ -3,18 +3,33 @@
 
   <div>
     <ul id="navbar">
-      <li><a> <input type="search" placeholder="Search for sports or facility"> </a></li>
-      <li><a href="facilities/hyderabad" class="active" >Home</a></li>
-      <li><a>About</a></li>
       <li>
         <a>
-          <div class="dropdown ">
-            <a><i class="fa fa-user" aria-hidden="true"></i>
-            </a>
+          <input type="search" placeholder="Search for facility" id="search" #text (keydown)="search(text.value)"
+            autocomplete="off" />
+        </a>
+      </li>
+
+      <li><a href="facilities/hyderabad" class="active">Home</a></li>
+      <li>
+        <a>
+          <div class="dropdown ml-4">
+            <a><i aria-hidden="true"> Filter by sports </i> </a>
             <div class="dropdown-content">
-              <a href="user/login">Login</a>
-              <a href="user/signup">sign up</a>
-              <a (click)="logout()">Logout</a>
+             <button class="sportbutton" *ngFor="let sport of sports"
+                (click)="sportid(sport.sport_id)">
+                <a>{{sport.sport_name}}</a></button>
+            </div>
+          </div>
+        </a>
+        <a>
+          <div class="dropdown ">
+            <a><i class="fa fa-user" aria-hidden="true"></i> </a>
+            <div class="dropdown-content">
+              <a *ngIf="!user_verfied" href="user/login">Login</a>
+              <a *ngIf="!user_verfied" href="user/signup">sign up</a>
+              <a *ngIf="user_verfied" (click)="OpenUserHome()" >Your Account</a>
+              <a *ngIf="user_verfied" (click)="logout()">Logout</a>
             </div>
           </div>
         </a>
@@ -22,3 +37,8 @@
     </ul>
   </div>
 </section>
+<div id="searchresults">
+  <button *ngFor="let facility of searchresults; let i = index" (click)="facilitysearch(searchresults[i].facility_id)">
+    {{ facility.facility_name }}
+  </button>
+</div>

@@ -13,18 +13,19 @@ export class ParticularfacilityComponent implements OnInit {
   id : string = ''
   facility !: Facility;
   sports : Sports[]=[];
+  
   constructor(private router:Router, private arouter:ActivatedRoute, private facilityService: FacilityService) { 
   }
 
   ngOnInit(): void {
     this.arouter.params.subscribe(data => {this.id = data['id']
-    console.log(data)})
+    console.log(data)
 
     this.facilityService.getFacility(this.id).subscribe(data => this.facility = data);
 
     this.facilityService.getSportsInFacility(this.id).subscribe(data => this.sports = data);
-
-  
+    
+  })
   }
   openBooking(id: number): void {
     this.router.navigate(['facilities/booking',String(id)])

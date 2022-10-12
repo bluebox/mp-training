@@ -19,7 +19,13 @@ export class FacilityService {
   private equipmenturl: string = 'http://localhost:8000/get-equipments?sid=';
 
   private facilitysporturl:string ='http://127.0.0.1:8000/get-fsid?fid='
-  
+
+  private searchfacilityurl:string ='http://127.0.0.1:8000/search-facilities?q='
+  private sportsurl:string ='http://127.0.0.1:8000/get-sports'
+
+  private facilitiesconatiningSporturl:string ='http://127.0.0.1:8000/get-facilities-contain-sport/'
+
+  private Refreshtokenurl:string ='http://127.0.0.1:8000/check-refresh-token?refresh_token='
 
   constructor( private http: HttpClient ) { }
 
@@ -62,6 +68,24 @@ export class FacilityService {
     return this.http.get(this.facilitysporturl+fid+"&sid="+sid)
   }
 
+  searchFacility(q: string){
+    return this.http.get(this.searchfacilityurl+q)
 
+    
+  }
+  getSports() {
+    return this.http.get(this.sportsurl)
+  }
+  getFacilitiescontainSport(sid:any) {
 
+    return this.http.get(this.facilitiesconatiningSporturl+sid)
+  }
+
+  CheckRefreshToken(token:any) {
+    
+    return this.http.get(this.Refreshtokenurl+token)
+
+    
+
+  }
 }

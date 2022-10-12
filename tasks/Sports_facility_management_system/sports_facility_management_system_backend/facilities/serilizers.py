@@ -21,7 +21,16 @@ class CreateFacilitySerializer(serializers.ModelSerializer):
         exclude = ['facility_id']
 
 
+class SportsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sport
+        fields = '__all__'
+
+
 class SportsInFacilitySerializer(serializers.ModelSerializer):
+    facility = FacilityDetailSerializer()
+    sport = SportsSerializer()
+
     class Meta:
         model = SportsInFacility
         fields = '__all__'
@@ -31,12 +40,6 @@ class CreateSportsInFacilitySerializer(serializers.ModelSerializer):
     class Meta:
         model = SportsInFacility
         exclude = ['facility_sport_id']
-
-
-class SportsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Sport
-        fields = '__all__'
 
 
 class SlotsDetailsSerializer(serializers.ModelSerializer):
@@ -54,6 +57,14 @@ class SlotsSerializer(serializers.ModelSerializer):
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        fields = '__all__'
+
+
+class SportsSerializer(serializers.ModelSerializer):
+    facility = FacilityDetailSerializer(many=True)
+
+    class Meta:
+        model = Sport
         fields = '__all__'
 
 
@@ -79,3 +90,15 @@ class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
         fields = ['total_cost', 'booking_id']
+
+
+class UserBookingsSerializer(serializers.ModelSerializer):
+    slots = SlotsSerializer(many=True)
+    equipments_booked = EquipmentSerializer(many=True)
+    facility_sport_id = SportsInFacilitySerializer()
+
+    class Meta:
+        model = BookingData
+        fields = '__all__'
+
+

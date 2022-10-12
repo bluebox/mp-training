@@ -1,5 +1,5 @@
 
-<!-- <h1>{{facility.facility_name}}</h1> -->
+<h1 *ngIf="facility">{{facility.facility_name}}</h1>
 <h3> Sports Available</h3>
 <div class="card">
 <div *ngFor="let sport of sports" class="card1" >
