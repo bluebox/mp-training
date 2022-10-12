@@ -1,0 +1,35 @@
+<p>take-exam works!</p>
+<div class="container">
+  <div class="card p-4">
+      <div class=" text-center card-title bg-dark text-light">
+          <h1>Course:</h1>
+      </div>
+      <div class="card-body">
+          <form (ngSubmit)="onSubmit()" >
+              <div *ngFor="let question of h; let i = index">
+                  <h4><strong>{{i+1}}.{{question.question_name}}</strong></h4>
+                  
+                  <div class="form-check" [id]="question.id">
+                      <input type="radio" [name]="question.id" value="option1" (change)="onChange(i,$event)">
+                      <label class="form-check-label" >{{question.option1}}</label>
+                  </div>
+                  <div class="form-check" [id]="question.id">
+                      <input type="radio" [name]="question.id" value="option2" (change)="onChange(i,$event)" >
+                      <label class="form-check-label" >{{question.option2}}</label>
+                  </div>
+                  <div class="form-check"  [id]="question.id">
+                      <input type="radio" [name]="question.id" value="option3" (change)="onChange(i,$event)">
+                      <label class="form-check-label">{{question.option3}}</label>
+                  </div>
+                  <div class="form-check" [id]="question.id">
+                      <input type="radio" [name]="question.id" value="option4" (change)="onChange(i,$event)">
+                      <label class="form-check-label">{{question.option4}}</label>
+                  </div>
+                  <br>
+              </div>
+              <br>
+              <input type="submit" value="Submit" class="btn btn-block btn-success mt-4">
+          </form>
+      </div>
+  </div>
+</div>

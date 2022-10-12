@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           }
 
           else if(localStorage.getItem("user_type") == "Teacher") {
-            // else{
+       
 
             console.log("te");
 

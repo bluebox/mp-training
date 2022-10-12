@@ -50,5 +50,5 @@ class QuestionSerializer2(serializers.ModelSerializer):
     c_name= serializers.CharField(source='course.course_name')
     class Meta:
         model=Question
-        fields=('question_name','option1','option2','option3','option4','c_name')
+        fields=('question_name','option1','option2','option3','option4','c_name','course')
 

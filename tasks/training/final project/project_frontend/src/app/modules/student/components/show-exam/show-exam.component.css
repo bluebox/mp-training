@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+  }
+
+  .questiontable{
+    width:auto;
+    
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+.mat-header-cell{
+    text-align : center;
+}
+.mat-cell{
+    text-align: center;
+}
+/* th,tr{
+    
+    background-color:rgb(250, 237, 220);
+} */
+
+th{
+    color:black
+}
+.nabButton{
+    /* margin: 10px; */
+    color:white;
+    /* margin-top: 45px; */
+    background-color: rgb(239, 37, 44);
+    size:10px;
+}

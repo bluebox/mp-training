@@ -14,7 +14,7 @@ export class AddQuestionComponent implements OnInit {
   formNotValid: boolean =false
   formError?: string =""
   courses:any
-  options:string[]=["Option1","Option2","Option3","Option4"]
+  options:string[]=["option1","option2","option3","option4"]
 
   constructor(private http :TeacherServiceService, private router:Router) { }
 

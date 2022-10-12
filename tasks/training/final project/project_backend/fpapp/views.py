@@ -215,5 +215,18 @@ class AttemptExam(APIView):
         return Response(serializer.data)
  
 
+class StartExam(APIView):
+    
+    def post(self,request):
+        print(request.data)
+        data=request.data.get('course_id')
+        sub=Question.objects.filter(course=data)
+        print(len(sub))
+        serializer=QuestionSerializer(sub, many=True)
+        print(sub)
+        print(serializer.data)
+
+        return Response(serializer.data)
+
 
 

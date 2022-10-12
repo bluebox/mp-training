@@ -4,3 +4,10 @@
     padding-top:140px;
     padding-bottom:140px;
 }
+.nabButton{
+    /* margin: 10px; */
+    color:white;
+    /* margin-top: 45px; */
+    background-color: rgb(61, 37, 239);
+    size:10px;
+}

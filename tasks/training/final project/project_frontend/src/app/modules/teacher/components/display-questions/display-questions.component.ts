@@ -12,11 +12,8 @@ export class DisplayQuestionsComponent implements OnInit {
 
   displayedColumns: string[]=['question_name','course', 'Action']
   questions: any
-  courses:any
-  k:any
-  f:any
-  g:any
-  h:string[]=[]
+  
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   

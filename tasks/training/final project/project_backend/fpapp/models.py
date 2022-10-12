@@ -50,7 +50,7 @@ class Question(models.Model):
     option2=models.CharField(max_length=200)
     option3=models.CharField(max_length=200)
     option4=models.CharField(max_length=200)
-    options=(('Option1','Option1'),('Option2','Option2'),('Option3','Option3'),('Option4','Option4'))
+    options=(('option1','option1'),('option2','option2'),('option3','option3'),('option4','option4'))
     answer=models.CharField(max_length=200,choices=options)
     course= models.ForeignKey("Course", on_delete=models.CASCADE, null=True, blank=True)
 
