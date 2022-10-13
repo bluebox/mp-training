@@ -1,0 +1,37 @@
+
+
+<form [formGroup] = "editBranchForm">
+    <div class="card1">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Edit Branch</mat-card-title>
+        </mat-card-header>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Branch ID</mat-label>
+            <input formControlName="branch_id" matInput placeholder="Enter new branch id" />
+            <small class="text-danger" *ngIf="editBranchForm.get('branch_id')?.invalid  && editBranchForm.get('branch_id')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Branch Name</mat-label>
+            <input formControlName="branch_name" matInput placeholder="Enter new branch Name" />
+            <small class="text-danger" *ngIf="editBranchForm.get('branch_name')?.invalid  && editBranchForm.get('branch_name')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input formControlName="location" matInput placeholder="Enter new Address" />
+            <small class="text-danger" *ngIf="editBranchForm.get('location')?.invalid  && editBranchForm.get('location')?.touched " >required</small>
+        </mat-form-field>
+        <mat-card-actions>
+            <button (click)="cancel()" mat-raised-button="" color="primary">
+                cancel
+            </button>
+        </mat-card-actions>
+        <mat-card-actions>
+            <button (click) = "updateBranch()" mat-raised-button="" color="primary">
+                Update
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+    </div>
+</form>

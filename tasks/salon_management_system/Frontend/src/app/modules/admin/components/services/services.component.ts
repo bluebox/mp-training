@@ -19,4 +19,17 @@ export class ServicesComponent implements OnInit {
     this.subscription =this.http.getServices().subscribe((data) =>{this.services = data ;console.log(data)});
   }
 
+  deleteService(arg :any){
+    if(confirm("do u want to delete")){
+      var serviceVal = {"service_id": arg}
+      console.log(serviceVal)
+      this.http.deleteServices(serviceVal).subscribe(result=>{
+        console.log(result)
+        alert(result.toString());
+        console.log(serviceVal);
+        window.location.reload();
+      })
+  }
+
+  }
 }

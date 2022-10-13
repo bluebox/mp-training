@@ -1,11 +1,16 @@
 """views"""
 # from django.contrib.auth import authenticate, login, logout
 
+import stat
 from rest_framework.views import APIView
 
 # from rest_framework.decorators import api_view
 
+from rest_framework.parsers import JSONParser
+
 from rest_framework.response import Response
+
+from django.http import JsonResponse
 
 from rest_framework import status
 
@@ -14,6 +19,7 @@ from .models import Appointment, Branch, User, ServicesProvided, Employee, Clien
 from .serializers import AppointmentSerializer, BranchSerializer, EmployeeSerializer
 
 from .serializers import Userserializer, ClientSerializer, ServicesSerializer
+from salon import serializers
 
 class UserList(APIView):
     """This view is used to get and post the user details"""
@@ -42,6 +48,11 @@ class BranchList(APIView):
         serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data)
 
+class OneBranch(APIView):
+    def get(self,request,id):
+        branch = Branch.objects.get(branch_id=id)
+        serializer = BranchSerializer(branch,many=False)
+        return Response(serializer.data)
 
 class NewBranch(APIView):
     """View to post the data into the database"""
@@ -55,6 +66,50 @@ class NewBranch(APIView):
         else:
             print('invalid')
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['POST'])
+# def update_items(request, pk):
+#     item = Item.objects.get(pk=pk)
+#     data = ItemSerializer(instance=item, data=request.data)
+  
+#     if data.is_valid():
+#         data.save()
+#         return Response(data.data)
+#     else:
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+
+class UpdateBranch(APIView):
+    def post(self,request,pk):
+        branch = Branch.objects.get(branch_id=pk)
+        serializer = BranchSerializer(instance=branch,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+class deleteBranch(APIView):
+    def post(self,request):
+        data = JSONParser().parse(request)
+        branch = Branch.objects.get(branch_id=data['branch_id'])
+        branch.delete()
+        return JsonResponse("succesfully deleted",safe=False)
+
+
+class deleteService(APIView):
+    def post(self,request):
+        data = JSONParser().parse(request)
+        service = ServicesProvided.objects.get(service_id=data['service_id'])
+        service.delete()
+        return JsonResponse("succesfully deleted",safe=False)
+
+# def delete_course(request):
+#     data = JSONParser().parse(request)
+#     ele= Course.objects.get(id=data['id'])
+#     ele.delete()
+#     return JsonResponse("Deleted", safe=False)
+
 
 class NewAppointment(APIView):
     def post(self,request):
@@ -214,3 +269,8 @@ class EmployeeRegistration(APIView):
 #                 return Response({'msg':"password incorrect" })
 
 #         return Response({"msg":"not created"},status =200)
+# class Delete(APIView):
+#     def delete(self, request, pk, format=None):
+#         snippet = self.get_object(pk)
+#         snippet.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT) 

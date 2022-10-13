@@ -11,6 +11,7 @@ export class HttpserviceService {
 
   constructor(private http : HttpClient) {  }
 
+  url = "http://127.0.0.1:8000/getbranch"
   getUser(){
     return this.http.get('http://127.0.0.1:8000/user/')
   }
@@ -18,15 +19,36 @@ export class HttpserviceService {
   getBranch(){
     return this.http.get('http://127.0.0.1:8000/branch/')
   }
+  addBranch(data : any){
+    return this.http.post<any>('http://127.0.0.1:8000/newbranch/',data)
+  }
+  // getCurrentBranch(branch_id: any){
+  //   return this.http.get('${this.url}/${this.branch_id}')
+  // }
+
+  getCurrentBranch(id : any){
+    return this.http.get(`http://127.0.0.1:8000/getbranch/${id}`)
+  }
+
+  updateBranches(id : any,data:any){
+    return this.http.post(`http://127.0.0.1:8000/updatebranch/${id}`,data)
+  }
+
+  deleteBranches(data : any){
+    return this.http.post('http://127.0.0.1:8000/delete/',data)
+  }
 
   getServices(){
     return this.http.get(' http://127.0.0.1:8000/services')
   }
-
+  addService(data : any){
+    return this.http.post<any>('http://127.0.0.1:8000/services/',data)
+  }
+  deleteServices(data:any){
+    return this.http.post('http://127.0.0.1:8000/deleteservice/',data)
+  }
   
-  // registerStudent(data: any){
-  //   return this.http.post<any>('http://127.0.0.1:8000/userstudent',data)
-  // }
+ 
   clientRegister(data : any){
     return this.http.post<any>('http://127.0.0.1:8000/clientregistration',data)
   }
@@ -39,20 +61,11 @@ export class HttpserviceService {
     return this.http.get('http://127.0.0.1:8000/listemployees')
   }
 
-
-
   newEmployee(data : any){
     return this.http.post<any>('http://127.0.0.1:8000/employeeregistration',data)
   }
   newAppointment(data:any){
     return this.http.post<any>('http://127.0.0.1:8000/newappointment',data)
   }
-  
-  addBranch(data : any){
-    return this.http.post<any>('http://127.0.0.1:8000/newbranch/',data)
-  }
 
-  addService(data : any){
-    return this.http.post<any>('http://127.0.0.1:8000/services/',data)
-  }
 }

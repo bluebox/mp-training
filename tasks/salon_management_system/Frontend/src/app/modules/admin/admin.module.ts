@@ -26,6 +26,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { NewbranchComponent } from './components/newbranch/newbranch.component';
 import { NewserviceComponent } from './components/newservice/newservice.component';
+import { EditbranchComponent } from './components/editbranch/editbranch.component';
+import { EditserviceComponent } from './components/editservice/editservice.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { NewserviceComponent } from './components/newservice/newservice.componen
     BranchComponent,
     RegisteremployeeComponent,
     NewbranchComponent,
-    NewserviceComponent
+    NewserviceComponent,
+    EditbranchComponent,
+    EditserviceComponent
   ],
   imports: [
     CommonModule,

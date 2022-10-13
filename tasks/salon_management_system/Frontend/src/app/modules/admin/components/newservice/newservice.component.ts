@@ -19,8 +19,11 @@ export class NewserviceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addService(){
+  addService():void{
     console.log(this.newServiceForm.value)
-    this.http.addService(this.newServiceForm.value).subscribe(data => {console.log(data);alert("branch added successfully");this.router.navigate(['admin/services']);})
+    this.http.addService(this.newServiceForm.value).subscribe(data => {console.log(data);alert("branch added successfully");this.router.navigate(['admin/services']);}
+   )
   }
+
+  
 }

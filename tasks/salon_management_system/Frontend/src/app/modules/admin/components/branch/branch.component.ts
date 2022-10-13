@@ -10,6 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class BranchComponent implements OnInit {
   subscription : Subscription = Subscription.EMPTY
   branches: any;
+ 
   displayedColumns :string[]=['spa','branch_id','branch_name','location','update','delete'];
   constructor(private http : HttpserviceService) { }
 
@@ -22,6 +23,27 @@ export class BranchComponent implements OnInit {
   ngOnInit(): void {
     this.subscription =this.http.getBranch().subscribe((data) =>{this.branches = data ;console.log(data)});
   }
-
+  deleteBranch(arg : any){
+    if(confirm("do u want to delete")){
+        var val = {"branch_id": arg}
+        console.log(val)
+        this.http.deleteBranches(val).subscribe(res=>{
+          alert(res.toString());
+          console.log(val);
+          window.location.reload();
+        })
+    }
+  }
+  // deleteCourse(arg: any) {
+  //   if(confirm("do u want to delete")){
+  //   var val = {"id": arg}
+  //   console.log(val)
+  //   this.http.deleteCourses(val).subscribe(res=>{
+  //     alert(res.toString())
+  //     console.log(val)
+  //     window.location.reload();
+  //   })
+  // }
+  // }
   
 }

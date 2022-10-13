@@ -1,4 +1,5 @@
 """Urls"""
+from pathlib import Path
 from django.urls import path
 from salon import views
 
@@ -17,5 +18,9 @@ urlpatterns = [
     path('listclients',views.ListOfClients.as_view()),
     path('listemployees',views.ListOfEmployees.as_view()),
     path('empbranch',views.EmpBranch.as_view()),
-    path('newappointment',views.NewAppointment.as_view())
+    path('newappointment',views.NewAppointment.as_view()),
+    path('delete/',views.deleteBranch.as_view()),
+    path('deleteservice/',views.deleteService.as_view()),
+    path('updatebranch/<int:pk>',views.UpdateBranch.as_view()),
+    path('getbranch/<int:id>',views.OneBranch.as_view())
 ]
