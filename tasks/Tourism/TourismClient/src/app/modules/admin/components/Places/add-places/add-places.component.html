@@ -6,6 +6,8 @@
   </button>
   <input hidden type="file" name="profile" #fileInput placeholder="profile"
     class="" (change)="onchange($event)"/>
+  <mat-error *ngIf="submit && !imageUrl" class="text-center">Image is required</mat-error>
+
 
   <!-- <div class="d-flex align-items-center justify-content-between border file_input">
      <label for="image" class="file_label">Place Image: </label>
@@ -16,6 +18,8 @@
     <mat-label>Place Name</mat-label>
     <input type="text" name="place_name" matInput formControlName="place_name" placeholder="place_name"
       class="">
+    <mat-error *ngIf="formObj['place_name'].hasError('required')">place_name is required</mat-error>
+
   </mat-form-field>
 
   <!-- <mat-form-field class="global-form-full-width" appearance="fill">
@@ -30,6 +34,8 @@
     <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
       class="">
     </textarea>
+    <mat-error *ngIf="formObj['description'].hasError('required')">description is required</mat-error>
+
   </mat-form-field>
 
 

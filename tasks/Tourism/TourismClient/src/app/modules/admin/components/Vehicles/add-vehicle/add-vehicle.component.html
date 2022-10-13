@@ -3,24 +3,31 @@
     <mat-label>Vehicle Type</mat-label>
     <input type="text" name="vehicle_type" matInput formControlName="vehicle_type" placeholder="vehicle_type"
       class="">
+    <mat-error *ngIf="formObj['vehicle_type'].hasError('required')">vehicle_type is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>model</mat-label>
     <input type="text" name="model" matInput formControlName="model" placeholder="model"
       class="">
+    <mat-error *ngIf="formObj['model'].hasError('required')">model is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>vehicle_number</mat-label>
     <textarea rows="5" type="text" name="vehicle_number" matInput formControlName="vehicle_number" placeholder="vehicle_number"
       class="">
     </textarea>
+    <mat-error *ngIf="formObj['vehicle_number'].hasError('required')">vehicle_number is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>total_seats</mat-label>
     <input type="number" name="total_seats" matInput formControlName="total_seats" placeholder="total_seats"
       class="">
+
   </mat-form-field>
   <p><mat-checkbox formControlName="isAC">AC</mat-checkbox></p>
 

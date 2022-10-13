@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TourItem } from 'src/app/Interfaces/TourInterface';
 import { DataService } from 'src/app/modules/admin/services/data.service';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
@@ -11,7 +12,8 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 export class PackageToursComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private dataService: DataServiceService
+    private dataService: DataServiceService,
+    private router: Router
     ) { }
     packageName: any
     tourList: any
@@ -28,6 +30,9 @@ export class PackageToursComponent implements OnInit {
         }
       )
     })
+  }
+  goToTourPage(tour: TourItem){
+    this.router.navigate(['user/tour', tour.id])
   }
 
 }

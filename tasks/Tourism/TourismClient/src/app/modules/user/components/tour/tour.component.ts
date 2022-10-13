@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TourItem } from 'src/app/Interfaces/TourInterface';
 import { DataServiceService } from 'src/app/services/data-service.service';
@@ -18,7 +18,8 @@ export class TourComponent implements OnInit {
 
 
   constructor(private dataService: DataServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -39,6 +40,10 @@ export class TourComponent implements OnInit {
       },
       err => alert(err.error.detail)
     )
+  }
+
+  goToTourPage(tour: TourItem){
+    this.router.navigate(['user/tour', tour.id])
   }
 
   ngOnDestroy() {

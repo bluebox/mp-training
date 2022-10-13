@@ -6,6 +6,7 @@
       <option value="" selected>------</option>
       <option *ngFor="let user of userList" value={{user.id}}> user_object{{user.id}}</option>
     </select>
+    <mat-error *ngIf="formObj['userid'].hasError('required')">User Id is required</mat-error>
   </mat-form-field>
   <p>selected: {{BookingForm.get('userid')?.value}}</p>
 
@@ -15,6 +16,8 @@
       <option value="" selected>------</option>
       <option *ngFor="let tour of tourList" value={{tour.id}}> tour_object{{tour.id}}</option>
     </select>
+    <mat-error *ngIf="formObj['tourid'].hasError('required')">Tour Id is required</mat-error>
+
   </mat-form-field>
   <p>selected: {{BookingForm.get('tourid')?.value}}</p>
 
@@ -24,6 +27,8 @@
       <option value="" selected>------</option>
       <option *ngFor="let payment of paymentList" value={{payment.id}}> payment_object{{payment.id}}</option>
     </select>
+    <mat-error *ngIf="formObj['paymentid'].hasError('required')">Payment Id is required</mat-error>
+
   </mat-form-field>
   <p>selected: {{BookingForm.get('paymentid')?.value}}</p>
 
@@ -34,6 +39,8 @@
     <mat-label>no_of_people</mat-label>
     <input type="number" name="no_of_people" matInput formControlName="no_of_people" placeholder="no_of_people"
       class="">
+    <mat-error *ngIf="formObj['no_of_people'].hasError('required')">Number of people is required</mat-error>
+
   </mat-form-field>
 
   <!-- <mat-form-field class="global-form-full-width" appearance="fill">
@@ -47,6 +54,8 @@
     <textarea rows="5" type="text" name="passenger_details" matInput formControlName="passenger_details" placeholder="passenger_details"
       class="">
     </textarea>
+    <mat-error *ngIf="formObj['passenger_details'].hasError('required')">passenger_details is required</mat-error>
+
   </mat-form-field>
 
   <p><mat-checkbox formControlName="isCancelled">isCancelled</mat-checkbox></p>

@@ -1,40 +1,35 @@
-<div class="login_styling">
-  <div class="mt-5">
-    <h1 class="text-danger text-center" *ngIf="backendError" >{{backendError}}</h1>
-    <h1 class="text-center login_heading">Login To Your Account</h1>
-    <form class="global-form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
-      <mat-form-field class="global-form-full-width" appearance="fill">
-        <mat-label>Email</mat-label>
-        <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
-          class="login_input">
-        <!-- <div *ngIf="loginForm.invalid && (loginForm.dirty || loginForm.touched)" class="alert alert-danger">
+<div class="row login_styling">
+  <div class="col-12 col-md-8 d-flex justify-content-center align-items-center">
+    <div>
+      <h1 class="text-center login_heading">Login To Your Account</h1>
+      <h1 class="text-danger text-center" *ngIf="backendError" >{{backendError}}</h1>
+      <form class="global-form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <mat-form-field class="global-form-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
+            class="login_input">
+            <mat-error *ngIf="formObj['email'].hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="formObj['email'].hasError('email')">Invalid email</mat-error>
+          </mat-form-field>
 
-          <div *ngIf="username.errors?.['required']">
-            Name is required.
-          </div>
-          <div *ngIf="username.errors?.['minlength']">
-            Name must be at least 4 characters long.
-          </div>
-          <div *ngIf="username.errors?.['forbiddenName']">
-            Name cannot be Bob.
-          </div>
-        </div> -->
-      </mat-form-field>
-      <mat-form-field class="global-form-full-width" appearance="fill">
-        <mat-label>Password</mat-label>
-        <input type="password" matInput formControlName="password" placeholder="password">
-      </mat-form-field>
-      <button mat-raised-button type="submit" class="login_button" [disabled]="loginForm.invalid" >Login</button>
-    </form>
+
+          <mat-form-field class="global-form-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" placeholder="password">
+            <mat-error *ngIf="formObj['password'].hasError('required')">password is required</mat-error>
+
+        </mat-form-field>
+        <button mat-raised-button type="submit" class="">Login</button>
+      </form>
+    </div>
   </div>
-  <div class="login_sidebar text-center">
-    <h1 class="login_heading">New Here?</h1>
-    <p class="sub_heading">Sign up and discover a great travelling Experience</p>
-    <!-- <button mat-raised-button class="login_button bg-">Login</button> -->
-    <button mat-raised-button class="login_button" (click) = 'NavigateToSignUp()'>Signup</button>
+  <div class="d-flex justify-content-center align-items-center text-center col-12 col-md-4">
+    <div>
+      <h1 class="login_heading">New Here?</h1>
+      <p class="sub_heading">Sign up and discover a great travelling Experience</p>
+      <!-- <button mat-raised-button class="login_button bg-">Login</button> -->
+      <button mat-raised-button class="" (click) = 'NavigateToSignUp()'>Signup</button>
+    </div>
   </div>
 </div>
 
-
-
-<p>{{loginForm.get('username')?.value}}</p>

@@ -15,9 +15,9 @@
       <p class="paragraph">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus aut neque sunt sed at dolores ea.
       </p>
-      <a href="#" class="btn-text">Learn more &rarr;</a>
+      <!-- <a href="#" class="btn-text">Learn more &rarr;</a> -->
     </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 p-5">
       <div class="composition">
         <img src="../../../../../assets/images/nat-1.jpg" alt="photo1" class="composition-photo composition-photo-p1">
         <img src="../../../../../assets/images/nat-2.jpg" alt="photo2" class="composition-photo composition-photo-p2">
@@ -38,7 +38,7 @@
     </h2>
   </div>
   <div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card">
         <div class="card-side card-side-front">
           <div class="card-picture card-picture-1">
@@ -51,9 +51,9 @@
           </h4>
           <div class="card-details">
             <ul>
-              <li>3 day tours</li>
+              <!-- <li>3 day tours</li> -->
               <li>Upto 30 people</li>
-              <li>2 tour guides</li>
+              <!-- <li>2 tour guides</li> -->
               <li>Sleep in cozy hotels</li>
               <li>Difficulty:easy</li>
             </ul>
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card">
         <div class="card-side card-side-front">
           <div class="card-picture card-picture-2">
@@ -84,9 +84,9 @@
           </h4>
           <div class="card-details">
             <ul>
-              <li>7 day tours</li>
+              <!-- <li>7 day tours</li> -->
               <li>Upto 40 people</li>
-              <li>6 tour guides</li>
+              <!-- <li>6 tour guides</li> -->
               <li>Sleep in provided tents</li>
               <li>Difficulty:medium</li>
             </ul>
@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card">
         <div class="card-side card-side-front">
           <div class="card-picture card-picture-3">
@@ -117,9 +117,9 @@
           </h4>
           <div class="card-details">
             <ul>
-              <li>5 day tours</li>
+              <!-- <li>5 day tours</li> -->
               <li>Upto 15 people</li>
-              <li>3 tour guides</li>
+              <!-- <li>3 tour guides</li> -->
               <li>Sleep in cozy hotels</li>
               <li>Difficulty:hard</li>
             </ul>
@@ -138,14 +138,14 @@
       </div>
     </div>
   </div>
-  <div class="u-text-center u-margin-top-big">
-    <a (click)="navigateToTours('')" class="btn btn-green">Discover all tours</a>
+  <div class="text-end m-5">
+    <a (click)="navigateToTours('')" class="btn-text p-2" style="cursor: pointer;">Discover all tours</a>
   </div>
 
 </section>
 
 <section class="section_popular_packages">
-  <h1 class="heading-tertiary">Popular Packages</h1>
+  <h1 class="heading-secondary text-center">Popular Packages</h1>
   <div class="mb-3 mt-3 row">
     <div class="col-12 col-md-6" *ngFor="let package of packagesList">
       <div class="package_card mt-5 m-auto" (click)="goToTours(package.id)">

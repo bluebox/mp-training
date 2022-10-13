@@ -51,11 +51,15 @@ export class AddEmlployeeComponent implements OnInit {
   EmployeeForm: FormGroup = new FormGroup({
     name : new FormControl('', [Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
-    mobile : new FormControl('', [Validators.required]),
-    image : new FormControl('', [Validators.required]),
+    mobile : new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}')]),
+    image : new FormControl(''),
     address : new FormControl('', [Validators.required]),
     salary : new FormControl('', [Validators.required]),
   })
+
+  get formObj(){
+    return this.EmployeeForm.controls
+  }
 
   onchange(e:any){
     console.log(e.target.files[0]);
@@ -70,25 +74,27 @@ export class AddEmlployeeComponent implements OnInit {
   }
 
   addEmployeeObj() {
-    let employeeObj = {...this.EmployeeForm.value, image:this.imageUrl}
-    if(this.id){
-      this.editEmployeeSubscription = this.dataservice.editEmployee(employeeObj, this.id).subscribe(
-        data=>{
-        console.log(data)
-        alert("employee profile updated successfully")
-        this.router.navigate(['admin/employees/employeeList'])
-      },
-      err => alert(err.error.detail)
-    )
-    }else{
-      this.addEmployeeSubscription = this.dataservice.addEmployee(employeeObj).subscribe(
-        data=>{
-        console.log(data)
-        alert("employee profile added successfully")
-        this.router.navigate(['admin/employees/employeeList'])
-      },
-      err => alert(err.error.detail)
-    )
+    if(this.EmployeeForm.valid){
+      let employeeObj = {...this.EmployeeForm.value, image:this.imageUrl}
+      if(this.id){
+        this.editEmployeeSubscription = this.dataservice.editEmployee(employeeObj, this.id).subscribe(
+          data=>{
+          console.log(data)
+          alert("employee profile updated successfully")
+          this.router.navigate(['admin/employees/employeeList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }else{
+        this.addEmployeeSubscription = this.dataservice.addEmployee(employeeObj).subscribe(
+          data=>{
+          console.log(data)
+          alert("employee profile added successfully")
+          this.router.navigate(['admin/employees/employeeList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }
     }
   }
 

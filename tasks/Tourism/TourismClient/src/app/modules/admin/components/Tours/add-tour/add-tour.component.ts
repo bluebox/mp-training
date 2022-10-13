@@ -64,6 +64,7 @@ export class AddTourComponent implements OnInit {
   imagesSubscription!: Subscription;
   imageUrl!: string | null
   id!: number;
+  submit!: boolean
 
   TourForm: FormGroup = new FormGroup({
     tour_name : new FormControl('', [Validators.required]),
@@ -78,11 +79,14 @@ export class AddTourComponent implements OnInit {
     description : new FormControl('', [Validators.required]),
   })
 
+  get formObj(){
+    return this.TourForm.controls
+  }
 
   vehicleid = new FormControl('');
   coupons = new FormControl('');
-  places = new FormControl('');
-  guides = new FormControl('');
+  places = new FormControl('', [Validators.required]);
+  guides = new FormControl('', [Validators.required]);
 
 
 
@@ -131,26 +135,29 @@ export class AddTourComponent implements OnInit {
   }
 
   addTourObj() {
-    let tour = {...this.TourForm.value, places:this.places.value, coupons:this.coupons.value, vehicleid:this.vehicleid.value, image:this.imageUrl, guides:this.guides.value}
-    console.log(tour);
-    if(this.id){
-      this.editTourSubscription = this.dataservice.editTour(tour, this.id).subscribe(
-        data=>{
-        console.log(data)
-        alert("tour updated successfully")
-        this.router.navigate(['admin/tours/tourList'])
-      },
-      err => alert(err.error.detail)
-    )
-    }else{
-      this.addTourSubscription = this.dataservice.addTour(tour).subscribe(
-        data=>{
-          console.log(data);
-          alert("tour added successfully")
+    this.submit = true
+    if(this.TourForm.valid && this.places.valid && this.coupons.valid && this.guides.valid){
+      let tour = {...this.TourForm.value, places:this.places.value, coupons:this.coupons.value, vehicleid:this.vehicleid.value, image:this.imageUrl, guides:this.guides.value}
+      console.log(tour);
+      if(this.id){
+        this.editTourSubscription = this.dataservice.editTour(tour, this.id).subscribe(
+          data=>{
+          console.log(data)
+          alert("tour updated successfully")
           this.router.navigate(['admin/tours/tourList'])
         },
         err => alert(err.error.detail)
       )
+      }else{
+        this.addTourSubscription = this.dataservice.addTour(tour).subscribe(
+          data=>{
+            console.log(data);
+            alert("tour added successfully")
+            this.router.navigate(['admin/tours/tourList'])
+          },
+          err => alert(err.error.detail)
+        )
+      }
     }
   }
 

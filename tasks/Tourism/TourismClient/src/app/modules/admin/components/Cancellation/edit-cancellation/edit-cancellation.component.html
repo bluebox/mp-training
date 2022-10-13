@@ -11,6 +11,8 @@
       <option value="" selected>------</option>
       <option *ngFor="let booking of bookingList" value={{booking.id}}> booking_object{{booking.id}}</option>
     </select>
+    <mat-error *ngIf="formObj['bookingid'].hasError('required')">bookingid is required</mat-error>
+
   </mat-form-field>
   <p>selected: {{CancellationForm.get('bookingid')?.value}}</p>
 
@@ -18,7 +20,9 @@
     <mat-label>refund_status</mat-label>
     <input type="text" name="refund_status" matInput formControlName="refund_status" placeholder="refund_status"
       class="">
+    <mat-error *ngIf="formObj['refund_status'].hasError('required')">refund_status is required</mat-error>
   </mat-form-field>
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>cancellation_charges</mat-label>
     <!-- <textarea rows="5" type="text" name="cancellation_charges" matInput formControlName="cancellation_charges" placeholder="cancellation_charges"
@@ -26,13 +30,16 @@
     </textarea> -->
     <input type="number" name="cancellation_charges" matInput formControlName="cancellation_charges" placeholder="cancellation_charges"
       class="">
+    <mat-error *ngIf="formObj['cancellation_charges'].hasError('required')">cancellation_charges is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>reason_for_cancellation</mat-label>
     <input type="text" name="reason_for_cancellation" matInput formControlName="reason_for_cancellation" placeholder="reason_for_cancellation"
       class="">
+
   </mat-form-field>
 
-  <button mat-raised-button [disabled]="CancellationForm.invalid" class="">Add</button>
+  <button mat-raised-button class="">Add</button>
 </form>

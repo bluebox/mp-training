@@ -59,10 +59,14 @@ export class AddPackageComponent implements OnInit {
   PackageForm: FormGroup = new FormGroup({
     package_name : new FormControl('', [Validators.required]),
     package_type : new FormControl(''),
-    image : new FormControl('', [Validators.required]),
+    image : new FormControl(''),
     description : new FormControl('', [Validators.required]),
   })
   tours = new FormControl('', [Validators.required])
+
+  get formObj(){
+    return this.PackageForm.controls
+  }
 
 
   ngOnInit(): void {
@@ -75,26 +79,28 @@ export class AddPackageComponent implements OnInit {
   }
 
   addPackageObj() {
-    let packageObj = {...this.PackageForm.value, image:this.imageUrl, tours:this.tours.value}
-    console.log(packageObj);
-    if(this.id){
-      this.editPackageSubscription = this.dataservice.editPackage(packageObj, this.id).subscribe(
-        data=>{
-        console.log(data)
-        alert("package updated successfully")
-        this.router.navigate(['admin/package/packageList'])
-      },
-      err => alert(err.error.detail)
-    )
-    }else{
-      this.addPackageSubscription = this.dataservice.addPackage(packageObj).subscribe(
-        data=>{
-        console.log(data)
-        alert("package added successfully")
-        this.router.navigate(['admin/package/packageList'])
-      },
-      err => alert(err.error.detail)
-    )
+    if(this.PackageForm.valid && this.tours.valid){
+      let packageObj = {...this.PackageForm.value, image:this.imageUrl, tours:this.tours.value}
+      console.log(packageObj);
+      if(this.id){
+        this.editPackageSubscription = this.dataservice.editPackage(packageObj, this.id).subscribe(
+          data=>{
+          console.log(data)
+          alert("package updated successfully")
+          this.router.navigate(['admin/package/packageList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }else{
+        this.addPackageSubscription = this.dataservice.addPackage(packageObj).subscribe(
+          data=>{
+          console.log(data)
+          alert("package added successfully")
+          this.router.navigate(['admin/package/packageList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }
     }
   }
 

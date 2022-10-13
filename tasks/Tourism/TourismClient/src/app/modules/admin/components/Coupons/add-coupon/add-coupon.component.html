@@ -3,24 +3,32 @@
     <mat-label>Coupon Code</mat-label>
     <input type="text" name="couponcode" matInput formControlName="couponcode" placeholder="Coupon Code"
       class="">
+    <mat-error *ngIf="formObj['couponcode'].hasError('required')">couponcode is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Discount</mat-label>
     <input type="number" name="discount" matInput formControlName="discount" placeholder="Discount"
       class="">
+    <mat-error *ngIf="formObj['discount'].hasError('required')">discount is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Description</mat-label>
     <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
       class="">
     </textarea>
+    <mat-error *ngIf="formObj['description'].hasError('required')">description is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Valid Till</mat-label>
     <input type="date" name="valid_till" matInput formControlName="valid_till" placeholder="date time"
       class="">
+    <mat-error *ngIf="formObj['valid_till'].hasError('required')">valid_till is required</mat-error>
+
   </mat-form-field>
 
 

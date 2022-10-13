@@ -8,28 +8,38 @@
   <input hidden type="file" name="profile" #fileInput placeholder="profile"
     class="" (change)="onchange($event)"/>
 
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>name</mat-label>
     <input type="text" name="name" matInput formControlName="name" placeholder="name"
       class="">
+    <mat-error *ngIf="formObj['name'].hasError('required')">name is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>email</mat-label>
     <input type="email" name="email" matInput formControlName="email" placeholder="email"
       class="">
+    <mat-error *ngIf="formObj['email'].hasError('required')">email is required</mat-error>
+    <mat-error *ngIf="formObj['email'].hasError('email')">email is Invalid</mat-error>
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>mobile</mat-label>
     <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
       class="">
+    <mat-error *ngIf="formObj['mobile'].hasError('required')">mobile is required</mat-error>
+    <mat-error *ngIf="formObj['mobile'].hasError('pattern')">mobile is Invalid</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>password</mat-label>
     <input type="text" name="password" matInput formControlName="password" placeholder="password"
       class="">
+    <mat-error *ngIf="formObj['password'].hasError('required')">password is required</mat-error>
+
   </mat-form-field>
 
   <!-- <mat-form-field class="global-form-full-width" appearance="fill">

@@ -48,27 +48,33 @@ export class AddCouponComponent implements OnInit {
     valid_till : new FormControl('', [Validators.required]),
   })
 
+  get formObj(){
+    return this.CouponForm.controls
+  }
+
 
   ngOnInit(): void {
   }
 
   addCouponObj() {
-    if(this.id){
-      this.editCouponSubscription = this.dataservice.editCoupon(this.CouponForm.value, this.id).subscribe(
-        data=>{
-        console.log(data)
-        this.router.navigate(['admin/coupons/couponList'])
-      },
-      err => alert(err.error.detail)
-    )
-    }else{
-      this.addCouponSubscription = this.dataservice.addCoupon(this.CouponForm.value).subscribe(
-        data=>{
-        console.log(data)
-        this.router.navigate(['admin/coupons/couponList'])
-      },
-      err => alert(err.error.detail)
-    )
+    if(this.CouponForm.valid){
+      if(this.id){
+        this.editCouponSubscription = this.dataservice.editCoupon(this.CouponForm.value, this.id).subscribe(
+          (data: any)=>{
+            alert(`Coupon ${data.couponcode} Updated successfully`)
+          this.router.navigate(['admin/coupons/couponList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }else{
+        this.addCouponSubscription = this.dataservice.addCoupon(this.CouponForm.value).subscribe(
+          (data: any)=>{
+          alert(`Coupon ${data.couponcode} added successfully`)
+          this.router.navigate(['admin/coupons/couponList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }
     }
   }
 

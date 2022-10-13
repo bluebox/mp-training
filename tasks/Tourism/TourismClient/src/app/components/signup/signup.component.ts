@@ -32,37 +32,54 @@ export class SignupComponent implements OnInit {
     image : new FormControl(''),
     password : new FormControl('', [Validators.required]),
     confirm_password : new FormControl('', [Validators.required]),
-    mobile : new FormControl('', [Validators.required]),
+    mobile : new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}')]),
   })
+
+  get formObj() {
+    return this.SignUpForm.controls
+  }
+
+  PasswordMatchCheck(){
+    if(this.formObj['password'] != this.formObj['confirm_password']){
+      return 'Passwords not matched'
+    }else{
+      return null;
+    }
+  }
 
   onchange(e:any){
     console.log(e.target.files[0]);
-    this.imagesSubscription = this.dataService.uploadImage(e.target.files[0]).subscribe(data => {
-      let dataString = JSON.stringify(data)
-      this.imageUrl = JSON.parse(dataString)
+    this.imagesSubscription = this.dataService.uploadImage(e.target.files[0]).subscribe((data:any) => {
+      // let dataString = JSON.stringify(data)
+      // this.imageUrl = JSON.parse(dataString)
+      this.imageUrl = data
     })
   }
 
 
+
   submitSignUp() {
-    let userObj = this.SignUpForm.value
-    if(userObj.password == userObj.confirm_password){
-      delete userObj.confirm_password
-      this.SignUpForm.get('image')?.setValue(this.imageUrl)
-      this.subscription = this.auth.registerAndGetToken(this.SignUpForm.value).subscribe(
-        data => {
-          let res = JSON.stringify(data)
-          let token = JSON.parse(res)
-          this.backendError = null
-          if(token){
-            this.route.navigate(['user'])
-          }
-        },
-        err => this.backendError = err.error.detail
-      )
+    if(this.SignUpForm.valid && this.PasswordMatchCheck() != null){
+      let userObj = this.SignUpForm.value
+      if(userObj.password == userObj.confirm_password){
+        delete userObj.confirm_password
+        this.SignUpForm.get('image')?.setValue(this.imageUrl)
+        this.subscription = this.auth.registerAndGetToken(this.SignUpForm.value).subscribe(
+          data => {
+            let res = JSON.stringify(data)
+            let token = JSON.parse(res)
+            this.backendError = null
+            if(token){
+              this.route.navigate(['user'])
+            }
+          },
+          err => this.backendError = err.error.detail
+        )
+      }else{
+        this.backendError = 'Passwords not matched'
+      }
     }else{
-      this.backendError = 'Passwords not matched'
-      // console.log('Passwords not matched');
+      console.log("invalid data");
     }
   }
 

@@ -52,12 +52,16 @@ export class EditUserComponent implements OnInit {
   UserForm: FormGroup = new FormGroup({
     name : new FormControl('', [Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
-    mobile : new FormControl('', [Validators.required]),
-    image : new FormControl('', [Validators.required]),
+    mobile : new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}')]),
+    image : new FormControl(''),
     password : new FormControl('', [Validators.required]),
     isAdmin : new FormControl('', [Validators.required]),
     is_active : new FormControl('', [Validators.required]),
   })
+
+  get formObj(){
+    return this.UserForm.controls
+  }
 
   onchange(e:any){
     console.log(e.target.files[0]);
@@ -72,25 +76,27 @@ export class EditUserComponent implements OnInit {
   }
 
   addUserObj() {
-    let userObj = {...this.UserForm.value, image:this.imageUrl}
-    if(this.id){
-      this.editUserSubscription = this.dataservice.editUser(userObj, this.id).subscribe(
-        data=>{
-        console.log(data)
-        alert("user profile updated successfully")
-        this.router.navigate(['admin/users/userList'])
-      },
-      err => alert(err.error.detail)
-    )
-    }else{
-      this.addUserSubscription = this.dataservice.addEmployee(userObj).subscribe(
-        data=>{
-        console.log(data)
-        alert("user profile added successfully")
-        this.router.navigate(['admin/users/userList'])
-      },
-      err => alert(err.error.detail)
-    )
+    if(this.UserForm.valid){
+      let userObj = {...this.UserForm.value, image:this.imageUrl}
+      if(this.id){
+        this.editUserSubscription = this.dataservice.editUser(userObj, this.id).subscribe(
+          data=>{
+          console.log(data)
+          alert("user profile updated successfully")
+          this.router.navigate(['admin/users/userList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }else{
+        this.addUserSubscription = this.dataservice.addEmployee(userObj).subscribe(
+          data=>{
+          console.log(data)
+          alert("user profile added successfully")
+          this.router.navigate(['admin/users/userList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }
     }
   }
 

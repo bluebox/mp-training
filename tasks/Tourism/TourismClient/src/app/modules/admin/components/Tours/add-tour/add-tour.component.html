@@ -7,46 +7,64 @@
   </button>
   <input hidden type="file" name="profile" #fileInput placeholder="profile"
     class="" (change)="onchange($event)"/>
+  <mat-error *ngIf="submit && !imageUrl" class="text-center">Image is required</mat-error>
+
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Tour Name</mat-label>
     <input type="text" name="tour_name" matInput formControlName="tour_name" placeholder="Tour Name"
       class="">
+    <mat-error *ngIf="formObj['tour_name'].hasError('required')">tour_name is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Tour From</mat-label>
     <input type="text" name="tour_from" matInput formControlName="tour_from" placeholder="From"
       class="">
+    <mat-error *ngIf="formObj['tour_from'].hasError('required')">tour_from is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Tour To</mat-label>
     <input type="text" name="tour_to" matInput formControlName="tour_to" placeholder="To"
       class="">
+    <mat-error *ngIf="formObj['tour_to'].hasError('required')">tour_to is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Tour Type</mat-label>
     <input type="text" name="tour_type" matInput formControlName="tour_type" placeholder="TYpe"
       class="">
+    <mat-error *ngIf="formObj['tour_type'].hasError('required')">tour_type is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Start Date</mat-label>
     <input matInput type="datetime-local" formControlName="start_date"/>
+    <mat-error *ngIf="formObj['start_date'].hasError('required')">start_date is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Nights</mat-label>
     <input type="number" name="nights" matInput formControlName="nights" placeholder="Nights"
       class="">
+    <mat-error *ngIf="formObj['nights'].hasError('required')">nights is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Days</mat-label>
     <input type="number" name="days" matInput formControlName="days" placeholder="Days"
       class="">
+    <mat-error *ngIf="formObj['days'].hasError('required')">days is required</mat-error>
+
   </mat-form-field>
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Price</mat-label>
     <input type="number" name="price" matInput formControlName="price" placeholder="Price"
       class="">
+    <mat-error *ngIf="formObj['price'].hasError('required')">price is required</mat-error>
+
   </mat-form-field>
 
   <!-- <mat-form-field class="global-form-full-width" appearance="fill">
@@ -59,7 +77,9 @@
     <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
       class="">
     </textarea>
+    <mat-error *ngIf="formObj['description'].hasError('required')">description is required</mat-error>
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Places</mat-label>
     <mat-select [formControl]="places" multiple>
@@ -71,6 +91,8 @@
       </mat-select-trigger>
       <mat-option *ngFor="let place  of placesList" [value]="place.id">{{place.place_name}}</mat-option>
     </mat-select>
+    <mat-error *ngIf="places.hasError('required')">places is required</mat-error>
+
   </mat-form-field>
   <p>selected: {{places.value}}</p>
 
@@ -101,6 +123,7 @@
       </mat-select-trigger>
       <mat-option *ngFor="let coupon of couponsList" [value]="coupon.id">{{coupon.couponcode}}</mat-option>
     </mat-select>
+    <mat-error *ngIf="coupons.hasError('required')">coupons is required</mat-error>
   </mat-form-field>
   <p>selected: {{coupons.value}}</p>
 
@@ -115,6 +138,7 @@
       </mat-select-trigger>
       <mat-option *ngFor="let guide of guideList" [value]="guide.id">{{guide.email}}</mat-option>
     </mat-select>
+    <mat-error *ngIf="guides.hasError('required')">guides is required</mat-error>
   </mat-form-field>
   <p>selected: {{guides.value}}</p>
 

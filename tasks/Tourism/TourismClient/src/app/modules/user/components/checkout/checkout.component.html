@@ -16,7 +16,7 @@
     </div>
     <div class="d-flex justify-content-between">
       <p>coupon applied : </p>
-      <p>{{coupon?.couponcode}}</p>
+      <p *ngIf="coupon">{{coupon.couponcode}} <button class="border-0 bg-light" (click)="updateCoupon(null)" ><i class="fa-solid fa-xmark text-danger"></i></button></p>
     </div>
     <div class="d-flex justify-content-between">
       <p>discount : </p>
@@ -27,6 +27,20 @@
       <p>{{(tourObject.price - discount) * tourists.length}}</p>
     </div>
   </div>
+  
+  <!-- <div class="col-12 text-center mt-5">
+    <form [formGroup]="CouponForm" (ngSubmit)="updateCouponCode()" *ngIf="!coupon">
+      <mat-form-field class="" appearance="fill">
+        <mat-label>COUPON CODE: </mat-label>
+        <input type="text" name="couponCode" matInput formControlName="couponCode" placeholder="couponCode"
+          class=""/>
+          <mat-error *ngIf="formObj['couponCode'].hasError('required')">couponCode is required</mat-error>
+        </mat-form-field>
+        <button mat-raised-button class="text-success border-0">apply</button>
+      </form>
+      <p class="text-danger" *ngIf="error">{{error}}</p>
+  </div> -->
+
   <div *ngFor="let coupon of tourObject.coupons" class="col-10 col-md-8 mb-4 border m-auto p-3">
     <div class="d-flex justify-content-evenly">
       <p class="fw-bold me-5">{{coupon.couponcode}}</p>
@@ -39,27 +53,25 @@
 </div>
 
 
-<mat-stepper #stepper>
+<mat-vertical-stepper linear #stepper>
+  <!-- <div class="text-danger" *ngIf="submit && tourists.length == 0">Atleast one tourist should be added </div> -->
   <mat-step [stepControl]="TouristForm" errorMessage="Tourist details is required." [editable]='editable'>
       <form [formGroup]="TouristForm">
-        <ng-template matStepLabel>Fill out Tourist details</ng-template>
+        <ng-template matStepLabel>Fill out Tourists details</ng-template>
         <div formArrayName="tourists">
-          <div *ngFor="let skill of tourists.controls; let i=index">
-            <div [formGroupName]="i">
-              Tourist {{i+1}}:
-              <br>
-              Name :
-              <mat-form-field appearance="fill">
+          <div *ngFor="let tourist of tourists.controls; let i=index">
+            <div [formGroupName]="i" class="">
+              <div class="">{{i+1}}:</div>
+              <mat-form-field appearance="fill" class="me-1 ">
                 <mat-label>Name </mat-label>
-                <input type="text" matInput formControlName="name">
+                <input type="text" matInput formControlName="name"/>
               </mat-form-field>
-              Age:
-              <mat-form-field appearance="fill">
+              <mat-form-field appearance="fill" class="me-1 ">
                 <mat-label>Age </mat-label>
                 <input type="number" matInput formControlName="age">
               </mat-form-field>
-              Gender:
-              <mat-form-field appearance="fill">
+
+              <mat-form-field appearance="fill" class="me-1 ">
                 <mat-label>Gender</mat-label>
                 <mat-select formControlName="gender" >
                   <mat-option *ngFor="let gender of Gender" [value]="gender.value">
@@ -67,28 +79,37 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+
               <button (click)="removeTourist(i)">Remove</button>
             </div>
+
+            <span class="text-danger me-5" *ngIf="tourist.get('name')?.hasError('required')">Name is required</span>
+            <span class="text-danger me-5" *ngIf="tourist.get('age')?.hasError('required')">Age is required</span>
+            <span class="text-danger me-5" *ngIf="tourist.get('gender')?.hasError('required')">Gender is required</span>
           </div>
         </div>
+
         <p>
           <button type="button" (click)="addTourist()">Add</button>
         </p>
+        <mat-error *ngIf="submit && TouristForm.get('tourists')?.hasError('required')">Atleast One Tourist is required</mat-error>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext (click)="submit=true" >Next</button>
         </div>
       </form>
   </mat-step>
   <mat-step [stepControl]="paymentFormGroup" errorMessage="Payment type is required." [editable]='editable'>
     <form [formGroup]="paymentFormGroup">
       <ng-template matStepLabel> Payment </ng-template>
-      <mat-radio-group aria-label="paymentType" formControlName="payment_type" class="d-flex flex-column">
+      <mat-radio-group aria-label="paymentType" formControlName="payment_type" class="d-flex flex-column" [required]="true">
         <mat-radio-button *ngFor="let payment of paymentTypes" [value]="payment.value">{{payment.viewValue}} </mat-radio-button>
       </mat-radio-group>
+      <mat-error *ngIf="nextsubmit && paymentFormGroup.get('payment_type')?.hasError('required')">payment_type is required</mat-error>
+
 
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+        <button mat-button matStepperNext (click)="nextsubmit=true; onSubmit(); ">Next</button>
       </div>
     </form>
   </mat-step>
@@ -101,4 +122,84 @@
       <button mat-button routerLink="../../bookings">click here</button>
     </div>
   </mat-step>
-</mat-stepper>
+</mat-vertical-stepper>
+
+
+
+
+
+
+
+
+<!--
+<mat-stepper linear #stepper>
+  <mat-step [stepControl]="TouristForm" errorMessage="Tourist details is required." [editable]='editable'>
+      <form [formGroup]="TouristForm">
+        <ng-template matStepLabel>Fill out Tourists details</ng-template>
+        <div formArrayName="tourists">
+          <div *ngFor="let tourist of tourists.controls; let i=index">
+            <div [formGroupName]="i" class="row">
+              <div class="col-2">{{i+1}}:</div>
+              <mat-form-field appearance="fill" class="me-1 col-3">
+                <mat-label>Name </mat-label>
+                <input type="text" matInput formControlName="name"/>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="me-1 col-3">
+                <mat-label>Age </mat-label>
+                <input type="number" matInput formControlName="age">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="me-1 col-3">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" >
+                  <mat-option *ngFor="let gender of Gender" [value]="gender.value">
+                    {{gender.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <button (click)="removeTourist(i)">Remove</button>
+            </div>
+
+            <span class="text-danger" *ngIf="tourist.get('name')?.hasError('required')">Name is required</span>
+            <span class="text-danger" *ngIf="tourist.get('age')?.hasError('required')">Age is required</span>
+            <span class="text-danger" *ngIf="tourist.get('gender')?.hasError('required')">Gender is required</span>
+          </div>
+        </div>
+
+        <p>
+          <button type="button" (click)="addTourist()">Add</button>
+        </p>
+        <mat-error *ngIf="submit && TouristForm.get('tourists')?.hasError('required')">Atleast One Tourist is required</mat-error>
+        <div>
+          <button mat-button matStepperNext (click)="submit=true" >Next</button>
+        </div>
+      </form>
+  </mat-step>
+  <mat-step [stepControl]="paymentFormGroup" errorMessage="Payment type is required." [editable]='editable'>
+    <form [formGroup]="paymentFormGroup">
+      <ng-template matStepLabel> Payment </ng-template>
+      <mat-radio-group aria-label="paymentType" formControlName="payment_type" class="d-flex flex-column" [required]="true">
+        <mat-radio-button *ngFor="let payment of paymentTypes" [value]="payment.value">{{payment.viewValue}} </mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="paymentFormGroup.get('payment_type')?.hasError('required')">payment_type is required</mat-error>
+
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="onSubmit()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>Payment Successful.</p>
+    <p>click on below button to see your bookings</p>
+
+    <div>
+
+      <button mat-button routerLink="../../bookings">click here</button>
+    </div>
+
+  </mat-step>
+</mat-stepper> -->

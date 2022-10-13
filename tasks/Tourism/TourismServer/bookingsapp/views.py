@@ -1,19 +1,15 @@
 import datetime
 import json
-from sqlite3 import apilevel
 
-from django.db.models import Subquery, Avg
-from django.http import HttpResponse, Http404, JsonResponse
-from django.shortcuts import render
-from django.template.defaulttags import csrf_token
-from rest_framework.decorators import api_view
-from pytz import utc
+from django.contrib.auth.hashers import make_password
+from django.db.models import Avg
+from django.http import Http404, JsonResponse
 
 from rest_framework import status, exceptions
 from rest_framework.response import Response
-# from bookingsapp import serializers
 from django.core import serializers
 
+from TourismServer.permissions import AllowAny
 from bookingsapp.models import BookingDetails, CancellationDetails, Feedback, PaymentDetails, User, UserToken
 from bookingsapp.serializers import BookingDetailSerializer, BookingSerializer, CancellationDetailSerializer, CancellationSerializer, FeedbackDetailSerializer, FeedbackSerializer, PaymentSerializer, UserSerializer
 from rest_framework.views import APIView
@@ -131,7 +127,7 @@ class UpdateUserByAdmin(APIView):
     Retrieve, update or delete a snippet instance.
     """
 
-    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication]
     # permission_classes = (IsAuthenticated,)
 
 
@@ -161,22 +157,14 @@ class UpdateUserByAdmin(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# @api_view(['PUT'])
-# def UpdateUserByAdmin(request, pk=None):
-#     if request.method == 'PUT':
-#         user = User.objects.get(id=pk)
-#         is_admin: bool = not user.isAdmin
-#         user.isAdmin = is_admin
-#         user.save()
-#         serializer = UserSerializer([user], many=True)
-#         return Response(serializer.data)
-#     raise exceptions.APIException(request.method + " method doesn't work")
-
 
 class Login(APIView):
+
+    # permission_classes = (AllowAny,)
     def post(self, request):
         email = request.data['email']
         password = request.data['password']
+        encryptedPassword = make_password(password)
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email=email)
             if user.password != password:

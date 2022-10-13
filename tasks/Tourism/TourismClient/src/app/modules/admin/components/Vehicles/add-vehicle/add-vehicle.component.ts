@@ -42,33 +42,38 @@ export class AddVehicleComponent implements OnInit {
 
   VehicleForm: FormGroup = new FormGroup({
     vehicle_type : new FormControl('', [Validators.required]),
-    model : new FormControl('', [Validators.required, Validators.email]),
+    model : new FormControl('', [Validators.required]),
     vehicle_number : new FormControl('', [Validators.required]),
     isAC : new FormControl('', [Validators.required]),
-    total_seats : new FormControl('', [Validators.required])
+    total_seats : new FormControl('')
   })
 
+  get formObj(){
+    return this.VehicleForm.controls
+  }
 
   ngOnInit(): void {
   }
 
   addVehicleObj() {
-    if(this.id){
-      this.editVehicleSubscription = this.dataservice.editVehicle(this.VehicleForm.value, this.id).subscribe(
-        data=>{
-        console.log(data)
-        this.router.navigate(['admin/vehicles/vehicleList'])
-      },
-      err => alert(err.error.detail)
-      )
-    }else{
-      this.addVehicleSubscription = this.dataservice.addVehicle(this.VehicleForm.value).subscribe(
-        data=>{
-        console.log(data)
-        this.router.navigate(['admin/vehicles/vehicleList'])
-      },
-      err => alert(err.error.detail)
-      )
+    if(this.VehicleForm.valid){
+      if(this.id){
+        this.editVehicleSubscription = this.dataservice.editVehicle(this.VehicleForm.value, this.id).subscribe(
+          (data: any)=>{
+          alert(`Vehicle number ${data.vehicle_number} is Updated successfully`)
+          this.router.navigate(['admin/vehicles/vehicleList'])
+        },
+        err => alert(err.error.detail)
+        )
+      }else{
+        this.addVehicleSubscription = this.dataservice.addVehicle(this.VehicleForm.value).subscribe(
+          (data: any)=>{
+          alert(`Vehicle number ${data.vehicle_number} is added successfully`)
+          this.router.navigate(['admin/vehicles/vehicleList'])
+        },
+        err => alert(err.error.detail)
+        )
+      }
     }
   }
 

@@ -12,24 +12,33 @@
     <mat-label>name</mat-label>
     <input type="text" name="name" matInput formControlName="name" placeholder="name"
       class="">
+    <mat-error *ngIf="formObj['name'].hasError('required')">name is required</mat-error>
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>email</mat-label>
     <input type="email" name="email" matInput formControlName="email" placeholder="email"
       class="">
+    <mat-error *ngIf="formObj['email'].hasError('required')">email is required</mat-error>
+    <mat-error *ngIf="formObj['email'].hasError('email')">email is Invalid</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>mobile</mat-label>
     <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
       class="">
+    <mat-error *ngIf="formObj['mobile'].hasError('required')">mobile is required</mat-error>
+    <mat-error *ngIf="formObj['mobile'].hasError('pattern')">mobile is Invalid</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>salary</mat-label>
     <input type="number" name="salary" matInput formControlName="salary" placeholder="salary"
       class="">
+    <mat-error *ngIf="formObj['salary'].hasError('required')">salary is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
@@ -37,6 +46,8 @@
     <textarea rows="5" type="text" name="address" matInput formControlName="address" placeholder="address"
       class="">
     </textarea>
+    <mat-error *ngIf="formObj['address'].hasError('required')">address is required</mat-error>
+
   </mat-form-field>
 
   <!-- <mat-form-field class="global-form-full-width" appearance="fill">

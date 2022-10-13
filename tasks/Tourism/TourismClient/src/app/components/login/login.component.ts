@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
 
   });
+  get formObj(){
+    return this.loginForm.controls
+  }
 
   ngOnInit(): void {
     // this.routeSsubscription = this.activatedRoute.params.subscribe(data => {
@@ -48,14 +51,18 @@ export class LoginComponent implements OnInit {
   }
 
   submitLogin() {
-    this.loginVerificationSubscription = this.auth.loginVerification(this.loginForm.value).subscribe(
-      data =>{
-        this.backendError = null;
-        let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
-        this.route.navigate([ returnUrl || 'user' ])
-      },
-      err => this.backendError = err.error.detail
-    )
+    if(this.loginForm.valid){
+      this.loginVerificationSubscription = this.auth.loginVerification(this.loginForm.value).subscribe(
+        data =>{
+          this.backendError = null;
+          let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
+          this.route.navigate([ returnUrl || 'user' ])
+        },
+        err => this.backendError = err.error.detail
+      )
+    }else{
+      console.log("Invalid Login data");
+    }
   }
 
 

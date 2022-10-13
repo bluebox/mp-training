@@ -17,19 +17,25 @@ export class ContactusComponent implements OnInit {
   EnquiryForm: FormGroup = new FormGroup({
     name : new FormControl('', [Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
-    mobile : new FormControl('', [Validators.required]),
+    mobile : new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}')]),
     subject : new FormControl('', [Validators.required]),
     message : new FormControl('', [Validators.required]),
   })
 
+  get formObj(){
+    return this.EnquiryForm.controls
+  }
+
   submitEnquiryForm() {
     console.log(this.EnquiryForm.value);
-    // this.subscription = this.dataService.postEnquiry(this.EnquiryForm.value).subscribe(
-    //   data=>{
-    //     alert('enquiry submitted successfully')
-    //   },
-    //   err => alert(err.error.detail)
-    // )
+    if(this.EnquiryForm.valid){
+      this.subscription = this.dataService.postEnquiry(this.EnquiryForm.value).subscribe(
+        data=>{
+          alert('enquiry submitted successfully')
+        },
+        err => alert(err.error.detail)
+      )
+    }
   }
 
   ngOnInit(): void {

@@ -48,6 +48,9 @@ export class EditCancellationComponent implements OnInit {
     reason_for_cancellation : new FormControl(''),
   })
 
+  get formObj(){
+    return this.CancellationForm.controls
+  }
 
   ngOnInit(): void {
     this.getBookingSubscription = this.dataservice.getBookingList().subscribe(
@@ -60,25 +63,27 @@ export class EditCancellationComponent implements OnInit {
 
 
   addCancellationObj() {
-    if(this.id){
-      this.editCancellationSubscription = this.dataservice.editCancellation(this.CancellationForm.value, this.id).subscribe(
-        data=>{
-        console.log(data)
-        alert("cancellation details updated successfully")
-        this.router.navigate(['admin/cancellation/cancellationList'])
-      },
-      err => alert(err.error.detail)
-    )
+    if(this.CancellationForm.valid){
+      if(this.id){
+        this.editCancellationSubscription = this.dataservice.editCancellation(this.CancellationForm.value, this.id).subscribe(
+          data=>{
+            console.log(data)
+            alert("cancellation details updated successfully")
+            this.router.navigate(['admin/cancellation/cancellationList'])
+          },
+          err => alert(err.error.detail)
+        )
+      }
+      // else{
+      //   this.addCancellationSubscription = this.dataservice.editCancellation(this.CancellationForm.value).subscribe(
+      //     data=>{
+      //     console.log(data)
+      //     this.router.navigate(['admin/cancellation/cancellationList'])
+      //   },
+      //   err => alert(err.error.detail)
+      // )
+      // }
     }
-    // else{
-    //   this.addCancellationSubscription = this.dataservice.editCancellation(this.CancellationForm.value).subscribe(
-    //     data=>{
-    //     console.log(data)
-    //     this.router.navigate(['admin/cancellation/cancellationList'])
-    //   },
-    //   err => alert(err.error.detail)
-    // )
-    // }
   }
 
   ngOnDestroy(){

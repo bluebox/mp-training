@@ -6,6 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import APIException
+from TourismServer.permissions import IsAdminUser, IsAuthenticated
+from bookingsapp.JwtAuthentication import JWTAuthentication
 from toursapp.models import Coupon, Employee, Enquiry, Package, Place, Tour, Vehicle
 from toursapp.serializers import CouponSerializer, EmployeeSerializer, EnquirySerializer, PackageDetailSerializer, PackageSerializer, PlaceSerializer, TourDetailSerializer, TourSerializer, \
     VehicleSerializer
@@ -15,6 +17,9 @@ def index(req):
     return HttpResponse("welcome")
 
 class VehicleList(APIView):
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = (IsAdminUser,)
 
     def get(self, request, format=None):
         vehicles = Vehicle.objects.all()
@@ -33,8 +38,9 @@ class VehicleDetails(APIView):
     Retrieve, update or delete a snippet instance.
     """
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = [JWTAuthentication]
+
+    # permission_classes = (IsAdminUser,)
 
 
     def get_object(self, pk):

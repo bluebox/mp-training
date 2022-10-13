@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { FeedBack } from 'src/app/Interfaces/FeedbackInterface';
 import { TourItem } from 'src/app/Interfaces/TourInterface';
 import { DataService } from 'src/app/modules/admin/services/data.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private dataService: DataServiceService,
     private route: Router,
-    private dataservice: DataService
+    private dataservice: DataService,
   ) { }
 
   feedbacks!: FeedBack[];

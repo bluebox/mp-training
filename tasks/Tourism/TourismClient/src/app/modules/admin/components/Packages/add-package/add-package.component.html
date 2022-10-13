@@ -12,6 +12,8 @@
     <mat-label>package_name</mat-label>
     <input type="text" name="package_name" matInput formControlName="package_name" placeholder="package_name"
       class="">
+    <mat-error *ngIf="formObj['package_name'].hasError('required')">package_name is required</mat-error>
+
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
@@ -19,11 +21,14 @@
     <input type="text" name="package_type" matInput formControlName="package_type" placeholder="package_type"
       class="">
   </mat-form-field>
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Description</mat-label>
     <textarea rows="5" type="text" name="description" matInput formControlName="description" placeholder="Description"
       class="">
     </textarea>
+    <mat-error *ngIf="formObj['description'].hasError('required')">description is required</mat-error>
+
   </mat-form-field>
 
   <!-- <mat-form-field class="global-form-full-width" appearance="fill">
@@ -43,6 +48,8 @@
       </mat-select-trigger>
       <mat-option *ngFor="let tour of tourList" [value]="tour.id">{{tour.tour_name}}</mat-option>
     </mat-select>
+    <mat-error *ngIf="tours.hasError('required')">tours is required</mat-error>
+
   </mat-form-field>
   <p>selected: {{tours.value}}</p>
 

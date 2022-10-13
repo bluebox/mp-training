@@ -1,33 +1,53 @@
-<form class="contact-form" [formGroup]="EnquiryForm" (ngSubmit)="submitEnquiryForm()">
-  <mat-form-field class="contact-form-full-width" appearance="fill">
-    <mat-label>Name</mat-label>
-    <input type="text" name="name" matInput formControlName="name" placeholder="name"
-      class="">
-  </mat-form-field>
+<div class="row">
+  <div class="col-12 col-md-8">
+    <h1 class="text-center fw-bold text-primary text-uppercase">Locate US</h1>
+    <div class="row">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.309840117659!2d78.38146091431425!3d17.44487820573747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93e00f5c5ab7%3A0x64cd5411c783d6d!2sMelange%20Tower!5e0!3m2!1sen!2sin!4v1664336117198!5m2!1sen!2sin" width="95%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
 
-  <mat-form-field class="contact-form-full-width" appearance="fill">
-    <mat-label>Email</mat-label>
-    <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
-      class="">
-  </mat-form-field>
-  <mat-form-field class="contact-form-full-width" appearance="fill">
-    <mat-label>Mobile</mat-label>
-    <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
-    class="">
-  </mat-form-field>
-  <mat-form-field class="contact-form-full-width" appearance="fill">
-    <mat-label>Subject</mat-label>
-    <input type="text" name="subject" matInput formControlName="subject" placeholder="Subject"
-      class="">
-  </mat-form-field>
-  <mat-form-field class="contact-form-full-width" appearance="fill">
-    <mat-label>Your Message</mat-label>
-    <textarea type="text" name="message" matInput formControlName="message" placeholder="Message"
-      class=""></textarea>
-  </mat-form-field>
+  <form class="contact-for col-12 col-md-4" [formGroup]="EnquiryForm" (ngSubmit)="submitEnquiryForm()">
+    <h1 class="text-center fw-bold text-primary text-uppercase">SEND QUERY</h1>
+    <mat-form-field class="contact-form-full-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input type="text" name="name" matInput formControlName="name" placeholder="name"
+        class="">
+      <mat-error *ngIf="formObj['name'].hasError('required')">name is required</mat-error>
+    </mat-form-field>
 
-  <button mat-raised-button class="" [disabled]="EnquiryForm.invalid" >SUBMIT</button>
-</form>
+    <mat-form-field class="contact-form-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
+        class="">
+      <mat-error *ngIf="formObj['email'].hasError('required')">email is required</mat-error>
+      <mat-error *ngIf="formObj['email'].hasError('email')">Enter Valid email</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="contact-form-full-width" appearance="fill">
+      <mat-label>Mobile</mat-label>
+      <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
+      class="">
+      <mat-error *ngIf="formObj['mobile'].hasError('required')">mobile is required</mat-error>
+      <mat-error *ngIf="formObj['mobile'].hasError('pattern')">Invalid mobile number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="contact-form-full-width" appearance="fill">
+      <mat-label>Subject</mat-label>
+      <input type="text" name="subject" matInput formControlName="subject" placeholder="Subject"
+        class="">
+      <mat-error *ngIf="formObj['subject'].hasError('required')">subject is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="contact-form-full-width" appearance="fill">
+      <mat-label>Your Message</mat-label>
+      <textarea type="text" name="message" matInput formControlName="message" placeholder="Message"
+        class=""></textarea>
+        <mat-error *ngIf="formObj['message'].hasError('required')">Message is required</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button class="">SUBMIT</button>
+  </form>
+</div>
+
 
 
 

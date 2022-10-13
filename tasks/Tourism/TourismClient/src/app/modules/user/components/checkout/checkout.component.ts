@@ -44,6 +44,8 @@ export class CheckoutComponent implements OnInit {
   discount: number = 0
   coupon: any;
   // totalPrice: number = 0;
+  submit!: boolean
+  nextsubmit!: boolean
 
   constructor(private fb:FormBuilder,
     private route: ActivatedRoute,
@@ -52,8 +54,9 @@ export class CheckoutComponent implements OnInit {
     ) {
 
     this.TouristForm = this.fb.group({
-      tourists: this.fb.array([]) ,
+      tourists: this.fb.array([], Validators.required)
     });
+
 
   }
 
@@ -78,8 +81,28 @@ export class CheckoutComponent implements OnInit {
   updateCoupon(coupon: any){
     console.log(coupon);
     this.coupon = coupon
-    this.discount = coupon.discount * this.tourObject.price
+    if(coupon)
+      this.discount = coupon.discount * this.tourObject.price
+    else
+      this.discount = 0
   }
+
+  // error : any
+  // updateCouponCode(){
+  //   this.error = ''
+  //   console.log(this.CouponForm.value);
+  //   if(this.CouponForm.valid){
+  //     if(this.tourObject){
+  //       let couponArr = this.tourObject.coupons.filter((coupon: { couponcode: any; }) => coupon.couponcode.includes(this.CouponForm.value))
+  //       if(couponArr.length != 0){
+  //         this.updateCoupon(couponArr[0])
+  //       }else{
+  //         this.error = 'Invalid Coupon'
+  //       }
+  //     }
+  //   }
+
+  // }
 
 
   paymentFormGroup = new FormGroup({
@@ -87,35 +110,47 @@ export class CheckoutComponent implements OnInit {
     // coupon: new FormControl('')
   });
 
+  CouponForm = new FormGroup({
+    couponCode: new FormControl('', Validators.required),
+    // coupon: new FormControl('')
+  });
+
+  get formObj(){
+    return this.CouponForm.controls
+  }
+
+
 
 
   onSubmit() {
     console.log(this.TouristForm.value);
     console.log(this.paymentFormGroup.value);
-    this.editable=false;
-    let total_amount = (this.tourObject.price - this.discount) * this.tourists.length
-    this.addPaymentDetailsSubscription = this.dataService.addPaymentDetails({...this.paymentFormGroup.value, coupon_applied:this.coupon.id, total_price: total_amount}).subscribe(
-      data=>{
-        let paymentString = JSON.stringify(data)
-        let paymentObj = JSON.parse(paymentString)
-        if(paymentObj?.id){
-          let bookingObj = {
-            userid : this.auth.currentUser.id,
-            tourid : this.tourObject.id,
-            paymentid : paymentObj.id,
-            no_of_people : this.tourists.length,
-            passenger_details : JSON.stringify(this.TouristForm.get('tourists')?.value)
+    if(this.TouristForm.valid && this.paymentFormGroup.valid){
+      this.editable=false;
+      let total_amount = (this.tourObject.price - this.discount) * this.tourists.length
+      this.addPaymentDetailsSubscription = this.dataService.addPaymentDetails({...this.paymentFormGroup.value, coupon_applied:this.coupon?.id, total_price: total_amount}).subscribe(
+        data=>{
+          let paymentString = JSON.stringify(data)
+          let paymentObj = JSON.parse(paymentString)
+          if(paymentObj?.id){
+            let bookingObj = {
+              userid : this.auth.currentUser.id,
+              tourid : this.tourObject.id,
+              paymentid : paymentObj.id,
+              no_of_people : this.tourists.length,
+              passenger_details : JSON.stringify(this.TouristForm.get('tourists')?.value)
+            }
+            this.addBookingDetailsSubscription = this.dataService.addBookingDetails(bookingObj).subscribe(
+              data=>{
+                alert("Tour Booking successful");
+              },
+              err => alert(err.error.detail)
+            )
           }
-          this.addBookingDetailsSubscription = this.dataService.addBookingDetails(bookingObj).subscribe(
-            data=>{
-              alert("Tour Booking successful");
-            },
-            err => alert(err.error.detail)
-          )
-        }
-      },
-      err=> alert(err.error.detail)
-    )
+        },
+        err=> alert(err.error.detail)
+      )
+    }
 
 
 
@@ -129,11 +164,12 @@ export class CheckoutComponent implements OnInit {
 
   newTourist(): FormGroup {
     return this.fb.group({
-      name: '',
+      name: ['', Validators.required],
       gender:'',
       age: '',
     })
   }
+
 
   addTourist() {
     this.tourists.push(this.newTourist());

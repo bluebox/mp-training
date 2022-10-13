@@ -1,51 +1,123 @@
-<h1 class="text-danger text-center" *ngIf="backendError" >{{backendError}}</h1>
+<div class="row">
+  <div class="col-12 col-md-8">
+    <h1 class="text-center login_heading">Register For New Account</h1>
+    <h1 class="text-danger text-center" *ngIf="backendError" >{{backendError}}</h1>
+    <form class="global-form" [formGroup]="SignUpForm" (ngSubmit)="submitSignUp()">
 
+      <img *ngIf="imageUrl && imageUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+      <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+        <span *ngIf="!imageUrl">Choose Profile</span>
+        <span *ngIf="imageUrl">change Profile</span>
+      </button>
+      <input hidden type="file" name="profile" #fileInput placeholder="profile"
+        class="" (change)="onchange($event)"/>
+
+      <mat-form-field class="global-form-full-width" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input type="text" name="name" matInput formControlName="name" placeholder="name"
+          class="">
+        <mat-error *ngIf="formObj['name'].hasError('required')">Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="global-form-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
+        class="">
+        <mat-error *ngIf="formObj['email'].hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="formObj['email'].hasError('email')">Please enter valid email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="global-form-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="text" name="password" matInput formControlName="password" placeholder="password"
+          class=""/>
+        <mat-error *ngIf="formObj['password'].hasError('required')">Password is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="global-form-full-width" appearance="fill">
+        <mat-label>ConfirmPassword</mat-label>
+        <input type="password" name="password" matInput formControlName="confirm_password" placeholder="confirm password"
+          class="">
+        <mat-error *ngIf="formObj['confirm_password'].hasError('required')">This field is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="global-form-full-width" appearance="fill">
+        <mat-label>Mobile</mat-label>
+        <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
+          class="">
+        <mat-error *ngIf="formObj['mobile'].hasError('required')">Mobile number is required</mat-error>
+        <mat-error *ngIf="formObj['mobile'].hasError('pattern')">Invalid mobile number</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button class="" >Signup</button>
+    </form>
+  </div>
+  <div class="d-flex justify-content-center align-items-center text-center col-12 col-md-4">
+    <div>
+      <h1 class="login_heading">Already Registered?</h1>
+      <p class="sub_heading">Login to your account.</p>
+      <button mat-raised-button class="" (click) = 'NavigateToLoginUp()'>Login</button>
+
+      <!-- <button mat-raised-button class="login_button bg-">Login</button> -->
+      <!-- <button mat-raised-button class="login_button" (click) = 'NavigateToSignUp()'>Signup</button> -->
+    </div>
+    </div>
+</div>
+
+
+
+
+
+<!--
+<h1 class="text-danger text-center" *ngIf="backendError" >{{backendError}}</h1>
 <form class="global-form" [formGroup]="SignUpForm" (ngSubmit)="submitSignUp()">
+
+  <img *ngIf="imageUrl && imageUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+    <span *ngIf="!imageUrl">Choose Profile</span>
+    <span *ngIf="imageUrl">change Profile</span>
+  </button>
+  <input hidden type="file" name="profile" #fileInput placeholder="profile"
+    class="" (change)="onchange($event)"/>
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Name</mat-label>
     <input type="text" name="name" matInput formControlName="name" placeholder="name"
       class="">
+    <mat-error *ngIf="formObj['name'].hasError('required')">Name is required</mat-error>
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Email</mat-label>
     <input type="email" name="email" matInput formControlName="email" placeholder="Ex. pat@global.com"
-      class="">
+    class="">
+    <mat-error *ngIf="formObj['email'].hasError('required')">Email is required</mat-error>
+    <mat-error *ngIf="formObj['email'].hasError('email')">Please enter valid email</mat-error>
   </mat-form-field>
-  <!-- <mat-form-field class="global-form-full-width" appearance="fill">
-    <mat-label>Profile Pic</mat-label>
-
-  </mat-form-field> -->
-
-  <div class="d-flex align-items-center justify-content-between border file_input">
-    <label for="profile" class="file_label">Profile Pic: </label>
-    <button type="button" mat-raised-button (click)="fileInput.click()">
-      <span *ngIf="!imageUrl">Choose File</span>
-      <span *ngIf="imageUrl">file selected</span>
-    </button>
-    <input hidden type="file" name="profile" #fileInput placeholder="profile"
-      class="" (change)="onchange($event)"/>
-  </div>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Password</mat-label>
     <input type="text" name="password" matInput formControlName="password" placeholder="password"
-      class="">
+      class=""/>
+    <mat-error *ngIf="formObj['password'].hasError('required')">Password is required</mat-error>
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>ConfirmPassword</mat-label>
     <input type="password" name="password" matInput formControlName="confirm_password" placeholder="confirm password"
       class="">
+    <mat-error *ngIf="formObj['confirm_password'].hasError('required')">This field is required</mat-error>
   </mat-form-field>
 
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>Mobile</mat-label>
     <input type="number" name="mobile" matInput formControlName="mobile" placeholder="mobile"
       class="">
+    <mat-error *ngIf="formObj['mobile'].hasError('required')">Mobile number is required</mat-error>
+    <mat-error *ngIf="formObj['mobile'].hasError('pattern')">Invalid mobile number</mat-error>
   </mat-form-field>
 
-  <button mat-raised-button class="" [disabled]="SignUpForm.invalid" >Signup</button>
+  <button mat-raised-button class="" >Signup</button>
 </form>
+ -->
 
-<button mat-raised-button class="" (click) = 'NavigateToLoginUp()'>Login</button>

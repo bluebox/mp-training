@@ -26,6 +26,10 @@ export class HeaderComponent implements OnInit {
       config.keyboard = false;
   }
 
+  updateIsActive(e:any){
+    console.log(e);
+  }
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(data => {
       this.authenticationSubscription = this.auth.isAuthenticated.subscribe(res => {

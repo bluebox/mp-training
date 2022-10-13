@@ -1,9 +1,12 @@
 <h1 class="text-center border-bottom border-primary">
   Active Enquiry List
 </h1>
-<div *ngIf="enquiryList" >
-  <p *ngFor="let enquiry of enquiryList" > {{enquiry.subject}} <button (click)="editEnquiry(enquiry.id)"><i class="fa-solid fa-pen text-primary"></i></button> </p>
-</div>
+<table *ngIf="enquiryList" class="table">
+  <tr *ngFor="let enquiry of enquiryList" >
+      <td>{{enquiry.subject}}</td>
+      <td><button (click)="editEnquiry(enquiry.id)" class="border-0"><i class="fa-solid fa-pen text-primary"></i></button></td>
+    </tr>
+</table>
 <div *ngIf="enquiryList == ''" >
   <p class="text-danger text-center">No active queries</p>
 </div>

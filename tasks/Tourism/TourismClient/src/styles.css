@@ -3,6 +3,10 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+*{
+  transition:all .2s linear;
+}
+
 
 html,
 body {
@@ -12,6 +16,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f6f6f6;
 }
 
 

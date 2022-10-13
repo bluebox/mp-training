@@ -42,6 +42,7 @@ export class AddPlacesComponent implements OnInit {
     })
   }
   id!: number
+  submit!: boolean
 
   onchange(e:any){
     console.log(e.target.files[0]);
@@ -53,33 +54,41 @@ export class AddPlacesComponent implements OnInit {
 
   PlaceForm: FormGroup = new FormGroup({
     place_name : new FormControl('', [Validators.required]),
-    image : new FormControl('', [Validators.required, Validators.email]),
+    image : new FormControl('', [Validators.required]),
     description : new FormControl('', [Validators.required]),
   })
+
+  get formObj(){
+    return this.PlaceForm.controls
+  }
 
 
   ngOnInit(): void {
   }
 
   addPlaceObj() {
-    if(this.id){
-      this.editPlaceSubscription = this.dataservice.editPlace({...this.PlaceForm.value, image:this.imageUrl}, this.id).subscribe(
-        data=>{
-        console.log(data)
-        alert("Place updated successfully")
-        this.router.navigate(['admin/places/placeList'])
-      },
-      err => alert(err.error.detail)
-    )
-    }else{
-      this.addPlaceSubscription = this.dataservice.addPlace({...this.PlaceForm.value, image:this.imageUrl}).subscribe(
-        data=>{
-        console.log(data)
-        alert("Place added successfully")
-        this.router.navigate(['admin/places/placeList'])
-      },
-      err => alert(err.error.detail)
-    )
+    this.submit = true
+    this.PlaceForm.get('image')?.setValue(this.imageUrl)
+    if(this.PlaceForm.valid){
+      if(this.id){
+        this.editPlaceSubscription = this.dataservice.editPlace({...this.PlaceForm.value, image:this.imageUrl}, this.id).subscribe(
+          data=>{
+          console.log(data)
+          alert("Place updated successfully")
+          this.router.navigate(['admin/places/placeList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }else{
+        this.addPlaceSubscription = this.dataservice.addPlace({...this.PlaceForm.value, image:this.imageUrl}).subscribe(
+          data=>{
+          console.log(data)
+          alert("Place added successfully")
+          this.router.navigate(['admin/places/placeList'])
+        },
+        err => alert(err.error.detail)
+      )
+      }
     }
   }
 

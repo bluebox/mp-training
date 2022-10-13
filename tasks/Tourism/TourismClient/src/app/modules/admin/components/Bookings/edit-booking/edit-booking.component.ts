@@ -53,8 +53,12 @@ export class EditBookingComponent implements OnInit {
     paymentid : new FormControl('', [Validators.required]),
     no_of_people : new FormControl('', [Validators.required]),
     passenger_details : new FormControl('', [Validators.required]),
-    isCancelled : new FormControl('', [Validators.required]),
+    isCancelled : new FormControl(''),
   })
+
+  get formObj(){
+    return this.BookingForm.controls
+  }
 
 
   ngOnInit(): void {
@@ -80,23 +84,27 @@ export class EditBookingComponent implements OnInit {
 
   addBookingObj() {
     if(this.id){
-      this.editBookingSubscription = this.dataservice.editBooking(this.BookingForm.value, this.id).subscribe(
-        data=>{
-        console.log(data)
-        alert("Booking updated Successfully")
-        this.router.navigate(['admin/bookings/bookingList'])
-      },
-      err => alert(err.error.detail)
-    )
+      if(this.BookingForm.valid){
+        this.editBookingSubscription = this.dataservice.editBooking(this.BookingForm.value, this.id).subscribe(
+          data=>{
+            console.log(data)
+            alert("Booking updated Successfully")
+            this.router.navigate(['admin/bookings/bookingList'])
+          },
+          err => alert(err.error.detail)
+        )
+      }
     }else{
-      this.addBookingSubscription = this.dataservice.addBooking(this.BookingForm.value).subscribe(
-        data=>{
-        console.log(data)
-        alert("Booking added Successfully")
-        this.router.navigate(['admin/bookings/bookingList'])
-      },
-      err => alert(err.error.detail)
-    )
+      if(this.BookingForm.valid){
+        this.addBookingSubscription = this.dataservice.addBooking(this.BookingForm.value).subscribe(
+          data=>{
+            console.log(data)
+            alert("Booking added Successfully")
+            this.router.navigate(['admin/bookings/bookingList'])
+          },
+          err => alert(err.error.detail)
+        )
+      }
     }
   }
 

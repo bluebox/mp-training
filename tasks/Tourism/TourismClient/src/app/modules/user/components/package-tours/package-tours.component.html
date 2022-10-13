@@ -1,5 +1,29 @@
-<h1 class="text-center text-primary text-uppercase">{{packageName}}</h1>
+<!-- <h1 class="text-center text-primary text-uppercase">{{packageName}}</h1>
 <div class="row">
   <app-card *ngFor = "let tour of tourList" [tourItem]="tour" class="col-12 col-md-6 col-lg-4"></app-card>
-  <!-- <app-card *ngFor = "let tour of tourList" [tourItem]="tour" class="col-12 col-md-6 col-lg-4"></app-card> -->
-</div>
+</div> -->
+
+
+
+<section class="speciality mx-auto" id="speciality">
+  <h1 class="text-center text-primary heading text-uppercase">{{packageName}}</h1>
+  <!-- <h1 class="text-center text-primary heading text-uppercase" *ngIf="tourType == 'snow'">Snow Adventure Tours</h1>
+  <h1 class="text-center text-primary heading text-uppercase" *ngIf="tourType == 'forest'">Forest Adventure Tours</h1>
+  <h1 class="text-center text-primary heading text-uppercase" *ngIf="tourType == 'sea'">Water Adventure Tours</h1> -->
+  <!-- <h1 class="heading"> our <span data-testid='speciality-heading'>speciality</span> </h1> -->
+  <div class="box-container">
+    <!-- <app-card *ngFor="let tour of toursList" [tourItem]="tour" class="box">
+    </app-card> -->
+    <div class="box" *ngFor="let tour of tourList" (click) = "goToTourPage(tour)">
+      <img class="image"
+        [src]="tour.image" alt="" />
+      <div class="content">
+        <img src="" alt="" />
+        <h3>{{tour.tour_name}}</h3>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda inventore neque amet ipsa tenetur
+          voluptates aperiam tempore libero labore aut.</p> -->
+        <p>{{(tour.description).substring(0, 100) }}...</p>
+      </div>
+    </div>
+  </div>
+</section>

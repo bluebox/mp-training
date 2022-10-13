@@ -12,6 +12,7 @@ import { UserDashboardComponent } from './modules/user/components/user-dashboard
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { LoginGuard } from './guards/login.guard';
+import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
