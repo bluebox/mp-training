@@ -13,6 +13,10 @@ export class ProfileComponent implements OnInit {
   username: null | string = localStorage.getItem('username')
 
   profile!:any;
+  problems!: any;
+  easyCent: any;
+  hardCent: any;
+  mediumCent: any;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private service: RegisterService) { 
     this.service.getProfile().subscribe((data) => {
@@ -20,6 +24,12 @@ export class ProfileComponent implements OnInit {
       console.log(data);
       this.profile = data
       console.log('====================================');
+    })
+    this.problems = this.service.getStats(this.username).subscribe((data: any) => {
+      this.problems = data;
+      this.easyCent = (data['easy'] / data['totalEasy']) * 100;
+      this.mediumCent = (data['medium'] / data['totalMedium']) * 100;
+      this.hardCent = (data['hard'] / data['totalHard']) * 100;
     })
     // this.username = this.route.snapshot.params['username']
     // console.log(localStorage.getItem('token'))

@@ -142,6 +142,14 @@ def postCommentApi(request, discussionId, username):
         return Response(serializer.data)
     return Response(serializer.errors)
 
+@api_view(['POST'])
+def add_blog_comment_api(request):
+    blog_id = Blog.objects.get(blog_id = request.data['blog_id'])
+    user_id = User.objects.get(username = request.data['user_id'])
+    comment = BlogComment.objects.create(blog_id = blog_id, user_id = user_id, comment = request.data['comment'])
+    serializer = blogCommentSerializer(instance=comment)
+    return Response(serializer.data)
+
 @api_view(['GET'])
 def getDiscussionApi(request, problemId, discussionId):
     discuss = Discussion.objects.get(discussion_id = discussionId)
@@ -150,6 +158,24 @@ def getDiscussionApi(request, problemId, discussionId):
     commentSerial = commentSerializer(comment, many = True)
     serializer = discussionsSerializer(discuss, many = False)
     return Response({"discussion": serializer.data, "comments": commentSerial.data})
+
+@api_view(['POST'])
+def problem_stats_api(request):
+    user = User.objects.get(username = request.data['username'])
+    problems_solved = Solved.objects.filter(user_id = user)
+    total = len(Problem.objects.all())
+    totalEasy, totalMedium, totalHard = len(Problem.objects.filter(difficulty_level = 0)), len(Problem.objects.filter(difficulty_level = 1)), len(Problem.objects.filter(difficulty_level = 2))
+    easy, medium, hard = 0, 0, 0
+    for problem in problems_solved:
+        problem_id = problem.problem_id.problem_id
+        curr_problem = Problem.objects.get(problem_id = problem_id)
+        if (curr_problem.difficulty_level == 0):
+            easy += 1
+        elif (curr_problem.difficulty_level == 1):
+            medium += 1
+        else:
+            hard += 1
+    return Response({"total": total, "totalEasy": totalEasy, "totalMedium": totalMedium, "totalHard": totalHard, "easy": easy, "medium": medium, "hard": hard})
 
 @api_view(['GET'])
 def discussionsApi(request, problemId):
@@ -162,6 +188,34 @@ def discussionsApi(request, problemId):
     serializer = discussionsSerializer(discussions, many = True)
     print(serializer.data)
     
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def blog_category_api(request):
+    try:
+        blogs = Blog.objects.filter(tag = request.data['tag'])
+        serializer = BlogsSerializer(instance=blogs, many = True)
+        return Response(serializer.data)
+    except Exception as e:
+        return Response({"messege": "page not found", "status": 200})
+
+@api_view(['POST'])
+def blog_search(request):
+    search_word = request.data['search']
+    search_word = search_word.strip(' ')
+    word = ""
+    for i in range(len(search_word)):
+        if search_word[i] == " " and search_word[i - 1] == " ":
+            continue
+        else:
+            word += search_word[i]
+    keywords = word.split(" ")
+    queryset = Blog.objects.none()
+    for keyword in keywords:
+        queryset |= Blog.objects.filter(title__contains = keyword).order_by("created_date_time")
+    if len(queryset) == 0:
+        return Response({"status": 404})    
+    serializer = BlogsSerializer(instance=queryset, many = True)
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -326,8 +380,20 @@ def homeView(request):
     return render(request, 'home/home.html')
 
 @api_view(['POST'])
+def blog_comments_api(request):
+    comments = BlogComment.objects.filter(blog_id = request.data['blog_id']).order_by("likes")
+    serializer = blogCommentsSerializer(instance=comments, many= True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
 def delete_discussion_api(request):
     deletedDiscussion = Discussion.objects.get(discussion_id = request.data['discussion_id'])
+    deletedDiscussion.delete()
+    return Response({"status":200, "messege":"successfully deleted thread"})
+
+@api_view(['POST'])
+def delete_blog_api(request):
+    deletedDiscussion = Blog.objects.get(blog_id = request.data['blog_id'])
     deletedDiscussion.delete()
     return Response({"status":200, "messege":"successfully deleted thread"})
 
@@ -335,6 +401,14 @@ def delete_discussion_api(request):
 def edit_discussion_api(request):
     print(request.data)
     editedDiscussion = Discussion.objects.get(discussion_id = request.data['discussion_id'])
+    editedDiscussion.discussion = request.data['discussion']
+    editedDiscussion.title = request.data['title']
+    editedDiscussion.save()
+    return Response({"status": 200, "messege": "discussion updated successfully"})
+
+@api_view(['POST'])
+def edit_blog_discussion_api(request):
+    editedDiscussion = Blog.objects.get(blog_id = request.data['blog_id'])
     editedDiscussion.discussion = request.data['discussion']
     editedDiscussion.title = request.data['title']
     editedDiscussion.save()

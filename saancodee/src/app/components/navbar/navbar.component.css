@@ -13,3 +13,11 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.active {
+    color: orange;
+}
+
+.home-active {
+    color: black;
+}

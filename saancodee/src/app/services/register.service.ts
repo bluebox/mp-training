@@ -98,6 +98,16 @@ export class RegisterService {
     return this.http.post(url, data, {headers:headers})
   }
 
+  getStats(username: any) {
+    let data = {"username": username}
+    let url = "http://127.0.0.1:8000/api/problems-statistics"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, {headers})
+  }
+
   postQuestion(data:any) {
     let username = localStorage.getItem('username')
     let url = `http://127.0.0.1:8000/api/post-question/${username}/`

@@ -1,6 +1,7 @@
 <div class="blog-container">
     <div class="inner-blog-container"></div>
     <div class="inner-blog-container">
+        <!-- <div *ngIf="blogs === {}">NOTHING TO DISPLAY</div> -->
         <div *ngFor="let blog of blogs; let i = index;" class="blog-card">
             <h3 class="title">{{ blog.title }}</h3>
             <div class="blog-params">

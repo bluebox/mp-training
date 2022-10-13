@@ -44,4 +44,81 @@ export class BlogService {
     }
     return this.http.post(url, data, { headers: headers })
   }
+
+  editDiscussion(data:any) {
+    console.log(data);
+    let url = "http://127.0.0.1:8000/api/edit-blog-discussion"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, {headers: headers})
+  }
+
+  getBlogComments(blog_id:any) {
+    let data = {"blog_id": blog_id}
+    console.log(data);
+    let url = "http://127.0.0.1:8000/api/get-blog-comments"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, {headers: headers})
+  }
+
+  searchBlog(data: any) {
+    let formdata = {
+      "search": data
+    }
+    let url = "http://127.0.0.1:8000/api/blog-search"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    return this.http.post(url, formdata, {headers:headers})
+  }
+
+  searchCategoryBlog(data: any) {
+    let formdata = {
+      "tag": data
+    }
+    let url = "http://127.0.0.1:8000/api/blog-category"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    return this.http.post(url, formdata, {headers:headers})
+  }
+
+  addcomment(comment:any, blog_id:any) {
+    let username = localStorage.getItem('username')
+    let data = {
+      "user_id": username,
+      "blog_id": blog_id,
+      "comment": comment,
+    }
+    let url = "http://127.0.0.1:8000/api/blog-comment"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    return this.http.post(url, data, {headers:headers})
+  }
+
+  deleteDiscussion(data:any) {
+    console.log(data);
+    let url = "http://127.0.0.1:8000/api/delete-blog-discussion"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, {headers: headers})
+  }
+
 }

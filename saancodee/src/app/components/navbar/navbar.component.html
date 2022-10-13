@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark navbar-expand-lg bg-primary">
-  <a class="navbar-brand" routerLink="/">Home</a>
+  <a class="navbar-brand" [routerLinkActive]="['home-active']" routerLink="/">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,10 +8,10 @@
       <div class="collapse navbar-collapse nav-start" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-              <a class="navbar-brand" routerLink="/problems">Problems</a>
+              <a class="navbar-brand" [routerLinkActive]="['active']" routerLink="/problems">Problems</a>
               </li>
               <li class="nav-item active">
-                  <a class="navbar-brand" routerLink="blogs">Blogs</a>
+                  <a class="navbar-brand" [routerLinkActive]="['active']" routerLink="blogs">Blogs</a>
               </li>
           </ul>
       </div>
@@ -24,13 +24,13 @@
                   <a title="Streak" class="navbar-brand" href="#"><i class="bi bi-fire"></i></a>
               </li>
               <li class="nav-item active">
-                  <a title="Profile" class="navbar-brand" routerLink="/profile"><i class="bi bi-person-fill"></i></a>
+                  <a title="Profile" class="navbar-brand" [routerLinkActive]="['active']" routerLink="/profile"><i class="bi bi-person-fill"></i></a>
               </li>
               <li class="nav-item active" *ngIf="!service.doLogin()">
-                  <a class="navbar-brand" routerLink="/register">Register</a>
+                  <a class="navbar-brand" [routerLinkActive]="['active']" routerLink="/register">Register</a>
               </li>
               <li class="nav-item active" *ngIf="service.doLogin()">
-                <a class="navbar-brand" (click)="service.logOut()" routerLink="/register">Logout</a>
+                <a class="navbar-brand" (click)="service.logOut()" [routerLinkActive]="['active']" routerLink="/register">Logout</a>
             </li>
           </ul>
       </div>

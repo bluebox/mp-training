@@ -54,6 +54,11 @@ class commentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
 
+class blogCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogComment
+        fields = '__all__'
+
 class editProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
@@ -68,6 +73,11 @@ class topicTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = TopicTag
         fields = ['tag_id', 'tag_name']
+
+class blogCommentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogComment
+        fields = "__all__"
 
 class BlogsSerializer(serializers.ModelSerializer):
     class Meta:

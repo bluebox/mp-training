@@ -1,26 +1,26 @@
 <div class="blog-container">
     <div class="inner-blog-container"></div>
     <div class="inner-blog-container">
-        <!-- <div *ngIf="editPopUpFlag" class="edit-pop-up">
+        <div *ngIf="editPopUpFlag" class="edit-pop-up">
             <form [formGroup]="editDiscussionForm" class="edit-discussion-form">
                 <input formControlName="editedTitle" type="text" placeholder="title">
                 <textarea style="white-space: pre-wrap" formControlName="editedDiscussion" id="" cols="30" rows="10"
                     placeholder="discussion"></textarea>
                 <div class="edit-buttons">
                     <button type="submit" [disabled]="!editDiscussionForm.valid"
-                        (click)="edit_confirm(response.discussion_id)">edit</button>
+                        (click)="edit_confirm(blog.blog_id)">edit</button>
                     <button type="button" (click)="cancel_edit()">cancel</button>
                 </div>
             </form>
-        </div> -->
+        </div>
 
-        <!-- <div *ngIf="deletePopUpFlag" class="delete-pop-up">
+        <div *ngIf="deletePopUpFlag" class="delete-pop-up">
             <p>Are you sure? cannot be undone once deleted</p>
             <div>
-                <button (click)="delete_confirm(response.discussion_id)" class="delete-buttons">delete</button>
+                <button (click)="delete_confirm(blog.blog_id)" class="delete-buttons">delete</button>
                 <button (click)="cancel_delete()" class="delete-buttons">cancel</button>
             </div>
-        </div> -->
+        </div>
 
         <section style="background-color: #eee;">
             <div class="container my-5 py-5">
@@ -30,7 +30,7 @@
                             <div class="card-body">
                                 <div class="d-flex flex-start align-items-center">
                                     <div>
-                                        <h6 class="fw-bold text-danger mb-1">{{ blog.user_id }}</h6>
+                                        <a routerLink="profile"></a><h6 class="fw-bold text-danger mb-1">{{ blog.user_id }}</h6>
                                         <p class="text-muted small mb-0">
                                             Shared publicly - {{ blog.created_date_time | date: "mediumDate" }}
                                         </p>
@@ -52,9 +52,9 @@
                                         <i class="bi bi-trash"></i>
                                         <p title="delete" (click)="delete_blog()" class="mb-0">delete</p>
                                     </a>
-                                    <a href="#!" class="d-flex align-items-center me-3">
+                                    <a class="d-flex align-items-center me-3">
                                         <i class="fas fa-share me-2"></i>
-                                        <p class="mb-0">Share</p>
+                                        <p class="mb-0">Like <span>{{ blog.likes }}</span></p>
                                     </a>
                                 </div>
                             </div>
@@ -79,6 +79,18 @@
                 </div>
             </div>
         </section>
+        <h3>Comments {{comments.length}}</h3>
+        <div class="card">
+            <div>
+                <div *ngFor="let comment of comments; let i = index;">
+                    <div style="white-space: pre-wrap;" class="comment">
+                        <p>{{ comment.user_id }}</p>
+                        <p>{{ comment.comment }}</p>
+                        <button *ngIf="checkCommentedUser(comment.user_id)" (click)="delete_comment(comment.comment_id)">delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="inner-blog-container right-grid">
         <app-blog-category></app-blog-category>

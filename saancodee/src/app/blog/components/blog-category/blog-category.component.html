@@ -1,51 +1,53 @@
 <div class="search">
     <div>
-        <input type="text" name="" id="">
-        <button type="button" class="btn-primary search-btn">
-            <i class="bi bi-search"></i>
-        </button>
+        <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm.value.search)">
+            <input type="text" id="" formControlName="search">
+            <button type="submit" class="btn-primary search-btn">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
     </div>
 </div>
 <div class="categories">
     <p>Categories</p>
     <div class="category">
-        <p>Artificial Intelligence</p>
+        <a [routerLinkActive]="['active']" [routerLink]="['/blogs/category']" [queryParams]="{ tag: 'Artificial intelligence'}"><p>Artificial Intelligence</p></a>
         <!-- <p *ngIf="tagsCount['Artificial intelligence']">({{ tagsCount["Artificial intelligence"] }})</p> -->
         <!-- <p *ngIf="!tagsCount['Artificial intelligence']">(0)</p> -->
     </div>
     <hr>
     <div class="category">
-        <p>Block Chain</p>
+        <a [routerLinkActive]="['active']" [routerLink]="['/blogs/category']" [queryParams]="{ tag: 'block chain'}"><p>Block Chain</p></a>
         <!-- <p *ngIf="tagsCount['block chain']">({{ tagsCount["block chain"] }})</p> -->
         <!-- <p *ngIf="!tagsCount['block chain']">(0)</p> -->
     </div>
     <hr>
     <div class="category">
-        <p>Data Structures</p>
+        <a [routerLinkActive]="['active']" [routerLink]="['/blogs/category']" [queryParams]="{ tag: 'data structures'}"><p>Data Structures</p></a>
         <!-- <p *ngIf="tagsCount['data structures']">({{ tagsCount["data structures"] }})</p> -->
         <!-- <p *ngIf="!tagsCount['data structures']">(0)</p> -->
     </div>
     <hr>
     <div class="category">
-        <p>Devops</p>
+        <a [routerLinkActive]="['active']" [routerLink]="['/blogs/category']" [queryParams]="{ tag: 'devops'}"><p>Devops</p></a>
         <!-- <p *ngIf="tagsCount['devops']">({{ tagsCount["devops"] }})</p> -->
         <!-- <p *ngIf="!tagsCount['devops']">(0)</p> -->
     </div>
     <hr>
     <div class="category">
-        <p>Game Development</p>
+        <a [routerLinkActive]="['active']" [routerLink]="['/blogs/category']" [queryParams]="{ tag: 'game development'}"><p>Game Development</p></a>
         <!-- <p *ngIf="tagsCount['game development']">({{ tagsCount["game development"] }})</p> -->
         <!-- <p *ngIf="!tagsCount['game development']">(0)</p> -->
     </div>
     <hr>
     <div class="category">
-        <p>Mobile Development</p>
+        <a [routerLinkActive]="['active']" [routerLink]="['/blogs/category']" [queryParams]="{ tag: 'mobile development'}"><p>Mobile Development</p></a>
         <!-- <p *ngIf="tagsCount['mobile development']">({{ tagsCount["mobile development"] }})</p> -->
         <!-- <p *ngIf="!tagsCount['mobile development']">(0)</p> -->
     </div>
     <hr>
     <div class="category">
-        <p>Web Development</p>
+        <a [routerLinkActive]="['active']" [routerLink]="['/blogs/category']" [queryParams]="{ tag: 'web development'}"><p>Web Development</p></a>
         <!-- <p *ngIf="tagsCount['web development']">({{ tagsCount["web development"] }})</p> -->
         <!-- <p *ngIf="!tagsCount['web development']">(0)</p> -->
     </div>
