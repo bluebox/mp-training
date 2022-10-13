@@ -4,10 +4,12 @@
         <mat-form-field appearance="outline">
             <mat-label>Customer Id</mat-label>
             <input formControlName="cust_id" matInput placeholder="Customer Id">
+            <mat-hint style="color:red" *ngIf="customerForm.get('cust_id')?.touched && customerForm.get('cust_id')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
-            <input formControlName="first_name" matInput placeholder="First Name">
+            <input formControlName="first_name" minlength="5" maxlength="30" matInput placeholder="First Name">
+            <mat-hint style="color:red" *ngIf="customerForm.get('first_name')?.touched && customerForm.get('first_name')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
@@ -15,15 +17,18 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label >Contact</mat-label>
-            <input formControlName="contact" matInput type="Number" placeholder="Contact">
+            <input formControlName="contact" matInput type="Number" minlength="10" maxlength="10"  placeholder="Contact" pattern="^\d{10}$">
+            <mat-hint style="color:red" *ngIf="customerForm.get('contact')?.touched && customerForm.get('contact')?.invalid">Enter 10 digits Only</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input formControlName="email" matInput type="email" placeholder="Email Id">
+            <input formControlName="email" matInput type="email" placeholder="Email Id" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <mat-hint style="color:red" *ngIf="customerForm.get('email')?.touched && customerForm.get('email')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
             <textarea formControlName="address" matInput placeholder="Address" style="resize: none;"></textarea>
+            <mat-hint style="color:red" *ngIf="customerForm.get('address')?.touched && customerForm.get('address')?.invalid">This is Required</mat-hint>
         </mat-form-field>
     </form>
 </div>

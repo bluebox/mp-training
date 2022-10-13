@@ -4,10 +4,12 @@
         <mat-form-field appearance="outline">
             <mat-label>Drug Id</mat-label>
             <input formControlName="drug_id" matInput placeholder="Drug Id">
+            <mat-hint style="color:red" *ngIf="drugForm.get('drug_id')?.touched && drugForm.get('drug_id')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Drug Name</mat-label>
             <input formControlName="drug_name" matInput placeholder="Drug Name">
+            <mat-hint style="color:red" *ngIf="drugForm.get('drug_name')?.touched && drugForm.get('drug_name')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Distributor Id</mat-label>
@@ -17,6 +19,7 @@
                 {{ dis['dist_name'] }}
               </mat-option>
             </mat-select>
+            <mat-hint style="color:red" *ngIf="drugForm.get('dist_name')?.touched && drugForm.get('dist_name')?.invalid">This is Required</mat-hint>
         </mat-form-field>
           
         <mat-form-field appearance="outline">
@@ -27,25 +30,30 @@
                 {{ man['company_name'] }}
               </mat-option>
             </mat-select>
+            <mat-hint style="color:red" *ngIf="drugForm.get('company_name')?.touched && drugForm.get('company_name')?.invalid">This is Required</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label >MRP</mat-label>
             <input formControlName="mrp" matInput type="Number" placeholder="MRP">
+            <mat-hint style="color:red" *ngIf="drugForm.get('mrp')?.touched && drugForm.get('mrp')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label >Discount</mat-label>
             <input formControlName="discount" matInput type="Number" placeholder="Discount">
+            <mat-hint style="color:red" *ngIf="drugForm.get('discount')?.touched && drugForm.get('discount')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label >Stock</mat-label>
             <input formControlName="stock" matInput type="Number" placeholder="Stock">
+            <mat-hint style="color:red" *ngIf="drugForm.get('stock')?.touched && drugForm.get('stock')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Manufactured Date</mat-label>
             <input formControlName="mfg_date" matInput [matDatepicker]="picker" placeholder="dd-MM-yyyy">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-hint style="color:red" *ngIf="drugForm.get('mfg_date')?.touched && drugForm.get('mfg_date')?.invalid">This is Required</mat-hint>
         </mat-form-field>
     </form>
 </div>

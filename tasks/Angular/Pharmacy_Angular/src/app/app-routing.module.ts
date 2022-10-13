@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:'signup', component:SignupComponent},
   {path:'doctor', component:DoctorComponent},
   {path:'manufacturer', component:ManufacturerComponent},
-  {path:'homepage', component:AdminComponent},
+  {path:'homepage', component:HomepageComponent},
   {path:'about', component:AboutComponent},
   {path:'drug', component:DrugComponent},
   {path:'contact', component:ContactComponent},

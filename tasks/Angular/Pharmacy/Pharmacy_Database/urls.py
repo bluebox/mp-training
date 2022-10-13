@@ -1,7 +1,7 @@
+"""Urls"""
 from django.urls import path
 from . import views
 
-from django.conf.urls import static
 
 urlpatterns = [
 
@@ -15,8 +15,8 @@ urlpatterns = [
     path('doctor/<str:id>', views.doctorApi),
     path('manufacturer/', views.manufacturerApi),
     path('manufacturer/<str:id>', views.manufacturerApi),
-    
-    
+    path('drug/', views.drugApi),
+    path('drug/<str:id>', views.drugApi),
     path('SaveFile', views.SaveFile),
 
 ]

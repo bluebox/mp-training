@@ -4,26 +4,30 @@
         <mat-form-field appearance="outline">
             <mat-label>Employee Id</mat-label>
             <input formControlName="emp_id" matInput placeholder="Employee Id">
+            <mat-hint style="color:red" *ngIf="employeeForm.get('emp_id')?.touched && employeeForm.get('emp_id')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
-            <input formControlName="first_name" matInput placeholder="First Name">
+            <input formControlName="first_name" minlength="5" maxlength="30" matInput placeholder="First Name">
+            <mat-hint style="color:red" *ngIf="employeeForm.get('first_name')?.touched && employeeForm.get('first_name')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
             <input formControlName="last_name" matInput placeholder="Last Name">
-        </mat-form-field>
+            </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Date Of Joining</mat-label>
             <input formControlName="doj" matInput [matDatepicker]="picker" placeholder="dd-MM-yyyy">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-hint style="color:red" *ngIf="employeeForm.get('doj')?.touched && employeeForm.get('doj')?.invalid">This is Required</mat-hint>
         </mat-form-field>
           
         <mat-form-field appearance="outline">
             <mat-label >Designation</mat-label>
             <input formControlName="designation" matInput  placeholder="designation">
+            <mat-hint style="color:red" *ngIf="employeeForm.get('designation')?.touched && employeeForm.get('designation')?.invalid">This is Required</mat-hint>
         </mat-form-field>
 
         <label><h1>Job Type</h1></label>
@@ -32,25 +36,30 @@
             <mat-radio-button class="example-radio-button" *ngFor="let job of jobList" [value]="job">
                 {{job}}
             </mat-radio-button>
+            <mat-hint style="color:red" *ngIf="employeeForm.get('job_type')?.touched && employeeForm.get('job_type')?.invalid">This is Required</mat-hint>
         </mat-radio-group>
 
         <mat-form-field appearance="outline">
             <mat-label >Salary</mat-label>
             <input formControlName="salary" matInput type="Number" placeholder="Salary">
+            <mat-hint style="color:red" *ngIf="employeeForm.get('salary')?.touched && employeeForm.get('salary')?.invalid">This is Required</mat-hint>
         </mat-form-field>
 
         
         <mat-form-field appearance="outline">
             <mat-label >Contact</mat-label>
-            <input formControlName="contact" matInput type="Number" placeholder="Contact">
+            <input formControlName="contact" matInput type="Number" minlength="10" maxlength="10"  placeholder="Contact" pattern="^\d{10}$">
+            <mat-hint style="color:red" *ngIf="employeeForm.get('contact')?.touched && employeeForm.get('contact')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input formControlName="email"  matInput type="email" placeholder="Email Id">
+            <input formControlName="email"  matInput type="email" placeholder="Email Id" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <mat-hint style="color:red" *ngIf="employeeForm.get('email')?.touched && employeeForm.get('email')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
             <textarea formControlName="address" matInput placeholder="Address" style="resize: none;"></textarea>
+            <mat-hint style="color:red" *ngIf="employeeForm.get('address')?.touched && employeeForm.get('address')?.invalid">This is Required</mat-hint>
         </mat-form-field>
     </form>
 </div>

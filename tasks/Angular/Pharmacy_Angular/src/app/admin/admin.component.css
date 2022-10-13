@@ -1,3 +1,16 @@
 .example-spacer{
     flex:1 1 auto;
 }
+body{
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+
+    background-image: url("16679.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

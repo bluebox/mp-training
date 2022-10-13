@@ -11,3 +11,138 @@
     margin-bottom:30px;
   }
   
+
+
+
+
+  footer {
+    padding:36px 30px;
+    color:#0b1219;
+    background:#fff;
+    width:100%;
+    display:inline-block;
+    font-size:12px;
+    margin-top:36px
+   }
+   .footer-top {
+    display:flex;
+    min-width:1030px;
+    max-width:1280px;
+    margin:0 auto;
+    box-sizing:border-box;
+    padding:0 0 32px;
+    margin-bottom:50px;
+    border-bottom:1px solid rgba(11,18,25,.2)
+   }
+   .footer-top .footer-logo {
+    margin-right:32px;
+    padding-right:32px!important;
+    border-right:0 solid rgba(195,195,195,.5);
+    height:62px;
+    line-height:62px;
+    width:212px
+   }
+   .footer-top .footer-txt {
+    width:60%;
+    padding:0;
+    font-size:16px;
+    line-height:24px;
+    font-family:LatoSemiBold;
+    color:rgba(11,18,25,.5);
+    display:flex;
+    align-items:center
+   }
+   .footer-container {
+    min-width:1030px;
+    max-width:1280px;
+    display:flex;
+    margin:0 auto;
+    box-sizing:border-box;
+    padding:0;
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-justify-content:space-between;
+    -ms-flex-pack:justify;
+    justify-content:space-between
+   }
+   .footer-container ul {
+    margin:0;
+    padding:0;
+    list-style:none
+   }
+   .footer-container ul li h2 {
+    font-size:14px;
+    line-height:22px;
+    padding:0;
+    text-transform:uppercase
+   }
+   .footer-container ul li a {
+    line-height:32px;
+    font-size:14px;
+    font-family:Lato;
+    color:#0b1219
+   }
+   .footer-container .subscribe {
+    width:284px;
+    padding-left:32px;
+    font-size:14px
+   }
+   .footer-container .subscribe h2 {
+    font-size:14px;
+    line-height:22px;
+    padding:0;
+    text-transform:uppercase
+   }
+   .footer-container .subscribe form {
+    margin-top:24px
+   }
+   .footer-container .subscribe .control {
+    display:inline-block;
+    text-decoration:none;
+    border-bottom:1px solid rgba(11,18,25,.2)
+   }
+   .footer-container .subscribe .control input {
+    width:207px;
+    height:40px;
+    border-radius:4px;
+    border:0;
+    padding:0 12px
+   }
+   .footer-container .subscribe .control .go-btn {
+    display:inline-block;
+    width:40px;
+    height:40px;
+    border-radius:5px;
+    border:0;
+    padding:0;
+    font-size:0;
+    top:-4px;
+    position:relative
+   }
+   .footer-container .subscribe .store-icon {
+    width:46%;
+    display:block;
+    float:left;
+    margin:16px 16px 0 0
+   }
+   .footer-container .subscribe .store-icon:last-child {
+    margin-right:0
+   }
+   .footer-container .app-div {
+    margin:12px 22% 0;
+    display:none
+   }
+   .footer-container .app-div a {
+    font-size:14px;
+    font-family:LatoSemibold;
+    padding-left:32px;
+    height:24px;
+    display:flex;
+    line-height:24px;
+    color:#0b1219
+   }
+
+   a{
+    text-decoration:none;
+   }

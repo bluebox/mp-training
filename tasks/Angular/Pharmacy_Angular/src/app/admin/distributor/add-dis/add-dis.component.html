@@ -4,22 +4,27 @@
         <mat-form-field appearance="outline">
             <mat-label>Distributor Id</mat-label>
             <input formControlName="dist_id" matInput placeholder="Distributor Id">
+            <mat-hint style="color:red" *ngIf="distributorForm.get('dist_id')?.touched && distributorForm.get('dist_id')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Distributor Name</mat-label>
-            <input formControlName="dist_name" matInput placeholder="Distributor Name">
+            <input formControlName="dist_name" minlength="5" maxlength="30" matInput placeholder="Distributor Name">
+            <mat-hint style="color:red" *ngIf="distributorForm.get('dist_name')?.touched && distributorForm.get('dist_name')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label >Contact</mat-label>
-            <input formControlName="contact" matInput type="Number" placeholder="Contact">
+            <input formControlName="contact" matInput type="Number" minlength="10" maxlength="10"  placeholder="Contact" pattern="^\d{10}$">
+            <mat-hint style="color:red" *ngIf="distributorForm.get('contact')?.touched && distributorForm.get('contact')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input formControlName="email" matInput type="email" placeholder="Email Id">
+            <input formControlName="email" matInput type="email" placeholder="Email Id" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <mat-hint style="color:red" *ngIf="distributorForm.get('email')?.touched && distributorForm.get('email')?.invalid">This is Required</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
             <textarea formControlName="address" matInput placeholder="Address" style="resize: none;"></textarea>
+            <mat-hint style="color:red" *ngIf="distributorForm.get('address')?.touched && distributorForm.get('address')?.invalid">This is Required</mat-hint>
         </mat-form-field>
     </form>
 </div>

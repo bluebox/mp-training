@@ -1,18 +1,23 @@
+"""Models"""
 from django.db import models
 from django.core.validators import validate_email
 
 # Create your models here.
-
+# pylint: disable=too-few-public-methods
+# pylint: disable=invalid-str-returned
 
 class Customer(models.Model):
+    """Class"""
     cust_id = models.CharField(max_length=20, primary_key=True)
     first_name = models.CharField(max_length=50, null=False, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
+    email = models.CharField(max_length=50, null=False, blank=False,
+                             unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "customer"
 
     def __str__(self):
@@ -20,13 +25,16 @@ class Customer(models.Model):
 
 
 class Manufacturer(models.Model):
+    """Class"""
     company_id = models.CharField(max_length=20, primary_key=True)
     company_name = models.CharField(max_length=50, null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
+    email = models.CharField(max_length=50, null=False, blank=False,
+                             unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "manufacturer"
 
     def __str__(self):
@@ -34,15 +42,18 @@ class Manufacturer(models.Model):
 
 
 class Doctor(models.Model):
+    """Class"""
     doc_id = models.CharField(max_length=20, primary_key=True)
     first_name = models.CharField(max_length=50, null=False, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
     specialization = models.CharField(max_length=250, null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
+    email = models.CharField(max_length=50, null=False, blank=False,
+                             unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "doctor"
 
     def __str__(self):
@@ -50,6 +61,7 @@ class Doctor(models.Model):
 
 
 class Employee(models.Model):
+    """Class"""
     emp_id = models.CharField(max_length=20, primary_key=True)
     first_name = models.CharField(max_length=50, null=False, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
@@ -58,10 +70,12 @@ class Employee(models.Model):
     job_type = models.CharField(max_length=50, null=False, blank=False)
     salary = models.IntegerField(null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
+    email = models.CharField(max_length=50, null=False, blank=False,
+                             unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "employee"
 
     def __str__(self):
@@ -69,13 +83,16 @@ class Employee(models.Model):
 
 
 class Distributor(models.Model):
+    """Class"""
     dist_id = models.CharField(max_length=20, primary_key=True)
     dist_name = models.CharField(max_length=50, null=False, blank=False)
     contact = models.CharField(max_length=13, null=False, blank=False)
-    email = models.CharField(max_length=50, null=False, blank=False, unique=True, validators=[validate_email])
+    email = models.CharField(max_length=50, null=False, blank=False,
+                             unique=True, validators=[validate_email])
     address = models.CharField(max_length=250, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "distributor"
 
     def __str__(self):
@@ -83,16 +100,18 @@ class Distributor(models.Model):
 
 
 class Drug(models.Model):
+    """Class"""
     drug_id = models.CharField(max_length=20, primary_key=True)
     drug_name = models.CharField(max_length=50, null=False, blank=False)
-    dist_id = models.ForeignKey(Distributor, on_delete=models.CASCADE, null=True, blank=True)
-    company_id = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, null=True, blank=True)
-    mrp = models.DecimalField(max_digits=5, decimal_places=5, null=False, blank=False)
-    discount = models.DecimalField(max_digits=5, decimal_places=5, null=False, blank=False)
+    dist_name = models.CharField(max_length=50, null=False, blank=False)
+    company_name = models.CharField(max_length=50, null=False, blank=False)
+    mrp = models.IntegerField( null=False, blank=False)
+    discount = models.IntegerField(null=False, blank=False)
     stock = models.IntegerField(null=False, blank=False)
-    mfg_date = models.CharField(max_length=50,null=False, blank=False)
+    mfg_date = models.CharField(max_length=100,null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "drug"
 
     def __str__(self):
@@ -100,6 +119,7 @@ class Drug(models.Model):
 
 
 class Sales(models.Model):
+    """Class"""
     sale_id = models.CharField(max_length=20, primary_key=True)
     sale_date = models.CharField(max_length=50,null=False, blank=False)
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE, null=False, blank=False)
@@ -109,6 +129,7 @@ class Sales(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "sales"
 
     def __str__(self):
@@ -116,6 +137,7 @@ class Sales(models.Model):
 
 
 class Prescribe(models.Model):
+    """Class"""
     prescription_id = models.CharField(max_length=20, primary_key=True)
     cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False, blank=False)
     doc_id = models.ForeignKey(Doctor, on_delete=models.CASCADE, null=False, blank=False)
@@ -123,6 +145,7 @@ class Prescribe(models.Model):
     quantity = models.IntegerField(null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "prescribe"
 
     def __str__(self):
@@ -130,12 +153,14 @@ class Prescribe(models.Model):
 
 
 class Purchase(models.Model):
+    """Class"""
     purchase_id = models.CharField(max_length=20, primary_key=True)
     purchase_date = models.CharField(max_length=50, null=False, blank=False)
     drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE, null=False, blank=False)
     drug_name = models.CharField(max_length=100, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "purchase"
 
     def __str__(self):
@@ -143,6 +168,7 @@ class Purchase(models.Model):
 
 
 class Supply(models.Model):
+    """Class"""
     purchase_id = models.ForeignKey(Purchase, on_delete=models.CASCADE, null=False, blank=False)
     purchase_date = models.CharField(max_length=50, null=False, blank=False)
     drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE, null=False, blank=False)
@@ -153,6 +179,7 @@ class Supply(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "supply"
 
     def __str__(self):
@@ -160,12 +187,14 @@ class Supply(models.Model):
 
 
 class Cart(models.Model):
+    """Class"""
     drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE, null=False, blank=False)
     cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False, blank=False)
     quantity = models.IntegerField(null=False, blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "cart"
 
     def __str__(self):
@@ -173,14 +202,17 @@ class Cart(models.Model):
 
 
 class Order(models.Model):
+    """Class"""
     order_id = models.CharField(max_length=20, primary_key=True)
     order_date = models.CharField(max_length=50, null=False, blank=False)
     cust_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False, blank=False)
-    prescription_id = models.ForeignKey(Prescribe, on_delete=models.CASCADE, null=False, blank=False)
+    prescription_id = models.ForeignKey(Prescribe, on_delete=models.CASCADE,
+                                        null=False, blank=False)
     drug_id = models.ForeignKey(Drug, on_delete=models.CASCADE, null=False, blank=False)
     payment_mode = models.CharField(max_length=10)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "order"
 
     def __str__(self):
@@ -188,6 +220,7 @@ class Order(models.Model):
 
 
 class Invoice(models.Model):
+    """Class"""
     bill_id = models.CharField(max_length=20, primary_key=True)
     billing_date = models.CharField(max_length=50, null=False, blank=False)
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE, null=False, blank=False)
@@ -198,6 +231,7 @@ class Invoice(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=10, null=False, blank=False)
 
     class Meta:
+        """Class"""
         verbose_name_plural = "invoice"
 
     def __str__(self):

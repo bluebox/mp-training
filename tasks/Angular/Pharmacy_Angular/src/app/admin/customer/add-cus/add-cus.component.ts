@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {CustomerService} from "src/app/services/customer.service"
 
 
-
 @Component({
   selector: 'app-add-cus',
   templateUrl: './add-cus.component.html',
