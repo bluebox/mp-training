@@ -9,6 +9,7 @@ import { RegisterService } from 'src/app/services/register.service';
 export class NavbarComponent implements OnInit {
 
   is_staff = localStorage.getItem('is_staff')
+  username = localStorage.getItem('username')
 
   constructor(public service: RegisterService) { }
 

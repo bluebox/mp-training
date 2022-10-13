@@ -24,7 +24,7 @@
                   <a title="Streak" class="navbar-brand" href="#"><i class="bi bi-fire"></i></a>
               </li>
               <li class="nav-item active">
-                  <a title="Profile" class="navbar-brand" [routerLinkActive]="['active']" routerLink="/profile"><i class="bi bi-person-fill"></i></a>
+                  <a title="Profile" class="navbar-brand" [routerLinkActive]="['active']" [routerLink]="['/profile', username]"><i class="bi bi-person-fill"></i></a>
               </li>
               <li class="nav-item active" *ngIf="!service.doLogin()">
                   <a class="navbar-brand" [routerLinkActive]="['active']" routerLink="/register">Register</a>

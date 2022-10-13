@@ -5,10 +5,14 @@
   
         </th>
         <th clickable (click)="sort_based_on_diff()" class="th-sm">Difficulty
-  
+          <i *ngIf="sortBasedOnDifficulty == 0" class="bi bi-filter-square"></i>
+          <i *ngIf="sortBasedOnDifficulty == 1" class="bi bi-sort-up-alt"></i>
+          <i *ngIf="sortBasedOnDifficulty == -1" class="bi bi-sort-down"></i>
         </th>
         <th clickable (click)="sort_based_on_acc()" class="th-sm">Accuracy
-  
+          <i *ngIf="sortBasedOnAccuracy == 0" class="bi bi-filter-square"></i>
+          <i *ngIf="sortBasedOnAccuracy == -1" class="bi bi-sort-down"></i>
+          <i *ngIf="sortBasedOnAccuracy == 1" class="bi bi-sort-up-alt"></i>
         </th>
         <th class="th-sm">Likes Ratio
   

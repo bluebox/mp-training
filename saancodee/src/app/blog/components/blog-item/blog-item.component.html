@@ -30,7 +30,7 @@
                             <div class="card-body">
                                 <div class="d-flex flex-start align-items-center">
                                     <div>
-                                        <a routerLink="profile"></a><h6 class="fw-bold text-danger mb-1">{{ blog.user_id }}</h6>
+                                        <a routerLink="['/profile', blog.user_id]"><h6 class="fw-bold text-danger mb-1">@{{ blog.user_id }}</h6></a>
                                         <p class="text-muted small mb-0">
                                             Shared publicly - {{ blog.created_date_time | date: "mediumDate" }}
                                         </p>

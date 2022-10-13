@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:"problems/discussions/:id", component:ProblemdiscussionComponent},
   {path:"problems/discussions/:id/:discussionId", component:DiscussionComponent},
   {path:"post-question", component:PostQuestionComponent},
-  {path:"profile", component:ProfileComponent, canActivate: [AuthGuard]},
+  {path:"profile/:id", component:ProfileComponent, canActivate: [AuthGuard]},
   {path:"edit-profile", component:EditProfileComponent, canActivate: [AuthGuard]},
   { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) }
   // {path:"**", }
