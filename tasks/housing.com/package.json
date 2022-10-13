@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@angular/animations": "^14.2.3",
+    "@angular/cdk": "^14.2.2",
+    "@angular/material": "^14.2.2",
+    "leaflet": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.8.0"
+  }
+}
