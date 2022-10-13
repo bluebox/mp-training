@@ -31,11 +31,51 @@
             </tr>
             <tr>
                 <td>PROJECT STATUS :</td>
-                <td *ngIf="item.project_status==='pending'" style="color: orange;" class="tabledata"> {{ item.project_status | uppercase}}</td>
-                <td *ngIf="item.project_status==='completed'" style="color: green;" class="tabledata"> {{ item.project_status | uppercase}}</td>
+                <td *ngIf="item.project_status==='pending'" style="color: orange;" class="tabledata"> {{
+                    item.project_status | uppercase}}</td>
+                <td *ngIf="item.project_status==='completed'" style="color: green;" class="tabledata"> {{
+                    item.project_status | uppercase}}</td>
+
+
 
             </tr>
+            <div class="completed" *ngIf="item.project_status=='completed'">
+                <h5 *ngIf="!flag">please provide feedback for client </h5>
+
+                <button type="button" *ngIf="!flag" (click)="display(item.contract_id)">click here</button>
+            </div>
+            <div class="feedbackresponse" *ngIf="feedbackDetails">
+                <p> rating : </p>
+                <ngb-rating [(rate)]="feedbackDetails.rating"  [max]="5" [readonly]="true"
+                style="font-size:30px;color: yellow;"></ngb-rating>
+                <p>feedback : {{ feedbackDetails.feedback }}</p>
+            </div>
+
+            <div class="feedback" *ngIf="flag">
+                <div class="open" *ngIf="flag" style="margin-left: -10px;">
+                    <p style="text-align: center;text-transform: uppercase;"> feedback form</p>
+                    Rate for client:
+                    <ngb-rating [(rate)]="currentRate" [max]="5" (rateChange)="ratechange(currentRate)"
+                        style="font-size:30px;color: yellow;"></ngb-rating> <br>
+                    <form (submit)="feedbackSumbit(item.contract_id)">
+                        <p>Feedback : </p>
+                        <textarea type="textarea" id="feedback" rows="6" cols="50" [formControl]="feedback"></textarea>
+                        <br>
+
+                        <button type="submit" value="submit">submit</button>&nbsp;
+                        <button type="button" (click)="display1()">close</button>
+                    </form>
+                </div>
+
+            </div>
         </table>
+
+
     </li>
 </ul>
+
+
+
+
+
 <app-ffooter></app-ffooter>

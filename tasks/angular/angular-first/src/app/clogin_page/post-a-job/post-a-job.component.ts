@@ -29,6 +29,7 @@ export class PostAJobComponent implements OnInit {
     this.service.postAJob(this.job_form.value).subscribe((data: any) => {
       console.log(data);
       alert('Successfully posted');
+      location.reload();
     }, (error) => {
       alert("invalid details");
     }

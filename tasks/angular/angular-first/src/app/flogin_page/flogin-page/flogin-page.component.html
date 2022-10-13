@@ -1,15 +1,33 @@
-
 <app-fheader></app-fheader>
-<div class="welcome">
-    <h1>welcome {{ parse_data.first_name }} {{ parse_data.last_name }}</h1>
 
-    <ul>
-        <li><a routerLink="./jobs"> find a job </a></li>
-        <li><a routerLink="./proposals"> your submited proposals </a></li>
-        <li><a routerLink="./payment_details"> Payment Details </a></li>
-        <li><a routerLink="./fcontract_details"> Your Contract Details </a></li>
 
+<div class="welcome" *ngIf="parse_data">
+    <h3 style="text-align:center;text-transform:capitalize;background-color: white;">Hii {{ parse_data.first_name }} {{
+        parse_data.last_name }}</h3>
+    <ul class="row m-auto one">
+        <!-- <div class="row"> -->
+        <li class="col-5 m-5 bg-light" routerLink="./jobs"> 
+            <img src="https://cdn-icons-png.flaticon.com/512/942/942800.png" height="250px" width="250px" alt="no image">
+            <h5>FIND A JOB</h5>
+        </li>
+        <li class="col-5 m-5 bg-light"><a routerLink="./proposals"> <img
+                    src="data:image/png;base64,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"
+                    alt="your submited proposals" height="250px" width="250px">
+                <h5>SUBMITTED PROPOSALS</h5>
+            </a></li>
+        <li class="col-5 m-5 bg-light"><a routerLink="./payment_details"><img
+                    src="https://www.clipartmax.com/png/middle/311-3112909_payment-method-method-plan-icon-icon.png"
+                    alt="" height="250px" width="250px">
+                <h5> PAYMENT DETAILS</h5>
+            </a></li>
+        <li class="col-5 m-5 bg-light"><a routerLink="./fcontract_details"> <img
+                    src="https://cdn-icons-png.flaticon.com/128/2666/2666523.png" alt="" height="250px" width="250px">
+                <h5> CONTRACT DETAILS </h5>
+            </a></li>
+        <!-- <li><img src="https://static.vecteezy.com/system/resources/previews/000/367/333/non_2x/edit-profile-vector-icon.jpg" height="250px" width="250px" alt=""></li> -->
+        <!-- </div> -->
     </ul>
 </div>
+
 
 <app-ffooter></app-ffooter>

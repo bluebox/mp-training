@@ -8,6 +8,9 @@ import { ServiceService } from 'src/app/service.service';
   styleUrls: ['./jobs.component.css']
 })
 export class JobsComponent implements OnInit {
+  page = 0
+  pageSize = 1
+  
 getJobId(job_id: any) {
   console.log(job_id);
   window.sessionStorage.setItem('job_id',job_id)

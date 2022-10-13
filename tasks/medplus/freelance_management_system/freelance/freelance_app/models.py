@@ -1,9 +1,6 @@
 import datetime
 
-from dateutil.relativedelta import relativedelta
-
-date = datetime.datetime.today()
-dateupdated = date + relativedelta(months=1)
+import django
 from django.db import models
 
 class freelancer_details(models.Model):
@@ -55,7 +52,7 @@ class client_contract_details(models.Model):
     contract_id =  models.AutoField(primary_key=True)
     emp_proposal_id = models.OneToOneField(freelancer_proposals,on_delete=models.CASCADE)
     client_id = models.ForeignKey(client_details,on_delete=models.CASCADE)
-    project_deadline = models.DateTimeField(default=dateupdated)
+    project_deadline = models.DateField(default=django.utils.timezone.now)
     project_status = models.CharField(max_length=50,default='pending')
     contract_amount = models.IntegerField(default=10)
     def __str__(self) -> str:
@@ -82,25 +79,16 @@ class client_fee_record(models.Model):
         return "{}".format(self.contract_id)
 
 class client_feedback_form(models.Model):
-    rating_choices = (
-        ('E','Excellent'),
-        ('G','Good'),
-        ('B','BAD')
-    )
+
     contract_id = models.OneToOneField(client_contract_details,on_delete=models.CASCADE)
-    rating = models.CharField(max_length=1,choices=rating_choices)
+    rating = models.IntegerField()
     feedback = models.TextField(max_length=100)
     def __str__(self) -> str:
         return "{} ".format(self.contract_id)
 
 class freelancer_feedback_form(models.Model):
-    rating_choices = (
-        ('E','Excellent'),
-        ('G',"Good"),
-        ('B','BAD')
-    )
     contract_id = models.OneToOneField(client_contract_details,on_delete=models.CASCADE)
-    rating = models.CharField(max_length=1,choices=rating_choices)
+    rating = models.IntegerField()
     feedback = models.TextField(max_length=100)
 
 
@@ -108,3 +96,8 @@ class freelancer_feedback_form(models.Model):
         return "{}".format(self.contract_id)
 
 
+class UserToken(models.Model):
+    email_id = models.EmailField()
+    token = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expired_at = models.DateTimeField()

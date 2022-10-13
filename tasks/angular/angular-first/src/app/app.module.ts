@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { PagenotfouondComponent } from './pagenotfouond/pagenotfouond.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import { IndexComponent } from './index/index.component';
 import { FreelanceRegistrationComponent } from './freelance-registration/freelance-registration.component';
 import { FloginPageComponent } from './flogin_page/flogin-page/flogin-page.component';
@@ -61,7 +62,7 @@ import { FfooterComponent } from './flogin_page/ffooter/ffooter.component';
     MatSliderModule,
     NgbModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
   ],
   providers: [],

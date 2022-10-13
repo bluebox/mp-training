@@ -10,7 +10,8 @@ urlpatterns = [
     # path("freelance_details",views.freelance_details_page,name="freelance_details"),
     # path("",views.index.as_view(),name="freelance_details"),
     path("freelancer",views.freelancerRegister.as_view(),name="freelancer_register"),
-    path("freelancer/<str:email_id>/",views.freelanceUpdate.as_view(),name="freelance_update"),
+    path("freelancer/login/",views.freelanceUpdate.as_view(),name="freelance_update"),
+    path("freelancer/details/",views.freelancer_login.as_view(),name="freelance_update"),
     path("client", views.clientRegister.as_view(), name="client_register"),
     path("client/<str:email_id>/", views.clientUpdate.as_view(), name="client_update"),
     path("client_jobs", views.clientJobsRegister.as_view(), name="client_jobs_register"),
@@ -26,8 +27,14 @@ urlpatterns = [
     path('client_payment',views.client_payment.as_view(),name='client_payment'),
     path('get_fee_payment_details',views.client_fee_payment_details_view.as_view(),name='client_payment'),
     path('get_freelancer_payment_details',views.get_freelancer_payment_details.as_view(),name='client_payment'),
-    path('update_freelance_proposal/<int:proprosal_id>',views.update_freelance_proposal.as_view(),name='update_freelance_proposal'),
-    path('get_contract_of_freelancer',views.get_contract_of_freelancer.as_view(),name='client_payment')
+    path('update_freelance_proposal/<int:proprosal_id>',views.update_freelance_proposal.as_view(),name='freelance'),
+    path('get_contract_of_freelancer',views.get_contract_of_freelancer.as_view(),name='client_payment'),
+    path('update_contract_details/<str:contract_id>',views.update_contract_details.as_view(),name='update_contract'),
+    path('new_feedback',views.new_feedback.as_view(),name='new_feedback'),
+    path('freelancer_feedback',views.new_feedback.as_view(),name='new_feedback'),
+    path('freelancer_payment',views.update_freelance_proposal.as_view(),name='new_feedback'),
+    path('new_freelancer_payment',views.new_freelancer_payment.as_view(),name='new_freelancer_payment'),
+    path('new_client_feedback',views.new_client_feedback.as_view(),name='new_freelancer_payment'),
 
 
 ]

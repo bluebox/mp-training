@@ -11,5 +11,8 @@ export class FheaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  logout(): void { 
+    window.sessionStorage.removeItem('token');
+    window.localStorage.removeItem('fuser');
+   }  
 }

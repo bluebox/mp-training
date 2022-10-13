@@ -1,5 +1,7 @@
 import json
-
+from .jwtauthetication import *
+import jwt
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from django.http import HttpResponse, JsonResponse, Http404
 from django.contrib import messages
@@ -148,17 +150,54 @@ class freelancerRegister(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class freelanceUpdate(APIView):
-    def get_object(self, email_id):
-        try:
-           return freelancer_details.objects.get(email_id=email_id)
-        except freelancer_details.DoesNotExist :
-            raise Http404
+    # def get_object(self, email_id):
+    #     try:
+    #        return freelancer_details.objects.get(email_id=email_id)
+    #     except freelancer_details.DoesNotExist :
+    #         raise Http404
 
-    def get(self,request, email_id, format=None):
-        freelance = self.get_object(email_id=email_id)
-        serializer = freelancer_details_serializers(freelance)
+
+    def post(self, request):
+        email = request.data['email_id']
+        password = request.data['password']
+        user = freelancer_details.objects.filter(email_id=email).first()
+
+        if user is None:
+            raise AuthenticationFailed('User not found')
+
+        if user.password!=password:
+            raise AuthenticationFailed('Incorrect password!')
+
+        # payload ={
+        #     'passenger_id': user.passenger_id,
+        #     'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=120),
+        #     'iat': datetime.datetime.utcnow()
+        # }
+
+        access_token = create_access_token(user.email_id)
+        refresh_token = create_refresh_token(user.email_id)
+
+        UserToken.objects.create(
+            email_id = user.email_id,
+            token = refresh_token,
+            expired_at = datetime.datetime.utcnow() + datetime.timedelta(days = 7)
+        )
+
+        response = Response()
+        response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
+        response.data ={
+             'access_token': access_token,
+             'msg': "successfully logged in"
+        }
+
+        return response
+
+
+class freelancer_login(APIView):
+    authentication_classes = [JWTAuthentication]
+    def get(self,request, format=None):
+        serializer = freelancer_details_serializers(request.user)
         return Response(serializer.data)
-
     def put(self,request, email_id, format=None):
         freelance = self.get_object(email_id=email_id)
         serializer = freelancer_details_serializers(freelance, data=request.data)
@@ -171,8 +210,6 @@ class freelanceUpdate(APIView):
         freelance = self.get_object(email_id=email_id)
         freelance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
 class clientRegister(APIView):
     def get(self, request,format=None):
         client = client_details.objects.all()
@@ -384,11 +421,64 @@ class update_freelance_proposal(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get(self,request):
+        client =freelancer_proposals.objects.get(proprosal_id=request.GET.get('proprosal_id'))
+        serializers = freelancer_proposals_serializers(client)
+        return Response(serializers.data)
 
 
+
+class update_contract_details(APIView):
+    def put(self, request, contract_id, format=None):
+        client =client_contract_details.objects.get(contract_id=int(contract_id))
+        serializer = client_contract_details_serializers(client, data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class get_contract_of_freelancer(APIView):
     def get(self,request):
         get_client_jobs = client_contract_details.objects.get(emp_proposal_id=request.GET.get('emp_proposal_id'))
         serializers = client_contract_details_serializers(get_client_jobs)
+        return Response(serializers.data)
+
+
+
+class new_feedback(APIView):
+    def post(self,request):
+        serializer = freelancer_feedback_form_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+
+    def get(self,request):
+        feedback = freelancer_feedback_form.objects.get(contract_id=request.GET.get('contract_id'))
+        serializers = freelancer_feedback_form_serializers(feedback)
+        return Response(serializers.data)
+
+class new_freelancer_payment(APIView):
+    def post(self,request):
+        serializer = freelancer_payment_details_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+
+class new_client_feedback(APIView):
+    def post(self,request):
+        serializer = client_feedback_form_serializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+
+    def get(self,request):
+        feedback = client_feedback_form.objects.get(contract_id=request.GET.get('contract_id'))
+        serializers = client_feedback_form_serializers(feedback)
         return Response(serializers.data)

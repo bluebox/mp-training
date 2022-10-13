@@ -28,9 +28,12 @@ export class LoginComponent implements OnInit {
   loginSubmit() {
     console.log(this.login.value.email_id);
     if (this.login.value.user_type == 1) {
-      this.service.FreelancerLogin(this.login.value.email_id).subscribe((data: any) => {
-        window.sessionStorage.setItem('fuser', JSON.stringify(data));
-        alert('login successfully');
+      this.service.FreelancerLogin(this.login.value).subscribe((data: any) => {
+        window.sessionStorage.setItem('token', JSON.stringify(data.access_token));
+        alert(data.msg);
+        console.log(data.access_token);
+        console.log(data);
+        
 
         this.router.navigate(['freelance_login_page'])
       }

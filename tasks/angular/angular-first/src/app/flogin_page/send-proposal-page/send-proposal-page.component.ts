@@ -28,12 +28,13 @@ export class SendProposalPageComponent implements OnInit {
 
 
   submitSendProposal() {
-    this.service.submitSendProposalUrl(this.send_proposal.value).subscribe(data => { console.log(data)});
+    this.service.submitSendProposalUrl(this.send_proposal.value).subscribe(data => { console.log(data);alert('successfully applied');window.location.reload();});
     console.log(this.send_proposal.value);
+
     
   }
   
 
-  data : any = sessionStorage.getItem('fuser')
+  data : any = localStorage.getItem('fuser')
   parse_data = JSON.parse(this.data)
 }

@@ -1,8 +1,9 @@
 <app-fheader></app-fheader>
-<h4 style="text-transform: uppercase;text-align:center;">send proposal form</h4>
+<h4 style="text-transform: uppercase;text-align:center;">send proposal form  </h4>
 <div class="main">
     <form [formGroup]="send_proposal" (submit)="submitSendProposal()">
         <div class="form-group">
+            <h4>JOB ID : {{ job_id }} </h4>
             <h4>Mention Your Skills</h4>
             <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
             <textarea name="" id="exampleInputEmail1" cols="50" rows="10" formControlName="skills"></textarea>
@@ -16,7 +17,7 @@
         <div class="form-group">
 
             <label class="form-check-label" for="exampleCheck1">
-                <h3>Bidding amount</h3>
+                <h3>Bidding amount $ </h3>
             </label> &nbsp;
             <input type="number" id="exampleCheck1" formControlName="requried_pay">
         </div>

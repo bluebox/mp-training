@@ -19,7 +19,7 @@ export class ProposalsComponent implements OnInit {
       window.sessionStorage.setItem('freelancer_proposals', JSON.stringify(this.recevied_data))
     })
   }
-  data : any = sessionStorage.getItem('fuser')
+  data : any = localStorage.getItem('fuser')
   parse_data = JSON.parse(this.data)
 
 

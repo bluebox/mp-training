@@ -8,7 +8,7 @@ import { ServiceService } from 'src/app/service.service';
 })
 export class PaymentDetailsComponent implements OnInit {
   recevied_data: any;
-  data: any=window.sessionStorage.getItem('fuser');
+  data: any=window.localStorage.getItem('fuser');
   data_parse = JSON.parse(this.data).id;
   constructor(private service : ServiceService) { }
   

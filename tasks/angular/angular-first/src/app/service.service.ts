@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +21,13 @@ export class ServiceService {
   FreelancerLogin(data: string) {
     console.log(data);
 
-    return this.http.get(this.url + "freelancer/" + data + '/')
+    return this.http.post(this.url + "freelancer/login/",data)
+  }
+  freelancerDetails(data : any){
+    console.log(data);
+    console.log('service');
+    let headers = new HttpHeaders().set('Authorization','Token '+ data.substring(1, data.length-1))
+    return this.http.get(this.url + "freelancer/details/",{'headers':headers});
   }
 
   ClientRegistration(data: any) {
@@ -73,7 +79,13 @@ export class ServiceService {
 
 
   clientPayment(data: any) {
+    console.log(data);
+    
     return this.http.post(this.url + 'client_payment', data) 
+  }
+
+  freelancerpayment(data: any) {
+    return this.http.get(this.url + 'freelancer_payment?proprosal_id='+data)
   }
 
   getFeePaymentDetails(data : any) {
@@ -90,4 +102,29 @@ export class ServiceService {
     
     return this.http.put(this.url + 'update_freelance_proposal' + '/'  + proprosal_id   , data);
   }
+
+  updateContractDetails(contract_id: any ,data: any){
+    return this.http.put(this.url + 'update_contract_details' + '/' + contract_id , data);
+  }
+
+  newFeedback(data : any){
+    return this.http.post(this.url + 'new_feedback', data);
+  }
+
+  getFeedback(data : any){
+    return this.http.get(this.url + 'freelancer_feedback?contract_id='+ data);
+  }
+
+  newfreelancerpaymentresult(data : any){
+    return this.http.post(this.url + 'new_freelancer_payment', data)
+  }
+
+  clientFeedback(data : any) {
+    return this.http.post(this.url + 'new_client_feedback', data)
+  }
+
+  getclientFeedback(data : any) {
+    return this.http.get(this.url + 'new_client_feedback?contract_id=' + data)
+  } 
+
 }
