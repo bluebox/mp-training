@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Customer, Food, Restaurant, Employee, Menu, MenuList
+
+import FoodOrder
+from .models import Customer, Food, Restaurant, Employee, Menu, MenuList, OrderFood
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -36,3 +38,10 @@ class MenuListSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuList
         fields = '__all__'
+
+
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=OrderFood
+        fields='__all__'

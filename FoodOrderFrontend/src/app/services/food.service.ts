@@ -27,4 +27,8 @@ export class FoodService {
  getFoodRes(id:string):Observable<Food[]>{
   return this.http.get<Food[]>(this.url1 + id + "/")
  }
+
+ delOneFood(id:string):Observable<Food[]>{
+  return this.http.delete<Food[]>(this.url + id + "/")
+}
 }

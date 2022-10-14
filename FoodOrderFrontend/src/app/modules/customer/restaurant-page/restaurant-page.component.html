@@ -29,13 +29,18 @@
 </div>
 
 <div class="order block">
+  
 
     <div class="food blocki">
             <div class="food_item" *ngFor="let f of foodL">
                 <div class="one">
-                <h2>{{f.food_name}}</h2>
+                <h2>{{f.food_name}} {{f.food_id}}</h2>
                 <h3> Price: {{f.food_price}}</h3>
-                <button mat-raised-button class="add" color="accent">Add</button>
+                <button type="button" (click)="decQuan(f.food_id)"><i class="fa fa-minus">-</i></button>
+                <input type="text" [value]="quantity">
+                <button type="button" (click)="incQuan(f.food_id)"><i class="fa fa-plus">+</i></button>
+                <br>
+                <button mat-raised-button class="add" color="accent" (click)="postCart(f.food_id,f.food_price)">Add</button>
             </div>
             <div class="pic one">
                    <img src="{{f.food_photo}}" alt="" class="photo"> 
@@ -44,7 +49,36 @@
     </div>
 
     <div class="checkout blocki">
-            hiiiiiiiiiiiiiiiiiiiiiiiiiii
+      <h2>Cart:</h2>
+      <div class="food_item" *ngFor="let f of getCartList">
+
+        <h2>
+          {{f.food_id}}
+        </h2>
+        <br>
+      <div>
+        <br>
+        <hr>
+        <h2>
+          {{f.quantity}}
+        </h2>
+       <br>
+        <h2>
+          {{f.price}}
+        </h2>
+
+        </div>
+        <button mat-flat-button color="warn" (click)="deleteitem(f.order_food_id,f.quantity,f.price)">Delete</button>
+      </div>
+
+      <div class="order">
+        <div class="cost">
+          <h2>{{cost}}</h2>
+        </div>
+        <div class="confirm">
+          <button mat-stroked-button color="primary">Confirm Order</button>
+        </div>
+      </div>
     </div>
 </div>
 <div class="footer">

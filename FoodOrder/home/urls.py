@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from home.views import Index, CustomerData, FoodData, FoodOneData, RestaurantData, EmployeeData,\
-    SearchData, AddMenu,AddFoodtoMenu, FoodOneRes, OneResFoods,CustomerLogin
+from home.views import Index, CustomerData, FoodData, FoodOneData, RestaurantData, EmployeeData, \
+    SearchData, AddMenu, AddFoodtoMenu, FoodOneRes, OneResFoods, CustomerLogin, Cart, CartEdit
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -20,7 +20,8 @@ urlpatterns = [
     path('restaurant/<str:id>/', FoodOneRes.as_view()),
     path('restaurant/foodlist/<str:item>/', OneResFoods.as_view()),
     path('customer/login/', CustomerLogin.as_view()),
-
+    path('customer/cart/', Cart.as_view()),
+    path('customer/cart/<str:id>', CartEdit.as_view()),
 path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),

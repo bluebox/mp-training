@@ -75,7 +75,7 @@ class Food(models.Model):
     food_desc = models.CharField(max_length=100)
     food_photo = models.TextField(max_length=500,null=True)
     is_available = models.BooleanField(default=False)
-
+    # quantity = models.IntegerField(null=True,default=1)
     def __str__(self):
         return self.food_name
 
@@ -101,8 +101,9 @@ class OrderFood(models.Model):
     customer_id=models.ForeignKey(Customer,on_delete=models.SET_NULL,null=True)
     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
     food_id = models.ForeignKey(Food, on_delete=models.SET_NULL, null=True)
-    emp_id=models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
+    # emp_id=models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField()
+    price = models.IntegerField(null=True)
     menu_id=models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
 
 

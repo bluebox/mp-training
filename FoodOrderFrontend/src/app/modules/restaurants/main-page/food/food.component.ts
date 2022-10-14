@@ -21,8 +21,10 @@ export class FoodComponent implements OnInit {
   {
     this.dialog.open(AddFoodComponent, {
       autoFocus: false,
-      maxHeight: '90vh' //you can adjust the value as per your view
+      maxHeight: '90vh'
+      
 })
+this.ngOnInit()
   }
 
   getDataFood()
@@ -31,6 +33,24 @@ export class FoodComponent implements OnInit {
       console.log(data);this.food=data
     ;console.log(this.food)})
 
+
+  }
+
+
+  removeFood(id:any)
+  {
+    this.ngOnInit()
+     this.getDataFood()
+    console.log("d")
+    this.foodEle.delOneFood(id).subscribe(()=>{
+      
+     console.log("data deleted")
+     })
+
+     
+     this.ngOnInit()
+     this.getDataFood()
+     window.location.reload()
 
   }
 }

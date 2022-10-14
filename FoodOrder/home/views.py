@@ -7,11 +7,11 @@ from django.views import View
 from rest_framework.exceptions import AuthenticationFailed
 
 from .serializers import CustomerSerializer, FoodSerializer, RestaurantSerializer, EmployeeSerializer, MenuSerializer, \
-    MenuListSerializer
+    MenuListSerializer, CartSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions,status
-from .models import Customer, Food, Restaurant, Employee, Menu, MenuList
+from .models import Customer, Food, Restaurant, Employee, Menu, MenuList, OrderFood
 import jwt
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.parsers import JSONParser
@@ -94,6 +94,16 @@ class FoodOneData(APIView):
     def post(self,request):
         return HttpResponse("Heyyyyyyyy post", status=405)
 
+
+    def delete(self,request,id):
+        print("in django")
+        item = Food.objects.get(food_id=id)
+        print(item)
+        print("start delete")
+
+        item.delete()
+        print("deleted")
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class FoodOneRes(APIView):
     def get(self, request,id):
@@ -246,3 +256,44 @@ class CustomerLogin(APIView):
             return Response("None")
         payload = jwt.decode(token, 'secret', algorithms=['HS256'])
         return Response(payload)
+
+
+
+class Cart(APIView):
+
+    def get(self,request):
+
+        cart = OrderFood.objects.all()
+        serializer = CartSerializer(cart, many=True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        try:
+            serializer = CartSerializer(data=request.data)
+            print("this is me")
+            print(serializer)
+            print(type(serializer))
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            # return Response("Bad request")
+        else:
+            print("valid34435")
+            if serializer.is_valid():
+                print("valid")
+                serializer.save()
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response("Bad request")
+
+
+class CartEdit(APIView):
+    def delete(self,request,id):
+        print("in django")
+        item = OrderFood.objects.get(order_food_id=id)
+        print(item)
+        print("start delete")
+
+        item.delete()
+        print("deleted")
+        return Response(status=status.HTTP_204_NO_CONTENT)

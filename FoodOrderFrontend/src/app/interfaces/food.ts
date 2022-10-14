@@ -6,4 +6,5 @@ export interface Food {
     food_desc:string;
     food_photo:string;
     is_available:Boolean;
+
 }

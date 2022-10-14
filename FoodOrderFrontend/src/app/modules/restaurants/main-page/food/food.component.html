@@ -12,6 +12,7 @@
               <p>{{f.food_name}}</p>
               <p class="card-text">{{f.food_desc}}</p>
             </div>
+            <button mat-stroked-button color="warn" (click)="removeFood(f.food_id)">Remove</button>
         </div>
       </div>
     </div>

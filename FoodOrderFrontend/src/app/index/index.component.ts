@@ -55,8 +55,13 @@ export class IndexComponent implements OnInit {
 
   foodClicked=(f:Food)=>
   {
-    this.foodEle.getOneFood(f.food_id).subscribe(data=>{
+    this.foodEle.getOneFood(f.food_name).subscribe(data=>{
       console.log(data)})
+      this.fsearch.getSearch(f.food_id).subscribe(data=>{
+        console.log(data);this.restaurant=data})
+  
+      this.router.navigate(['/customer/searchresult',f.food_name])
+  
   }
 
   resClicked(r:Restaurant){}

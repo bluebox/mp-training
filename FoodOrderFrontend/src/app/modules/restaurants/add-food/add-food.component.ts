@@ -45,6 +45,11 @@ export class AddFoodComponent implements OnInit {
     
     this.foodForm.reset()
   }
+  close()
+  {
+    this.ngOnInit()
+    window.location.reload()
+  }
     
   }
 
