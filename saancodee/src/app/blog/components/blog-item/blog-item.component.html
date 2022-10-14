@@ -79,17 +79,85 @@
                 </div>
             </div>
         </section>
-        <h3>Comments {{comments.length}}</h3>
-        <div class="card">
+        <div class="card comment-section">
+            <!-- <div class="card-header">
+                <div>
+                    <span>created by: <span class="code">{{ response.username }} </span></span>
+                    <span>created at: <span class="code">{{ response.created_date_time | date:'mediumDate' }}</span></span>
+                </div>
+                <div>
+                    <button title="edit" (click)="edit_discussion()"><i class="bi bi-pencil"></i></button>
+                    <button title="delete" (click)="delete_discussion()"><i class="bi bi-trash"></i></button>
+                </div>
+            </div>
+            <div class="card-discussion-body">
+                <h5 class="discussion">{{ response.title }}</h5>
+                <div style="white-space: pre-wrap;" innerHTML={{response.discussion}} class="discussion"></div>
+            </div>
+            <button (click)="addComment()">Add Comment</button>
             <div>
-                <div *ngFor="let comment of comments; let i = index;">
+                <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
+                    <textarea type="text" formControlName="comment"></textarea>
+                    <button type="submit" [disabled]="!commentForm.valid">comment</button>
+                </form>
+            </div> -->
+            <div class="card">
+            <div class="comments-container">
+                <h1>Comments ({{ comments.length }})</h1>
+                <ul id="comments-list" class="comments-list">
+                    <li *ngFor="let comment of comments; let i = index;">
+                        <div class="comment-main-level">
+                            <div class="comment-avatar">
+                                <img src="https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max" alt="">
+                            </div>
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name">
+                                        <p style="color: blue;">{{ comment.user_id }}</p>
+                                    </h6>
+                                    <span>{{ comment.created_date_time | date: 'mediumDate' }}</span>
+                                    <i class="bi bi-pencil"></i>
+                                    <i class="bi bi-trash" *ngIf="checkCommentedUser(comment.user_id)"
+                                    (click)="delete_comment(comment.comment_id)"></i>
+                                </div>
+                                <div style="white-space: pre-wrap;" class="comment-content">
+                                    {{ comment.comment }}
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="comments-list reply-list">
+                            <li *ngFor="let reply of comment.blogcommentreply_set; let index = index">
+                                <div class="comment-avatar">
+                                    <img src="https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max" alt="">
+                                </div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name">
+                                            <p style="color: blue;">{{ reply.user_id }}</p>
+                                        </h6>
+                                        <span>{{ reply.created_date_time | date: 'mediumDate' }}</span>
+                                        <i class="bi bi-pencil"></i>
+                                        <i class="bi bi-trash" *ngIf="checkCommentedUser(comment.user_id)"
+                                        (click)="delete_comment(comment.comment_id)"></i>
+                                    </div>
+                                    <div class="comment-content">
+                                        {{ reply.reply }}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                <!-- <div *ngFor="let comment of comments; let i = index;">
                     <div style="white-space: pre-wrap;" class="comment">
                         <p>{{ comment.user_id }}</p>
                         <p>{{ comment.comment }}</p>
-                        <button *ngIf="checkCommentedUser(comment.user_id)" (click)="delete_comment(comment.comment_id)">delete</button>
+                        <button *ngIf="checkCommentedUser(comment.user_id)"
+                            (click)="delete_comment(comment.comment_id)">delete</button>
                     </div>
-                </div>
+                </div> -->
+            </li>
+            </ul>
             </div>
+        </div>
         </div>
     </div>
     <div class="inner-blog-container right-grid">

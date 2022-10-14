@@ -1,4 +1,8 @@
-<table id="dtBasicExample" class="table table-bordered table-sm" cellspacing="0" width="100%">
+<section class="body">
+  <h1>PROBLEMS</h1>
+  <div class="tbl-header">
+
+<table id="dtBasicExample" cellpadding="0" cellspacing="0" border="0">
     <thead>
       <tr>
         <th class="th-sm">Problem
@@ -19,6 +23,10 @@
         </th>
       </tr>
     </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
     <tbody>
       <tr clickable *ngFor="let problem of problems">
         <td clickable (click)="getProblem(problem.problem_id)">{{ problem.problem_name }}</td>
@@ -30,3 +38,5 @@
         <td *ngIf="problem.likes == 0">0%</td>
       </tr>
   </table>
+</div>
+</section>

@@ -163,8 +163,8 @@ def getDiscussionApi(request, problemId, discussionId):
 def problem_stats_api(request):
     user = User.objects.get(username = request.data['username'])
     problems_solved = Solved.objects.filter(user_id = user)
-    total = len(Problem.objects.all())
     totalEasy, totalMedium, totalHard = len(Problem.objects.filter(difficulty_level = 0)), len(Problem.objects.filter(difficulty_level = 1)), len(Problem.objects.filter(difficulty_level = 2))
+    total = totalEasy + totalMedium + totalHard
     easy, medium, hard = 0, 0, 0
     for problem in problems_solved:
         problem_id = problem.problem_id.problem_id
@@ -382,7 +382,15 @@ def homeView(request):
 @api_view(['POST'])
 def blog_comments_api(request):
     comments = BlogComment.objects.filter(blog_id = request.data['blog_id']).order_by("likes")
-    serializer = blogCommentsSerializer(instance=comments, many= True)
+    # data = {}
+    # for i in range(len(comments)):
+    #     commentSerializer = blogCommentSerializer(instance=comments[i])
+    #     data[i] = {
+    #         "comment": commentSerializer.data
+    #     }
+    # print(data)
+    data = BlogComment.objects.prefetch_related('blogcommentreply_set').all()
+    serializer = blogCommentSerializer(instance=data, many = True)
     return Response(serializer.data)
 
 @api_view(['POST'])

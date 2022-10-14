@@ -78,7 +78,7 @@
     
 </section>
 
-<div class="card">
+<div class="card comment-section">
     <!-- <div class="card-header">
         <div>
             <span>created by: <span class="code">{{ response.username }} </span></span>
@@ -100,14 +100,38 @@
             <button type="submit" [disabled]="!commentForm.valid">comment</button>
         </form>
     </div> -->
-    <div>
-        <div *ngFor="let comment of comments; let i = index;">
+    <div class="comments-container">
+        <h1>Comments ({{ comments.length }})</h1>
+        <ul id="comments-list" class="comments-list">
+            <li *ngFor="let comment of comments; let i = index;">
+                <div class="comment-main-level">
+                    <div class="comment-avatar">
+                        <img src="https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max" alt="">
+                    </div>
+                    <div class="comment-box">
+                        <div class="comment-head">
+                            <h6 class="comment-name">
+                                <p style="color: blue;">{{ comment.user_id }}</p>
+                            </h6>
+                            <span>{{ comment.created_date_time | date: 'mediumDate' }}</span>
+                            <i class="bi bi-pencil"></i>
+                            <i class="bi bi-trash" *ngIf="checkCommentedUser(comment.user_id)"
+                            (click)="delete_comment(comment.comment_id)"></i>
+                        </div>
+                        <div class="comment-content">
+                            {{ comment.comment }}
+                        </div>
+                    </div>
+                </div>
+        <!-- <div *ngFor="let comment of comments; let i = index;">
             <div style="white-space: pre-wrap;" class="comment">
                 <p>{{ comment.user_id }}</p>
                 <p>{{ comment.comment }}</p>
                 <button *ngIf="checkCommentedUser(comment.user_id)"
                     (click)="delete_comment(comment.comment_id)">delete</button>
             </div>
-        </div>
+        </div> -->
+    </li>
+    </ul>
     </div>
 </div>

@@ -1,12 +1,45 @@
+<section class="wrapper">
+  <div class="top">SAANCODE</div>
+  <div class="bottom" aria-hidden="true">SAANCODE</div>
+</section>
+
 <div class="jumbotron">
-    <div class="container text-center">
-      <h1>WELCOME TO THE BEST CODING PLATFORM</h1>     
-      <p>solve challenges and be on the top</p>
-      <button type="button" class="btn btn-primary" routerLink="/login" *ngIf="!service.doLogin()">Get Started</button>
-    </div>
+  <div class="container text-center">
+    <h1>WELCOME TO THE BEST CODING PLATFORM</h1>
+    <p>solve challenges and be on the top</p>
+    <button type="button" class="btn btn-primary" routerLink="/login" *ngIf="!service.doLogin()">Get Started</button>
   </div>
-    
-  <div class="container-fluid bg-3 text-center">    
+</div>
+
+<header>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</header>
+
+<h1>Problems</h1>
+<p>Solve problems category wise to strengthen problem solving skills :)</p>
+<div class="frame">
+ <button class="custom-btn btn-1" [routerLink]="['/problems']">Array</button>
+ <button class="custom-btn btn-2">Backtracking</button>
+ <button class="custom-btn btn-5"><span>BFS</span></button>
+ <button class="custom-btn btn-3"><span>Binary Search</span></button>
+ <button class="custom-btn btn-4"><span>Bit Manipulation</span></button>
+ <button class="custom-btn btn-6"><span>String</span></button>
+ <button class="custom-btn btn-7"><span>DP</span></button>
+ <button class="custom-btn btn-8"><span>Hash table</span></button>
+ <button class="custom-btn btn-9">Math</button>
+ <button class="custom-btn btn-10">Sorting</button>
+ <button class="custom-btn btn-11">Greedy<div class="dot"></div></button>
+ <button class="custom-btn btn-12"><span>Click!</span><span>Database</span></button>
+ <button class="custom-btn btn-13">Tree</button>
+ <button class="custom-btn btn-14">Matrix</button>
+ <button class="custom-btn btn-15">Tree</button>
+ <button class="custom-btn btn-16">Pointers</button>
+ <p style="font-family: Andale Mono, monospace;">
+   MEDPLUS.DESIGNING</p>
+</div>
+
+
+<!-- <div class="container-fluid bg-3 text-center">    
     <h3>Problems</h3><br>
     <div class="container allproblems">
         <div class="problemRow" style="display: flex; justify-content: space-between;">
@@ -95,8 +128,30 @@
             </div>
         </div><br>
     </div>
-  </div><br>
-  
-  <footer class="container-fluid text-center">
-    <p>made with <span>&#10084;</span> by sairam</p>
-  </footer>
+  </div><br> -->
+
+<footer class="container-fluid text-center">
+  <ul class="wrap">
+    <li class="icon facebook">
+      <span class="tooltip">Facebook</span>
+      <span><i class="bi bi-facebook"></i></span>
+    </li>
+    <li class="icon twitter">
+      <span class="tooltip">Twitter</span>
+      <span><i class="bi bi-twitter"></i></span>
+    </li>
+    <li class="icon instagram">
+      <span class="tooltip">Instagram</span>
+      <span><i class="bi bi-instagram"></i></span>
+    </li>
+    <li class="icon github">
+      <span class="tooltip">Github</span>
+      <span><i class="bi bi-github"></i></span>
+    </li>
+    <li class="icon youtube">
+      <span class="tooltip">Youtube</span>
+      <span><i class="bi bi-youtube"></i></span>
+    </li>
+  </ul>
+  <p>made with <span class="love">&#10084;</span> by sairam</p>
+</footer>

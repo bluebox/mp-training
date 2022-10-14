@@ -192,6 +192,7 @@ class Comment(models.Model):
     discussion_id = models.ForeignKey(Discussion, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
     comment = models.TextField(max_length=500, null=False, blank=False)
+    created_date_time = models.DateTimeField(auto_now_add=True)
     # commented_date_time = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

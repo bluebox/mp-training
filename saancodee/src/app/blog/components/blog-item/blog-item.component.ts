@@ -32,7 +32,8 @@ export class BlogItemComponent implements OnInit {
       this.blog = data;
       console.log(data);
     })
-    this.service.getBlogComments(this.blog_id).subscribe((data) => {
+    this.service.getBlogComments(this.blog_id).subscribe((data: any) => {
+      console.log("////////")
       console.log(data);
       this.comments = data
     })
