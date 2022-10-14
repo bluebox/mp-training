@@ -9,6 +9,7 @@ import { UserserviceService } from '../services/userservice.service';
 })
 export class EmployeeDashboardComponent implements OnInit {
   signInCheck:Boolean = true;
+  customerCheck:Boolean = true;
   loginAndLogOutCheck:any;
   constructor(private router:Router, private userdata: UserserviceService) { 
     
@@ -26,6 +27,7 @@ export class EmployeeDashboardComponent implements OnInit {
 
   ngOnInit(): void {
      this.userdata.setmsg(this.signInCheck)
+     this.userdata.employeesignin(this.customerCheck)
   }
 
 }

@@ -36,6 +36,7 @@ response:any;
   })
   
   sendMoney(){
+    alert("Are you sure to send money")
     if (this.MoneyTransferForm.value.account_number === this.MoneyTransferForm.value.confirm_account_number){
      
       this.token = this.getUserDetails()

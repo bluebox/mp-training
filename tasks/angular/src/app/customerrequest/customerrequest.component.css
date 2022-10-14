@@ -1,0 +1,17 @@
+table, th, td {
+    border:1px solid rgb(20, 8, 30);
+    padding: 5px;
+    color: red;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+td {
+    color: black;
+    font-weight: bold;
+}
+.icon {
+    color: red;
+    font-size: 20px;
+}

@@ -1,0 +1,115 @@
+<div class="debit-bg m-5">
+    <div *ngIf = "debit && credit">
+        <div class="debit-card-front">
+            <div class="d-flex flex-row">
+                <img src="https://icon2.cleanpng.com/20180811/wtt/kisspng-state-bank-of-india-patiala-mobile-banking-state-bank-freedom-latest-version-for-free-downl-5b6f4d028b94a5.8328729915340208665717.jpg" alt="" class="image">
+                <div class="ml-2">
+                    <h3 style="color: black;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-weight:bold;width:150px;">State Bank</h3>
+                    <hr style="background-color: white;border: 1px solid white; margin-top:-11px;">
+                    <h4 style="color: white;font-family:''; margin-top: -15px;">Debit Card</h4>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/MasterCard_early_1990s_logo.png/1200px-MasterCard_early_1990s_logo.png" alt="" class="image1">
+            </div>
+            <div class="number">
+                <div>
+        
+        <h1 style="color: #080707; font-weight:bold">{{debitData.card_number }}</h1>
+                <h3 style="color: #080707; font-weight:bold;text-align: center;">{{debitData.expire_date }}</h3>
+                </div>
+            </div>
+            <div class="name">
+                <h2 style="color: #080707; font-weight:bold;text-align: center;">{{name | uppercase}}</h2>
+            </div>
+        </div>
+
+        <div class="debit-card-back mt-4">
+            <div class="cvv">
+                <div class="cvvnumber d-flex flex-row">
+                    <div class="black"></div>
+                    <div class="whites"><h1 style="color: #080707; font-weight:bold;margin-top:6px">{{debitData.cvv }}</h1></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="credit-card-front">
+            
+                <div class="d-flex flex-row justify-content-end">
+                    <div class="ml-2">
+                        <h3 style="color: rgb(246, 241, 241);font-family:Verdana, Arial, Helvetica, sans-serif;font-size: 45px;">SBI Credit</h3>
+                        <h4 style="color: white;font-family:''; margin-top: -15px;text-align: right;font-size: 20px;">Make life simple</h4>
+                    </div>
+                    <img src="https://icon2.cleanpng.com/20180811/wtt/kisspng-state-bank-of-india-patiala-mobile-banking-state-bank-freedom-latest-version-for-free-downl-5b6f4d028b94a5.8328729915340208665717.jpg" alt="" class="image">
+                </div>
+                
+                <div class="number1">
+                
+                    <h1 style="color: rgb(216, 215, 222);text-align: end;"><span style="font-family: cursive; color: white;font-weight: normal;font-size: 30px;">Simply</span>Save</h1>
+                    
+                </div>
+                <div class="mt-3">
+                    <div class="text-center">
+                    <h1 style="color: rgb(243, 233, 233); font-weight: normal">{{creditData.card_number}}</h1>
+                    <h3 style="color: white;;text-align: center; font-weight: normal">{{creditData.expire_date}}</h3>
+                    </div>
+                </div>
+                <div class="d-flex flex-row">
+                    <h2 style="color: white;;text-align: left;font-size: 25px;font-weight: bold">{{name | uppercase}}</h2>
+                    <div class="visa">
+                    <h2 style="color: white;;text-align: left;font-size: 40px;font-weight: bold;">VISA</h2>
+                    <p style="color: white;;text-align: right;font-size: 15px; margin-top: -20px; ">Platinum</p>
+                </div>
+                </div>
+            
+
+        </div>
+
+        <div class="credit-card-back mt-4">
+            <div class="cvv">
+                <div class="cvvnumber d-flex flex-row" style="margin-top: 95px;">
+                    <div class="black"></div>
+                    <div class="whites"><h1 style="color: #080707; font-weight:bold;margin-top:6px">{{creditData.cvv }}</h1></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf = "debit && !credit">
+
+
+        <div class="debit-card-front">
+            <div class="d-flex flex-row">
+                <img src="https://icon2.cleanpng.com/20180811/wtt/kisspng-state-bank-of-india-patiala-mobile-banking-state-bank-freedom-latest-version-for-free-downl-5b6f4d028b94a5.8328729915340208665717.jpg" alt="" class="image">
+                <div class="ml-2">
+                    <h3 style="color: black;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-weight:bold;width:150px;">State Bank</h3>
+                    <hr style="background-color: white;border: 1px solid white; margin-top:-11px;">
+                    <h4 style="color: white;font-family:''; margin-top: -15px;">Debit Card</h4>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/MasterCard_early_1990s_logo.png/1200px-MasterCard_early_1990s_logo.png" alt="" class="image1">
+            </div>
+            <div class="number">
+                <div>
+        
+        <h1 style="color: #080707; font-weight:bold">{{debitData.card_number }}</h1>
+                <h3 style="color: #080707; font-weight:bold;text-align: center;">{{debitData.expire_date }}</h3>
+                </div>
+            </div>
+            <div class="name">
+                <h2 style="color: #080707; font-weight:bold;text-align: center;">{{name | uppercase}}</h2>
+            </div>
+        </div>
+
+        <div class="debit-card-back mt-4">
+            <div class="cvv">
+                <div class="cvvnumber d-flex flex-row">
+                    <div class="black"></div>
+                    <div class="whites"><h1 style="color: #080707; font-weight:bold;margin-top:6px">{{debitData.cvv }}</h1></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf = "!debit && !credit">
+        <h1 style="color: red; font-family: Roboto;font-size: 40px;">No Cards</h1>
+    </div>
+
+</div>

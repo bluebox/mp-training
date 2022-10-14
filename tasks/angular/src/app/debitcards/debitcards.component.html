@@ -1,0 +1,16 @@
+<h1>Debit Credit Card</h1>
+
+<form [formGroup]="DebitCardForm" (ngSubmit)="CreateDebitCard()">
+    
+    <input type="number" placeholder="account_number_id" formControlName = 'account_number_id' [disabled]="true">
+    <br><br>
+    <input type="text" placeholder="Card Number" formControlName = 'card_number'>
+    <br><br>
+    <input type="text" placeholder="CVV" formControlName = 'cvv'>
+    <br><br>
+    <input type="text" placeholder="Expiry Date" formControlName = 'expire_date'>
+    <br><br>
+    <button type = "submit">Submit</button>
+    
+
+</form>

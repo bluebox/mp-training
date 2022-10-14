@@ -1,0 +1,100 @@
+.debit-card-front{
+    height: 300px;
+    width: 500px;
+    background-image: url("https://res.cloudinary.com/dad6lhibn/image/upload/v1665225291/card_utktwj.jpg");
+    /* background-color: blue; */
+    background-size: cover;
+    border-radius: 10px;
+    padding: 10px;
+}
+.image{
+   height: 60px;
+   width: 60px;
+   border-radius: 30px;
+   background-color: gold;
+}
+.image1{
+    height: 70px;
+   width: 120px;
+   margin-left: 150px;
+
+}
+.number{
+    height: 120px;
+    width: 100%;
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.name{
+    height: 120px;
+    width: 100%;
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.debit-card-back{
+    height: 300px;
+    width: 500px;
+    background-image: url("https://res.cloudinary.com/dad6lhibn/image/upload/v1665225291/card_utktwj.jpg");
+    /* background-color: blue; */
+    background-size: cover;
+    border-radius: 10px;
+    /* padding: 10px; */
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    margin-bottom: 50px;
+    /* border-right: px solid gold; */
+}
+.cvv{
+    height: 170px;
+    width: 100%;
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cvvnumber{
+    height: 62px;
+    width: 100%;
+    /* background-color: yellow; */
+}
+.black{
+    height: 100%;
+    width: 70%;
+    background-color: black;
+}
+.whites{
+    height: 100%;
+    width: 29%;
+    background-color: white;
+}
+
+
+.credit-card-front{
+    height: 300px;
+    width: 500px;
+    background-image: url("https://res.cloudinary.com/dad6lhibn/image/upload/v1665230413/bankcredit_nbu3cn.jpg");
+    /* background-color: blue; */
+    background-size: cover;
+    border-radius: 10px;
+    padding: 10px;
+}
+.visa{
+    margin-top: -30px;
+    margin-left: 300px;
+}
+.credit-card-back{
+    height: 300px;
+    width: 500px;
+    background-image: url("https://res.cloudinary.com/dad6lhibn/image/upload/v1665230413/bankcredit_nbu3cn.jpg");
+    /* background-color: blue; */
+    background-size: cover;
+    border-radius: 10px;
+}

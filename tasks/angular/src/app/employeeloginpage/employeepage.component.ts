@@ -26,7 +26,7 @@ export class EmployeepageComponent implements OnInit {
     }
      
     else{
-      this.router.navigate(['/emplogin']);
+      this.router.navigate(['./emppage/emplogin']);
 
     }
 

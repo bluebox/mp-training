@@ -59,9 +59,9 @@
             Login
           </a>
           <ul class="dropdown-menu styling">
-            <li><a routerLink="../emplogin" *ngIf = "!signInCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;">Employee Login</a></li>
+            <li><a routerLink="../emppage" *ngIf = "!signInCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;">Employee Login</a></li>
             <li><a href="../custlogin"  *ngIf = "!signInCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;">Customer Login</a></li>
-            <li><a routerLink="../emplogin" *ngIf = "signInCheck && customerCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;" (click)="local_token()">Employee LogOut</a></li>
+            <li><a routerLink="../emppage" *ngIf = "signInCheck && customerCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;" (click)="local_token()">Employee LogOut</a></li>
             <li><a  routerLink="../custlogin" *ngIf = "signInCheck && !customerCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;" (click) = "customerlogout()">Customer LogOut</a></li>
         </ul>
         </li>
@@ -71,9 +71,9 @@
             <i class="fa-solid fa-user"></i>
           </a>
           <ul class="dropdown-menu styling">
-            <li><a routerLink="../emplogin" *ngIf = "!signInCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;">Employee Login</a></li>
+            <li><a routerLink="../emppage" *ngIf = "!signInCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;">Employee Login</a></li>
             <li><a href="../custlogin"  *ngIf = "!signInCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;">Customer Login</a></li>
-            <li><a routerLink="../emplogin" *ngIf = "signInCheck && customerCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;" (click)="local_token()">Employee LogOut</a></li>
+            <li><a routerLink="../emppage" *ngIf = "signInCheck && customerCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;" (click)="local_token()">Employee LogOut</a></li>
             <li><a  routerLink="../custlogin" *ngIf = "signInCheck && !customerCheck" class="nav-link active" style="color: red; font-size:15px;font-family:'Times New Roman', Times, serif;font-weight: bold;" (click) = "customerlogout()">Customer LogOut</a></li>
         </ul>
         </li>

@@ -1,0 +1,27 @@
+<h1>Requests For </h1>
+
+
+<table  class="style">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Request Type</th>
+        <th>Request Status</th>
+        <th>Create</th>
+    </tr>
+  
+    <tr *ngFor = "let each of requestdata ">
+
+        <td>{{each.id}}</td>
+        <td>{{each.customer_name}}</td>
+        <td>{{each.customer_email}}</td>
+        <td>{{each.request_type}}</td>
+        <td [ngStyle]="{'color':status === 'Success' ? 'green':'red'}">{{status}} </td>
+        <td><a *ngIf = "each.request_type === 'Credit Card' && !each.request_status" (click) = "creditsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Debit Card'&& !each.request_status" (click) = "debitsendemail(each.customer_email)" >Create</a></td>
+        
+
+    <tr>
+
+</table>
+<router-outlet></router-outlet>

@@ -18,7 +18,13 @@ import { CustomerdashboardComponent } from './customerdashboard/customerdashboar
 import { CustomerbalacecheckComponent } from './customerbalacecheck/customerbalacecheck.component';
 import { MoneytransferComponent } from './moneytransfer/moneytransfer.component';
 import { TransactionsComponent } from './transactions/transactions.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardsComponent } from './cards/cards.component';
+import { EmployeeloginComponent } from './employeelogin/employeelogin.component';
+import { CustomerrequestComponent } from './customerrequest/customerrequest.component';
+import { EmployeerequestpageComponent } from './employeerequestpage/employeerequestpage.component';
+import { CreditcardsComponent } from './creditcards/creditcards.component';
+import { DebitcardsComponent } from './debitcards/debitcards.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +40,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     CustomerdashboardComponent,
     CustomerbalacecheckComponent,
     MoneytransferComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    CardsComponent,
+    EmployeeloginComponent,
+    CustomerrequestComponent,
+    EmployeerequestpageComponent,
+    CreditcardsComponent,
+    DebitcardsComponent
    
     
   ],

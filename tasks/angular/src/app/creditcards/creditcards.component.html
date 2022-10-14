@@ -1,0 +1,18 @@
+<h1>Create Credit Card</h1>
+
+<form [formGroup]="CreditCardForm" (ngSubmit)="CreditCard()">
+    
+    <input type="email" placeholder="Email" formControlName = 'customer_email'>
+    <br><br>
+    <input type="text" placeholder="Card Number" formControlName = 'card_number'>
+    <br><br>
+    <input type="text" placeholder="Card Amount" formControlName = 'card_amount'>
+    <br><br>
+    <input type="text" placeholder="CVV" formControlName = 'cvv'>
+    <br><br>
+    <input type="text" placeholder="Expiry Date" formControlName = 'expire_date'>
+    <br><br>
+    <button type = "submit">Submit</button>
+    
+        <p [ngStyle]="{'color': response === 'Created' ? 'green':'red'}">{{response}}</p>
+</form>

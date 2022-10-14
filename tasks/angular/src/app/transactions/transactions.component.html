@@ -1,4 +1,4 @@
-<p>transactions works!</p>
+<div>
 
 <table  class="mb-5">
     <tr>
@@ -15,8 +15,8 @@
 
         <td>{{each.transaction_id}}</td>
         <td>{{each.transaction_amount}}</td>
-        <td><a href="">{{each.sender_id}}</a></td>
-        <td><a href="">{{each.receiver_id}}</a></td>
+        <td><a style= "color: rgb(9, 135, 245);font-weight: bold;" (click)="getUser(each.sender_id)">{{each.sender_id}}</a></td>
+        <td><a style= "color: rgb(9, 135, 245);font-weight: bold;" (click)="getUser(each.receiver_id)">{{each.receiver_id}}</a></td>
         <td>{{each.sender_status}}</td>
         <td>{{each.receiver_status}}</td>
         <td>{{each.transaction_time}}</td>
@@ -25,3 +25,4 @@
     <tr>
 
 </table>
+</div>

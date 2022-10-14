@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,4 +71,25 @@
 </div>
 </section>
 </body>
-</html>
+</html> -->
+
+
+<form [formGroup] = "empLoginForm" (ngSubmit)="registerSubmit()">
+  <input type="text" placeholder="Employee Name" formControlName = "employee_name"  class="input-style">
+  <br><br>
+
+  <span *ngIf = "employee_name && employee_name.invalid && employee_name.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid email </span>
+  <input type="email" placeholder="Email" formControlName = "emp_email" class="input-style">
+  <br><br>
+  <span *ngIf = "emp_email && emp_email.invalid && emp_email.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid email </span>
+  <input type="password" placeholder="Password" formControlName = "emp_password" class="input-style">
+  <br><br>
+  <span *ngIf = "emp_password && emp_password.invalid && emp_password.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid password </span>
+  <textarea  placeholder="Address" formControlName = "employee_address" class="input-style"></textarea>
+  <br><br>
+  <span *ngIf = "employee_address && employee_address.invalid && employee_address.touched" style="color: rgb(255, 0, 4);font-family:Roboto;font-size: 20px; font-weight: bold;">Enter valid email </span>
+ <br>
+ <h1 style="color: green; font-family:Roboto;font-size:30px">{{error}}</h1>
+  <button type="submit" class="btn-style" [disabled]="empLoginForm.invalid">Register</button>
+  
+</form>

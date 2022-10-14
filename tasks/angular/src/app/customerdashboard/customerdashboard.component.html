@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="bg-con">
 
 <a routerLink="../cusdashBoard/cusbalcheck"> View Balance</a><br><br>
@@ -7,4 +7,72 @@
 <router-outlet></router-outlet>
 
 
+</div> -->
+
+
+<div class="bg-container">
+    <div class="start shadow-lg">
+        
+          <i class="fa-solid fa-house icon"> </i><a class="icon">Home</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-wallet icon"></i><a class="icon" routerLink="../cusdashBoard/cusbalcheck">Balance Check</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-money-bill-transfer icon"></i><a class="icon" routerLink="../cusdashBoard/moneytransfer">Transfer Money</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-rectangle-list icon"></i><a class="icon" routerLink="../cusdashBoard/transactionlist">Transactions</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-piggy-bank icon"></i><a class="icon">Fixed Deposits</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-credit-card icon"></i><a class="icon" routerLink="../cusdashBoard/cards">Credit/Debit Cards</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-landmark icon"></i><a class="icon">Home Loans</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-hand-holding-dollar icon"></i><a class="icon">Personal Loans</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+
+          <i class="fa-solid fa-car icon"></i><a class="icon">Car Loans</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-book icon"></i><a class="icon">Education Loans</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+          <i class="fa-solid fa-user-tie icon"></i><a class="icon">Business Loans</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+          <i class="fa-solid fa-handshake-simple icon"></i><a class="icon">Mutual Funds</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+        
+    </div> 
+    <div class="middle shadow-lg">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="last shadow-lg">
+        <div class="image-div">
+            <div class="sty"></div>
+        </div>
+        
+        
+
+        <div class="profile shadow-lg" >
+            <img [src]= 'imageUrl' class="images">
+        </div>
+        <div class="details" *ngIf = "customerProfile">
+            <div class="text-center">
+            <h1 style="color: #4283fb; font-family:Verdana, Geneva, Tahoma, sans-serif;font-weight: bold;">{{customerProfile.customer_name}}</h1>
+            <p style="color: #213d3d; font-family:Verdana, Geneva, Tahoma, sans-serif;font-weight: bold;">{{customerProfile.customer_email}}</p>
+
+            </div>
+           
+        </div>
+        <input type="file" (change)="imageFile($event)" class="file">
+        <button type="submit" (click)="imageUpload()"> Upload</button>
+        <button routerLink="../cusdashBoard/customerrequest">Customer Request</button>
+    </div>
 </div>

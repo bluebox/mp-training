@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,10 +27,9 @@
                 <form [formGroup]="empLoginForm" (ngSubmit) = "empSignIn()">
                   
 
-                    <div class="d-flex align-items-center mb-3 pb-1">
-                      <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                      <span class="h1 fw-bold mb-0">Employee Login</span>
-                    </div>
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                  </div>
 
                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
@@ -68,4 +67,22 @@
   </div>
 </section>
 </body>
-</html>
+</html> -->
+
+
+
+  <form [formGroup] = "empLoginForm" (ngSubmit) = "empSignIn()">
+      <input type="text" placeholder="Email" formControlName = "emp_email" class="input-style">
+      <br><br>
+      <span *ngIf = "emp_email && emp_email.invalid && emp_email.touched" style = "color: red;font-size: 15px;font-family: Roboto;font-weight: bold;"> Enter Valid Email</span>
+      <h1 style="color:red;font-size:15px;font-family:Roboto;">{{emailError}}</h1>
+      <input type="password" placeholder="Password" formControlName = "emp_password" class="input-style">
+      <br><br>
+      <span *ngIf = "emp_password && emp_password.invalid && emp_password.touched" style = "color: red;font-size: 15px;font-family: Roboto;font-weight: bold;"> Enter Valid Password</span>
+      <h1 style="color:red;font-size:15px;font-family:Roboto;">{{passError}}</h1>
+      <p style="color: rgb(12, 11, 11);font-family:Roboto;font-weight:bold;">Forgot Password?</p>
+      <br>
+      <button type="submit" class="btn-style" [disabled] = "empLoginForm.invalid">Login</button>
+      <br><br>
+      <p style="color: rgb(16, 15, 15);font-family:'Bree Serif';font-weight:bold;">Don't Have a account? <a style="color: rgb(237, 239, 241);"> Go to Register </a></p>
+  </form>

@@ -1,0 +1,12 @@
+<div class="emp-con">
+    
+    <div class="card-con shadow-lg">
+        <div class="buttons d-flex flex-row shadow-lg">
+            <div class="btn-sty" (click)="login()" routerLink="../emppage/emplogin" id = "Login">LogIn</div>
+            <div class="btn-sty1" (click)="Register()" routerLink="../emppage/empregister" id = "register">Register</div>
+        </div>
+        <div class="loginform" id = "loginform">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
