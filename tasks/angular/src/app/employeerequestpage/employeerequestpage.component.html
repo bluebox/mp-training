@@ -18,7 +18,7 @@
         <td>{{each.customer_email}}</td>
         <td>{{each.request_type}}</td>
         <td [ngStyle]="{'color':status === 'Success' ? 'green':'red'}">{{status}} </td>
-        <td><a *ngIf = "each.request_type === 'Credit Card' && !each.request_status" (click) = "creditsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Debit Card'&& !each.request_status" (click) = "debitsendemail(each.customer_email)" >Create</a></td>
+        <td><a *ngIf = "each.request_type === 'Credit Card' && !each.request_status" (click) = "creditsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Debit Card'&& !each.request_status" (click) = "debitsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Personal Loan'&& !each.request_status" >Create</a></td>
         
 
     <tr>

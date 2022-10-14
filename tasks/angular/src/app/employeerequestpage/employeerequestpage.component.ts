@@ -51,12 +51,8 @@ export class EmployeerequestpageComponent {
 
   }
   debitsendemail(email: any) {
-    this.emailObject = {"email":email}
-    this.http.post("api/get_account_id/", this.emailObject).subscribe(res => {
-      this.account_id = res
-
-    })
-    this.router.navigate(["/empdashBoard/employeerequest/debitcard", this.account_id])
+    console.log(email);
+    this.router.navigate(["/empdashBoard/employeerequest/debitcard", email])
 
   }
 

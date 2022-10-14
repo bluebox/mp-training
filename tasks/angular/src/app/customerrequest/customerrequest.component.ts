@@ -47,6 +47,7 @@ export class CustomerrequestComponent implements OnInit {
 
   
   sendRequest(){
+    alert("Are you sure to send the request")
    this.email =  this.userdata.userDetails()
    console.log(this.email);
     this.obj = {"request_type":this.requestForm.value.request_type, "email":this.email}

@@ -36,7 +36,7 @@ const routes: Routes = [
     {path :'employeerequest', component:EmployeerequestpageComponent, children:[
       {path: "creditcard/:email", component: CreditcardsComponent},
       {path: "creditcard", component: CreditcardsComponent},
-      {path: "debitcard/:id", component: DebitcardsComponent},
+      {path: "debitcard/:email", component: DebitcardsComponent},
       {path: "debitcard", component: DebitcardsComponent}
       
     ]}

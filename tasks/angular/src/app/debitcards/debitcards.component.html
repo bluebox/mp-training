@@ -2,7 +2,7 @@
 
 <form [formGroup]="DebitCardForm" (ngSubmit)="CreateDebitCard()">
     
-    <input type="number" placeholder="account_number_id" formControlName = 'account_number_id' [disabled]="true">
+    <input type="email" placeholder="email" formControlName = 'customer_email'>
     <br><br>
     <input type="text" placeholder="Card Number" formControlName = 'card_number'>
     <br><br>
@@ -10,6 +10,7 @@
     <br><br>
     <input type="text" placeholder="Expiry Date" formControlName = 'expire_date'>
     <br><br>
+    <p [ngStyle]="{'color': response === 'Created' ? 'green':'red'}">{{response}}</p><br>
     <button type = "submit">Submit</button>
     
 

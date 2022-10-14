@@ -12,7 +12,8 @@
     <br><br>
     <input type="text" placeholder="Expiry Date" formControlName = 'expire_date'>
     <br><br>
+    <p [ngStyle]="{'color': response === 'Created' ? 'green':'red'}">{{response}}</p><br>
     <button type = "submit">Submit</button>
     
-        <p [ngStyle]="{'color': response === 'Created' ? 'green':'red'}">{{response}}</p>
+       
 </form>
