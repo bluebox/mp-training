@@ -3,6 +3,8 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>Add Employee</mat-card-title>
+            {{errorMessage}}
+            <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title>
         </mat-card-header>
 
     <mat-form-field class="example-full-width" appearance="outline">

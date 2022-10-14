@@ -14,6 +14,8 @@ from django.http import JsonResponse
 
 from rest_framework import status
 
+from django.contrib import messages 
+
 from .models import Appointment, Branch, User, ServicesProvided, Employee, Client
 
 from .serializers import AppointmentSerializer, BranchSerializer, EmployeeSerializer
@@ -60,23 +62,16 @@ class NewBranch(APIView):
         """this function is for posting branch details in to the database"""
         serializer = BranchSerializer(data=request.data)
         print(serializer)
+        print(serializer.is_valid)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response({'data' :serializer.data, 'msg':'successful'},status=200)
         else:
             print('invalid')
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# @api_view(['POST'])
-# def update_items(request, pk):
-#     item = Item.objects.get(pk=pk)
-#     data = ItemSerializer(instance=item, data=request.data)
-  
-#     if data.is_valid():
-#         data.save()
-#         return Response(data.data)
-#     else:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
+            print(serializer.errors)
+            error_list = [serializer.errors[error][0] for error in serializer.errors]
+            print(error_list)
+            return Response({'msg':error_list},status=200)
 
 class UpdateBranch(APIView):
     def post(self,request,pk):
@@ -104,13 +99,6 @@ class deleteService(APIView):
         service.delete()
         return JsonResponse("succesfully deleted",safe=False)
 
-# def delete_course(request):
-#     data = JSONParser().parse(request)
-#     ele= Course.objects.get(id=data['id'])
-#     ele.delete()
-#     return JsonResponse("Deleted", safe=False)
-
-
 class NewAppointment(APIView):
     def post(self,request):
         serializer = AppointmentSerializer(data=request.data)
@@ -119,6 +107,7 @@ class NewAppointment(APIView):
             return Response(serializer.data)
         else:
             print('invalid')
+            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ServicesList(APIView):
@@ -192,8 +181,8 @@ class ListOfClients(APIView):
     """view to get the data from the database"""
     def get(self, request):
         """this function for displaying the ClientList"""
-        clients = User.objects.filter(is_staff='True').values('id',
-        'username', "first_name", "last_name", "email", "client__Client_contact_number")
+        clients = User.objects.filter(is_staff='False').values('id',
+        'username', "first_name", "last_name", "email","client__id", "client__Client_contact_number")
         return Response(clients)
 
 
@@ -209,21 +198,27 @@ class EmpBranch(APIView):
 class ClientRegistration(APIView):
     """view for posting data into the database"""
     def post(self, request):
-        """this function is for registration of a new client"""
-        serializer = Userserializer(data={'username': request.data["username"],
-        "first_name": request.data["first_name"], 'last_name': request.data["last_name"],
-        'email': request.data['email'], "password": request.data['password']})
-        if serializer.is_valid():
-            user = serializer. save()
-            client_obj = ClientSerializer(data={'user_id': user.id,
-            'Client_contact_number': request.data["Client_contact_number"]})
-            if client_obj.is_valid():
-                client_obj.save()
-                return Response({'data': serializer.data,'message':'register success'},status=200)
+        username = request.data.get("username")
+        user = User.objects.filter(username=username).first()
+        if(user):
+            print(user)
+            return Response({"message":"username already taken"})
+        else:
+            """this function is for registration of a new client"""
+            serializer = Userserializer(data={'username': request.data["username"],
+            "first_name": request.data["first_name"], 'last_name': request.data["last_name"],
+            'email': request.data['email'], "password": request.data['password']})
+            if serializer.is_valid():
+                user = serializer. save()
+                client_obj = ClientSerializer(data={'user_id': user.id,
+                'Client_contact_number': request.data["Client_contact_number"]})
+                if client_obj.is_valid():
+                    client_obj.save()
+                    return Response({'data': serializer.data,'message':'success'},status=200)
+                else:
+                    return Response({'message': 'invalid'})
             else:
                 return Response({'message': 'invalid'})
-        else:
-            return Response({'message': 'invalid'})
 
 
 class EmployeeRegistration(APIView):

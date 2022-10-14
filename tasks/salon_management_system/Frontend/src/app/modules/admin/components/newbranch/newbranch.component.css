@@ -6,3 +6,7 @@
     padding-left: 33%;
     padding-top: 5%;
 }
+.error-message{
+    font-size: 15px;
+    color: red;
+}

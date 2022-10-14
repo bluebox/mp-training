@@ -22,9 +22,6 @@ export class HttpserviceService {
   addBranch(data : any){
     return this.http.post<any>('http://127.0.0.1:8000/newbranch/',data)
   }
-  // getCurrentBranch(branch_id: any){
-  //   return this.http.get('${this.url}/${this.branch_id}')
-  // }
 
   getCurrentBranch(id : any){
     return this.http.get(`http://127.0.0.1:8000/getbranch/${id}`)
@@ -57,6 +54,7 @@ export class HttpserviceService {
     return this.http.get('http://127.0.0.1:8000/listclients')
   }
 
+
   getEmployee(){
     return this.http.get('http://127.0.0.1:8000/listemployees')
   }
@@ -64,8 +62,12 @@ export class HttpserviceService {
   newEmployee(data : any){
     return this.http.post<any>('http://127.0.0.1:8000/employeeregistration',data)
   }
+
   newAppointment(data:any){
     return this.http.post<any>('http://127.0.0.1:8000/newappointment',data)
+  }
+  getappointments(){
+    return this.http.get('http://127.0.0.1:8000/appointments/')
   }
 
 }

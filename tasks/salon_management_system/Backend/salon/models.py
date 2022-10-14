@@ -71,7 +71,7 @@ class ServicesProvided(models.Model):
 
 class Appointment(models.Model):
     """Appointment model to store Appointment details"""
-    appointment_time_choices = (('9.00pm-10.00pm','9.00pm-10.00pm'),('10.00pm-11.00pm','10.00pm-11.00pm'),('11.00pm-12.00pm','11.00pm-12.00pm'),('12.00pm-1.0pam','12.00pm-1.0pam'),('1.00pm-2.00pm','1.00pm-2.00pm'),('2.00pm-3.00pm','2.00pm-3.00pm'),('3.00pm-4.00pm','3.00pm-4.00pm'),('4.00pm-5.00pm','4.00pm-5.00pm'))
+    appointment_time_choices = (('9.00am-10.00am','9.00am-10.00am'),('10.00am-11.00am','10.00am-11.00am'),('11.00am-12.00pm','11.00am-12.00pm'),('12.00pm-1.0pm','12.00pm-1.0pm'),('1.00pm-2.00pm','1.00pm-2.00pm'),('2.00pm-3.00pm','2.00pm-3.00pm'),('3.00pm-4.00pm','3.00pm-4.00pm'),('4.00pm-5.00pm','4.00pm-5.00pm'))
     Appointment_id = models.IntegerField(primary_key = True)
     client_id = models.ForeignKey(Client,  on_delete=models.CASCADE)
     Time_of_appointment = models.CharField(max_length=20,choices=appointment_time_choices)

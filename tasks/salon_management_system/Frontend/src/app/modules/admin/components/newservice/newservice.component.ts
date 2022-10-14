@@ -9,6 +9,9 @@ import { HttpserviceService } from 'src/app/httpservice.service';
   styleUrls: ['./newservice.component.css']
 })
 export class NewserviceComponent implements OnInit {
+  formNotValid : boolean = false
+  formError ?: string =""
+  errorMessage : string = ""
 
   constructor(private http :HttpserviceService ,private router: Router) { }
   newServiceForm : FormGroup= new FormGroup({
@@ -21,8 +24,13 @@ export class NewserviceComponent implements OnInit {
 
   addService():void{
     console.log(this.newServiceForm.value)
+    if(this.newServiceForm.valid){
     this.http.addService(this.newServiceForm.value).subscribe(data => {console.log(data);alert("branch added successfully");this.router.navigate(['admin/services']);}
    )
+    }
+    else{
+      this.formNotValid=true
+    }
   }
 
   

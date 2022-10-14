@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   ClientRegistrationForm: FormGroup = new FormGroup({
     username: new FormControl("", Validators.required),
     first_name: new FormControl("", Validators.required),
-    last_name: new FormControl(""),
+    last_name: new FormControl("",Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl("", [Validators.minLength(8),Validators.required]),
     Client_contact_number: new FormControl("", [Validators.maxLength(10), Validators.required]),
@@ -34,14 +34,15 @@ export class RegisterComponent implements OnInit {
     console.log(this.ClientRegistrationForm.value);
     if (this.ClientRegistrationForm.valid) {
       this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
-        this.errorMessage = data.message
-        // console.log(this.errorMessage)
-        if (this.errorMessage == "registered") {
-          this.router.navigate(['login'])
-      }
-      else{
-        this.router.navigate(['login'])
-      }
+        console.log(this.errorMessage = data.message);
+        if(this.errorMessage == "success"){
+          // alert("Registered succesfully press ok to login")
+          
+          this.router.navigate(['login']);
+        }
+        else{
+          console.log(this.errorMessage = data.message);
+        }
     })
     }
     else {
@@ -54,6 +55,15 @@ export class RegisterComponent implements OnInit {
 
   }
   get passwordInput() { return this.ClientRegistrationForm.get('password');} 
+
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.key != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 }
 
 

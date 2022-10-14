@@ -18,10 +18,10 @@ export class BookappointmentComponent implements OnInit {
   employees :any;
   constructor(private http:HttpserviceService) { }
   times: Time[] = [
-    {value: '9.00pm-10.00pm', viewValue: '9.00pm-10.00pm'},
-    {value: '10.00pm-11.00pm', viewValue: '10.00pm-11.00pm'},
-    {value: '11.00pm-12.00pm', viewValue: '11.00pm-12.00pm'},
-    {value: '12.00pm-1.0pam', viewValue: '12.00pm-1.0pam'},
+    {value: '9.00am-10.00am', viewValue: '9.00pm-10.00am'},
+    {value: '10.00am-11.00am', viewValue: '10.00pm-11.00am'},
+    {value: '11.00am-12.00pm', viewValue: '11.00am-12.00pm'},
+    {value: '12.00pm-1.0pm', viewValue: '12.00pm-1.0pm'},
     {value: '1.00pm-2.00pm', viewValue: '1.00pm-2.00pm'},
     {value: '2.00pm-3.00pm', viewValue: '2.00pm-3.00pm'},
     {value: '3.00pm-4.00pm', viewValue: '3.00pm-4.00pm'},
@@ -29,6 +29,7 @@ export class BookappointmentComponent implements OnInit {
   ];
   timeControl = new FormControl(this.times[1].value);
   bookAppointmentForm : FormGroup = new FormGroup({
+    Appointment_id : new FormControl("",Validators.required),
     client_id : new FormControl("",Validators.required),
     Time_of_appointment :this.timeControl,
     appointment_date :new FormControl("",Validators.required),
@@ -42,7 +43,7 @@ export class BookappointmentComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.bookAppointmentForm.value)
-    this.http.newAppointment(this.bookAppointmentForm.value).subscribe(data => {console.log(data);alert("branch added successfully")})
+    this.http.newAppointment(this.bookAppointmentForm.value).subscribe(data => {console.log(data);alert("booked successfully")})
 
   }
 

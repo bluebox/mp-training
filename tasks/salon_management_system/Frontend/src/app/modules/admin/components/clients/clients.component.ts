@@ -11,7 +11,7 @@ export class ClientsComponent implements OnInit {
 
   subscription : Subscription = Subscription.EMPTY
   clients :any;
-  displayedColumns :string[]=['id','username','first_name',"last_name","email","client__Client_contact_number"];
+  displayedColumns :string[]=['id','client__id','username','first_name',"last_name","email","client__Client_contact_number"];
   constructor(private http:HttpserviceService) { }
 
   ngOnInit(): void {

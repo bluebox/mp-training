@@ -11,6 +11,11 @@ import { HttpserviceService } from 'src/app/httpservice.service';
 })
 export class NewbranchComponent implements OnInit {
   subscription : Subscription = Subscription.EMPTY
+
+  formNotValid : boolean = false
+  formError ?: string =""
+  errorMessage : string = ""
+
   constructor(private http :HttpserviceService ,private router: Router) { }
   newBranchForm : FormGroup = new FormGroup({
     branch_id : new FormControl("",Validators.required),
@@ -21,6 +26,18 @@ export class NewbranchComponent implements OnInit {
   }
   addBranch(){
     console.log(this.newBranchForm.value)
-    this.http.addBranch(this.newBranchForm.value).subscribe(data => {console.log(data);alert("branch added successfully");this.router.navigate(['admin/branch']);})
+    if(this.newBranchForm.valid){
+    this.http.addBranch(this.newBranchForm.value).subscribe(data => {console.log(data);
+      // console.log(this.errorMessage)
+      if(this.errorMessage == "successful"){
+      alert("branch added successfully");
+      this.router.navigate(['admin/branch']);}
+      else{
+        this.errorMessage=data.msg
+      }
+    })}
+    else{
+      this.formNotValid=true
+    }
   }
 }

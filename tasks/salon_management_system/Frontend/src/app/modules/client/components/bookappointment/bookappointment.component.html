@@ -17,13 +17,21 @@
 <form [formGroup]="bookAppointmentForm"  class="example-form">
     <div class="card1">
     <mat-card>
+      <mat-card-header>
+        <mat-card-title>Book An appointment</mat-card-title>
+    </mat-card-header>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Appointment_id</mat-label>
+        <input formControlName="Appointment_id" matInput placeholder="Enter your Appointment_id" />
+        <small class="text-danger" *ngIf="bookAppointmentForm.get('Appointment_id')?.invalid  && bookAppointmentForm.get('Appointment_id')?.touched " >required</small>
+    </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>client_id</mat-label>
         <input formControlName="client_id" matInput placeholder="Enter your client_id" />
         <small class="text-danger" *ngIf="bookAppointmentForm.get('client_id')?.invalid  && bookAppointmentForm.get('client_id')?.touched " >required</small>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>time</mat-label>
         <mat-select formControlName="Time_of_appointment" name="Time_of_appointment">
           <mat-option *ngFor="let time of times" [value]="time.value">
@@ -31,18 +39,33 @@
           </mat-option>
         </mat-select>
     </mat-form-field>
-    <!-- <mat-form-field class="example-full-width" appearance="outline">
+    <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>date</mat-label>
       <input formControlName="appointment_date" matInput placeholder="Enter your client_id" />
       <mat-hint>YYYY-MM-DD</mat-hint>
       <small class="text-danger" *ngIf="bookAppointmentForm.get('appointment_date')?.invalid  && bookAppointmentForm.get('appointment_date')?.touched " >required</small>
-    </mat-form-field> -->
-    <mat-form-field appearance="outline">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>services</mat-label>
       <mat-select formControlName="services" multiple>
         <mat-option *ngFor="let services of allservices" [value]="services.service_id">{{services.service_name}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Employee</mat-label>
+      <mat-select formControlName="emp_id" required>
+        <mat-option> --- </mat-option>
+        <mat-option
+          *ngFor="let user of employees"
+          [value]="user.employee__emp_id"
+        >
+          {{ user.username }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
 
     <!-- <mat-form-field appearance="fill">
       <mat-label>Choose a date</mat-label>
@@ -73,7 +96,7 @@
         </mat-datepicker-actions>
       </mat-datepicker>
     </mat-form-field> -->
-
+<!-- 
     <mat-form-field appearance="outline">
 
       <input matInput formControlName="appointment_date" [matDatepicker]="appointment_datePicker">
@@ -82,7 +105,7 @@
     
       </mat-datepicker>
     
-    </mat-form-field>
+    </mat-form-field> -->
     
 
 

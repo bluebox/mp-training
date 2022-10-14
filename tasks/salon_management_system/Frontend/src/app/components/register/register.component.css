@@ -13,3 +13,7 @@
   .body{
     background-color: rgb(36, 33, 33);
   }
+  .error-message{
+    font-size: 15px;
+    color: red;
+}
