@@ -28,8 +28,8 @@
 
         <label class="sport_labl">
             <input type="radio" name="doctor" value="{{slot.d_id}}" />
-            <div class="sportcard" (click)="getAdoctorId(slot.d_name)">
-                <img src="../../../../../assets/images/{{slot.d_name}}.png" alt="{{slot.doctor_id}}" />
+            <div class="sportcard" (click)="(slot.d_id)">
+                <!-- <img src="../../../../../assets/images/{{slot.d_name}}.png" alt="{{slot.doctor_id}}" /> -->
                 <div>{{slot.d_name}}----{{slot.d_id}}</div>
                 <h6>{{slot.d_name}}</h6>
             </div>
@@ -52,10 +52,10 @@
     </div>
 </div>
 <h3> Select Slot</h3>
-<div class="slot_cost">
+<!-- <div class="slot_cost">
     <h2 *ngIf="cost_per_slot"> cost per slot = {{cost_per_slot}}</h2>
     <h2 *ngIf="total_cost_for_slots"> Total cost for slots = {{total_cost_for_slots}}</h2>
-</div>
+</div> -->
 <div class="slotcard">
     <div *ngFor="let slot of slot" class="slotitem">
 

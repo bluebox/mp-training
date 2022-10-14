@@ -47,7 +47,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     // UpdateSlotsComponent,
     SlotsComponent,
     DoctorDetailsComponent,
-    //ServercomunicationService,
+    // ServercomunicationService,
   ],
   imports: [
     BrowserModule,
