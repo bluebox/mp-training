@@ -39,6 +39,11 @@ throw new Error('Method not implemented.');
     {d_name: "ayan3", d_id:"1998"},
     {d_name: "ayan4", d_id:"1999"}
   ]
+  slo:any=[
+    {name: '10:30 am-11:00 am', completed: false, color: 'primary'},
+    {name: '11:00 am-11:30am', completed: false, color: 'primary'},
+    {name: '11:30 am-12:00pm', completed: false, color: 'primary'},
+  ]
   // equipments!: any[];
   // sportid!: number;
   date: string = '';
