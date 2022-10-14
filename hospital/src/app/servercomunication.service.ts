@@ -17,7 +17,7 @@ export class ServercomunicationService {
   getAllPatient():Observable<any>
   {
     console.log('patient list get')
-    return this.http.get(this.url+'patient/dont/patient/',{headers: this.httpHeaders});
+    return this.http.get(this.url+'patient/patient/',{headers: this.httpHeaders});
   }
   getAllDoctor():Observable<any>
   {
@@ -62,7 +62,7 @@ export class ServercomunicationService {
   getAPatient(id: any):Observable<any>
   {
     console.log('one patient')
-    return this.http.get('${this.url}patient/dont/patient/${id}',{headers: this.httpHeaders});
+    return this.http.get('${this.url}patient/patient/${id}',{headers: this.httpHeaders});
   }
   getAApointment(id: any):Observable<any>
   {
@@ -71,7 +71,7 @@ export class ServercomunicationService {
   }
 
   register_patient(data: any) {
-      return this.http.post(this.url+'patient/dont/patient/', data,{headers: this.httpHeaders});
+      return this.http.post(this.url+'patient/patient/', data,{headers: this.httpHeaders});
   }
   register_doctor(data: any) {
     return this.http.post(this.url+'doctor/doctor/', data,{headers: this.httpHeaders});

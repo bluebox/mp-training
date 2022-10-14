@@ -14,12 +14,7 @@ export interface Task {
   styleUrls: ['./slots.component.css']
 })
 export class SlotsComponent implements OnInit {
-increasebtn(_t66: number) {
-throw new Error('Method not implemented.');
-}
-reducebtn(_t66: number) {
-throw new Error('Method not implemented.');
-}
+
 getDate(arg0: any) {
 throw new Error('Method not implemented.');
 }
@@ -38,11 +33,11 @@ throw new Error('Method not implemented.');
   form_appointment: FormGroup = new FormGroup({});
   doctor: any;
   doctors:any=[
-    {name: "ayan", dob:"1995"},
-    {name: "ayan1", dob:"1995"},
-    {name: "ayan2", dob:"1995"},
-    {name: "ayan3", dob:"1995"},
-    {name: "ayan4", dob:"1995"}
+    {d_name: "ayan", d_id:"1995"},
+    {d_name: "ayan1", d_id:"1996"},
+    {d_name: "ayan2", d_id:"1997"},
+    {d_name: "ayan3", d_id:"1998"},
+    {d_name: "ayan4", d_id:"1999"}
   ]
   equipments!: any[];
   sportid!: number;
@@ -111,8 +106,6 @@ throw new Error('Method not implemented.');
       simpilifiedDate.push(day + ',' + month +','+ year);
       const weekday = date.toLocaleString('default', { weekday: 'long' });
       simpilifiedDate.push(weekday);
-
-
       this.datesarray.push(simpilifiedDate);
     }
   // getDate(date: any): void {
@@ -142,4 +135,21 @@ throw new Error('Method not implemented.');
   //         console.log(this.cost_per_slot);
   //       });
   // }
-}}
+}
+increasebtn(id: number): void {
+  this.equipments[id].count += 1;
+  this.costForEquipments(id);
+  // this.totalCostForEquipments()
+}
+  costForEquipments(id: number) {
+    throw new Error('Method not implemented.');
+  }
+
+reducebtn(id: number): void {
+  if (this.equipments[id].count > 0) {
+    this.equipments[id].count -= 1;
+    this.costForEquipments(id);
+    // this.totalCostForEquipments()
+  }
+}
+}

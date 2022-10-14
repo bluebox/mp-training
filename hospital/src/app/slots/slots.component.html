@@ -24,13 +24,14 @@
 <h3> Select Doctor</h3>
 
 <div class="card">
-    <div *ngFor="let slot of doctor">
+    <div *ngFor="let slot of doctors">
 
         <label class="sport_labl">
-            <input type="radio" name="doctor" value="{{slot.doctor_id}}" />
-            <div class="sportcard" (click)="getAdoctorId(slot.doctor_name)">
-                <img src="../../../../../assets/images/{{slot.doctor_name}}.png" alt="{{slot.doctor_id}}" />
-                <h6>{{slot.splot_time}}</h6>
+            <input type="radio" name="doctor" value="{{slot.d_id}}" />
+            <div class="sportcard" (click)="getAdoctorId(slot.d_name)">
+                <img src="../../../../../assets/images/{{slot.d_name}}.png" alt="{{slot.doctor_id}}" />
+                <div>{{slot.d_name}}----{{slot.d_id}}</div>
+                <h6>{{slot.d_name}}</h6>
             </div>
         </label>
 
@@ -70,7 +71,7 @@
     </div>
 
 </div>
-<h3> Add ons </h3>
+<!-- <h3> Add ons </h3>
 <h2 *ngIf="total_cost_for_equipments > 0 ">Total cost for equipments = {{total_cost_for_equipments}}</h2>
 <div class="equipcard">
     <div *ngFor="let equipment of equipments; let i = index" class="equipcard2">
@@ -86,7 +87,7 @@
 
     </div>
 
-</div>
+</div> -->
 
 
 <div class="text-center p-3">
