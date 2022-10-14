@@ -1,43 +1,102 @@
-<h1> my Bookings</h1>
-<h2 > Upcoming Bookings</h2>
-<div *ngFor="let booking of bookingDetails" >
-    <div *ngIf="booking.isupcoming" class="card">
-        <div class="datecard">
-            <h1> {{booking.date}}</h1>
+<app-header></app-header>
+
+<div class="gradient-custom-2">
+    <div class="card22">
+        <div class="card33">
+            <div class="personname" *ngIf="user_details">
+                <h1> {{user_details.user_name}}</h1>
+                <p> {{user_details.user_email}}</p>
+            </div>
+            <div class="profile">
+                <img src="../../../../../assets/images/profile_placeholder2.jpeg" alt="profile" />
+            </div>
         </div>
+        <button class="btn btn-outline-success editprofilebtn " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Edit Profile</button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
 
-        <div class="detailscard">
-            <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
-            <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form [formGroup]="editUserDetailsForm">
+                        <div class="modal-body d-flex flex-column" *ngIf="user_details">
 
-            <div class="detailscard2">
-                <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
-                    alt="sport" />
-                <i class="fa fa-phone phone" aria-hidden="true"></i>
-                <button class="btn btn-outline-primary" (click)="deletebooking(booking.booking_id)"> cancel </button>
+                            <mat-form-field appearance="fill">
+                                <mat-label>name</mat-label>
+                                <input formControlName="user_name" matInput >
+                            </mat-form-field>
+                            <small class="text-danger msgg"
+                                *ngIf="editUserDetailsForm.get('user_name')?.invalid  && editUserDetailsForm.get('user_name')?.touched ">Please
+                                enter
+                                valid name</small>
+                            <mat-form-field appearance="fill">
+                                <mat-label>email</mat-label>
+                                <input matInput formControlName="user_email" >
+                            </mat-form-field>
+                            <small class="text-danger msgg"
+                                *ngIf="editUserDetailsForm.get('user_email')?.invalid  && editUserDetailsForm.get('user_email')?.touched ">Please
+                                enter
+                                valid email</small>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="edituserdetails()">Save
+                                changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <h2 *ngIf="upcomigbookingsexists>0"> Upcoming Bookings</h2>
+        <div *ngFor="let booking of bookingDetails">
+            <div *ngIf="booking.isupcoming" class="card">
+                <div class="datecard">
+                    <h1> {{booking.date}}</h1>
+                </div>
 
+                <div class="detailscard">
+                    <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
+                    <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+
+                    <div class="detailscard2">
+                        <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
+                            alt="sport" />
+                        <i class="fa fa-phone phone" aria-hidden="true"></i>
+                        <button class="btn btn-outline-primary" (click)="deletebooking(booking.booking_id)"> cancel
+                        </button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 *ngIf="pastbookingsexists>0"> past booking</h2>
+        <div *ngFor="let booking of bookingDetails">
+            <div *ngIf="!booking.isupcoming" class="card">
+                <div class="datecard">
+                    <h1> {{booking.date}}</h1>
+                </div>
+
+                <div class="detailscard">
+                    <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
+                    <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+
+                    <div class="detailscard2">
+                        <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
+                            alt="sport" />
+                        <i class="fa fa-phone phone" aria-hidden="true"></i>
+
+                        <button mat-raised-button
+                            (click)="openDialog(booking.booking_id,booking.reviews,booking.ratings)">feedback</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<h2> past booking</h2>
-<div *ngFor="let booking of bookingDetails" >
-    <div *ngIf="!booking.isupcoming" class="card">
-        <div class="datecard">
-            <h1> {{booking.date}}</h1>
-        </div>
 
-        <div class="detailscard">
-            <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
-            <p>{{booking.facility_sport_id.facility.facility_location}}</p>
-
-            <div class="detailscard2">
-                <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
-                    alt="sport" />
-                <i class="fa fa-phone phone" aria-hidden="true"></i>
-                <button class="btn btn-outline-primary" (click)="givefeedback(booking.booking_id)"> feedback </button>
-
-            </div>
-        </div>
-    </div>
-</div>
+<app-footer></app-footer>

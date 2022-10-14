@@ -32,13 +32,15 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+  ngOnDestroy(): void {
+    this.searchresults=[];
+  }
   logout(): void {
     localStorage.removeItem('refresh_token');
     this.user_verfied = false;
     this.router.navigate(['facilities/hyderabad']);
   }
   search(text: any) {
-    // this.text = event.target.value;
     console.log(text);
     if (text.length > 2) {
       this.service.searchFacility(text).subscribe((data) => {
@@ -51,11 +53,13 @@ export class HeaderComponent implements OnInit {
   }
   facilitysearch(id: any) {
     console.log(id);
+    this.searchresults = []
     this.router.navigate(['facilities/hyderabad', String(id)]);
   }
 
   sportid(id: any) {
     console.log(id);
+    this.searchresults = []
     this.router.navigate(['facilities/hyderabad/sport', id]);
     
   }

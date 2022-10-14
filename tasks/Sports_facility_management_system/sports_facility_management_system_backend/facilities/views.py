@@ -9,7 +9,8 @@ from rest_framework.views import APIView
 from .jwtauthentication import create_access_token, create_refresh_token
 from .managers import booking_form, slots_booked, get_slots_booked, get_equipments, get_facility_sport_id, \
     post_equipments_booked, post_invoices, search_facilities, get_sports, facilities_containing_sport, \
-    check_access_token, get_user_booking, cancel_booking, give_feedback
+    check_access_token, get_user_booking, cancel_booking, give_feedback, get_user_details, edit_user_details, \
+    create_user, add_sports_facility, get_all_slots
 from .models import FacilityDetail, Sport, SportsInFacility, SlotsInSportFacility, SlotsBookedForBookingId, \
     EquipmentsRentedForBookingId, User, UserToken
 from .serilizers import FacilityDetailSerializer, SportsSerializer, SlotsSerializer, CreateFacilitySerializer, \
@@ -23,22 +24,6 @@ class FacilitiesDetailsView(APIView):
         serializer = FacilityDetailSerializer(facilities, many=True)
         json_data = JSONRenderer().render(data=serializer.data)
         return HttpResponse(json_data, content_type='application/json')
-
-    @staticmethod
-    def post(request):
-        json_data = request.data
-        serializer = CreateFacilitySerializer(data=json_data)
-
-        if serializer.is_valid():
-            serializer.save()
-            facility = FacilityDetail.objects.get(facility_phone=request.data['facility_phone'])
-            serializer = FacilityDetailSerializer(facility)
-            msg = {'msg': 'successfully added a Sports to facility', 'facility_details': serializer.data}
-            json_data = JSONRenderer().render(msg)
-            return HttpResponse(json_data, content_type='application/json')
-        else:
-            json_data = JSONRenderer().render(serializer.errors)
-            return HttpResponse(json_data, content_type='application/json')
 
 
 class AddSportsToFacilityView(APIView):
@@ -68,11 +53,39 @@ class SportsInFacilityView(APIView):
 
 class FacilityView(APIView):
 
-    def get(self, request, fid):
+    def get(self, request):
+        fid = request.GET.get('fid')
         facility = FacilityDetail.objects.get(facility_id=fid)
         serializer = FacilityDetailSerializer(facility)
         json_data = JSONRenderer().render(data=serializer.data)
         return HttpResponse(json_data, content_type='application/json')
+
+    @staticmethod
+    def post(request):
+        json_data = request.data
+        serializer = CreateFacilitySerializer(data=json_data)
+
+        if serializer.is_valid():
+            serializer.save()
+            facility = FacilityDetail.objects.get(facility_phone=request.data['facility_phone'])
+            serializer = FacilityDetailSerializer(facility)
+            msg = {'msg': 'successfully added a Sports to facility', 'facility_details': serializer.data}
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+        else:
+            json_data = JSONRenderer().render(serializer.errors)
+            return HttpResponse(json_data, content_type='application/json')
+
+    def delete(self, request):
+        try:
+            fid = request.GET.get('fid')
+            facility = FacilityDetail.objects.get(facility_id=fid)
+            facility.delete()
+            msg = "successfully deleted"
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class SlotView(APIView):
@@ -273,9 +286,10 @@ class CancelBooking(APIView):
 
 
 class UpdateFeedback(APIView):
+
     def post(self, request, bid):
         try:
-            msg = give_feedback(request,bid)
+            msg = give_feedback(request, bid)
 
         except:
             msg = "error occurred try again"
@@ -283,3 +297,52 @@ class UpdateFeedback(APIView):
         json_data = JSONRenderer().render(msg)
         return HttpResponse(json_data, content_type='application/json')
 
+
+class GetUserDetails(APIView):
+
+    def get(self, request):
+        try:
+            uid = request.GET.get('uid')
+            user = get_user_details(uid)
+            return user
+        except:
+            msg = "error occurred try again"
+
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+
+    def post(self, request):
+        json_data = create_user(request)
+        return json_data
+
+    def put(self, request):
+        try:
+            uid = request.GET.get('uid')
+            edit_user_details(uid, request)
+            msg = "details updated successfully"
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+        except Exception as e:
+            return Response(str(e), 500)
+
+
+class AddSportsToFacility(APIView):
+
+    def post(self, request):
+
+        try:
+            add_sports_facility(request)
+            msg = "details updated successfully"
+            json_data = JSONRenderer().render(msg)
+            return HttpResponse(json_data, content_type='application/json')
+        except Exception as e:
+            return Response(str(e), status=500)
+
+
+class GetAllSlots(APIView):
+
+    def get(self, request):
+        try:
+            return get_all_slots()
+        except Exception as e:
+            return Response(str(e), status=500)

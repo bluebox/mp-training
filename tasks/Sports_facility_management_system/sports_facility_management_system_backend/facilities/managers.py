@@ -2,9 +2,10 @@ from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 
 from facilities.models import BookingData, SlotsBookedForBookingId, Slot, SportsInFacility, Equipment, Sport, \
-    FacilityDetail, EquipmentsRentedForBookingId, UserToken
+    FacilityDetail, EquipmentsRentedForBookingId, UserToken, User
 from facilities.serilizers import BookingFormSerializer, EquipmentSerializer, SportsInFacilitySerializer, \
-    InvoiceSerializer, FacilityDetailSerializer, SportsSerializer, UserBookingsSerializer
+    InvoiceSerializer, FacilityDetailSerializer, SportsSerializer, UserBookingsSerializer, UserSerializer, \
+    CreateUserSerializer, SlotsSerializer
 
 
 def booking_form(request):
@@ -93,14 +94,6 @@ def post_invoices(request, total_cost):
         serializer.save()
 
 
-def get_booking_details(request):
-    booking_id = BookingData.objects.get(booking_id=request.data['booking_id'])
-
-    no_slots_booked = SlotsBookedForBookingId.filter(booking_id=booking_id)
-    equipments_rented = EquipmentsRentedForBookingId.filter(booking_id=booking_id)
-    cost_per_slot = SportsInFacility.booking_id.cost_per_slot * len(no_slots_booked)
-
-
 def search_facilities(request):
     facilities = FacilityDetail.objects.filter(facility_name__icontains=request.GET.get('q'))[0:8]
     serializer = FacilityDetailSerializer(facilities, many=True)
@@ -146,7 +139,7 @@ def cancel_booking(bid):
     return msg
 
 
-def give_feedback(request,bid):
+def give_feedback(request, bid):
     try:
         booking_details = BookingData.objects.get(booking_id=bid)
         booking_details.reviews = request.data['review']
@@ -156,3 +149,58 @@ def give_feedback(request,bid):
     except:
         msg = "no booking found"
     return msg
+
+
+def get_user_details(uid):
+    user_obj = User.objects.get(user_id=uid)
+    serializer = UserSerializer(user_obj)
+    json_data = JSONRenderer().render(data=serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+def edit_user_details(uid, request):
+    user_obj = User.objects.get(user_id=uid)
+    user_obj.user_name = request.data['user_name']
+    user_obj.user_email = request.data['user_email']
+    user_obj.save()
+
+
+
+def create_user(request):
+    json_data = request.data
+    serializer = CreateUserSerializer(data=json_data)
+
+    if serializer.is_valid():
+        serializer.save()
+        msg = 'user account created successfully'
+        json_data = JSONRenderer().render(msg)
+        return HttpResponse(json_data, content_type='application/json')
+    else:
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type='application/json', status=404)
+
+
+def add_sports_facility(request):
+    facility_id = request.data['facility_id']
+    sportArray = request.data['sportObj']
+    # cost_for_slot_list = request.data['cost_for_slot_list']
+    sport_obj_list = []
+    facility_obj = FacilityDetail.objects.get(facility_id=facility_id)
+
+    for sport in sportArray:
+        sport_obj = Sport.objects.get(sport_id=sport['sport_id'])
+        sports_in_facility_obj = SportsInFacility(
+            facility=facility_obj,
+            sport=sport_obj,
+            cost_per_slot=sport['cost_per_slot']
+        )
+        sport_obj_list.append(sports_in_facility_obj)
+
+    SportsInFacility.objects.bulk_create(sport_obj_list)
+
+
+def get_all_slots():
+    slots = Slot.objects.all()
+    serializer = SlotsSerializer(slots, many=True)
+    json_data = JSONRenderer().render(data=serializer.data)
+    return HttpResponse(json_data, content_type='application/json')

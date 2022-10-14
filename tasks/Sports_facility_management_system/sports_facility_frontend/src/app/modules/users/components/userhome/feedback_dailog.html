@@ -1,0 +1,18 @@
+
+<div mat-dialog-content>
+  <p>Feedback</p>
+  <mat-form-field appearance="fill">
+    <mat-label>review</mat-label>
+    <input matInput [(ngModel)]="data.review">
+</mat-form-field>
+
+    <mat-label>rating</mat-label>
+    
+    <ngb-rating  [(rate)]="rating" [max]="5" (rateChange)="ratechange(rating)" style="color:rgb(95, 95, 18);font-size: x-large;" ></ngb-rating>
+
+        
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button  (click)="SubmitFeedback(data.review,rating)" cdkFocusInitial>Ok</button>
+</div>

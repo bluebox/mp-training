@@ -12,7 +12,8 @@ import {Slots} from 'src/interfaces/slot';
 )
 export class FacilityService {
   private bookingurl: string = 'http://localhost:8000/bookingform';
-  private facilityurl: string = 'http://localhost:8000/facilities';
+  private facilitiesurl: string = 'http://localhost:8000/facilities';
+  private facilityurl: string = 'http://localhost:8000/facility?fid='
   private sporturl: string = 'http://localhost:8000/sf';
   private slotsurl: string = 'http://localhost:8000/slots/';
   private bookedslotsurl: string = 'http://127.0.0.1:8000/get-booked-slots?fsid=';
@@ -31,11 +32,11 @@ export class FacilityService {
 
   getFacilities(): Observable<Facility[]> {
 
-    return this.http.get<Facility[]>(this.facilityurl);
+    return this.http.get<Facility[]>(this.facilitiesurl);
     
   }
   getFacility(id: string): Observable<Facility> {
-    return this.http.get<Facility>(this.facilityurl+"/"+id);
+    return this.http.get<Facility>(this.facilityurl+id);
   }
   
 

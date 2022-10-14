@@ -1,41 +1,42 @@
 <app-header></app-header>
-<div class="bg-img">
-
+<div class="card">
     <div class="content">
-        <header>Login Page</header>
+        <form [formGroup]="create_user_login_form" class="form-container" (ngSubmit)="submit()">
+            <div class="ac1">
 
-        <form [formGroup]="create_user_login_form" (ngSubmit)="submit()">
-
-            <div class="field">
-                <span class="fa fa-user"></span>
-                <input formControlName="user_phone" type="text" required placeholder="Enter registered Phone number" />
-
-            </div>
-
-            <div class="field space">
-
-                <span class="fa fa-lock"></span>
-                <input formControlName="user_password" type="password" class="pass-key" required placeholder="Password">
-                <span class="show">SHOW</span>
-            </div>
-
-            <div class="pass">
-
-                <a href="user/signup">New User ? go to signup</a>
+                <mat-card-header>
+                    <mat-card-title>Register</mat-card-title>
+                    <small *ngIf="formNotValid" class="text-danger msgg">Please fill all required details</small>
+                </mat-card-header>
+                <mat-card-content>
                 
+                    <div class="ip">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <input formControlName="user_phone" class="userinput" matInput placeholder="mobile_number">
+                        </mat-form-field>
+                        <small class="text-danger msgg"
+                            *ngIf="create_user_login_form.get('user_phone')?.invalid  && create_user_login_form.get('user_phone')?.touched ">This
+                            field is required</small>
+                    </div>
+                    <div class="ip">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <input type="password" class="userinput" formControlName="user_password" matInput
+                                placeholder="password">
+                        </mat-form-field>
+                        <small class="text-danger msgg"
+                            *ngIf="create_user_login_form.get('user_password')?.invalid  && create_user_login_form.get('user_password')?.touched ">Password
+                            should contain atleast 8 letters</small>
+                    </div>
+                    <h1 class="text-danger msgg" *ngIf="servererror">{{servererror}}</h1>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button type="submit" class="me-5" mat-raised-button="" color="primary">login</button>
+                    <button type="button" routerLink="../signup" mat-raised-button="" color="primary">
+                        Don't have an account? Signup
+                    </button>
+                </mat-card-actions>
             </div>
-
-            <div class="field">
-                <input type="submit" value="LOGIN" />
-                
-            </div>
-            <h3 *ngIf="errormsg" class="errormsg">{{errormsg}} </h3>
-
-
-
         </form>
-
     </div>
-
 </div>
 <app-footer></app-footer>

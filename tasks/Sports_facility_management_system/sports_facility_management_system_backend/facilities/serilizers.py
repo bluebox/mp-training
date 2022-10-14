@@ -1,9 +1,7 @@
-from abc import ABC
-from pyexpat import model
-
 from rest_framework import serializers
+
 from .models import FacilityDetail, SportsInFacility, Sport, SlotsInSportFacility, Slot, User, BookingData, \
-    SlotsBookedForBookingId, Equipment, Invoice
+    Equipment, Invoice
 
 
 class FacilityDetailSerializer(serializers.ModelSerializer):
@@ -102,3 +100,25 @@ class UserBookingsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = ['user_id', 'user_password']
+
+
+class CreateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = ['user_id']
+
+
+class AddSportsToFacility(serializers.ModelSerializer):
+    class Meta:
+        model = SportsInFacility
+        exclude = ['facility_sport_id']
+
+
+class SlotsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slot
+        fields = '__all__'

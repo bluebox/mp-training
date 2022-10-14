@@ -1,1 +1,18 @@
-<p>viewfacilities works!</p>
+<div class="card">
+    <div *ngFor="let facility of facilities" class="facilitycard">
+        <div >
+            <h1> {{facility.facility_name}}</h1>
+            <h2> {{facility.facility_location}}</h2>
+        </div>
+        <div class="d-flex align-items-center">
+            <button class="btn btn-outline-primary button" (click)="addSports(facility.facility_id)"> Add Sports</button>
+        </div>
+        <div class="d-flex align-items-center">
+            <button class="btn btn-outline-primary button"> Add Slots</button>
+        </div>
+        
+        <div class="d-flex align-items-center">
+            <button class="btn btn-outline-danger button" (click)="deleteFacility(facility.facility_id)"> delete</button>
+        </div>
+    </div>
+</div>

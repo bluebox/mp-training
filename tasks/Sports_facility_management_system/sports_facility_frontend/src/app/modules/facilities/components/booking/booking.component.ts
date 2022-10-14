@@ -37,7 +37,7 @@ export class BookingComponent implements OnInit {
   total_cost_for_equipments: number = 0;
   token_status: any;
   user_verfied: boolean = false;
-
+  errormsg: string = '';
   constructor(
     private router: Router,
     private arouter: ActivatedRoute,
@@ -83,10 +83,9 @@ export class BookingComponent implements OnInit {
       const month = date.toLocaleString('default', { month: 'long' });
       const day = date.getDate();
       const year = date.getFullYear();
-      simpilifiedDate.push(day + ',' + month +','+ year);
+      simpilifiedDate.push(day + ',' + month + ',' + year);
       const weekday = date.toLocaleString('default', { weekday: 'long' });
       simpilifiedDate.push(weekday);
-      
 
       this.datesarray.push(simpilifiedDate);
     }
@@ -102,7 +101,18 @@ export class BookingComponent implements OnInit {
         console.log(this.fsid);
         this.cost_per_slot = this.fsdetails.cost_per_slot;
         console.log(this.cost_per_slot);
-      });
+      
+      if (this.date) {
+        this.facilityService
+          .getSlotsInSportFacility(this.fid, this.sportid)
+          .subscribe((data) => (this.slots = data));
+        this.facilityService
+          .getBookedSlots(this.fsid, this.date)
+          .subscribe((data) => {
+            console.log(data),
+            (this.booked_slots = data), this.getSlotids();
+          });
+      }});
 
     this.facilityService.getEquipments(this.sportid).subscribe((data) => {
       // (this.equipments = data);
@@ -121,6 +131,7 @@ export class BookingComponent implements OnInit {
       this.facilityService
         .getBookedSlots(this.fsid, this.date)
         .subscribe((data) => {
+          console.log(data),
           (this.booked_slots = data), this.getSlotids();
         });
     }
@@ -135,6 +146,7 @@ export class BookingComponent implements OnInit {
       this.facilityService
         .getBookedSlots(this.fsid, this.date)
         .subscribe((data) => {
+          console.log(data),
           (this.booked_slots = data), this.getSlotids();
         });
     }
@@ -197,28 +209,34 @@ export class BookingComponent implements OnInit {
 
   submitBookingForm(): void {
     if (this.user_verfied) {
-      this.EquipmentsBooked();
+      if (this.slotsid.length > 0) {
+        this.EquipmentsBooked();
 
-      const obj = {
-        user_id: this.user_id,
-        facility_sport_id: this.fsid,
-        date: this.date,
-        slots_id: this.slotsid,
-        equipments_booked: this.equipments_booked,
-        equipments_quantity: this.equipments_quantity,
-      };
-      const costobj = {
-        cost_for_slot: this.total_cost_for_slots,
-        cost_for_equipments: this.total_cost_for_equipments,
-        total_cost: this.total_cost_for_slots + this.total_cost_for_equipments,
-      };
-      console.log(obj);
-      this.facilityService.postBookingData(obj).subscribe((data) => {
-        (this.bookingmsg = data), console.log(data);
-        sessionStorage.setItem('bookingobj', JSON.stringify(obj));
-        sessionStorage.setItem('totalcost', JSON.stringify(costobj));
-        this.router.navigate(['facilities/paymentpage']);
-      });
+        const obj = {
+          user_id: this.user_id,
+          facility_sport_id: this.fsid,
+          date: this.date,
+          slots_id: this.slotsid,
+          equipments_booked: this.equipments_booked,
+          equipments_quantity: this.equipments_quantity,
+        };
+        const costobj = {
+          cost_for_slot: this.total_cost_for_slots,
+          cost_for_equipments: this.total_cost_for_equipments,
+          total_cost:
+            this.total_cost_for_slots + this.total_cost_for_equipments,
+        };
+        console.log(obj);
+
+        this.facilityService.postBookingData(obj).subscribe((data) => {
+          (this.bookingmsg = data), console.log(data);
+          sessionStorage.setItem('bookingobj', JSON.stringify(obj));
+          sessionStorage.setItem('totalcost', JSON.stringify(costobj));
+          this.router.navigate(['facilities/paymentpage']);
+        });
+      } else {
+        this.errormsg = 'please choose atleast one slot to book';
+      }
     } else {
       this.router.navigate(['user/login']);
     }

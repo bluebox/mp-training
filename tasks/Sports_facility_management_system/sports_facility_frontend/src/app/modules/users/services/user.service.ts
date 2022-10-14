@@ -8,6 +8,9 @@ export class UserService {
   private loginurl: string='http://localhost:8000/login';
   private userbokingsurl: string='http://localhost:8000/get-user-bookings/'
   private cancelBooking:string='http://127.0.0.1:8000/cancel-booking/'
+  private feedbackUrl:string='http://127.0.0.1:8000/update-feedback/'
+  private userurl:string='http://127.0.0.1:8000/user?uid='
+  private createUserurl:string='http://127.0.0.1:8000/user'
   constructor( private http:HttpClient) { }
 
 
@@ -27,5 +30,17 @@ export class UserService {
 
   }
 
+  updateFeedback(bid:any,obj:any){
+    return this.http.post(this.feedbackUrl+bid,obj)
+  }
+  getUserDetails(uid:number){
+    return this.http.get(this.userurl+uid)
+  }
+  createUser(obj:any){
+    return this.http.post(this.createUserurl,obj)
+  }
+  updateUser(uid:number,obj:any){
+    return this.http.put(this.userurl+uid,obj)
+  }
 
 }

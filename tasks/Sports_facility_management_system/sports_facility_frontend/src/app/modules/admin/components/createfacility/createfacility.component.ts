@@ -18,45 +18,29 @@ export class CreatefacilityComponent implements OnInit {
     facility_email: new FormControl('', [Validators.required]),
     facility_password: new FormControl('', [Validators.required]),
     facility_location: new FormControl('', [Validators.required]),
-    facility_phone: new FormControl('', [Validators.required]),
+    facility_phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}')]),
   });
   facility_details: any;
   msg_details: any;
   errormsg: any;
-
+  servererror: any;
+  formNotValid: boolean = false;
   constructor(private service: AdminService, private router: Router) {}
 
   ngOnInit(): void {}
   submit(): void {
-    this.service
-      .postFacility(this.create_facility_form.value)
-      .subscribe((data: any) => {
-        (this.facility_details = data.facility_details),
-          (this.msg_details = data.msg),(this.errormsg = JSON.stringify(data));
-      })
-      if (this.facility_details) {
-        console.log(this.facility_details.facility_id);
-        console.log(this.msg_details)
-        window.sessionStorage.setItem(
-          'facility_id',
-          this.facility_details.facility_id
-        )
-        this.router.navigate(['addsports'])
-      } else if (this.errormsg)  {
-        console.log(this.errormsg);
-      }
-      ;
-  }
-  ngDoCheck(): void {
-    if (this.facility_details) {
-      console.log(this.facility_details.facility_id);
-      console.log(this.msg_details)
-      window.sessionStorage.setItem(
-        'facility_id',
-        this.facility_details.facility_id
+    if (this.create_facility_form.valid) {
+      this.service.postFacility(this.create_facility_form.value).subscribe(
+        (data: any) => {
+          console.log(data);
+        },
+        (err) => {
+          this.servererror = err;
+        }
       );
-    } else if (this.errormsg)  {
-      console.log(this.errormsg);
+    }
+    else{
+      this.formNotValid=true;
     }
   }
 }

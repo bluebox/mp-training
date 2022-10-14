@@ -1,0 +1,79 @@
+.facilitycard{
+    border: 2px solid royalblue;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    align-items: center;
+}
+.card{
+    padding: 20px;
+    display: flex;
+    margin:20px;    
+
+}
+h1{
+    margin: 0px;
+    padding: 0px;
+}
+h2{
+    margin: 0px;
+    padding: 0px;
+}
+.button{
+    /* margin-top: 8px; */
+    width: 120px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img{
+    width: 40px;
+}
+.class2{
+    display: none;
+    color: blue;
+}
+.class1{
+    color: red;
+}
+.sportcard {
+    text-align: center;
+    padding: 10px;
+  }
+.sport_labl {
+    display: block;
+    width: 200px;
+  }
+.sport_labl > input {
+    /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+  }
+.sport_labl > input + div {
+    /* DIV STYLES */
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+.sport_labl > input:checked + div {
+    /* (RADIO CHECKED) DIV STYLES */
+    background-color: #ffd6bb;
+    border: 1px solid #ff6600;
+  }
+
+.sportitem {
+    display: inline;
+  }
+  li{
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    border: 2px solid rosybrown;
+    text-align: center;
+    list-style: none;
+    padding-top:10px ;
+    
+  }

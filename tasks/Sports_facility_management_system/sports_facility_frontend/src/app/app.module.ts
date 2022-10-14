@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { ErrorComponent } from './component/error/error.component';
 import { HomeComponent } from './component/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AngularMaterialModule } from './angular-material.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AngularMaterialModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

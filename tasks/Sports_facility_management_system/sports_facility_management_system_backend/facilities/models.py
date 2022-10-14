@@ -25,24 +25,24 @@ class Sport(models.Model):
     def __str__(self):
         return self.sport_name
 
+class Slot(models.Model):
+    slot_id = models.AutoField(primary_key=True)
+    slot_time = models.CharField(max_length=255)
+    # sport_facility = models.ManyToManyField(SportsInFacility, through='SlotsInSportFacility')
+
+    def __str__(self):
+        return self.slot_time
+
 
 class SportsInFacility(models.Model):
     facility_sport_id = models.AutoField(primary_key=True)
     facility = models.ForeignKey(FacilityDetail, on_delete=models.CASCADE)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     cost_per_slot = models.IntegerField()
+    slot = models.ManyToManyField(Slot,through='SlotsInSportFacility')
 
     class Meta:
         unique_together = [['facility', 'sport']]
-
-
-class Slot(models.Model):
-    slot_id = models.AutoField(primary_key=True)
-    slot_time = models.CharField(max_length=255)
-    sport_facility = models.ManyToManyField(SportsInFacility, through='SlotsInSportFacility')
-
-    def __str__(self):
-        return self.slot_time
 
 
 class SlotsInSportFacility(models.Model):
@@ -84,7 +84,7 @@ class UserToken(models.Model):
 
 class BookingData(models.Model):
     booking_id = models.AutoField(primary_key=True)
-    facility_sport_id = models.ForeignKey(SportsInFacility, models.DO_NOTHING)
+    facility_sport_id = models.ForeignKey(SportsInFacility, on_delete=models.SET_NULL,null=True)
     user_id = models.ForeignKey(User, models.DO_NOTHING)
     date = models.CharField(max_length=255)
     reviews = models.TextField(blank=True, null=True)
