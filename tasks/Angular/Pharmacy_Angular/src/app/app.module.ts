@@ -57,6 +57,7 @@ import { OrdersComponent } from './user/orders/orders.component';
 import { CartComponent } from './user/cart/cart.component'; 
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import { SearchComponent } from './admin/distributor/search/search.component';
 
 
 
@@ -102,6 +103,7 @@ import {MatSelectModule} from '@angular/material/select';
     ContactComponent,
     OrdersComponent,
     CartComponent,
+    SearchComponent,
     
 
     

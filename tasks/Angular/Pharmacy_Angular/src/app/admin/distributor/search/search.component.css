@@ -1,0 +1,9 @@
+.example-form-field {
+    width: 200px;
+  }
+
+.sear{
+    display:flex;
+    justify-content: center;
+    margin-top:35px;
+ }

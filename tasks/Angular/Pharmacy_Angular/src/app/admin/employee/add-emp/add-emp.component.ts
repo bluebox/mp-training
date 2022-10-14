@@ -13,6 +13,7 @@ export class AddEmpComponent implements OnInit {
   jobList=["Permanent", "Contract"]
   employeeForm !: FormGroup;
   actionBtn : string = "Save";
+  selected : any;
 
   constructor( private formBuilder : FormBuilder, 
     private api : EmployeeService,

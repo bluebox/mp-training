@@ -1,0 +1,8 @@
+<div class="sear">
+<mat-form-field class="example-form-field" appearance="outline" style="width:400px">
+    <input matInput type="text" [(ngModel)]="valueSearched" placeholder="Search Using Distributor Name Or Distributor Id" (input)="onSearch()" >
+    <button *ngIf="valueSearched" matSuffix mat-icon-button aria-label="Clear" (click)="valueSearched=''">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+</div>

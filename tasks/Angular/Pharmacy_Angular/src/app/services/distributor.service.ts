@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,6 +17,9 @@ export class DistributorService {
     return this.http.get<any>("http://localhost:8000/distributor/");
   }
 
+  getADist(data: string){
+    return this.http.get<any>("http://localhost:8000/distributorget/"+data);
+  }
   putDistributor(data:any,id:string){
     return this.http.put<any>("http://localhost:8000/distributor/"+id,data);
 

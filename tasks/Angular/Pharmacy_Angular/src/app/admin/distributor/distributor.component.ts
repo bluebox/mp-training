@@ -1,12 +1,21 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, NgIterable, OnInit } from '@angular/core';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {AddDisComponent} from 'src/app/admin/distributor/add-dis/add-dis.component';
+import {SearchComponent} from 'src/app/admin/distributor/search/search.component';
 import {DistributorService} from "src/app/services/distributor.service"
  
+
+interface Dist{
+  dist_id:string;
+  dist_name:string;
+  contact:number;
+  email:string;
+  address:string;
+}
 
 
 @Component({
@@ -20,6 +29,9 @@ export class DistributorComponent implements OnInit {
 
   dataSource !: MatTableDataSource<any>;
   
+  result : any;
+
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
@@ -48,6 +60,7 @@ export class DistributorComponent implements OnInit {
     .subscribe({
       next:(res)=>{
         this.dataSource = new MatTableDataSource(res);
+        this.result = res;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -56,6 +69,8 @@ export class DistributorComponent implements OnInit {
       }
     })
   }
+
+
 
   editDistributor(row:any){
     this.dialog.open(AddDisComponent,{
@@ -81,6 +96,19 @@ export class DistributorComponent implements OnInit {
     })
   }
 
+
+  onSearchText(searchValue: string) {
+    console.log(searchValue);
+    this.api.getADist(searchValue).subscribe({
+      next:(res)=>{
+        this.result= res;
+        console.log(this.result)
+      }
+    })
+  }
+
+  
+
   
 
 
@@ -92,6 +120,11 @@ export class DistributorComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+
+
+
+
 }
 
 
