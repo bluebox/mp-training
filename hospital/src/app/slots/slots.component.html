@@ -1,1 +1,95 @@
-<p>slots works!</p>
+<p>Define your work hours!!!!!</p>
+<section class="example-section">
+  <span class="example-list-section">
+    <mat-checkbox class="example-margin"
+                  [checked]="allComplete"
+                  [color]="task.color"
+                  [indeterminate]="someComplete()"
+                  (change)="setAll($event.checked)">
+      {{task.name}}
+    </mat-checkbox>
+  </span>
+  <span class="example-list-section">
+    <ul class="time">
+      <li *ngFor="let subtask of task.subtasks">
+        <mat-checkbox [(ngModel)]="subtask.completed"
+                      [color]="subtask.color"
+                      (ngModelChange)="updateAllComplete()">
+          {{subtask.name}}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </span>
+</section>
+<h3> Select Doctor</h3>
+
+<div class="card">
+    <div *ngFor="let slot of doctor">
+
+        <label class="sport_labl">
+            <input type="radio" name="doctor" value="{{slot.doctor_id}}" />
+            <div class="sportcard" (click)="getAdoctorId(slot.doctor_name)">
+                <img src="../../../../../assets/images/{{slot.doctor_name}}.png" alt="{{slot.doctor_id}}" />
+                <h6>{{slot.splot_time}}</h6>
+            </div>
+        </label>
+
+    </div>
+</div>
+<h3> Select Date</h3>
+<div class="card">
+    <div *ngFor="let date of datesarray">
+
+        <label class="date_labl">
+            <input type="radio" name="dates" value="{{date[0]}}" />
+            <div class="sportcard" (click)="getDate(date[0])">
+                <h6 *ngFor="let part of date">{{part}}</h6>
+
+            </div>
+        </label>
+
+    </div>
+</div>
+<h3> Select Slot</h3>
+<div class="slot_cost">
+    <h2 *ngIf="cost_per_slot"> cost per slot = {{cost_per_slot}}</h2>
+    <h2 *ngIf="total_cost_for_slots"> Total cost for slots = {{total_cost_for_slots}}</h2>
+</div>
+<div class="slotcard">
+    <div *ngFor="let slot of slot" class="slotitem">
+
+        <label class="sport_labl">
+            <input type="checkbox" name="slots" value="{{slot.slot_id}}"
+                [attr.disabled]="booked_slots_ids.indexOf(slot.slot_id) > -1 ? true : null" />
+            <div class="sportcard" [ngClass]=" booked_slots_ids.indexOf(slot.slot_id) > -1 ? 'class2' : 'class1' "
+                (click)="getslotid(slot.slot_id)">
+                <h6>{{slot.slot_time}}</h6>
+            </div>
+        </label>
+
+    </div>
+
+</div>
+<h3> Add ons </h3>
+<h2 *ngIf="total_cost_for_equipments > 0 ">Total cost for equipments = {{total_cost_for_equipments}}</h2>
+<div class="equipcard">
+    <div *ngFor="let equipment of equipments; let i = index" class="equipcard2">
+
+        <div class="eqipcost">
+            <h1 style="margin:0px"> {{equipment.equipment.equip_name}}</h1>
+            <p> cost per slot: {{equipment.equipment.rent_per_slot}}</p>
+        </div>
+        <button type="button" class="m-3  button" (click)="reducebtn(i)">-</button>
+        <h1 style="padding-top:12px;">{{equipment.count}}</h1>
+        <button type="button" class=" m-3 button " (click)="increasebtn(i)">+</button>
+        <h3> Total rent for {{equipment.equipment.equip_name}}= {{equipment.cost}}</h3>
+
+    </div>
+
+</div>
+
+
+<div class="text-center p-3">
+    <input type="button" value="proceed  to checkout" (click)="submitBookingForm()" class="btn btn-primary">
+</div>
+

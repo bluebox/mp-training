@@ -13,8 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
-    declarations: [],
+    declarations: [
+
+    ],
     imports: [
         CommonModule,
         MatTableModule,
@@ -30,6 +33,9 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
         MatCardModule,
         MatToolbarModule,
         MatBottomSheetModule,
+        MatCheckboxModule,
+
+
 
     ],
     exports: [
@@ -47,6 +53,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
         MatCardModule,
         MatToolbarModule,
         MatBottomSheetModule,
+        MatCheckboxModule,
     ]
 })
 export class NgMaterialModule { }

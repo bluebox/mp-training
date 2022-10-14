@@ -1,10 +1,12 @@
-export interface Doctor{
-  d_name:string;
-  d_mail:string;
-  d_phone_no:string;
-  d_address:string;
-  d_gender:string;
+export interface Staff{
+  s_name:string;
+  s_mail:string;
+  s_phone_no:string;
+  s_address:string;
+  s_gender:string;
+  s_id:string;
+  s_salary_id:string;
+  s_dob:string;
+  s_designation:string;
   d_id:string;
-  d_salary_id:string;
-  d_dob:string;
 }

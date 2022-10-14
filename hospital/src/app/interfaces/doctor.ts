@@ -1,5 +1,4 @@
 export interface Doctor{
-
   d_name:string;
   d_mail:string;
   d_phone_no:string;

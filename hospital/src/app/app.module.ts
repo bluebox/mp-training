@@ -7,7 +7,7 @@ import { PatientComponent } from './patient/patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { StaffComponent } from './staff/staff.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMaterialModule } from './ng-material/ng-material.module';
 import { LoginComponent } from './login/login.component';
 import { ListofpatientComponent } from './listofpatient/listofpatient.component';
@@ -25,7 +25,7 @@ import { SlotsComponent } from './slots/slots.component';
 import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { BookingService } from './booking.service';
-// import { ServercomunicationService } from './servercomunication.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +57,8 @@ import { BookingService } from './booking.service';
     NgMaterialModule,
     HttpClientModule,
     MatBottomSheetModule,
+    MatCheckboxModule,
+    FormsModule,
 
 
   ],
