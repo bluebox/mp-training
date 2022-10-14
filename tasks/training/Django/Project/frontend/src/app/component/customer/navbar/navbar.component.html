@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="../customer-profile">Profile</a>
+          <a class="nav-link active" aria-current="page" routerLink="../c-profile">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="../available-vehicles">Book Vehicle</a>
@@ -16,7 +16,7 @@
           <a class="nav-link active" aria-current="page"  routerLink="../order-history">Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="../">Logout</a>
+          <a class="nav-link active" aria-current="page" (click)="onLogOut()">Logout</a>
         </li>
       </ul>
     </div>

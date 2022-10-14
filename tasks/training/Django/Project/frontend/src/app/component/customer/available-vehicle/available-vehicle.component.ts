@@ -10,9 +10,27 @@ import { GeneralService } from 'src/app/general.service';
 })
 export class AvailableVehicleComponent implements OnInit {
 
-  // vehicle_list:any=[]
+  sort(e: any) {
+    console.log(e.target.value);
+    this.response = this.totalObjects.filter((vehicle: any ) => {
+      console.log(vehicle.type);
+
+      if(e.target.value != ''){
+        if(vehicle.type == e.target.value)
+          return vehicle
+
+      }else{
+        return vehicle
+
+      }
+  })
+  console.log(this.response);
+
+}
+
   vehicle_obj : Subscription=Subscription.EMPTY
   response: any
+  totalObjects: any
   resp: any
 
 
@@ -24,14 +42,19 @@ export class AvailableVehicleComponent implements OnInit {
 
 
   show_vehicles(){
-    this.vehicle_obj=this.service.getVehicle().subscribe(data=>{(this.response=data);
-    console.log(data)}
+    this.vehicle_obj=this.service.getVehicle().subscribe(data=>{(this.totalObjects=data);
+    console.log(data)
+    this.response=data
+  }
 )
   }
   bookVehicle(vehicle : any){
-   console.log(vehicle);
+   console.log(vehicle.vehicle_no);
+   this.service.getOwner(vehicle.vehicle_no).subscribe(data=>{(this.totalObjects=data); this.response=data ,window.sessionStorage.setItem('owner', JSON.stringify(data))});
+
    this.resp = window.sessionStorage.setItem('vehicle',JSON.stringify(vehicle));
    this.route.navigate(['book-vehicle'])
+
   }
 
 }

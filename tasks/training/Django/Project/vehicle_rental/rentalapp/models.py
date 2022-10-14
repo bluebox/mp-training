@@ -36,7 +36,7 @@ class Owner(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.email
 
 
 
@@ -96,5 +96,5 @@ class Bill(models.Model):
     bill_no = models.AutoField(primary_key=True)
     rental_id = models.OneToOneField(Rent_Trip, on_delete=models.CASCADE)
     rental_days = models.IntegerField()
-    km_ran = models.IntegerField()
+    km_ran = models.IntegerField(null=True)
     amount = models.IntegerField()

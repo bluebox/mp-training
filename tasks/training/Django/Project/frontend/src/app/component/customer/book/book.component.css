@@ -1,4 +1,8 @@
 .container{
-  background-color: rgb(231, 241, 245);
-  height: 90vh;
+  background-color: rgb(224, 242, 250);
+  height: 93vh;
+  width: 100vw;
+}
+.info{
+  display: flex;
 }

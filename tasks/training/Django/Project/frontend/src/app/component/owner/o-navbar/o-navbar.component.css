@@ -1,5 +1,9 @@
 .container{
-  background-color: lightgoldenrodyellow;
-  margin: 5px;
-  width: 100%;
+  background-color: white;
+
+  width:100%;
+  /* margin-left: 25px; */
+}
+.navbar-expand-lg{
+  width: 50%;
 }

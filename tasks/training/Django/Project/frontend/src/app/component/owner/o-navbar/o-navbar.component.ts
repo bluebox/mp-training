@@ -14,10 +14,11 @@ export class ONavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLOgOut(){
+  onLogOut(){
     this.service.logOutOwner().subscribe({
       next: (data) => {
         console.log(data);
+        window.sessionStorage.removeItem('owner_token')
       }
     })
     this.router.navigate([''])

@@ -2,7 +2,7 @@
   <li >{{response}}&nbsp;</li>
 </div>
  -->
- <app-navbar></app-navbar>
+
 <!-- <div class="container">
 
   <div class="details">
@@ -15,6 +15,8 @@
 
 </div> -->
 
+<app-navbar></app-navbar>
+<div class="main">
 <form [formGroup]="customer_group" (submit)="updateCustomerDetails()">
 
   <div class="sign"><br><br><br>
@@ -26,7 +28,7 @@
             </div><br> -->
             Name :
             <div>
-            <input id="in" type="text" name="name" placeholder="Name" formControlName="name">
+            <input id="in" type="text" name="name"  formControlName="name">
             </div><br>
             Email :
             <div>
@@ -44,10 +46,11 @@
             <div>
               <input id="in" type="text" name="address" placeholder="address" formControlName="address">
           </div><br>
-              <input type="submit" value="Submit">
+              <input type="submit" value="Update">
           </div><br>
 
 
   </div>
   </form>
+</div>
 

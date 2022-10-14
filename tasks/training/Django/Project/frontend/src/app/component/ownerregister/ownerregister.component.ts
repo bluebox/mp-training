@@ -10,18 +10,20 @@ import { Router } from '@angular/router';
 })
 export class OwnerregisterComponent implements OnInit {
 
+  submit !: boolean
+  response : any
   owner_group!: FormGroup
   error: string=''
   constructor(private service : GeneralService,private route:Router) { }
 
   ngOnInit(): void {
     this.owner_group = new FormGroup({
-      name: new FormControl('', Validators.minLength(4)),
+      name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{4,30}$')]),
       contact_no : new  FormControl('', Validators.required),
-      email : new FormControl('', Validators.email),
-      password : new FormControl('', Validators.minLength(8)),
-      password2 : new FormControl('', Validators.minLength(8)),
-      address : new FormControl('', Validators.maxLength(100), )
+      email : new FormControl('', [Validators.email, Validators.required]),
+      password : new FormControl('', [Validators.pattern('^[a-zA-Z]{4,20}$'), Validators.required]),
+      password2 : new FormControl('', [Validators.pattern('^[a-zA-Z]{4,20}$'), Validators.required]),
+      address : new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{10,30}$')], )
     })
 }
 register_owner(){
@@ -29,14 +31,16 @@ register_owner(){
   let userObj = this.owner_group.value
   if(userObj.password == userObj.password2){
     delete userObj.password2
-    this.service.registerOwner(userObj).subscribe(data=> console.log(data))
-    alert("Registration Successfull")
-    this.route.navigate(['ownerlogin'])
+    this.service.registerOwner(userObj).subscribe((data : any) =>{(this.response=data)
+    this.route.navigate(['ownerlogin']), alert('Registration successfull')}
+      ,(err) => {alert('Invalid details')} )}
 
-  }
   else{
     this.error = "password did not match"
     console.log("miss match")
   }
+}
+get formData(){
+  return this.owner_group.controls
 }
 }

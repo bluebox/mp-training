@@ -1,3 +1,5 @@
+import { ViewProfileComponent } from './component/owner/view-profile/view-profile.component';
+
 import { OrderHistoryComponent } from './component/customer/order-history/order-history.component';
 import { ProfileComponent } from './component/owner/profile/profile.component';
 import { AvailableVehicleComponent } from './component/customer/available-vehicle/available-vehicle.component';
@@ -13,6 +15,12 @@ import { HomepageComponent } from './component/homepage/homepage.component';
 import { CustomerProfileComponent } from './component/customer/customer-profile/customer-profile.component';
 import { PreviousvehiclesComponent } from './component/owner/previousvehicles/previousvehicles.component';
 import { BookComponent } from './component/customer/book/book.component';
+import { OrdersComponent } from './component/owner/orders/orders.component';
+import { ViewBillComponent } from './component/customer/view-bill/view-bill.component';
+import { ReviewComponent } from './component/customer/review/review.component';
+import { ViewCustomerProfileComponent } from './component/customer/view-customer-profile/view-customer-profile.component';
+
+
 const routes: Routes = [
   {path:'', component: HomepageComponent},
   {path:'customerlogin', component: CustomerloginComponent},
@@ -23,9 +31,14 @@ const routes: Routes = [
   {path:'available-vehicles', component: AvailableVehicleComponent},
   {path:'customer-profile', component: CustomerProfileComponent},
   {path:'order-history', component: OrderHistoryComponent},
+  {path:'o-profile', component: ViewProfileComponent},
+  {path:'c-profile', component: ViewCustomerProfileComponent},
   {path:'owner-profile', component:ProfileComponent},
   {path:'previousvehicles', component:PreviousvehiclesComponent},
   {path:'book-vehicle', component: BookComponent},
+  {path:'orders', component: OrdersComponent},
+  {path:'view-bill', component: ViewBillComponent},
+  {path:'customer-review', component: ReviewComponent},
   {path:'**', component: PagenotfoundComponent},
 
 

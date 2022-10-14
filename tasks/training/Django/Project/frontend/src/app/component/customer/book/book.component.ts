@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 })
 export class BookComponent implements OnInit {
 
-  response: any;
+  response : any =  window.sessionStorage.getItem('owner')
+  responseData = JSON.parse(this.response)
+
+
   vehicle! : FormGroup
   vehicle_data : any = window.sessionStorage.getItem('vehicle');
   vehicle_obj = JSON.parse(this.vehicle_data)
@@ -25,7 +28,7 @@ export class BookComponent implements OnInit {
   msg : any
   constructor(private service : GeneralService, private router : Router) {
 
-    // this.service.getOwner(20)
+
 
   }
   ngOnInit(): void {
@@ -74,6 +77,7 @@ export class BookComponent implements OnInit {
     let post=this.service.bookVehicle(veh).subscribe((data : any) =>{(this.msg=data)
       window.sessionStorage.setItem('customer_id',JSON.stringify(this.msg)),  console.log(data)}
       , (err) => {alert(' Select date')},)
+
 
   }
 }

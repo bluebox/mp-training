@@ -1,34 +1,37 @@
-<!-- <div *ngIf="response">
-  <li *ngFor="let vehicle of response">{{vehicle.image}}</li><br>
-</div> -->
-<app-navbar></app-navbar>
+<div class="top">
+  <app-navbar></app-navbar>
+  <div class="select">
+    Sort :
+    <select  name="sort" id="" (change)="sort($event)">
+      Sort
+      <option value="">All</option>
+      <option value="Car">Car</option>
+      <option value="Bike">Bike</option>
+    </select>
+  </div>
+</div>
 
-<!-- <div class="main">
-  <div class="selection">
-  <button (click)="showVehicles('Car')">Bikes</button>
-  <button (click)="showVehicles('Bike')">Cars</button>
-  <button (click)="">All Vehicles</button>
-</div> -->
+<div class="main">
 
-<div class="album py-5 bg-light main">
-  <div class="container" *ngFor="let vehicle of response">
-    <div class="col-md-4">
-      <img src="{{ vehicle.image  }}" width="250" height="200" alt="ldasjvb" />
-    </div>
-    <h4>{{ vehicle.brand }}</h4>
-    <p class="card-text">
-      {{ vehicle.model }}
-    </p>
-    <p>Rs {{ vehicle.price_day }} per Day</p>
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="btn-group">
-        <button
-          type="button"
-          (click)="bookVehicle(vehicle)"
-          class="btn btn-sm btn-outline-secondary">
-          Book
-        </button>
+    <div class="container" *ngFor="let vehicle of response">
+      <div class="col-md-4">
+        <img src="{{ vehicle.image }}" width="250" height="200" alt="ldasjvb" />
+      </div>
+      <h4>{{ vehicle.brand }}</h4>
+      <p class="card-text">
+        {{ vehicle.model }}
+      </p>
+      <p>Rs {{ vehicle.price_day }} per Day</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <button
+            type="button"
+            (click)="bookVehicle(vehicle)"
+            class="btn btn-sm btn-outline-secondary">
+            Book
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+
 </div>

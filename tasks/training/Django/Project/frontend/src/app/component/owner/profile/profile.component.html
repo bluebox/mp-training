@@ -1,4 +1,4 @@
-<app-o-navbar></app-o-navbar>
+<!-- <app-o-navbar></app-o-navbar>
 <div class="container">
 
   <div class="details">
@@ -16,4 +16,41 @@
     </div>
   </div>
 
+</div> -->
+<app-o-navbar></app-o-navbar>
+<div class="main">
+
+<div class="container">
+<form [formGroup]="ownerGroup" (submit)="updateOwnerProfile()">
+
+    <div class="sign"><br><br><br>
+    <b><u><h1>Profile details</h1></u></b>
+          <div class="input">
+            <!-- Customer ID:
+            <div>
+            <input id="in" type="text" name="name" placeholder="Customer ID" formControlName="customer_id">
+            </div><br> -->
+            Name :
+            <div>
+            <input id="in" type="text" name="name" placeholder="Name" formControlName="name">
+            </div><br>
+            Email :
+            <div>
+             <input id="in" type="text" name="email" placeholder="email" formControlName="email">
+            </div><br>
+            Contact Number :
+            <div>
+              <input id="in" type="text" name="contact" placeholder="contact number" formControlName="contact_no">
+            </div><br>
+            Address :
+            <div>
+              <input id="in" type="text" name="address" placeholder="address" formControlName="address">
+          </div><br>
+              <input type="submit" value="Update">
+          </div><br>
+
+
+  </div>
+  </form>
+</div>
 </div>

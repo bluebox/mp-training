@@ -1,4 +1,4 @@
-<app-o-navbar></app-o-navbar>
+<!-- <app-o-navbar></app-o-navbar>
 <div class="main">
   <form [formGroup]="vehicle" (submit)="addVehicle()">
     <div class="sign"><br><br><br>
@@ -22,9 +22,7 @@
           <div>
             Upload Vehicle image:<input id="in" type="file" (change) = "getImageUrl($event)" name="image" formControlName="image">
           </div><br>
-          <!-- <div>
-            <input id="in" type="text" name="owner_id" placeholder="Enter your ID" formControlName="owner_id">
-          </div><br> -->
+
           <div>
             <input id="in" type="text" name="price_day" placeholder="Price/day" formControlName="price_day">
           </div><br>
@@ -33,4 +31,84 @@
         <img src="{{imageUrl}}" alt="" width="200" height="200">
     </div>
   </form>
+</div> -->
+<app-o-navbar></app-o-navbar>
+<div class="main">
+<div class="card">
+    <div class="content">
+        <form [formGroup]="vehicle" class="form-container" (ngSubmit)="addVehicle()">
+            <div class="ac1">
+
+                <mat-card-header>
+                    <mat-card-title style="color:red ;"><u> Add Vehicle </u></mat-card-title>
+
+                    <small *ngIf="submit" class="text-danger msgg">Please fill all required details</small>
+                </mat-card-header>
+                <mat-card-content>
+
+                    <div class="row">
+                        <div class="ip">
+
+                            <mat-form-field class="full-width" appearance="outline">
+                               <input formControlName="vehicle_no" class="userinput" matInput placeholder="Vehicle number">
+                            </mat-form-field>
+                            <small class="text-danger msgg"
+                                *ngIf="vehicle.get('vehicle_no')?.invalid  && vehicle.get('vehicle_no')?.touched ">Vehicle number is required
+                               </small>
+                        </div>
+                        <div class="ip">
+                          <mat-form-field appearance="fill" >
+                            <mat-label>Select</mat-label>
+                            <mat-select formControlName="type">
+                              <mat-option value="Bike">Bike</mat-option>
+                              <mat-option value="Car">Car</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                            <small class="text-danger msgg"
+                                *ngIf="vehicle.get('type')?.invalid  && vehicle.get('type')?.touched ">Select type</small>
+                        </div>
+
+
+                        <div class="ip">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <input  class="userinput" formControlName="brand" matInput
+                                    placeholder="Vehicle brand">
+                            </mat-form-field>
+                            <small class="text-danger msgg"
+                                *ngIf="vehicle.get('brand')?.invalid  && vehicle.get('brand')?.touched ">Enter brand name</small>
+                        </div>
+
+                        <div class="ip">
+                          <mat-form-field class="full-width" appearance="outline">
+                              <input  class="userinput" formControlName="model" matInput
+                                  placeholder="Vehicle model">
+                          </mat-form-field>
+                          <small class="text-danger msgg"
+                              *ngIf="vehicle.get('model')?.invalid  && vehicle.get('model')?.touched ">Enter brand name</small>
+                      </div>
+
+
+                        <div class="ip">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <input formControlName="price_day" class="userinput" matInput
+                                    placeholder="Price per day ">
+                            </mat-form-field>
+                            <small class="text-danger msgg"
+                                *ngIf="vehicle.get('price_day')?.invalid  && vehicle.get('price_day')?.touched ">This
+                                field is required</small>
+                        </div>
+                        <div>
+                          Upload Vehicle image:<input id="in" type="file" (change) = "getImageUrl($event)" name="image" formControlName="image">
+                        </div><br>
+                    </div>
+                    <div>
+                      <input type="submit" value="Submit">
+                    </div>
+
+                </mat-card-content>
+            </div>
+        </form>
+    </div>
+    <img src="{{imageUrl}}" alt="" width="200" height="200">
+</div>
 </div>

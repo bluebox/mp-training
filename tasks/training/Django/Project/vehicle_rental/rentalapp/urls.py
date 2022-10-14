@@ -23,33 +23,41 @@ urlpatterns = [
 
 
     path('owner/', views.OwnerList.as_view(), name='owner'),
-    path('owner/<int:pk>/', views.OwnerDetail.as_view(), name='owner_pk'),
+    path('ownerdetails/', views.OwnerDetail.as_view(), name='owner_pk'),
     path('customer/', views.CustomerList.as_view(), name='owner'),
     path('customerdetails/', views.CustomerDetail.as_view(), name='owner_pk'),
     path('vehicle/', views.VehicleList.as_view()),
-    path('vehicle/<str:pk>/', views.VehicleDetail.as_view()),
+    path('add-vehicle/', views.AddVehicle.as_view()),
+    path('owner-vehicle/', views.VehicleDetail.as_view()),
     path('vehiclestatus/', views.VehicleStatusList.as_view()),
     path('vehiclestatus/<str:pk>/', views.VehicleStatusDetail.as_view()),
-    path('bill/', views.BillList.as_view()),
+    path('getbill/<int:id>', views.BillDetail.as_view()),
     path('bill/<int:pk>', views.BillList.as_view()),
     path('trip/', views.Rent_TripList.as_view()),
     path('trip/<int:pk>/', views.Rent_TripDetail.as_view()),
+    path('recieved-orders/', views.getOrders.as_view()),
+    path('generatebill/<int:id>', views.BillList.as_view()),
+
+    path('customer-review/<int:pk>/', views.CustomerReview.as_view()),
+    path('owner-review/<int:pk>/', views.OwnerReview.as_view()),
+
+                  # path('vehicles-owner' , views.GetVehiclesOwner.as_view()),
     # path('order-history/', views.GetOrderHistory.as_view()),
 
     # path('customer-login/', views.c_login),
-    path('owner-login', views.o_login),
+    # path('owner-login', views.o_login),
 
 
     #JWT API
     path('customer-login/', views.LoginCustomerJwt.as_view()),
-    # path('owner-login', views.LoginOwnerJwt.as_view()),
+    path('owner-login/', views.LoginOwnerJwt.as_view()),
     path('customer-logout/', views.LogoutCustomerJwt.as_view()),
-    path('owner-logout', views.LoginOwnerJwt.as_view()),
-    path('logout-customer', views.LogoutCustomerJwt.as_view()),
-    path('logout-owner', views.LogoutOwnerJwt.as_view()),
+    path('owner-logout/', views.LoginOwnerJwt.as_view()),
+    path('logout-customer/', views.LogoutCustomerJwt.as_view()),
+    path('logout-owner/', views.LogoutOwnerJwt.as_view()),
 
 
-    path('owner-vehicle', views.GetOwnerVehicles.as_view()),
+    path('owner-vehicle/<str:id>', views.GetVehiclesOwner.as_view()),
     path('delete-vehicle/<str:numid>', views.DeleteVehicle.as_view()),
     path('save-file/', views.save_file, name='SaveFile')
     # path('get-cars', views.get_cars)

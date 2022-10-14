@@ -1,0 +1,11 @@
+.for{
+  padding: 10px;
+
+  background-color: rgb(218, 245, 236);
+  display: flex;
+  justify-content: space-around;
+}
+.for:hover{
+  background-color:  rgb(209, 245, 233); ;
+}
+

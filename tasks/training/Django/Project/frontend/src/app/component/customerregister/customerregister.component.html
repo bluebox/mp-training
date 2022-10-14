@@ -1,43 +1,68 @@
 
 <app-login-navbar></app-login-navbar>
 <div class="main">
-  <form [formGroup]="customer_group" (submit)="register_customer()">
+  <form [formGroup]="customer_group" (submit)="register_customer(); submit=true">
 
   <div class="sign"><br><br><br>
           <h2>Customer Sign Up</h2>
           <div class="input">
+
+
             <div>
               <input id="in" type="text" name="name" placeholder="Name" formControlName="name">
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['name'].hasError('required')">Name required</p>
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['name'].hasError('pattern')">Name length should be greater than 4 </p>
             </div><br>
+
+
             <div>
-              <input id="in" type="text" name="email" placeholder="email" formControlName="email">
+              <input id="in" type="text" name="email" placeholder="email" formControlName="email"><br>
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['email'].hasError('required')">Email required</p>
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['email'].hasError('email')">Email is invalid</p>
             </div><br>
+
             <div>
               <input id="in" type="text" name="dl_no" placeholder="DL number" formControlName="dl_no">
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['dl_no'].hasError('required')">DL number required</p>
             </div><br>
+
             <div>
-              <input id="in" type="password" name="password1" placeholder="password" formControlName="password">
+              <input id="in" type="text" name="password1" placeholder="password" formControlName="password">
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['password'].hasError('required')">Password required</p>
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['password'].hasError('pattern')">Password required length should be more than 8 character</p>
             </div><br>
+
+
             <div>
-              <input id="in" type="password" name="password2" placeholder="confirm password" formControlName="password2">
+
+              <input id="in" type="text" name="password2" placeholder="confirm password" formControlName="password2">
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['password'].hasError('required')">Confirm Password required</p>
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['password2'].hasError('pattern')">Password required length should be more than 8 character</p>
+              <div *ngIf="error != ''">
+                <p style="color: red;">{{ error }}</p>
+              </div>
+
             </div><br>
-            <div *ngIf="error != ''">
-              <p style="color: red;">{{ error }}</p>
-            </div>
+
+
             <div>
               <input id="in" type="text" name="contact" placeholder="contact number" formControlName="contact_no">
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['contact_no'].hasError('required')">Contact number required</p>
             </div><br>
+
             <div>
-              <input id="in" type="text" name="address" placeholder="address" formControlName="address"z>
-          </div><br>
+              <input id="in" type="text" name="address" placeholder="address" formControlName="address">
+              <p style="color: white; text-align: center;" *ngIf="submit && formData['address'].hasError('required')">Addressrequired</p>
+            </div><br>
               <input type="submit" value="Submit">
-          </div><br>
-          <div class="new">
+            </div><br>
+
+            <div class="new">
             <h4>Have an Account?</h4>
-            <a routerLink="../customer"><button class="register">Log in</button></a>
+            <a routerLink="../customerlogin" ><button class="register">Log in</button></a>
           </div>
 
-  </div>
+    </div>
   </form>
 </div>
 

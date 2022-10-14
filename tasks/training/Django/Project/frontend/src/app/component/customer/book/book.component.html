@@ -21,16 +21,16 @@
     </div>
     <section>
       <p >
-        <i><b>Owner:</b></i> {{ response?.name }} <br>
+        <i><b>Owner:</b></i> {{ responseData.name }} <br>
 
       </p>
       <p>
-        <i><b>Address:</b></i> {{ response?.address }} <br><br>
+        <i><b>Address:</b></i> {{ responseData.address }} <br><br>
         <i><b>Contact:</b></i>
-        {{ response?.contact_no }}
+        {{ responseData.contact_no }}
       </p>
     </section>
-
+    <div class="info">
     <form [formGroup]="vehicle" (submit)="dateCheck()">
       <b>Select From Date:</b><br /><input
         formControlName="pickup_date"
@@ -48,8 +48,14 @@
         Book
       </button>
     </form>
-    <div *ngIf="msg">
+
+    <div *ngIf="msg.message">
       <h3 style="color: red ;">{{msg.message}}</h3>
+      <b><h3 *ngIf="msg.days" style="color: blue;">Number of days  : {{msg.days}}</h3></b>
+
+      <b><h3 *ngIf="msg.amount" style="color: blue;">Booking ammount : {{msg.amount}}</h3></b>
+    </div>
+    
     </div>
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group"></div>

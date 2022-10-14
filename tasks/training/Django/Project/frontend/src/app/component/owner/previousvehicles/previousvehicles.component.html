@@ -1,5 +1,5 @@
 <app-o-navbar></app-o-navbar>
-<div class="album py-5 bg-light main">
+<div class="main">
   <div class="container" *ngFor="let vehicle of resp">
     <div class="col-md-4">
       <img src="{{vehicle.image}}" width="250" height="200" alt="ldasjvb">
@@ -9,11 +9,11 @@
       {{vehicle.model}}
     </p>
     <p>
-      starting from Rs {{vehicle.price_km}} /km
+       Rs {{vehicle.price_day}} / day
     </p>
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
-        
+
         <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteVehicle(vehicle.vehicle_no)">Delete</button>
       </div>
     </div>

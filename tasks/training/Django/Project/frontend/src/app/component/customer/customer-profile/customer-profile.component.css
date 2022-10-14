@@ -26,3 +26,12 @@ button:hover{
 
   background-color: rgb(130, 184, 130) ;
 }
+.main{
+  background-color: rgb(204, 252, 236);
+  width: 100vw;
+  height: 94vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

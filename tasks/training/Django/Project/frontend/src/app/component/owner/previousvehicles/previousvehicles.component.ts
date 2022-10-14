@@ -16,7 +16,7 @@ export class PreviousvehiclesComponent implements OnInit {
   getOwner : any = window.sessionStorage.getItem('owner_id')
   owner = JSON.parse(this.getOwner)
     constructor(private service :GeneralService) {
-      console.log(this.owner.owner)
+   
      }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class PreviousvehiclesComponent implements OnInit {
   }
 
   getOwnerVehicle(){
-    this.service.getOwnerVehicle(this.owner.owner_id).subscribe(data => {(this.resp=data)
+    this.service.getOwnerVehicle().subscribe(data => {(this.resp=data)
       window.sessionStorage.setItem('vehicle_no', JSON.stringify(data))} , (err) => alert('failed to load data'))
   }
   getVehicleNumber(){

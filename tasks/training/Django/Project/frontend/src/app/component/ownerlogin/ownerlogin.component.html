@@ -3,11 +3,18 @@
   <div class="sign">
     <form [formGroup]="login"><br><br><br>
       <h2>Owner Sign In</h2>
+
       <div class="input">
         <input id="in" type="text" name="email" placeholder="email" formControlName="email">
                 <br><br>
-        <input id="in" type="text" name="password" placeholder="password" formControlName="password"> <br><br><br>
-        <button type="submit" class="btn" (click)="ownerLogin()">Login</button>
+        <p *ngIf=" formData['email'].hasError('required') && submit && formData['email'].touched ">Email required</p>
+        <p *ngIf=" formData['email'].hasError('email') && submit ">Invalid email</p>
+
+        <input id="in" type="text" name="password" placeholder="password" formControlName="password">
+        <p *ngIf=" formData['password'].hasError('required') && submit ">Password required</p>
+         <br><br><br>
+
+        <button type="submit" class="btn" (click)="ownerLogin(); submit=true">Login</button>
 
         <div class="check">
           <div class="new">
@@ -20,6 +27,8 @@
           </div>
         </div>
       </div>
+
+
     </form>
   </div>
 </div>

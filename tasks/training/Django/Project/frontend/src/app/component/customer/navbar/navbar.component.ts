@@ -14,13 +14,13 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLOgOut(){
+  onLogOut(){
   this.service.logOutCustomer().subscribe({
     next: (data) => {
       console.log(data);
+      window.sessionStorage.removeItem('token')
     }
   })
   this.router.navigate([''])
 }
-
 }

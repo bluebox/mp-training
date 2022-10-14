@@ -1,33 +1,62 @@
 <app-login-navbar></app-login-navbar>
 <div class="main">
-  <form [formGroup]="owner_group" (submit)="register_owner()">
+  <form [formGroup]="owner_group" (submit)="register_owner(); submit=true">
 
   <div class="sign"><br><br><br>
           <h2>Owner Sign Up</h2>
           <div class="input">
             <div>
               <input id="in" type="text" name="name" placeholder="Name" formControlName="name">
+              <p *ngIf="submit && formData['name'].hasError('required')">Name required</p>
+              <p *ngIf="submit && formData['name'].hasError('pattern')">Name length should be greater than 4 </p>
             </div><br>
+
+
             <div>
               <input id="in" type="text" name="email" placeholder="email" formControlName="email">
+              <p *ngIf="submit && formData['email'].hasError('required')">Email required</p>
+              <p *ngIf="submit && formData['email'].hasError('email')">Invalid email</p>
+
             </div><br>
+
+
             <div>
               <input id="in" type="password" name="password1" placeholder="password" formControlName="password">
+
+              <p *ngIf="submit && formData['password'].hasError('required')">Password required</p>
+              <p *ngIf="submit && formData['password'].hasError('pattern')">Password length should be more than 8 character</p>
             </div><br>
+
+
             <div>
               <input id="in" type="password" name="password2" placeholder="confirm password" formControlName="password2">
+
+              <p *ngIf="submit && formData['password2'].hasError('required')">Confirm Password required</p>
+              <p *ngIf="submit && formData['password2'].hasError('pattern')">Password length should be more than 8 character</p>
             </div><br>
+
             <div *ngIf="error != ''">
               <p style="color: red;">{{ error }}</p>
             </div>
+
+
+
             <div>
               <input id="in" type="text" name="contact" placeholder="contact number" formControlName="contact_no">
+
+              <p *ngIf="submit && formData['contact_no'].hasError('required')">Contact number required</p>
             </div><br>
+
             <div>
               <input id="in" type="text" name="address" placeholder="address" formControlName="address"z>
+              <p *ngIf="submit && formData['address'].hasError('required')">Address required</p>
+              <p *ngIf="submit && formData['address'].hasError('pattern')">required atleast 10 character</p>
+
           </div><br>
+
               <input type="submit" value="Submit">
           </div><br>
+
           <div class="new">
             <h4>Have an Account?</h4>
             <a routerLink="../ownerlogin"><button class="register">Log in</button></a>

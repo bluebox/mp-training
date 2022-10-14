@@ -31,9 +31,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginNavbarComponent } from './component/login-navbar/login-navbar.component';
+import { OrdersComponent } from './component/owner/orders/orders.component';
+import { ViewBillComponent } from './component/customer/view-bill/view-bill.component';
+import { ReviewComponent } from './component/customer/review/review.component';
 
-
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ViewProfileComponent } from './component/owner/view-profile/view-profile.component';
+import { ViewCustomerProfileComponent } from './component/customer/view-customer-profile/view-customer-profile.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -55,6 +61,11 @@ import { LoginNavbarComponent } from './component/login-navbar/login-navbar.comp
     ONavbarComponent,
     BookComponent,
     LoginNavbarComponent,
+    OrdersComponent,
+    ViewBillComponent,
+    ReviewComponent,
+    ViewProfileComponent,
+    ViewCustomerProfileComponent,
 
   ],
   imports: [
@@ -67,7 +78,10 @@ import { LoginNavbarComponent } from './component/login-navbar/login-navbar.comp
     MatButtonModule,
     MatDatepickerModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule,
+    MatSelectModule,
+    NgbModule,
   ],
   providers: [GeneralService],
   bootstrap: [AppComponent]

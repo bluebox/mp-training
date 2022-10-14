@@ -20,9 +20,18 @@ button{
   background-color: green;
   color: white;
   font-size: small;
-  width :70px
+  width :70px;
 }
 button:hover{
 
-  background-color: ;
+  background-color: rgb(130, 184, 130) ;
+}
+.main{
+  background-color: rgb(204, 252, 236);
+  width: 100vw;
+  height: 94vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }

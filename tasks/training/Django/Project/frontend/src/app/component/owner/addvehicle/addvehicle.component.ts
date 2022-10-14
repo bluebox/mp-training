@@ -17,7 +17,8 @@ export class AddvehicleComponent implements OnInit {
   constructor(private service: GeneralService,private http: HttpClient, private route : Router) { }
   data_1 : any = window.sessionStorage.getItem('owner_id')
   data = JSON.parse(this.data_1);
-  own_id:any;
+  veh:any;
+  submit !: boolean
 
   ngOnInit(): void {
     this.vehicle = new FormGroup({
@@ -25,7 +26,6 @@ export class AddvehicleComponent implements OnInit {
       type: new FormControl('', Validators.required),
       brand: new FormControl('', Validators.required ),
       model: new FormControl('', Validators.required),
-      owner_id: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
       price_day: new FormControl('', Validators.required),
     })
@@ -34,15 +34,15 @@ export class AddvehicleComponent implements OnInit {
   {
     let data = this.vehicle.value
     data.image = this.imageUrl
-    this.own_id=this.vehicle.value
-    this.own_id['owner_id'] =this.data.owner_id
-    console.log(this.own_id)
+    this.veh=this.vehicle.value
+    console.log(this.veh)
 
-    // owner_id: this.data.owner_id,
-    this.service.addVehicle(this.own_id).subscribe(data=> {(console.log(data)), alert("Added successfully"), window.location.reload()}, (err)=> alert("Enter valid details"))
+    this.service.addVehicle(this.veh).subscribe(data=> {(console.log(data)), alert("Added successfully"), window.location.reload()}, (err)=> alert("Enter valid details"))
 
   }
-
+get formData(){
+  return this.vehicle.controls
+}
   getImageUrl(e:any) {
     console.log(e)
     let formdata = new FormData()
