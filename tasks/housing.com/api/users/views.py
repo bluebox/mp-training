@@ -62,12 +62,15 @@ class malik(APIView):
 class Edit_Profile(APIView):
     def put(self,request):
         user=User.objects.get(id=request.data.get('id'))
-        user.u_name=request.data.get('u_name')
-        user.f_name=request.data.get('f_name')
-        user.l_name=request.data.get('l_name')
+        if request.data.get('u_name'):
+            user.u_name=request.data.get('u_name')
+        if request.data.get('f_name'):  
+            user.f_name=request.data.get('f_name')
+        if request.data.get('l_name'):
+            user.l_name=request.data.get('l_name')
+        if request.data.get('profile'):
+            user.profile=request.data.get('profile')
         user.save()
-        # if request.data.get('profile'):
-        #     user.profile=request.profile.get('profile')
         return Response({'msg':'success'})
 
 

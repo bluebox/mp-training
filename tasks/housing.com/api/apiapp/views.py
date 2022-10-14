@@ -222,3 +222,45 @@ class delete_users_product(APIView):
             'message': 'success'
         }
         return response
+    
+class bookappointment(APIView):
+    def post(self,request):
+        temp=Appointment()
+        temp.date=request.data.get('date')
+        temp.about=request.data.get('about')
+        use=User.objects.get(id=request.data.get('malik_id'))
+        temp.malik_id=use
+        use=User.objects.get(id=request.data.get('customer'))
+        temp.customer=use
+        temp.save()
+        return Response({"msg":"success"})
+
+class my_appointments(APIView):
+    def get(self,request,id):
+        forme=Appointment.objects.filter(malik_id=id).values()
+        tome=Appointment.objects.filter(customer=id).values()
+        li=list(forme)
+        lis2=list(tome)
+        lis=[]
+        lis.append(li)
+        lis.append(lis2)
+        return JsonResponse(lis,safe=False)
+class Accept(APIView):
+    def get(self,request,id):
+        temp=Appointment.objects.get(id=id)
+        temp.accepted=True
+        temp.status=True
+        temp.save()
+        return Response({'msg':'success'})
+
+class Reject(APIView):
+    def get(self,request,id):
+        temp=Appointment.objects.get(id=id)
+        temp.status=True
+        temp.save()
+        return Response({'msg':'success'})
+class Withdraw(APIView):
+    def delete(self,request,id):
+        temp=Appointment.objects.get(id=id)
+        temp.delete()
+        return Response({'msg':'success'})

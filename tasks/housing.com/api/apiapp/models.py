@@ -27,12 +27,31 @@ class Properties(models.Model):
     malik = models.ForeignKey(User,on_delete=models.CASCADE)
     type = models.ManyToManyField(TypeTable)
 
-# class Appointment(models.Model):
-#     date = models.DateField()
-#     time = models.TimeField()
-    
-#     customer = models.ForeignKey(User,on_delete=models.CASCADE)
-#     propert = models.ForeignKey(Properties, on_delete=models.CASCADE)
+
+
+
+
+
+
+
+
+class Appointment(models.Model):
+    date = models.DateField()    
+    about = models.TextField(null=True)
+    customer = models.ForeignKey(User,on_delete=models.CASCADE,related_name='customer')
+    malik_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    accepted = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
+
+
+
+
+
+
+
+
+
+
 
 
 class Liked(models.Model):
@@ -63,3 +82,11 @@ class Review(models.Model):
     property = models.ForeignKey(Properties, on_delete=models.CASCADE)
     customer = models.ForeignKey(User,on_delete=models.CASCADE)
     date = models.DateField(null=True)
+
+class Prop_Images(models.Model):
+    property_id = models.ForeignKey(Properties, on_delete=models.CASCADE , default=1000)
+    img1 = models.TextField(null=True)
+    img1 = models.TextField(null=True)
+    img1 = models.TextField(null=True)
+    img1 = models.TextField(null=True)
+    img1 = models.TextField(null=True)
