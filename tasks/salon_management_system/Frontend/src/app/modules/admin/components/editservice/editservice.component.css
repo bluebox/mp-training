@@ -1,0 +1,12 @@
+.example-full-width {
+    width: 100%;
+}
+.card1{
+    width :30%;
+    padding-left: 33%;
+    padding-top: 5%;
+}
+.error-message{
+    font-size: 15px;
+    color: red;
+}

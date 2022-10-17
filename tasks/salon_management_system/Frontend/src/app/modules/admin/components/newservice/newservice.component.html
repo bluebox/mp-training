@@ -4,8 +4,8 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>Add a new Branch</mat-card-title>
-            {{errorMessage}}
             <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title>
+            <mat-card-title  class="error-message"><p>{{errorMessage}}</p></mat-card-title>
         </mat-card-header>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Service ID</mat-label>

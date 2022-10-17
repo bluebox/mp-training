@@ -7,6 +7,7 @@ import { BranchComponent } from './components/branch/branch.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EditbranchComponent } from './components/editbranch/editbranch.component';
+import { EditserviceComponent } from './components/editservice/editservice.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
     {path : 'registeremployee',component : RegisteremployeeComponent},
     {path : 'newbranch',component : NewbranchComponent},
     {path : 'newservice',component : NewserviceComponent},
-    {path:'updatebranch/:id',component : EditbranchComponent}
+    {path:'updatebranch/:id',component : EditbranchComponent},
+    {path : 'updateservice/:id',component : EditserviceComponent}
 
 ]}
   

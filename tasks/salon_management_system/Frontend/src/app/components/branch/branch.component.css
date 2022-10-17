@@ -80,4 +80,14 @@ table {
 }
 .column-value{
     text-align: center;
+
   }
+.search-bar{
+    display: flex;
+    justify-content: center;
+
+}
+.button-cached{
+    background-color: white;
+    border: none;
+}

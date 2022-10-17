@@ -11,7 +11,7 @@ export class HttpserviceService {
 
   constructor(private http : HttpClient) {  }
 
-  url = "http://127.0.0.1:8000/getbranch"
+  
   getUser(){
     return this.http.get('http://127.0.0.1:8000/user/')
   }
@@ -34,6 +34,11 @@ export class HttpserviceService {
   deleteBranches(data : any){
     return this.http.post('http://127.0.0.1:8000/delete/',data)
   }
+  getSearchBranches(text:any){
+    return this.http.get('http://127.0.0.1:8000/searchbranch?search='+text)
+  }
+
+
 
   getServices(){
     return this.http.get(' http://127.0.0.1:8000/services')
@@ -41,9 +46,20 @@ export class HttpserviceService {
   addService(data : any){
     return this.http.post<any>('http://127.0.0.1:8000/services/',data)
   }
+  getCurrentService(id:any){
+    return this.http.get(`http://127.0.0.1:8000/getservice/${id}`)
+  }
+  updateServices(id:any,data:any){
+    return this.http.post(`http://127.0.0.1:8000/updateservice/${id}`,data)
+  }
   deleteServices(data:any){
     return this.http.post('http://127.0.0.1:8000/deleteservice/',data)
   }
+  getSearchServices(text:any){
+    return this.http.get('http://127.0.0.1:8000/searchservice?search='+text)
+  }
+
+
   
  
   clientRegister(data : any){
@@ -69,5 +85,11 @@ export class HttpserviceService {
   getappointments(){
     return this.http.get('http://127.0.0.1:8000/appointments/')
   }
-
-}
+  getSearchEmployees(text:any){
+    return this.http.get('http://127.0.0.1:8000/serachemp?search='+text)
+  }
+ 
+  // getBranchFilter(text:any){
+  //   return this.http.get<any>('http://127.0.0.1:8000/search?s='+text)
+  // }
+} 

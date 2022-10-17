@@ -27,15 +27,20 @@ export class NewbranchComponent implements OnInit {
   addBranch(){
     console.log(this.newBranchForm.value)
     if(this.newBranchForm.valid){
-    this.http.addBranch(this.newBranchForm.value).subscribe(data => {console.log(data);
+      this.http.addBranch(this.newBranchForm.value).subscribe(data => {console.log(data);
+        this.errorMessage = data.msg;
       // console.log(this.errorMessage)
-      if(this.errorMessage == "successful"){
-      alert("branch added successfully");
-      this.router.navigate(['admin/branch']);}
-      else{
-        this.errorMessage=data.msg
-      }
-    })}
+        if(this.errorMessage == "successful"){
+          console.log("ss")
+          alert("branch added successfully");
+          this.router.navigate(['admin/branch']);
+        }
+        else{
+          this.errorMessage=data.msg
+        }
+        }
+      )
+    }
     else{
       this.formNotValid=true
     }

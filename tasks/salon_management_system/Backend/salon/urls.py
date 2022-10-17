@@ -22,5 +22,13 @@ urlpatterns = [
     path('delete/',views.deleteBranch.as_view()),
     path('deleteservice/',views.deleteService.as_view()),
     path('updatebranch/<int:pk>',views.UpdateBranch.as_view()),
-    path('getbranch/<int:id>',views.OneBranch.as_view())
+    path('getbranch/<int:id>',views.OneBranch.as_view()),
+    path('searchclients',views.SearchClients.as_view()),
+    path('serachemp',views.SearchEmployee.as_view()),
+    path('searchbranch',views.SearchBranches.as_view()),
+    path('search',views.branchFilter),
+    path('getservice/<int:id>',views.OneService.as_view()),
+    path('updateservice/<int:pk>',views.UpdateService.as_view()),
+    path('searchservice',views.SearchService.as_view()),
+    path('updateappointment/<int:pk>',views.UpdateAppointment.as_view())
 ]

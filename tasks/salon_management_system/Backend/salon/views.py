@@ -4,15 +4,20 @@
 import stat
 from rest_framework.views import APIView
 
-# from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view
 
 from rest_framework.parsers import JSONParser
 
 from rest_framework.response import Response
 
+from rest_framework import generics
+from rest_framework.generics import ListAPIView
+from django_filters.rest_framework import DjangoFilterBackend
 from django.http import JsonResponse
 
 from rest_framework import status
+
+from rest_framework import filters
 
 from django.contrib import messages 
 
@@ -50,12 +55,40 @@ class BranchList(APIView):
         serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data)
 
+
+@api_view(["GET","POST"])
+def branchFilter(request):
+    text = request.GET.get('s')
+    data = Branch.objects.filter(branch_name__icontains=text)
+    serializer = BranchSerializer(data,many=True)
+    return Response(serializer.data)
+
+class SearchBranches(generics.ListAPIView):
+    queryset = Branch.objects.all()
+    serializer_class = BranchSerializer
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['user_id', 'id']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['branch_id','branch_name','location']
+
+class SearchService(generics.ListAPIView):
+    queryset = ServicesProvided.objects.all()
+    serializer_class = ServicesSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['service_id','service_name','Amount_to_be_paid']
+
+   
 class OneBranch(APIView):
     def get(self,request,id):
         branch = Branch.objects.get(branch_id=id)
         serializer = BranchSerializer(branch,many=False)
         return Response(serializer.data)
-
+class OneService(APIView):
+    def get(self,request,id):
+        service = ServicesProvided.objects.get(service_id=id)
+        serilaizer = ServicesSerializer(service,many=False)
+        return Response(serilaizer.data)
+    
 class NewBranch(APIView):
     """View to post the data into the database"""
     def post(self, request):
@@ -73,6 +106,26 @@ class NewBranch(APIView):
             print(error_list)
             return Response({'msg':error_list},status=200)
 
+class ServicesList(APIView):
+    """This view is used to get and post the ServicesProvided details"""
+    def get(self, request):
+        """this function is to display the services list of the servicesprovided table"""
+        services = ServicesProvided.objects.all()
+        serializer = ServicesSerializer(services, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        """this function is for posting new services data in to the services provided table"""
+        serializer = ServicesSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'data' :serializer.data, 'msg':'successful'},status=200)
+        else:
+            print('invalid')
+            error_list = [serializer.errors[error][0] for error in serializer.errors]
+            return Response({'msg':error_list},status=200)
+
 class UpdateBranch(APIView):
     def post(self,request,pk):
         branch = Branch.objects.get(branch_id=pk)
@@ -83,6 +136,15 @@ class UpdateBranch(APIView):
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+class UpdateService(APIView):
+    def post(self,request,pk):
+        service = ServicesProvided.objects.get(service_id=pk)
+        serializer = ServicesSerializer(instance=service,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class deleteBranch(APIView):
     def post(self,request):
@@ -110,24 +172,7 @@ class NewAppointment(APIView):
             print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ServicesList(APIView):
-    """This view is used to get and post the ServicesProvided details"""
-    def get(self, request):
-        """this function is to display the services list of the servicesprovided table"""
-        services = ServicesProvided.objects.all()
-        serializer = ServicesSerializer(services, many=True)
-        return Response(serializer.data)
 
-    def post(self, request):
-        """this function is for posting new services data in to the services provided table"""
-        serializer = ServicesSerializer(data=request.data)
-        print(serializer)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            print('invalid')
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class AppointmentList(APIView):
@@ -146,6 +191,18 @@ class AppointmentList(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UpdateAppointment(APIView):
+    def post(self,request,pk):
+        appointment = Appointment.objects.get(Appointment_id=pk)
+        serializer = AppointmentSerializer(instance=appointment,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            print(serializer.errors)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
 
 
 class EmployeeList(APIView):
@@ -166,16 +223,33 @@ class ListOfEmployees(APIView):
         "employee__emp_contact_number", "employee__branch_id")
         return Response(employees)
 
+class SearchEmployee(generics.ListAPIView):
+    queryset = User.objects.filter(is_staff='True', is_superuser="False").values('id',
+        'username', "first_name", "last_name","email","employee__emp_id", "employee__role",
+        "employee__emp_contact_number", "employee__branch_id")
+    serializer_class = Userserializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username']
+
 
 class ClientList(APIView):
     """view to get the data from the database"""
     def get(self, request):
         """this function for displaying the ClientList"""
         clients = Client.objects.all()
-        serializer = ClientSerializer(clients, many=True)
+        serializer = ClientSerializer(clients,many=True)
+        # filter_backends = [filters.SearchFilter]
+        # search_fields = ['Client_contact_number']
 
         return Response(serializer.data)
 
+class SearchClients(generics.ListAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user_id', 'id']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['Client_contact_number','id']
 
 class ListOfClients(APIView):
     """view to get the data from the database"""

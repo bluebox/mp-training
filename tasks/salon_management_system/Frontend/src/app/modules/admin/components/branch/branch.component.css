@@ -40,3 +40,12 @@ table {
 .column-value{
   text-align: center;
 }
+.search-bar{
+  background-color: white;
+}
+.search-bar{
+  display: flex;
+  justify-content: center;
+  padding-top: 2%;
+
+}

@@ -34,6 +34,7 @@ CORS_ORIGIN_ALLOW_ALL=True
 INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
+    'django_filters',
     'salon',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -130,6 +131,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'salon.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 
 

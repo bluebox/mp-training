@@ -35,6 +35,12 @@
             <small class="text-danger" *ngIf="ClientRegistrationForm.get('Password')?.invalid  && ClientRegistrationForm.get('Password')?.touched " >Password is required</small>
         </mat-form-field>
         <!-- <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Password again</mat-label>
+            <input matInput placeholder="Password" [type]="view ? 'password' : 'text'"  formControlName="confirmpassword"  (change)="onChange($event)">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <small class="text-danger" *ngIf="ClientRegistrationForm.get('Password')?.invalid  && ClientRegistrationForm.get('Password')?.touched " >Password is required</small>
+        </mat-form-field> -->
+        <!-- <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Confirm Password</mat-label>
             <input matInput placeholder="confirmpassword" [type]="hide ? 'password' : 'text'" formControlName="confirmpassword" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

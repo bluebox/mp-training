@@ -25,7 +25,15 @@ export class NewserviceComponent implements OnInit {
   addService():void{
     console.log(this.newServiceForm.value)
     if(this.newServiceForm.valid){
-    this.http.addService(this.newServiceForm.value).subscribe(data => {console.log(data);alert("branch added successfully");this.router.navigate(['admin/services']);}
+    this.http.addService(this.newServiceForm.value).subscribe(data => {console.log(data);
+      this.errorMessage = data.msg
+      if(this.errorMessage == "successful"){
+      alert("branch added successfully");
+      this.router.navigate(['admin/services']);}
+      else{
+        this.errorMessage=data.msg;
+      }
+    }
    )
     }
     else{

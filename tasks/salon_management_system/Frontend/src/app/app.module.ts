@@ -22,6 +22,7 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import {MatButtonModule} from '@angular/material/button';
     NotFoundComponent,
     RegisterComponent,
     BranchComponent,
-    ServicesComponent
+    ServicesComponent,
   ],
   imports: [
     BrowserModule,

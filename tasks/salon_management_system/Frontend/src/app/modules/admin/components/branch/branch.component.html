@@ -1,6 +1,17 @@
 <div class="body">
 <div class="add"><button mat-raised-button routerLink = "../newbranch">Add a new Branch</button></div>
-<table mat-table [dataSource]="branches" class="mat-elevation-z8">
+
+
+<div class="search-bar">
+  <form action="">
+    <mat-form-field floatLabel="never" appearance="outline" >
+      <input matInput placeholder="Search" #text (keydown)="onSearchText(text.value,$event)" >
+    </mat-form-field>
+    <button class="button-cached" (click)="refresh()"><mat-icon>cached</mat-icon></button>
+  </form>
+  </div>
+<p  *ngIf="msg" style="color:white;font-size : 20px;text-align:center;padding-top:10%;padding-bottom: 80%;">No results found!</p>
+<table *ngIf="!msg" mat-table [dataSource]="branches" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

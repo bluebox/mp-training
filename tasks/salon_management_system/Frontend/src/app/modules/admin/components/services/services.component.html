@@ -1,6 +1,17 @@
 <div class="body"> 
 <div class="add"><button mat-raised-button routerLink = "../newservice">Add a new service</button></div>
-<table mat-table [dataSource]="services" class="mat-elevation-z8">
+
+<div class="search-bar">
+  <form action="">
+    <mat-form-field floatLabel="never" appearance="outline" >
+      <input matInput placeholder="Search" #text (keypress)="onSearchText(text.value,$event)" >
+    </mat-form-field>
+    <button class="button-cached" (click)="refresh()"><mat-icon>cached</mat-icon></button>
+  </form>
+  </div>
+<p  *ngIf="msg" style="color:white;font-size : 20px;text-align:center;padding-top:10%;padding-bottom: 80%;">No results found!</p>
+
+<table  *ngIf="!msg" mat-table [dataSource]="services" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -29,7 +40,7 @@
     <ng-container matColumnDef="update">
       <th mat-header-cell *matHeaderCellDef class = "icon-name"mat-sort-header>Update</th>
       <td mat-cell *matCellDef="let services" class="column-value">
-        <button mat-icon-button>
+        <button mat-icon-button routerLink="../updateservice/{{services.service_id}}">
           <mat-icon>edit</mat-icon>
         </button>
       </td>

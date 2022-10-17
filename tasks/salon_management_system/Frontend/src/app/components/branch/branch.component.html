@@ -13,6 +13,20 @@
     </mat-toolbar-row>
   
 </mat-toolbar>
+
+<div class="search-bar"  >
+<form action="">
+  <mat-icon>search</mat-icon>
+  <mat-form-field floatLabel="never" appearance="outline" class="search-field">
+    <input matInput placeholder="Search" #text (keypress)="onSearchText(text.value,$event)" >
+  </mat-form-field>
+  <button class="button-cached" (click)="refresh()"><mat-icon>cached</mat-icon></button>
+</form>
+</div>
+
+<p  *ngIf="msg" style="color: black;font-size : 20px;text-align:center;padding-top:10%">No results found!</p>
+
+<div  *ngIf="!msg" >
 <table mat-table [dataSource]="branches" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -42,4 +56,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
 

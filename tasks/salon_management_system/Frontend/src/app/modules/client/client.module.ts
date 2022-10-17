@@ -23,6 +23,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -54,7 +55,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class ClientModule { }

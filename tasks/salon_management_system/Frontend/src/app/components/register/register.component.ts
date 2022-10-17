@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   formError ?: string =""
   errorMessage : string = ""
   hide = true;
+  passwordmatch: boolean = true;
+  text :any;
   
 
   constructor(private http :HttpserviceService ,private router: Router) { }
@@ -24,9 +26,20 @@ export class RegisterComponent implements OnInit {
     last_name: new FormControl("",Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl("", [Validators.minLength(8),Validators.required]),
+    confirmpassword: new FormControl("", [Validators.minLength(8),Validators.required]),
     Client_contact_number: new FormControl("", [Validators.maxLength(10), Validators.required]),
 
   })
+
+  // onChange(event:any) {
+  //   this.text = event.target.value;
+  //   this.passwordmatch=false;
+    
+  //   if (this.ClientRegistrationForm.get('password').value  == this.ClientRegistrationForm.get('confirmpassword').value) {
+  //     this.passwordmatch=true;
+  //   } 
+  // }
+
 
   ngOnInit(): void {
   }
@@ -64,6 +77,10 @@ export class RegisterComponent implements OnInit {
       event.preventDefault();
     }
   }
+
+
+
+  
 }
 
 

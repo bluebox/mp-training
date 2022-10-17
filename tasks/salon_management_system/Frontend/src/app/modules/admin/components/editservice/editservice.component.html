@@ -1,1 +1,39 @@
 
+
+<form [formGroup] = "editServiceForm">
+    <div class="card1">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Add a new Branch</mat-card-title>
+            <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title>
+            <mat-card-title  class="error-message"><p>{{errorMessage}}</p></mat-card-title>
+        </mat-card-header>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Service ID</mat-label>
+            <input formControlName="service_id" matInput placeholder="Enter new service id" />
+            <small class="text-danger" *ngIf="editServiceForm.get('branch_id')?.invalid  && editServiceForm.get('branch_id')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>service Name</mat-label>
+            <input formControlName="service_name" matInput placeholder="Enter new service Name" />
+            <small class="text-danger" *ngIf="editServiceForm.get('branch_name')?.invalid  && editServiceForm.get('branch_name')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Cost</mat-label>
+            <input formControlName="Amount_to_be_paid" matInput placeholder="Enter amount to be paid" />
+            <small class="text-danger" *ngIf="editServiceForm.get('location')?.invalid  && editServiceForm.get('location')?.touched " >required</small>
+        </mat-form-field>
+        <mat-card-actions>
+            <button (click)="cancel()" mat-raised-button="" color="primary">
+                cancel
+            </button>
+        </mat-card-actions>
+        <mat-card-actions>
+            <button (click) = "updateService()" mat-raised-button="" color="primary">
+            upadte
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+    </div>
+</form>
