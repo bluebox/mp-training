@@ -431,7 +431,7 @@ class UserLoginView(RetrieveAPIView):
             'status code': status.HTTP_200_OK,
             'message': 'User logged in  successfully',
             'token': serializer.data['token'],
-            'user':serializer.data['email']
+            'user':serializer.data['email'],
         }
         response.set_cookie(key='jwt',value=serializer.data['token'],httponly=True)
 
@@ -439,3 +439,7 @@ class UserLoginView(RetrieveAPIView):
 
 
 
+class UserView(APIView):
+    def get(self,request):
+        token=request.COOKIES.get('jwt')
+        return Response(token)

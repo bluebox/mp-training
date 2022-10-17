@@ -159,6 +159,7 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 'wrong password'
             )
+
         try:
             payload = JWT_PAYLOAD_HANDLER(user)
             jwt_token = JWT_ENCODE_HANDLER(payload)

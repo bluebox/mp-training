@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from home.views import Index, CustomerData, FoodData, FoodOneData, RestaurantData, EmployeeData, \
     SearchData, AddMenu, AddFoodtoMenu, FoodOneRes, OneResFoods, CustomerLogin, Cart, CartEdit, UserProfileView, \
-    RestaurantRegistrationView, EmployeeRegistrationView, CustomerRegistrationView, UserLoginView
+    RestaurantRegistrationView, EmployeeRegistrationView, CustomerRegistrationView, UserLoginView, UserView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -35,4 +35,6 @@ path('restaurant/signin/',RestaurantRegistrationView.as_view(),name='signup_pait
 	path('customer/signin/',CustomerRegistrationView.as_view(),name='signup_doctor'),
     path('emp/signin/', EmployeeRegistrationView.as_view(), name='signup_doctor'),
 	path('login/',UserLoginView.as_view()),
+
+path('user/',UserView.as_view()),
 ]
