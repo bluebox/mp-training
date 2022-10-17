@@ -48,7 +48,7 @@ class UserManager(BaseUserManager):
         if password is None:
             raise TypeError('emp must have a password')
         user = self.create_user(email, password)
-        user.is_restaurant = True
+        user.is_emp = True
         user.save()
         return user
 
