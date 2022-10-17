@@ -10,7 +10,7 @@ from .jwtauthentication import create_access_token, create_refresh_token
 from .managers import booking_form, slots_booked, get_slots_booked, get_equipments, get_facility_sport_id, \
     post_equipments_booked, post_invoices, search_facilities, get_sports, facilities_containing_sport, \
     check_access_token, get_user_booking, cancel_booking, give_feedback, get_user_details, edit_user_details, \
-    create_user, add_sports_facility, get_all_slots
+    create_user, add_sports_facility, get_all_slots, get_particular_booking_details
 from .models import FacilityDetail, Sport, SportsInFacility, SlotsInSportFacility, SlotsBookedForBookingId, \
     EquipmentsRentedForBookingId, User, UserToken
 from .serilizers import FacilityDetailSerializer, SportsSerializer, SlotsSerializer, CreateFacilitySerializer, \
@@ -126,6 +126,14 @@ class BookingFormView(APIView):
             msg = {'msg': 'exception occurred while saving try to book again'}
             exception_data = JSONRenderer().render(msg)
             return HttpResponse(exception_data, content_type='application/json')
+
+    def get(self, request):
+        bid = request.GET.get('bid')
+        try:
+            booking_details = get_particular_booking_details(bid)
+            return booking_details
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class GetBookedSlots(APIView):

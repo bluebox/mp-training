@@ -1,11 +1,12 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
 
 from facilities.models import BookingData, SlotsBookedForBookingId, Slot, SportsInFacility, Equipment, Sport, \
-    FacilityDetail, EquipmentsRentedForBookingId, UserToken, User
+    FacilityDetail, EquipmentsRentedForBookingId, UserToken, User, Invoice
 from facilities.serilizers import BookingFormSerializer, EquipmentSerializer, SportsInFacilitySerializer, \
     InvoiceSerializer, FacilityDetailSerializer, SportsSerializer, UserBookingsSerializer, UserSerializer, \
-    CreateUserSerializer, SlotsSerializer
+    CreateUserSerializer, SlotsSerializer, GetInvoiceSerializer
 
 
 def booking_form(request):
@@ -165,7 +166,6 @@ def edit_user_details(uid, request):
     user_obj.save()
 
 
-
 def create_user(request):
     json_data = request.data
     serializer = CreateUserSerializer(data=json_data)
@@ -204,3 +204,18 @@ def get_all_slots():
     serializer = SlotsSerializer(slots, many=True)
     json_data = JSONRenderer().render(data=serializer.data)
     return HttpResponse(json_data, content_type='application/json')
+
+
+def get_particular_booking_details(bid):
+    booking_obj = BookingData.objects.get(booking_id=bid)
+    serializer = UserBookingsSerializer(booking_obj)
+    booking = JSONRenderer().render(data=serializer.data)
+    invoice_obj = Invoice.objects.filter(booking_id=bid)
+    serializer2 = GetInvoiceSerializer(invoice_obj[0])
+    invoice = JSONRenderer().render(data=serializer2.data)
+    obj = {
+        "booking": booking,
+        "invoice": invoice
+    }
+    # json_data = JSONRenderer().render(data=obj)
+    return Response(obj)

@@ -103,7 +103,6 @@ class SlotsBookedForBookingId(models.Model):
 
 class EquipmentsRentedForBookingId(models.Model):
     booking_id = models.ForeignKey(BookingData, on_delete=models.CASCADE)
-
     equip_id = models.ForeignKey(Equipment, models.DO_NOTHING)
     quantity = models.IntegerField()
 

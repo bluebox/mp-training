@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import FacilityDetail, SportsInFacility, Sport, SlotsInSportFacility, Slot, User, BookingData, \
-    Equipment, Invoice
+    Equipment, Invoice, EquipmentsRentedForBookingId
 
 
 class FacilityDetailSerializer(serializers.ModelSerializer):
@@ -84,10 +84,24 @@ class EquipmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class EquipmentBookedSerializer(serializers.ModelSerializer):
+    equip_id = EquipmentSerializer()
+
+    class Meta:
+        model = EquipmentsRentedForBookingId
+        fields = '__all__'
+
+
 class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
         fields = ['total_cost', 'booking_id']
+
+
+class GetInvoiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invoice
+        fields = '__all__'
 
 
 class UserBookingsSerializer(serializers.ModelSerializer):
