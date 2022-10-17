@@ -425,15 +425,17 @@ class UserLoginView(RetrieveAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        response = {
+        response=Response()
+        response.data = {
             'success': 'True',
             'status code': status.HTTP_200_OK,
             'message': 'User logged in  successfully',
             'token': serializer.data['token'],
+            'user':serializer.data['email']
         }
-        status_code = status.HTTP_200_OK
+        response.set_cookie(key='jwt',value=serializer.data['token'],httponly=True)
 
-        return Response(response, status=status_code)
+        return response
 
 
 
