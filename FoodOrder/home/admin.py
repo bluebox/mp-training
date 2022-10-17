@@ -2,7 +2,10 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Restaurant, Customer, Employee, Food, OrderFood, Payment, Menu, OrderDetails, Reviews
+from .models import Restaurant, Customer, Employee, Food, OrderFood, Payment, Menu, OrderDetails, Reviews,User
+
+admin.site.register(User)
+
 
 admin.site.register(Restaurant)
 

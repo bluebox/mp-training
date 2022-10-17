@@ -1,6 +1,7 @@
 import { Time } from "@angular/common";
 
 export interface Restaurant {
+    user:string;
     restaurant_id:string;
     restaurant_name:string;
     restaurant_address1 :string;
