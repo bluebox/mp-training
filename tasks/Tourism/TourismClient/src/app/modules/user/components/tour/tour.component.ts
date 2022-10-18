@@ -28,18 +28,23 @@ export class TourComponent implements OnInit {
       console.log(data['tourType']);
       this.tourType = data['tourType']
     })
-    this.toursSubscription = this.dataService.getAdventureTours().subscribe(
-      data => {
-        let res = JSON.stringify(data)
-        let resObj = JSON.parse(res)
-        if(this.tourType && this.tourType != ""){
-          this.toursList = resObj.filter((tour: { tour_type: string; }) => tour.tour_type.toLowerCase().includes(this.tourType.toLowerCase()))
-        }else{
-          this.toursList = resObj;
-        }
+    this.toursSubscription = this.dataService.filterTours(this.tourType).subscribe(
+      (data: any) => {
+        // let res = JSON.stringify(data)
+        // let resObj = JSON.parse(res)
+        this.toursList = data;
+
       },
       err => alert(err.error.detail)
     )
+
+    // if(this.tourType && this.tourType != ""){
+
+    //   // this.toursList = resObj.filter((tour: { tour_type: string; }) => tour.tour_type.toLowerCase().includes(this.tourType.toLowerCase()))
+    // }else{
+    //   this.toursList = resObj;
+    // }
+
   }
 
   goToTourPage(tour: TourItem){

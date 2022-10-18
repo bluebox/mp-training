@@ -12,8 +12,12 @@ export class DataServiceService {
     return this.http.get('/api/bookings/getAverageRating/')
   }
 
-  getAdventureTours() {
-    return this.http.get('/api/tours/tours_list')
+  // getAdventureTours() {
+  //   return this.http.get('/api/tours/tours_list')
+  // }
+
+  filterTours(tour_type: string){
+    return this.http.get(`/api/tours/tours_by_type/${tour_type}`)
   }
 
   getTourById(id: number) {

@@ -74,7 +74,7 @@ export class AddTourComponent implements OnInit {
     nights : new FormControl('', [Validators.required]),
     days : new FormControl('', [Validators.required]),
     price : new FormControl('', [Validators.required]),
-    image : new FormControl('', [Validators.required]),
+    image : new FormControl(''),
     start_date : new FormControl('', [Validators.required]),
     description : new FormControl('', [Validators.required]),
   })
@@ -84,9 +84,9 @@ export class AddTourComponent implements OnInit {
   }
 
   vehicleid = new FormControl('');
-  coupons = new FormControl('');
-  places = new FormControl('', [Validators.required]);
-  guides = new FormControl('', [Validators.required]);
+  coupons = new FormControl([]);
+  places = new FormControl([], [Validators.required]);
+  guides = new FormControl([], [Validators.required]);
 
 
 
@@ -136,7 +136,9 @@ export class AddTourComponent implements OnInit {
 
   addTourObj() {
     this.submit = true
+    console.log(this.TourForm.value, this.TourForm.valid);
     if(this.TourForm.valid && this.places.valid && this.coupons.valid && this.guides.valid){
+      console.log("object");
       let tour = {...this.TourForm.value, places:this.places.value, coupons:this.coupons.value, vehicleid:this.vehicleid.value, image:this.imageUrl, guides:this.guides.value}
       console.log(tour);
       if(this.id){

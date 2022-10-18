@@ -34,7 +34,7 @@ import { EditBookingComponent } from './components/Bookings/edit-booking/edit-bo
 
 const routes: Routes = [
   {path:"", component: DashboardComponent, children: [
-    {path:"", redirectTo:'home', pathMatch:'full'},
+    {path:"", redirectTo:'enquiries', pathMatch:'full'},
     {path:"home", component: HomeComponent},
     {path:"tours", component: ToursComponent, children: [
       {path:"", redirectTo:'tourList', pathMatch:'full'},

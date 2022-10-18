@@ -30,7 +30,7 @@
 
 
 <!-- off-canvas -->
-<ng-template #profile let-offcanvas>
+<!-- <ng-template #profile let-offcanvas>
   <div class="offcanvas-header">
     <h4 class="offcanvas-title">Profile</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
@@ -40,16 +40,15 @@
       (click)="offcanvas.close('Close click')">Edit Profile </p>
     <p (click)="submitLogout(); offcanvas.close('Close click')" class="border p-3"
       style="cursor: pointer;font-size: 1.5rem;">Logout</p>
-    <!-- <p  class="border" style="cursor: pointer;font-size: 1.5rem;">Change Password</p> -->
     <div class="text-end">
       <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Close</button>
     </div>
   </div>
-</ng-template>
+</ng-template> -->
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="submitLogout()">Logout</button>
   <button mat-menu-item routerLink="../user/editProfile">Edit Profile</button>
+  <button mat-menu-item (click)="submitLogout()">Logout</button>
 </mat-menu>
 
 <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo offcanvas</button> -->

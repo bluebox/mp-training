@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.exceptions import APIException
 from TourismServer.permissions import IsAdminUser, IsAuthenticated
 from bookingsapp.JwtAuthentication import JWTAuthentication
+from toursapp import serializers
 from toursapp.models import Coupon, Employee, Enquiry, Package, Place, Tour, Vehicle
 from toursapp.serializers import CouponSerializer, EmployeeSerializer, EnquirySerializer, PackageDetailSerializer, PackageSerializer, PlaceSerializer, TourDetailSerializer, TourSerializer, \
     VehicleSerializer
@@ -84,6 +85,13 @@ class ToursListViewSet(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ToursFilterByType(APIView):
+    def get(self, request, tour_type):
+        tours = Tour.objects.filter(tour_type__contains=tour_type)
+        serializer = TourDetailSerializer(tours, many=True)
+        return Response(serializer.data)
 
 
 class TourDetails(APIView):
@@ -392,3 +400,10 @@ class EmployeeDetails(APIView):
         serializer = EmployeeSerializer(employee)
         return Response(serializer.data)
         # return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class TourPlaceDelete(APIView):
+    def put(self, request, pk):
+        tour = Tour.objects.get(id=1)
+
+        return Response({'msg':'Success'})

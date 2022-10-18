@@ -82,7 +82,7 @@ export class CheckoutComponent implements OnInit {
     console.log(coupon);
     this.coupon = coupon
     if(coupon)
-      this.discount = coupon.discount * this.tourObject.price
+      this.discount = +(coupon.discount * this.tourObject.price).toFixed(2)
     else
       this.discount = 0
   }

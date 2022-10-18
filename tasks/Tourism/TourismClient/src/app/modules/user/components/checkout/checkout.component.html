@@ -27,7 +27,7 @@
       <p>{{(tourObject.price - discount) * tourists.length}}</p>
     </div>
   </div>
-  
+
   <!-- <div class="col-12 text-center mt-5">
     <form [formGroup]="CouponForm" (ngSubmit)="updateCouponCode()" *ngIf="!coupon">
       <mat-form-field class="" appearance="fill">
@@ -83,9 +83,9 @@
               <button (click)="removeTourist(i)">Remove</button>
             </div>
 
-            <span class="text-danger me-5" *ngIf="tourist.get('name')?.hasError('required')">Name is required</span>
-            <span class="text-danger me-5" *ngIf="tourist.get('age')?.hasError('required')">Age is required</span>
-            <span class="text-danger me-5" *ngIf="tourist.get('gender')?.hasError('required')">Gender is required</span>
+            <span class="text-danger me-5" *ngIf="submit && tourist.get('name')?.hasError('required')">Name is required</span>
+            <span class="text-danger me-5" *ngIf="submit && tourist.get('age')?.hasError('required')">Age is required</span>
+            <span class="text-danger me-5" *ngIf="submit && tourist.get('gender')?.hasError('required')">Gender is required</span>
           </div>
         </div>
 
