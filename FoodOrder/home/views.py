@@ -40,6 +40,7 @@ class CustomerData(APIView):
 
     def post(self, request):
         try:
+
             serializer = CustomerSerializer(data=request.data)
             print(serializer)
         except:
@@ -47,6 +48,8 @@ class CustomerData(APIView):
 
         else:
             if serializer.is_valid():
+                print("valid")
+                # print(serializer)
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -106,19 +109,19 @@ class FoodOneData(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class FoodOneRes(APIView):
-    def get(self, request, id):
-        print(id)
-        try:
-            food = Restaurant.objects.get(restaurant_id=id)
-            serializer = RestaurantSerializer(food)
-        except:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            return Response(serializer.data)
-
-    def post(self, request):
-        return HttpResponse("Heyyyyyyyy post", status=405)
+# class FoodOneRes(APIView):
+#     def get(self, request, id):
+#         print(id)
+#         try:
+#             food = Restaurant.objects.get(restaurant_id=id)
+#             serializer = RestaurantSerializer(food)
+#         except:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         else:
+#             return Response(serializer.data)
+#
+#     def post(self, request):
+#         return HttpResponse("Heyyyyyyyy post", status=405)
 
 
 class RestaurantData(APIView):
@@ -129,7 +132,7 @@ class RestaurantData(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = RestaurantRegistrationSerializer(data=request.data)
+        serializer = RestaurantSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
             serializer.save()
@@ -367,13 +370,16 @@ class UserProfileView(RetrieveAPIView):
         return Response(response, status=status_code)
 
 
-class RestaurantRegistrationView(CreateAPIView):
+class RestaurantRegistrationView(APIView):
 
     serializer_class = RestaurantRegistrationSerializer
     permission_classes = (AllowAny,)
+    print("point1")
 
     def post(self, request):
+        print("point2")
         serializer = self.serializer_class(data=request.data)
+        print(serializer)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         response = {
@@ -392,6 +398,7 @@ class CustomerRegistrationView(CreateAPIView):
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
+        print(serializer)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         response = {
@@ -443,3 +450,5 @@ class UserView(APIView):
     def get(self,request):
         token=request.COOKIES.get('jwt')
         return Response(token)
+
+

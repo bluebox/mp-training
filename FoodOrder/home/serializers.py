@@ -136,6 +136,8 @@ class EmpRegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
+
+
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=128, write_only=True)
@@ -155,7 +157,7 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 'A user with this email and password is not found.'
             )
-        if password != passwordUser:
+        if not user.check_password(password):
             raise serializers.ValidationError(
                 'wrong password'
             )
