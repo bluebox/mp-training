@@ -19,6 +19,12 @@ from rest_framework.parsers import JSONParser
 
 #initial home page
 
+class My_imgs(APIView):
+    def get(self,request,id):
+        temp=Prop_Images.objects.filter(property_id=id).values()
+        print(temp)
+        lis=list(temp)
+        return JsonResponse(lis,safe=False)
 class Property(APIView):
     def get(self,request,id):
         properties=Properties.objects.filter(id=id)
@@ -72,6 +78,8 @@ class Filtered_Properties(APIView):
             properties=properties.filter(type__residence_type=request.data['residence_type'])
         if request.data['gender'] != "":
             properties=properties.filter(type__gender=request.data['gender'])
+        print(properties)
+        print(request.data['distance'])
         if request.data['distance']:
             coords_2=(request.data['lat'],request.data['long'])
             for item in properties:
@@ -80,6 +88,8 @@ class Filtered_Properties(APIView):
                 coords_1=(lat1,lon1)
                 if(geopy.distance.geodesic(coords_1, coords_2).km>request.data['distance']):
                     properties = properties.exclude(id=item.id)
+            print(properties)
+            
         for item in properties:
             if(item.price<=request.data['min_rainge'] or item.price>=request.data['max_rainge']):
                     properties = properties.exclude(id=item.id)
@@ -109,6 +119,7 @@ class Register_Property(APIView):
         ite.lat = request.data['lat']
         ite.image=request.data.get('image')
         ite.malik=User.objects.filter(id=request.data['id']).first()
+        ite.adress=request.data.get('adress')
         ite.save()
         ite.type.add(item)
         ite.save()
@@ -264,3 +275,48 @@ class Withdraw(APIView):
         temp=Appointment.objects.get(id=id)
         temp.delete()
         return Response({'msg':'success'})
+
+class Search(APIView):
+    def post(self,request):
+        key=request.data.get('key')
+        prop=Properties.objects.filter(adress__icontains=key)
+        s=list(prop.values())
+        print(s)
+        return JsonResponse(s,safe=False)
+
+class Upload_Images(APIView):
+    def post(self,request):
+        if Prop_Images.objects.filter(property_id=request.data.get('id')):
+            imgs=Prop_Images.objects.get(property_id=request.data.get('id'))
+            if request.data.get('img1'):
+                imgs.img1=request.data.get('img1')
+            if request.data.get('img2'):
+                imgs.img2=request.data.get('img2')
+            if request.data.get('img3'):
+                imgs.img3=request.data.get('img3')
+            if request.data.get('img4'):
+                imgs.img4=request.data.get('img4')
+            if request.data.get('img5'):
+                imgs.img5=request.data.get('img5')
+            imgs.save()
+        else:
+            imgs=Prop_Images()
+            imgs.property_id=Properties.objects.get(id=request.data.get('id'))
+            if request.data.get('img1'):
+                imgs.img1=request.data.get('img1')
+            if request.data.get('img2'):
+                imgs.img2=request.data.get('img2')
+            if request.data.get('img3'):
+                imgs.img3=request.data.get('img3')
+            if request.data.get('img4'):
+                imgs.img4=request.data.get('img4')
+            if request.data.get('img5'):
+                imgs.img5=request.data.get('img5')
+            imgs.save()
+      
+        return Response({'msg':'success'})
+class New_Arrivals(APIView):
+    def get(self,request):
+        temp=NewArrivals.objects.all().order_by('datetime')[:10]
+        serializer = newarivalserial(temp,many=True)
+        return Response(serializer.data)

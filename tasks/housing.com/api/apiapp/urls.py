@@ -20,5 +20,8 @@ urlpatterns = [
     path('accept/<int:id>',Accept.as_view()),
     path('reject/<int:id>',Reject.as_view()),
     path('withdraw/<int:id>',Withdraw.as_view()),
-
+    path('search',Search.as_view()),
+    path('imges/<int:id>',My_imgs.as_view()),
+    path('uploadimages',Upload_Images.as_view()),
+    path('newarrivals',New_Arrivals.as_view())
 ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Liked, Properties,TypeTable
+from .models import Liked, NewArrivals, Properties,TypeTable
 from users.models import User
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,4 +23,9 @@ class LikedSerializer(serializers.ModelSerializer):
     customer=UserSerializer()
     class Meta:
         model = Liked
+        fields = '__all__'
+class newarivalserial(serializers.ModelSerializer):
+    property=PropertySerializer()
+    class Meta:
+        model = NewArrivals
         fields = '__all__'

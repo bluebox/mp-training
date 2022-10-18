@@ -23,7 +23,8 @@ class Properties(models.Model):
     long = models.CharField(max_length=255,default=000)
     lat=models.CharField(max_length=255,default=000)
     image=models.ImageField(upload_to="",null=True,blank=True)
-
+    adress=models.TextField(null=True)
+    
     malik = models.ForeignKey(User,on_delete=models.CASCADE)
     type = models.ManyToManyField(TypeTable)
 
@@ -86,7 +87,7 @@ class Review(models.Model):
 class Prop_Images(models.Model):
     property_id = models.ForeignKey(Properties, on_delete=models.CASCADE , default=1000)
     img1 = models.TextField(null=True)
-    img1 = models.TextField(null=True)
-    img1 = models.TextField(null=True)
-    img1 = models.TextField(null=True)
-    img1 = models.TextField(null=True)
+    img2 = models.TextField(null=True)
+    img3 = models.TextField(null=True)
+    img4 = models.TextField(null=True)
+    img5 = models.TextField(null=True)
