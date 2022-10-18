@@ -18,6 +18,7 @@ export class AddPackageComponent implements OnInit {
   addPackageSubscription!: Subscription;
   imagesSubscription!: Subscription;
   imageUrl!: string | null;
+  // videoUrl!: string | null;
   getTourSubscription!: Subscription;
   tourList: any;
 
@@ -38,6 +39,7 @@ export class AddPackageComponent implements OnInit {
           this.PackageForm.get('package_type')?.setValue(packageObj.package_type);
           this.PackageForm.get('image')?.setValue(packageObj.image);
           this.imageUrl = packageObj.image
+          // this.videoUrl = packageObj.video
           this.PackageForm.get('description')?.setValue(packageObj.description);
           this.tours.setValue(packageObj.tours);
         },

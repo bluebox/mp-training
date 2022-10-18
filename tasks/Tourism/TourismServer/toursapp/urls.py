@@ -10,6 +10,7 @@ urlpatterns = [
     path('tours_list/', views.ToursListViewSet.as_view(), name='tours' ),
     path('tours_list/<int:pk>', views.TourDetails.as_view(), name='tours_details' ),
     path('tours_by_type/<str:tour_type>', views.ToursFilterByType.as_view(), name='tours_type_filter' ),
+    path('tours_by_type/', views.ToursFilterByType.as_view(), name='tours_type_filter' ),
     path('enquiries/', views.EnquiryListViewSet.as_view(), name='vehicle' ),
     path('enquiries/<int:pk>', views.EnquiryDetails.as_view(), name='vehicledetail' ),
     path('places/', views.PlacesListViewSet.as_view(), name='places' ),

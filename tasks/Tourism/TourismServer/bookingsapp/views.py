@@ -50,6 +50,15 @@ class uploadImage(APIView):
         # srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
         return Response(imageUrl['secure_url'])
 
+class uploadVideo(APIView):
+    
+    def post(self, request, format=None):
+        print(request)
+        videoUrl = cloudinary.uploader.upload_large(request.data['file'])
+
+        # Build the URL for the image and save it in the variable 'srcURL'
+        # srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
+        return Response(videoUrl['secure_url'])
 
 class UserList(APIView):
     """

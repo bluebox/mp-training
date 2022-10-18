@@ -1,9 +1,9 @@
-<h1 class="text-center text-primary"> Checkout </h1>
+<h1 class="text-center text-primary fs-2 mb-5"> Checkout </h1>
 
 <div class="row" *ngIf="tourObject">
-  <div class="col-12 col-md-4  text-dark m-auto mb-4">
+  <div class="col-12 col-md-5  text-dark m-auto mb-4">
     <img [src]="tourObject.image" alt="tour_image" width="100%">
-    <p class="text-uppercase text-center">{{tourObject.tour_name}}</p>
+    <p class="text-uppercase text-center fs-5">{{tourObject.tour_name}}</p>
   </div>
   <div class="col-12 col-md-6 text-dark ms-auto me-auto">
     <div class="d-flex justify-content-between">
@@ -55,9 +55,9 @@
 
 <mat-vertical-stepper linear #stepper>
   <!-- <div class="text-danger" *ngIf="submit && tourists.length == 0">Atleast one tourist should be added </div> -->
-  <mat-step [stepControl]="TouristForm" errorMessage="Tourist details is required." [editable]='editable'>
+  <mat-step [stepControl]="TouristForm" errorMessage="Tourist details is required." [editable]='editable' style="font-size: 3rem;">
       <form [formGroup]="TouristForm">
-        <ng-template matStepLabel>Fill out Tourists details</ng-template>
+        <ng-template matStepLabel class=""><span class="font_size_style">Fill out Tourists details</span></ng-template>
         <div formArrayName="tourists">
           <div *ngFor="let tourist of tourists.controls; let i=index">
             <div [formGroupName]="i" class="">
@@ -90,7 +90,7 @@
         </div>
 
         <p>
-          <button type="button" (click)="addTourist()">Add</button>
+          <button type="button" (click)="addTourist()" style="font-size: 1rem;">Add Tourist</button>
         </p>
         <mat-error *ngIf="submit && TouristForm.get('tourists')?.hasError('required')">Atleast One Tourist is required</mat-error>
         <div>
@@ -100,7 +100,7 @@
   </mat-step>
   <mat-step [stepControl]="paymentFormGroup" errorMessage="Payment type is required." [editable]='editable'>
     <form [formGroup]="paymentFormGroup">
-      <ng-template matStepLabel> Payment </ng-template>
+      <ng-template matStepLabel><span class="font_size_style">Payment</span>  </ng-template>
       <mat-radio-group aria-label="paymentType" formControlName="payment_type" class="d-flex flex-column" [required]="true">
         <mat-radio-button *ngFor="let payment of paymentTypes" [value]="payment.value">{{payment.viewValue}} </mat-radio-button>
       </mat-radio-group>
@@ -109,12 +109,12 @@
 
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="nextsubmit=true; onSubmit(); ">Next</button>
+        <button mat-button matStepperNext (click)="nextsubmit=true; onSubmit();">Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <ng-template matStepLabel> <span class="font_size_style">Done</span> </ng-template>
     <p>Payment Successful.</p>
     <p>click on below button to see your bookings</p>
     <div>

@@ -5,7 +5,7 @@
 </div> -->
 
 
-<div class="row mt-4" *ngIf="tourObject">
+<div class="row mt-4 m-auto" *ngIf="tourObject">
   <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
     <app-corousel class="" [places]="tourObject.places"></app-corousel>
     <div class=" fs-3 text-center fw-bold">
@@ -15,10 +15,10 @@
 
   </div>
   <div class="col-12 col-md-6">
-    <h1 class="text-center text-primary text-capitalize fst-italic fw-bold tour_heading">{{tourObject.tour_name}}</h1>
+    <h1 class="text-center text-capitalize fw-bold tour_heading">{{tourObject.tour_name}}</h1>
     <div class="seperator wow slideInLeft animated" style="visibility: visible; animation-name: slideInLeft;">
     </div>
-    <div class=" w-75 m-auto fs-4 tour_description">
+    <div class=" w-75 m-auto fs-5 tour_description">
       <p>This trip starts from {{tourObject.tour_from}} to <strong>{{tourObject.tour_to}}. </strong></p>
       <br>
       <strong class="under_line">Places covered in this trip are :</strong> <br>
@@ -37,16 +37,13 @@
     </div>
   </div>
 
-  <div class="col-12 col-md-11 m-auto fs-5" *ngFor="let place of tourObject.places, index as i ">
+  <div class="col-12 col-md-11 m-auto fs-6" *ngFor="let place of tourObject.places, index as i ">
     <p class="fw-bold">Day-{{i+1}}: {{place.place_name}}</p>
     <p class="ms-3" >{{place.description}}</p>
   </div>
 
-  <div class="fst-italic fs-5 col-12 col-md-11 m-auto">
+  <div class="fst-italic fs-6 col-12 col-md-11 m-auto">
     <p class="fw-bold">About {{tourObject.tour_to}}</p>
-    {{tourObject.description}}
-    {{tourObject.description}}
-    {{tourObject.description}}
     {{tourObject.description}}
   </div>
 </div>

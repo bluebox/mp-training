@@ -7,6 +7,7 @@ import { DataService } from 'src/app/modules/admin/services/data.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
     private route: Router,
     private dataservice: DataService,
   ) { }
+
 
   feedbacks!: FeedBack[];
   packagesList: any;
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
     )
     this.getPackagesSubscription = this.dataservice.getPackageList().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.packagesList = data;
       },
       err => alert(err.error.detail)

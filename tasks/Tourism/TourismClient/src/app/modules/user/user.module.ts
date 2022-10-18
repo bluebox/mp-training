@@ -26,6 +26,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { PackageToursComponent } from './components/package-tours/package-tours.component';
 import { AllFeedbacksComponent } from './components/all-feedbacks/all-feedbacks.component';
 import { BookingPageComponent } from './components/booking-page/booking-page.component';
+import { BgVideoComponentComponent } from './components/bg-video-component/bg-video-component.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { BookingPageComponent } from './components/booking-page/booking-page.com
     PackageToursComponent,
     AllFeedbacksComponent,
     BookingPageComponent,
+    BgVideoComponentComponent,
 
   ],
 

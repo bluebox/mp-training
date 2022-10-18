@@ -8,6 +8,14 @@
   <input hidden type="file" name="image" #fileInput placeholder="image"
     class="" (change)="onchange($event)"/>
 
+  <!-- <img *ngIf="videoUrl && videoUrl !='' " [src]="imageUrl" alt="" width="150px" class="m-auto d-block mb-1">
+  <button type="button" mat-raised-button (click)="fileInput.click()" class="d-block m-auto mb-3">
+    <span *ngIf="!imageUrl">Choose video</span>
+    <span *ngIf="imageUrl">change video</span>
+  </button>
+  <input hidden type="file" name="video" #fileInput placeholder="video"
+    class="" (change)="onchange($event)"/> -->
+
   <mat-form-field class="global-form-full-width" appearance="fill">
     <mat-label>package_name</mat-label>
     <input type="text" name="package_name" matInput formControlName="package_name" placeholder="package_name"

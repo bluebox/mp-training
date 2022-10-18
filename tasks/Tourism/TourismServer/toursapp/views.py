@@ -88,7 +88,7 @@ class ToursListViewSet(APIView):
 
 
 class ToursFilterByType(APIView):
-    def get(self, request, tour_type):
+    def get(self, request, tour_type=''):
         tours = Tour.objects.filter(tour_type__contains=tour_type)
         serializer = TourDetailSerializer(tours, many=True)
         return Response(serializer.data)

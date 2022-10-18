@@ -5,6 +5,7 @@
 
 *{
   transition:all .2s linear;
+  box-sizing: border-box;
 }
 
 
@@ -13,10 +14,17 @@ body {
   height: 100%;
 }
 
+html{
+  overflow-x: hidden;
+  /* scroll-padding-top: 6rem; */
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #f6f6f6;
+  /* background-image: url('./assets/images/background.jpg'); */
 }
 
 

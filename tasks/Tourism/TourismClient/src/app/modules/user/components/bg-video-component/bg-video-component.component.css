@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+.home_first_layer{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  position: relative;
+  z-index: 0;
+}
+
+.home_first_layer .content{
+  text-align: center;
+}
+
+.home_first_layer .content h3{
+  font-size: 2.81rem;
+  color:#fff;
+  text-transform: uppercase;
+  text-shadow: 0 3px 5px rgba(0,0,0,.1);
+  font-family: 'Nunito', sans-serif;
+}
+
+.home_first_layer .content p{
+  font-size: 25px;
+  color:#fff;
+  padding: 5px 0;
+  font-family: 'Nunito', sans-serif;
+  text-transform: capitalize;
+}
+
+.home_first_layer .video-container video{
+  position: absolute;
+  top:0; left: 0;
+  z-index: -1;
+  height: 100%;
+  width:100%;
+  object-fit: cover;
+}
+
+.home_first_layer .controls{
+  padding:10px;
+  border-radius: 50px;
+  background:rgba(0,0,0,.7);
+  position: relative;
+  top:100px;
+}
+
+.home_first_layer .controls .vid-btn{
+  height:20px;
+  width:20px;
+  display: inline-block;
+  border-radius: 50%;
+  background:#fff;
+  cursor: pointer;
+  margin:0 5px;
+}
+
+.home_first_layer .controls .vid-btn.active{
+  background:var(--orange);
+}
+
+.bg_video_btn{
+  display: inline-block;
+  margin-top: 1rem;
+  background:var(--orange);
+  color:#fff;
+  padding:8px 30px;
+  border:2px solid var(--orange);
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  text-transform: capitalize;
+}
+
+.bg_video_btn:hover{
+  background:rgba(255, 165, 0,.2);
+  color:var(--orange);
+}

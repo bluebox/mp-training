@@ -12,16 +12,20 @@
   <div class="box-container">
     <!-- <app-card *ngFor="let tour of toursList" [tourItem]="tour" class="box">
     </app-card> -->
-    <div class="box" *ngFor="let tour of toursList" (click) = "goToTourPage(tour)">
+    <div class="box" *ngFor="let tour of toursList" >
       <img class="image"
         [src]="tour.image" alt="" />
       <div class="content">
-        <img src="" alt="" />
-        <h3>{{tour.tour_name}}</h3>
+        <!-- <img src="" alt="" /> -->
+        <h3 class="text-warning">{{tour.tour_name}}</h3>
         <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda inventore neque amet ipsa tenetur
           voluptates aperiam tempore libero labore aut.</p> -->
-        <p>{{(tour.description).substring(0, 100) }}...</p>
+        <p class="text-light">{{(tour.description).substring(0, 50) }}...</p>
+        <a class="btn_orange" (click) = "goToTourPage(tour)">see more</a>
       </div>
     </div>
   </div>
 </section>
+
+
+

@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+
+
+
 .tour_heading {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  color: rgb(14, 7, 146);
+  font-family: 'Nunito', sans-serif;
 }
 
 /* .button-blue{

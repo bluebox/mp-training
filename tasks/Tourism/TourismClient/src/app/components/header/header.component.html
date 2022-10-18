@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-sm navbar-light p-0 m-0 bg-custom ">
+<nav class="navbar navbar-expand-sm p-0 m-0 bg-custom">
   <a class="navbar-brand" href="#"><img src="../../../assets/logo.svg" alt="logo" width="150px"></a>
+  <!-- <a class="navbar-brand" href="#"><img src="../../../assets/tourism logo.svg" alt="logo" width="150px"></a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,14 +8,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="container borderXwidth navbar-nav">
-      <a mat-button class="" routerLink="../user" (click)="updateIsActive($event)" >Home</a>
-      <a mat-button routerLink="../contact">Contact</a>
-      <a *ngIf="!isAuthenticated" mat-button routerLink="../signup"> SignUp </a>
+      <a mat-button [ngClass]="{'selected' : activeRoute == 'user'}" routerLink="../user">Home</a>
+      <!-- <a mat-button [ngClass]="activeRoute === 'Home' ? 'selected' : '' " routerLink="../user" >Home</a> -->
+      <a mat-button routerLink="../contact" [ngClass]="{'selected' : activeRoute == 'contact'}">Contact</a>
+      <a *ngIf="!isAuthenticated" mat-button routerLink="../signup" [ngClass]="{'selected' : activeRoute == 'signup'}"> SignUp </a>
 
-      <a *ngIf="isAuthenticated && !currentUser.isAdmin" mat-button routerLink="../user/bookings">Bookings</a>
-      <a *ngIf="isAuthenticated && currentUser.isAdmin" mat-button routerLink="../admin/">Admin</a>
+      <a *ngIf="isAuthenticated && !currentUser.isAdmin" mat-button routerLink="../user/bookings" [ngClass]="{'selected' : activeRoute == 'bookings'}">Bookings</a>
+      <a *ngIf="isAuthenticated && currentUser.isAdmin" mat-button routerLink="../admin/" [ngClass]="{'selected' : activeRoute == 'admin'}">Admin</a>
       <!-- <a *ngIf="isAuthenticated" mat-button (click) ="submitLogout()">Logout</a> -->
-      <a *ngIf="!isAuthenticated" mat-button routerLink="../login">Login</a>
+      <a *ngIf="!isAuthenticated" mat-button routerLink="../login" [ngClass]="{'selected' : activeRoute == 'login'}">Login</a>
       <div class="" mat-button [matMenuTriggerFor]="menu" style="cursor: pointer;">
         <!-- <div class="" mat-button (click)="open(profile)" style="cursor: pointer;"> -->
           <img *ngIf="isAuthenticated" [src]="currentUser?.image" alt="profle_pic" width="50" height="50"

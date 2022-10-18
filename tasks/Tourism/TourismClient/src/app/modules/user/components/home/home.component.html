@@ -139,7 +139,7 @@
     </div>
   </div>
   <div class="text-end m-5">
-    <a (click)="navigateToTours('')" class="btn-text p-2" style="cursor: pointer;">Discover all tours</a>
+    <a (click)="navigateToTours(' ')" class="btn-text p-2" style="cursor: pointer;">Discover all tours</a>
   </div>
 
 </section>
@@ -163,4 +163,5 @@
 <div *ngFor="let feedback of feedbacks" class="m-3">
   <app-feedback [feedback]="feedback"></app-feedback>
 </div>
-<button routerLink="../feedbacks" mat-raised-button class="btn-text ms-auto border-0 d-block me-5">More Stories &rarr;</button>
+<button routerLink="../feedbacks" mat-raised-button class="btn-text ms-auto border-0 d-block me-5">More Stories
+  &rarr;</button>

@@ -3,21 +3,21 @@
   <div class="col-12 col-md-8 m-auto">
     <img [src]="booking.tourid.image" alt="tour_image" width="100%" height="100%" />
   </div>
-  <div class="col-12 ms-5">
-    <div class="row text-start fs-4">
+  <div class="col-12">
+    <div class="row text-start fs-5 booking_content">
       <div class="mb-2 mt-4 col-12 text-uppercase text-center fs-2 mt-3 mb-3">{{booking.tourid.tour_name}}</div>
-      <div class="mb-2 mt-4 col-5 fw-bold">{{booking.tourid.tour_from}} Tour</div>
+      <div class="mb-2 mt-4 col-5 fs-4 fw-bold">{{booking.tourid.tour_from}} Tour</div>
       <div class="mb-2 mt-4 col-2">---></div>
-      <div class="mb-2 mt-4 col-5 fw-bold">{{booking.tourid.tour_to}} Tour</div>
-      <div class="mb-2 mt-4 col-12">Transaction Id: {{booking.paymentid.transaction_id}}</div>
+      <div class="mb-2 mt-4 col-5 fs-4 fw-bold">{{booking.tourid.tour_to}} Tour</div>
       <div class="mb-2 mt-4 col-5 ">Trip Date: {{(booking.tourid?.start_date).split('T')[0]}}</div>
       <div class="mb-2 mt-4 col-2 "></div>
       <div class="mb-2 mt-4 col-5 ">Time: {{(booking.tourid?.start_date).split('T')[1]}}</div>
       <div class="mb-2 mt-4 col-5 ">Total Price: {{booking.paymentid.total_price}}</div>
       <div class="mb-2 mt-4 col-2 "></div>
       <div class="mb-2 mt-4 col-5 ">Number of Tourists: {{booking.no_of_people}}</div>
+      <div class="mb-2 mt-4 col-12">Transaction Id: {{booking.paymentid.transaction_id}}</div>
       <div class="mb-2 mt-4 col-12 ">
-        <p class="fw-bold">passenger_details:</p>
+        <p class="fw-bold fs-4">passenger_details:</p>
         <div class="row">
           <div class="col-3 mb-3 mt-3"> s.no</div>
           <div class="col-3 mb-3 mt-3"> name</div>
