@@ -10,16 +10,20 @@ import { Customer } from './interfaces/customer';
 export class UserService {
 
   private urlCustomer:string="http://127.0.0.1:8000/customer/"
+  private urlCustomerSignin:string="http://127.0.0.1:8000/customer/signin/"
 
   constructor(private http:HttpClient) { }
 
+
+
+
   getUser():Observable<Customer[]>{
-    return this.http.get<Customer[]>(this.urlCustomer)
+    return this.http.get<any[]>(this.urlCustomer)
   }
   
   postUser(data:object)
   {
-    return this.http.post<Customer>(this.urlCustomer,data)
+    return this.http.post<any>(this.urlCustomerSignin,data)
   }
 
 }

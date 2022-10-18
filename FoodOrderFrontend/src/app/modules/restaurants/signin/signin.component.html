@@ -4,7 +4,7 @@
     <h2 class="heading">Restaurant Registration</h2>
     <div class="fields">
         <form [formGroup]="sigininForm" class="usersiginform" (ngSubmit)="onSubmit()">
-
+<div formGroupName="profile">
             <p><mat-form-field appearance="outline" class="tag">
             <mat-label>ID</mat-label>
             <input matInput placeholder="" formControlName="restaurant_id">
@@ -25,10 +25,7 @@
             <input matInput placeholder="" formControlName="restaurant_photo">
             </mat-form-field> 
 
-            <mat-form-field appearance="outline" class="tag">
-            <mat-label>Mail</mat-label>
-            <input matInput placeholder="" formControlName="restaurant_email">
-            </mat-form-field></p>
+        </p>
 
             <p>
                 <mat-form-field class="example-full-width tag" appearance="fill">
@@ -75,15 +72,16 @@
             <mat-label>Closing Time</mat-label>
             <input matInput placeholder="" formControlName="close_timing" type="time">
             </mat-form-field></p>
-            
-           <p> <mat-form-field appearance="outline" class="tag">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="" type="password" formControlName="restaurant_password">
-            </mat-form-field> 
+          </div>
+           <p>   <mat-form-field appearance="outline" class="tag">
+            <mat-label>Mail</mat-label>
+            <input matInput placeholder="" formControlName="email">
+            </mat-form-field>
             <mat-form-field appearance="outline" class="tag">
-            <mat-label> Confirm Password</mat-label>
-            <input matInput placeholder="" type="password">
-            </mat-form-field> </p>
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="" type="password" formControlName="password">
+            </mat-form-field> 
+            </p>
 
                         
             
@@ -91,3 +89,4 @@
         </form>
     </div>
 </div>
+{{sigininForm.value | json}}

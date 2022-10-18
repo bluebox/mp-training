@@ -14,8 +14,14 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+
   sigininForm=new FormGroup(
     {
+      email:new FormControl('', Validators.required),
+      password:new FormControl('', Validators.required),
+      profile:new FormGroup({
       customer_id:new FormControl('', Validators.required),
       customer_name:new FormControl('', Validators.required),
       customer_address1:new FormControl('', Validators.required),
@@ -24,22 +30,24 @@ export class SigninComponent implements OnInit {
       customer_state:new FormControl('', Validators.required),
       customer_code:new FormControl('', Validators.required),
       customer_username:new FormControl('', Validators.required),
-      customer_password:new FormControl('', Validators.required),
+      
       customer_phn:new FormControl('', Validators.required),
-      customer_email:new FormControl('', Validators.required),
+      
       // userPass2:new FormControl('', Validators.required)
     }
   )
-
+    })
 
 
   onSubmit()
   {
+    console.log(this.sigininForm.value)
     if (this.sigininForm.valid) {
       this.user.postUser(this.sigininForm.value).subscribe((data)=>{
         console.log(data)
-        // alert("Registration Done!!")
+       
       })
+       alert("Registration Done!!")
       console.log('form submitted');
       console.log(this.sigininForm.value)
     } else {

@@ -10,22 +10,24 @@ import { Restaurant } from '../interfaces/restaurant';
 export class RestaurantService {
 
   private url:string="http://127.0.0.1:8000/restaurant/"
+  private resUrl:string="http://127.0.0.1:8000/restaurant/signinn/"
   constructor(private http:HttpClient) { }
 
   getRes():Observable<Restaurant[]>{
     return this.http.get<Restaurant[]>(this.url)
   }
 
-  getOneFood(id:string):Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + id + "/")
+  getOneFood(id:string):Observable<any[]>{
+    return this.http.get<any[]>(this.url + id + "/")
   }
 
   postUser(data:object)
   {
-    return this.http.post<Restaurant>(this.url,data)
+    console.log("psoting......")
+    return this.http.post<any>(this.resUrl,data)
   }
 
-  getOneRes(id:string):Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + id + "/")
+  getOneRes(id:string):Observable<any[]>{
+    return this.http.get<any[]>(this.url + id + "/")
   }
 }

@@ -1,4 +1,5 @@
 export interface Customer {
+    user:string;
     customer_id:string;
     customer_name:string;
     customer_address1:string;
@@ -7,9 +8,8 @@ export interface Customer {
     customer_state:string;
     customer_code:string;
     customer_username:string;
-    customer_password:string;
     customer_phn:string;
-    customer_email:string;
+    
     
     
 }

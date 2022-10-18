@@ -29,6 +29,9 @@ export class SigninComponent implements OnInit {
   }
   sigininForm=new FormGroup(
     {
+      email:new FormControl('', Validators.required),
+      password:new FormControl('', Validators.required),
+      profile:new FormGroup({
       restaurant_id:new FormControl('', Validators.required),
       restaurant_name:new FormControl('', Validators.required),
       restaurant_address1:new FormControl('', Validators.required),
@@ -37,33 +40,31 @@ export class SigninComponent implements OnInit {
       restaurant_state:new FormControl('', Validators.required),
       restaurant_code:new FormControl('', Validators.required),
       restaurant_username:new FormControl('', Validators.required),
-      restaurant_password:new FormControl('', Validators.required),
-      restaurant_phn:new FormControl('', Validators.required),
-
-      restaurant_email:new FormControl('', Validators.required),
-      
      
-      
+      restaurant_phn:new FormControl('', Validators.required),
       open_timing:new FormControl('', Validators.required),
       close_timing:new FormControl('', Validators.required),
       restaurant_photo:new FormControl('', Validators.required),
       // userPass2:new FormControl('', Validators.required)
     }
   )
+    })
 
 
   onSubmit()
   {
+    console.log(this.sigininForm.value)
     if (this.sigininForm.valid) {
       this.res.postUser(this.sigininForm.value).subscribe((data)=>{
         console.log(data)
       })
+      alert("Registration Done!!")
       console.log('form submitted');
       console.log(this.sigininForm.value)
     } else {
       console.log(' notttt form submitted');
     }
-    
+    alert(" notttt form submitted ")
     this.sigininForm.reset()
   }
 }
