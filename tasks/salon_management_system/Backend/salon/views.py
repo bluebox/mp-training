@@ -192,6 +192,13 @@ class AppointmentList(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class OneAppointment(APIView):
+    def get(self,request,id):
+        appointmnet = Appointment.objects.get(service_id=id)
+        serilaizer = AppointmentSerializer(appointmnet,many=False)
+        return Response(serilaizer.data)
+
+
 class UpdateAppointment(APIView):
     def post(self,request,pk):
         appointment = Appointment.objects.get(Appointment_id=pk)

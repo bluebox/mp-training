@@ -24,7 +24,7 @@ export class EditbranchComponent implements OnInit {
   //  console.log(this.router.snapshot.params.id);
    this.http.getCurrentBranch(this.router.snapshot.params.id).subscribe((result:any) => {
    this.editBranchForm = new FormGroup({
-    branch_id : new FormControl(result['branch_id'],Validators.required),
+    // branch_id : new FormControl(result['branch_id'],Validators.required),
     branch_name : new FormControl(result['branch_name'],[Validators.required,Validators.maxLength(50)]),
     location : new FormControl(result['location'],[Validators.required,Validators.maxLength(500)])
    })

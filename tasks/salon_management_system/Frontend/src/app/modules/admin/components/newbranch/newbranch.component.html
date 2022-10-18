@@ -7,11 +7,11 @@
             <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title>
             <mat-card-title  class="error-message"><p>{{errorMessage}}</p></mat-card-title>
         </mat-card-header>
-        <mat-form-field class="example-full-width" appearance="outline">
+        <!-- <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Branch ID</mat-label>
             <input formControlName="branch_id" matInput placeholder="Enter new branch id" />
             <small class="text-danger" *ngIf="newBranchForm.get('branch_id')?.invalid  && newBranchForm.get('branch_id')?.touched " >required</small>
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Branch Name</mat-label>
             <input formControlName="branch_name" matInput placeholder="Enter new branch Name" />

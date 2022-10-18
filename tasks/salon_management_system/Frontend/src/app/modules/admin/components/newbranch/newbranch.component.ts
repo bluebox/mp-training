@@ -18,7 +18,7 @@ export class NewbranchComponent implements OnInit {
 
   constructor(private http :HttpserviceService ,private router: Router) { }
   newBranchForm : FormGroup = new FormGroup({
-    branch_id : new FormControl("",Validators.required),
+    // branch_id : new FormControl("",Validators.required),
     branch_name : new FormControl("",[Validators.required,Validators.maxLength(50)]),
     location : new FormControl("",[Validators.required,Validators.maxLength(500)])
   })

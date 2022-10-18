@@ -30,5 +30,6 @@ urlpatterns = [
     path('getservice/<int:id>',views.OneService.as_view()),
     path('updateservice/<int:pk>',views.UpdateService.as_view()),
     path('searchservice',views.SearchService.as_view()),
-    path('updateappointment/<int:pk>',views.UpdateAppointment.as_view())
+    path('getappointment/int:id>',views.OneAppointment.as_view()),
+    path('updateappointment/<int:pk>',views.UpdateAppointment.as_view()),
 ]

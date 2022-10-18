@@ -10,7 +10,7 @@ import { HttpserviceService } from 'src/app/httpservice.service';
 export class AppointmentComponent implements OnInit {
   subscription : Subscription = Subscription.EMPTY
   appointments :any;
-  displayedColumns :string[]=['Appointment_id','Time_of_appointment','appointment_date','Appointment_Status','client_id','emp_id','services'];
+  displayedColumns :string[]=['Appointment_id','Time_of_appointment','appointment_date','Appointment_Status','client_id','emp_id','services','update'];
 
   constructor(private http : HttpserviceService) { }
 

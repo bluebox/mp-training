@@ -20,11 +20,11 @@
       <mat-card-header>
         <mat-card-title>Book An appointment</mat-card-title>
     </mat-card-header>
-      <mat-form-field class="example-full-width" appearance="outline">
+      <!-- <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Appointment_id</mat-label>
         <input formControlName="Appointment_id" matInput placeholder="Enter your Appointment_id" />
         <small class="text-danger" *ngIf="bookAppointmentForm.get('Appointment_id')?.invalid  && bookAppointmentForm.get('Appointment_id')?.touched " >required</small>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>client_id</mat-label>
@@ -45,6 +45,12 @@
       <mat-hint>YYYY-MM-DD</mat-hint>
       <small class="text-danger" *ngIf="bookAppointmentForm.get('appointment_date')?.invalid  && bookAppointmentForm.get('appointment_date')?.touched " >required</small>
     </mat-form-field> -->
+    <mat-form-field class="example-full-width"  appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="appointment_date" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>services</mat-label>
@@ -65,49 +71,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-
-    <mat-form-field appearance="outline">
-      <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <!-- <mat-form-field >
-      <input matInput [matDatepicker]="picker">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field> -->
-
-
-    <!-- <mat-form-field appearance="fill" class="example-form-field">
-      <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="datepicker">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-      <mat-datepicker #datepicker>
-        <mat-datepicker-actions>
-          <button mat-button matDatepickerCancel>Cancel</button>
-          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-        </mat-datepicker-actions>
-      </mat-datepicker>
-    </mat-form-field> -->
-<!-- 
-    <mat-form-field appearance="outline">
-
-      <input matInput formControlName="appointment_date" [matDatepicker]="appointment_datePicker">
-    
-      <mat-datepicker #appointment_datePicker>
-    
-      </mat-datepicker>
-    
-    </mat-form-field> -->
-    
-
-
-    
 
     <mat-card-actions>
         <button (click) = "onSubmit()" mat-raised-button="" color="primary">

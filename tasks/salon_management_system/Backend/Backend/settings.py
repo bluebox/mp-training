@@ -136,5 +136,8 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
+USE_L10N = False
+
+DATE_INPUT_FORMATS = ['%m/%d/%Y']  
 
 

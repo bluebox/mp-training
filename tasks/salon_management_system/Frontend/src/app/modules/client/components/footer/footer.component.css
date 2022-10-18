@@ -1,0 +1,21 @@
+div{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 7%;
+    padding-right: 10%;
+    padding-top: 1%;
+    background-color: rgb(58, 57, 57);
+}
+.footer-body{
+    display: flex;
+}
+.footer-cell-1{
+    display: inline-flex;
+}
+.footer-cell-2{
+    display: inline-flex;
+
+}
+.footer-cell-2 p{
+    font-size: 20px;
+}

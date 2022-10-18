@@ -48,6 +48,9 @@ export class BranchComponent implements OnInit {
           console.log("notfound");
           this.msg = true;
         }
+        else{
+          this.msg=false;
+        }
         console.log(this.result)
       }
     })

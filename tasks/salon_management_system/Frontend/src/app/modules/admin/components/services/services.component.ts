@@ -46,6 +46,9 @@ export class ServicesComponent implements OnInit {
           console.log("notfound");
           this.msg = true;
         }
+        else{
+          this.msg=false;
+        }
         console.log(this.result)
       }
     })

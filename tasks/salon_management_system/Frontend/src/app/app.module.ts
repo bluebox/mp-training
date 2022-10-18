@@ -21,6 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms'; 
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonModule
     
   ],
-  providers: [HttpserviceService],
+  providers: [HttpserviceService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

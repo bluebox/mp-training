@@ -1,9 +1,12 @@
 """Models"""
+from email.policy import default
 from random import choices
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+
+from Backend.settings import DATE_INPUT_FORMATS
 
 
 # Create your models here.
@@ -28,9 +31,28 @@ class Client(models.Model):
     def __str__(self):
         return str(self.user_id)
 
+def from_100():
+    largest = Branch.objects.all().order_by('branch_id').last()
+    if not largest:
+        return 100
+    return largest.branch_id + 1
+
+# def fromb1():
+#     largest = Branch.objects.all().order_by('branch_id').last()
+#     split_var = largest.split('B')
+#     strinteger = split_var[1]
+#     integer = int(strinteger)
+#     if not largest:
+#         largest = 'B1'
+#         return largest
+#     else:
+#         integer+=1
+#         integer = str(integer)
+#     return largest.branch_id+integer
+
 class Branch(models.Model):
     """Branch model to store Branch details"""
-    branch_id = models.IntegerField(primary_key = True)
+    branch_id = models.IntegerField(primary_key = True,default=from_100)
     branch_name = models.CharField(max_length=50)
     location = models.CharField(max_length=500)
 
@@ -41,9 +63,15 @@ class Branch(models.Model):
     def __str__(self):
         return str(self.branch_name)
 
+def from_2500():
+    largest = Employee.objects.all().order_by('emp_id').last()
+    if not largest:
+        return 2500
+    return largest.emp_id + 1
+
 class Employee(models.Model):
     """Employee model to store Employee details"""
-    emp_id = models.CharField(primary_key = True,max_length = 10)
+    emp_id = models.CharField(primary_key = True,max_length = 10, default=from_2500)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     branch_id = models.ForeignKey(Branch,  on_delete=models.CASCADE)
     role = models.CharField(max_length=20)
@@ -69,13 +97,20 @@ class ServicesProvided(models.Model):
     def __str__(self):
         return str(self.service_name)
 
+
+def from_900():
+    largest = Appointment.objects.all().order_by('Appointment_id').last()
+    if not largest:
+        return 900
+    return largest.Appointment_id + 1
+
 class Appointment(models.Model):
     """Appointment model to store Appointment details"""
     appointment_time_choices = (('9.00am-10.00am','9.00am-10.00am'),('10.00am-11.00am','10.00am-11.00am'),('11.00am-12.00pm','11.00am-12.00pm'),('12.00pm-1.0pm','12.00pm-1.0pm'),('1.00pm-2.00pm','1.00pm-2.00pm'),('2.00pm-3.00pm','2.00pm-3.00pm'),('3.00pm-4.00pm','3.00pm-4.00pm'),('4.00pm-5.00pm','4.00pm-5.00pm'))
-    Appointment_id = models.IntegerField(primary_key = True)
+    Appointment_id = models.IntegerField(primary_key = True, default=from_900)
     client_id = models.ForeignKey(Client,  on_delete=models.CASCADE)
     Time_of_appointment = models.CharField(max_length=20,choices=appointment_time_choices)
-    appointment_date = models.DateField()
+    appointment_date = models.DateTimeField(auto_now_add = False)
     Appointment_Status = models.CharField(max_length=20,default="booked")
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     services = models.ManyToManyField(ServicesProvided)

@@ -24,7 +24,7 @@ export class RegisteremployeeComponent implements OnInit {
     last_name: new FormControl(""),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl("", [Validators.minLength(8),Validators.required]),
-    emp_id :new FormControl("",Validators.required),
+    // emp_id :new FormControl("",Validators.required),
     branch_id : new FormControl(""),
     role : new FormControl("",Validators.required),
     emp_contact_number : new FormControl("",[Validators.maxLength(10), Validators.required]),

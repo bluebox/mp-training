@@ -27,6 +27,7 @@ const routes: Routes = [
     {path : 'transactions',component :TransactionsComponent },
     {path : 'bookappointment',component :BookappointmentComponent },
     {path : 'review',component : ReviewComponent}
+    
 ]}
 ];
 
