@@ -1,0 +1,45 @@
+<div class="pay">
+<h1>Payment form</h1>
+<mat-form-field appearance="fill">
+  <mat-label>choose a payment method</mat-label>
+  <mat-select>
+    <mat-option>Card</mat-option>
+    <mat-option>UPI</mat-option>
+  </mat-select>
+</mat-form-field>
+<form [formGroup]="promocode" (ngOnSubmit)="submit()">
+  <h4>Apply Promocode</h4>
+  <!-- {{promocode.value|json}} -->
+  <input type="text" class="form-control" formControlName="promo" name="promo">
+<button mat-raised-button color="primary" type="submit" (click)="submit()">Submit</button>
+
+</form>
+<div>
+  <h2>Summary</h2>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Total Amount</td>
+        <td align="right">{{data.price}}</td>
+      </tr>
+      <tr>
+        <td>One Time Discount</td>
+        <td align="right">{{discount}}</td>
+      </tr>
+      <tr>
+        <td>CGST+SGST</td>
+        <td align="right">+40</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td align="right">{{data.price+40-discount}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<button mat-raised-button color="primary" (click)="gohome()">Pay</button>
+</div>
+

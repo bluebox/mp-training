@@ -1,0 +1,22 @@
+body{
+    background-color: white;
+}
+.ticket{
+    background-color:white;
+    display: flex;
+    height:32vh;
+    width:64vw;
+    border-style: double;
+    /* padding:10px */
+}
+.left{
+    height:28vh;
+    margin-top: 1vh;
+    width: 21vw;
+    border-style:dotted;
+    border-color: burlywood;
+    background-color: white;
+    margin-left:1vw;
+    margin-right:1vw;
+}
+

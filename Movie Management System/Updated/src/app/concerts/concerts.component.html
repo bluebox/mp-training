@@ -1,0 +1,37 @@
+<h1>Booking History</h1>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ticket </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Previously booked tickets</h1>
+        <button mat-stroked-button color="warn" class="btn" (click)="cancel()">Cancel last booked ticket</button> 
+        <div class="ticket" *ngFor="let t of ticketData">
+            <div class="left">
+                <h2>Movie Details</h2>
+            </div>
+            <div class="right">
+                <h2>Booking Details</h2>
+                <P>User-{{currentUser.User_name}}</P>
+                <p>Phone Number-{{currentUser.User_phone}}</p>
+                <p>Theatre-id-{{t.Theatre_id}}</p>
+                <p>Screen NO.-{{t.Hall_id}}</p>
+                <p>Selected Seats-{{t.Selected_seats}}</p>
+                <p>Date-{{t.Date}}</p>
+
+            </div>
+            <hr>
+        </div>
+        <hr>
+    </body>
+</html>

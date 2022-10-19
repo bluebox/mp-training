@@ -1,0 +1,41 @@
+<div class="buttons">
+    <button mat-button color="primary" id="payButton" class="proceed" (click)="DeductSeats()" disabled>Proceed to Payment</button>
+    <button mat-button color="primary" class="goback" [routerLink]="['']">Back</button>
+
+</div>
+<!-- <p>seats works!</p>
+<p>number of seats={{seats}}</p>
+<p>the hall id ={{hallid}}</p>
+<p>rows={{hallData.rows}}</p>
+<p>cols={{hallData.cols}}</p> -->
+<h1 style="text-align:center;">Seat Selection Section</h1>
+<form id="form" style="text-align:center;" [formGroup]="Number">
+<mat-form-field appearance="fill">
+        <mat-label >Select the number of seats</mat-label>
+        <mat-select formControlName="Seat" style="color:white ;">
+          <mat-option value=1>1</mat-option>
+          <mat-option value=2>2</mat-option>
+          <mat-option value=3>3</mat-option>
+        </mat-select>
+      </mat-form-field>
+<button mat-button id="btn" type="submit" (click)="generateRows()" onclick="disable()">click to view seats</button>
+</form>
+<h3  style="text-align:center;">selected seats-</h3>
+<div style="display: flex;margin-left: 40vw;">
+<h4  style="text-align:center;" *ngFor="let i of ss">{{i}}&nbsp;  </h4></div>
+
+
+<p style="text-align:center"> Available Seats({{(hallData.baseprice|currency:"₹")}})--><button style="height:20px;width:20px;background-color: green;"></button><br>Booked Seats--><button style="height:20px;width:20px;background-color: red;"></button></p>
+
+<div id="seating">
+  <h2 style="background-color: gray;text-align: center;width:34vw;">Screen</h2>
+  <div *ngFor="let j of cols,index as l">
+  <div *ngFor="let i of rows,index as k" style="display:inline-flex;margin-left:10px;">
+    <!-- <button id="k" style="height:20px;width:20px;margin-bottom:10px;"  (click)="test1()" >{{i}}</button> -->
+    <!-- <mat-checkbox v-bind:id=l (change)="checkCheckBoxvalue($event,l,k)"></mat-checkbox> -->
+    <button  id="{{l}}{{k}}"  class="seats"  [style.background]="this.selectedSeatsN.includes(l.toString()+k.toString())?'red':'green'" (click)="test1(l,k)" ></button>
+     <!-- <input value="l+k" class="seat" type="checkbox" [ngClass]="{'class1':'checked','class2':'notchecked'}" (click)="test1(l,j)" > -->
+  </div>
+</div>
+</div>
+

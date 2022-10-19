@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <h1>Add a new hall!</h1>
+    <form [formGroup]="hall" (ngSubmit)="OnSubmit()">
+        {{hall.value | json}}
+        <div class="form-group" style="margin-bottom:20px">
+            <label>Hall Number</label>
+            <input type="number" #Hall_no class="form-control" name="Hall_no" id="Hall_no" name="Hall_no" formControlName="Hall_no">
+            <mat-error *ngIf="hall.get('Hall_no')?.touched && hall.get('Hall_no')?.hasError('required')">Enter hall id</mat-error>
+
+        </div>
+        <div class="form-group" style="margin-bottom:20px">
+            <label>Total Seats</label>
+            <input type="number" #T_No_Of_Seats class="form-control" name="T_No_Of_Seats" id="T_No_Of_Seats" name="T_No_Of_Seats" formControlName="T_No_Of_Seats" ngModel>
+            <mat-error *ngIf="hall.get('T_No_Of_Seats')?.touched && hall.get('T_No_Of_Seats')?.hasError('required')">Enter movie name</mat-error>
+
+        </div>
+        <div class="form-group">
+            <label>StartTime</label>
+            <input type="time" class="form-control" formControlName="startTime" name="startTime" >
+            <mat-error *ngIf="hall.get('startTime')?.touched && hall.get('startTime')?.hasError('required')">Enter movie language</mat-error>
+
+        </div>
+        <mat-divider></mat-divider>
+        <mat-label>EndTime</mat-label>
+        <input type="time" class="form-control" formControlName="endTime" name="endTime" >
+        <mat-error *ngIf="hall.get('endTime')?.touched && hall.get('endTime')?.hasError('required')">Enter movie release date</mat-error>
+
+              <div class="form-group">
+        <label>Number of Rows</label>
+        <input type="text" class="form-control" name="rows" formControlName="rows" >
+        <mat-error *ngIf="hall.get('rows')?.touched && hall.get('rows')?.hasError('required')">Enter movie details</mat-error>
+        
+        </div>
+        <div class="form-group">
+            <label>Number of Columne</label>
+            <input type="text" class="form-control" formControlName="cols" name="cols">
+            <mat-error *ngIf="hall.get('cols')?.touched && hall.get('cols')?.hasError('required')">Enter movie category</mat-error>
+            
+        </div>
+        <div class="form-group">
+            <label>Baseprice</label>
+            <input type="text" class="form-control" name="baseprice" formControlName="baseprice">
+            <mat-error *ngIf="hall.get('baseprice')?.touched && hall.get('baseprice')?.hasError('required')">Enter movie cast</mat-error>
+
+        </div>
+        <div class="form-group">
+            <label>Theatre ID</label>
+            <input type="text" class="form-control" name="Theatre_id" formControlName="Theatre_id">
+            <mat-error *ngIf="hall.get('Theatre_id')?.touched && hall.get('Theatre_id')?.hasError('required')">Enter movie reviews</mat-error>
+            
+        </div>
+        <div class="form-group">
+            <label>Movie ID</label>
+            <input type="text" class="form-control" name="Movie_id" formControlName="Movie_id">
+            <mat-error *ngIf="hall.get('Movie_id')?.touched && hall.get('Movie_id')?.hasError('required')">Enter movie reviews</mat-error>
+        </div>
+        <button type="submit"  mat-button mat-dialog-close > Submit </button> 
+        
+    </form>
+
+</div>

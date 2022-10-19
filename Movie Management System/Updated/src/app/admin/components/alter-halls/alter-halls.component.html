@@ -1,0 +1,32 @@
+<!-- <mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field> -->
+<table>
+    <tr>
+      <th>Id</th>
+      <th>Hall Number</th>
+      <th>seats</th>
+      <th>Rows</th>
+      <th>Columns</th>
+      <th>Baseprice</th>
+      <th>Theatre id</th>
+      <th>Movie id</th>
+
+    </tr>
+    <tr *ngFor="let m of halls">
+      <td>{{m.Hall_id}}</td>
+      <td>{{m.Hall_no}}</td>
+      <td>{{m.T_No_Of_Seats}}</td>
+      <td>{{m.rows}}</td>
+      <td>{{m.cols}}</td>
+      <td>{{m.baseprice}}</td>
+      <td>{{m.Theatre_id}}</td>
+      <td>{{m.Movie_id}}</td>
+
+      <td><button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+        <mat-icon>delete</mat-icon>
+      </button></td>
+    </tr>
+  </table>
+  <button mat-stroked-button color="primary" (click)="openHallForm()">Add new hall</button>

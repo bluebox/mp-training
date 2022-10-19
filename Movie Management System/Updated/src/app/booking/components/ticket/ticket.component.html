@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ticket </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Ticket</h1>
+        <div class="ticket">
+            <div class="left" style="background-image:url({{ticket.Movie_poster}}) ;background-size:contain">
+            </div>
+            <div>
+                <h2>Movie Details</h2>
+                <p>Movie name-{{ticket.Movie_name}}</p>
+                <p>Movie language-{{ticket.Movie_lang}}</p>
+                <p>Movie category-{{ticket.Movie_category}}</p>
+            </div>
+            <div class="right">
+                <h2>Booking Details</h2>
+                <P>User-{{ticket.User_name}}</P>
+                <p>Phone Number-{{ticket.User_phone}}</p>
+                <p>Theatre-name-{{ticket.Theatre_name}}</p>
+                <p>Theatre-location-{{ticket.Theatre_location}}</p>
+                <p>Screen NO.-{{ticket.Hall_no}}</p>
+                <p>Selected Seats-{{ticket.SelectedSeats}}</p>
+                <p>Date-{{ticket.Date}}</p>
+
+            </div>
+            
+        </div>
+        <button mat-stroked-button color="primary" (click)="GoHome()">Home</button>
+        <button mat-stroked-button color="warn" (click)="Confirm()">Cancel Ticket</button>
+    </body>
+</html>

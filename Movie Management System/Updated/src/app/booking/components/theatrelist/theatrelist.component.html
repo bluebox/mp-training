@@ -1,0 +1,34 @@
+<div class="top" style="display:flex ;">
+    <div class="left" style="width: 50%;">
+    <button class="btn" mat-button color="primary" (click)="goback()">Back</button>
+<h1><b>{{movies.Movie_name}}</b></h1>
+<!-- <h4>Hello {{userData.User_name}}</h4> -->
+<form [formGroup]="getDate">
+    <h4>Pick a date!</h4>
+    <input type="date" min="2022-10-11" formControlName="date" style="height:30px" (change)="check()">
+    <!-- <button class="btn" mat-button color="primary" type="submit" (click)="check()">start booking for {{movies.Movie_name}}!! </button>  -->
+</form>
+    </div>
+    <div class="right" style="margin-left:70vw;width: 50%;">
+        <img src="{{movies.Movie_poster}}" alt="poster unavailable" height="200px" width="100vw">
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>Theatre Name</th>
+        <th>Theatre Location</th>
+        <th>Screen Number</th>
+        <th>Movie Time</th>
+        <th>Remaining Seats</th>
+        <th>Book</th>
+    </tr>
+    <tr  *ngFor="let s of theatrelist, let i= index">
+        <td>{{s.Theatre_name}}</td>
+        <td>{{s.Theatre_location}}</td>
+        <td>{{s.Hall_no}}</td>
+        <td>{{s.startTime}}</td>
+        <td>{{s.seats}}</td>
+        <td><button mat-stroked-button color="primary"(click)=OpenSeatNo(s.Hall_id)>book</button></td>
+    </tr>
+</table>

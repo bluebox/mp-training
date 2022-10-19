@@ -1,0 +1,29 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom" >
+  <a class="navbar-brand" href="#"><img src="assets/data/logo.png" alt="img not available" height="40px" width="100px">MoviesForAll           </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent" >
+        <!-- <form autocomplete="off" >
+          <div class="autocomplete" style="width:300px;">
+            <input id="myInput" type="text" name="myCountry" placeholder="Search Movie">
+          </div>
+          <input type="submit">
+        </form> -->
+    <button style="margin-left: 76vw;" mat-button *ngIf="!user.status" (click)="openLogin()">Login</button>
+    <button  style="margin-left: 75vw;" mat-button *ngIf="user.status" (click)="Logout()">Logout</button>
+    <!-- <button style="float:right" routerLink="/signup" routerLinkActive="active" ariaCurrentWhenActive="page">SignUp/SignIn</button> -->
+  </div>
+</nav>
+
+<ul>
+  <li><a class="btn" routerLink="/movies"  ariaCurrentWhenActive="page"> Movies</a></li>
+  <li><a class="btn"  *ngIf="user.status" routerLink="/concerts" ariaCurrentWhenActive="page"> Booking History</a></li>
+  <li><a class="btn" ariaCurrentWhenActive="page">Concerts</a></li>
+  <li><a class="btn"> Plays</a></li>
+  <li><a class="btn"  *ngIf="user.permit" routerLink="/admin" ariaCurrentWhenActive="page"> Dashboard</a></li>
+  <li><a class="btn"  *ngIf="user.status" (click)="cancelTicket()"> CancelTicket</a></li>
+</ul>
+<router-outlet></router-outlet>

@@ -1,0 +1,20 @@
+<table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>owner</th>
+      <th>Location</th>
+      <th>Number of screens</th>
+    </tr>
+    <tr *ngFor="let m of theatres">
+      <td>{{m.Theatre_id}}</td>
+      <td>{{m.Theatre_name}}</td>
+      <td>{{m.Theatre_owner}}</td>
+      <td>{{m.Theatre_location}}</td>
+      <td>{{m.Theatre_screens}}</td>
+      <td><button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+        <mat-icon>delete</mat-icon>
+      </button></td>
+    </tr>
+  </table>
+  <button mat-stroked-button color="primary" (click)="addTheatre()">Add new theatre</button>
