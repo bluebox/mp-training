@@ -2,33 +2,35 @@
 <h4 style="text-transform: uppercase;text-align:center;">Jobs</h4>
 <div class="search" style="background-color: black;padding:30px">
 
-<input type="text" id="search" #search placeholder="find a job" name="search"> &nbsp;
-<label for="search"> <button type="submit" (click)="searchJob(search.value)" > <i class="fa fa-search"></i> </button> </label>     
+    <input type="text" id="search" #search placeholder="find a job" name="search"> &nbsp;
+    <label for="search"> <button type="submit" (click)="searchJob(search.value)"> <i class="fa fa-search"></i> </button>
+    </label>
 </div>
 
 <ng-container *ngIf="jobsData=='' ; then first else second "></ng-container>
 <ng-template #first>
-    <div class="nodata" *ngIf="jobsData ==''" >
+    <div class="nodata" *ngIf="jobsData ==''">
 
-        <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
-        <h4>No jobs Available  </h4> <br> or <br>
+        <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top"
+            alt="">
+        <h4>No jobs found </h4> <br> <br>
         <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
     </div>
 </ng-template>
 
-<ng-template #second >
+<ng-template #second>
     <!-- <h4>{{ jobsData.job_id }}</h4> -->
     <ul #second *ngIf="jobsData">
         <br>
         <!-- <form > -->
 
-        <h4 style="text-align: center;">{{ jobsData.length }} Available jobs</h4>
+        <h4 style="text-align: center;"> Available jobs</h4>
         <li *ngFor="let jobs of jobsData">
             <table>
                 <tr>
                     <th>JOB ID : </th>
                     <th class="tabledata">{{ jobs.job_id}}</th>
-    
+
                 </tr>
                 <tr>
                     <td>CLIENT ID :</td>
@@ -37,37 +39,39 @@
                 <tr>
                     <td>PROJECT TITLE : </td>
                     <td class="tabledata"> {{ jobs.project_title }}</td>
-    
+
                 </tr>
                 <tr>
                     <td>DESCRIPTION :</td>
                     <td class="tabledata"> {{ jobs.description}}</td>
                 </tr>
                 <tr>
-                    <td>TOTAL PAY  :</td>
+                    <td>TOTAL PAY :</td>
                     <td class="tabledata">$ {{ jobs.total_pay}}</td>
-    
+
                 </tr>
                 <tr>
-                    <td>EXPERIENCE LEVEL  :</td>
+                    <td>EXPERIENCE LEVEL :</td>
                     <td class="tabledata"> {{ jobs.experience_level}}</td>
-    
+
                 </tr>
                 <tr>
-                    <td>SKILLS REQUIRED  :</td>
+                    <td>SKILLS REQUIRED :</td>
                     <td class="tabledata"> {{ jobs.skills_requried}}</td>
-    
+
                 </tr>
             </table>
-            
-            
-            
-            
-            
-            <button type="button"  (click)="getJobId(jobs.job_id)" >send proposal</button></li>
+
+
+
+
+
+            <button type="button" (click)="getJobId(jobs.job_id)">send proposal</button>
+        </li>
     </ul>
+    <div class="paginator" style="text-align: center;">
+        <button type="button" (click)="getClientJobs(-1)"> < </button> page {{ page }} out of {{ totalPages}}
+        <button type="button" (click)="getClientJobs(1)"> > </button>
+    </div>
 </ng-template>
 <app-ffooter></app-ffooter>
-
-
-

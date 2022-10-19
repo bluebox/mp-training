@@ -142,11 +142,20 @@ class clientUpdate(APIView):
         client.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+from .paginator import *
 class clientJobsRegister(APIView):
     def get(self, request, format=None):
         client = client_jobs.objects.all()
-        serializer = client_jobs_serializers(client, many=True)
-        return Response(serializer.data)
+        users, totalPages, page = listing(request, client)
+        serializer = client_jobs_serializers(users, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
+        # serializer = client_jobs_serializers(client, many=True)
+        # return Response(serializer.data)
 
     def post(self, request, format=None):
         print(request.data)

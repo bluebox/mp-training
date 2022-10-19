@@ -48,8 +48,8 @@ export class ServiceService {
   editClientDetails(email_id : any , data : any) {
     return this.http.put(this.url + 'client/' + email_id + '/', data) 
   }
-  getClientJobsUrl() {
-    return this.http.get(this.url + 'client_jobs')
+  getClientJobsUrl(page : number) {
+    return this.http.get(this.url + 'client_jobs?page='+page)
   }
 
   getClientJobsSearchUrl(search : any){

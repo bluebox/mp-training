@@ -11,23 +11,7 @@ export class JobsComponent implements OnInit {
 searchJob(search : any) {
   this.service.getClientJobsSearchUrl(search).subscribe((data: any) => this.jobsData = data)
 }
-first = 0;
-rows = 5;
-next() {
-  this.first = this.first + this.rows;
-}
-prev() {
-  this.first = this.first - this.rows;
-}
-reset() {
-  this.first = 0;
-}
-isLastPage(): boolean {
-  return this.jobsData ? this.first === (this.jobsData.length - this.rows) : true;
-}
-isFirstPage(): boolean {
-  return this.jobsData ? this.first === 0 : true;
-}
+
 
   getJobId(job_id: any) {
     console.log(job_id);
@@ -50,13 +34,18 @@ isFirstPage(): boolean {
   constructor(private service: ServiceService, private router: Router) { }
   jobsData: any;
   ngOnInit(): void {
-    this.getClientJobs()
+    this.getClientJobs(0)
     // console.log('ngoninit');
     
   }
-
-  getClientJobs() {
-    this.service.getClientJobsUrl().subscribe((data: any) => this.jobsData = data)
+  totalPages  = 0;
+  page = 1;
+  getClientJobs(number : number) {
+    this.service.getClientJobsUrl(this.page + number ).subscribe((data: any) =>{
+       this.jobsData = data.pageItems;
+       this.page = data.page
+       this.totalPages = data.totalPages;
+      })
   }
   fuser : any = window.localStorage.getItem('fuser');
   fuser_parse : any = JSON.parse(this.fuser);
