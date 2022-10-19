@@ -16,10 +16,18 @@ export class DiscussionComponent implements OnInit {
   response!:any;
   comments!:any;
   commentFlag!:any;
+  title: any;
+  discussion: any;
 
   commentForm = this.fb.group ({
     comment: ['', [Validators.required]]
   })
+
+  editCommentForm = this.fb.group ({
+    comment: ['', [Validators.required]]
+  })
+
+  commentbox: any = []
 
   editDiscussionForm = this.fb.group({
     editedTitle: ['', Validators.required],
@@ -30,14 +38,21 @@ export class DiscussionComponent implements OnInit {
   editedTitle: any = '';
   editedDiscussion:any = '';
   deletePopUpFlag: Boolean = false;
+  editCommentPopUp: any;
 
   constructor(private fb:FormBuilder, private router: Router, private route: ActivatedRoute, public service:RegisterService) { 
     this.params = this.route.snapshot.params;
     this.data = {id:this.params['id'], discussionId: this.params['discussionId']}
     this.service.getDiscussion(this.data).subscribe((data:any) => {
+      console.log("//////////");
+      let discussion = data.discussion
       console.log(data)
+      this.service.discussion = discussion;
       this.response = data['discussion'];
       this.comments = data['comments'];
+      for (let i = 0; i < this.commentFlag.length; i ++) {
+        this.commentbox.push(0);
+      }
     })
    }
 
@@ -63,6 +78,11 @@ export class DiscussionComponent implements OnInit {
 
    edit_discussion() {
     this.editPopUpFlag = !this.editPopUpFlag;
+    if (this.editPopUpFlag) {
+      let data = this.service.discussion;
+      this.title = data.title;
+      this.discussion = data.discussion;
+    }
    }
 
    checkCommentedUser(user_id:any) {
@@ -70,6 +90,25 @@ export class DiscussionComponent implements OnInit {
       return true;
     }
     return false;
+   }
+
+   edit_comment(i: any) {
+    if (this.commentbox[i]) {
+      this.commentbox[i] =0;
+    }
+    else {
+      this.commentbox[i] = 1;
+    }
+   }
+
+   editCommentConfirm(id: any) {
+    let data = {
+      'comment_id': id,
+      'comment': this.editCommentForm.value.comment
+    }
+    this.service.editDiscussionComment(data).subscribe((data: any) => {
+      console.log(data);
+    })
    }
 
    delete_comment(id:any) {

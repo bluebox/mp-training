@@ -1,5 +1,7 @@
 <div class="blog-container">
-    <div class="inner-blog-container"></div>
+    <div class="inner-blog-container">
+        <button routerLink="create" style="margin: 1rem 7rem;" class="btn btn-success">CREATE BLOG</button>
+    </div>
     <div class="inner-blog-container">
         <div *ngFor="let blog of blogs; let i = index;" class="blog-card">
             <h3 class="title">{{ blog.title }}</h3>

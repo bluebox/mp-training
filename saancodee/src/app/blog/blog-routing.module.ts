@@ -6,12 +6,14 @@ import { BlogCategorySearchComponent } from './components/blog-category-search/b
 import { BlogItemComponent } from './components/blog-item/blog-item.component';
 import { BlogSearchComponent } from './components/blog-search/blog-search.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
+import { CreateBlogComponent } from './components/create-blog/create-blog.component';
 
 const routes: Routes = [
   { path: '', component: BlogsComponent},
   { path: 'blog/:id', component: BlogItemComponent},
   { path: 'search', component: BlogSearchComponent},
-  { path: 'category', component: BlogCategorySearchComponent }
+  { path: 'category', component: BlogCategorySearchComponent },
+  { path: 'create', component: CreateBlogComponent }
   // { path: 'blog/:id', component: BlogItemComponent },
 ];
 

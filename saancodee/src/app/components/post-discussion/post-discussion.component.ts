@@ -21,6 +21,10 @@ export class PostDiscussionComponent implements OnInit {
 
   constructor(public fb:FormBuilder, private service : RegisterService, private router: Router, private route: ActivatedRoute) { 
     this.id = this.route.snapshot.params['id']
+    // const wysi = document.querySelector(".bcontent")
+    // if (wysi != null) {
+    //   wysi.wysihtml5();
+    // }
    }
 
   onSubmit() {

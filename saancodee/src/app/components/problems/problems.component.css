@@ -112,3 +112,88 @@ h1{
   ::-webkit-scrollbar-thumb {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
   }
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  label {
+    display: block;
+  }
+  
+  .filters {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filters .input {
+    position: absolute;
+    left: -100em;
+  }
+
+  .tag-filter {
+    display: flex;
+  }
+  
+  .filters .input + label:before {
+    display: inline-block;
+    line-height: 1;
+    width: 1em;
+    margin-right:.25em;
+    content: '▢';
+  }
+  .filters .input:checked + label:before {
+    content: '▣';
+  }
+  
+  @supports (display: flex) {
+    .filters .input:checked + label:before {
+      content: '✖';
+      color: #c00;
+    }
+    .filters .input + label {
+      animation: .5s out forwards;
+    }
+    .filters .input:checked + label {
+      animation: .5s in forwards;
+    }
+    @keyframes in {
+      0% {
+        transform: translateX(0);
+        animation-timing-function: ease-in;
+        order: initial;
+      }
+      50% {
+        transform: translateX(-100%);
+        order: initial;
+      }
+      100% {
+        transform: translateX(0);  
+        animation-timing-function: ease-out;
+        order: -1;
+      }
+    }
+  
+    @keyframes out {
+      0% {
+        transform: translateX(0);
+        animation-timing-function: ease-in;
+        order: -1;
+      }
+      50% {
+        transform: translateX(-100%);
+        order: -1;
+      },
+      100% {
+        animation-timing-function: ease-out;
+        transform: translateX(0);  
+        order: initial;
+      }
+    }
+  }
+  
+  @supports (selector(".input")) {
+    label {
+      color: red
+    }
+  }

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { NgxEditorModule } from 'ngx-editor';
 
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogsComponent } from './components/blogs/blogs.component';
@@ -12,6 +13,7 @@ import { AllBlogsComponent } from './components/all-blogs/all-blogs.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogSearchComponent } from './components/blog-search/blog-search.component';
 import { BlogCategorySearchComponent } from './components/blog-category-search/blog-category-search.component';
+import { CreateBlogComponent } from './components/create-blog/create-blog.component';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { BlogCategorySearchComponent } from './components/blog-category-search/b
     BlogItemComponent,
     AllBlogsComponent,
     BlogSearchComponent,
-    BlogCategorySearchComponent
+    BlogCategorySearchComponent,
+    CreateBlogComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,8 @@ import { BlogCategorySearchComponent } from './components/blog-category-search/b
     ReactiveFormsModule,
     BlogRoutingModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgxEditorModule
   ]
 })
 export class BlogModule { }

@@ -1,10 +1,14 @@
 from rest_framework.authtoken.models import Token
+from django.db.models import Count
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+
+from    home.managers.problemDiscussion import discussionCommentsLogic, discussionLogic
+from home.managers.profile import profileLogic
 from .models import *
 from .forms import UserRegistrationForm
-from home.managers.problem import *
+from .managers.problem import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 import requests, json
@@ -19,6 +23,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from .managers.blogs import blogsCommentLogic, blogsLogic
 
 @permission_classes((permissions.AllowAny,))
 @api_view(['GET'])
@@ -32,21 +37,15 @@ def api(request):
 
 @api_view(['GET'])
 def blogs_api(request):
-    blogs = Blog.objects.all().order_by("created_date_time")
-    serializer = BlogsSerializer(instance=blogs, many=True)
-    return Response(serializer.data)
+    return blogsLogic.getAllBlogs(request)
 
 @api_view(['POST'])
 def blog_api(request):
-    blog = Blog.objects.get(blog_id = request.data.get('id'))
-    serializer = BlogsSerializer(instance=blog)
-    return Response(serializer.data)
+    return blogsLogic.getBlogWithId(request)
 
 @api_view(['GET'])
 def problemsList(request):
-    problems = Problem.objects.all()
-    serializer = ProblemSerializer(problems, many = True)
-    return Response(serializer.data)
+    return problemLogic.getAllProblems(request)
 
 @api_view(['POST'])
 def delete_comment_api(request):
@@ -55,27 +54,7 @@ def delete_comment_api(request):
 
 @api_view(['GET'])
 def sortProblemsApi(request):
-    params = []
-    print(request.GET.get('accuracy', '0'))
-    difficulty = request.GET.get('difficulty', '0')
-    accuracy = request.GET.get('accuracy', '0')
-    problems = None
-    if difficulty == "1" and accuracy == "1":
-        problems = Problem.objects.all().order_by('difficulty_level', 'accuracy')
-        params.append("difficulty_level")
-    elif accuracy == "1":
-        problems = Problem.objects.all().order_by('accuracy')
-    elif difficulty == "1":
-        problems = Problem.objects.all().order_by('difficulty_level')
-    if difficulty == "-1" and accuracy == "-1":
-        problems = Problem.objects.all().order_by('-difficulty_level', '-accuracy')
-        params.append("difficulty_level")
-    elif accuracy == "-1":
-        problems = Problem.objects.all().order_by('-accuracy')
-    elif difficulty == "-1":
-        problems = Problem.objects.all().order_by('-difficulty_level')
-    serializer = sortProblemSerializer(problems, many = True)
-    return Response(serializer.data)
+    return problemLogic.sortAndGetProblems(request)
 
 @api_view(['GET'])
 def categoryApi(request, category):
@@ -98,16 +77,6 @@ def loginApi(request):
 
 @api_view(['POST'])
 def registerApi(request):
-    # try:
-    #     User.objects.get(username = request.data['username'])
-    #     return HttpResponse("username already exists")
-    # except:
-    #     pass
-    # try:
-    #     User.objects.get(email = request.data['email'])
-    #     return HttpResponse("email already exists")
-    # except:
-    #     pass
 
     serializer = registerSerializer(data = request.data)
     if not serializer.is_valid():
@@ -133,101 +102,43 @@ def submissionsApi(request, problem_id, username):
 
 @api_view(['POST'])
 def postCommentApi(request, discussionId, username):
-    discussion_id = Discussion.objects.get(discussion_id = discussionId)
-    user_id = User.objects.get(username = username)
-    comment = Comment.objects.create(discussion_id = discussion_id, user_id = user_id)
-    serializer = commentSerializer(instance = comment, data = request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors)
+    return discussionCommentsLogic.postDiscussionComments(request, discussionId, username)
 
 @api_view(['POST'])
 def add_blog_comment_api(request):
-    blog_id = Blog.objects.get(blog_id = request.data['blog_id'])
-    user_id = User.objects.get(username = request.data['user_id'])
-    comment = BlogComment.objects.create(blog_id = blog_id, user_id = user_id, comment = request.data['comment'])
-    serializer = blogCommentSerializer(instance=comment)
-    return Response(serializer.data)
+    return blogsCommentLogic.addBlogComment(request)
 
 @api_view(['GET'])
 def getDiscussionApi(request, problemId, discussionId):
-    discuss = Discussion.objects.get(discussion_id = discussionId)
-    print(discuss)
-    comment = Comment.objects.filter(discussion_id = discussionId)
-    commentSerial = commentSerializer(comment, many = True)
-    serializer = discussionsSerializer(discuss, many = False)
-    return Response({"discussion": serializer.data, "comments": commentSerial.data})
+    return discussionLogic.getDiscussionWithId(request, problemId, discussionId)
+
+def test(request):
+    comment = BlogComment.objects.filter(blog_id__blog_id = 2, user_id__id = 1)
+    print(comment)
 
 @api_view(['POST'])
 def problem_stats_api(request):
-    user = User.objects.get(username = request.data['username'])
-    problems_solved = Solved.objects.filter(user_id = user)
-    totalEasy, totalMedium, totalHard = len(Problem.objects.filter(difficulty_level = 0)), len(Problem.objects.filter(difficulty_level = 1)), len(Problem.objects.filter(difficulty_level = 2))
-    total = totalEasy + totalMedium + totalHard
-    easy, medium, hard = 0, 0, 0
-    for problem in problems_solved:
-        problem_id = problem.problem_id.problem_id
-        curr_problem = Problem.objects.get(problem_id = problem_id)
-        if (curr_problem.difficulty_level == 0):
-            easy += 1
-        elif (curr_problem.difficulty_level == 1):
-            medium += 1
-        else:
-            hard += 1
-    return Response({"total": total, "totalEasy": totalEasy, "totalMedium": totalMedium, "totalHard": totalHard, "easy": easy, "medium": medium, "hard": hard})
+    return profileLogic.problemStatistics(request)
 
 @api_view(['GET'])
 def discussionsApi(request, problemId):
-    problem = Problem.objects.get(problem_id = problemId)
-    discussions = Discussion.objects.filter(problem_id = problem)
-    # users = []
-    # for i in discussions:
-    #     username = User.objects.get(id = i.user_id)
-    #     users.append(username)
-    serializer = discussionsSerializer(discussions, many = True)
-    print(serializer.data)
-    
-    return Response(serializer.data)
+    return discussionLogic.getDiscussionWithProblemId(request, problemId)
 
 @api_view(['POST'])
 def blog_category_api(request):
-    try:
-        blogs = Blog.objects.filter(tag = request.data['tag'])
-        serializer = BlogsSerializer(instance=blogs, many = True)
-        return Response(serializer.data)
-    except Exception as e:
-        return Response({"messege": "page not found", "status": 200})
+    return blogsLogic.getBlogsWithCategory(request)
 
 @api_view(['POST'])
 def blog_search(request):
-    search_word = request.data['search']
-    search_word = search_word.strip(' ')
-    word = ""
-    for i in range(len(search_word)):
-        if search_word[i] == " " and search_word[i - 1] == " ":
-            continue
-        else:
-            word += search_word[i]
-    keywords = word.split(" ")
-    queryset = Blog.objects.none()
-    for keyword in keywords:
-        queryset |= Blog.objects.filter(title__contains = keyword).order_by("created_date_time")
-    if len(queryset) == 0:
-        return Response({"status": 404})    
-    serializer = BlogsSerializer(instance=queryset, many = True)
-    return Response(serializer.data)
+    return blogsLogic.getBlogsWithSearchWord(request)
+
+@api_view(['POST'])
+def editDiscusionComment(request):
+    return discussionCommentsLogic.editCommentById(request)
 
 @api_view(['POST'])
 def editProfileApi(request, username):
-    profile = User.objects.get(username = username).profile
-    serializer = editProfileSerializer(instance = profile, data = request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    print(request.data)
-    print(serializer.errors)
-    return Response({"data":"invalid", "status": 403})
+    return profileLogic.editProfileWithUsername(request, username)
 
 @api_view(['GET'])
 def profilesApi(request):
@@ -237,97 +148,23 @@ def profilesApi(request):
 
 @api_view(['GET'])
 def profileApi(request, username):
-    profile = User.objects.get(username = username).profile
-    serialzer = profileSerializer(profile, many = False)
-    return Response(serialzer.data)
+    return profileLogic.getProfileWithUsername(request, username)
 
 @api_view(['POST'])
 def postDiscussionApi(request, problem_id, username):
-    problem = Problem.objects.get(problem_id = problem_id)
-    user = User.objects.get(username = username)
-    discussion = Discussion.objects.create(problem_id = problem, username = user, title = request.data['title'], discussion = request.data['discussion'])
-    return HttpResponse("answer submitted successfully")
+    return discussionLogic.postDiscussionWithProblemId(request, problem_id, username)
 
 @api_view(['GET'])
 def problemDetail(request, id):
-    problem = Problem.objects.get(problem_id = id)
-    tagsList = list(TopicTag.objects.filter(problem_id = problem.problem_id).iterator())
-    tags = []
-    for tagIndex in tagsList:
-        tags.append(tagIndex.tag_id.tag_name)
-    serializer = ProblemSerializer(problem, many = False)
-    return Response({"problems": serializer.data, "tags": tags})
-
-# @api_view(['GET'])
-# def problemVotesApi(request, id):
-#     problem = Problem.objects.get(problem_id = id)
-#     likes = len(ProblemVotes.objects.get(problem_id = problem.problem_id, vote = 'L'))
-#     dislikes = len(ProblemVotes.objects.get(problem_id = problem.problem_id, vote = 'D'))
-
-#     return Response({"likes":likes, "dislikes": dislkes})
+    return problemLogic.getProblemWithId(request, id)
 
 @api_view(['GET', 'POST'])
 def votesApi(request, problemId, username):
-    creator_id = User.objects.get(username = username)
-    problem = Problem.objects.get(problem_id = problemId)
-    voted = ''
-    if (request.method == "GET"):
-        try:
-            vote = ProblemVotes.objects.get(problem_id = problem.problem_id, voter_id = creator_id)
-            # vote.delete()
-            voted = vote.vote
-        except:
-            pass
-        votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
-        votesDislike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D'))
-        return Response({"like": votesLike, "dislike": votesDislike, "vote": voted})
-
-    if (request.method == "POST"):
-        try:
-            vote = ProblemVotes.objects.get(problem_id = problem.problem_id, voter_id = creator_id)
-            if request.data['vote'] == 'LA':
-                vote.delete()
-                problem.likes = problem.likes - 1
-                problem.save()
-                # problem.deleteLikes()
-            # vote.delete()
-                voted = ''
-            elif request.data['vote'] == "DA":
-                vote.delete()
-                problem.dislikes = problem.dislikes - 1
-                problem.save()
-                # problem.deleteDisLikes()
-                voted = ''
-        except:
-            vote = ProblemVotes.objects.create(problem_id = problem, voter_id = creator_id)
-            if request.data['vote'] == "L":
-                vote.vote = 'L'
-                vote.save()
-                problem.likes = problem.likes + 1
-                problem.save()
-                # problem.addLikes()
-                voted = 'L'
-            else:
-                vote.vote = 'D'
-                vote.save()
-                problem.dislikes = problem.dislikes + 1
-                problem.save()
-                # problem.addDisLikes()
-                voted = 'D'
-        votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
-        votesDislike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D'))
-        return Response({"like": votesLike, "dislike": votesDislike, "vote": voted})
+    return problemVoteLogic.voteOrDelete(request, problemId, username)
             
 @api_view(['POST'])
 def postDiscussionApi(request, problem_id, username):
-    creator_id = User.objects.get(username = username)
-    problem = Problem.objects.get(problem_id = problem_id)
-    discussion = Discussion.objects.create(username = creator_id, problem_id = problem, title = request.data['title'], discussion = request.data['discussion'])
-    serializer = PostDiscussionSerializer(instance = discussion, data = request.data)
-    if serializer.is_valid():
-        return Response({"status":200, "message":"success", "response": serializer.data})
-    discussion.delete()
-    return Response({"status":403, "message":"invalid", "errors": serializer.errors})
+    return discussionLogic.postDiscussionWithProblemId(request, problem_id, username)
 
 
 @api_view(['POST'])
@@ -367,11 +204,7 @@ def postQuestionApi(request, username):
 
 @api_view(['POST'])
 def problemVote(request, id):
-    problem = Problem.objects.get(problem_id = id)
-    serializer = ProblemSerializer(instance = problem, data = request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+    return problemVoteLogic.getVoteWithProblemId(request, id)
 
 # Create your views here.
 
@@ -380,47 +213,44 @@ def homeView(request):
     return render(request, 'home/home.html')
 
 @api_view(['POST'])
+def add_blog_api(request):
+    return blogsLogic.add_blog_with_username(request)
+
+@api_view(['POST'])
+def add_blog_reply(request):
+    return blogsCommentLogic.add_blog_reply_by_comment_id(request)
+
+class edit_blog_comment_api(APIView):
+
+    def post(self, request):
+        return blogsCommentLogic.edit_blog_comment_by_id(request)
+
+    def delete(self, request):
+        return blogsCommentLogic.delete_blog_comment_by_id(request)
+
+@api_view(['POST'])
 def blog_comments_api(request):
-    comments = BlogComment.objects.filter(blog_id = request.data['blog_id']).order_by("likes")
-    # data = {}
-    # for i in range(len(comments)):
-    #     commentSerializer = blogCommentSerializer(instance=comments[i])
-    #     data[i] = {
-    #         "comment": commentSerializer.data
-    #     }
-    # print(data)
-    data = BlogComment.objects.prefetch_related('blogcommentreply_set').all()
-    serializer = blogCommentSerializer(instance=data, many = True)
-    return Response(serializer.data)
+    return blogsCommentLogic.getBlogComments(request)
+
+@api_view(['POST'])
+def delete_blog_comment_reply(request):
+    return blogsCommentLogic.delete_blog_comment_reply_by_id(request)
 
 @api_view(['POST'])
 def delete_discussion_api(request):
-    deletedDiscussion = Discussion.objects.get(discussion_id = request.data['discussion_id'])
-    deletedDiscussion.delete()
-    return Response({"status":200, "messege":"successfully deleted thread"})
+    return discussionLogic.deleteDiscusisonWithId(request)
 
 @api_view(['POST'])
 def delete_blog_api(request):
-    deletedDiscussion = Blog.objects.get(blog_id = request.data['blog_id'])
-    deletedDiscussion.delete()
-    return Response({"status":200, "messege":"successfully deleted thread"})
+    return blogsLogic.deleteBlogWithId(request)
 
 @api_view(['POST'])
 def edit_discussion_api(request):
-    print(request.data)
-    editedDiscussion = Discussion.objects.get(discussion_id = request.data['discussion_id'])
-    editedDiscussion.discussion = request.data['discussion']
-    editedDiscussion.title = request.data['title']
-    editedDiscussion.save()
-    return Response({"status": 200, "messege": "discussion updated successfully"})
+    return discussionLogic.editDiscussionWithId(request)
 
 @api_view(['POST'])
 def edit_blog_discussion_api(request):
-    editedDiscussion = Blog.objects.get(blog_id = request.data['blog_id'])
-    editedDiscussion.discussion = request.data['discussion']
-    editedDiscussion.title = request.data['title']
-    editedDiscussion.save()
-    return Response({"status": 200, "messege": "discussion updated successfully"})
+    return blogsLogic.editBlogWithId(request)
 
 @login_required(login_url = 'login')
 def problems(request):

@@ -24,6 +24,7 @@ import { PostQuestionComponent } from './components/post-question/post-question.
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 import { PostDiscussionComponent } from './components/post-discussion/post-discussion.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PostDiscussionComponent } from './components/post-discussion/post-discu
     ReactiveFormsModule,
     MatExpansionModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgxEditorModule
   ]
 ,  providers: [RegisterService, AuthGuard, {
   provide: HTTP_INTERCEPTORS,

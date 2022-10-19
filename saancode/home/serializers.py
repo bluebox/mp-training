@@ -54,6 +54,11 @@ class commentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
 
+class editDiscussionComment(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['comment']
+
 class blogReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogCommentReply

@@ -1,8 +1,8 @@
 <div *ngIf="editPopUpFlag" class="edit-pop-up">
     <form [formGroup]="editDiscussionForm" class="edit-discussion-form">
-        <input formControlName="editedTitle" type="text" placeholder="title">
-        <textarea style="white-space: pre-wrap" formControlName="editedDiscussion" id="" cols="30" rows="10"
-            placeholder="discussion"></textarea>
+        <input formControlName="editedTitle" [(ngModel)]="title" type="text" placeholder="title">
+        <textarea style="white-space: pre-wrap" [(ngModel)]="discussion" formControlName="editedDiscussion" id=""
+            cols="30" rows="10" placeholder="discussion"></textarea>
         <div class="edit-buttons">
             <button type="submit" [disabled]="!editDiscussionForm.valid"
                 (click)="edit_confirm(response.discussion_id)">edit</button>
@@ -49,23 +49,24 @@
                                 <i class="bi bi-trash"></i>
                                 <p title="delete" (click)="delete_discussion()" class="mb-0">delete</p>
                             </a>
-                            <a href="#!" class="d-flex align-items-center me-3">
+                            <!-- <a href="#!" class="d-flex align-items-center me-3">
                                 <i class="fas fa-share me-2"></i>
                                 <p class="mb-0">Share</p>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
                         <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                             <div class="d-flex flex-start w-100">
                                 <div class="form-outline w-100">
-                                    <textarea type="text" formControlName="comment" class="form-control" id="textAreaExample" rows="4"
-                                        style="background: #fff;"></textarea>
+                                    <textarea type="text" formControlName="comment" class="form-control"
+                                        id="textAreaExample" rows="4" style="background: #fff;"></textarea>
                                     <label class="form-label" for="textAreaExample">Message</label>
                                 </div>
                             </div>
                             <div class="float-end mt-2 pt-1">
-                                <button type="submit" [disabled]="!commentForm.valid" class="btn btn-primary btn-sm">Post comment</button>
+                                <button type="submit" [disabled]="!commentForm.valid"
+                                    class="btn btn-primary btn-sm">Post comment</button>
                                 <!-- <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button> -->
                             </div>
                         </div>
@@ -75,7 +76,7 @@
         </div>
     </div>
 
-    
+
 </section>
 
 <div class="card comment-section">
@@ -114,16 +115,23 @@
                                 <p style="color: blue;">{{ comment.user_id }}</p>
                             </h6>
                             <span>{{ comment.created_date_time | date: 'mediumDate' }}</span>
-                            <i class="bi bi-pencil"></i>
+                            <i class="bi bi-pencil" (click)="edit_comment(i)"></i>
                             <i class="bi bi-trash" *ngIf="checkCommentedUser(comment.user_id)"
-                            (click)="delete_comment(comment.comment_id)"></i>
+                                (click)="delete_comment(comment.comment_id)"></i>
                         </div>
-                        <div class="comment-content">
+                        <div style="white-space: pre-wrap;" class="comment-content">
                             {{ comment.comment }}
+                        </div>
+                        <div *ngIf="commentbox[i]">
+                            <form [formGroup]="editCommentForm" (ngSubmit)="editCommentConfirm(comment.comment_id)">
+                                <textarea style="white-space: pre-wrap;" name="editComment" [(ngModel)]="comment.comment" formControlName="comment"
+                                    id="" cols="30" rows="10"></textarea>
+                                <button type="submit" (click)="edit_comment(i)">edit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-        <!-- <div *ngFor="let comment of comments; let i = index;">
+                <!-- <div *ngFor="let comment of comments; let i = index;">
             <div style="white-space: pre-wrap;" class="comment">
                 <p>{{ comment.user_id }}</p>
                 <p>{{ comment.comment }}</p>
@@ -131,7 +139,7 @@
                     (click)="delete_comment(comment.comment_id)">delete</button>
             </div>
         </div> -->
-    </li>
-    </ul>
+            </li>
+        </ul>
     </div>
 </div>

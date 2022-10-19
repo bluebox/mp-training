@@ -1,7 +1,7 @@
 <form class="container" (ngSubmit)="onSubmit()" [formGroup]="profileForm">
     <div class="form-outline">
         <label class="form-label" for="typeText">Full Name</label>
-        <input name="full_name" formControlName="full_name" full_name="text" id="typeText" class="form-control" />
+        <input name="full_name" [(ngModel)]="full_name" formControlName="full_name" full_name="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
         <label class="form-label" for="typeText">Gender</label>
@@ -13,35 +13,35 @@
     
     <div class="form-outline">
         <label class="form-label" for="typeText">Location</label>
-        <input formControlName="location" name="location" type="text" id="typeText" class="form-control" />
+        <input formControlName="location" [(ngModel)]="location" name="location" type="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
         <label class="form-label" for="typeText">Mobile</label>
-        <input formControlName="mobile" name="mobile" type="text" id="typeText" class="form-control" />
+        <input formControlName="mobile" [(ngModel)]="mobile" name="mobile" type="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
         <label class="form-label" for="typeText">Github</label>
-        <input formControlName="github" name="github" type="text" id="typeText" class="form-control" />
+        <input formControlName="github" [(ngModel)]="github" name="github" type="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
         <label class="form-label" for="typeText">facebook</label>
-        <input formControlName="facebook" name="facebook" type="text" id="typeText" class="form-control" />
+        <input formControlName="facebook" [(ngModel)]="facebook" name="facebook" type="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
         <label class="form-label" for="typeText">instagram</label>
-        <input formControlName="instagram" name="instagram" type="text" id="typeText" class="form-control" />
+        <input formControlName="instagram" [(ngModel)]="instagram" name="instagram" type="text" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
         <label class="form-label" style="display: block;" for="typeText">Bio</label>
-        <textarea name="bio" id="bio" cols="30" rows="5" formControlName="bio" style="resize: none;"></textarea>
+        <textarea [(ngModel)]="bio" name="bio" id="bio" cols="30" rows="5" formControlName="bio" style="resize: none;"></textarea>
     </div>
     <div class="form-outline">
         <label class="form-label" for="typeText">Work</label>
-        <input formControlName="work" type="text" name="work" id="typeText" class="form-control" />
+        <input formControlName="work" type="text" [(ngModel)]="work" name="work" id="typeText" class="form-control" />
     </div>
     <div class="form-outline">
         <label class="form-label" for="typeText">Education</label>
-        <input name="education" formControlName="education" type="text" id="typeText" class="form-control" />
+        <input [(ngModel)]="education" name="education" formControlName="education" type="text" id="typeText" class="form-control" />
     </div>
     
     <button type="submit" [disabled]="!profileForm.valid">Edit</button>

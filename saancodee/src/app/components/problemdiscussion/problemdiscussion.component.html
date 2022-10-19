@@ -2,6 +2,9 @@
   <div class="post">
     <button class="btn btn-outline-warning btn-lg" (click)="onDiscussionPost()"><a>Add an Answer</a></button>
   </div>
+  <div class="if-no-discussion" *ngIf="!discussions.length;">
+    <p>No discussions yet, post an answer</p>
+  </div>
     <div *ngFor="let discussion of discussions">
         <!-- <section class="vh-100" style="background-color: #eee;">
             <div class="container py-5 h-100">

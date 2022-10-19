@@ -15,6 +15,11 @@ export class BlogItemComponent implements OnInit {
   comments: any;
   editPopUpFlag: boolean = false;
   deletePopUpFlag: boolean = false;
+  replyBox: any = []
+
+  replyForm = this.fb.group({
+    reply: ['', Validators.required]
+  })
 
   commentForm = this.fb.group ({
     comment: ['', [Validators.required]]
@@ -26,6 +31,7 @@ export class BlogItemComponent implements OnInit {
   })
   
   constructor(public fb:FormBuilder, public service: BlogService, private http: HttpClient, private router: Router, private route: ActivatedRoute) { 
+
     this.blog_id = this.route.snapshot.params['id'];
     console.log(this.blog_id);
     this.service.getBlogData(this.blog_id).subscribe((data) => {
@@ -36,6 +42,26 @@ export class BlogItemComponent implements OnInit {
       console.log("////////")
       console.log(data);
       this.comments = data
+      for (let i = 0; i < this.comments.length; i ++) {
+        this.replyBox.push(0);
+      }
+    })
+   }
+
+   reply(i: any) {
+    if (this.replyBox[i] == 1) {
+      this.replyBox[i] = 0;
+    }
+    else {
+      this.replyBox[i] = 1;
+    }
+   }
+
+   submitReply(comment_id: any) {
+    let data = {'comment_id': comment_id, 'username': localStorage.getItem('username'), 'reply': this.replyForm.value.reply}
+    this.service.submitReply(data).subscribe((data: any) => {
+      console.log(data)
+      location.reload()
     })
    }
 
@@ -47,7 +73,20 @@ export class BlogItemComponent implements OnInit {
    }
 
    delete_comment(comment_id: any) {
-    
+    let data: any = {'comment_id': comment_id}
+    this.service.deleteBlogComment(data).subscribe((data) => {
+      console.log(data);
+      location.reload();
+    })
+   }
+
+   delete_reply(reply_id: any) {
+    let data: any = {'reply_id': reply_id}
+    console.log(data);
+    this.service.deleteBlogCommentReply(data).subscribe((data) => {
+      console.log(data);
+      location.reload();
+    })
    }
 
    oncommentSubmit() {

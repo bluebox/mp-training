@@ -116,12 +116,18 @@
                                         <p style="color: blue;">{{ comment.user_id }}</p>
                                     </h6>
                                     <span>{{ comment.created_date_time | date: 'mediumDate' }}</span>
-                                    <i class="bi bi-pencil"></i>
+                                    <i class="bi bi-reply" (click)="reply(i)"></i>
                                     <i class="bi bi-trash" *ngIf="checkCommentedUser(comment.user_id)"
                                     (click)="delete_comment(comment.comment_id)"></i>
                                 </div>
                                 <div style="white-space: pre-wrap;" class="comment-content">
                                     {{ comment.comment }}
+                                </div>
+                                <div *ngIf="replyBox[i]">
+                                    <form [formGroup]="replyForm" (ngSubmit)="submitReply(comment.comment_id)">
+                                    <textarea formControlName="reply" id="" cols="30" rows="10"></textarea>
+                                    <button type="submit">Reply</button>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -136,9 +142,9 @@
                                             <p style="color: blue;">{{ reply.user_id }}</p>
                                         </h6>
                                         <span>{{ reply.created_date_time | date: 'mediumDate' }}</span>
-                                        <i class="bi bi-pencil"></i>
-                                        <i class="bi bi-trash" *ngIf="checkCommentedUser(comment.user_id)"
-                                        (click)="delete_comment(comment.comment_id)"></i>
+                                        <!-- <i class="bi bi-pencil" (click)="edit_comment()"></i> -->
+                                        <i class="bi bi-trash" *ngIf="checkCommentedUser(reply.user_id)"
+                                        (click)="delete_reply(reply.reply_id)"></i>
                                     </div>
                                     <div class="comment-content">
                                         {{ reply.reply }}

@@ -11,6 +11,17 @@ import { RegisterService } from 'src/app/services/register.service';
 export class EditProfileComponent implements OnInit {
 
 
+  full_name: any;
+  gender: any;
+  location: any;
+  bio: any;
+  work: any;
+  education: any;
+  mobile: any;
+  github: any;
+  facebook: any;
+  instagram: any;
+
   profileForm = this.fb.group(
     {
       full_name: ['', [Validators.required, Validators.minLength(6)]],
@@ -26,13 +37,28 @@ export class EditProfileComponent implements OnInit {
     }
   )
 
-  constructor(private router: Router, private fb: FormBuilder, private service: RegisterService) { }
+  constructor(private router: Router, private fb: FormBuilder, private service: RegisterService) { 
+    let profile = this.service.profile;
+    this.full_name = profile.full_name;
+    this.gender = profile.gender;
+    this.location = profile.location;
+    this.bio = profile.bio;
+    this.work = profile.work;
+    this.education = profile.education;
+    this.mobile = profile.mobile;
+    this.github = profile.github;
+    this.facebook = profile.facebook;
+    this.instagram = profile.instagram;
+   }
 
   onSubmit() {
     console.log(this.profileForm.value)
     this.service.editProfile(this.profileForm.value).subscribe((data:any) => {
-      console.log(data)
-      this.router.navigate(['/profile'])
+      this.service.profile = data;
+      console.log(this.service.profile);
+      console.log("////////////");
+      let username = localStorage.getItem('username')
+      this.router.navigate(['profile', username]);
     })
   }
 

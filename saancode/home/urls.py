@@ -1,12 +1,18 @@
 from distutils.command.install_egg_info import safe_name
-from django.urls import path
+from django.urls import include, path
 from .views import *
 from django.contrib.auth import views as user_views
 from rest_framework.authtoken import views
 
 urlpatterns = [
+    path('__debug__/', include('debug_toolbar.urls')),
+    path('test', test),
     path('', homeView, name='home'),
     path('api/', api, name='api'),
+    path('api/add-blog', add_blog_api),
+    path('api/edit-blog-comment', edit_blog_comment_api.as_view()),
+    path('api/add-blog-reply', add_blog_reply),
+    path('api/delete-blog-comment-reply', delete_blog_comment_reply),
     path('api/edit-discussion', edit_discussion_api),
     path('api/edit-blog-discussion', edit_blog_discussion_api),
     path('api/blog-search', blog_search),
@@ -14,6 +20,7 @@ urlpatterns = [
     path('api/delete-comment', delete_comment_api),
     path('api/get-blog-comments', blog_comments_api),
     path('api/blogs', blogs_api),
+    path('api/edit-discussion-comment', editDiscusionComment),
     path('api/blog', blog_api),
     path('api/problems-statistics', problem_stats_api),
     path('api/blog-comment', add_blog_comment_api),

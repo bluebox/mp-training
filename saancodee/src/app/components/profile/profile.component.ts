@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
       console.log('====================================');
       console.log(data);
       this.profile = data
+      this.service.profile = data;
       console.log('====================================');
     })
     this.problems = this.service.getStats(this.username).subscribe((data: any) => {

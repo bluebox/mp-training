@@ -55,6 +55,51 @@ export class BlogService {
     return this.http.post(url, data, {headers: headers})
   }
 
+  addBlog(blogData: any) {
+    let url = "http://127.0.0.1:8000/api/add-blog"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, blogData, {headers: headers})
+  }
+
+  editBlogComment(commentData: any) {
+    let url = "http://127.0.0.1:8000/api/edit-blog-comment"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, commentData, {headers: headers})
+  }
+
+  submitReply(replyData: any) {
+    let url = "http://127.0.0.1:8000/api/add-blog-reply"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, replyData, {headers: headers})
+  }
+
+  deleteBlogComment(commentData: any) {
+    let url = "http://127.0.0.1:8000/api/edit-blog-comment"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.delete(url, {headers: headers, body: commentData})
+  }
+
+  deleteBlogCommentReply(replyData: any) {
+    let url = "http://127.0.0.1:8000/api/delete-blog-comment-reply"
+    let headers = new HttpHeaders({
+      "Content-Type" : "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, replyData, {headers: headers})
+  }
+
   getBlogComments(blog_id:any) {
     let data = {"blog_id": blog_id}
     console.log(data);
