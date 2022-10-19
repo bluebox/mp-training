@@ -1,0 +1,86 @@
+<p>new-branch works!</p>
+<form style="margin-top: 5%" [formGroup]="testForm" class="form-container">
+  <mat-card style="background-color: #eee5f390">
+    <mat-card-header>
+      <mat-card-title style="color: #7710ab">Add New Test</mat-card-title>
+      {{ responseMessage }}
+      <span *ngIf="formNotValid">please Fill All required details</span>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="test_id" matInput placeholder="test id" />
+          </mat-form-field>
+          <small
+            class="text-danger"
+            *ngIf="
+              testForm.get('test_id')?.invalid &&
+              testForm.get('test_id')?.touched
+            "
+            >Please enter test id</small
+          >
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input
+            formControlName="test_name"
+            matInput
+            placeholder="test_name"
+            placeholder="test_name"
+          />
+        </mat-form-field>
+
+        <small
+          class="text-danger"
+          *ngIf="
+            testForm.get('test_name')?.invalid &&
+            testForm.get('test_name')?.touched
+          "
+          >Please enter test_name</small
+        >
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <input
+            formControlName="test_description"
+            matInput
+            placeholder="test description"
+          />
+        </mat-form-field>
+
+        <small
+          class="text-danger"
+          *ngIf="
+            testForm.get('test_name')?.invalid &&
+            testForm.get('test_name')?.touched
+          "
+          >Please enter test_name</small
+        >
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Lab</mat-label>
+          <mat-select formControlName="lab" required>
+            <mat-option> </mat-option>
+            <mat-option *ngFor="let lab of labs" [value]="lab['lab_id']">
+              {{ lab["lab_name"] }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        (click)="onSubmit()"
+        mat-raised-button=""
+        style="color: #3f1651; background-color: #c3a1d5; margin-left: 3%"
+      >
+        Add
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

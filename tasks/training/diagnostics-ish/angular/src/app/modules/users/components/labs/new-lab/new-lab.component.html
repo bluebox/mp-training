@@ -1,0 +1,84 @@
+<p>new-branch works!</p>
+<form style="margin-top: 5%" [formGroup]="labForm" class="form-container">
+  <mat-card style="background-color: #eee5f390">
+    <mat-card-header>
+      <mat-card-title style="color: #7710ab">Add New Lab</mat-card-title>
+      {{ responseMessage }}
+      <span *ngIf="formNotValid">please Fill All required details</span>
+    </mat-card-header>
+    <br />
+      <ul style="list-style:none;color: red;" *ngFor="let error of responseMessage "><li>{{error}}</li></ul>
+
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Lab id</mat-label>
+            <input formControlName="lab_id" matInput placeholder="lab id" />
+            <small
+            class="text-danger"
+            *ngIf="
+              labForm.get('lab_id')?.invalid &&
+              labForm.get('lab_id')?.touched
+            "
+            >Please enter lab id</small
+          >
+          </mat-form-field>
+          
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Lab Name</mat-label>
+          <input
+            formControlName="lab_name"
+            matInput
+            placeholder="lab_name"
+            placeholder="lab name"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              labForm.get('lab_name')?.invalid &&
+              labForm.get('lab_name')?.touched
+            "
+            >Please enter lab_name</small
+          >
+        </mat-form-field>
+
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Branch</mat-label>
+          <mat-select formControlName="branch" required>
+            <mat-option> </mat-option>
+            <mat-option
+              *ngFor="let branch of branches"
+              [value]="branch['branch_id']"
+            >
+              {{ branch["branch_name"] }}
+            </mat-option>
+          </mat-select>
+          <small
+            class="text-danger"
+            *ngIf="
+              labForm.get('branch')?.invalid &&
+              labForm.get('branch')?.touched
+            "
+            >Please select branch</small
+          >
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        (click)="onSubmit()"
+        mat-raised-button=""
+        style="color: #3f1651; background-color: #c3a1d5; margin-left: 3%"
+      >
+        Add
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

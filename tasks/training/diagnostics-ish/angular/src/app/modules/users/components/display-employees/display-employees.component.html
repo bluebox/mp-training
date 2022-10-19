@@ -1,0 +1,74 @@
+<h1 style="text-align: center; margin-top:20px;font-size:30px;font-weight:bolder;color:rgb(94, 30, 153)">Employees</h1>
+
+<div class="table-container">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Type here to Search."
+      #input
+    />
+  </mat-form-field>
+   <button
+    style="right: 50px; position: absolute; margin-top: 1%"
+    routerLink="../../admin/register-employee"
+    class="nabButton"
+    mat-button mat-raised-button="" color="primary"
+  >
+    Add New Employee <mat-icon>add_box</mat-icon>
+  </button>
+
+  <div style="width: 100%;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table" matSort>
+      <!-- Customer ID Column -->
+      <ng-container matColumnDef="staff id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee  id</th>
+        <td mat-cell *matCellDef="let row">{{ row.staff_id   }}</td>
+      </ng-container>
+
+      <!-- iusername Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Username
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.user_id__username }}
+        </td>
+      </ng-container>
+      <!-- iusername Column -->
+      <ng-container matColumnDef="designation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Designation
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.designation }}
+        </td>
+      </ng-container>
+
+      
+      <!-- View Column -->
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row">
+          <button  [routerLink]="['../display-customer', row.staff_id]" mat-button mat-raised-button="" style="color: #3f1651; background-color: #e4d2ed">
+            Details<mat-icon>person</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="12">Data Not Found!</td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+</div>

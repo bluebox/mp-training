@@ -1,0 +1,23 @@
+.tp-container {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 10px;
+    width: 8%;
+    height: 100%;
+    background: #eee;
+}
+
+
+.sidenav{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #eee5f390;
+}
+button{
+    width: 100%;
+    margin-top: 10px;
+    text-align: start;
+}

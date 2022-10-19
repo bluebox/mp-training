@@ -1,0 +1,25 @@
+th {
+    color: #7710ab;
+    font-size: 14px;
+    background-color: #eee5f390;
+}
+
+.mat-expansion-panel-header {
+    height: 30px;
+    width: 50px;
+}
+
+.table-container {
+    position: relative;
+    left: 5%;
+    width: 90%;
+}
+
+.mat-cell,
+.mat-header-cell {
+    text-align: left;
+}
+
+.table {
+    width: 100%;
+}

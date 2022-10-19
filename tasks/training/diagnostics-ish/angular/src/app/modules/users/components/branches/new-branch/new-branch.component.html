@@ -1,0 +1,108 @@
+<form style="margin-top: 5%" [formGroup]="branchForm" class="form-container">
+  <mat-card style="background-color: #eee5f390">
+    <mat-card-header>
+      <mat-card-title *ngIf="!branchId" style="color: #7710ab"
+        >Add New Branch</mat-card-title
+      >
+      <mat-card-title *ngIf="branchId" style="color: #7710ab"
+        >Edit Branch</mat-card-title
+      >
+      <!-- <p *ngFor="let error of responseMessage " >{{error}} <br> </p> -->
+      <span *ngIf="formNotValid">please Fill All required details</span>
+    </mat-card-header>
+    <br />
+    <ul
+      style="list-style: none; color: red"
+      *ngFor="let error of responseMessage"
+    >
+      <li>{{ error }}</li>
+    </ul>
+
+    <mat-card-content>
+      <div class="row">
+        <div *ngIf="!branchId" class="col-md-6">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Branch ID</mat-label>
+            <input
+              formControlName="branch_id"
+              matInput
+              placeholder="branch id"
+            />
+            <small
+              class="text-danger"
+              *ngIf="
+                branchForm.get('branch_id')?.invalid &&
+                branchForm.get('branch_id')?.touched
+              "
+              >Please enter branch id</small
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Branch Name</mat-label>
+          <input
+            formControlName="branch_name"
+            matInput
+            placeholder="branch_name"
+            placeholder="branch_name"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              branchForm.get('branch_name')?.invalid &&
+              branchForm.get('branch_name')?.touched
+            "
+            >Please enter branch_name</small
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>location</mat-label>
+          <input formControlName="location" matInput placeholder="location" />
+          <small
+            class="text-danger"
+            *ngIf="
+              branchForm.get('location')?.invalid &&
+              branchForm.get('location')?.touched
+            "
+            >Please enter location</small
+          >
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button  *ngIf="!branchId"
+        (click)="onSubmit()"
+        mat-raised-button=""
+        style="
+          color: #3f1651;
+          background-color: #c3a1d5;
+          margin-left: 3%;
+          font-size: 14px;
+          font-weight: 600;
+          width: 150px;
+        "
+      >
+        Add
+      </button>
+      <button  *ngIf="branchId"
+        (click)="onSubmit()"
+        mat-raised-button=""
+        style="
+          color: #3f1651;
+          background-color: #c3a1d5;
+          margin-left: 3%;
+          font-size: 14px;
+          font-weight: 600;
+          width: 150px;
+        "
+      >
+        Update
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
