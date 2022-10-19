@@ -9,7 +9,6 @@ urlpatterns = [
     path("userlogin", views.loginUser),
     path('teacherlist', views.teacher_list),
     path('courselist', views.course_list),
-    # path('subjectcreate', views.SubjectCreate.as_view())
     path('courseregister', views.RegisterCourse.as_view()),
     path('questionregister', views.RegisterQuestion.as_view()),
     path('courselist/delete',views.delete_course),
@@ -18,6 +17,12 @@ urlpatterns = [
     path('displayquestion', views.DisplayQuestion.as_view()),
     path('attemptexam',views.AttemptExam.as_view()),
     path('startexam', views.StartExam.as_view()),
-    path('checkmarks', views.CheckMarks.as_view())
+    path('checkmarks', views.CheckMarks.as_view()),
+    path('detailquestion/<int:id>/', views.DetailQuestion.as_view()),
+    path('detailcourse/<int:id>/', views.DetailCourse.as_view()),
+    path('coursefilter', views.courseFilter),
+    path('questionfilter', views.courseFilter),
+    # path('adminstudentdisplay', views.AdminPanelStudent.as_view()),
+    # path('adminteacherdisplay', views.AdminPanelTeacher.as_view())
 
 ]

@@ -37,27 +37,7 @@ export class StudentHomepageComponent implements OnInit {
       
     })
 
-    // for (var v of this.courses){
-    //   console.log(v)
-    // }
-
-
-
-
-
-
-    // for (var v of this.questions){
-    //   this.j++;
-    // }
     
-
-
-
-    // this.i=this.courses.length
-    // console.log(this.i)
-    // this.j=this.questions.length
-    // console.log(this.j)
-
 
   }
 

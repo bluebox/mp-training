@@ -25,6 +25,7 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TeacherNavbarComponent } from './components/teacher-navbar/teacher-navbar.component';
 import { TeacherHomepageComponent } from './components/teacher-homepage/teacher-homepage.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { TeacherHomepageComponent } from './components/teacher-homepage/teacher-
     MatTableModule,
     MatIconModule,
     MatPaginatorModule, 
+    MatToolbarModule
     
     
     

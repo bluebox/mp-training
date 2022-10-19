@@ -3,7 +3,7 @@ table {
   }
 
   .questiontable{
-    margin-top: 80px;
+    margin-top: 100px;
     margin-left: 80px;
     margin-right: 80px;
     width:auto;
@@ -18,10 +18,10 @@ table {
 .mat-cell{
     text-align: center;
 }
-th,tr{
+/* th,tr{
     
     background-color:rgb(250, 237, 220);
-}
+} */
 
 th{
     color:black
@@ -33,3 +33,15 @@ th{
     background-color: rgb(239, 37, 44);
     size:10px;
 }
+.head{
+    /* display: inline-block; */
+    background-color: blue;
+    color: white;
+    padding-top: 9px;
+    padding-left:7px ;
+    padding-bottom:7px ;
+    padding-bottom: 7px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+  }

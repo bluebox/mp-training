@@ -1,0 +1,53 @@
+<p>display-student works!</p>
+<div class="coursetable">
+
+    <!-- <button (click)="add()" class="add"> Add Course</button>
+    <h1 *ngIf="!(v)"
+    >No Data Found</h1
+  > -->
+    <div class="head">Available Students</div>
+  <table mat-table [dataSource]="students" class="mat-elevation-z8">
+  
+    
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef> User Id </th>
+        <td mat-cell *matCellDef="let row"> {{row.user}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let row"> {{row.user_id__username}} </td>
+      </ng-container>
+  
+      
+  
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+          <td mat-cell *matCellDef="let row">
+           
+            <!-- <button mat-icon-button color="primary" (click)="updateCourse(row.id)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="deleteCourse(row.id)"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="primary" ><mat-icon>remove_red_eye</mat-icon></button> -->
+
+            <button>Details</button>
+          </td>
+        </ng-container>
+    
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  
+    
+    </table>
+    <!-- <mat-paginator 
+                [pageSizeOptions]="[2,5, 10, 25, 100]"
+                aria-label="Select page of users">
+  </mat-paginator> -->
+  </div>

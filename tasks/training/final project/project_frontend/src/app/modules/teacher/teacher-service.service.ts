@@ -20,18 +20,30 @@ export class TeacherServiceService {
     return this.http.get("http://127.0.0.1:8000/courselist")
   }
 
-  getQuestions(){
-    return this.http.get("http://127.0.0.1:8000/questionregister")
+  getQuestion(id:any):Observable<Object>{
+    return this.http.get<any>(`http://127.0.0.1:8000/detailquestion/${id}`)
+
+  }
+  updateQuestion(id:any,data:any){
+    return this.http.put<any>(`http://127.0.0.1:8000/detailquestion/${id}/` ,data)
+  }
+  getCourse(id:any):Observable<Object>{
+    return this.http.get<any>(`http://127.0.0.1:8000/detailcourse/${id}`)
+
+  }
+  updateCourse(id:any,data:any){
+    return this.http.put<any>(`http://127.0.0.1:8000/detailcourse/${id}/` ,data)
+  }
+
+  getQuestions():Observable <Object>{
+    return this.http.get<any>("http://127.0.0.1:8000/questionregister")
   }
   getRequiredQuestions(){
     return this.http.get("http://127.0.0.1:8000/displayquestion")
   }
-
-
-  // addCourse(data:any){
-  //   return this.http.post<any>("http://127.0.0.1:8000/courseregister", data)
-
-  // }
+  getStudents(){
+    return this.http.get("http://127.0.0.1:8000/userstudent")
+  }
 
   AddCourse(data:any){
     return this.http.post<any>("http://127.0.0.1:8000/addcourse",data)
@@ -47,7 +59,12 @@ export class TeacherServiceService {
     return this.http.post<any>("http://127.0.0.1:8000/question/delete",data)
   }
 
-
-
+  getADist(text:any){
+    return this.http.get<any>("http://127.0.0.1:8000/coursefilter?q="+text)
+  }
+  getFque(text:any){
+    return this.http.get<any>("http://127.0.0.1:8000/questionfilter?q="+text)
+  }
+  
 
 }

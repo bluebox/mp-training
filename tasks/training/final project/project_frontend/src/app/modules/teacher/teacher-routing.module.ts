@@ -7,12 +7,15 @@ import { AddQuestionComponent } from './components/add-question/add-question.com
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DisplayCourseComponent } from './components/display-course/display-course.component';
 import { DisplayQuestionsComponent } from './components/display-questions/display-questions.component';
+import { TeacherHomepageComponent } from './components/teacher-homepage/teacher-homepage.component';
 
 const routes: Routes = [
   {
     path:"", component:DashboardComponent,children:[
+      { path:"", component:TeacherHomepageComponent},
       { path:'courseregister',component:AddCourseComponent},
-      { path:'editcourse/:id', component:AddCourseComponent},
+      { path:'edit-question/:id', component:AddQuestionComponent},
+      {path:'edit-course/:id', component:AddCourseComponent},
       { path:'questionregister', component:AddQuestionComponent},
       { path:'display-course', component:DisplayCourseComponent},
       { path:'display-question', component:DisplayQuestionsComponent},

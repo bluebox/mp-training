@@ -1,8 +1,10 @@
 .body{
-    text-align: center;
-    
-    padding-top:140px;
-    padding-bottom:140px;
+   
+    height: 86%;
+    width: 100%;
+    background-color: grey;
+    background-image: url("src\assets\images\image5.png");
+    background-size:100%;
 }
 .nabButton{
     /* margin: 10px; */
@@ -10,4 +12,36 @@
     /* margin-top: 45px; */
     background-color: rgb(61, 37, 239);
     size:10px;
+}
+.example-card {
+    max-width: 600px;
+    /* color: rgb(94, 14, 206); */
+    background-color:grey;
+    /* background-image: url("src\assets\images\image4.jpg"); */
+    background-repeat: no-repeat;
+    background-size:cover;
+    /* color: white; */
+
+  }
+  .main{
+    /* margin-top: 100px; */
+    margin-left: 450px;
+    margin-right: 100px;
+   
+    padding-top: 7%;
+   
+  
+  }
+  .mat-card{
+    text-align: center;
+   
+  }
+  .mat-card-title{
+    font-size: 300%;
+  }
+
+h1{
+  /* margin: 400px 100px 100px 600px; */
+  padding-top: 37%;
+  padding-left: 58%;
 }

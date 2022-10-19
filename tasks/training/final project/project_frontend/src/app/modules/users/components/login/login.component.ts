@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   formNotValid: boolean = false
   errorMessage: string = ''
   k: any
+  hide:boolean=true
 
 
 

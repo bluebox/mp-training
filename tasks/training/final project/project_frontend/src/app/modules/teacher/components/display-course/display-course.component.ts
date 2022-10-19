@@ -4,15 +4,11 @@ import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { AddCourseComponent } from '../add-course/add-course.component';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-export interface UserData {
 
-}
 
 @Component({
   selector: 'app-display-course',
@@ -22,14 +18,11 @@ export interface UserData {
 export class DisplayCourseComponent implements OnInit {
 
 
-  displayedColumns: string[]=['course_name', 'total_marks','Action']
+  displayedColumns: string[]=['course_name','total_marks','Action']
   courses: any
-  dataSource !: MatTableDataSource<any>;
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
-  
+  result:any
+  text:string=''
+  v:boolean=true
 
   constructor(private router:Router, private http : TeacherServiceService) { }
 
@@ -38,9 +31,6 @@ export class DisplayCourseComponent implements OnInit {
     this.http.getCourses().subscribe({
       next:(resp)=>{
 
-        this.dataSource = new MatTableDataSource(resp);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
         this.courses=resp
        
         console.log(this.courses) 
@@ -49,26 +39,9 @@ export class DisplayCourseComponent implements OnInit {
     })
   }
 
-  // editCourse(args: any) {
-  //   const dialogRef = this.dialog.open(AddCourseComponent,{data:{id: args.id, name: args.course_name,status: args.total_marks }});
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //     window.location.reload();
-  //   });
-  // }
-
-  // addCourse() {
-  //   const dialogRef = this.dialog.open(AddCourseComponent,{data:{id: 0, name: "",status: true }});
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //     window.location.reload();
-  //   });
-  // }
-
  
   deleteCourse(arg: any) {
+    if(confirm("do u want to delete")){
     var val = {"id": arg}
     console.log(val)
     this.http.deleteCourses(val).subscribe(res=>{
@@ -77,6 +50,35 @@ export class DisplayCourseComponent implements OnInit {
       window.location.reload();
     })
   }
+  }
 
-  
+  updateCourse(id:any){
+    this.router.navigate(['teacher/edit-course' , id])
+
+  }
+  add(){
+    this.router.navigate(['teacher/courseregister'])
+  }
+
+  onSearchText() {
+    console.log(this.text);
+    this.http.getADist(this.text).subscribe({
+      next:(res)=>{
+        
+        this.result= res;
+        
+        this.courses=res;
+        console.log(res.length)
+        if(res.length==0){
+
+          this.v=false
+        }
+        else{
+          this.v=true
+        }
+        console.log(this.result)
+      }
+    })
+  }
+
 }

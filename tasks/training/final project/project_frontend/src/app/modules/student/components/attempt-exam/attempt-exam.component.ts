@@ -15,6 +15,7 @@ export class AttemptExamComponent implements OnInit {
   k:any
   g:any
   h:any
+  l:any
   flag:boolean = true
   constructor(private router:Router, private http: StudentServiceService) { 
    
@@ -25,6 +26,7 @@ export class AttemptExamComponent implements OnInit {
     
 
     this.i=localStorage.getItem('course_name')
+    this.l=localStorage.getItem('username')
     this.j=localStorage.getItem('total_marks')
     this.k=localStorage.getItem('course_id')
     

@@ -1,5 +1,8 @@
 
 from asyncio.windows_events import NULL
+from email.policy import default
+from enum import unique
+
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
@@ -8,8 +11,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    mobile_no = models.CharField(max_length=10, null=True)
-    address= models.CharField(max_length=200, null=True)
+    mobile_no = models.CharField(max_length=10, null=False, default='')
+    address= models.CharField(max_length=200, null=False, default='')
     user_type=models.CharField(max_length=50, default="Admin")
 
     def __str__(self):
@@ -18,8 +21,8 @@ class User(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    reqister_number = models.CharField(max_length=20, null=True, blank=True)
-    college_name = models.CharField(max_length=50, null=False, blank=False)
+    reqister_number = models.CharField(max_length=20, null=False, blank=False, unique=True, default=400)
+    college_name = models.CharField(max_length=50, null=False, blank=False, default="")
 
     def __str__(self):
         return self.user.first_name  + ' ' + self.user.last_name
@@ -27,8 +30,8 @@ class Student(models.Model):
 
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    qualification = models.CharField(max_length=20, null=False, blank=False)
-    position = models.CharField(max_length=20,null=True, blank=False)
+    qualification = models.CharField(max_length=20, null=False, blank=False, default='')
+    position = models.CharField(max_length=20,null=False, blank=False, default='')
     
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
@@ -58,10 +61,6 @@ class Question(models.Model):
         return self.question_name
 
 
-class Evaluation(models.Model):
-    marks = models.PositiveIntegerField()
-    date = models.DateTimeField(auto_now=True)
-    student = models.ForeignKey('Student',on_delete=models.CASCADE)
-    exam = models.ForeignKey('Course',on_delete=models.CASCADE)
+
 
 

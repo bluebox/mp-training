@@ -1,5 +1,6 @@
-<p>add-course works!</p>
-
+<!-- <p>add-course works!</p> -->
+<app-teacher-navbar></app-teacher-navbar>
+<div class="body">
 <form [formGroup]="courseAddingForm" class="form-container">
   
     <mat-card class="card-container">
@@ -9,6 +10,7 @@
         <small *ngIf="formNotValid"
           >please fill all the required details</small
         >
+        <small>{{errmsg}}</small>
       </mat-card-header>
       <br />
       <mat-card-content>
@@ -24,13 +26,12 @@
             courseAddingForm.get('course_name')?.invalid &&
             courseAddingForm.get('course_name')?.touched
             "
-            >enter course name</small
-          >
+            >enter course name</small>
         </div>
 
         <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input formControlName="total_marks" matInput placeholder="total Marks" />
+              <input type="number" formControlName="total_marks" matInput placeholder="total Marks" />
             </mat-form-field>
             <br>
             <small
@@ -54,3 +55,4 @@
       </mat-card-actions>
     </mat-card>
   </form>
+</div>

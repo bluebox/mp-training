@@ -1,3 +1,28 @@
 .example-card {
-    max-width: 400px;
+    max-width: 500px;
+    height: 300px;
+    background-color:rgba(8, 50, 66, 0.9);
+    /* margin-top: 100px; */
+    
+  }
+  .mat-card{
+    padding-top: 110px;
+    color:white;
+   
+  }
+  .main{
+    margin-top: 150px;
+    margin-left: 510px;
+    margin-right: 100px;
+    text-align: center;
+  }
+  .body{
+    height: 80%;
+    overflow-y:hidden;
+  }
+  .mat-card-title{
+    font-size: 300%;
+  }
+  h1{
+    font-size: larger;
   }

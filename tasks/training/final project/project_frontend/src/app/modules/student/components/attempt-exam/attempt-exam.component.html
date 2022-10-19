@@ -2,7 +2,7 @@
 <app-student-navbar></app-student-navbar>
 
 
-<div >
+<!-- <div >
     <div>
 
         <div>
@@ -15,7 +15,7 @@
                         </p><ul >
                             <li>Course : {{i}}</li>
                             <li>Total Questions :{{h.length}} </li>
-                            <!-- <li>Total Marks : {{j}} </li> -->
+                           
                         </ul>
                     <p></p>
 
@@ -45,4 +45,46 @@
         </div>  
 
     </div>
+</div> -->
+<div class="main">
+<mat-card class="example-card">
+    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    <mat-card-title>Exam Details</mat-card-title>
+    <br>
+    <!-- <mat-card-title>Course:{{i}}</mat-card-title> -->
+    <!-- <mat-card-title> -->
+        <ul >
+            <li>Course : {{i}}</li>
+            <li>Total Questions :{{h.length}} </li>
+           
+        </ul>
+        <br>
+        
+    <!-- </mat-card-title> -->
+    <mat-card-content>
+        <mat-card-title>Instructions</mat-card-title>
+        <br>
+        <ul style="list-style:decimal;">
+            <li>All questions are MCQ (multiple choice question)</li>
+            <li><span class="text-danger">Only one choice is correct among the given.</span></li>
+            
+            <li>Try to answer ASAP.</li>
+            <li>If you PRESS refresh or go back to the previous page, there will be a new question for you and the question you were on will be counted as number of attempts.</li>
+            <li>Questions are presented randomly.</li>
+            <li>You will be able to view marks immediately once after you submit the answer.</li>
+        </ul>
+      <br>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+      <button mat-button routerLink="../takeexam" >Start Exam</button>
+      <button mat-button routerLink="../showexam" >Back</button>
+    </mat-card-actions>
+    <mat-card-footer>
+      <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+      <div class="footer">Best Of Luck, Students!</div>  
+      <br>
+    </mat-card-footer>
+  </mat-card>
+  
 </div>

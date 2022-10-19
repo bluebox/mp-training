@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+  }
+
+/* th,tr{
+    
+    background-color:rgb(250, 237, 220);
+} */
+
+th{
+    color:black
+}
+  .coursetable{
+    margin-top: -10px;
+    margin-left: 80px;
+    margin-right: 80px;
+    width:auto;
+    /* padding-left: 50px; */
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .mat-header-cell{
+    text-align : center;
+}
+.mat-cell{
+    text-align: center;
+}
+.head{
+  /* display: inline-block; */
+  background-color: blue;
+  color: white;
+  padding-top: 9px;
+  padding-left:7px ;
+  padding-bottom:7px ;
+  padding-bottom: 7px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: large;
+}

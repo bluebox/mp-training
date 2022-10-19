@@ -1,16 +1,31 @@
-<p>display-questions works!</p>
+<!-- <p>display-questions works!</p> -->
+<app-teacher-navbar></app-teacher-navbar>
+
+<div class="sear">
+  <mat-form-field class="example-form-field" appearance="outline" style="width:400px">
+    <input matInput type="search"  placeholder="Search" #text (keydown)="onSearchText(text.value, $event)">
+   
+  </mat-form-field>
+  </div>
+
 <div class="questiontable">
-<table mat-table [dataSource]="questions" class="mat-elevation-z8">
+  <button (click)="add()" class="add"> Add Question</button>
+  <div class="head">Available Questions</div>
+  <!-- <div id="add" class="nabButton"> Add Question<mat-icon>add_circle</mat-icon></div> -->
+  
+  
+  <table mat-table [dataSource]="questions" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   
     <!-- Position Column -->
+    
+  
     <ng-container matColumnDef="question_name">
       <th mat-header-cell *matHeaderCellDef>Question Name </th>
       <td mat-cell *matCellDef="let question"> {{question.question_name}} </td>
     </ng-container>
-  
     <!-- Name Column -->
     <ng-container matColumnDef="course">
       <th mat-header-cell *matHeaderCellDef>Course Name  </th>
@@ -28,7 +43,7 @@
         <td mat-cell *matCellDef="let row">
          <!--  -->
             <!-- <button mat-icon-button color="primary" ><mat-icon>remove_red_eye</mat-icon></button> -->
-          <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button color="primary" (click)="updateCourse(row.id)"><mat-icon>edit</mat-icon></button>
           <button mat-icon-button color="warn" (click)="deleteQuestion(row.id)" ><mat-icon>delete</mat-icon></button>
           
         </td>

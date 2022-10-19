@@ -22,5 +22,8 @@ menuItems = ['dashboard', 'exams'];
   click2(){
     this.router.navigate(['student/showexam'])
   }
+  clickOut(){
+    this.router.navigate([''])
+  }
 
 }

@@ -1,11 +1,11 @@
-import re
+import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
 from fpapp import serializer
 from fpapp.models import  Course, Question, User,Student, Teacher
-from fpapp.serializer import  QuestionSerializer, QuestionSerializer2, UserSerializer, StudentSerializer, TeacherSerializer, CourseSerializer
+from fpapp.serializer import  QuestionSerializer, QuestionSerializer1, QuestionSerializer2, UserSerializer, StudentSerializer, TeacherSerializer, CourseSerializer
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate,login,logout
@@ -20,53 +20,74 @@ def index(request):
     return HttpResponse("welcome")
 
 class RegisterStudent(APIView):
+
+    def get(self,request):
+        sub=Student.objects.all()
+        serializer=StudentSerializer(sub, many=True)
+        return Response(serializer.data)
+
+
+
     def post(self,request):
         print(request.data)
-      
-        serializer = UserSerializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"mobile_no":request.data["mobile_no"]
-        ,'address':request.data['address'], "password":request.data['password'],"user_type":"Student"})
-        print(serializer)
-        if serializer.is_valid():
-            user = serializer.save()
-            print(user.user_type)
-            student_obj = StudentSerializer(data = {"user":user.id ,"reqister_number":request.data["reqister_number"] , "college_name":request.data['college_name'] })
-
-            if student_obj.is_valid():
-                student_obj.save()
-            else:
-                return Response(student_obj.errors, status=status.HTTP_400_BAD_REQUEST)   
-            return Response(student_obj.data,status=200)
+        username=request.data.get("username")     
+        user=User.objects.filter(username=username).first()
+        
+        if (user):
+            # print("manasa")
+            return Response({"msg":"username already taken"})
         else:
-            print('invalid')
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+      
+            serializer = UserSerializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"mobile_no":request.data["mobile_no"]
+            ,'address':request.data['address'], "password":request.data['password'],"user_type":"Student"})
+            print(serializer)
+            if serializer.is_valid():
+                user = serializer.save()
+                print(user.user_type)
+                student_obj = StudentSerializer(data = {"user":user.id ,"reqister_number":request.data["reqister_number"] , "college_name":request.data['college_name'] })
+
+                if student_obj.is_valid():
+                    student_obj.save()
+                else:
+                    return Response(student_obj.errors, status=status.HTTP_400_BAD_REQUEST)   
+                return Response({"msg":"successful","student":student_obj.data},status=200)
+            else:
+                print('invalid')
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RegisterTeacher(APIView):
 
-    def post(self,request):
-        # print(request.data)
-        
-        serializer = UserSerializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"mobile_no":request.data["mobile_no"]
-        ,'address':request.data['address'], "password":request.data['password'],"user_type":'Teacher'})
-        
-        
-        # print(serializer.data)
-        if serializer.is_valid():
-            
-            user = serializer.save()
-            
-            print(user.user_type)
-        
-            teacher_obj = TeacherSerializer(data = {"user":user.id ,"qualification":request.data["qualification"] , "position":request.data["position"] })
 
-            if teacher_obj.is_valid():
-                teacher_obj.save()
-            else:
-                return Response(teacher_obj.errors, status=status.HTTP_400_BAD_REQUEST)   
-            return Response(teacher_obj.data,status=200)
+    def post(self,request):
+        print(request.data)
+        username=request.data.get("username")     
+        user=User.objects.filter(username=username).first()
+        
+        if (user):
+            return Response({"msg":"username already taken"})
+        
         else:
-            print('invalid')
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+            serializer = UserSerializer(data={'username': request.data["username"],"first_name":request.data["first_name"],'last_name':request.data["last_name"],'email':request.data['email'],"mobile_no":request.data["mobile_no"]
+            ,'address':request.data['address'], "password":request.data['password'],"user_type":'Teacher'})
+            
+            # print(serializer.data)
+            if serializer.is_valid():
+                user = serializer.save()
+                
+                print(user.user_type)
+            
+                teacher_obj = TeacherSerializer(data = {"user":user.id ,"qualification":request.data["qualification"] , "position":request.data["position"] })
+
+                if teacher_obj.is_valid():
+                    teacher_obj.save()
+                else:
+                    # print()
+                    return Response(teacher_obj.errors, status=status.HTTP_400_BAD_REQUEST)   
+                return Response({"msg":"successful","teacher":teacher_obj.data},status=200)
+            else:
+                print('invalid')
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
 
 
 @api_view(["GET"])
@@ -85,23 +106,21 @@ def loginUser(request):
         try:
             user = User.objects.get(username=username)
         except:
-            return Response({"msg":"Rey nuv levvu poraa saami"})
+            return Response({"msg":"username is not valid"})
 
         user= authenticate(request,username=username, password=password)
 
         if user is not None:
 
             login(request,user)
-            # all=UserSerializer(instance=user, many=False)
 
             return Response({'msg':"logged in", 'user':user.username, 'user_type':user.user_type}, status=200)
             
         else:
-            return Response({'msg':"password sakkaga type chey bey"})
+            return Response({'msg':"password is incorrect"})
 
     
     return Response({"msg":"not created"}, status=200)
-
 
 
 class RegisterCourse(APIView):
@@ -127,19 +146,25 @@ class AddCourse(APIView):
         print(request.data)
         data=request.data.get('form')
         username=request.data.get('username')
+        course_name=request.data['form'].get('course_name')
+        c=Course.objects.filter(course_name=course_name)
         print(data)
-        print(username)
-        user=User.objects.get(username=username)
-        print(user)
-        data['teacher_id']=user.id
-        print()
-        regi=CourseSerializer(data=data)
-        print(regi)
-        if regi.is_valid():
-            regi.save()
-            return Response({"message": "Course Added"}, status=200)
+        print(course_name)
+     
+        if(c):
+            return Response({"message":"course already exists"})
+            
         else:
-            return Response({"message": "Course not added"}, status=500)
+            user=User.objects.get(username=username)
+            print(user)
+            data['teacher_id']=user.id
+            regi=CourseSerializer(data=data)
+            print(regi)
+            if regi.is_valid():
+                regi.save()
+                return Response({"message": "successful"}, status=200)
+            else:
+                return Response({"message": "Course not added"}, status=500)
         
 
 
@@ -193,17 +218,63 @@ class DisplayQuestion(APIView):
         items = []
         for i in Question.objects.all():
             items.append({
+            'id':i.id,
             "question_name":i.question_name,
             "course_name":i.course.course_name
             
             })
-        # items = Question.objects.all().values("question_name", 'course__course_name')
+        
         print(items)
         return Response(items)
 
 
+@api_view(["GET","POST"])
+def questionFilter(request):
+    text=request.GET.get('q')
+    print(text)
+    data = Question.objects.filter(question_name__icontains=text)
+    serializer = QuestionSerializer1(data, many=True)
+    return Response(serializer.data)
+
+
+class DetailQuestion(APIView):
+    @staticmethod
+    def get(request,id):
+        questions=Question.objects.get(id=id)
+        serializer=QuestionSerializer(questions, many=False)
+        return Response({'question':serializer.data})
+    
+    @staticmethod
+    def put(request,id):
+        question_data =JSONParser().parse(request)
+        sub=Question.objects.get(id=id)
+        serializer=QuestionSerializer(sub,data=question_data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED, safe=False)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
+
+class DetailCourse(APIView):
+    @staticmethod
+    def get(request,id):
+        courses=Course.objects.get(id=id)
+        serializer=CourseSerializer(courses, many=False)
+        return Response({'course':serializer.data})
+    
+    @staticmethod
+    def put(request,id):
+        
+        course_data =JSONParser().parse(request)
+        sub=Course.objects.get(id=id)
+        serializer=CourseSerializer(sub,data=course_data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED, safe=False)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
+
+
 class AttemptExam(APIView):
-     def get(self,request):
+    def get(self,request):
         items = []
         data=Question.objects.all()
         serializer=QuestionSerializer2(data, many=True)
@@ -214,7 +285,7 @@ class AttemptExam(APIView):
             
         print(serializer.data[1])
         return Response(serializer.data)
- 
+
 
 class StartExam(APIView):
     
@@ -241,5 +312,49 @@ class CheckMarks(APIView):
         return Response(request.data)
 
 
+@api_view(["GET","POST"])
+def courseFilter(request):
+    text=request.GET.get('q')
+    print(text)
+    data = Course.objects.filter(course_name__icontains=text)
+    serializer = CourseSerializer(data, many=True)
+    return Response(serializer.data)
 
+# class Adminpanel(APIView):
+#     def get(self,request):
+#         items=[]
+#         v=0
+#         sub=User.objects.all()
+#         serializer=UserSerializer(sub,many=True)
 
+#         for i in User.objects.all():
+#             if (i.user_type=='Student'):
+#                 items.append({
+
+#                 "username":i.username ,
+#                 "first_name":i.first_name ,
+#                 "last_name": i.last_name,
+#                 "email": i.email,
+#                 "password":i.password ,
+#                 "mobile_no":i.mobile_no,
+#                 "address": i.address,
+#                 "reqister_number":i.student.reqister_number,
+#                 "college_name":i.student.college_name
+                
+#                 })
+                   
+#         return Response(items)
+
+# class AdminPanelStudent(APIView):
+#     def get(self,request):
+#         sub=Student.objects.all()
+#         students=list(sub.values('user',
+#                                  'user_id__username'))
+#         return Response({'students':json.dumps(students)},status=200)
+
+# class AdminPanelTeacher(APIView):
+#     def get(self,request):
+#         sub=Teacher.objects.all()
+#         teachers=list(sub.values('user',
+#                                  'user_id__username'))
+#         return Response({'students':json.dumps(teachers)},status=200)

@@ -1,6 +1,28 @@
 .body{
-    text-align: center;
-    
-    padding-top:140px;
-    padding-bottom:140px;
+  height: 86%;
+    width: 100%;
+   /* background-color: grey; */
 }
+.nabButton{
+    /* margin: 10px; */
+    color:white;
+    /* margin-top: 45px; */
+    background-color: rgb(61, 37, 239);
+    size:10px;
+}
+.example-card {
+    max-width: 600px;
+    /* background-color: gray; */
+  }
+  .main{
+    /* margin-top: 100px; */
+    margin-left: 350px;
+    margin-right: 100px;
+   padding: 7%;
+  }
+  .mat-card{
+    text-align: center;
+  }
+  .mat-card-title{
+    font-size: 300%;
+  }

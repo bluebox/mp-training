@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { TeacherServiceService } from '../../teacher-service.service';
 
 @Component({
@@ -12,14 +14,19 @@ export class DisplayQuestionsComponent implements OnInit {
 
   displayedColumns: string[]=['question_name','course', 'Action']
   questions: any
+
+  dataSource: MatTableDataSource<DisplayQuestionsComponent>;
   
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  text:any
+  result:any
   
 
-  constructor(private http : TeacherServiceService) { }
+  constructor(private router:Router,   private http : TeacherServiceService) { }
 
+ 
   ngOnInit(): void {
     this.http.getRequiredQuestions().subscribe({
       next:(resp)=>{
@@ -27,6 +34,7 @@ export class DisplayQuestionsComponent implements OnInit {
         console.log(this.questions)
       }
     })
+  
      
   }
 
@@ -42,4 +50,25 @@ export class DisplayQuestionsComponent implements OnInit {
       })
     }
    }
+
+  updateCourse(id : any){
+    console.log('rakesh')
+    this.router.navigate(['teacher/edit-question' , id])
+  }
+  add(){
+    this.router.navigate(['teacher/questionregister'])
+  }
+
+  onSearchText(text: any,event) {
+    this.text = event.target.value;
+    console.log(text);
+    this.http.getFque(text).subscribe({
+      next:(res)=>{
+        this.result= res;
+        this.questions=res;
+        console.log(this.result)
+      }
+    })
+  }
+
   }

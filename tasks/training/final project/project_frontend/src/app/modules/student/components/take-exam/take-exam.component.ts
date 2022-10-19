@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StudentServiceService } from '../../student-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CloseComponent } from '../close/close.component';
 
 @Component({
   selector: 'app-take-exam',
@@ -16,14 +18,15 @@ export class TakeExamComponent implements OnInit {
   arr:string[]=[]
   i:number=0
   score:number=0
-  answers_user: string[] = new Array(10);
-  answer_main:string[]=new Array(10)
+  answers_user: string[] = [];
+  answer_main:string[]=[]
   // total_scores:number[]=new Array(10)
   event:any
   k:any
+  v:any
   j:string='o'
 
-  constructor(private router:Router,  private http:StudentServiceService) { }
+  constructor(private router:Router,  private http:StudentServiceService,public dialog: MatDialog ) { }
 
   ngOnInit(): void {
     this.g=localStorage.getItem('question')
@@ -36,26 +39,39 @@ export class TakeExamComponent implements OnInit {
     }
     console.log(this.answer_main)
     localStorage.setItem('length', JSON.stringify(this.h.length))
+    this.v=localStorage.getItem('course_name')
     
   }
 
-  onSubmit(){
+//   onSubmit(){
     
-    for(this.i=0;this.i<this.h.length;this.i++){
-      if(this.answers_user[this.i]==this.answer_main[this.i]){
-        this.score++;
+//     for(this.i=0;this.i<this.h.length;this.i++){
+//       if(this.answers_user[this.i]==this.answer_main[this.i]){
+//         this.score++;
 
-      }
-    }   
-    console.log(this.score)
-    this.http.total_scores.push(this.score)
+//       }
+//     }   
+//     console.log(this.score)
+//     console.log(this.answer_main.length)
+//     console.log(this.answers_user.length)
+//     this.http.total_scores.push(this.score)
 
-    console.log(this.http.total_scores)
+//     if(this.answers_user.length != this.answer_main.length){
+      
+//      if(confirm("do you want to submit")){
+//       localStorage.setItem("score",JSON.stringify(this.score));
+//       this.router.navigate(['student/viewresult']);
+//      }
+//      else{
+//       this.router.navigate(['student/takeexam']);
+//      }
+//     }
+
+//     console.log(this.http.total_scores)
 
 
-    localStorage.setItem("score",JSON.stringify(this.score));
-    this.router.navigate(['student/viewresult']);
- }
+    
+//  }
 
 
  onChange(i:number, event){
@@ -64,4 +80,34 @@ export class TakeExamComponent implements OnInit {
   console.log(this.answers_user)
 }
 
+openDialog() {
+  this.score =0
+  for(this.i=0;this.i<this.h.length;this.i++){
+    if(this.answers_user[this.i]==this.answer_main[this.i]){
+      this.score++;
+    }
+  }   
+  console.log(this.score)
+  console.log(this.answer_main.length)
+  console.log(this.answers_user.length)
+  this.http.total_scores.push(this.score)
+  
+  if(this.answers_user.length != this.answer_main.length) {
+
+  let dialogRef = this.dialog.open(CloseComponent)
+  
+  dialogRef.afterClosed().subscribe(result => {
+
+    if (result == 'true') {
+      localStorage.setItem("score",JSON.stringify(this.score));
+      this.router.navigate(['student/viewresult']);
+    }
+  })
+}
+else{
+  localStorage.setItem("score",JSON.stringify(this.score));
+  this.router.navigate(['student/viewresult']);
+}
+}
+ 
 }

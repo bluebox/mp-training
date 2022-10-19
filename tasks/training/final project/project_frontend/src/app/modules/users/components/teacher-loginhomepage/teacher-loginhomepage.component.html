@@ -1,7 +1,7 @@
 <!-- <p>teacher-loginhomepage works!</p> -->
 <app-navbar></app-navbar>
 
-<div class="body">
+<!-- <div class="body">
     <div class="part1">
         <h1>Hello Teacher</h1>
         <h3>Welcome to Online Examination System</h3>
@@ -11,4 +11,35 @@
         <button routerLink="../registerteacher"> Create your Own Account</button>
         <button routerLink="../userlogin">Login</button>
     </div>
-</div>
+</div> -->
+<div class="body">
+<div class="main">
+    <mat-card class="example-card">
+        <!-- <mat-card-subtitle></mat-card-subtitle> -->
+        <br>
+        <mat-card-title>Hello Teacher</mat-card-title>
+        <br><br>
+        <mat-card-content>
+            <h1>Welcome to Online Examination System</h1>
+            <br>
+            <h1>Add your Online Exams here</h1>
+            <br>
+            <h3>Select any of these to access the system</h3>
+          
+          <p></p>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+            <br>
+          <button routerLink="../registerteacher"  class="nabButton"  mat-button >Create your own account</button>
+          <button routerLink="../userlogin" class="nabButton" mat-button>Login</button>
+          
+          <!-- <button mat-button>SHARE</button> -->
+        </mat-card-actions>
+        <br>
+        <mat-card-footer>
+          <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>

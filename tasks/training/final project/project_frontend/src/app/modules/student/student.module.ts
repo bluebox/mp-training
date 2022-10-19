@@ -19,6 +19,9 @@ import {MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { StudentHomepageComponent } from './components/student-homepage/student-homepage.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CloseComponent } from './components/close/close.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -31,8 +34,10 @@ import { StudentHomepageComponent } from './components/student-homepage/student-
     MyMarksComponent,
     TotalAttemptsComponent,
     StudentNavbarComponent,
-    StudentHomepageComponent
+    StudentHomepageComponent,
+    CloseComponent
   ],
+  entryComponents:[CloseComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
@@ -43,8 +48,9 @@ import { StudentHomepageComponent } from './components/student-homepage/student-
     MatCardModule,
     MatToolbarModule,
     MatListModule,
-    MatSidenavModule
-    
+    MatSidenavModule,
+    MatProgressBarModule,
+    MatDialogModule 
   ]
 })
 export class StudentModule { }

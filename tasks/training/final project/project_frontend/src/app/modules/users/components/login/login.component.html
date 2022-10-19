@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
+<div class="body">
+  <div class="main">
 <form [formGroup]="loginForm" class="form-container">
     <mat-card>
         <mat-card-header>
             <mat-card-title>Login</mat-card-title>
             <br><br>
-            {{errorMessage}}
+            <small>{{errorMessage}}</small>
             
       <small *ngIf="formNotValid"
         >Please Fill All required details</small
@@ -14,7 +16,8 @@
     <mat-card-content>
       <div class="row">
         <div class="col-md-6">
-          <mat-form-field class="full-width">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>username</mat-label>
             <input formControlName="username" matInput placeholder="username" />
           </mat-form-field>
           <small
@@ -29,8 +32,11 @@
       </div>
 
       <div class="col-md-6">
-        <mat-form-field class="full-width">
-          <input type="password" formControlName="password" matInput placeholder="password" />
+        <mat-form-field class="full-width" appearance="outline">
+          <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput placeholder="password" />
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 
+            'visibility_off'}}</mat-icon>
+          <mat-label>password</mat-label>
         </mat-form-field>
 
         <small
@@ -48,9 +54,11 @@
       <button (click)="submitLogin()" mat-raised-button="" color="primary">
         Login
       </button>
-      <!-- <button  routerLink="../registerstudent" mat-raised-button="" color="primary" >
+      <button  routerLink="../registerstudent" mat-raised-button="" color="primary" >
         New user? create an account
-      </button> -->
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>
+</div>
+</div>

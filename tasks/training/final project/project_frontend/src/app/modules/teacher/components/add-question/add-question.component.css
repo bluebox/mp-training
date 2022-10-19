@@ -14,7 +14,9 @@
     /* background-color: red; */
     
 }
-
+.body{
+    margin-top: 80px;
+}
 
 /* .mat-card{
     background-color: rgb(255, 215, 215);

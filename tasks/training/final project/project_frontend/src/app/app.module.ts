@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { FooterComponent } from './modules/components/footer/footer.component';
 
 
 
@@ -19,6 +20,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
   declarations: [
     AppComponent,
     HomeComponent,
+    // FooterComponent,
   ],
   imports: [
     BrowserModule,

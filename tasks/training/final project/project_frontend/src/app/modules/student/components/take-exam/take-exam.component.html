@@ -1,15 +1,15 @@
 <!-- <p>take-exam works!</p> -->
 <!-- <app-student-navbar></app-student-navbar> -->
-
+<!-- <mat-card> -->
 <div class="container">
-  <div class="card p-4">
-      <div class=" text-center card-title bg-dark text-light">
-          <h1>Course:</h1>
+  <div>
+      <div>
+          <h1>Course:{{v}}</h1>
       </div>
-      <div class="card-body">
-          <form  >
+      <div>
+          <form class="mainform">
               <div *ngFor="let question of h; let i = index">
-                  <h4><strong>{{i+1}}.{{question.question_name}}</strong></h4>
+                  <h3><strong>{{i+1}}.{{question.question_name}}</strong></h3>
                   
                   <div class="form-check" [id]="question.id">
                       <input type="radio" [name]="question.id" value="option1" (change)="onChange(i,$event)">
@@ -31,11 +31,12 @@
               </div>
               <br>
             <mat-card-actions> 
-                <!-- <input type="submit" value="Submit" class="btn btn-block btn-success mt-4"> -->
-                <button type="submit" (click)="onSubmit()">submit</button>
+                
+                <!-- <button type="submit"  (click)="onSubmit()">submit</button> -->
+                <button type="button"   (click)="openDialog()">submit</button>
             </mat-card-actions>
              
-              <!-- <button type="submit">submit</button> -->
+              
           </form>
       </div>
   </div>

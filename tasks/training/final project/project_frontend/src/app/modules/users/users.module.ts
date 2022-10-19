@@ -25,7 +25,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { StudentLoginhomepageComponent } from './components/student-loginhomepage/student-loginhomepage.component';
 import { TeacherLoginhomepageComponent } from './components/teacher-loginhomepage/teacher-loginhomepage.component';
 import { UsershomepageComponent } from './components/usershomepage/usershomepage.component';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatDividerModule} from '@angular/material/divider';
+import { FooterComponent } from '../components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { UsershomepageComponent } from './components/usershomepage/usershomepage
     NavbarComponent,
     StudentLoginhomepageComponent,
     TeacherLoginhomepageComponent,
-    UsershomepageComponent
+    UsershomepageComponent,
+    FooterComponent
+   
     
   ],
   imports: [
@@ -52,7 +56,9 @@ import { UsershomepageComponent } from './components/usershomepage/usershomepage
     MatNativeDateModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatDividerModule
         
   ]
 })

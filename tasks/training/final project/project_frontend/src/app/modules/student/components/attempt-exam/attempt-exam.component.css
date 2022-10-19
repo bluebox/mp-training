@@ -1,0 +1,11 @@
+.example-card {
+    max-width: 800px;
+  }
+  .main{
+    margin-top: 50px;
+    margin-left: 350px;
+    margin-right: 100px;
+  }
+  .footer{
+    text-align: center;
+  }

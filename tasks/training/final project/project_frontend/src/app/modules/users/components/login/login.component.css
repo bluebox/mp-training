@@ -5,13 +5,45 @@
 .top-padding {
     padding-top: 3px;
 }
+.body{
+   
+    height: 86%;
+    width: 100%;
+    background-color: grey;
+    background-image: url("src\assets\images\image5.png");
+    background-size:100%;
+}
 
 
 .form-container {
-    margin: 100px;
+    /* margin: 100px; */
+    /* margin-top: 150px; */
+    margin-left: 300px;
+    width: 30%;
+  
+    
 }
 
 .field {
-    background-color: aqua;
-    width: 200px;
+    /* background-color: rgb(6, 14, 14); */
+    width: 300px;
+    
 }
+.mat-card{
+    /* background-color: rgb(187, 213, 246); */
+    background-color: rgb(228, 234, 235);
+
+}
+.main{
+    /* margin-top: 100px; */
+    margin-left: 70px;
+    margin-right: 100px;
+   
+    padding-top: 12%;
+   
+  
+  }
+  small{
+    color: red;
+  }
+  

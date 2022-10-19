@@ -12,8 +12,14 @@
 
 .form-container {
     margin: 100px;
+    margin-left: 500px;
+    width: 35%;
+   
 }
 .field{
     background-color: aqua;
     width: 200px;
+}
+.body{
+    overflow: hidden;
 }

@@ -1,1 +1,24 @@
-<p>teacher-navbar works!</p>
+<!-- <p>teacher-navbar works!</p> -->
+
+<div class="body">
+    <mat-toolbar>
+        <!-- <mat-icon routerLink="" class="icon">Home</mat-icon> -->
+        <span class="title">ONLINE EXAMINATION </span>
+        <span class="example-spacer"></span>
+        <!-- right side -->
+        <button (click)="click1()" class="nabButton" mat-button > <mat-icon>dashboard</mat-icon> Dashboard</button>
+        <button (click)="click2()" class="nabButton" mat-button >Manage Courses</button>
+        <button (click)="click3()" class="nabButton" mat-button >Manage Questions</button>
+        <!-- <button  class="nabButton" mat-button >Examinations</button> -->
+
+
+
+        <button  (click)="clickOut()" class="nabButton" mat-button >Logout</button>
+        <!-- <button routerLink="" class="nabButton" mat-button >Admin</button> -->
+        <!-- <button *ngIf="loggedIn" routerLink="" class="nabButton" mat-button >Logout</button> -->
+        <!-- <button routerLink="" class="nabButton" mat-button ><mat-icon class="icon">account_circle</mat-icon>Login</button> -->
+        <!-- <mat-icon class="icon">account_circle</mat-icon> -->
+
+
+      </mat-toolbar>
+</div>
