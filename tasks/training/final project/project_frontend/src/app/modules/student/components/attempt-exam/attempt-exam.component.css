@@ -2,9 +2,10 @@
     max-width: 800px;
   }
   .main{
-    margin-top: 50px;
-    margin-left: 350px;
-    margin-right: 100px;
+    /* margin-top: 50px; */
+    margin-left: 25rem;
+    margin-right: 25rem;
+    margin-top: 8rem;
   }
   .footer{
     text-align: center;

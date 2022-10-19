@@ -6,34 +6,24 @@
     padding-top: 3px;
 }
 
-/* .margin-left mat-radio-button:not(:first-child) {
-    margin-left: 10px;
-} */
-
 .form-container {
-    
-     /* margin: 100px; */
-     margin-left: 500px;
-     width: 35%;
+     margin:auto;
+     width: 30rem;
      padding-top: 5%;
     
    
 }
 .field{
     background-color: aqua;
-    width: 200px;
-
-
-   
+    width: 15rem;
 }
 
 .body{
-   
-    height: 120%;
+    height: 60rem;
     width: 100%;
     background-color: grey;
     background-image: url("src\assets\images\image5.png");
-    background-size:100%;
+    background-size:cover;
     background-repeat: no-repeat;
 }
 .mat-card{

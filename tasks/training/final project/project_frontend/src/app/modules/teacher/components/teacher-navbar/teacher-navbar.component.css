@@ -4,21 +4,21 @@
 }
 .title{
     color: white;
-    font-size: 36px;
+    font-size: 3rem;
 }
 .icon{
-    margin: 10px;
+    margin: 2rem;
     transform: scale(1.5);
     cursor: pointer;
     color:white;
 }
 .nabButton{
-    margin: 10px;
+    margin-right: 1rem;
     color:white;
-    margin-top: 45px;
+    margin-top: 3rem;
     background-color: red;
 }
 .mat-toolbar{
     background-color: rgb(2, 2, 16);
-    height: 100px;
+    height: 7rem;
 }

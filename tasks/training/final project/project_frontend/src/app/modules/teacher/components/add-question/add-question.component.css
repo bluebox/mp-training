@@ -1,5 +1,5 @@
 .full-width {
-    width: 70%;
+    width: 95%;
     margin: 2%;
 }
 
@@ -8,16 +8,14 @@
 }
 
 .form-container {
-    margin: 0 auto;
-    width: 50%;
-    color:white
-    /* background-color: red; */
-    
+    margin: auto;
+    width: 40%;
+    color:white;
+    height: 53.2rem;
+ 
 }
 .body{
-    margin-top: 80px;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
 }
 
-/* .mat-card{
-    background-color: rgb(255, 215, 215);
-} */

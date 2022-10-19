@@ -1,31 +1,25 @@
 .main{
-    /* margin-top: 100px;
-    margin-left: 400px;
-    margin-right: 100px; */
-    /* margin: 100px; */
-    margin-top: 150px;
-    margin-left:200px ;
-    margin-right:200px ;
+    margin:10rem;
     display: flex;
-    /* margin-top: 150px; */
-    
-    /* height: 90%;
-    width: 100%;
-    /* background-color: blue; */
+    justify-content: center;
+    margin-top: 15rem;
+
 }
 .part1{
     background-color:rgba(8, 50, 66, 0.9);
     color: white;
     text-align: center;
     margin: auto;
-    width: 550px;
-    padding: 5px;
-    size: 200%;
-    padding-top: 30px;
+    width: 35rem;
+    padding: 1rem;
+    size: 20rem;
+    padding-top: 2rem;
     font-family: 'Times New Roman', serif;
+    border-radius: 1rem;
     
 }
 h1,h3{
+    font-family:fantasy;
     font-size: 2rem;
 
 }
@@ -34,7 +28,9 @@ h1,h3{
     color: white;
     text-align: center;
     margin: auto;
-    padding: 5px;
-    width: 550px;
-    padding-top: 30px;
+    padding: 1rem;
+    width: 35rem;
+    padding-top: 2rem;
+    border-radius: 1rem;
+    
 }

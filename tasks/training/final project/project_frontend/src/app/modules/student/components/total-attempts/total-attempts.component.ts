@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentServiceService } from '../../student-service.service';
 import { TakeExamComponent } from '../take-exam/take-exam.component';
 
@@ -10,18 +10,33 @@ import { TakeExamComponent } from '../take-exam/take-exam.component';
   styleUrls: ['./total-attempts.component.css']
 })
 export class TotalAttemptsComponent implements OnInit {
-  // @ViewChild('takeexamcomponent', {static : false}) filterPanel: TakeExamComponent;
-  // total_scores:number[]=[]
-  i:any
+
+  // i:number=0
+  scores:any
+  exam_name:any
+  displayedColumns: string[]=['exam_name', 'score','date']
 
 
 
-  constructor(private router:Router, private auth:StudentServiceService) { }
+  constructor(private router:Router, private http:StudentServiceService, private actRouter:ActivatedRoute) {
+
+    this.actRouter.params.subscribe(data=>{
+      console.log(data)
+      this.exam_name=(data['course_name'])
+      console.log(this.exam_name)
+    })
+
+   }
 
   ngOnInit(): void {
-
     
-    // console.log(this.auth.total_scores)
+    this.http.sendAttempts(this.exam_name).subscribe({
+      next:(resp)=>{
+        this.scores=resp
+        console.log(this.scores)
+      }
+    
+     })
 
   }
 

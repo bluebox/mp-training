@@ -10,6 +10,7 @@ import { StudentServiceService } from '../../student-service.service';
 export class MyMarksComponent implements OnInit {
   displayedColumns: string[]=['course_name','exam']
   courses:any
+  course_name:any
 
   constructor(private router:Router, private http: StudentServiceService) { }
 
@@ -33,20 +34,13 @@ export class MyMarksComponent implements OnInit {
   }
   sendMarks(arg:any){
 
-    for(var i of this.courses){
-      var val = {"course_name": arg}
-      console.log(val.course_name)
-      // console.log(i.course_name)
-      if (val.course_name==i.course_name){
-        this.http.sendAttemts({'score':localStorage.getItem('score'),'course_name':localStorage.getItem('course_name'),'username':localStorage.getItem('username')}).subscribe(data=>{
-          console.log(data)
-          this.router.navigate(['student/checkmarks'])
-        })
+    
+    var val = {"course_name": arg}
+    console.log(val.course_name)
+    this.course_name=val.course_name
+    console.log(arg)
+    this.router.navigate(['student/checkmarks',arg])
 
-      }
-
-
-    }
 
   }
 

@@ -1,50 +1,49 @@
 .main{
-    /* margin-top: 100px;
-    margin-left: 400px;
-    margin-right: 100px; */
-    /* margin: 100px; */
-    margin-top: 150px;
-    margin-left:150px ;
-    margin-right:200px ;
-    display:flex;
-    /* margin-top: 150px; */
-    width: 80%;
-    /* height: 90%;
+    margin:10rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 15rem;
     
-    /* background-color: blue; */
 }
 .part1{
     background-color:rgba(8, 50, 66, 0.9);
     color: white;
     text-align: center;
     margin: auto;
-    width: 390px;
-    /* padding: 5px; */
-    size: 200%;
-    padding-top: 30px;
-    font-family: 'Times New Roman', serif;
+    width: 22rem;
+    padding: 1rem;
+    size: 2rem;
+    padding-top: 2rem;
+    
+    border-radius: 1rem;
     
 }
 h1,h3{
     font-size: 2rem;
+    font-family: fantasy;
 
 }
 .part3{
-    background-color:rgb(31, 13, 10);
+    background-color:rgba(10, 11, 12, 0.9);
     color: white;
     text-align: center;
     margin: auto;
-    /* padding: 5px; */
-    width: 390px;
-    padding-top: 30px;
-
+    width: 22rem;
+    padding: 1rem;
+    size: 20rem;
+    padding-top: 2rem;
+    
+    border-radius: 1rem;
 }
 .part2{
     background-color:rgb(215, 59, 32);
     color: white;
     text-align: center;
     margin: auto;
-    /* padding: 5px; */
-    width: 390px;
-    padding-top: 30px;
+    width: 22rem;
+    padding: 1rem;
+    size: 20rem;
+    padding-top: 2rem;
+    
+    border-radius: 1rem;
 }

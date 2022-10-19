@@ -6,14 +6,14 @@
     
   }
   .mat-card{
-    padding-top: 110px;
+    padding-top: 10rem;
     color:white;
    
   }
   .main{
-    margin-top: 150px;
-    margin-left: 510px;
-    margin-right: 100px;
+    margin-top: 13rem;
+    /* margin-right:20rem;
+    margin-left: 33rem; */
     text-align: center;
   }
   .body{

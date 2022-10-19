@@ -25,6 +25,7 @@ export class TakeExamComponent implements OnInit {
   k:any
   v:any
   j:string='o'
+  emp:number=0
 
   constructor(private router:Router,  private http:StudentServiceService,public dialog: MatDialog ) { }
 
@@ -82,32 +83,53 @@ export class TakeExamComponent implements OnInit {
 
 openDialog() {
   this.score =0
+  this.emp=0
+
+  for (var i of this.answers_user){
+    if(!(i)){
+      this.emp++;
+      console.log(this.emp)
+    }
+
+  }
+
   for(this.i=0;this.i<this.h.length;this.i++){
     if(this.answers_user[this.i]==this.answer_main[this.i]){
       this.score++;
     }
   }   
+ 
   console.log(this.score)
   console.log(this.answer_main.length)
   console.log(this.answers_user.length)
   this.http.total_scores.push(this.score)
   
-  if(this.answers_user.length != this.answer_main.length) {
+if((this.answers_user.length != this.answer_main.length)|| ((this.emp))) {
 
-  let dialogRef = this.dialog.open(CloseComponent)
+    let dialogRef = this.dialog.open(CloseComponent)
   
-  dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
 
     if (result == 'true') {
       localStorage.setItem("score",JSON.stringify(this.score));
       this.router.navigate(['student/viewresult']);
     }
-  })
-}
+    })
+  }
+
 else{
   localStorage.setItem("score",JSON.stringify(this.score));
   this.router.navigate(['student/viewresult']);
 }
+
+this.http.AddScore({ 'score':this.score, 'exam_name':this.v }).subscribe(data=>{
+  console.log(data);
+})
+
+
 }
+
+
  
+
 }

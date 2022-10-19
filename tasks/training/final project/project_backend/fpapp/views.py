@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
 from fpapp import serializer
-from fpapp.models import  Course, Question, User,Student, Teacher
-from fpapp.serializer import  QuestionSerializer, QuestionSerializer1, QuestionSerializer2, UserSerializer, StudentSerializer, TeacherSerializer, CourseSerializer
+from fpapp.models import  Course, Question, Score, User,Student, Teacher
+from fpapp.serializer import  QuestionSerializer, QuestionSerializer1, QuestionSerializer2, ScoreSerializer, UserSerializer, StudentSerializer, TeacherSerializer, CourseSerializer
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate,login,logout
@@ -303,13 +303,20 @@ class StartExam(APIView):
 class CheckMarks(APIView):
 
     def get(self,request):
-        request.data.save()
-        return Response(request.data)
+        text=request.GET.get('q')
+        print(text)
+        sub=Score.objects.filter(exam_name=text)
+        serializer=ScoreSerializer(sub,many=True)
+        return Response(serializer.data)
 
 
     def post(self,request):
         print(request.data)
-        return Response(request.data)
+        text=request.GET.get('q')
+        # data=request.data.get('course_name')
+        sub=Score.objects.filter(exam_name=text)
+        serializer=ScoreSerializer(sub,many=True)
+        return Response(serializer.data)
 
 
 @api_view(["GET","POST"])
@@ -319,6 +326,26 @@ def courseFilter(request):
     data = Course.objects.filter(course_name__icontains=text)
     serializer = CourseSerializer(data, many=True)
     return Response(serializer.data)
+
+class Scorecard(APIView):
+    def get(self,request):
+        sub=Score.objects.all()
+        serializer=ScoreSerializer(sub,many=True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        print(request.data)
+        score=request.data.get('score')
+        exam_name=request.data.get('exam_name')
+        serializer=ScoreSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            print(serializer.data)
+            return Response(serializer.data)
+        
+
+
+
 
 # class Adminpanel(APIView):
 #     def get(self,request):

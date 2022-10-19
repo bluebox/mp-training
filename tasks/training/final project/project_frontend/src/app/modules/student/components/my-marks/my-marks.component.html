@@ -1,5 +1,7 @@
-<p>my-marks works!</p>
+<!-- <p>my-marks works!</p> -->
+<app-student-navbar></app-student-navbar>
 <div class="questiontable">
+  <div class="head">Available Marks</div>
     <table mat-table [dataSource]="courses" class="mat-elevation-z8">
     
         <!--- Note that these columns can be defined in any order.
@@ -8,13 +10,13 @@
         <!-- Position Column -->
         <ng-container matColumnDef="course_name">
           <th mat-header-cell *matHeaderCellDef>Course </th>
-          <td mat-cell *matCellDef="let question"> {{question.course_name}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.course_name}} </td>
         </ng-container>
       
         <!-- Name Column-->
         <ng-container matColumnDef="exam">
           <th mat-header-cell *matHeaderCellDef>Action  </th>
-          <td  style="color: green;" mat-cell *matCellDef="let question "> <button (click)="sendMarks(question.course_name)" class="nabButton" mat-button>View Marks</button>
+          <td  style="color: green;" mat-cell *matCellDef="let row "> <button (click)="sendMarks(row.course_name)" class="nabButton" mat-button>View Marks</button>
             </td>
     
     

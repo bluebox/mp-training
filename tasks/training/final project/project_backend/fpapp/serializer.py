@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from fpapp.models import  Course, Question, User, Student, Teacher
+from fpapp.models import  Course, Question, Score, User, Student, Teacher
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -55,3 +55,7 @@ class QuestionSerializer2(serializers.ModelSerializer):
 #         model=Evaluation
 #         fields='__all__'
 
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Score
+        fields='__all__'

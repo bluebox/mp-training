@@ -7,39 +7,39 @@
 }
 .body{
    
-    height: 86%;
+    height: 52.4rem;
     width: 100%;
     background-color: grey;
     background-image: url("src\assets\images\image5.png");
-    background-size:100%;
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 
 
 .form-container {
-    /* margin: 100px; */
-    /* margin-top: 150px; */
-    margin-left: 300px;
-    width: 30%;
+
+    margin:auto;
+    width: 25rem;
   
     
 }
 
 .field {
-    /* background-color: rgb(6, 14, 14); */
-    width: 300px;
+    
+    width: 20rem;
     
 }
 .mat-card{
-    /* background-color: rgb(187, 213, 246); */
+  
     background-color: rgb(228, 234, 235);
 
 }
 .main{
     /* margin-top: 100px; */
-    margin-left: 70px;
-    margin-right: 100px;
+    /* margin-left: 70px;
+    margin-right: 100px; */
    
-    padding-top: 12%;
+    padding-top: 15rem;
    
   
   }

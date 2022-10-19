@@ -3,10 +3,11 @@ table {
   }
 
   .questiontable{
+    /* margin-top: 8rem;
+    margin-left: 12rem;
+    margin-right: 12rem; */
+    margin: 12rem;
     width:auto;
-    
-    padding-left: 70px;
-    padding-right: 70px;
   }
 
 .mat-header-cell{
@@ -21,7 +22,8 @@ table {
 } */
 
 th{
-    color:black
+    color:black;
+    font-size: 0.8rem;
 }
 .nabButton{
     /* margin: 10px; */
@@ -30,3 +32,12 @@ th{
     background-color: rgb(24, 172, 59);
     size:10px;
 }
+.head{
+  
+    background-color: blue;
+      color: white;
+      padding:0.5rem;
+      text-align: center;
+      border-radius: 5px;
+      font-size: large;
+  }

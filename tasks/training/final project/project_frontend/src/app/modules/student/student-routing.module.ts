@@ -20,7 +20,8 @@ const routes: Routes = [
       { path:'viewresult', component:ViewResultComponent},
       { path:"mymarks",component:MyMarksComponent},
       { path:'checkmarks', component:TotalAttemptsComponent},
-      {path:'navbar', component:StudentNavbarComponent}
+      {path:'navbar', component:StudentNavbarComponent},
+      {path:'checkmarks/:course_name', component:TotalAttemptsComponent}
     ]
   }
 

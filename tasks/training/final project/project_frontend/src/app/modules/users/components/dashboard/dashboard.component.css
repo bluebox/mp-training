@@ -1,38 +1,38 @@
 .body{
    
-    height: 86%;
+    height: 52.4rem;
     width: 100%;
     background-color: grey;
     background-image: url("src\assets\images\image5.png");
-    background-size:100%;
+    background-size:cover;
+    background-repeat: no-repeat;
 }
-.nabButton{
-    /* margin: 10px; */
+/* .nabButton{
+    margin: 10px;
     color:white;
-    /* margin-top: 45px; */
+    margin-top: 45px;
     background-color: rgb(61, 37, 239);
     size:10px;
-}
-.example-card {
+} */
+/* .example-card {
     max-width: 600px;
-    /* color: rgb(94, 14, 206); */
+    color: rgb(94, 14, 206);
     background-color:grey;
-    /* background-image: url("src\assets\images\image4.jpg"); */
+    background-image: url("src\assets\images\image4.jpg");
     background-repeat: no-repeat;
     background-size:cover;
-    /* color: white; */
+    color: white;
 
-  }
-  .main{
-    /* margin-top: 100px; */
+  } */
+  /* .main{
+    margin-top: 100px;
     margin-left: 450px;
     margin-right: 100px;
    
     padding-top: 7%;
    
-  
-  }
-  .mat-card{
+  } */
+  /* .mat-card{
     text-align: center;
    
   }
@@ -41,7 +41,7 @@
   }
 
 h1{
-  /* margin: 400px 100px 100px 600px; */
+  margin: 400px 100px 100px 600px;
   padding-top: 37%;
   padding-left: 58%;
-}
+} */

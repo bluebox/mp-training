@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+  }
+
+/* th,tr{
+    
+    background-color:rgb(250, 237, 220);
+} */
+
+th{
+    color:black
+}
+.coursetable{
+   
+    margin-top: 8rem;
+    margin-left: 12rem;
+    margin-right: 12rem;
+    width:auto;
+  }
+  .mat-header-cell{
+    text-align : center;
+}
+.mat-cell{
+    text-align: center;
+}
+.body{
+  
+  /* background-color: blue; */
+    color: white;
+    padding:0.5rem;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+}
+.head{
+  
+    background-color: blue;
+      color: white;
+      padding:0.5rem;
+      text-align: center;
+      border-radius: 5px;
+      font-size: large;
+  }

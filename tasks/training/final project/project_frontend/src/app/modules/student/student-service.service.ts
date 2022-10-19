@@ -28,13 +28,19 @@ export class StudentServiceService {
     return this.http.get("http://127.0.0.1:8000/startexam")
   }
 
-  sendAttemts(data:any){
-    return this.http.post("http://127.0.0.1:8000/checkmarks",data)
+  sendAttempts(data:any){
+    return this.http.get<any>("http://127.0.0.1:8000/checkmarks?q="+data)
   }
 
  
   getQuestions(){
     return this.http.get("http://127.0.0.1:8000/questionregister")
+  }
+  AddScore(data:any){
+    return this.http.post<any>("http://127.0.0.1:8000/score", data)
+  }
+  getScores():Observable<any>{
+    return this.http.get<any>("http://127.0.0.1:8000/score")
   }
 
 

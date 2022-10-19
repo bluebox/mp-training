@@ -8,11 +8,11 @@
 }
 
 .form-container {
-    margin: 0 auto;
-    width: 30%;
+    margin: auto;
+    width: 28rem;
 }
 .body{
-    margin-top: 80px;
+    margin-top: 14rem;
 }
 small{
     color:red;
