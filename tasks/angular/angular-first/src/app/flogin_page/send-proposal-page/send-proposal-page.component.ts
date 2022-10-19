@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from 'src/app/service.service';
 
 @Component({
@@ -12,10 +13,12 @@ export class SendProposalPageComponent implements OnInit {
   data_job_id : any;
   send_proposal!: FormGroup;
   
-  constructor(private service: ServiceService, private fb: FormBuilder) { }
+  constructor(private service: ServiceService, private fb: FormBuilder,private arouter : ActivatedRoute,private router : Router) { }
   ngOnInit(): void {
-    this.data_job_id = window.sessionStorage.getItem('job_id')
-    this.job_id = JSON.parse(this.data_job_id);
+    this.arouter.params.subscribe(params => this.job_id=params['job_id'] );
+    // console.log(this.job_id);
+    // this.data_job_id = window.sessionStorage.getItem('job_id')
+    // this.job_id = JSON.parse(this.data_job_id);
     this.send_proposal = this.fb.group({
       'job_id' : this.job_id,
       'freelancer_id' : this.parse_data.id,
@@ -28,7 +31,7 @@ export class SendProposalPageComponent implements OnInit {
 
 
   submitSendProposal() {
-    this.service.submitSendProposalUrl(this.send_proposal.value).subscribe(data => { console.log(data);alert('successfully applied');window.location.reload();});
+    this.service.submitSendProposalUrl(this.send_proposal.value).subscribe(data => { console.log(data);alert('successfully applied');this.router.navigate(['/freelance_login_page/proposals'])});
     console.log(this.send_proposal.value);
 
     

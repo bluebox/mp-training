@@ -16,19 +16,24 @@ export class ServiceService {
 
   freelancerRegistration(data: any) {
     console.log(data);
-    return this.http.post(this.url + 'freelancer', data)
+    return this.http.post(this.url + 'freelancer', data,)
   }
   FreelancerLogin(data: string) {
     console.log(data);
 
     return this.http.post(this.url + "freelancer/login/",data)
   }
+
   freelancerDetails(data : any){
     console.log(data);
     console.log('service');
     let headers = new HttpHeaders().set('Authorization','Token '+ data.substring(1, data.length-1))
     return this.http.get(this.url + "freelancer/details/",{'headers':headers});
   }
+  
+  editFreelancer(email_id : any , data:any) {
+    return this.http.put(this.url + "freelancer/login/"+email_id + '/',data); 
+  } 
 
   ClientRegistration(data: any) {
     console.log(data);
@@ -40,8 +45,15 @@ export class ServiceService {
     return this.http.get(this.url + 'client/' + data + '/')
   }
 
+  editClientDetails(email_id : any , data : any) {
+    return this.http.put(this.url + 'client/' + email_id + '/', data) 
+  }
   getClientJobsUrl() {
     return this.http.get(this.url + 'client_jobs')
+  }
+
+  getClientJobsSearchUrl(search : any){
+    return this.http.get(this.url + 'client_jobs_search?project_title='+search)
   }
 
   postAJob(data: any) {
@@ -51,7 +63,9 @@ export class ServiceService {
   submitSendProposalUrl(data: any) {
     return this.http.post(this.url + 'freelancer_proposals', data)
   }
-
+  EditProposalUrl(id : any ,data: any) {
+    return this.http.put(this.url + 'freelancer_proposals?proprosal_id='+id, data)
+  }
   getFreelancerProposals(data: any) {
     return this.http.get(this.url + 'get_freelancer_proposals?id=' + data)
   }
@@ -60,8 +74,21 @@ export class ServiceService {
     return this.http.get(this.url + 'get_client_jobs?client_id=' + data)
   }
 
+  getJobofClient(data : any){
+    return this.http.get(this.url + 'client_jobs/' + data +'/')
+  }
+  editClientJob(job_id : any , data : any){
+    return this.http.put(this.url + 'client_jobs/' + job_id + '/', data)
+  }
+
   getProposalDetails(data: any) {
     return this.http.get(this.url + 'get_proposal_details?job_id=' + data);
+  }
+  getProposal(data: any) {
+    return this.http.get(this.url + 'get_proposal?proprosal_id=' + data);
+  }
+  deleteProposal(data: any) {
+    return this.http.delete(this.url + 'freelancer_proposals?proprosal_id=' + data);
   }
 
   createContract(value: any) {
@@ -125,6 +152,17 @@ export class ServiceService {
 
   getclientFeedback(data : any) {
     return this.http.get(this.url + 'new_client_feedback?contract_id=' + data)
-  } 
+  }
 
+  deleteJob(data : any) {
+    return this.http.delete(this.url + 'delete_client_job/' + data)
+  }
+  editJob(job_id : number , data : any) {
+    return this.http.put(this.url+ 'edit_client_job?job_id=' + job_id ,data )
+  }
+  
+
+  proposalExists(job_id : number,id : number) {
+    return this.http.get(this.url + 'proposal_exists?job_id=' + job_id + '&freelancer_id=' + id )
+  }
 }

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     console.log(this.login.value.email_id);
     if (this.login.value.user_type == 1) {
       this.service.FreelancerLogin(this.login.value).subscribe((data: any) => {
+        
         window.sessionStorage.setItem('token', JSON.stringify(data.access_token));
         alert(data.msg);
         console.log(data.access_token);
@@ -55,6 +56,17 @@ export class LoginComponent implements OnInit {
         }
       )
     }
+  }
+
+  get password(){
+    return this.login.get('password');
+  }
+
+  get email(){ 
+     return this.login.get('email_id'); }
+
+  get country(){
+    return this.login.get('user_type'); 
   }
 
 }

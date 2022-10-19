@@ -3,8 +3,13 @@
 
 <ng-container *ngIf="contractDetails=='' ; then first else second "></ng-container>
 <ng-template #first>
-    <p>No contract details found </p>
-    <p>To post a job now <a href="" routerLink="../post_a_job">click here</a> </p>
+    <div class="nodata">
+
+        <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
+        <h4>No contract details found </h4> <br>
+        <h5>To post a job now <a href="" routerLink="../post_a_job">click here</a> </h5>
+        
+    </div>
 </ng-template>
 <ng-template #second>
     <!-- <button onclick="history.back()" style="position: relative;">Go Back</button> -->
@@ -40,18 +45,22 @@
                         style="color: orange;text-transform: uppercase;">{{
                         jobs.project_status }}</td>
                 </tr>
-                <button class="btn btn-lg btn-outline-primary" *ngIf="jobs.project_status==='pending'" (click)="open(content,jobs)">update
-                    project status</button> 
+                <button class="btn btn-lg btn-outline-primary" *ngIf="jobs.project_status==='pending'"
+                    (click)="open(content,jobs)">update
+                    project status</button>
 
 
                 <div class="completed" style="margin-left: 100px;" *ngIf="jobs.project_status==='completed'">
                     <br>
-                    <h5 style="text-transform: uppercase;">Yey!!  Project completed <span style="font-size: 30px;"> 🥳🥳 </span></h5> <br>
-                    <h5 style="text-transform: capitalize;" *ngIf="!jobs.flag">please provide feedback for freelancer  </h5> <br>
+                    <h5 style="text-transform: uppercase;">Yey!! Project completed <span style="font-size: 30px;"> 🥳🥳
+                        </span></h5> <br>
+                    <h5 style="text-transform: capitalize;" *ngIf="!jobs.flag">please provide feedback for freelancer
+                    </h5> <br>
 
-                    <button style="align-items: center;margin-left: 100px;" type="button" *ngIf="!jobs.flag" (click)="display(jobs)">click here</button>
+                    <button style="align-items: center;margin-left: 100px;" type="button" *ngIf="!jobs.flag"
+                        (click)="display(jobs)">click here</button>
                 </div>
-                <div class="feedbackresponse"  style="margin-left: 100px;" *ngIf="jobs.feedback &&  !jobs.flag "> <br>
+                <div class="feedbackresponse" style="margin-left: 100px;" *ngIf="jobs.feedback &&  !jobs.flag "> <br>
                     <p style="text-align: center;text-transform: uppercase;">Already Rated</p>
                     <label for="rating">Rating : </label> &nbsp;
                     <ngb-rating [(rate)]="jobs.feedback.rating" id="rating" [max]="5" [readonly]="true"

@@ -1,0 +1,32 @@
+<app-fheader></app-fheader>
+<h4 style="text-transform: uppercase;text-align:center;">edit proposal   </h4>
+<div class="main">
+    <form [formGroup]="send_proposal" (submit)="submitSendProposal()">
+        <div class="form-group">
+            <h4 *ngIf="edit_proposal" >PROPOSAL ID : {{edit_proposal.proprosal_id}} </h4>
+            <h4 *ngIf="edit_proposal">JOB ID : {{ edit_proposal.job_id }} </h4>
+            <h4>Mention Your Skills</h4>
+            <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
+            <textarea name="" id="exampleInputEmail1" cols="50" rows="10"  formControlName="skills"></textarea>
+        </div>
+
+        <div class="form-group">
+            <h4>Cover Letter</h4>
+            <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
+            <textarea name="" id="exampleInputEmail1" cols="50" rows="10"  formControlName="cover_letter"></textarea>
+        </div>
+        <div class="form-group">
+
+            <label class="form-check-label" for="exampleCheck1">
+                <h3>Bidding amount $ </h3>
+            </label> &nbsp;
+            <input type="number" id="exampleCheck1" formControlName="requried_pay">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">save changes</button> &nbsp;
+        <button type="button" class="btn btn-primary" routerLink="proposals/../../..">exit</button>
+
+    </form>
+</div>
+
+<app-ffooter></app-ffooter>

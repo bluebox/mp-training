@@ -10,7 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { PagenotfouondComponent } from './pagenotfouond/pagenotfouond.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import {MatIconModule} from '@angular/material/icon';
 import { IndexComponent } from './index/index.component';
 import { FreelanceRegistrationComponent } from './freelance-registration/freelance-registration.component';
 import { FloginPageComponent } from './flogin_page/flogin-page/flogin-page.component';
@@ -29,7 +29,12 @@ import { CfooterComponent } from './clogin_page/cfooter/cfooter.component';
 import { CheaderComponent } from './clogin_page/cheader/cheader.component';
 import { FheaderComponent } from './flogin_page/fheader/fheader.component';
 import { FfooterComponent } from './flogin_page/ffooter/ffooter.component';
-
+import { EditProfileComponent } from './flogin_page/edit-profile/edit-profile.component';
+import { EditProfilecComponent } from './clogin_page/edit-profilec/edit-profilec.component';
+import { EditProposalComponent } from './flogin_page/edit-proposal/edit-proposal.component';
+import { TableModule } from 'primeng/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { EditJobComponent } from './clogin_page/edit-job/edit-job.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +59,10 @@ import { FfooterComponent } from './flogin_page/ffooter/ffooter.component';
     CheaderComponent,
     FheaderComponent,
     FfooterComponent,
+    EditProfileComponent,
+    EditProfilecComponent,
+    EditProposalComponent,
+    EditJobComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +72,9 @@ import { FfooterComponent } from './flogin_page/ffooter/ffooter.component';
     NgbModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatIconModule,
+    TableModule,
+    MatPaginatorModule
 
   ],
   providers: [],

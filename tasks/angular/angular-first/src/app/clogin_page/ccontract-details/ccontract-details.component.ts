@@ -14,6 +14,7 @@ export class CcontractDetailsComponent implements OnInit {
   feedback = new FormControl;
   feedbackDetails: any;
   feedbackform!: FormGroup;
+  
   display(jobs: any) {
     this.service.getclientFeedback(jobs.contract_id).subscribe((feedback: any) => {
       // this.feedbackDetails = feedback;
@@ -48,7 +49,7 @@ export class CcontractDetailsComponent implements OnInit {
   payment_details!: any;
   change_project_details!: FormGroup
   demoForm!: FormGroup;
-  currentRate !: number;
+  currentRate =3;
   constructor(private service: ServiceService, private modalService: NgbModal, private fb: FormBuilder) {
 
   }

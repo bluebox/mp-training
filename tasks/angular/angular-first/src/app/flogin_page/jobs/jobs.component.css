@@ -58,6 +58,32 @@ table{
 }
 
 .tabledata{
-    font-size: 22px;
+    font-size: 18px;
 }
 
+
+input, label{
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+input{
+    margin-left: 600px;
+    font-size: 20px;
+    width: 30%;
+    border-radius: 10px;
+}
+
+label button {
+    font-size: 22px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: aquamarine;
+    color: rgb(6, 6, 6);
+    padding: 0px 15px 0px 15px;
+    /* margin-left: 30px; */
+    width: 100%;
+
+}

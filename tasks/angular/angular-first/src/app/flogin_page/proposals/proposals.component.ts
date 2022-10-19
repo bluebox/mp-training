@@ -21,7 +21,16 @@ export class ProposalsComponent implements OnInit {
   }
   data : any = localStorage.getItem('fuser')
   parse_data = JSON.parse(this.data)
-
-
+  // deleteProposal(proprosal_id : any){
+  //   this.service.deleteProposal(proprosal_id ).subscribe(data => console.log(this.data), err => console.log(err))
+  // }
+  deleteProposal(proprosal_id : any ){ 
+    if (confirm("Are you sure you want to delete this proposal?")){
+      this.service.deleteProposal(proprosal_id).subscribe(data => {
+        alert('deleted successfully');
+        window.location.reload();
+      }, err => console.log(err));
+    }
+  }
 
 }

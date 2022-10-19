@@ -1,4 +1,57 @@
+<!--navigation-->
 <app-fheader></app-fheader>
+<!-- <section class="smart-scroll">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <a class="navbar-brand heading-black">
+                GTR
+            </a>
+            <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span data-feather="grid"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+
+                        <a class="nav-link page-scroll" href="" routerLink="."> <i class="fa fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="" routerLink="./jobs"> <i
+                            class="fa fa-search"></i> Find a Job</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" routerLink="./proposals"><i class="fa fa-check" aria-hidden="true"></i>Your submitted proposals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" routerLink="./payment_details"><i class="fa fa-credit-card"></i> Payment Details </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" routerLink="./fcontract_details"><i class="fa fa-file-text-o"></i> Your Contract Details </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" routerLink="./edit_profile"><i class="fa fa-edit"></i>Edit profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" routerLink="" (click)="logout()"> <i class="fa fa-sign-out"></i>Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</section> -->
+
+<section>
+    <div class="imagediv" style="background-color:rgb(47, 72, 87);">
+        <img src="https://images.unsplash.com/photo-1613909207039-6b173b755cc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZWxhbmNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
+            alt="" style="display: block;
+        margin-left: auto;
+        margin-right: auto; height: 450px; width: 1000px; ">
+
+    </div>
+</section>
 
 
 <div class="welcome" *ngIf="parse_data">
@@ -6,8 +59,9 @@
         parse_data.last_name }}</h3>
     <ul class="row m-auto one">
         <!-- <div class="row"> -->
-        <li class="col-5 m-5 bg-light" routerLink="./jobs"> 
-            <img src="https://cdn-icons-png.flaticon.com/512/942/942800.png" height="250px" width="250px" alt="no image">
+        <li class="col-5 m-5 bg-light" routerLink="./jobs">
+            <img src="https://cdn-icons-png.flaticon.com/512/942/942800.png" height="250px" width="250px"
+                alt="no image">
             <h5>FIND A JOB</h5>
         </li>
         <li class="col-5 m-5 bg-light"><a routerLink="./proposals"> <img

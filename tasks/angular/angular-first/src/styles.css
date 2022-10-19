@@ -1,0 +1,10 @@
+.nodata{
+    border: 2px solid black;
+    margin-top: 10px;
+    display: block;
+    height:80vh;
+    align-items: center;
+    text-align: center;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

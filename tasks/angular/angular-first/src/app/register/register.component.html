@@ -71,19 +71,23 @@
                   <div class="form-outline mb-4">
                     <input type="text" id="form3Example1cg" formControlName="client_name"
                       class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example1cg"> Name</label>
+                    <label class="form-label" for="form3Example1cg"> Name</label> <br>
+                    <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="first_name && first_name.invalid && first_name.touched;">Invalid name</small></b>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="email" id="form3Example3cg" formControlName="email_id"
                       class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example3cg">Email</label>
+                    <label class="form-label" for="form3Example3cg">Email</label> <br>
+
+                    <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="email_id && email_id.invalid && email_id.touched;">Invaild email id</small></b>
                   </div>
 
                   <div class="form-outline mb-4">
                     <input type="number" id="form3Example4cdg" formControlName="phone_number"
                       class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cdg">Mobile number</label>
+                    <label class="form-label" for="form3Example4cdg">phone number</label> <br>
+                    <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="email_id && email_id.invalid && email_id.touched;">Invaild phone number </small></b>
                   </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="country"> Country</label> <br>
@@ -336,12 +340,14 @@
                       <option value="Serbia">Serbia</option>
                       <option value="Zambia">Zambia</option>
                       <option value="Zimbabwe">Zimbabwe</option>
-                    </select>
+                    </select> <br>
+                    <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="client_country && client_country.invalid && client_country.touched;">select country</small></b>
                   </div>
                   <div class="form-outline mb-4">
                     <input type="password" id="form3Example4cg" formControlName="password"
                       class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cg">Password</label>
+                    <label class="form-label" for="form3Example4cg">Password</label> <br>
+                    <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="password && password.invalid && password.touched;">Invaild password</small></b>
                   </div>
 
                   <!-- <div class="form-outline mb-4">
@@ -351,7 +357,7 @@
 
                   <div class="d-flex justify-content-center">
                     <button type="submit"
-                      class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                      class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" [disabled]="clientRegister.invalid" >Register</button>
                   </div>
 
                   <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="" routerLink="../login"

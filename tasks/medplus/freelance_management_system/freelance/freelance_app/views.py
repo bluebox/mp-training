@@ -18,122 +18,6 @@ from .serializers import  *
 from rest_framework.generics import ListAPIView,GenericAPIView
 # Create your views here.
 
-from django.shortcuts import  get_object_or_404
-# @api_view(["GET"])
-# def IndexSerializer(request):
-#     object1 = freelancer_details.objects.all()
-#     serializersdata = freelancer_detailsSerializers(object1,many=True)
-#     return Response(serializersdata.data)
-
-# @api_view(["POST"])
-# def IndexPostSerializer(request):
-#     # object1 = freelancer_details.objects.all()
-#     serializersdata = freelancer_detailsSerializers(data=request.data)
-#     if serializersdata.is_valid():
-#         serializersdata.save()
-#     return JsonResponse(serializersdata.data)
-# #
-# @api_view(["POST"])
-# def updateSerializer(request,id):
-#     object1 = freelancer_details.objects.get(id=id)
-#     serializersdata = freelancer_detailsSerializers(instance=object1,data=request.data)
-#     if serializersdata.is_valid():
-#         serializersdata.save()
-#     return JsonResponse(serializersdata.data)
-
-# @api_view(["DELETE"])
-# def deleteSerializer(request,id):
-#     object1 = freelancer_details.objects.get(id=id)
-#     object1.delete()
-#     return JsonResponse('deleted in the database')
-
-# class FreelancerViewSet(viewsets.ViewSet):
-#     def list(self,request):
-#         queryset= freelancer_details.objects.all()
-#         serializer = freelancer_detailsSerializers(queryset,many=True)
-#         return Response(serializer.data)
-#
-#     def retrieve(self,request,pk=None):
-#         queryset =  freelancer_details.objects.all()
-#         freelance = get_object_or_404(queryset,pk=pk)
-#         serializer = freelancer_detailsSerializers(freelance)
-#         return Response(serializer.data)
-#
-#     def create(self,request):
-#         serializer = freelancer_detailsSerializers(data=request.data)
-#         serializer.is_valid()
-#         return Response(serializer.data)
-#
-#     def update(self,request,pk=None):
-#         pass
-#     def partial_update(self,request,pk=None):
-#         pass
-#
-#     def destroy(self,request,pk=None):
-#         pass
-
-# @api_view()
-# class freelanceViewSet(ViewSet):
-#     object1 = freelancer_details.objects.all()
-#     def list(self,request):
-#         serializers1 = freelancer_detailsSerializers(self.object1,many=True)
-#         return Response(serializers1.data)
-#     def retrieve(self,request,pk=None):
-#         item = get_object_or_404(self.object1,pk=pk)
-#         serializers = freelancer_detailsSerializers(item)
-#         return Response(serializers.data)
-#
-# class freelanceViewSet1(viewsets.ModelViewSet):
-#     object1 = freelancer_details.objects.all()
-#     serializersdata = freelancer_detailsSerializers
-
-# # global id1
-# id1 = 100
-#
-#
-# def func():
-#     global id1
-#     id1 += 1
-# def freelance_details_page(request):
-#     # global id1
-#     if request.method == "POST":
-#
-#         email_id1= request.POST.get('email_id')
-#         if freelancer_details.objects.filter(email_id=email_id1).exists():
-#             messages.error(request,"email id already exists")
-#             return redirect('/')
-#         else:
-#             first_name1= request.POST.get('first_name')
-#             last_name1= request.POST.get('last_name')
-#             phone_number1= request.POST.get('phone_number')
-#             country1= request.POST.get('country')
-#             password1 = request.POST.get("password")
-#             object1 = freelancer_details(id=id1,first_name=first_name1,last_name=last_name1,email_id=email_id1,phone_number=phone_number1,password=password1,country=country1)
-#             object1.save()
-#             func()
-#             return HttpResponse("details added successfully")
-#     else:
-#         return HttpResponse("djsfj")
-#
-#
-# def loginpage(request):
-#     if request.method == "POST":
-#         value = request.POST.get('value')
-#         if value ==1:
-#             email_id1 = request.POST.get('email_id')
-#             if freelancer_details.objects.filter(email_id=email_id1).exists():
-#                 return render(request,'freelance_first.html')
-#             else:
-#                 messages.error(request,'invaild email or password')
-#                 return redirect('/')
-#         else:
-#             email_id1 = request.POST.get('email_id')
-#             if client_details.objects.filter(email_id=email_id1).exists():
-#                 return render(request,'client_first.html')
-#             else:
-#                 messages.error(request,'invaild email or password')
-#                 return redirect('/')
-#
 
 
 class freelancerRegister(APIView):
@@ -150,12 +34,18 @@ class freelancerRegister(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class freelanceUpdate(APIView):
-    # def get_object(self, email_id):
-    #     try:
-    #        return freelancer_details.objects.get(email_id=email_id)
-    #     except freelancer_details.DoesNotExist :
-    #         raise Http404
-
+    def get_object(self, email_id):
+        try:
+           return freelancer_details.objects.get(email_id=email_id)
+        except client_details.DoesNotExist :
+            raise Http404
+    def put(self,request, email_id, format=None):
+        freelance = self.get_object(email_id=email_id)
+        serializer = freelancer_details_serializers(freelance, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request):
         email = request.data['email_id']
@@ -195,6 +85,11 @@ class freelanceUpdate(APIView):
 
 class freelancer_login(APIView):
     authentication_classes = [JWTAuthentication]
+    def get_object(self, email_id):
+        try:
+           return freelancer_details.objects.get(email_id=email_id)
+        except client_details.DoesNotExist :
+            raise Http404
     def get(self,request, format=None):
         serializer = freelancer_details_serializers(request.user)
         return Response(serializer.data)
@@ -263,6 +158,12 @@ class clientJobsRegister(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class clientJobsSearch(APIView):
+    def get(self, request):
+        client = client_jobs.objects.filter(project_title__icontains=request.GET.get('project_title'))
+        serializer = client_jobs_serializers(client, many=True)
+        return Response(serializer.data)
 class clientJobsUpdate(APIView):
     def get_object(self, job_id):
         try:
@@ -275,7 +176,7 @@ class clientJobsUpdate(APIView):
         serializer = client_jobs_serializers(client)
         return Response(serializer.data)
 
-    def put(self, request, job_id, format=None):
+    def put(self, request,job_id, format=None):
         client = self.get_object(job_id=job_id)
         serializer = client_jobs_serializers(client, data=request.data)
         if serializer.is_valid():
@@ -302,7 +203,17 @@ class freelancerProposals(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    def put(self, request):
+        client = freelancer_proposals.objects.get(proprosal_id = int(request.GET.get('proprosal_id')))
+        serializer = freelancer_proposals_serializers(client, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request):
+        client = freelancer_proposals.objects.get(proprosal_id=int(request.GET.get('proprosal_id')))
+        client.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 class freelancerProposalsUpdate(APIView):
     def get_object(self, job_id):
         try:
@@ -361,6 +272,12 @@ class get_freelancer_proposals(APIView):
         client = freelancer_proposals.objects.filter(freelancer_id=int(request.GET.get('id')))
         serializer = freelancer_proposals_serializers(client,many=True)
         return Response(serializer.data)
+
+class Proposal_exists(APIView):
+    def get(self,request):
+        data = freelancer_proposals.objects.filter(job_id=int(request.GET.get('job_id')),freelancer_id=1).first()
+        serializer = freelancer_proposals_serializers(data)
+        return Response(serializer.data)
 class get_proposal_details(APIView):
     def get(self,request):
 
@@ -368,7 +285,12 @@ class get_proposal_details(APIView):
         serializer = freelancer_proposals_serializers(client,many=True)
         return Response(serializer.data)
 
+class get_proposal(APIView):
+    def get(self,request):
 
+        client = freelancer_proposals.objects.get(proprosal_id=int(request.GET.get('proprosal_id')))
+        serializer = freelancer_proposals_serializers(client)
+        return Response(serializer.data)
 class getClientJobs(APIView):
     def get(self,request):
         get_client_jobs = client_jobs.objects.filter(client_id = int(request.GET.get('client_id')))
@@ -456,9 +378,12 @@ class new_feedback(APIView):
 
 
     def get(self,request):
-        feedback = freelancer_feedback_form.objects.get(contract_id=request.GET.get('contract_id'))
-        serializers = freelancer_feedback_form_serializers(feedback)
-        return Response(serializers.data)
+        try:
+            feedback = freelancer_feedback_form.objects.get(contract_id=request.GET.get('contract_id'))
+            serializers = freelancer_feedback_form_serializers(feedback)
+            return Response(serializers.data)
+        except freelancer_feedback_form.DoesNotExist:
+            raise Http404
 
 class new_freelancer_payment(APIView):
     def post(self,request):
@@ -479,6 +404,9 @@ class new_client_feedback(APIView):
 
 
     def get(self,request):
-        feedback = client_feedback_form.objects.get(contract_id=request.GET.get('contract_id'))
-        serializers = client_feedback_form_serializers(feedback)
-        return Response(serializers.data)
+        try:
+            feedback = client_feedback_form.objects.get(contract_id=request.GET.get('contract_id'))
+            serializers = client_feedback_form_serializers(feedback)
+            return Response(serializers.data)
+        except client_feedback_form.DoesNotExist:
+            raise Http404

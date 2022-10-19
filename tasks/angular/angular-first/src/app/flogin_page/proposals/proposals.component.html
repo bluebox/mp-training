@@ -1,41 +1,55 @@
 <app-fheader></app-fheader>
 <h4 style="text-transform: uppercase;text-align:center;">Your submitted proposals</h4>
-<!-- <h1 > {{ recevied_data }} </h1> -->
+<div class="nodata" *ngIf="recevied_data==''" >
 
-<ul>
-    <li *ngFor="let data of recevied_data">
+    <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
+    <h4>No submitted proposal found</h4> <br>
+    <h5>To find a job  now <a href="" routerLink="../jobs">click here</a> </h5> or <br> <br>
+    <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
+</div>
+
+<ul *ngIf="recevied_data">
+    <li *ngFor="let data of recevied_data.sort().reverse()">
         <table>
             <tr>
-                <th>PROPOSAL ID :</th>
+                <th class="tablehead">PROPOSAL ID :</th>
                 <th class="tabledata">{{data.proprosal_id}}</th>
             </tr>
             <tr>
-                <td>JOB ID : </td>
+                <td class="tablehead">JOB ID : </td>
                 <td class="tabledata">{{ data.job_id}}</td>
 
             </tr>
 
             <tr>
-                <td>SKILLS : </td>
-                <td class="tabledata"> {{ data.skills }}</td>
+                <td class="tablehead">SKILLS : </td>
+                <td class="tabledata">  {{ data.skills }}  </td>
 
             </tr>
             <tr>
-                <td> COVER LETTER :</td>
-                <td class="tabledata"> {{ data.cover_letter}}</td>
+                <td class="tablehead"> COVER LETTER :</td>
+                <td class="tabledata">  {{ data.cover_letter}}  </td>
             </tr>
             <tr>
-                <td>BIDDING AMOUNT :</td>
-                <td class="tabledata">$ {{ data.requried_pay}}</td>
+                <td  class="tablehead">BIDDING AMOUNT :</td>
+                <td class="tabledata"> $ {{ data.requried_pay}} </td>
 
             </tr>
             <tr>
-                <td>PROPOSAL STATUS :</td>
+                <td class="tablehead">PROPOSAL STATUS :</td>
                 <td *ngIf="data.proprosal_status=='rejected'" class="tabledata" style="color: red;" > {{ data.proprosal_status | uppercase}}</td>
                 <td  *ngIf="data.proprosal_status=='accepted'" class="tabledata" style="color: green;" > {{ data.proprosal_status | uppercase}}</td>
+                <td  *ngIf="data.proprosal_status=='pending for approval'" class="tabledata" style="color: orange;" > {{ data.proprosal_status | uppercase}}</td>
 
             </tr>
+
+
         </table>
+        <br>
+        <div *ngIf="data.proprosal_status=='pending for approval'">
+            <button type="button" routerLink="../edit_proposal/{{data.proprosal_id}}/{{data.job_id}}">edit proposal</button> &nbsp;
+            <button type="button" (click)="deleteProposal(data.proprosal_id)">delete</button> 
+        </div>
     </li>
 </ul>
 <app-ffooter></app-ffooter>

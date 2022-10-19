@@ -1,0 +1,50 @@
+<app-cheader></app-cheader>
+<div class="main">
+    <form [formGroup]="job_form" (submit)="registerSubmit()">
+    
+        <h1 style="color:aquamarine;text-align: center;">EDIT JOB</h1>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <input type="text" id="form2Example1" class="form-control" formControlName="project_title" />
+            <label class="form-label" for="form2Example1">Project Title</label>
+        </div>
+    
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <!-- <input type="textarea" id="form2Example2" class="form-control" /> -->
+            <textarea name="Description" id="form2Example2" cols="60" rows="8" placeholder=""
+                formControlName="description"></textarea>
+            <label class="form-label" for="form2Example2"> Project Description </label>
+        </div>
+    
+        <div class="form-outline mb-4">
+            <input type="number" id="form2Example3" formControlName="total_pay" class="form-control" />
+            <label class="form-label" for="form2Example1">Pay</label>
+        </div>
+    
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example4">Experience &nbsp; &nbsp; </label>
+            <select name="" id="form2Example1" formControlName="experience_level" class="form-outline mb-4">
+                <option value="Expert">Expert Level</option>
+                <option value="intermediate">Intermediate Level</option>
+                <option value="Fresher">Fresher Level</option>
+            </select>
+        </div>
+        <!-- 2 column grid layout for inline styling -->
+        <div class="form-outline mb-4">
+            <input type="text" id="form2Example5" formControlName="skills_requried" class="form-control" />
+            <label class="form-label" for="form2Example1">Skills Required</label>
+        </div>
+        <!-- Submit button -->
+        <div class="form-outline mb-4">
+            <button type="submit" class="btn btn-primary btn-block mb-4" >save changes</button> &nbsp;
+            <button type="button" class="btn btn-primary btn-block mb-4" routerLink="/client_login_page/freelancer_proposals" >cancel</button>
+
+        </div>
+    
+        <!-- Register buttons -->
+    
+    </form>
+    
+    </div>
+<app-cfooter></app-cfooter>

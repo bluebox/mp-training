@@ -11,7 +11,7 @@ import { ServiceService } from '../service.service';
 export class RegisterComponent implements OnInit {
   receivedData : string = ''
   clientRegister!: FormGroup;
-  constructor(private fb:FormBuilder,private service : ServiceService) { }
+  constructor(private fb:FormBuilder,private service : ServiceService,private router : Router) { }
 
   ngOnInit(): void {
     this.clientRegister = this.fb.group({
@@ -23,9 +23,28 @@ export class RegisterComponent implements OnInit {
     })
   }
   registerSubmit(){
-    this.service.ClientRegistration(this.clientRegister.value).subscribe((data : any) => console.log(data)
+    this.service.ClientRegistration(this.clientRegister.value).subscribe((data : any) =>{ console.log(data);alert('Registered successfully') ; this.router.navigate(['login']);}
     );
-    console.log(this.clientRegister.value);
    }
 
+
+   get first_name(){
+    return this.clientRegister.get('client_name');
+  }
+
+  get email_id(){
+    return this.clientRegister.get('email_id');
+  }
+
+  get phone_number(){
+    return this.clientRegister.get('phone_number');
+  }
+
+  get client_country(){
+    return this.clientRegister.get('client_country');
+  }
+
+  get password(){
+    return this.clientRegister.get('password');
+  }
 }

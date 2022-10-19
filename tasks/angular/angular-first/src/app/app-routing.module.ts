@@ -19,6 +19,11 @@ import { FeePaymentDetailsComponent } from './clogin_page/fee-payment-details/fe
 import { CcontractDetailsComponent } from './clogin_page/ccontract-details/ccontract-details.component';
 import { SendProposalPageComponent } from './flogin_page/send-proposal-page/send-proposal-page.component';
 import { ProposalDetailsComponent } from './clogin_page/proposal-details/proposal-details.component';
+import { EditProfilecComponent } from './clogin_page/edit-profilec/edit-profilec.component';
+import { EditProfileComponent } from './flogin_page/edit-profile/edit-profile.component';
+import { FguardGuard } from './fguard.guard';
+import { EditProposalComponent } from './flogin_page/edit-proposal/edit-proposal.component';
+import { EditJobComponent } from './clogin_page/edit-job/edit-job.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -28,14 +33,18 @@ const routes: Routes = [
   { path: 'client-register', component: RegisterComponent },
   { path: 'freelance-registration', component: FreelanceRegistrationComponent },
   {
-    path: 'freelance_login_page', component: FloginPageComponent
+    path: 'freelance_login_page', component: FloginPageComponent ,canActivate: [FguardGuard]
   },
-  { path: 'freelance_login_page/jobs', component: JobsComponent },
-  { path: 'freelance_login_page/jobs/send_proposal_page/:job_id', component: SendProposalPageComponent },
+  { path: 'freelance_login_page/jobs', component: JobsComponent ,canActivate: [FguardGuard] },
+  { path: 'freelance_login_page/jobs/send_proposal_page/:job_id', component: SendProposalPageComponent ,canActivate: [FguardGuard] },
 
-  { path: 'freelance_login_page/proposals', component: ProposalsComponent },
-  { path: 'freelance_login_page/payment_details', component: PaymentDetailsComponent },
-  { path: 'freelance_login_page/fcontract_details', component: FcontractDetailsComponent },
+  { path: 'freelance_login_page/proposals', component: ProposalsComponent ,canActivate: [FguardGuard]},
+  { path: 'freelance_login_page/payment_details', component: PaymentDetailsComponent,canActivate: [FguardGuard] },
+  { path: 'freelance_login_page/fcontract_details', component: FcontractDetailsComponent,canActivate: [FguardGuard] },
+  { path: 'freelance_login_page/edit_profile', component: EditProfileComponent ,canActivate: [FguardGuard]},
+  { path: 'freelance_login_page/edit_proposal/:id/:job_id', component: EditProposalComponent ,canActivate: [FguardGuard]},
+
+
   {
     path: 'client_login_page', component: CloginPageComponent
   },
@@ -43,7 +52,10 @@ const routes: Routes = [
   { path: 'client_login_page/freelancer_proposals', component: FreelancerProposalsComponent },
   { path: 'client_login_page/fee_payment_details', component: FeePaymentDetailsComponent },
   { path: 'client_login_page/ccontract_details', component: CcontractDetailsComponent },
+  { path: 'client_login_page/edit_profilec', component: EditProfilecComponent },
   { path: 'client_login_page/freelancer_proposals/proposal_details/:id', component: ProposalDetailsComponent },
+  { path: 'client_login_page/freelancer_proposals/edit_job/:id', component: EditJobComponent },
+
 
 
   { path: '**', component: PagenotfouondComponent },

@@ -1,5 +1,12 @@
 <app-fheader></app-fheader>
 <h4 style="text-transform: uppercase;text-align:center;">Your Payment's details</h4>
+<div class="nodata" *ngIf="recevied_data==''">
+
+    <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
+    <h4>No payment details found </h4> <br>
+    <h5>To find a job now <a href="" routerLink="../jobs">click here</a> </h5> or <br> <br>
+    <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
+</div>
 <ul>
     <li *ngFor="let x of recevied_data">
         <table>

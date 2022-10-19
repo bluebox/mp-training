@@ -1,46 +1,54 @@
 <app-cheader></app-cheader>
+<div class="nodata" *ngIf="proposalDetails==''">
+
+    <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
+    <h4>No contract details found </h4> <br>
+    <h5>To post a job now <a href="" routerLink="../post_a_job">click here</a> </h5>
+    
+</div>
 <ul>
     <li *ngFor="let object of proposalDetails">
-        <div>
+        <div >
             <table>
                 <tr>
-                    <th>PROPOSAL ID : </th>
+                    <th class="tablehead">PROPOSAL ID : </th>
                     <th class="tabledata">{{ object.proprosal_id}}</th>
 
                 </tr>
                 <tr>
-                    <td>FREELANCER ID :</td>
+                    <td class="tablehead">FREELANCER ID :</td>
                     <td class="tabledata">{{object.freelancer_id}}</td>
                 </tr>
                 <tr>
-                    <td>JOB ID :</td>
+                    <td class="tablehead">JOB ID :</td>
                     <td class="tabledata">{{object.job_id}}</td>
                 </tr>
                 <tr>
-                    <td>BIDDING AMOUNT : </td>
+                    <td class="tablehead">BIDDING AMOUNT : </td>
                     <td class="tabledata">$ {{ object.requried_pay }}</td>
 
                 </tr>
                 <tr>
-                    <td>SKILLS :</td>
+                    <td class="tablehead">SKILLS :</td>
                     <td class="tabledata"> {{ object.skills}}</td>
                 </tr>
                 <tr>
-                    <td>COVER LETTER :</td>
+                    <td class="tablehead">COVER LETTER :</td>
                     <td class="tabledata"> {{ object.cover_letter}}</td>
 
                 </tr>
+
                 <div *ngIf="object.proprosal_status==='accepted'">
                 <tr>
-                    <td>PROPROSAL STATUS  :</td>
+                    <td class="tablehead">PROPROSAL STATUS  :</td>
                     <td style="color:green;">{{ object.proprosal_status | uppercase }}</td>
                 </tr>
                 </div>
 
             </table>
-            <div *ngIf="object.proprosal_status==='rejected'">
+            <div *ngIf="object.proprosal_status==='pending for approval'">
                 <button type="button" (click)="CreateContract(object)">ACCEPT
-                    PROPOSAL</button> &nbsp; <button type="button">REJECT PROPOSAL</button>
+                    PROPOSAL</button> &nbsp; <button type="button" (click)="rejectProposal(object)">REJECT PROPOSAL</button>
             </div>
         </div>
 

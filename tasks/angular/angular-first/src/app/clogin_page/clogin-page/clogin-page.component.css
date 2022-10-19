@@ -51,3 +51,39 @@ h5{
 
 
 
+
+
+.navbar{
+    background-color: black;
+    width:101%;
+    justify-content: space-between;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.smart-scroll{
+    position: relative;
+    top: 0;
+    left: -10px;
+    right: -10px;
+    justify-content: space-between;
+
+}
+
+.heading-black{
+    font-size: 25px;
+    color:aquamarine;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#navbarCollapse{
+    float:right;
+    margin-left: 30rem;
+    justify-content: space-between;
+}
+
+ul li a{
+    margin-left: 30px;
+}

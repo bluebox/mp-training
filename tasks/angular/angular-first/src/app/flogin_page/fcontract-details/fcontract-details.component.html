@@ -1,9 +1,13 @@
 <app-fheader></app-fheader>
 
-<!-- <ng-container *ngIf="; then first else second "></ng-container>
-<ng-template #first>
-</ng-template> -->
 <h4 style="text-transform: uppercase;text-align:center;">your contract's details</h4>
+<div class="nodata" *ngIf="arr==''" >
+    <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
+    <h4>No contract details found </h4> <br>
+    <h5>To find a job now <a href="" routerLink="../jobs">click here</a> </h5> or <br> <br>
+    <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
+    
+</div>
 <ul>
     <li *ngFor="let item of arr">
         <table>
@@ -40,30 +44,30 @@
 
             </tr>
             <div class="completed" *ngIf="item.project_status=='completed'">
-                <h5 *ngIf="!flag">please provide feedback for client </h5>
+                <h5 *ngIf="!item.flag">please provide feedback for client </h5>
 
-                <button type="button" *ngIf="!flag" (click)="display(item.contract_id)">click here</button>
+                <button type="button" *ngIf="!item.flag" (click)="display(item)">click here</button>
             </div>
-            <div class="feedbackresponse" *ngIf="feedbackDetails">
-                <p> rating : </p>
-                <ngb-rating [(rate)]="feedbackDetails.rating"  [max]="5" [readonly]="true"
+            <div class="feedbackresponse"  style="margin-left: 100px;" *ngIf="item.feedback && !item.flag">
+                <p style="text-align: center;text-transform: uppercase;">Already Rated</p>
+                <label for="rating">Rating : </label> &nbsp;
+                <ngb-rating [(rate)]="item.feedback.rating" id="rating"   style="font-size:30px;color: yellow;"   [max]="5" [readonly]="true"
                 style="font-size:30px;color: yellow;"></ngb-rating>
-                <p>feedback : {{ feedbackDetails.feedback }}</p>
+                <p *ngIf="item.feedback.feedback">feedback : {{ item.feedback.feedback }}</p>
             </div>
 
-            <div class="feedback" *ngIf="flag">
-                <div class="open" *ngIf="flag" style="margin-left: -10px;">
+            <div class="feedback" *ngIf="item.flag">
+                <div class="open" *ngIf="item.flag" style="margin-left: -10px;">
                     <p style="text-align: center;text-transform: uppercase;"> feedback form</p>
                     Rate for client:
                     <ngb-rating [(rate)]="currentRate" [max]="5" (rateChange)="ratechange(currentRate)"
                         style="font-size:30px;color: yellow;"></ngb-rating> <br>
                     <form (submit)="feedbackSumbit(item.contract_id)">
-                        <p>Feedback : </p>
+                        <p >Feedback : </p>
                         <textarea type="textarea" id="feedback" rows="6" cols="50" [formControl]="feedback"></textarea>
                         <br>
-
                         <button type="submit" value="submit">submit</button>&nbsp;
-                        <button type="button" (click)="display1()">close</button>
+                        <button type="button" (click)="display1(item)">close</button>
                     </form>
                 </div>
 

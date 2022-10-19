@@ -1,39 +1,49 @@
-
 <!--navigation-->
 <section class="smart-scroll">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <a class="navbar-brand heading-black" >
+            <a class="navbar-brand heading-black">
                 GTR
             </a>
             <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
-                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span data-feather="grid"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href=""  routerLink="./jobs">Find a Job</a>
+                        <a class="nav-link page-scroll" href="" routerLink="/freelance_login_page"> <i
+                                class="fa fa-home"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll"  routerLink="./proposals">Your submitted proposals</a>
+                        <a class="nav-link page-scroll" href="" routerLink="/freelance_login_page/jobs"><i
+                                class="fa fa-search"></i>Find a Job</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" routerLink="./payment_details">  Payment Details </a>
+                        <a class="nav-link page-scroll" routerLink="/freelance_login_page/proposals"><i
+                                class="fa fa-check" aria-hidden="true"></i>Your submitted proposals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" routerLink="./fcontract_details"> Your Contract Details </a>
+                        <a class="nav-link page-scroll" routerLink="/freelance_login_page/payment_details"><i
+                                class="fa fa-credit-card"></i> Payment Details </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" routerLink="./">Edit profile</a>
+                        <a class="nav-link page-scroll" routerLink="/freelance_login_page/fcontract_details"><i
+                                class="fa fa-file-text-o"></i> Your Contract Details </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" routerLink=""  (click)="logout()">Logout</a>
+                        <a class="nav-link page-scroll" routerLink="/freelance_login_page//edit_profile"><i
+                                class="fa fa-edit"></i>Edit profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll"  (click)="logout()"> <i
+                                class="fa fa-sign-out"></i>Logout</a>
                     </li>
 
                 </ul>
             </div>
         </nav>
+        <div class="navbottom"></div>
     </div>
 </section>

@@ -8,10 +8,19 @@ import { ServiceService } from 'src/app/service.service';
   styleUrls: ['./freelancer-proposals.component.css']
 })
 export class FreelancerProposalsComponent implements OnInit {
-  getJobProposals(job_id: any) {
-    console.log(job_id);
-    window.sessionStorage.setItem('job_id', job_id)
+edit(job_id: number , data : any ) {
+  this.service.editJob(job_id , data ).subscribe((data: any) => { console.log(data); }, (err: any) => { console.log(err); });
+  
+}
+delete(job_id: any) {
+  if ( confirm('Are you sure you want to delete this ?') ) {
+    this.service.deleteJob(job_id).subscribe( (data: any)  => { alert(data) ; console.log(data); location.reload() }, (err: any) => { alert(err) ; console.log(err);})
   }
+}
+  // getJobProposals(job_id: any) {
+  //   console.log(job_id);
+  // window.sessionStorage.setItem('job_id', job_id)
+  // }
 
   constructor(private service: ServiceService) { }
   jobsData: any;

@@ -1,10 +1,28 @@
 <app-fheader></app-fheader>
 <h4 style="text-transform: uppercase;text-align:center;">Jobs</h4>
+<div class="search" style="background-color: black;padding:30px">
+
+<input type="text" id="search" #search placeholder="find a job" name="search"> &nbsp;
+<label for="search"> <button type="submit" (click)="searchJob(search.value)" > <i class="fa fa-search"></i> </button> </label>     
+</div>
+
 <ng-container *ngIf="jobsData=='' ; then first else second "></ng-container>
 <ng-template #first>
+    <div class="nodata" *ngIf="jobsData ==''" >
+
+        <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
+        <h4>No jobs Available  </h4> <br> or <br>
+        <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
+    </div>
 </ng-template>
-<ng-template #second>
-    <ul #second>
+
+<ng-template #second >
+    <!-- <h4>{{ jobsData.job_id }}</h4> -->
+    <ul #second *ngIf="jobsData">
+        <br>
+        <!-- <form > -->
+
+        <h4 style="text-align: center;">{{ jobsData.length }} Available jobs</h4>
         <li *ngFor="let jobs of jobsData">
             <table>
                 <tr>
@@ -46,7 +64,7 @@
             
             
             
-            <button type="button" routerLink="./send_proposal_page/{{jobs.job_id}}" (click)="getJobId(jobs.job_id)" >send proposal</button></li>
+            <button type="button"  (click)="getJobId(jobs.job_id)" >send proposal</button></li>
     </ul>
 </ng-template>
 <app-ffooter></app-ffooter>

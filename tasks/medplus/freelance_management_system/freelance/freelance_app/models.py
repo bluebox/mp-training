@@ -29,7 +29,7 @@ class client_jobs(models.Model):
     job_id =  models.AutoField(primary_key=True)
     client_id = models.ForeignKey(client_details,on_delete=models.CASCADE)
     project_title = models.CharField(max_length=100)
-    description = models.TextField(max_length=100,default="")
+    description = models.TextField(max_length=500,default="")
     total_pay = models.IntegerField()
     experience_level = models.CharField(max_length=100)
     skills_requried = models.CharField(max_length=100)
@@ -44,7 +44,7 @@ class freelancer_proposals(models.Model):
     skills = models.TextField(max_length=100)
     cover_letter = models.TextField(max_length=100)
     requried_pay = models.IntegerField()
-    proprosal_status = models.CharField(max_length=20,default='rejected')
+    proprosal_status = models.CharField(max_length=20,default='pending for approval')
     def __str__(self) -> str:
         return "{} {} {} ".format(self.proprosal_id,self.freelancer_id,self.job_id)
 
@@ -82,14 +82,14 @@ class client_feedback_form(models.Model):
 
     contract_id = models.OneToOneField(client_contract_details,on_delete=models.CASCADE)
     rating = models.IntegerField()
-    feedback = models.TextField(max_length=100)
+    feedback = models.TextField(max_length=100,null=True)
     def __str__(self) -> str:
         return "{} ".format(self.contract_id)
 
 class freelancer_feedback_form(models.Model):
     contract_id = models.OneToOneField(client_contract_details,on_delete=models.CASCADE)
     rating = models.IntegerField()
-    feedback = models.TextField(max_length=100)
+    feedback = models.TextField(max_length=100,null=True)
 
 
     def __str__(self) -> str:

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {ServiceService} from '../service.service'
 @Component({
   selector: 'app-freelance-registration',
@@ -12,7 +13,7 @@ reset() {
 }
   receivedData : string = ''
   freelanceRegister!: FormGroup;
-  constructor(private fb:FormBuilder,private service :ServiceService) { }
+  constructor(private fb:FormBuilder,private service :ServiceService,private router : Router) { }
 
   ngOnInit(): void {
     this.freelanceRegister = this.fb.group({
@@ -25,11 +26,33 @@ reset() {
     })
   }
   registerSubmit(){
-    this.service.freelancerRegistration(this.freelanceRegister.value).subscribe((data : any)=> console.log(data)
+    this.service.freelancerRegistration(this.freelanceRegister.value).subscribe((data : any)=> { console.log(data);alert('registered successfully'); this.router.navigate(['login']);
+  }
     )
-    // console.log(this.freelanceRegister.value)
    }
 
+
+   get first_name(){
+    return this.freelanceRegister.get('first_name');
+  }
+  get last_name(){
+    return this.freelanceRegister.get('last_name');
+  }
+
+  get country(){
+    return this.freelanceRegister.get('country');
+  }
+
+  get email_id(){
+    return this.freelanceRegister.get('email_id');
+  }
+
+  get phone_number(){ 
+    return this.freelanceRegister.get('phone_number'); 
+  }
+
+  get password(){
+    return this.freelanceRegister.get('password');}
 }
 
 
