@@ -19,36 +19,25 @@ export class ToursListComponent implements OnInit {
 
 
   page: number = 1;
-  pageSize: number = this.dataService.pageSize;
-  length!: number;
   pageItems : any;
-  totalPages!: number;
+  totalPages : any
 
-  changePage(num: number){
-    if(num>0){
-      if(this.page < this.totalPages){
-        this.page += num
-        this.pageItems = this.tourList.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }else{
-      if(this.page != 1 ){
-        this.page += num
-        this.pageItems = this.tourList.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }
-  }
 
-  ngOnInit(): void {
-    this.subscription = this.dataService.getToursList().subscribe(
-      data => {
-        this.tourList = data,
-        this.length = this.tourList.length
-        this.totalPages = Math.ceil(this.length/this.pageSize)
-        this.pageItems = this.tourList.slice(0, this.pageSize)
+  getPageItems(num: number){
+    this.subscription = this.dataService.getToursList(this.page + num).subscribe(
+      (data: any) => {
+        this.pageItems = data.pageItems
+        this.page = data.page
+        this.totalPages = data.totalPages
       },
       err => alert(err.error.detail)
     )
   }
+
+  ngOnInit(): void {
+    this.getPageItems(0)
+  }
+
 
   editTour(id: number){
     this.route.navigate(['admin/tours/addTour', id])

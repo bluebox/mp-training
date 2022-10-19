@@ -91,7 +91,7 @@ export class AddTourComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getPlaceSubscription = this.dataservice.getPlaces().subscribe(
+    this.getPlaceSubscription = this.dataservice.getAllPlacesList().subscribe(
       res=> {
       let data = JSON.stringify(res)
       let toursData = JSON.parse(data)
@@ -99,7 +99,7 @@ export class AddTourComponent implements OnInit {
       },
       err => alert(err.error.detail)
     )
-    this.getCouponSubscription = this.dataservice.getCoupons().subscribe(
+    this.getCouponSubscription = this.dataservice.getAllCouponsList().subscribe(
       res=> {
       let data = JSON.stringify(res)
       let couponsData = JSON.parse(data)
@@ -107,7 +107,7 @@ export class AddTourComponent implements OnInit {
       },
       err => alert(err.error.detail)
     )
-    this.getVehicleSubscription = this.dataservice.getVehicles().subscribe(
+    this.getVehicleSubscription = this.dataservice.getAllVehiclesList().subscribe(
       res=> {
         let data = JSON.stringify(res)
         let vehicleData = JSON.parse(data)

@@ -64,6 +64,7 @@ class BookingDetails(models.Model):
 
     class Meta:
         db_table = 'booking_details'
+        # order_by = ['created_at']
 
 
 class Feedback(models.Model):

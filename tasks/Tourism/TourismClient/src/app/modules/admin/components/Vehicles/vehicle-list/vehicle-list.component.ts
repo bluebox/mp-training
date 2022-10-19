@@ -19,36 +19,26 @@ export class VehicleListComponent implements OnInit {
 
 
   page: number = 1;
-  pageSize: number = this.dataService.pageSize;
-  length!: number;
   pageItems : any;
-  totalPages : any;
+  totalPages : any
 
-  changePage(num: number){
-    if(num>0){
-      if(this.page < this.length/this.pageSize){
-        this.page += num
-        this.pageItems = this.vehicleList.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }else{
-      if(this.page != 1 ){
-        this.page += num
-        this.pageItems = this.vehicleList.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }
-  }
 
-  ngOnInit(): void {
-    this.subscription = this.dataService.getVehiclesList().subscribe(
-      data => {
-        this.vehicleList = data;
-        this.length = this.vehicleList.length
-        this.totalPages = Math.ceil(this.length/this.pageSize)
-        this.pageItems = this.vehicleList.slice(0, this.pageSize)
+  getPageItems(num: number){
+    this.subscription = this.dataService.getVehiclesList(this.page + num).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.pageItems = data.pageItems
+        this.page = data.page
+        this.totalPages = data.totalPages
       },
       err => alert(err.error.detail)
     )
   }
+
+  ngOnInit(): void {
+    this.getPageItems(0)
+  }
+
 
   editTour(id: number){
     this.route.navigate(['admin/vehicles/addVehicle', id])

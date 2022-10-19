@@ -53,7 +53,7 @@ export class EditCancellationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getBookingSubscription = this.dataservice.getBookingList().subscribe(
+    this.getBookingSubscription = this.dataservice.getAllBookingList().subscribe(
       data=> {
         this.bookingList = data;
       },

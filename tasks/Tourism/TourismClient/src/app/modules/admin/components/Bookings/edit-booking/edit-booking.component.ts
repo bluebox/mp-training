@@ -62,7 +62,7 @@ export class EditBookingComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getUserSubscription = this.dataservice.getUserList().subscribe(
+    this.getUserSubscription = this.dataservice.getAllUserList().subscribe(
       data=> {
         this.userList = data;
       },
@@ -74,7 +74,7 @@ export class EditBookingComponent implements OnInit {
       },
       err => alert(err.error.detail)
     )
-    this.getTourSubscription = this.dataservice.getToursList().subscribe(
+    this.getTourSubscription = this.dataservice.getAllToursList().subscribe(
       data=> {
         this.tourList = data;
       },

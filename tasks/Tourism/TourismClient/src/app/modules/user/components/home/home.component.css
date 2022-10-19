@@ -1,5 +1,6 @@
 .section-about {
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
+  /* background-color: #faefd7; */
   padding: 1rem 0 1rem 0;
   /* margin-top: -20vh; */
 }
@@ -125,7 +126,8 @@
 
 
 .section-tours {
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
+  /* background-color: #faefd7; */
   padding: 15.625rem 0 2rem 0;
   margin-top: -6.25rem;
 }

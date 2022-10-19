@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       },
       err => alert(err.error.detail)
     )
-    this.getPackagesSubscription = this.dataservice.getPackageList().subscribe(
+    this.getPackagesSubscription = this.dataservice.getAllPackageList().subscribe(
       data => {
         // console.log(data);
         this.packagesList = data;

@@ -18,38 +18,28 @@ export class CouponsListComponent implements OnInit {
   deleteSubscription!: Subscription
 
 
+
   page: number = 1;
-  pageSize: number = this.dataService.pageSize;
-  length!: number;
   pageItems : any;
-  totalPages : any;
+  totalPages : any
 
-  changePage(num: number){
-    if(num>0){
-      if(this.page < this.length/this.pageSize){
-        this.page += num
-        this.pageItems = this.couponList.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }else{
-      if(this.page != 1 ){
-        this.page += num
-        this.pageItems = this.couponList.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }
-  }
 
-  ngOnInit(): void {
-    this.dataService.getCouponsList().subscribe(
-      data => {
-        this.couponList = data;
-        this.length = this.couponList.length
-        this.totalPages = Math.ceil(this.length/this.pageSize)
-        this.pageItems = this.couponList.slice(0, this.pageSize)
+  getPageItems(num: number){
+    this.subscription = this.dataService.getCouponsList(this.page + num).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.pageItems = data.pageItems
+        this.page = data.page
+        this.totalPages = data.totalPages
       },
       err => alert(err.error.detail)
     )
-
   }
+
+  ngOnInit(): void {
+    this.getPageItems(0)
+  }
+
 
   editCoupon(id: number) {
     this.route.navigate(['admin/coupons/addCoupon', id])

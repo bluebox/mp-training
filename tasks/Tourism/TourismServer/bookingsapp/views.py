@@ -8,6 +8,7 @@ from django.http import Http404, JsonResponse
 from rest_framework import status, exceptions
 from rest_framework.response import Response
 from django.core import serializers
+from TourismServer.managers.adminManager import listing
 
 from TourismServer.permissions import AllowAny
 from bookingsapp.models import BookingDetails, CancellationDetails, Feedback, PaymentDetails, User, UserToken
@@ -60,14 +61,30 @@ class uploadVideo(APIView):
         # srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
         return Response(videoUrl['secure_url'])
 
+
+class AllUserList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        user_list = User.objects.all()
+        serializer = UserSerializer(user_list, many=True)
+        return Response(serializer.data)
+
+
 class UserList(APIView):
     """
     List all snippets, or create a new snippet.
     """
     def get(self, request, format=None):
-        users = User.objects.all()
+        user_list = User.objects.all()
+        users, totalPages, page = listing(request, user_list)
         serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
     def post(self, request, format=None):
         print(request.data)
@@ -395,9 +412,15 @@ class BookingAdminViewset(APIView):
     authentication_classes=[JWTAuthentication]
 
     def get(self, request, format=None):
-        activeBookings = BookingDetails.objects.filter(tourid__start_date__gt=datetime.datetime.utcnow())
-        serializer = BookingDetailSerializer(activeBookings, many=True)
-        return Response(serializer.data)
+        booking_list = BookingDetails.objects.filter(tourid__start_date__gt=datetime.datetime.utcnow())
+
+        bookings, totalPages, page = listing(request, booking_list)
+        serializer = BookingDetailSerializer(bookings, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
     
 class BookingAdminDetailViewset(APIView):
 
@@ -462,9 +485,15 @@ class CancellationList(APIView):
     List all snippets, or create a new snippet.
     """
     def get(self, request):
-        cancellations = CancellationDetails.objects.all()
-        serializer = CancellationSerializer(cancellations, many=True)
-        return Response(serializer.data)
+        cancellation_list = CancellationDetails.objects.all()
+        items, totalPages, page = listing(request, cancellation_list)
+        serializer = CancellationSerializer(items, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
+
 
 class CancellationDetail(APIView):
     """

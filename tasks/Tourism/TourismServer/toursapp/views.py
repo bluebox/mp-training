@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import APIException
+from TourismServer.managers.adminManager import listing
 from TourismServer.permissions import IsAdminUser, IsAuthenticated
 from bookingsapp.JwtAuthentication import JWTAuthentication
 from toursapp import serializers
@@ -17,7 +18,7 @@ from toursapp.serializers import CouponSerializer, EmployeeSerializer, EnquirySe
 def index(req):
     return HttpResponse("welcome")
 
-class VehicleList(APIView):
+class AllVehicleList(APIView):
 
     authentication_classes = [JWTAuthentication]
     permission_classes = (IsAdminUser,)
@@ -26,6 +27,22 @@ class VehicleList(APIView):
         vehicles = Vehicle.objects.all()
         serializer = VehicleSerializer(vehicles, many=True)
         return Response(serializer.data)
+
+
+class VehicleList(APIView):
+
+    authentication_classes = [JWTAuthentication]
+    permission_classes = (IsAdminUser,)
+
+    def get(self, request, format=None):
+        vehicles_list = Vehicle.objects.all()
+        vehicles, totalPages, page = listing(request, vehicles_list)
+        serializer = VehicleSerializer(vehicles, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
     def post(self, request, format=None):
         serializer = VehicleSerializer(data=request.data)
@@ -71,13 +88,25 @@ class VehicleDetails(APIView):
         return Response(serializer.data)
 
 
-
-class ToursListViewSet(APIView):
+class AllToursListViewSet(APIView):
 
     def get(self, request, format=None):
         tours = Tour.objects.all()
         serializer = TourDetailSerializer(tours, many=True)
         return Response(serializer.data)
+
+
+class ToursListViewSet(APIView):
+
+    def get(self, request, format=None):
+        tours_list = Tour.objects.all()
+        tours, totalPages, page = listing(request, tours_list)
+        serializer = TourDetailSerializer(tours, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
     def post(self, request, format=None):
         serializer = TourSerializer(data=request.data)
@@ -183,12 +212,25 @@ class EnquiryDetails(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class PlacesListViewSet(APIView):
+class AllPlacesListViewSet(APIView):
 
     def get(self, request, format=None):
         places = Place.objects.all()
         serializer = PlaceSerializer(places, many=True)
         return Response(serializer.data)
+
+
+class PlacesListViewSet(APIView):
+
+    def get(self, request, format=None):
+        places_list = Place.objects.all()
+        places, totalPages, page = listing(request, places_list)
+        serializer = PlaceSerializer(places, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
     def post(self, request, format=None):
         serializer = PlaceSerializer(data=request.data)
@@ -227,14 +269,28 @@ class PlaceDetails(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-class CouponsListViewSet(APIView):
+class AllCouponsListViewSet(APIView):
 
     def get(self, request, format=None):
         # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
         coupons = Coupon.objects.filter()
         serializer = CouponSerializer(coupons, many=True)
         return Response(serializer.data)
+
+
+
+class CouponsListViewSet(APIView):
+
+    def get(self, request, format=None):
+        # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
+        coupons_list = Coupon.objects.all()
+        coupons, totalPages, page = listing(request, coupons_list)
+        serializer = CouponSerializer(coupons, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
     def post(self, request, format=None):
         serializer = CouponSerializer(data=request.data)
@@ -276,12 +332,25 @@ class CouponDetails(APIView):
 
 
 
-class PackagesList(APIView):
+class AllPackagesList(APIView):
 
     def get(self, request, format=None):
         packages = Package.objects.all()
         serializer = PackageSerializer(packages, many=True)
         return Response(serializer.data)
+
+
+class PackagesList(APIView):
+
+    def get(self, request, format=None):
+        packages_list = Package.objects.all()
+        packages, totalPages, page = listing(request, packages_list)
+        serializer = PackageSerializer(packages, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
     def post(self, request, format=None):
         serializer = PackageSerializer(data=request.data)

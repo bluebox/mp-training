@@ -72,7 +72,7 @@ export class AddPackageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getTourSubscription = this.dataservice.getToursList().subscribe(
+    this.getTourSubscription = this.dataservice.getAllToursList().subscribe(
       data=> {
         this.tourList = data;
       },

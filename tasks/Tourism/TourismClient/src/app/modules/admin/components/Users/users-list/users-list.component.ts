@@ -20,36 +20,24 @@ export class UsersListComponent implements OnInit {
 
 
   page: number = 1;
-  pageSize: number = this.dataService.pageSize;
-  length!: number;
   pageItems : any;
   totalPages : any
 
-  changePage(num: number){
-    if(num>0){
-      if(this.page < this.totalPages){
-        this.page += num
-        this.pageItems = this.activeUsers.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }else{
-      if(this.page != 1 ){
-        this.page += num
-        this.pageItems = this.activeUsers.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }
-  }
 
-  ngOnInit(): void {
-    this.subscription = this.dataService.getUsersByAdmin().subscribe(
-      data => {
+  getPageItems(num: number){
+    this.subscription = this.dataService.getUsersByAdmin(this.page + num).subscribe(
+      (data: any) => {
         console.log(data);
-        this.activeUsers = data
-        this.length = this.activeUsers.length
-        this.totalPages = Math.ceil(this.length/this.pageSize)
-        this.pageItems = this.activeUsers.slice(0, this.pageSize)
+        this.pageItems = data.pageItems
+        this.page = data.page
+        this.totalPages = data.totalPages
       },
       err => alert(err.error.detail)
     )
+  }
+
+  ngOnInit(): void {
+    this.getPageItems(0)
   }
 
   changeUserRole(id:number){
@@ -67,7 +55,7 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUser(id: number){
-    if(confirm("Place will be deleted, Do you want to continue")){
+    if(confirm("User will be deleted, Do you want to continue")){
       this.deleteSubscription = this.dataService.deleteUser(id).subscribe(
         data=>{
           alert('user deleted successfully')

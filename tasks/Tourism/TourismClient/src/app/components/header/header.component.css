@@ -55,6 +55,8 @@ div.borderXwidth a:hover:before, div.borderXwidth a:hover:after
 .selected{
   border-top: 4px solid rgb(27, 8, 154);
   border-bottom: 3px solid rgb(27, 8, 154);
+  /* opacity: 1; */
+  /* width: 100%; */
 }
 
 

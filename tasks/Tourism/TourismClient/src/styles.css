@@ -23,8 +23,10 @@ html{
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #f6f6f6;
-  /* background-image: url('./assets/images/background.jpg'); */
+  background-color: #fff;
+  /* background-color: #faf5e7; */
+  /* background-image: url('./assets/images/video.mp4'); */
+  background-size: cover;
 }
 
 

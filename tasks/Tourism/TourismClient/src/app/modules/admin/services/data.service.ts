@@ -35,9 +35,13 @@ export class DataService {
     return this.http.delete(`/api/tours/tours_list/${id}`)
   }
 
-  getToursList() {
-    return this.http.get('/api/tours/tours_list/')
+  getToursList(page: number) {
+    return this.http.get(`/api/tours/tours_list/?page=${page}`)
   }
+  getAllToursList() {
+    return this.http.get(`/api/tours/all_tours_list/`)
+  }
+
   getTour(id:number) {
     return this.http.get(`/api/tours/tours_list/${id}`)
   }
@@ -54,9 +58,14 @@ export class DataService {
   deleteCoupon(id: number) {
     return this.http.delete(`/api/tours/coupons/${id}`)
   }
-  getCouponsList() {
-    return this.http.get('/api/tours/coupons/')
+  getCouponsList(page: number) {
+    return this.http.get(`/api/tours/coupons/?page=${page}`)
   }
+
+  getAllCouponsList() {
+    return this.http.get('/api/tours/all_coupons/')
+  }
+
   getCoupon(id:number) {
     return this.http.get(`/api/tours/coupons/${id}`)
   }
@@ -76,8 +85,11 @@ export class DataService {
     return this.http.delete(`/api/tours/vehicles/${id}`)
   }
 
-  getVehiclesList() {
-    return this.http.get('/api/tours/vehicles/')
+  getAllVehiclesList() {
+    return this.http.get('/api/tours/all_vehicles/')
+  }
+  getVehiclesList(page: number) {
+    return this.http.get(`/api/tours/vehicles/?page=${page}`)
   }
   getVehicle(id:number) {
     return this.http.get(`/api/tours/vehicles/${id}`)
@@ -94,8 +106,11 @@ export class DataService {
   deletePlace(id: number) {
     return this.http.delete(`/api/tours/places/${id}`)
   }
-  getPlacesList() {
-    return this.http.get('/api/tours/places/')
+  getPlacesList(page: number) {
+    return this.http.get(`/api/tours/places/?page=${page}`)
+  }
+  getAllPlacesList() {
+    return this.http.get('/api/tours/all_places/')
   }
   getPlace(id:number) {
     return this.http.get(`/api/tours/places/${id}`)
@@ -124,8 +139,8 @@ export class DataService {
   //   return this.http.put(`/api/bookings/booking/${id}`, {isCancelled: true})
   // }
 
-  getUsersByAdmin(){
-    return this.http.get('api/bookings/users/')
+  getUsersByAdmin(page: number){
+    return this.http.get(`api/bookings/users/?page=${page}`)
   }
   editUsersAdminStatus(id:number){
     return this.http.put(`api/bookings/users/${id}`,{})
@@ -134,6 +149,9 @@ export class DataService {
 
   getUserList() {
     return this.http.get('/api/bookings/users/')
+  }
+  getAllUserList() {
+    return this.http.get('/api/bookings/allusers/')
   }
 
   getUser(id: number){
@@ -151,8 +169,11 @@ export class DataService {
   }
 
 
-  getBookingList() {
-    return this.http.get('/api/bookings/admin_booking_list/')
+  getBookingList(page: number) {
+    return this.http.get(`/api/bookings/admin_booking_list/?page=${page}`)
+  }
+  getAllBookingList() {
+    return this.http.get(`/api/bookings/booking/`)
   }
 
   getBooking(id: number){
@@ -188,8 +209,8 @@ export class DataService {
   }
 
 
-  getCancellationList() {
-    return this.http.get('/api/bookings/cancellation/')
+  getCancellationList(page: number) {
+    return this.http.get(`/api/bookings/cancellation/?page=${page}`)
   }
 
   getCancellation(id: number){
@@ -205,8 +226,11 @@ export class DataService {
 
 
 
-  getPackageList() {
-    return this.http.get('/api/tours/packages/')
+  getPackageList(page: number) {
+    return this.http.get(`/api/tours/packages/?page=${page}`)
+  }
+  getAllPackageList() {
+    return this.http.get('/api/tours/all_packages/')
   }
 
   getPackage(id: number){

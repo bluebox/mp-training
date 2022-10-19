@@ -20,40 +20,28 @@ export class BookingListComponent implements OnInit {
   deleteSubscription!: Subscription
   subscription!: Subscription
 
+
   page: number = 1;
-  pageSize: number = this.dataService.pageSize;
-  length!: number;
   pageItems : any;
-  totalPages : any;
-
-  changePage(num: number){
-    if(num>0){
-      if(this.page < this.length/this.pageSize){
-        this.page += num
-        this.pageItems = this.activeBookings.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }else{
-      if(this.page != 1 ){
-        this.page += num
-        this.pageItems = this.activeBookings.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      }
-    }
-  }
+  totalPages : any
 
 
-
-  ngOnInit(): void {
-    this.subscription = this.dataService.getBookingList().subscribe(
-      data => {
+  getPageItems(num: number){
+    this.subscription = this.dataService.getBookingList(this.page + num).subscribe(
+      (data: any) => {
         console.log(data);
-        this.activeBookings = data;
-        this.length = this.activeBookings.length;
-        this.totalPages = Math.ceil(this.length/this.pageSize);
-        this.pageItems = this.activeBookings.slice(0, this.pageSize);
+        this.pageItems = data.pageItems
+        this.page = data.page
+        this.totalPages = data.totalPages
       },
       err => alert(err.error.detail)
     )
   }
+
+  ngOnInit(): void {
+    this.getPageItems(0)
+  }
+
 
   // cancelBooking(id: number){
   //   let message = 'There will be cancellation charges of 15% on every booking, Do you still want to cancel?';
