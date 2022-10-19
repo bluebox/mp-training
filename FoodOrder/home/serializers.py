@@ -1,3 +1,4 @@
+import jwt
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
@@ -15,26 +16,28 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = '__all__'
 
+class RestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ('role', 'user', 'restaurant_id', 'restaurant_name', 'restaurant_address1', 'restaurant_address2',
+                  'restaurant_city',
+                  'restaurant_state', 'restaurant_code', 'restaurant_username', 'restaurant_phn', 'open_timing',
+                  'close_timing',
+                  'restaurant_photo')
+
 
 class FoodSerializer(serializers.ModelSerializer):
+    restaurant = RestaurantSerializer()
     class Meta:
         model = Food
         fields = '__all__'
 
 
-class RestaurantSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Restaurant
-        fields = (
-        'user', 'restaurant_id', 'restaurant_name', 'restaurant_address1', 'restaurant_address2', 'restaurant_city',
-        'restaurant_state', 'restaurant_code', 'restaurant_username', 'restaurant_phn', 'open_timing', 'close_timing',
-        'restaurant_photo')
-
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ('user', 'emp_id', 'emp_name', 'emp_username', 'emp_phn')
+        fields = ('role', 'user', 'emp_id', 'emp_name', 'emp_username', 'emp_phn')
 
 
 class MenuSerializer(serializers.ModelSerializer):
@@ -67,7 +70,7 @@ class RestaurantRegistrationSerializer(serializers.ModelSerializer):
         profile_data = validated_data.pop('profile')
         user = User.objects.create_restaurantuser(**validated_data)
         Restaurant.objects.create(
-
+            role="restaurant",
             restaurant_id=profile_data['restaurant_id'],
             user=user,
             restaurant_name=profile_data['restaurant_name'],
@@ -97,7 +100,7 @@ class CustomerRegistrationSerializer(serializers.ModelSerializer):
         profile_data = validated_data.pop('profile')
         user = User.objects.create_customeruser(**validated_data)
         Customer.objects.create(
-
+            role="customer",
             customer_id=profile_data['customer_id'],
             user=user,
             customer_name=profile_data['customer_name'],
@@ -125,7 +128,7 @@ class EmpRegistrationSerializer(serializers.ModelSerializer):
         profile_data = validated_data.pop('profile')
         user = User.objects.create_empuser(**validated_data)
         Employee.objects.create(
-
+            role="employee",
             emp_id=profile_data['emp_id'],
             user=user,
             emp_name=profile_data['emp_name'],
@@ -134,8 +137,6 @@ class EmpRegistrationSerializer(serializers.ModelSerializer):
 
         )
         return user
-
-
 
 
 class UserLoginSerializer(serializers.Serializer):
@@ -147,8 +148,8 @@ class UserLoginSerializer(serializers.Serializer):
         email = data.get("email", None)
         password = data.get("password", None)
         user = User.objects.filter(email=email).first()
-        passwordUser = user.password
-        print(passwordUser)
+        # passwordUser = user.password
+        # print(passwordUser)
 
         # print(user)
         print("password is this:")
@@ -164,8 +165,10 @@ class UserLoginSerializer(serializers.Serializer):
 
         try:
             payload = JWT_PAYLOAD_HANDLER(user)
-            jwt_token = JWT_ENCODE_HANDLER(payload)
+            # jwt_token = JWT_ENCODE_HANDLER(payload)
+            jwt_token = jwt.encode(payload, 'secret').decode('utf-8')
             update_last_login(None, user)
+
         except User.DoesNotExist:
             raise serializers.ValidationError(
                 'User with given email and password does not exists'

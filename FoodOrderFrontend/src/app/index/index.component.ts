@@ -17,12 +17,13 @@ export class IndexComponent implements OnInit {
 
   
 
- 
+ public user:any;
+ message=""
   public search:string="";
-  public food:Food[]=[];
+  public food:any[]=[];
 
-  public restaurant:Restaurant[]=[];
-  public searchResult:Search[]=[];
+  public restaurant:any[]=[];
+  public searchResult:any[]=[];
   
   constructor(private foodEle:FoodService,private res:RestaurantService, private fsearch:SearchService, private router:Router,private loginService:LoginService) { 
     
@@ -79,14 +80,10 @@ export class IndexComponent implements OnInit {
   loginCheck(){
     this.loginService.loginCheck().subscribe((data)=>{
       console.log(data)
-
-     if(data.body.email){
-
-     }
-    //  else{
-    //   this.router.navigate(['/customer/login'])
-    //  }
-    
+      this.user=data
+      
+      this.message=`Hello, ${data.body.customer_name}`
+      
     })
     
   }

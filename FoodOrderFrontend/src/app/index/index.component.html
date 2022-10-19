@@ -1,12 +1,13 @@
 <div class="container">
   <div class="top">
       <div class="text">
+      <h1 class="writtenName">{{message}}</h1>
       <h1 class="written">Easy Food</h1>
       <h2 class="written">Discover the best food & drinks near you!</h2>
       <div class="form-outline">
         <input type="search" id="form1" class="written1 form-control search" placeholder="search" aria-label="Search" [(ngModel)]="search" />
        
-        <button type="submit" (click)="searchFood(search)" >Search</button>
+        <button mat-raised-button color="primary" class="searchB" type="submit" (click)="searchFood(search)" >Search</button>
       </div>
       
     

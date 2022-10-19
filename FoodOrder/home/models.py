@@ -87,9 +87,12 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_superuser
+
     class Meta:
         db_table = "user"
         managed = True
+
+
 def validate_mail(value):
     if "@gmail.com" in value:
         return value
@@ -98,6 +101,7 @@ def validate_mail(value):
 
 
 class Restaurant(models.Model):
+    role = models.CharField(max_length=10,default="restaurant")
     restaurant_id = models.CharField(max_length=10, primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='restaurant', null=True)
     restaurant_name = models.CharField(max_length=30)
@@ -128,6 +132,7 @@ class Reviews(models.Model):
 
 
 class Customer(models.Model):
+    role = models.CharField(max_length=10,default="customer")
     customer_id = models.CharField(max_length=10, primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='Customer', null=True)
     customer_name = models.CharField(max_length=30)
@@ -143,6 +148,7 @@ class Customer(models.Model):
 
 
 class Employee(models.Model):
+    role = models.CharField(max_length=10,default="employee")
     emp_id = models.CharField(max_length=10, primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='Employee', null=True)
     emp_name = models.CharField(max_length=30)
@@ -158,7 +164,7 @@ class Employee(models.Model):
 
 class Food(models.Model):
     food_id = models.CharField(max_length=10, primary_key=True)
-    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True, related_name="food")
     food_name = models.CharField(max_length=30)
     food_price = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     food_desc = models.CharField(max_length=100)

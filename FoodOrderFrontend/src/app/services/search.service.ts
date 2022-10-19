@@ -16,7 +16,7 @@ export class SearchService {
 
 
 
-  getSearch(item:string):Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + item)
+  getSearch(item:string):Observable<any[]>{
+    return this.http.get<any[]>(this.url + item)
   }
 }

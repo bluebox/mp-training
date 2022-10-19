@@ -13,7 +13,7 @@ import { RestaurantService } from 'src/app/services/restaurant.service';
 })
 export class SearchResultComponent implements OnInit {
   
-  res:Restaurant[]=[];
+  res:any[]=[];
   oneRes:Restaurant[]=[];
   
   public name:any
@@ -36,13 +36,13 @@ export class SearchResultComponent implements OnInit {
     })
   }
 
-  resClicked=(r:Restaurant)=>
+  resClicked=(r:any)=>
   {
-    this.resSer.getOneRes(r.restaurant_id).subscribe(data=>{
+    this.resSer.getOneRes(r).subscribe(data=>{
       console.log(data)
       this.oneRes=data})
 
-      this.router.navigate(['/customer/restaurantpage',r.restaurant_id])
+      this.router.navigate(['/customer/restaurantpage',r])
 
   }
 

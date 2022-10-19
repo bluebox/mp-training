@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/interfaces/customer';
 import { UserService } from 'src/app/user.service';
 
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private user:UserService) { }
+  constructor(private user:UserService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -48,11 +49,12 @@ export class SigninComponent implements OnInit {
        
       })
        alert("Registration Done!!")
+       this.router.navigate(['/login'])
       console.log('form submitted');
       console.log(this.sigininForm.value)
     } else {
       console.log(' notttt form submitted');
-      // alert(" notttt form submitted ")
+      alert(" notttt form submitted ")
     }
     
     this.sigininForm.reset()

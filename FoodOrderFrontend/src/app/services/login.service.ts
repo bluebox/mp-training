@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  private urlCustomer:string="http://127.0.0.1:8000/customer/login/"
+  private urlCustomer:string="http://127.0.0.1:8000/login/"
+  private urlUser:string="http://127.0.0.1:8000/user/"
   constructor(private http:HttpClient) { }
 
 
@@ -15,6 +16,6 @@ export class LoginService {
     return this.http.post<any>(this.urlCustomer,data,{ observe: 'response', withCredentials: true })
   }
   loginCheck(){
-    return this.http.get<any>(this.urlCustomer,{ observe: 'response', withCredentials: true })
+    return this.http.get<any>(this.urlUser,{ observe: 'response', withCredentials: true })
   }
 }

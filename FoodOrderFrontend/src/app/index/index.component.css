@@ -7,7 +7,11 @@
     overflow-x: hidden;
     
 }
-
+.form-outline{
+    display: flex;
+    margin: 1%;
+    font-size: 2rem;
+}
 .top{
     background-image: url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png');
 }
@@ -34,11 +38,22 @@
     padding: 10%;
    
 }
-
+.writtenName
+{
+    color: white;
+    margin: 1%;
+    padding: 1%;
+    font-size: 2rem;
+}
 .written
 {
     color: white;
-    margin: 2%;
+    margin: 1%;
+    padding: 1%;
+}
+h1.written
+{
+    font-size: 4rem;
 }
 .text
 {
@@ -112,3 +127,8 @@
     width:100%;
 }
 
+.searchB
+{
+    padding: 1%;
+    align-self: center;
+}

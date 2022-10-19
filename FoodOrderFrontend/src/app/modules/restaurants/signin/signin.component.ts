@@ -64,7 +64,7 @@ export class SigninComponent implements OnInit {
     } else {
       console.log(' notttt form submitted');
     }
-    alert(" notttt form submitted ")
+    // alert(" notttt form submitted ")
     this.sigininForm.reset()
   }
 }

@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
   sigininForm=new FormGroup(
     {
       
-      customer_password:new FormControl('', Validators.required),
-      customer_email:new FormControl('', Validators.required),
+      password:new FormControl('', Validators.required),
+      email:new FormControl('', Validators.required),
       // userPass2:new FormControl('', Validators.required)
     }
   )
@@ -29,17 +29,20 @@ export class LoginComponent implements OnInit {
   {
     if (this.sigininForm.valid) {
       this.user.postUser(this.sigininForm.value).subscribe((data)=>{
-        if(data.body == "login success"){
-          this.route.navigate(['../'])
-        }
-        // alert("Registration Done!!")
+        console.log(data.body)  
+        console.log(data.body.success)
+          if(data.body.success=='True'){
+
+          this.route.navigate(['../']) }
+
+  
+          else{
+            alert("Error!!")
+          }
+      
+    
       })
-      this.user.loginCheck().subscribe(data=>{
-        console.log(data);this.cusId=data
-      ;console.log(this.cusId)})
-        alert("Registration Done!!")
-        console.log('form submitted');
-        console.log(this.sigininForm.value)
+   
       }
     
     else {

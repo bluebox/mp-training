@@ -7,6 +7,7 @@ from django.views import View
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import RetrieveAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework_jwt.settings import api_settings
 
 from .serializers import CustomerSerializer, FoodSerializer, RestaurantSerializer, EmployeeSerializer, MenuSerializer, \
     MenuListSerializer, CartSerializer, RestaurantRegistrationSerializer, CustomerRegistrationSerializer, \
@@ -19,7 +20,7 @@ import jwt
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.parsers import JSONParser
 
-
+JWT_DECODE_HANDLER = api_settings.JWT_DECODE_HANDLER
 class Index(View):
     def get(self, request):
         return HttpResponse("Heyyyyyyyy get", status=405)
@@ -109,19 +110,19 @@ class FoodOneData(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# class FoodOneRes(APIView):
-#     def get(self, request, id):
-#         print(id)
-#         try:
-#             food = Restaurant.objects.get(restaurant_id=id)
-#             serializer = RestaurantSerializer(food)
-#         except:
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#         else:
-#             return Response(serializer.data)
-#
-#     def post(self, request):
-#         return HttpResponse("Heyyyyyyyy post", status=405)
+class FoodOneRes(APIView):
+    def get(self, request, id):
+        print(id)
+        try:
+            food = Restaurant.objects.get(restaurant_id=id)
+            serializer = RestaurantSerializer(food)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.data)
+
+    def post(self, request):
+        return HttpResponse("Heyyyyyyyy post", status=405)
 
 
 class RestaurantData(APIView):
@@ -158,16 +159,18 @@ class EmployeeData(APIView):
 class SearchData(APIView):
     def get(self, request, item):
         print(item)
-        restaurant = []
-        food = Food.objects.all().filter(food_name__icontains=item)
-        print(food)
-        for f in food:
-            # print(f.restaurant_id)
-            restaurant.append(Restaurant.objects.get(restaurant_id__contains=f.restaurant_id.restaurant_id))
+        # restaurant = []
+        restaurant = Restaurant.objects.filter(food__food_name__icontains=item).values_list('restaurant_id', flat=True)
+        #food = Food.objects.all().select_related("restaurant").filter(food_name__icontains=item)
+        # print(food)
+        # for f in food:
+        #     print(f['restaurant_id'])
+        #     restaurant.append(Restaurant.objects.get(restaurant_id=f['restaurant_id']).values())
         print(restaurant)
 
-        serializerRes = RestaurantSerializer(restaurant, many=True)
-        return Response(serializerRes.data)
+        # serializerres = FoodSerializer(food, many=True)
+        # print(serializerres.data)
+        return Response(restaurant)
 
     def post(self, request):
         return HttpResponse("Heyyyyyyyy post", status=405)
@@ -426,29 +429,90 @@ class EmployeeRegistrationView(CreateAPIView):
         return Response(response, status=status_code)
 
 class UserLoginView(RetrieveAPIView):
-    permission_classes = (AllowAny,)
+    permission_classes = ()
     serializer_class = UserLoginSerializer
 
     def post(self, request):
+        print(request.data)
         serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        response=Response()
-        response.data = {
-            'success': 'True',
-            'status code': status.HTTP_200_OK,
-            'message': 'User logged in  successfully',
-            'token': serializer.data['token'],
-            'user':serializer.data['email'],
-        }
-        response.set_cookie(key='jwt',value=serializer.data['token'],httponly=True)
+        # serializer.is_valid(raise_exception=True)
+        # response=Response()
+        # response.data = {
+        #     'success': 'True',
+        #     'status code': status.HTTP_200_OK,
+        #     'message': 'User logged in  successfully',
+        #     'token': serializer.data['token'],
+        #     'user':serializer.data['email'],
+        # }
+        # response.set_cookie(key='jwt',value=serializer.data['token'],httponly=True)
+        response = Response()
+        try:
 
-        return response
+            serializer.is_valid(raise_exception=True)
+            response.data = {
+                'success': 'True',
+                'status code': status.HTTP_200_OK,
+                'message': 'User logged in  successfully',
+                'token': serializer.data['token'],
+                'user': serializer.data['email'],
+            }
+            response.set_cookie(key='jwt', value=serializer.data['token'], httponly=True)
+            return response
+        except:
+            response.data={
+                'login':'False'
+            }
+            return response
+
+        else:
+            response.data={
+                'login':'False'
+            }
+            return response
+
 
 
 
 class UserView(APIView):
     def get(self,request):
         token=request.COOKIES.get('jwt')
-        return Response(token)
+        if not token:
+            print("not")
+            raise AuthenticationFailed("not logged in")
+        try:
+            payload=jwt.decode(token,'secret')
+
+        except jwt.ExpiredSignatureError:
+            print("error")
+            raise AuthenticationFailed("not logged in")
+
+        id=payload['user_id']
+
+        if(Restaurant.objects.filter(user=id).exists()):
+            data=Restaurant.objects.get(user=id)
+            serilizer=RestaurantSerializer(data)
+
+        if(Customer.objects.filter(user=id).exists()):
+            data=Customer.objects.get(user=id)
+            serilizer=CustomerSerializer(data)
 
 
+        if(Employee.objects.filter(user=id).exists()):
+            data=Employee.objects.get(user=id)
+            serilizer=EmployeeSerializer(data)
+
+
+        # return Response(payload['user_id'])
+        return Response(serilizer.data)
+
+
+
+class Logout(APIView):
+    def post(self,request):
+        response=Response()
+        response.delete_cookie('jwt')
+        response.data={
+            'message':"User logged out"
+        }
+
+        return response
