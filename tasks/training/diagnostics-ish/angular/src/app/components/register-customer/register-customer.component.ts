@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { HttpServiceService } from 'src/app/modules/users/http-service.service';
 import { HttpService } from 'src/app/services/http-service/http.service';
 
@@ -20,13 +21,19 @@ export class RegisterCustomerComponent implements OnInit {
   customerDetails: any
   UserDetails: any
   appointments: any
+  // subscriptions
+  paramSubscription !: Subscription
+  getCustomerSubscription !: Subscription
+  updateCustomerSubscription!: Subscription
+  registerCustomerSubscription!: Subscription
+
   constructor(private http: HttpServiceService, private router: Router, private actRouter: ActivatedRoute, private customerHttp: HttpService) {
-    this.actRouter.params.subscribe(data => {
+    this.paramSubscription =this.actRouter.params.subscribe(data => {
       this.customerId = data['customer_id']
       console.log(this.customerId);
     })
     if (this.customerId) {
-      this.customerHttp.getCustomer(this.customerId).subscribe({
+      this.getCustomerSubscription= this.customerHttp.getCustomer(this.customerId).subscribe({
         next: (data: any) => {
           this.customerRegisterForm.get('username')?.setValue(data["user_details"]['username'])
           this.customerRegisterForm.get('first_name')?.setValue(data["user_details"]['first_name'])
@@ -79,7 +86,7 @@ export class RegisterCustomerComponent implements OnInit {
       this.invalidPassword = false
       if (this.customerRegisterForm.valid) {
         if(this.customerId){
-          this.customerHttp.updateCustomer(this.customerId, this.customerRegisterForm.value).subscribe({
+        this.updateCustomerSubscription=  this.customerHttp.updateCustomer(this.customerId, this.customerRegisterForm.value).subscribe({
             next:(data:any)=>{
                 this.errorMessage = data.message
                 if (this.errorMessage == "updated") {
@@ -104,9 +111,15 @@ export class RegisterCustomerComponent implements OnInit {
       }
     }
 
-
+  
 
     
 
   }
+  ngOnDestroy(){
+    this.paramSubscription.unsubscribe()
+    this.getCustomerSubscription.unsubscribe()
+    this.updateCustomerSubscription.unsubscribe()
+    this.registerCustomerSubscription.unsubscribe()
+}
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 import { HttpServiceService } from 'src/app/modules/users/http-service.service';
 import { SubjectServiceService } from 'src/app/services/subject-service/subject-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   hide: boolean = true;
   formNotValid: boolean = false;
   responseMessage: string = '';
+  loginSubscription!: Subscription;
   constructor(private http: HttpServiceService, private router: Router, private subjectService: SubjectServiceService,private activatedRoute : ActivatedRoute) { }
 
   loginForm: FormGroup = new FormGroup({
@@ -29,12 +31,14 @@ export class LoginComponent implements OnInit {
 
 
     if(this.loginForm.valid){
-      this.http.loginUser(this.loginForm.value).subscribe({
+      this.loginSubscription = this.http.loginUser(this.loginForm.value).subscribe({
         next: (resp: any) => {
           this.responseMessage = resp.message
           if (resp.message == "success") {
             AuthInterceptor.accessToken = resp.token;
-            window.localStorage.setItem("customerId",resp.user_type_id)
+            window.localStorage.setItem("user_type_id",resp.user_type_id)
+            window.localStorage.setItem("username",resp.username)
+            window.localStorage.setItem("user_type",resp.user_type)
             this.subjectService.sendLoginDetails({
               'user_type': resp.user_type,
               'username': resp.username,
@@ -67,6 +71,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  ngOnDestroy(){
+    if(this.loginSubscription){
+      this.loginSubscription.unsubscribe()
+    }
+  }
 
   
 }

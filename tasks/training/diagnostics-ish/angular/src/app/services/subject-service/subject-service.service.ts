@@ -6,8 +6,8 @@ import {BehaviorSubject} from 'rxjs'
   providedIn: 'root'
 })
 
-export class SubjectServiceService {
-
+export class SubjectServiceService  {
+ 
   loggedIn : boolean = false
   isCustomer : boolean = false
   
@@ -53,6 +53,7 @@ export class SubjectServiceService {
     }
   }
 
+
   logoutService(){
     this.usernameSubject.next("")
     this.isLoggedInSubject.next(false)
@@ -61,4 +62,5 @@ export class SubjectServiceService {
     this.loggedIn = false
     this.isCustomer = false
   }
+
 }

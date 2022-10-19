@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'update-customer/:customer_id', component: RegisterCustomerComponent},
   {
     path: 'admin',
-    // canActivate: [AdminGaurdGuard],
+    canActivate: [AdminGaurdGuard],
     loadChildren: () =>
       import('./modules/users/users.module').then((m) => m.UsersModule),
   },

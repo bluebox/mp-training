@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SubjectServiceService } from 'src/app/services/subject-service/subject-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +12,12 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   loggedIn : any
   isCustomer :boolean =false
+  isLoggenInSubscription!: Subscription;
+
   constructor(private subjectService: SubjectServiceService , private router :Router) { }
 
   ngOnInit(): void {
-    this.subjectService.isLoggedInSubject.subscribe(data=>{
+    this.isLoggenInSubscription= this.subjectService.isLoggedInSubject.subscribe(data=>{
       this.loggedIn = data
     })
     
@@ -27,5 +30,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(["login/"])
     } 
   }
-
+  ngOnDestroy(){
+    this.isLoggenInSubscription.unsubscribe()
+}
 }

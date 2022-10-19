@@ -8,8 +8,9 @@ import { SubjectServiceService } from '../services/subject-service/subject-servi
 })
 
 export class AdminGaurdGuard implements CanActivate {
-  isAdmin : boolean = false
+  isAdmin : boolean = true
   loggenIn :boolean =false
+  user_type = localStorage.getItem("user_type")
   constructor(private subjectService : SubjectServiceService, private  route:Router){
     
     // this.subjectService.isLoggedInSubject.subscribe(data=>{
@@ -17,38 +18,25 @@ export class AdminGaurdGuard implements CanActivate {
     // })
   }
 
-  verifyAdmin(){
-    this.subjectService.userTypeSubject.subscribe(data => {
-      console.log(data);
-
-      if (data == 'admin') {
-        this.isAdmin = true
-      }
-    })
-  }
+      
   ngOnInit(){
-    
+    if (this.user_type == 'admin') {
+      this.isAdmin = true
+    }
   }
-  verifyLogin(){
-    this.subjectService.userTypeSubject.subscribe(data => {
-      if (data == 'admin') {
-        this.isAdmin = true
-      }
-    })
-  }
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      this.verifyAdmin()
-      this.verifyLogin()
+      // this.verifyAdmin()
+      // this.verifyLogin()
       if(this.isAdmin){
         console.log("logged in gaurds");
         return true;
       }
       else{
-        console.log("logged in gaurds");
-
+        console.log("not logged in gaurds");
         this.route.navigate(['login'], { queryParams: { returnUrl: state.url } })
         return false
       }
