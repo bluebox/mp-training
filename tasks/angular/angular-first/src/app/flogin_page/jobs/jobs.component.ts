@@ -34,14 +34,14 @@ searchJob(search : any) {
   constructor(private service: ServiceService, private router: Router) { }
   jobsData: any;
   ngOnInit(): void {
-    this.getClientJobs(0)
+    this.getClientJobs( "", 0)
     // console.log('ngoninit');
     
   }
   totalPages  = 0;
   page = 1;
-  getClientJobs(number : number) {
-    this.service.getClientJobsUrl(this.page + number ).subscribe((data: any) =>{
+  getClientJobs(search : any ,number : number) {
+    this.service.getClientJobsUrl(search , this.page + number ).subscribe((data: any) =>{
        this.jobsData = data.pageItems;
        this.page = data.page
        this.totalPages = data.totalPages;

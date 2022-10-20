@@ -24,6 +24,7 @@ import { EditProfileComponent } from './flogin_page/edit-profile/edit-profile.co
 import { FguardGuard } from './fguard.guard';
 import { EditProposalComponent } from './flogin_page/edit-proposal/edit-proposal.component';
 import { EditJobComponent } from './clogin_page/edit-job/edit-job.component';
+import { CguardGuard } from './cguard.guard';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -46,15 +47,15 @@ const routes: Routes = [
 
 
   {
-    path: 'client_login_page', component: CloginPageComponent
+    path: 'client_login_page', component: CloginPageComponent ,canActivate: [CguardGuard]
   },
-  { path: 'client_login_page/post_a_job', component: PostAJobComponent },
-  { path: 'client_login_page/freelancer_proposals', component: FreelancerProposalsComponent },
-  { path: 'client_login_page/fee_payment_details', component: FeePaymentDetailsComponent },
-  { path: 'client_login_page/ccontract_details', component: CcontractDetailsComponent },
-  { path: 'client_login_page/edit_profilec', component: EditProfilecComponent },
-  { path: 'client_login_page/freelancer_proposals/proposal_details/:id', component: ProposalDetailsComponent },
-  { path: 'client_login_page/freelancer_proposals/edit_job/:id', component: EditJobComponent },
+  { path: 'client_login_page/post_a_job', component: PostAJobComponent ,canActivate: [CguardGuard] },
+  { path: 'client_login_page/freelancer_proposals', component: FreelancerProposalsComponent,canActivate: [CguardGuard] },
+  { path: 'client_login_page/fee_payment_details', component: FeePaymentDetailsComponent,canActivate: [CguardGuard] },
+  { path: 'client_login_page/ccontract_details', component: CcontractDetailsComponent,canActivate: [CguardGuard]},
+  { path: 'client_login_page/edit_profilec', component: EditProfilecComponent ,canActivate: [CguardGuard]},
+  { path: 'client_login_page/freelancer_proposals/proposal_details/:id', component: ProposalDetailsComponent,canActivate: [CguardGuard]},
+  { path: 'client_login_page/freelancer_proposals/edit_job/:id', component: EditJobComponent ,canActivate: [CguardGuard]},
 
 
 

@@ -29,9 +29,9 @@ export class FcontractDetailsComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.service.getFreelancerProposals(this.parse_data.id).subscribe( (data: any ) => {
+    this.service.getallFreelancerProposals(this.parse_data.id).subscribe( (data: any ) => {
       this.getcontractsparse = data;
-      this.getContractOfFreelancer()
+      this.getContractOfFreelancer();
     })
     // console.log('ngOnInit');
     // console.log(this.getcontractsparse);
@@ -102,6 +102,9 @@ export class FcontractDetailsComponent implements OnInit {
     this.service.newFeedback(this.feedbackform.value).subscribe((feedback: any) => { console.log(feedback); });
 
   }
+
+  page =1;
+  totalPages : any;
 
 
 }

@@ -10,8 +10,13 @@ export class CguardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
      
+    if (sessionStorage.getItem('cuser')){
+      return true;
+    }
+    else{
+      return false;
+    }
 
-    return true;
   }
   
 }

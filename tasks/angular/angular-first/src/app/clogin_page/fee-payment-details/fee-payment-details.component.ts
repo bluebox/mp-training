@@ -7,6 +7,8 @@ import { ServiceService } from 'src/app/service.service';
   styleUrls: ['./fee-payment-details.component.css']
 })
 export class FeePaymentDetailsComponent implements OnInit {
+page= 1;
+totalPages: any;
 
   constructor(private service: ServiceService) { }
   paymentDetails!: any;
@@ -16,15 +18,12 @@ export class FeePaymentDetailsComponent implements OnInit {
   ngOnInit(): void {
     for (let i of this.contractDetails) {
       this.service.getFeePaymentDetails(i.contract_id).subscribe(
-        (data: any) => { this.arr.push(data); }
+        (data: any) => { this.arr.push(data);
+        }
       )
-      
     }
-    console.log(this.arr);
     
   }
-
-
 
 
 }

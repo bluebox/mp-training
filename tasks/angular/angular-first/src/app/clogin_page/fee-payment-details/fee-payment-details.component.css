@@ -60,3 +60,7 @@ table{
 .tabledata{
     font-size: 22px;
 }
+
+ul{
+    min-height: 70vh;
+}

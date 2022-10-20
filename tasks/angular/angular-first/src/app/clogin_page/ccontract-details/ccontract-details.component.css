@@ -192,3 +192,7 @@ li button :hover{
   align-items: center;
   text-align: center;
 }
+
+ul{
+  min-height: 70vh;
+}

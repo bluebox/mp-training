@@ -68,5 +68,5 @@ export class LoginComponent implements OnInit {
   get country(){
     return this.login.get('user_type'); 
   }
-
+  onLoad = false;
 }

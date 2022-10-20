@@ -146,7 +146,7 @@ class clientUpdate(APIView):
 from .paginator import *
 class clientJobsRegister(APIView):
     def get(self, request, format=None):
-        client = client_jobs.objects.all()
+        client = client_jobs.objects.filter(project_title__icontains=request.GET.get('project_title'))
         users, totalPages, page = listing(request, client)
         serializer = client_jobs_serializers(users, many=True)
         return Response({
@@ -253,17 +253,17 @@ class freelancerProposalsUpdate(APIView):
 class proposals(APIView):
     def get_object(self, freelancer_id):
         try:
-            return freelancer_proposals.objects.get(freelancer_id=freelancer_id)
+            return freelancer_proposals.objects.filter(freelancer_id= freelancer_id)
         except freelancer_proposals.DoesNotExist:
             raise Http404
 
-    def get(self, request, freelancer_id, format=None):
-        client = self.get_object(freelancer_id=freelancer_id)
-        serializer = freelancer_proposals_serializers(client)
+    def get(self, request):
+        client = self.get_object(freelancer_id=request.GET.get('id'))
+        serializer = freelancer_proposals_serializers(client,many=True)
         return Response(serializer.data)
 
-    def put(self, request, freelancer_id, format=None):
-        client = self.get_object(freelancer_id=freelancer_id)
+    def put(self, request):
+        client = self.get_object(freelancer_id=request.GET.get('id'))
         serializer = freelancer_proposals_serializers(client, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -279,8 +279,15 @@ class get_freelancer_proposals(APIView):
     def get(self,request):
 
         client = freelancer_proposals.objects.filter(freelancer_id=int(request.GET.get('id')))
-        serializer = freelancer_proposals_serializers(client,many=True)
-        return Response(serializer.data)
+        users, totalPages, page = listing(request, client)
+        serializer = freelancer_proposals_serializers(users,many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
+
+        # return Response(serializer.data)
 
 class Proposal_exists(APIView):
     def get(self,request):
@@ -338,9 +345,13 @@ class client_fee_payment_details_view(APIView):
 class get_freelancer_payment_details(APIView):
     def get(self,request):
         object = freelancer_payment_details.objects.filter(freelancer_id = request.GET.get('freelancer_id'))
-        print(object)
-        serializers = freelancer_payment_details_serializers(object,many=True)
-        return Response(serializers.data)
+        users, totalPages, page = listing(request, object)
+        serializers = freelancer_payment_details_serializers(users,many=True)
+        return Response({
+            'pageItems': serializers.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
 
 class update_freelance_proposal(APIView):

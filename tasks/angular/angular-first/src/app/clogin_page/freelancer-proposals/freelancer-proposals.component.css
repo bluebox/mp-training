@@ -53,3 +53,7 @@ li button:hover{
 table td{
     text-transform: uppercase;
 }
+
+ul{
+    min-height: 70vh;
+}

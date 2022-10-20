@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 def listing(request, object_list):
-    paginator = Paginator(object_list, 5)
+    paginator = Paginator(object_list, 4)
     page_number = int(request.GET.get('page'))
     if not page_number:
         page_number = 1

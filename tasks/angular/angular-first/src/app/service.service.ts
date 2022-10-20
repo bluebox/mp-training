@@ -48,8 +48,8 @@ export class ServiceService {
   editClientDetails(email_id : any , data : any) {
     return this.http.put(this.url + 'client/' + email_id + '/', data) 
   }
-  getClientJobsUrl(page : number) {
-    return this.http.get(this.url + 'client_jobs?page='+page)
+  getClientJobsUrl(search : any, page : number) {
+    return this.http.get(this.url + 'client_jobs?page='+page +'&project_title='+search)
   }
 
   getClientJobsSearchUrl(search : any){
@@ -66,8 +66,12 @@ export class ServiceService {
   EditProposalUrl(id : any ,data: any) {
     return this.http.put(this.url + 'freelancer_proposals?proprosal_id='+id, data)
   }
-  getFreelancerProposals(data: any) {
-    return this.http.get(this.url + 'get_freelancer_proposals?id=' + data)
+  getFreelancerProposals(page : number,data: any) {
+    return this.http.get(this.url + 'get_freelancer_proposals?id=' + data + '&page=' + page);
+  }
+
+  getallFreelancerProposals(data : any) { 
+    return this.http.get(this.url + 'get_all_freelancer_proposals?id=' + data );
   }
 
   getJobsOfClientIdUrl(data: any) {
@@ -118,9 +122,9 @@ export class ServiceService {
   getFeePaymentDetails(data : any) {
     return this.http.get(this.url + 'get_fee_payment_details?contract_id=' + data);     
   }
-  getPaymentDetails(data : any)
+  getPaymentDetails(page : number ,data : any)
   { 
-    return this.http.get(this.url + 'get_freelancer_payment_details?freelancer_id=' + data); 
+    return this.http.get(this.url + 'get_freelancer_payment_details?freelancer_id=' + data + '&page=' + page); 
   }
 
 

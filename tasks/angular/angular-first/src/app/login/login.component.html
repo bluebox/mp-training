@@ -9,32 +9,38 @@
               <h1 style="color: rgb(0, 169, 113);">Login </h1> <br>
               <h5 id="invaild"> </h5>
               <div class="form-outline mb-4">
-                <input type="email" id="typeEmailX-2" formControlName="email_id" name="login_id" class="form-control form-control-lg" required />
+                <input type="email" id="typeEmailX-2" formControlName="email_id" name="login_id"
+                  class="form-control form-control-lg" required />
                 <label class="form-label" for="typeEmailX-2">Email id</label> <br>
-                <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="email && email.invalid && email.touched;">Invalid Email Id </small></b>
+                <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="email && email.invalid && email.touched;">Invalid
+                    Email Id </small></b>
               </div>
 
               <div class="form-outline mb-4">
-                <input type="password" id="typePasswordX-2" formControlName="password" name="password" class="form-control form-control-lg"
-                  required /> 
+                <input type="password" id="typePasswordX-2" formControlName="password" name="password"
+                  class="form-control form-control-lg" required />
                 <label class="form-label" for="typePasswordX-2">Password</label> <br>
-                <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="password && password.invalid && password.touched;">Invalid password</small></b>
+                <b><small [ngStyle]="{'color': '#F24C4C'}"
+                    *ngIf="password && password.invalid && password.touched;">Invalid password</small></b>
 
               </div>
               <label for="form-select">Login as</label>
               <select name="dropdown" formControlName="user_type" class="form-select"
-              aria-label="Default select example" required>
+                aria-label="Default select example" required>
                 <!-- <option [ngValue]="null" disabled>Login As</option> -->
                 <option *ngFor="let country of user_type" [ngValue]="country.id">{{country.name}}</option>
               </select>
               <br>
-                <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="country && country.invalid && country.touched;">this field is required</small></b>
+              <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="country && country.invalid && country.touched;">this
+                  field is required</small></b>
 
-<br>
+              <br>
               <button class="btn btn-primary btn-lg btn-block" [disabled]="login.invalid" type="submit">Login</button>
+              <!-- <div class="onload" style="display:block;margin-left: 40%;">
+                <mat-spinner></mat-spinner>
+              </div> -->
               <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="" routerLink=".."
-                class="fw-bold text-body"><u>Register here</u></a></p>
-
+                  class="fw-bold text-body"><u>Register here</u></a></p>
             </div>
           </div>
         </div>

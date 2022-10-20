@@ -31,4 +31,8 @@
         </table>
     </li>
 </ul>
+<div class="paginator" style="text-align: center;">
+    <button type="button" (click)="getPaymentDetails(-1)"> < </button> page {{ page }} out of {{ totalPages}}
+    <button type="button" (click)="getPaymentDetails(1)"> > </button>
+</div>
 <app-ffooter></app-ffooter>

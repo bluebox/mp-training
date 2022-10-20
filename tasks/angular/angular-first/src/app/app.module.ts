@@ -35,6 +35,7 @@ import { EditProposalComponent } from './flogin_page/edit-proposal/edit-proposal
 import { TableModule } from 'primeng/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditJobComponent } from './clogin_page/edit-job/edit-job.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { EditJobComponent } from './clogin_page/edit-job/edit-job.component';
     ReactiveFormsModule,
     MatIconModule,
     TableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [],

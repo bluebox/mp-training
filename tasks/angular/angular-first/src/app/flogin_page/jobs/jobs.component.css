@@ -73,7 +73,7 @@ input{
     margin-left: 600px;
     font-size: 20px;
     width: 30%;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 label button {
@@ -86,4 +86,11 @@ label button {
     /* margin-left: 30px; */
     width: 100%;
 
+}
+
+
+
+
+ul{
+    min-height: 70vh;
 }

@@ -24,6 +24,7 @@ urlpatterns = [
     path("freelancer_proposals/<int:job_id>/", views.freelancerProposalsUpdate.as_view(), name="client_view_proposals"),
     path("proposals/<int:freelancer_id>/", views.proposals.as_view(), name="freelancer_view_proposals"),
     path("get_freelancer_proposals", views.get_freelancer_proposals.as_view(), name="freelancer_view_proposals"),
+    path("get_all_freelancer_proposals", views.proposals.as_view(), name="freelancer_view_proposals"),
     path("proposal_exists", views.Proposal_exists.as_view(), name="freelancer_view_proposals"),
     path("get_proposal_details", views.get_proposal_details.as_view(), name="get_proposal_details"),
     path("get_proposal", views.get_proposal.as_view(), name="get_proposal"),

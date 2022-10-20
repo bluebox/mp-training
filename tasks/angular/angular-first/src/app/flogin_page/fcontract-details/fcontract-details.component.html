@@ -49,6 +49,7 @@
                 <button type="button" *ngIf="!item.flag" (click)="display(item)">click here</button>
             </div>
             <div class="feedbackresponse"  style="margin-left: 100px;" *ngIf="item.feedback && !item.flag">
+                <br> <br>
                 <p style="text-align: center;text-transform: uppercase;">Already Rated</p>
                 <label for="rating">Rating : </label> &nbsp;
                 <ngb-rating [(rate)]="item.feedback.rating" id="rating"   style="font-size:30px;color: yellow;"   [max]="5" [readonly]="true"

@@ -11,11 +11,13 @@ export class AppComponent {
   date : Date
   array : Array<string>
   item : string = 'food'
+  temp= false;
   constructor(){
     this.date = new Date()
     this.array = ['red','yellow','blue']
 
   }
+
   emitter( data : object) : void {
     console.warn(data);
     

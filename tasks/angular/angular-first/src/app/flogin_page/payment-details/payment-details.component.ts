@@ -10,10 +10,18 @@ export class PaymentDetailsComponent implements OnInit {
   recevied_data: any;
   data: any=window.localStorage.getItem('fuser');
   data_parse = JSON.parse(this.data).id;
+  totalPages: any;
   constructor(private service : ServiceService) { }
-  
+  page = 1;
   ngOnInit(): void {
-    this.service.getPaymentDetails(this.data_parse).subscribe((data: any) => { this.recevied_data  = data; });
+    this.getPaymentDetails(0)
+    // this.service.getPaymentDetails(this.data_parse).subscribe((data: any) => { this.recevied_data  = data; });
+  }
+
+  getPaymentDetails(page : number){
+    this.service.getPaymentDetails(page,this.data_parse).subscribe((data: any ) => { this.recevied_data = data.pageItems;
+    this.page = data.page ;
+  this.totalPages = data.totalPages});
   }
 
 }

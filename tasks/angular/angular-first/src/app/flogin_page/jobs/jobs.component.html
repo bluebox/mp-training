@@ -1,9 +1,9 @@
 <app-fheader></app-fheader>
 <h4 style="text-transform: uppercase;text-align:center;">Jobs</h4>
-<div class="search" style="background-color: black;padding:30px">
+<div class="search" style="background-color: black;padding:10px">
 
     <input type="text" id="search" #search placeholder="find a job" name="search"> &nbsp;
-    <label for="search"> <button type="submit" (click)="searchJob(search.value)"> <i class="fa fa-search"></i> </button>
+    <label for="search"> <button type="submit" (click)="getClientJobs(search.value,0)"> <i class="fa fa-search"></i> </button>
     </label>
 </div>
 
@@ -24,7 +24,7 @@
         <br>
         <!-- <form > -->
 
-        <h4 style="text-align: center;"> Available jobs</h4>
+        <h4 style="text-align: center;">  Available jobs</h4>
         <li *ngFor="let jobs of jobsData">
             <table>
                 <tr>
@@ -32,10 +32,10 @@
                     <th class="tabledata">{{ jobs.job_id}}</th>
 
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>CLIENT ID :</td>
                     <td class="tabledata">{{jobs.client_id}}</td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>PROJECT TITLE : </td>
                     <td class="tabledata"> {{ jobs.project_title }}</td>
@@ -70,8 +70,8 @@
         </li>
     </ul>
     <div class="paginator" style="text-align: center;">
-        <button type="button" (click)="getClientJobs(-1)"> < </button> page {{ page }} out of {{ totalPages}}
-        <button type="button" (click)="getClientJobs(1)"> > </button>
+        <button type="button" (click)="getClientJobs(search.value,-1)"> < </button> page {{ page }} out of {{ totalPages}}
+        <button type="button" (click)="getClientJobs(search.value,1)"> > </button>
     </div>
 </ng-template>
 <app-ffooter></app-ffooter>
