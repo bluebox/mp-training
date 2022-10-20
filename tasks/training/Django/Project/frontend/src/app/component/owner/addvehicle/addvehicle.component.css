@@ -6,10 +6,12 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-color: beige;
 
 }
 .card{
-  /* background-color:rgb(245, 227, 227); */
+  background-color:rgb(245, 227, 227);
+
   align-items:right;
   display: flex;
   justify-content: center;

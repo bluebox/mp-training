@@ -52,6 +52,13 @@ export class GeneralService {
       );
   }
 
+  updateVehiclePrice(id : any, data : any){
+    console.log(baseUrl + 'updateprice/' + id +'/');
+
+    return this.http.put(baseUrl + 'updateprice/' + id +'/' , data)
+
+  }
+
 
   customerLogin(data: any)
   {
@@ -186,8 +193,8 @@ export class GeneralService {
     )
   }
 
-  cancelOrder(id: any){
-    return this.http.delete(baseUrl + 'trip/' + id + '/')
+  cancelOrder(id: any ){
+    return this.http.put(baseUrl + 'cancel-order/' + id + '/', {})
   }
   logOutCustomer(){
     return this.http.post(baseUrl + 'logout-customer/', {})
@@ -197,6 +204,23 @@ export class GeneralService {
   logOutOwner(){
     return this.http.post(baseUrl + 'logout-owner/',{})
   }
+
+  searchVehicle(key : any){
+    return this.http.get(baseUrl + 'search-vehicle/?model=' + key)
+  }
+
+  addOdoReading(id : any, data: any){
+
+    return this.http.put(baseUrl + 'add-odoreading/' + id + '/', data)
+  }
+
+  changeStatus(id : any){
+    return this.http.put(baseUrl + 'vehicle-status/' + id + '/', {})
+  }
+  // addRating(id : any, data: any){
+  //   return this.http.put
+  // }
 }
+
 
 

@@ -13,70 +13,22 @@ from django.http.response import JsonResponse, Http404
 from django.core.files.storage import default_storage
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .models import Customer, Owner, Vehicle, Vehicle_status, OwnerToken, CustomerToken, Bill, Rent_Trip
+from .models import Customer, Owner, Vehicle, OwnerToken, CustomerToken, Bill, Rent_Trip
 from cloudinary import uploader
 from django.views.decorators.csrf import csrf_exempt
-
+from django.db.models import Q
 from rest_framework.exceptions import AuthenticationFailed
 from . import serializer
 import jwt, datetime
-from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer, VehicleStatusSerializer, BillSerializer, \
+from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer, BillSerializer, \
     Rent_TripSerializer
 from .jwt_authentication import JwtAuthentication_owner, JwtAuthentication_customer, create_access_token, \
     create_refresh_token, decode_refresh_token
 
 
-#
+
 # # Create your views here.
-# def home(request):
-#     return render(request, 'home.html' )
-#
-# def customer_login(request):
-#     return render(request, 'customer_login.html')
-#
-# def owner_login(request):
-#     return render(request, 'owner_login.html')
-#
-# def customer_register(request):
-#     return render(request, 'customer_register.html')
-#
-# def owner_register(request):
-#     return render(request, 'owner_register.html')
-#
-# def c_login(request):
-#     if request.method == "POST" :
-#         email = request.POST['email']
-#         dl = request.POST['password']
-#
-#         user = Customer.objects.all().values()
-#
-#         for i in user:
-#             if i['email']==email and i['dl_no']==dl :
-#                 return HttpResponse("No vehicles yet")
-#
-#         else:
-#             messages.error(request,"invalid mail or password")
-#             return redirect('customer_login')
-#
-#
-# owner_name =""
-# def o_login(request):
-#     if request.method == "POST":
-#         email = request.POST['email']
-#         contact = request.POST['password']
-#
-#         owner= Owner.objects.all().values()
-#
-#         for i in owner:
-#
-#             if i['email'] == email and i['contact_no'] == contact :
-#
-#                 return render(request, 'add_vehicle.html',{ 'name':i["name"], 'id':i['owner_id']})
-#
-#         else:
-#             messages.error(request, "invalid email or password")
-#             return redirect('owner_login')
-#
+
 # # API
 class OwnerList(APIView):
     def get(self, request, format=None):
@@ -301,11 +253,21 @@ class LogoutCustomerJwt(APIView):
 class VehicleList(APIView):
 
     def get(self, request, format=None):
-        vehicle = Vehicle.objects.all()
+        vehicle = Vehicle.objects.filter(is_available=True)
         serializer = VehicleSerializer(vehicle, many=True)
         return Response(serializer.data)
 
 
+class UpdateVehiclePrice(APIView):
+    def put(self, request, pk ):
+        vehicle = Vehicle.objects.get(vehicle_no=pk)
+        vehicle.price_day = request.data['price_day']
+        vehicle.save()
+        # serializer = VehicleSerializer([vehicle], mant=True)
+        # if serializer.is_valid():
+        #     serializer.save()
+        return Response({"msg" : "updated successfully"})
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AddVehicle (APIView) :
 
@@ -378,40 +340,6 @@ class VehicleDetail(APIView):
         return Response({"message": "success"}, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
-class VehicleStatusList(APIView):
-
-    def get(self, request, format=None):
-        vehicle_status = Vehicle_status.objects.all()
-        serializer = VehicleStatusSerializer(vehicle_status, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = VehicleStatusSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class VehicleStatusDetail(APIView):
-    def get_object(self, pk):
-        try:
-            return Vehicle_status.objects.get(pk=pk)
-        except Vehicle.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        vehicle_status = self.get_object(pk=pk)
-        serializer = VehicleStatusSerializer(vehicle_status)
-        return Response(serializer.data)
-
-    def put(self, request, pk, format=None):
-        vehicle_status = self.get_object(pk=pk)
-        serializer = VehicleStatusSerializer(vehicle_status, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class Rent_TripList(APIView):
@@ -479,7 +407,7 @@ class Rent_TripList(APIView):
                 days =  no_of_days(pickup_date, return_date)
                 vehicle = Vehicle.objects.get(vehicle_no=vehicle_no)
                 amount = days * vehicle.price_day
-                return Response({'message':'Booked Successfully', 'amount': amount, 'days':days})
+                return Response({'message':'Booked Successfully', 'amount': amount, 'days':days, 'id' : serializer.data['rent_id'] })
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST )
 
 
@@ -491,8 +419,8 @@ class Rent_TripDetail(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        vehicle_status = self.get_object(pk=pk)
-        serializer = Rent_TripSerializer(vehicle_status)
+        trip = self.get_object(pk=pk)
+        serializer = Rent_TripSerializer(trip)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
@@ -544,12 +472,7 @@ class BillList(APIView):
 
 
 class BillDetail(APIView):
-    # def get_object(self, id):
-    #     try:
-    #
-    #         return Bill.objects.get(rental_id=id)
-    #     except Bill.DoesNotExist:
-    #         raise Http404
+
 
     def get(self, request, id):
         bill = Bill.objects.get(rental_id_id=id)
@@ -564,8 +487,7 @@ class getOrders(APIView):
         owner_id = owner.owner_id
 
         rent_trip = Rent_Trip.objects.filter(owner_id=owner_id)
-        # date1 = date(rent_trip.pickup_date)
-        # print(date1)
+
 
         serializer = Rent_TripSerializer(rent_trip, many=True)
         return Response(serializer.data)
@@ -589,23 +511,6 @@ class OwnerReview(APIView):
 
         return Response(serializer.data)
 
-# class OwnerLOginView(APIView):
-#     def post(self, request):
-#         email = request.data['email']
-#         password = request.data['password']
-#
-#         customer = Customer.objects.filter(email=email)
-#
-#         if customer is None:
-#             raise AuthenticationFailed('Email not found')
-#
-#         if not customer.check_password(password):
-#             raise AuthenticationFailed('Password did not match')
-#
-#         payload ={
-#             'id': customer.customer_id,
-#             'exp': datetime.datetime.utcnow()
-#         }
 
 #
 # def c_login(request):
@@ -647,16 +552,6 @@ class OwnerReview(APIView):
 
 
 
-# class GetOrderHistory(APIView):
-#     def get(self, request):
-#         print(request)
-#         trip = Rent_Trip.filter(customer_id=int(request.GET.get('customer_id')))
-#         serializer = Rent_TripSerializer(trip, many=True)
-#
-#
-#
-#         return Response(serializer.data)
-
 class DeleteVehicle(View):
     def delete(self, request, numid):
         vehicle = Vehicle.objects.get(vehicle_no=numid)
@@ -685,6 +580,52 @@ class GetVehiclesOwner(APIView):
         serializer = OwnerSerializer(owner)
         return Response(serializer.data)
 
+class Search(APIView):
+    def get(self, request):
+        vehicicles = Vehicle.objects.filter(Q(model__icontains = request.GET.get('model')) |
+                                            Q(brand__icontains = request.GET.get('model')) )
+        serializer =  VehicleSerializer(vehicicles, many=True)
+        if serializer:
+            return  Response(serializer.data)
+        else :
+             return Response({"message" : "No results found"})
+
+class UpdateOrderStatus(APIView):
+    def put(self, request, pk):
+        trip = Rent_Trip.objects.get(rent_id = pk)
+        trip.order_status = False
+
+        trip.save()
+        return  Response({"msg" : "Order cancelled"})
+
+class ChangeVehicleStatus(APIView):
+    def put(self, request, pk):
+        vehicle = Vehicle.objects.get(vehicle_no = pk)
+
+        if vehicle.is_available == True:
+            vehicle.is_available = False
+            vehicle.save()
+            return Response({"msg": "Vehicle dissabled"})
+
+        else:
+            vehicle.is_available = True
+            vehicle.save()
+            return Response({"msg": "Vehicle enabled"})
+
+class AddOdoReading(APIView):
+    def put(self, request, pk):
+        trip = Rent_Trip.objects.get(rent_id=pk)
+        trip.odo_start_reading = request.data['odo_start_reading']
+        trip.odo_end_reading = request.data['odo_end_reading']
+        trip.save()
+
+        bill = Bill.objects.get(rental_id_id = pk)
+        bill.km_ran = int(trip.odo_end_reading) - int(trip.odo_start_reading)
+        bill.save()
+
+        return Response({"msg" : "data saved successfully"})
+
+
 @csrf_exempt
 @api_view(['POST'])
 def save_file(request):
@@ -693,10 +634,3 @@ def save_file(request):
     # file_name = default_storage.save(file.name,file)
     return JsonResponse({'url': url['secure_url']}, safe=False)
 
-# @csrf_exempt
-# @api_view(['GET'])
-# def get_cars(request):
-#     print('get cars')
-#     cars = Vehicle.objects.all().filter(yype='Car')
-#     serializer = VehicleSerializer(cars)
-#     return JsonResponse(serializer.data)

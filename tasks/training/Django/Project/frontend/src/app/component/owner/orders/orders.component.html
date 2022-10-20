@@ -1,4 +1,5 @@
 <app-o-navbar></app-o-navbar>
+<div class="main">
 <div class="for" *ngFor="let order of response">
 <div class="card" style="width: 30rem;">
   <div class="card-body">
@@ -7,15 +8,23 @@
 
     <p class="card-text">Booking date : {{ order.booking_date.substring(0,10)  }}</p>
     <small>From : {{ order.stringPickDate}}</small> &nbsp;&nbsp;&nbsp;
-    <small>To : {{ order.stringReturnDate}}</small> <br>
+    <small>To : {{ order.stringReturnDate}}</small> <br><br>
 
-    <p *ngIf="order.customer_review">Customer's review :  {{order.owner_review}}</p>
+    <p style="color: brown ;" *ngIf="order.odo_start_reading && order.odo_end_reading">Total Kilo meter driven :{{order.reading }}</p> <br>
+
+
+    <p *ngIf="order.customer_review">Customer's review :  {{order.customer_review}}</p>
 
     <p *ngIf="order.owner_review">Your review:  {{order.owner_review}}</p>
 
-    <a  class="btn btn-primary" (click)="generateBill( order.rent_id )">Generate Bill</a>
+    <a *ngIf="!order.odo_start_reading  && order.return_date<date"  class="btn btn-primary" (click)="openOdo(content1 ,order.rent_id)" >Add Odo reading</a>&nbsp;&nbsp;&nbsp;&nbsp;
 
-    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    <a   class="btn btn-primary" (click)="generateBill( order.rent_id )">Generate Bill</a>
+
+    &nbsp;&nbsp;&nbsp;
+
+    <a (click)="getBill(order.rent_id); getTripDetails(order.rent_id)" class="btn btn-primary">View detail</a>
     `
     <button *ngIf="order.owner_review"  class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id)" >Edit review
     </button>
@@ -45,5 +54,31 @@
     <button type="button" class="btn btn-outline-dark" (click)="modal.close(order.rent_id)">Save</button>
   </div>
 </ng-template>
+
+
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Odometer reading</h4>
+    <button  type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Add Odometer reading</label>
+        <div class="input-group">
+          <form [formGroup]="odoReading" (submit)="modal.close(order.rent_id)">
+            <input type="text" formControlName="odo_start_reading" placeholder="start reading"> <BR>
+            <input type="text" formControlName="odo_end_reading" placeholder="End reading">
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(order.rent_id)">Save</button>
+  </div>
+</ng-template>
+</div>
 </div>
 

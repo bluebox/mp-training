@@ -29,8 +29,8 @@ urlpatterns = [
     path('vehicle/', views.VehicleList.as_view()),
     path('add-vehicle/', views.AddVehicle.as_view()),
     path('owner-vehicle/', views.VehicleDetail.as_view()),
-    path('vehiclestatus/', views.VehicleStatusList.as_view()),
-    path('vehiclestatus/<str:pk>/', views.VehicleStatusDetail.as_view()),
+    path('updateprice/<str:pk>/', views.UpdateVehiclePrice.as_view()),
+
     path('getbill/<int:id>', views.BillDetail.as_view()),
     path('bill/<int:pk>', views.BillList.as_view()),
     path('trip/', views.Rent_TripList.as_view()),
@@ -40,12 +40,12 @@ urlpatterns = [
 
     path('customer-review/<int:pk>/', views.CustomerReview.as_view()),
     path('owner-review/<int:pk>/', views.OwnerReview.as_view()),
+    path('search-vehicle/', views.Search.as_view()),
+    path('cancel-order/<int:pk>/', views.UpdateOrderStatus.as_view()),
+    path("add-odoreading/<int:pk>/",views.AddOdoReading.as_view()),
+    path("vehicle-status/<str:pk>/", views.ChangeVehicleStatus.as_view()),
 
-                  # path('vehicles-owner' , views.GetVehiclesOwner.as_view()),
-    # path('order-history/', views.GetOrderHistory.as_view()),
 
-    # path('customer-login/', views.c_login),
-    # path('owner-login', views.o_login),
 
 
     #JWT API
@@ -60,7 +60,7 @@ urlpatterns = [
     path('owner-vehicle/<str:id>', views.GetVehiclesOwner.as_view()),
     path('delete-vehicle/<str:numid>', views.DeleteVehicle.as_view()),
     path('save-file/', views.save_file, name='SaveFile')
-    # path('get-cars', views.get_cars)
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

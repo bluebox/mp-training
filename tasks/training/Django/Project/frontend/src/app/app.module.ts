@@ -41,6 +41,9 @@ import { ViewCustomerProfileComponent } from './component/customer/view-customer
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 
+import { FooterComponent } from './component/footer/footer.component';
+import { OwnBillComponent } from './component/owner/own-bill/own-bill.component';
+
 
 @NgModule({
   declarations: [
@@ -66,6 +69,8 @@ import {MatCardModule} from '@angular/material/card';
     ReviewComponent,
     ViewProfileComponent,
     ViewCustomerProfileComponent,
+    FooterComponent,
+    OwnBillComponent,
 
   ],
   imports: [

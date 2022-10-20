@@ -1,9 +1,27 @@
-<div class="top">
-  <app-navbar></app-navbar>
-  <div class="select">
+<app-navbar></app-navbar>
+<div class="find">
+  <div class="search">
+    <div class="input-group">
+      <input
+        type="search"
+        #search
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="search-addon"
+      />
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="searchVehicle(search.value)"
+      >
+        search
+      </button>
+    </div>
+  </div>
+  <div class="select" style="padding-top: 10px">
     Sort :
-    <select  name="sort" id="" (change)="sort($event)">
-      Sort
+    <select name="sort" id="" (change)="sort($event)">
       <option value="">All</option>
       <option value="Car">Car</option>
       <option value="Bike">Bike</option>
@@ -11,11 +29,16 @@
   </div>
 </div>
 
-<div class="main">
-
-    <div class="container" *ngFor="let vehicle of response">
-      <div class="col-md-4">
-        <img src="{{ vehicle.image }}" width="250" height="200" alt="ldasjvb" />
+<div class="main row m-auto mt-3 mb-5 pb-5 pt-3">
+  <div *ngFor="let vehicle of response" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+    <div class="">
+      <div class=" img">
+        <img
+          src="{{ vehicle.image }}"
+          width="100%"
+          height="200"
+          alt="ldasjvb"
+        />
       </div>
       <h4>{{ vehicle.brand }}</h4>
       <p class="card-text">
@@ -27,11 +50,12 @@
           <button
             type="button"
             (click)="bookVehicle(vehicle)"
-            class="btn btn-sm btn-outline-secondary">
+            class="btn btn-sm btn-outline-secondary"
+          >
             Book
           </button>
         </div>
       </div>
     </div>
-
+  </div>
 </div>

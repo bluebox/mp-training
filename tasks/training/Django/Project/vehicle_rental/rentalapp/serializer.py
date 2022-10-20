@@ -21,11 +21,11 @@ class VehicleSerializer(serializers.ModelSerializer):
         model = Vehicle
         fields = '__all__'
         # exclude = ('image',)
-
-class VehicleStatusSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Vehicle_status
-        fields = '__all__'
+#
+# class VehicleStatusSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Vehicle_status
+#         fields = '__all__'
 
 
 class Rent_TripSerializer(serializers.ModelSerializer):

@@ -1,12 +1,14 @@
 <app-o-navbar></app-o-navbar>
 <div class="main">
   <div class="container" *ngFor="let vehicle of resp">
+    <!-- Default switch -->
+
     <div class="col-md-4">
       <img src="{{vehicle.image}}" width="250" height="200" alt="ldasjvb">
     </div>
-    <h4>{{vehicle.brand}}</h4>
+    <h3><b>{{vehicle.brand}}</b></h3>
     <p class="card-text">
-      {{vehicle.model}}
+      {{vehicle.model}} &nbsp;&nbsp;&nbsp;  {{vehicle.vehicle_no}}
     </p>
     <p>
        Rs {{vehicle.price_day}} / day
@@ -14,7 +16,36 @@
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
 
-        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteVehicle(vehicle.vehicle_no)">Delete</button>
-      </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteVehicle(vehicle.vehicle_no)">Delete</button> &nbsp;&nbsp;
+
+        <button class="btn btn-sm btn-outline-secondary" (click)="open( content, vehicle.vehicle_no)" >Update price</button> &nbsp;&nbsp;
+
+        <button *ngIf="vehicle.is_available" class="btn btn-sm btn-outline-primary" style="color: green; border: 1px solid green;" (click)="changeVehicleStatus(vehicle.vehicle_no)" >Available</button>
+
+        <button *ngIf="!vehicle.is_available" class="btn btn-sm btn-outline-primary" style="color: red; border: 1px solid red"  (click)="changeVehicleStatus(vehicle.vehicle_no)" >Unavailable</button>
+
     </div>
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Update price</h4>
+        <button  type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="dateOfBirth">Enter new price</label>
+            <div class="input-group">
+              <form [formGroup]="price" (submit)="modal.close(vehicle.vehicle_no)">
+                <input type="text" formControlName="price_day" placeholder={{vehicle.price_day}}>
+              </form>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close(vehicle.vehicle_no)">Save</button>
+      </div>
+    </ng-template>
+
   </div>

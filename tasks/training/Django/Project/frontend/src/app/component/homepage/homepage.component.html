@@ -1,143 +1,120 @@
-<!-- <div class="head">
-  <h2>
-    WELCOME TO VEHICLE RENTALS
-  </h2>
-</div>
-<div class="container">
-  <div class="admin" id="log">
-    <a routerLink="ownerlogin">
-      <p>Share yor vehicle</p>
-    </a>
+
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top header" style="background-color: rgb(165, 156, 156);">
+  <div class="container d-flex align-items-center justify-content-between"  >
+
+
+    <a href="index.html" class="logo"><img src="../../../assets/images/icon-removebg-preview.png" alt="" class="img-fluid"></a>
+
+    <nav id="navbar" class="navbar" style="color :aqua">
+      <ul>
+        <li>
+          <a class="nav-link scrollto" href="#hero"
+            ><i class="fa-solid fa-house-user"></i>Home</a
+          >
+        </li>
+        <li><a class="nav-link scrollto" href="#about">
+          <i class="fa-solid fa-pen-to-square"></i>About</a></li>
+
+        <li>
+          <a class="nav-link scrollto" href="#contact"
+            ><i class="fa-solid fa-address-card"></i>
+
+            Contact</a
+          >
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
   </div>
-  <div class="admin" id="log">
-    <a routerLink="customerlogin">
-      <p>Rent a Vehicle</p>
-    </a>
+</header>
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section
+  id="hero"
+  class="d-flex align-items-center justify-content-center"
+  style="
+    background-image: url('https://images.squarespace-cdn.com/content/v1/5fe4caeadae61a2f19719512/1612722109965-FHUZVT6LMKQZ7MOJUUQ3/topcar26.jpg');
+  "
+>
+  <div class="container position-relative">
+    <h1>Welcome to Vehicle Rentals</h1>
+    <h2></h2>
+    <a routerLink="/ownerlogin" class="btn-get-started scrollto">Owner</a>
+    &nbsp;&nbsp;&nbsp;
+    <a routerLink="/customerlogin" class="btn-get-started scrollto">Customer</a>
   </div>
-</div> -->
+</section>
+<!-- End Hero -->
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top header-transparent">
-    <div class="container d-flex align-items-center justify-content-between">
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="customer"></div>
+    <div class="container">
+      <div class="section-title">
+        <h2>About</h2>
+      </div>
 
-      <h1 class="logo"><a href="index.html"></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-
-
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center justify-content-center" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5fe4caeadae61a2f19719512/1612722109965-FHUZVT6LMKQZ7MOJUUQ3/topcar26.jpg');">
-    <div class="container position-relative">
-      <h1>Welcome to Vehicle Rentals </h1>
-      <h2></h2>
-      <a routerLink="/ownerlogin" class="btn-get-started scrollto">Owner?</a>
-      <a routerLink="/customerlogin" class="btn-get-started scrollto">customer?</a>
-
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
-
-
-      <!-- ======= About Section ======= -->
-      <section id="about" class="about">
-       <div class="customer">
-
-       </div>
-        <div class="container">
-          <div class="section-title">
-            <h2>About</h2>
+      <div class="combine">
+        <div class="owner">
+          <div>
+            <img src="../../../assets/images/share-removebg-preview.png" alt="" width="200" height="150">
           </div>
-          <!-- <div class="row">
-            <div class="col-lg-6">
-              <img src="assets/img/about.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="col-lg-6 pt-4 pt-lg-0">
-              <h3>
-                Share Your Vehicles
-              </h3>
-              <h4><u>
-                2 Simple steps to share and earn with your CAR & BIKE</u>
-              </h4>
-              <div class="row">
-                <div class="col-md-6">
-                  <i class="bx bx-receipt"></i>
-                  <h4>Register for free</h4>
-                  <p>Become the part of our organization</p>
-                </div>
-                <div class="col-md-6">
-                  <i class="bx bx-cube-alt"></i>
-                  <h4>Add your Vehicle</h4>
-                  <p>Your vehicle will be available for customers</p>
-                </div>
-              </div>
-            </div>
-          </div> -->
-          <div class="combine">
-          <div class="owner">
-            <h3>
-              Share Your Vehicles
-            </h3>
+          <div>
+            <h3>Share Your Vehicles</h3>
             <h4>
-              2 Simple steps to share and <br> earn with your CAR & BIKE
+              2 Simple steps to share and <br />
+              earn with your CAR & BIKE
             </h4>
             <ul>
               <li>Sign up for free</li>
               <li>Share your vehicle and earn</li>
-
             </ul>
           </div>
-          <div class="customer">
-            <h3>
-              Rent Vehicles
-            </h3>
-            <h4>
-              2 Simple steps to rent and <br> ride CAR & BIKE
-            </h4>
-            <ul>
-              <li>Sign up for free</li>
-              <li>Choose vehicle you wanted and enjoy</li>
+        </div>
+        <div class="customer">
 
-            </ul>
-          </div>
+          <div class="rent">
+          <h3>Rent Vehicles</h3>
+          <h4>
+            2 Simple steps to rent and <br />
+            ride CAR & BIKE
+          </h4>
+          <ul>
+            <li>Sign up for free</li>
+            <li>Choose vehicle you wanted and enjoy</li>
+          </ul>
+        </div>
+        <div style="margin-right:80px;">
+          <img src="../../../assets/images/rent-removebg-preview.png" alt="" width="350" height="300">
+        </div>
         </div>
       </div>
-      </section><!-- End About Section -->
+    </div>
+  </section>
 
 
-    <!-- ======= Counts Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+      </div>
 
-    <section id="contact" class="contact">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
-
-          <div class="details">
-            <h3> <b><u> Our Address </u></b> </h3>
-            <p>4th Floor, Melenge Tower</p>
-            <p>Huda Techno Enclave road</p>
-            <p>High-Tech city</p>
-            <p>Hyderabad - 500081</p>
-          </div>
-
-        </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
+      <div class="details">
+        <h3>
+          <b><u> Our Address </u></b>
+        </h3>
+        <p>4th Floor, Melenge Tower</p>
+        <p>Huda Techno Enclave road</p>
+        <p>High-Tech city</p>
+        <p>Hyderabad - 500081</p>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->

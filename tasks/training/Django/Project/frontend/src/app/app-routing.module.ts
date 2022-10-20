@@ -1,3 +1,4 @@
+import { CustomerGuard } from './customer.guard';
 import { ViewProfileComponent } from './component/owner/view-profile/view-profile.component';
 
 import { OrderHistoryComponent } from './component/customer/order-history/order-history.component';
@@ -19,26 +20,32 @@ import { OrdersComponent } from './component/owner/orders/orders.component';
 import { ViewBillComponent } from './component/customer/view-bill/view-bill.component';
 import { ReviewComponent } from './component/customer/review/review.component';
 import { ViewCustomerProfileComponent } from './component/customer/view-customer-profile/view-customer-profile.component';
+import { OwnerGuard } from './owner.guard';
+import { OwnBillComponent } from './component/owner/own-bill/own-bill.component';
 
 
 const routes: Routes = [
-  {path:'', component: HomepageComponent},
-  {path:'customerlogin', component: CustomerloginComponent},
+  {path:'', component: HomepageComponent , },
+  {path:'customerlogin', component: CustomerloginComponent },
   {path:'ownerlogin', component: OwnerloginComponent},
   {path:'customerregister', component: CustomerregisterComponent},
   {path:'ownerregister', component: OwnerregisterComponent},
-  {path:'addvehicle', component: AddvehicleComponent},
-  {path:'available-vehicles', component: AvailableVehicleComponent},
-  {path:'customer-profile', component: CustomerProfileComponent},
-  {path:'order-history', component: OrderHistoryComponent},
-  {path:'o-profile', component: ViewProfileComponent},
-  {path:'c-profile', component: ViewCustomerProfileComponent},
-  {path:'owner-profile', component:ProfileComponent},
-  {path:'previousvehicles', component:PreviousvehiclesComponent},
-  {path:'book-vehicle', component: BookComponent},
-  {path:'orders', component: OrdersComponent},
-  {path:'view-bill', component: ViewBillComponent},
-  {path:'customer-review', component: ReviewComponent},
+  {path:'addvehicle', component: AddvehicleComponent, canActivate :[OwnerGuard]},
+  {path:'available-vehicles', component: AvailableVehicleComponent, canActivate :[CustomerGuard]},
+  {path:'customer-profile', component: CustomerProfileComponent, canActivate :[CustomerGuard]},
+  {path:'order-history', component: OrderHistoryComponent, canActivate :[CustomerGuard]},
+  {path:'o-profile', component: ViewProfileComponent,canActivate :[OwnerGuard]},
+  {path:'c-profile', component: ViewCustomerProfileComponent, canActivate :[CustomerGuard]},
+  {path:'owner-profile', component:ProfileComponent, canActivate :[OwnerGuard]},
+  {path:'previousvehicles', component:PreviousvehiclesComponent, canActivate :[OwnerGuard]},
+  {path:'book-vehicle', component: BookComponent, canActivate :[CustomerGuard]},
+  {path:'orders', component: OrdersComponent, canActivate :[OwnerGuard]},
+  {path:'view-bill/:id', component: ViewBillComponent, canActivate :[CustomerGuard]},
+  {path:'own-view-bill/:id', component: OwnBillComponent, canActivate :[OwnerGuard]},
+
+  {path:'customer-review', component: ReviewComponent, canActivate :[CustomerGuard]},
+
+
   {path:'**', component: PagenotfoundComponent},
 
 

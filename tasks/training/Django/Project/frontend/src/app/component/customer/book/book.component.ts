@@ -41,6 +41,7 @@ export class BookComponent implements OnInit {
         })
       }
   }
+  
   dateCheck(){
     let date = new Date();
     this.pickupDate = this.vehicle.value['pickup_date'];

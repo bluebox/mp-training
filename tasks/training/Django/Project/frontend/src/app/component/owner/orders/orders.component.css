@@ -1,11 +1,18 @@
 .for{
   padding: 10px;
 
-  background-color: rgb(218, 245, 236);
+  background-color:rgb(202, 244, 250);
   display: flex;
   justify-content: space-around;
+
+}
+.main{
+  min-height: 75vh;
+  background-color:  rgb(209, 245, 233);
+
 }
 .for:hover{
-  background-color:  rgb(209, 245, 233); ;
+  background-color:  rgb(209, 245, 233);
 }
+
 

@@ -17,13 +17,26 @@
 
     <p *ngIf="order.customer_review">Your review:  {{order.customer_review}}</p>
 
+    <h3>Order status:
+    <p style="color: green;" *ngIf="order.order_status &&  order.return_date <=date" ><i>Accepted
+      ✅</i></p>
+    <p style="color: red;" *ngIf="!order.order_status"><i> Cancelled ❌ </i></p>
+    <p style="color: rgb(2, 54, 78);" *ngIf="order.order_status && order.return_date <date">Ride completed
+
+
+      <i class="fa-regular fa-circle-check"></i>
+      </p>
+
+    </h3>
+
+
 
 
     <a (click)="getBill(order.rent_id); getTripDetails(order.rent_id)" class="btn btn-primary">View detail</a>
 
     &nbsp;&nbsp;&nbsp;
 
-    <a  *ngIf="order.pickup_date> date" class="btn btn-primary" (click)="cancelOrder(order.rent_id)">Cancel order</a>&nbsp;&nbsp;&nbsp;
+    <a  *ngIf="order.pickup_date> date && order.order_status" class="btn btn-primary" (click)="cancelOrder(order.rent_id)">Cancel order</a>&nbsp;&nbsp;&nbsp;
 
     <button *ngIf="order.customer_review"  class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id, order.return_date)" >Edit review
     </button>
@@ -44,6 +57,9 @@
         <label for="dateOfBirth">Add your review</label>
         <div class="input-group">
           <form [formGroup]="review" (submit)="modal.close(order.rent_id)">
+
+            <ngb-rating [(rate)]="currentRate" [max]="5" (rateChange)="ratechange(currentRate)"
+            style="font-size:30px;color: goldenrod;"></ngb-rating> <br>
             <input type="text" formControlName="customer_review" placeholder={{order.customer_review}}>
           </form>
         </div>

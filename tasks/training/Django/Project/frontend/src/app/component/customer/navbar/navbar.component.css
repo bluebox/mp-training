@@ -1,4 +1,6 @@
 .container{
   background-color: white;
   margin-left: 37px;
+  display: flex;
+  justify-content: space-between;
 }

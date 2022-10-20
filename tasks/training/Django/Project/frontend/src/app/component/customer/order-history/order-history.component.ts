@@ -18,6 +18,8 @@ export class OrderHistoryComponent implements OnInit {
   closeResult!: string;
   trip : any
   date : any
+
+  currentRate= 4
   constructor(private service : GeneralService, private route : Router, private modalService: NgbModal) {
       this.date = new Date();
   }
@@ -62,10 +64,9 @@ export class OrderHistoryComponent implements OnInit {
   }
   getBill(id : any){
     this.service.getBill(id).subscribe(data => {(this.billResp=data),
-      console.log(this.billResp),
-      window.sessionStorage.setItem('rent_id', JSON.stringify(this.billResp)) })
-
-      this.route.navigate(['view-bill'])
+      console.log(this.billResp)
+     })
+      this.route.navigate(['view-bill', id])
     }
 
   getTripDetails(id : any){
@@ -74,24 +75,18 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   addReview(content : any, rent_id : any, returnDate : any){
-  // let retDate = new Date(returnDate.substring(0,4), returnDate.substring(5,7) - 1, returnDate.substring(8,returnDate.length))
-  // let date = new Date()
-  // console.log('.lkjsadbv;kjabhsdv')
 
-  // if(retDate >= date)
-  // {
-  //   alert("ride not yet completed")
-  // }
 
     this.open(content, rent_id)
 
 }
 cancelMessage : any
   cancelOrder(id : any){
-    this.service.cancelOrder(id).subscribe(data => {(this.cancelMessage=data), alert(this.cancelMessage.message), this.ngOnInit()})
+    if(confirm("Are you sure you want to cancel!!!?"))
+    {
+      this.service.cancelOrder(id).subscribe(data => {(this.cancelMessage=data), alert(this.cancelMessage.msg), this.ngOnInit()})
+    }
   }
-
-
 
   open(content: any, rent_id : any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -115,7 +110,8 @@ cancelMessage : any
       return `with: ${reason}`;
     }
   }
+  ratechange(currentRate : number){
 
-
+  }
 
 }

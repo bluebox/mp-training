@@ -1,8 +1,17 @@
 .container{
   background-color: rgb(224, 242, 250);
-  height: 93vh;
-  width: 100vw;
+  margin-bottom: 20px;
+  /* height: 93vh; */
+  /* width: 100vw; */
 }
 .info{
   display: flex;
+}
+.form{
+  display: flex;
+  justify-content: space-around;
+}
+.booking{
+  width: 300px;
+  background-color: darkgray;
 }

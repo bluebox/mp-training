@@ -48,20 +48,11 @@ class Vehicle(models.Model):
     image = models.TextField()
     owner_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
     price_day = models.FloatField()
+    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return (self.vehicle_no)
 
-class Vehicle_status(models.Model):
-    sl_no = models.AutoField(primary_key=True)
-    vehicle_no = models.OneToOneField(Vehicle, on_delete=models.CASCADE)
-    is_available = models.BooleanField()
-
-
-
-
-    def __str__(self):
-        return self.bill_no
 
 class CustomerToken(models.Model):
     customer_token_id = models.IntegerField()
@@ -88,6 +79,7 @@ class Rent_Trip(models.Model):
     odo_end_reading = models.IntegerField(null=True)
     customer_review = models.CharField(max_length=500, null=True)
     owner_review = models.CharField(max_length=500, null=True)
+    order_status = models.BooleanField(default=True)
 
     def __str__(self):
         return self.rent_id

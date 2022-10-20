@@ -1,16 +1,17 @@
 .container{
   background-color:  rgb(248, 238, 238);
-
   margin-top: 20px;
   margin-left: 30px;
   width: 350px;
-
+  align-items: center;
 
 }
+
 .main{
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  background-color: rgb(248, 238, 238)
+  width: 95%;
+  min-height: 74vh;
+  background-color: rgb(248, 238, 238);
+  /* height:85vh; */
 }
 .container:hover{
   background-color: rgb(247, 213, 213)
@@ -22,8 +23,53 @@
 .top
 {
   display: flex;
-  justify-content:flex-start ;
+  justify-content:space-between;
 }
-.select{
-  
+select{
+  color: rgb(248, 247, 247);
+  border : none;
+  background-color: rgb(235, 93, 50);
+  width: 100px;
+
+
 }
+.find{
+  display: flex;
+  justify-content:space-around;
+  background-color: rgb(221, 211, 211);
+}
+.img{
+  /*
+  overflow: hidden;
+  -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  margin: 0 auto; */
+
+  width: 90%;
+  height: 17rem;
+  -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  /* transform: translateX(-3rem); */
+  position: relative;
+  cursor: pointer;
+}
+
+.img img{
+  /* width: 100%;
+  transition: 1s all ease-in-out; */
+  height: 100%;
+  width: 100%;
+  /* transform: translate(-4rem) scale(1.5); */
+  transform: scale(1.1);
+  transition: all .5s;
+}
+.img:hover img{
+
+  /* transition: step-end; */
+  transform: scale(1);
+  /* background-color: transparent; */
+}
+
+/* .img:hover img {
+  transform: scale(1.5);
+} */

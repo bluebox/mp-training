@@ -11,7 +11,7 @@ import { GeneralService } from 'src/app/general.service';
 export class AvailableVehicleComponent implements OnInit {
 
   sort(e: any) {
-    console.log(e.target.value);
+    console.log(e);
     this.response = this.totalObjects.filter((vehicle: any ) => {
       console.log(vehicle.type);
 
@@ -34,16 +34,21 @@ export class AvailableVehicleComponent implements OnInit {
   resp: any
 
 
-  constructor(private service:GeneralService, http : HttpClient, private route: Router) { }
+  constructor(private service:GeneralService, http : HttpClient, private route: Router) {
+
+
+   }
 
   ngOnInit(): void {
+
     this.show_vehicles()
+
   }
 
 
   show_vehicles(){
     this.vehicle_obj=this.service.getVehicle().subscribe(data=>{(this.totalObjects=data);
-    console.log(data)
+    // console.log(data)
     this.response=data
   }
 )
@@ -54,6 +59,13 @@ export class AvailableVehicleComponent implements OnInit {
 
    this.resp = window.sessionStorage.setItem('vehicle',JSON.stringify(vehicle));
    this.route.navigate(['book-vehicle'])
+
+  }
+  searchVehicle(key : any){
+
+    console.log(key)
+    this.service.searchVehicle(key).subscribe(data=>{(this.response=data),
+    console.log(this.response)})
 
   }
 

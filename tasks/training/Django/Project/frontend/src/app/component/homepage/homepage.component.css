@@ -4,11 +4,15 @@ body {
   color: #444444;
 }
 .combine{
-  display: flex;
-  justify-content: space-around;
+  /* display: flex;
+   */
+   padding: 20px;
 }
 .details{
   text-align: center;
+}
+.rent{
+  margin: 120px;
 }
 
 a {
@@ -19,6 +23,15 @@ a {
 a:hover {
   color: #ffce3a;
   text-decoration: none;
+}
+.owner{
+  display: flex;
+  justify-content: space-around;
+}
+.customer{
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
 }
 
 h1,

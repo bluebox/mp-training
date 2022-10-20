@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(3,1fr);
   background-color: rgb(248, 238, 238);
-  height : 100vh;
+  min-height : 73vh;
 }
 
 .selection{
