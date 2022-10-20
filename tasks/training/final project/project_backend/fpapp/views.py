@@ -344,44 +344,32 @@ class Scorecard(APIView):
             return Response(serializer.data)
         
 
+class AdminPanelStudent(APIView):
+    def get(self,request):
+        sub=Student.objects.all()
+        items=[]
+        
+        students=list(sub.values('user','user__username', 'user__first_name','user__last_name','user__email','user__password','user__mobile_no','user__address','reqister_number','college_name'))
+        print(students)
+        for i in students:
+            items.append(i)
+         
+        
+        return Response(items)
+class AdminPanelTeacher(APIView):
+    def get(self,request):
+        sub=Teacher.objects.all()
+        items=[]
+        
+        students=list(sub.values('user','user__username', 'user__first_name','user__last_name','user__email','user__password','user__mobile_no','user__address','qualification','position'))
+        print(students)
+        for i in students:
+            items.append(i)
+         
+        
+        return Response(items)
 
-
-
-# class Adminpanel(APIView):
+# class StudentDetails(APIView):
 #     def get(self,request):
-#         items=[]
-#         v=0
-#         sub=User.objects.all()
-#         serializer=UserSerializer(sub,many=True)
-
-#         for i in User.objects.all():
-#             if (i.user_type=='Student'):
-#                 items.append({
-
-#                 "username":i.username ,
-#                 "first_name":i.first_name ,
-#                 "last_name": i.last_name,
-#                 "email": i.email,
-#                 "password":i.password ,
-#                 "mobile_no":i.mobile_no,
-#                 "address": i.address,
-#                 "reqister_number":i.student.reqister_number,
-#                 "college_name":i.student.college_name
-                
-#                 })
-                   
-#         return Response(items)
-
-# class AdminPanelStudent(APIView):
-#     def get(self,request):
-#         sub=Student.objects.all()
-#         students=list(sub.values('user',
-#                                  'user_id__username'))
-#         return Response({'students':json.dumps(students)},status=200)
-
-# class AdminPanelTeacher(APIView):
-#     def get(self,request):
-#         sub=Teacher.objects.all()
-#         teachers=list(sub.values('user',
-#                                  'user_id__username'))
-#         return Response({'students':json.dumps(teachers)},status=200)
+#         sub=
+  

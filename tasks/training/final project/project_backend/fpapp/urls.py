@@ -22,8 +22,8 @@ urlpatterns = [
     path('detailcourse/<int:id>/', views.DetailCourse.as_view()),
     path('coursefilter', views.courseFilter),
     path('questionfilter', views.courseFilter),
-    path('score' ,views.Scorecard.as_view())
-    # path('adminstudentdisplay', views.AdminPanelStudent.as_view()),
-    # path('adminteacherdisplay', views.AdminPanelTeacher.as_view())
+    path('score' ,views.Scorecard.as_view()),
+    path('adminstudentdisplay', views.AdminPanelStudent.as_view()),
+    path('adminteacherdisplay', views.AdminPanelTeacher.as_view())
 
 ]

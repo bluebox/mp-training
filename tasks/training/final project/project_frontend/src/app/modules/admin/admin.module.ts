@@ -9,6 +9,15 @@ import { DisplayStudentComponent } from './components/display-student/display-st
 import { DisplayTeacherComponent } from './components/display-teacher/display-teacher.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { AdminNavbarComponent } from './components/admin-navbar/admin-navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage.component';
+
 
 
 @NgModule({
@@ -17,13 +26,24 @@ import { MatIconModule } from '@angular/material/icon';
     AddTeacherComponent,
     AddStudentComponent,
     DisplayStudentComponent,
-    DisplayTeacherComponent
+    DisplayTeacherComponent,
+    AdminNavbarComponent,
+    AdminhomepageComponent,
+   
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class AdminModule { }

@@ -13,4 +13,7 @@ export class AdminServiceService {
   getStudents():Observable<any>{
     return this.http.get("http://127.0.0.1:8000/adminstudentdisplay")
   }
+  getTeachers():Observable<any>{
+    return this.http.get("http://127.0.0.1:8000/adminteacherdisplay")
+  }
 }

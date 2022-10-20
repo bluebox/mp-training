@@ -1,0 +1,36 @@
+.main{
+    margin:10rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 15rem;
+
+}
+.part1{
+    background-color:rgba(8, 50, 66, 0.9);
+    color: white;
+    text-align: center;
+    margin: auto;
+    width: 35rem;
+    padding: 1rem;
+    size: 20rem;
+    padding-top: 2rem;
+    font-family: 'Times New Roman', serif;
+    border-radius: 1rem;
+    
+}
+h1,h3{
+    font-family:fantasy;
+    font-size: 2rem;
+
+}
+.part2{
+    background-color:rgb(215, 59, 32);
+    color: white;
+    text-align: center;
+    margin: auto;
+    padding: 1rem;
+    width: 35rem;
+    padding-top: 2rem;
+    border-radius: 1rem;
+    
+}

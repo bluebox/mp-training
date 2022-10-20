@@ -1,11 +1,18 @@
-<p>display-student works!</p>
+<app-admin-navbar></app-admin-navbar>
+<div class="sear">
+  <mat-form-field class="example-form-field" appearance="outline" style="width:400px">
+    <input matInput type="search"  placeholder="Search" >
+  </mat-form-field>
+</div>
+
 <div class="coursetable">
 
-    <!-- <button (click)="add()" class="add"> Add Course</button>
+    <!-- <button  class="add"> Add Course</button>
     <h1 *ngIf="!(v)"
     >No Data Found</h1
   > -->
-    <div class="head">Available Students</div>
+  <button class="add"> Add Student</button>
+    <div class="head">Students</div>
   <table mat-table [dataSource]="students" class="mat-elevation-z8">
   
     
@@ -20,22 +27,54 @@
       </ng-container>
     
       <!-- Name Column -->
-      <ng-container matColumnDef="username">
+      <ng-container matColumnDef="user__username">
         <th mat-header-cell *matHeaderCellDef> Username </th>
-        <td mat-cell *matCellDef="let row"> {{row.user_id__username}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.user__username}} </td>
       </ng-container>
-  
-      
+      <ng-container matColumnDef="user__first_name">
+        <th mat-header-cell *matHeaderCellDef> firstname </th>
+        <td mat-cell *matCellDef="let row"> {{row.user__first_name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="user__last_name">
+        <th mat-header-cell *matHeaderCellDef> lastname </th>
+        <td mat-cell *matCellDef="let row"> {{row.user__last_name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="user__email">
+        <th mat-header-cell *matHeaderCellDef> email </th>
+        <td mat-cell *matCellDef="let row"> {{row.user__email}} </td>
+      </ng-container>
+      <!-- <ng-container matColumnDef="user__password">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let row"> ********</td>
+      </ng-container> -->
+      <ng-container matColumnDef="user__mobile_no">
+        <th mat-header-cell *matHeaderCellDef> mobile </th>
+        <td mat-cell *matCellDef="let row"> {{row.user__mobile_no}} </td>
+      </ng-container>
+      <!-- <ng-container matColumnDef="user__address">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let row"> {{row.user__address}} </td>
+      </ng-container> -->
+      <ng-container matColumnDef="reqister_number">
+        <th mat-header-cell *matHeaderCellDef> register number </th>
+        <td mat-cell *matCellDef="let row"> {{row.reqister_number}} </td>
+      </ng-container>
+      <ng-container matColumnDef="college_name">
+        <th mat-header-cell *matHeaderCellDef> college</th>
+        <td mat-cell *matCellDef="let row"> {{row.college_name}} </td>
+      </ng-container>
+
+
   
         <ng-container matColumnDef="Action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td mat-cell *matCellDef="let row">
            
-            <!-- <button mat-icon-button color="primary" (click)="updateCourse(row.id)"><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button color="warn" (click)="deleteCourse(row.id)"><mat-icon>delete</mat-icon></button>
-            <button mat-icon-button color="primary" ><mat-icon>remove_red_eye</mat-icon></button> -->
+            <button mat-icon-button color="primary" ><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+            <!-- <button mat-icon-button color="primary" ><mat-icon>remove_red_eye</mat-icon></button> -->
 
-            <button>Details</button>
+            <!-- <button>Details</button> -->
           </td>
         </ng-container>
     

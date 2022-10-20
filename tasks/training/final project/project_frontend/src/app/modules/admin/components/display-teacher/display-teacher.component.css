@@ -1,0 +1,51 @@
+table {
+    width: 100%;
+  }
+
+/* th,tr{
+    
+    background-color:rgb(250, 237, 220);
+} */
+
+th{
+    color:black
+}
+.coursetable{
+   margin-top: 8rem;
+   margin-left: 2rem;
+   margin-right: 2rem;
+}
+.mat-header-cell{
+    text-align : center;
+}
+.mat-cell{
+    text-align: center;
+}
+.head{
+
+  background-color: blue;
+  color: white;
+  padding-top: 9px;
+  padding-left:7px ;
+  padding-bottom:7px ;
+  padding-bottom: 7px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: large;
+}
+.sear{
+    display:flex;
+    justify-content: center;
+    margin-top: 3rem;
+    height: 1rem;
+  }
+  .add{
+    background-color: rgb(9, 9, 249);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: large;
+    border: none;
+    display: inline;
+    margin-bottom: 1rem;
+  }

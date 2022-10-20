@@ -39,7 +39,7 @@ import { FooterComponent } from '../components/footer/footer.component';
     StudentLoginhomepageComponent,
     TeacherLoginhomepageComponent,
     UsershomepageComponent,
-    FooterComponent
+    FooterComponent,
    
     
   ],

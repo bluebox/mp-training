@@ -10,16 +10,12 @@ table {
 th{
     color:black
 }
-  .coursetable{
-    margin-top: -10px;
-    margin-left: 80px;
-    margin-right: 80px;
-    width:auto;
-    /* padding-left: 50px; */
-    padding-left: 70px;
-    padding-right: 70px;
-  }
-  .mat-header-cell{
+.coursetable{
+    margin-top: 8rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.mat-header-cell{
     text-align : center;
 }
 .mat-cell{
@@ -36,4 +32,20 @@ th{
   text-align: center;
   border-radius: 5px;
   font-size: large;
+}
+.sear{
+  display:flex;
+  justify-content: center;
+  margin-top:3rem;
+  height: 1rem;
+}
+.add{
+  background-color: rgb(9, 9, 249);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: large;
+  border: none;
+  display: inline;
+  margin-bottom: 1rem;
 }

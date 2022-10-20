@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AdminServiceService } from '../../admin-service.service';
 
 @Component({
-  selector: 'app-display-student',
-  templateUrl: './display-student.component.html',
-  styleUrls: ['./display-student.component.css']
+  selector: 'app-adminhomepage',
+  templateUrl: './adminhomepage.component.html',
+  styleUrls: ['./adminhomepage.component.css']
 })
-export class DisplayStudentComponent implements OnInit {
-
+export class AdminhomepageComponent implements OnInit {
   students:any
-  displayedColumns: string[]=['user', 'user__username','user__first_name','user__last_name','user__email','user__mobile_no','reqister_number','college_name','Action']
-  
+  teachers:any
+  i:any
+  j:any
+
   constructor(private router:Router, private http:AdminServiceService) { }
 
   ngOnInit(): void {
@@ -22,12 +22,26 @@ export class DisplayStudentComponent implements OnInit {
        
         this.students=resp
        
-       
+        this.i=this.students.length
         console.log(this.students) 
       }
       
     })
+    this.http.getTeachers().subscribe({
+      next:(resp)=>{
 
+       
+        this.teachers=resp
+        this.j=this.teachers.length
+       
+        console.log(this.teachers) 
+      }
+      
+    })
+
+    
   }
+
+
 
 }
