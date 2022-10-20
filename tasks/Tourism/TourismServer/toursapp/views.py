@@ -35,7 +35,10 @@ class VehicleList(APIView):
     permission_classes = (IsAdminUser,)
 
     def get(self, request, format=None):
-        vehicles_list = Vehicle.objects.all()
+        text = request.GET.get('text')
+        vehicles_list = (Vehicle.objects.filter(vehicle_type__icontains=text) | 
+                            Vehicle.objects.filter(model__icontains=text) |
+                            Vehicle.objects.filter(vehicle_number__icontains=text))
         vehicles, totalPages, page = listing(request, vehicles_list)
         serializer = VehicleSerializer(vehicles, many=True)
         return Response({
@@ -99,7 +102,11 @@ class AllToursListViewSet(APIView):
 class ToursListViewSet(APIView):
 
     def get(self, request, format=None):
-        tours_list = Tour.objects.all()
+        text = request.GET.get('text')
+        tours_list = (Tour.objects.filter(tour_name__icontains=text) | 
+                            Tour.objects.filter(tour_to__icontains=text) |
+                            Tour.objects.filter(description__icontains=text) |
+                            Tour.objects.filter(tour_type__icontains=text))
         tours, totalPages, page = listing(request, tours_list)
         serializer = TourDetailSerializer(tours, many=True)
         return Response({
@@ -223,7 +230,9 @@ class AllPlacesListViewSet(APIView):
 class PlacesListViewSet(APIView):
 
     def get(self, request, format=None):
-        places_list = Place.objects.all()
+        text = request.GET.get('text')
+        places_list = (Place.objects.filter(place_name__icontains=text) | 
+                            Place.objects.filter(description__icontains=text))
         places, totalPages, page = listing(request, places_list)
         serializer = PlaceSerializer(places, many=True)
         return Response({
@@ -283,7 +292,9 @@ class CouponsListViewSet(APIView):
 
     def get(self, request, format=None):
         # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
-        coupons_list = Coupon.objects.all()
+        text = request.GET.get('text')
+        coupons_list = (Coupon.objects.filter(couponcode__icontains=text, valid_till__gt=datetime.datetime.utcnow()) | 
+                            Coupon.objects.filter(description__icontains=text, valid_till__gt=datetime.datetime.utcnow()))
         coupons, totalPages, page = listing(request, coupons_list)
         serializer = CouponSerializer(coupons, many=True)
         return Response({
@@ -343,7 +354,10 @@ class AllPackagesList(APIView):
 class PackagesList(APIView):
 
     def get(self, request, format=None):
-        packages_list = Package.objects.all()
+        text = request.GET.get('text')
+        packages_list = (Package.objects.filter(package_name__icontains=text) | 
+                            Package.objects.filter(package_type__icontains=text) |
+                            Package.objects.filter(description__icontains=text))
         packages, totalPages, page = listing(request, packages_list)
         serializer = PackageSerializer(packages, many=True)
         return Response({
@@ -357,7 +371,7 @@ class PackagesList(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        raise APIException(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PackageDetailed(APIView):
     """
@@ -408,7 +422,7 @@ class PackageDetails(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        raise APIException(serializer.errors)
 
     def delete(self, request, pk, format=None):
         package = self.get_object(pk)
@@ -419,12 +433,30 @@ class PackageDetails(APIView):
 
 
 
-class EmployeeList(APIView):
+class AllEmployeeList(APIView):
 
     def get(self, request, format=None):
         packages = Employee.objects.all()
         serializer = EmployeeSerializer(packages, many=True)
         return Response(serializer.data)
+
+
+class EmployeeList(APIView):
+
+    def get(self, request, format=None):
+        # employee_list = Employee.objects.all()
+        # serializer = EmployeeSerializer(packages, many=True)
+        # return Response(serializer.data)
+        text = request.GET.get('text')
+        employee_list = (Employee.objects.filter(name__icontains=text) | 
+                            Employee.objects.filter(email__icontains=text))
+        employees, totalPages, page = listing(request, employee_list)
+        serializer = EmployeeSerializer(employees, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
     def post(self, request, format=None):
         serializer = EmployeeSerializer(data=request.data)

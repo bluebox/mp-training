@@ -22,20 +22,33 @@
   <button (click)="changePage(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>
 </div> -->
 
-
-
-<button routerLink="../addUser" class="d-block ms-auto">Add User</button>
+<div class="d-flex justify-content-between mb-3">
+  <form [formGroup]="searchText">
+    <mat-form-field appearance="legacy" class="full-width">
+      <mat-label>Search</mat-label>
+      <!-- <input matInput placeholder="Search" formControlName="text" (keydown)="keyDownFunction($event)" (input)="search()"> -->
+      <input matInput placeholder="Search" formControlName="text" (input)="getPageItems(0)">
+      <mat-icon matSuffix style="cursor: pointer;"><i class="fa-solid fa-magnifying-glass"></i></mat-icon>
+      <mat-hint>Enter text to search</mat-hint>
+    </mat-form-field>
+  </form>
+  <div class="d-flex align-items-center mt-auto mb-auto h-100">
+    <button mat-raised-button routerLink="../addUser" class="">Add User</button>
+  </div>
+</div>
 
 <table *ngIf="pageItems" class="table table-bordered">
   <tr *ngFor="let user of pageItems" >
     <td>{{user.email}}</td>
+    <td [ngStyle]="{color: user.isAdmin ? 'blue' : 'green'}">{{user.isAdmin ? 'Admin' : 'User'}}</td>
     <td><button (click)="editUser(user.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
     <td><button (click)="deleteUser(user.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
   </tr>
 </table>
+<h1 class="text-center text-danger" *ngIf="!pageItems || pageItems.length == 0">No results</h1>
 
 
-<div class="text-center">
+<div class="text-center" *ngIf="pageItems && pageItems.length != 0">
   <button (click)="getPageItems(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
   page {{page}} of {{totalPages}}
   <button (click)="getPageItems(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>

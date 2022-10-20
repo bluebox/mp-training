@@ -25,6 +25,7 @@ urlpatterns = [
     path('packages/', views.PackagesList.as_view(), name='packages]' ),
     path('packages/<int:pk>', views.PackageDetails.as_view(), name='packagedetail' ),
     path('packageDetailed/<int:pk>', views.PackageDetailed.as_view(), name='packagedetail' ),
+    path('all_employees/', views.AllEmployeeList.as_view(), name='employees]' ),
     path('employees/', views.EmployeeList.as_view(), name='employees]' ),
     path('employees/<int:pk>', views.EmployeeDetails.as_view(), name='employeedetail' ),
     path('tour_places/<int:pk>', views.TourPlaceDelete.as_view(), name='TourPlaceDelete')

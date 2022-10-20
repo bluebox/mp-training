@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../../services/data.service';
@@ -22,9 +23,12 @@ export class VehicleListComponent implements OnInit {
   pageItems : any;
   totalPages : any
 
+  searchText: FormGroup = new FormGroup({
+    text: new FormControl(''),
+  });
 
-  getPageItems(num: number){
-    this.subscription = this.dataService.getVehiclesList(this.page + num).subscribe(
+  getPageItems(num: number, searchText = this.searchText.get('text')?.value){
+    this.subscription = this.dataService.getVehiclesList(this.page + num, searchText).subscribe(
       (data: any) => {
         console.log(data);
         this.pageItems = data.pageItems

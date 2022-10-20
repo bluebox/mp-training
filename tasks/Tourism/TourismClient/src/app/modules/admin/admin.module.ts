@@ -6,7 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddTourComponent } from './components/Tours/add-tour/add-tour.component';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { AddCouponComponent } from './components/Coupons/add-coupon/add-coupon.component';
@@ -40,6 +40,7 @@ import { EmployeeListComponent } from './components/Employees/employee-list/empl
 import { AddEmlployeeComponent } from './components/Employees/add-emlployee/add-emlployee.component';
 import { EditUserComponent } from './components/Users/edit-user/edit-user.component';
 import { EditBookingComponent } from './components/Bookings/edit-booking/edit-booking.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -86,6 +87,8 @@ import { EditBookingComponent } from './components/Bookings/edit-booking/edit-bo
     HttpClientModule,
     MatCheckboxModule,
     MatPaginatorModule,
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class AdminModule { }

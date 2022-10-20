@@ -91,7 +91,10 @@ export class AddPackageComponent implements OnInit {
           alert("package updated successfully")
           this.router.navigate(['admin/package/packageList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          console.log(err);
+          alert(JSON.stringify(err.error))
+        }
       )
       }else{
         this.addPackageSubscription = this.dataservice.addPackage(packageObj).subscribe(

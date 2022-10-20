@@ -115,7 +115,7 @@ export class AddTourComponent implements OnInit {
       },
       err => alert(err.error.detail)
     )
-    this.getEmployeeSubscription = this.dataservice.getEmployeeList().subscribe(
+    this.getEmployeeSubscription = this.dataservice.getAllEmployeeList().subscribe(
       res=> {
         let data = JSON.stringify(res)
         let employeeData = JSON.parse(data)

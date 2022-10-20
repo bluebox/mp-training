@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../../services/data.service';
@@ -22,8 +23,12 @@ export class CancellationListComponent implements OnInit {
   totalPages : any
 
 
-  getPageItems(num: number){
-    this.subscription = this.dataService.getCancellationList(this.page + num).subscribe(
+  searchText: FormGroup = new FormGroup({
+    text: new FormControl(''),
+  });
+
+  getPageItems(num: number, searchText = this.searchText.get('text')?.value){
+    this.subscription = this.dataService.getCancellationList(this.page + num, searchText).subscribe(
       (data: any) => {
         console.log(data);
         this.pageItems = data.pageItems

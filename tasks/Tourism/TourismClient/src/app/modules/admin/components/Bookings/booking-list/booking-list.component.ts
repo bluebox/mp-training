@@ -4,6 +4,7 @@ import { DataService } from '../../../services/data.service';
 
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-booking-list',
@@ -25,9 +26,12 @@ export class BookingListComponent implements OnInit {
   pageItems : any;
   totalPages : any
 
+  searchText: FormGroup = new FormGroup({
+    text: new FormControl(''),
+  });
 
-  getPageItems(num: number){
-    this.subscription = this.dataService.getBookingList(this.page + num).subscribe(
+  getPageItems(num: number, searchText = this.searchText.get('text')?.value){
+    this.subscription = this.dataService.getBookingList(this.page + num, searchText).subscribe(
       (data: any) => {
         console.log(data);
         this.pageItems = data.pageItems

@@ -26,9 +26,21 @@
 
 
 
+<div class="d-flex justify-content-between mb-3">
+  <form [formGroup]="searchText">
+    <mat-form-field appearance="legacy" class="full-width">
+      <mat-label>Search</mat-label>
+      <!-- <input matInput placeholder="Search" formControlName="text" (keydown)="keyDownFunction($event)" (input)="search()"> -->
+      <input matInput placeholder="Search" formControlName="text" (input)="getPageItems(0)">
+      <mat-icon matSuffix style="cursor: pointer;"><i class="fa-solid fa-magnifying-glass"></i></mat-icon>
+      <mat-hint>Enter booking ID to search</mat-hint>
+    </mat-form-field>
+  </form>
+  <div class="d-flex align-items-center mt-auto mb-auto h-100">
+    <button  mat-raised-button routerLink="../addBooking" class="d-block ms-auto">Add Booking</button>
+  </div>
+</div>
 
-
-<button routerLink="../addBooking" class="d-block ms-auto">Add Booking</button>
 
 <table *ngIf="pageItems" class="table table-bordered">
   <tr *ngFor="let booking of pageItems" >
@@ -37,9 +49,10 @@
      <td><button (click)="deleteBooking(booking.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
      </tr>
 </table>
+<h1 class="text-center text-danger" *ngIf="!pageItems || pageItems.length == 0">No results</h1>
 
 
-<div class="text-center">
+<div class="text-center" *ngIf="pageItems && pageItems.length != 0">
   <button (click)="getPageItems(-1)" class="border-0 bg-light"><i class="fa-solid fa-angle-left"></i></button>
   page {{page}} of {{totalPages}}
   <button (click)="getPageItems(1)" class="border-0 bg-light"><i class="fa-solid fa-angle-right"></i> </button>

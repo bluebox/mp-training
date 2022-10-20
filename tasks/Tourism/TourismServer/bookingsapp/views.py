@@ -77,7 +77,12 @@ class UserList(APIView):
     List all snippets, or create a new snippet.
     """
     def get(self, request, format=None):
-        user_list = User.objects.all()
+        text=request.GET.get('text')
+        if text != '':
+            user_list = (User.objects.filter(name__icontains=text) | 
+                            User.objects.filter(email__icontains=text))
+        else:
+            user_list = User.objects.all()
         users, totalPages, page = listing(request, user_list)
         serializer = UserSerializer(users, many=True)
         return Response({
@@ -412,8 +417,8 @@ class BookingAdminViewset(APIView):
     authentication_classes=[JWTAuthentication]
 
     def get(self, request, format=None):
-        booking_list = BookingDetails.objects.filter(tourid__start_date__gt=datetime.datetime.utcnow())
-
+        text=request.GET.get('text')
+        booking_list = (BookingDetails.objects.filter(passenger_details__icontains=text))
         bookings, totalPages, page = listing(request, booking_list)
         serializer = BookingDetailSerializer(bookings, many=True)
         return Response({
@@ -485,7 +490,8 @@ class CancellationList(APIView):
     List all snippets, or create a new snippet.
     """
     def get(self, request):
-        cancellation_list = CancellationDetails.objects.all()
+        text = request.GET.get('text')
+        cancellation_list = CancellationDetails.objects.filter(refund_status__contains=text)
         items, totalPages, page = listing(request, cancellation_list)
         serializer = CancellationSerializer(items, many=True)
         return Response({

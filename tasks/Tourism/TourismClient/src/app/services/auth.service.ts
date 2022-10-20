@@ -41,20 +41,20 @@ export class AuthService {
     )
   }
 
-  // checkIfUserAuthenticated(): Promise<boolean> {
-  //   return new Promise((resolve)=> {
-  //     this.isAuthenticated.subscribe(res=>{
-  //       if(res){
-  //         console.log("guard subscribe true");
-  //         resolve(true)
-  //       }
-  //       else{
-  //         resolve(false)
-  //       }
-  //     }, err => {resolve(false)})
-  //   })
+  checkIfUserAuthenticated(): Promise<boolean> {
+    return new Promise((resolve)=> {
+      this.isAuthenticated.subscribe(res=>{
+        if(res){
+          console.log("guard subscribe true");
+          resolve(true)
+        }
+        else{
+          resolve(false)
+        }
+      }, err => {resolve(false)})
+    })
 
-  // }
+  }
 
   editUserProfile(userObj:any){
     return this.http.put('/api/bookings/user/', userObj).pipe(
