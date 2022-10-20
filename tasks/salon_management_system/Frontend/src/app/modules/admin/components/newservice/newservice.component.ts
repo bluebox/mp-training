@@ -15,7 +15,7 @@ export class NewserviceComponent implements OnInit {
 
   constructor(private http :HttpserviceService ,private router: Router) { }
   newServiceForm : FormGroup= new FormGroup({
-    service_id : new FormControl("",Validators.required),
+    // service_id : new FormControl("",Validators.required),
     service_name : new FormControl("",[Validators.required,Validators.maxLength(50)]),
     Amount_to_be_paid : new FormControl("",Validators.required)
   })

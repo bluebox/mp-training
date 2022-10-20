@@ -1,12 +1,20 @@
 .example-full-width {
-    width: 100%;
+    width: 40%;
+    padding-right: 10px;
+
 }
 
 .card1{
-  width :30%;
-  padding-left: 33%;
+  padding-top: 30px;
+  width :45%;
+  padding-left: 25%;
+}
+.card-2{
+  width: 50%;
+
 }
 .error-message{
   font-size: 15px;
   color: red;
 }
+ 

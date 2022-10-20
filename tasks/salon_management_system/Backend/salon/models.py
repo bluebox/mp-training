@@ -33,22 +33,29 @@ class Client(models.Model):
 
 def from_100():
     largest = Branch.objects.all().order_by('branch_id').last()
+    # smallest = Branch.objects.all().order_by('location').last()
+    # print(largest)
+    # print(largest.branch_id)
+    # print(smallest)
     if not largest:
         return 100
     return largest.branch_id + 1
 
 # def fromb1():
 #     largest = Branch.objects.all().order_by('branch_id').last()
-#     split_var = largest.split('B')
+#     id = largest.branch_id
+#     split_var = id.split('B')
 #     strinteger = split_var[1]
+#     strstring = split_var[0]
 #     integer = int(strinteger)
 #     if not largest:
-#         largest = 'B1'
-#         return largest
+#         # largest = 'B1'
+#         # return largest
+#         return 'B1'
 #     else:
 #         integer+=1
 #         integer = str(integer)
-#     return largest.branch_id+integer
+#     return strstring+integer
 
 class Branch(models.Model):
     """Branch model to store Branch details"""
@@ -71,7 +78,7 @@ def from_2500():
 
 class Employee(models.Model):
     """Employee model to store Employee details"""
-    emp_id = models.CharField(primary_key = True,max_length = 10, default=from_2500)
+    emp_id = models.IntegerField(primary_key = True,default=from_2500)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     branch_id = models.ForeignKey(Branch,  on_delete=models.CASCADE)
     role = models.CharField(max_length=20)
@@ -84,9 +91,15 @@ class Employee(models.Model):
     def __str__(self):
         return str(self.emp_id)
 
+def from_200():
+    largest = ServicesProvided.objects.all().order_by('service_id').last()
+    if not largest:
+        return 200
+    return largest.service_id + 1
+
 class ServicesProvided(models.Model):
     """ServicesProvided model to store ServicesProvided details"""
-    service_id = models.IntegerField(primary_key = True)
+    service_id = models.IntegerField(primary_key = True,default=from_200)
     service_name = models.CharField(max_length=50)
     Amount_to_be_paid = models.IntegerField()
 

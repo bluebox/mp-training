@@ -85,6 +85,15 @@ export class HttpserviceService {
   getappointments(){
     return this.http.get('http://127.0.0.1:8000/appointments/')
   }
+  getCurrentAppointment(id:any){
+    return this.http.get(`http://127.0.0.1:8000/getappointment/${id}`)
+  }
+  updateAppointment(id:any,data:any){
+    return this.http.post(`http://127.0.0.1:8000/updateappointment/${id}`,data)
+  }
+
+
+
   getSearchEmployees(text:any){
     return this.http.get('http://127.0.0.1:8000/serachemp?search='+text)
   }

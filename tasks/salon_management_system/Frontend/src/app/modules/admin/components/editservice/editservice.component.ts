@@ -18,7 +18,7 @@ export class EditserviceComponent implements OnInit {
   formNotValid : boolean = false;
   constructor(private http:HttpserviceService,private router:ActivatedRoute,private route:Router) { }
   editServiceForm : FormGroup= new FormGroup({
-    service_id : new FormControl("",Validators.required),
+    // service_id : new FormControl("",Validators.required),
     service_name : new FormControl("",[Validators.required,Validators.maxLength(50)]),
     Amount_to_be_paid : new FormControl("",Validators.required)
   })

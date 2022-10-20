@@ -28,7 +28,9 @@ import { NewbranchComponent } from './components/newbranch/newbranch.component';
 import { NewserviceComponent } from './components/newservice/newservice.component';
 import { EditbranchComponent } from './components/editbranch/editbranch.component';
 import { EditserviceComponent } from './components/editservice/editservice.component';
-import { UpdateappointmentComponent } from './components/updateappointment/updateappointment.component';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -48,7 +50,7 @@ import { UpdateappointmentComponent } from './components/updateappointment/updat
     NewserviceComponent,
     EditbranchComponent,
     EditserviceComponent,
-    UpdateappointmentComponent
+  
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,9 @@ import { UpdateappointmentComponent } from './components/updateappointment/updat
     ReactiveFormsModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class AdminModule { }

@@ -13,6 +13,8 @@ export class RegisteremployeeComponent implements OnInit {
   formError ?: string =""
   errorMessage : string = ""
   hide = true;
+  defaultvalue = "True";
+  defaultid = 2500;
 
   constructor(private http :HttpserviceService ,private router: Router) { }
 
@@ -24,11 +26,11 @@ export class RegisteremployeeComponent implements OnInit {
     last_name: new FormControl(""),
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl("", [Validators.minLength(8),Validators.required]),
-    // emp_id :new FormControl("",Validators.required),
+    emp_id :new FormControl(this.defaultid,Validators.required),
     branch_id : new FormControl(""),
     role : new FormControl("",Validators.required),
     emp_contact_number : new FormControl("",[Validators.maxLength(10), Validators.required]),
-    is_staff : new FormControl("")
+    is_staff : new FormControl(this.defaultvalue)
 
   })
 
@@ -41,7 +43,10 @@ export class RegisteremployeeComponent implements OnInit {
       this.http.newEmployee(this.employeeRegistrationForm.value).subscribe(data =>{
         // this.errorMessage = data.message
         // console.log(this.errorMessage)
+        console.log(this.defaultid)
         this.router.navigate(['admin/home'])
+        this.defaultid=this.defaultid+1
+        console.log(this.defaultid)
     })
     }
     else {

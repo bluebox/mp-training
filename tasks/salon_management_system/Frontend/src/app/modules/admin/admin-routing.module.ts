@@ -16,7 +16,7 @@ import { NewserviceComponent } from './components/newservice/newservice.componen
 import { RegisteremployeeComponent } from './components/registeremployee/registeremployee.component';
 import { ServicesComponent } from './components/services/services.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
-import { UpdateappointmentComponent } from './components/updateappointment/updateappointment.component';
+
 
 const routes: Routes = [
   {path:'',component : DashboardComponent,children:[
@@ -35,7 +35,7 @@ const routes: Routes = [
     {path : 'newservice',component : NewserviceComponent},
     {path:'updatebranch/:id',component : EditbranchComponent},
     {path : 'updateservice/:id',component : EditserviceComponent},
-    {path : 'updateappointment/:id',component:UpdateappointmentComponent}
+    
 
 ]}
   

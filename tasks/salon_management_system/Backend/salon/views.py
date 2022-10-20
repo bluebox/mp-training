@@ -194,7 +194,7 @@ class AppointmentList(APIView):
 
 class OneAppointment(APIView):
     def get(self,request,id):
-        appointmnet = Appointment.objects.get(service_id=id)
+        appointmnet = Appointment.objects.get(Appointment_id=id)
         serilaizer = AppointmentSerializer(appointmnet,many=False)
         return Response(serilaizer.data)
 
