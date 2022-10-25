@@ -1,23 +1,52 @@
-<html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        <form class="example-form" [formGroup]="loginform" (ngSubmit)="registerNewUser()">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Username</mat-label>
-              <input matInput placeholder="abc@gmail.com" (formControl) = "username">
-            </mat-form-field>
-            <span **ngIf = "username && username.invalid && username.touched">Something went Wron</span>
-          <br><br>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" (formControl) = "password">
-            </mat-form-field>
-        
-              <div class="example-button-row">
-                <button mat-raised-button>Login</button>
-              </div>
-          </form>
-    </body>
-</html>
+<div>
+  <mat-toolbar color="accent">
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <mat-icon>menu</mat-icon>
+</button> -->
+    <span>User Login</span>
+    <span class="example-spacer"></span>
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"> -->
+      <mat-icon>person</mat-icon>
+
+    <!-- </button> -->
+
+  </mat-toolbar>
+</div>
+<br>
+<div clas="container">
+
+  <form class="example-form" [formGroup]="loginform">
+    <mat-form-field appearance="outline">
+      <mat-label>User Type</mat-label>
+      <mat-select formControlName="user_type">
+        <mat-option *ngFor="let user of usersList" [value]="user.userValue">
+          {{user.users}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="abc@gmail.com" (formControl)="username">
+    </mat-form-field>
+    <span **ngIf="username && username.invalid && username.touched">Something went Wrong</span>
+    <br>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" (formControl)="password">
+    </mat-form-field>
+
+    <div class="example-button-row">
+      <button mat-raised-button class="warn" (click)="loginProcess()">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button mat-dialog-close color="warn">Close</button>
+    </div>
+  </form>
+  <div class="otheroptions">
+    <button mat-button [matMenuTriggerFor]="menu" color="primary">Signup</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openFacultySignup()" mat-dialog-close>Teacher</button>
+      <button mat-menu-item (click)="openStudentSignup()" mat-dialog-close>Student</button>
+    </mat-menu>
+    <button mat-button color="primary">Forgot Password?</button>
+  </div>
+</div>

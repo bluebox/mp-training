@@ -1,0 +1,95 @@
+<h1>Student Details</h1>
+
+<div class="data-container">
+
+<mat-form-field appearance="standard">
+  <mat-label>Global Search (case sensitive)</mat-label>
+  <input matInput (keyup)="applyFilter()" placeholder="Ex. MedPlus" #input [(ngModel)]="filterData">
+</mat-form-field>
+
+<div class="mat-elevation-z8" class="displaydata">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- First name column -->
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+    </ng-container>
+
+    <!-- last name Column -->
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.last_name}} </td>
+    </ng-container>
+
+    <!-- username Column -->
+    <ng-container matColumnDef="stud_username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+      <td mat-cell *matCellDef="let row"> {{row.stud_username}} </td>
+    </ng-container>
+
+    <!-- Gender Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+      <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+    </ng-container>
+
+    <!-- DOB Column -->
+    <ng-container matColumnDef="date_of_birth">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Birth </th>
+      <td mat-cell *matCellDef="let row"> {{row.date_of_birth | date:'dd-MMM-yyyy'}} </td>
+    </ng-container>
+
+    <!-- Father name Column -->
+    <ng-container matColumnDef="father_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Father Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.father_name}} </td>
+    </ng-container>
+
+    <!-- Roll Number Column -->
+    <ng-container matColumnDef="roll_no">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Roll No </th>
+      <td mat-cell *matCellDef="let row"> {{row.roll_no}} </td>
+    </ng-container>
+
+    <!-- Class code Column -->
+    <ng-container matColumnDef="class_code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Class Code </th>
+      <td mat-cell *matCellDef="let row"> {{row.class_code}} </td>
+    </ng-container>
+
+    <!-- User type Column -->
+    <ng-container matColumnDef="user_type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> User Type </th>
+      <td mat-cell *matCellDef="let row"> {{row.user_type}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit/Delete </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button  color="primary" (click)="editStudentDetails(row)">
+      <mat-icon>edit</mat-icon>
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-icon-button  color="warn" (click)="deleteStudentDetails(row.stud_username)">
+      <mat-icon>delete_outline</mat-icon> 
+      </button>
+      </td>
+    </ng-container>
+    
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+</div>
+
+

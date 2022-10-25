@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../.."
+		},
+		{
+			"name": "Django",
+			"path": "../../../../../Git Repo/Django"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Django-training"
+	}
+}
