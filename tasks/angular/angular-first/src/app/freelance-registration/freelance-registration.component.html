@@ -1,5 +1,4 @@
-
-<form  [formGroup]="freelanceRegister" (submit)="registerSubmit()"  id="formdata">
+<form [formGroup]="freelanceRegister" (submit)="registerSubmit()" id="formdata">
     <section class="h-100 bg-dark">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -18,40 +17,53 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
 
-                                                <input type="text" id="form3Example1m" formControlName="first_name" name="first_name"
-                                                    class="form-control form-control-lg" required />
-                                                <label class="form-label" for="form3Example1m">*First name</label>
+                                                <input type="text" id="form3Example1m" formControlName="first_name"
+                                                    name="first_name" class="form-control form-control-lg" required />
+                                                <label class="form-label" for="form3Example1m"> <span
+                                                        class="star">*</span>First name</label>
                                                 <br>
-            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="first_name && first_name.invalid && first_name.touched;">Invalid first name</small></b>
+                                                <b><small [ngStyle]="{'color': '#F24C4C'}"
+                                                        *ngIf="first_name && first_name.invalid && first_name.touched;">Invalid
+                                                        first name</small></b>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
-                                                <input type="text" id="form3Example1n" formControlName="last_name" name="last_name"
-                                                    class="form-control form-control-lg" required />
-                                                <label class="form-label" for="form3Example1n">*Last name</label>
+                                                <input type="text" id="form3Example1n" formControlName="last_name"
+                                                    name="last_name" class="form-control form-control-lg" required />
+                                                <label class="form-label" for="form3Example1n"><span
+                                                        class="star">*</span>Last name</label>
                                                 <br>
-            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="last_name && last_name.invalid && last_name.touched;">Invalid last name</small></b>
+                                                <b><small [ngStyle]="{'color': '#F24C4C'}"
+                                                        *ngIf="last_name && last_name.invalid && last_name.touched;">Invalid
+                                                        last name</small></b>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="form3Example97" formControlName="email_id" name="email_id"
-                                            class="form-control form-control-lg" required />
-                                        <label class="form-label" for="form3Example97">*Email ID</label>
+                                        <input type="text" id="form3Example97" formControlName="email_id"
+                                            name="email_id" class="form-control form-control-lg" required />
+                                        <label class="form-label" for="form3Example97"><span class="star">*</span>Email
+                                            ID</label>
                                         <br>
-            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="email_id && email_id.invalid && email_id.touched;">Invalid Email Id</small></b>
+                                        <b><small [ngStyle]="{'color': '#F24C4C'}"
+                                                *ngIf="email_id && email_id.invalid && email_id.touched;">Invalid Email
+                                                Id</small></b>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <input type="number" id="form3Example98" formControlName="phone_number" name="phone_number"
-                                            class="form-control form-control-lg" required />
-                                        <label class="form-label" for="form3Example98">*Phone number</label>
+                                        <input type="number" id="form3Example98" formControlName="phone_number"
+                                            name="phone_number" class="form-control form-control-lg" required />
+                                        <label class="form-label" for="form3Example98"><span class="star">*</span>Phone
+                                            number</label>
                                         <br>
-            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="phone_number && phone_number.invalid && phone_number.touched;">Invalid phone number </small></b>
+                                        <b><small [ngStyle]="{'color': '#F24C4C'}"
+                                                *ngIf="phone_number && phone_number.invalid && phone_number.touched;">Invalid
+                                                phone number </small></b>
                                     </div>
-                                    <p>*Country</p>
+                                    <p><span class="star">*</span>Country</p>
                                     <div class="form-outline mb-4">
-                                        <select required name="country" formControlName="country" class="form-outline mb-4">
+                                        <select required name="country" formControlName="country"
+                                            class="form-outline mb-4">
                                             <option value="Afghanistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
                                             <option value="Algeria">Algeria</option>
@@ -302,24 +314,33 @@
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
                                         <br>
-                                        <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="country && country.invalid && country.touched;">select country </small></b>
-                                         <br> <br>
+                                        <b><small [ngStyle]="{'color': '#F24C4C'}"
+                                                *ngIf="country && country.invalid && country.touched;">select country
+                                            </small></b>
+                                        <br> <br>
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="form3Example99" formControlName="password" name="password"
-                                                class="form-control form-control-lg" required />
-                                            <label class="form-label" for="form3Example99">*password</label>
+                                            <input type="password" id="form3Example99" formControlName="password"
+                                                name="password" class="form-control form-control-lg" required />
+                                            <label class="form-label" for="form3Example99"><span
+                                                    class="star">*</span>password</label>
                                             <br>
-                                            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="password && password.invalid && password.touched;">Invalid password</small></b>
+                                            <b><small [ngStyle]="{'color': '#F24C4C'}"
+                                                    *ngIf="password && password.invalid && password.touched;">Invalid
+                                                    password</small></b>
 
                                         </div>
+                                        <!-- <div class="form-outline" style="text-align:center;font-size:20px">
+                                            NOTE : <span class="star">*</span> Fields are mandatory</div> -->
                                         <div class="d-flex justify-content-end pt-3">
-                                            <button type="button" class="btn btn-light btn-lg" (click)="reset()" >Reset
-                                                all</button> <br>
-                                            <input type="submit" class="btn btn-light btn-lg" [disabled]="freelanceRegister.invalid" value="submit">
+                                            <button type="button" class="btn btn-light btn-lg" style="background-color:aquamarine" (click)="reset()">Reset
+                                                all</button> &nbsp; &nbsp;
+                                            <input type="submit" style="background-color:aquamarine" class="btn btn-light btn-lg"
+                                                [disabled]="freelanceRegister.invalid" value="submit">
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="" routerLink="../login"
-                                                class="fw-bold text-body"><u>Login here</u></a></p>
+                                            <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                                                    href="" routerLink="../login" class="fw-bold text-body"><u>Login
+                                                        here</u></a></p>
                                         </div>
                                     </div>
                                 </div>

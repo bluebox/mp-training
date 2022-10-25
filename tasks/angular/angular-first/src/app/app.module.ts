@@ -36,6 +36,7 @@ import { TableModule } from 'primeng/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditJobComponent } from './clogin_page/edit-job/edit-job.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +77,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatIconModule,
     TableModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+
 
   ],
   providers: [],

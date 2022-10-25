@@ -85,6 +85,9 @@ table{
 
 
 
-ul{
+.main{
+    margin-top: 1px;
     min-height: 70vh;
+    background-color: black;
+    border: 1px solid white;
 }

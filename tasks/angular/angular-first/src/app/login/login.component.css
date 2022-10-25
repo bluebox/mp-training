@@ -1,3 +1,15 @@
-.vh-100{
+.vh-100 {
     background-color: black;
+}
+
+
+.background-red {
+    background-color: rgb(0, 0, 0);
+    color: green;
+}
+
+::ng-deep .background-red  {
+    color: black;
+    background-color: aquamarine;
+
 }

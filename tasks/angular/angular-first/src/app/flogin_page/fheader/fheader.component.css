@@ -15,7 +15,7 @@
 .smart-scroll{
     position: relative;
     top: 0;
-    left: -10px;
+    left: -15px;
     right: -10px;
     justify-content: space-between;
 
@@ -43,3 +43,8 @@ ul li a{
     padding-top: 72px;
 }
 
+::ng-deep .background-red {
+    color: black;
+    background-color: aquamarine;
+  
+  }
