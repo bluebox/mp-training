@@ -18,6 +18,7 @@ export class IndexComponent implements OnInit {
   
 
  public user:any;
+ public resData:any;
  message=""
   public search:string="";
   public food:any[]=[];
@@ -65,7 +66,14 @@ export class IndexComponent implements OnInit {
   
   }
 
-  resClicked(r:Restaurant){}
+  resClicked(r:any){
+    this.res.getOneRes(r).subscribe(data=>{
+      console.log(data)
+      this.resData=data})
+
+      this.router.navigate(['/customer/restaurantpage',r])
+
+  }
 
 
   searchFood=(item:string)=>

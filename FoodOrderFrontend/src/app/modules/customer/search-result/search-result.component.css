@@ -1,0 +1,22 @@
+.cards
+{
+    display: grid;
+  grid-template-columns: auto auto;
+}
+
+.card{
+    margin:1%;
+    padding:2%;
+    width: 95%;
+}
+.inside
+{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+
+.title
+{
+    margin:2%;
+}

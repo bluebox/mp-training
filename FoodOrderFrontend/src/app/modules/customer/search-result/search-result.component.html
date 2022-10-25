@@ -1,13 +1,18 @@
 
 
-<h1>Releted Result</h1>
+<h1 class="title">Releted Result</h1>
 
 <div class="cards">
     <div class="card" *ngFor="let key of res">
-      
-        <h2 (click)="resClicked(key)">Restaurant: {{key}}</h2>
+    <div class="inside" (click)="resClicked(key.restaurant_id)">
+    <div class="left box">
+        <h2 (click)="resClicked(key.restaurant_id)">Restaurant: {{key.restaurant_name}}</h2>
         <h2>Location: {{key.restaurant_city}}</h2>
-       
+         </div>
+         <div class="right box">
+            <img src="{{key.restaurant_photo}}" alt="key.restaurant_name">
+         </div>
+</div> 
 </div>
 </div>
 

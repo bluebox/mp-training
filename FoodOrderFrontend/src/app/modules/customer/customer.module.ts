@@ -14,8 +14,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import { IndexComponent } from './index/index.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { RestaurantPageComponent } from './restaurant-page/restaurant-page.component';
-
-
+import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule} from '@angular/forms';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { RestaurantPageComponent } from './restaurant-page/restaurant-page.compo
     SigninComponent,
     IndexComponent,
     SearchResultComponent,
-    RestaurantPageComponent
+    RestaurantPageComponent,
+    ProfileComponent,
+    NavbarComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
@@ -35,8 +41,9 @@ import { RestaurantPageComponent } from './restaurant-page/restaurant-page.compo
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatMenuModule
-
+    MatDialogModule,
+    MatMenuModule,
+    FormsModule
 
 
     

@@ -30,4 +30,12 @@ export class RestaurantService {
   getOneRes(id:string):Observable<any[]>{
     return this.http.get<any[]>(this.url + id + "/")
   }
+
+  editUser(data:object,id:any){
+    return this.http.post<any>(this.url+id+'/',data)
+  }
+
+  delRes(id:string):Observable<any[]>{
+    return this.http.delete<any[]>(this.url + id + "/")
+  }
 }

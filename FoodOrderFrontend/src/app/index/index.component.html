@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container">
   <div class="top">
       <div class="text">
@@ -31,7 +32,7 @@
     <h2 class="heading">Best Restaurants</h2>
     <div class="cards">  
       <div class="card" *ngFor="let r of restaurant">
-          <img class="image" src="{{r.restaurant_photo}}" (click)="resClicked(r)" class="card-img-top" alt="{{r.restaurant_name}}"/>
+          <img class="image" src="{{r.restaurant_photo}}" (click)="resClicked(r.restaurant_id)" class="card-img-top" alt="{{r.restaurant_name}}"/>
           <div class="card-body">
             <h2>{{r.restaurant_name}}</h2>
             

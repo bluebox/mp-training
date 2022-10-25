@@ -21,6 +21,9 @@ import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { AddFoodtoMenuComponent } from './menu/add-foodto-menu/add-foodto-menu.component';
 import { FoodComponent } from './main-page/food/food.component';
 import { MenublockComponent } from './main-page/menublock/menublock.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+
 
 
 @NgModule({
@@ -34,7 +37,9 @@ import { MenublockComponent } from './main-page/menublock/menublock.component';
     MenuListComponent,
     AddFoodtoMenuComponent,
     FoodComponent,
-    MenublockComponent
+    MenublockComponent,
+    NavbarComponent,
+    EditUserComponent
  
   
   ],
@@ -50,7 +55,8 @@ import { MenublockComponent } from './main-page/menublock/menublock.component';
     ReactiveFormsModule,
     MatCheckboxModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
 
   ]
 })

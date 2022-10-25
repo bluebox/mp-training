@@ -7,8 +7,8 @@
         <button mat-raised-button color="primary" routerLink="../customer/login" *ngIf="!authenticated">Login</button>
         <button mat-raised-button color="primary" routerLink="../customer/signin" *ngIf="!authenticated">SignIn</button>
         <button mat-raised-button color="primary" (click)="logout()" *ngIf="authenticated">Logout</button>
-        <button mat-raised-button color="primary" routerLink="../customer/profile" *ngIf="authenticated">profile</button>
         <button mat-raised-button color="primary" (click)="cart()" *ngIf="authenticated">Cart</button>
+        <button mat-raised-button color="primary" routerLink="../customer/profile" *ngIf="authenticated">profile</button>
         <button mat-button [matMenuTriggerFor]="belowMenu" *ngIf="!authenticated">Manage Restaurant</button>
         <mat-menu #belowMenu="matMenu" yPosition="below">
             <button mat-menu-item routerLink="../restaurants/login">Login</button>

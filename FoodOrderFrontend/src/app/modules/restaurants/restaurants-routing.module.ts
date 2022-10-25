@@ -7,6 +7,7 @@ import { FoodComponent } from './main-page/food/food.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MenublockComponent } from './main-page/menublock/menublock.component';
 import { MenuComponent } from './menu/menu.component';
+import { ProfileComponent } from './profile/profile.component';
 import { SigninComponent } from './signin/signin.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path:'main',component:MainPageComponent},
     {path:'menu',component:MenuComponent},
     {path:'food',component:FoodComponent},
+    {path:'profile',component:ProfileComponent},
     {path:'menublock',component:MenublockComponent},
   ]}
 ];

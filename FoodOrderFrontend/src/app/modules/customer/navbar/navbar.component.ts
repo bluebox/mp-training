@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Emitters } from '../emitters/emitters';
-import { LoginService } from '../services/login.service';
+import { Emitters } from 'src/app/emitters/emitters';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-navbar-cus',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  authenticated=false
+authenticated=false
 user:any;
 message=""
   constructor(private loginService:LoginService,public router:Router) { }
@@ -24,11 +24,15 @@ message=""
   }
   logout()
   {
-    this.loginService.logout().subscribe((data)=>{
+    this.loginService.logout().subscribe(()=>{
       this.authenticated=false
+
       this.router.navigate([''])
+      
+    
      
     })
+    
   }
   loginCheck(){
     this.loginService.loginCheck().subscribe((data)=>{
@@ -48,5 +52,7 @@ message=""
   }
 
   cart()
-  {}
+  {
+    
+  }
 }

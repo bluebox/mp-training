@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Emitters } from 'src/app/emitters/emitters';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -32,15 +33,11 @@ export class LoginComponent implements OnInit {
         console.log(data.body)  
         console.log(data.body.success)
           if(data.body.success=='True'){
-
+            Emitters.authEvent.emit(true)
           this.route.navigate(['../']) }
-
-  
           else{
             alert("Error!!")
           }
-      
-    
       })
    
       }
