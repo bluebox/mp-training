@@ -121,9 +121,29 @@ class FoodOneRes(APIView):
         else:
             return Response(serializer.data)
 
-    def post(self, request):
-        return HttpResponse("Heyyyyyyyy post", status=405)
+    def post(self, request,id):
+        print(id)
+        item = Restaurant.objects.get(restaurant_id=id)
+        print(item)
+        data = RestaurantSerializer(instance=item, data=request.data)
 
+        if data.is_valid():
+            data.save()
+            print("saved")
+            return Response(data.data)
+        else:
+            print(" not saved")
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, id):
+        print("in django")
+        item = Restaurant.objects.get(restaurant_id=id)
+        print(item)
+        print("start delete")
+
+        item.delete()
+        print("deleted")
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class RestaurantData(APIView):
     def get(self, request):
@@ -160,7 +180,7 @@ class SearchData(APIView):
     def get(self, request, item):
         print(item)
         # restaurant = []
-        restaurant = Restaurant.objects.filter(food__food_name__icontains=item).values_list('restaurant_id', flat=True)
+        restaurant = Restaurant.objects.filter(food__food_name__icontains=item).values()
         #food = Food.objects.all().select_related("restaurant").filter(food_name__icontains=item)
         # print(food)
         # for f in food:
@@ -508,11 +528,41 @@ class UserView(APIView):
 
 
 class Logout(APIView):
-    def post(self,request):
+    def get(self,request):
+        print("logging outrr")
         response=Response()
+        print(response)
         response.delete_cookie('jwt')
         response.data={
             'message':"User logged out"
         }
 
+
+
         return response
+
+
+class OneCustomer(APIView):
+    def post(self,request,id):
+        print(id)
+        item = Customer.objects.get(customer_id=id)
+        print(item)
+        data = CustomerSerializer(instance=item, data=request.data)
+
+        if data.is_valid():
+            data.save()
+            print("saved")
+            return Response(data.data)
+        else:
+            print(" not saved")
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, id):
+        print("in django")
+        item = Customer.objects.get(customer_id=id)
+        print(item)
+        print("start delete")
+
+        item.delete()
+        print("deleted")
+        return Response(status=status.HTTP_204_NO_CONTENT)
