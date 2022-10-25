@@ -133,3 +133,4 @@ dmypy.json
 .vscode
 .github
 .idea/workspace.xml
+Django/template/loginpage.html
