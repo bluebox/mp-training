@@ -27,7 +27,7 @@ def test_numbers_int_arithmetic_operations():
 def test_numbers_string_to_int():
     """hint: execute  print int.__doc__ in python console
        to find out what int(..) does"""
-    assert 255 == int("FF", 16)
+    assert 255 == int("0xFF", 0)
     assert 63 == int("77", 8)
 
 
@@ -43,9 +43,9 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+- we have a method in python to convert a decimal number to octal
+- a method to convert decimal to hexadecemal
+- we can also use prefixes instead of mentioning base and 0 can be used as a base in that case
 """
 
 time_taken_minutes = 4
