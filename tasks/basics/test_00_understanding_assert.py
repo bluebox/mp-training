@@ -36,9 +36,9 @@ def test_make_assert_true_3():
     assert s1 == s2, "Not equal"
 
 three_things_i_learnt = """
-assert ==bool
--
--
+- assert == bool
+- how assert statement works
+- assertion failure message can also be added to the assert statement
 """
 
 time_taken_minutes = 1
