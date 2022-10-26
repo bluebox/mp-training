@@ -42,6 +42,7 @@ export class AddPackageComponent implements OnInit {
           // this.videoUrl = packageObj.video
           this.PackageForm.get('description')?.setValue(packageObj.description);
           this.tours.setValue(packageObj.tours);
+          // this.tours.setValue(packageObj.tours.map((tour: { id: any; }) => tour.id));
         },
         err => alert(err.error.detail)
       );

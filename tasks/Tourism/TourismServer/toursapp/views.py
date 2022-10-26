@@ -397,9 +397,19 @@ class PackageDetailed(APIView):
 
 
     def get(self, request, pk, format=None):
+        # package = self.get_object(pk)
+        # serializer = PackageDetailSerializer(package)
+        # return Response(serializer.data)
         package = self.get_object(pk)
         serializer = PackageDetailSerializer(package)
-        return Response(serializer.data)
+        data = serializer.data
+        tours = []
+        for i in data['tours']:
+            if datetime.datetime.strptime(i['start_date'].split('T')[0], "%Y-%m-%d") > datetime.datetime.utcnow():
+                tours.append(i)
+        data['tours'] = tours
+
+        return Response(data)
 
 
 class PackageDetails(APIView):
@@ -421,8 +431,16 @@ class PackageDetails(APIView):
     def get(self, request, pk, format=None):
         package = self.get_object(pk)
         serializer = PackageSerializer(package)
-
+        # data = serializer.data
+        # tours = []
+        # for i in data['tours']:
+        #     if datetime.datetime.strptime(i['start_date'].split('T')[0], "%Y-%m-%d") > datetime.datetime.utcnow():
+        #         tours.append(i)
+        # data['tours'] = tours
+        #
+        # return Response(data)
         return Response(serializer.data)
+
 
     def put(self, request, pk, format=None):
         package = self.get_object(pk)

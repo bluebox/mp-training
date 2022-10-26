@@ -25,8 +25,8 @@ export class PackageToursComponent implements OnInit {
           let packageString = JSON.stringify(res);
           let packageData = JSON.parse(packageString);
           this.packageName = packageData.package_name;
-          // this.tourList = packageData.tours;
-          this.tourList = packageData.tours.filter((tour: any) => new Date(tour.start_date) > new Date())
+          this.tourList = packageData.tours;
+          // this.tourList = packageData.tours.filter((tour: any) => new Date(tour.start_date) > new Date())
           console.log(this.tourList);
         }
       )
