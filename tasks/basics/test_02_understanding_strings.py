@@ -45,7 +45,7 @@ def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
 
 def test_triple_quoted_strings_can_span_lines():
     tq_str = """Hello
-World"""
+    World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
 
@@ -57,7 +57,7 @@ def test_triple_quoted_strings_can_span_lines():
     string = """Hello
     World"""
     assert True == isinstance(string, str)
-    assert 15 == len(string)
+    assert 11 == len(string)
 
 def test_strings_can_be_indexed():
     string = "Hello"
@@ -96,37 +96,37 @@ def test_strings_are_immutable():
         assert True
 
 def test_string_concat():
-    assert "Hello  world"== "Hello " + " world"
-    assert 'Hello world'== """Hello """ + 'world'
-    assert 'Hello world'== 'Hello ' + "world"
+    assert "Hello  world" == "Hello " + " world"
+    assert 'Hello world' == """Hello """ + 'world'
+    assert 'Hello world' == 'Hello ' + "world"
 
 
 def test_string_slicing():
     """ Slicing creates new strings """
     string = "Hello world"
     #with begin : end
-    assert ''== string[0:0]
+    assert '' == string[0:0]
 
     assert 'He' == string[0:2]
-    assert 'ello'== string[1:5]
-    assert 'ello worl'== string[1:-1]
-    assert 'llo wor'== string[2:-2]
+    assert 'ello' == string[1:5]
+    assert 'ello worl' == string[1:-1]
+    assert 'llo wor' == string[2:-2]
 
     #with :end
-    assert ''== string[:0]
-    assert 'Hell'== string[:4]
-    assert 'Hello worl'== string[:-1]
+    assert '' == string[:0]
+    assert 'Hell' == string[:4]
+    assert 'Hello worl' == string[:-1]
 
     #with begin:
-    assert 'Hello world'== string[0:]
-    assert 'o world'== string[4:]
-    assert 'd'== string[-1:]
+    assert 'Hello world' == string[0:]
+    assert 'o world' == string[4:]
+    assert 'd' == string[-1:]
 
     #observe the invariant
     assert 'Hello world' == string[:0] + string[0:]
     assert 'Hello world' == string[:1] + string[1:]
-    assert 'Hello world'== string[:2] + string[2:]
-    assert 'Hello world'== string[:3] + string[3:]
+    assert 'Hello world' == string[:2] + string[2:]
+    assert 'Hello world' == string[:3] + string[3:]
 
 
 def test_string_repeat():
@@ -139,29 +139,29 @@ def test_string_combine():
     """
     hello = "Hello World"
     bye = "Goodbye moon"
-    assert  bye[0:8] + hello[6:]  == "Goodbye World"
+    assert  bye[0:8] + hello[6:] == "Goodbye World"
 
 def test_string_formatting():
     greeting = "Hello '{0}'".format("learner")
-    assert "Hello 'learner'"== greeting
+    assert "Hello 'learner'" == greeting
 
     truth = "{1} plus {1} makes {0}".format("two","one")
     assert truth == 'one plus one makes two'
 
 
     stmt = "{name} is {age} years old".format(name="Ravi", age=25)
-    assert 'Ravi is 25 years old'== stmt
+    assert 'Ravi is 25 years old' == stmt
 
 def test_string_membership():
-    assert False== ('c' in 'apple')  #is there a precedence issue here?
+    assert False == ('c' in 'apple')  #is there a precedence issue here?
     assert True == ('a' in 'apple')
-    assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
+    assert  True == ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
 
 three_things_i_learnt = """
--strings are immutable
+-chars are strings too
 -strings can be accessed through indexing
--strings can be sliced
+-learned different ways in which string formatting can be done
 """
 
 time_taken_minutes = 20
