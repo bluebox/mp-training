@@ -162,6 +162,9 @@ three_things_i_learnt = """
 -strings are immutable
 -strings can be accessed through indexing
 -strings can be sliced
+-stings can be accessed from end by using negative indexing
+-triple quoted, double quoted and single quoted strings are the same
+-different quotes can be used if quotes are present in string (as an option for escape sequence)
 """
 
 time_taken_minutes = 20
