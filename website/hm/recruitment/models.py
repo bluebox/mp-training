@@ -22,13 +22,11 @@ class candidate_info(models.Model):
 
     cid = models.IntegerField(primary_key=True,default="-")
     name = models.CharField(max_length=50,default="-")
-    contact = models.IntegerField(default=0,unique=True)
+    contact = models.CharField(max_length=10,default='0',unique=True)
     age = models.CharField(max_length=50,default="-")
     mail = models.EmailField(max_length=50,unique = True)
     gender = models.CharField(max_length=50,default="-")
     #cv = models.ImageField(upload_to='images/',default="-")
-    sheet_no =models.CharField(max_length=10,default="-")
-    status =models.CharField(max_length=10,default="-")
     addharcard_no = models.IntegerField(unique=True,default=0)
 
 class applying(models.Model):
@@ -43,16 +41,18 @@ class applying(models.Model):
 
 class assesment(models.Model):
     cid = models.ForeignKey("candidate_info", on_delete=models.CASCADE)
+    vid=models.ForeignKey("vaacancy",on_delete=models.CASCADE)
     name = models.CharField(max_length=20,default="-")
-    apptitute = models.IntegerField(default="-")
-    codeing = models.IntegerField(default="-")
-    interview1 = models.IntegerField(default="-")
-    interview2 = models.IntegerField(default="-")
-    result = models.CharField(max_length=50,default="-")
+    apptitute = models.CharField(max_length=10,default="pending")
+    codeing =models.CharField(max_length=10,default="pending")
+    interview1 =models.CharField(max_length=10,default="pending")
+    interview2 = models.CharField(max_length=10,default="pending")
+    result = models.CharField(max_length=50,default="AA")
+    update = models.CharField(max_length=50,default="APPLICATION UNDER REVIEW")
 
 class vaacancy(models.Model):
-    vid = models.IntegerField(primary_key=True)
-    designeation_id = models.ForeignKey(designation, on_delete=models.CASCADE)
+    vid = models.IntegerField(db_column="test", primary_key=True)
+    designeation = models.ForeignKey(designation, on_delete=models.CASCADE)
     salary = models.CharField(max_length=50,default="-")
     skill  = models.CharField(max_length=50,default="-")
     experience = models.CharField(max_length=50,default="-")

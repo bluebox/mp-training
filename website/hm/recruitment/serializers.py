@@ -22,11 +22,13 @@ class assesment_serializers(serializers.ModelSerializer):
     class Meta:
         model  = assesment
         fields = ('cid',
+                  'vid',
                   "name",
                   'apptitute',
                   'codeing',
                   'interview1',
                   'interview2',
+                  'update',
                   'result',
                                   )
     def decider(self,data):
@@ -38,7 +40,7 @@ class vacancy_serializers(serializers.ModelSerializer):
     class Meta:
         model  = vaacancy
         fields = ('vid',
-                  'designeation_id',
+                  'designeation',
                   'salary',
                   'skill',
                   'experience',

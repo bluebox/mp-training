@@ -13,7 +13,7 @@ import random
 
 
 from login.models import*
-@csrf_exempt
+
 class logindata(APIView):
     def post(self, request, format=None):
         data = request.data

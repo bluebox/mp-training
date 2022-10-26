@@ -6,4 +6,5 @@ urlpatterns = [
 
     path('', views.emplogin, name='emplogin'),
     path('candiatelogin', views.candiatelogin.as_view(), name='candiatelogin'),
+    path('verify', views.verify.as_view(), name='candiatelogin'),
  ]
