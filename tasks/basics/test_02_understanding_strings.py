@@ -6,35 +6,42 @@ notes = """string is one of the most commonly used data types, it has different
 behavior than a char* in C."""
 
 def test_string_type():
-    assert 'str'== type("Hello World").__name__
-    assert True== isinstance("Hello World", str)
+    assert 'str' == type("Hello World").__name__
+    assert True == isinstance("Hello World", str)
 
 def test_single_quoted_strings_are_strings():
-    assert True== isinstance('Hello World', str)
+    assert True == isinstance('Hello World', str)
+
 
 def test_double_quoted_strings_are_strings():
-    assert True== isinstance("Hello World", str)
+    assert True == isinstance("Hello World", str)
+
 
 def test_triple_quoted_strings_are_strings():
-    assert True== isinstance("""Hello World""", str)
+    assert True == isinstance("""Hello World""", str)
+
 
 def test_triple_single_quoted_strings_are_strings():
     assert True== isinstance('''Hello World''', str)
 
+
 def test_raw_strings_are_strings():
     assert True == isinstance(r"Hello World", str)
+
 
 def test_single_quoted_strings_can_have_double_quotes():
     first = 'The pilot said "Jump"'
     second = "The pilot said \"Jump\""  #note back slash escaping of "
     are_equal = (first == second)
-    assert True== are_equal
+    assert True == are_equal
+
 
 def test_double_quoted_strings_can_have_single_quotes():
     first = "The pilot said 'Jump'"
     second = 'The pilot said \'Jump\''  #note back slash escaping of '
     are_equal = (first == second)
     assert True== are_equal
+
 
 def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
     """ Edit tq_str to make are_equal True """
@@ -43,11 +50,13 @@ def test_triple_quoted_strings_can_have_both_single_and_double_quotes():
     are_equal = (tq_str == dq_str)
     assert  False == are_equal
 
+
 def test_triple_quoted_strings_can_span_lines():
     tq_str = """Hello
 World"""
     dq_str = "Hello\nWorld"   # what is the double quoted form of tq_str
     assert (tq_str == dq_str)
+
 
 def test_string_len():
     assert 13 == len("Hello 'world'")
@@ -85,6 +94,7 @@ def test_chars_are_strings_too():
     assert 'str' == type(first_char).__name__
     assert 'str' == type('a').__name__
     assert 'str'== type("a").__name__
+
 
 def test_strings_are_immutable():
     """ strings in python cannot be modified unlike in C """
@@ -139,7 +149,8 @@ def test_string_combine():
     """
     hello = "Hello World"
     bye = "Goodbye moon"
-    assert  bye[0:8] + hello[6:]  == "Goodbye World"
+    assert  bye[:8] + hello[6:]  == "Goodbye World"
+
 
 def test_string_formatting():
     greeting = "Hello '{0}'".format("learner")
@@ -153,15 +164,15 @@ def test_string_formatting():
     assert 'Ravi is 25 years old'== stmt
 
 def test_string_membership():
-    assert False== ('c' in 'apple')  #is there a precedence issue here?
+    assert False == ('c' in 'apple')  #is there a precedence issue here?
     assert True == ('a' in 'apple')
-    assert  True== ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
+    assert  True == ('app' in 'apple')  # '==' and 'in' operators have same precedence are interpreted from left to right in the expression
 
 
 three_things_i_learnt = """
--strings are immutable
--strings can be accessed through indexing
--strings can be sliced
+-strings are immutable i.e once they are initialized they can't be altered.
+-strings can be accessed through indexing and the accessed characters are also considered as String 
+-strings can be sliced and we can format Strings with Other Data types using .format in python 2 or directly using f"" in python 3
 """
 
 time_taken_minutes = 20
