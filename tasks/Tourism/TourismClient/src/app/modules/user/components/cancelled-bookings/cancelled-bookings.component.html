@@ -1,0 +1,29 @@
+
+<div class="container" *ngIf="bookings">
+  <h1 class="text-danger text-center m-3" *ngIf="bookings.length == 0">No Cancelled Bookings</h1>
+  <!-- <h1 class="text-uppercase text-primary">Cancelled Trips</h1> -->
+  <div class="row border pt-2 pb-2 mb-3"
+   *ngFor="let booking of bookings"
+   [ngStyle]="{'background-color': booking.isCancelled ? '#aaabad' : 'transparent'}">
+    <div class="col-4">
+      <img [src]="booking.tourid.image" alt="tour_image" width="100%" height="100%" />
+    </div>
+    <div class="col-8">
+      <div class="row text-start">
+        <div class="mb-2 col-12 text-uppercase">{{booking.tourid.tour_name}}</div>
+        <div class="mb-2 col-5 fw-bold">{{booking.tourid.tour_from}} Tour</div>
+        <div class="mb-2 col-2">------</div>
+        <div class="mb-2 col-5 fw-bold">{{booking.tourid.tour_to}} Tour</div>
+        <div class="mb-2 col-12">Transaction Id: {{booking.paymentid.transaction_id}}</div>
+        <div class="mb-2 col-5 ">Trip Date: {{(booking.tourid?.start_date).split('T')[0]}}</div>
+        <div class="mb-2 col-2 "></div>
+        <div class="mb-2 col-5 ">Time: {{(booking.tourid?.start_date).split('T')[1]}}</div>
+        <div class="mb-2 col-5 ">Total Price: {{booking.paymentid.total_price}}</div>
+        <div class="mb-2 col-2 "></div>
+        <div class="mb-2 col-5 ">Number of Tourists: {{booking.no_of_people}}</div>
+        <div class="mb-2 col-6 text-danger" *ngIf="booking.isCancelled">cancelled</div>
+        <div class="mb-2 col-6"><button class="" (click)="navigateToBooking(booking.id)">view details</button></div>
+      </div>
+    </div>
+  </div>
+</div>

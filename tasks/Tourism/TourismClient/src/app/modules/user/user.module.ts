@@ -27,6 +27,9 @@ import { PackageToursComponent } from './components/package-tours/package-tours.
 import { AllFeedbacksComponent } from './components/all-feedbacks/all-feedbacks.component';
 import { BookingPageComponent } from './components/booking-page/booking-page.component';
 import { BgVideoComponentComponent } from './components/bg-video-component/bg-video-component.component';
+import { UpcomingBookingsComponent } from './components/upcoming-bookings/upcoming-bookings.component';
+import { PreviousBookingsComponent } from './components/previous-bookings/previous-bookings.component';
+import { CancelledBookingsComponent } from './components/cancelled-bookings/cancelled-bookings.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import { BgVideoComponentComponent } from './components/bg-video-component/bg-vi
     AllFeedbacksComponent,
     BookingPageComponent,
     BgVideoComponentComponent,
+    UpcomingBookingsComponent,
+    PreviousBookingsComponent,
+    CancelledBookingsComponent,
 
   ],
 

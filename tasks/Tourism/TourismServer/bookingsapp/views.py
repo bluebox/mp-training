@@ -366,6 +366,7 @@ class BookingViewset(APIView):
     def post(self, request, format=None):
         user = User.objects.get(email=request.user)
         request.data['transaction_id'] = uuid.uuid1()
+        request.data['userid'] = user.id
         serializer = BookingSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

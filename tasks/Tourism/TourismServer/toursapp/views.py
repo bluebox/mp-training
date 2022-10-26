@@ -98,6 +98,13 @@ class AllToursListViewSet(APIView):
         serializer = TourDetailSerializer(tours, many=True)
         return Response(serializer.data)
 
+class AllUserToursListViewSet(APIView):
+
+    def get(self, request, format=None):
+        tours = Tour.objects.filter(start_date__gt=datetime.datetime.utcnow())
+        serializer = TourDetailSerializer(tours, many=True)
+        return Response(serializer.data)
+
 
 class ToursListViewSet(APIView):
 
@@ -125,7 +132,7 @@ class ToursListViewSet(APIView):
 
 class ToursFilterByType(APIView):
     def get(self, request, tour_type=''):
-        tours = Tour.objects.filter(tour_type__contains=tour_type)
+        tours = Tour.objects.filter(tour_type__contains=tour_type, start_date__gt=datetime.datetime.utcnow())
         serializer = TourDetailSerializer(tours, many=True)
         return Response(serializer.data)
 
@@ -414,6 +421,7 @@ class PackageDetails(APIView):
     def get(self, request, pk, format=None):
         package = self.get_object(pk)
         serializer = PackageSerializer(package)
+
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):

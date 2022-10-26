@@ -9,6 +9,7 @@ urlpatterns = [
     path('vehicles/', views.VehicleList.as_view(), name='vehicle' ),
     path('vehicles/<int:pk>', views.VehicleDetails.as_view(), name='vehicle' ),
     path('all_tours_list/', views.AllToursListViewSet.as_view(), name='tours' ),
+    # path('all_user_tours/', views.AllUserToursListViewSet.as_view(), name='tours' ),
     path('tours_list/', views.ToursListViewSet.as_view(), name='tours' ),
     path('tours_list/<int:pk>', views.TourDetails.as_view(), name='tours_details' ),
     path('tours_by_type/<str:tour_type>', views.ToursFilterByType.as_view(), name='tours_type_filter' ),
