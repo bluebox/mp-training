@@ -35,9 +35,9 @@ def test_make_assert_true_3():
     assert s1 == s2
 
 three_things_i_learnt = """
-asseret ==bool
--
--
+assert evaluates the expression and results in a boolean value
+If the expression valued as True it does nothing, else throws an error with the Message which we pass after the expression seperated by comma(,)
+Here in expression we can evaluate as complicated as we can until it evaluates as a boolean value.
 """
 
 time_taken_minutes = 1
