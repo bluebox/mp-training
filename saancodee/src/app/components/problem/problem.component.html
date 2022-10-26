@@ -35,8 +35,8 @@
             <div>
                 <button class="btn btn-outline-danger problem-btn" (click)="loadRelatedTopics()">Ralated Topics</button>
                 <div *ngIf="relatedTopicsFlag">
-                    <div class="topictags" *ngFor="let topics of tags">
-                        <p class="topictag">{{ topics }}</p>
+                    <div class="topictags" *ngFor="let tag of problem.tags">
+                        <p class="topictag">{{ tag.name }}</p>
                     </div>
                 </div>
             </div>

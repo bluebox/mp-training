@@ -1,7 +1,11 @@
-<section class="wrapper">
+<!-- <section class="wrapper">
   <div class="top">SAANCODE</div>
   <div class="bottom" aria-hidden="true">SAANCODE</div>
-</section>
+</section> -->
+
+<div>
+  s
+</div>
 
 <div class="jumbotron">
   <div class="container text-center">
@@ -18,7 +22,8 @@
 <h1>Problems</h1>
 <p>Solve problems category wise to strengthen problem solving skills :)</p>
 <div class="frame">
- <button class="custom-btn btn-1" [routerLink]="['/problems']">Array</button>
+  <button *ngFor="let tag of tags" [routerLink]="['/problems/category', tag.name]" class="custom-btn btn-12"><span>Click!</span><span>{{ tag.name }}</span></button>
+ <!-- <button class="custom-btn btn-1" [routerLink]="['/problems']">Array</button>
  <button class="custom-btn btn-2">Backtracking</button>
  <button class="custom-btn btn-5"><span>BFS</span></button>
  <button class="custom-btn btn-3"><span>Binary Search</span></button>
@@ -33,7 +38,7 @@
  <button class="custom-btn btn-13">Tree</button>
  <button class="custom-btn btn-14">Matrix</button>
  <button class="custom-btn btn-15">Tree</button>
- <button class="custom-btn btn-16">Pointers</button>
+ <button class="custom-btn btn-16">Pointers</button> -->
  <p style="font-family: Andale Mono, monospace;">
    MEDPLUS.DESIGNING</p>
 </div>

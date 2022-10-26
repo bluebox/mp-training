@@ -1,31 +1,74 @@
-<div class="container">
-    <table id="dtBasicExample" class="table table-bordered table-sm" cellspacing="0" width="100%">
-        <thead>
-          <tr>
-            <th class="th-sm">Problem
-      
-            </th>
-            <th  clickable class="th-sm">Difficulty
-      
-            </th>
-            <th class="th-sm">Accuracy
-      
-            </th>
-            <th class="th-sm">Tags
-      
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let problem of problems">
-            <td clickable>{{ problem.problem_name }}</td>
-            <td class="easy" *ngIf="problem.difficulty_level === 0">Easy</td>
-            <td class="medium" *ngIf="problem.difficulty_level === 1">Medium</td>
-            <td class="hard" *ngIf="problem.difficulty_level === 2">Hard</td>
-            <td>{{ problem.likes }}</td>
-            <td>
-                
-            </td>
-          </tr>
-      </table>
-</div>
+<section class="body">
+  <h1 class="headerCat">{{ categoryId }}</h1>
+  <div>
+    
+      <input type="text" [(ngModel)]="searchWord" placeholder="type and press ENTER" (keyup.enter)="submitSearch()">
+      <div id="group">
+        <input value=-1 id="all" name="diff" type="radio">All
+        <input value=0 id="easy" name="diff" type="radio">Easy
+        <input value=1 id="medium" name="diff" type="radio">Medium
+        <input value=2 id="hard" name="diff" type="radio">Hard
+      </div>
+      <button type="submit" (click)="submit()">filter</button>
+    
+  </div>
+  <div class="tbl-header">
+
+    <table id="dtBasicExample" cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th class="th-sm">Problem
+
+          </th>
+          <th clickable (click)="sort_based_on_diff()" class="th-sm">Difficulty
+            <i *ngIf="sortBasedOnDifficulty == 0" class="bi bi-filter-square"></i>
+            <i *ngIf="sortBasedOnDifficulty == 1" class="bi bi-sort-up-alt"></i>
+            <i *ngIf="sortBasedOnDifficulty == -1" class="bi bi-sort-down"></i>
+          </th>
+          <th clickable (click)="sort_based_on_acc()" class="th-sm">Accuracy
+            <i *ngIf="sortBasedOnAccuracy == 0" class="bi bi-filter-square"></i>
+            <i *ngIf="sortBasedOnAccuracy == -1" class="bi bi-sort-down"></i>
+            <i *ngIf="sortBasedOnAccuracy == 1" class="bi bi-sort-up-alt"></i>
+          </th>
+          <th class="th-sm">Likes Ratio
+
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr clickable *ngFor="let problem of problems">
+          <td clickable (click)="getProblem(problem.problem_id)">{{ problem.problem_name }}</td>
+          <td class="easy" *ngIf="problem.difficulty_level === 0">Easy</td>
+          <td class="medium" *ngIf="problem.difficulty_level === 1">Medium</td>
+          <td class="hard" *ngIf="problem.difficulty_level === 2">Hard</td>
+          <td>{{ problem.accuracy }}%</td>
+          <td *ngIf="problem.likes > 0">{{ (problem.likes / (problem.likes + problem.dislikes)) * 100}}%</td>
+          <td *ngIf="problem.likes == 0">0%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <ul class="pagination pages">
+      <li class="page-item disabled" *ngIf="currentPage == 1">
+        <p class="page-link" tabindex="-1">Previous</p>
+      </li>
+      <li class="page-item" *ngIf="currentPage != 1" (click)="move_to_previous_page()">
+        <p class="page-link" tabindex="-1">Previous</p>
+      </li>
+      <li class="page-item active">
+        <p class="page-link">{{ currentPage }} <span class="sr-only"></span></p>
+      </li>
+      <li class="page-item disabled" *ngIf="currentPage == pages">
+        <p class="page-link" (click)="move_to_next_page()">Next</p>
+      </li>
+      <li class="page-item" *ngIf="currentPage != pages">
+        <p class="page-link" (click)="move_to_next_page()">Next</p>
+      </li>
+    </ul>
+  </div>
+</section>

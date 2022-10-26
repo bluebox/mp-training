@@ -32,8 +32,8 @@ class profileLogic:
 
         easy, medium, hard = 0, 0, 0
 
-        easy = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 0))
-        medium = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 1))
-        hard = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 2))
+        easy = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 0).values('problem_id').distinct())
+        medium = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 1).values('problem_id').distinct())
+        hard = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 2).values('problem_id').distinct())
 
         return Response({"total": total, "totalEasy": totalEasy, "totalMedium": totalMedium, "totalHard": totalHard, "easy": easy, "medium": medium, "hard": hard})

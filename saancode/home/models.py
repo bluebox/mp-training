@@ -49,6 +49,12 @@ class Skill(models.Model):
     def __str__(self):
         return self.profile_id.user.username
 
+class ProblemTag(models.Model):
+    name = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.name
+
 class Problem(models.Model):
     problem_id = models.AutoField(primary_key=True, editable=False)
     creator_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -90,6 +96,8 @@ class Problem(models.Model):
     # def addDisLikes(self):
     #     self.dislikes += 1
     #     self.save()
+
+    tags = models.ManyToManyField(ProblemTag, related_name='problems')
 
     def __str__(self):
         return self.problem_name

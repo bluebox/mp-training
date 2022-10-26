@@ -8,7 +8,14 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public service: RegisterService) { }
+  tags!: any;
+
+  constructor(public service: RegisterService) { 
+    this.service.getTags().subscribe((data) => {
+      console.log(data)
+      this.tags = data;
+    })
+   }
 
   ngOnInit(): void {
   }

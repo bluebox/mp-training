@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from home.models import *
-from home.serializers import ProblemSerializer, sortProblemSerializer
+from home.serializers import ProblemSerializer, sortProblemSerializer, tagsSerializer
 from rest_framework.response import Response
 
 
@@ -43,6 +43,17 @@ class problemLogic:
         serializer = sortProblemSerializer(problems, many = True)
         return Response(serializer.data)
 
+    def get_tags(req):
+        tags = ProblemTag.objects.all()
+        serializer = tagsSerializer(instance=tags, many = True)
+        return Response(serializer.data)
+
+    def get_streak(req):
+        username = req.data['username']
+        easy = len(Solved.objects.filter(problem_id__difficulty_level = 0, status = 1, user_id__username = username).values('problem_id').distinct())
+        medium = len(Solved.objects.filter(problem_id__difficulty_level = 1, status = 1, user_id__username = username).values('problem_id').distinct())
+        hard = len(Solved.objects.filter(problem_id__difficulty_level = 2, status = 1, user_id__username = username).values('problem_id').distinct())
+        return Response({'streak':(easy * 2) + (medium * 4) + (hard * 8)})
 
     def get_accuracy(problem_id):
         solved = Solved.objects.filter(problem_id=problem_id)

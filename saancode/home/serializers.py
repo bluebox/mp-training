@@ -18,8 +18,13 @@ class registerSerializer(serializers.ModelSerializer):
         validated_data['password'] = make_password(validated_data['password'])
         return super(registerSerializer, self).create(validated_data)
     
+class tagsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProblemTag
+        fields = ['name']
 
 class ProblemSerializer(serializers.ModelSerializer):
+    tags = tagsSerializer(many = True)
     class Meta:
         model = Problem
         fields = "__all__"
@@ -99,6 +104,11 @@ class discussionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discussion
         fields = '__all__'
+
+class tagsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProblemTag
+        fields = ['name']
 
 class solvedSerializer(serializers.ModelSerializer):
     class Meta:

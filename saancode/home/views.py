@@ -58,8 +58,8 @@ def sortProblemsApi(request):
 
 @api_view(['GET'])
 def categoryApi(request, category):
-    tag_id = Tag.objects.get(tag_name = category)
-    problems = Problem.objects.filter(topictag__tag_id=tag_id)
+    # tag_id = ProblemTag.objects.get(id = category)
+    problems = Problem.objects.filter(tags__name=category)
     serializer = categorySerializer(problems, many = True)
 
     return Response({"problem" : serializer.data})
@@ -215,6 +215,14 @@ def homeView(request):
 @api_view(['POST'])
 def add_blog_api(request):
     return blogsLogic.add_blog_with_username(request)
+
+@api_view(['GET'])
+def tags(request):
+    return problemLogic.get_tags(request)
+
+@api_view(['POST'])
+def problem_streak(request):
+    return problemLogic.get_streak(request)
 
 @api_view(['POST'])
 def add_blog_reply(request):

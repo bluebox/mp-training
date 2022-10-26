@@ -197,3 +197,111 @@ h1{
       color: red
     }
   }
+
+
+  .pagebar {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: normal;
+    color: #484848;
+  }
+  .pagebar a, .pageList .this-page {
+    background: #FFFFFF none repeat scroll 0%;
+    border: 1px solid #DDDDDD;
+    padding: 5px 6px;
+    text-decoration: none;
+  }
+  .pagebar a:visited {
+    background: #FFFFFF none repeat scroll 0%;
+    border: 1px solid #DDDDDD;
+    padding: 5px 6px;
+    text-decoration: none;
+  }
+  .pagebar .break {
+    background: #FFFFFF none repeat scroll 0%;
+    border: medium none;
+    padding: 5px 6px;
+    text-decoration: none;
+  }
+  .pagebar .this-page {
+    background: #FFFFFF none repeat scroll 0%;
+    border-color: #484848;
+    font-weight: bold;
+    padding: 5px 6px;
+    vertical-align: top;
+    color: #101aa7;
+  }
+  .pagebar a:hover {
+    background: #a8c5da none repeat scroll 0%;
+    border-color: #0e6e9c;
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+  .pagebar a.freeze {
+    background: #FFFFFF none repeat scroll 0%;
+    border: 1px solid #DDDDDD;
+    padding: 5px 6px;
+    text-decoration: none;
+    color: #DDDDDD;
+  }
+  .pagebar .goto {
+    background: #FFFFFF none repeat scroll 0%;
+    border: 1px solid #DDDDDD;
+    padding: 2px 6px;
+    text-decoration: none;
+  }
+  .pagebar input[type=text] {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 0 2px;
+    margin: 0;
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    width: 25px;
+    height: 15px;
+    color: #484848;
+    font-size: 11px;
+  }
+  .pagebar input[type=text]:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    padding: 0 2px;
+    margin: 0;
+    border: 1px solid rgba(81, 203, 238, 1);
+    background: #ffffff;
+  }
+  .pagebar input[type="submit"] {
+    background: #0e6e9c;
+    color: #ffffff;
+    width: auto;
+    height: 20px;
+    padding: 0 3px;
+    border: 1px solid #0e6e9c;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .pagebar input[type="submit"]:hover {
+    background: #a8c5da;
+    color: #ffffff;
+    width: auto;
+    height: 20px;
+    padding: 0 3px;
+    border: 1px solid #0e6e9c;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

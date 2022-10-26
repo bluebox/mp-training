@@ -37,10 +37,11 @@
       </thead>
     </table>
   </div>
-  <div class="tbl-content">
+  <div class="tbl-content" id="table-wrapper">
+    <div id="table-scroll">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
-        <tr clickable *ngFor="let problem of problems">
+        <tr clickable *ngFor="let problem of p; let i = index">
           <td clickable (click)="getProblem(problem.problem_id)">{{ problem.problem_name }}</td>
           <td class="easy" *ngIf="problem.difficulty_level === 0">Easy</td>
           <td class="medium" *ngIf="problem.difficulty_level === 1">Medium</td>
@@ -51,5 +52,44 @@
         </tr>
       </tbody>
     </table>
+    </div>
+  </div>
+  <!-- <div class="pagebar">
+    <div style="float:left; margin-top: 6px;"> Page 1 of {{ pages }} &nbsp;&nbsp;
+      <a href="" class="freeze" title="First">|< First</a>
+      <a href="" class="freeze" title="Previous">< Previous</a>
+      <span class="this-page">1</span>
+      <a href="" title="Page 2">2</a>
+      <a href="" title="Page 3">3</a>
+      <a href="" title="Page 4">4</a>
+      <span class="break">...</span>
+      <a href="" title="Page 50">50</a>
+      <a href="" title="Next">Next ></a>
+      <a href="" title="Last">Last >|</a>
+    </div>
+    <div class="goto" style="float:right;"> Goto page:
+      <input type="text" />
+      <input name="Submit" type="submit" value="go" />
+    </div>
+    <div style="clear: both;"></div>
+  </div> -->
+  <div class="container">
+    <ul class="pagination pages">
+      <li class="page-item disabled" *ngIf="currentPage == 1">
+        <p class="page-link" tabindex="-1">Previous</p>
+      </li>
+      <li class="page-item" *ngIf="currentPage != 1" (click)="move_to_previous_page()">
+        <p class="page-link" tabindex="-1">Previous</p>
+      </li>
+      <li class="page-item active">
+        <p class="page-link">{{ currentPage }} <span class="sr-only"></span></p>
+      </li>
+      <li class="page-item disabled" *ngIf="currentPage == pages">
+        <p class="page-link" (click)="move_to_next_page()">Next</p>
+      </li>
+      <li class="page-item" *ngIf="currentPage != pages">
+        <p class="page-link" (click)="move_to_next_page()">Next</p>
+      </li>
+    </ul>
   </div>
 </section>

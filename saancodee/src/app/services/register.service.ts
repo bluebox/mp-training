@@ -46,6 +46,32 @@ export class RegisterService {
     return this.http.get(url, { headers: headers })
   }
 
+  getStreak() {
+    let username = localStorage.getItem('username')
+    let url = "http://127.0.0.1:8000/api/streak"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    let data = {
+      'username': username
+    }
+    return this.http.post(url, data, { headers: headers })
+  }
+
+  getTags() {
+    let url = "http://127.0.0.1:8000/api/tags"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    return this.http.get(url, { headers: headers })
+  }
+
   getCategory(categoryId: any) {
     let url = `http://127.0.0.1:8000/api/problems/category/${categoryId}/`
     const headers = new HttpHeaders(

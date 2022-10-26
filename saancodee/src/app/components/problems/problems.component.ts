@@ -13,12 +13,16 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class ProblemsComponent implements OnInit {
 
+  p: any;
+  pages: any = 0;
+  flag: boolean = true;
   allProblems!: any;
   problems!: any
   accuracies: any;
   sortBasedOnDifficulty: Number = 0;
   sortBasedOnAccuracy: Number = 0;
   searchWord = '';
+  currentPage: any = 1;
 
   filterForm = this.fb.group({
     diff: ['', Validators.required]
@@ -26,28 +30,73 @@ export class ProblemsComponent implements OnInit {
 
   constructor(public route: ActivatedRoute, public fb: FormBuilder, public service: RegisterService, private http: HttpClient, private router: Router) {
     this.service.getProblems().subscribe((data: any) => {
-      this.problems = data
       this.allProblems = data
-      console.log(data)
+      this.problems = data
+      this.p = []
+    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+      this.p.push(this.problems[i])
+    }
+      // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+      this.pages = Math.ceil(Number((this.allProblems.length / 3).toFixed(2)));
+      console.log(data, Number((this.allProblems.length / 3).toFixed(2)))
     })
   }
 
+  move_to_previous_page() {
+    this.currentPage -= 1;
+    console.log(this.problems)
+    this.p = []
+    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+      this.p.push(this.problems[i])
+    }
+    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+    // this.problems = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+  }
+
+  move_to_next_page() {
+    this.currentPage += 1;
+    console.log(this.problems)
+    this.p = []
+    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+      this.p.push(this.problems[i])
+    }
+    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+    // this.problems = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+  }
+
   submitSearch() {
+    this.submit()
     console.log(this.searchWord);
     let word: any = this.searchWord.trim()
     console.log(word);
     let keywords = word.split(" ")
+    for (let i = 0; i < keywords.length; i ++) {
+      keywords[i] = keywords[i].toLowerCase();
+    }
     console.log(keywords);
     let problems = []
-    for (let i = 0; i < this.allProblems.length; i ++) {
+    let p = []
+    if (this.flag == true) {
+      p = this.allProblems
+    }
+    else {
+      p = this.problems
+    }
+    for (let i = 0; i < p.length; i ++) {
       for (let j = 0; j < keywords.length; j ++) {
-        if (this.allProblems[i].problem_name.includes(keywords[j])) {
-          problems.push(this.allProblems[i])
+        if (p[i].problem_name.toLowerCase().includes(keywords[j])) {
+          problems.push(p[i])
           break
         }
       }
     }
     this.problems = problems
+    this.p = []
+    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+      this.p.push(this.problems[i])
+    }
+    this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
   }
 
   submit() {
@@ -70,10 +119,29 @@ export class ProblemsComponent implements OnInit {
         problems.push(this.allProblems[i])
       }
     }
+    // for (let i = 0; i < this.p.length; i ++) {
+    //   if (this.p[i].difficulty_level == diff) {
+    //     problems.push(this.p[i])
+    //   }
+    // }
     this.problems = problems
+    this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+    this.p = []
+    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+      this.p.push(this.problems[i])
+    }
+    // this.p = problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+    this.flag = false;
   }
   else {
+    this.flag = true;
     this.problems = this.allProblems
+    this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+    this.p = []
+    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+      this.p.push(this.problems[i])
+    }
+    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
   }
     // this.router.navigate(
       // ['problems'],
@@ -99,14 +167,19 @@ export class ProblemsComponent implements OnInit {
   sort_based_on_acc() {
     if (this.sortBasedOnAccuracy == 0) {
       this.sortBasedOnAccuracy = 1;
+      this.p.sort((a:any, b:any) => a.accuracy - b.accuracy)
     }
     else if(this.sortBasedOnAccuracy == 1) {
       this.sortBasedOnAccuracy = -1;
+      this.p.sort((a:any, b:any) => b.accuracy - a.accuracy)
     }
     else{
       this.sortBasedOnAccuracy = 1;
+      this.p.sort((a:any, b:any) => a.accuracy - b.accuracy)
     }
-    this.sortProblems();
+    
+    
+    // this.sortProblems();
   }
 
   sortProblems() {
