@@ -10,7 +10,7 @@ import { Customer } from './interfaces/customer';
 export class UserService {
 
   private urlCustomer:string="http://127.0.0.1:8000/customer/"
-  private urlCustomerOne:string="http://127.0.0.1:8000/customer/"
+  private urlCustomerOne:string="http://127.0.0.1:8000/customer/crud/"
   private urlCustomerSignin:string="http://127.0.0.1:8000/customer/signin/"
 
   constructor(private http:HttpClient) { }
@@ -29,15 +29,15 @@ export class UserService {
 
 getSingleUser(id:any)
 {
-  return this.http.get<any[]>(this.urlCustomer+id+'/')
+  return this.http.get<any[]>(this.urlCustomerOne+id+'/')
 }
 
 editUser(data:object,id:any){
-    return this.http.post<any>(this.urlCustomer+id+'/',data)
+    return this.http.post<any>(this.urlCustomerOne+id+'/',data)
   }
 
   delCus(id:string):Observable<any[]>{
-    return this.http.delete<any[]>(this.urlCustomer + id + "/")
+    return this.http.delete<any[]>(this.urlCustomerOne + id + "/")
   }
 
 }

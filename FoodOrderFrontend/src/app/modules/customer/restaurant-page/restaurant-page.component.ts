@@ -81,9 +81,6 @@ export class RestaurantPageComponent implements OnInit {
     
   }
 
-
-
-
   postCart(id:any,price:any)
   { 
     
@@ -99,12 +96,12 @@ export class RestaurantPageComponent implements OnInit {
     // var items=new Array("of001",Number(this.quantity),Number(price),"c001",this.res.restaurant_id,id,"m001")
     let items:Cart={
       order_food_id:"of00"+String(this.x),
-      customer_id:"c001",
-      restaurant_id :this.res.restaurant_id,
-      food_id :id,
+      customer:"c005",
+      restaurant :this.res.restaurant_id,
+      food:id,
       quantity:Number(this.quantity),
       price:Number(price),
-      menu_id:"m001"
+      menu:"m001"
     }
     this.cost=this.cost+price
     console.log(items)

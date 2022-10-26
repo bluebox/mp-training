@@ -194,13 +194,13 @@ class MenuList(models.Model):
 
 class OrderFood(models.Model):
     order_food_id = models.CharField(max_length=10, primary_key=True)
-    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    restaurant_id = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
-    food_id = models.ForeignKey(Food, on_delete=models.SET_NULL, null=True)
+    customer= models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    restaurant= models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
+    food= models.ForeignKey(Food, on_delete=models.SET_NULL, null=True)
     # emp_id=models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField()
     price = models.IntegerField(null=True)
-    menu_id = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
+    menu= models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.order_food_id
