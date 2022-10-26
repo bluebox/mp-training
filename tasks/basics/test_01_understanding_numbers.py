@@ -44,8 +44,9 @@ def test_numbers_long():
 
 three_things_i_learnt = """
 -we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+- a method to convert decimal to hexadecemal
+- a method to convert decimal to binary
+- hexadecimal, octal and binary function returns value as a string
 """
 
 time_taken_minutes = 4
