@@ -31,6 +31,7 @@ export class AdminGaurdGuard implements CanActivate {
 
       // this.verifyAdmin()
       // this.verifyLogin()
+    
       if(this.isAdmin){
         console.log("logged in gaurds");
         return true;
@@ -42,5 +43,4 @@ export class AdminGaurdGuard implements CanActivate {
       }
     
   }
-  
 }

@@ -77,6 +77,4 @@ export class LoginComponent implements OnInit {
       this.loginSubscription.unsubscribe()
     }
   }
-
-  
 }

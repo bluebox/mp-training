@@ -50,6 +50,7 @@ import { DisplayCustomersComponent } from './components/display-customers/displa
 import { DisplayEmployeesComponent } from './components/display-employees/display-employees.component';
 import { DisplayCustomerComponent } from './components/display-customer/display-customer.component';
 import { SearchComponent } from './components/search/search.component';
+import { DisplayEmployeeComponent } from './components/display-employee/display-employee.component';
 @NgModule({
   declarations: [
     RegisterCustomerComponent,
@@ -79,6 +80,7 @@ import { SearchComponent } from './components/search/search.component';
     DisplayEmployeesComponent,
     DisplayCustomerComponent,
     SearchComponent,
+    DisplayEmployeeComponent,
   ],
   entryComponents:[CloseDialogComponent],
   imports: [

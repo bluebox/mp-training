@@ -37,6 +37,8 @@ export class NewTestComponent implements OnInit {
       this.http.addTest({ 'form': this.testForm.value }).subscribe({
         next: (resp) => {
           this.responseMessage = resp.message
+          console.log(resp.message);
+          
           if (resp.action_status == "success") {
             this.router.navigate([''])
           }
@@ -55,3 +57,5 @@ export class NewTestComponent implements OnInit {
   }
 
 }
+
+
