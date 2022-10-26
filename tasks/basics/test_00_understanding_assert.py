@@ -36,8 +36,9 @@ def test_make_assert_true_3():
 
 three_things_i_learnt = """
 asseret ==bool
--
--
+-assert raises AssertException if "condition followed by assert statement is false"
+-string followed by assert condition is: "AssertException statement"
+-assert can be used to test output of a python module
 """
 
 time_taken_minutes = 1
