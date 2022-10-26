@@ -109,4 +109,4 @@ about list, dictionary and set comprehension
 different ways of assertion statement like using assert on result as well as its length
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 30
