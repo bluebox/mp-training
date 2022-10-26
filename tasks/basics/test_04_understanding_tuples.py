@@ -101,4 +101,4 @@ three_things_i_learnt = """
 -
 """
 
-time_taken_minutes = __
+time_taken_minutes = 10
