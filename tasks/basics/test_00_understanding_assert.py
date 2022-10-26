@@ -36,8 +36,9 @@ def test_make_assert_true_3():
 
 three_things_i_learnt = """
 asseret ==bool
--
--
+-assert is used to know the truth of an expression
+-Alongside, a message can also be added to describe about the err
+-SYNTAX: assert <expression>, "<message">
 """
 
 time_taken_minutes = 1
