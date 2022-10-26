@@ -17,15 +17,15 @@ list, tuple, string etc.
 def test_iterator_type():
     list_iter = iter(["one", "two", "three"])
     assert 'list_iterator' == type(list_iter).__name__
-    assert False == hasattr(list_iter, "next")
+    assert True == hasattr(list_iter, "next")
 
     string_iter = iter("hello")
     assert 'string_iterator' == type(string_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert True == hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
     assert 'tuple_iterator' == type(tuple_iter).__name__
-    assert False == hasattr(string_iter, "next")
+    assert True == hasattr(string_iter, "next")
 
 def test_int_iterable():
     try:
