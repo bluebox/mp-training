@@ -9,6 +9,7 @@ from tasks.placeholders import *
 def test_numbers_types():
     assert 'int' == type(1).__name__
     assert 'float' == type(1.3).__name__
+
 # assert 'int' == type(10L).__name__
 # In Python 3 the long datatype has been removed and all integer values are handled
 # by the Int class. The default size of Int will depend on your CPU architecture.
@@ -30,7 +31,6 @@ def test_numbers_string_to_int():
     assert 255 == int("FF", 16)
     assert 63 == int("77", 8)
 
-
 def test_numbers_int_to_string():
     assert '0o12' == oct(10)
     assert '0x64' == hex(100)
@@ -43,9 +43,9 @@ def test_numbers_long():
 
 
 three_things_i_learnt = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+- Using int() we can convert a number or string to an integer and we can convert one base system into another base sysytem
+- In python separate base systems are present to convert an Integer into our desired base System
+- The dunder Method __name__ returns the new String Object of that particular class
 """
 
 time_taken_minutes = 4
