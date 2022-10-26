@@ -12,14 +12,15 @@ the <optional message>. If is evaluates to True, nothing happens.
 
 
 def test_assert_true():
-    #throws assertion error
-    assert True  #This should be True -- replace ___ with True.
+    """thorows exception error"""
+    assert True, "This should be True -- replace ___ with True."
 
 def test_assert_true_with_message():
-    assert True, "This is the failure message" # replace ___ with True to stop seeing the assertion error
+    """assert with error message"""
+    assert True, "This is the failure message" 
 
 def test_assert_equality():
-    assert 7 == 2 + 5   #replace __ with the expected value
+    assert 7 == 2 + 5, "replace __ with the expected value"
 
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
@@ -32,10 +33,10 @@ def test_make_assert_true_2():
 def test_make_assert_true_3():
     s1 = "Hello, World"
     s2 = "Hello, World"
-    assert s1 == s2
+    assert s1 == s2, "Not equal"
 
 three_things_i_learnt = """
-asseret ==bool
+assert ==bool
 -
 -
 """
