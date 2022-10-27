@@ -1,5 +1,4 @@
 """Urls"""
-from pathlib import Path
 from django.urls import path
 from salon import views
 
@@ -19,19 +18,18 @@ urlpatterns = [
     path('listemployees',views.ListOfEmployees.as_view()),
     path('empbranch',views.EmpBranch.as_view()),
     path('newappointment',views.NewAppointment.as_view()),
-    path('delete/',views.deleteBranch.as_view()),
-    path('deleteservice/',views.deleteService.as_view()),
-    path('updatebranch/<int:pk>',views.UpdateBranch.as_view()),
-    path('getbranch/<int:id>',views.OneBranch.as_view()),
+    path('delete/',views.DeleteBranch.as_view()),
+    path('deleteservice/',views.DeleteService.as_view()),
+    path('updatebranch/<int:branch_id>',views.UpdateBranch.as_view()),
+    path('getbranch/<int:branch_id>',views.OneBranch.as_view()),
     path('searchclients',views.SearchClients.as_view()),
     path('serachemp',views.SearchEmployee.as_view()),
     path('searchbranch',views.SearchBranches.as_view()),
-    path('search',views.branchFilter),
-    path('getservice/<int:id>',views.OneService.as_view()),
-    path('updateservice/<int:pk>',views.UpdateService.as_view()),
+    path('getservice/<int:service_id>',views.OneService.as_view()),
+    path('updateservice/<int:service_id>',views.UpdateService.as_view()),
     path('searchservice',views.SearchService.as_view()),
-    path('getappointment/<int:id>',views.OneAppointment.as_view()),
-    path('updateappointment/<int:pk>',views.UpdateAppointment.as_view()),
+    path('getappointment/<int:appointment_id>',views.OneAppointment.as_view()),
+    path('updateappointment/<int:appointment_id>',views.UpdateAppointment.as_view()),
     path('confirmappointment',views.ConfirmAppointment.as_view()),
     path('completeappointment',views.CompleteAppointment.as_view ()),
     path('rejorcancel',views.RejectAppointment.as_view()),

@@ -1,12 +1,8 @@
 """Models"""
 from email.policy import default
-from random import choices
-from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
-
-from Backend.settings import DATE_INPUT_FORMATS
 
 
 # Create your models here.
@@ -33,6 +29,7 @@ class Client(models.Model):
         return str(self.user_id)
 
 def from_100():
+    """increment from default value"""
     largest = Branch.objects.all().order_by('branch_id').last()
     # smallest = Branch.objects.all().order_by('location').last()
     # print(largest)
@@ -72,6 +69,7 @@ class Branch(models.Model):
         return str(self.branch_name)
 
 def from_2500():
+    """increment from default value"""
     largest = Employee.objects.all().order_by('emp_id').last()
     if not largest:
         return 2500
@@ -93,6 +91,7 @@ class Employee(models.Model):
         return str(self.emp_id)
 
 def from_200():
+    """increment from default value"""
     largest = ServicesProvided.objects.all().order_by('service_id').last()
     if not largest:
         return 200
@@ -113,6 +112,7 @@ class ServicesProvided(models.Model):
 
 
 def from_900():
+    """increment from default value"""
     largest = Appointment.objects.all().order_by('Appointment_id').last()
     if not largest:
         return 900
@@ -120,7 +120,11 @@ def from_900():
 
 class Appointment(models.Model):
     """Appointment model to store Appointment details"""
-    appointment_time_choices = (('9.00am-10.00am','9.00am-10.00am'),('10.00am-11.00am','10.00am-11.00am'),('11.00am-12.00pm','11.00am-12.00pm'),('12.00pm-1.0pm','12.00pm-1.0pm'),('1.00pm-2.00pm','1.00pm-2.00pm'),('2.00pm-3.00pm','2.00pm-3.00pm'),('3.00pm-4.00pm','3.00pm-4.00pm'),('4.00pm-5.00pm','4.00pm-5.00pm'))
+    appointment_time_choices = (('9.00am-10.00am','9.00am-10.00am'),
+    ('10.00am-11.00am','10.00am-11.00am'),('11.00am-12.00pm','11.00am-12.00pm'),
+    ('12.00pm-1.0pm','12.00pm-1.0pm'),('1.00pm-2.00pm','1.00pm-2.00pm'),
+    ('2.00pm-3.00pm','2.00pm-3.00pm'),('3.00pm-4.00pm','3.00pm-4.00pm'),
+    ('4.00pm-5.00pm','4.00pm-5.00pm'))
     Appointment_id = models.IntegerField(primary_key = True, default=from_900)
     client_id = models.ForeignKey(Client,  on_delete=models.CASCADE)
     Time_of_appointment = models.CharField(max_length=20,choices=appointment_time_choices)
@@ -155,9 +159,16 @@ class Transaction(models.Model):
     def __str__(self):
         return str(self.trans_id)
 
+def from_700():
+    """increment from default value"""
+    largest = Reviews.objects.all().order_by('review_id').last()
+    if not largest:
+        return 700
+    return largest.review_id + 1
+
 class Reviews(models.Model):
     """Reviews model to store Reviews details"""
-    review_id = models.IntegerField(primary_key = True)
+    review_id = models.IntegerField(primary_key = True,default=from_700)
     Appointment_id = models.ForeignKey(Appointment,  on_delete=models.CASCADE)
     comments_and_reviews = models.CharField(max_length=500)
     rating = models.IntegerField()
