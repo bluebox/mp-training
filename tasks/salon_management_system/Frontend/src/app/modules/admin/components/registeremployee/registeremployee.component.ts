@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { HttpserviceService } from 'src/app/httpservice.service';
 
 @Component({
@@ -15,6 +16,13 @@ export class RegisteremployeeComponent implements OnInit {
   hide = true;
   defaultvalue = "True";
   defaultid = 2500;
+  hintid : any;
+  branches : any;
+  employee : any;
+
+  displayedColumns :string[]=['emp_id'];
+
+  subscription : Subscription = Subscription.EMPTY
 
   constructor(private http :HttpserviceService ,private router: Router) { }
 
@@ -35,6 +43,14 @@ export class RegisteremployeeComponent implements OnInit {
   })
 
   ngOnInit(): void {
+    this.subscription =this.http.getlastEmployee().subscribe((data) =>{this.employee = data ;
+      console.log(data);
+      this.hintid = this.employee.emp_id
+      this.hintid = this.hintid+1
+      console.log(this.hintid)
+    });
+    this.subscription =this.http.getBranch().subscribe((data) =>{this.branches = data ;console.log(data)});
+
   }
   onRegisterSubmit() {
     console.log(this.employeeRegistrationForm.value);

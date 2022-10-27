@@ -42,7 +42,7 @@ export class BookappointmentComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.datePipe.transform(this.date,"yyyy-MM-dd"));
     this.subscription =this.http.getServices().subscribe((data) =>{this.allservices = data ;console.log(data)});
-    this.subscription =this.http.getEmployee().subscribe((data) =>{this.employees = data ;console.log(data)});
+    this.subscription =this.http.getHairStylist().subscribe((data) =>{this.employees = data ;console.log(data)});
   }
   onSubmit(){
     console.log(this.bookAppointmentForm.value)

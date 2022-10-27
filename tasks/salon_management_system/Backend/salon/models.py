@@ -19,6 +19,7 @@ class User(AbstractUser):
     def __str__(self):
         return str(self.username)
 
+
 class Client(models.Model):
     """client model to store client details"""
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)

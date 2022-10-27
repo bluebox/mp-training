@@ -179,18 +179,42 @@ class AppointmentList(APIView):
     """This view is used to get and post the Appointment details"""
     def get(self, request):
         """this function is for displaying data of the Appointment table"""
-        appointments = Appointment.objects.all()
+        appointments = Appointment.objects.filter(Appointment_Status = "booked")
         serializer = AppointmentSerializer(appointments, many=True)
         return Response(serializer.data)
 
-    def post(self, request):
-        """this function is for posting data into the appointment table"""
-        serializer = AppointmentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, request):
+    #     """this function is for posting data into the appointment table"""
+    #     serializer = AppointmentSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     else:
+    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ConfirmAppointment(APIView):
+    """This view is used to get and post the Appointment details"""
+    def get(self, request):
+        """this function is for displaying data of the Appointment table"""
+        appointments = Appointment.objects.filter(Appointment_Status = 'confirm')
+        serializer = AppointmentSerializer(appointments, many=True)
+        return Response(serializer.data)
+
+class CompleteAppointment(APIView):
+    """This view is used to get and post the Appointment details"""
+    def get(self, request):
+        """this function is for displaying data of the Appointment table"""
+        appointments = Appointment.objects.filter(Appointment_Status = 'complete')
+        serializer = AppointmentSerializer(appointments, many=True)
+        return Response(serializer.data)
+
+class RejectAppointment(APIView):
+    """This view is used to get and post the Appointment details"""
+    def get(self, request):
+        """this function is for displaying data of the Appointment table"""
+        appointments = Appointment.objects.filter(Appointment_Status__in = ['reject','cancel'])
+        serializer = AppointmentSerializer(appointments, many=True)
+        return Response(serializer.data)
 
 class OneAppointment(APIView):
     def get(self,request,id):
@@ -204,7 +228,8 @@ class UpdateAppointment(APIView):
         appointment = Appointment.objects.get(Appointment_id=pk)
         serializer = AppointmentSerializer(instance=appointment,data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            print(serializer.errors)
+            serializer.save(update_fields=["Appointment_Status"])
             return Response(serializer.data)
         else:
             print(serializer.errors)
@@ -216,9 +241,11 @@ class EmployeeList(APIView):
     """view to get the data from the database"""
     def get(self, request):
         """this function for displaying the employeelist"""
-        employees = User.objects.filter(is_staff = "True", is_superuser="False").select_related('employee')
-        serializer = Userserializer(employees, many=True)
-        return Response(serializer.data)
+        employees = User.objects.filter(is_staff='True', is_superuser="False",employee__role = "HairStylist").values('id',
+        'username', "first_name", "last_name","email","employee__emp_id", "employee__role",
+        "employee__emp_contact_number", "employee__branch_id")
+        return Response(employees)
+
 
 
 class ListOfEmployees(APIView):
@@ -271,8 +298,8 @@ class EmpBranch(APIView):
     """view to get the data from the database"""
     def get(self, request):
         """this function for displaying the employeelist and branch"""
-        employees = Employee.objects.select_related('branch_id').only('emp_id', 'branch_id')
-        serilaizer = EmployeeSerializer(employees, many=True)
+        employees = Employee.objects.order_by('emp_id').last()
+        serilaizer = EmployeeSerializer(employees, many=False)
         return Response(serilaizer.data)
 
 
@@ -345,8 +372,4 @@ class EmployeeRegistration(APIView):
 #                 return Response({'msg':"password incorrect" })
 
 #         return Response({"msg":"not created"},status =200)
-# class Delete(APIView):
-#     def delete(self, request, pk, format=None):
-#         snippet = self.get_object(pk)
-#         snippet.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT) 
+

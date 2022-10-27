@@ -2,8 +2,8 @@
 <form [formGroup] = "newServiceForm">
     <div class="card1">
     <mat-card>
-        <mat-card-header>
-            <mat-card-title>Add a new Branch</mat-card-title>
+        <mat-card-header class="header">
+            <mat-card-title class="header-title" >Add a new Service</mat-card-title>
             <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title>
             <mat-card-title  class="error-message"><p>{{errorMessage}}</p></mat-card-title>
         </mat-card-header>
@@ -23,7 +23,7 @@
             <small class="text-danger" *ngIf="newServiceForm.get('location')?.invalid  && newServiceForm.get('location')?.touched " >required</small>
         </mat-form-field>
         <mat-card-actions>
-            <button (click) = "addService()" mat-raised-button="" color="primary">
+            <button (click) = "addService()" mat-raised-button="" color="primary" class="button">
              Add
             </button>
         </mat-card-actions>

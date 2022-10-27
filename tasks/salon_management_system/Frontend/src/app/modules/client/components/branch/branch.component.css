@@ -9,3 +9,8 @@ table {
    .column-value{
     text-align: center;
   }
+  .icon-name-spa{
+    color: black;
+    background-color: white;
+    margin:none;
+  }

@@ -3,8 +3,8 @@
 <form [formGroup] = "editBranchForm">
     <div class="card1">
     <mat-card>
-        <mat-card-header>
-            <mat-card-title>Edit Branch</mat-card-title>
+        <mat-card-header class="header">
+            <mat-card-title class="header-title">Edit Branch</mat-card-title>
         </mat-card-header>
         <!-- <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Branch ID</mat-label>
@@ -22,12 +22,10 @@
             <small class="text-danger" *ngIf="editBranchForm.get('location')?.invalid  && editBranchForm.get('location')?.touched " >required</small>
         </mat-form-field>
         <mat-card-actions>
-            <button (click)="cancel()" mat-raised-button="" color="primary">
+            <button (click)="cancel()" mat-raised-button="" color="primary" class="button">
                 cancel
             </button>
-        </mat-card-actions>
-        <mat-card-actions>
-            <button (click) = "updateBranch()" mat-raised-button="" color="primary">
+            <button (click) = "updateBranch()" mat-raised-button="" color="primary" class="button">
                 Update
             </button>
         </mat-card-actions>
