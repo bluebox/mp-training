@@ -33,6 +33,7 @@ SECRET_KEY = "jsnchdnnJ@#$Y)*!$u32ixnj3enxp12349325324u2581584r"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['10.129.245.120']
 ALLOWED_HOSTS = []
 
 
@@ -77,14 +78,15 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
-    'http://localhost:5000'
+    'http://localhost:5000',
+    'http://10.129.245.120:5003'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-        # 'bookingsapp.JwtAuthentication.JWTAuthentication'
+        'bookingsapp.JwtAuthentication.JWTAuthentication'
     ]
 }
 

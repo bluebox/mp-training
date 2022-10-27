@@ -3,8 +3,8 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-*{
-  transition:all .2s linear;
+* {
+  transition: all .2s linear;
   box-sizing: border-box;
 }
 
@@ -14,7 +14,7 @@ body {
   height: 100%;
 }
 
-html{
+html {
   overflow-x: hidden;
   /* scroll-padding-top: 6rem; */
   scroll-behavior: smooth;

@@ -79,6 +79,7 @@ export class UsersListComponent implements OnInit {
       this.deleteSubscription = this.dataService.deleteUser(id).subscribe(
         (data) => {
           alert('user deleted successfully');
+          this.getPageItems(0);
         },
         (err) => {
           if(err.status == 404){

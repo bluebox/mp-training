@@ -162,7 +162,7 @@ export class DataService {
     return this.http.put(`/api/bookings/users/${id}`, packageObj)
   }
   addUser(packageObj:any) {
-    return this.http.post(`/api/bookings/users/`, packageObj)
+    return this.http.post(`/api/bookings/add_user_by_admin/`, packageObj)
   }
   deleteUser(id:number) {
     return this.http.delete(`/api/bookings/users/${id}`)

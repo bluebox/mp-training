@@ -1,19 +1,5 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-
-from bookingsapp import views
-from bookingsapp.models import BookingDetails
-from bookingsapp.views import AllUserList, BookingAdminDetailViewset, BookingAdminViewset, BookingDetailsViewset, BookingViewset, CancellationDetail, CancellationList, FeedbackViewSet, LogoutViewSet, PaymentDetails, PaymentDetailsViewset, PaymentViewset, UpdateUserByAdmin, UserList, UserDetail, Login, getAverageRatingAndTotalRatings, getFeedbacks, uploadImage, uploadVideo
-
-# from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-
-# from rest_framework_simplejwt.models import TokenUser
-
-
-
-#
-# router = DefaultRouter()
-# router.register('users', UserViewSet.as_view(), basename='users')
+from django.urls import path
+from bookingsapp.views import AllUserList, BookingAdminDetailViewset, BookingAdminViewset, BookingDetailsViewset, BookingViewset, CancellationDetail, CancellationList, FeedbackViewSet, LogoutViewSet, PaymentDetails, PaymentDetailsViewset, PaymentViewset, UpdateUserByAdmin, UserList, UserDetail, Login, addUserByAdmin, getAverageRatingAndTotalRatings, getFeedbacks, uploadImage, uploadVideo
 
 urlpatterns = [
     # path('', include(router.urls)),
@@ -26,6 +12,7 @@ urlpatterns = [
     path('users/<int:pk>', UpdateUserByAdmin.as_view(), name='userAdminUpdate'),
     # path('books/', BookViewSet.as_view(), name='books'),
     path('user/', UserDetail.as_view(), name='userDetails'),
+    path('add_user_by_admin/', addUserByAdmin.as_view(), name='add_user_by_admin'),
     path('uploadImage/', uploadImage.as_view(), name='upload_image'),
     path('uploadVideo/', uploadVideo.as_view(), name='upload_video'),
     path('feedbacks/', getFeedbacks, name='feedback_list'),

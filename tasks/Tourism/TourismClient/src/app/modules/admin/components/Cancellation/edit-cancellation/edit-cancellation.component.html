@@ -7,7 +7,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>bookingid</mat-label>
-    <select matNativeControl formControlName="bookingid">
+    <select matNativeControl formControlName="bookingid" [disabled]="true">
       <option value="" selected>------</option>
       <option *ngFor="let booking of bookingList" value={{booking.id}}> booking_object{{booking.id}}</option>
     </select>

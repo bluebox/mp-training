@@ -57,7 +57,7 @@ export class EditBookingComponent implements OnInit {
 
   BookingForm: FormGroup = new FormGroup({
     userid : new FormControl('', [Validators.required]),
-    tourid : new FormControl('', [Validators.required, Validators.email]),
+    tourid : new FormControl('', [Validators.required]),
     paymentid : new FormControl('', [Validators.required]),
     no_of_people : new FormControl('', [Validators.required]),
     passenger_details : new FormControl('', [Validators.required]),

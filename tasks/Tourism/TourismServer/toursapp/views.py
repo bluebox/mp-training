@@ -24,7 +24,7 @@ class AllVehicleList(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = (IsAdminUser,)
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             vehicles = Vehicle.objects.all()
             serializer = VehicleSerializer(vehicles, many=True)
@@ -38,7 +38,7 @@ class VehicleList(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = (IsAdminUser,)
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             text = request.GET.get('text')
             vehicles_list = (Vehicle.objects.filter(vehicle_type__icontains=text) | 
@@ -54,7 +54,7 @@ class VehicleList(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             serializer = VehicleSerializer(data=request.data)
             if not serializer.is_valid():
@@ -81,7 +81,7 @@ class VehicleDetails(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             vehcile = self.get_object(pk)
             serializer = VehicleSerializer(vehcile)
@@ -89,7 +89,7 @@ class VehicleDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             vehcile = self.get_object(pk)
             serializer = VehicleSerializer(vehcile, data=request.data)
@@ -100,7 +100,7 @@ class VehicleDetails(APIView):
         except Exception as e:
             raise APIException(e)
     
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         try:
             vehicle = self.get_object(pk)
             vehicle.delete()
@@ -112,7 +112,7 @@ class VehicleDetails(APIView):
 
 class AllToursListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             tours = Tour.objects.all()
             serializer = TourDetailSerializer(tours, many=True)
@@ -122,7 +122,7 @@ class AllToursListViewSet(APIView):
 
 class AllUserToursListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             tours = Tour.objects.filter(start_date__gt=datetime.datetime.utcnow())
             serializer = TourDetailSerializer(tours, many=True)
@@ -133,7 +133,7 @@ class AllUserToursListViewSet(APIView):
 
 class ToursListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             text = request.GET.get('text')
             tours_list = (Tour.objects.filter(tour_name__icontains=text) | 
@@ -150,7 +150,7 @@ class ToursListViewSet(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             serializer = TourSerializer(data=request.data)
             if not serializer.is_valid():
@@ -187,7 +187,7 @@ class TourDetails(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             tour = self.get_object(pk)
             serializer = TourDetailSerializer(tour)
@@ -195,7 +195,7 @@ class TourDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             tour = self.get_object(pk)
             # coupons = Coupon.objects.filter(id__in=request.data['coupons'])
@@ -210,7 +210,7 @@ class TourDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         tour = self.get_object(pk)
         tour.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -218,12 +218,12 @@ class TourDetails(APIView):
 
 class EnquiryListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         enquiry = Enquiry.objects.filter(status=True)
         serializer = EnquirySerializer(enquiry, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             serializer = EnquirySerializer(data=request.data)
             if not serializer.is_valid():
@@ -251,7 +251,7 @@ class EnquiryDetails(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             enquiry = self.get_object(pk)
             serializer = EnquirySerializer(enquiry)
@@ -259,7 +259,7 @@ class EnquiryDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             enquiry = self.get_object(pk)
             serializer = EnquirySerializer(enquiry, data=request.data)
@@ -272,7 +272,7 @@ class EnquiryDetails(APIView):
 
 class AllPlacesListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             places = Place.objects.all()
             serializer = PlaceSerializer(places, many=True)
@@ -283,7 +283,7 @@ class AllPlacesListViewSet(APIView):
 
 class PlacesListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             text = request.GET.get('text')
             places_list = (Place.objects.filter(place_name__icontains=text) | 
@@ -298,7 +298,7 @@ class PlacesListViewSet(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             serializer = PlaceSerializer(data=request.data)
             if not serializer.is_valid():
@@ -324,7 +324,7 @@ class PlaceDetails(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             place = self.get_object(pk)
             serializer = PlaceSerializer(place)
@@ -332,7 +332,7 @@ class PlaceDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             place = self.get_object(pk)
             serializer = PlaceSerializer(place, data=request.data)
@@ -346,7 +346,7 @@ class PlaceDetails(APIView):
 
 class AllCouponsListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
             coupons = Coupon.objects.filter()
@@ -359,7 +359,7 @@ class AllCouponsListViewSet(APIView):
 
 class CouponsListViewSet(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
             text = request.GET.get('text')
@@ -375,7 +375,7 @@ class CouponsListViewSet(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             serializer = CouponSerializer(data=request.data)
             if serializer.is_valid():
@@ -403,7 +403,7 @@ class CouponDetails(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             coupon = self.get_object(pk)
             serializer = CouponSerializer(coupon)
@@ -411,7 +411,7 @@ class CouponDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             coupon = self.get_object(pk)
             serializer = CouponSerializer(coupon, data=request.data)
@@ -425,7 +425,7 @@ class CouponDetails(APIView):
 
 class AllPackagesList(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             packages = Package.objects.all()
             serializer = PackageSerializer(packages, many=True)
@@ -436,7 +436,7 @@ class AllPackagesList(APIView):
 
 class PackagesList(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             text = request.GET.get('text')
             packages_list = (Package.objects.filter(package_name__icontains=text) | 
@@ -452,7 +452,7 @@ class PackagesList(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             serializer = PackageSerializer(data=request.data)
             if serializer.is_valid():
@@ -478,7 +478,7 @@ class PackageDetailed(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             # package = self.get_object(pk)
             # serializer = PackageDetailSerializer(package)
@@ -512,7 +512,7 @@ class PackageDetails(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             package = self.get_object(pk)
             serializer = PackageSerializer(package)
@@ -529,7 +529,7 @@ class PackageDetails(APIView):
             raise APIException(e)
 
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             package = self.get_object(pk)
             serializer = PackageSerializer(package, data=request.data)
@@ -540,7 +540,7 @@ class PackageDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         try:
             package = self.get_object(pk)
             package.delete()
@@ -553,7 +553,7 @@ class PackageDetails(APIView):
 
 class AllEmployeeList(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             packages = Employee.objects.all()
             serializer = EmployeeSerializer(packages, many=True)
@@ -564,7 +564,7 @@ class AllEmployeeList(APIView):
 
 class EmployeeList(APIView):
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             # employee_list = Employee.objects.all()
             # serializer = EmployeeSerializer(packages, many=True)
@@ -582,7 +582,7 @@ class EmployeeList(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             serializer = EmployeeSerializer(data=request.data)
             if serializer.is_valid():
@@ -608,7 +608,7 @@ class EmployeeDetails(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             employee = self.get_object(pk)
             serializer = EmployeeSerializer(employee)
@@ -616,7 +616,7 @@ class EmployeeDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             employee = self.get_object(pk)
             serializer = EmployeeSerializer(employee, data=request.data)
@@ -627,7 +627,7 @@ class EmployeeDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         try:
             employee = self.get_object(pk)
             employee.delete()
@@ -637,8 +637,4 @@ class EmployeeDetails(APIView):
         except Exception as e:
             raise APIException(e)
 
-
-# class TourPlaceDelete(APIView):
-#     def put(self, request, pk):
-#         tour = Tour.objects.get(id=1)
-#         return Response({'msg':'Success'})
+            

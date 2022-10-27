@@ -125,6 +125,7 @@ export class AuthService {
 
   loginVerification(credentials: FormGroup) {
     return this.http.post('/api/bookings/login/', credentials).pipe(
+    // return this.http.post('http://10.129.245.120:5002/api/bookings/login/', credentials).pipe(
       map(res=> {
         this.isAuthenticated.next(true);
         this.isLogin = true
@@ -144,6 +145,7 @@ export class AuthService {
   // }
 
   getUserDetails() {
+    // return this.http.get('http://10.129.245.120:5002/api/bookings/user/')
     return this.http.get('/api/bookings/user/')
   }
 

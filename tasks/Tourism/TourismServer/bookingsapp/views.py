@@ -1,25 +1,20 @@
-import datetime
-import json
-
-from django.contrib.auth.hashers import make_password
 from django.db.models import Avg
+import datetime
 from django.http import Http404, JsonResponse
 
 from rest_framework import status, exceptions
 from rest_framework.exceptions import APIException
 from rest_framework.response import Response
-from django.core import serializers
-from TourismServer.managers.adminManager import listing
-
-from TourismServer.permissions import AllowAny
-from bookingsapp.models import BookingDetails, CancellationDetails, Feedback, PaymentDetails, User, UserToken
-from bookingsapp.serializers import BookingDetailSerializer, BookingSerializer, CancellationDetailSerializer, CancellationSerializer, FeedbackDetailSerializer, FeedbackSerializer, PaymentSerializer, UserSerializer
+from rest_framework.decorators import authentication_classes
+from bookingsapp.Managers.BookingsManager import delete_booking_by_admin, edit_booking_by_admin, get_booking, get_bookings, get_bookings_by_pagination, get_cancellation_by_pagination, post_booking
+from bookingsapp.Managers.PaymentManager import edit_payment_by_admin, get_payment_by_id_by_admin, get_payments_by_admin, post_feedback_by_admin
+from bookingsapp.Managers.UserManager import delete_user, edit_user, get_all_users_by_admin, get_user, get_users_by_admin_using_pagination, login, logout, register_user_and_get_token
+from bookingsapp.models import BookingDetails, CancellationDetails, Feedback, PaymentDetails, User
+from bookingsapp.serializers import BookingDetailSerializer, CancellationSerializer, FeedbackDetailSerializer, FeedbackSerializer, UserSerializer
 from rest_framework.views import APIView
 
 import uuid
-
-from toursapp.models import Tour
-from .JwtAuthentication import JWTAuthentication, create_access_token, create_refresh_token, decode_refresh_token
+from .JwtAuthentication import JWTAuthentication
 
 import cloudinary
 
@@ -35,26 +30,21 @@ def getAverageRatingAndTotalRatings(request):
         except Exception as e:
             raise APIException(e)
 
+@authentication_classes([])
 class uploadImage(APIView):
     
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             imageUrl = cloudinary.uploader.upload(request.data['file'])
-
-            # Build the URL for the image and save it in the variable 'srcURL'
-            # srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
             return Response(imageUrl['secure_url'])
         except Exception as e:
             raise APIException(e)
 
 class uploadVideo(APIView):
     
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             videoUrl = cloudinary.uploader.upload_large(request.data['file'])
-
-            # Build the URL for the image and save it in the variable 'srcURL'
-            # srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
             return Response(videoUrl['secure_url'])
         except Exception as e:
             raise APIException(e)
@@ -62,63 +52,29 @@ class uploadVideo(APIView):
 
 class AllUserList(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all snippets
     """
-    def get(self, request, format=None):
+    def get(self, request):
         try:
-            user_list = User.objects.all()
-            serializer = UserSerializer(user_list, many=True)
-            return Response(serializer.data)
+            return get_all_users_by_admin(request)
         except Exception as e:
             raise APIException(e)
 
-
+@authentication_classes([])
 class UserList(APIView):
     """
     List all snippets, or create a new snippet.
     """
-    def get(self, request, format=None):
+    def get(self, request):
         try:
-            text=request.GET.get('text')
-            if text != '':
-                user_list = (User.objects.filter(name__icontains=text) | 
-                                User.objects.filter(email__icontains=text))
-            else:
-                user_list = User.objects.all()
-            users, totalPages, page = listing(request, user_list)
-            serializer = UserSerializer(users, many=True)
-            return Response({
-                'pageItems': serializer.data,
-                'totalPages': totalPages,
-                'page': page
-            })
+            return get_users_by_admin_using_pagination(request)
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
-        try:
-            serializer = UserSerializer(data=request.data)
-            if not serializer.is_valid():
-                raise exceptions.APIException(json.dumps(serializer.errors))
-            # if serializer.is_valid():
-            serializer.save()
-            user = User.objects.get(email=request.data['email'])
-            access_token = create_access_token(user.id)
-            refresh_token = create_refresh_token(user.id)
-            UserToken.objects.create(
-                user_id = user.id, 
-                token = refresh_token,
-                expired_at = datetime.datetime.utcnow() + datetime.timedelta(days = 5)
-            )
-            response = Response()
 
-            response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
-            response.set_cookie(key='access_token', value=access_token, httponly=True)
-            response.data = serializers.serialize('json', [user])
-            return response
-            # else:
-            #     raise exceptions.APIException(serializer.errors)
-            # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request):
+        try:
+            return register_user_and_get_token(request)
         except Exception as e:
             raise APIException(e)
 
@@ -131,41 +87,37 @@ class UserDetail(APIView):
     authentication_classes = [JWTAuthentication]
     # permission_classes = (IsAuthenticated,)
 
-
-    # def get_object(self, pk):
-    #     try:
-    #         return User.objects.get(id=pk)
-    #     except User.DoesNotExist:
-    #         raise Http404
-
-
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             user = User.objects.get(email=request.user)
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
+            return get_user(request, user)
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, format=None):
+    def put(self, request):
         try:
             user = User.objects.get(email=request.user)
-            serializer = UserSerializer(user, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            raise APIException(serializer.errors)
+            
         except Exception as e:
             raise APIException(e)
 
-    def delete(self, request, format=None):
+    def delete(self, request):
         try:
             user = User.objects.get(email=request.user)
-            user.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return delete_user(request, user)
         except Exception as e:
             raise APIException(e)
 
+
+class addUserByAdmin(APIView):
+    
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        raise APIException(serializer.errors)
+        
 
 class UpdateUserByAdmin(APIView):
     """
@@ -183,68 +135,35 @@ class UpdateUserByAdmin(APIView):
             raise Http404
 
 
-    def get(self, request, pk=None, format=None):
+    def get(self, request, pk=None):
         try:
             user = self.get_object(pk)
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
+            return get_user(request, user)
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request,pk=None, format=None):
+    def put(self, request,pk=None):
         try:
             user = self.get_object(pk)
-            serializer = UserSerializer(user, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            raise APIException(serializer.errors)
+            return edit_user(request, user)
         except Exception as e:
             raise APIException(e)
 
-    def delete(self, request, pk=None, format=None):
+    def delete(self, request, pk=None):
         try:
             user = self.get_object(pk)
-            user.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return delete_user(request, user)
         except Exception as e:
             raise APIException(e)
 
 
-
+@authentication_classes([])
 class Login(APIView):
 
     # permission_classes = (AllowAny,)
     def post(self, request):
         try:
-            email = request.data['email']
-            password = request.data['password']
-            encryptedPassword = make_password(password)
-            if User.objects.filter(email=email).exists():
-                user = User.objects.get(email=email)
-                if user.password != password:
-                    raise exceptions.APIException('Wrong Password!')
-
-            else:
-                raise exceptions.APIException("email doesn't exist, Try again")
-
-            user = User.objects.get(email=email, password=password)
-
-            access_token = create_access_token(user.id)
-            refresh_token = create_refresh_token(user.id)
-
-            UserToken.objects.create(
-                user_id=user.id,
-                token=refresh_token,
-                expired_at=datetime.datetime.utcnow() + datetime.timedelta(days=5)
-            )
-            response = Response()
-            response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
-            response.set_cookie(key='access_token', value=access_token, httponly=True)
-            # userObj = json.loads(user)
-            
-            response.data = serializers.serialize('json', [user])
-            return response
+            return login(request)
         except Exception as e:
             raise APIException(e)
 
@@ -272,19 +191,7 @@ class LogoutViewSet(APIView):
 
     def post(self, request):
         try:
-            refresh_token = request.COOKIES.get('refresh_token')
-            UserToken.objects.filter(
-                token=refresh_token
-            ).delete()
-
-            response = Response()
-            response.delete_cookie(key='refresh_token')
-            response.delete_cookie(key='access_token')
-
-            response.data = {
-                'message': 'successfully logged out',
-            }
-            return response
+            return logout(request)
         except Exception as e:
             raise APIException(e)
 
@@ -302,7 +209,7 @@ class FeedbackViewSet(APIView):
 
     authentication_classes = [JWTAuthentication]
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             email = request.user
             user = User.objects.get(email=email)
@@ -338,23 +245,15 @@ class PaymentViewset(APIView):
 
     # authentication_classes=[JWTAuthentication]
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
-            payment = PaymentDetails.objects.all()
-            serializer = PaymentSerializer(payment, many=True)
-            return Response(serializer.data)
+            return get_payments_by_admin(request)
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
-            # user = User.objects.get(email=request.user)
-            request.data['transaction_id'] = str(uuid.uuid1())
-            serializer = PaymentSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            raise APIException(serializer.errors)
+            return post_feedback_by_admin(request)
         except Exception as e:
             raise APIException(e)
 
@@ -366,7 +265,7 @@ class PaymentDetailsViewset(APIView):
 
     # authentication_classes = [JWTAuthentication]
     # permission_classes = (IsAuthenticated,)
-
+    
 
     def get_object(self, pk):
         try:
@@ -375,22 +274,17 @@ class PaymentDetailsViewset(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             payment = self.get_object(pk)
-            serializer = PaymentSerializer(payment)
-            return Response(serializer.data)
+            return get_payment_by_id_by_admin(request, payment)
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             payment = self.get_object(pk)
-            serializer = PaymentSerializer(payment, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            raise APIException(serializer.errors)
+            return edit_payment_by_admin(request, payment)
         except Exception as e:
             raise APIException(e)
 
@@ -399,30 +293,25 @@ class BookingViewset(APIView):
 
     authentication_classes=[JWTAuthentication]
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
             user = User.objects.get(email=request.user)
             if user.isAdmin:
-                activeBookings = BookingDetails.objects.filter(tourid__start_date__gt=datetime.datetime.utcnow())
-                serializer = BookingDetailSerializer(activeBookings, many=True)
-                return Response(serializer.data)
+                bookings = BookingDetails.objects.filter(tourid__start_date__gt=datetime.datetime.utcnow())
+                return get_bookings(request, bookings)
             else:
-                tours = BookingDetails.objects.filter(userid=user.id)
-                serializer = BookingDetailSerializer(tours, many=True)
-                return Response(serializer.data)
+                bookings = BookingDetails.objects.filter(userid=user.id)
+                return get_bookings(request, bookings)
+            
         except Exception as e:
             raise APIException(e)
 
-    def post(self, request, format=None):
+    def post(self, request):
         try:
             user = User.objects.get(email=request.user)
             request.data['transaction_id'] = uuid.uuid1()
             request.data['userid'] = user.id
-            serializer = BookingSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            raise APIException(serializer.errors)
+            return post_booking(request)
         except Exception as e:
             raise APIException(e)
 
@@ -443,21 +332,21 @@ class BookingDetailsViewset(APIView):
             raise Http404
 
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             booking = self.get_object(pk)
-            serializer = BookingDetailSerializer(booking)
-            return Response(serializer.data)
+            return get_booking(request, booking)
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try: 
             booking = self.get_object(pk)
             booking.isCancelled = True
-            cancellation_charges = request.data['cancellation_charges']
-            reason_for_cancellation = request.data['reason_for_cancellation']
-            # cancellation_charges = float(booking.tourid.price) * 0.15
+            # cancellation_charges = request.data['cancellation_charges']
+            if request.data['reason_for_cancellation']:
+                reason_for_cancellation = request.data['reason_for_cancellation']
+            cancellation_charges = float(booking.tourid.price) * 0.15
             cancelled = CancellationDetails(bookingid=booking,
                                             refund_status='processing',
                                             cancellation_charges=cancellation_charges,
@@ -475,17 +364,9 @@ class BookingAdminViewset(APIView):
 
     authentication_classes=[JWTAuthentication]
 
-    def get(self, request, format=None):
+    def get(self, request):
         try:
-            text=request.GET.get('text')
-            booking_list = (BookingDetails.objects.filter(passenger_details__icontains=text))
-            bookings, totalPages, page = listing(request, booking_list)
-            serializer = BookingDetailSerializer(bookings, many=True)
-            return Response({
-                'pageItems': serializer.data,
-                'totalPages': totalPages,
-                'page': page
-            })
+            return get_bookings_by_pagination(request)
         except Exception as e:
             raise APIException(e)
     
@@ -496,67 +377,24 @@ class BookingAdminDetailViewset(APIView):
             return BookingDetails.objects.get(id=pk)
         except BookingDetails.DoesNotExist:
             raise Http404
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             booking = self.get_object(pk)
-            serializer = BookingSerializer(booking)
-            return Response(serializer.data)
+            return get_booking(request, booking)
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             booking = self.get_object(pk)
-            serializer = BookingSerializer(booking, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            raise APIException(serializer.errors)
+            return edit_booking_by_admin(request, booking)
         except Exception as e:
             raise APIException(e)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         try:
             booking = self.get_object(pk)
-            booking.delete()
-            serializer = BookingSerializer(booking)
-            return Response(serializer.data)
-        except Exception as e:
-            raise APIException(e)
-
-
-class FeedbackDetails(APIView):
-    """
-    Retrieve, update or delete a snippet instance.
-    """
-
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = (IsAuthenticated,)
-
-
-    def get_object(self, pk):
-        try:
-            return BookingDetails.objects.get(id=pk)
-        except BookingDetails.DoesNotExist:
-            raise Http404
-
-
-    def get(self, request, pk, format=None):
-        try:
-            booking = self.get_object(pk)
-            serializer = BookingSerializer(booking)
-            return Response(serializer.data)
-        except Exception as e:
-            raise APIException(e)
-
-    def put(self, request, pk, format=None):
-        try:
-            booking = self.get_object(pk)
-            serializer = BookingSerializer(booking, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            raise APIException(serializer.errors)
+            return delete_booking_by_admin(request, booking)
         except Exception as e:
             raise APIException(e)
 
@@ -568,15 +406,7 @@ class CancellationList(APIView):
     """
     def get(self, request):
         try:
-            text = request.GET.get('text')
-            cancellation_list = CancellationDetails.objects.filter(refund_status__contains=text)
-            items, totalPages, page = listing(request, cancellation_list)
-            serializer = CancellationSerializer(items, many=True)
-            return Response({
-                'pageItems': serializer.data,
-                'totalPages': totalPages,
-                'page': page
-            })
+            return get_cancellation_by_pagination(request)
         except Exception as e:
             raise APIException(e)
 
@@ -591,7 +421,7 @@ class CancellationDetail(APIView):
             return CancellationDetails.objects.get(id=pk)
         except CancellationDetails.DoesNotExist:
             raise Http404
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         try:
             cancellation = self.get_object(pk)
             serializer = CancellationSerializer(cancellation)
@@ -599,7 +429,7 @@ class CancellationDetail(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             cancellation = self.get_object(pk)
             serializer = CancellationSerializer(cancellation, data=request.data)
@@ -610,7 +440,7 @@ class CancellationDetail(APIView):
         except Exception as e:
             raise APIException(e)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         try:
             cancellation = self.get_object(pk)
             cancellation.delete()

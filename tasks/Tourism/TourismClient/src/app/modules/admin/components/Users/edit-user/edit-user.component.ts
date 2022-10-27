@@ -62,7 +62,7 @@ export class EditUserComponent implements OnInit {
     mobile : new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}')]),
     image : new FormControl(''),
     password : new FormControl('', [Validators.required]),
-    isAdmin : new FormControl('', [Validators.required]),
+    isAdmin : new FormControl(false),
     is_active : new FormControl('', [Validators.required]),
   })
 
@@ -83,8 +83,10 @@ export class EditUserComponent implements OnInit {
   }
 
   addUserObj() {
+    console.log(this.UserForm.valid, this.UserForm.value);
     if(this.UserForm.valid){
       let userObj = {...this.UserForm.value, image:this.imageUrl}
+      console.log(userObj);
       if(this.id){
         this.editUserSubscription = this.dataservice.editUser(userObj, this.id).subscribe(
           data=>{
@@ -102,7 +104,7 @@ export class EditUserComponent implements OnInit {
         }
       )
       }else{
-        this.addUserSubscription = this.dataservice.addEmployee(userObj).subscribe(
+        this.addUserSubscription = this.dataservice.addUser(userObj).subscribe(
           data=>{
           console.log(data)
           alert("user profile added successfully")

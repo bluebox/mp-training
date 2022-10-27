@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit {
         // let dataString = JSON.stringify(data)
         // this.imageUrl = JSON.parse(dataString)
         this.imageUrl = data
+        console.log(this.imageUrl);
       },
       err => {
         if(err.status == 404){
