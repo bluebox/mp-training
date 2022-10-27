@@ -2,8 +2,8 @@
 <h4 style="text-transform: uppercase;text-align:center;">Jobs</h4>
 <div class="search" style="background-color: black;padding:10px">
 
-    <input type="text" id="search" #search placeholder="find a job" name="search"> &nbsp;
-    <label for="search"> <button type="submit" (click)="getClientJobs(search.value,0)"> <i class="fa fa-search"></i> </button>
+    <input type="text" id="search" (keydown.enter)="getClientJobs(search.value,0)" #search placeholder="find a job" name="search"> &nbsp;
+    <label for="search"> <button type="button" (click)="getClientJobs(search.value,0)"> <i class="fa fa-search"></i> </button>
     </label>
 </div>
 

@@ -102,6 +102,7 @@ export class CcontractDetailsComponent implements OnInit {
         this.service.freelancerpayment(jobs.emp_proposal_id).subscribe((result: any) => {
           this.sendPaymentData['freelancer_id'] = result.freelancer_id;
           console.log(this.sendPaymentData);
+          location.reload();
 
           this.service.newfreelancerpaymentresult(this.sendPaymentData).subscribe((result: any) => console.log(result));
 

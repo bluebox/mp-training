@@ -62,11 +62,11 @@ export class LoginComponent implements OnInit {
         window.sessionStorage.setItem('cuser', JSON.stringify(data));
         const config = new MatSnackBarConfig();
         config.panelClass = ['background-red'];
-        config.duration = 4000;
+        config.duration = 2500;
         config.horizontalPosition = 'center';
         config.verticalPosition = 'top';
         this.snackBar.open('successfully logged in','x',config);
-        setTimeout( () => this.router.navigate(['client_login_page']),2500);
+        setTimeout( () => this.router.navigate(['client_login_page']),1);
         // alert('login successfully');
         // this.router.navigate(['client_login_page'])
       }

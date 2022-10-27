@@ -146,7 +146,7 @@ class clientUpdate(APIView):
 from .paginator import *
 class clientJobsRegister(APIView):
     def get(self, request, format=None):
-        client = client_jobs.objects.filter(project_title__icontains=request.GET.get('project_title'))
+        client = client_jobs.objects.filter(project_title__icontains=request.GET.get('project_title'),is_deleted = False )
         users, totalPages, page = listing(request, client)
         serializer = client_jobs_serializers(users, many=True)
         return Response({

@@ -33,6 +33,7 @@ class client_jobs(models.Model):
     total_pay = models.IntegerField()
     experience_level = models.CharField(max_length=100)
     skills_requried = models.CharField(max_length=100)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return "{} {} {} ".format(self.job_id,self.client_id,self.project_title)
