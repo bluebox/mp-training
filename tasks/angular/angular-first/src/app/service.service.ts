@@ -66,16 +66,16 @@ export class ServiceService {
   EditProposalUrl(id : any ,data: any) {
     return this.http.put(this.url + 'freelancer_proposals?proprosal_id='+id, data)
   }
-  getFreelancerProposals(page : number,data: any) {
-    return this.http.get(this.url + 'get_freelancer_proposals?id=' + data + '&page=' + page);
+  getFreelancerProposals(page : number,data: any,value : any) {
+    return this.http.get(this.url + 'get_freelancer_proposals?id=' + data + '&page=' + page + '&data=' + value);
   }
 
   getallFreelancerProposals(data : any) { 
     return this.http.get(this.url + 'get_all_freelancer_proposals?id=' + data );
   }
 
-  getJobsOfClientIdUrl(data: any) {
-    return this.http.get(this.url + 'get_client_jobs?client_id=' + data)
+  getJobsOfClientIdUrl(data: any,filter : string,page : number) {
+    return this.http.get(this.url + 'get_client_jobs?client_id=' + data + '&filter=' + filter + '&page=' + page)
   }
 
   getJobofClient(data : any){

@@ -8,7 +8,10 @@
     <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
 </div>
 <ul>
+    <h5 style="text-transform: uppercase;text-align:center;">Total Earnings : $ {{ getTotal()}} <i class='fas fa-wallet'></i> </h5>
+
     <li *ngFor="let x of recevied_data">
+        
         <table>
             <tr>
                 <th>PAYMENT ID : </th>
@@ -21,11 +24,11 @@
             </tr>
             <tr>
                 <td>TAX :</td>
-                <td class="tabledata">$ {{ x.Tax}}</td>
+                <td class="tabledata">$ {{ x.Tax.toFixed(2)}}</td>
             </tr>
             <tr>
                 <td>EARNED <span style="font-size: 25px;"> 🤑 </span> :</td>
-                <td class="tabledata">$ {{ x.earned}}</td>
+                <td class="tabledata">$ {{ x.earned.toFixed(2)}}</td>
 
             </tr>
         </table>

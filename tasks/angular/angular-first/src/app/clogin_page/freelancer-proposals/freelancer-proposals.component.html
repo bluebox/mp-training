@@ -1,6 +1,17 @@
 <app-cheader></app-cheader>
-<h4 style="text-transform: uppercase;text-align:center;">Your posted jobs</h4>
 
+<h4 style="text-transform: uppercase;text-align:center;">Your posted jobs</h4>
+<div class="filter" style="background-color: black;color:white;padding:10px;border-bottom:2px solid white">
+    <div class="filter_container">
+        <label for="filter">Filter by :-</label> &nbsp;&nbsp;
+        <select name="" id="filter" (change)="sort($event)">
+            <option value="all">all</option>
+            <option value="false">active jobs</option>
+            <option value="true">deleted jobs</option>
+
+        </select>
+    </div>
+</div>
 <ng-container *ngIf="jobsData=='' ; then first else second "></ng-container>
 <ng-template #first>
     <div class="nodata">
@@ -13,12 +24,12 @@
     </div>
 </ng-template>
 <ng-template #second>
-    <ul #second >
-        <li  *ngFor="let jobs of jobsData"  >
+    <ul #second>
+        <li *ngFor="let jobs of jobsData">
             <div class="check_isdeleted">
                 <table>
                     <tr>
-                        <th>JOB ID : </th>
+                        <th > <span style="color:rgb(255, 255, 255);"><i class="fa fa-id-card-o"></i></span> JOB ID : </th>
                         <th id="tabledata">{{ jobs.job_id}}</th>
 
                     </tr>
@@ -47,11 +58,17 @@
                 </table> <button type="button" routerLink="./proposal_details/{{jobs.job_id}}">view proposals</button>
                 &nbsp;
                 <!-- <button type="button" [disabled]="true" (click)="delete(jobs.job_id)">delete</button> &nbsp; -->
-                <button type="button" *ngIf="!jobs.is_deleted" routerLink="/client_login_page/freelancer_proposals/edit_job/{{jobs.job_id}}">edit
+                <button type="button" *ngIf="!jobs.is_deleted"
+                    routerLink="/client_login_page/freelancer_proposals/edit_job/{{jobs.job_id}}">edit
                 </button>
-                <button type="button" *ngIf="jobs.is_deleted" disabled style="background-color: rgb(162, 55, 55);color: white;">Job Deleted</button>
+                <button type="button" *ngIf="jobs.is_deleted" disabled
+                    style="background-color: rgb(255, 180, 180);color: rgb(0, 0, 0);">Job Deleted</button>
             </div>
         </li>
     </ul>
+    <div class="paginator" style="text-align: center;">
+        <button type="button" (click)="getClientIdUrl(filterby,-1)"> < </button> page {{ page }} out of {{ totalPages}}
+        <button type="button" (click)="getClientIdUrl(filterby,1)"> > </button>
+    </div>
 </ng-template>
 <app-cfooter></app-cfooter>

@@ -2,7 +2,7 @@ li{
     border: 2px solid rgb(222, 209, 209);
     border-radius: 10px;
     list-style-type: none;
-    width: 50%;
+    width: 55%;
     margin-left: auto;
     margin-right: auto;
     padding: 50px;
@@ -38,7 +38,7 @@ th{
 
 li button {
     border: 1px solid #dddddd;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: aquamarine;
     color: rgb(6, 6, 6);
     padding: 8px;
@@ -56,4 +56,10 @@ table td{
 
 ul{
     min-height: 70vh;
+}
+
+.filter_container{
+    width: 20%;
+    margin: auto;
+    font-size: 20px;
 }

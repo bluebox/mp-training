@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
 
         const config = new MatSnackBarConfig();
         config.panelClass = ['background-red'];
-        config.duration = 4000;
+        config.duration = 2500;
         config.horizontalPosition = 'center';
         config.verticalPosition = 'top';
         this.snackBar.open(data.msg,'x',config);
-        setTimeout( () => this.router.navigate(['freelance_login_page']),2500);
+        setTimeout( () => this.router.navigate(['freelance_login_page']),1);
         // this.router.navigate(['freelance_login_page']);
         console.log(data.access_token);
         console.log(data);

@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,4 +41,15 @@ export class SendProposalPageComponent implements OnInit {
 
   data : any = localStorage.getItem('fuser')
   parse_data = JSON.parse(this.data)
+
+  get skills(){
+    return this.send_proposal.get('skills')
+  }
+  get cover_letter(){
+    return this.send_proposal.get('cover_letter')
+  }
+
+  get required_pay(){
+    return this.send_proposal.get('required_pay');
+  }
 }

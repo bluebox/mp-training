@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="feedback" *ngIf="jobs.flag">
-                    <div class="open" *ngIf="jobs.flag" style="margin-left: -10px;">
+                    <div class="open" *ngIf="jobs.flag" style="margin-left: -10px;border: 2px solid white;padding: 10px;border-radius: 10px;">
                         <p style="text-align: center;text-transform: uppercase;"> feedback form</p>
                         Rate for freelancer:
                         <ngb-rating [(rate)]="currentRate" [max]="5" (rateChange)="ratechange(currentRate)"

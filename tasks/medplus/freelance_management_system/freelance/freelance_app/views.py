@@ -1,21 +1,22 @@
-import json
+# import json
 from .jwtauthetication import *
-import jwt
+# import jwt
+from django.db.models import Q
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from django.http import HttpResponse, JsonResponse, Http404
-from django.contrib import messages
-from django.shortcuts import render,redirect
-from .models import *
+# from django.contrib import messages
+# from django.shortcuts import render,redirect
+# from .models import *
 from rest_framework import serializers, status
-from rest_framework.decorators import api_view
+# from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .forms import  FreelanceForm
-from rest_framework.viewsets import ViewSet
-from rest_framework import viewsets
-from rest_framework import  generics
+# from .forms import  FreelanceForm
+# from rest_framework.viewsets import ViewSet
+# from rest_framework import viewsets
+# from rest_framework import  generics
 from .serializers import  *
-from rest_framework.generics import ListAPIView,GenericAPIView
+# from rest_framework.generics import ListAPIView,GenericAPIView
 # Create your views here.
 
 
@@ -278,7 +279,7 @@ class proposals(APIView):
 class get_freelancer_proposals(APIView):
     def get(self,request):
 
-        client = freelancer_proposals.objects.filter(freelancer_id=int(request.GET.get('id')))
+        client = freelancer_proposals.objects.filter(Q(freelancer_id=int(request.GET.get('id'))) , Q(proprosal_status__icontains = request.GET.get('data')))
         users, totalPages, page = listing(request, client)
         serializer = freelancer_proposals_serializers(users,many=True)
         return Response({
@@ -309,9 +310,31 @@ class get_proposal(APIView):
         return Response(serializer.data)
 class getClientJobs(APIView):
     def get(self,request):
-        get_client_jobs = client_jobs.objects.filter(client_id = int(request.GET.get('client_id')))
-        serializers = client_jobs_serializers(get_client_jobs,many=True)
-        return Response(serializers.data)
+        if request.GET.get('filter')=='true':
+            filter = True
+        elif request.GET.get('filter')=='all':
+            get_client_jobs = client_jobs.objects.filter(Q(client_id=int(request.GET.get('client_id'))))
+            users, totalPages, page = listing(request, get_client_jobs)
+            serializer= client_jobs_serializers(users, many=True)
+            return Response({
+                'pageItems': serializer.data,
+                'totalPages': totalPages,
+                'page': page
+            })
+            # return Response(serializers.data)
+        else:
+            filter = False
+        get_client_jobs = client_jobs.objects.filter(Q(client_id = int(request.GET.get('client_id'))) , Q ( is_deleted = filter))
+        users, totalPages, page = listing(request, get_client_jobs)
+        serializer = client_jobs_serializers(get_client_jobs,many=True)
+
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
+        # return Response(serializers.data)
+
 
 
 class create_contract(APIView):

@@ -8,7 +8,10 @@
     
 </div>
 <ul>
+    <h5 style="text-transform: uppercase;text-align:center;">Total Spends : $ {{getTotal()}}</h5 >
     <li *ngFor="let x of arr">
+
+
         <table>
             <tr>
                 <th>PAYMENT ID : </th>
@@ -21,16 +24,16 @@
             </tr>
             <tr>
                 <td>HANDLING FEE : </td>
-                <td class="tabledata">$ {{ x.handling_fee}}</td>
+                <td class="tabledata">$ {{ x.handling_fee.toFixed(2)}}</td>
 
             </tr>
             <tr>
                 <td>TAX :</td>
-                <td class="tabledata">$ {{ x.tax}}</td>
+                <td class="tabledata">$ {{ x.tax.toFixed(2)}}</td>
             </tr>
             <tr>
                 <td>TOTAL PAYMENT  :</td>
-                <td class="tabledata">$ {{ x.total_payment}}</td>
+                <td class="tabledata">$ {{ x.total_payment.toFixed(2)}}</td>
 
             </tr>
         </table>

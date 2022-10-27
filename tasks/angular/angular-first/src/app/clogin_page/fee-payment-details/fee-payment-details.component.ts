@@ -24,6 +24,14 @@ totalPages: any;
     }
     
   }
-
+  getTotal() {
+    let total = 0;
+  
+    this.arr.forEach((item: any) => {
+      total += Number(item.total_payment);
+    });
+  
+    return total.toFixed(2);
+  }
 
 }

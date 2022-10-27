@@ -3,14 +3,17 @@
 <div class="main">
     <form [formGroup]="send_proposal" (submit)="submitSendProposal()">
         <div class="form-group">
-            <h4>JOB ID : {{ job_id }} </h4>
-            <h4>Mention Your Skills</h4>
+            <h4 style="color: aquamarine;">JOB ID : {{ job_id }} </h4>
+
+            <h4>  Mention Your Skills</h4>
+            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="skills && skills.invalid && skills.touched;"> * this field is required</small></b>
             <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
             <textarea name="" id="exampleInputEmail1" cols="50" rows="10" formControlName="skills"></textarea>
         </div>
 
         <div class="form-group">
-            <h4>Cover Letter</h4>
+            <h4> Cover Letter</h4>
+            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="cover_letter && cover_letter.invalid && cover_letter.touched;"> * this field is required</small></b>
             <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
             <textarea name="" id="exampleInputEmail1" cols="50" rows="10" formControlName="cover_letter"></textarea>
         </div>
@@ -18,10 +21,13 @@
 
             <label class="form-check-label" for="exampleCheck1">
                 <h3>Bidding amount $ </h3>
+
             </label> &nbsp;
             <input type="number" id="exampleCheck1" formControlName="requried_pay">
+            <b><small [ngStyle]="{'color': '#F24C4C'}" *ngIf="required_pay && required_pay.invalid && required_pay.touched;"> * this field is required</small></b> <br>
+            <br>    
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
+        <button type="submit" class="btn btn-primary" [disabled]="send_proposal.invalid">Submit</button> &nbsp;
         <button type="reset" class="btn btn-primary">Reset</button> &nbsp;
         <button type="button" class="btn btn-primary" routerLink="/freelance_login_page/jobs">exit</button>
 

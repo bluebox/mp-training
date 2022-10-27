@@ -24,4 +24,13 @@ export class PaymentDetailsComponent implements OnInit {
   this.totalPages = data.totalPages});
   }
 
+  getTotal() {
+    let total = 0;
+    this.recevied_data?.forEach((item: any) => {
+      total += Number(item.earned);
+    });
+  
+    return total.toFixed(2);
+  }
+
 }

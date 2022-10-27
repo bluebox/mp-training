@@ -8,6 +8,7 @@ import { ServiceService } from 'src/app/service.service';
   styleUrls: ['./freelancer-proposals.component.css']
 })
 export class FreelancerProposalsComponent implements OnInit {
+  totalPages: any;
 edit(job_id: number , data : any ) {
   this.service.editJob(job_id , data ).subscribe((data: any) => { console.log(data); }, (err: any) => { console.log(err); });
   
@@ -25,14 +26,23 @@ delete(job_id: any) {
   constructor(private service: ServiceService) { }
   jobsData: any;
   ngOnInit(): void {
-    this.getClientIdUrl()
+    this.getClientIdUrl('all',0)
   }
 
-  getClientIdUrl() {
-    this.service.getJobsOfClientIdUrl(this.client_id_parse.client_id).subscribe((data: any) => this.jobsData = data)
+  page = 1;
+  getClientIdUrl(filter :string,page : number){
+    this.service.getJobsOfClientIdUrl(this.client_id_parse.client_id,filter,this.page + page ).subscribe((data: any) => {this.jobsData = data.pageItems;
+    this.totalPages = data.totalPages;this.page = data.page;}
+    )
 
   }
   client_id  : any = window.sessionStorage.getItem('cuser')
   client_id_parse = JSON.parse(this.client_id)
 
+  filterby : string = 'all';
+  sort(event : any){
+    this.filterby= event.target.value;
+    this.getClientIdUrl(this.filterby,0)
+
+  }
 }

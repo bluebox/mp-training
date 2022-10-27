@@ -12,7 +12,7 @@ export class ProposalsComponent implements OnInit {
   totalPages  = 0;
   page = 1;
   ngOnInit(): void {
-    this.getProposals(0) 
+    this.getProposals(0,'') 
   }
   data : any = localStorage.getItem('fuser')
   parse_data = JSON.parse(this.data)
@@ -28,8 +28,8 @@ export class ProposalsComponent implements OnInit {
     }
   }
 
-  getProposals(page : number){
-    this.service.getFreelancerProposals(this.page + page,this.parse_data.id).subscribe( (data: any ) => {
+  getProposals(page : number,value : any){
+    this.service.getFreelancerProposals(this.page + page,this.parse_data.id,value).subscribe( (data: any ) => {
       this.recevied_data = data.pageItems
       this.page=data.page
       this.totalPages = data.totalPages
@@ -37,5 +37,9 @@ export class ProposalsComponent implements OnInit {
       // window.sessionStorage.setItem('freelancer_proposals', JSON.stringify(this.recevied_data))
     })
   }
-
+  sorting : string='';
+  sortby(value : any){
+    this.sorting  = value.target.value
+    this.getProposals(0,this.sorting)
+  }
 }
