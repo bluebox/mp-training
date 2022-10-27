@@ -1,135 +1,151 @@
+'''dict'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.placeholders import *
 
-notes = '''
+# from tasks.basics.test_00_understanding_assert import NOTES_1,
+# THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+
+
+NOTES_1 = '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
 
 def test_dictionary_type():
+    '''dict'''
     test_dict = {1 : "one"}   # note the new syntax
-    assert __ == type(test_dict).__name__
+    assert type(test_dict).__name__ == 'dict'
 
 def test_dictionary_empty():
+    '''dict'''
     empty_dict_1 = {}
-    assert __ == isinstance(empty_dict_1, dict)
+    assert isinstance(empty_dict_1, dict) is True
 
     empty_dict_2 = dict() # another way of creating empty dict
-    assert __ == len(empty_dict_2)
+    assert len(empty_dict_2) == 0
     assert empty_dict_1 == empty_dict_2
 
 def test_dictionary_create():
-    dict_1 = { 1 : "one", 2 : "two" }
-    assert __ == isinstance(dict_1, dict)
+    '''dict'''
+    dict_1 = {1 : "one", 2 : "two"}
+    assert isinstance(dict_1, dict) is True
 
     #init from a sequence of tuple pairs, useful in many cases.
     dict_2 = dict([(1, "one"), (2, "two")])
-    assert __ == dict_2[1]
-    assert __ == dict_2[2]
+    assert dict_2[1] == 'one'
+    assert dict_2[2] == 'two'
 
 def test_dictionary_length():
-    word_to_digit = { "one" : 1, "two" : 2}
-    assert __ == len(word_to_digit) #note that a key value pair is treated as one item
+    '''dict'''
+    word_to_digit = {"one" : 1, "two" : 2}
+    assert len(word_to_digit) == 2 #note thatA regular dictionary doesn't track the insertion order.
 
 def test_dictionary_is_indexed_by_key():
-    word_to_digit = { "one" : 1, "two" : 2}
-    assert __ == word_to_digit["one"]
-    assert __ == word_to_digit["two"]
+    '''dict'''
+    word_to_digit = {"one" : 1, "two" : 2}
+    assert word_to_digit["one"] == 1
+    assert word_to_digit["two"] == 2
 
     try:
         word_to_digit[1]
-    except Exception as ex:
-    #Note that numeric indicies don't mean much like in case of lists and tuples
-        print (ex)   # ex=1(value from dict key-value pair stored in exception)
+    except Exception as ex_1:
+        print(ex_1)   # ex=1(value from dict key-value pair stored in exception)
         assert True
 
 def test_dictionary_is_mutable():
-    word_to_digit = { "one" : 1, "two" : 2}
+    '''dict'''
+    word_to_digit = {"one" : 1, "two" : 2}
 
     word_to_digit["three"] = 3
-    assert __ == word_to_digit
+    assert word_to_digit == {'one': 1, 'two': 2, 'three': 3}
 
     del word_to_digit["one"]
-    assert __ == word_to_digit
+    assert word_to_digit == {'two': 2, 'three': 3}
 
     word_to_digit["one"] = 10
-    assert __ == word_to_digit
+    assert word_to_digit == {'two': 2, 'three': 3, 'one': 10}
     # A regular dictionary doesn't track the insertion order.
     # So when iterating over it, items are returned in an arbitrary order.
-    # When we want to make sure that items are returned to the order they were inserted, we can use OrderedDict.
+    # When we want to make sure that items are returned to the
+    # order they were inserted, we can use OrderedDict.
 
 def test_dictionary_is_unordered():
-    dict1 = { 'one': 1, 'two': 2 }
-    dict2 = { 'two': 2, 'one': 1}
+    '''dict'''
+    dict1 = {'one': 1, 'two': 2}
+    dict2 = {'two': 2, 'one': 1}
 
     equal = (dict1 == dict2)
-    assert __ == equal # True or False?
+    assert equal is True # True or False?
 
 def test_dictionary_keys_and_values():
-    word_to_digit = { "one" : 1, "two" : 2}
-    assert __ == len(word_to_digit.keys())
-    assert __ == len(word_to_digit.values())
+    '''dict'''
+    word_to_digit = {"one" : 1, "two" : 2}
+    assert len(word_to_digit.keys()) == 2
+    assert len(word_to_digit.values()) == 2
     keys = list(word_to_digit.keys())
     #sort to get a deterministic order
     keys.sort()
-    assert __ == keys
+    assert keys == ['one', 'two']
     values = list(word_to_digit.values())
     values.sort()
-    assert __ == values
+    assert values == [1, 2]
 
 def test_dictionary_contains():
-    word_to_digit = { "one" : 1, "two" : 2}
+    '''dict'''
+    word_to_digit = {"one" : 1, "two" : 2}
 
-    assert __ == ("one" in word_to_digit)
-    assert __ == ("two" in word_to_digit)
+    assert ("one" in word_to_digit) is True
+    assert ("two" in word_to_digit) is True
 
-    assert __ == ("one" in word_to_digit.keys())
-    assert __ == ("two" in word_to_digit.keys())
+    assert ("one" in word_to_digit.keys()) is True
+    assert ("two" in word_to_digit.keys()) is True
 
-    assert __ == (1 in word_to_digit)
-    assert __ == (2 in word_to_digit)
+    assert (1 in word_to_digit) is False
+    assert (2 in word_to_digit) is False
 
-    assert __ == (1 in word_to_digit.values())
-    assert __ == (2 in word_to_digit.values())
+    assert (1 in word_to_digit.values()) is True
+    assert (2 in word_to_digit.values()) is True
 
 def test_valid_dictionary_keys():
+    '''dict'''
     test_dict = {}
     test_dict[1] = 1
     test_dict["one"] = "string"
     try:
         key = []
         test_dict[key] = "list"
-    except TypeError as te:
-        print (te)  #observe the error message.
+    except TypeError as te_1:
+        print(te_1)  #observe the error message.
         assert True
 
     try:
-        key = (1,2)
+        key = (1, 2)
         test_dict[key] = "tuple with immutable elements"
-    except TypeError as te:
-        print (te)
+    except TypeError as te_1:
+        print(te_1)
         assert False # do we reach here?
 
     try:
         key = (1, [])
         test_dict[key] = "tuple with mutable element"
-    except TypeError as te:
-        print (te)
+    except TypeError as te_1:
+        print(te_1)
         assert True #do we reach here?
 
-    assert {1:1,'one':'string',(1, 2): 'tuple with immutable elements'} == test_dict
+    assert test_dict == {1:1, 'one':'string', (1, 2): 'tuple with immutable elements'}
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+1. dicts are unordered sets of key value pairs which facilitate
+fast lookups by key.
+2. A regular dictionary doesn't track the insertion order.
+3. A regular dictionary doesn't track the insertion order.
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 12
 
-notes2= '''
+NOTES_2 = '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work

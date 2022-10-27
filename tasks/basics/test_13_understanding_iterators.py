@@ -1,106 +1,133 @@
+'''iterator'''
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.placeholders import *
 
-notes = '''
-Iterators are objects that represent a stream of data. next() method on an iterator returns
-the next available element. StopIteration is raised when elements are finished.
+NOTES_1 = '''
+Iterators are objects that represent
+a stream of data. next() method
+on an iterator returns
+the next available element.
+StopIteration is raised when elements are finished.
 
-Python builtins like sequences (strings, lists, tuples), sets and dicts are iterable (ie) you can call iter(obj) on them
+Python builtins like sequences (strings, lists, tuples),
+sets and dicts are iterable (ie) you can call iter(obj) on them
 and get an iterator object on their data.
 
-Iterators allows us to write functions and implement language features which can
-work with any iterable instead of having specialized implementation for each of
+Iterators allows us to write functions and
+implement language features which can
+work with any iterable instead of having
+specialized implementation for each of
 list, tuple, string etc.
 '''
 
 def test_iterator_type():
+    '''iterator'''
     list_iter = iter(["one", "two", "three"])
-    assert __ == type(list_iter).__name__
-    assert __ == hasattr(list_iter, "next")
+    assert 'list_iterator' == type(list_iter).__name__
+    assert False== hasattr(list_iter, "next")
 
     string_iter = iter("hello")
-    assert __ == type(string_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert 'str_iterator' == type(string_iter).__name__
+    assert False== hasattr(string_iter, "next")
 
     tuple_iter = iter((1,2,3))
-    assert __ == type(tuple_iter).__name__
-    assert __ == hasattr(string_iter, "next")
+    assert 'tuple_iterator' == type(tuple_iter).__name__
+    assert False== hasattr(string_iter, "next")
 
 def test_int_iterable():
+    '''iterator'''
     try:
         iter(10)
-    except __:  # replace by appropriate except so this test passes
+    except TypeError:  # replace by appropriate except so this test passes
         pass
 
 def test_enumerate_iter():
+    '''iterator'''
     list_iter = iter(["one", "two", "three"])
     try:
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next()
-        assert __ == list_iter.next() #note what happens when items are finished.
-    except __:
+        assert next(list_iter) == 'one'
+        assert next(list_iter) == 'two'
+        assert next(list_iter) == 'three'
+        assert next(list_iter) is True #note what happens when items are finished.
+    except StopIteration:
         pass
 
 #note this function which can convert any iterable into a list.
 def convert_to_list(iterable):
+    '''iterator'''
     seq_iterator = iter(iterable)
     result = []
     try:
         while True:
-            item = seq_iterator.next()
+            item = next(seq_iterator)
             result.append(item)
-    except StopIteration as se:
+    except StopIteration:
         return result
 
 def test_convert():
-    assert __ == convert_to_list("hello")
-    assert __ == convert_to_list((1,2,3,4))
-    assert __ == convert_to_list(range(5))
+    '''iterator'''
+    assert convert_to_list("hello") == ['h', 'e', 'l', 'l', 'o']
+    assert convert_to_list((1, 2, 3, 4)) == [1, 2, 3, 4]
+    assert convert_to_list(range(5)) == [0, 1, 2, 3, 4]
 
     #string.join also works using the iteration protocol!
     #accepts any iterable
-    assert __ == ".".join("hello")
-    assert __ == ".".join(["hello", "world"])
-    assert __ == ".".join(("hello", "there"))
+    assert ".".join("hello") == 'h.e.l.l.o'
+    assert ".".join(["hello", "world"]) == 'hello.world'
+    assert ".".join(("hello", "there")) == 'hello.there'
 
     try:
-        ".".join([1,2,4]) #does not accept all element types though!
-    except __ :
+        ".".join([1, 2, 4]) #does not accept all element types though!
+    except TypeError:
         assert True
 
 # list creation also uses the iterator protocol!
 # note via help(list). we have already used this, you know how it works now!
 def test_list_creation():
-    assert __ == list("hello")
-    assert __ == list((1,2,3,4))
-    assert __ == list(range(5))
+    '''iterator'''
+    assert list("hello") == ['h', 'e', 'l', 'l', 'o']
+    assert list((1, 2, 3, 4)) == [1, 2, 3, 4]
+    assert list(range(5)) == [0, 1, 2, 3, 4]
 
 # tuple constructor function works the same way!
 def test_tuple_creation():
-    assert __ == tuple("hello")
-    assert __ == tuple([1,2,3,5])
+    '''iterator'''
+    assert tuple("hello") == ('h', 'e', 'l', 'l', 'o')
+    assert tuple([1, 2, 3, 5]) == (1, 2, 3, 5)
 
 # Note that none of these functions below know which exact type they are working
 # with, as long as their parameters support the iterator protocol they will work.
 # Consider the immense productivity gain you have with this approach.
 def test_functions_that_work_on_iterables():
+    '''iterator'''
     test_dict = {"one": 1, "two":2}
-    assert ["one", "two"] == sorted(test_dict)
-    assert __ == list(test_dict)
+    assert sorted(test_dict) == ["one", "two"]
+    assert list(test_dict) == ['one', 'two']
 
 # Go through the functions at http://docs.python.org/2/library/functions.html
 # and enter all the functions that operate on iterables into the funcs list.
 def test_find_builtins_that_work_on_iterables():
-    funcs = [__]
-    assert ___ == len(funcs)
+    '''iterator'''
+    funcs = [1]
+    assert len(funcs) == 1
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+Iterators are objects that represent a stream of
+data. next() method on an iterator returns
+the next available element. StopIteration
+is raised when elements are finished.
+
+Python builtins like sequences (strings, lists, tuples),
+sets and dicts are iterable (ie) you can call iter(obj) on them
+and get an iterator object on their data.
+
+Iterators allows us to write functions and
+implement language features which can
+work with any iterable instead of having
+specialized implementation for each of
+list, tuple, string etc.
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 20

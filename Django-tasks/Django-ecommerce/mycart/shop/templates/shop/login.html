@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Signup</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="signup" style="height:100vh;display:flex;flex-direction:column;justify-content:center;align-items: center;background-color: bisque;" >
+            <div class="head" style="display:flex;justify-content:center;align-items: center;margin-top: 10px;">
+                <h2 >Shopping App</h2>
+            </div>
+            <div class="container" style="height:65vh;width:50%;border:1px solid black;display:flex;justify-content:center;align-items: center;margin-top: 10px;border-radius:10px;">
+                <form action="" method="POST">{% csrf_token %}
+                    <h2 class="signin" style="display:flex;justify-content:center;align-items: center;">Sign-in</h2>
+                    <div class="form-group">
+                      <label for="username1">Username</label>
+                      <input type="text" name="username" class="form-control" id="username1" aria-describedby="emailHelp" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" minlength="6" placeholder="Password" required>
+                    </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                    <div style="margin-top:15px;">
+                        <p>
+                            By Submiting, you agree to Shopping's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice.</a>
+                        </p>
+                    </div>
+                    <div style="display:flex;color:green;">
+                       {% for message in messages %}
+          <i class="bi bi-info"></i><p id="messages" >{{message}}</p>
+            {% endfor %}
+                        </div>
+                  </form>
+            </div>
+
+            <div class="a-divider a-divider-break" style="margin-top:15px;"><h5>New to shopping?</h5></div>
+            <div class="signup" style="width:50%;display:flex;justify-content:center;align-items: center;margin-top: 10px;">
+                    <a href="/shop/signup"><button type="button" class="btn btn-primary" style="width:100%;margin-left:2px;">Create Your Shopping Account</button></a>
+            </div>
+        </div>
+
+
+        <script src="" async defer></script>
+    </body>
+</html>

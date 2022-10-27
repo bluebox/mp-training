@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Lift</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style1.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+<div class="handle">
+    <div class="display">Floor Details</div>
+    <div class="buttons">
+      <div class="btn-container bottom">
+        <button class="btn-floor" data-set-floor="0">T</button>
+      </div>
+      <div class="btn-container floor">
+        <button class="btn-floor floor" data-set-floor="1">1</button>
+      </div>
+      <div class="btn-container floor">
+        <button class="btn-floor floor" data-set-floor="2">2</button>
+      </div>
+      <div class="btn-container floor">
+        <button class="btn-floor floor" data-set-floor="3">3</button>
+      </div>
+      <div class="btn-container floor">
+        <button class="btn-floor floor" data-set-floor="4">4</button>
+      </div>
+      <div class="btn-container floor">
+        <button class="btn-floor floor" data-set-floor="5" id="btn5">5</button>
+      </div>
+      <div class="btn-container floor">
+        <button class="btn-floor floor" data-set-floor="6">6</button>
+      </div>
+    </div>
+  </div>
+  <div class="building">
+    <div class="elevator-container">
+      <div class="elevator" id="elevator" onclick="upward()">
+        <div class="elevator-door"></div>
+        <div class="elevator-light"></div>
+      </div>
+    </div>
+    <div class="floors">
+      <div class="floor" data-floor="0">
+        <div class="floor-door"></div>
+      </div>
+      <div class="floor" data-floor="1">
+        <div class="floor-window"></div>
+      </div>
+      <div class="floor" data-floor="2">
+        <div class="floor-window"></div>
+      </div>
+      <div class="floor" data-floor="3">
+        <div class="floor-window"></div>
+      </div>
+      <div class="floor" data-floor="4">
+        <div class="floor-window"></div>
+      </div>
+      <div class="floor" data-floor="5" id="floor5">
+        <div class="floor-window"></div>
+      </div>
+      <div class="floor" data-floor="6">
+        <div class="floor-window"></div>
+      </div>
+    </div>
+  </div>
+        
+        <script >
+         window.onload = () => {
+    let elevator = document.querySelector(".elevator");
+    let elevatorDoor = elevator.querySelector(".elevator-door")
+    let elevatorLight = elevator.querySelector(".elevator-light")
+    let floors = document.querySelectorAll(".building .floor")
+    let buttons = document.querySelectorAll(".handle button")
+    let display = document.querySelector(".display")
+    
+    var destinyFloors = [];
+    var currentFloor = null;
+    var leavingFloor = false;
+    var elevatorStatus = 'idle';
+    var elevatorWaitingTime = 2000;
+    var elevatorWaitTime = 2000;
+    var previousTime = new Date().getTime();
+    var deltaTime = 0
+    
+    // elevatorDoor.style.width = "1px";
+    elevator.style.offsetTop = floors[0].offsetTop+"px";
+    // moving, opening, waiting, closing, idle
+    
+    buttons.forEach(button => {
+      button.addEventListener("click",function() {
+        let setFloor = this.getAttribute("data-set-floor");
+        let selectedFloor = Array.prototype.slice.apply(
+          document.querySelectorAll(".building .floor")
+        ).filter(f => f.getAttribute("data-floor") == setFloor)[0];
+        
+        if (destinyFloors.find(df => df.getAttribute("data-floor") == selectedFloor.getAttribute("data-floor")) == null) {
+          if (selectedFloor.getAttribute("data-floor") != currentFloor.getAttribute("data-floor")) {
+            destinyFloors.push(selectedFloor);
+          }
+        }
+        leavingFloor = true;
+        if (elevatorStatus == 'idle') {
+          elevatorStatus = 'closing'
+        }
+      })
+    })
+    
+    function updateElevator() {
+      deltaTime = new Date().getTime()-previousTime;
+      previousTime = new Date().getTime()
+      
+      requestAnimationFrame(updateElevator);
+      // console.log(elevator.offsetTop)
+      var elevatorWithinFloor = false;
+      for (let i=0; i<floors.length; i++) {
+        if (elevator.offsetTop > floors[i].offsetTop && elevator.offsetTop < floors[i].offsetTop+10) {
+          // console.log("elevator within floor "+i);
+          elevatorWithinFloor = true;
+          currentFloor = floors[i];
+          
+          if (!leavingFloor) {
+            if (destinyFloors.some(df => df.getAttribute("data-floor") == currentFloor.getAttribute("data-floor"))) {
+              // console.log("Reached floor")
+              destinyFloors = destinyFloors.filter(df => df.getAttribute("data-floor") != currentFloor.getAttribute("data-floor"));
+              elevatorStatus = 'opening';
+            }
+            
+          } else {
+            // console.log("Leaving floor")
+          }
+        }
+      }
+      
+      if (!elevatorWithinFloor) {
+        // console.log("Elevator out of any floor")
+        if (leavingFloor) {
+          leavingFloor = false;
+        }
+      }
+      
+      if (elevatorStatus != 'moving') {
+        if (elevatorStatus == 'opening') {
+          if (elevatorDoor.offsetWidth > 1) {
+            elevatorDoor.style.width = (elevatorDoor.offsetWidth-1)+"px";
+          } else {
+            if (destinyFloors.length == 0) {
+              elevatorStatus = 'idle'
+            } else {
+              elevatorStatus = 'waiting'
+              elevatorWaitingTime = elevatorWaitTime
+            }
+          }
+        }
+        if (elevatorStatus == 'waiting') {
+          if (elevatorWaitingTime > 0) {
+            elevatorWaitingTime -= deltaTime;
+          } else {
+            elevatorStatus = 'closing';
+          }
+        }
+        if (elevatorStatus == 'closing') {
+          if (elevatorDoor.offsetWidth < 34) {
+            elevatorDoor.style.width = (elevatorDoor.offsetWidth+1)+"px";
+          } else {
+            elevatorStatus = 'moving'
+          }
+        }
+      }
+      
+      if (destinyFloors[0] != null && elevatorStatus == 'moving') {
+        if (destinyFloors[0].offsetTop > elevator.offsetTop-7) {
+          elevator.style.top = (elevator.offsetTop-7+2)+"px";
+        } else {
+          elevator.style.top = (elevator.offsetTop-7-2)+"px";
+        }
+      }
+      
+      updateButtons();
+      updateDisplay();
+    }
+    updateElevator();
+    
+    function updateDisplay() {
+      display.innerHTML = [
+        "stop",
+        "ground floor",
+        "first floor",
+        "2nd floor",
+        "3rd floor",
+        "4th floor",
+        "5th floor"
+      ][parseInt(currentFloor.getAttribute("data-floor"))] + " " +
+      (destinyFloors[0] != null ? (
+        destinyFloors[0].offsetTop < currentFloor.offsetTop ? 
+          '<br />Up' :
+          '<br />Down'
+      ) : '')
+    }
+    
+    function updateButtons() {
+      buttons.forEach(button => {
+        if (destinyFloors.find(df => df.getAttribute("data-floor") == button.getAttribute("data-set-floor"))) {
+          button.classList.add("active")
+        } else {
+          button.classList.remove("active")
+        }
+      })
+    }
+  }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>UPI</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="Box" style="margin-top:10px;">
+            <div style="display:flex;justify-content: center;">
+            <h2 style="align-items:center;padding-top: 8px;">UPI Payment Gateway</h2>
+          </div>
+            <div class="form">
+              <div class="form">
+                  <label for="exampleFormControlInput1" class="form-label">Name </label>
+                  <input type="text" class="form-control" id="name" placeholder="name">
+                </div>
+                <div class="form">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="email" placeholder="email@email.com">
+                </div>
+                <div class="form">
+                  <label for="address" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="address" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="999 999 9999" required>
+                </div>
+                <div class="form">
+                    <label for="address" class="form-label">UPI Id</label>
+                    <input type="text" class="form-control" id="address" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="999 999 9999" required>
+                  </div>
+                <div class="form">
+                  <label for="amount" class="form-label">Amount</label>
+                  <input type="tel" class="form-control" id="amount" placeholder="99999999999" required>
+                </div>
+                <div class="form">
+                  <input type="submit" id="submit" class="submit">
+                </div>
+                <div class="form">
+                    <a href="index2.html" style="width:100%;"><button type="button" style="width:100%;border-radius: 10px;">Back</button>
+                    </a>
+                  </div>
+        <script src="" async defer></script>
+    </body>
+</html>
