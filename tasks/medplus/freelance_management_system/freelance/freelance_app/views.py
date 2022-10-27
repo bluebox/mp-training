@@ -292,7 +292,7 @@ class get_freelancer_proposals(APIView):
 
 class Proposal_exists(APIView):
     def get(self,request):
-        data = freelancer_proposals.objects.filter(job_id=int(request.GET.get('job_id')),freelancer_id=1).first()
+        data = freelancer_proposals.objects.filter(job_id=int(request.GET.get('job_id')),freelancer_id=request.GET.get('freelancer_id')).first()
         serializer = freelancer_proposals_serializers(data)
         return Response(serializer.data)
 class get_proposal_details(APIView):
