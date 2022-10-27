@@ -15,65 +15,68 @@ notes = '''
 def test_identity_equality_lists():
     a = []
     b = []
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert False == (a is b)
+    assert True == (a == b)
 
     a.append("one")
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert False == (a is b)
+    assert False == (a == b)
 
     c = []
     d = c
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert True == (c is d)
+    assert True == (c == d)
 
     c.append("one")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert True == (c is d)
+    assert True == (c == d)
+
 
 def test_identity_equality_string():
     a = b = "hello"
 
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
     c = "hello"
     d = "".join(["hel", "lo"])
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert False == (c is d)
+    assert True == (c == d)
+
 
 def test_identity_equality_numbers():
     a = b = 10000
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
     c = 10000
     d = int("10000")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert False == (c is d)
+    assert True == (c == d)
+
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
     a = b = 10
-    assert __ == (a is b)
-    assert __ == ( a == b)
+    assert True == (a is b)
+    assert True == ( a == b)
 
     c = 10
     d = int("10")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    assert True == (c is d)
+    assert True == (c == d)
 
 def test_identity_equality_None():
     a = b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
     a = None
     b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True == (a is b)
+    assert True == (a == b)
 
 
 notes_on_none = '''
@@ -82,11 +85,10 @@ readable code like if x is None: instead of if x == None:
 '''
 
 three_things_i_learnt = """
--
--
--
+- "is" operator will check whether they are same objects or not whereas "==" operator it just checks the data inside the variables
+- in Python smaller integers in the range -5 to 256, are used very frequently as compared to other longer integers and 
+hence to gain performance benefit Python preallocates this range of integers during initialization and makes them singleton
+- None is a builtin constant.
 """
 
-time_taken_minutes = ___
-
-
+time_taken_minutes = 10
