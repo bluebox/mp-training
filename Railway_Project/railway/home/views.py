@@ -127,7 +127,6 @@ class UserView(APIView):
             serializer = UserSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()  # save data in database
-                print(serializer.data)
                 return Response({
                     'status': True,
                     'message': 'success data!!!',
@@ -150,10 +149,7 @@ class Login(APIView):
     def post(self,request):
         user_id=request.data['user_id']
         password=request.data['password']
-        print(user_id, password)
-        print(home.models.User.objects.all())
         user=home.models.User.objects.filter(user_id=user_id).first()
-        print(user.password, password)
         if user is None:
             raise AuthenticationFailed("user not found")
         if user.password != password:
@@ -176,20 +172,15 @@ class Login(APIView):
 class GetUser(APIView):
     def get(self,request):
         token=request.COOKIES.get('jwt')
-        print(token)
         if not token:
             raise AuthenticationFailed("unauthenticated")
 
         try:
-            print('in')
             payload=jwt.decode(token,'secret',algorithm=['HS256']);
-            print(payload)
         except:
             raise AuthenticationFailed("invalid")
         user = home.models.User.objects.filter(user_id=payload['user_id']).first()
-        print(user)
         serializer = UserSerializer(user)
-        print(serializer.data)
         return Response(serializer.data)
 
 
@@ -231,7 +222,6 @@ class RecentTicketHistory(APIView):
     def get(self,request,username):
         ticket=Ticket.objects.filter(user=username)
         l=len(ticket)
-         # print(train[i],seat[j])
         x = ticket[l-1].train.duration_h+ticket[l-1].train.source_time.hour
         y = ticket[l-1].train.duration_m+ticket[l-1].train.source_time.minute
         train={
@@ -295,11 +285,8 @@ class SearchTrain(APIView):
         for i in range(len(train)):
             for j in range(len(seat)):
                 if(train[i]['train_no']==seat[j]['train_id']):
-                    # print(train[i],seat[j])
                     x = train[i]['duration_h']+train[i]['source_time'].hour
                     y = train[i]['duration_m']+train[i]['source_time'].minute
-
-                    print(x,y)
                     data={
                         'train_name':train[i]['train_name'],
                         'train_no':train[i]['train_no'],
