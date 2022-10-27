@@ -34,7 +34,14 @@ export class AddCouponComponent implements OnInit {
           let dateArray = date.split('/')
           this.CouponForm.get('valid_till')?.setValue(`${dateArray[2]}-${dateArray[0]}-${dateArray[1]}`);
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
       }
     })
@@ -64,7 +71,14 @@ export class AddCouponComponent implements OnInit {
             alert(`Coupon ${data.couponcode} Updated successfully`)
           this.router.navigate(['admin/coupons/couponList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }else{
         this.addCouponSubscription = this.dataservice.addCoupon(this.CouponForm.value).subscribe(
@@ -72,7 +86,14 @@ export class AddCouponComponent implements OnInit {
           alert(`Coupon ${data.couponcode} added successfully`)
           this.router.navigate(['admin/coupons/couponList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }
     }

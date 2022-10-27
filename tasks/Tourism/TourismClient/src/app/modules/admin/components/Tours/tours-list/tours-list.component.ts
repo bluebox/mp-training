@@ -35,7 +35,14 @@ export class ToursListComponent implements OnInit {
         this.page = data.page
         this.totalPages = data.totalPages
       },
-      err => alert(err.error.detail)
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
     )
   }
 
@@ -50,7 +57,15 @@ export class ToursListComponent implements OnInit {
   deleteTour(id: number){
     if(confirm("Tour will be deleted, Do you want to continue")){
       this.deleteSubscription = this.dataService.deleteTour(id).subscribe(
-        data=>alert(data +' deleted successfully')
+        data=>alert(data +' deleted successfully'),
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     }
   }

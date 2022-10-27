@@ -10,7 +10,7 @@ import { DataService } from '../../../services/data.service';
   styleUrls: ['./users-list.component.css'],
 })
 export class UsersListComponent implements OnInit {
-  
+
   searchText: FormGroup = new FormGroup({
     text: new FormControl(''),
   });
@@ -45,7 +45,14 @@ export class UsersListComponent implements OnInit {
           this.page = data.page;
           this.totalPages = data.totalPages;
         },
-        (err) => alert(err.error.detail)
+        (err) => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
   }
 
@@ -73,7 +80,14 @@ export class UsersListComponent implements OnInit {
         (data) => {
           alert('user deleted successfully');
         },
-        (err) => alert(err.error.detail)
+        (err) => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
     }
   }

@@ -32,7 +32,17 @@ export class UploadFileComponent implements OnInit {
     console.log(formData);
     // Make http post request over api
     // with formData as req
-    this.http.post('/api/bookings/uploadImage/', formData).subscribe(data => console.log(data))
+    this.http.post('/api/bookings/uploadImage/', formData).subscribe(
+      data => console.log(data),
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
+      )
   }
 
   upload(e:any){

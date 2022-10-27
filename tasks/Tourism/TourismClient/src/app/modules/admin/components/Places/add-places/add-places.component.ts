@@ -36,7 +36,14 @@ export class AddPlacesComponent implements OnInit {
           this.imageUrl = placeObj.image
           this.PlaceForm.get('description')?.setValue(placeObj.description);
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
       }
     })
@@ -77,7 +84,14 @@ export class AddPlacesComponent implements OnInit {
           alert("Place updated successfully")
           this.router.navigate(['admin/places/placeList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }else{
         this.addPlaceSubscription = this.dataservice.addPlace({...this.PlaceForm.value, image:this.imageUrl}).subscribe(
@@ -86,7 +100,14 @@ export class AddPlacesComponent implements OnInit {
           alert("Place added successfully")
           this.router.navigate(['admin/places/placeList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }
     }

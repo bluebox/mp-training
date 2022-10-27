@@ -23,14 +23,28 @@ export class AllFeedbacksComponent implements OnInit {
         let resObj = JSON.parse(res)
         this.feedbacks = resObj
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
     this.averageRatingSubscription = this.dataService.getAverageRatingAndTotalRatings().subscribe(
       data => {
         console.log(data);
         this.ratingObj = data;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 

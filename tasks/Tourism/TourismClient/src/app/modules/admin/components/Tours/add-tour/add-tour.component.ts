@@ -52,7 +52,14 @@ export class AddTourComponent implements OnInit {
             this.places.setValue(tourObj.places.map((place: { id: any; }) => place.id))
             this.guides.setValue(tourObj.guides.map((guide: { id: any; }) => guide.id))
             },
-            err => alert(err.error.detail)
+            err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
           );
         }
       })
@@ -97,7 +104,14 @@ export class AddTourComponent implements OnInit {
       let toursData = JSON.parse(data)
       this.placesList = toursData;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
     this.getCouponSubscription = this.dataservice.getAllCouponsList().subscribe(
       res=> {
@@ -105,7 +119,14 @@ export class AddTourComponent implements OnInit {
       let couponsData = JSON.parse(data)
       this.couponsList = couponsData;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
     this.getVehicleSubscription = this.dataservice.getAllVehiclesList().subscribe(
       res=> {
@@ -113,7 +134,14 @@ export class AddTourComponent implements OnInit {
         let vehicleData = JSON.parse(data)
         this.vehicleList = vehicleData;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
     this.getEmployeeSubscription = this.dataservice.getAllEmployeeList().subscribe(
       res=> {
@@ -121,7 +149,14 @@ export class AddTourComponent implements OnInit {
         let employeeData = JSON.parse(data)
         this.guideList = employeeData;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
 
   }
@@ -148,7 +183,14 @@ export class AddTourComponent implements OnInit {
           alert("tour updated successfully")
           this.router.navigate(['admin/tours/tourList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }else{
         this.addTourSubscription = this.dataservice.addTour(tour).subscribe(
@@ -157,7 +199,14 @@ export class AddTourComponent implements OnInit {
             alert("tour added successfully")
             this.router.navigate(['admin/tours/tourList'])
           },
-          err => alert(err.error.detail)
+          err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         )
       }
     }

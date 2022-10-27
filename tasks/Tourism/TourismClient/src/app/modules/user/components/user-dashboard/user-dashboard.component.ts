@@ -31,7 +31,14 @@ export class UserDashboardComponent implements OnInit {
           if(!res)
             this.route.navigate(['login'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     })
 

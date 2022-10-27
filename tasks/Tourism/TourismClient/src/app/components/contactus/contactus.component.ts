@@ -33,7 +33,14 @@ export class ContactusComponent implements OnInit {
         data=>{
           alert('enquiry submitted successfully')
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     }
   }

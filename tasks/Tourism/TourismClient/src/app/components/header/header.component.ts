@@ -54,11 +54,27 @@ export class HeaderComponent implements OnInit {
           this.isAuthenticated = res;
           // console.log(this.auth.currentUser);
           // this.currentUser = this.auth.currentUser
+        },
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
         }
       );
       this.loginUserSubscription = this.auth.currentLoginUser.subscribe(
-        (user) => {
+        user => {
           this.currentUser = user;
+        },
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
         }
       );
     });
@@ -73,14 +89,23 @@ export class HeaderComponent implements OnInit {
   submitLogout() {
     console.log('logout');
     this.auth.logout().subscribe((data) => {
-      console.log(data);
-      if (data) {
         console.log(data);
-        // this.auth.changeAuthentication();
-        // offcanvas.close('Close click')
-        this.route.navigate(['login']);
+        if (data) {
+          console.log(data);
+          // this.auth.changeAuthentication();
+          // offcanvas.close('Close click')
+          this.route.navigate(['login']);
+        }
+      },
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
       }
-    });
+    );
   }
 
   ngOnDestroy() {

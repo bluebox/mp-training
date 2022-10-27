@@ -1,5 +1,6 @@
 
 import datetime
+from sys import api_version
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from rest_framework.views import APIView
@@ -24,9 +25,12 @@ class AllVehicleList(APIView):
     permission_classes = (IsAdminUser,)
 
     def get(self, request, format=None):
-        vehicles = Vehicle.objects.all()
-        serializer = VehicleSerializer(vehicles, many=True)
-        return Response(serializer.data)
+        try:
+            vehicles = Vehicle.objects.all()
+            serializer = VehicleSerializer(vehicles, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class VehicleList(APIView):
@@ -35,24 +39,30 @@ class VehicleList(APIView):
     permission_classes = (IsAdminUser,)
 
     def get(self, request, format=None):
-        text = request.GET.get('text')
-        vehicles_list = (Vehicle.objects.filter(vehicle_type__icontains=text) | 
-                            Vehicle.objects.filter(model__icontains=text) |
-                            Vehicle.objects.filter(vehicle_number__icontains=text))
-        vehicles, totalPages, page = listing(request, vehicles_list)
-        serializer = VehicleSerializer(vehicles, many=True)
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
+        try:
+            text = request.GET.get('text')
+            vehicles_list = (Vehicle.objects.filter(vehicle_type__icontains=text) | 
+                                Vehicle.objects.filter(model__icontains=text) |
+                                Vehicle.objects.filter(vehicle_number__icontains=text))
+            vehicles, totalPages, page = listing(request, vehicles_list)
+            serializer = VehicleSerializer(vehicles, many=True)
+            return Response({
+                'pageItems': serializer.data,
+                'totalPages': totalPages,
+                'page': page
+            })
+        except Exception as e:
+            raise APIException(e)
 
     def post(self, request, format=None):
-        serializer = VehicleSerializer(data=request.data)
-        if serializer.is_valid():
+        try:
+            serializer = VehicleSerializer(data=request.data)
+            if not serializer.is_valid():
+                raise APIException(serializer.errors)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            raise APIException(e)
 
 class VehicleDetails(APIView):
     """
@@ -72,69 +82,93 @@ class VehicleDetails(APIView):
 
 
     def get(self, request, pk, format=None):
-        vehcile = self.get_object(pk)
-        serializer = VehicleSerializer(vehcile)
-        return Response(serializer.data)
+        try:
+            vehcile = self.get_object(pk)
+            serializer = VehicleSerializer(vehcile)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
     def put(self, request, pk, format=None):
-        vehcile = self.get_object(pk)
-        serializer = VehicleSerializer(vehcile, data=request.data)
-        if serializer.is_valid():
+        try:
+            vehcile = self.get_object(pk)
+            serializer = VehicleSerializer(vehcile, data=request.data)
+            if not serializer.is_valid():
+                raise APIException(serializer.errors)
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            raise APIException(e)
     
     def delete(self, request, pk, format=None):
-        vehicle = self.get_object(pk)
-        vehicle.delete()
-        serializer = VehicleSerializer(vehicle)
-        return Response(serializer.data)
+        try:
+            vehicle = self.get_object(pk)
+            vehicle.delete()
+            serializer = VehicleSerializer(vehicle)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class AllToursListViewSet(APIView):
 
     def get(self, request, format=None):
-        tours = Tour.objects.all()
-        serializer = TourDetailSerializer(tours, many=True)
-        return Response(serializer.data)
+        try:
+            tours = Tour.objects.all()
+            serializer = TourDetailSerializer(tours, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 class AllUserToursListViewSet(APIView):
 
     def get(self, request, format=None):
-        tours = Tour.objects.filter(start_date__gt=datetime.datetime.utcnow())
-        serializer = TourDetailSerializer(tours, many=True)
-        return Response(serializer.data)
+        try:
+            tours = Tour.objects.filter(start_date__gt=datetime.datetime.utcnow())
+            serializer = TourDetailSerializer(tours, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class ToursListViewSet(APIView):
 
     def get(self, request, format=None):
-        text = request.GET.get('text')
-        tours_list = (Tour.objects.filter(tour_name__icontains=text) | 
-                            Tour.objects.filter(tour_to__icontains=text) |
-                            Tour.objects.filter(description__icontains=text) |
-                            Tour.objects.filter(tour_type__icontains=text))
-        tours, totalPages, page = listing(request, tours_list)
-        serializer = TourDetailSerializer(tours, many=True)
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
+        try:
+            text = request.GET.get('text')
+            tours_list = (Tour.objects.filter(tour_name__icontains=text) | 
+                                Tour.objects.filter(tour_to__icontains=text) |
+                                Tour.objects.filter(description__icontains=text) |
+                                Tour.objects.filter(tour_type__icontains=text))
+            tours, totalPages, page = listing(request, tours_list)
+            serializer = TourDetailSerializer(tours, many=True)
+            return Response({
+                'pageItems': serializer.data,
+                'totalPages': totalPages,
+                'page': page
+            })
+        except Exception as e:
+            raise APIException(e)
 
     def post(self, request, format=None):
-        serializer = TourSerializer(data=request.data)
-        if serializer.is_valid():
+        try:
+            serializer = TourSerializer(data=request.data)
+            if not serializer.is_valid():
+                raise APIException(serializer.errors, status=400)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            raise APIException(e)
 
 
 class ToursFilterByType(APIView):
     def get(self, request, tour_type=''):
-        tours = Tour.objects.filter(tour_type__contains=tour_type, start_date__gt=datetime.datetime.utcnow())
-        serializer = TourDetailSerializer(tours, many=True)
-        return Response(serializer.data)
+        try:
+            tours = Tour.objects.filter(tour_type__contains=tour_type, start_date__gt=datetime.datetime.utcnow())
+            serializer = TourDetailSerializer(tours, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class TourDetails(APIView):
@@ -154,26 +188,27 @@ class TourDetails(APIView):
 
 
     def get(self, request, pk, format=None):
-        tour = self.get_object(pk)
-        serializer = TourDetailSerializer(tour)
-        return Response(serializer.data)
+        try:
+            tour = self.get_object(pk)
+            serializer = TourDetailSerializer(tour)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
     def put(self, request, pk, format=None):
-        tour = self.get_object(pk)
-        # coupons = Coupon.objects.filter(id__in=request.data['coupons'])
-        
-        # places = Place.objects.filter(id__in=request.data['coupons'])
+        try:
+            tour = self.get_object(pk)
+            # coupons = Coupon.objects.filter(id__in=request.data['coupons'])
+            
+            # places = Place.objects.filter(id__in=request.data['coupons'])
 
-        serializer = TourSerializer(tour, data=request.data)
-        if serializer.is_valid():
+            serializer = TourSerializer(tour, data=request.data)
+            if not serializer.is_valid():
+                raise APIException(serializer.errors)
             serializer.save()
-            # tour = Tour.objects.get(id=pk)
-            # for coupon in coupons:
-            #     tour.coupons.add(coupon)
-            # for place in places:
-            #     tour.places.add(place)
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            raise APIException(e)
 
     def delete(self, request, pk, format=None):
         tour = self.get_object(pk)
@@ -189,11 +224,14 @@ class EnquiryListViewSet(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = EnquirySerializer(data=request.data)
-        if serializer.is_valid():
+        try:
+            serializer = EnquirySerializer(data=request.data)
+            if not serializer.is_valid():
+                raise APIException(serializer.errors)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            raise APIException(e)
 
 
 
@@ -214,46 +252,61 @@ class EnquiryDetails(APIView):
 
 
     def get(self, request, pk, format=None):
-        enquiry = self.get_object(pk)
-        serializer = EnquirySerializer(enquiry)
-        return Response(serializer.data)
+        try:
+            enquiry = self.get_object(pk)
+            serializer = EnquirySerializer(enquiry)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
     def put(self, request, pk, format=None):
-        enquiry = self.get_object(pk)
-        serializer = EnquirySerializer(enquiry, data=request.data)
-        if serializer.is_valid():
+        try:
+            enquiry = self.get_object(pk)
+            serializer = EnquirySerializer(enquiry, data=request.data)
+            if not serializer.is_valid():
+                raise APIException(serializer.errors)
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            raise APIException(e)
 
 class AllPlacesListViewSet(APIView):
 
     def get(self, request, format=None):
-        places = Place.objects.all()
-        serializer = PlaceSerializer(places, many=True)
-        return Response(serializer.data)
+        try:
+            places = Place.objects.all()
+            serializer = PlaceSerializer(places, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class PlacesListViewSet(APIView):
 
     def get(self, request, format=None):
-        text = request.GET.get('text')
-        places_list = (Place.objects.filter(place_name__icontains=text) | 
-                            Place.objects.filter(description__icontains=text))
-        places, totalPages, page = listing(request, places_list)
-        serializer = PlaceSerializer(places, many=True)
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
+        try:
+            text = request.GET.get('text')
+            places_list = (Place.objects.filter(place_name__icontains=text) | 
+                                Place.objects.filter(description__icontains=text))
+            places, totalPages, page = listing(request, places_list)
+            serializer = PlaceSerializer(places, many=True)
+            return Response({
+                'pageItems': serializer.data,
+                'totalPages': totalPages,
+                'page': page
+            })
+        except Exception as e:
+            raise APIException(e)
 
     def post(self, request, format=None):
-        serializer = PlaceSerializer(data=request.data)
-        if serializer.is_valid():
+        try:
+            serializer = PlaceSerializer(data=request.data)
+            if not serializer.is_valid():
+                raise APIException(serializer.errors)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
     
 class PlaceDetails(APIView):
     """
@@ -272,50 +325,65 @@ class PlaceDetails(APIView):
 
 
     def get(self, request, pk, format=None):
-        place = self.get_object(pk)
-        serializer = PlaceSerializer(place)
-        return Response(serializer.data)
+        try:
+            place = self.get_object(pk)
+            serializer = PlaceSerializer(place)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
     def put(self, request, pk, format=None):
-        place = self.get_object(pk)
-        serializer = PlaceSerializer(place, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            place = self.get_object(pk)
+            serializer = PlaceSerializer(place, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
 
 
 class AllCouponsListViewSet(APIView):
 
     def get(self, request, format=None):
-        # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
-        coupons = Coupon.objects.filter()
-        serializer = CouponSerializer(coupons, many=True)
-        return Response(serializer.data)
+        try:
+            # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
+            coupons = Coupon.objects.filter()
+            serializer = CouponSerializer(coupons, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 
 class CouponsListViewSet(APIView):
 
     def get(self, request, format=None):
-        # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
-        text = request.GET.get('text')
-        coupons_list = (Coupon.objects.filter(couponcode__icontains=text, valid_till__gt=datetime.datetime.utcnow()) | 
-                            Coupon.objects.filter(description__icontains=text, valid_till__gt=datetime.datetime.utcnow()))
-        coupons, totalPages, page = listing(request, coupons_list)
-        serializer = CouponSerializer(coupons, many=True)
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
+        try:
+            # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
+            text = request.GET.get('text')
+            coupons_list = (Coupon.objects.filter(couponcode__icontains=text, valid_till__gt=datetime.datetime.utcnow()) | 
+                                Coupon.objects.filter(description__icontains=text, valid_till__gt=datetime.datetime.utcnow()))
+            coupons, totalPages, page = listing(request, coupons_list)
+            serializer = CouponSerializer(coupons, many=True)
+            return Response({
+                'pageItems': serializer.data,
+                'totalPages': totalPages,
+                'page': page
+            })
+        except Exception as e:
+            raise APIException(e)
 
     def post(self, request, format=None):
-        serializer = CouponSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer = CouponSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
 
 
 
@@ -336,49 +404,63 @@ class CouponDetails(APIView):
 
 
     def get(self, request, pk, format=None):
-        coupon = self.get_object(pk)
-        serializer = CouponSerializer(coupon)
-        return Response(serializer.data)
+        try:
+            coupon = self.get_object(pk)
+            serializer = CouponSerializer(coupon)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
     def put(self, request, pk, format=None):
-        coupon = self.get_object(pk)
-        serializer = CouponSerializer(coupon, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        try:
+            coupon = self.get_object(pk)
+            serializer = CouponSerializer(coupon, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
 
 
 class AllPackagesList(APIView):
 
     def get(self, request, format=None):
-        packages = Package.objects.all()
-        serializer = PackageSerializer(packages, many=True)
-        return Response(serializer.data)
+        try:
+            packages = Package.objects.all()
+            serializer = PackageSerializer(packages, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class PackagesList(APIView):
 
     def get(self, request, format=None):
-        text = request.GET.get('text')
-        packages_list = (Package.objects.filter(package_name__icontains=text) | 
-                            Package.objects.filter(package_type__icontains=text) |
-                            Package.objects.filter(description__icontains=text))
-        packages, totalPages, page = listing(request, packages_list)
-        serializer = PackageSerializer(packages, many=True)
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
+        try:
+            text = request.GET.get('text')
+            packages_list = (Package.objects.filter(package_name__icontains=text) | 
+                                Package.objects.filter(package_type__icontains=text) |
+                                Package.objects.filter(description__icontains=text))
+            packages, totalPages, page = listing(request, packages_list)
+            serializer = PackageSerializer(packages, many=True)
+            return Response({
+                'pageItems': serializer.data,
+                'totalPages': totalPages,
+                'page': page
+            })
+        except Exception as e:
+            raise APIException(e)
 
     def post(self, request, format=None):
-        serializer = PackageSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        raise APIException(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer = PackageSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
 
 class PackageDetailed(APIView):
     """
@@ -397,19 +479,21 @@ class PackageDetailed(APIView):
 
 
     def get(self, request, pk, format=None):
-        # package = self.get_object(pk)
-        # serializer = PackageDetailSerializer(package)
-        # return Response(serializer.data)
-        package = self.get_object(pk)
-        serializer = PackageDetailSerializer(package)
-        data = serializer.data
-        tours = []
-        for i in data['tours']:
-            if datetime.datetime.strptime(i['start_date'].split('T')[0], "%Y-%m-%d") > datetime.datetime.utcnow():
-                tours.append(i)
-        data['tours'] = tours
-
-        return Response(data)
+        try:
+            # package = self.get_object(pk)
+            # serializer = PackageDetailSerializer(package)
+            # return Response(serializer.data)
+            package = self.get_object(pk)
+            serializer = PackageDetailSerializer(package)
+            data = serializer.data
+            tours = []
+            for i in data['tours']:
+                if datetime.datetime.strptime(i['start_date'].split('T')[0], "%Y-%m-%d") > datetime.datetime.utcnow():
+                    tours.append(i)
+            data['tours'] = tours
+            return Response(data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class PackageDetails(APIView):
@@ -429,68 +513,84 @@ class PackageDetails(APIView):
 
 
     def get(self, request, pk, format=None):
-        package = self.get_object(pk)
-        serializer = PackageSerializer(package)
-        # data = serializer.data
-        # tours = []
-        # for i in data['tours']:
-        #     if datetime.datetime.strptime(i['start_date'].split('T')[0], "%Y-%m-%d") > datetime.datetime.utcnow():
-        #         tours.append(i)
-        # data['tours'] = tours
-        #
-        # return Response(data)
-        return Response(serializer.data)
+        try:
+            package = self.get_object(pk)
+            serializer = PackageSerializer(package)
+            # data = serializer.data
+            # tours = []
+            # for i in data['tours']:
+            #     if datetime.datetime.strptime(i['start_date'].split('T')[0], "%Y-%m-%d") > datetime.datetime.utcnow():
+            #         tours.append(i)
+            # data['tours'] = tours
+            #
+            # return Response(data)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
     def put(self, request, pk, format=None):
-        package = self.get_object(pk)
-        serializer = PackageSerializer(package, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        raise APIException(serializer.errors)
+        try:
+            package = self.get_object(pk)
+            serializer = PackageSerializer(package, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
 
     def delete(self, request, pk, format=None):
-        package = self.get_object(pk)
-        package.delete()
-        serializer = PackageSerializer(package)
-        return Response(serializer.data)
-        # return Response(status=status.HTTP_204_NO_CONTENT)
-
+        try:
+            package = self.get_object(pk)
+            package.delete()
+            serializer = PackageSerializer(package)
+            return Response(serializer.data)
+            # return Response(status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            raise APIException(e)
 
 
 class AllEmployeeList(APIView):
 
     def get(self, request, format=None):
-        packages = Employee.objects.all()
-        serializer = EmployeeSerializer(packages, many=True)
-        return Response(serializer.data)
+        try:
+            packages = Employee.objects.all()
+            serializer = EmployeeSerializer(packages, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
 
 class EmployeeList(APIView):
 
     def get(self, request, format=None):
-        # employee_list = Employee.objects.all()
-        # serializer = EmployeeSerializer(packages, many=True)
-        # return Response(serializer.data)
-        text = request.GET.get('text')
-        employee_list = (Employee.objects.filter(name__icontains=text) | 
-                            Employee.objects.filter(email__icontains=text))
-        employees, totalPages, page = listing(request, employee_list)
-        serializer = EmployeeSerializer(employees, many=True)
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
+        try:
+            # employee_list = Employee.objects.all()
+            # serializer = EmployeeSerializer(packages, many=True)
+            # return Response(serializer.data)
+            text = request.GET.get('text')
+            employee_list = (Employee.objects.filter(name__icontains=text) | 
+                                Employee.objects.filter(email__icontains=text))
+            employees, totalPages, page = listing(request, employee_list)
+            serializer = EmployeeSerializer(employees, many=True)
+            return Response({
+                'pageItems': serializer.data,
+                'totalPages': totalPages,
+                'page': page
+            })
+        except Exception as e:
+            raise APIException(e)
 
     def post(self, request, format=None):
-        serializer = EmployeeSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        try:
+            serializer = EmployeeSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
 
 class EmployeeDetails(APIView):
     """
@@ -509,28 +609,36 @@ class EmployeeDetails(APIView):
 
 
     def get(self, request, pk, format=None):
-        employee = self.get_object(pk)
-        serializer = EmployeeSerializer(employee)
-        return Response(serializer.data)
+        try:
+            employee = self.get_object(pk)
+            serializer = EmployeeSerializer(employee)
+            return Response(serializer.data)
+        except Exception as e:
+            raise APIException(e)
 
     def put(self, request, pk, format=None):
-        employee = self.get_object(pk)
-        serializer = EmployeeSerializer(employee, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            employee = self.get_object(pk)
+            serializer = EmployeeSerializer(employee, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            raise APIException(serializer.errors)
+        except Exception as e:
+            raise APIException(e)
 
     def delete(self, request, pk, format=None):
-        employee = self.get_object(pk)
-        employee.delete()
-        serializer = EmployeeSerializer(employee)
-        return Response(serializer.data)
-        # return Response(status=status.HTTP_204_NO_CONTENT)
+        try:
+            employee = self.get_object(pk)
+            employee.delete()
+            serializer = EmployeeSerializer(employee)
+            return Response(serializer.data)
+            # return Response(status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            raise APIException(e)
 
 
-class TourPlaceDelete(APIView):
-    def put(self, request, pk):
-        tour = Tour.objects.get(id=1)
-
-        return Response({'msg':'Success'})
+# class TourPlaceDelete(APIView):
+#     def put(self, request, pk):
+#         tour = Tour.objects.get(id=1)
+#         return Response({'msg':'Success'})

@@ -53,7 +53,14 @@ export class BookingsComponent implements OnInit {
       data=>{
         alert("Feedback submitted successfully")
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 
@@ -65,7 +72,14 @@ export class BookingsComponent implements OnInit {
         this.upcomingBookingList = dataList.filter((booking: any) => new Date(booking.tourid?.start_date) > new Date() && !booking.isCancelled)
         this.closedBookingList = dataList.filter((booking: any) => new Date(booking.tourid?.start_date) <= new Date() || booking.isCancelled)
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
 
   }

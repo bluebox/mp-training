@@ -28,7 +28,14 @@ export class EditProfileComponent implements OnInit {
           this.imageUrl = this.currentUser.image
           this.ProfileEditForm.get('mobile')?.setValue(this.currentUser.mobile)
       //   },
-      //   err => alert(err)
+      //   err => {
+        //   if(err.status == 404){
+        //     alert(err.message)
+        //   }
+        //   else{
+        //     alert(err.error.detail)
+        //   }
+        // }
       // )
     }
 
@@ -58,7 +65,14 @@ export class EditProfileComponent implements OnInit {
           this.imageUrl = this.currentUser.image
           this.ProfileEditForm.get('mobile')?.setValue(this.currentUser.mobile)
         },
-        err => alert(err)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     })
   }

@@ -49,11 +49,21 @@ export class SignupComponent implements OnInit {
 
   onchange(e:any){
     console.log(e.target.files[0]);
-    this.imagesSubscription = this.dataService.uploadImage(e.target.files[0]).subscribe((data:any) => {
-      // let dataString = JSON.stringify(data)
-      // this.imageUrl = JSON.parse(dataString)
-      this.imageUrl = data
-    })
+    this.imagesSubscription = this.dataService.uploadImage(e.target.files[0]).subscribe(
+      (data:any) => {
+        // let dataString = JSON.stringify(data)
+        // this.imageUrl = JSON.parse(dataString)
+        this.imageUrl = data
+      },
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
+    )
   }
 
 
@@ -73,7 +83,14 @@ export class SignupComponent implements OnInit {
               this.route.navigate(['user'])
             }
           },
-          err => this.backendError = err.error.detail
+          err => {
+            if(err.status == 404){
+              alert(err.message)
+            }
+            else{
+              this.backendError = err.error.detail
+            }
+          }
         )
       }else{
         this.backendError = 'Passwords not matched'

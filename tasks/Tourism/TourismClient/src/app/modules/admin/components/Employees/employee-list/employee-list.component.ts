@@ -34,7 +34,14 @@ export class EmployeeListComponent implements OnInit {
         this.page = data.page
         this.totalPages = data.totalPages
       },
-      err => alert(err.error.detail)
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
     )
   }
 
@@ -50,7 +57,15 @@ export class EmployeeListComponent implements OnInit {
   deleteEmployee(id: number){
     if(confirm("Place will be deleted, Do you want to continue")){
       this.deleteSubscription = this.dataService.deleteEmployee(id).subscribe(
-        data=>alert('Employee deleted successfully')
+        data=>alert('Employee deleted successfully'),
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     }
   }

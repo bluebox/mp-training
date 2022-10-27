@@ -33,7 +33,14 @@ export class AddVehicleComponent implements OnInit {
             this.VehicleForm.get('isAC')?.setValue(vehicleObj.isAC);
             this.VehicleForm.get('total_seats')?.setValue(vehicleObj.total_seats);
           },
-          err => alert(err.error.detail)
+          err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         );
       }
     })
@@ -63,7 +70,14 @@ export class AddVehicleComponent implements OnInit {
           alert(`Vehicle number ${data.vehicle_number} is Updated successfully`)
           this.router.navigate(['admin/vehicles/vehicleList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         )
       }else{
         this.addVehicleSubscription = this.dataservice.addVehicle(this.VehicleForm.value).subscribe(
@@ -71,7 +85,14 @@ export class AddVehicleComponent implements OnInit {
           alert(`Vehicle number ${data.vehicle_number} is added successfully`)
           this.router.navigate(['admin/vehicles/vehicleList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         )
       }
     }

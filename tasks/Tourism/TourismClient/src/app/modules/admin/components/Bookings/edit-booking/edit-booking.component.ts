@@ -40,7 +40,15 @@ export class EditBookingComponent implements OnInit {
           this.BookingForm.get('passenger_details')?.setValue(bookingObj.passenger_details);
           this.BookingForm.get('isCancelled')?.setValue(bookingObj.isCancelled);
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            // alert('Requested Url' + err.url + "Not Found")
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
       }
     })
@@ -66,19 +74,42 @@ export class EditBookingComponent implements OnInit {
       data=> {
         this.userList = data;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
     this.getPaymentSubscription = this.dataservice.getPaymentList().subscribe(
       data=> {
         this.paymentList = data;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            // alert('Requested Url' + err.url + "Not Found")
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
     this.getTourSubscription = this.dataservice.getAllToursList().subscribe(
       data=> {
         this.tourList = data;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            // alert('Requested Url' + err.url + "Not Found")
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 
@@ -91,7 +122,15 @@ export class EditBookingComponent implements OnInit {
             alert("Booking updated Successfully")
             this.router.navigate(['admin/bookings/bookingList'])
           },
-          err => alert(err.error.detail)
+          err => {
+          if(err.status == 404){
+            // alert('Requested Url' + err.url + "Not Found")
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         )
       }
     }else{
@@ -102,7 +141,15 @@ export class EditBookingComponent implements OnInit {
             alert("Booking added Successfully")
             this.router.navigate(['admin/bookings/bookingList'])
           },
-          err => alert(err.error.detail)
+          err => {
+          if(err.status == 404){
+            // alert('Requested Url' + err.url + "Not Found")
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         )
       }
     }

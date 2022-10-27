@@ -29,5 +29,5 @@ urlpatterns = [
     path('all_employees/', views.AllEmployeeList.as_view(), name='employees]' ),
     path('employees/', views.EmployeeList.as_view(), name='employees]' ),
     path('employees/<int:pk>', views.EmployeeDetails.as_view(), name='employeedetail' ),
-    path('tour_places/<int:pk>', views.TourPlaceDelete.as_view(), name='TourPlaceDelete')
+    # path('tour_places/<int:pk>', views.TourPlaceDelete.as_view(), name='TourPlaceDelete')
 ]

@@ -71,7 +71,14 @@ export class CheckoutComponent implements OnInit {
           let resObj = JSON.parse(res)
           this.tourObject = resObj
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
 
     })
@@ -144,11 +151,25 @@ export class CheckoutComponent implements OnInit {
               data=>{
                 alert("Tour Booking successful");
               },
-              err => alert(err.error.detail)
+              err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
             )
           }
         },
-        err=> alert(err.error.detail)
+        err=> {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     }
 

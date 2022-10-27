@@ -234,7 +234,7 @@ export class DataService {
   }
 
   getPackage(id: number){
-    return this.http.get(`/api/tours/packages/${id}`)
+    return this.http.get(`/api/tour/packages/${id}`)
   }
 
   editPackage(packageObj:any, id: number) {

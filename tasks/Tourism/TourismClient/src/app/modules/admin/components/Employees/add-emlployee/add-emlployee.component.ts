@@ -41,7 +41,14 @@ export class AddEmlployeeComponent implements OnInit {
           this.EmployeeForm.get('address')?.setValue(employeeObj.address);
           this.EmployeeForm.get('salary')?.setValue(employeeObj.salary);
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
       }
     })
@@ -63,10 +70,20 @@ export class AddEmlployeeComponent implements OnInit {
 
   onchange(e:any){
     console.log(e.target.files[0]);
-    this.imagesSubscription = this.dataService.uploadImage(e.target.files[0]).subscribe(data => {
-      let dataString = JSON.stringify(data)
-      this.imageUrl = JSON.parse(dataString)
-    })
+    this.imagesSubscription = this.dataService.uploadImage(e.target.files[0]).subscribe(
+      data => {
+        let dataString = JSON.stringify(data)
+        this.imageUrl = JSON.parse(dataString)
+      },
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
+    )
   }
 
 
@@ -83,7 +100,14 @@ export class AddEmlployeeComponent implements OnInit {
           alert("employee profile updated successfully")
           this.router.navigate(['admin/employees/employeeList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }else{
         this.addEmployeeSubscription = this.dataservice.addEmployee(employeeObj).subscribe(
@@ -92,7 +116,14 @@ export class AddEmlployeeComponent implements OnInit {
           alert("employee profile added successfully")
           this.router.navigate(['admin/employees/employeeList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }
     }

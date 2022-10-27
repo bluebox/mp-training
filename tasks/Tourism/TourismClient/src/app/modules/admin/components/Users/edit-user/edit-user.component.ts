@@ -42,7 +42,14 @@ export class EditUserComponent implements OnInit {
           this.UserForm.get('isAdmin')?.setValue(userObj.isAdmin);
           this.UserForm.get('is_active')?.setValue(userObj.is_active);
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
       }
     })
@@ -85,7 +92,14 @@ export class EditUserComponent implements OnInit {
           alert("user profile updated successfully")
           this.router.navigate(['admin/users/userList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }else{
         this.addUserSubscription = this.dataservice.addEmployee(userObj).subscribe(
@@ -94,7 +108,14 @@ export class EditUserComponent implements OnInit {
           alert("user profile added successfully")
           this.router.navigate(['admin/users/userList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }
     }

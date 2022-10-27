@@ -38,7 +38,15 @@ export class BookingListComponent implements OnInit {
         this.page = data.page
         this.totalPages = data.totalPages
       },
-      err => alert(err.error.detail)
+      err => {
+        if(err.status == 404){
+          // alert('Requested Url' + err.url + "Not Found")
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
     )
   }
 
@@ -72,6 +80,15 @@ export class BookingListComponent implements OnInit {
           alert(data +' deleted successfully');
           this.ngOnInit()
         },
+        err => {
+          if(err.status == 404){
+            // alert('Requested Url' + err.url + "Not Found")
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     }
   }

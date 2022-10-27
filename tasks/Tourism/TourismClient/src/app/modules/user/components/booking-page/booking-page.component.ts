@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/modules/admin/services/data.service';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
@@ -22,12 +23,15 @@ export class BookingPageComponent implements OnInit {
   cancellation_charges!: number;
   reason_for_cancellation!: string;
   passenger_details: any;
+  routerSubscription!: Subscription;
+  getBookingOfUserSubscription!: Subscription;
+  cancelBookingSubscription!: Subscription;
 
 
   ngOnInit(): void {
-    this.route.params.subscribe(data=>{
+    this.routerSubscription = this.route.params.subscribe(data=>{
       this.id = parseInt(data['id'])
-      this.dataService.getBookingOfUser(data['id']).subscribe(
+      this.getBookingOfUserSubscription = this.dataService.getBookingOfUser(data['id']).subscribe(
         data => {
           console.log(data);
           this.booking = data;
@@ -36,7 +40,14 @@ export class BookingPageComponent implements OnInit {
           console.log(this.passenger_details);
           // console.log("Charges", this.cancellation_charges);
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     })
   }
@@ -59,13 +70,33 @@ export class BookingPageComponent implements OnInit {
       cancellation_charges:this.cancellation_charges,
       reason_for_cancellation: this.reason_for_cancellation
     }
-    this.dataService.cancelBookingByUser(data, this.id).subscribe(
+    this.cancelBookingSubscription = this.dataService.cancelBookingByUser(data, this.id).subscribe(
       data => {
         alert("Your booking is Cancelled")
         this.router.navigate(['user/bookings'])
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
+  }
+
+
+  ngOnDestroy(){
+    if(this.routerSubscription){
+      this.routerSubscription.unsubscribe()
+    }
+    if(this.getBookingOfUserSubscription){
+      this.getBookingOfUserSubscription.unsubscribe()
+    }
+    if(this.cancelBookingSubscription){
+      this.cancelBookingSubscription.unsubscribe()
+    }
   }
 
 }

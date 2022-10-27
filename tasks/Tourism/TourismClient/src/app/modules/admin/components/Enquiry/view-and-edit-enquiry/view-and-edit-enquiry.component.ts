@@ -33,7 +33,14 @@ export class ViewAndEditEnquiryComponent implements OnInit {
           this.EnquiryForm.get('message')?.setValue(enquiryObj.message);
           this.EnquiryForm.get('status')?.setValue(enquiryObj.status);
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         );
 
       }
@@ -59,7 +66,14 @@ export class ViewAndEditEnquiryComponent implements OnInit {
       console.log(data)
       this.router.navigate(['admin/enquiries/enquiryList'])
     },
-    err => alert(err.error.detail)
+    err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 

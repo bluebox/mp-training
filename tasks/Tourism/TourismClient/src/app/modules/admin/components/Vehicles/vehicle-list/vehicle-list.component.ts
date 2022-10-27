@@ -35,7 +35,14 @@ export class VehicleListComponent implements OnInit {
         this.page = data.page
         this.totalPages = data.totalPages
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 
@@ -52,7 +59,14 @@ export class VehicleListComponent implements OnInit {
       data => {
         alert(`Vehicle deleted successfully`)
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 

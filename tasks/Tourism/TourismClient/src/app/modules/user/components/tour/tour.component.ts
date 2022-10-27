@@ -35,7 +35,14 @@ export class TourComponent implements OnInit {
         this.toursList = data;
 
       },
-      err => alert(err.error.detail)
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
     )
 
     // if(this.tourType && this.tourType != ""){

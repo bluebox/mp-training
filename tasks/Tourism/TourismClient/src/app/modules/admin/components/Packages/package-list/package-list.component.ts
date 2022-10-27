@@ -36,7 +36,14 @@ export class PackageListComponent implements OnInit {
         this.page = data.page
         this.totalPages = data.totalPages
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 
@@ -57,7 +64,14 @@ export class PackageListComponent implements OnInit {
           alert('package deleted successfully');
           this.ngOnInit()
         },
-        err=>alert(err.error.detail)
+        err=>{
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     }
   }

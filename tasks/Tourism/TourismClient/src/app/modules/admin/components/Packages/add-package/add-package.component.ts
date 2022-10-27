@@ -44,7 +44,15 @@ export class AddPackageComponent implements OnInit {
           this.tours.setValue(packageObj.tours);
           // this.tours.setValue(packageObj.tours.map((tour: { id: any; }) => tour.id));
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            // alert('Requested Url' + err.url + "Not Found")
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
       }
     })
@@ -77,7 +85,14 @@ export class AddPackageComponent implements OnInit {
       data=> {
         this.tourList = data;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 
@@ -104,7 +119,14 @@ export class AddPackageComponent implements OnInit {
           alert("package added successfully")
           this.router.navigate(['admin/package/packageList'])
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
       }
     }

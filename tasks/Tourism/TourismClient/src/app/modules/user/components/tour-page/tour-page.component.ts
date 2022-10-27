@@ -30,7 +30,14 @@ export class TourPageComponent implements OnInit {
           let resObj = JSON.parse(res)
           this.tourObject = resObj
         },
-        err => alert(err.error.detail)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       )
     })
   }

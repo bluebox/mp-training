@@ -35,14 +35,28 @@ export class HomeComponent implements OnInit {
         let resObj = JSON.parse(res)
         this.feedbacks = resObj.slice(0,3)
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
     this.getPackagesSubscription = this.dataservice.getAllPackageList().subscribe(
       data => {
         // console.log(data);
         this.packagesList = data;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 

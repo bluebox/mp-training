@@ -26,9 +26,18 @@ export class LoginComponent implements OnInit {
     private dataService: DataServiceService
     ) {
       this.authenticationSubscription = this.auth.isAuthenticated.subscribe(res => {
-        if(res)
-          this.route.navigate(['admin'])
-      })
+          if(res)
+            this.route.navigate(['admin'])
+        },
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
+      )
   }
 
   loginForm: FormGroup = new FormGroup({
@@ -58,7 +67,15 @@ export class LoginComponent implements OnInit {
           let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
           this.route.navigate([ returnUrl || 'user' ])
         },
-        err => this.backendError = err.error.detail
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            this.backendError = err.error.detail
+          }
+        }
+
       )
     }else{
       console.log("Invalid Login data");

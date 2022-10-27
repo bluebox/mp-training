@@ -27,7 +27,14 @@ export class UpcomingBookingsComponent implements OnInit {
         console.log(this.bookings);
         // this.closedBookingList = dataList.filter((booking: any) => new Date(booking.tourid?.start_date) <= new Date() || booking.isCancelled)
       },
-      err => alert(err.error.detail)
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
     )
   }
 

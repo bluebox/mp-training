@@ -20,7 +20,14 @@ export class EnquiryListComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.dataService.getEnquiryList().subscribe(
       data => this.enquiryList = data,
-      err => alert(err.error.detail)
+      err => {
+        if(err.status == 404){
+          alert(err.message)
+        }
+        else{
+          alert(err.error.detail)
+        }
+      }
     )
   }
 

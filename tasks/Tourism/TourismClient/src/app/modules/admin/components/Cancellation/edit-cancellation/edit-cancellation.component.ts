@@ -34,7 +34,14 @@ export class EditCancellationComponent implements OnInit {
           this.CancellationForm.get('cancellation_charges')?.setValue(cancellationObj.cancellation_charges);
           this.CancellationForm.get('reason_for_cancellation')?.setValue(cancellationObj.reason_for_cancellation);
         },
-        err => alert(err.message)
+        err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
       );
       }
     })
@@ -57,7 +64,14 @@ export class EditCancellationComponent implements OnInit {
       data=> {
         this.bookingList = data;
       },
-      err => alert(err.error.detail)
+      err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
     )
   }
 
@@ -71,7 +85,14 @@ export class EditCancellationComponent implements OnInit {
             alert("cancellation details updated successfully")
             this.router.navigate(['admin/cancellation/cancellationList'])
           },
-          err => alert(err.error.detail)
+          err => {
+          if(err.status == 404){
+            alert(err.message)
+          }
+          else{
+            alert(err.error.detail)
+          }
+        }
         )
       }
       // else{
@@ -80,7 +101,14 @@ export class EditCancellationComponent implements OnInit {
       //     console.log(data)
       //     this.router.navigate(['admin/cancellation/cancellationList'])
       //   },
-      //   err => alert(err.error.detail)
+      //   err => {
+          //   if(err.status == 404){
+          //     alert(err.message)
+          //   }
+          //   else{
+          //     alert(err.error.detail)
+          //   }
+          // }
       // )
       // }
     }
