@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "angular-captcha": "^3.7.4"
+  }
+}
