@@ -1,0 +1,169 @@
+<h1>Booking History</h1>
+      <mat-tab-group>
+        <mat-tab label="Previously booked ticket">
+          <div class="nodata" *ngIf="!available">
+            <h1>You have no booking history, start booking!!</h1>
+          </div>
+          <!-- <button mat-stroked-button color="warn" class="btn" (click)="cancel()">Cancel last booked ticket</button>  -->
+          <!-- <div class="ticket" *ngFor="let ticket of ticket"> -->
+            <div  *ngIf="available" >
+                <h1>Previously booked tickets</h1>
+                <mat-accordion >
+                  <mat-expansion-panel hideToggle *ngFor="let u of ticket">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{u.Booking_id}}
+                      </mat-panel-title>
+                      <mat-panel-description >
+                       {{u.Date }}{{u.Booking_status}}
+                       <!-- <button mat-stroked-button color="warn" (click)="Confirm()">Cancel Ticket</button> -->
+                      </mat-panel-description>
+                    </mat-expansion-panel-header >
+                    <div class="des" style="display:flex;">
+                    <div class="movie" >
+                    <h2>Movie Details</h2>
+                    <p>Movie name-{{u.Movie_name}}</p>
+                    <p>Movie language-{{u.Movie_lang}}</p>
+                    <p>Movie category-{{u.Movie_category}}</p>
+                    </div>
+                    <div class="user" style="margin-left:270px ;">
+                    <h2> User Details</h2>
+                    <P>Name-{{u.User_name}}</P>
+                    <p>Phone Number-{{u.User_phone}}</p>
+                    </div>
+                    <div class="theatre" style="margin-left:270px ;">
+                      <h2>Theatre Details</h2>
+                      <p>Theatre-name-{{u.Theatre_name}}</p>
+                      <p>Theatre-location-{{u.Theatre_location}}</p>
+                      <p>Screen NO.-{{u.Hall_no}}</p>
+                      <p>Selected Seats-{{u.SelectedSeats}}</p>
+                    </div>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+                </div>
+               </mat-tab>
+
+
+        <mat-tab (click)="getCancelHistory()" label="Cancelled Tickets"> 
+                  <h1>Cancelled Tickets</h1>
+        <div class="nodata" *ngIf="!available2">
+          <h1>No Cancelled Tickets!!</h1>
+        </div>
+        <div *ngIf="available" >
+        <mat-accordion >
+          <mat-expansion-panel hideToggle *ngFor="let u of can">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{u.Booking_id}}
+              </mat-panel-title>
+              <mat-panel-description >
+              {{u.Date }}{{u.Booking_status}}
+              </mat-panel-description>
+            </mat-expansion-panel-header >
+            <div class="des" style="display:flex;">
+            <div class="movie">
+            <h2>Movie Details</h2>
+            <p>Movie name-{{u.Movie_name}}</p>
+            <p>Movie language-{{u.Movie_lang}}</p>
+            <p>Movie category-{{u.Movie_category}}</p>
+            </div>
+            <div class="user" style="margin-left:270px">
+            <h2> User Details</h2>
+            <P>Name-{{u.User_name}}</P>
+            <p>Phone Number-{{u.User_phone}}</p>
+            </div>
+            <div class="theatre" style="margin-left:270px">
+              <h2>Theatre Details</h2>
+              <p>Theatre-name-{{u.Theatre_name}}</p>
+              <p>Theatre-location-{{u.Theatre_location}}</p>
+              <p>Screen NO.-{{u.Hall_no}}</p>
+              <p>Selected Seats-{{u.SelectedSeats}}</p>
+            </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        </div>
+
+
+                </mat-tab>
+
+          
+        <mat-tab (click)="getTicket()" label="Last Ticket">
+        <h1>Ticket</h1>
+        <div class="nodata"  *ngIf="available3">
+            <h1>No tickets available for cancellation...</h1>
+        </div>
+        <div class="ticket" *ngIf="!available3">
+            <div class="left" style="background-image:url({{lastticket.Movie_poster}}) ;background-size:contain">
+            </div>
+            <div>
+                <h2>Movie Details</h2>
+                <p>Movie name-{{lastticket.Movie_name}}</p>
+                <p>Movie language-{{lastticket.Movie_lang}}</p>
+                <p>Movie category-{{lastticket.Movie_category}}</p>
+                <h2>{{lastticket.Booking_status}}</h2>
+            </div>
+            <div class="right">
+                <h2>Booking Details</h2>
+                <P>User-{{lastticket.User_name}}</P>
+                <p>Phone Number-{{lastticket.User_phone}}</p>
+                <p>Theatre-name-{{lastticket.Theatre_name}}</p>
+                <p>Theatre-location-{{lastticket.Theatre_location}}</p>
+                <p>Screen NO.-{{lastticket.Hall_no}}</p>
+                <p>Selected Seats-{{lastticket.SelectedSeats}}</p>
+                <p>Date-{{lastticket.Date}}</p>
+
+            </div>
+            
+        </div>
+        <button mat-stroked-button color="warn" (click)="Confirm(lastticket.Booking_id)"  *ngIf="!available3" >Cancel Ticket</button>
+        </mat-tab>
+
+
+        <mat-tab label="Upcoming Tickets">
+          <h1>Upcoming Tickets</h1>
+          <div class="nodata" *ngIf="!available4">
+            <h1>No upcoming tickets!!</h1>
+          </div>
+          <div  >
+          <mat-accordion >
+            <mat-expansion-panel hideToggle *ngFor="let u of up">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{u.Booking_id}}
+                </mat-panel-title>
+                <mat-panel-description >
+                {{u.Date }}{{u.Booking_status}}
+                <button mat-stroked-button color="warn" (click)="Confirm(u.Booking_id)">Cancel Ticket</button>
+                </mat-panel-description>
+              </mat-expansion-panel-header >
+              <div class="des" style="display:flex;">
+              <div class="movie" >
+              <h2>Movie Details</h2>
+              <p>Movie name-{{u.Movie_name}}</p>
+              <p>Movie language-{{u.Movie_lang}}</p>
+              <p>Movie category-{{u.Movie_category}}</p>
+              </div>
+              <div class="user" style="margin-left:270px ;">
+              <h2> User Details</h2>
+              <P>Name-{{u.User_name}}</P>
+              <p>Phone Number-{{u.User_phone}}</p>
+              </div>
+              <div class="theatre" style="margin-left:270px ;">
+                <h2>Theatre Details</h2>
+                <p>Theatre-name-{{u.Theatre_name}}</p>
+                <p>Theatre-location-{{u.Theatre_location}}</p>
+                <p>Screen No.-{{u.Hall_no}}</p>
+                <p>Selected Seats-{{u.SelectedSeats}}</p>
+              </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          </div>
+
+        </mat-tab>
+
+
+      </mat-tab-group>
+        <hr>
