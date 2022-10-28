@@ -2,25 +2,32 @@
 <div class="find">
   <div class="search">
     <div class="input-group">
-      <input
+      <!-- <input
         type="search"
         #search
         class="form-control rounded"
         placeholder="Search"
         aria-label="Search"
         aria-describedby="search-addon"
-      />
-      <button
+      /> -->
+      <!-- <button
         type="button"
         class="btn btn-outline-primary"
         (click)="searchVehicle(search.value)"
       >
         search
-      </button>
+      </button> -->
+        <input
+        [(ngModel)]="text" (input)="searchVehicle()"
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="search-addon"
+      />
     </div>
   </div>
   <div class="select" style="padding-top: 10px">
-    Sort :
+    Filter :
     <select name="sort" id="" (change)="sort($event)">
       <option value="">All</option>
       <option value="Car">Car</option>
@@ -29,8 +36,12 @@
   </div>
 </div>
 
-<div class="main row m-auto mt-3 mb-5 pb-5 pt-3">
-  <div *ngFor="let vehicle of response" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+<div class="main"  *ngIf="response.length==0">
+  <h1 style="text-align:center;">No result found</h1>
+</div>
+
+<div *ngIf="response.length>0" class="main row m-auto mt-3 mb-5 pb-3 pt-3">
+  <div *ngFor="let vehicle of response" class="subDiv col-12 col-sm-7 col-md-4 col-lg-3 mb-3">
     <div class="">
       <div class=" img">
         <img
@@ -40,17 +51,17 @@
           alt="ldasjvb"
         />
       </div>
-      <h4>{{ vehicle.brand }}</h4>
-      <p class="card-text">
+      <h4 style="color:brown">{{ vehicle.brand }}</h4>
+      <p style="color:green" class="card-text">
         {{ vehicle.model }}
       </p>
-      <p>Rs {{ vehicle.price_day }} per Day</p>
+      <p><b> Rs {{ vehicle.price_day }} per Day</b></p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
           <button
             type="button"
-            (click)="bookVehicle(vehicle)"
-            class="btn btn-sm btn-outline-secondary"
+            (click)="bookVehicle(vehicle.vehicle_no)"
+            class="btn btn-warning"
           >
             Book
           </button>
@@ -59,3 +70,8 @@
     </div>
   </div>
 </div>
+
+
+
+
+

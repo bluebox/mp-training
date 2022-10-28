@@ -26,6 +26,17 @@ import { OwnBillComponent } from './component/owner/own-bill/own-bill.component'
 
 const routes: Routes = [
   {path:'', component: HomepageComponent , },
+
+  {path:'view-bill/order-history', redirectTo: 'order-history', pathMatch:'full'},
+  {path:'view-bill/c-profile', redirectTo: 'c-profile', pathMatch:'full'},
+  {path:'view-bill/available-vehicles', redirectTo: 'available-vehicles', pathMatch:'full'},
+
+  {path:'own-view-bill/orders', redirectTo: 'orders', pathMatch:'full'},
+  {path:'own-view-bill/o-profile', redirectTo: 'o-profile', pathMatch:'full'},
+  {path:'own-view-bill/previous-vehicles', redirectTo: 'previous-vehicles', pathMatch:'full'},
+  {path:'own-view-bill/addvehicle', redirectTo: 'addvehicle', pathMatch:'full'},
+
+
   {path:'customerlogin', component: CustomerloginComponent },
   {path:'ownerlogin', component: OwnerloginComponent},
   {path:'customerregister', component: CustomerregisterComponent},
@@ -38,14 +49,11 @@ const routes: Routes = [
   {path:'c-profile', component: ViewCustomerProfileComponent, canActivate :[CustomerGuard]},
   {path:'owner-profile', component:ProfileComponent, canActivate :[OwnerGuard]},
   {path:'previousvehicles', component:PreviousvehiclesComponent, canActivate :[OwnerGuard]},
-  {path:'book-vehicle', component: BookComponent, canActivate :[CustomerGuard]},
+  {path:'book-vehicle/:id', component: BookComponent, canActivate :[CustomerGuard]},
   {path:'orders', component: OrdersComponent, canActivate :[OwnerGuard]},
   {path:'view-bill/:id', component: ViewBillComponent, canActivate :[CustomerGuard]},
   {path:'own-view-bill/:id', component: OwnBillComponent, canActivate :[OwnerGuard]},
-
   {path:'customer-review', component: ReviewComponent, canActivate :[CustomerGuard]},
-
-
   {path:'**', component: PagenotfoundComponent},
 
 

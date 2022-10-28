@@ -138,28 +138,28 @@ export class GeneralService {
     console.log(token);
     let headers = new HttpHeaders().set('Authorization', 'Token ' + token?.substring(1, token.length));
 
-  return this.http.post(baseUrl + 'trip/', data, { 'headers': headers })
+  return this.http.post(baseUrl + 'book/', data, { 'headers': headers })
   }
 
 
 
-  orderHistory(){
+  orderHistory(page : number){
     let customer = window.sessionStorage.getItem('token');
     let token = customer?.split(':')[1];
     console.log(token);
     let headers = new HttpHeaders().set('Authorization', 'Token ' + token?.substring(1, token.length));
 
-    return this.http.get(baseUrl + 'trip/', { 'headers': headers })
+    return this.http.get(baseUrl + 'trip?page='+page, { 'headers': headers })
   }
 
-  recievedOrders(){
+  recievedOrders(page : number){
 
     let owner : any = window.sessionStorage.getItem('owner_token');
     let tokenObj = JSON.parse(owner);
 
     let headers = new HttpHeaders().set('Authorization', 'Token ' + tokenObj.access_token);
 
-    return this.http.get(baseUrl + 'recieved-orders/', { 'headers': headers })
+    return this.http.get(baseUrl + 'recieved-orders?page='+page, { 'headers': headers })
   }
 
   generateBill(id : any){
@@ -213,6 +213,9 @@ export class GeneralService {
 
     return this.http.put(baseUrl + 'add-odoreading/' + id + '/', data)
   }
+  getBillList(){
+    return this.http.get(baseUrl + 'bill-list/')
+  }
 
   changeStatus(id : any){
     return this.http.put(baseUrl + 'vehicle-status/' + id + '/', {})
@@ -220,7 +223,15 @@ export class GeneralService {
   // addRating(id : any, data: any){
   //   return this.http.put
   // }
-}
 
+  getVehicleDetails(id : any){
+    return this.http.get(baseUrl + 'get-vehicle-details/' + id)
+  }
+
+  getOwnerDetails(id:any){
+    return this.http.get(baseUrl + 'get-owner-details/' + id)
+  }
+
+}
 
 

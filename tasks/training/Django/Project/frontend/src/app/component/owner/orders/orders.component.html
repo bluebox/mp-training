@@ -1,6 +1,6 @@
 <app-o-navbar></app-o-navbar>
 <div class="main">
-<div class="for" *ngFor="let order of response">
+<div class="for" *ngFor="let order of pageItems">
 <div class="card" style="width: 30rem;">
   <div class="card-body">
     <h5 class="card-title">Order ID : {{ order.rent_id }}</h5>
@@ -13,23 +13,29 @@
     <p style="color: brown ;" *ngIf="order.odo_start_reading && order.odo_end_reading">Total Kilo meter driven :{{order.reading }}</p> <br>
 
 
-    <p *ngIf="order.customer_review">Customer's review :  {{order.customer_review}}</p>
-
-    <p *ngIf="order.owner_review">Your review:  {{order.owner_review}}</p>
-
-    <a *ngIf="!order.odo_start_reading  && order.return_date<date"  class="btn btn-primary" (click)="openOdo(content1 ,order.rent_id)" >Add Odo reading</a>&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-    <a   class="btn btn-primary" (click)="generateBill( order.rent_id )">Generate Bill</a>
+    <p *ngIf="order.customer_review">Customer's review :  {{order.customer_review}} </p>
 
-    &nbsp;&nbsp;&nbsp;
+
+
+    <p *ngIf="order.owner_review" style="color: rgb(179, 123, 19) ;">Your review:  {{order.owner_review}} &nbsp; <a (click)="addReview( content, order.rent_id)"><i style="color:rgb(9, 118, 207) ;" class="fa-solid fa-pen-to-square"></i></a></p>
+
+    <!-- *ngIf="!billList.rental_id_id==order.rent_id" -->
+
+    <a *ngIf="!order.bill_generated"  class="btn btn-primary" (click)="generateBill( order.rent_id )">Generate Bill</a>&nbsp;&nbsp;
+
+
+    <a *ngIf="!order.odo_start_reading  && order.return_date<date"  class="btn btn-primary" (click)="openOdo(content1 ,order.rent_id)" >Add Odo reading</a>
+
+    &nbsp;
 
     <a (click)="getBill(order.rent_id); getTripDetails(order.rent_id)" class="btn btn-primary">View detail</a>
     `
-    <button *ngIf="order.owner_review"  class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id)" >Edit review
-    </button>
+    <!-- <button *ngIf="order.owner_review"  class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id)" >Edit review
+    </button> -->
 
-    <button *ngIf="order.owner_review == null && order.return_date>= date" class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id)" >Add review</button>
+    <button *ngIf="order.owner_review == null && order.return_date<= date" class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id)" >Add review</button>
   </div>
 
 </div>
@@ -80,5 +86,15 @@
   </div>
 </ng-template>
 </div>
+</div>
+
+<div class="text-center">
+  <button (click)="getPageItems(-1)" class="border-0 bg-light">
+    <i class="fa-solid fa-angle-left"></i>
+  </button>
+  page {{ page }} of {{ totalPages }}
+  <button (click)="getPageItems(1)" class="border-0 bg-light">
+    <i class="fa-solid fa-angle-right"></i>
+  </button>
 </div>
 

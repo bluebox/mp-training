@@ -88,11 +88,12 @@
                                           </tr>
 
                                           <tr>
-                                            <td style="padding: 5px 0;">Amount</td>
-                                            <td align="right" style="padding: 5px 0;">{{ data?.amount}}</td>
+                                            <td  style="padding: 5px 0;">Amount :</td>
+                                            <td *ngIf="data.msg" align="right" style="color:red ;padding: 5px 0;"> Bill not yet generated</td>
+                                            <td *ngIf="!data.msg" align="right" style="padding: 5px 0;"> {{ data?.amount }}</td>
                                         </tr>
                                           <tr>
-                                              <td style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">Amount </td>
+                                              <td  style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">Amount </td>
                                               <td align="right" style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">{{ data?.amount }}</td>
                                           </tr>
                                       </tbody>

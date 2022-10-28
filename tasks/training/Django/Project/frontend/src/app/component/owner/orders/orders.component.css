@@ -14,5 +14,11 @@
 .for:hover{
   background-color:  rgb(209, 245, 233);
 }
+.hide{
+  display: none;
+}
+.hide:hover{
+  display: flex;
 
+}
 

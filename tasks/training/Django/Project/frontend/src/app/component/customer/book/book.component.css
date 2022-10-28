@@ -1,17 +1,23 @@
 .container{
   background-color: rgb(224, 242, 250);
   margin-bottom: 20px;
-  /* height: 93vh; */
-  /* width: 100vw; */
+  min-height: 71vh;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
 }
 .info{
   display: flex;
 }
+
 .form{
   display: flex;
   justify-content: space-around;
 }
-.booking{
-  width: 300px;
-  background-color: darkgray;
-}
+
+/* .booking{
+  /* width: 300px;
+
+  background-image: linear-gradient(to right, rgba(61, 26, 26, 0), rgb(245, 190, 190));
+
+} */

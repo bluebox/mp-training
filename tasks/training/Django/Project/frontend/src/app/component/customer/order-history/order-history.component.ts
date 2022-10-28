@@ -4,6 +4,7 @@ import { Route, Router } from '@angular/router';
 
 import { GeneralService } from 'src/app/general.service';
 import { Component, OnInit, NgModule, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order-history',
@@ -22,51 +23,97 @@ export class OrderHistoryComponent implements OnInit {
   currentRate= 4
   constructor(private service : GeneralService, private route : Router, private modalService: NgbModal) {
       this.date = new Date();
-  }
-
-  review! : FormGroup
-
-  ngOnInit(): void {
-    this.review = new FormGroup({
-      customer_review : new FormControl('', Validators.required)
-      }
-    )
-
-    this.getOrderHistory()
-
-    this.service.trip.subscribe(res => {
-      (this.trip = res)
-    })
+      // console.log(this.date)
   }
 
   return : any[] = []
   pick : any[] = []
 
 
-  getOrderHistory(){
-    this.service.orderHistory().subscribe(data => {(this.response=data),
-      console.log(this.response)
+  review! : FormGroup
 
-      for(let i=0; i<this.response.length; i++){
+  page: number = 1;
+  pageItems : any;
+  totalPages : any
 
-        this.response[i].stringReturnDate = this.response[i]['return_date']
-        this.response[i].stringPickDate = this.response[i]['pickup_date']
+  getPageItems(num: number){
+    this.subscription = this.service.orderHistory(this.page + num).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.pageItems = data.pageItems
+        this.page = data.page
+        this.totalPages = data.totalPages
 
-        this.return.push(this.response[i].return_date)
-        this.pick.push(this.response[i].pickup_date)
+
+        for(let i=0; i<this.pageItems.length; i++){
 
 
-        this.response[i]['return_date'] = new Date(this.response[i]['return_date'])
-        this.response[i]['pickup_date'] = new Date(this.response[i]['pickup_date'])
-        }
-    } );
-    console.log(this.return)
+          this.pageItems[i].stringReturnDate = this.pageItems[i]['return_date']
+            this.pageItems[i].stringPickDate = this.pageItems[i]['pickup_date']
+
+            this.return.push(this.pageItems[i].return_date)
+            this.pick.push(this.pageItems[i].pickup_date)
+
+
+            this.pageItems[i]['return_date'] = new Date(this.pageItems[i]['return_date'])
+            this.pageItems[i]['pickup_date'] = new Date(this.pageItems[i]['pickup_date'])
+            // console.log(this.pageItems[i]['return_date'])
+          }
+
+      },
+
+      err => alert(err.error.detail),
+
+
+    )
+
+
+}
+
+  ngOnInit(): void {
+
+      this.getPageItems(0)
+
+      this.review = new FormGroup({
+      customer_review : new FormControl('', Validators.required)
+      }
+    )
+    this.service.trip.subscribe(res => {
+      (this.trip = res)
+    })
   }
+
+
+
+  // getOrderHistory(){
+  //   this.service.orderHistory(this.page ).subscribe(data => {(this.response=data),
+  //     console.log(this.response)
+
+  //     for(let i=0; i<this.response.length; i++){
+
+  //       this.response[i].stringReturnDate = this.response[i]['return_date']
+  //       this.response[i].stringPickDate = this.response[i]['pickup_date']
+
+  //       this.return.push(this.response[i].return_date)
+  //       this.pick.push(this.response[i].pickup_date)
+
+
+  //       this.response[i]['return_date'] = new Date(this.response[i]['return_date'])
+  //       this.response[i]['pickup_date'] = new Date(this.response[i]['pickup_date'])
+  //       }
+  //   } );
+  //   console.log(this.return)
+  // }
+
+
   getBill(id : any){
-    this.service.getBill(id).subscribe(data => {(this.billResp=data),
+    this.service.getBill(id).subscribe(data => {
+      this.billResp=data;
       console.log(this.billResp)
-     })
+      // this.route.navigate(['view-bill', id])
       this.route.navigate(['view-bill', id])
+
+     })
     }
 
   getTripDetails(id : any){
@@ -81,6 +128,7 @@ export class OrderHistoryComponent implements OnInit {
 
 }
 cancelMessage : any
+
   cancelOrder(id : any){
     if(confirm("Are you sure you want to cancel!!!?"))
     {
@@ -113,5 +161,10 @@ cancelMessage : any
   ratechange(currentRate : number){
 
   }
+
+  deleteSubscription!: Subscription
+  subscription!: Subscription
+
+
 
 }

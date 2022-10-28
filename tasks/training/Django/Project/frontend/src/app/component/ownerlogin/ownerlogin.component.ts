@@ -24,7 +24,7 @@ export class OwnerloginComponent implements OnInit {
       console.log('here')
       this.service.ownerLogin(this.login.value).subscribe((data : any) =>{(this.response=data)
         window.sessionStorage.setItem('owner_token',JSON.stringify(data));
-        this.route.navigate(['o-profile'])}
+        this.route.navigate(['previousvehicles'])}
         ,(err) => {alert('Invalid credentials')} )}
 
     get formData(){

@@ -2,7 +2,7 @@ import { GeneralService } from 'src/app/general.service';
 import { compileNgModule } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -15,7 +15,7 @@ export class BookComponent implements OnInit {
   responseData = JSON.parse(this.response)
 
 
-  vehicle! : FormGroup
+  // vehicle! : FormGroup
   vehicle_data : any = window.sessionStorage.getItem('vehicle');
   vehicle_obj = JSON.parse(this.vehicle_data)
 
@@ -26,11 +26,19 @@ export class BookComponent implements OnInit {
   newReturnDate : any
   newPickDate : any
   msg : any
-  constructor(private service : GeneralService, private router : Router) {
-
-
+  constructor(private service : GeneralService, private router : Router, private actRoute : ActivatedRoute) {
 
   }
+
+  veh : any
+  owner : any
+
+  vehicle = new FormGroup({
+    pickup_date: new FormControl('', Validators.required),
+    return_date: new FormControl('', Validators.required)
+
+    })
+
   ngOnInit(): void {
 
       if(this.vehicle_obj){
@@ -40,8 +48,27 @@ export class BookComponent implements OnInit {
 
         })
       }
+
+      this.actRoute.params.subscribe((data)=>{
+        console.log(data)
+        if(data){
+          this.service.getVehicleDetails(data['id']).subscribe((res)=>{
+            console.log(res)
+
+            this.veh=res
+            console.log(this.veh)
+          })
+
+          this.service.getOwnerDetails(data['id']).subscribe((res)=>{
+            console.log(res)
+
+            this.owner=res
+            console.log(this.owner)
+          })
+        }
+      })
   }
-  
+
   dateCheck(){
     let date = new Date();
     this.pickupDate = this.vehicle.value['pickup_date'];
@@ -69,15 +96,15 @@ export class BookComponent implements OnInit {
   bookSelectedVehicle(){
 
     let veh = {
-      "vehicle_no": this.vehicle_obj.vehicle_no,
-      "owner_id": this.vehicle_obj.owner_id,
+      "vehicle_no": this.veh.vehicle_no,
+      "owner_id": this.owner.owner_id,
       'pickup_date': this.dateConverter(this.newPickDate),
       'return_date': this.dateConverter(this.returnDate)
     }
 
     let post=this.service.bookVehicle(veh).subscribe((data : any) =>{(this.msg=data)
-      window.sessionStorage.setItem('customer_id',JSON.stringify(this.msg)),  console.log(data)}
-      , (err) => {alert(' Select date')},)
+        console.log(data)},
+        (err) => {alert(' Select date')},)
 
 
   }

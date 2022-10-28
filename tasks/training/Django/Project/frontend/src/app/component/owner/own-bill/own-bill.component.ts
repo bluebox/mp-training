@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class OwnBillComponent implements OnInit {
   data: any;
   trip: any;
+
   constructor(
     private service: GeneralService,
     private activateRoute: ActivatedRoute
@@ -18,6 +19,7 @@ export class OwnBillComponent implements OnInit {
   ngOnInit(): void {
     this.service.bill.subscribe((data) => {
       this.data = data;
+
     });
 
     this.service.trip.subscribe((res) => {
@@ -27,7 +29,7 @@ export class OwnBillComponent implements OnInit {
     this.activateRoute.params.subscribe((data) => {
       if (data['id']) {
         this.service.getBill(data['id']).subscribe((data) => {
-          console.log(data);
+          // console.log(data);
         });
 
         this.service.getTrip(data['id']).subscribe((data) => {

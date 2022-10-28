@@ -33,7 +33,7 @@ export class CustomerregisterComponent implements OnInit {
   get formData() {
     return this.customer_group.controls
   }
-  register_customer(){
+  registerCustomer(){
 
     let userObj = this.customer_group.value
     if(userObj.password == userObj.password2){
@@ -42,7 +42,7 @@ export class CustomerregisterComponent implements OnInit {
       // alert("Registration Successfull")
       // this.route.navigate(['customerlogin'], (err) => alert("Enter valid details"))})
 
-      this.service.registerOwner(userObj).subscribe((data : any) =>{
+      this.service.registerCustomer(userObj).subscribe((data : any) =>{
         this.route.navigate(['customerlogin']), alert('Registration successfull')}
           ,(err) => {alert('Invalid details')} )}
 

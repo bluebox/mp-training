@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GeneralService } from 'src/app/general.service';
 @Component({
@@ -9,6 +9,7 @@ import { GeneralService } from 'src/app/general.service';
   styleUrls: ['./available-vehicle.component.css']
 })
 export class AvailableVehicleComponent implements OnInit {
+text : string=''
 
   sort(e: any) {
     console.log(e);
@@ -34,10 +35,7 @@ export class AvailableVehicleComponent implements OnInit {
   resp: any
 
 
-  constructor(private service:GeneralService, http : HttpClient, private route: Router) {
-
-
-   }
+  constructor(private service:GeneralService, http : HttpClient, private route: Router) { }
 
   ngOnInit(): void {
 
@@ -53,20 +51,15 @@ export class AvailableVehicleComponent implements OnInit {
   }
 )
   }
-  bookVehicle(vehicle : any){
-   console.log(vehicle.vehicle_no);
-   this.service.getOwner(vehicle.vehicle_no).subscribe(data=>{(this.totalObjects=data); this.response=data ,window.sessionStorage.setItem('owner', JSON.stringify(data))});
+  bookVehicle( id:any ){
 
-   this.resp = window.sessionStorage.setItem('vehicle',JSON.stringify(vehicle));
-   this.route.navigate(['book-vehicle'])
+    console.log(id)
+    this.route.navigate(['book-vehicle', id])
+
 
   }
-  searchVehicle(key : any){
-
-    console.log(key)
-    this.service.searchVehicle(key).subscribe(data=>{(this.response=data),
+  searchVehicle(){
+    this.service.searchVehicle(this.text).subscribe(data=>{(this.response=data),
     console.log(this.response)})
-
   }
-
 }

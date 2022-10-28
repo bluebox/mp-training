@@ -9,7 +9,7 @@ import { OwnerregisterComponent } from './component/ownerregister/ownerregister.
 import { CustomerloginComponent } from './component/customerlogin/customerlogin.component';
 import { CustomerregisterComponent } from './component/customerregister/customerregister.component';
 import { GeneralService } from './general.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddvehicleComponent } from './component/owner/addvehicle/addvehicle.component';
@@ -47,6 +47,7 @@ import { OwnBillComponent } from './component/owner/own-bill/own-bill.component'
 
 @NgModule({
   declarations: [
+
     AppComponent,
     OwnerloginComponent,
     OwnerregisterComponent,
@@ -72,6 +73,7 @@ import { OwnBillComponent } from './component/owner/own-bill/own-bill.component'
     FooterComponent,
     OwnBillComponent,
 
+
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,7 @@ import { OwnBillComponent } from './component/owner/own-bill/own-bill.component'
     MatCardModule,
     MatSelectModule,
     NgbModule,
+    FormsModule,
   ],
   providers: [GeneralService],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 <div class="container">
   <div class="col-md-8 offset-md-2">
     <div class="container">
@@ -10,7 +10,7 @@
           alt="ldasjvb"
         />
       </div>
-      <div class="col-md-8 offset-md-2">
+      <div class="col-md-8 offset-md-2 detail">
         <br />
         <h1 style="font-family:monospace ;">{{ vehicle_obj.brand }}</h1>
         <p class="card-text">
@@ -79,4 +79,79 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<app-navbar></app-navbar>
+<div class="container" *ngIf="veh && owner" >
+  <div class="image">
+    <img src="{{ veh.image }}" width="500" height="400" alt="ldasjvb" />
+  </div>
+  <div class="detail">
+    <div class="brand">
+      <h1 style="font-family: monospace">Brand : {{ veh.brand }}</h1>
+    </div>
+    <div class="model">
+      <h2 class="card-text">
+        Model :
+        <b style="color: green"> {{ veh.model }} &nbsp;&nbsp;</b
+        ><span> Vehicle no : {{ veh.vehicle_no }} </span>
+      </h2>
+    </div>
+    <div class="price">
+      <h1 style="color: Blue">Rs : {{ veh.price_day }} /day</h1>
+    </div><br>
+    <div class="owner">
+      <i><b>Owner : </b></i> {{ owner.name }} <br>
+      <i><b>Address : </b></i> {{ owner.address }} <br>
+      <i><b>Contact no : </b></i> {{ owner.contact_no }} <br><br>
+
+    </div>
+    <div class="date">
+      <div class="info">
+        <div class="form">
+          <form [formGroup]="vehicle" (submit)="dateCheck()">
+            <b>Select From Date:</b><br /><input
+              formControlName="pickup_date"
+              type="date"
+              name=""
+              id=""
+            /><br />
+            <b>Select To Date:</b><br /><input
+              formControlName="return_date"
+              type="date"
+              name=""
+              id=""
+            /><br /><br>
+            <button type="submit" class="btn btn-success">
+              Book
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="booking">
+      <div classs="booking" *ngIf="msg.message">
+        <h3 style="color: red">{{ msg.message }}</h3>
+        <b
+          ><h3 *ngIf="msg.days" style="color: green">
+            Booking id : {{ msg.id }}
+          </h3></b
+        >
+
+        <b
+          ><h3 *ngIf="msg.days" style="color:rgb(252, 148, 11)">
+            Number of days : {{ msg.days }}
+          </h3></b
+        >
+
+        <b
+          ><h3 *ngIf="msg.amount" style="color: blue">
+            Booking ammount : {{ msg.amount }}
+          </h3></b
+        >
+    </div>
+  </div>
+
 </div>

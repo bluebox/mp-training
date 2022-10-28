@@ -50,6 +50,7 @@ class Vehicle(models.Model):
     price_day = models.FloatField()
     is_available = models.BooleanField(default=True)
 
+
     def __str__(self):
         return (self.vehicle_no)
 
@@ -80,6 +81,7 @@ class Rent_Trip(models.Model):
     customer_review = models.CharField(max_length=500, null=True)
     owner_review = models.CharField(max_length=500, null=True)
     order_status = models.BooleanField(default=True)
+    bill_generated = models.BooleanField(default=False)
 
     def __str__(self):
         return self.rent_id

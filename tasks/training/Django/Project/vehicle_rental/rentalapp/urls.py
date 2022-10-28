@@ -33,9 +33,12 @@ urlpatterns = [
 
     path('getbill/<int:id>', views.BillDetail.as_view()),
     path('bill/<int:pk>', views.BillList.as_view()),
-    path('trip/', views.Rent_TripList.as_view()),
+    path('bill-list/', views.BillList.as_view()),
+
+    path('trip', views.Rent_TripList.as_view()),
+    path('book/', views.Book.as_view()),
     path('trip/<int:pk>/', views.Rent_TripDetail.as_view()),
-    path('recieved-orders/', views.getOrders.as_view()),
+    path('recieved-orders', views.getOrders.as_view()),
     path('generatebill/<int:id>', views.BillList.as_view()),
 
     path('customer-review/<int:pk>/', views.CustomerReview.as_view()),
@@ -43,12 +46,13 @@ urlpatterns = [
     path('search-vehicle/', views.Search.as_view()),
     path('cancel-order/<int:pk>/', views.UpdateOrderStatus.as_view()),
     path("add-odoreading/<int:pk>/",views.AddOdoReading.as_view()),
+
     path("vehicle-status/<str:pk>/", views.ChangeVehicleStatus.as_view()),
 
+    path('get-vehicle-details/<str:id>', views.GetVehicle.as_view()),
+    path('get-owner-details/<str:id>', views.GetVehiclesOwner.as_view()),
 
-
-
-    #JWT API
+                  #JWT API
     path('customer-login/', views.LoginCustomerJwt.as_view()),
     path('owner-login/', views.LoginOwnerJwt.as_view()),
     path('customer-logout/', views.LogoutCustomerJwt.as_view()),

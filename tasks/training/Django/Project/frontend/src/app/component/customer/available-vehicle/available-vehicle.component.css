@@ -11,7 +11,9 @@
   width: 95%;
   min-height: 74vh;
   background-color: rgb(248, 238, 238);
-  /* height:85vh; */
+  margin-bottom: 20px;
+
+
 }
 .container:hover{
   background-color: rgb(247, 213, 213)
@@ -20,6 +22,10 @@
   padding: 5px;
   margin: 10px;
 }
+/* .subDiv{
+  width: 30%;
+  padding:50px;
+} */
 .top
 {
   display: flex;
@@ -60,7 +66,7 @@ select{
   height: 100%;
   width: 100%;
   /* transform: translate(-4rem) scale(1.5); */
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: all .5s;
 }
 .img:hover img{

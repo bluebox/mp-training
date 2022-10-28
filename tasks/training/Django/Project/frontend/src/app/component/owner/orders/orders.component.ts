@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { GeneralService } from 'src/app/general.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-orders',
@@ -21,9 +22,56 @@ export class OrdersComponent implements OnInit {
   review!: FormGroup;
   odoReading!: FormGroup;
 
+
+  deleteSubscription!: Subscription
+  subscription!: Subscription
+
   constructor(private service: GeneralService, private modalService: NgbModal, private route : Router) {
     this.date = new Date();
   }
+
+
+  page: number = 1;
+  pageItems : any;
+  totalPages : any
+
+
+  getPageItems(num: number){
+    this.subscription = this.service.recievedOrders(this.page + num).subscribe(
+      (data: any) => {
+        // console.log(data);
+        this.pageItems = data.pageItems
+        this.page = data.page
+        this.totalPages = data.totalPages
+
+
+        for(let i=0; i<this.pageItems.length; i++){
+
+
+            this.pageItems[i].stringReturnDate = this.pageItems[i]['return_date']
+            this.pageItems[i].stringPickDate = this.pageItems[i]['pickup_date']
+            this.pageItems[i].reading = (this.pageItems[i]['odo_end_reading']-this.pageItems[i]['odo_start_reading']);
+
+            this.return.push(this.pageItems[i].return_date)
+            this.pick.push(this.pageItems[i].pickup_date)
+
+
+            this.pageItems[i]['return_date'] = new Date(this.pageItems[i]['return_date'])
+            this.pageItems[i]['pickup_date'] = new Date(this.pageItems[i]['pickup_date'])
+          }
+      },
+      err => alert(err.error.detail),
+    )
+    this.service.bill.subscribe(data=>(this.billResp=data))
+
+
+}
+
+
+
+bill : any
+
+
   resp: any;
   ngOnInit(): void {
     this.review = new FormGroup({
@@ -35,37 +83,24 @@ export class OrdersComponent implements OnInit {
       odo_end_reading: new FormControl(''),
     });
 
-    this.getOrders();
-  }
+    this.service.bill.subscribe((data) => {
+      this.bill = data;
 
-  getOrders() {
-    this.service.recievedOrders().subscribe((data) => {
-      this.response = data;
-      console.log(this.response);
-
-      // window.sessionStorage.setItem('order_id', JSON.stringify(data));
-      for (let i = 0; i < this.response.length; i++) {
-        this.response[i].stringReturnDate = this.response[i]['return_date'];
-        this.response[i].stringPickDate = this.response[i]['pickup_date'];
-
-        this.response[i].reading = (this.response[i]['odo_end_reading']-this.response[i]['odo_start_reading']);
-
-        this.return.push(this.response[i].return_date);
-        this.pick.push(this.response[i].pickup_date);
-
-        this.response[i]['return_date'] = new Date(
-        this.response[i]['return_date']
-        );
-      }
     });
 
-    this.service.bill.subscribe(data=>(this.billResp=data))
+    this.getPageItems(0)
   }
+
+
+
   generateBill(id: any) {
     this.service.generateBill(id).subscribe((data) => {
-      (this.resp = data), alert(this.resp.message);
-    });
+      (this.resp = data), alert(this.resp.message); this.ngOnInit()
+    }, );
+
   }
+
+
   open(content: any, rent_id: any) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })

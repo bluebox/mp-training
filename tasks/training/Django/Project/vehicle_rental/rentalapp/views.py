@@ -218,7 +218,7 @@ class RefreshJwtTokenCustomer(APIView):
 class LogoutOwnerJwt(APIView):
 
     def post(self, request):
-        print("logout")
+
         refresh_token = request.COOKIES.get('refresh_token')
         CustomerToken.objects.filter(
             token=refresh_token
@@ -349,10 +349,19 @@ class Rent_TripList(APIView):
         customer = Customer.objects.get(email=request.user)
         customer_id = customer.customer_id
 
-        rent_trip = Rent_Trip.objects.filter(customer_id=customer_id)
+        rent_trip = Rent_Trip.objects.filter(customer_id=customer_id).order_by('-rent_id')
 
-        serializer = Rent_TripSerializer(rent_trip, many=True)
-        return Response(serializer.data)
+        users, totalPages, page = listing(request, rent_trip)
+
+        serializer = Rent_TripSerializer(users, many=True)
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
+
+class Book(APIView):
+    authentication_classes = [JwtAuthentication_customer]
 
     def post(self, request):
         customer = Customer.objects.get(email=request.user)
@@ -439,6 +448,7 @@ class Rent_TripDetail(APIView):
 class BillList(APIView):
     def get(self, request, format=None):
         bill = Bill.objects.all()
+        print(bill)
         serializer = BillSerializer(bill, many=True)
         return Response(serializer.data)
 
@@ -466,7 +476,11 @@ class BillList(APIView):
                 })
             if serializer.is_valid():
                 serializer.save()
+
+                trip.bill_generated = True
+                trip.save()
                 return Response({'message':'Bill generated successfully'})
+
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -475,9 +489,15 @@ class BillDetail(APIView):
 
 
     def get(self, request, id):
-        bill = Bill.objects.get(rental_id_id=id)
-        serializer = BillSerializer(bill)
-        return Response(serializer.data)
+        try :
+            bill = Bill.objects.get(rental_id_id=id)
+            if bill:
+                serializer = BillSerializer(bill)
+                return Response(serializer.data)
+        except :
+            return Response({"msg":"No data found"})
+
+
 
 class getOrders(APIView):
     authentication_classes = [JwtAuthentication_owner]
@@ -486,11 +506,19 @@ class getOrders(APIView):
         owner = Owner.objects.get(email=request.user)
         owner_id = owner.owner_id
 
-        rent_trip = Rent_Trip.objects.filter(owner_id=owner_id)
+        rent_trip = Rent_Trip.objects.filter(owner_id=owner_id).order_by('-rent_id')
+
+        orders, totalPages, page = listing(request, rent_trip)
+
+        serializer = Rent_TripSerializer(orders, many=True)
+
+        return Response({
+            'pageItems': serializer.data,
+            'totalPages': totalPages,
+            'page': page
+        })
 
 
-        serializer = Rent_TripSerializer(rent_trip, many=True)
-        return Response(serializer.data)
 
 class CustomerReview(APIView):
     def put(self, request, pk, format=None):
@@ -511,6 +539,108 @@ class OwnerReview(APIView):
 
         return Response(serializer.data)
 
+
+class DeleteVehicle(View):
+    def delete(self, request, numid):
+        vehicle = Vehicle.objects.get(vehicle_no=numid)
+        vehicle.delete()
+        return JsonResponse({"message": "success"}, safe=False)
+        # serializer = VehicleSerializer(vehicle)
+
+class GetBookingId(APIView):
+    def get(self, request, id):
+        booking_id = Rent_Trip.objects.filter(customer_id=id).order_by('-check_in').first
+        serializer = Rent_TripSerializer(booking_id)
+        print(serializer)
+        return JsonResponse(serializer.data)
+
+def no_of_days(pickup_date, return_date):
+    date_format = "%Y-%m-%d"
+    a = datetime.datetime.strptime(str(pickup_date), date_format)
+    b = datetime.datetime.strptime(str(return_date), date_format)
+    delta = b - a
+    return delta.days+1
+
+class GetVehicle(APIView):
+    def get(self,request, id):
+        vehicle = Vehicle.objects.get(vehicle_no=id)
+        serializer = VehicleSerializer(vehicle)
+        return Response(serializer.data)
+
+class GetVehiclesOwner(APIView):
+    def get(self,request, id):
+        vehicle = Vehicle.objects.get(vehicle_no=id)
+        owner = Owner.objects.get(owner_id = vehicle.owner_id_id)
+        serializer = OwnerSerializer(owner)
+        return Response(serializer.data)
+
+class Search(APIView):
+    def get(self, request):
+        vehicicles = Vehicle.objects.filter(Q(model__icontains = request.GET.get('model')) |
+                                            Q(brand__icontains = request.GET.get('model')) )
+        serializer =  VehicleSerializer(vehicicles, many=True)
+        if serializer:
+            return  Response(serializer.data)
+        # else :
+        #      return Response({"message" : "No results found"})
+
+class UpdateOrderStatus(APIView):
+    def put(self, request, pk):
+        trip = Rent_Trip.objects.get(rent_id = pk)
+        trip.order_status = False
+
+        trip.save()
+        return  Response({"msg" : "Order cancelled"})
+
+class ChangeVehicleStatus(APIView):
+    def put(self, request, pk):
+        vehicle = Vehicle.objects.get(vehicle_no = pk)
+
+        if vehicle.is_available == True:
+            vehicle.is_available = False
+            vehicle.save()
+            return Response({"msg": "Vehicle dissabled"})
+
+        else:
+            vehicle.is_available = True
+            vehicle.save()
+            return Response({"msg": "Vehicle enabled"})
+
+class AddOdoReading(APIView):
+    def put(self, request, pk):
+        trip = Rent_Trip.objects.get(rent_id=pk)
+        trip.odo_start_reading = request.data['odo_start_reading']
+        trip.odo_end_reading = request.data['odo_end_reading']
+        trip.save()
+
+        bill = Bill.objects.get(rental_id_id = pk)
+        bill.km_ran = int(trip.odo_end_reading) - int(trip.odo_start_reading)
+        bill.save()
+
+        return Response({"msg" : "data saved successfully"})
+
+from django.core.paginator import Paginator
+
+def listing(request, object_list):
+    paginator = Paginator(object_list, 3)
+    page_number = int(request.GET.get('page'))
+    if not page_number:
+        page_number = 1
+    if page_number > paginator.num_pages:
+        page_number = paginator.num_pages
+    elif page_number < 1:
+        page_number = 1
+    page_obj = paginator.get_page(page_number)
+    return page_obj, paginator.num_pages, page_number
+
+
+@csrf_exempt
+@api_view(['POST'])
+def save_file(request):
+    # file = request.FILES["img"]
+    url = uploader.upload(request.FILES['img'])
+    # file_name = default_storage.save(file.name,file)
+    return JsonResponse({'url': url['secure_url']}, safe=False)
 
 #
 # def c_login(request):
@@ -551,86 +681,4 @@ class OwnerReview(APIView):
 #         return JsonResponse({'mes': 'invalid password'})
 
 
-
-class DeleteVehicle(View):
-    def delete(self, request, numid):
-        vehicle = Vehicle.objects.get(vehicle_no=numid)
-        vehicle.delete()
-        return JsonResponse({"message": "success"}, safe=False)
-        # serializer = VehicleSerializer(vehicle)
-
-class GetBookingId(APIView):
-    def get(self, request, id):
-        booking_id = Rent_Trip.objects.filter(customer_id=id).order_by('-check_in').first
-        serializer = Rent_TripSerializer(booking_id)
-        print(serializer)
-        return JsonResponse(serializer.data)
-
-def no_of_days(pickup_date, return_date):
-    date_format = "%Y-%m-%d"
-    a = datetime.datetime.strptime(str(pickup_date), date_format)
-    b = datetime.datetime.strptime(str(return_date), date_format)
-    delta = b - a
-    return delta.days+1
-
-class GetVehiclesOwner(APIView):
-    def get(self,request, id):
-        vehicle = Vehicle.objects.get(vehicle_no=id)
-        owner = Owner.objects.get(owner_id = vehicle.owner_id_id)
-        serializer = OwnerSerializer(owner)
-        return Response(serializer.data)
-
-class Search(APIView):
-    def get(self, request):
-        vehicicles = Vehicle.objects.filter(Q(model__icontains = request.GET.get('model')) |
-                                            Q(brand__icontains = request.GET.get('model')) )
-        serializer =  VehicleSerializer(vehicicles, many=True)
-        if serializer:
-            return  Response(serializer.data)
-        else :
-             return Response({"message" : "No results found"})
-
-class UpdateOrderStatus(APIView):
-    def put(self, request, pk):
-        trip = Rent_Trip.objects.get(rent_id = pk)
-        trip.order_status = False
-
-        trip.save()
-        return  Response({"msg" : "Order cancelled"})
-
-class ChangeVehicleStatus(APIView):
-    def put(self, request, pk):
-        vehicle = Vehicle.objects.get(vehicle_no = pk)
-
-        if vehicle.is_available == True:
-            vehicle.is_available = False
-            vehicle.save()
-            return Response({"msg": "Vehicle dissabled"})
-
-        else:
-            vehicle.is_available = True
-            vehicle.save()
-            return Response({"msg": "Vehicle enabled"})
-
-class AddOdoReading(APIView):
-    def put(self, request, pk):
-        trip = Rent_Trip.objects.get(rent_id=pk)
-        trip.odo_start_reading = request.data['odo_start_reading']
-        trip.odo_end_reading = request.data['odo_end_reading']
-        trip.save()
-
-        bill = Bill.objects.get(rental_id_id = pk)
-        bill.km_ran = int(trip.odo_end_reading) - int(trip.odo_start_reading)
-        bill.save()
-
-        return Response({"msg" : "data saved successfully"})
-
-
-@csrf_exempt
-@api_view(['POST'])
-def save_file(request):
-    # file = request.FILES["img"]
-    url = uploader.upload(request.FILES['img'])
-    # file_name = default_storage.save(file.name,file)
-    return JsonResponse({'url': url['secure_url']}, safe=False)
 

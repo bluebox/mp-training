@@ -77,8 +77,11 @@ export class PreviousvehiclesComponent implements OnInit {
   // }
 
   changeVehicleStatus(id: any) {
-    this.service.changeStatus(id).subscribe((data) => (this.respon = data));
+    this.service.changeStatus(id).subscribe((data) => {
+      (this.respon = data);
+      this.ngOnInit();
+    });
 
-    this.ngOnInit();
+
   }
 }

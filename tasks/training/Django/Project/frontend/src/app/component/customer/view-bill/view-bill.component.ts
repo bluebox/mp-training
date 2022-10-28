@@ -11,8 +11,7 @@ export class ViewBillComponent implements OnInit {
   data : any
   trip : any
 
-  billResp : any;
-  tripResp : any;
+
   constructor(private service : GeneralService, private route : Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
