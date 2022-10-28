@@ -18,6 +18,7 @@ export class DoctorDetailsComponent implements OnInit {
   ngOnInit(): void {
     // this.getData();
     this.getDocDetails()
+    // this.getUserdetails()
     // console.log(this.doctors);
     // console.log(this.getData());
   }
@@ -25,6 +26,17 @@ export class DoctorDetailsComponent implements OnInit {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
  }
+
+//  getUserdetails(){
+//   this.api.getuser().subscribe(
+//     (res:any)=>{
+//       console.log(res)
+//     },
+//     (error:any)=>{
+//       console.log(error);
+//     }
+//   )
+// }
   getDocDetails(): any{
     this.doctors=this.book.getDocDetails()
     console.log(this.doctors);
@@ -35,7 +47,7 @@ export class DoctorDetailsComponent implements OnInit {
       (data)=>{
         console.log(data);
         this.doctor=data;
-        console.log(this.doctor.d_id)
+        console.log(this.doctor.id)
       },
       error=>{
 

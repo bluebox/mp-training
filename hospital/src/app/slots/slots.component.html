@@ -27,11 +27,11 @@
     <div *ngFor="let slot of doctors">
 
         <label class="sport_labl">
-            <input type="radio" name="doctor" value="{{slot.d_id}}" />
-            <div class="sportcard" (click)="(slot.d_id)">
-                <!-- <img src="../../../../../assets/images/{{slot.d_name}}.png" alt="{{slot.doctor_id}}" /> -->
-                <div>{{slot.d_name}}----{{slot.d_id}}</div>
-                <h6>{{slot.d_name}}</h6>
+            <input type="radio" name="doctor" value="{{slot.id}}" />
+            <div class="sportcard" (click)="(slot.id)">
+                <!-- <img src="../../../../../assets/images/{{slot.name}}.png" alt="{{slot.doctor_id}}" /> -->
+                <div>{{slot.name}}----{{slot.id}}</div>
+                <h6>{{slot.name}}</h6>
             </div>
         </label>
 
@@ -60,8 +60,8 @@
     <div *ngFor="let slot of slo" class="slotitem">
         <label class="sport_labl">
             <input type="checkbox" name="slots" value="{{slot.slot_id}}"
-                [attr.disabled]="booked_slots_ids.indexOf(slot.slot_id) > -1 ? true : null" />
-            <div class="sportcard" [ngClass]=" booked_slots_ids.indexOf(slot.slot_id) > -1 ? 'class2' : 'class1' "
+                [attr.disabled]="bookeslots_ids.indexOf(slot.slot_id) > -1 ? true : null" />
+            <div class="sportcard" [ngClass]=" bookeslots_ids.indexOf(slot.slot_id) > -1 ? 'class2' : 'class1' "
                 (click)="getslotid(slot.slot_id)">
                 <h6>{{slot.name}}</h6>
             </div>

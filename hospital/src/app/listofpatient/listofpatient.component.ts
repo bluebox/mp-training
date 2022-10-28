@@ -28,10 +28,9 @@ getData()
     (data)=>{
       console.log(data);
       this.patients=data;
-      console.log(this.patients[0].p_id)
+      console.log(this.patients[0].name)
     },
     error=>{
-
   console.log(error);
 
   // this.service.getAPatient().subscribe((data: Patient[])=>this.patients=data[0])

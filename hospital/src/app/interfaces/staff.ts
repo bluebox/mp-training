@@ -8,5 +8,5 @@ export interface Staff{
   s_salary_id:string;
   s_dob:string;
   s_designation:string;
-  d_id:string;
+  id:string;
 }

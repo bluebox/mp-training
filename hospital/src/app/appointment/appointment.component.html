@@ -1,5 +1,19 @@
 <p>appointment works!</p>
-<form class="example-container" [formGroup]="form_appointment" >
+<form class="example-container" [formGroup]="form_appointment"  (ngSubmit)="saveDetails()">
+  <mat-form-field appearance="fill" hintLabel="Doctor name required">
+    <mat-label>Doctor</mat-label>
+    <mat-select matNativeControl name="doctor" formControlName="doctor">
+        <mat-option *ngFor="let post of doctor" value="{{ post.id }}"  (click)="getCellData(post.id)"
+           >
+      {{ post.name }}
+    </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker1" placeholder="Angular forms" formControlName="dates">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
   <mat-form-field appearance="fill" >
     <mat-label>Available Slot</mat-label>
       <mat-select matNativeControl name="slot" formControlName="slot">
@@ -9,20 +23,13 @@
     </mat-option>
       </mat-select>
   </mat-form-field>
-  <mat-form-field appearance="fill" hintLabel="Doctor name required">
-    <mat-label>Doctor</mat-label>
-    <mat-select matNativeControl name="doctors" formControlName="doctor">
-        <mat-option *ngFor="let post of doctors" value="{{ post.name }}"
-           >
-      {{ post.name }}
-    </mat-option>
-    </mat-select>
-</mat-form-field>
+  <div mat-dialog-actions align="end">
+    <div class="example-button-row">
+      <button mat-raised-button color="primary"  routerLink="/newuser">Back</button>
+    </div>
+    <router-outlet></router-outlet>
+      <button mat-raised-button color="primary" type="submit" (click)="get_Slot_Data()">Submit</button>
+  </div>
+
 <button (click)="openBottomSheet()">Click</button>
-  <!-- <mat-form-field appearance="fill" [color]="colorControl.value">
-    <mat-label>Font size</mat-label>
-    <input matInput type="number" placeholder="Ex. 12" [formControl]="fontSizeControl" min="10">
-    <span matSuffix>px</span>
-    <mat-error *ngIf="fontSizeControl.invalid">Min size: 10px</mat-error>
-  </mat-form-field> -->
 </form>

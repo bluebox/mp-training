@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { RouterModule, Routes } from '@angular/router';
 import { DoctorComponent } from './doctor/doctor.component';
 import { ListofpatientComponent } from './listofpatient/listofpatient.component';

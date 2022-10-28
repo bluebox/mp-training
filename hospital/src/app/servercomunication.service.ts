@@ -13,21 +13,40 @@ export class ServercomunicationService {
   httpHeaders= new HttpHeaders({'Content-Type':'application/json'});
 
   constructor( private http: HttpClient) {}
-
+  registerUser(data:any):Observable<any>
+  {
+    console.log('user reg')
+    return this.http.post<any>(this.url+'users/register/',data,{headers: this.httpHeaders});
+  }
+  login(data:any) {
+    return this.http.post<any>(this.url+'users/login/',data,{withCredentials:true,headers: this.httpHeaders});
+        // .pipe(map(data => {
+        //     // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
+        //     localStorage.setItem(data);
+        //     this.userSubject.next(user);
+        //     return user;
+        // }));
+}
   getAllPatient():Observable<any>
   {
     console.log('patient list get')
-    return this.http.get(this.url+'patient/patient/',{headers: this.httpHeaders});
+    return this.http.get(this.url+'users/patient/',{headers: this.httpHeaders});
   }
+  getuser():Observable<any>
+  {
+    console.log('patient list get')
+    return this.http.get(this.url+'users/getuser/',{withCredentials:true,headers: this.httpHeaders});
+  }
+
   getAllDoctor():Observable<any>
   {
     console.log('doctor list get')
-    return this.http.get(this.url+'doctor/doctor/',{headers: this.httpHeaders});
+    return this.http.get(this.url+'users/doctor/',{headers: this.httpHeaders});
   }
   getAllBills():Observable<any>
   {
     console.log('bill list get')
-    return this.http.get(this.url+'/bill/bill/',{headers: this.httpHeaders});
+    return this.http.get(this.url+'users/bill/',{headers: this.httpHeaders});
   }
   getAllAppointment():Observable<any>
   {
@@ -44,20 +63,20 @@ export class ServercomunicationService {
     console.log('diagnosis list get')
     return this.http.get(this.url+'diagnosis/diagnosis/',{headers: this.httpHeaders});
   }
-  getAllSlot():Observable<any>
+  getAllSlot(id:any,date:any):Observable<any>
   {
-    console.log('diagnosis list get')
-    return this.http.get(this.url+'slot/slot/',{headers: this.httpHeaders});
+    console.log('slot list get')
+    return this.http.get(this.url+'users/slotfilter/'+id+'/'+date,{headers: this.httpHeaders});
   }
   getASlot(id: any):Observable<any>
   {
     console.log('diagnosis list get')
-    return this.http.get(`${this.url}slot/slot/${id}`,{headers: this.httpHeaders});
+    return this.http.get(`${this.url}users/slot/${id}`,{headers: this.httpHeaders});
   }
-  getADoctor(id: any):Observable<any>
+  getADoctor(name: any):Observable<any>
   {
-    console.log('doc details get')
-    return this.http.get(`${this.url}slot/slot/${id}`,{headers: this.httpHeaders});
+    console.log('single doc details get')
+    return this.http.get(`${this.url}users/doctor/${name}`,{headers: this.httpHeaders});
   }
   getAPatient(id: any):Observable<any>
   {
@@ -71,16 +90,16 @@ export class ServercomunicationService {
   }
 
   register_patient(data: any) {
-      return this.http.post(this.url+'patient/patient/', data,{headers: this.httpHeaders});
+      return this.http.post(this.url+'users/patient/', data,{headers: this.httpHeaders});
   }
   register_doctor(data: any) {
-    return this.http.post(this.url+'doctor/doctor/', data,{headers: this.httpHeaders});
+    return this.http.post(this.url+'users/doctor/', data,{headers: this.httpHeaders});
 }
 register_staff(data: any) {
-  return this.http.post(this.url+'staff/staff/', data,{headers: this.httpHeaders});
+  return this.http.post(this.url+'users/staff/', data,{headers: this.httpHeaders});
 }
 register_appointment(data: any) {
-  return this.http.post(this.url+'appointment/appointment/', data,{headers: this.httpHeaders});
+  return this.http.post(this.url+'users/slot/', data,{headers: this.httpHeaders});
 }
 register_bill(data: any) {
   return this.http.post(this.url+'bill/bill/', data,{headers: this.httpHeaders});
@@ -89,7 +108,7 @@ register_diagnosis(data: any) {
   return this.http.post(this.url+'diagnosis/diagnosis/', data,{headers: this.httpHeaders});
 }
 register_slot(data: any) {
-  return this.http.post(this.url+'slot/slot/', data,{headers: this.httpHeaders});
+  return this.http.post(this.url+'users/slot/', data,{headers: this.httpHeaders});
 }
   //   update(id: any, data: any) {
   //     return this.http.put(`${baseUrl}/${id}`, data);

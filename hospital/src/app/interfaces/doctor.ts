@@ -1,10 +1,11 @@
 export interface Doctor{
-  d_name:string;
-  d_mail:string;
-  d_phone_no:string;
-  d_address:string;
-  d_gender:string;
-  d_id:string;
-  d_salary_id:string;
-  d_dob:string;
+  name:string;
+  email:string;
+  phone_no:string;
+  address:string;
+  gender:string;
+  age:number;
+  experience:number;
+  qualification:string;
+  password:string;
 }

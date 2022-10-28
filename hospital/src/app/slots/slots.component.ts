@@ -28,16 +28,16 @@ submitBookingForm() {
 throw new Error('Method not implemented.');
 }
 
-  d_id: string = ''; //facilityid
+  id: string = ''; //facilityid
   idd!: number;
   form_appointment: FormGroup = new FormGroup({});
   doctor: any;
   doctors:any=[
-    {d_name: "ayan", d_id:"1995"},
-    {d_name: "ayan1", d_id:"1996"},
-    {d_name: "ayan2", d_id:"1997"},
-    {d_name: "ayan3", d_id:"1998"},
-    {d_name: "ayan4", d_id:"1999"}
+    {name: "ayan", id:"1995"},
+    {name: "ayan1", id:"1996"},
+    {name: "ayan2", id:"1997"},
+    {name: "ayan3", id:"1998"},
+    {name: "ayan4", id:"1999"}
   ]
   slo:any=[
     {name: '10:30 am-11:00 am', completed: false, color: 'primary'},
@@ -51,8 +51,8 @@ throw new Error('Method not implemented.');
   datesarray: any[] = [{"date":"12/2/22"},{"date":"2/2/22"}];
   // datesarray: any[] = [];
   // slots: Slots[] = [];
-  // booked_slots: Slots[] = [];
-  booked_slots_ids: number[] = [];
+  // bookeslots: Slots[] = [];
+  bookeslots_ids: number[] = [];
   slots_id: number[] = [];
   // equipments_booked: any[] = [];
   // equipments_quantity: any[] = [];
@@ -69,7 +69,7 @@ throw new Error('Method not implemented.');
   constructor(private fb: FormBuilder,private api:ServercomunicationService) { }
 
   ngOnInit(): void {
-    this['get_Doc_Data_by_Id'](this.d_id);
+    this['get_Doc_Data_by_Id'](this.id);
 
   }
   task: Task = {
@@ -126,7 +126,7 @@ throw new Error('Method not implemented.');
   //       this.facilityService
   //         .getBookedSlots(this.fsid, this.date)
   //         .subscribe((data) => {
-  //           (this.booked_slots = data), this.getSlotids();
+  //           (this.bookeslots = data), this.getSlotids();
   //         });
   //     }
   //   }
@@ -144,13 +144,13 @@ throw new Error('Method not implemented.');
 //         });
 //   }
 // }
-get_Doc_Data_by_Id(this.d_id)
+get_Doc_Data_by_Id(this.id)
 {
-  this.api.getADoctor(this.d_id).subscribe(
+  this.api.getADoctor(this.id).subscribe(
     (data)=>{
       console.log(data);
       this.doctor=data;
-      console.log(this.doctor[0].d_id)
+      console.log(this.doctor[0].id)
       // this.book.setDocData(data)
     },
     error=>{
@@ -180,7 +180,7 @@ get_Doc_Data_by_Id(this.d_id)
 }
 }
 
-function get_Doc_Data_by_Id(d_id: string) {
+function get_Doc_Data_by_Id(id: string) {
   throw new Error('Function not implemented.');
 }
 

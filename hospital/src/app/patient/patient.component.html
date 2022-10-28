@@ -1,45 +1,45 @@
 <mat-card>
   <mat-card-title>Patient Form</mat-card-title>
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="saveDetails(form)">
+  <form [formGroup]="patientForm" (ngSubmit)="saveDetails()">
       <mat-form-field appearance="standard">
           <mat-label>Name</mat-label>
-          <input matInput maxlength="15" inputmode="text" placeholder="Type name" formControlName="p_name" #nameInput>
+          <input matInput maxlength="15" inputmode="text" placeholder="Type name" formControlName="name" #nameInput>
           <mat-hint>Mini character : {{ nameInput.value.length }}/10</mat-hint>
           <mat-error>Name is required</mat-error>
-          <mat-error *ngIf="form.controls['p_name'].errors?.['minlength']">
+          <mat-error *ngIf="patientForm.controls['name'].errors?.['minlength']">
               Please enter more than 10 character
           </mat-error>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Contact Number</mat-label>
-        <input matInput maxlength="10" inputmode="tel" placeholder="Type phone no" formControlName="p_phone_no" #p_phone_no >
-        <mat-hint>Mini character : {{ p_phone_no.value.length }}/10</mat-hint>
+        <input matInput maxlength="10" inputmode="tel" placeholder="Type phone no" formControlName="phone_no" #phone_no >
+        <mat-hint>Mini character : {{ phone_no.value.length }}/10</mat-hint>
         <mat-error>phone no is required</mat-error>
-        <mat-error *ngIf="form.controls['p_phone_no'].errors?.['minlength']">
+        <mat-error *ngIf="patientForm.controls['phone_no'].errors?.['minlength']">
             Please enter 10 Number
         </mat-error>
     </mat-form-field>
 
       <mat-form-field appearance="legacy">
           <mat-label>Email Address:</mat-label>
-          <input matInput type="email" formControlName="p_mail" placeholder="Your email">
+          <input matInput type="email" formControlName="email" placeholder="Your email">
           <mat-icon matSuffix>mail_outline</mat-icon>
           <mat-hint>Input the fully qualified email address</mat-hint>
-          <mat-error *ngIf="form.controls['p_mail'].errors?.['required']">Email is required</mat-error>
-          <mat-error *ngIf="form.controls['p_mail'].errors?.['pattern']">Please enter valid email</mat-error>
+          <mat-error *ngIf="patientForm.controls['email'].errors?.['required']">Email is required</mat-error>
+          <mat-error *ngIf="patientForm.controls['email'].errors?.['pattern']">Please enter valid email</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard">
           <mat-label>Address:</mat-label>
-          <textarea matInput placeholder="address" formControlName="p_address"></textarea>
+          <textarea matInput placeholder="address" formControlName="address"></textarea>
       </mat-form-field>
       <mat-form-field appearance="standard">
-        <mat-label>insurance Id:</mat-label>
-        <input matInput maxlength="15" inputmode="text" placeholder="Type your insurance id if any" formControlName="p_insurance_id">
+        <mat-label>Insurance Id:</mat-label>
+        <input matInput maxlength="15" inputmode="text" placeholder="Type your insurance id if any" formControlName="insurance_id">
     </mat-form-field>
 
-      <mat-form-field appearance="fill" hintLabel="required">
+      <!-- <mat-form-field appearance="fill" hintLabel="required"> -->
           <!-- <mat-label>Country</mat-label>
           <mat-select matNativeControl name="country" formControlName="country">
               <mat-option value="india">India</mat-option>
@@ -49,25 +49,37 @@
               <mat-option value="Mongolia">Mongolia</mat-option>
           </mat-select>
       </mat-form-field> -->
-      <mat-label>Patient Id:</mat-label>
-        <input matInput maxlength="15" inputmode="text" placeholder="Type your id issued by the hospital" formControlName="p_id">
-    </mat-form-field>
-
+      <!-- <mat-label>Patient Id:</mat-label>
+        <input matInput maxlength="15" inputmode="text" placeholder="Type your id issued by the hospital" formControlName="id">
+    </mat-form-field> -->
+    <div class="example-container">
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" class=""  formControlName="age" placeholder="0">
+        <span matSuffix>years</span>
+      </mat-form-field>
+    </div>
       <div style="margin-top:10px;">
           <div style="margin-right:3%; color:#6b6b6b;">
               <mat-label>Gender</mat-label>
           </div>
-          <mat-radio-group formControlName="p_gender">
-              <mat-radio-button value="Male">Male</mat-radio-button>
-              <mat-radio-button value="Female">Female</mat-radio-button>
+          <mat-radio-group formControlName="gender">
+              <mat-radio-button value="M">Male</mat-radio-button>
+              <mat-radio-button value="F">Female</mat-radio-button>
           </mat-radio-group>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
       </div>
 
       <!-- <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="p_dob">
+          <input matInput [matDatepicker]="picker" formControlName="dob">
           <mat-datepicker-toggle matSuffix [for]="picker">
-              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              <mat-icon matDatepickerToggleIcon>keyboararrow_down</mat-icon>
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
       </mat-form-field> -->
@@ -76,9 +88,9 @@
           <button mat-raised-button color="primary"  routerLink="/newuser">Back</button>
         </div>
         <router-outlet></router-outlet>
-          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!patientForm.valid">Submit</button>
       </div>
   </form>
-  <div>{{ form.value | json }}</div>
+  <div>{{ patientForm.value | json }}</div>
 </div>
 </mat-card>

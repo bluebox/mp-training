@@ -20,12 +20,13 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { TestComponent } from './test/test.component';
 import { BillComponent } from './bill/bill.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
-import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
+// import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
 import { SlotsComponent } from './slots/slots.component';
 import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { BookingService } from './booking.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,11 +39,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     NavbarComponent,
     FooterComponent,
     SalaryComponent,
-    AppointmentComponent,
+    // AppointmentComponent,
     TestComponent,
     BillComponent,
     DiagnosisComponent,
-    BookAppointmentComponent,
+    // BookAppointmentComponent,
     AppointmentComponent,
     // UpdateSlotsComponent,
     SlotsComponent,
@@ -62,7 +63,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
   ],
-  providers: [ServercomunicationService,BookingService],
+  providers: [ServercomunicationService,BookingService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
