@@ -101,3 +101,10 @@ class Logout(APIView):
         return response
 
 
+class Subscribe(APIView):
+    def post(self, request):
+        id=request.data.get('id')
+        temp=User.objects.get(id=id)
+        temp.subscription=True
+        temp.save()
+        return Response({'msg':'success'})

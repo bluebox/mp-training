@@ -1,5 +1,4 @@
-import imp
-from urllib import response
+
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -12,7 +11,6 @@ from django.http import JsonResponse
 from cloudinary.uploader import upload
 from django.core.serializers.json import DjangoJSONEncoder
 import json
-from rest_framework.parsers import JSONParser
 
 
 # Create your views here.
@@ -45,7 +43,7 @@ class All_Properties(APIView):
 class like_func(APIView):
     def get(self,request,p_id,c_id):
         if(Liked.objects.filter(property=p_id,customer=c_id)):
-            pass
+            Liked.objects.filter(property=p_id,customer=c_id).delete()
         else:
             item=Liked()
             item.property=Properties.objects.get(id=p_id)
@@ -156,6 +154,10 @@ class wishlist(APIView):
             prop=Properties.objects.filter(id=item['property_id']).values()
             kemp.append(json.dumps(list(prop), cls=DjangoJSONEncoder))
         return JsonResponse(kemp,safe=False)
+
+
+
+        
 class delete(APIView):
     def delete(self,request,id,cid):
         temp=Liked.objects.filter(property=id,customer=cid)
@@ -248,14 +250,25 @@ class bookappointment(APIView):
 
 class my_appointments(APIView):
     def get(self,request,id):
-        forme=Appointment.objects.filter(malik_id=id).values()
-        tome=Appointment.objects.filter(customer=id).values()
-        li=list(forme)
-        lis2=list(tome)
-        lis=[]
-        lis.append(li)
-        lis.append(lis2)
-        return JsonResponse(lis,safe=False)
+        # forme=Appointment.objects.filter(malik_id=id).values()
+        # tome=Appointment.objects.filter(customer=id).values()
+        # li=list(forme)
+        # lis2=list(tome)
+        # lis=[]
+        # lis.append(li)
+        # lis.append(lis2)
+        # return JsonResponse(lis,safe=False)
+        forme=Appointment.objects.filter(malik_id=id)
+        tome=Appointment.objects.filter(customer=id)
+        f_data=AppointmentSerializer(forme,many=True).data
+        t_data=AppointmentSerializer(tome,many=True).data
+    
+        return Response({
+            'one':f_data,
+            'two':t_data
+        })
+
+
 class Accept(APIView):
     def get(self,request,id):
         temp=Appointment.objects.get(id=id)
@@ -317,6 +330,6 @@ class Upload_Images(APIView):
         return Response({'msg':'success'})
 class New_Arrivals(APIView):
     def get(self,request):
-        temp=NewArrivals.objects.all().order_by('datetime')[:10]
+        temp=NewArrivals.objects.all().order_by('-datetime')[:10]
         serializer = newarivalserial(temp,many=True)
         return Response(serializer.data)

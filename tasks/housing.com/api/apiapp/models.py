@@ -22,7 +22,8 @@ class Properties(models.Model):
     price = models.IntegerField()
     long = models.CharField(max_length=255,default=000)
     lat=models.CharField(max_length=255,default=000)
-    image=models.ImageField(upload_to="",null=True,blank=True)
+    # image=models.ImageField(upload_to="",null=True,blank=True)
+    image= models.TextField(null=True)
     adress=models.TextField(null=True)
     
     malik = models.ForeignKey(User,on_delete=models.CASCADE)

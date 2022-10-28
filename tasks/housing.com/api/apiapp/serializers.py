@@ -1,5 +1,7 @@
+from dataclasses import field
+from pyexpat import model
 from rest_framework import serializers
-from .models import Liked, NewArrivals, Properties,TypeTable
+from .models import Appointment, Liked, NewArrivals, Properties,TypeTable
 from users.models import User
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,3 +31,9 @@ class newarivalserial(serializers.ModelSerializer):
     class Meta:
         model = NewArrivals
         fields = '__all__'
+class AppointmentSerializer(serializers.ModelSerializer):
+    malik_id=UserSerializer()
+    customer=UserSerializer()
+    class Meta:
+        model=Appointment
+        fields='__all__'

@@ -8,6 +8,7 @@ urlpatterns = [
     path('user/<int:id>', malik.as_view()),
     path('logout', Logout.as_view()),
     path('upload/',upload_file.as_view()),
-    path('Edit_Profile',Edit_Profile.as_view())
+    path('Edit_Profile',Edit_Profile.as_view()),
+    path('subscribe',Subscribe.as_view())
 
 ]
