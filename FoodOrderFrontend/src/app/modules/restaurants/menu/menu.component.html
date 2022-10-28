@@ -1,0 +1,32 @@
+<div class="conatiner-fluid">
+    <h2 class="heading">Add Menu</h2>
+    <div class="fields">
+        <form [formGroup]="menuForm" class="usersiginform" (ngSubmit)="onSubmit()">
+
+            <p><mat-form-field appearance="outline" class="tag">
+            <mat-label>ID</mat-label>
+            <input matInput placeholder="" formControlName="menu_id">
+            </mat-form-field>
+
+           <mat-form-field appearance="outline" class="tag">
+            <mat-label>Menu Type</mat-label>
+            <input matInput placeholder="" formControlName="menu_type">
+            </mat-form-field></p>
+
+           <p> <mat-form-field appearance="outline" class="tag">
+            <mat-label>Restaurant Id</mat-label>
+            <input matInput placeholder="" formControlName="restaurant_id">
+            </mat-form-field> 
+
+
+  
+ 
+            <section class="example-section" class="tag check">
+               <input type="checkbox" id="available" name="available" value="true" formControlName="is_available" > &nbsp;
+               <label for="available">Food available</label><br>
+              </section>
+            <button mat-raised-button color="primary" class="tag" type="submit" [disabled]="!menuForm.valid" >Add</button>        
+           <button mat-raised-button mat-dialog-close>Close</button>
+        </form>
+    </div>
+</div>

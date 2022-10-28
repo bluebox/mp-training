@@ -1,0 +1,72 @@
+*
+{
+    padding: 0;
+    margin:0;
+ 
+}
+.main
+{
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+}
+nav{
+    position: sticky;
+    top: 0;
+}
+#nav
+{
+    height: 10%;
+    background-color: aqua;
+}
+#body
+{
+   
+    background-color: #CCD1E4;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
+    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+}
+
+.items
+{
+background-color:white;
+border-radius: 15px;
+   height: 420px;
+   width: 320px; 
+   margin: 24px;
+   padding: 6px;
+   
+}
+img{
+    border-radius: 12px;
+}
+h3, p
+{
+    margin-left: 15px;
+    margin-top: 5px;
+}
+.checked {
+    color: orange;
+  }
+
+  .rest
+  {
+    display:flex;
+    align-items: center;
+    
+  }
+
+  .star
+  {
+    margin-top: 55px;
+    margin-left: 60px;
+  }
+
+  img:hover {
+    transform: scale(1.03);
+    }

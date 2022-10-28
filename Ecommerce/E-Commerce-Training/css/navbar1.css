@@ -1,0 +1,210 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    background: #f2f2f2;
+}
+
+nav{
+    background: #3f3b3b;
+    
+        position: sticky;
+        top: 0;
+    
+    
+}
+
+nav .logo{
+    float: left;
+    font-size: 27px;
+    font-weight: 600;
+    line-height: 70px;
+    padding-left: 60px;
+    color: white;
+}
+
+
+nav::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+nav ul{
+    float: right;
+    list-style-type: none;
+    margin-right: 150px;
+    position: relative;
+}
+
+nav ul li{
+    float: left;
+    display:inline-block;
+    background: #3f3b3b;
+    margin: 0px 5px;
+}
+
+nav ul li a{
+    color: white;
+    text-decoration: none;
+    line-height: 70px;
+    font-size: 15px;
+    padding: 8px 15px;
+}
+
+nav ul li a:hover{
+    color: cyan;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #33ffff, 0 0 5px #66ffff;
+}
+
+nav ul li:hover > ul{
+    top:70px;
+    opacity:1;
+    visibility: visible;
+}
+
+nav ul ul{
+    position: absolute;
+    top:90px;
+    opacity: 0;
+    visibility:hidden;
+    transition: top 0.3s;
+}
+
+nav ul ul li{
+    position: relative;
+    margin: 0px;
+    width: auto;
+    float: none;
+    display: list-item;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+nav ul ul li a{
+    line-height: 50px;
+}
+
+nav ul ul li a:hover{
+    color: cyan;
+    box-shadow: none;
+}
+
+nav ul ul ul li{
+    position: relative;
+    top: -70px;
+    left: 90px;
+}
+
+.samsung li{
+    position: relative;
+    left: 85px;
+    width: 250px;
+    text-align: center;
+}
+
+.oppo li{
+    position: relative;
+    left: 95px;
+    width: 200px;
+    text-align: center;
+}
+
+.vivo li{
+    position: relative;
+    left:95px;
+    width:150px;
+    text-align: center;
+}
+.oneplus li{
+    position: relative;
+    left:95px;
+    width:170px;
+    text-align: center;
+}
+.iphone li{
+    position: relative;
+    left:95px;
+    width:175px;
+    text-align: center;
+}
+
+/*Electronics*/
+
+.electronics{
+    width:175px
+}
+
+.earphones li{
+    position: relative;
+    left:175px;
+    width:160px;
+    text-align: center;
+}
+
+.headphones li{
+    position: relative;
+    left:175px;
+    width:160px;
+    text-align: center;
+}
+
+.laptops li{
+    position: relative;
+    left:175px;
+    width:160px;
+    text-align: center;
+}
+
+.washing-machine li{
+    position: relative;
+    left:175px;
+    width:160px;
+    text-align: center;
+}
+
+.fridge li{
+    position: relative;
+    left:175px;
+    width:140px;
+    text-align: center;
+}
+
+.speaker li{
+    position: relative;
+    left:175px;
+    width:100px;
+    text-align: center;
+}
+
+
+/*Apparel*/
+.apparel-men li{
+    position: relative;
+    left:75px;
+    width:140px;
+    text-align: center;
+}
+.apparel-women li{
+    position: relative;
+    left:75px;
+    width:140px;
+    text-align: center;
+}
+
+/*Footwear*/
+.footwear-men li{
+    position: relative;
+    left:75px;
+    width:140px;
+    text-align: center;
+}
+.footwear-women li{
+    position: relative;
+    left:75px;
+    width:140px;
+    text-align: center;
+}

@@ -1,117 +1,121 @@
+"""Exercise 14 python exercise"""
 __author__ = 'Hari'
 
-notes = '''
-Generators are a easy way to create your own custom iterators. They look like
-functions but do a lot of heavy lifting under the covers.
-
-There are also useful when you want to 'generate' data on demand rather than
-create all data at one shot - typically in memory constrained scenarios.
-
-You can also think of generators as resumable functions. The caller needs to keep
-calling next() to keep moving the function forward and at every stop point where you
-have a yield or return the function can return something new.
+NOTES = '''
+ These features make creating lists, dicts and sets from other sequences easy and compact.
+ lc -> list comprehensions
+ dc -> dict comprehensions
+ sc -> set comprehensions
 '''
 
-from tasks.placeholders import *
+def is_even(x):
+    """function"""
+    return x % 2 == 0
 
-# The state of the function is saved between yields and re-invoked on call to next.
-def demo_generator():
-    yield "how"
-    yield "are"
-    yield "you?"
+def square(x):
+    """function"""
+    return x * x
 
-def test_generator_type():
-    assert __ == type(demo_generator).__name__  #definition is a function
-    assert __ == type(demo_generator()).__name__ #once you invoke it, you get a generator
+def test_lc_basic():
+    """function"""
+    input = [1, 2, 3]
+    result = [2 * x for x in input]
+    assert 3 == len(result)
+    assert [2, 4, 6] == result
 
-def test_generator_is_an_iterator1():
-    assert __ == hasattr(demo_generator, "next")
-    assert __ == hasattr(demo_generator(), "next")
+def test_lc_map_func():
+    """function"""
+    input = [1, 2, 3]
+    result = [square(x) for x in input]
+    assert [1, 4, 9] == result
 
-def test_generator_is_an_iterator2():
-    result = demo_generator()
-    try:
-        assert __ == next(result)  # builtin which calls the iterator.next()
-        assert __ == next(result)
-        assert __ == next(result)
-        assert __ == next(result)
-    except __:
-        assert True
+def test_lc_trim_words():
+    """function"""
+    words = ["one\n", "two\n", " three\n"]
+    result = [word.strip() for word in words]
+    assert ["one", "two", "three"] == result
 
-    assert __ == ".".join(demo_generator()) #join takes a iterable
+def test_lc_filter_func():
+    """function"""
+    input = range(10)
+    result = [x for x in input if is_even(x)]
+    assert [0, 2, 4, 6, 8] == result
 
-# Note that this function takes any sequence, and returns a reversed form
-# element by element, so at no point is a new reversed sequence object
-# created though to the consumer it appears like a sequence.
-def demo_reverse(sequence):
-    for index in range(len(sequence)-1, -1, -1):
-        yield sequence[index]
+def test_lc_filter_map():
+    """function"""
+    result = [square(x) for x in range(5) if is_even(x)]
+    assert [0, 4, 16] == result
 
+def test_lc_nested():
+    """function"""
+    result = [(x + y) for x in range(3) for y in range(3)]
+    assert 9 == len(result)
+    assert [0, 1, 2, 1, 2, 3, 2, 3, 4] == result
 
-def test_generator_reverse():
-    result = []
-    for item in demo_reverse("Hello World"):
-        result.append(item)
-    assert __ == result
+def test_lc_nested_filter():
+    """function"""
+    result = [(x + y) for x in range(3) for y in range(3) if is_even(x + y)]
+    assert 5 == len(result)
+    assert [0, 2, 2, 2, 4] == result
 
-# range using a generator (xrange does something similar)
-def demo_range(limit):
-    value = 0
-    while value < limit:
-        yield value
-        value = value + 1
+# dict comprehensions work the same way, you use them to create dicts
+# from some source of data
+def test_dc_basic():
+    """function"""
+    result = {i: chr(65 + i) for i in range(4)}  # note the braces
+    assert 4 == len(result)
+    assert {0: "A", 1: "B", 2: "C", 3: "D"} == result
+    # result = { v: k for k,v in result.iteritems()}
+    # assert 4 == len(result)
+    # assert True is result
 
-def test_generator_range_does_not_allocate_memory():
-    for item in demo_range(1000 * (10**6)):
-        if item%5 ==1:
-            break
-    assert ___ # did you reach here without any memory exception?
+def test_dc_mapping():
+    """function"""
+    result = {x: ord(x) - ord('A') + 1 for x in "string".upper()[:5]}
+    assert 5 == len(result)
+    assert {'I': 9, 'N': 14, 'R': 18, 'S': 19, 'T': 20} == result
 
+def test_dc_nested():
+    """function"""
+    result = {(x, y): x + y for x in range(2) for y in range(2)}
+    assert 4 == len(result)
+    assert {(0, 0): 0, (0, 1): 1, (1, 0): 1, (1, 1): 2} == result
 
-#write a statement that can collect all results from the generator into a list
-def demo_generator_to_list(generator):
-    __ # fill code here.
+def test_dc_conditional():
+    """function"""
+    result = {x: x ** 2 for x in range(5) if x % 2 == 1}
+    assert 2 == len(result)
+    assert {1: 1, 3: 9} == result
 
+# set comprehensions are very similar to dict comprehensions except that
+# they deal a single value and create set objects
+def test_sc_basic():
+    """function"""
+    result = {x * 2 for x in range(4)}
+    assert 4 == len(result)
+    assert {0, 2, 4, 6} == result
 
-def test_collapse_generator():
-    assert __ == demo_generator_to_list(demo_range(4))
-    assert __ == demo_generator_to_list(demo_generator())
+def test_sc_nested():
+    """function"""
+    result = {x + y for x in range(3) for y in range(3)}
+    assert 5 == len(result)
+    assert {0, 1, 2, 3, 4} == result
 
-def test_generator_return():
-    def func():
-        yield 1
-        yield 2
-        return
-        yield 3
-    assert [__] == demo_generator_to_list(func())
+def test_sc_conditional():
+    """function"""
+    result = {x ** 2 for x in range(5) if x % 2 == 1}
+    assert 2 == len(result)
+    assert {1, 9} == result
 
-def test_generator_control_flow():
-    def func():
-        for x in range(5):
-            yield x
-        yield 10
-    assert __ == demo_generator_to_list(func())
+def test_sc_filtering():
+    """function"""
+    all = set(range(10))
+    evens = {x for x in all if x % 2 == 0}
+    assert {0, 2, 4, 6, 8} == evens
+    odds = {x for x in all if x % 2 == 1}
+    assert {1, 3, 5, 7, 9} == odds
 
-def test_generator_exception():
-    def func():
-        try:
-            yield 10
-            raise Exception("some message")
-        except:
-            yield 20
-        else:
-            yield 40
-        finally:
-            yield 50
-        yield 30
-
-    assert [__] == demo_generator_to_list(func())
-
-
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+list,dict,sets
 """
-
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 15

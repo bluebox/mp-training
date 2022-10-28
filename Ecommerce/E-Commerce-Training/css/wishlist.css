@@ -1,0 +1,141 @@
+.container{
+    /* background-color: yellow; */
+   
+}
+body{
+    background-color: #CCD1E4; 
+}
+
+.top{
+    height: 40%;
+    text-align: center;
+    margin: 80px;
+}
+.bottom{
+    height:70%;
+}
+.Heading{
+    /* background-color: blue; */
+    font-size: 300%;
+    height:90% ;
+    color: blue;
+}
+.menu1{
+    padding: 55px;
+    height: 100%;
+    font-size: 200%;
+    margin: 40px;
+    
+    
+    /* padding: 40px; */
+    color:rgb(133, 3, 3)
+}
+.items{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: yellow; */
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+/* .menu2{
+    padding: 11%;
+    
+    font-size: 200%;
+    margin-left: 5%;
+    color: green;
+    
+} */
+.item1{
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.item2{
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+/* .menu3{
+    padding: 150px;
+    text-align: center;
+    font-size: 200%;
+    color: green;
+    
+    
+} */
+/* .item2{
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.image1{
+    margin-left: 5%;
+    
+}
+.image2{
+    margin-left: 2%;
+    
+}
+.price{
+    font-size: 200%;
+    margin: auto;
+}
+.stock{
+    font-size: 200%;
+    /* margin: auto; */
+    margin-left: 5%;
+}
+.ad{
+    font-size: 200%;
+    margin: auto;
+    color:navy;
+}
+.btnadd:hover {
+    background: green;
+    border-radius: 50px;
+}
+.btndelete:hover {
+    background: red;
+    border-radius: 50px;
+    
+}
+/* .btnadd {
+     font-size: 250%; 
+    border: none;
+    border-radius: 50px;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 20px; 
+    cursor: pointer; 
+    display: inline-block; 
+}   */
+ /* .btndelete {
+    border: none;
+     background-color: inherit; 
+     padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block; 
+}
+    */
+
+
+.btnadd{
+    border-radius: 20px;
+    font-size: 20px;
+   
+ }
+.btndelete{
+    border-radius: 20px;
+    font-size: 20px;
+}

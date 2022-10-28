@@ -1,0 +1,65 @@
+.container1
+{
+    height: 100%;
+}
+
+.details
+{
+    height: 50%;
+    /* border:2px solid black; */
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.order
+{
+    height: 100%;
+    
+    display:flex;
+    margin:2%;
+    
+}
+.food
+{
+    height: 100%;
+    overflow: auto;
+}
+.blocki
+{
+    
+    width: 50%;
+    height: 100%;
+}
+
+
+.photo
+{
+    width: 95%;
+    height: 80%;
+    border-radius: 10%;
+    margin: 2%;
+}
+
+.food_item
+{
+    border: 0.5px solid grey;
+    border-radius: 12%;
+    margin: 4%;
+    padding: 5%;
+    display: flex;
+}
+.one{
+
+width:50%;
+}
+.checkout
+{
+    padding:5%;
+}
+
+.del{
+    display: flex;
+    justify-items:baseline;
+    align-content:space-around;
+    
+}
