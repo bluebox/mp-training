@@ -11,7 +11,7 @@ import { TakeExamComponent } from '../take-exam/take-exam.component';
 })
 export class TotalAttemptsComponent implements OnInit {
 
-  // i:number=0
+  i:any=0
   scores:any
   exam_name:any
   displayedColumns: string[]=['exam_name', 'score','date']

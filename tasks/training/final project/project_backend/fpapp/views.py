@@ -1,18 +1,16 @@
-import json
-from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
-from fpapp import serializer
 from fpapp.models import  Course, Question, Score, User,Student, Teacher
-from fpapp.serializer import  QuestionSerializer, QuestionSerializer1, QuestionSerializer2, ScoreSerializer, UserSerializer, StudentSerializer, TeacherSerializer, CourseSerializer
+from fpapp.serializer import  QuestionSerializer, QuestionSerializer1,\
+    QuestionSerializer2, ScoreSerializer, UserSerializer, StudentSerializer,\
+    TeacherSerializer, CourseSerializer
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from rest_framework.decorators import api_view
 
 # Create your views here.
 
@@ -25,14 +23,10 @@ class RegisterStudent(APIView):
         sub=Student.objects.all()
         serializer=StudentSerializer(sub, many=True)
         return Response(serializer.data)
-
-
-
     def post(self,request):
         print(request.data)
-        username=request.data.get("username")     
+        username=request.data.get("username")   
         user=User.objects.filter(username=username).first()
-        
         if (user):
             # print("manasa")
             return Response({"msg":"username already taken"})
@@ -180,7 +174,7 @@ def course_list(request):
 class RegisterQuestion(APIView):
     def get(self,request):
         sub =Question.objects.all()
-        serializer=QuestionSerializer(sub,many= True)
+        serializer=QuestionSerializer(sub,many=True)
         return Response(serializer.data)
     
     def post(self, request):
@@ -309,7 +303,6 @@ class CheckMarks(APIView):
         serializer=ScoreSerializer(sub,many=True)
         return Response(serializer.data)
 
-
     def post(self,request):
         print(request.data)
         text=request.GET.get('q')
@@ -317,6 +310,32 @@ class CheckMarks(APIView):
         sub=Score.objects.filter(exam_name=text)
         serializer=ScoreSerializer(sub,many=True)
         return Response(serializer.data)
+
+
+class AttemptExam1(APIView):
+    def get(self,request):
+        text=request.GET.get('q')
+        sub=Course.objects.filter(course_name=text)
+        serializer=CourseSerializer(sub, many=True)
+
+        for i in  serializer.data:
+            k=i['id']
+            print(i['id'])
+            print('')
+        sub1=Question.objects.filter(course=k)
+        serializer1=QuestionSerializer(sub1,many=True)
+
+        print('data+', serializer1.data)
+        return Response(serializer1.data)
+
+    # def post(self,request):
+    #     print(request.data)
+    #     text=request.GET.get('q')
+    #     # data=request.data.get('course_name')
+    #     sub=Course.objects.filter(course_name=text)
+    #     serializer=CourseSerializer(sub,many=True)
+    #     print(serializer)
+    #     return Response(serializer.data)
 
 
 @api_view(["GET","POST"])

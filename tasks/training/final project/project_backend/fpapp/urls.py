@@ -24,6 +24,7 @@ urlpatterns = [
     path('questionfilter', views.courseFilter),
     path('score' ,views.Scorecard.as_view()),
     path('adminstudentdisplay', views.AdminPanelStudent.as_view()),
-    path('adminteacherdisplay', views.AdminPanelTeacher.as_view())
+    path('adminteacherdisplay', views.AdminPanelTeacher.as_view()),
+    path('attemptexam1', views.AttemptExam1.as_view())
 
 ]

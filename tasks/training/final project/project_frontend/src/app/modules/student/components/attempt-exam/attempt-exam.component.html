@@ -54,8 +54,8 @@
     <!-- <mat-card-title>Course:{{i}}</mat-card-title> -->
     <!-- <mat-card-title> -->
         <ul >
-            <li> <strong>Course :  {{i}}</strong> </li>
-            <li> <strong> Total Questions : {{h.length}} </strong> </li>
+            <li> <strong>Course :  {{exam_name}}</strong> </li>
+            <li> <strong> Total Questions : {{i}} </strong> </li>
            
         </ul>
         <br>
@@ -77,8 +77,8 @@
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-actions>
-      <button mat-button routerLink="../takeexam"> <strong>Start Exam</strong> </button>
-      <button mat-button routerLink="../showexam"><strong>Back</strong> </button>
+      <button mat-button (click)="takeexam()"> <strong>Start Exam</strong> </button>
+      <button mat-button (click)="showexam()"> <strong>Back</strong> </button>
     </mat-card-actions>
     <mat-card-footer>
       <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->

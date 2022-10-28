@@ -19,13 +19,7 @@ export class MyMarksComponent implements OnInit {
     this.http.getCourses().subscribe({
       next:(resp)=>{
         this.courses=resp
-        // console.log(this.courses);
-        // for (var i of this.courses){
-        //   console.log(i)
-        //   localStorage.setItem('course_name',(i.course_name))
-        //   console.log(localStorage.getItem('course_name'));
-          
-        // }
+    
       }
       
     })

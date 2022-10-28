@@ -18,10 +18,13 @@ const routes: Routes = [
       { path:'showexam', component:ShowExamComponent},
       { path:'takeexam',component:TakeExamComponent},
       { path:'viewresult', component:ViewResultComponent},
+      {path:'viewresult/:course_name/:score',component:ViewResultComponent},
       { path:"mymarks",component:MyMarksComponent},
       { path:'checkmarks', component:TotalAttemptsComponent},
       {path:'navbar', component:StudentNavbarComponent},
-      {path:'checkmarks/:course_name', component:TotalAttemptsComponent}
+      {path:'checkmarks/:course_name', component:TotalAttemptsComponent},
+      { path:'attemptexam/:course_name', component:AttemptExamComponent},
+      {path:'takeexam/:exam_name', component:TakeExamComponent}
     ]
   }
 

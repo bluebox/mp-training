@@ -8,13 +8,13 @@
     <mat-card-content>
       <br>
       <!-- <p>This card indeterminates progress bar.</p> -->
-      <h1>Score: {{i}}/{{j}}	<mat-icon>grade</mat-icon></h1>
+      <h1>Score: {{present_score}}/{{k}}	<mat-icon>grade</mat-icon></h1>
       <br>
-      <h1>Percentage: {{ percentage}}</h1>
+      <h1>Percentage: {{percentage}}</h1>
       
     </mat-card-content>
     <mat-card-actions>
-      <button  routerLink="../showexam" mat-button>Click to go for Exams Page</button>
+      <button  (click)="exampage()" mat-button>Click to go for Exams Page</button>
       
     </mat-card-actions>
   </mat-card>

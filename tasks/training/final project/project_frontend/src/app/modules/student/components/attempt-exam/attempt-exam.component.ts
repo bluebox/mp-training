@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentServiceService } from '../../student-service.service';
 
 @Component({
@@ -11,53 +11,39 @@ import { StudentServiceService } from '../../student-service.service';
 export class AttemptExamComponent implements OnInit {
 
   i:any
-  j:any
-  k:any
-  g:any
-  h:any
-  l:any
   flag:boolean = true
-  constructor(private router:Router, private http: StudentServiceService) { 
+  exam_name:any
+  exams:any
+
+
+  constructor(private router:Router, private http: StudentServiceService,private actRouter:ActivatedRoute) { 
    
-  
+    this.actRouter.params.subscribe(data=>{
+      console.log("subject",data)
+      this.exam_name=(data['course_name'])
+      console.log('rakesh',this.exam_name)
+    })
+
   }
 
   ngOnInit(): void {
+
+    this.http.getQuestionlength(this.exam_name).subscribe({
+      next:(resp)=>{
+        this.exams=resp
+        console.log(this.exams)
+        this.i=this.exams.length
+      }
     
+     })
 
-    this.i=localStorage.getItem('course_name')
-    this.l=localStorage.getItem('username')
-    this.j=localStorage.getItem('total_marks')
-    this.k=localStorage.getItem('course_id')
-    
-    // console.log(localStorage.getItem('question'))
-    this.g=localStorage.getItem('question')
-    this.h=JSON.parse(this.g)
+  }
+  takeexam(){
+    this.router.navigate(['student/takeexam',this.exam_name])
 
-
-    console.log(this.h.length)
-
-
-    
-    // this.http.getQuestionWdCourse().subscribe({
-    //   next:(resp)=>{
-    //     this.questions=resp
-       
-    //     console.log(this.questions) 
-    //     localStorage.setItem('questions',JSON.stringify(this.questions))
-    //     console.log(localStorage.getItem('questions'))
-    //   }
-      
-      
-    // })
-    // if (!(this.questions)){
-    //   this.router.navigate(['/student/showexam'])
-    //   console.log("venky")
-      
-
-    // }
-   
-
+  }
+  showexam(){
+    this.router.navigate(['student/showexam'])
   }
 
   

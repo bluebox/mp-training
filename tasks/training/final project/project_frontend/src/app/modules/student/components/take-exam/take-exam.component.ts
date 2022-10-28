@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { StudentServiceService } from '../../student-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CloseComponent } from '../close/close.component';
@@ -25,54 +25,40 @@ export class TakeExamComponent implements OnInit {
   k:any
   v:any
   j:string='o'
-  emp:number=0
+  emp:number=0;
+  course_name:any
 
-  constructor(private router:Router,  private http:StudentServiceService,public dialog: MatDialog ) { }
+  constructor(private router:Router, private http:StudentServiceService, public actRouter:ActivatedRoute, public dialog: MatDialog) { 
 
-  ngOnInit(): void {
-    this.g=localStorage.getItem('question')
-    this.h=JSON.parse(this.g)
-    console.log(this.h)
-  
-    for(this.i=0;this.i<this.h.length;this.i++){
-      this.k=this.h[this.i]      
-      this.answer_main[this.i]=this.k.answer
-    }
-    console.log(this.answer_main)
-    localStorage.setItem('length', JSON.stringify(this.h.length))
-    this.v=localStorage.getItem('course_name')
-    
+    this.actRouter.params.subscribe(data=>{
+      console.log("subject",data)
+      this.course_name=(data['exam_name'])
+      console.log('rakesh',this.course_name)
+    })
+
   }
 
-//   onSubmit(){
+  ngOnInit(): void {
+    this.http.getQuestionlength(this.course_name).subscribe({
+      next:(resp)=>{
+        this.h=resp
+        console.log(this.h)
+     
+  
+    for(this.i=0;this.i<this.h?.length;this.i++){
+      this.k=this.h[this.i]  
     
-//     for(this.i=0;this.i<this.h.length;this.i++){
-//       if(this.answers_user[this.i]==this.answer_main[this.i]){
-//         this.score++;
+      this.answer_main[this.i]=this.k.answer
+    }
+    console.log('ggg',this.answer_main)
+    localStorage.setItem('length', JSON.stringify(this.h?.length))
+    this.v=localStorage.getItem('course_name')
 
-//       }
-//     }   
-//     console.log(this.score)
-//     console.log(this.answer_main.length)
-//     console.log(this.answers_user.length)
-//     this.http.total_scores.push(this.score)
-
-//     if(this.answers_user.length != this.answer_main.length){
-      
-//      if(confirm("do you want to submit")){
-//       localStorage.setItem("score",JSON.stringify(this.score));
-//       this.router.navigate(['student/viewresult']);
-//      }
-//      else{
-//       this.router.navigate(['student/takeexam']);
-//      }
-//     }
-
-//     console.log(this.http.total_scores)
-
-
+      }
     
-//  }
+    })
+    
+  }
 
 
  onChange(i:number, event){
@@ -112,6 +98,9 @@ if((this.answers_user.length != this.answer_main.length)|| ((this.emp))) {
 
     if (result == 'true') {
       localStorage.setItem("score",JSON.stringify(this.score));
+      this.http.AddScore({ 'score':this.score, 'exam_name':this.course_name }).subscribe(data=>{
+        console.log(data);
+      })
       this.router.navigate(['student/viewresult']);
     }
     })
@@ -119,12 +108,13 @@ if((this.answers_user.length != this.answer_main.length)|| ((this.emp))) {
 
 else{
   localStorage.setItem("score",JSON.stringify(this.score));
-  this.router.navigate(['student/viewresult']);
+  this.http.AddScore({ 'score':this.score, 'exam_name':this.course_name }).subscribe(data=>{
+    console.log(data);
+  })
+  this.router.navigate(['student/viewresult',this.course_name,this.score]);
 }
 
-this.http.AddScore({ 'score':this.score, 'exam_name':this.v }).subscribe(data=>{
-  console.log(data);
-})
+
 
 
 }

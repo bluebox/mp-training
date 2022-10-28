@@ -43,6 +43,10 @@ export class StudentServiceService {
     return this.http.get<any>("http://127.0.0.1:8000/score")
   }
 
+  getQuestionlength(data:any){
+    return this.http.get<any>("http://127.0.0.1:8000/attemptexam1?q="+data)
+  }
+
 
 
 }
