@@ -2,9 +2,7 @@
 <div class="search block">
     <p>
         <mat-toolbar color="primary">
-          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-          </button>
+        
           <span></span>
           <span class="example-spacer"><h2>{{res.restaurant_name}}</h2></span>
           <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
@@ -32,6 +30,7 @@
   
 
     <div class="food blocki">
+    <h2>Menu:</h2>
             <div class="food_item" *ngFor="let f of foodL">
                 <div class="one">
                 <h2>{{f.food_name}} {{f.food_id}}</h2>
@@ -51,24 +50,24 @@
     <div class="checkout blocki">
       <h2>Cart:</h2>
       <div class="food_item" *ngFor="let f of getCartList">
+        <div>
+        <h2>
+         Food name: {{f.food}}
+        </h2>
+    
+        
+        <h2>
+          Food quantity: {{f.quantity}}
+        </h2>
 
         <h2>
-          {{f.food}}
-        </h2>
-        <br>
-      <div>
-        <br>
-        <hr>
-        <h2>
-          {{f.quantity}}
-        </h2>
-       <br>
-        <h2>
-          {{f.price}}
+           Price: {{f.price}}
         </h2>
 
         </div>
-        <button mat-flat-button color="warn" (click)="deleteitem(f.order_food_id,f.quantity,f.price)">Delete</button>
+        <div class="del">
+        <button mat-flat-button color="warn" (click)="deleteitem(f.order_food_id,f.quantity,f.price)" >Delete</button>
+        </div>
       </div>
 
       <div class="order">
