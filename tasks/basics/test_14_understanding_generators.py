@@ -16,83 +16,96 @@ from tasks.placeholders import *
 
 # The state of the function is saved between yields and re-invoked on call to next.
 def demo_generator():
+    """demo generator function"""
     yield "how"
     yield "are"
     yield "you?"
-
+    
 def test_generator_type():
-    assert __ == type(demo_generator).__name__  #definition is a function
-    assert __ == type(demo_generator()).__name__ #once you invoke it, you get a generator
+    """type of generator"""
+    assert "function" == type(demo_generator).__name__  #definition is a function
+    assert "generator" == type(demo_generator()).__name__ #once you invoke it, you get a generator
 
 def test_generator_is_an_iterator1():
-    assert __ == hasattr(demo_generator, "next")
-    assert __ == hasattr(demo_generator(), "next")
+    """generator is an iterator1"""
+    assert False == hasattr(demo_generator, "__next__")
+    assert True == hasattr(demo_generator(), "__next__")
 
 def test_generator_is_an_iterator2():
+    """generator is an iterator2"""
     result = demo_generator()
     try:
-        assert __ == next(result)  # builtin which calls the iterator.next()
-        assert __ == next(result)
-        assert __ == next(result)
-        assert __ == next(result)
-    except __:
+        assert "how" == next(result)  # builtin which calls the iterator.next()
+        assert "are" == next(result)
+        assert "you?" == next(result)
+        assert "StopIteration" == next(result)
+    except StopIteration as si:
         assert True
 
-    assert __ == ".".join(demo_generator()) #join takes a iterable
+    assert "how.are.you?" == ".".join(demo_generator()) #join takes a iterable
 
 # Note that this function takes any sequence, and returns a reversed form
 # element by element, so at no point is a new reversed sequence object
 # created though to the consumer it appears like a sequence.
 def demo_reverse(sequence):
+    """reverse function"""
     for index in range(len(sequence)-1, -1, -1):
         yield sequence[index]
 
 
 def test_generator_reverse():
+    """generator reverse function"""
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
-    assert __ == result
+    assert ['d', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H'] == result
 
 # range using a generator (xrange does something similar)
 def demo_range(limit):
+    """range function"""
     value = 0
     while value < limit:
         yield value
         value = value + 1
 
 def test_generator_range_does_not_allocate_memory():
+    """generator range does not allocate memory"""
     for item in demo_range(1000 * (10**6)):
         if item%5 ==1:
             break
-    assert ___ # did you reach here without any memory exception?
+    assert True # did you reach here without any memory exception?
 
 
 #write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    __ # fill code here.
-
+    """generator to list"""
+    result = list(generator)
+    return result
 
 def test_collapse_generator():
-    assert __ == demo_generator_to_list(demo_range(4))
-    assert __ == demo_generator_to_list(demo_generator())
+    """collapse generator"""
+    assert [0, 1, 2, 3] == demo_generator_to_list(demo_range(4))
+    assert ["how", "are", "you?"] == demo_generator_to_list(demo_generator())
 
 def test_generator_return():
+    """return generator"""
     def func():
         yield 1
         yield 2
         return
         yield 3
-    assert [__] == demo_generator_to_list(func())
+    assert [1, 2] == demo_generator_to_list(func())
 
 def test_generator_control_flow():
+    """generator control flow"""
     def func():
         for x in range(5):
             yield x
         yield 10
-    assert __ == demo_generator_to_list(func())
+    assert [0, 1, 2 , 3, 4, 10] == demo_generator_to_list(func())
 
 def test_generator_exception():
+    """generator exception"""
     def func():
         try:
             yield 10
@@ -105,13 +118,13 @@ def test_generator_exception():
             yield 50
         yield 30
 
-    assert [__] == demo_generator_to_list(func())
+    assert [10, 20, 50, 30] == demo_generator_to_list(func())
 
 
 three_things_i_learnt = """
--
--
--
+- generators
+- generator to list
+- generators are memory efficient and use yield
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 20
