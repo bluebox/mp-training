@@ -1,10 +1,9 @@
-import jwt, datetime
+import jwt
+import datetime
 from rest_framework import exceptions
 from rest_framework.authentication import BaseAuthentication
-from rest_framework.authentication import get_authorization_header
-
 from TourismServer.settings import SECRET_KEY
-from bookingsapp.models import User, UserToken
+from bookingsapp.models import User
 
 
 def create_access_token(id):
@@ -20,7 +19,7 @@ def decode_access_token(token):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms='HS256')
         return payload['user_id']
-    except Exception as e:
+    except:
         raise exceptions.AuthenticationFailed('Unauthenticated')
 
 
@@ -36,7 +35,7 @@ def create_refresh_token(id):
 def decode_refresh_token(token):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms='HS256')
-        return payload['user_id']        
+        return payload['user_id']     
     except Exception as e:
         raise exceptions.AuthenticationFailed('Unauthenticated')
 
@@ -67,20 +66,6 @@ class JWTAuthentication(BaseAuthentication):
         except Exception as e:
             raise exceptions.AuthenticationFailed('Unauthenticated')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         # user_id = decode_refresh_token(access_token)
             
         # auth = access_token.split()
@@ -99,4 +84,3 @@ class JWTAuthentication(BaseAuthentication):
         #     return (user, None)
 
         # raise exceptions.AuthenticationFailed('Unauthenticated')
-

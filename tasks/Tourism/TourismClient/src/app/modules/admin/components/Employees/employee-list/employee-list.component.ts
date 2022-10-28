@@ -35,7 +35,7 @@ export class EmployeeListComponent implements OnInit {
         this.totalPages = data.totalPages
       },
       err => {
-        if(err.status == 404){
+        if(err.status == 404 || 500){
           alert(err.message)
         }
         else{
@@ -59,7 +59,7 @@ export class EmployeeListComponent implements OnInit {
       this.deleteSubscription = this.dataService.deleteEmployee(id).subscribe(
         data=>alert('Employee deleted successfully'),
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

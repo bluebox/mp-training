@@ -32,7 +32,7 @@ export class PackageToursComponent implements OnInit {
           console.log(this.tourList);
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

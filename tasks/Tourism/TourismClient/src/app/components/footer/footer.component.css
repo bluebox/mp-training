@@ -1,18 +1,22 @@
-.footer_third_layer h2{
+.footer_third_layer h2 {
   border-bottom: 2px solid white;
 }
 
 
 
-.footer_third_layer div{
+.footer_third_layer div {
   list-style: none;
   margin-left: 10px;
   font-size: 1rem;
 }
 
-.footer_third_layer h2::after{
+.footer_third_layer h2::after {
   content: "";
   height: 2px;
   width: 100%;
   color: black;
+}
+
+li {
+  cursor: pointer;
 }

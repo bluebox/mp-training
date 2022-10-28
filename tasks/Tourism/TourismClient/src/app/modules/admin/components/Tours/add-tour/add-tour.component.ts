@@ -53,7 +53,7 @@ export class AddTourComponent implements OnInit {
             this.guides.setValue(tourObj.guides.map((guide: { id: any; }) => guide.id))
             },
             err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -105,7 +105,7 @@ export class AddTourComponent implements OnInit {
       this.placesList = toursData;
       },
       err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -120,7 +120,7 @@ export class AddTourComponent implements OnInit {
       this.couponsList = couponsData;
       },
       err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -135,7 +135,7 @@ export class AddTourComponent implements OnInit {
         this.vehicleList = vehicleData;
       },
       err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -150,7 +150,7 @@ export class AddTourComponent implements OnInit {
         this.guideList = employeeData;
       },
       err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -184,7 +184,7 @@ export class AddTourComponent implements OnInit {
           this.router.navigate(['admin/tours/tourList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -200,7 +200,7 @@ export class AddTourComponent implements OnInit {
             this.router.navigate(['admin/tours/tourList'])
           },
           err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

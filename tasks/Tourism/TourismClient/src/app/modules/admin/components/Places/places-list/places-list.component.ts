@@ -38,7 +38,7 @@ export class PlacesListComponent implements OnInit {
         this.totalPages = data.totalPages
       },
       err => {
-        if(err.status == 404){
+        if(err.status == 404 || 500){
           alert(err.message)
         }
         else{
@@ -61,7 +61,7 @@ export class PlacesListComponent implements OnInit {
       this.deleteSubscription = this.dataService.deletePlace(id).subscribe(
         data=>alert(data +' deleted successfully'),
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

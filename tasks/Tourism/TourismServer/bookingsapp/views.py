@@ -335,7 +335,8 @@ class BookingDetailsViewset(APIView):
     def get(self, request, pk):
         try:
             booking = self.get_object(pk)
-            return get_booking(request, booking)
+            serializer = BookingDetailSerializer(booking)
+            return Response(serializer.data)
         except Exception as e:
             raise APIException(e)
 

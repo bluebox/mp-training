@@ -46,7 +46,7 @@ export class UsersListComponent implements OnInit {
           this.totalPages = data.totalPages;
         },
         (err) => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -82,7 +82,7 @@ export class UsersListComponent implements OnInit {
           this.getPageItems(0);
         },
         (err) => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

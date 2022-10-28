@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'login',canActivate:[LoginGuard], component: LoginComponent},
   {path:'signup', component: SignupComponent},
   {path:'contact', component: ContactusComponent},
-  {path:'user', canActivate:[AuthGuard], loadChildren:() => import('./modules/user/user.module').then(m=> m.UserModule)},
+  {path:'user', canActivate:[AuthGuard, UserGuard], loadChildren:() => import('./modules/user/user.module').then(m=> m.UserModule)},
   {path:'admin', canActivate:[AuthGuard, AdminGuard], loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)}
 
 ];

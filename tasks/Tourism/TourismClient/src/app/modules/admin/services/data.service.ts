@@ -169,8 +169,8 @@ export class DataService {
   }
 
 
-  getBookingList(page: number, searchText: string) {
-    return this.http.get(`/api/bookings/admin_booking_list/?page=${page}&&text=${searchText}`)
+  getBookingList(page: number, searchText: string, fiterText: string, cancelled: boolean) {
+    return this.http.get(`/api/bookings/admin_booking_list/?page=${page}&&text=${searchText}&&filter=${fiterText}&&cancelled=${cancelled}`)
   }
   getAllBookingList() {
     return this.http.get(`/api/bookings/booking/`)

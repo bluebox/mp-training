@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
         this.feedbacks = resObj.slice(0,3)
       },
       err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
         this.packagesList = data;
       },
       err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

@@ -28,10 +28,14 @@ export class BookingListComponent implements OnInit {
 
   searchText: FormGroup = new FormGroup({
     text: new FormControl(''),
+    isCancelled: new FormControl(''),
+    filter: new FormControl(''),
   });
 
-  getPageItems(num: number, searchText = this.searchText.get('text')?.value){
-    this.subscription = this.dataService.getBookingList(this.page + num, searchText).subscribe(
+
+  getPageItems(num: number, searchText = this.searchText.get('text')?.value, cancelled = this.searchText.get('isCancelled')?.value, fiterText = this.searchText.get('filter')?.value){
+    console.log(this.searchText.value);
+    this.subscription = this.dataService.getBookingList(this.page + num, searchText, fiterText, cancelled).subscribe(
       (data: any) => {
         console.log(data);
         this.pageItems = data.pageItems
@@ -39,7 +43,7 @@ export class BookingListComponent implements OnInit {
         this.totalPages = data.totalPages
       },
       err => {
-        if(err.status == 404){
+        if(err.status == 404 || 500){
           // alert('Requested Url' + err.url + "Not Found")
           alert(err.message)
         }

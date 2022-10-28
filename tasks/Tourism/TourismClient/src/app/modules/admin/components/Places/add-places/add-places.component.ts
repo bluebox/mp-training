@@ -37,7 +37,7 @@ export class AddPlacesComponent implements OnInit {
           this.PlaceForm.get('description')?.setValue(placeObj.description);
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -85,7 +85,7 @@ export class AddPlacesComponent implements OnInit {
           this.router.navigate(['admin/places/placeList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -101,7 +101,7 @@ export class AddPlacesComponent implements OnInit {
           this.router.navigate(['admin/places/placeList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

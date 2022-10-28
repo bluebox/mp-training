@@ -34,7 +34,7 @@ export class ViewAndEditEnquiryComponent implements OnInit {
           this.EnquiryForm.get('status')?.setValue(enquiryObj.status);
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -67,7 +67,7 @@ export class ViewAndEditEnquiryComponent implements OnInit {
       this.router.navigate(['admin/enquiries/enquiryList'])
     },
     err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

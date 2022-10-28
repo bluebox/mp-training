@@ -41,6 +41,8 @@ import { AddEmlployeeComponent } from './components/Employees/add-emlployee/add-
 import { EditUserComponent } from './components/Users/edit-user/edit-user.component';
 import { EditBookingComponent } from './components/Bookings/edit-booking/edit-booking.component';
 import {MatButtonModule} from '@angular/material/button';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+
 
 
 @NgModule({
@@ -88,7 +90,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatCheckboxModule,
     MatPaginatorModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MdbCheckboxModule
   ]
 })
 export class AdminModule { }

@@ -1,3 +1,4 @@
+from datetime import datetime
 from TourismServer.managers.adminManager import listing
 from bookingsapp.models import BookingDetails, CancellationDetails
 from bookingsapp.serializers import BookingDetailSerializer, BookingSerializer, CancellationSerializer
@@ -14,7 +15,40 @@ def get_booking(request, booking):
 
 def get_bookings_by_pagination(request):
     text=request.GET.get('text')
-    booking_list = (BookingDetails.objects.filter(passenger_details__icontains=text))
+    filter=request.GET.get('filter')
+    # if text and filter:
+    #     if filter == 'true':
+    #         booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, isCancelled=True)
+    #     if filter == 'active':
+    #         booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, tourid__start_date__gt=datetime.utcnow())
+    # elif text:
+    
+
+
+    if filter:
+        if 'true' in filter and 'active' in filter:
+            booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, isCancelled=False, tourid__start_date__gt=datetime.utcnow())
+        elif 'true' in filter:
+            booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, isCancelled=False)
+        elif 'active' in filter:
+            booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, tourid__start_date__gt=datetime.utcnow())
+        # else:
+        #     booking_list = BookingDetails.objects.filter(passenger_details__icontains=text)
+
+    
+    
+    # if filter:
+    #     if filter == 'true':
+    #         booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, isCancelled=True)
+    #     if filter == 'active':
+    #         booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, tourid__start_date__gt=datetime.utcnow())
+    #     if filter == 'past':
+    #         booking_list = BookingDetails.objects.filter(passenger_details__icontains=text, tourid__start_date__lt=datetime.utcnow())
+    else:
+        booking_list = (BookingDetails.objects.filter(passenger_details__icontains=text))
+
+
+
     bookings, totalPages, page = listing(request, booking_list)
     serializer = BookingDetailSerializer(bookings, many=True)
     return Response({

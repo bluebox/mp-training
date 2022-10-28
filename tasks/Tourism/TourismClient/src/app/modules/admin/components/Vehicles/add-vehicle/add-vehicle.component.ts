@@ -34,7 +34,7 @@ export class AddVehicleComponent implements OnInit {
             this.VehicleForm.get('total_seats')?.setValue(vehicleObj.total_seats);
           },
           err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -71,7 +71,7 @@ export class AddVehicleComponent implements OnInit {
           this.router.navigate(['admin/vehicles/vehicleList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -86,7 +86,7 @@ export class AddVehicleComponent implements OnInit {
           this.router.navigate(['admin/vehicles/vehicleList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

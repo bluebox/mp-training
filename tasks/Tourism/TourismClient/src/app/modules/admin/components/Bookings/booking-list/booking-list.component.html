@@ -26,26 +26,65 @@
 
 
 
-<div class="d-flex justify-content-between mb-3">
-  <form [formGroup]="searchText">
-    <mat-form-field appearance="legacy" class="full-width">
+<div class=" mb-3 row">
+  <form [formGroup]="searchText" class=" col-8">
+    <mat-form-field appearance="legacy" class="full-width col-6">
       <mat-label>Search</mat-label>
       <!-- <input matInput placeholder="Search" formControlName="text" (keydown)="keyDownFunction($event)" (input)="search()"> -->
       <input matInput placeholder="Search" formControlName="text" (input)="getPageItems(0)">
       <mat-icon matSuffix style="cursor: pointer;"><i class="fa-solid fa-magnifying-glass"></i></mat-icon>
       <mat-hint>Enter booking ID to search</mat-hint>
     </mat-form-field>
+
+    <!-- <div class="form-check form-switch">
+      <input class="form-check-input" formControlName="isCancelled" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Only Cancelled</label>
+    </div> -->
+
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Filter</mat-label>
+      <select matNativeControl formControlName="filter" (change)="getPageItems(0)">
+        <option value="" selected>All</option>
+        <option value='true'>Cancelled</option>
+        <option value='active'>Active Bookings</option>
+        <option value='past'>Past Bookings</option>
+      </select>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="legacy" class="w-50 col-6">
+      <mat-label>Tours</mat-label>
+      <mat-select formControlName="filter" multiple (selectionChange)="getPageItems(0)">
+        <mat-select-trigger >
+          {{searchText.get('filter')?.value?.[0] || ''}}
+          <span *ngIf="(searchText.get('filter')?.value?.length || 0) > 1" class="example-additional-selection">
+            (+{{(searchText.get('filter')?.value?.length || 0) - 1}} {{searchText.get('filter')?.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option value='true'>Not Cancelled</mat-option>
+        <mat-option value='active'>Active Bookings</mat-option>
+        <!-- <mat-option value='past'>Past Bookings</mat-option> -->
+      </mat-select>
+      <mat-hint>filter</mat-hint>
+    </mat-form-field>
+    <!-- <p>selected: {{searchText.get('filter')?.value}}</p> -->
+
+
+
   </form>
-  <div class="d-flex align-items-center mt-auto mb-auto h-100">
+
+  <div class="d-flex align-items-center mt-auto mb-auto h-100 col-4">
     <button  mat-raised-button routerLink="../addBooking" class="d-block ms-auto">Add Booking</button>
   </div>
+
 </div>
 
 
 <table *ngIf="pageItems" class="table table-bordered">
   <tr *ngFor="let booking of pageItems" >
-      <td>For booking id: {{booking.id}}</td>
-     <td><button (click)="editBooking(booking.id)" class="border-0 bg-light"><i class="fa-solid fa-pen text-primary"></i></button></td>
+      <td>booking id: {{booking.id}}</td>
+      <td [ngStyle]="{color: booking.isCancelled ? 'red' : 'green'}" > {{ booking.isCancelled ? 'cancelled' : 'not cancelled'}}</td>
+     <td><button (click)="editBooking(booking.id)" class="border-0 bg-light" style="border: none; background-color:#fff"><i class="fa-solid fa-pen text-primary"></i></button></td>
      <td><button (click)="deleteBooking(booking.id)" class="border-0 bg-light"><i class="fa-solid fa-trash text-danger"></i></button></td>
      </tr>
 </table>

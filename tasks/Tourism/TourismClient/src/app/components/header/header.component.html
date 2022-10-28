@@ -8,15 +8,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="container borderXwidth navbar-nav">
+
       <a mat-button [ngClass]="{'selected' : activeRoute == 'user'}" routerLink="../user">Home</a>
       <!-- <a mat-button [ngClass]="activeRoute === 'Home' ? 'selected' : '' " routerLink="../user" >Home</a> -->
-      <a mat-button routerLink="../contact" [ngClass]="{'selected' : activeRoute == 'contact'}">Contact</a>
+      <a *ngIf="!currentUser?.isAdmin" mat-button routerLink="../contact" [ngClass]="{'selected' : activeRoute == 'contact'}">Contact</a>
       <a *ngIf="!isAuthenticated" mat-button routerLink="../signup" [ngClass]="{'selected' : activeRoute == 'signup'}"> SignUp </a>
 
       <a *ngIf="isAuthenticated && !currentUser.isAdmin" mat-button routerLink="../user/bookings" [ngClass]="{'selected' : activeRoute == 'bookings'}">Bookings</a>
       <a *ngIf="isAuthenticated && currentUser.isAdmin" mat-button routerLink="../admin/" [ngClass]="{'selected' : activeRoute == 'admin'}">Admin</a>
       <!-- <a *ngIf="isAuthenticated" mat-button (click) ="submitLogout()">Logout</a> -->
       <a *ngIf="!isAuthenticated" mat-button routerLink="../login" [ngClass]="{'selected' : activeRoute == 'login'}">Login</a>
+
       <div class="" mat-button [matMenuTriggerFor]="menu" style="cursor: pointer;">
         <!-- <div class="" mat-button (click)="open(profile)" style="cursor: pointer;"> -->
           <img *ngIf="isAuthenticated" [src]="currentUser?.image" alt="profle_pic" width="50" height="50"
@@ -49,8 +51,9 @@
 </ng-template> -->
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="../user/editProfile">Edit Profile</button>
-  <button mat-menu-item (click)="submitLogout()">Logout</button>
+  <p mat-menu-item >Welcome {{currentUser?.name}}</p>
+  <button mat-menu-item routerLink="../user/editProfile" class="text-primary">Edit Profile</button>
+  <button mat-menu-item (click)="submitLogout()" class="text-primary">Logout</button>
 </mat-menu>
 
 <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo offcanvas</button> -->

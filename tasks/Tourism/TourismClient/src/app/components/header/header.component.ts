@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
           // this.currentUser = this.auth.currentUser
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit {
           this.currentUser = user;
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit {
         }
       },
       err => {
-        if(err.status == 404){
+        if(err.status == 404 || 500){
           alert(err.message)
         }
         else{

@@ -21,7 +21,7 @@ export class EnquiryListComponent implements OnInit {
     this.subscription = this.dataService.getEnquiryList().subscribe(
       data => this.enquiryList = data,
       err => {
-        if(err.status == 404){
+        if(err.status == 404 || 500){
           alert(err.message)
         }
         else{

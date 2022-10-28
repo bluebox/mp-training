@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
             this.route.navigate(['admin'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
           this.route.navigate([ returnUrl || 'user' ])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

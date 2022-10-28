@@ -35,7 +35,7 @@ export class AddCouponComponent implements OnInit {
           this.CouponForm.get('valid_till')?.setValue(`${dateArray[2]}-${dateArray[0]}-${dateArray[1]}`);
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -72,7 +72,7 @@ export class AddCouponComponent implements OnInit {
           this.router.navigate(['admin/coupons/couponList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -87,7 +87,7 @@ export class AddCouponComponent implements OnInit {
           this.router.navigate(['admin/coupons/couponList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

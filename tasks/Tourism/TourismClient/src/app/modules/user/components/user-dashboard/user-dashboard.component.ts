@@ -32,7 +32,7 @@ export class UserDashboardComponent implements OnInit {
             this.route.navigate(['login'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{

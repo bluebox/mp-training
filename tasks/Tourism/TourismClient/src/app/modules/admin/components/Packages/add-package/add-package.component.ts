@@ -45,7 +45,7 @@ export class AddPackageComponent implements OnInit {
           // this.tours.setValue(packageObj.tours.map((tour: { id: any; }) => tour.id));
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             // alert('Requested Url' + err.url + "Not Found")
             alert(err.message)
           }
@@ -86,7 +86,7 @@ export class AddPackageComponent implements OnInit {
         this.tourList = data;
       },
       err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
@@ -120,7 +120,7 @@ export class AddPackageComponent implements OnInit {
           this.router.navigate(['admin/package/packageList'])
         },
         err => {
-          if(err.status == 404){
+          if(err.status == 404 || 500){
             alert(err.message)
           }
           else{
