@@ -1,0 +1,448 @@
+
+.main {
+  width: 98.6vw;
+  height: 50vh;
+  background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/c8c8a0ad-86d6-45f1-b21d-821afa4e5027/121450d3-2d2f-41a9-acd6-b050ca0e0424/IN-en-20220801-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+  background-repeat: no-repeat;
+  border-bottom: solid 8px gray;
+  margin-bottom: 0px;
+}
+
+.grdntdiv {
+  width: 98.6vw;
+  height: 50vh;
+  background: rgba(0, 0, 0, .5);
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .8) 0, transparent 60%, rgba(0, 0, 0, .8));
+}
+
+.log {
+  color: #e50914;
+}
+
+.sin {
+  color: white;
+  background-color: #e50914;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+#lang {
+  background-color: black;
+  width: 85px;
+  height: 30px;
+  border-radius: 5px;
+  color: white
+}
+
+
+
+
+/* -------------------------------- */
+.dropbtn {
+  background-color: #ddd;;
+  width: 90px;
+  height: 30px;
+  border-radius: 0.5px;
+  color: white;
+  background-color: transparent;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: transparent;
+}
+
+.dropdown-content a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+
+
+
+.dropdown:hover .dropdown-content {display: block;}
+
+
+
+/* --------------------------------------------- */
+.bu {
+  width: 150px !important;
+  height: 40px !important;
+  background-color: #e50914 !important;
+  color: white;
+  border-radius: 5px;
+
+}
+
+.in {
+  width: 360px;
+  height: 40px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.content {
+  color: white;
+  margin-left: 30vw;
+  margin-top: 20vh;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.block2 {
+  margin-top: 0px;
+  width: 98.6vw;
+  height: 55vh;
+  background-color: black;
+  border-bottom: solid 8px gray;
+
+}
+
+.cont2 {
+  margin-top: 0px;
+  color: white;
+}
+
+.block2 h1 {
+  font-size: 45px;
+}
+
+.block2 h3 {
+  font-size: 25px;
+}
+
+.hed2 {
+  margin-left: 40px;
+}
+
+.block2 {
+  display: flex;
+}
+
+.gif1 {
+  position: absolute;
+  left: 50%;
+  margin-top: 8%
+}
+
+.gif1 img {
+  z-index: -1;
+}
+
+#tv {
+  z-index: 1;
+}
+
+
+.block23 {
+  margin-top: 0px;
+  width: 98.6vw;
+  height: 55vh;
+  background-color: black;
+  border-bottom: solid 8px gray;
+
+}
+
+.cont23 {
+  margin-top: 0px;
+  color: white;
+}
+
+.block23 h1 {
+  font-size: 45px;
+}
+
+.block23 h3 {
+  font-size: 25px;
+}
+
+.hed23 {
+  margin-left: 40px;
+}
+
+.block23 {
+  display: flex;
+}
+
+.gif13 {
+  position: absolute;
+  left: 10%;
+  margin-top: 4%
+}
+
+.gif13 img {
+  z-index: -1;
+}
+
+#tv3 {
+  z-index: 1;
+}
+
+.block3 {
+  margin-top: 0px;
+  width: 98.6vw;
+  height: 55vh;
+  background-color: black;
+  border-bottom: solid 8px gray;
+  display: flex;
+}
+
+.block3 h1 {
+  margin-top: 10vh;
+  margin-left: 10vw;
+  font-size: 45px;
+}
+
+.block3 h3 {
+  font-size: 25px;
+  margin-left: 10vw;
+}
+
+.img2 {
+  width: 50%;
+
+}
+
+
+.cont2 {
+  width: 50%;
+}
+
+.block3 {
+  position: relative;
+}
+
+.gif2 img {
+  position: absolute;
+  z-index: -1;
+}
+
+.imgim {
+  margin-top: 8vh;
+  margin-left: 5vw;
+}
+
+.vere {
+  margin-left: 170px;
+  display: flex;
+  height: 70px;
+  width: 250px;
+  border-radius: 5px;
+  border: 0.5px solid gray;
+  position: absolute;
+  margin-top: 35vh;
+  background-color: black;
+}
+
+.imgdiv {
+  width: 60px;
+}
+
+.imgdiv img {
+  margin: 10px;
+}
+
+.contdiv h4 {
+  margin-bottom: 0%;
+  padding: 0%;
+}
+
+.contdiv h5 {
+  margin-top: 0%;
+  padding: 0%;
+}
+
+.cont3 {
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+#btn {
+  overflow: hidden;
+  border: 2px solid black;
+}
+
+#spn1 {
+  display: none;
+  color: white;
+  background-color: rgba(49, 49, 49, 0.867);
+  width: 40vw;
+}
+
+#spn2 {
+  display: none;
+  color: white;
+  background-color: rgba(49, 49, 49, 0.867);
+  width: 40vw;
+}
+
+#spn3 {
+  display: none;
+  color: white;
+  background-color: rgba(49, 49, 49, 0.867);
+  width: 40vw;
+}
+
+#spn4 {
+  display: none;
+  color: white;
+  background-color: rgba(49, 49, 49, 0.867);
+  width: 40vw;
+}
+
+#spn5 {
+  display: none;
+  color: white;
+  background-color: rgba(49, 49, 49, 0.867);
+  width: 40vw;
+}
+
+#spn6 {
+  display: none;
+  color: white;
+  background-color: rgba(49, 49, 49, 0.867);
+  width: 40vw;
+}
+
+.qna {
+  background-color: black;
+  width: 98.6vw;
+}
+
+.qna button {
+  text-align: start;
+  border: none;
+  background-color: rgba(49, 49, 49, 0.867);
+  height: 50px;
+  width: 40vw;
+}
+
+.qna h1 h3 {
+  margin: 0%;
+}
+
+.content1 {
+  color: white;
+  margin-left: 30vw;
+
+}
+
+
+.footer{
+  background-color: #000000;
+  width: 100%;
+  border-top: solid 8px gray;
+}
+
+.footer_list{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: -10px;
+  color: rgb(180, 180, 180);
+  list-style-type: none;
+  text-align: center;
+  line-height:3;
+  
+}
+
+
+.signup{
+  position: absolute;
+  height: 110vh;
+  width: 30vw;
+  top: 10vh;
+  left: 35vw;
+  color: white;
+  border-radius: 3px;
+
+}
+.grdntdiv1 {
+  width: 30vw;
+  height: 55vh;
+  background-size: cover;
+  background: rgba(0, 0, 0, .8);
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .8) 0, transparent 60%, rgba(0, 0, 0, .8));
+  border-radius: 3px;
+
+}
+.main {
+  width: 98.6vw;
+  height: 115vh;
+  background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/c8c8a0ad-86d6-45f1-b21d-821afa4e5027/121450d3-2d2f-41a9-acd6-b050ca0e0424/IN-en-20220801-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: solid 8px gray;
+  margin-bottom: 0px;
+  border-radius: 3px;
+
+}
+.grdntdiv {
+  width: 98.6vw;
+  height: 115vh;
+  background-size: cover;
+  background: rgba(0, 0, 0, .2);
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .8) 0, transparent 60%, rgba(0, 0, 0, .8));
+  border-radius: 3px;
+
+}
+.scont{
+  background-color: t;
+  height: 100%;
+  width: 80%;
+  margin-top: 40px;
+  margin-left: 55px;
+}
+.buttn input{
+  height: 35px;
+  width: 250px;
+  border-radius: 5px;
+  background-color: rgba(57, 57, 57, 0.889);
+}
+.signup button{
+  height: 38px;
+  width: 260px;
+  border-radius: 5px;
+  background-color: #e50914;
+}
+.non{
+  height: 10px;
+  width: 10px;
+}
+
+.footer1{
+  background-color:transparent;
+  width: 100%;
+  border-top: solid 1px gray;
+}
+
+.footer_list1{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: -10px;
+  color: rgb(180, 180, 180);
+  list-style-type: none;
+  text-align: center;
+  line-height:3;
+  
+}

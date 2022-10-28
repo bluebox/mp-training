@@ -1,5 +1,6 @@
 __author__ = 'Hari'
 
+
 from tasks.placeholders import *
 
 
@@ -30,22 +31,21 @@ def test_numbers_string_to_int():
     assert 255 == int("FF", 16)
     assert 63 == int("77", 8)
 
-
 def test_numbers_int_to_string():
-    assert '0o12' == oct(10)
-    assert '0x64' == hex(100)
-    assert '0b11111111' == bin(255)
+    assert "0o12" == oct(10)
+    assert "0x64" == hex(100)
+    assert "0b11111111" == bin(255)
 
 
 def test_numbers_long():
     """Long is not the long in c"""
-    assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
+    assert 1606938044258990275541962092341162602522202993782792835301376== 2 ** 200
 
 
-three_things_i_learnt = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
+TIME_TAKEN_IN_MINUTES = """
+-arithmetic op are +,-,*,/,**
+-conversions dec<>oct,dec<>hex,dec<>bin
+-type()shows type 
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_IN_MINUTES = 4

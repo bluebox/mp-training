@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+
+  /* background-repeat: no-repeat;
+  background-position: right top;
+  margin-right: 200px;
+  background-attachment: sticky;
+  height:1000px; */
+}
+#scr{
+    background-position: right top;
+}
+</style>
+</head>
+<body>
+<div >
+  <img id="scr" src="https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c21hbGx8ZW58MHx8MHx8&w=1000&q=80" height="40%" width="40%">
+<div>
+
+<h1>The background-attachment Property</h1>
+
+<p>The background-attachment property specifies whether the background image should scroll or be fixed (will not scroll with the rest of the page).</p>
+
+<p><strong>Tip:</strong> If you do not see any scrollbars, try to resize the browser window.</p>
+
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<script>
+let img1=document.getElementById("scr")
+window.addEventListener('scroll',function(){
+let val=window.scrollY;
+img1.style.marginLeft=val*1.5+'px';
+img1.style.marginTop=val*1.5+'px';
+})
+</script>
+</body>
+</html>
+
+

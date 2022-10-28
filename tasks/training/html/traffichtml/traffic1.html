@@ -1,0 +1,30 @@
+red&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:
+<input type="radio" name="traffic"  id="red" onClick="rd()"> 
+<br>
+yellow:
+<input type="radio" name="traffic" id="green" onClick="yelo()"> 
+<br>
+green&nbsp&nbsp:
+<input type="radio" name="traffic" id="blue" onClick="grn()"> 
+<br>
+<textarea id="txt"></textarea>
+<script>
+    function rd()
+    {
+        const temp=document.getElementById("txt")
+        temp.innerHTML="a"
+        temp.setAttribute("style","background-color:red")
+    }
+    function yelo()
+    {
+        const temp=document.getElementById("txt")
+        temp.innerHTML="b"
+        temp.setAttribute("style","background-color:yellow")
+    }
+    function grn()
+    {
+        const temp=document.getElementById("txt")
+        temp.innerHTML="c"
+        temp.setAttribute("style","background-color:green")
+    }
+</script>
