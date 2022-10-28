@@ -20,25 +20,29 @@ def demo_generator():
     yield "are"
     yield "you?"
 
+
 def test_generator_type():
-    assert __ == type(demo_generator).__name__  #definition is a function
-    assert __ == type(demo_generator()).__name__ #once you invoke it, you get a generator
+    assert 'function' == type(demo_generator).__name__   # definition is a function
+    assert 'generator' == type(demo_generator()).__name__  # once you invoke it, you get a generator
+
 
 def test_generator_is_an_iterator1():
-    assert __ == hasattr(demo_generator, "next")
-    assert __ == hasattr(demo_generator(), "next")
+    assert False == hasattr(demo_generator, "next")
+    assert True == hasattr(demo_generator(), "__next__")
+
 
 def test_generator_is_an_iterator2():
     result = demo_generator()
     try:
-        assert __ == next(result)  # builtin which calls the iterator.next()
-        assert __ == next(result)
-        assert __ == next(result)
-        assert __ == next(result)
-    except __:
+        assert 'how' == next(result)  # builtin which calls the iterator.next()
+        assert 'are' == next(result)
+        assert 'you?' == next(result)
+        assert False == next(result)
+    except StopIteration:
         assert True
 
-    assert __ == ".".join(demo_generator()) #join takes a iterable
+    assert 'how.are.you?' == ".".join(demo_generator())  # join takes an iterable but iterables should be strings
+
 
 # Note that this function takes any sequence, and returns a reversed form
 # element by element, so at no point is a new reversed sequence object
@@ -52,7 +56,8 @@ def test_generator_reverse():
     result = []
     for item in demo_reverse("Hello World"):
         result.append(item)
-    assert __ == result
+    assert ['d', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H'] == result
+
 
 # range using a generator (xrange does something similar)
 def demo_range(limit):
@@ -61,21 +66,26 @@ def demo_range(limit):
         yield value
         value = value + 1
 
+
 def test_generator_range_does_not_allocate_memory():
     for item in demo_range(1000 * (10**6)):
-        if item%5 ==1:
+        if item % 5 == 1:
             break
-    assert ___ # did you reach here without any memory exception?
+    assert True  # did you reach here without any memory exception?
 
 
-#write a statement that can collect all results from the generator into a list
+# write a statement that can collect all results from the generator into a list
 def demo_generator_to_list(generator):
-    __ # fill code here.
+    result = []
+    for i in generator:
+        result.append(i)
+    return result
 
 
 def test_collapse_generator():
-    assert __ == demo_generator_to_list(demo_range(4))
-    assert __ == demo_generator_to_list(demo_generator())
+    assert [0, 1, 2, 3] == demo_generator_to_list(demo_range(4))
+    assert ['how', 'are', 'you?'] == demo_generator_to_list(demo_generator())
+
 
 def test_generator_return():
     def func():
@@ -83,14 +93,16 @@ def test_generator_return():
         yield 2
         return
         yield 3
-    assert [__] == demo_generator_to_list(func())
+    assert [1, 2] == demo_generator_to_list(func())
+
 
 def test_generator_control_flow():
     def func():
         for x in range(5):
             yield x
         yield 10
-    assert __ == demo_generator_to_list(func())
+    assert [0, 1, 2, 3, 4, 10] == demo_generator_to_list(func())
+
 
 def test_generator_exception():
     def func():
@@ -105,13 +117,13 @@ def test_generator_exception():
             yield 50
         yield 30
 
-    assert [__] == demo_generator_to_list(func())
+    assert [10, 40, 50, 30] == demo_generator_to_list(func())
 
 
 three_things_i_learnt = """
--
--
--
+- Generator is a function that returns an iterator and which can be used with next()
+- Generator does not allocate any memory as it does not store in a list rather it pauses the function when it hits yield and exceutes the remaining
+- Generators are best incase of memory management rather than comprehensions where they utilize the memory
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 20
