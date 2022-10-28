@@ -1,26 +1,24 @@
 .body{
-    background-image: url("/assets/images/clienthome3.jpg");
+    background-image: url("/assets/images/clienthome1.jpg");
     background-repeat: no-repeat; 
     background-size: cover;
     width: 100%;
 }
 .content-home{
-    padding-top: 260px;
-    padding-bottom: 270px;
-    padding-left: 100px;
-}
-h1{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    font-family:'cursive';
     font-style: italic;
-    font-size: 50px;
-    color: black;
-    padding-bottom: 20px;
+    color: white;
+    padding-top: 18%;
+    padding-bottom: 378px;
+    padding-left: 62%;
 }
-
 button{
-    border: none;
-    font-size: 20px;
-    margin-left: 5%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: italic;
+    background-color:#eb008b ;
+    color: white;
+    font-size: 15px;
+}
+.button-div{
+    padding-left: 22%;
+    padding-top: 2%;
 }

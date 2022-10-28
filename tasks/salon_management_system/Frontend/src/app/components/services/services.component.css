@@ -45,8 +45,14 @@
     color:#eb008b;
 }
 table {
-    width: 100%;
+    width: 60%;
   }
+.table-div{
+  padding-left: 25%;
+  padding-top: 3%;
+  padding-bottom: 176px;
+  background-color: black;
+}
   .column-name{
     color: black;
     font-size: 15px;
@@ -73,3 +79,6 @@ table {
 .column-value{
     text-align: center;
   }
+.mat-toolbar {
+  border-bottom: 2px solid #eb008b;
+}

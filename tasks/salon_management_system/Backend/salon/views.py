@@ -114,6 +114,7 @@ class ServicesList(APIView):
         print('invalid')
         error_list = [serializer.errors[error][0] for error in serializer.errors]
         return Response({'msg':error_list},status=200)
+        
 class SearchService(generics.ListAPIView):
     """this view is for searching services"""
     queryset = ServicesProvided.objects.all()

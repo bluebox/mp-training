@@ -91,3 +91,6 @@ table {
     background-color: white;
     border: none;
 }
+.mat-toolbar {
+    border-bottom: 3px solid #eb008b;
+  }

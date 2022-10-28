@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
         if(this.errorMessage == "success"){
           // alert("Registered succesfully press ok to login")
           
-          this.router.navigate(['login']);
+          this.router.navigate(['client']);
         }
         else{
           console.log(this.errorMessage = data.message);
