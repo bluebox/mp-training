@@ -18,7 +18,6 @@ export class BookingService {
 
 
   }
-
   setUserData(data:any){
     this.userDetails=data
 

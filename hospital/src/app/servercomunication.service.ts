@@ -99,7 +99,7 @@ register_staff(data: any) {
   return this.http.post(this.url+'users/staff/', data,{headers: this.httpHeaders});
 }
 register_appointment(data: any) {
-  return this.http.post(this.url+'users/slot/', data,{headers: this.httpHeaders});
+  return this.http.post(this.url+'users/appointment/', data,{headers: this.httpHeaders});
 }
 register_bill(data: any) {
   return this.http.post(this.url+'bill/bill/', data,{headers: this.httpHeaders});

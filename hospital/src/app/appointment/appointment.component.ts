@@ -9,9 +9,7 @@ export interface Appointment{
   // id:string;
   doctor:any;
   patients:any;
-  date:string|any;
-  slotss:string;
-  status:any
+  slot:any;
 }
 
 @Component({
@@ -27,63 +25,40 @@ export class AppointmentComponent implements OnInit {
   user:any;
   appointed:any;
   temp:any;
-
-
-  // doctors:any=[
-  //   {name: "ayan", dob:"1995"},
-  //   {name: "ayan1", dob:"1995"},
-  //   {name: "ayan2", dob:"1995"},
-  //   {name: "ayan3", dob:"1995"},
-  //   {name: "ayan4", dob:"1995"}
-  // ]
-  // slots:any= [
-  //   {id:'A',name:'8:30-8:45'},
-  //   {id:'B',name:'8:45-9:45'},
-  //   {id:'C',name:'9:45-10:00'},
-  //   {id:'D',name:'10:30-10:45'},
-  //   {id:'E',name:'11:30-11:45'},
-  //   {id:'F',name:'12:30-12:45'},
-  //   {id:'G',name:'13:30-13:45'},
-  // ]
-    slot: any;
+  slot: any;
   selectedDoctorDetails: any;
+  selectedSlotDetails: any;
   constructor(private datePipe:DatePipe,private _bottomSheet: MatBottomSheet,private fb: FormBuilder,private api:ServercomunicationService,private book:BookingService) { }
   openBottomSheet(): void {
     this._bottomSheet.open(DoctorDetailsComponent);
   }
   ngOnInit(): void {
-    this.get_Slot_Data()
+
+    this.user=this.book.getUserDetails()
     this.form_appointment = this.fb.group({
       doctor: [null, [Validators.required]],
       slot: [null],
       dates: [null, [Validators.required]],
   });
     this.get_Doc_Data();
-    // this.get_Slot_Data();
+  //  this. getData();
   this.book.setDocData(this.doctor);
-  this.book.setSlotData(this.slot);
-  this.user=this.book.getUserDetails()
-  console.log(this.book.getUserDetails().email);
-   this.getUserdetails()
+  // this.book.setSlotData(this.slot);
+  this.getUserdetails();
+  console.log(this.user);
 
-    // console.log(this.get_Doc_Data());
-    // console.log(this.get_Slot_Data());
   }
   get_Doc_Data()
 {
   this.api.getAllDoctor().subscribe(
     (data)=>{
-      console.log(data);
       this.doctor=data;
-      console.log(this.doctor)
-      this.book.setDocData(data)
+      console.log(this.doctor);
+      this.book.setDocData(data);
     },
     error=>{
 
   console.log(error);
-
-  // this.service.getAPatient().subscribe((data: Patient[])=>this.patients=data[0])
-  // console.log(this.patients)
 })
 }
 getADocData(doc: any)
@@ -98,74 +73,64 @@ getADocData(doc: any)
     (    error: any)=>{
 
   console.log(error);
-
-  // this.service.getAPatient().subscribe((data: Patient[])=>this.patients=data[0])
-  // console.log(this.patients)
 })
 }
 getUserdetails(){
   this.api.getuser().subscribe(
     (res:any)=>{
-      console.log(res);
+      this.user=res.id;
+      console.log(this.user);
     },
     (error:any)=>{
       console.log(error);
+      console.log("userdetails");
     }
   )
 }
-getData(){
-this.book.getDocDetails()
-}
-get_Slot_Data()
-{
-  let date=this.datePipe.transform(this.form_appointment.value.dates, 'yyyy-MM-dd')
-
-  this.api.getAllSlot(this.form_appointment.value.doctor,date).subscribe(
-
-    (data)=>{
-      console.log(this.form_appointment.value.doctor,this.form_appointment.value.dates)
-      console.log(data);
-      this.slot=data;
-      console.log(this.slot[0].slotss)
-    },
-    error=>{
-  console.log(error);
-
-  // this.service.getAPatient().subscribe((data: Patient[])=>this.patients=data[0])
-  // console.log(this.patients)
-})
-}
-saveDetails(){
+saveDetails(form_appointment:any){
   console.log(this.form_appointment);
-  // this.appointed=this.form_appointment.value;
-  // this.appointed.patient=this.user.id;
-console.log(this.appointed);
+  let app={
+    "slot":this.selectedSlotDetails,
+    "patient":this.user
+  }
+  console.log('detail1');
+  console.log(app);
 // this.temp=this.getADocData(this.doc: any);
-const data=JSON.stringify(this.appointed)
-this.api.register_appointment(data).subscribe(
-
-
+const data=JSON.stringify(app)
+this.api.register_appointment(app).subscribe(
   (data)=>{
     console.log(data);
     this.doctor=data;
-  this.get_Slot_Data()
-
-    // console.log(this.doctor)
-
-
 
   },
   error=>{
 
 console.log(error);
-
-// this.service.getAPatient().subscribe((data: Patient[])=>this.patients=data[0])
-// console.log(this.patients)
 })
 }
 
 getCellData(id:any){
   this.selectedDoctorDetails=id
   console.log(id,this.selectedDoctorDetails)
+}
+getSlotCellData(id:any){
+  this.selectedSlotDetails=id
+  console.log(id,this.selectedSlotDetails)
+}
+get_Slot_Data()
+{
+  let date=this.datePipe.transform(this.form_appointment.value.dates, 'yyyy-MM-dd')
+
+  this.api.getAllSlot(this.selectedDoctorDetails,date).subscribe(
+    (data)=>{
+      console.log(this.selectedDoctorDetails,date)
+      console.log(data);
+      this.slot=data;
+      console.log(this.slot[0].slots)
+    },
+    error=>{
+  console.log(error);
+})
+console.log('detail2')
 }
 }
