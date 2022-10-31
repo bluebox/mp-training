@@ -1,14 +1,17 @@
+"""MODULE FOR UNDERSTANDING CONDTIONAL STATEMENT"""
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 python has support for standard control flow statements similar to other languages.
 iteration over sequences like list, string etc. is built into the language itself (c# has
 similar features) and the loops support an else clause which is not common elsewhere.
 '''
 
+
 def test_if():
+    """test if"""
     value = 1
     if True:
         value = 2
@@ -19,6 +22,7 @@ def test_if():
     assert 2 == value
 
 def test_if_else():
+    """test if else"""
     value = 1
     if not True:
         value = 2
@@ -28,6 +32,7 @@ def test_if_else():
 
 
 def test_if_elif_else():
+    """test if elif else"""
     value = 3
     str = "str"
     if value < 0:
@@ -39,89 +44,109 @@ def test_if_elif_else():
 
     assert "positive" == str
 
+
 def test_for_loop_range():
     """
     for loops are used to iterate over arbitrary sequences
     """
-    nums =[]
+    nums = []
     for x in range(1,5):
         nums.append(x)
-    assert [1,2,3,4] == nums
+    assert [1, 2, 3, 4] == nums
 
 
 def test_for_loop_string():
+    """test for loop string"""
     chars = []
     for x in "engine":
         chars.append(x)
-    assert ['e','n','g','i','n','e'] == chars
+    assert ['e', 'n', 'g', 'i', 'n', 'e'] == chars
+
 
 def test_for_loop_list():
+    """test for loop list"""
     result = ""
     for fruit in ["orange", "banana", "apple"]:
         result += fruit
     assert "orangebananaapple" == result
 
+
 def test_for_loop_list_with_enumerate():
+    """test for loop list with enumerate"""
     words = ["one", "two", "three"]
     result = []
     for p in enumerate(words):
         result.append(p)
 
-    assert [(0,"one"), (1,"two"), (2,"three")] == result
+    assert [(0, "one"), (1, "two"), (2, "three")] == result
     mapping = dict(result)
-    assert {0:"one", 1:"two", 2:"three"} == mapping
+    assert {0: "one", 1: "two", 2: "three"} == mapping
+
 
 def test_for_loop_dict():
-    num_to_word = {1 : "one", 2 : "two", 3 : "three"}
+    """test for loop dictionary"""
+    num_to_word = {1: "one", 2: "two", 3: "three"}
     result = []
     for item in num_to_word:
         result.append(item)
-    assert [1,2,3] == result
+    assert [1, 2, 3] == result
+
 
 def test_while_loop():
+    """test while loop"""
     result = []
     while len(result) < 3:
         result.append(10)
     assert [10, 10, 10] == result
 
+
 def test_for_loop_break():
+    """test for loop break"""
     result = []
-    for x in range(1,10):
+    for x in range(1, 10):
         if x % 5 == 0:
             break
         result.append(x)
 
-    assert [1,2,3,4] == result
+    assert [1, 2, 3, 4] == result
+
 
 def test_for_loop_continue():
+    """test for loop continue"""
     result = []
     for x in range (1, 10):
         if x % 3 == 0:
             continue
         result.append(x)
-    assert [1,2,4,5,7,8] == result
+    assert [1, 2, 4, 5, 7, 8] == result
+
 
 def test_nested_loop_break():
+    """test nested loop break"""
     result = []
     for x in range(2):
-        for y in range(1,5):
-            if y%3 == 0:
+        for y in range(1, 5):
+            if y % 3 == 0:
                 break
             result.append(x)
 
-    assert [0,0,1,1] == result
+    assert [0, 0, 1, 1] == result
+
 
 def test_nested_loop_continue():
+    """test nested loop continue"""
     result = []
     for x in range(2):
-        for y in range(1,5):
-            if y%3 == 0:
+        for y in range(1, 5):
+            if y % 3 == 0:
                 continue
             result.append(x)
 
-    assert [0,0,0,1,1,1] == result
+    assert [0, 0, 0, 1, 1, 1] == result
+
 
 def test_nested_loop_break_continue():
+    """test nested loop break continue"""
     result = []
     for x in range(3):
         for y in range(1,5):
@@ -131,20 +156,24 @@ def test_nested_loop_break_continue():
                 break
             result.append(x)
 
-    assert [0,0,0,2,2,2] == result
+    assert [0, 0, 0, 2, 2, 2] == result
+
 
 # else on loops is not available in other common languages
 def test_for_loop_else_plain():
+    """test for loop else plain"""
     result = []
     for x in range(5):
         result.append(x)
-        print (x)
+        print(x)
     else:
         result.append(10)
 
-    assert [0,1,2,3,4,10] == result
+    assert [0, 1, 2, 3, 4, 10] == result
+
 
 def test_for_loop_else_break():
+    """test for loop else break"""
     result = []
     for x in range(5):
         if x % 3 == 0:
@@ -156,7 +185,9 @@ def test_for_loop_else_break():
 
     assert [] == result
 
+
 def test_for_loop_else_continue():
+    """test for loop else continue"""
     result = []
     for x in range(5):
         if x %3 == 0:
@@ -168,8 +199,10 @@ def test_for_loop_else_continue():
 
     assert [1,2,4,10] == result
 
-#same as above.
+
+# same as above.
 def test_while_loop_else():
+    """test while loop else"""
     result = []
     x = 1
     while x in range(5):
@@ -180,10 +213,11 @@ def test_while_loop_else():
     else:
         result.append(10)
 
-three_things_i_learnt = """
+
+THREE_THINGS_I_LEARNT = """
 -else block can be used with for loop
 -if break hits for loop else statement will not execute
 -else statement will execute after for loop or if for loop condition fails
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 25
