@@ -1,16 +1,23 @@
+"""MODULE TO LEARN ABOUT LISTS"""
 __author__ = 'Hari'
 
-from tasks.placeholders import *
+# from tasks.placeholders import *
+
 
 def test_list_type():
+    """TEST LIST TYPE"""
     fruits = ["banana", "orange", "grape"]
     assert "list" == type(fruits).__name__
 
+
 def test_list_len():
+    """TEST LIST LENGTH"""
     fruits = ["banana", "orange", "grape"]
     assert 3 == len(fruits)
 
+
 def test_list_can_be_indexed():
+    """TEST LIST CAN BE INDEXED"""
     fruits = ["banana", "orange", "grape"]
     assert "banana" == fruits[0]
     assert "orange" == fruits[1]
@@ -19,10 +26,13 @@ def test_list_can_be_indexed():
     assert "orange" == fruits[-2]
     assert "banana" == fruits[-3]
 
+
 def test_list_is_mutable():
+    """TEST LIST IS MUTABLE"""
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
-    assert ["mango", "orange", "grape"] == fruits  #replace __ with expected contents of list
+    assert ["mango", "orange", "grape"] == fruits  # replace __ with expected contents of list
+
 
 def test_list_can_be_sliced():
     """
@@ -31,7 +41,8 @@ def test_list_can_be_sliced():
     fruits = ["banana", "orange", "grape"]
     assert [] == fruits[0:0]
 
-    #begin : end
+    # begin : end
+
     assert ["banana", "orange"] == fruits[0:2]
     assert ["banana", "orange", "grape"] == fruits[0:5]
     assert ["orange"] == fruits[1:-1]
@@ -51,15 +62,17 @@ def test_list_can_be_sliced():
 
 
 def test_slice_creates_a_new_list():
+    """"TEST SLICE CREATES A NEW LIST"""
     fruits = ["banana", "orange", "grape"]
     slice = fruits[0:2]
     slice.append("guava")
 
-    assert ["banana", "orange", "grape"] == fruits # did this change?  No
+    assert ["banana", "orange", "grape"] == fruits  # did this change?  No
     assert ["banana", "orange", "guava"] == slice
 
 
 def test_list_merge():
+    """TEST MERGING OF LIST"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
     all = fruits + veggies
@@ -69,7 +82,9 @@ def test_list_merge():
     assert ["beetroot", "tomato"] == veggies
     assert ["orange", "grape", "beetroot"] == fruits[1:] + veggies[:1]
 
+
 def test_list_slice_replacement_is_inplace():
+    """TEST LIST SLICE REPLACEMENT IS INPLACE"""
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
@@ -81,6 +96,7 @@ def test_list_slice_replacement_is_inplace():
     fruits[:2] = ["banana1", "litchi"]
     assert ["banana1", "litchi", "guava", "grape1"] == fruits
 
+
 def test_list_common_methods():
     """
      You can find methods supported by lists by entering help([]) in the python console.
@@ -88,7 +104,6 @@ def test_list_common_methods():
      For help on a specific function like pop enter help([].pop)
     """
     fruits = []
-    fruits.append("orange")
 
     assert ["orange"] == fruits
 
@@ -107,7 +122,9 @@ def test_list_common_methods():
     fruits.pop(0)
     assert ["litchi", "orange"] == fruits
 
+
 def test_list_can_contain_lists():
+    """TEST LIST CAN CONTAIN LISTS"""
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
     all = [fruits, veggies]
@@ -116,37 +133,46 @@ def test_list_can_contain_lists():
     assert ["orange", "banana"] == all[0]
     assert ["beetroot", "tomato"] == all[1]
 
+
 def test_list_can_contain_objects_of_different_types():
+    """TEST LIST CAN CONTAIN OBJECTS OF DIFFERENT TYPYES"""
     mixed = ["string", 10]
     assert "string" == mixed[0]
     assert 10 == mixed[1]
 
+
 def test_list_sort():
+    """TEST LIST SORT"""
     numbers = [ 5, 4, 3, 8 ]
     numbers.sort()
     assert [3, 4, 5, 8] == numbers
     numbers.sort(reverse=True)
     assert [8, 5, 4, 3] == numbers
 
+
 # if something unexpected happens see,
 # http://docs.python.org/2/reference/expressions.html#operator-precedence
 # and fix accordingly.
 def test_list_membership():
+    """TEST LIST MEMBERSHIP"""
     numbers = [ 5, 4, 3]
-    assert True == (5 in numbers)
-    assert False == (10 in numbers)
+    assert True is (5 in numbers)
+    assert False is (10 in numbers)
+
 
 def test_list_range():
+    """TEST LIST RANGE"""
     numbers = range(1,5)
-    assert [1,2,3,4] == list(numbers)
+    assert [1, 2, 3, 4] == list(numbers)
 
     numbers = range(1, 5, 2)
     assert [1, 3] == list(numbers)
 
-three_things_i_learnt = """
+
+THREE_THINGS_I_LEARNT = """
 -append function adds elements to the end of the list
 -extend function takes an iterable as a parameter and adds it to the end of list 
 -by doing list[1:2] = [elements...] we can replace list from index [1:2] with [elements..] 
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
