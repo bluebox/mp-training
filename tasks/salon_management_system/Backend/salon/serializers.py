@@ -1,5 +1,5 @@
 """serializers"""
-
+#pylint:disable=R0903
 from rest_framework import serializers
 
 from .models import Branch, Employee, User, ServicesProvided,Client,Appointment

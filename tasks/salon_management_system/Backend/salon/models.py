@@ -1,4 +1,8 @@
 """Models"""
+#pylint:disable=E1101
+#pylint:disable=R0903
+#pylint:disable=W0611
+#pylint:disable=E0102
 from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
