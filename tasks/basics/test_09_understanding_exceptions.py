@@ -1,109 +1,128 @@
+"""MODULE FOR UNDERSTANDING TRY-EXCEPT BlOCK"""
+
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
-
 Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
 
 from tasks.placeholders import *
 
+
 def test_exception_flow_1():
+    """test exception flow 1"""
     fruit = "orange"
     result = []
     try:
         fruit = fruit.upper()
         result.append("one")
-        fruit.missingmethod() # missingmethod does not belong to the string class hence control flow shifts to except statement
+        fruit.missingmethod()  # missingmethod does not belong to the string class
+        # hence control flow shifts to except statement
         result.append("two")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("three")
 
     assert ['one', 'three'] == result
 
 def test_exception_flow_2():
+    """test exception flow 2"""
     fruit = "orange"
     result = []
     try:
         result.append("one")
-        value = 1/0 #division by zero.
+        value = 1/0  # division by zero.
         result.append("two")
-        fruit.missingmethod() #missing attribute
+        fruit.missingmethod() # missing attribute
         result.append("three")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("four")
-    except ZeroDivisionError as ze:
+    except ZeroDivisionError:
         result.append("five")
 
     assert ['one', 'five'] == result
 
+
 def test_raise_error():
+    """test raise error"""
     result = []
     try:
         result.append("one")
         raise AttributeError("some error here")
-    except AttributeError as se:
+    except AttributeError:
         result.append("three")
 
     assert ['one', 'three'] == result
 
+
 def test_missing_except():
+    """test missing except"""
     result = []
     fruit = "orange"
 
     try:
         result.append("one")
-        #what happens now? fix it with an appropriate try except
+        # what happens now? fix it with an appropriate try except
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError:
         result.append("two")
 
     assert ["one", "two"] == result
 
+
 def function_with_except(result):
+    """function with except"""
     fruit = "orange"
     result.append("f:enter")
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError:
         result.append("f:except")
 
     result.append("f:return")
 
+
 def function_without_except(result):
+    """function without except"""
     fruit = "orange"
     result.append("f:enter")
     fruit.missingmethod()
     result.append("f:return")
 
+
 def test_function_call_with_except():
+    """test function call with except"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     assert ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall'] == result
 
+
 def test_function_call_without_except():
+    """test function call without exception"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     assert ['m:beforecall', 'f:enter', 'm:except'] == result
 
+
 def test_else_on_exception():
+    """test else on exception"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -112,61 +131,66 @@ def test_else_on_exception():
 
 
 def test_else_on_no_exception():
+    """test else on no exception"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
 
     assert ['m:beforecall', 'f:enter', 'm:except'] == result
 
+
 def test_finally_on_exception():
+    """test finally on exception"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
     finally:
         result.append("m:finally")
 
-    assert ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall','m:else', 'm:finally'] == result
-
+    temp = ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall', 'm:else', 'm:finally']
+    assert temp == result
 
 
 def test_finally_on_no_exception():
+    """test finally on no exception"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
     finally:
         result.append("m:finally")
 
-    assert ['m:beforecall','f:enter', 'm:except', 'm:finally'] == result
+    assert ['m:beforecall', 'f:enter', 'm:except', 'm:finally'] == result
 
-notes2 = '''
+
+NOTES2 = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -as soon as exception is raised control flow will shift to except block
 -else block triggers if no except statement is matched
 -finally statement gets executed all the time 
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTE = 15
