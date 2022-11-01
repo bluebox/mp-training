@@ -143,3 +143,13 @@ class SlotFilter(APIView):
         slot=DatewiseSlot.objects.filter(doctor=doctor , date=date).values()
         print(slot)
         return Response(slot)
+class GetDoctor(APIView):
+    def get(self,request,email):
+        doctor=Doctor.objects.filter(email=email).values()
+        print(doctor)
+        return Response(doctor) 
+class GetPatient(APIView):
+    def get(self,request,email):
+        doctor=Patients.objects.filter(email=email).values()
+        print(doctor)
+        return Response(doctor) 

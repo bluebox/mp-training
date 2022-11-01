@@ -1,6 +1,7 @@
 # from django.contrib.auth.models import AbstractUser
 import datetime
 from email.policy import default
+from enum import unique
 from imp import NullImporter
 from pydoc import Doc
 from django.db import models
@@ -44,7 +45,7 @@ class Doctor(models.Model):
     name = models.CharField(max_length=70)
     age = models.IntegerField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    email=models.CharField(max_length=70)
+    email=models.CharField(max_length=70, unique=True)
     # salary_id = models.ForeignKey('Salary', on_delete=models.CASCADE),
     experience = models.IntegerField()
     qualification = models.CharField(max_length=70)
@@ -73,7 +74,7 @@ class Staff(models.Model):
     experience = models.IntegerField()
     designation = models.CharField(max_length=70)
     # is_available = models.BooleanField(default=False)
-    email=models.CharField(max_length=70)
+    email=models.CharField(max_length=70, unique=True)
     phone_number = models.CharField(max_length=70,null=True)
     # verified=models.CharField(max_length=1, choices=ADMIN_CHOICES,default='N')
     # email=models.CharField(max_length=70)
@@ -93,7 +94,7 @@ class AllUser(models.Model):
     # USERNAME_FIELD = 'email'
     # Username = None
     # REQUIRED_FIELDS = []
-    email=models.CharField(max_length=70)
+    email=models.CharField(max_length=70,unique=True)
     name = models.CharField(max_length=70)
     password=models.CharField(max_length=70)
     verified=models.CharField(max_length=1, choices=ADMIN_CHOICES,default='N')
