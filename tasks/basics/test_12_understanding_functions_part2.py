@@ -1,3 +1,5 @@
+"""understanding functions part2"""
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
@@ -93,10 +95,10 @@ def test_function_unpacking():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - arguments (return tuple) & keyword arguments (return dictionary) 
 - args have only name while kwargs have name and default value
 - kwargs should be placed after args; also packing and unpacking of args and kwargs affects what is returned
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 20
