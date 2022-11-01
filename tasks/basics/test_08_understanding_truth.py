@@ -8,7 +8,6 @@ from tasks.placeholders import *
 NOTES = '''
 Just like C, python has notions on what values are considered true
 and what values are considered false.
-
 Assigning truth equivalence to non-bool types leads to much more
 elegant way of writing code instead of having explicit comparisons
 with base values of the data types like 0, '', [] etc.
@@ -66,21 +65,21 @@ def test_truth_values():
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
     """test equality"""
-    assert False is ("" == True)
-    assert False is (() == True)
-    assert False is ([] == True)
-    assert False is (set() == True)
-    assert False is (0 == True)
-    assert False is ("" == False)
-    assert False is (() == False)
-    assert False is ([] == False)
-    assert False is (set() == False)
-    assert True is (0 == False)
-    assert True is (1 == True)
-    assert False is ("a" == True)
-    assert False is ((1, 2) == True)
-    assert False is ([1] == True)
-    assert False is ({1} == True)
+    assert False is (bool("") is True)
+    assert False is (bool(()) is True)
+    assert False is (bool([]) is True)
+    assert False is (bool(set()) is True)
+    assert False is (bool(0) is True)
+    assert True is (bool("") is False)
+    assert True is (bool(()) is False)
+    assert True is (bool([]) is False)
+    assert False is (bool(set()) is False)
+    assert True is (bool(0) is False)
+    assert True is (bool(1) is True)
+    assert True is (bool("a") is True)
+    assert True is (bool((1, 2)) is True)
+    assert True is (bool([1]) is True)
+    assert True is (bool({1}) is True)
 
 
 THREE_THINGS_I_LEARNT = """
