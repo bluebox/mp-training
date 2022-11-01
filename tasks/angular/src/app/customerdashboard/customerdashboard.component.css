@@ -3,7 +3,7 @@
 .bg-container{
     height: 100vh;
     /* background-color: rgb(7, 215, 252); */
-    background-image: linear-gradient(to right, rgb(244, 235, 235),rgba(9, 10, 10, 0.6), rgba(239, 7, 7, 0.9));
+    background-image: linear-gradient(to right, rgb(244, 235, 235),rgba(9, 10, 10, 0.6), rgba(170, 251, 228, 0.9));
     padding: 20px;
     display: flex;
     flex-direction: row;
@@ -84,6 +84,7 @@ overflow: auto;
     font-weight: bold;
     margin: 5px;
     font-size: 18px;
+    text-decoration: none;
     
 }
 .images{
@@ -91,9 +92,18 @@ overflow: auto;
     width: 150px;
     border-radius: 75px;
 }
-/* .file{
-    height: 50px;
-   
-    background-color: grey; */
-
+.btn-sty{
+    height: 30px;
+    width: 80px;
+    background-color: transparent;
+    border: 2px solid rgb(8, 245, 48);
+    color: rgb(8, 245, 48);
+    border-radius: 5px;
+    margin-top: 10px;
+}
+/* input{
+    display: none;
+}
+label{
+    cursor: pointer; */
 /* } */

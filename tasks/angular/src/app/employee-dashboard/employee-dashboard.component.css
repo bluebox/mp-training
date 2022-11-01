@@ -1,9 +1,134 @@
-.employee-dashboard{
-    height: 500px;
-    width: 600px;
+.top-div{
+    height: 124px;
+    background-color: red;
+}
+
+.employee_dashboard{
+    height: 90vh;
+    background-color: rgb(107, 204, 221);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(173, 188, 230); */
+    
+}
+
+.emp_card{
+    height: 75vh;
+    width: 90vw;
+    background-color: white;
+    border-radius: 20px;
+
+}
+.left-card{
+    height: 100%;
+    width: 20%;
+    background-color: rgb(42, 42, 146);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+}
+.right-card{
+    height: 100%;
+    width: 80%;
+    /* background-color: red; */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 3px solid rgb(42, 42, 146);
+}
+.top-card{
+    height: 10%;
+    width: 100%;
+    /* background-color: orange; */
+    border-top-right-radius: 20px;
+    border-bottom: 3px solid grey;
+
+
+}
+.main-card{
+    height: 90%;
+    width: 100%;
+    background-color: rgb(215, 218, 218);
+    border-bottom-right-radius: 20px;
+
+    /* padding: 25px; */
+    overflow: scroll;
+
+}
+.image{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+.icon-con{
+    height:50px;
+    width: 100%;
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon{
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+.p-elements{
+    height: 70%;
+    width: 100%;
+    /* background-color: orange; */
+    padding-left: 15px;
+    line-height: 40px;
+}
+
+.text-style{
+    font-size: 17px;
+  background: linear-gradient(to right,#03b8fa, #fcec04);
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  /* margin-top: 50px; */
+
+}
+.text-style1{
+    font-size: 17px;
+  background: linear-gradient(to right,#fcfffd, #f01004);
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+.admin{
+    height: 70px;
+    width: 25%;
+    /* background-color: yellow; */
     display: flex;
     align-items: center;
     justify-content: center;
 
 }
+.admin1{
+    height: 70px;
+    width: 30%;
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
+.divs{
+    display: flex;
+   flex-direction: row;
+    justify-content: space-between;
+    /* margin-right: 10px; */
+
+}
+.icon-size{
+    font-size: 30px;
+    color: black;
+    margin-left: 15px;
+    margin-top: -8px;
+}

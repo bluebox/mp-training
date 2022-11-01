@@ -12,10 +12,12 @@ export class EmployeerequestpageComponent {
   loginAndLogOutCheck: any
   email: any;
   obj: any;
+  object:any
   requestdata: any
   status: any;
   emailObject:any;
   account_id:any;
+  res:any
   constructor(private router: Router, private userdata: UserserviceService, private http: HttpClient) {
     if (localStorage.getItem("refresh_token")) {
       this.router.navigate(['/empdashBoard/employeerequest']);
@@ -23,16 +25,7 @@ export class EmployeerequestpageComponent {
       this.userdata.loginStatus(this.loginAndLogOutCheck)
       this.email = this.userdata.employeeDetails()
       this.http.post("api/emp_request_data/", this.email).subscribe(data => {
-        console.log(data);
         this.requestdata = data
-        for (let i of this.requestdata) {
-          if (i.request_status === true) {
-            this.status = "Success"
-          }
-          else {
-            this.status = "Pending"
-          }
-        }
 
       })
     }
@@ -51,9 +44,26 @@ export class EmployeerequestpageComponent {
 
   }
   debitsendemail(email: any) {
-    console.log(email);
     this.router.navigate(["/empdashBoard/employeerequest/debitcard", email])
 
+  }
+  EligibiltyCheck(email: any){
+    this.object = {"email":email}
+    console.log(this.object);
+    this.http.post("api/loan_eligibility/", this.object).subscribe(res =>{
+      console.log(res);
+      this.res = res
+    })
+
+
+  }
+  ChangePhoneNumber(email:any){
+    this.router.navigate(["/empdashBoard/employeerequest/changePhoneNumber", email])
+
+  }
+  ChangeEmail(email:any){
+
+    this.router.navigate(["/empdashBoard/employeerequest/changeEmail", email])
   }
 
 }

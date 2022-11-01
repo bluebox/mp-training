@@ -1,4 +1,6 @@
-<h1>Requests For </h1>
+
+<div class="bg">
+<h1 style="color: black;font-family:'Times New Roman', Times, serif;font-weight: bold;margin-top: 20px;">Requests</h1>
 
 
 <table  class="style">
@@ -17,11 +19,14 @@
         <td>{{each.customer_name}}</td>
         <td>{{each.customer_email}}</td>
         <td>{{each.request_type}}</td>
-        <td [ngStyle]="{'color':status === 'Success' ? 'green':'red'}">{{status}} </td>
-        <td><a *ngIf = "each.request_type === 'Credit Card' && !each.request_status" (click) = "creditsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Debit Card'&& !each.request_status" (click) = "debitsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Personal Loan'&& !each.request_status" >Create</a></td>
+        <td ><p [ngStyle]="{'color':each.request_status === 'true' ? 'red':'green'}" *ngIf = "each.request_status">Success</p> <p [ngStyle]="{'color':each.request_status === 'true' ? 'green':'red'}"*ngIf = "!each.request_status">Pending</p> </td>
+        <td><a *ngIf = "each.request_type === 'Credit Card' && !each.request_status" (click) = "creditsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Debit Card'&& !each.request_status" (click) = "debitsendemail(each.customer_email)" >Create</a><a *ngIf = "each.request_type === 'Personal Loan'&& !each.request_status" (click) = "EligibiltyCheck(each.customer_email)" >Check Eligibility</a><a *ngIf = "each.request_type === 'Phone Number Updation' && !each.request_status" (click) = ChangePhoneNumber(each.customer_email) >Update Phone Number</a><a *ngIf = "each.request_type === 'Email Updation' && !each.request_status" (click) = ChangeEmail(each.customer_email) >Update Email</a></td>
         
 
     <tr>
 
 </table>
+<p style="color: rgb(255, 17, 0);margin-top:20px;font-family:'Times New Roman', Times, serif;font-size:20px;">{{res}}</p>
 <router-outlet></router-outlet>
+
+</div>

@@ -1,6 +1,6 @@
 <form [formGroup]="balanceForm" (ngSubmit)="getAccountBalance()">
 <select class="options-style" formControlName="account_type">
-    <option selected disabled> Select type of Account</option>
+    <option disabled  selected value = ""> Select type of Account</option>
     <option value = "savings">Savings Account</option>
     <option value = "current">Current Account</option>
 </select><br>

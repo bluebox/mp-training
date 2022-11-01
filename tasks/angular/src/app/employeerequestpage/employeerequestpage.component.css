@@ -1,6 +1,4 @@
-.style{
-    margin-top: 300px;
-}
+
 table, th, td {
     border:1px solid rgb(20, 8, 30);
     padding: 5px;
@@ -17,4 +15,7 @@ td {
 .icon {
     color: red;
     font-size: 20px;
+}
+.bg{
+    margin: 30px;
 }

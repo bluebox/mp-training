@@ -18,6 +18,13 @@ import { CustomerrequestComponent } from './customerrequest/customerrequest.comp
 import { EmployeerequestpageComponent } from './employeerequestpage/employeerequestpage.component';
 import { CreditcardsComponent } from './creditcards/creditcards.component';
 import { DebitcardsComponent } from './debitcards/debitcards.component';
+import { PersonalloaneligibilitycehckComponent } from './personalloaneligibilitycehck/personalloaneligibilitycehck.component';
+import { CustomerlistComponent } from './customerlist/customerlist.component';
+import { CustomerloansComponent } from './customerloans/customerloans.component';
+import { CustomerhomepageComponent } from './customerhomepage/customerhomepage.component';
+import { EmployeemaindashboardComponent } from './employeemaindashboard/employeemaindashboard.component';
+import { PhonenumberupdateComponent } from './phonenumberupdate/phonenumberupdate.component';
+import { EmailupdationComponent } from './emailupdation/emailupdation.component';
 // import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
@@ -32,22 +39,37 @@ const routes: Routes = [
   {path: 'custlogin', component:CustomerpageComponent},
   
   {path: 'empdashBoard', component:EmployeeDashboardComponent, children : [
+    {path:'', redirectTo:'employeemaindash', pathMatch:'full'},
     {path :'createCusAcc', component:CreatecustomeraccountComponent},
     {path :'employeerequest', component:EmployeerequestpageComponent, children:[
+      
       {path: "creditcard/:email", component: CreditcardsComponent},
       {path: "creditcard", component: CreditcardsComponent},
       {path: "debitcard/:email", component: DebitcardsComponent},
-      {path: "debitcard", component: DebitcardsComponent}
+      {path: "debitcard", component: DebitcardsComponent},
+      {path: "changePhoneNumber", component: PhonenumberupdateComponent},
+      {path: "changePhoneNumber/:email", component: PhonenumberupdateComponent},
+      {path: "changeEmail", component: EmailupdationComponent},
+      {path: "changeEmail/:email", component: EmailupdationComponent}
       
-    ]}
+      
+    ]},
+    {path :'customerlist', component:CustomerlistComponent},
+    {path :'customerloans', component:CustomerloansComponent},
+    {path: "employeemaindash", component: EmployeemaindashboardComponent}
+
     
   ]},
   {path:"cusdashBoard",canActivate:[SecurityguardGuard], component:CustomerdashboardComponent, children: [
+    {path: '', redirectTo:"customerhome", pathMatch :'full'},
+    {path: "customerhome", component: CustomerhomepageComponent},
     {path: "cusbalcheck", component: CustomerbalacecheckComponent},
     {path: "moneytransfer", component: MoneytransferComponent},
     {path: "transactionlist", component: TransactionsComponent},
     {path: "cards", component: CardsComponent},
-    {path: "customerrequest", component: CustomerrequestComponent}
+    {path: "customerrequest", component: CustomerrequestComponent},
+    {path: "personalLoanEligibility", component: PersonalloaneligibilitycehckComponent}
+    
   ]},
   {path:'**', component: PagenotfoundComponent}
 

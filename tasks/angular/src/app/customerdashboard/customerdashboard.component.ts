@@ -43,6 +43,7 @@ export class CustomerdashboardComponent {
           console.log(this.imageUrl);
 
         })
+        
       }
       else {
       }

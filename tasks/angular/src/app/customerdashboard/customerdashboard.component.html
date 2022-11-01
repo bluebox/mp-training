@@ -13,13 +13,16 @@
 <div class="bg-container">
     <div class="start shadow-lg">
         
-          <i class="fa-solid fa-house icon"> </i><a class="icon">Home</a><br>
+          <i class="fa-solid fa-house icon"> </i><a class="icon" routerLink="../cusdashBoard/customerhome">Home</a><br>
           <hr style="background-color: grey;border:1px solid grey">
 
           <i class="fa-solid fa-wallet icon"></i><a class="icon" routerLink="../cusdashBoard/cusbalcheck">Balance Check</a><br>
           <hr style="background-color: grey;border:1px solid grey">
 
           <i class="fa-solid fa-money-bill-transfer icon"></i><a class="icon" routerLink="../cusdashBoard/moneytransfer">Transfer Money</a><br>
+          <hr style="background-color: grey;border:1px solid grey">
+
+          <i class="fa-solid fa-code-pull-request icon"></i><a class="icon" routerLink="../cusdashBoard/customerrequest">Customer Requests</a><br>
           <hr style="background-color: grey;border:1px solid grey">
 
           <i class="fa-solid fa-rectangle-list icon"></i><a class="icon" routerLink="../cusdashBoard/transactionlist">Transactions</a><br>
@@ -34,7 +37,7 @@
           <i class="fa-solid fa-landmark icon"></i><a class="icon">Home Loans</a><br>
           <hr style="background-color: grey;border:1px solid grey">
 
-          <i class="fa-solid fa-hand-holding-dollar icon"></i><a class="icon">Personal Loans</a><br>
+          <i class="fa-solid fa-hand-holding-dollar icon"></i><a class="icon" routerLink="../cusdashBoard/personalLoanEligibility">Personal Loans</a><br>
           <hr style="background-color: grey;border:1px solid grey">
 
 
@@ -71,8 +74,10 @@
             </div>
            
         </div>
+        <div style="height: 100px;width:100%;margin-left: 10px;">
         <input type="file" (change)="imageFile($event)" class="file">
-        <button type="submit" (click)="imageUpload()"> Upload</button>
-        <button routerLink="../cusdashBoard/customerrequest">Customer Request</button>
+        <button type="submit" (click)="imageUpload()" class="btn-sty"> Upload</button>
+    </div>
+        <!-- <button routerLink="../cusdashBoard/customerrequest">Customer Request</button> -->
     </div>
 </div>

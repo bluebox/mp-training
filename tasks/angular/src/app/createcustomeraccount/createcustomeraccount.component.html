@@ -1,5 +1,5 @@
 
-<div class="d-flex flex-row">
+<div class="d-flex flex-row margin">
 <div>
 <form [formGroup]="CustomerAccountCreate" (ngSubmit)="createAccount()">
     <label for="name" > Customer Name </label>
@@ -22,13 +22,25 @@
 
    <label for="password"> Password </label>
     <br>
-   <input type="text" id = "password" formControlName= "customer_password"> 
+   <input type="password" id = "password" formControlName= "customer_password"> 
    <br>
    <br>
 
    <label for="address"> Address </label>
     <br>
    <input type="text" id = "address" formControlName= "customer_address"> 
+   <br>
+   <br>
+   <label for="salary"> Monthly Salary </label>
+    <br>
+   <input type="number" id = "salary" formControlName= "avg_monthly_salary"> 
+   <br>
+   <br>
+   <select class="options-style" formControlName="employee_type">
+    <option disabled   [selected]="true"> Select Employee Type</option>
+    <option value = "Employed">Employed</option>
+    <option value = "SelfEmployed">SelfEmployed</option>
+         </select>
    <br>
    <br>
 
@@ -46,7 +58,7 @@
     <form [formGroup]="accountCreate" (ngSubmit)="addingAccount()">
         <label for="name" > Account number </label>
         <br>
-       <input type="numbers" id = "name" formControlName= "account_number"> 
+       <input type="number" id = "name" formControlName= "account_number"> 
        <br>
        <br>
     
@@ -62,7 +74,7 @@
       <br>
       <br> -->
        <select class="options-style" formControlName="account_type">
-        <option selected disabled> Select type of Account</option>
+        <option disabled [selected]="true"> Select type of Account</option>
         <option value = "savings">Savings Account</option>
         <option value = "current">Current Account</option>
              </select>

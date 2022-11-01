@@ -19,7 +19,6 @@ email:any
 response:any;
   constructor(private route:ActivatedRoute, private router:Router, private userdata:UserserviceService, private http:HttpClient) { 
     if (localStorage.getItem("refresh_token")){
-    //  this.router.navigate(["/empdashBoard/employeerequest/creditcard", this.email])
      this.route.params.subscribe(email =>{
       console.log(email["email"])
       this.email_id = email["email"]
@@ -31,10 +30,6 @@ response:any;
     else{
       this.router.navigate(['/home']);
     }
-    // this.route.params.subscribe(email =>{
-    //   this.email_id = email["email"]
-    //   this.CreditCardForm.get("customer_email")?.setValue(this.email_id)
-    // })
   }
 
   ngOnInit(): void {

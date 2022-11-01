@@ -24,7 +24,15 @@ import { EmployeeloginComponent } from './employeelogin/employeelogin.component'
 import { CustomerrequestComponent } from './customerrequest/customerrequest.component';
 import { EmployeerequestpageComponent } from './employeerequestpage/employeerequestpage.component';
 import { CreditcardsComponent } from './creditcards/creditcards.component';
-import { DebitcardsComponent } from './debitcards/debitcards.component'
+import { DebitcardsComponent } from './debitcards/debitcards.component';
+import { PersonalloaneligibilitycehckComponent } from './personalloaneligibilitycehck/personalloaneligibilitycehck.component';
+import { CustomerlistComponent } from './customerlist/customerlist.component';
+import { CustomerloansComponent } from './customerloans/customerloans.component';
+import { CustomerhomepageComponent } from './customerhomepage/customerhomepage.component';
+import { EmployeemaindashboardComponent } from './employeemaindashboard/employeemaindashboard.component';
+import { PhonenumberupdateComponent } from './phonenumberupdate/phonenumberupdate.component';
+import { EmailupdationComponent } from './emailupdation/emailupdation.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +54,14 @@ import { DebitcardsComponent } from './debitcards/debitcards.component'
     CustomerrequestComponent,
     EmployeerequestpageComponent,
     CreditcardsComponent,
-    DebitcardsComponent
+    DebitcardsComponent,
+    PersonalloaneligibilitycehckComponent,
+    CustomerlistComponent,
+    CustomerloansComponent,
+    CustomerhomepageComponent,
+    EmployeemaindashboardComponent,
+    PhonenumberupdateComponent,
+    EmailupdationComponent
    
     
   ],
@@ -55,7 +70,8 @@ import { DebitcardsComponent } from './debitcards/debitcards.component'
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
     
   ],
   providers: [],

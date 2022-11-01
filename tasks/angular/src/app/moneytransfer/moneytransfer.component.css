@@ -1,0 +1,16 @@
+form ,label{
+    font-size: 15px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(0, 2, 9);
+
+
+ }
+ button{
+    height: 30px;
+    width: 80px;
+    background: linear-gradient(to right,rgb(251, 239, 9), rgb(242, 13, 13)) ;
+    border-radius: 5px;
+    color:rgb(0, 17, 255);
+    font-weight: bold;
+}

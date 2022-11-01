@@ -1,0 +1,20 @@
+
+<div class="debit">
+    <h1 style="color: black;font-family:'Times New Roman', Times, serif;font-weight: bold;margin-top: 20px;text-align: center;">Change Phone Number</h1>
+    
+    <form [formGroup]="ChangeNumberForm" (ngSubmit)="ChangeNumber()">
+        
+        <input type="email" placeholder="email" formControlName = 'customer_email'>
+        <br><br>
+        <input type="text" placeholder="Old Phone Number" formControlName = 'old_phone_number'>
+        <br><br>
+        <input type="text" placeholder="New Number" formControlName = 'new_number'>
+        <br><br>
+        <p [ngStyle]="{'color': response === 'Successfully Updated' ? 'green':'red'}" class="bg">{{response}}</p>
+        <button type = "submit">Submit</button>
+        
+    
+    </form>
+    </div>
+    
+    

@@ -1,4 +1,5 @@
-<h1>Create Credit Card</h1>
+<div class="credit">
+<h1 style="color: black;font-family:'Times New Roman', Times, serif;font-weight: bold;margin-top: 20px;text-align: center;">Create Credit Card</h1>
 
 <form [formGroup]="CreditCardForm" (ngSubmit)="CreditCard()">
     
@@ -12,8 +13,9 @@
     <br><br>
     <input type="text" placeholder="Expiry Date" formControlName = 'expire_date'>
     <br><br>
-    <p [ngStyle]="{'color': response === 'Created' ? 'green':'red'}">{{response}}</p><br>
+    <p [ngStyle]="{'color': response === 'Created' ? 'green':'red'}">{{response}}</p>
     <button type = "submit">Submit</button>
     
        
 </form>
+</div>
