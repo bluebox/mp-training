@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div *ngIf="user" style="text-align:center;text-transform:uppercase ;font-weight:bold; color:black; 
+background-color:#6666 ;opacity:.8;border:2px " class="main">
+  Hello {{user.emp_name}} <br>
+
+  <img class="pic" src="http://127.0.0.1:8000{{user.emp_pic}}" alt="" />
+</div>
+
+<div class="grid">
+  <ul>
+    <li>
+      <button routerLink="../Raiseacomplaint"><img style="opacity: .5;"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXXx2sfwYf5x2bKUSBg33F1RxYE0LnxWdrzw&usqp=CAU"
+          alt="">
+          Raise a Complaint
+        <!-- <h3 style="color:#666 ">Raise a Complaint</h3> -->
+      </button>
+
+
+    </li>
+    <li>
+      <button href="" routerLink="../complaints"><img style="opacity: .5;"
+          src="https://i.pinimg.com/originals/5e/8d/a8/5e8da860a7c3a578a27dabbf431e43ca.png" alt="">
+          Your Complaints
+          <!-- <h3 style="color:#666">Your Complaints</h3> -->
+      </button>
+    </li>
+    <li>
+      <button href="" routerLink="../employeetasks"><img style="opacity: .5;"
+          src="https://www.kindpng.com/picc/m/391-3916045_task-management-task-management-icon-hd-png-download.png"
+          alt="">Your Tasks
+        <!-- <h3 style="color:#666">Your Tasks</h3> -->
+      </button>
+    </li>
+
+    <li>
+      <button href="" routerLink="../editprofile"><img style="opacity: .5;"
+          src="https://static.vecteezy.com/system/resources/previews/000/367/333/non_2x/edit-profile-vector-icon.jpg"
+          alt="">Edit Profile
+        <!-- <h3 style="color:#666">Edit Profile</h3> -->
+      </button>
+    </li>
+  </ul>
+</div>

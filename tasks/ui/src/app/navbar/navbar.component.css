@@ -1,0 +1,76 @@
+.searchbar{
+    width: 250px;
+}
+#profilepic{
+    width: 250px;
+    height: 250px;
+}
+.search{
+    display: flex;
+    flex-direction: column;
+}
+.btnele{
+    border:0ch;
+    width: 220px;
+    /* height: 0px; */
+}
+.navbarmain{
+    position: relative;
+    width: 100%;
+}
+.navbar-expand-lg ,.navbar-light{
+    width: 100%;
+}
+.names{
+  margin-left: 71%;
+  position: absolute;
+  z-index: 999;
+    
+}
+.navbar{
+    background-color:#465b52;
+    width:100%
+}
+.navbar-brand ,h4 {
+    color: #088178;
+}
+.dropdown {
+    position: relative;
+    margin-right: 10px;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    left: -100px;
+    background-color: white;
+    min-width: 100px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {
+    
+    display: block;
+
+}
+.btn{
+border: 0px;
+}
+a{
+    text-decoration: none;
+}
+.fa-solid{
+color: white;
+    width: 50px;
+}

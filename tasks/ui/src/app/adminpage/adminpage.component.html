@@ -1,0 +1,22 @@
+<div class="nav" > <div class="div"><h3 style="text-align: center;">Complaint management System   </h3>
+</div>    <div class="btn1" (click)="logout()"><button  class="btn">Logout</button> </div>
+</div>
+
+<div class="main">
+<div class="navbar">
+<div class="createfacility">
+    <button class="btn" routerLink="./createfacility" > createFacility</button>
+</div>
+<div class="viewfacilities">
+    <button class="btn" routerLink="./viewfacilities" > viewFacilities</button>
+</div>
+<div class="createmanagerprofile">
+    <button class="btn" routerLink="./createmanager">create Manager Profile </button>
+</div>
+<div class="clratedevice">
+    <button class="btn"  routerLink="./device">create device</button>
+</div>
+</div>
+<div class="container">
+    <router-outlet></router-outlet>
+</div></div>

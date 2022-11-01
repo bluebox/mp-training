@@ -1,0 +1,11 @@
+<!-- <p>employeecard works!</p> -->
+
+  <div *ngIf="data">
+    id :  {{data.emp_id}}<br>
+     name : {{data.emp_name}}<br>
+    email :  {{data.emp_email}}<br>
+    role :  {{data.emp_role}}<br>
+  
+    <img id="profilepic" src="http://127.0.0.1:8000{{data.emp_pic}}"/>
+  </div>
+

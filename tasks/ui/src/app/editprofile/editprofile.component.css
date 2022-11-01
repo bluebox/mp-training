@@ -1,0 +1,31 @@
+.editprofile{
+    width: 100%;
+    margin: 10%;
+    border: 1px solid #6666;
+    padding: 10%;
+box-shadow: 10px 10px #6666;
+    
+
+}
+.editprofile input{
+    width: 100%;
+}
+
+.label{
+    width: 100%;
+    size: 10px;
+}
+
+.main{
+    padding-top: 5%;
+    display: block;
+    width: 30%;
+    margin: auto;
+
+
+}
+.btn{
+    margin-top: 10px;
+    background-color: #6666;
+    width:100%;
+}

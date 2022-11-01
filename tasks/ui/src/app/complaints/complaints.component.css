@@ -1,0 +1,44 @@
+.complaintcart{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 150px;
+    padding-left: 10%;
+    width: 40%;
+    border: 3px solid #e0e0e1;
+   box-shadow: 10px 10px #e0e0e1;
+    /* border: 2px solid #e0e0e1; */
+    
+}
+.btn{
+    border-radius: 4px;
+    background-color: #e0e0e1;
+    margin-left: 10px;
+}
+.names{
+    margin-left: 76%;
+    position: fixed;
+  }
+
+/* .complaintcart:hover{
+transform: scale(1.2);
+} */
+   
+/* table{
+    column-gap:100px ;
+    row-gap: 10px;
+} */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+  }
+  .status{
+    margin-left: 10%;
+  }
+  

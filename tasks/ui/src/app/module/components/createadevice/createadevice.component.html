@@ -1,0 +1,37 @@
+<div class="container">
+<div class="main">
+    <h3>Create a Device </h3>
+<div class="container">
+<form [formGroup]="device" (ngSubmit)="adddevice()">
+<label >device_id : </label> <br>
+<input type="text" formControlName="device_id"><br>
+<label >device_name : </label> <br>
+<input type="text" formControlName="device_name"><br>
+<input type="submit" value="Add Device" class="btn">
+</form></div>
+</div>
+<div class="list">
+    <h3 style="margin-bottom: 30px; text-align:center">device list</h3>
+    <table style="width:100% ;padding:10px">
+        <tr>
+            <th>device id </th>
+            <th>device name</th>
+            <th></th>
+
+        </tr>
+        <tr *ngFor="let ele of list">
+            <th>{{ele.device_id}}</th>
+            <th>{{ele.device_name}}</th>
+            <th><button class="btn" (click)="delete(ele.device_id)">delete</button></th>
+        </tr>
+    </table>
+    <div *ngIf="list.length >0" style="width: 40%; margin:auto"> <button (click)="next(-1)" >
+        prev
+    </button>
+    page {{data.page}} of {{data.totalPages}}
+    <button (click)="next(1)">
+        next
+    </button>
+</div>
+</div>
+</div>

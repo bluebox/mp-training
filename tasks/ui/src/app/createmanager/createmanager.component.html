@@ -1,0 +1,24 @@
+<!-- <p>createmanager works!</p> -->
+<div class="maincard">
+    <h4 style="text-align: center; color:#454545 ">Employee register</h4>
+<div *ngIf="createmanagerform" class="createprofile">
+    <form [formGroup]="createmanagerform" (ngSubmit)="createmanager()">
+        <!-- <label class="label">employee id : </label> -->
+        <input type="text" formControlName="emp_id" placeholder="employee id"><br>
+    <!-- <label class="label">employee name : </label> -->
+    <input type="text" formControlName="emp_name" placeholder="employee name" ><br>
+    <!-- <label class="label">employee mobile number : </label> -->
+    <input type="text" formControlName="emp_mobile" placeholder="employee mobile" ><br>
+    <!-- <label class="label">employee email : </label> -->
+    <input type="text" formControlName="emp_email" placeholder="emnployee email"><br>
+    <!-- <label class="label">employee role : </label> -->
+    <input type="text" formControlName="emp_role" placeholder="employee role"><br>
+    <!-- <label class="label">employee password : </label> -->
+    <input type="text" formControlName="emp_password" placeholder="employee password"><br>
+    <!-- <label class="label">Fcility ID  : </label> -->
+    <input type="text" formControlName="facility_id" placeholder="Facilit Id"><br>
+    <button class="btn">submit</button>
+    <p style="color:red"></p>
+    </form>
+    </div>
+</div>

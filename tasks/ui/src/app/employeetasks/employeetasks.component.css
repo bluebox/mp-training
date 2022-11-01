@@ -1,0 +1,34 @@
+.card input {
+    width: 50%;
+}
+.card{
+    border: 3px solid #e0e0e1;
+    width: 40%;
+    margin-left: 30px;
+    margin-top: 10px;
+    box-shadow: 8px 8px #e0e0e1;
+}
+table {
+  overflow-x:auto;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+  }
+  .status{
+    margin-left: 10%;
+  }
+  .btn{
+    background-color: #e0e0e1;
+  }
+  .nothingimage{
+    width: 100%;
+  }
+  .nothingimage img{
+    background-size: cover;
+  }

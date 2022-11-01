@@ -1,0 +1,62 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-light " style=" width:100%; margin-bottom:2px ;background-color: rgba(45,51,58); position:relative;">
+    <!-- <h5 class="navbar-brand" style="color:#088178;" >Complaint Management </h5> -->
+    <a routerlink="../home" style="color:#00ff73e8;;text-decoration: none;font-weight:bold">Complaint Management</a>
+   <!-- <button routerLink="../home"  style="color:#088178;" class="btn" >Complaint Management </button> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <button class="btn btn primary" (click)="usercomplaints()" routerLink="../complaints" style="color: white;">Complaints <span class="sr-only">(current)</span></button>
+            </li>
+            <li class="nav-item active">
+                <button class="btn btn primary"  routerLink="../employeetasks" style="color: white;">Tasks</button>
+            </li>
+         
+            <!-- <li class="nav-item active">
+                <button class="btn btn primary" routerLink="../editprofile">Edit Profile</button>
+            </li> -->
+            <li class="nav-item active">
+                <button class="btn btn primary" routerLink="../home" style="color: white;">Home</button>
+            </li>
+        </ul> 
+        <!-- <form class="form-inline my-2 my-lg-0"> -->
+            <!-- <input class="form-control searchbar"  id="inputname" type="search" placeholder="Search by name" aria-label="Search">
+            <button class="btn btn primary"  (click)="getEmployee()">Search</button> -->
+        <!-- </form> -->
+        <!-- <div class="search">
+         <input class="form-control searchbar" autocomplete="off" id="inputname" type="search" placeholder="Search by name" aria-label="Search" (keydown)="displayemployee($event)">
+        
+    </div> -->
+        <!-- <div class="serachbtn">
+        <button class="btn btn primary" (click)="logout()" routerLink="../ ">logout</button>
+
+        </div> -->
+        <a>
+            <div class="dropdown">
+              <a><i class="fa-solid fa-user" aria-hidden="true" ></i> </a>
+              <div class="dropdown-content">
+                <a  > <button class="btn " routerLink="../editprofile" style="color: black;">Edit Profile</button></a>
+                <a  > <button class="btn btn primary" (click)="logout()" routerLink="../ ">logout</button></a>
+                <a  > <button class="btn btn primary" (click)="viewprofile()" routerLink="../profile">your stats</button></a>
+              </div>
+            </div>
+          </a>
+
+        
+    
+
+         </div>
+       
+    
+</nav>
+
+<div *ngFor="let employee of employeelist" class="names">
+    <button class="btnele" (click)="getEmployee(employee.emp_name)">  {{employee.emp_name}}</button>
+  </div>

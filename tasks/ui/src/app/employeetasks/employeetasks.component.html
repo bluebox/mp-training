@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+
+<input placeholder="search" [(ngModel)]="text">
+<button class="btn btn primary" style="background-color:#6666" (click)="search()">sarch</button>
+<table>
+    <tr>
+        <th>comp_id</th>
+        <th>status <select name="status" id="status" [(ngModel)]="isCompleted" (change)="search()">
+                <option value="all"> all </option>
+                <option value="completed">completed</option>
+                <option value="yettocomplete">yet to completed</option>
+
+            </select></th>
+        <th>raisedby</th>
+        <th>complaint-description</th>
+        <th>Complaint On</th>
+        <th>update</th>
+
+    </tr>
+    <tr *ngFor="let ele of list ; let i = index">
+
+        <td>{{ele.comp_id.comp_id}}</td>
+        <td>{{ ele.comp_status }}</td>
+        <td>{{ele.comp_id.emp_id.emp_name}}</td>
+        <td> {{ ele.comp_id.comp_desc}}</td>
+        <td>{{ele.comp_id.device_id.device_name}}</td>
+        <td>
+        <button type="button" class="btn " (click)="setid(ele.comp_id.comp_id)"  data-toggle="modal"data-target="#exampleModal">
+           update
+          </button>
+        </td>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <input type="text" #status>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="updatestatus(i,status.value)" data-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+    </tr>
+
+
+
+
+</table>
+
+<div *ngIf="list.length <=0" class="nothingimage"> 
+  <img src="" alt="">
+</div>

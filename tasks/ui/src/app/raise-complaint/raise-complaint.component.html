@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="maincard">
+  <h3 style="margin-top: 30px; text-align:center; color:#454545"> Raise A Complaint</h3>
+<div id="complaintdiv" *ngIf="complaintform" class="complaintcard">
+
+    <form [formGroup]="complaintform" (ngSubmit)="submitcomplaint()">
+      <label>facility : </label><br>
+      <select name="" id="" formControlName="facility_id" placeholder="Facility " (ngModelChange)="getDevices($event)" >
+        <option *ngFor="let facility of facilities" [value]="facility.facility_id" >{{facility.facility_dept}}</option>
+      </select>
+      <!-- <input type="text" formControlName="facility_id" > -->
+      <!-- <div *ngIf="complaintform.touched">
+              this field is requried 
+          </div> -->
+      <br>
+      <label>Complaint on: </label><br>
+      <!-- <input type="text" formControlName="device_id" > -->
+      <select name="" id="" formControlName="device_id" aria-placeholder="device " (ngModelChange)="clear()">
+           <option *ngFor="let device of devices" [value]="device.device_id">{{device.device_name}}</option>
+      </select>
+      <br>
+      <label>complaint_desc : </label>
+      <br>
+
+      <input type="text" formControlName="comp_desc" (keydown)="clear()" (keydown.enter)="submitcomplaint()"><br>
+      <button class="btn">submit</button><br>
+      <p style="color :red">{{msg}}</p>
+      <div *ngIf="successmsg" class="successmsg">
+        <p  style="color :green">{{successmsg}}</p></div>
+      </form>
+    </div>
+  </div>

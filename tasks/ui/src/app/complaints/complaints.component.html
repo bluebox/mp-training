@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div style=" width:50% ; margin: auto;">
+    <select name="" id="">
+        <option value="">complaint id</option>
+        <option value="">device name</option>
+        <option value="">description</option>
+        
+    </select>
+    <input type="text" placeholder="search the complaint" [(ngModel)]="currenttext" (keydown.enter)="search()"
+        style="width: 65%; text-align:center">
+    
+    <button class="btn btn primary" style="background-color:#6666" (click)="search()">search</button>
+</div>
+<div class="container" style="overflow-x: auto;">
+    <table>
+        <tr>
+            <th>comp_id</th>
+            <th>device_id</th>
+            <th>Complaint On</th>
+            <th>status <select name="status" id="status" [(ngModel)]="iscompleted" (change)="search()">
+                    <option value="all"> all </option>
+                    <option value="completed" (click)="search()">completed</option>
+                    <option value="yettocomplete">yet to completed</option>
+
+                </select></th>
+            <th>complaint-description</th>
+            <th>assigned_to</th>
+            <th>delete </th>
+
+        </tr>
+        <tr *ngFor="let ele of list">
+
+            <td>{{ele.comp_id}}</td>
+            <td>{{ ele.device_id.device_id }}</td>
+            <td> {{ ele.device_id.device_name }}</td>
+            <td *ngIf="ele.is_completed"> completed </td>
+            <td *ngIf="!ele.is_completed">not completed </td>
+
+            <td> {{ ele.comp_desc}}</td>
+            <td *ngIf="ele.is_assigned">{{ele.assigned_to}}</td>
+            <td *ngIf="!ele.is_assigned">not yet assigned</td>
+            <td><button (click)="delete(ele.comp_id)" class="btn"> Delete </button></td>
+
+        </tr>
+
+
+
+
+    </table>
+</div>
+<div class="next" style="margin-left:40%; width:20%; margin-top:15px" *ngIf="list.length>0">
+    <button class="btn" (click)="next(-1)">prev</button> &nbsp;
+    page {{complaints.page}} of {{complaints.totalPages}}
+    <button class="btn" (click)="next(1)">next</button>
+</div>
+
+<div class="div" *ngIf="list.length ==0 "> <img
+        src="https://i.pinimg.com/originals/49/e5/8d/49e58d5922019b8ec4642a2e2b9291c2.png" alt=""></div>

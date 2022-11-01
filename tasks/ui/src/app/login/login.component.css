@@ -1,0 +1,26 @@
+
+.loginbar{
+     margin-top: 300px;
+    width: 80%;
+    height: 500px;
+}
+
+.main
+{
+    margin: auto;
+    width: 50%;
+}
+#role {
+    width: 200px;
+    height: 20px;
+    font-size: 15px;
+    background-color: rgb(8, 154, 245);
+
+}
+.role{
+    margin-right: 20px;
+    font-size: 15px;
+}
+.successmsg{
+    color: red;
+}

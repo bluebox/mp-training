@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="main">
+
+    <div *ngIf="employeeform" class="editprofile">
+        <h3 style="text-align:center ;margin-bottom:30px">Edit Profile</h3>
+        <form [formGroup]="employeeform" (ngSubmit)="editprofile()">
+            <label class="label">employee name : </label>
+            <input type="text" formControlName="emp_name"><br>
+            <label class="label">employee mobile number : </label>
+            <input type="text" formControlName="emp_mobile"><br>
+            <label class="label">employee email : </label>
+            <input type="text" formControlName="emp_email"><br>
+            <label class="label">employee role : </label>
+            <input type="text" formControlName="emp_role"><br>
+            <label class="label">employee password : </label>
+            <input type="password" formControlName="emp_password"><br>
+            <label class="label">Facility ID : </label>
+            <input type="text" formControlName="facility_id"><br>
+            <button type="
+            submit" class="btn">submit</button>
+        </form>
+    </div>
+</div>

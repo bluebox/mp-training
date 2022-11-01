@@ -1,0 +1,28 @@
+/* #complaintdiv{
+    display: none;
+} */
+.maincard{
+    margin: auto;
+    width: 40%;
+}
+.complaintcard{
+  margin-top: 40px;
+  box-shadow:8px 8px  #e0e0e1;
+    padding: 8%;
+    border: 3px solid  #e0e0e1 ;
+
+
+}
+.complaintcard input{
+width: 80%;
+}
+.complaintcard select{
+    width: 80%;
+    height: 30px;
+    line-height: 2;
+}
+.btn{
+    width: 80%;
+    margin-top: 10px;
+    background-color:#e0e0e1 ;
+}

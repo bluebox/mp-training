@@ -1,0 +1,33 @@
+.container{ 
+    margin-top: 12%;
+     width: 100%;
+    
+    /* border: 3px solid black; */
+}
+.main{
+    /* width: 30%; */
+    margin: auto;
+    border: 3px solid #6666;
+    padding: 5%;
+    box-shadow: 10px 10px #6666;
+}
+.main input{
+    width: 90%;
+}
+.btn{
+    margin-top: 5px;
+    width: 90%;
+    background-color: #6666;
+}
+.list{
+    width: 60%;
+    border: 2px solid #6666;
+    padding: 10px;
+    box-shadow: 10px 10px #6666;
+
+
+}
+.container{
+    width: 100%;
+    display: flex;
+}

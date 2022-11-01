@@ -1,0 +1,14 @@
+.card{
+    width: 60%;
+    margin-top: 10px;
+    border: 3px solid #e0e0e1;
+    box-shadow: 7px 7px #e0e0e1 ;
+    padding: 6px;
+    margin-bottom: 8px;
+}
+.btn{
+    background-color: #e0e0e1;
+    width: 60%;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}

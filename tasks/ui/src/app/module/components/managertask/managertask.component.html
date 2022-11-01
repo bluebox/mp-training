@@ -1,0 +1,56 @@
+<div class="div" style="width: 40%; margin:auto;">
+<input type="text" placeholder="search" [(ngModel)]="text" (keydown.enter)="search()">
+            <button class="btn btn primary" style="background-color:#6666" (click)="search()">search</button>
+        </div>
+<table style="overflow-x: auto;">
+    <tr>
+    <th>comp_id</th>
+      <th>raisedby</th>
+    <th>complaint-description</th>
+      <th>device id</th>
+    <th>assign to
+    <select name="assignedto"[(ngModel)]="assignedto"  (change)=search()>
+        <option value="all">all</option>
+        <option *ngFor="let employee of employeelist" value="{{employee.emp_name}}"> {{employee.emp_name}}</option>
+    </select></th>
+    <th>assign
+        <select name="assigned" [(ngModel)]="isassigned" (change)="search()" >
+            <option value="all">all</option>
+            <option  value="assigned"> assigned </option>
+            <option value="yettobeassigned"> yet to be assigned</option>
+
+        </select>
+    </th>
+
+</tr>
+<tr *ngFor="let ele of list" >
+ 
+    <td>{{ele.comp_id}}</td>
+    <td>{{ele.emp_id.emp_name}}</td>
+    <td>{{ele.comp_desc}}</td>
+    <td>{{ele.device_id.device_name}}</td>
+
+    <td *ngIf="!ele.is_assigned"> <select name="employee" id="employee"  >
+        <option value="">choose a employee</option>
+        <option *ngFor="let employee of employeelist" value="{{employee.emp_id}}"> {{employee.emp_name}}</option>
+    </select></td>
+    <td *ngIf="ele.is_assigned"> {{ele.assigned_to}}</td>
+ 
+    <td *ngIf="!ele.is_assigned">  <button (click)="assignComplaint(ele.comp_id)" class="btn">Assign</button>  </td>
+    <td *ngIf="ele.is_assigned">  <button class="btn" style="color:green;"> assigned</button>  </td>
+   
+</tr>
+
+
+
+
+</table>
+
+<div class="next" style="margin-left: 43%; " *ngIf="list.length > 0">
+    <button class="btn" (click)="next(-1)">prev</button>
+   page  {{complaints?.page}} of {{complaints?.totalPages}} 
+    <button class="btn" (click)="next(1)">next</button>
+
+</div>
+<div class="m-5" *ngIf="list.length ==0 " style="margin-left:1000px"> <img
+    src="https://i.pinimg.com/originals/49/e5/8d/49e58d5922019b8ec4642a2e2b9291c2.png" alt=""></div>

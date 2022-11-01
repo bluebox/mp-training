@@ -1,0 +1,13 @@
+<p>createfacility works!</p>
+<div class="farmcard">
+<form [formGroup]="facilityform" (ngSubmit)="createfacility()">
+<input type="text" formControlName="facility_id" placeholder="facility Id" (keydown)="clear()">
+<br>
+<input type="text" formControlName="facility_dept"  placeholder="facility department" (keydown)="clear()"><br>
+<input type="text" formControlName="facility_location"  placeholder="facility location" (keydown)="clear()">
+<br>    
+<input type="submit" value="submit"/>
+<p style="color:red">{{msg}}</p>
+</form>
+</div>
+
