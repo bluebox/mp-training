@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpServiceService } from '../../http-service.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpService } from 'src/app/services/http-service/http.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-customer',
   templateUrl: './register-customer.component.html',
   styleUrls: ['./register-customer.component.css']
 })
-export class RegisterCustomerComponent implements OnInit {
+export class RegisterCustomerComponent {
   hide = true;
   formNotValid : boolean = false
   formError ?: string =""
@@ -18,10 +17,6 @@ export class RegisterCustomerComponent implements OnInit {
 
 
   constructor(private http: HttpServiceService, private router: Router) {
-   
-
-    
-
    }
   
 
@@ -38,10 +33,7 @@ export class RegisterCustomerComponent implements OnInit {
     // password1: new FormControl(" ", Validators.minLength(8))
   })
 
-  ngOnInit(): void {
-    
 
-  }
   submitRegister() {
     // console.log(this.customerRegisterForm.value);
     if (this.customerRegisterForm.valid) {

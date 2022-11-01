@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   hide: boolean = true;
   formNotValid: boolean = false;
   responseMessage: string = '';
@@ -70,7 +70,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngOnInit(): void { }
 
   ngOnDestroy(){
     if(this.loginSubscription){

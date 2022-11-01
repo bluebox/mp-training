@@ -1,76 +1,155 @@
-# updated
+#pylint:disable=E1101
+#pylint:disable=R1705
+
+"""views """
+# jwt
 import json
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from appointment import serializers
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from rest_framework.exceptions import APIException
 from rest_framework.authentication import get_authorization_header
-from  rest_framework import exceptions
+from rest_framework import exceptions
+
+# updated
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, logout
+from django.http import JsonResponse
 
-# jwt
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.exceptions import APIException
 
-from appointment.serializers import AppointmentSerializer
-from .authentication import create_access_token,create_refresh_token , decode_access_token,decode_refresh_token
-from users.serializers import UserSerializer, CustomerSerializer, EmployeeSerializer
-from .models import User, Customer, Staff
 from appointment.models import Branch
 from appointment.serializers import BranchSerializer
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login, logout
+from appointment.models import Appointment
+from appointment.serializers import AppointmentSerializer
+from users.serializers import UserSerializer, CustomerSerializer, EmployeeSerializer
+from .authentication import create_access_token, create_refresh_token,\
+ decode_access_token, decode_refresh_token
+from .models import User, Customer, Staff
 
+
+# --------------------- Detail staff------------------
 
 class DetailStaff(APIView):
-    def get(self,request):
-        pass
+    """detail view for employee"""
+    @staticmethod
+    def get(employee_id):
+        """get employee"""
+        employee = Staff.objects.filter(staff_id=employee_id).first()
+        employee_serializer = EmployeeSerializer(employee, many=False)
+        user_serializer = UserSerializer(employee.user_id, many=False)
 
+        return Response({"employee_details": employee_serializer.data,
+                         "user_details": user_serializer.data}, status=status.HTTP_201_CREATED, )
+
+    @staticmethod
+    def delete(employee_id):
+        """delete employee"""
+        employee = Staff.objects.filter(staff_id=employee_id).first()
+        if employee:
+            employee.delete()
+            return JsonResponse(data={'success': 'Employee deleted successfully.'}, safe=False)
+        else:
+            return JsonResponse(data={'success': 'Employee is not deleted successfully.'},
+                                safe=False)
+
+    @staticmethod
+    def put(request, employee_id):
+        """update staff"""
+        employee_data = JSONParser().parse(request)
+        employee = Staff.objects.filter(staff_id=employee_id).first()
+        user = User.objects.filter(id=employee.user_id.id).first()
+        serializer = UserSerializer(user, data=employee_data)
+        empl_serializer = EmployeeSerializer(employee,
+                                             data={"designation":
+                                                                employee_data["designationControl"],
+                                                   "qualification": employee_data['qualification'], 
+                                                   "staff_id": employee.staff_id, 
+                                                   "user_id": user.id,
+                                                   "salary": int(employee_data['salary']), "years_of_experience": int(employee_data['years_of_experience']) or 0,
+                                                   'branch': employee_data['branchControl']})
+        if serializer.is_valid():
+            serializer.save()
+            if empl_serializer.is_valid():
+                empl_serializer.save()
+                return Response({'data': serializer.data, 'message': "updated"}, status=200)
+            else:
+                error_list = [serializer.errors[error][0] for error in serializer.errors]
+                return Response({"message": error_list}, status=200)
+        else:
+            error_list = [serializer.errors[error][0] for error in serializer.errors]
+            return Response({"message": error_list}, status=200)
+
+
+class FilterEmployee(APIView):
+    """filter staffs"""
+    @staticmethod
+    def get(request):
+        """filter employees"""
+        text = request.GET['text']
+        employees = Staff.objects.filter(Q(staff_id__icontains=text)
+                                         |Q(user_id__username__icontains=text))
+        employees = list(employees.values(
+            'staff_id', 'user_id__username'
+        ))
+        return Response({'employees': json.dumps(employees)}, status=200)
+
+
+# ------------------- detail customer------------------
 
 class DetailCustomer(APIView):
-    # @staticmethod
-    def get(self,request,customer_id):
-        customer = Customer.objects.filter(customer_id = customer_id).first()
-        # user_data = User.objects.filter(id=customer.user_id.id).first()
-        customer_serializer = CustomerSerializer(customer,many=False)
+    """deatil view for customer"""
+    @staticmethod
+    def get(customer_id):
+        """get customer"""
+        customer = Customer.objects.filter(customer_id=customer_id).first()
+        customer_serializer = CustomerSerializer(customer, many=False)
         user_serializer = UserSerializer(customer.user_id, many=False)
         appointments = customer.appointment_set.all()
-        appointments= AppointmentSerializer(appointments,many=True)
-        return Response({"customer_details":customer_serializer.data,"user_details":user_serializer.data,'appointments':appointments.data}, status=status.HTTP_201_CREATED,)
+        appointments = AppointmentSerializer(appointments, many=True)
+        return Response({"customer_details": customer_serializer.data, 
+                         "user_details": user_serializer.data, 
+                         'appointments': appointments.data}, status=status.HTTP_201_CREATED)
 
-    def delete(self,request,customer_id):
+    @staticmethod
+    def delete(customer_id):
+        """delete customer"""
         customer = Customer.objects.filter(customer_id=customer_id).first()
         if customer:
             customer.delete()
-            return JsonResponse(data={'success': 'Customer deleted successfully.'}, safe=False)
-        else:
-            return JsonResponse(data={'success': 'customer is not deleted successfully.'}, safe=False)
-        return JsonResponse(
-            data={'Failure': 'Customer Doesn\'t exists . So, Appointment Data cound not be deleted successfully.'},
-            safe=False)
+            return JsonResponse(data={'success': 'Customer deleted successfully.'},
+                                safe=False)
 
-    def put(self,request,customer_id):
+        else:
+            return JsonResponse(data={'success': 'customer is not deleted successfully.'},
+                                safe=False)
+
+    
+    @staticmethod
+    def put(request, customer_id):
+        """update customer object"""
         customer_data = JSONParser().parse(request)
         customer = Customer.objects.filter(customer_id=customer_id).first()
         user = User.objects.filter(id=customer.user_id.id).first()
-        serializer = UserSerializer(user,data=customer_data)
+        serializer = UserSerializer(user, data=customer_data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'data': serializer.data, 'message': "updated"}, status=200)
+            return Response({'data': serializer.data, 'message': "updated"},
+                            status=200)
         else:
             error_list = [serializer.errors[error][0] for error in serializer.errors]
             return Response({"message": error_list}, status=200)
 
 
 class FilterCustomer(APIView):
-    def get(self,request):
+    """filter customer"""
+    @staticmethod
+    def get(request):
+        """get filtered customers"""
         text = request.GET['text']
-        customers = Customer.objects.filter(Q(customer_id__icontains=text) | Q(user_id__username__icontains=text))
+        customers = Customer.objects.filter(Q(customer_id__icontains=text) |
+                                            Q(user_id__username__icontains=text))
         customers = list(customers.values(
             'customer_id', 'user_id__username'
         ))
@@ -79,8 +158,10 @@ class FilterCustomer(APIView):
 
 
 class RegisterCustomer(APIView):
-    def post(self, request):
-        print(request.data)
+    """add customer"""
+    @staticmethod
+    def post(request):
+        """add customer"""
         username = request.data['username']
         user = User.objects.filter(username=username).first()
         if user:
@@ -91,7 +172,9 @@ class RegisterCustomer(APIView):
             serializer = UserSerializer(data=data)
             if serializer.is_valid():
                 user = serializer.save()
-                customer_obj = CustomerSerializer(data={"customer_id": "MEDC" + str(user.id), "user_id": user.id})
+                customer_obj = CustomerSerializer(data={"customer_id":
+                                                        "MEDC" + str(user.id), 
+                                                        "user_id": user.id}) 
                 if customer_obj.is_valid():
                     customer_obj.save()
                     return Response({'data': serializer.data, 'message': "registered"}, status=200)
@@ -103,39 +186,39 @@ class RegisterCustomer(APIView):
                 return Response({"message": error_list}, status=200)
 
 
-    def get(self, request):
+    @staticmethod
+    def get():
+        """get all customers"""
         customers = Customer.objects.all()
-        # users = list(users.values(
-        #     'customer_id','user_id','user_id.username','user_id.mobile_number','user_id.age','user_id.address','user_id.pincode',
-        # ))
         customers = list(customers.values(
-            'customer_id','user_id__username'
+            'customer_id', 'user_id__username'
         ))
-        # serializer = CustomerSerializer(users, many=True)
         return Response({'customers':json.dumps(customers)}, status=200)
 
 
 class RegisterEmployee(APIView):
-    def post(self, request):
+    """register employee"""
+    @staticmethod
+    def post(request):
+        """add employee"""
         username = request.data['username']
         user = User.objects.filter(username=username).first()
         if user:
             return Response({'message': "username already exist "})
         else:
             serializer = UserSerializer(
-                    data={'username': request.data["username"], "first_name": request.data["first_name"],
-                          'last_name': request.data["last_name"], 'email': request.data['email'],
-                          "mobile_number": request.data["mobile_number"], "age": int(request.data['age']),
-                          'address': request.data['address'], "pincode": request.data['pincode'],
-                          "password": request.data['password'], "user_type": 'staff'})
+                data={'username': request.data["username"], "first_name": request.data["first_name"], 
+                        'last_name': request.data["last_name"], 'email': request.data['email'], 
+                        "mobile_number": request.data["mobile_number"], "age": int(request.data['age']),  
+                        'address': request.data['address'], "pincode": request.data['pincode'], 
+                        "password": request.data['password'], "user_type": 'staff'})
             if serializer.is_valid():
                 user = serializer.save()
                 employee_obj = EmployeeSerializer(data={"staff_id": "MEDS" + str(user.id), "user_id": user.id,
                                                         "designation": request.data["designation"],
                                                         "qualification": request.data['qualification'],
-                                                        "salary": int(request.data['salary']),
-                                                        "years_of_experience": int(request.data[
-                                                                                   'years_of_experience']) or 0,
+                                                        "salary": int(request.data['salary']), 
+                                                        "years_of_experience": int(request.data['years_of_experience']) or 0,
                                                         'branch': request.data['branch']})
                 if employee_obj.is_valid():
                     employee_obj.save()
@@ -147,11 +230,10 @@ class RegisterEmployee(APIView):
                 error_list = [serializer.errors[error][0] for error in serializer.errors]
                 return Response(error_list, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request):
+    @staticmethod
+    def get():
+        """get all employees"""
         staffs = Staff.objects.all()
-        # users = list(users.values(
-        #     'customer_id','user_id','user_id.username','user_id.mobile_number','user_id.age','user_id.address','user_id.pincode',
-        # ))
         staffs = list(staffs.values(
             'staff_id', 'user_id__username', 'designation'
         ))
@@ -159,7 +241,10 @@ class RegisterEmployee(APIView):
 
 
 class BranchHandler(APIView):
-    def get(self, request):
+    """branch view"""
+    @staticmethod
+    def get():
+        """get all branches"""
         branches = Branch.objects.all()
         serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data, status=200)
@@ -169,7 +254,8 @@ class BranchHandler(APIView):
 
 @csrf_exempt
 @api_view(['POST'])
-def logoutUser(request):
+def logout_user(request):
+    """logout user"""
     username = request.data.get("username")
     user = User.objects.get(username=username)
     logout(request)
@@ -177,7 +263,10 @@ def logoutUser(request):
 
 
 class LoginView(APIView):
-    def post(self,request):
+    """login view"""
+    @staticmethod
+    def post(request):
+        """login """
         username = request.data.get("username")
         password = request.data.get('password')
         user = User.objects.filter(username=request.data['username']).first()
@@ -188,39 +277,38 @@ class LoginView(APIView):
             return Response({'message': "Incorrect Password! "}, status=200)
         else:
             if user.user_type == 'customer':
-                user_type_obj = Customer.objects.filter(user_id = user.id).first()
+                user_type_obj = Customer.objects.filter(user_id=user.id).first()
                 user_type_id = user_type_obj.customer_id
             elif user.user_type == 'staff':
                 user_type_obj = Staff.objects.filter(user_id=user.id).first()
                 user_type_id = user_type_obj.staff_id
             else:
                 user_type_id = user.id
-
+        
         access_token = create_access_token(user.id)
         refresh_token = create_refresh_token(user.id)
         response = Response()
 
-        response.set_cookie(key='refreshToken' , value= refresh_token , httponly = True) # refresh token in cookie n access token in response data
+        response.set_cookie(key='refreshToken', value=refresh_token, httponly=True) # refresh token in cookie n access token in response data
         response.data = {
-            'message':"success",
-            'token':access_token,
-            'user_type' : user.user_type,
-            'username' : user.username,
+            'message':"success", 
+            'token': access_token, 
+            'user_type' : user.user_type, 
+            'username' : user.username, 
             'user_type_id':user_type_id
         }
         return response
 
-        # return Response({"message": "logged out", 'user': user.username}, status=200)
-
 
 @csrf_exempt
 @api_view(['GET'])
-def userView(request):
+def user_view(request):
+    """get authenticated user"""
     auth = get_authorization_header(request).split()   # first param is bearer n 2nd is token (access token)
-    if auth and len(auth)==2:
+    if auth and len(auth) == 2:
         token = auth[1].decode('utf-8')
-        id = decode_access_token(token)
-        user = User.objects.filter(id = id).first()
+        _id = decode_access_token(token)
+        user = User.objects.filter(id=_id).first()
         if user.user_type == 'customer':
             user_type_obj = Customer.objects.filter(user_id=user.id).first()
             user_type_id = user_type_obj.customer_id
@@ -237,21 +325,15 @@ def userView(request):
     raise exceptions.AuthenticationFailed('unauthenticate')
 
 
-# def userView(request):
-#     auth = get_authorization_header(request).split()   # first param is bearer n 2nd is token (access token)
-#     if auth and len(auth)==2:
-#         token = auth[1].decode('utf-8')
-#         id = decode_access_token(token)
-#         user = User.objects.filter(id = id).first()
-#         return Response(UserSerializer(user).data)
-#     raise exceptions.AuthenticationFailed('unauthenticate')
-
 class RefreshToken(APIView):
+    """refresh token view"""
     # authentication_classes = []
-    def post(self,request):
-        refresh_token  = request.COOKIES.get('refreshToken')
-        id = decode_refresh_token(refresh_token)
-        access_token = create_access_token(id)
+    @staticmethod
+    def post(request):
+        """refreshing token"""
+        refresh_token = request.COOKIES.get('refreshToken')
+        _id = decode_refresh_token(refresh_token)
+        access_token = create_access_token(_id)
         print(access_token)
         return Response({
             'token' : access_token
@@ -259,10 +341,27 @@ class RefreshToken(APIView):
 
 
 class LogoutView(APIView):
-    def post(self,_):
+    """view to logout"""
+    @staticmethod
+    def post():
+        """logout method"""
         response = Response()
-        response.delete_cookie(key= 'refreshToken')
+        response.delete_cookie(key='refreshToken')
         response.data = {
             'message' : 'success'
         }
         return response
+
+
+class AllCountApi(APIView):
+    """get counts for admin page"""
+    @staticmethod
+    def get():
+        """get counts"""
+        employees = Staff.objects.all().count()
+        customers = Customer.objects.all().count()
+        branches = Branch.objects.all().count()
+        appointments = Appointment.objects.all().count()
+
+        return JsonResponse({'appointments':appointments, 'employees': employees,
+                             'customers':customers, 'branches':branches})

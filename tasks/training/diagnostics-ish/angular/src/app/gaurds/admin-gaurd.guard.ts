@@ -16,14 +16,12 @@ export class AdminGaurdGuard implements CanActivate {
     // this.subjectService.isLoggedInSubject.subscribe(data=>{
     //   this.loggenIn = data
     // })
-  }
-
-      
-  ngOnInit(){
     if (this.user_type == 'admin') {
       this.isAdmin = true
     }
   }
+
+  
   
   canActivate(
     route: ActivatedRouteSnapshot,

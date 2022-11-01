@@ -9,6 +9,7 @@ import {BehaviorSubject} from 'rxjs'
 export class SubjectServiceService  {
  
   loggedIn : boolean = false
+  userType :string =''
   isCustomer : boolean = false
   
   public usernameSubject = new BehaviorSubject("");
@@ -27,6 +28,9 @@ export class SubjectServiceService  {
         this.userTypeSubject.next(data['user_type'])
         this.userTypeIdSubject.next(data['user_type_id'])
         this.loggedIn = true
+        this.userType = data['user_type']
+
+      //  ccccccccc
         if (data['user_type']){
           this.isCustomer  = true
         }
@@ -39,6 +43,7 @@ export class SubjectServiceService  {
         this.userTypeIdSubject.next("")
         this.loggedIn = false
         this.isCustomer = false
+        this.userType = ""
       }
     })
    }
@@ -48,6 +53,7 @@ export class SubjectServiceService  {
     this.userTypeSubject.next(data['user_type'])
     this.userTypeIdSubject.next(data['user_type_id'])
     this.loggedIn = true
+    this.userType = ""
     if (data['user_type']) {
       this.isCustomer = true
     }

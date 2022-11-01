@@ -1,11 +1,12 @@
 <mat-toolbar>
-  <mat-icon routerLink="" class="icon">home</mat-icon>
-  <h1 routerLink="">DIAGNOSTICS </h1>
+  <mat-icon *ngIf="!isAdmin" routerLink="" class="icon">home</mat-icon>
+  <h1  *ngIf="!isAdmin"routerLink="">DIAGNOSTICS </h1>
+  <mat-icon *ngIf="isAdmin" routerLink="../admin" class="icon">home</mat-icon>
+  <h1 *ngIf="isAdmin" routerLink="../admin">Admin </h1>
   <span class="example-spacer"></span>
   <!-- right side -->
-  <button routerLink="../admin/display-appointments" class="nabButton" mat-button >Admin</button>
-  <button (click)="navigateCustomer()" class="nabButton" mat-button >Book Appointment</button>
-  <button routerLink="../customer/view-appointments" class="nabButton" mat-button >View Appointments</button>
+  <button *ngIf="!isAdmin"  (click)="navigateCustomer()" class="nabButton" mat-button >Book Appointment</button>
+  <button *ngIf="!isAdmin && loggedIn "  routerLink="../customer/view-appointments" class="nabButton" mat-button >View Appointments</button>
   <button *ngIf="loggedIn" routerLink="../logout" class="nabButton" mat-button >Logout</button>
   <button *ngIf="!loggedIn"  routerLink="../login" class="nabButton" mat-button >Login</button>
   <mat-icon class="icon">account_circle</mat-icon>

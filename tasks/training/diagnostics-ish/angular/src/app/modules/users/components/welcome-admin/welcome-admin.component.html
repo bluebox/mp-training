@@ -1,1 +1,19 @@
-<p>welcome-admin works!</p>
+<div class="title-container">
+<mat-card-title class="title">Welcome Admin!</mat-card-title>
+</div>
+<mat-grid-list class="grid" [gutterSize]="'15px'" cols="2" rowHeight="2:1">
+        <mat-grid-tile routerLink="../../admin/dislplay-employees" ><div class="content">
+        <h1>Total Employees</h1>
+        <h2>{{counts['employees']}}</h2>
+    </div></mat-grid-tile>
+    <mat-grid-tile routerLink="../../admin/display-customers" ><div class="content">
+        <h1>Total Customers</h1>
+        <h2>{{counts['customers']}}</h2>
+    </div></mat-grid-tile ><mat-grid-tile routerLink="../../admin/display-appointments" ><div class="content">
+        <h1>Total Appointments</h1>
+        <h2>{{counts['appointments']}}</h2>
+    </div></mat-grid-tile><mat-grid-tile routerLink="../../admin/display-branches" ><div class="content">
+        <h1>Total Branches</h1>
+        <h2>{{counts['branches']}}</h2>
+    </div></mat-grid-tile>
+  </mat-grid-list>  

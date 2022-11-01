@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../../http-service.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { EmployeeServiceService } from 'src/app/services/employee-service/employee-service.service';
 
 // interface 
 
@@ -18,7 +20,50 @@ export class RegisterEmployeeComponent implements OnInit {
   branchIdList : string[] =[]
   user_data : any
   invalidPassword: boolean = false
-  constructor(private http: HttpServiceService, private router: Router) { }
+   // update
+   employeeId !: string
+   employeeDetails: any
+   UserDetails: any
+  //  subs
+  paramSubscription !: Subscription
+  getEmployeeSubscription !: Subscription
+  updateCustomerSubscription!: Subscription
+  registerCustomerSubscription!: Subscription
+  constructor(private http: HttpServiceService, private router: Router, private actRouter: ActivatedRoute , private employeeSerive : EmployeeServiceService) { 
+    this.paramSubscription =this.actRouter.params.subscribe(data => {
+      this.employeeId = data['employee_id']
+      console.log(data);
+      
+    })
+    if (this.employeeId) {
+      this.getEmployeeSubscription= this.employeeSerive.getEmployee(this.employeeId).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          
+          this.employeeRegisterForm.get('username')?.setValue(data["user_details"]['username'])
+          this.employeeRegisterForm.get('first_name')?.setValue(data["user_details"]['first_name'])
+          this.employeeRegisterForm.get('last_name')?.setValue(data["user_details"]['last_name'])
+          this.employeeRegisterForm.get('email')?.setValue(data["user_details"]['email'])
+          this.employeeRegisterForm.get('mobile_number')?.setValue(data["user_details"]['mobile_number'])
+          this.employeeRegisterForm.get('age')?.setValue(data["user_details"]['age'])
+          this.employeeRegisterForm.get('address')?.setValue(data["user_details"]['address'])
+          this.employeeRegisterForm.get('pincode')?.setValue(data["user_details"]['pincode'])
+          this.employeeRegisterForm.get('qualification')?.setValue(data["employee_details"]['qualification'])
+          this.employeeRegisterForm.get('salary')?.setValue(data["employee_details"]['salary'])
+          this.employeeRegisterForm.get('years_of_experience')?.setValue(data["employee_details"]['years_of_experience'])
+          this.employeeRegisterForm.get('password')?.setValue(data["user_details"]['password'])
+          this.employeeRegisterForm.get('passwordAgain')?.setValue(data["user_details"]['password'])
+          this.employeeRegisterForm.get('designationControl')?.setValue(data["employee_details"]['designation'])
+          this.employeeRegisterForm.get('branchControl')?.setValue(data["employee_details"]['branch'])
+
+
+        },
+        error: (err: any) => {
+          console.log(err);
+        }
+      })
+    }
+  }
 
   hide = true;
   employeeRegisterForm: FormGroup = new FormGroup({
@@ -35,14 +80,17 @@ export class RegisterEmployeeComponent implements OnInit {
     years_of_experience: new FormControl("", Validators.required),
     password: new FormControl("", [Validators.minLength(8), Validators.required]),
     passwordAgain: new FormControl("", [Validators.minLength(8), Validators.required]),
+    designationControl: new FormControl("",  Validators.required),
+    branchControl: new FormControl("",  Validators.required),
+    // statusControl: new FormControl("",  Validators.required),
 
   })
 
 
 
-  designationControl = new FormControl<string | null>(null, Validators.required);
-  branchControl = new FormControl<string | null>(null, Validators.required);
-  statusControl = new FormControl<string | null>(null, Validators.required);
+  // designationControl = new FormControl<string | null>(null, Validators.required);
+  // branchControl = new FormControl<string | null>(null, Validators.required);
+  // statusControl = new FormControl<string | null>(null, Validators.required);
 
   ngOnInit(): void {
     this.http.getBranches().subscribe(data => {
@@ -66,22 +114,50 @@ export class RegisterEmployeeComponent implements OnInit {
     }
     else {
       this.invalidPassword = false
-      if (this.employeeRegisterForm.valid && this.designationControl.valid && this.branchControl.valid ) {
-        this.formNotValid = false
-        this.user_data = { ...this.employeeRegisterForm.value  ,"branch": this.branchControl.value, 'designation': this.designationControl.value}
-        this.http.registerEmployee(this.user_data).subscribe(data => {
+      console.log('update``');
+      
+      if (this.employeeRegisterForm.valid  ) {
+        if(this.employeeId){
+          console.log('update');
+          console.log(this.employeeRegisterForm.value);
+          
+          this.updateCustomerSubscription=  this.employeeSerive.updateEmployee(this.employeeRegisterForm.value,this.employeeId).subscribe({
+            next:(data:any)=>{
+                this.errorMessage = data.message
+                console.log(data);
+                
+                if (this.errorMessage == "updated") {
+                  this.router.navigate([`/admin/display-employee/${this.employeeId}`])
+              }
+            },
+            error:(err)=>{
+              console.log(err);
+              
+            }
+          })
+        }
+        else{
+          this.formNotValid = false
+          this.user_data = this.employeeRegisterForm.value
+          this.http.registerEmployee(this.user_data).subscribe(data => {
           console.log(data)
           this.errorMessage = data.message
           if (this.errorMessage == "registered") {
             this.router.navigate(['admin/dislplay-employees'])
           }
         })
+        }
       }
       else {
+        console.log(this.employeeRegisterForm.value);
+        
         this.formNotValid = true
         
       }
     }
+
+  }
+  updateEmployee(){
 
   }
   DesignationChange(e: any) {

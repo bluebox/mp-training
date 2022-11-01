@@ -8,6 +8,7 @@ import { NewBranchComponent } from './components/branches/new-branch/new-branch.
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DisplayCustomerComponent } from './components/display-customer/display-customer.component';
 import { DisplayCustomersComponent } from './components/display-customers/display-customers.component';
+import { DisplayEmployeeComponent } from './components/display-employee/display-employee.component';
 import { DisplayEmployeesComponent } from './components/display-employees/display-employees.component';
 import { DisplayLabsComponent } from './components/labs/display-labs/display-labs.component';
 import { NewLabComponent } from './components/labs/new-lab/new-lab.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path:'register-customer' , component : RegisterCustomerComponent },
     {path:'update-customer/:customer_id' , component : RegisterCustomerComponent },
     { path: 'register-employee', component: RegisterEmployeeComponent },
+    { path: 'update-employee/:employee_id', component: RegisterEmployeeComponent },
     { path: 'book-appointment', component: BookAppointmentComponent },
     { path: 'edit-appointment/:id', component: BookAppointmentComponent },
     { path: 'display-appointments', component: DisplayAppointmentsComponent },
@@ -35,6 +37,8 @@ const routes: Routes = [
     { path: 'dislplay-employees', component: DisplayEmployeesComponent},
     { path: 'display-customers', component: DisplayCustomersComponent},
     { path: 'display-customer/:cutomer_id', component: DisplayCustomerComponent},
+    { path: 'display-employee/:employee_id', component: DisplayEmployeeComponent},
+
     { path: '', redirectTo:'welcome',pathMatch:"full"}
   ]}
 ];

@@ -1,4 +1,5 @@
 <h1 style="text-align: center; margin-top:20px;font-size:30px;font-weight:bolder;color:rgb(94, 30, 153)">Employees</h1>
+<!-- <app-search (searchTextChanged)="onSearchTextEntered($event)" ></app-search> -->
 
 <div class="table-container">
   <mat-form-field appearance="standard">
@@ -51,7 +52,7 @@
       <ng-container matColumnDef="view">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
-          <button  [routerLink]="['../display-customer', row.staff_id]" mat-button mat-raised-button="" style="color: #3f1651; background-color: #e4d2ed">
+          <button  [routerLink]="['../display-employee', row.staff_id]" mat-button mat-raised-button="" style="color: #3f1651; background-color: #e4d2ed">
             Details<mat-icon>person</mat-icon>
           </button>
         </td>

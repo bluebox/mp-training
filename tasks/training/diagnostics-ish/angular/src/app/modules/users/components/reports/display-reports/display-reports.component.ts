@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-display-reports',
   templateUrl: './display-reports.component.html',
   styleUrls: ['./display-reports.component.css']
 })
-export class DisplayReportsComponent implements OnInit {
+export class DisplayReportsComponent  {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

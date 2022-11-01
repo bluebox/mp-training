@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { HttpService } from 'src/app/services/http-service/http.service';
   templateUrl: './register-customer.component.html',
   styleUrls: ['./register-customer.component.css']
 })
-export class RegisterCustomerComponent implements OnInit {
+export class RegisterCustomerComponent  {
   hide = true;
   formNotValid: boolean = false
   formError?: string = ""
@@ -66,9 +66,7 @@ export class RegisterCustomerComponent implements OnInit {
     passwordAgain: new FormControl("", [Validators.minLength(8), Validators.required]),
     // password1: new FormControl(" ", Validators.minLength(8))
   })
-  ngOnInit(): void {
 
-  }
   submitRegister() {
     // console.log(this.customerRegisterForm.value);
     this.customerRegisterForm.get('username')?.setValue(this.customerRegisterForm.get('username')?.value.trim())

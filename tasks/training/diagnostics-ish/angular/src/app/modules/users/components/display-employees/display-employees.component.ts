@@ -65,5 +65,24 @@ export class DisplayEmployeesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  // onSearchTextEntered(searchValue: string){
+  //   // console.log(searchValue);
+  //   if (searchValue.length >0) {
+  //     this.searchText = searchValue
+  //     this.http.getSearchedCustomers(this.searchText).subscribe({
+  //       next: (data: any) => {
+  //         this.searchedCustomers = data.customers;
+  //         this.searchedCustomers = JSON.parse(this.searchedCustomers);
+  //         this.dataSource.data = this.searchedCustomers;
+  //       },
+  //       error: (err) => {
+  //         console.log(err);
+  //       },
+  //     });
+  //   }
+  //   else if (searchValue.length == 0) {
+  //     this.dataSource.data = this.customers;
+  //   }
+    
+  // }
 }

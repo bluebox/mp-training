@@ -25,6 +25,9 @@ export class HttpServiceService {
   getTests(){
     return this.http.get('http://127.0.0.1:8000/appointments/tests/')
   }
+  getTotalCounts(){
+    return this.http.get('http://127.0.0.1:8000/users/get-counts/')
+  }
   
   handleError(err: any): any {
     // console.log(err);  
@@ -56,21 +59,7 @@ export class HttpServiceService {
   logoutUser() {
     return this.http.post("http://127.0.0.1:8000/users/logout/", {}, { withCredentials: true })
   }
-  public saveData(key: string, value: string) {
-    localStorage.setItem(key, value);
-  }
-
-  public getData(key: string) {
-    return localStorage.getItem(key)
-  }
-  public removeData(key: string) {
-    localStorage.removeItem(key);
-  }
-
-  public clearData() {
-    localStorage.clear();
-  }
-
+ 
   
 
 }

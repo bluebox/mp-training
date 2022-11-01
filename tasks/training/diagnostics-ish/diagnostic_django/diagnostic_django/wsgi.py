@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+from diagnostic_django.asgi import APPLICATION
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'diagnostic_django.settings')
 
 application = get_wsgi_application()

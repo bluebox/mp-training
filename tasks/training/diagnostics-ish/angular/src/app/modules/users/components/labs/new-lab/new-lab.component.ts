@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BranchesService } from 'src/app/services/branches-service/branches.service';
@@ -9,7 +9,7 @@ import { LabsService } from 'src/app/services/labs-service/labs.service';
   templateUrl: './new-lab.component.html',
   styleUrls: ['./new-lab.component.css']
 })
-export class NewLabComponent implements OnInit {
+export class NewLabComponent  {
 
   responseMessage: string = '';
   formNotValid: boolean = false;
@@ -53,7 +53,6 @@ export class NewLabComponent implements OnInit {
         this.formNotValid = true
       }
     } 
-  ngOnInit(): void {
-  }
+
 
 }

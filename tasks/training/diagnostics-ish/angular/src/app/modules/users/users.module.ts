@@ -51,6 +51,7 @@ import { DisplayEmployeesComponent } from './components/display-employees/displa
 import { DisplayCustomerComponent } from './components/display-customer/display-customer.component';
 import { SearchComponent } from './components/search/search.component';
 import { DisplayEmployeeComponent } from './components/display-employee/display-employee.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     RegisterCustomerComponent,
@@ -106,7 +107,8 @@ import { DisplayEmployeeComponent } from './components/display-employee/display-
     MatToolbarModule,
     MatDialogModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    MatGridListModule
   ],
   bootstrap: [
   ]

@@ -17,7 +17,7 @@ export interface Customer{
 })
 export class DisplayCustomerComponent implements OnInit {
   customer_id : string =''
-  customerDetails : any
+  customerDetails !: any
   UserDetails : any
   appointments: any
 
@@ -37,7 +37,6 @@ export class DisplayCustomerComponent implements OnInit {
     this.actRouter.params.subscribe(data => {
       this.customer_id = data['cutomer_id']
     })
-    
   }
   ngOnInit(): void {
     this.getCustomerMethod()
@@ -55,7 +54,6 @@ export class DisplayCustomerComponent implements OnInit {
             
           }
         })
-        console.log('delete');
         
       }
     })

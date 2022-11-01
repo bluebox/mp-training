@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { BranchesService } from 'src/app/services/branches-service/branches.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './new-branch.component.html',
   styleUrls: ['./new-branch.component.css']
 })
-export class NewBranchComponent implements OnInit {
+export class NewBranchComponent {
   responseMessage: string = '';
   formNotValid: boolean = false;
   formError?: string = ""
@@ -73,6 +73,5 @@ export class NewBranchComponent implements OnInit {
       this.formNotValid = true
     }
   }
-  ngOnInit(): void {
-  }
+
 }

@@ -1,1 +1,122 @@
-<p>display-employee works!</p>
+<h1>employee</h1>
+<mat-tab-group dynamicHeight>
+    <mat-tab label="Personal Details">
+      <div class="example-large-box mat-elevation-z4">
+        <div class="detail-div">
+          <div class="title">
+            <p>Employee ID</p>
+          </div>
+          <div class="value">
+            <p>{{ employeeDetails["staff_id"] || "Not Available" }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Branch</p>
+          </div>
+          <div class="value">
+            <p>{{ employeeDetails["branch"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Username</p>
+          </div>
+          <div class="value">
+            <p>{{ UserDetails["username"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>First Name</p>
+          </div>
+          <div class="value">
+            <p>{{ UserDetails["first_name"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Last Name</p>
+          </div>
+          <div class="value">
+            <p>{{ UserDetails["last_name"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Designation</p>
+          </div>
+          <div class="value">
+            <p>{{ employeeDetails["designation"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Qualification</p>
+          </div>
+          <div class="value">
+            <p>{{ employeeDetails["qualification"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>years_of_experience</p>
+          </div>
+          <div class="value">
+            <p>{{ employeeDetails["years_of_experience"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>salary</p>
+          </div>
+          <div class="value">
+            <p>{{ employeeDetails["salary"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Mail ID</p>
+          </div>
+          <div class="value">
+            <p>{{ UserDetails["email"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Mobile No.</p>
+          </div>
+          <div class="value">
+            <p>{{ UserDetails["mobile_number"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Age</p>
+          </div>
+          <div class="value">
+            <p>{{ UserDetails["age"] }}</p>
+          </div>
+        </div>
+        <div class="detail-div">
+          <div class="title">
+            <p>Address</p>
+          </div>
+          <div class="value">
+            <p>{{ UserDetails["address"] }}</p>
+            <p>{{ UserDetails["pincode"] }}</p>
+          </div>
+        </div>
+        <div class="buttons">
+          <button (click)="updateEmployee(employeeDetails['staff_id'])"
+            mat-button
+            mat-raised-button="" class="update">Update</button>
+          <button (click)="openDialog(employeeDetails['staff_id'])" 
+            mat-button
+            mat-raised-button="" class="delete">Delete</button>
+        </div>
+      </div>
+    </mat-tab>
+    
+  </mat-tab-group>
+  

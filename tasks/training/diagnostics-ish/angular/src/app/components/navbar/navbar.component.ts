@@ -11,8 +11,11 @@ import { Subscription } from 'rxjs';
 })
 export class NavbarComponent implements OnInit {
   loggedIn : any
+  isAdmin : boolean =false
   isCustomer :boolean =false
   isLoggenInSubscription!: Subscription;
+  userTypeSubscription!: Subscription;
+
 
   constructor(private subjectService: SubjectServiceService , private router :Router) { }
 
@@ -20,7 +23,14 @@ export class NavbarComponent implements OnInit {
     this.isLoggenInSubscription= this.subjectService.isLoggedInSubject.subscribe(data=>{
       this.loggedIn = data
     })
-    
+    this.userTypeSubscription= this.subjectService.userTypeSubject.subscribe(data=>{
+      if(data == 'admin'){
+        this.isAdmin = true
+      }
+      else{
+        this.isAdmin = false
+      }
+    })
   }
   navigateCustomer(){
     if(this.loggedIn){
@@ -32,5 +42,6 @@ export class NavbarComponent implements OnInit {
   }
   ngOnDestroy(){
     this.isLoggenInSubscription.unsubscribe()
+    this.userTypeSubscription.unsubscribe()
 }
 }
