@@ -27,7 +27,6 @@ export class MyMarksComponent implements OnInit {
 
   }
   sendMarks(arg:any){
-
     
     var val = {"course_name": arg}
     console.log(val.course_name)

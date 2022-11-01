@@ -71,7 +71,6 @@ export class AddCourseComponent implements OnInit {
 
   }
 
-  
   addCourse(){
 
     if(this.id){

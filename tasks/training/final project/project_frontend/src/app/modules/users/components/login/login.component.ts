@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string = ''
   k: any
   hide:boolean=true
+  user_type:any
 
 
 
@@ -36,37 +37,21 @@ export class LoginComponent implements OnInit {
       this.http.loginUser(this.loginForm.value).subscribe(resp => {
         console.log(resp)
         this.errorMessage = resp.msg
+        this.user_type=resp.user_type
+        
         if (this.errorMessage == "logged in") {
 
-          // this.http.saveData("username",resp.user)
-
-
-          localStorage.setItem('user', JSON.stringify(resp.user))
           localStorage.setItem('username', (resp.user))
-          console.log(localStorage.getItem("username"))
-
-          localStorage.setItem('user_type', (resp.user_type))
-          console.log(localStorage.getItem("user_type"))
-          this.k = localStorage.getItem("user_type");
-
-          console.log(typeof(localStorage.getItem("user_type")));
-          console.log(this.k)
           
-
-          // if (localStorage.getItem("user_type") === "Student") {
-          if(this.k == "Student"){
-
-            console.log("te11");
-
+          if(this.user_type == "Student"){
             this.router.navigate(['student']);
           }
 
-          else if(localStorage.getItem("user_type") == "Teacher") {
-       
-
-            console.log("te");
-
+          else if(this.user_type == "Teacher") {
             this.router.navigate(['teacher']);
+          }
+          else if(this.user_type == "Admin") {
+            this.router.navigate(['admin']);
           }
 
         }

@@ -51,8 +51,8 @@ export class TakeExamComponent implements OnInit {
       this.answer_main[this.i]=this.k.answer
     }
     console.log('ggg',this.answer_main)
-    localStorage.setItem('length', JSON.stringify(this.h?.length))
-    this.v=localStorage.getItem('course_name')
+    // localStorage.setItem('length', JSON.stringify(this.h?.length))
+    // this.v=localStorage.getItem('course_name')
 
       }
     
@@ -97,7 +97,7 @@ if((this.answers_user.length != this.answer_main.length)|| ((this.emp))) {
     dialogRef.afterClosed().subscribe(result => {
 
     if (result == 'true') {
-      localStorage.setItem("score",JSON.stringify(this.score));
+     
       this.http.AddScore({ 'score':this.score, 'exam_name':this.course_name }).subscribe(data=>{
         console.log(data);
       })
@@ -107,7 +107,7 @@ if((this.answers_user.length != this.answer_main.length)|| ((this.emp))) {
   }
 
 else{
-  localStorage.setItem("score",JSON.stringify(this.score));
+  
   this.http.AddScore({ 'score':this.score, 'exam_name':this.course_name }).subscribe(data=>{
     console.log(data);
   })

@@ -37,21 +37,7 @@ export class ShowExamComponent implements OnInit {
       console.log(arg)
       this.router.navigate(['student/attemptexam',arg])
        
-      if (val.course_name==i.course_name){
-        localStorage.setItem('course_name',(i.course_name))
-        localStorage.setItem('course_id',(i.id))
-        localStorage.setItem('total_marks',(i.total_marks))
-        // console.log(localStorage.getItem('course_name'));
-        // console.log(localStorage.getItem('course_id'));
-        // console.log(localStorage.getItem('total_marks'));
-
-        this.http.sendCourse({'course_name':localStorage.getItem('course_name'),'course_id':localStorage.getItem('course_id'),'total_marks':localStorage.getItem('total_marks')}).subscribe(data=>{
-          // this.router.navigate(['student/attemptexam'])
-          localStorage.setItem('question',JSON.stringify(data))
-          
-        })
-
-      }
+    
       
     }
     
