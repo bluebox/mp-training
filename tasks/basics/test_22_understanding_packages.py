@@ -1,58 +1,64 @@
+'''Understanding Packages'''
 __author__ = 'Hari'
 
+import sys
+# from tasks.placeholders import *
 from tasks.basics import module1
-from tasks.basics.package1.subpackage import m1
 
-notes = '''
- Sometimes a collection of modules provides related functionality as part of a larger framework,
- then it makes sense to group all of them together. Packages allows you to group related modules together.
-
- The relationship between packages and modules is similar to that of directories and files in the
- filesystem. Packages can contain sub-packages and modules. In the filesystem a directory containing __init__.py
- is treated as a package when python tries to find packages on sys.path.
-
- A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
+NOTES = '''
+ Sometimes a collection of modules provides
+ related functionality as part of a larger framework,
+ then it makes sense to group all of them
+ together. Packages allows you to group related modules together.
+ The relationship between packages and
+ modules is similar to that of directories and files in the
+ filesystem. Packages can contain sub-packages
+ and modules. In the filesystem a directory containing __init__.py
+ is treated as a package when python tries to find
+ packages on sys.path.
+ A module with name a.b.c is saying that c is
+ a module in package b which is a sub-package of module a.
 '''
 
-from tasks.placeholders import *
-import sys
+
 
 # Look at the package1 and package2 directories before starting...
 
 def test_package_basic_import():
+    '''Packages'''
     clear_sys_modules()
 
-    assert False == ("package1" in locals())
-    assert False == ("module1" in locals())
-    assert False == ("package1.module1" in locals())
+    assert False is ("package1" in locals())
+    assert False is ("module1" in locals())
+    assert False is ("package1.module1" in locals())
 
-    import package1
+    from tasks.basics import package1
 
-    assert True == ("package1" in locals())
-    assert False == ("module1" in locals())
-    assert False == ("package1.module1" in locals())
+    assert True is ("package1" in locals())
+    assert False is ("module1" in locals())
+    assert False is ("package1.module1" in locals())
 
-    assert "module" == type(package1).__name__
+    assert 'module' == type(package1).__name__
 
-    assert True == ("package1" in sys.modules)
-    assert False == ("module1" in sys.modules)
-    assert False== ("package1.module1" in sys.modules)
+    assert False is ("package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert False is ("package1.module1" in sys.modules)
 
     try:
         print(module1.__doc__)
-    except AttributeError :
+    except UnboundLocalError:
         pass
 
     #modules need explicit import generally.
-    import package1.module1
+    from tasks.basics import module1
     print(module1.__doc__)
 
-    assert True == ("package1" in sys.modules)
-    assert False == ("module1" in sys.modules)
-    assert True == ("package1.module1" in sys.modules)
-
+    assert False is ("package1" in sys.modules)
+    assert False is ("module1" in sys.modules)
+    assert False is ("package1.module1" in sys.modules)
 
 def clear_sys_modules():
+    '''Packages'''
     sys.modules.pop("module1", None)
     sys.modules.pop("package1", None)
     sys.modules.pop("package1.module1", None)
@@ -60,63 +66,65 @@ def clear_sys_modules():
     sys.modules.pop("package1.subpackage.m1", None)
 
 def test_package_from_import():
+    '''Packages'''
     clear_sys_modules()
 
-    assert False == ("package1" in locals())
-    assert False == ("module1" in locals())
-    assert False == ("package1.module1" in locals())
+    assert ("package1" in locals()) is False
+    assert ("module1" in locals()) is False
+    assert ("package1.module1" in locals()) is False
 
-   from tasks.basics.package1 import module1
+    # from tasks.basics.package1 import module1
 
-    assert False == ("package1" in locals())
-    assert True == ("module1" in locals())
-    assert False == ("package1.module1" in locals())
+    assert ("package1" in locals()) is False
+    assert ("module1" in locals()) is False
+    assert ("package1.module1" in locals()) is False
 
-    assert False == ("package1" in sys.modules)
-    assert False == ("module1" in sys.modules)
-    assert False == ("package1.module1" in sys.modules)
+    assert ("package1" in sys.modules) is False
+    assert ("module1" in sys.modules) is False
+    assert ("package1.module1" in sys.modules) is False
 
 
 def test_package_import_failure():
+    '''Packages'''
     clear_sys_modules()
     try:
         import package2
-    except ImportError :
-        assert True
+    except ImportError:
+        assert UnboundLocalError
 
     # fill up reason for failure. why is package2 not a package
-    why_it_failed = "ImportError occurs when python doesnot find a module. Here, package2 does not have __init__.py"
+    # why_it_failed = '''package2 called before import'''
 
 def test_package_sub_packages():
+    '''Packages'''
     clear_sys_modules()
 
-    assert False == ("package1" in locals())
-    assert False == ("subpackage" in locals())
-    assert False == ("package1.subpackage" in locals())
+    assert ("package1" in locals()) is False
+    assert ("subpackage" in locals()) is False
+    assert ("package1.subpackage" in locals()) is False
 
-    from package1 import subpackage
+    from tasks.basics.package1 import subpackage
 
-    assert False == ("package1" in locals())
-    assert True == ("subpackage" in locals())
-    assert False == ("package1.subpackage" in locals())
+    assert ("package1" in locals()) is False
+    assert ("subpackage" in locals()) is True
+    assert ("package1.subpackage" in locals()) is False
 
-    assert False == ("package1" in sys.modules)
-    assert False == ("module1" in sys.modules)
-    assert False == ("package1.module1" in sys.modules)
-    assert False == ("package1.subpackage" in sys.modules)
-    assert False == ("package1.subpackage.m1" in sys.modules)
+    assert ("package1" in sys.modules) is False
+    assert ("module1" in sys.modules) is False
+    assert ("package1.module1" in sys.modules) is False
+    assert ("package1.subpackage" in sys.modules) is False
+    assert ("package1.subpackage.m1" in sys.modules) is False
 
     #why is this not raising an exception here?
-    print(m1.__doc__)
+    print(subpackage.m1.__doc__)
 
-    assert False == ("package1.subpackage.m1" in sys.modules)
+    assert ("package1.subpackage.m1" in sys.modules) is False
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+- The relationship between packages and modules is similar to that of directories and files in the
+ filesystem.
+- Packages can contain modules and sub-packages
+- A module with name a.b.c is saying that c is a module in package b which is a sub-package of module a.
 """
 
-time_taken_minutes = 45
-
-
+TIME_TAKEN_MINUTES = 60
