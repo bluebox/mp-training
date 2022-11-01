@@ -1,3 +1,5 @@
+"""understanding sets"""
+
 __author__ = 'Hari'
 
 notes = '''
@@ -8,10 +10,12 @@ the keys are not associated with any values.
 from tasks.placeholders import  *
 
 def test_set_type():
+    """set type"""
     test_set = {"one", "two", "three"}   # note the new syntax
     assert 'set' == type(test_set).__name__
 
 def test_set_empty():
+    """set empty"""
     empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
     assert False == isinstance(empty_set_wrong, set)
 
@@ -20,6 +24,7 @@ def test_set_empty():
     assert 0 == len(empty_set)
 
 def test_set_length():
+    """set length"""
     fruits = {"apple", "apple", "apple"}
     assert 1 == len(fruits)  #are duplicates removed?
 
@@ -49,11 +54,13 @@ def test_set_creation():
     assert {(1, 'one'), (2, 'two')} == set5
     
 def test_set_membership():
+    """set membership"""
     fruits = {"apple", "mango", "kiwi"}
     assert True == ("apple" in fruits)
     assert False == ("dog" in fruits)
 
 def test_set_operations():
+    """set operations"""
     set1 = {"one", "two", "three"}
     set2  =  {"three", "four"}
 
@@ -78,6 +85,7 @@ def test_set_operations():
     #read up help on other method using the help method in the python console.
 
 def test_set_valid_members():
+    """set valid members"""
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
@@ -97,12 +105,12 @@ def test_set_valid_members():
 
     assert {1,'hello',(1,2)} == test_set
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - about symmetric difference in set
 - list can not be added to a set
 - when a set is subtracted by itself then it returns 'set()'
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 20
 
 
