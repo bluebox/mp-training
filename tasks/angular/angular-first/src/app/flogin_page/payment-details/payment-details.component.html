@@ -1,41 +1,48 @@
 <app-fheader></app-fheader>
-<h4 style="text-transform: uppercase;text-align:center;">Your Payment's details</h4>
-<div class="nodata" *ngIf="recevied_data==''">
+<div class="main">
+    <h4 style="text-transform: uppercase;text-align:center;background-color: white;color:black">Your Payment's details</h4>
+    <h5 style="text-transform: uppercase;text-align:center;background-color: black;color:white;padding:10px;margin-bottom: -10px;">Total Earnings : $ {{ getTotal()}} <i
+            class='fas fa-wallet'></i> </h5>
+    <div class="nodata" *ngIf="recevied_data==''">
 
-    <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top" alt="">
-    <h4>No payment details found </h4> <br>
-    <h5>To find a job now <a href="" routerLink="../jobs">click here</a> </h5> or <br> <br>
-    <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
+        <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top"
+            alt="">
+        <h4>No payment details found </h4> <br>
+        <h5>To find a job now <a href="" routerLink="../jobs">click here</a> </h5> or <br> <br>
+        <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
+    </div>
+    <ul>
+
+
+        <li *ngFor="let x of recevied_data">
+
+            <table>
+                <tr>
+                    <th>PAYMENT ID : </th>
+                    <th class="tabledata">{{ x.payment_id}}</th>
+
+                </tr>
+                <tr>
+                    <td>CONTRACT ID :</td>
+                    <td class="tabledata">{{x.contract_id}}</td>
+                </tr>
+                <tr>
+                    <td>TAX :</td>
+                    <td class="tabledata">$ {{ x.Tax.toFixed(2)}}</td>
+                </tr>
+                <tr>
+                    <td>EARNED <span style="font-size: 25px;"> 🤑 </span> :</td>
+                    <td class="tabledata">$ {{ x.earned.toFixed(2)}}</td>
+
+                </tr>
+            </table>
+        </li>
+    </ul>
 </div>
-<ul>
-    <h5 style="text-transform: uppercase;text-align:center;">Total Earnings : $ {{ getTotal()}} <i class='fas fa-wallet'></i> </h5>
 
-    <li *ngFor="let x of recevied_data">
-        
-        <table>
-            <tr>
-                <th>PAYMENT ID : </th>
-                <th class="tabledata">{{ x.payment_id}}</th>
-
-            </tr>
-            <tr>
-                <td>CONTRACT ID :</td>
-                <td class="tabledata">{{x.contract_id}}</td>
-            </tr>
-            <tr>
-                <td>TAX :</td>
-                <td class="tabledata">$ {{ x.Tax.toFixed(2)}}</td>
-            </tr>
-            <tr>
-                <td>EARNED <span style="font-size: 25px;"> 🤑 </span> :</td>
-                <td class="tabledata">$ {{ x.earned.toFixed(2)}}</td>
-
-            </tr>
-        </table>
-    </li>
-</ul>
-<div class="paginator" style="text-align: center;">
-    <button type="button" (click)="getPaymentDetails(-1)"> < </button> page {{ page }} out of {{ totalPages}}
-    <button type="button" (click)="getPaymentDetails(1)"> > </button>
-</div>
+    <div class="paginator" style="text-align: center;">
+        <button type="button" (click)="getPaymentDetails(-1)">
+            < </button> page {{ page }} out of {{ totalPages}}
+                <button type="button" (click)="getPaymentDetails(1)"> > </button>
+    </div>
 <app-ffooter></app-ffooter>

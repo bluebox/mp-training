@@ -65,6 +65,8 @@ table{
     font-size: 18px;
 }
 
-ul{
-    min-height: 50vh;
+
+.main{
+    min-height: 70vh;
+    background-color: black;
 }
