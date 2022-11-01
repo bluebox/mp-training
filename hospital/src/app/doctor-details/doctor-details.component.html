@@ -1,0 +1,16 @@
+<!-- <p>doctor-details works!</p>
+doctor's name :{{ doctors.name }}
+doctor 's experience:{{ doctors.name }}
+doctor's fee:(comming soon) -->
+<button (click)="hide($event)">X</button>
+<!-- <div *ngfor="let doc of doctors">
+  <div>
+  {{doc.name}}
+</div>
+</div> -->
+<ul class="doctors">
+  <li *ngFor="let hero of doctors">
+
+     <p> {{hero.dob}}-------- {{hero.name}}</p>
+  </li>
+</ul>
