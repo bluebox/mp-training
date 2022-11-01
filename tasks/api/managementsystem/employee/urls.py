@@ -1,10 +1,7 @@
-from django.contrib import admin
-from django.urls import path,include
+from django.urls import path
 from . import views
 
 urlpatterns = [
-
-    # path('', hello),
     path('', views.LoginView.as_view()),
     path('facilities', views.facilities),
     path('complaint', views.ComplaintView.as_view()),
@@ -18,12 +15,15 @@ urlpatterns = [
     path('searchemployee', views.search_employee),
     path('updatestatus', views.update_status),
     path('complaintitem', views.ComplaintView.as_view()),
-    # path('devicename', views.device_name),
     path('createemployee', views.CreateEmployee.as_view()),
-    path('getassignedto', views.getassignedto),
-    path('getdevices', views.devices_of_employee),
-    path('compstatus', views.getstatus),
+    # path('getassignedto', views.getassignedto),
+    # path('getdevices', views.devices_of_employee),
+    # path('compstatus', views.getstatus),
     path('deletecomplaint', views.ComplaintView.as_view()),
+    path('complaintsearch', views.ComplaintSearch.as_view()),
+    path('getcomplaiants', views.ComplaintView.as_view()),
+    path('profile',views.ProfileView.as_view())
+
 
 
 ]
