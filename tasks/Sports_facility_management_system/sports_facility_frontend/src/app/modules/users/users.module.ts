@@ -6,7 +6,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserindexComponent } from './components/userindex/userindex.component';
-import { DialogOverviewExampleDialog, UserhomeComponent } from './components/userhome/userhome.component';
+import { DialogAnimationsExampleDialog, DialogOverviewExampleDialog, UserhomeComponent } from './components/userhome/userhome.component';
 import { FacilitiesModule } from '../facilities/facilities.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ import { AngularMaterialModule } from '../../angular-material.module';
 import { MatInputModule } from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BookingdetailsComponent } from './components/bookingdetails/bookingdetails.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -25,7 +26,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UserhomeComponent,
     FeedbackmodalComponent,
     DialogOverviewExampleDialog,
-    // HeaderComponent
+    BookingdetailsComponent,
+    DialogAnimationsExampleDialog
+
     
   ],
   imports: [

@@ -1,12 +1,18 @@
-<button class="btn btn-outline-primary m-5"> Add Sports</button>
+
+<h1></h1>
+<button class="btn btn-outline-primary m-5" (click)="DisplaySports()"> Add Sports</button>
+
+
+
+<div *ngIf="DisplayAddSport">
 <form [formGroup]="addsportsform" (ngSubmit)="addsports()">
 
 
-<ul>
+<ul >
     <li *ngFor="let sport of allSports" [ngClass]=" existingsportslist.indexOf(sport.sport_id) > -1 ? 'class2' : 'class1' " (click)="addSportObjToArray(sport)" > {{sport.sport_name}}</li>
 </ul>
 
-<div formArrayName="sportObj">
+<div class="p-4" formArrayName="sportObj" >
     <div *ngFor="let sport of sportObj.controls; let i=index">
       <div [formGroupName]="i" class="">
         <div class="">{{i+1}}:</div>
@@ -16,7 +22,7 @@
           <input type="number" matInput formControlName="cost_per_slot">
         </mat-form-field>
         <mat-error *ngIf="submit && sport.get('cost_per_slot')?.hasError('required')">Cost is required</mat-error>
-        <button type="button" (click)="removeObj(i)">Remove</button>
+        <button class="btn btn-outline-danger" type="button" (click)="removeObj(i)">Remove</button>
       </div>
 
       <!-- <span class="text-danger me-5" *ngIf="tourist.get('name')?.hasError('required')">Name is required</span>
@@ -24,26 +30,26 @@
       <span class="text-danger me-5" *ngIf="tourist.get('gender')?.hasError('required')">Gender is required</span> -->
     </div>
   </div>
-  <button type="submit" *ngIf="sportObj.length > 0">submit</button>
+  <button class="btn btn-outline-success ms-4" type="submit" *ngIf="sportObj.length > 0">submit</button>
 </form>
-
+</div>
 
 <div class="card">
     <h1> Available Sports</h1>
-    <div *ngFor="let sport of sports" class="facilitycard">
+    <div *ngFor="let sport of sports" class="facilitycard ">
 
         <div>
             <img src="../../../../../assets/images/{{sport.sport_name}}.png" alt="img" />
             <h1> {{sport.sport_name}}</h1>
         </div>
-        <div class="d-flex align-items-center">
+        <!-- <div class="d-flex align-items-center">
             <button class="btn btn-outline-primary button" (click)="editSports(sport.sport._id)"> edit Sport</button>
-        </div>
-        <div class="d-flex align-items-center">
+        </div> -->
+        <!-- <div class="d-flex align-items-center">
             <button class="btn btn-outline-primary button"> Add Slots</button>
-        </div>
+        </div> -->
 
-        <div class="d-flex align-items-center">
+        <div >
             <button class="btn btn-outline-danger button" (click)="deletesport(sport.sport_id)"> delete</button>
         </div>
     </div>

@@ -1,0 +1,153 @@
+
+
+<div style="padding-bottom:1px">
+
+<div bgcolor="#f6f6f6" style="color: #333; height: 100%; width: 100%;" height="100%" width="100%">
+    <table bgcolor="#f6f6f6" cellspacing="0" style="border-collapse: collapse; padding: 40px; width: 100%;" width="100%">
+        <tbody *ngIf="bookingDetails && invoice">
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td style="clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 10px 0;">
+                    <table width="100%" cellspacing="0" style="border-collapse: collapse;" >
+                        <tbody >
+                            <tr>
+                                <td style="padding: 0;">
+                                    
+                                        <img
+                                            src="../../../../../assets/images/logosportbg.png"
+                                            alt="Bootdey.com"
+                                            style="height: 90px; max-width: 100%; width: 90px;"
+                                            height="50"
+                                            width="157"
+                                        />
+
+                                </td>
+                                <td style="color: #999; font-size: 12px; padding: 0; text-align: right;" align="right">
+                                    {{bookingDetails.facility_sport_id.facility.facility_name}}<br />
+                                    Invoice # {{invoice.invoice_id}}<br />
+                                    {{bookingDetails.date}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td width="5px" style="padding: 0;"></td>
+            </tr>
+
+            <tr>
+                <td width="5px" style="padding: 0;"></td>
+                <td bgcolor="#FFFFFF" style="border: 1px solid #000; clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 0;">
+                    <table width="100%" style="background: #f9f9f9; border-bottom: 1px solid #eee; border-collapse: collapse; color: #999;">
+                        <tbody>
+                            <tr>
+                                <td width="50%" style="padding: 20px;"><strong style="color: #333; font-size: 24px;">₹{{invoice.total_cost}}</strong> Paid</td>
+                                <td align="right" width="50%" style="padding: 20px;">Thanks for using <span class="il">HSS Sports</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="padding: 0;"></td>
+                <td width="5px" style="padding: 0;"></td>
+                
+            </tr>
+            <tr>
+                
+                <td width="5px" style="padding: 0;"></td>
+                <td bgcolor="#FFFFFF" style="border: 1px solid #000; clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 0;">
+                    <table width="100%" style="background: #f9f9f9; border-bottom: 1px solid #eee; border-collapse: collapse; color: #999;">
+                        <tbody>
+                            <tr>
+                                <td valign="top"  style="padding:10px 20px;">
+                                    <h3
+                                        style="
+                                            border-bottom: 1px solid #000;
+                                            color: #000;
+                                            font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                            line-height: 1.2;
+                                            margin: 0;
+                                            margin-bottom: 5px;
+                                            padding-bottom: 5px;
+                                        "
+                                    >
+                                        Description
+                                    </h3>
+                                   
+                                </td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td width="50%" style="padding:10px 20px;"><h1 style="color: #333; font-size: 24px;">Sport</h1> </td>
+                                <td align="right" width="50%" style="padding: 20px;"> {{bookingDetails.facility_sport_id.sport.sport_name}} </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="padding:10px 20px;"><h1 style="color: #333; font-size: 24px;">Slots</h1> </td>
+                                <td align="right" width="50%" style="padding: 20px;">
+                                    <ul>
+                                    <li *ngFor="let slot of bookingDetails.slots">{{slot.slot_time}}</li>
+                                </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="padding:10px 20px;"><h1 style="color: #333; font-size: 24px;">Add on's</h1> </td>
+                                <td align="right" width="50%" style="padding: 20px;">
+                                    <ul>
+                                    <li *ngFor="let equip of bookedEquip">{{equip.equip_id.equip_name}} X {{equip.quantity}}</li>
+                                </ul>
+                                     </td>
+                                
+                            </tr>
+                            <tr>
+                                <td valign="top"  style="padding: 10px 20px;">
+                                    <h3
+                                        style="
+                                            border-bottom: 1px solid #000;
+                                            color: #000;
+                                            font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+                                            font-size: 18px;
+                                            font-weight: bold;
+                                            line-height: 1.2;
+                                            margin: 0;
+                                            margin-bottom: 15px;
+                                            padding-bottom: 5px;
+                                        "
+                                    >
+                                        Summary
+                                    </h3>
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="padding: 10px 20px ;"><h1 style="color: #333; font-size: 24px;">Cost For slots</h1> </td>
+                                <td align="right" width="50%" style="padding: 20px;"> {{bookingDetails.facility_sport_id.cost_per_slot *bookingDetails.slots.length 
+                                }}</td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="padding:10px 20px;"><h1 style="color: #333; font-size: 24px;">Cost for add Ons</h1> </td>
+                                <td align="right" width="50%" style="padding: 20px;"> {{ invoice.total_cost-bookingDetails.facility_sport_id.cost_per_slot *bookingDetails.slots.length 
+                                }} </td>
+                            </tr>
+                            <tr>
+                                <td style=" color: #333; font-size: 24px ;border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 10px 20px;"><h1> Total Cost</h1> </td>
+                                <td align="right" style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 10px 20px;">{{invoice.total_cost}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </td>
+            </tr>
+
+            
+            
+
+            
+        </tbody>
+        <h1 style="padding-bottom:50px  ;"> </h1>
+       
+    </table>
+
+    
+</div>
+</div>

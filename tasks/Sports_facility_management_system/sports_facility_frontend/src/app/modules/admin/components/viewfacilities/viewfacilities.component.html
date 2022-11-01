@@ -1,18 +1,78 @@
-<div class="card">
-    <div *ngFor="let facility of facilities" class="facilitycard">
-        <div >
-            <h1> {{facility.facility_name}}</h1>
-            <h2> {{facility.facility_location}}</h2>
+<a style="margin-left:60px">
+    <input [(ngModel)]="text" (input)="search()" placeholder="search for facility">
+</a>
+
+
+<a>
+<div class="dropdown ml-4">
+  <a><i aria-hidden="true"> Filter by sports </i> </a>
+  <div class="dropdown-content">
+      <label class="sport_labl">
+        <div class="sportcard" [ngClass]="selectedSportsList.length==0 ? 'border-input' : ''"
+            (click)="allfilter()">
+            <h6>all</h6>
         </div>
-        <div class="d-flex align-items-center">
-            <button class="btn btn-outline-primary button" (click)="addSports(facility.facility_id)"> Add Sports</button>
-        </div>
-        <div class="d-flex align-items-center">
-            <button class="btn btn-outline-primary button"> Add Slots</button>
-        </div>
-        
-        <div class="d-flex align-items-center">
-            <button class="btn btn-outline-danger button" (click)="deleteFacility(facility.facility_id)"> delete</button>
-        </div>
+      </label>
+      
+      <div *ngFor="let sport of sports" class="slotitem">
+
+        <label class="sport_labl">
+            <div class="sportcard" [ngClass]="selectedSportsList.includes(sport.sport_id) ? 'border-input' : ''"
+                (click)="sportid(sport.sport_id)">
+                <h6>{{sport.sport_name}}</h6>
+            </div>
+        </label>
+
     </div>
+  </div>
+</div>
+</a>
+
+<div *ngIf="facilities.length > 0">
+<table mat-table [dataSource]="facilities" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="facility_location">
+      <th mat-header-cell *matHeaderCellDef> location </th>
+      <td mat-cell *matCellDef="let element"> {{element.facility_location}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="facility_name">
+        <th mat-header-cell *matHeaderCellDef> name </th>
+        <td mat-cell *matCellDef="let element"> {{element.facility_name}} </td>
+      </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="facility_email">
+      <th mat-header-cell *matHeaderCellDef> email </th>
+      <td mat-cell *matCellDef="let element"> {{element.facility_email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="addsport">
+        <th mat-header-cell *matHeaderCellDef> update </th>
+        <td mat-cell *matCellDef="let element"> <button class="btn btn-outline-primary button" (click)="addSports(element.facility_id)"> add sports</button> </td>
+      </ng-container>
+      <div class="btncenter">
+        <ng-container  matColumnDef="deletefacility">
+            <th mat-header-cell *matHeaderCellDef> delete </th>
+            <td class="p-1" mat-cell *matCellDef="let element"> <button class="btn btn-outline-danger button" (click)="deleteFacility(element.facility_id)"> delete Facility</button></td>
+          </ng-container>
+      </div>
+      
+    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<div *ngIf="facilities.length > 0" class="text-center m-4 ">
+  <span (click)="getSearchedFacilities(-1)" class=" bg-danger p-2  border text-light"><i class="fa-solid fa-angle-left"></i></span>
+  page {{page}} of {{totalPages}}
+  <span (click)="getSearchedFacilities(1)" class="bg-danger p-2  border text-light"><i class="fa-solid fa-angle-right"></i> </span>
+</div>
+<div *ngIf="facilities.length == 0">
+  <img style="width: 40%;margin-left:30%" src="../../../../../assets/images/nodata.png"   alt="no data found"/>
 </div>

@@ -66,6 +66,7 @@
   .dropdown {
     position: relative;
     display: inline-block;
+    transition: all 10s;
   }
   
   .dropdown-content {
@@ -75,6 +76,8 @@
     min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    transition-delay: 11s;
+    transition: all 10s;
   }
   
   .dropdown-content a {
@@ -86,39 +89,15 @@
   
   .dropdown-content a:hover {background-color: #ddd;}
   
-  .dropdown:hover .dropdown-content {display: block;}
+  .dropdown:hover .dropdown-content {
+    display: block;
+    transition: all 10s;
+  }
 
 
   
 
  
-  #searchresults{
-    position: absolute;
-    top: 55px;
-    left: 460px;
-    z-index: 1;
-    border: 1px solid  rgb(111, 111, 119);
-    width: 190px;
 
-  } 
-  #searchresults button{
 
-    background-color: rgb(226, 225, 243);
-    margin: 0px 0px 0px;
-    display: block;
-    width: 100%;
-    border: 0px;  
-  }
 
-  .sportbutton{
-    border: 0px;
-    width: 100%;
-    background-color: transparent;
-    color: black;
-    /* padding: 6px 16px; */
-    font-weight: 800;
-  }
-
-  .ml-4{
-    margin-right: 20px;
-  }

@@ -15,7 +15,7 @@ export class ErrorComponent implements OnInit {
 
   homepage(): any {
 
-    return this.router.navigate(['home'])
+    return this.router.navigate(['facilities/hyderabad'])
   }
 
 

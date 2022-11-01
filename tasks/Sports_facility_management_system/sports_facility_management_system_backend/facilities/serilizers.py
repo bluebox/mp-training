@@ -1,21 +1,17 @@
 from rest_framework import serializers
-
 from .models import FacilityDetail, SportsInFacility, Sport, SlotsInSportFacility, Slot, User, BookingData, \
-    Equipment, Invoice, EquipmentsRentedForBookingId
+    Equipment, Invoice, EquipmentsRentedForBookingId, SlotsBookedForBookingId
 
 
 class FacilityDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = FacilityDetail
-        # fields = ['facility_name', 'facility_location', 'facility_email']
-        # fields = '__all__'
         exclude = ['facility_password', 'facility_phone']
 
 
 class CreateFacilitySerializer(serializers.ModelSerializer):
     class Meta:
         model = FacilityDetail
-        # fields = '__all__'
         exclude = ['facility_id']
 
 
@@ -50,6 +46,15 @@ class SlotsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
         fields = '__all__'
+
+
+class BookedSlotsSerializer(serializers.ModelSerializer):
+
+    slot_id = SlotsSerializer()
+
+    class Meta:
+        model = SlotsBookedForBookingId
+        fields = ['slot_id']
 
 
 class UserDetailsSerializer(serializers.ModelSerializer):
@@ -132,7 +137,17 @@ class AddSportsToFacility(serializers.ModelSerializer):
         exclude = ['facility_sport_id']
 
 
-class SlotsSerializer(serializers.ModelSerializer):
+class SlotsDetailSerializer(serializers.ModelSerializer):
+    slot_id = SlotsSerializer()
+
     class Meta:
-        model = Slot
+        model = SlotsInSportFacility
+        fields = ['slot_id']
+
+
+class SearchSerializer(serializers.ModelSerializer):
+    facility = FacilityDetailSerializer()
+
+    class Meta:
+        model = SportsInFacility
         fields = '__all__'

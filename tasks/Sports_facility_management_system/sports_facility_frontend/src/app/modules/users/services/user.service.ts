@@ -11,6 +11,8 @@ export class UserService {
   private feedbackUrl:string='http://127.0.0.1:8000/update-feedback/'
   private userurl:string='http://127.0.0.1:8000/user?uid='
   private createUserurl:string='http://127.0.0.1:8000/user'
+  private bookingdetailsurl:string='http://127.0.0.1:8000/bookingform?bid='
+  private bookedEquipments:string='http://127.0.0.1:8000/Get-rented-equipments?bid='
   constructor( private http:HttpClient) { }
 
 
@@ -42,5 +44,12 @@ export class UserService {
   updateUser(uid:number,obj:any){
     return this.http.put(this.userurl+uid,obj)
   }
+  getBookingDetails(bid:any){
+    return this.http.get(this.bookingdetailsurl+bid)
+  }
+  getBookedEquipDetails(bid:any){
+    return this.http.get(this.bookedEquipments+bid)
+  }
+  
 
 }

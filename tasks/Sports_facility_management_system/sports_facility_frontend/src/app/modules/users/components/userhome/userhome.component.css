@@ -1,5 +1,6 @@
 .detailscard2 img{
     width: 40px;
+    height: 40px;
 }
 h1{
     margin: 0px;
@@ -11,9 +12,6 @@ p{
 .card{
     text-align: center;
     margin: 0px 5% 5% 5%;
-    /* padding: 1px; */
-    /* border: 2px solid rgb(135, 42, 228); */
-    /* margin-left: 20%; */
     width: 90%;
     border-radius: 20px;
     display: grid;
@@ -60,8 +58,9 @@ h2{
 .gradient-custom-2 {
     /* fallback for old browsers */
     background: #fbc2eb;
-    padding-top: 10%;
+    padding: 10% 0;
     width: 1000px !important;
+    min-height: 600px;
     /* Chrome 10-25, Safari 5.1-6 */
     background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
     
@@ -73,9 +72,8 @@ h2{
 .card22{
     width: 70%;
     border: 2px solid;
-    /* margin-top: 10px; */
     margin-left: 15%;
-    /* padding-top: 10%; */
+    
     
     }
 .card33{
@@ -88,12 +86,12 @@ h2{
 }
 .personname{
     color: aliceblue;
-    width: 300px;
+    width: 100%;
     text-align: center;
-    /* border: 2px solid rgb(135, 42, 228); */
-    position: relative;
-    top:100px;
-    left:180px;
+    position: sticky;
+    top:270px;
+    text-align:left;
+    margin-left: 220px;
 }
 
 .profile img{
@@ -114,4 +112,18 @@ h2{
     border: 2px solid rgb(214, 143, 11);
 
 
+}
+
+.zindex{
+    z-index: 999;
+}
+
+.bookingbtnsdiv{
+    display: flex;
+    /* justify-content: space-evenly; */
+    padding: 10px;
+}
+.selectedbutton{
+    background-color:rgb(170, 114, 9);
+    color: white;
 }

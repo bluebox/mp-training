@@ -24,11 +24,13 @@ class Sport(models.Model):
 
     def __str__(self):
         return self.sport_name
+    class Meta:
+        db_table = 'sport'
+
 
 class Slot(models.Model):
     slot_id = models.AutoField(primary_key=True)
     slot_time = models.CharField(max_length=255)
-    # sport_facility = models.ManyToManyField(SportsInFacility, through='SlotsInSportFacility')
 
     def __str__(self):
         return self.slot_time
@@ -39,7 +41,7 @@ class SportsInFacility(models.Model):
     facility = models.ForeignKey(FacilityDetail, on_delete=models.CASCADE)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     cost_per_slot = models.IntegerField()
-    slot = models.ManyToManyField(Slot,through='SlotsInSportFacility')
+    slot = models.ManyToManyField(Slot, through='SlotsInSportFacility')
 
     class Meta:
         unique_together = [['facility', 'sport']]
@@ -70,6 +72,7 @@ class User(models.Model):
     user_phone = models.CharField(unique=True, max_length=255)
     user_email = models.CharField(max_length=255)
     user_password = models.CharField(max_length=255)
+    is_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'user_id'
     REQUIRED_FIELDS = []
@@ -84,13 +87,14 @@ class UserToken(models.Model):
 
 class BookingData(models.Model):
     booking_id = models.AutoField(primary_key=True)
-    facility_sport_id = models.ForeignKey(SportsInFacility, on_delete=models.SET_NULL,null=True)
+    facility_sport_id = models.ForeignKey(SportsInFacility, on_delete=models.SET_NULL, null=True)
     user_id = models.ForeignKey(User, models.DO_NOTHING)
     date = models.CharField(max_length=255)
     reviews = models.TextField(blank=True, null=True)
     ratings = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(0), MaxValueValidator(5)])
     slots = models.ManyToManyField(Slot, through='SlotsBookedForBookingId')
     equipments_booked = models.ManyToManyField(Equipment, through='EquipmentsRentedForBookingId', blank=True)
+    isCancelled = models.BooleanField(default=False)
 
 
 class SlotsBookedForBookingId(models.Model):
@@ -99,6 +103,9 @@ class SlotsBookedForBookingId(models.Model):
 
     def __str__(self):
         return "booking_id : " + str(self.booking_id) + "slot_id : " + str(self.slot_id)
+
+    class Meta:
+        db_table = 'slotsBooked'
 
 
 class EquipmentsRentedForBookingId(models.Model):
@@ -111,4 +118,5 @@ class Invoice(models.Model):
     invoice_id = models.AutoField(primary_key=True)
     booking_id = models.ForeignKey(BookingData, on_delete=models.CASCADE)
     total_cost = models.IntegerField()
+
     invoice_pdf = models.TextField(null=True, blank=True)

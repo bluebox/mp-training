@@ -1,12 +1,10 @@
 .facilitycard{
     border: 2px solid royalblue;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-evenly;
     padding: 20px;
     margin-bottom: 20px;
-    text-align: center;
-    align-items: center;
+
 }
 .card{
     padding: 20px;

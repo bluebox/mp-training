@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacilityService } from '../../services/facility.service';
-import { ParticularsportComponent } from '../particularsport/particularsport.component';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +8,12 @@ import { ParticularsportComponent } from '../particularsport/particularsport.com
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  searchresults: any;
-  text: any;
   sports: any;
   user_id: any;
   user_verfied: boolean = false;
+  admin_verfied: boolean = false;
   token_msg: any;
+
   constructor(private service: FacilityService, private router: Router) {}
 
   ngOnInit(): void {
@@ -22,46 +21,32 @@ export class HeaderComponent implements OnInit {
       this.sports = data;
     });
 
-    let refresh_token = localStorage.getItem('refresh_token');
-
-    this.service.CheckRefreshToken(refresh_token).subscribe((data) => {
-      this.token_msg = data;
-      if (this.token_msg != 'access token does not exist') {
-        this.user_verfied = true;
-        this.user_id = this.token_msg;
+    let token = localStorage.getItem('refresh_token');
+    if (token == null) {
+      token = '';
+    }
+    this.service.CheckRefreshToken(token).subscribe(
+      (data) => {
+        let res = JSON.stringify(data);
+        let Parsed = JSON.parse(res);
+        if (Parsed.is_admin) {
+          this.admin_verfied = true;
+          this.router.navigate(['admin/home']);
+        } else {
+          this.user_verfied = true;
+          this.user_id = Parsed.user_id;
+        }
+      },
+      (err) => {
+        console.log(err);
       }
-    });
+    );
   }
-  ngOnDestroy(): void {
-    this.searchresults=[];
-  }
+
   logout(): void {
     localStorage.removeItem('refresh_token');
     this.user_verfied = false;
     this.router.navigate(['facilities/hyderabad']);
-  }
-  search(text: any) {
-    console.log(text);
-    if (text.length > 2) {
-      this.service.searchFacility(text).subscribe((data) => {
-        this.searchresults = data;
-        console.log(data);
-      });
-    } else {
-      this.searchresults = [];
-    }
-  }
-  facilitysearch(id: any) {
-    console.log(id);
-    this.searchresults = []
-    this.router.navigate(['facilities/hyderabad', String(id)]);
-  }
-
-  sportid(id: any) {
-    console.log(id);
-    this.searchresults = []
-    this.router.navigate(['facilities/hyderabad/sport', id]);
-    
   }
 
   OpenUserHome() {

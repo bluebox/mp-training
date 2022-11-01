@@ -5,7 +5,7 @@
             <div class="ac1">
 
                 <mat-card-header>
-                    <mat-card-title>Register</mat-card-title>
+                    <mat-card-title>Add Facility</mat-card-title>
 
                     <small *ngIf="formNotValid" class="text-danger msgg">Please fill all required details</small>
                 </mat-card-header>
@@ -15,48 +15,52 @@
                         <div class="ip">
                             <mat-form-field class="full-width" appearance="outline">
                                 <input formControlName="facility_name" class="userinput" matInput placeholder="facility_name">
-                            </mat-form-field>
-                            <small class="text-danger msgg"
+                                <p class="text-danger msgg"
                                 *ngIf="create_facility_form.get('facility_name')?.invalid  && create_facility_form.get('facility_name')?.touched ">name
                                 is
-                                required</small>
+                                required</p>
+                            </mat-form-field>
+                            
                         </div>
                         <div class="ip">
                             <mat-form-field class="full-width" appearance="outline">
                                 <input formControlName="facility_email" class="userinput" matInput placeholder="email">
-                            </mat-form-field>
-                            <small class="text-danger msgg"
+                                <p class="text-danger msgg"
                                 *ngIf="create_facility_form.get('facility_email')?.invalid  && create_facility_form.get('facility_email')?.touched ">Please
                                 enter
-                                valid email</small>
+                                valid email</p>
+                            </mat-form-field>
+                            
                         </div>
                         <div class="ip">
                             <mat-form-field class="full-width" appearance="outline">
                                 <input type="password" class="userinput" formControlName="facility_password" matInput
                                     placeholder="password">
-                            </mat-form-field>
-                            <small class="text-danger msgg"
+                                    <p class="text-danger msgg"
                                 *ngIf="create_facility_form.get('facility_password')?.invalid  && create_facility_form.get('facility_password')?.touched ">Password
-                                should contain atleast 8 letters</small>
+                                should contain atleast 8 letters</p>
+                            </mat-form-field>
                         </div>
                         <div class="ip">
                             <mat-form-field class="full-width" appearance="outline">
                                 <input formControlName="facility_phone" class="userinput" matInput
                                     placeholder="mobile_number">
-                            </mat-form-field>
-                            <small class="text-danger msgg"
+                                    <p class="text-danger msgg"
                                 *ngIf="create_facility_form.get('facility_phone')?.invalid  && create_facility_form.get('facility_phone')?.touched ">This
-                                field is required</small>
+                                field is required</p>
+                            </mat-form-field>
+                            
                         </div>
                         <div class="ip">
                             <mat-form-field class="full-width" appearance="outline">
                                 <input formControlName="facility_location" class="userinput" matInput
                                     placeholder="facility_location">
-                            </mat-form-field>
-                            <!-- <mat-error *ngIf="create_facility_form.get('facility_location').hasError('required')"> </mat-error> -->
-                            <small class="text-danger msgg"
+                                    <p class="text-danger msgg"
                                 *ngIf="create_facility_form.get('facility_location')?.invalid  && create_facility_form.get('facility_location')?.touched ">This
-                                field is required</small>
+                                field is required</p>
+                            </mat-form-field>
+
+                            
                         </div>
                         <h1 class="text-danger msgg" *ngIf="servererror">{{servererror}}</h1>
                     </div>
@@ -65,9 +69,7 @@
                 <mat-card-actions>
 
                     <button type="submit" class="me-5" mat-raised-button="" color="primary">Register</button>
-                    <button type="button" routerLink="../login" mat-raised-button="" color="primary">
-                        Already have an account?
-                    </button>
+
                 </mat-card-actions>
 
 

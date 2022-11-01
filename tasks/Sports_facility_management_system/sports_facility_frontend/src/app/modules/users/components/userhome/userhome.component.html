@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <div class="gradient-custom-2">
     <div class="card22">
         <div class="card33">
@@ -27,7 +25,7 @@
 
                             <mat-form-field appearance="fill">
                                 <mat-label>name</mat-label>
-                                <input formControlName="user_name" matInput >
+                                <input formControlName="user_name" matInput>
                             </mat-form-field>
                             <small class="text-danger msgg"
                                 *ngIf="editUserDetailsForm.get('user_name')?.invalid  && editUserDetailsForm.get('user_name')?.touched ">Please
@@ -35,7 +33,7 @@
                                 valid name</small>
                             <mat-form-field appearance="fill">
                                 <mat-label>email</mat-label>
-                                <input matInput formControlName="user_email" >
+                                <input matInput formControlName="user_email">
                             </mat-form-field>
                             <small class="text-danger msgg"
                                 *ngIf="editUserDetailsForm.get('user_email')?.invalid  && editUserDetailsForm.get('user_email')?.touched ">Please
@@ -44,59 +42,119 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" (click)="edituserdetails()">Save
+                            <button type="button" class="btn btn-primary" (click)="edituserdetails() "
+                                data-bs-dismiss="modal">Save
                                 changes</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <h2 *ngIf="upcomigbookingsexists>0"> Upcoming Bookings</h2>
-        <div *ngFor="let booking of bookingDetails">
-            <div *ngIf="booking.isupcoming" class="card">
-                <div class="datecard">
-                    <h1> {{booking.date}}</h1>
-                </div>
+        <hr style="border:1px solid black ;background-color:black;">
+        <div class="bookingbtnsdiv">
+            <button class="btn btn-outline-success editprofilebtn " [ngClass]="div1?'selectedbutton':''"
+                (click)="div1Function()"> Upcoming</button>
+            <button class="btn btn-outline-success editprofilebtn " [ngClass]="div2?'selectedbutton':''"
+                (click)="div2Function()">Past</button>
+            <button class="btn btn-outline-success editprofilebtn " [ngClass]="div3?'selectedbutton':''"
+                (click)="div3Function()">Cancelled</button>
+        </div>
+        <div *ngIf="div1">
+            <h2 *ngIf="upcomigbookingsexists ==0"> No Upcoming Bookings </h2>
+            <div *ngFor="let booking of upcomigbookingsloadmore">
+                <div class="card" (click)="bookingspage(booking.booking_id)">
+                    <div class="datecard">
+                        <h1> {{booking.date}}</h1>
+                    </div>
 
-                <div class="detailscard">
-                    <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
-                    <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+                    <div class="detailscard">
+                        <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
+                        <p>{{booking.facility_sport_id.facility.facility_location}}</p>
 
-                    <div class="detailscard2">
-                        <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
-                            alt="sport" />
-                        <i class="fa fa-phone phone" aria-hidden="true"></i>
-                        <button class="btn btn-outline-primary" (click)="deletebooking(booking.booking_id)"> cancel
-                        </button>
+                        <div class="detailscard2">
+                            <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
+                                alt="sport" />
+                            <i class="fa fa-phone phone" aria-hidden="true"></i>
 
+                            <!-- <button class="btn btn-outline-primary" (click)="deletebooking($event,booking.booking_id)">
+                                cancel
+                            </button> -->
+                            <button class="btn btn-outline-primary"
+                                (click)="openDialog2($event,'0ms', '0ms',booking.booking_id)"> cancel</button>
 
+                        </div>
                     </div>
                 </div>
             </div>
+            <div *ngIf="upcomigbookingsexists > bookingstoDisaplay " class="text-center m-4 ">
+                <button (click)="loadmore()" class=" bg-transparent p-2  border border-dark text-light"><i
+                        class="fa-solid fa-angles-down text-black"></i> </button>
+
+            </div>
+
+
         </div>
-        <h2 *ngIf="pastbookingsexists>0"> past booking</h2>
-        <div *ngFor="let booking of bookingDetails">
-            <div *ngIf="!booking.isupcoming" class="card">
-                <div class="datecard">
-                    <h1> {{booking.date}}</h1>
-                </div>
+        <div *ngIf="div2">
+            <h2 *ngIf="pastbookingsexists ==0"> No Past Bookings </h2>
+            <div *ngFor="let booking of pastbookingsloadmore">
+                <div class="card" (click)="bookingspage(booking.booking_id)">
+                    <div class="datecard">
+                        <h1> {{booking.date}}</h1>
+                    </div>
 
-                <div class="detailscard">
-                    <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
-                    <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+                    <div class="detailscard">
+                        <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
+                        <p>{{booking.facility_sport_id.facility.facility_location}}</p>
 
-                    <div class="detailscard2">
-                        <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
-                            alt="sport" />
-                        <i class="fa fa-phone phone" aria-hidden="true"></i>
+                        <div class="detailscard2">
+                            <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
+                                alt="sport" />
+                            <i class="fa fa-phone phone" aria-hidden="true"></i>
 
-                        <button mat-raised-button
-                            (click)="openDialog(booking.booking_id,booking.reviews,booking.ratings)">feedback</button>
+                            <button mat-raised-button
+                                (click)="openDialog($event,booking.booking_id,booking.reviews,booking.ratings)">feedback</button>
+                            <h3 *ngIf="booking.isCancelled" class="text-danger pt-1"> cancelled
+                            </h3>
+
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div *ngIf="pastbookingsexists > bookingstoDisaplay " class="text-center m-4 ">
+                <button (click)="loadmore()" class=" bg-transparent p-2  border border-dark text-light"><i
+                        class="fa-solid fa-angles-down text-black"></i> </button>
+
+            </div>
+        </div>
+        <div *ngIf="div3">
+            <h2 *ngIf="cancelledBookingsexists ==0"> No Cancelled Bookings </h2>
+            <div *ngFor="let booking of cancelledbookingsloadmore">
+                <div class="card">
+                    <div class="datecard">
+                        <h1> {{booking.date}}</h1>
+                    </div>
+
+                    <div class="detailscard">
+                        <h1> {{booking.facility_sport_id.facility.facility_name}}</h1>
+                        <p>{{booking.facility_sport_id.facility.facility_location}}</p>
+
+                        <div class="detailscard2">
+                            <img src="../../../../../assets/images/{{booking.facility_sport_id.sport.sport_name}}.png"
+                                alt="sport" />
+                            <i class="fa fa-phone phone" aria-hidden="true"></i>
+
+                            <h3 *ngIf="booking.isCancelled" class="text-danger pt-1"> cancelled
+                            </h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="cancelledBookingsexists > bookingstoDisaplay " class="text-center m-4 ">
+                <button (click)="loadmore()" class=" bg-transparent p-2  border border-dark text-light"><i
+                        class="fa-solid fa-angles-down text-black"></i> </button>
+
             </div>
         </div>
     </div>
 </div>
-
-<app-footer></app-footer>

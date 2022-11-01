@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Location } from '@angular/common';
+import { FacilityService } from 'src/app/modules/facilities/services/facility.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,23 @@ export class LoginComponent implements OnInit {
   access_token: any;
   servererror: any;
   formNotValid: boolean = false;
-  constructor(private services: UserService, private location: Location) {}
+  constructor(
+    private services: UserService,
+    private location: Location,
+    private facilityService: FacilityService,
+    private router: Router
+  ) {
+    let token = localStorage.getItem('refresh_token');
+    this.facilityService.CheckRefreshToken(token).subscribe((data) => {
+      let res = JSON.stringify(data);
+      let Parsed = JSON.parse(res);
+      if (Parsed.is_admin) {
+        this.router.navigate(['admin/home']);
+      } else {
+        this.router.navigate(['facilities/hyderabad']);
+      }
+    });
+  }
 
   ngOnInit(): void {}
   submit(): void {
@@ -27,14 +45,19 @@ export class LoginComponent implements OnInit {
           let tokens = JSON.stringify(data);
           let Parsed = JSON.parse(tokens);
           localStorage.setItem('refresh_token', Parsed.refresh_token);
-          this.location.back();
+          if (Parsed.is_admin) {
+            // this.facilityService.is_admin=true;
+            this.router.navigate(['admin/home']);
+          } else {
+            // this.facilityService.is_user=true;
+            this.location.back();
+          }
         },
         (err) => {
           this.servererror = err.error.detail;
         }
       );
-    }
-    else{
+    } else {
       this.formNotValid = true;
     }
   }

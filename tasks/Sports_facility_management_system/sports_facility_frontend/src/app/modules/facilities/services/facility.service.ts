@@ -12,27 +12,51 @@ import {Slots} from 'src/interfaces/slot';
 )
 export class FacilityService {
   private bookingurl: string = 'http://localhost:8000/bookingform';
-  private facilitiesurl: string = 'http://localhost:8000/facilities';
+  private facilitiesurl: string = 'http://localhost:8000/facilities?page=';
   private facilityurl: string = 'http://localhost:8000/facility?fid='
-  private sporturl: string = 'http://localhost:8000/sf';
-  private slotsurl: string = 'http://localhost:8000/slots/';
+  private sporturl: string = 'http://localhost:8000/sport-facility?fid=';
+  private slotsurl: string = 'http://localhost:8000/GetSlotsInSportFacility/';
   private bookedslotsurl: string = 'http://127.0.0.1:8000/get-booked-slots?fsid=';
   private equipmenturl: string = 'http://localhost:8000/get-equipments?sid=';
 
   private facilitysporturl:string ='http://127.0.0.1:8000/get-fsid?fid='
-
+  private ratingUrl:string='http://127.0.0.1:8000/get-ratings-facility?fid='
   private searchfacilityurl:string ='http://127.0.0.1:8000/search-facilities?q='
   private sportsurl:string ='http://127.0.0.1:8000/get-sports'
 
-  private facilitiesconatiningSporturl:string ='http://127.0.0.1:8000/get-facilities-contain-sport/'
+  private searchurl:string ='http://127.0.0.1:8000/get-facilities-contain-sport?q='
 
   private Refreshtokenurl:string ='http://127.0.0.1:8000/check-refresh-token?refresh_token='
 
-  constructor( private http: HttpClient ) { }
+  private searchloadmore:string ='http://127.0.0.1:8000/search-facilities?q='
+  is_authenticated:boolean =false;
+  is_admin:boolean = false;
+  is_user:boolean = false;
+  constructor( private http: HttpClient ) { 
+    let token = localStorage.getItem('refresh_token');
+    this.CheckRefreshToken(token).subscribe(
+      (data) => {
+        let res = JSON.stringify(data);
+        let Parsed = JSON.parse(res);
+        this.is_authenticated=true
+        if (Parsed.is_admin) {
+          this.is_admin = true;
+          
+        } else {
+          this.is_user=true
+        }
 
-  getFacilities(): Observable<Facility[]> {
+        
+      },
+      (err) => {
+        this.is_authenticated=false
+      }
+    );
+  }
 
-    return this.http.get<Facility[]>(this.facilitiesurl);
+  getFacilities(page:number) {
+
+    return this.http.get(this.facilitiesurl+page);
     
   }
   getFacility(id: string): Observable<Facility> {
@@ -41,7 +65,7 @@ export class FacilityService {
   
 
   getSportsInFacility(id: string): Observable<Sports[]> {
-    return this.http.get<Sports[]>(this.sporturl+"/"+String(id));
+    return this.http.get<Sports[]>(this.sporturl+String(id));
   }
 
   getSlotsInSportFacility(fid: string,sid: number): Observable<Slots[]> {
@@ -69,17 +93,17 @@ export class FacilityService {
     return this.http.get(this.facilitysporturl+fid+"&sid="+sid)
   }
 
-  searchFacility(q: string){
-    return this.http.get(this.searchfacilityurl+q)
+  searchFacility(q: string):Observable<Facility[]> {
+    return this.http.get<Facility[]>(this.searchfacilityurl+q)
 
     
   }
   getSports() {
     return this.http.get(this.sportsurl)
   }
-  getFacilitiescontainSport(sid:any) {
+  getFacilitiescontainSport(q:any,sid:any,page:any) {
 
-    return this.http.get(this.facilitiesconatiningSporturl+sid)
+    return this.http.get(this.searchurl+ q+'&&sid='+sid+'&&page='+page)
   }
 
   CheckRefreshToken(token:any) {
@@ -89,4 +113,15 @@ export class FacilityService {
     
 
   }
+
+  searchFacilityLoadmore(q:any,sid:any,x:any) {
+    console.log(q,sid, x);
+    return this.http.get(this.searchloadmore+ q+'&&sid='+sid+'&&x='+x)
+
+  }
+  getRatingsOfFacilities(fid:any){
+
+    return this.http.get(this.ratingUrl+fid)
+  }
 }
+

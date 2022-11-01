@@ -21,14 +21,14 @@ export class BookingComponent implements OnInit {
   date: string = '';
   fsid!: number;
   datesarray: any[] = [];
-  slots: Slots[] = [];
+  slots: any;
   booked_slots: Slots[] = [];
   booked_slots_ids: number[] = [];
   slotsid: number[] = [];
   equipments_booked: any[] = [];
   equipments_quantity: any[] = [];
   bookingForm!: FormGroup;
-  user_id: number = 1;
+  user_id!: number;
 
   bookingmsg: any;
   fsdetails: any;
@@ -60,21 +60,26 @@ export class BookingComponent implements OnInit {
     this.facilityService.getSportsInFacility(this.fid).subscribe((data) => {
       (this.sports = data), console.log(data);
     });
-
-    let refresh_token = localStorage.getItem('refresh_token');
-
-    this.facilityService.CheckRefreshToken(refresh_token).subscribe((data) => {
-      this.token_status = data;
-      if (this.token_status != 'access token does not exist') {
-        this.user_verfied = true;
-      }
-    });
+    this.checkUser();
 
     this.dates();
   }
   ngDoCheck(): void {}
   ngOnDestroy(): void {}
 
+  checkUser(): void {
+    let token = localStorage.getItem('refresh_token');
+    this.facilityService.CheckRefreshToken(token).subscribe(
+      (data:any) => {
+        console.log(data);
+        this.user_verfied = true;
+        this.user_id=data.user_id;
+      },
+      (err) => {
+        this.user_verfied = false;
+      }
+    );
+  }
   dates(): void {
     for (let i = 0; i < 5; i++) {
       var simpilifiedDate: any[] = [];
@@ -92,7 +97,8 @@ export class BookingComponent implements OnInit {
   }
   getSportsId(id: number): void {
     this.sportid = id;
-
+    this.slotsid=[];
+    this.total_cost_for_slots=0
     this.facilityService
       .getFacilitySportId(this.fid, this.sportid)
       .subscribe((data) => {
@@ -101,18 +107,26 @@ export class BookingComponent implements OnInit {
         console.log(this.fsid);
         this.cost_per_slot = this.fsdetails.cost_per_slot;
         console.log(this.cost_per_slot);
-      
-      if (this.date) {
-        this.facilityService
-          .getSlotsInSportFacility(this.fid, this.sportid)
-          .subscribe((data) => (this.slots = data));
-        this.facilityService
-          .getBookedSlots(this.fsid, this.date)
-          .subscribe((data) => {
-            console.log(data),
-            (this.booked_slots = data), this.getSlotids();
-          });
-      }});
+
+        if (this.date) {
+          
+          this.facilityService.getBookedSlots(this.fsid, this.date)
+            .subscribe((data) => {
+              console.log(data), (this.booked_slots = data), this.getSlotids();
+            });
+
+
+          this.facilityService
+            .getSlotsInSportFacility(this.fid, this.sportid)
+            .subscribe((data: any) => {
+              this.slots = data;
+              console.log(data);
+            });
+          
+            
+            
+        }
+      });
 
     this.facilityService.getEquipments(this.sportid).subscribe((data) => {
       // (this.equipments = data);
@@ -131,13 +145,14 @@ export class BookingComponent implements OnInit {
       this.facilityService
         .getBookedSlots(this.fsid, this.date)
         .subscribe((data) => {
-          console.log(data),
-          (this.booked_slots = data), this.getSlotids();
+          console.log(data), (this.booked_slots = data), this.getSlotids();
         });
     }
   }
   getDate(date: string): void {
     this.date = date;
+    this.slotsid=[];
+    this.total_cost_for_slots=0
     console.log(this.date);
     if (this.sportid) {
       this.facilityService
@@ -146,8 +161,7 @@ export class BookingComponent implements OnInit {
       this.facilityService
         .getBookedSlots(this.fsid, this.date)
         .subscribe((data) => {
-          console.log(data),
-          (this.booked_slots = data), this.getSlotids();
+          console.log(data), (this.booked_slots = data), this.getSlotids();
         });
     }
   }
@@ -229,10 +243,8 @@ export class BookingComponent implements OnInit {
         console.log(obj);
 
         this.facilityService.postBookingData(obj).subscribe((data) => {
-          (this.bookingmsg = data), console.log(data);
-          sessionStorage.setItem('bookingobj', JSON.stringify(obj));
-          sessionStorage.setItem('totalcost', JSON.stringify(costobj));
-          this.router.navigate(['facilities/paymentpage']);
+          console.log(data);
+          this.router.navigate(['user/bookings', data]);
         });
       } else {
         this.errormsg = 'please choose atleast one slot to book';

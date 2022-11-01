@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PaymentpageComponent } from './components/paymentpage/paymentpage.component';
-import { ParticularsportComponent } from './components/particularsport/particularsport.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,12 +21,13 @@ import { ParticularsportComponent } from './components/particularsport/particula
     HeaderComponent,
     FooterComponent,
     PaymentpageComponent,
-    ParticularsportComponent
+    
   ],
   imports: [
     CommonModule,
     FacilitiesRoutingModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
     FooterComponent,

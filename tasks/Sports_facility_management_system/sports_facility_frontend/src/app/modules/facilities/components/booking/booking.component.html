@@ -1,12 +1,14 @@
 <!-- <h1>{{facility.facility_name}}</h1> -->
+
+<marquee  direction="right"><h2 *ngIf="!user_verfied" class="text-danger m-3"> *Login Before going to book</h2></marquee>
 <h3> Select Sport</h3>
 
 <div class="card">
     <div *ngFor="let sport of sports">
 
         <label class="sport_labl">
-            <input type="radio" name="sports" value="{{sport.sport_id}}" />
-            <div class="sportcard" (click)="getSportsId(sport.sport_id)">
+            <input type="radio" name="sports" value="{{sport.sport_id}}" [attr.disabled]="user_verfied ? null : true"  />
+            <div class="sportcard" [ngClass]=" user_verfied? '' : 'user_not_verfied' " (click)="getSportsId(sport.sport_id)">
                 <img src="../../../../../assets/images/{{sport.sport_name}}.png" alt="{{sport.sport_name}}" />
                 <h6>{{sport.sport_name}}</h6>
             </div>
@@ -19,8 +21,8 @@
     <div *ngFor="let date of datesarray">
 
         <label class="date_labl">
-            <input type="radio" name="dates" value="{{date[0]}}" />
-            <div class="sportcard" (click)="getDate(date[0])">
+            <input [attr.disabled]="user_verfied ? null : true"  type="radio" name="dates" value="{{date[0]}}" />
+            <div  class="sportcard" [ngClass]=" user_verfied? '' : 'user_not_verfied' " (click)="getDate(date[0])">
                 <h6 *ngFor="let part of date">{{part}}</h6>
 
             </div>
@@ -67,6 +69,8 @@
 </div>
 
 <h1 *ngIf="errormsg"> {{errormsg}}</h1>
-<div class="text-center p-3">
-    <input type="button" value="proceed  to checkout" (click)="submitBookingForm()" class="btn btn-primary">
+<div  class="text-center p-3">
+
+    <input *ngIf="user_verfied" type="button" value="proceed  to checkout" (click)="submitBookingForm()" class="btn btn-primary">
+    <input *ngIf="!user_verfied" type="button" value="login" (click)="submitBookingForm()" class="btn btn-primary">
 </div>

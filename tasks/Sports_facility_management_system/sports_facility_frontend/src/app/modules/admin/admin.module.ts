@@ -11,6 +11,9 @@ import { AngularMaterialModule } from '../../angular-material.module';
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
 import { AddsportsComponent } from './components/addsports/addsports.component';
 import { AddslotsComponent } from './components/addslots/addslots.component';
+import { AdminheaderComponent } from './components/adminheader/adminheader.component';
+import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     AdminhomeComponent,
@@ -19,6 +22,7 @@ import { AddslotsComponent } from './components/addslots/addslots.component';
     AdminloginComponent,
     AddsportsComponent,
     AddslotsComponent,
+    AdminheaderComponent,
     
   ],
   imports: [
@@ -26,7 +30,9 @@ import { AddslotsComponent } from './components/addslots/addslots.component';
     AdminRoutingModule,
     MatGridListModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FormsModule,
+    MatTableModule
     
   ]
 })

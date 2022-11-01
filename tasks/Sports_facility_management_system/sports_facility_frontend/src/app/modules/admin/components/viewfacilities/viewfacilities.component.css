@@ -2,7 +2,7 @@
     border: 2px solid royalblue;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 20px;
     margin-bottom: 20px;
     text-align: center;
@@ -24,9 +24,83 @@ h2{
 }
 .button{
     /* margin-top: 8px; */
-    width: 120px;
-    height: 50px;
+    /* width: 120px; */
+    /* height: 50px; */
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    /* margin-left: 60px; */
 }
+.dropdown {
+
+    display: inline-block;
+    padding: 20px;
+    margin-left:600px ;
+
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+.sportbutton{
+    border: 0px;
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    /* padding: 6px 16px; */
+    font-weight: 800;
+  }
+  .sport_labl {
+    display: block;
+    width: 100px;
+  }
+  .sport_labl > input {
+    /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+  }
+  .sport_labl > input + div {
+    /* DIV STYLES */
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .sport_labl > input:checked + div {
+    /* (RADIO CHECKED) DIV STYLES */
+    background-color: transparent;
+    border: 3px solid rgba(37, 156, 196, 0.863);
+  }
+  .sportcard {
+    text-align: center;
+    /* padding: 5px; */
+    
+  }
+
+  .border-input {
+    border: 2px solid rgb(12, 165, 226);
+  }
+
+  table {
+    width: 90%;
+    margin: 50px 50px 0px 50px;
+    
+    
+  }
+
+ 

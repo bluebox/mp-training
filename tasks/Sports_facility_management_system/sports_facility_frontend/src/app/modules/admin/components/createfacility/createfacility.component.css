@@ -1,18 +1,23 @@
 
 .ip{
     width:500px;
-    padding: 5px;
-    margin-top: 5px;
+    /* padding: 5px; */
+    margin-top: 2px;
     border-radius: 5px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr ;
     text-align: left;
+    padding-bottom:0px;
+    margin-bottom: 0px;
 
 }
 
 .msgg{
-padding-top: 13px;
-margin-left: 5px;
+/* padding-top: 13px;    */
+text-align: right;
+font-size: 10px;
+padding-bottom:0px;
+margin-bottom: 0px;
 }
 
 .userinput{

@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 <div class="card">
     <div class="content">
         <form [formGroup]="SignUpForm" class="form-container" (ngSubmit)="onSignUp()">
@@ -13,40 +13,44 @@
 
                     <div class="row">
                         <div class="ip">
-                            <mat-form-field class="full-width" appearance="outline">
-                                <input formControlName="user_name" class="userinput" matInput placeholder="username">
-                            </mat-form-field>
-                            <small class="text-danger msgg"
-                                *ngIf="SignUpForm.get('user_name')?.invalid  && SignUpForm.get('user_name')?.touched ">username
+                            <mat-form-field style="margin: 0;padding:0;" class="full-width" appearance="outline">
+                                <input formControlName="user_name" class="userinput" matInput placeholder="name">
+                                <p class="text-danger msgg"
+                                *ngIf="SignUpForm.get('user_name')?.invalid  && SignUpForm.get('user_name')?.touched ">*name
                                 is
-                                required</small>
+                                required</p> 
+                            </mat-form-field >
+                            
                         </div>
                         <div class="ip">
-                            <mat-form-field class="full-width" appearance="outline">
+                            <mat-form-field  style="margin: 0;padding:0;" class="full-width" appearance="outline">
                                 <input formControlName="user_email" class="userinput" matInput placeholder="email">
-                            </mat-form-field>
-                            <small class="text-danger msgg"
-                                *ngIf="SignUpForm.get('user_email')?.invalid  && SignUpForm.get('user_email')?.touched ">Please
+                                <p class="text-danger msgg"
+                                *ngIf="SignUpForm.get('user_email')?.invalid  && SignUpForm.get('user_email')?.touched ">*Please
                                 enter
-                                valid email</small>
+                                valid email</p>
+                            </mat-form-field>
+                            
                         </div>
                         <div class="ip">
-                            <mat-form-field class="full-width" appearance="outline">
+                            <mat-form-field  style="margin: 0;padding:0;" class="full-width" appearance="outline">
                                 <input type="password" class="userinput" formControlName="user_password" matInput
                                     placeholder="password">
+                                    <p class="text-danger msgg"
+                                *ngIf="SignUpForm.get('user_password')?.invalid  && SignUpForm.get('user_password')?.touched ">*Password
+                                should contain atleast 8 letters</p>
                             </mat-form-field>
-                            <small class="text-danger msgg"
-                                *ngIf="SignUpForm.get('user_password')?.invalid  && SignUpForm.get('user_password')?.touched ">Password
-                                should contain atleast 8 letters</small>
+                            
                         </div>
                         <div class="ip">
-                            <mat-form-field class="full-width" appearance="outline">
+                            <mat-form-field  style="margin: 0;padding:0;" class="full-width" appearance="outline">
                                 <input formControlName="user_phone" class="userinput" matInput
                                     placeholder="mobile_number">
+                                    <p class="text-danger msgg"
+                                *ngIf="SignUpForm.get('user_phone')?.invalid  && SignUpForm.get('user_phone')?.touched ">*This
+                                field is required</p>
                             </mat-form-field>
-                            <small class="text-danger msgg"
-                                *ngIf="SignUpForm.get('user_phone')?.invalid  && SignUpForm.get('user_phone')?.touched ">This
-                                field is required</small>
+                            
                         </div>
                         <h1 class="text-danger msgg" *ngIf="servererror">{{servererror}}</h1>
                     </div>
@@ -65,4 +69,3 @@
         </form>
     </div>
 </div>
-<app-footer></app-footer>

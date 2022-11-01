@@ -81,6 +81,9 @@ img {
 .slotitem {
   display: inline;
 }
+.user_not_verfied{
+  pointer-events: none;
+}
 
 .class1 {
   background-color: green;

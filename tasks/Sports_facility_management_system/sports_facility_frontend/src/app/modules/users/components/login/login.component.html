@@ -1,11 +1,11 @@
-<app-header></app-header>
+
 <div class="card">
     <div class="content">
         <form [formGroup]="create_user_login_form" class="form-container" (ngSubmit)="submit()">
             <div class="ac1">
 
                 <mat-card-header>
-                    <mat-card-title>Register</mat-card-title>
+                    <mat-card-title>Login in </mat-card-title>
                     <small *ngIf="formNotValid" class="text-danger msgg">Please fill all required details</small>
                 </mat-card-header>
                 <mat-card-content>
@@ -13,21 +13,23 @@
                     <div class="ip">
                         <mat-form-field class="full-width" appearance="outline">
                             <input formControlName="user_phone" class="userinput" matInput placeholder="mobile_number">
-                        </mat-form-field>
-                        <small class="text-danger msgg"
+                            <p class="text-danger msgg"
                             *ngIf="create_user_login_form.get('user_phone')?.invalid  && create_user_login_form.get('user_phone')?.touched ">This
-                            field is required</small>
+                            field is required</p>
+                        </mat-form-field>
+                        
                     </div>
                     <div class="ip">
                         <mat-form-field class="full-width" appearance="outline">
                             <input type="password" class="userinput" formControlName="user_password" matInput
                                 placeholder="password">
-                        </mat-form-field>
-                        <small class="text-danger msgg"
+                                <p class="text-danger msgg"
                             *ngIf="create_user_login_form.get('user_password')?.invalid  && create_user_login_form.get('user_password')?.touched ">Password
-                            should contain atleast 8 letters</small>
+                            should contain atleast 8 letters</p>
+                        </mat-form-field>
+                        
                     </div>
-                    <h1 class="text-danger msgg" *ngIf="servererror">{{servererror}}</h1>
+                    <h1 class="text-danger " *ngIf="servererror">{{servererror}}</h1>
                 </mat-card-content>
                 <mat-card-actions>
                     <button type="submit" class="me-5" mat-raised-button="" color="primary">login</button>
@@ -39,4 +41,3 @@
         </form>
     </div>
 </div>
-<app-footer></app-footer>
