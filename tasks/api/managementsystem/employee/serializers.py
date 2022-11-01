@@ -45,9 +45,15 @@ class DeviceSerializer(serializers.ModelSerializer):
         model = Device
         fields = '__all__'
 
+class ComplaintSerializerWithOutEmployee(serializers.ModelSerializer):
+    device_id = DeviceSerializer()
+    class Meta:
+        model = Complaint
+        fields = '__all__'
+
 
 class Issued_toSerializer(serializers.ModelSerializer):
-    emp_id = EmployeeSerializer()
+    # emp_id = EmployeeSerializer()
     comp_id=ComplaintSerializer()
     class Meta:
         model = Issued_to
