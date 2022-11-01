@@ -1,3 +1,5 @@
+"""understanding generators"""
+
 __author__ = 'Hari'
 
 notes = '''
@@ -39,7 +41,7 @@ def test_generator_is_an_iterator2():
         assert "are" == next(result)
         assert "you?" == next(result)
         assert "StopIteration" == next(result)
-    except StopIteration as si:
+    except StopIteration:
         assert True
 
     assert "how.are.you?" == ".".join(demo_generator()) #join takes a iterable
@@ -99,8 +101,8 @@ def test_generator_return():
 def test_generator_control_flow():
     """generator control flow"""
     def func():
-        for x in range(5):
-            yield x
+        for item in range(5):
+            yield item
         yield 10
     assert [0, 1, 2 , 3, 4, 10] == demo_generator_to_list(func())
 
@@ -121,10 +123,10 @@ def test_generator_exception():
     assert [10, 20, 50, 30] == demo_generator_to_list(func())
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - generators
 - generator to list
 - generators are memory efficient and use yield
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
