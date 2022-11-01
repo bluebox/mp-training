@@ -21,8 +21,8 @@ export class OwnerregisterComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{4,30}$')]),
       contact_no : new  FormControl('', Validators.required),
       email : new FormControl('', [Validators.email, Validators.required]),
-      password : new FormControl('', [Validators.pattern('^[a-zA-Z]{8,20}$'), Validators.required]),
-      password2 : new FormControl('', [Validators.pattern('^[a-zA-Z]{8,20}$'), Validators.required]),
+      password : new FormControl('', [Validators.pattern('^[a-zA-Z0-9]{8,20}$'), Validators.required]),
+      password2 : new FormControl('', [Validators.pattern('^[a-zA-Z0-9]{8,20}$'), Validators.required]),
       address : new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{5,30}$')], )
     })
 }

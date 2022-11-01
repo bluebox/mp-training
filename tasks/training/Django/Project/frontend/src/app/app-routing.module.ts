@@ -17,11 +17,11 @@ import { CustomerProfileComponent } from './component/customer/customer-profile/
 import { PreviousvehiclesComponent } from './component/owner/previousvehicles/previousvehicles.component';
 import { BookComponent } from './component/customer/book/book.component';
 import { OrdersComponent } from './component/owner/orders/orders.component';
-import { ViewBillComponent } from './component/customer/view-bill/view-bill.component';
-import { ReviewComponent } from './component/customer/review/review.component';
+
 import { ViewCustomerProfileComponent } from './component/customer/view-customer-profile/view-customer-profile.component';
 import { OwnerGuard } from './owner.guard';
 import { OwnBillComponent } from './component/owner/own-bill/own-bill.component';
+import { ViewBillComponent } from './component/customer/view-bill/view-bill.component';
 
 
 const routes: Routes = [
@@ -36,6 +36,9 @@ const routes: Routes = [
   {path:'own-view-bill/previous-vehicles', redirectTo: 'previous-vehicles', pathMatch:'full'},
   {path:'own-view-bill/addvehicle', redirectTo: 'addvehicle', pathMatch:'full'},
 
+  {path:'book-vehicle/available-vehicles', redirectTo: 'available-vehicles', pathMatch:'full'},
+  {path:'book-vehicle/c-profile', redirectTo: 'c-profile', pathMatch:'full'},
+  {path:'book-vehicle/order-history', redirectTo: 'order-history', pathMatch:'full'},
 
   {path:'customerlogin', component: CustomerloginComponent },
   {path:'ownerlogin', component: OwnerloginComponent},
@@ -53,7 +56,7 @@ const routes: Routes = [
   {path:'orders', component: OrdersComponent, canActivate :[OwnerGuard]},
   {path:'view-bill/:id', component: ViewBillComponent, canActivate :[CustomerGuard]},
   {path:'own-view-bill/:id', component: OwnBillComponent, canActivate :[OwnerGuard]},
-  {path:'customer-review', component: ReviewComponent, canActivate :[CustomerGuard]},
+
   {path:'**', component: PagenotfoundComponent},
 
 

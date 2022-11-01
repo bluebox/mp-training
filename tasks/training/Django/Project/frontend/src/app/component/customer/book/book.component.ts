@@ -67,19 +67,30 @@ export class BookComponent implements OnInit {
           })
         }
       })
+
   }
+
+  // date.setDate(date.getDate() + 30);
 
   dateCheck(){
     let date = new Date();
+    let newDate = new Date();
+
+    newDate.setDate(date.getDate() + 60)
+
     this.pickupDate = this.vehicle.value['pickup_date'];
     this.returnDate= this.vehicle.value['return_date'];
 
     this.newPickDate = new Date(this.pickupDate);
     this.newReturnDate = new Date(this.returnDate);
-    console.log("pickup=" + this.newPickDate + "return" + this.newReturnDate + "today="+ date)
+    console.log("pickup=" + this.newPickDate + " return" + this.newReturnDate + " today="+ date)
+    console.log(' 60days = ' + newDate)
 
-    if(this.newPickDate > date && this.newReturnDate >= this.newPickDate){
+    if(this.newPickDate > date && this.newReturnDate >= this.newPickDate && this.newReturnDate <= newDate){
       this.bookSelectedVehicle()
+    }
+    else if(newDate < this.newReturnDate){
+      alert('Return date should be earlier than '+ newDate.getDate() +'/'+newDate.getMonth() +'/'+newDate.getFullYear())
     }
     else{
       alert('Choose Valid date')

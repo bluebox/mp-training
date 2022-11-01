@@ -33,7 +33,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginNavbarComponent } from './component/login-navbar/login-navbar.component';
 import { OrdersComponent } from './component/owner/orders/orders.component';
 import { ViewBillComponent } from './component/customer/view-bill/view-bill.component';
-import { ReviewComponent } from './component/customer/review/review.component';
+
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ViewProfileComponent } from './component/owner/view-profile/view-profile.component';
@@ -67,7 +67,7 @@ import { OwnBillComponent } from './component/owner/own-bill/own-bill.component'
     LoginNavbarComponent,
     OrdersComponent,
     ViewBillComponent,
-    ReviewComponent,
+
     ViewProfileComponent,
     ViewCustomerProfileComponent,
     FooterComponent,

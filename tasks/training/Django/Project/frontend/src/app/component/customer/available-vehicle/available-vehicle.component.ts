@@ -62,4 +62,8 @@ text : string=''
     this.service.searchVehicle(this.text).subscribe(data=>{(this.response=data),
     console.log(this.response)})
   }
+
+  checkDate(from: any, to:any){
+    console.log(from + " "+ to)
+  }
 }

@@ -35,9 +35,9 @@ urlpatterns = [
     path('bill/<int:pk>', views.BillList.as_view()),
     path('bill-list/', views.BillList.as_view()),
 
-    path('trip', views.Rent_TripList.as_view()),
+    path('trip', views.RentTripList.as_view()),
     path('book/', views.Book.as_view()),
-    path('trip/<int:pk>/', views.Rent_TripDetail.as_view()),
+    path('trip/<int:pk>/', views.RentTripDetail.as_view()),
     path('recieved-orders', views.getOrders.as_view()),
     path('generatebill/<int:id>', views.BillList.as_view()),
 

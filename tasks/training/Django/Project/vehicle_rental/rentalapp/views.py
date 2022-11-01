@@ -1,36 +1,31 @@
 from datetime import datetime
-import json
-from email.mime import image
-from datetime import date
-from django.db.models import Subquery
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+
 from rest_framework.views import View
-from django.contrib import messages
+
 from rest_framework import status, exceptions
 from rest_framework.response import Response
 from django.http.response import JsonResponse, Http404
-from django.core.files.storage import default_storage
+
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .models import Customer, Owner, Vehicle, OwnerToken, CustomerToken, Bill, Rent_Trip
+from .models import Customer, Owner, Vehicle, OwnerToken, CustomerToken, Bill, RentTrip
 from cloudinary import uploader
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from rest_framework.exceptions import AuthenticationFailed
-from . import serializer
 import jwt, datetime
 from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer, BillSerializer, \
     Rent_TripSerializer
-from .jwt_authentication import JwtAuthentication_owner, JwtAuthentication_customer, create_access_token, \
+from .jwt_authentication import JwtAuthentication_owner, JwtAuthentication_customer, \
+    create_access_token, \
     create_refresh_token, decode_refresh_token
 
-
-
 # # Create your views here.
-
 # # API
 class OwnerList(APIView):
+    """
+
+    """
+
     def get(self, request, format=None):
         owner = Owner.objects.all()
         serializer = OwnerSerializer(owner, many=True)
@@ -342,14 +337,14 @@ class VehicleDetail(APIView):
 
 
 
-class Rent_TripList(APIView):
+class RentTripList(APIView):
     authentication_classes = [JwtAuthentication_customer]
 
     def get(self, request):
         customer = Customer.objects.get(email=request.user)
         customer_id = customer.customer_id
 
-        rent_trip = Rent_Trip.objects.filter(customer_id=customer_id).order_by('-rent_id')
+        rent_trip = RentTrip.objects.filter(customer_id=customer_id).order_by('-rent_id')
 
         users, totalPages, page = listing(request, rent_trip)
 
@@ -379,16 +374,27 @@ class Book(APIView):
         #     print('err')
 
         #
-        # date = Rent_Trip.objects.filter( pickup_date__lte= request.data.get('pickup_date'),
-        #                                  pickup_date__gte= request.data.get('return_date'),
-        #                                  vehicle_no=vehicle_no)
+        # rent_arr = RentTrip.objects.filter(pickup_date__lte=request.data.get('pickup_date'),
+        #                                return_date__gte=request.data.get('pickup_date'),
+        #                                vehicle_no=vehicle_no)
+
+        rent = RentTrip.objects.filter(Q(pickup_date__lte=request.data.get('pickup_date')) |
+                                       Q(pickup_date__lte=request.data.get('return_date')),
+                                       Q(return_date__gte=request.data.get('pickup_date')) |
+                                       Q(return_date__gte=request.data.get('return_date')),
+                                       vehicle_no=vehicle_no).exists()
 
         # date = Rent_Trip.objects.filter(vehicle_no=vehicle_no)
 
         # vehicle = Rent_Trip.objects.filter(vehicle_no=vehicle_obj)
-        rent = Rent_Trip.objects.filter(pickup_date__range=[request.data.get('pickup_date'),
-                                                            request.data.get('return_date')],
-                                        vehicle_no=vehicle_no).exists()
+        # rent_arr=RentTrip.objects.filter(pickup_date__range=[request.data.get('pickup_date'),
+        #                                             request.data.get('return_date')],
+        #                         vehicle_no=vehicle_no)
+
+        # rent = RentTrip.objects.filter(pickup_date__range=[request.data.get('pickup_date'),
+        #                                                     request.data.get('return_date')],
+        #                                 vehicle_no=vehicle_no).exists()
+
         if (rent):
             return Response({"message": 'Not available on this date please Choose different date'})
         else:
@@ -416,15 +422,22 @@ class Book(APIView):
                 days =  no_of_days(pickup_date, return_date)
                 vehicle = Vehicle.objects.get(vehicle_no=vehicle_no)
                 amount = days * vehicle.price_day
-                return Response({'message':'Booked Successfully', 'amount': amount, 'days':days, 'id' : serializer.data['rent_id'] })
+                return Response({'message':'Booked Successfully',
+                                 'amount': amount,
+                                 'days':days,
+                                 'id' : serializer.data['rent_id'] })
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST )
 
+# class GetVehicleByDate(APIView):
+#     def get(self, request):
+        
 
-class Rent_TripDetail(APIView):
+
+class RentTripDetail(APIView):
     def get_object(self, pk):
         try:
-            return Rent_Trip.objects.get(pk=pk)
-        except Rent_Trip.DoesNotExist:
+            return RentTrip.objects.get(pk=pk)
+        except RentTrip.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
@@ -454,7 +467,7 @@ class BillList(APIView):
 
     def post(self,request, id):
 
-        trip = Rent_Trip.objects.get(rent_id=id)
+        trip = RentTrip.objects.get(rent_id=id)
         bill = Bill.objects.filter(rental_id=id).exists()
 
         if(bill):
@@ -506,7 +519,7 @@ class getOrders(APIView):
         owner = Owner.objects.get(email=request.user)
         owner_id = owner.owner_id
 
-        rent_trip = Rent_Trip.objects.filter(owner_id=owner_id).order_by('-rent_id')
+        rent_trip = RentTrip.objects.filter(owner_id=owner_id).order_by('-rent_id')
 
         orders, totalPages, page = listing(request, rent_trip)
 
@@ -522,7 +535,7 @@ class getOrders(APIView):
 
 class CustomerReview(APIView):
     def put(self, request, pk, format=None):
-        rent_trip = Rent_Trip.objects.get(pk=pk)
+        rent_trip = RentTrip.objects.get(pk=pk)
         rent_trip.customer_review = request.data['customer_review']
         rent_trip.save()
         serializer = Rent_TripSerializer([rent_trip], many=True)
@@ -532,7 +545,7 @@ class CustomerReview(APIView):
 
 class OwnerReview(APIView):
     def put(self, request, pk, format=None):
-        rent_trip = Rent_Trip.objects.get(pk=pk)
+        rent_trip = RentTrip.objects.get(pk=pk)
         rent_trip.owner_review= request.data['owner_review']
         rent_trip.save()
         serializer = Rent_TripSerializer([rent_trip], many=True)
@@ -549,7 +562,7 @@ class DeleteVehicle(View):
 
 class GetBookingId(APIView):
     def get(self, request, id):
-        booking_id = Rent_Trip.objects.filter(customer_id=id).order_by('-check_in').first
+        booking_id = RentTrip.objects.filter(customer_id=id).order_by('-check_in').first
         serializer = Rent_TripSerializer(booking_id)
         print(serializer)
         return JsonResponse(serializer.data)
@@ -586,7 +599,7 @@ class Search(APIView):
 
 class UpdateOrderStatus(APIView):
     def put(self, request, pk):
-        trip = Rent_Trip.objects.get(rent_id = pk)
+        trip = RentTrip.objects.get(rent_id = pk)
         trip.order_status = False
 
         trip.save()
@@ -608,7 +621,7 @@ class ChangeVehicleStatus(APIView):
 
 class AddOdoReading(APIView):
     def put(self, request, pk):
-        trip = Rent_Trip.objects.get(rent_id=pk)
+        trip = RentTrip.objects.get(rent_id=pk)
         trip.odo_start_reading = request.data['odo_start_reading']
         trip.odo_end_reading = request.data['odo_end_reading']
         trip.save()
@@ -679,6 +692,3 @@ def save_file(request):
 #
 #     else:
 #         return JsonResponse({'mes': 'invalid password'})
-
-
-

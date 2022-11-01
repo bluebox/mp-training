@@ -34,11 +34,8 @@ class Owner(models.Model):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-
     def __str__(self):
         return self.email
-
-
 
 class Vehicle(models.Model):
     vehicle_no = models.CharField(max_length=10, primary_key=True, )
@@ -50,10 +47,8 @@ class Vehicle(models.Model):
     price_day = models.FloatField()
     is_available = models.BooleanField(default=True)
 
-
     def __str__(self):
         return (self.vehicle_no)
-
 
 class CustomerToken(models.Model):
     customer_token_id = models.IntegerField()
@@ -68,7 +63,7 @@ class OwnerToken(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class Rent_Trip(models.Model):
+class RentTrip(models.Model):
     rent_id = models.AutoField(primary_key=True)
     vehicle_no = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -88,7 +83,7 @@ class Rent_Trip(models.Model):
 
 class Bill(models.Model):
     bill_no = models.AutoField(primary_key=True)
-    rental_id = models.OneToOneField(Rent_Trip, on_delete=models.CASCADE)
+    rental_id = models.OneToOneField(RentTrip, on_delete=models.CASCADE)
     rental_days = models.IntegerField()
     km_ran = models.IntegerField(null=True)
     amount = models.IntegerField()

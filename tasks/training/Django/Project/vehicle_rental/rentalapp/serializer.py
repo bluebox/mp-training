@@ -30,7 +30,7 @@ class VehicleSerializer(serializers.ModelSerializer):
 
 class Rent_TripSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Rent_Trip
+        model = RentTrip
         fields = '__all__'
 
 

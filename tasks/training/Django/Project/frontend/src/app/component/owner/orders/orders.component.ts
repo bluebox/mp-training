@@ -91,16 +91,12 @@ bill : any
     this.getPageItems(0)
   }
 
-
-
   generateBill(id: any) {
     this.service.generateBill(id).subscribe((data) => {
       (this.resp = data), alert(this.resp.message); this.ngOnInit()
     }, );
 
   }
-
-
   open(content: any, rent_id: any) {
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
@@ -114,6 +110,7 @@ bill : any
         alert('Review updated'), this.ngOnInit();
       });
   }
+  
   addReview(content: any, rent_id: any) {
     this.open(content, rent_id);
   }

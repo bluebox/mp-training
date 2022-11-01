@@ -19,6 +19,7 @@ height: 10vh;
 }
 .sign{
 background-color: rgb(0,0,0,.6);
+border-radius: 10px;
 width: 800px;
 height: 20rempx;
 display: flex;

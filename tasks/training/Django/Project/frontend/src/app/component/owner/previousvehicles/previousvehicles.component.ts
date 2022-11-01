@@ -1,5 +1,4 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ThisReceiver } from '@angular/compiler';
 import { GeneralService } from 'src/app/general.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -70,18 +69,10 @@ export class PreviousvehiclesComponent implements OnInit {
   }
   respon: any;
 
-  // updatePrice(content:any, id: any){
-
-  //   console.log('here')
-  //   open(content, id)
-  // }
-
   changeVehicleStatus(id: any) {
     this.service.changeStatus(id).subscribe((data) => {
       (this.respon = data);
       this.ngOnInit();
     });
-
-
   }
 }
