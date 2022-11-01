@@ -1,6 +1,12 @@
+"""understanding scopes"""
+
 __author__ = 'Hari'
 
-notes = '''
+import inspect
+import symtable
+from tasks.placeholders import *
+
+NOTES = '''
  Scopes and namespaces govern the accessibility rules and lifetime of python variables.
 
  Namespaces is a mapping of names to objects. Each python block creates a new namespace. The 3 python blocks are
@@ -16,10 +22,7 @@ notes = '''
  Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
 '''
 
-import inspect
-import symtable
 
-from tasks.placeholders import *
 
 count = 10
 
@@ -34,11 +37,11 @@ def test_scope_basic():
 
     value = count
 
-    assert True == ('value' in local_names)
-    assert False == ('value' in global_names)
+    assert True is ('value' in local_names)
+    assert False is ('value' in global_names)
 
-    assert False == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert True is ('count' in global_names)
 
     assert 10 == value
 
@@ -49,20 +52,20 @@ def test_scope_undefined_variable():
 
     try:
         my_name = name  #name variable is not in local or  global scope
-    except  : # fill up the exception
+    except NameError:   # fill up the exception
         pass
 
-    assert True == ('my_name' in local_names)
-    assert False == ('name' in local_names)
-    assert False == ('name' in global_names)
+    assert True is ('my_name' in local_names)
+    assert False is ('name' in local_names)
+    assert False is ('name' in global_names)
 
 def test_variable_shadow():
     """variable function"""
     local_names = get_locals(test_variable_shadow)
     count = 20
 
-    assert True == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert True is ('count' in local_names)
+    assert True is ('count' in global_names)
 
     assert 20 == count
     assert 10 == get_global_count()
@@ -75,8 +78,8 @@ def test_global_write():
     count = 30
 
     try:
-        assert False == ('count' in local_names)
-        assert True == ('count' in global_names)
+        assert False is ('count' in local_names)
+        assert True is ('count' in global_names)
 
         assert 30 == count
         assert 30 == get_global_count()
@@ -87,14 +90,14 @@ def test_scope_is_bound_at_definition_time():
     """scope is bound at definition time"""
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
-    assert True == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert True is ('count' in local_names)
+    assert True is ('count' in global_names)
 
     try:
         value = count
         count = 30
-    except NameError as ne: # what happens when you read a variable before initializing it?
-        print(ne)           #print ex #uncomment after you fill up above
+    except NameError as n_e: # what happens when you read a variable before initializing it?
+        print(n_e)           #print ex #uncomment after you fill up above
         assert True
     finally:
         count = 20
@@ -107,8 +110,8 @@ def test_scope_writing_globals():
     """scope writing globals"""
     local_names = get_locals(test_scope_writing_globals)
 
-    assert False == ('count' in local_names)
-    assert True == ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert True is ('count' in global_names)
 
     global count
 
@@ -123,13 +126,13 @@ def test_scope_writing_globals():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - scope, it is defined at the definition time
 - local
 - global
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
 
 
 #helper functions which get the variables in locals and globals using the compiler's symbol tables.
