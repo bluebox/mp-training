@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>Log in</mat-card-title>
 <div class="container">
-  <form [formGroup]="formlogIn" (ngSubmit)="saveDetails(formlogIn)">
+  <form [formGroup]="formlogIn" >
     <mat-form-field appearance="legacy">
       <mat-label>Email Address:</mat-label>
       <input matInput type="email" formControlName="email" placeholder="Your email">
@@ -36,7 +36,7 @@
       <router-outlet></router-outlet>
       <div mat-dilog-action>
       <span class="example-spacer"></span><span class="example-spacer"></span><span class="example-spacer"></span><span class="example-spacer"></span>
-        <button mat-raised-button color="primary" type="submit"  [disabled]="!formlogIn.valid">Submit</button>
+        <button mat-raised-button color="primary" type="submit" (click)="saveDetails(formlogIn)" [disabled]="!formlogIn.valid">Submit</button>
     </div>
   </div>
 </form>

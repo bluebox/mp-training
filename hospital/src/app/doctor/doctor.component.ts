@@ -17,6 +17,7 @@ export interface UserFormInterface {
 })
 
 export class DoctorComponent implements OnInit {
+  isregistered: any;
   formdoc: FormGroup = new FormGroup({});
   doctor: any;
   userform:UserFormInterface={
@@ -25,11 +26,13 @@ export class DoctorComponent implements OnInit {
     password: '',
     type_of_user: ''
   };
+
   constructor(private fb: FormBuilder,private api:ServercomunicationService) { }
 
   ngOnInit(): void {
+    this.isregistered=false,
     this.formdoc = this.fb.group({
-      name: [null, [Validators.required, Validators.minLength(10)]],
+      name: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       age: [null, [Validators.required]],
       phone_no: [null, [Validators.required, Validators.pattern("^[0-9]*$"),
@@ -49,7 +52,6 @@ export class DoctorComponent implements OnInit {
 // }
 saveDetails(form:any){
   console.log(this.formdoc.value.name)
-
   this.userform!.name=this.formdoc.value.name
   this.userform!.email=this.formdoc.value.email
   this.userform!.password=this.formdoc.value.password
@@ -59,11 +61,13 @@ saveDetails(form:any){
   this.api.registerUser(this.userform).subscribe(
     (data)=>{
       console.log(data);
+     this.isregistered=true;
     },
     error=>{
 
   console.log(error);
 })
+if(this.isregistered==true){
   const data=JSON.stringify(form.value)
   this.api.register_doctor(data).subscribe(
 
@@ -76,9 +80,6 @@ saveDetails(form:any){
     error=>{
 
   console.log(error);
-
-  // this.service.getAPatient().subscribe((data: Patient[])=>this.patients=data[0])
-  // console.log(this.patients)
-})
+})}
 }
 }

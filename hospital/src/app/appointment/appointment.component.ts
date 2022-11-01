@@ -28,6 +28,7 @@ export class AppointmentComponent implements OnInit {
   slot: any;
   selectedDoctorDetails: any;
   selectedSlotDetails: any;
+  patient: any;
   constructor(private datePipe:DatePipe,private _bottomSheet: MatBottomSheet,private fb: FormBuilder,private api:ServercomunicationService,private book:BookingService) { }
   openBottomSheet(): void {
     this._bottomSheet.open(DoctorDetailsComponent);
@@ -61,25 +62,13 @@ export class AppointmentComponent implements OnInit {
   console.log(error);
 })
 }
-getADocData(doc: any)
-{
-  this.api.getADoctor(name).subscribe(
-    (data: any)=>{
-      console.log(data);
-      this.doctor=data;
-      console.log(this.doctor)
-      this.book.setDocData(data)
-    },
-    (    error: any)=>{
 
-  console.log(error);
-})
-}
 getUserdetails(){
   this.api.getuser().subscribe(
     (res:any)=>{
-      this.user=res.id;
+      this.user=res.email;
       console.log(this.user);
+     this.getPatientData();
     },
     (error:any)=>{
       console.log(error);
@@ -87,11 +76,25 @@ getUserdetails(){
     }
   )
 }
+getPatientData()
+{
+  this.api.getAPatient(this.user.email).subscribe(
+    (data: any)=>{
+      console.log(data);
+      this.patient=data[0].id;
+      console.log(this.patient)
+      this.book.setDocData(data)
+    },
+    (    error: any)=>{
+
+  console.log(error);
+})
+}
 saveDetails(form_appointment:any){
   console.log(this.form_appointment);
   let app={
     "slot":this.selectedSlotDetails,
-    "patient":this.user
+    "patient":this.patient,
   }
   console.log('detail1');
   console.log(app);

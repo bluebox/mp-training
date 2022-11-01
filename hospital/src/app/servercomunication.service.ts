@@ -27,6 +27,10 @@ export class ServercomunicationService {
         //     return user;
         // }));
 }
+logout(){
+  return this.http.post<any>(this.url+'users/logout/',"",{withCredentials:true,headers: this.httpHeaders});
+
+}
   getAllPatient():Observable<any>
   {
     console.log('patient list get')
@@ -73,15 +77,15 @@ export class ServercomunicationService {
     console.log('diagnosis list get')
     return this.http.get(`${this.url}users/slot/${id}`,{headers: this.httpHeaders});
   }
-  getADoctor(name: any):Observable<any>
+  getADoctor(email: any):Observable<any>
   {
     console.log('single doc details get')
-    return this.http.get(`${this.url}users/doctor/${name}`,{headers: this.httpHeaders});
+    return this.http.get(`${this.url}users/getdoctor/${email}/`,{headers: this.httpHeaders});
   }
   getAPatient(id: any):Observable<any>
   {
     console.log('one patient')
-    return this.http.get('${this.url}patient/patient/${id}',{headers: this.httpHeaders});
+    return this.http.get('${this.url}users/getpatient/${email}/',{headers: this.httpHeaders});
   }
   getAApointment(id: any):Observable<any>
   {
@@ -108,7 +112,7 @@ register_diagnosis(data: any) {
   return this.http.post(this.url+'diagnosis/diagnosis/', data,{headers: this.httpHeaders});
 }
 register_slot(data: any) {
-  return this.http.post(this.url+'users/slot/', data,{headers: this.httpHeaders});
+  return this.http.post(this.url+'users/DatewiseSlot/', data,{headers: this.httpHeaders});
 }
   //   update(id: any, data: any) {
   //     return this.http.put(`${baseUrl}/${id}`, data);

@@ -1,9 +1,8 @@
 export interface Slot{
   doctor:any;
-  partients:any;
   date:string|any;
-  slotss:string;
+  starTime:any;
+  endTime:any;
   status:any;
-
 }
 

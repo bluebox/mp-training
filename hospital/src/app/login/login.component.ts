@@ -26,17 +26,16 @@ export class LoginComponent implements OnInit {
 
     this.formlogIn = this.fb.group({
       email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      // usertype:[null],
-      password: [null, [Validators.required, Validators.maxLength(10)]]
+      password: [null, [Validators.required]],
   });
   }
 saveDetails(formlogIn: any): void {
   const data= JSON.stringify(formlogIn.value)
   // alert('SUCCESS!! :-)\n\n' +data);
-  console.log(this.formlogIn.value.email)
+  // console.log(this.formlogIn.value.email)
   this.userForm!.email=this.formlogIn.value.email
   this.userForm!.password=this.formlogIn.value.password
-  // console.log(this.formlogIn)
+  console.log(this.formlogIn)
 
   this.api.login(formlogIn.value).subscribe(
     (data: any)=>{
@@ -51,7 +50,9 @@ saveDetails(formlogIn: any): void {
               this.router.navigate(['/appointment/'])
             }
             else if(res.type_of_user=="D"){
-              this.router.navigate(['/slot/'])
+              // this.router.navigate(['/slot/'])
+              this.router.navigate(['/doctorHome/'])
+
             }
           },
           (error:any)=>{

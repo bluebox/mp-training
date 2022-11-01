@@ -1,0 +1,21 @@
+<p>slot-booking works!</p>
+<form class="example-container" [formGroup]="form_slot"  >
+<mat-form-field>
+  <input matInput [matDatepicker]="picker1" placeholder="Appointment Date" formControlName="dates">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+<mat-form-field>
+<input type="time" matInput placeholder="enter  Start time" formControlName="startTime">
+</mat-form-field>
+<mat-form-field>
+<input type="time" matInput placeholder="enter end time" formControlName="endTime">
+</mat-form-field>
+<div mat-dialog-actions align="end">
+  <div class="example-button-row">
+    <button mat-raised-button color="primary"  routerLink="/newuser">Back</button>
+  </div>
+  <router-outlet></router-outlet>
+    <button mat-raised-button color="primary" type="submit" (click)="saveDetails()" [disabled]="!form_slot.valid">Submit</button>
+</div>
+</form>

@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>Doctor's Registration Form</mat-card-title>
 <div class="container">
-  <form [formGroup]="formdoc" (ngSubmit)="saveDetails(formdoc)">
+  <form [formGroup]="formdoc" >
      <mat-form-field appearance="standard">
          <mat-label>Name</mat-label>
           <input matInput maxlength="15" inputmode="text" placeholder="Type name" formControlName="name" #nameInput>
@@ -74,7 +74,7 @@
           <button mat-raised-button color="primary"  routerLink="/newuser">Back</button>
         </div>
         <router-outlet></router-outlet>
-          <button mat-raised-button color="primary" type="submit" [disabled]="!formdoc.valid">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!formdoc.valid" (click)="saveDetails(formdoc)">Submit</button>
       </div>
 
   </form>
