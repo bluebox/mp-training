@@ -1,3 +1,5 @@
+"""understanding numbers"""
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
@@ -7,6 +9,7 @@ from tasks.placeholders import *
 # type(object) -> returns the object's type.
 
 def test_numbers_types():
+    """numbers types"""
     assert 'int' == type(1).__name__
     assert 'float' == type(1.3).__name__
 # assert 'int' == type(10L).__name__
@@ -17,6 +20,7 @@ def test_numbers_types():
 
 
 def test_numbers_int_arithmetic_operations():
+    """numbers int arithmetic operations"""
     assert 30 == 10 + 20
     assert 200 == 10 * 20
     assert 32 == 2 ** 5
@@ -32,6 +36,7 @@ def test_numbers_string_to_int():
 
 
 def test_numbers_int_to_string():
+    """numbers int to string"""
     assert '0o12' == oct(10)
     assert '0x64' == hex(100)
     assert '0b11111111' == bin(255)
@@ -42,10 +47,10 @@ def test_numbers_long():
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - we have a method in python to convert a decimal number to octal
 - a method to convert decimal to hexadecemal
 - we can also use prefixes instead of mentioning base and 0 can be used as a base in that case
 """
 
-time_taken_minutes = 4
+TIME_TAKEN_MINUTES = 4
