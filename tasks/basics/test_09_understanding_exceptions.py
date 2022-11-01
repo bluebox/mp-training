@@ -1,8 +1,8 @@
+"""Understanding exceptions"""
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
-
 Most modern languages like c#, java have a similar exception model, so your
 understanding will carry forward if you end up learning those languages.
 """
@@ -10,6 +10,7 @@ understanding will carry forward if you end up learning those languages.
 from tasks.placeholders import *
 
 def test_exception_flow_1():
+    """TRY EXCEPT"""
     fruit = "orange"
     result = []
     try:
@@ -17,12 +18,13 @@ def test_exception_flow_1():
         result.append("one")
         fruit.missingmethod() # what happens to the control flow here?
         result.append("two")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("three")
 
     assert ["one","three"] == result
 
 def test_exception_flow_2():
+    """try adn multiple excepts"""
     fruit = "orange"
     result = []
     try:
@@ -31,78 +33,85 @@ def test_exception_flow_2():
         result.append("two")
         fruit.missingmethod() #missing attribute
         result.append("three")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("four")
-    except ZeroDivisionError as ze:
+    except ZeroDivisionError as z_e:
         result.append("five")
 
     assert ["two","five"] == result
 
 def test_raise_error():
+    """raise statement"""
     result = []
     try:
         result.append("one")
         raise AttributeError("some error here")
-    except AttributeError as se:
+    except AttributeError as s_e:
         result.append("three")
 
     assert ["one","three"] == result
 
 def test_missing_except():
+    """missing method err"""
     result = []
     fruit = "orange"
 
     result.append("one")
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("two")
 
     assert ["one", "two"] == result
 
 def function_with_except(result):
+    """missing methods err"""
     fruit = "orange"
     result.append("f:enter")
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("f:except")
 
     result.append("f:return")
 
 def function_without_except(result):
+    """without except"""
     fruit = "orange"
     result.append("f:enter")
     fruit.missingmethod()
     result.append("f:return")
 
 def test_function_call_with_except():
+    """with except allows for control flow"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     assert ['m:beforecall', 'f:enter', 'f:except', 'f:return', 'm:aftercall'] == result
 
 def test_function_call_without_except():
+    """no execution of except"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     assert ['m:beforecall', 'f:enter', 'm:except'] == result
 
 def test_else_on_exception():
+    """else block is executed if except is not executed"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -111,12 +120,13 @@ def test_else_on_exception():
 
 
 def test_else_on_no_exception():
+    """else block is executed if except is not executed"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -124,12 +134,13 @@ def test_else_on_no_exception():
     assert ['m:beforecall', 'f:enter', 'm:except'] == result
 
 def test_finally_on_exception():
+    """finally will be executed after try except block"""
     result = []
     try:
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -141,12 +152,13 @@ def test_finally_on_exception():
 
 
 def test_finally_on_no_exception():
+    """finally will be executed after try except block"""
     result = []
     try:
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError as a_e:
         result.append("m:except")
     else:
         result.append("m:else")
@@ -155,17 +167,17 @@ def test_finally_on_no_exception():
 
     assert ['m:beforecall', 'f:enter', 'm:except', 'm:finally'] == result
 
-notes2 = '''
+NOTES_2 = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
+THREE_THING_I_LEARNT = """
 -try and except 
 -along with else and finally blocks
--
+-finally and else statements in try except control flow statements
 """
 
-time_taken_minutes = 30
+TIME_TAKEN = 30
