@@ -1,14 +1,13 @@
-__author__ = 'Hari'
-
-from tasks.placeholders import *
+"""__author__ = 'Hari'
+1st Exercise"""
 
 
 # For most of these tests use the interpreter to fill up the blanks.
 # type(object) -> returns the object's type.
 
 def test_numbers_types():
-    assert 'int' == type(1).__name__
-    assert 'float' == type(1.3).__name__
+    assert type(1).__name__ is 'int'
+    assert type(1.3).__name__ is 'float'
 # assert 'int' == type(10L).__name__
 # In Python 3 the long datatype has been removed and all integer values are handled
 # by the Int class. The default size of Int will depend on your CPU architecture.
@@ -17,6 +16,7 @@ def test_numbers_types():
 
 
 def test_numbers_int_arithmetic_operations():
+    """Learning about numbers"""
     assert 30 == 10 + 20
     assert 200 == 10 * 20
     assert 32 == 2 ** 5
@@ -25,6 +25,7 @@ def test_numbers_int_arithmetic_operations():
 
 
 def test_numbers_string_to_int():
+    """Learning about numbers"""
     """hint: execute  print int.__doc__ in python console
        to find out what int(..) does"""
     assert 255 == int("FF", 16)
@@ -32,20 +33,22 @@ def test_numbers_string_to_int():
 
 
 def test_numbers_int_to_string():
+    """Learning about numbers"""
     assert '0o12' == oct(10)
     assert '0x64' == hex(100)
     assert '0b11111111' == bin(255)
 
 
 def test_numbers_long():
+    """Learning about numbers"""
     """Long is not the long in c"""
     assert 1606938044258990275541962092341162602522202993782792835301376 == 2 ** 200
 
 
-three_things_i_learnt = """
--we have a method in python to convert a decimal number to octal
-- a method to convert decimal tp hexadecemal
--
-"""
-
-time_taken_minutes = 4
+# three_things_i_learnt = """
+# -we have a method in python to convert a decimal number to octal
+# - a method to convert decimal tp hexadecemal
+# -
+# """
+#
+# time_taken_minutes = 4
