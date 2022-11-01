@@ -1,3 +1,5 @@
+"""understanding comprehension"""
+
 __author__ = 'Hari'
 
 notes = '''
@@ -20,15 +22,15 @@ def square(x):
 
 def test_lc_basic():
     """list comprehension basic"""
-    input = [1,2,3]
-    result = [2*x for x in input]
+    inpt = [1,2,3]
+    result = [2*x for x in inpt]
     assert 3 == len(result)
     assert [2, 4, 6] == result
 
 def test_lc_map_func():
-     """list  comprehension map"""
-    input = [1,2,3]
-    result = [square(x) for x in input]
+    """list  comprehension map"""
+    inpt = [1,2,3]
+    result = [square(x) for x in inpt]
     assert [1, 4, 9] == result
 
 def test_lc_trim_words():
@@ -39,8 +41,8 @@ def test_lc_trim_words():
 
 def test_lc_filter_func():
     """list comprehension filter"""
-    input = range(10)
-    result = [x for x in input if is_even(x)]
+    inpt = range(10)
+    result = [x for x in inpt if is_even(x)]
     assert [0, 2, 4, 6, 8] == result
 
 def test_lc_filter_map():
@@ -120,10 +122,10 @@ def test_sc_filtering():
     assert {1, 3, 5, 7, 9} == odds
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - list ccomprehensions
 - dictionary comprehension
 - set comprehension
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
