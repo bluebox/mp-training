@@ -1,8 +1,10 @@
+"""understanding iterators"""
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -33,8 +35,8 @@ def test_int_iterable():
     """iterable function"""
     try:
         iter(10)
-    except TypeError as te:  # replace by appropriate except so this test passes
-        print(te)
+    except TypeError as t_e:  # replace by appropriate except so this test passes
+        print(t_e)
         assert True
 
 def test_enumerate_iter():
@@ -45,7 +47,7 @@ def test_enumerate_iter():
         assert "two" == list_iter.__next__()
         assert "three" == list_iter.__next__()
         assert "StopIteration" == list_iter.__next__() #note what happens when items are finished.
-    except StopIteration as si:
+    except StopIteration:
         pass
 
 #note this function which can convert any iterable into a list.
@@ -57,7 +59,7 @@ def convert_to_list(iterable):
         while True:
             item = seq_iterator.__next__()
             result.append(item)
-    except StopIteration as se:
+    except StopIteration:
         return result
 
 def test_convert():
@@ -74,8 +76,8 @@ def test_convert():
 
     try:
         ".".join([1,2,4]) #does not accept all element types though!
-    except TypeError as te :
-        print(te)
+    except TypeError as t_e :
+        print(t_e)
         assert True
 
 # list creation also uses the iterator protocol!
@@ -109,10 +111,10 @@ def test_find_builtins_that_work_on_iterables():
     assert 10 == len(funcs)
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - ".".join([1,2,4]) <- this format is not accepted
 - use of iterator and functions that can be iterated
 - builtin functions that are iterable
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 20
