@@ -1,16 +1,21 @@
+"""understanding lists"""
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
 def test_list_type():
+    """list type"""
     fruits = ["banana", "orange", "grape"]
     assert list == type(fruits).__name__
 
 def test_list_len():
+    """list len"""
     fruits = ["banana", "orange", "grape"]
     assert 3 == len(fruits)
 
 def test_list_can_be_indexed():
+    """list can be indexed"""
     fruits = ["banana", "orange", "grape"]
     assert "banana" == fruits[0]
     assert "orange" == fruits[1]
@@ -20,6 +25,7 @@ def test_list_can_be_indexed():
     assert "banana" == fruits[-3]
 
 def test_list_is_mutable():
+    """list is mutable"""
     fruits = ["banana", "orange", "grape"]
     fruits[0] = "mango"
     assert ["mango", "orange", "grape"] == fruits  #replace __ with expected contents of list
@@ -50,6 +56,7 @@ def test_list_can_be_sliced():
 
 
 def test_slice_creates_a_new_list():
+    """test slice creates a new list"""
     fruits = ["banana", "orange", "grape"]
     slice = fruits[0:2]
     slice.append("guava")
@@ -59,6 +66,7 @@ def test_slice_creates_a_new_list():
 
 
 def test_list_merge():
+    """list merge"""
     fruits = ["banana", "orange", "grape"]
     veggies = ["beetroot", "tomato"]
     all = fruits + veggies
@@ -69,6 +77,7 @@ def test_list_merge():
     assert ["orange", "grape", "beetroot"] == fruits[1:] + veggies[:1]
 
 def test_list_slice_replacement_is_inplace():
+    """list slice replacement is inplace"""
     fruits = ["banana", "orange", "grape"]
 
     fruits[1:2] = ["litchi", "guava"]
@@ -108,6 +117,7 @@ def test_list_common_methods():
     assert ["litchi", "orange"] == fruits
 
 def test_list_can_contain_lists():
+    """list can contain lists"""
     fruits = ["orange", "banana"]
     veggies = ["beetroot", "tomato"]
     all = [fruits, veggies]
@@ -117,11 +127,13 @@ def test_list_can_contain_lists():
     assert ["beetroot", "tomato"] == all[1]
 
 def test_list_can_contain_objects_of_different_types():
+    """list can contain objects of different types"""
     mixed = ["string", 10]
     assert "string" == mixed[0]
     assert 10 == mixed[1]
 
 def test_list_sort():
+    """list sort"""
     numbers = [ 5, 4, 3, 8 ]
     numbers.sort()
     assert [3, 4, 5, 8] == numbers
@@ -132,23 +144,24 @@ def test_list_sort():
 # http://docs.python.org/2/reference/expressions.html#operator-precedence
 # and fix accordingly.
 def test_list_membership():
+    """list membership"""
     numbers = [ 5, 4, 3]
     assert True is (5 in numbers)
     assert False is (10 in numbers)
 
 def test_list_range():
+    """list range"""
     numbers = range(1,5)
     assert range(1,5) == numbers
 
     numbers = range(1, 5, 2)
     assert range(1, 5, 2) == numbers
 
-test_list_range()
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - extensive use of slicing in list alongwith a new way of updating lists using slicing
 - in case of assert <bool> __ (num in list), 'is' is used instead of '='
 - different funcionalities in lists
 """
 
-time_taken_minutes = __
+TIME_TAKEN_MINUTES = 20
