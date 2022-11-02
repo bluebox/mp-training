@@ -1,16 +1,7 @@
+""" understanding Scopes in python """
+
 __author__ = 'Hari'
 
-notes = '''
- Scopes and namespaces govern the accessibility rules and lifetime of python variables.
- Namespaces is a mapping of names to objects. Each python block creates a new namespace. The 3 python blocks are
- modules (files), functions and classes.
- An object can have many names in the same namespace
- An object can have names in different namespaces.
- Scope is a textual area in which a variable can be directly accessible by its name.
- Variable which are bound (created) in a block are called local variables in that block
- Variables which are scoped to the the whole file (module) are called global
- Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
-'''
 
 import inspect
 import symtable
@@ -18,8 +9,28 @@ import symtable
 from tasks.placeholders import *
 
 
+NOTES = '''
+ Scopes and namespaces govern the accessibility rules and lifetime of python variables.
+ 
+ Namespaces is a mapping of names to objects. Each python block creates a new namespace. The 3 python blocks are
+ modules (files), functions and classes.
+ 
+ An object can have many names in the same namespace
+ An object can have names in different namespaces.
+ 
+ Scope is a textual area in which a variable can be directly accessible by its name.
+ 
+ Variable which are bound (created) in a block are called local variables in that block
+ Variables which are scoped to the the whole file (module) are called global
+ Variables which are scoped to outer functions (in case of nested functions) are called non-local or free.
+'''
+
+count = 10
+
+
 # helper functions which get the variables in locals and globals using the compiler's symbol tables.
 def get_locals(func):
+    """ Finding the locals in the function """
     source = inspect.getsource(func)
     top = symtable.symtable(source, "<string>", "exec")
     func = top.get_children()[0]  #since we are passing only the func code.
@@ -27,6 +38,7 @@ def get_locals(func):
 
 
 def get_globals():
+    """ Finding the globals in the function """
     module = inspect.getmodule(get_globals)
     source = inspect.getsource(module)
     top = symtable.symtable(source, "<string>", "exec")
@@ -36,16 +48,14 @@ def get_globals():
 global_names = get_globals()
 
 
-
-count = 10
-
-
 # used to by-pass any local shadow variables.
 def get_global_count():
+    """ counting number of globals """
     return count
 
 
 def test_scope_basic():
+    """ scope basic function """
     local_names = get_locals(test_scope_basic)
 
     value = count
@@ -60,6 +70,7 @@ def test_scope_basic():
 
 
 def test_scope_undefined_variable():
+    """ Testing for scope of an undefined variable in the function """
     local_names = get_locals(test_scope_undefined_variable)
 
     try:
@@ -73,6 +84,7 @@ def test_scope_undefined_variable():
 
 
 def test_variable_shadow():
+    """ variable shadowing """
     local_names = get_locals(test_variable_shadow)
     count = 20
 
@@ -84,6 +96,8 @@ def test_variable_shadow():
 
 
 def test_global_write():
+    """ testing global varibales with variables indise function whose variable also defined
+    as global """
     local_names = get_locals(test_global_write)
 
     global count  # declare that we want to use the read/write to global count
@@ -100,6 +114,7 @@ def test_global_write():
 
 
 def test_scope_is_bound_at_definition_time():
+    """ Showing that scope is bound at definiton time """
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
     assert True == ('count' in local_names)
@@ -119,6 +134,7 @@ def test_scope_is_bound_at_definition_time():
 
 
 def test_scope_writing_globals():
+    """ Scope writing globals """
     local_names = get_locals(test_scope_writing_globals)
 
     assert False == ('count' in local_names)
@@ -136,10 +152,10 @@ def test_scope_writing_globals():
     assert 10 == get_global_count()
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - How to figure out the scope of variable and how the variables look after according to scoping
 - About NameError
 - About UnboundLocalError 
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
