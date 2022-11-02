@@ -1,8 +1,10 @@
+""" Understanding iterators """
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Iterators are objects that represent a stream of data. next() method on an iterator returns
 the next available element. StopIteration is raised when elements are finished.
 
@@ -14,7 +16,9 @@ work with any iterable instead of having specialized implementation for each of
 list, tuple, string etc.
 '''
 
+
 def test_iterator_type():
+    """ iterator function """
     list_iter = iter(["one", "two", "three"])
     assert 'list_iterator' == type(list_iter).__name__
     assert True == hasattr(list_iter, "__next__")
@@ -29,12 +33,16 @@ def test_iterator_type():
 
 
 def test_int_iterable():
+    """ iterable function """
     try:
         iter(10)
-    except TypeError:  # replace by appropriate except so this test passes
-        pass
+    except TypeError as t_e:  # replace by appropriate except so this test passes
+        print(t_e)
+        assert True
 
+        
 def test_enumerate_iter():
+    """ enumerate iter function """
     list_iter = iter(["one", "two", "three"])
     try:
         assert 'one' == list_iter.__next__()
@@ -47,6 +55,7 @@ def test_enumerate_iter():
 
 # note this function which can convert any iterable into a list.
 def convert_to_list(iterable):
+    """ Converting iter into list """
     seq_iterator = iter(iterable)
     result = []
     try:
@@ -57,6 +66,7 @@ def convert_to_list(iterable):
         return result
 
 def test_convert():
+    """ converting Iterable into lists """
     assert ['h', 'e', 'l', 'l', 'o'] == convert_to_list("hello")
     assert [1, 2, 3, 4] == convert_to_list((1, 2, 3, 4))
     assert [0, 1, 2, 3, 4] == convert_to_list(range(5))
@@ -70,13 +80,15 @@ def test_convert():
 
     try:
         ".".join([1, 2, 4]) # does not accept all element types though!
-    except TypeError:
+    except TypeError as t_e:
+        print(t_e)
         assert True
 
 
 # list creation also uses the iterator protocol!
 # note via help(list). we have already used this, you know how it works now!
 def test_list_creation():
+    """ List Creation from Different object types """
     assert ['h', 'e', 'l', 'l', 'o'] == list("hello")
     assert [1, 2, 3, 4] == list((1, 2, 3, 4))
     assert [0, 1, 2, 3, 4] == list(range(5))
@@ -84,6 +96,7 @@ def test_list_creation():
 
 # tuple constructor function works the same way!
 def test_tuple_creation():
+    """ Tuple creation from Different object types """
     assert ('h', 'e', 'l', 'l', 'o') == tuple("hello")
     assert (1, 2, 3, 5) == tuple([1, 2, 3, 5])
 
@@ -92,6 +105,7 @@ def test_tuple_creation():
 # with, as long as their parameters support the iterator protocol they will work.
 # Consider the immense productivity gain you have with this approach.
 def test_functions_that_work_on_iterables():
+    """ Functions that works on Iterables """
     test_dict = {"one": 1, "two": 2}
     assert ["one", "two"] == sorted(test_dict)
     assert ['one', 'two'] == list(test_dict)
@@ -100,14 +114,17 @@ def test_functions_that_work_on_iterables():
 # Go through the functions at http://docs.python.org/2/library/functions.html
 # and enter all the functions that operate on iterables into the funcs list.
 
+
 def test_find_builtins_that_work_on_iterables():
+    """ Finding BuiltIn functions that work on Iterables """
     funcs = ['all', 'any', 'enumerate', 'filter', 'list', 'map', 'max', 'min', 'tuple', 'dict', 'set', 'next', 'sorted', 'sum' ]
     assert 14 == len(funcs)
 
-three_things_i_learnt = """
+    
+THREE_THINGS_I_LEARNT = """
 - About iter(), hasattr(), StopIteration error when we access next item in an empty iterator
 - About list, tuple creation and also conevrsion
 - About the builtIn functions that work on iterables in python
 """
 
-time_taken_minutes = 20
+TIME_TAKEN_MINUTES = 20
