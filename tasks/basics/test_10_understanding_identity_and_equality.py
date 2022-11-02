@@ -1,8 +1,10 @@
+""" Understanding Identity and Equality"""
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -12,7 +14,9 @@ notes = '''
  two lists can be equal if all elements in them are equal in same order etc.
 '''
 
+
 def test_identity_equality_lists():
+    """ identity Equality Lists"""
     a = []
     b = []
     assert False == (a is b)
@@ -33,6 +37,7 @@ def test_identity_equality_lists():
 
 
 def test_identity_equality_string():
+    """ Identity equality String"""
     a = b = "hello"
 
     assert True == (a is b)
@@ -56,6 +61,7 @@ def test_identity_equality_numbers():
 
 
 def test_identity_equality_small_numbers():
+    """ Identiy Equality With Numbers"""
     """
     why do small numbers behave differently? google and find out!
     """
@@ -68,7 +74,9 @@ def test_identity_equality_small_numbers():
     assert True == (c is d)
     assert True == (c == d)
 
+    
 def test_identity_equality_None():
+    """Identity equality With None"""
     a = b = None
     assert True == (a is b)
     assert True == (a == b)
@@ -79,16 +87,16 @@ def test_identity_equality_None():
     assert True == (a == b)
 
 
-notes_on_none = '''
+NOTES_ON_NONE = '''
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - "is" operator will check whether they are same objects or not whereas "==" operator it just checks the data inside the variables
 - in Python smaller integers in the range -5 to 256, are used very frequently as compared to other longer integers and 
 hence to gain performance benefit Python preallocates this range of integers during initialization and makes them singleton
 - None is a builtin constant.
 """
 
-time_taken_minutes = 10
+TIME_TAKEN_MINUTES = 10
