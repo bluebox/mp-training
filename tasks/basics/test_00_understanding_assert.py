@@ -11,34 +11,42 @@ the <optional message>. If is evaluates to True, nothing happens.
 '''
 
 
+""" Program to test the assert keyword"""
 def test_assert_true():
+    """ function to test the assert keyword"""
     #throws assertion error
     assert True  #This should be True -- replace ___ with True.
-
+test_assert_true()
 def test_assert_true_with_message():
-    assert True, "This is the failure message" # replace ___ with True to stop seeing the assertion error
-
+    """ function to test truth of message"""
+    assert True, "This is the failure message"
+    # replace ___ with True to stop seeing the assertion error
+test_assert_true_with_message()
 def test_assert_equality():
+    """ function to test equality"""
     assert 7 == 2 + 5   #replace __ with the expected value
-
+test_assert_equality()
 #Fill in __ in the statements below to make the asserts succeed
 def test_make_assert_true_1():
-    assert 8>7, "Fill in a value greater than 7"
-
+    """ function to test the assert true or not"""
+    assert 8 > 7, "Fill in a value greater than 7"
+test_make_assert_true_1()
 #you can use the interpreter to find the value of 2**30
 def test_make_assert_true_2():
+    """ function to test the assert statemenet"""
     assert 2**43 > 2**30, "Fill in value greater than 2**30"
-
+test_make_assert_true_2()
 def test_make_assert_true_3():
-    s1 = "Hello, World"
-    s2 = "Hello, World"
-    assert s1 == s2
-
+    """ function to make assert true """
+    s1_var = "Hello, World"
+    s2_var = "Hello, World"
+    assert s1_var == s2_var
+test_make_assert_true_3()
 three_things_i_learnt = """
 asseret ==bool
 assert statement can be very useful while debugging a problem
 strings can be compared with the help of '==' 
 """
 
-time_taken_minutes = 1
+time_taken_minutes = 30
 
