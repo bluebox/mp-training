@@ -1,18 +1,24 @@
+""" Understanding Dicts"""
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 dicts are unordered sets of key value pairs which facilitate
 fast lookups by key.
 '''
+
+
 def test_dictionary_type():
+    """ Dictionary Type"""
     test_dict = {1: "one"}   # note the new syntax
     print(type(test_dict).__name__)
     assert 'dict' == type(test_dict).__name__
 
 
 def test_dictionary_empty():
+    """ Empty Dict"""
     empty_dict_1 = {}
     assert True == isinstance(empty_dict_1, dict)
 
@@ -22,6 +28,7 @@ def test_dictionary_empty():
 
 
 def test_dictionary_create():
+    """ Creating Dict"""
     dict_1 = {1: "one", 2: "two"}
     assert True == isinstance(dict_1, dict)
 
@@ -33,23 +40,27 @@ def test_dictionary_create():
 
 
 def test_dictionary_length():
+    """ Dict Length"""
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit) #note that a key value pair is treated as one item
 
 
 def test_dictionary_is_indexed_by_key():
+    """ Dict is Indexed By its Keys"""
     word_to_digit = { "one" : 1, "two" : 2}
     assert 1 == word_to_digit["one"]
     assert 2 == word_to_digit["two"]
 
     try:
         word_to_digit[1]
-    except Exception as ex:
+    except Exception as e_x:
     #Note that numeric indicies don't mean much like in case of lists and tuples
-        print (ex)   # ex=1(value from dict key-value pair stored in exception)
+        print (e_x)   # ex=1(value from dict key-value pair stored in exception)
         assert True
 
+        
 def test_dictionary_is_mutable():
+    """ Dict is Mutable """
     word_to_digit = { "one" : 1, "two" : 2}
 
     word_to_digit["three"] = 3
@@ -66,6 +77,7 @@ def test_dictionary_is_mutable():
 
 
 def test_dictionary_is_unordered():
+    """ Dict is Ordered From Python 3"""
     dict1 = { 'one': 1, 'two': 2 }
     dict2 = { 'two': 2, 'one': 1}
 
@@ -74,6 +86,7 @@ def test_dictionary_is_unordered():
 
 
 def test_dictionary_keys_and_values():
+    """ Dict Keys and Values"""
     word_to_digit = { "one" : 1, "two" : 2}
     assert 2 == len(word_to_digit.keys())
     assert 2 == len(word_to_digit.values())
@@ -85,7 +98,9 @@ def test_dictionary_keys_and_values():
     values.sort()
     assert [1, 2] == values
 
+    
 def test_dictionary_contains():
+    """ Dict Contains"""
     word_to_digit = { "one" : 1, "two" : 2}
 
     assert True == ("one" in word_to_digit)
@@ -100,15 +115,17 @@ def test_dictionary_contains():
     assert True == (1 in word_to_digit.values())
     assert True == (2 in word_to_digit.values())
 
+    
 def test_valid_dictionary_keys():
+    """ valid Dict Keys"""
     test_dict = {}
     test_dict[1] = 1
     test_dict["one"] = "string"
     try:
         key = []
         test_dict[key] = "hjfgeg"
-    except TypeError as te:
-        print(te)  # observe the error message.
+    except TypeError as t_e:
+        print(t_e)  # observe the error message.
         # List is unhashable type, so it's not a valid dict_key
         assert True
 
@@ -132,7 +149,7 @@ def test_valid_dictionary_keys():
 
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - We can create an empty dict using dict() and {} and also we can find it's length using len()
 - In dict the key value pair can be of any type of object and the keys need to be immutable and that is reason list is not considered as key as
 they are mutable unlike tuples where we can use them as key elements
@@ -140,9 +157,9 @@ they are mutable unlike tuples where we can use them as key elements
 using key inside[] unlike int we use in lists and tuples to access the elements
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = ___
 
-notes2= '''
+NOTES2 = '''
 It is  a good idea to figure out how dictionaries are generally implemented
 under the hood. Go through the thread at
 http://stackoverflow.com/questions/730620/how-does-a-hash-table-work
