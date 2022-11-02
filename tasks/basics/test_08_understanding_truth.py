@@ -1,8 +1,10 @@
+""" Understanding Truth"""
+
 __author__ = 'Hari'
 
 from tasks.placeholders import *
 
-notes = '''
+NOTES = '''
 Just like C, python has notions on what values are considered true
 and what values are considered false.
 
@@ -11,14 +13,16 @@ elegant way of writing code instead of having explicit comparisons
 with base values of the data types like 0, '', [] etc.
 '''
 
+
 def test_none_type():
+    """ None Type """
     assert 'NoneType' == type(None).__name__
 
 
 # In control flow, builtin objects like string, list, tuple have truth
 # and false values
-#
 def test_truth_none():
+    """ Truth None"""
     value = None
     result = "not-set"
     # is None treated as true or false? => false(else loop)
@@ -29,14 +33,17 @@ def test_truth_none():
 
     assert 'false' == result
 
+    
 # a helper function used to test the truth value of an object.
 def truth_test(object, description):
+    """ Truth Test"""
     if object:
         return description + " is treated as true"
-    else:
-        return description + " is treated as false"
+    return description + " is treated as false"
 
+    
 def test_truth_values():
+    """ Truth and False Values"""
     assert 'empty string is treated as false' == truth_test("", "empty string")
     assert 'empty tuple is treated as false' == truth_test((), "empty tuple")
     assert 'empty list is treated as false' == truth_test([], "empty list")
@@ -51,9 +58,11 @@ def test_truth_values():
     assert 'non-empty-dict is treated as true' == truth_test({1:2}, "non-empty-dict")
     assert 'non-empty-set is treated as true' == truth_test({1}, "non-empty-set")
 
+    
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
+    """ Equality"""
     assert False == ("" == True)
     assert False == (() == True)
     assert False == ([] == True)
@@ -70,10 +79,11 @@ def test_equality():
     assert False == ([1] == True)
     assert False == ({1} == True)
 
-three_things_i_learnt = """
+    
+THREE_THINGS_I_LEARNT = """
 - In control flow, builtin objects like string, list, tuple have truth and false values
 - The fact that certain things are treated as True or False by control flow statements does not mean that they are equal to True or False.
 - None type , 0, ""(empty String) are always treated as False and remaining empty set, dict, list based on control flow they are treated
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
