@@ -1,18 +1,25 @@
+""" Understanding Sets"""
+
 __author__ = 'Hari'
 
-notes = '''
+
+NOTES = '''
 sets are  unordered collection of elements without duplicates. Conceptually they are similar to dicts except that
 the keys are not associated with any values.
 '''
 
+
 from tasks.placeholders import  *
 
+
 def test_set_type():
+    """Set Type"""
     test_set = {"one", "two", "three"}   # note the new syntax
     assert 'set' == type(test_set).__name__
 
 
 def test_set_empty():
+    """ Empty Set"""
     empty_set_wrong = {}  # curly braces are used for both sets and dicts, so how do you disambiguate?
     assert False == isinstance(empty_set_wrong, set)
 
@@ -22,6 +29,7 @@ def test_set_empty():
 
 
 def test_set_length():
+    """ Set Length"""
     fruits = {"apple", "apple", "apple"}
     assert 1 == len(fruits)  #are duplicates removed?
 
@@ -53,12 +61,14 @@ def test_set_creation():
 
 
 def test_set_membership():
+    """ Set Membership"""
     fruits = {"apple", "mango", "kiwi"}
     assert True == ("apple" in fruits)
     assert False == ("dog" in fruits)
 
 
 def test_set_operations():
+    """ Different Set Operations"""
     set1 = {"one", "two", "three"}
     set2 = {"three", "four"}
 
@@ -84,6 +94,7 @@ def test_set_operations():
 # read up help on other method using the help method in the python console.
 
 def test_set_valid_members():
+    """ Valid set Members"""
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
@@ -103,11 +114,12 @@ def test_set_valid_members():
 
     assert {1, 'hello', (1, 2)} == test_set
 
-three_things_i_learnt = """
+    
+THREE_THINGS_I_LEARNT = """
 - curly braces are used for both sets and dicts, but when we try to create empty set using {} empty dict is created and only way to create is using set()
 and in sets duplicate values are ignored
 - sets can be created from lists, tuples, strings, dict, dict_items, dict_keys and learned various methods like union, add, diff, symmetric_diff
 - In sets we can add int, String, bool, tuples but cannot add list i.e individually or inside anyother object types, it throws an error of unhashable type
 """
 
-time_taken_minutes = 15
+TIME_TAKEN_MINUTES = 15
