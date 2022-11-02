@@ -1,6 +1,8 @@
+""" understanding what are classes and what is its usage and advantages in python """
+
 __author__ = 'Hari'
 
-notes = '''
+NOTES = '''
 Python allows users to add user defined types via classes. This allows you to augment
 builtin types like dict, list, tuple with your own types with their own specific behavior.
 
@@ -22,7 +24,7 @@ https://www.pythontutorial.net/python-oop/python-type-class/
 
 '''
 
- from tasks.placeholders import *
+from tasks.placeholders import *
 
 NOTES_1 = '''
  We are defining the classes in the function scope so that we can redefine them for every test.
@@ -33,6 +35,7 @@ NOTES_1 = '''
 # classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
 def test_classes_are_objects():
+    """ classes are Objects """
     """ Checking whether classes are objects or not"""
     class Queue(object):
         """Queue with push and pop functions."""
@@ -47,7 +50,9 @@ def test_classes_are_objects():
 
 
 def test_classes_are_callable_objects():
+    """ Classes are callable objects """
     class Queue(object):
+        """ Queue class """
         pass
 
     # classes are callable objects just like function objects
@@ -55,11 +60,14 @@ def test_classes_are_callable_objects():
 
 
 def test_classes_are_object_factories():
+    """ classes are object factories i.e they help to create a new object
+    up on calling the class """
     class Queue(object):
+        """ Queue """
         pass
 
-    q1 = Queue()  # you can 'call' a class to create an instance
-    q2 = Queue()
+    q_1 = Queue()  # you can 'call' a class to create an instance
+    q_2 = Queue()
     print(type(q1).__class__)
     # assert "<class 'type'>" == type(q1).__class__
     # assert "<class 'type'>" == type(q2).__class__
@@ -79,9 +87,11 @@ def test_classes_are_object_factories():
 # if an __init__ method exists it is called with the object that is
 # being created, so you can initialize it.
 def test_classes_init_constructor():
+    """ creating a constructor using __init__ method """
     test_list = []
 
     class Queue(object):
+        """ queue class """
         def __init__(self):
             assert True, "Entered here !"
             test_list.append(self)
@@ -92,7 +102,9 @@ def test_classes_init_constructor():
 
 
 def test_classes_init_with_args():
+    """ creating a constructor with the arguments """
     class Queue(object):
+        """ Queue"""
         def __init__(self, name):
             self.name = name
 
@@ -110,6 +122,7 @@ def test_classes_init_with_args():
 
 # just like def, class is also a runtime statement which bounds a class name with the class body code
 def test_class_is_an_executable_statement():
+    """ class is also an executable statement """
     def create_class(value):
         if value > 10:
             class Queue(object):
@@ -136,15 +149,19 @@ def test_class_is_an_executable_statement():
 # this is in contrast to other languages where the instance is implicit via
 # the 'this' keyword.
 def test_classes_methods():
+    """ creating a class with some methods """
     class Queue(object):
+        """ queue class along with some methods with constructor """
         def __init__(self, name):
             self.name = name
             self._queue = []
 
         def push(self, obj):
+            """ push """
             self._queue.append(obj)
 
         def pop(self):
+            """ pop """
             return self._queue.pop(0)
 
     q1 = Queue("q1")
@@ -157,15 +174,19 @@ def test_classes_methods():
 
 
 def test_classes_bound_and_unbound_methods():
+    """ bound and unbound methods """
     class Queue(object):
+        """ Queue """
         def __init__(self, name):
             self.name = name
             self._queue = []
 
         def push(self, obj):
+            """ push """
             self._queue.append(obj)
 
         def pop(self):
+            """ pop """
             return self._queue.pop(0)
 
     q1 = Queue("q1")
@@ -186,7 +207,9 @@ def test_classes_bound_and_unbound_methods():
 
 
 def test_classes_can_have_state():
+    """ classes can have state """
     class Queue(object):
+        """ Queue class """
         count = 0
         def __init__(self, name):
             self.name = name
@@ -194,15 +217,17 @@ def test_classes_can_have_state():
             Queue.count += 1
 
         def push(self, obj):
+            """ push method appends element to last in Queue """
             self._queue.append(obj)
 
         def pop(self):
+            """ returns the front i.e 1st element in the queue """
             return self._queue.pop(0)
 
     assert 0 == Queue.count
-    q1 = Queue("q1")
+    q_1 = Queue("q1")
     assert 1 == Queue.count
-    q2 = Queue("q2")
+    q_2 = Queue("q2")
     assert 2 == Queue.count
 
     try:
@@ -211,10 +236,10 @@ def test_classes_can_have_state():
         pass
 
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 - Learned about Objects and classes
 - How Objects behave and interact
 - Bound and Unbound Methods
 """
 
-time_taken_minutes = 30
+TIME_TAKEN_MINUTES = 30
