@@ -11,7 +11,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from users.models import Customer, Staff
 from .models import Branch, Appointment, Lab, Bill, Test, Review, Report
-# from .serializers import *
 from .serializers import TestSerializer, BranchSerializer, AppointmentSerializer,GetAppointmentSerializer, LabSerializer, ReviewSerializer, BillSerializer, ReportSerializer
 
 
@@ -241,6 +240,39 @@ class BranchAPI(APIView):
 class DetailLab(APIView):
     """detail lab api view"""
 
+    @staticmethod
+    def get(_id):
+        """get detail of branch"""
+        lab = Lab.objects.get(lab_id=_id)
+        serializer = LabSerializer(lab, many=False)
+        return Response({'lab': serializer.data}, status=200)
+
+    @staticmethod
+    def put(request,_id):
+        """update lab"""
+        data = request.data.get('form')
+        lab = Lab.objects.get(lab_id=_id)
+        serializer = LabSerializer(lab, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Lab updated", "action_status": "success"},
+                            status=200)
+        else:
+            error_list = [serializer.errors[error][0] for error in serializer.errors]
+            return Response({"message":error_list, "action_status": "failure"},
+                            status=200)
+
+    @staticmethod
+    def delete(_id):
+        """delete lab"""
+        lab = Lab.objects.get(lab_id=_id)
+        if lab:
+            lab.delete()
+            return JsonResponse(data={'success': 'lab deleted successfully.'}, safe=False)
+        return JsonResponse(
+            data={'Failure': 'lab doesn\'t exists . So, lab could not be deleted successfully.'},
+            safe=False)
+
 
 class LabAPI(APIView):
     """lab api"""
@@ -268,33 +300,33 @@ class LabAPI(APIView):
             return Response({"message": error_list, "action_status": "failure"},
                             status=200)
 
+    
+# ------------------- test views ----------------------------
+class DetailTest(APIView):
     @staticmethod
-    def put(request):
-        """update lab"""
+    def put(request,_id):
+        """update test"""
         data = request.data.get('form')
-        lab = Lab.objects.get(lab_id=data['id'])
-        serializer = LabSerializer(lab, data=data)
+        test = Test.objects.get(test_id=_id)
+        serializer = TestSerializer(test, data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "Lab updated", "action_status": "success"},
-                            status=200)
+            return Response({"message": "Test Updated", "action_status": "success"})
         else:
             error_list = [serializer.errors[error][0] for error in serializer.errors]
-            return Response({"message":error_list, "action_status": "failure"},
-                            status=200)
+            return Response({"message": error_list, "action_status": "failure"}, status=200)
+        # return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
 
     @staticmethod
-    def delete(_id=""):
-        """delete lab"""
-        lab = Lab.objects.get(lab_id=_id)
-        if lab:
-            lab.delete()
-            return JsonResponse(data={'success': 'lab deleted successfully.'}, safe=False)
+    def delete(_id):
+        """delete post"""
+        test = Test.objects.get(lab_id=_id)
+        if test:
+            test.delete()
+            return JsonResponse(data={'success': 'Test deleted successfully.'},
+                                safe=False)
         return JsonResponse(
-            data={'Failure': 'lab doesn\'t exists . So, lab could not be deleted successfully.'},
-            safe=False)
-
-# ------------------- test views ----------------------------
+            data={'Failure': 'Test doesn\'t exists'}, safe=False)
 
 
 class TestAPI(APIView):
@@ -319,33 +351,35 @@ class TestAPI(APIView):
             error_list = [serializer.errors[error][0] for error in serializer.errors]
             return Response({"message": error_list, "action_status": "failure"}, status=200)
 
+    
+
+# -------------------------review ------------------------
+
+class DetailReview(APIView):
     @staticmethod
-    def put(request):
-        """update test"""
+    def put(request,_id):
+        """update review"""
         data = request.data.get('form')
-        test = Test.objects.get(test_id=data['id'])
-        serializer = TestSerializer(test, data=data)
+        review = Review.objects.get(id=_id)
+        serializer = ReviewSerializer(review, data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "Test Updated", "action_status": "success"})
+            return Response({"message": "Review Updated", "action_status": "success"})
         else:
             error_list = [serializer.errors[error][0] for error in serializer.errors]
             return Response({"message": error_list, "action_status": "failure"}, status=200)
-        # return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
 
     @staticmethod
     def delete(_id=""):
-        """delete post"""
-        test = Test.objects.get(lab_id=_id)
-        if test:
-            test.delete()
-            return JsonResponse(data={'success': 'Test deleted successfully.'},
-                                safe=False)
+        """delete review"""
+        review = Review.objects.get(lab_id=_id)
+        if review:
+            review.delete()
+            return JsonResponse(data={'success': 'Test deleted successfully.'}, safe=False)
         return JsonResponse(
-            data={'Failure': 'Test doesn\'t exists'}, safe=False)
+            data={'Failure': 'Test doesn\'t exists '},
+            safe=False)
 
-
-# -------------------------review ------------------------
 
 class ReviewAPI(APIView):
     """view for reviews """
@@ -371,29 +405,7 @@ class ReviewAPI(APIView):
             error_list = [serializer.errors[error][0] for error in serializer.errors]
             return Response({"message": error_list, "action_status": "failure"}, status=200)
 
-    @staticmethod
-    def put(request):
-        """update review"""
-        data = request.data.get('form')
-        review = Review.objects.get(id=data['id'])
-        serializer = ReviewSerializer(review, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"message": "Review Updated", "action_status": "success"})
-        else:
-            error_list = [serializer.errors[error][0] for error in serializer.errors]
-            return Response({"message": error_list, "action_status": "failure"}, status=200)
-
-    @staticmethod
-    def delete(_id=""):
-        """delete review"""
-        review = Review.objects.get(lab_id=_id)
-        if review:
-            review.delete()
-            return JsonResponse(data={'success': 'Test deleted successfully.'}, safe=False)
-        return JsonResponse(
-            data={'Failure': 'Test doesn\'t exists '},
-            safe=False)
+    
 
 # ------------------------------ bill ----------------------
 
@@ -497,11 +509,13 @@ class ReportAPI(APIView):
             error_list = [serializer.errors[error][0] for error in serializer.errors]
             return Response({"message": error_list, "action_status": "failure"}, status=200)
 
+    
+class DetailReport(APIView):
     @staticmethod
-    def put(request):
+    def put(request,_id):
         """update review"""
         data = request.data.get('form')
-        report = Report.objects.get(id=data['id'])
+        report = Report.objects.get(id=_id)
         serializer = ReportSerializer(report, data=data)
         if serializer.is_valid():
             serializer.save()

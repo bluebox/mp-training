@@ -62,7 +62,7 @@ class DetailStaff(APIView):
         user = User.objects.filter(id=employee.user_id.id).first()
         serializer = UserSerializer(user, data=employee_data)
         empl_serializer = EmployeeSerializer(employee,
-                                             data={"designation":
+                                            data={"designation":
                                                                 employee_data["designationControl"],
                                                    "qualification": employee_data['qualification'], 
                                                    "staff_id": employee.staff_id, 
@@ -156,7 +156,6 @@ class FilterCustomer(APIView):
         return Response({'customers': json.dumps(customers)}, status=200)
 
 
-
 class RegisterCustomer(APIView):
     """add customer"""
     @staticmethod
@@ -214,7 +213,8 @@ class RegisterEmployee(APIView):
                         "password": request.data['password'], "user_type": 'staff'})
             if serializer.is_valid():
                 user = serializer.save()
-                employee_obj = EmployeeSerializer(data={"staff_id": "MEDS" + str(user.id), "user_id": user.id,
+                employee_obj = EmployeeSerializer(data={"staff_id": "MEDS" + str(user.id), 
+                                                        "user_id": user.id,
                                                         "designation": request.data["designation"],
                                                         "qualification": request.data['qualification'],
                                                         "salary": int(request.data['salary']), 
