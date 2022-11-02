@@ -1,0 +1,11 @@
+.form-group{
+    margin-bottom: 20px;
+}
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+.login{
+    cursor: pointer;
+}

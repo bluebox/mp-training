@@ -1,0 +1,25 @@
+.btn{
+    width:500px;
+    padding:10px;
+    color:white;
+    background-color:crimson;
+    display:block
+}
+.btn-options{
+    padding:10px;
+    display:block;
+    width: 250px;
+    height:40px;
+    background-color:pink;
+    margin-bottom: 5px;
+    border: 0ch;
+}
+.admin{
+    margin-top:200px;
+    margin-left: 400px;
+    text-align: center;
+    border: 1px solid;
+    width: 550px;
+    padding-left: 25px;
+    padding-top: 20px;
+}

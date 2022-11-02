@@ -1,0 +1,51 @@
+<h1>Cancelled Tickets</h1>
+<div class="nodata" *ngIf="!available">
+  <h1>No Cancelled Tickets!!</h1>
+</div>
+<div *ngIf="available" >
+<mat-accordion >
+  <mat-expansion-panel hideToggle *ngFor="let u of can">
+    <!-- <mat-expansion-panel-header>
+      <mat-panel-title>
+        This is the expansion title
+      </mat-panel-title>
+      <mat-panel-description>
+        This is a summary of the content
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p> -->
+  <!-- </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false"> -->
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{u.Booking_id}}
+      </mat-panel-title>
+      <mat-panel-description >
+       {{u.Date }}{{u.Booking_status}}
+      </mat-panel-description>
+    </mat-expansion-panel-header >
+    <div class="des" style="display:flex;">
+    <div class="movie">
+    <h2>Movie Details</h2>
+    <p>Movie name-{{u.Movie_name}}</p>
+    <p>Movie language-{{u.Movie_lang}}</p>
+    <p>Movie category-{{u.Movie_category}}</p>
+    </div>
+    <div class="user" style="margin-left:270px">
+    <h2> User Details</h2>
+    <P>Name-{{u.User_name}}</P>
+    <p>Phone Number-{{u.User_phone}}</p>
+    </div>
+    <div class="theatre" style="margin-left:270px">
+      <h2>Theatre Details</h2>
+      <p>Theatre-name-{{u.Theatre_name}}</p>
+      <p>Theatre-location-{{u.Theatre_location}}</p>
+      <p>Screen NO.-{{u.Hall_no}}</p>
+      <p>Selected Seats-{{u.SelectedSeats}}</p>
+    </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
+
