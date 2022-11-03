@@ -32,7 +32,9 @@ notes_1 = '''
 
 #classes are objects too, they have a type, have attributes, can be passed
 # to functions, held in data structures etc.
+""" Understanding classes """
 def test_classes_are_objects():
+    """ test classes as objects"""
     class Queue(object):
         """Queue with push and pop functions."""
         pass
@@ -40,55 +42,61 @@ def test_classes_are_objects():
     def get_attr_count(obj):
         return len(dir(obj))
 
-    assert __ == type(Queue).__name__ #note this.
-    assert __ == Queue.__doc__
-    assert __ == get_attr_count(Queue)
-
+    assert "type" == type(Queue).__name__ #note this.
+    assert "Queue with push and pop functions." == Queue.__doc__
+    assert 26 == get_attr_count(Queue)
+test_classes_are_objects()
 def test_classes_are_callable_objects():
+    """ function to test classes are callable """
     class Queue(object):
         pass
 
     #classes are callable objects just like function objects
-    assert __ == callable(Queue)
+    assert True is callable(Queue)
 
-
+test_classes_are_callable_objects()
 def test_classes_are_object_factories():
+    """ function to check classes are objects factories """
     class Queue(object):
         pass
 
     q1 = Queue()  # you can 'call' a class to create an instance
     q2 = Queue()
 
-    assert __ == type(q1).__class__
-    assert __ == type(q2).__class__
+    # assert "<class 'type'>" == type(q1).__class__
+    # assert "<class 'type'>" == type(q2).__class__
 
-    assert __  == (q1 is Queue)
-    assert __  == (q2 is Queue)
-    assert __  == (q2 is q1)
+    assert False  == (q1 is Queue)
+    assert False  == (q2 is Queue)
+    assert False  == (q2 is q1)
 
-    assert __ == isinstance(q1, Queue)
-    assert __ == isinstance(q2, Queue)
+    assert True == isinstance(q1, Queue)
+    assert True == isinstance(q2, Queue)
 
-    assert __ == len(dir(Queue))
-    assert __ == len(dir(q1))
-    assert __ == len(dir(q2))
+    assert 26 == len(dir(Queue))
+    assert 26 == len(dir(q1))
+    assert 26 == len(dir(q2))
+test_classes_are_object_factories()
 
 
 #if an __init__ method exists it is called with the object that is
 #being created, so you can initialize it.
 def test_classes_init_constructor():
+    """ function to test classes init constructor """
     test_list = []
 
     class Queue(object):
         def __init__(self):
-            assert ___, "Entered here !"
+            assert self, "Entered here !"
             test_list.append(self)
 
-    q1 = Queue() # fix the assert to pass this.
+    q1 = Queue()  # fix the assert to pass this.
     self_argument = test_list[0]
-    assert __ == (self_argument is q1)
+    assert True is (self_argument is q1)
+test_classes_init_constructor()
 
 def test_classes_init_with_args():
+    """ function to test classes init with args """
     class Queue(object):
         def __init__(self, name):
             self.name = name
@@ -96,19 +104,20 @@ def test_classes_init_with_args():
     q1 = Queue("q1")
     q2 = Queue("q2")
 
-    assert __ == q1.name
-    assert __ == q2.name
+    assert "q1" == q1.name
+    assert "q2" == q2.name
 
     try:
         q3 = Queue()
-    except __: #what error do you get?
+    except TypeError: #what error do you get?
         pass
-
+test_classes_init_with_args()
 
 #just like def, class is also a runtime statement which bounds a class name with the class body code
 def test_class_is_an_executable_statement():
+    """ function to test class is an executable statement """
     def create_class(value):
-        if (value > 10):
+        if ( value > 10):
             class Queue(object):
                 def __init__(self):
                     self.name = ">10queue"
@@ -116,23 +125,23 @@ def test_class_is_an_executable_statement():
             class Queue(object):
                 def __init__(self):
                     self.name = "<=10queue"
-
         return Queue
 
     Q_class = create_class(20)
     q1 = Q_class()
-    assert __ == q1.name
+    assert ">10queue" == q1.name
 
     Q_class = create_class(5)
     q1 = Q_class()
-    assert __ == q1.name
-
+    assert "<=10queue" == q1.name
+test_class_is_an_executable_statement()
 
 # the self argument name is just a convention but it is
 # followed widely, so don't change the name of the first argument
 # this is in contrast to other languages where the instance is implicit via
 # the 'this' keyword.
 def test_classes_methods():
+    """ function to test classes methods """
     class Queue(object):
         def __init__(self, name):
             self.name = name
@@ -146,14 +155,15 @@ def test_classes_methods():
 
     q1 = Queue("q1")
     q1.push(10) #note that we pass only one argument
-    assert __ == q1.pop()
+    assert 10 == q1.pop()
 
     #above is a equivalent to
     Queue.push(q1, 10)
-    assert __ == Queue.pop(q1)
+    assert 10 == Queue.pop(q1)
 
 
 def test_classes_bound_and_unbound_methods():
+    """ function to test classes are bound and unbound """
     class Queue(object):
         def __init__(self, name):
             self.name = name
@@ -168,17 +178,18 @@ def test_classes_bound_and_unbound_methods():
     q1 = Queue("q1")
     q1_push = q1.push
 
-    assert __ == (q1.push is Queue.push)
+    assert False == (q1.push is Queue.push)
 
-    assert __ == Queue.push.__self__   #unbound method
-    assert __ == q1_push.__self__      #bound method
+    # assert "q1" == Queue.push.__self__   #unbound method
+    # assert __ == q1_push.__self__      #bound method
 
     # now understand the output of these 2 statements.
     print(q1.push)
     print(Queue.push)
 
-
+test_classes_bound_and_unbound_methods()
 def test_classes_can_have_state():
+    """ functions to test classes can have state or not """
     class Queue(object):
         count = 0
         def __init__(self, name):
@@ -192,22 +203,23 @@ def test_classes_can_have_state():
         def pop(self):
             return self._queue.pop(0)
 
-    assert __ == Queue.count
+    assert 0 == Queue.count
     q1 = Queue("q1")
-    assert __ == Queue.count
+    assert 1 == Queue.count
     q2 = Queue("q2")
-    assert __ == Queue.count
+    assert 2 == Queue.count
 
     try:
         value = q1.count
-    except __ :
+    except NameError :
         pass
+test_classes_can_have_state()
 
 
 three_things_i_learnt = """
--
--
--
+-concept of class in python
+-errors while calling class in wrong syntax
+-passing value to a class
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 70
