@@ -1,0 +1,138 @@
+.container {
+    display: flex;
+    height: calc(100vh - 70px);
+    margin-top: 20px;
+
+    >.chat-list {
+        width: 40%;
+        margin: 16px;
+        background: #7d7d7f;
+        border-radius: 16px;
+
+        .chat-title {
+
+            display: flex;
+            justify-content: space-between;
+
+            .chat-name {
+                font-weight: 500;
+            }
+
+            .chat-date {
+                font-size: 0.7rem;
+                color: rgba(0, 0, 0, 0.7)
+            }
+
+        }
+
+        .search-input {
+            margin: 24px;
+        }
+    }
+
+    >.messages {
+        width: 60%;
+        padding: 24px;
+        margin: 16px;
+        margin-left: 8px;
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.05);
+
+        .messages-header {
+            display: flex;
+            margin-bottom: 8px;
+
+            >img {
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 16px;
+                height: 35px;
+            }
+
+            >h2 {
+                margin: 0;
+            }
+        }
+
+        .chat-area {
+            height: calc(100vh - 270px);
+            display: block;
+
+            overflow-y: auto;
+
+
+
+        }
+
+        .input-area {
+            padding-top: 16px;
+            padding-bottom: 8px;
+        }
+    }
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.message-receiver {
+    width: 100%;
+    display: flex;
+    flex-direction: row
+}
+
+.message-receiver img {
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    height: 35px;
+    padding-left: 0%;
+}
+
+.message-receiver .message-content {
+    background-color: rgb(128, 201, 201);
+    max-width: 40%;
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+
+.image1 {
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 16px;
+    height: 35px;
+
+}
+
+.message-sender {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.message-sender .message-content {
+    background-color: grey;
+    max-width: 40%;
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+
+#shyam {
+
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse
+}
+
+#shyam1 {
+
+    width: 100%;
+    display: flex;
+    flex-direction: row
+}
+
+.date {
+    left: 0%;
+    font-size: x-small;
+    color: white;
+}

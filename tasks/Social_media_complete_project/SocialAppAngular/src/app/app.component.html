@@ -1,0 +1,7 @@
+<app-header style="position: relative;" (brightnewwMode)="brightness_mode($event)"></app-header>
+<div class="background" *ngIf="brightness">
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="!brightness">
+    <router-outlet></router-outlet>
+</div>
