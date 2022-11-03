@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from .import views
+from .views import LoginView, UserView, LogoutView, ImageViewSet
 
 app_name = 'app4'
 urlpatterns = [
@@ -29,7 +30,25 @@ urlpatterns = [
     path('airlines/', views.airlines_api, name='airlines'),
     path('airlines/<int:id>/', views.airlines_api, name='airlines'),
     path('flight/', views.Filterflights, name='flight'),
-    path('ticket/', views.Bookticket, name='ticket')
-
+    path('ticket/', views.Bookticket, name='ticket'),
+    path('ticket-details/', views.ticketdetails, name='ticket-details'),
+    path('ticket_all_details/', views.ticket_all_details, name='ticket_all_details'),
+    path('my-bookings/',views.my_bookings, name='my-bookings'),
+    # path('ticket-count/', views.ticketcount, name="ticket-count"),
+    path('schedule/', views.lookschedule, name='schedule'),
+    # path('register/', RegisterView.as_view()),
+    path('login/', LoginView.as_view()),
+    path('user/', UserView.as_view()),
+    path('logout/', LogoutView.as_view()),
+    path('staff/', views.staff_api, name='staff'),
+    path('staff/<int:id>', views.staff_api, name='staff'),
+    path('staff-shifts/', views.staff_shifts_api, name='staff_shifts'),
+    path('luggage/', views.luggage_api, name='luggage'),
+    path('upload/', views.ImageViewSet.as_view(), name='upload'),
+    path('profile-img/', views.ProfileViewSet.as_view(), name='profile-img'),
+    path('my-details/', views.my_details, name='my-details'),
+    # path('upload-image/',views.upload_image,name="image"),
+    # path('savefile/',views.savefile,name="savefile")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 

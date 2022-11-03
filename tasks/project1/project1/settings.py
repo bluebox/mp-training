@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 ]
-CORS_ORIGIN_ALLOW_ALL = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -137,13 +136,17 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = "app4:homepage"
-LOGIN_URL = "login"
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIl_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL.USER')
+# LOGIN_REDIRECT_URL = "app4:homepage"
+# LOGIN_URL = "login"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIl_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get('EMAIL.USER')
+#
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL.PASS')
 
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL.PASS')
+# AUTH_USER_MODEL = 'app4.User'
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
