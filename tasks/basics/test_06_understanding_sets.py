@@ -7,24 +7,28 @@ the keys are not associated with any values.
 
 from tasks.placeholders import  *
 
+""" Program to Understand test """
 def test_set_type():
+    """ Function to check type of set"""
     test_set = {"one", "two", "three"}   # note the new syntax
     assert "set" == type(test_set).__name__
-
+test_set_type()
 def test_set_empty():
+    """ funtion to check the set is empty or not"""
     empty_set_wrong = {}  #curly braces are used for both sets and dicts, so how do you disambiguate?
     assert False == isinstance(empty_set_wrong, set)
     empty_set = set()
     assert True == isinstance(empty_set, set)
     assert 0 == len(empty_set)
-
+test_set_empty()
 def test_set_length():
+    """ Function to set the length of set"""
     fruits = {"apple", "apple", "apple"}
     assert 1 == len(fruits)  #are duplicates removed?
 
     veggies = {"beetroot", "potato", "spinach"}
     assert 3 == len(veggies)
-
+test_set_length()
 def test_set_creation():
     """
     sets can be created from any sequence like list or a tuple.
@@ -37,7 +41,7 @@ def test_set_creation():
     set2 = set(test_string)
     assert {"a", "p", "l", "e"} == set2
 
-    test_dict = { 1: "one", 2 : "two"}
+    test_dict = {1: "one", 2 : "two"}
     set3 = set(test_dict)
     assert {1, 2} == set3
 
@@ -46,13 +50,15 @@ def test_set_creation():
 
     set5 = set(test_dict.items())
     assert {(1, "one"), (2, "two")} == set5
-
+test_set_creation()
 def test_set_membership():
+    """ function to set the membership """
     fruits = {"apple", "mango", "kiwi"}
-    assert True == ("apple" in fruits)
-    assert False == ("dog" in fruits)
-
+    assert True is ("apple" in fruits)
+    assert False is ("dog" in fruits)
+test_set_membership()
 def test_set_operations():
+    """ function to set operations """
     set1 = {"one", "two", "three"}
     set2  =  {"three", "four"}
 
@@ -75,27 +81,28 @@ def test_set_operations():
     assert {"one", "two", "four"} == diff4
 
     #read up help on other method using the help method in the python console.
-
+test_set_operations()
 def test_set_valid_members():
+    """ function to check the valid members of set """
     test_set = set()
     test_set.add("hello")
     test_set.add(1)
-    test_set.add((1,2))
+    test_set.add((1, 2))
 
     try:
         test_set.add([])
-    except TypeError as te:
-        print(te)
+    except TypeError as t_e:
+        print(t_e)
         assert True
 
     try:
         test_set.add((1,[]))   #  TypeError: unhashable type: 'list'
-    except TypeError as te:
-        print(te)
+    except TypeError as t_e:
+        print(t_e)
         assert True
 
-    assert {1,'hello',(1,2)} == test_set
-
+    assert {1, 'hello', (1, 2)} == test_set
+test_set_valid_members()
 three_things_i_learnt = """
 -set() constitutes the null set
 -list cannot be added to set
