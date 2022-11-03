@@ -15,6 +15,26 @@ img{
     border-top-right-radius: 8px;
     width: 100%;
 }
+.ratings{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* justify-content: space-between;
+  margin: 0;
+  padding: 0; */
+  
+}
+.rating_card{
+  /* border: 1px solid red; */
+  display: flex;
+  width: 65px;
+  /* height: 30px; */
+  margin-top:3px ;
+  margin-left: 50px;
+
+}
+.stars_color{
+  color: #f3be10;
+}
 .dropdown {
 
     display: inline-block;

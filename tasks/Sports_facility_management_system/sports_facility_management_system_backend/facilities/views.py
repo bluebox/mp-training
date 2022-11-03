@@ -195,13 +195,16 @@ class CheckRefreshToken(APIView):
     def get(self, request):
         refresh_token = request.GET.get('refresh_token')
         try:
+
             user_id, is_admin = UserManager.check_refresh_token(refresh_token)
+
             response = Response()
             response.data = {
                 "user_id": user_id,
                 "is_admin": is_admin
             }
             return response
+
         except Exception as e:
             return Response(str(e), status=500)
 
@@ -259,12 +262,4 @@ class SearchFilterWithLoadMore(APIView):
             return Response(str(e), status=500)
 
 
-class FacilityRatings(APIView):
 
-    def get(self, request):
-        fid = request.GET.get('fid')
-        try:
-            res = get_ratings(fid)
-            return Response(res, status=200)
-        except Exception as e:
-            return Response(str(e), status=500)

@@ -298,6 +298,13 @@ class Bookings:
         booking_details.reviews = request.data['review']
         booking_details.ratings = request.data['rating']
         booking_details.save()
+
+        fid = booking_details.facility_sport_id.facility.facility_id
+
+        facility_obj = FacilityDetail.objects.get(facility_id=fid)
+        facility_obj.avg_rating, facility_obj.no_of_ratings = get_ratings(fid)
+
+        facility_obj.save()
         msg = "booking updated successfully"
 
         return msg
@@ -385,21 +392,33 @@ def get_ratings(fid):
 
     ratings = BookingData.objects.filter(ratings__gt=0, facility_sport_id__facility__facility_id=fid).\
                                                                             aggregate(Avg('ratings'))
+    no_of_ratings = BookingData.objects.filter(ratings__gt=0, facility_sport_id__facility__facility_id=fid).count()
 
-    return ratings
+    return ratings['ratings__avg'], no_of_ratings
 
 
-def add_data():
-    # to add random data
-    for i in range(100):
-        letters = string.ascii_lowercase
-        numbers = string.digits
-        result_str = ''.join(random.choice(letters) for i in range(4))
-        result_number = ''.join(random.choice(numbers) for i in range(10))
-        FacilityDetail.objects.create(facility_name=result_str + "sports", facility_location='madhapur',
-                                      facility_phone=result_number, facility_email=result_str + '@gmail.com',
-                                      facility_password='123456')
-        facility = FacilityDetail.objects.get(facility_phone=result_number)
-        sport = Sport.objects.get(sport_id=1)
+# def add_data():
+#     # to add random data
+#     for i in range(100):
+#         letters = string.ascii_lowercase
+#         numbers = string.digits
+#         result_str = ''.join(random.choice(letters) for i in range(4))
+#         result_number = ''.join(random.choice(numbers) for i in range(10))
+#         FacilityDetail.objects.create(facility_name=result_str + "sports", facility_location='madhapur',
+#                                       facility_phone=result_number, facility_email=result_str + '@gmail.com',
+#                                       facility_password='123456')
+#         facility = FacilityDetail.objects.get(facility_phone=result_number)
+#         sport = Sport.objects.get(sport_id=1)
+#
+#         SportsInFacility.objects.create(facility=facility, sport=sport, cost_per_slot=1100)
+#
+#
+# def add_slots(fsid):
+#
+#     slots = Slot.objects.all()
+#     fsid = SportsInFacility.objects.get(facility_sport_id=fsid)
+#     for j in slots:
+#         SlotsInSportFacility.objects.create(slot_id=j, facility_sport_id=fsid)
+#
 
-        SportsInFacility.objects.create(facility=facility, sport=sport, cost_per_slot=1100)
+

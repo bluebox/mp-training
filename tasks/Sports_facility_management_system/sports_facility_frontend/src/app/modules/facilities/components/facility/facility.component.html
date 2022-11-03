@@ -1,55 +1,68 @@
+<a style="margin-left:20px">
+  <input [(ngModel)]="text" (input)="search()" placeholder="search for facility">
+</a>
 
-    <a style="margin-left:20px">
-        <input [(ngModel)]="text" (input)="search()" placeholder="search for facility">
-    </a>
-    
-    
-  <a>
-    <div class="dropdown ml-4">
-      <a style="cursor: pointer;" ><i aria-hidden="true"> Filter by sports </i> </a>
-      <div class="dropdown-content">
-          <label class="sport_labl">
-            <div style="cursor: pointer;" class="sportcard" [ngClass]="selectedSportsList.length==0 ? 'border-input' : ''"
-                (click)="allfilter()">
-                <h6>all</h6>
-            </div>
-          </label>
-        
 
-          <div *ngFor="let sport of sports" class="slotitem">
-
-            <label class="sport_labl">
-                <div style="cursor: pointer;" class="sportcard" [ngClass]="selectedSportsList.includes(sport.sport_id) ? 'border-input' : ''"
-                    (click)="sportid(sport.sport_id)">
-                    <h6>{{sport.sport_name}}</h6>
-                </div>
-            </label>
-    
+<a>
+  <div class="dropdown ml-4">
+    <a style="cursor: pointer;"><i aria-hidden="true"> Filter by sports </i> </a>
+    <div class="dropdown-content">
+      <label class="sport_labl">
+        <div style="cursor: pointer;" class="sportcard" [ngClass]="selectedSportsList.length==0 ? 'border-input' : ''"
+          (click)="allfilter()">
+          <h6>all</h6>
         </div>
+      </label>
+
+
+      <div *ngFor="let sport of sports" class="slotitem">
+
+        <label class="sport_labl">
+          <div style="cursor: pointer;" class="sportcard"
+            [ngClass]="selectedSportsList.includes(sport.sport_id) ? 'border-input' : ''"
+            (click)="sportid(sport.sport_id)">
+            <h6>{{sport.sport_name}}</h6>
+          </div>
+        </label>
+
       </div>
     </div>
-  </a>
+  </div>
+</a>
 <div class="container1">
-    <div class="card" *ngFor ='let facility of facilities' >
+  <div class="card" *ngFor='let facility of facilities'>
     <div>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWi29mOalQDV_Z3OQs5RojJxdAZhjnDjSMYg&usqp=CAU' alt='facility name' />
+      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWi29mOalQDV_Z3OQs5RojJxdAZhjnDjSMYg&usqp=CAU'
+        alt='facility name' />
     </div>
+
+    <div class="ratings">
+      <div></div>
+      <div>
+        <h1 class="text-center"> {{facility.facility_name}}</h1>
+      </div>
+      <div class="rating_card">
+        <h3 > <i class="fa-regular fa-star fa-solid stars_color"></i></h3>
+        <h3> {{facility.avg_rating}} ({{facility.no_of_ratings}})</h3>
+        
+      </div>
+    </div>
+    
+
+
+
+    <h6 class="text-center"> {{facility.facility_location}} </h6>
     <div class="text-center">
-        <h1> {{facility.facility_name}} </h1>
-        <h6> {{facility.facility_location}} </h6>
-        <div class="text-center">
-            <button (click)="openFacility(facility.facility_id)" class="btn btn-primary mb-2">book now</button>
-        </div>
-        <div>
-          <h1 > {{getrating(facility.facility_id)}} </h1>
-        </div>
+      <button (click)="openFacility(facility.facility_id)" class="btn btn-primary mb-2">book now</button>
     </div>
-    </div>
+
+  </div>
 </div>
-<div *ngIf="total_results > no_of_facilities_display "  class="text-center m-4 ">
-  <button (click)="loadmore()" class=" bg-transparent p-2  border border-dark text-light"> <i class="fa-solid fa-angles-down text-black"></i> </button>
+<div *ngIf="total_results > no_of_facilities_display " class="text-center m-4 ">
+  <button (click)="loadmore()" class=" bg-transparent p-2  border border-dark text-light"> <i
+      class="fa-solid fa-angles-down text-black"></i> </button>
 
 </div>
 <div *ngIf="facilities.length == 0">
-  <img style="width: 40%;margin-left:30%" src="../../../../../assets/images/nodata.png"   alt="no data found"/>
+  <img style="width: 40%;margin-left:30%" src="../../../../../assets/images/nodata.png" alt="no data found" />
 </div>

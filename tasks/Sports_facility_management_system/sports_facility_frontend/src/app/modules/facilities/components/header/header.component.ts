@@ -20,10 +20,14 @@ export class HeaderComponent implements OnInit {
     this.service.getSports().subscribe((data) => {
       this.sports = data;
     });
-
-    let token = localStorage.getItem('refresh_token');
-    if (token == null) {
+    
+    var token;
+    if (localStorage.getItem('refresh_token') === null) {
       token = '';
+      
+    }
+    else{
+      token = localStorage.getItem('refresh_token')
     }
     this.service.CheckRefreshToken(token).subscribe(
       (data) => {
@@ -38,7 +42,10 @@ export class HeaderComponent implements OnInit {
         }
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
+        this.admin_verfied = false;
+        this.user_verfied = false;
+
       }
     );
   }

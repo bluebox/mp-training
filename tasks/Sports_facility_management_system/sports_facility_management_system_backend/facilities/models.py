@@ -12,6 +12,8 @@ class FacilityDetail(models.Model):
     facility_phone = models.CharField(unique=True, max_length=255)
     facility_email = models.CharField(max_length=255)
     facility_password = models.CharField(max_length=255)
+    avg_rating = models.FloatField(default=0.0)
+    no_of_ratings = models.IntegerField(default=0)
 
     def __str__(self):
         return self.facility_name

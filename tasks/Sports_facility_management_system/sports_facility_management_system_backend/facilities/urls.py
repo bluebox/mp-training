@@ -4,7 +4,7 @@ from .views import FacilityView, SportsInFacilityView, BookingFormView, GetBooke
     GEtFacilitySportId, UserLogin, GetSports, \
     SearchFilterWithPagination, CheckRefreshToken, GetUserBookings, CancelBooking, UpdateFeedback, GetUserDetails, \
     SearchFilterWithLoadMore, \
-    GetBookingsInFacility, GetSlotsInSportFacility, GetRentedEquip, FacilityRatings
+    GetBookingsInFacility, GetSlotsInSportFacility, GetRentedEquip
 
 urlpatterns = [
     path('sport-facility', SportsInFacilityView.as_view(), name='sports_facility'),
@@ -25,6 +25,6 @@ urlpatterns = [
     path('Get-rented-equipments', GetRentedEquip.as_view(), name='get_rented_slots'),
     path('search-facilities', SearchFilterWithLoadMore.as_view(), name='search_function'),
     path('get-bookings-facility', GetBookingsInFacility.as_view(), name='get_bookings_facility'),
-    path('get-ratings-facility',FacilityRatings.as_view(),name='facility-ratings')
+
 ]
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import axios from 'axios';
 import { Facility } from 'src/interfaces/facility';
 import { FacilityService } from '../../services/facility.service';
 
@@ -15,36 +16,68 @@ export class FacilityComponent implements OnInit {
   text: string = '';
   selectedSportsList: any[] = [];
   cd: any;
-  no_of_facilities_display: number =9;
-  total_results!:number;
+  no_of_facilities_display: number = 9;
+  total_results!: number;
 
   constructor(
     private facilityService: FacilityService,
     private router: Router
   ) {}
- 
-  ngOnInit(): void {
-    
+
+  ngOnInit() {
     this.getAllSports();
-    this.getSearchedFacilities()
+    this.getSearchedFacilities();
+    // let res = this.getrating(1);
+    // console.log(JSON.stringify(this.getrating(1)));
+    console.log(this.getrating(1));
+
+    
   }
   allChecked = true;
-
+  
+  // getrating(fid: any) {
+  //   let rating;
+  //   return this.facilityService
+  //     .getRatingsOfFacilities(fid)
+  //     .subscribe((data) => {
+  //       console.log(data);
+  //       return data
+  //     });
+    
+      
+  // }
+  
   getrating(fid: any) {
-    l
-    return this.facilityService.getRatingsOfFacilities(fid).subscribe((data:any)=>
 
-     {return data.ratings__avg} 
-    )
+    console.log(fid);
+    return fid
+    
+    // let data;
+    // try{
+    //   let res = await axios.get('http://127.0.0.1:8000/get-ratings-facility?fid='+fid)
+    //   console.log(res.data);
+    //   data = res.data
+
+    //   let resParse = JSON.parse(res.data)
+    //   let resData = JSON.stringify(res.data)
+    //   return data;
+    // }
+    // catch(e){
+      
+    //   return 0
+    // }
   }
- 
+
+
+
+
 
   openFacility(id: number): void {
     this.router.navigate(['facilities/hyderabad', String(id)]);
   }
 
   search() {
-    this.no_of_facilities_display =9;
+    this.no_of_facilities_display = 9;
     this.getSearchedFacilities();
   }
 
@@ -55,12 +88,11 @@ export class FacilityComponent implements OnInit {
     });
   }
 
-
   checkSport(id: any) {
     return this.selectedSportsList.includes(id);
   }
   sportid(id: any) {
-    this.no_of_facilities_display =9;
+    this.no_of_facilities_display = 9;
     if (this.selectedSportsList.includes(id)) {
       this.selectedSportsList.splice(this.selectedSportsList.indexOf(id), 1);
     } else {
@@ -72,24 +104,25 @@ export class FacilityComponent implements OnInit {
 
   getSearchedFacilities(): void {
     this.facilityService
-      .searchFacilityLoadmore(this.text, this.selectedSportsList.toString(),this.no_of_facilities_display)
-      .subscribe((data:any) => {
-        this.facilities = data.pageItems
-        this.total_results=data.total_results  
-        console.log(data)  
+      .searchFacilityLoadmore(
+        this.text,
+        this.selectedSportsList.toString(),
+        this.no_of_facilities_display
+      )
+      .subscribe((data: any) => {
+        this.facilities = data.pageItems;
+        this.total_results = data.total_results;
+        console.log(data);
       });
   }
-  allfilter(): void{
+  allfilter(): void {
     this.allChecked = true;
     this.selectedSportsList = [];
-    this.no_of_facilities_display =9;
+    this.no_of_facilities_display = 9;
     this.getSearchedFacilities();
-
-
-
   }
-  loadmore(){
-    this.no_of_facilities_display += 9
-    this.getSearchedFacilities()
+  loadmore() {
+    this.no_of_facilities_display += 9;
+    this.getSearchedFacilities();
   }
 }
