@@ -12,68 +12,78 @@ notes = '''
  two lists can be equal if all elements in them are equal in same order etc.
 '''
 
+""" Program to understand identity and equality """
 def test_identity_equality_lists():
+    """ function to test equality lists"""
     a = []
     b = []
-    assert False == (a is b)
-    assert True == (a == b)
+    assert False is (a is b)
+    assert True is (a == b)
 
     a.append("one")
-    assert False == (a is b)
-    assert False == (a == b)
+    assert False is (a is b)
+    assert False is (a == b)
 
-    c = []
-    d = c
-    assert True == (c is d)
-    assert True == (c == d)
+    c_1 = []
+    d_1 = c_1
+    assert True is (c_1 is d_1)
+    assert True is (c_1 == d_1)
 
-    c.append("one")
-    assert True == (c is d)
-    assert True == (c == d)
+    c_1.append("one")
+    assert True is (c_1 is d_1)
+    assert True is (c_1 == d_1)
+test_identity_equality_lists()
 
 def test_identity_equality_string():
-    a = b = "hello"
+    """ function to test identity of equality string """
+    a_1 = b_1 = "hello"
 
-    assert True == (a is b)
-    assert True == (a == b)
+    assert True is (a_1 is b_1)
+    assert True is (a_1 == b_1)
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert False == (c is d)
-    assert True == (c == d)
+    c_1 = "hello"
+    d_1 = "".join(["hel", "lo"])
+    assert False is (c_1 is d_1)
+    assert True is (c_1 == d_1)
+test_identity_equality_string()
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert True == (a is b)
-    assert True == (a == b)
+    """ function to test identity equality numbers """
+    a_1 = b_1 = 10000
+    assert True is (a_1 is b_1)
+    assert True is (a_1 == b_1)
 
-    c = 10000
-    d = int("10000")
-    assert False == (c is d)
-    assert True == (c == d)
+    c_1 = 10000
+    d_1 = int("10000")
+    assert False is (c_1 is d_1)
+    assert True is (c_1 == d_1)
+test_identity_equality_numbers()
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert True == (a is b)
-    assert True == ( a == b)
+    a_1 = b_1 = 10
+    assert True is (a_1 is b_1)
+    assert True is (a_1 == b_1)
 
-    c = 10
-    d = int("10")
-    assert True == (c is d)
-    assert True == (c == d)
+    c_1 = 10
+    d_1 = int("10")
+    assert True is (c_1 is d_1)
+    assert True is (c_1 == d_1)
+test_identity_equality_small_numbers()
 
-def test_identity_equality_None():
-    a = b = None
-    assert True == (a is b)
-    assert True == (a == b)
+def test_identity_equality_none():
+    """ function to test identity equality"""
+    a_1 = b_1 = None
+    assert True is (a_1 is b_1)
+    assert True is (a_1 == b_1)
 
-    a = None
-    b = None
-    assert True == (a is b)
-    assert True == (a == b)
+    a_1 = None
+    b_1 = None
+    assert True is (a_1 is b_1)
+    assert True is (a_1 == b_1)
+test_identity_equality_none()
 
 
 notes_on_none = '''
