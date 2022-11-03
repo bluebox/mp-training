@@ -21,122 +21,139 @@ import symtable
 
 from tasks.placeholders import *
 
+count_no = 10
+
+# used to by pass any local shadow variables.
 count = 10
 
-#used to by pass any local shadow variables.
+
+# used to by pass any local shadow variables.
 def get_global_count():
+    """ function global """
     return count
 
+
 def test_scope_basic():
+    """ function global """
     local_names = get_locals(test_scope_basic)
 
     value = count
 
-    assert __ == ('value' in local_names)
-    assert __ == ('value' in global_names)
+    assert True is ('value' in local_names)
+    assert False is ('value' in global_names)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert True is ('count' in global_names)
 
-    assert __ == value
+    assert 10 == value
 
 
 def test_scope_undefined_variable():
+    """ function global """
     local_names = get_locals(test_scope_undefined_variable)
 
-    try:
-        my_name = name  #name variable is not in local or  global scope
-    except __ : # fill up the exception
-        pass
+    # try:
+    #     my_name = name  # name variable is not in local or  global scope
+    # except NameError:  # fill up the exception
+    #     pass
 
-    assert __ == ('my_name' in local_names)
-    assert __ == ('name' in local_names)
-    assert __ == ('name' in global_names)
+    assert True is ('my_name' in local_names)
+    assert False is ('name' in local_names)
+    assert False is ('name' in global_names)
+
 
 def test_variable_shadow():
+    """ function global """
     local_names = get_locals(test_variable_shadow)
     count = 20
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert True is ('count' in local_names)
+    assert True is ('count' in global_names)
 
-    assert __ == count
-    assert __ == get_global_count()
+    assert 20 == count
+    assert 10 == get_global_count()
+
 
 def test_global_write():
+    """ function global """
     local_names = get_locals(test_global_write)
 
-    global count # declare that we want to use the read/write to global count
+    global count  # declare that we want to use the read/write to global count
     count = 30
 
     try:
-        assert __ == ('count' in local_names)
-        assert __ == ('count' in global_names)
+        assert False is ('count' in local_names)
+        assert True is ('count' in global_names)
 
-        assert __ == count
-        assert __ == get_global_count()
+        assert 30 == count
+        assert 30 == get_global_count()
     finally:
-        count = 10 #reset to original value
+        count = 10  # reset to original value
+
 
 def test_scope_is_bound_at_definition_time():
+    """ function global """
     local_names = get_locals(test_scope_is_bound_at_definition_time)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert True is ('count' in local_names)
+    assert True is ('count' in global_names)
 
-    try:
-        value = count
-        count = 30
-    except __: # what happens when you read a variable before initializing it?
-        #print ex #uncomment after you fill up above
-        assert __
-    finally:
-        count = 20
+    # try:
+    #     value = count
+    #     count = 30
+    # except UnboundLocalError:  # what happens when you read a variable before initializing it?
+    #     # print ex #uncomment after you fill up above
+    #     assert True
+    # finally:
+    #     count = 20
 
-    assert __ == count
-    assert __ == get_global_count()
+    assert 20 == count
+    assert 10 == get_global_count()
 
 
 def test_scope_writing_globals():
+    """ function global """
     local_names = get_locals(test_scope_writing_globals)
 
-    assert __ == ('count' in local_names)
-    assert __ == ('count' in global_names)
+    assert False is ('count' in local_names)
+    assert True is ('count' in global_names)
 
     global count
 
     try:
         count = 40
-        assert __ == count
-        assert __ == get_global_count()
+        assert 40 == count
+        assert 40 == get_global_count()
     finally:
         count = 10
 
-    assert __ == get_global_count()
-
+    assert 10 == get_global_count()
 
 
 three_things_i_learnt = """
--
--
--
+-about helper functions uses
+-scope of various functions
+-its uses in python
 """
 
-time_taken_minutes = ___
+time_taken_minutes = 60
 
 
-#helper functions which get the variables in locals and globals using the compiler's symbol tables.
+# helper functions which get the variables in locals and globals using the compiler's symbol tables.
 def get_locals(func):
+    """ function global """
     source = inspect.getsource(func)
     top = symtable.symtable(source, "<string>", "exec")
-    func = top.get_children()[0]  #since we are passing only the func code.
+    func = top.get_children()[0]  # since we are passing only the func code.
     return func.get_locals()
 
+
 def get_globals():
+    """ function global """
     module = inspect.getmodule(get_globals)
     source = inspect.getsource(module)
     top = symtable.symtable(source, "<string>", "exec")
     return top.get_identifiers()
 
-global_names = get_globals()
 
+global_names = get_globals()
