@@ -359,9 +359,11 @@ class CouponsListViewSet(APIView):
             # coupons = Coupon.objects.filter(valid_till__gt=datetime.datetime.utcnow())
             text = request.GET.get("text")
             coupons_list = Coupon.objects.filter(
-                couponcode__icontains=text, valid_till__gt=datetime.datetime.utcnow()
+                couponcode__icontains=text
+                # couponcode__icontains=text, valid_till__gt=datetime.datetime.utcnow()
             ) | Coupon.objects.filter(
-                description__icontains=text, valid_till__gt=datetime.datetime.utcnow()
+                description__icontains=text
+                # description__icontains=text, valid_till__gt=datetime.datetime.utcnow()
             )
             coupons, totalPages, page = listing(request, coupons_list)
             serializer = CouponSerializer(coupons, many=True)

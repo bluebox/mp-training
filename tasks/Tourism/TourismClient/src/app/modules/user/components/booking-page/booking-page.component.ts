@@ -26,6 +26,7 @@ export class BookingPageComponent implements OnInit {
   routerSubscription!: Subscription;
   getBookingOfUserSubscription!: Subscription;
   cancelBookingSubscription!: Subscription;
+  isPast: boolean = false;
 
 
   ngOnInit(): void {
@@ -35,6 +36,9 @@ export class BookingPageComponent implements OnInit {
         data => {
           console.log(data);
           this.booking = data;
+          if(new Date(this.booking.tourid?.start_date) <= new Date()){
+            this.isPast = true
+          }
           this.cancellation_charges = this.booking.tourid.price * .15
           this.passenger_details = JSON.parse(this.booking.passenger_details)
           console.log(this.passenger_details);

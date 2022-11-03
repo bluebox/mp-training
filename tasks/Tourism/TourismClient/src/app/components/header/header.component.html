@@ -9,13 +9,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="container borderXwidth navbar-nav">
 
-      <a mat-button [ngClass]="{'selected' : activeRoute == 'user'}" routerLink="../user">Home</a>
+      <a *ngIf="!currentUser?.isAdmin" mat-button [ngClass]="{'selected' : activeRoute == 'user'}" routerLink="../user">Home</a>
       <!-- <a mat-button [ngClass]="activeRoute === 'Home' ? 'selected' : '' " routerLink="../user" >Home</a> -->
       <a *ngIf="!currentUser?.isAdmin" mat-button routerLink="../contact" [ngClass]="{'selected' : activeRoute == 'contact'}">Contact</a>
       <a *ngIf="!isAuthenticated" mat-button routerLink="../signup" [ngClass]="{'selected' : activeRoute == 'signup'}"> SignUp </a>
 
       <a *ngIf="isAuthenticated && !currentUser.isAdmin" mat-button routerLink="../user/bookings" [ngClass]="{'selected' : activeRoute == 'bookings'}">Bookings</a>
-      <a *ngIf="isAuthenticated && currentUser.isAdmin" mat-button routerLink="../admin/" [ngClass]="{'selected' : activeRoute == 'admin'}">Admin</a>
+      <a *ngIf="isAuthenticated && currentUser.isAdmin" mat-button routerLink="../admin/" [ngClass]="{'selected' : activeRoute == 'admin'}">Home</a>
       <!-- <a *ngIf="isAuthenticated" mat-button (click) ="submitLogout()">Logout</a> -->
       <a *ngIf="!isAuthenticated" mat-button routerLink="../login" [ngClass]="{'selected' : activeRoute == 'login'}">Login</a>
 

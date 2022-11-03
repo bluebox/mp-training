@@ -32,8 +32,10 @@
         </div>
       </div>
       <div class="mb-2 col-6 text-danger" *ngIf="booking.isCancelled">cancelled</div>
-      <div class="mb-2 col-6"><button mat-raised-button class="bg-danger text-light" *ngIf="!booking.isCancelled" (click)="open(content)">cancel</button></div>
-
+      <div class="mb-2 col-6">
+        <button mat-raised-button class="bg-danger text-light"
+          *ngIf="!booking.isCancelled  && !this.isPast" (click)="open(content)">cancel</button>
+      </div>
     </div>
   </div>
 
@@ -51,10 +53,10 @@
   <div class="modal-body">
     <form>
       <div class="mb-3">
-          <p>Cancellation Charges: {{cancellation_charges}}</p>
-          <hr>
-          <label for="reason">Reason for cancelling:</label>
-          <textarea name="reason" rows="4" style="width: 100%;" (change)="updateReason($event)"></textarea>
+        <p>Cancellation Charges: {{cancellation_charges}}</p>
+        <hr>
+        <label for="reason">Reason for cancelling:</label>
+        <textarea name="reason" rows="4" style="width: 100%;" (change)="updateReason($event)"></textarea>
       </div>
     </form>
   </div>
