@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BaseComponent } from './components/base/base.component';
 import { CategoryComponent } from './components/category/category.component';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
@@ -13,6 +14,7 @@ import { ProblemsComponent } from './components/problems/problems.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SubmissionComponent } from './components/submission/submission.component';
+import { SubmissionsComponent } from './components/submissions/submissions.component';
 import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
@@ -30,6 +32,7 @@ const routes: Routes = [
   {path:"post-question", component:PostQuestionComponent},
   {path:"profile/:id", component:ProfileComponent, canActivate: [AuthGuard]},
   {path:"edit-profile", component:EditProfileComponent, canActivate: [AuthGuard]},
+  {path:"submissions", component:SubmissionsComponent, canActivate: [AuthGuard]},
   { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) }
   // {path:"**", }
 ];

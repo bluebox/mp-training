@@ -25,6 +25,9 @@ import { DiscussionComponent } from './components/discussion/discussion.componen
 import { SubmissionComponent } from './components/submission/submission.component';
 import { PostDiscussionComponent } from './components/post-discussion/post-discussion.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { SubmissionsComponent } from './components/submissions/submissions.component';
+import { BaseComponent } from './components/base/base.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { NgxEditorModule } from 'ngx-editor';
     DiscussionComponent,
     SubmissionComponent,
     PostDiscussionComponent,
+    SubmissionsComponent,
+    BaseComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

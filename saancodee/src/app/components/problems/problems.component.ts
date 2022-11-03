@@ -13,10 +13,9 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class ProblemsComponent implements OnInit {
 
+  tags: any;
   p: any;
-  pages: any = 0;
-  flag: boolean = true;
-  allProblems!: any;
+  pages: any;
   problems!: any
   accuracies: any;
   sortBasedOnDifficulty: Number = 0;
@@ -27,19 +26,89 @@ export class ProblemsComponent implements OnInit {
   filterForm = this.fb.group({
     diff: ['', Validators.required]
   })
+  tagsToggle: boolean = true;
 
   constructor(public route: ActivatedRoute, public fb: FormBuilder, public service: RegisterService, private http: HttpClient, private router: Router) {
     this.service.getProblems().subscribe((data: any) => {
-      this.allProblems = data
+      this.service.getTags().subscribe((data) => {
+        this.tags = data
+        console.log(data);
+        
+      })
       this.problems = data
       this.p = []
     for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
       this.p.push(this.problems[i])
     }
       // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
-      this.pages = Math.ceil(Number((this.allProblems.length / 3).toFixed(2)));
-      console.log(data, Number((this.allProblems.length / 3).toFixed(2)))
+      this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
     })
+  }
+
+  remove_tag(id: any) {
+    console.log("clicked", id.target.classList[0]);
+    let name = id.target.classList[0]
+    let child = document.getElementById(name) as HTMLDivElement
+    const tags = document.querySelector(".selected-tags") as HTMLDivElement
+    tags.removeChild(child)
+  }
+
+  apply_filters() {
+    const search = document.getElementById("search") as HTMLInputElement
+    const difficulty_level = document.getElementById("difficulty-level") as HTMLSelectElement
+    const tags = document.querySelector(".selected-tags") as HTMLDivElement
+    console.log(search.value, difficulty_level.value, tags);
+    let arr = []
+    for (let i = 0; i < tags.children.length; i ++) {
+      arr.push(tags.children[i].children[0].innerHTML)
+    }
+    console.log(arr);
+    let data = {
+      'search': search.value,
+      'diff': Number(difficulty_level.value),
+      'tags': arr
+    }
+    this.service.apply_filters(data).subscribe((data: any) => {
+      console.log(data);
+      this.problems = data
+      this.p = []
+      this.currentPage = 1
+    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+      this.p.push(this.problems[i])
+    }
+    console.log(this.problems.length);
+      console.log("///", Math.ceil(Number((data.length / 3).toFixed(2))));
+      
+      this.pages = Math.ceil(Number((data.length / 3).toFixed(2)));
+      if (this.pages == 0) {
+        this.pages = 1;
+      }
+    })
+  }
+
+  add_tag() {
+    console.log("called");
+    const tags = document.querySelector(".selected-tags") as HTMLDivElement
+    const selectedTag = document.querySelector(".tags") as HTMLSelectElement
+    let f = 0
+    for (let i = 0; i < tags.children.length; i ++) {
+      if (selectedTag.value == tags.children[i].innerHTML) {
+        f = 1;
+      }
+    }
+    if (f == 0 && selectedTag.value != "") {
+      const element = document.createElement("div")
+      element.setAttribute("id", selectedTag.value)
+      const tag = document.createElement("span")
+      tag.innerHTML = selectedTag.value
+      element.appendChild(tag)
+      const btn = document.createElement("button")
+      btn.innerHTML = "X"
+      btn.setAttribute("class", selectedTag.value)
+      btn.addEventListener("click", this.remove_tag)
+      element.appendChild(btn)
+      tags.appendChild(element)
+    }
   }
 
   move_to_previous_page() {
@@ -64,91 +133,120 @@ export class ProblemsComponent implements OnInit {
     // this.problems = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
   }
 
-  submitSearch() {
-    this.submit()
-    console.log(this.searchWord);
-    let word: any = this.searchWord.trim()
-    console.log(word);
-    let keywords = word.split(" ")
-    for (let i = 0; i < keywords.length; i ++) {
-      keywords[i] = keywords[i].toLowerCase();
-    }
-    console.log(keywords);
-    let problems = []
-    let p = []
-    if (this.flag == true) {
-      p = this.allProblems
+  // submitSearch() {
+  //   this.submit()
+  //   console.log(this.searchWord);
+  //   let word: any = this.searchWord.trim()
+  //   console.log(word);
+  //   let keywords = word.split(" ")
+  //   for (let i = 0; i < keywords.length; i ++) {
+  //     keywords[i] = keywords[i].toLowerCase();
+  //   }
+  //   console.log(keywords);
+  //   let problems = []
+  //   let p = []
+  //   if (this.flag == true) {
+  //     p = this.allProblems
+  //   }
+  //   else {
+  //     p = this.problems
+  //   }
+  //   for (let i = 0; i < p.length; i ++) {
+  //     for (let j = 0; j < keywords.length; j ++) {
+  //       if (p[i].problem_name.toLowerCase().includes(keywords[j])) {
+  //         problems.push(p[i])
+  //         break
+  //       }
+  //     }
+  //   }
+  //   this.problems = problems
+  //   this.p = []
+  //   for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+  //     this.p.push(this.problems[i])
+  //   }
+  //   this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+  //   if (this.pages == 0) {
+  //     this.currentPage = 0;
+  //   }
+  //   // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+  // }
+
+  // submit() {
+  //   this.currentPage = 1
+  //   console.log(1);
+
+  //   const diffs = document.getElementById("select") as HTMLSelectElement
+  //   let diff = Number(diffs.value)
+  //   // for (let i = 0; i < diffs.children.length; i ++) {
+  //   //   const inp = diffs.children[i] as HTMLInputElement
+  //   //   if (inp.checked) {
+  //   //     diff = Number(inp.value)
+  //   //   }
+  //   // }
+    
+    
+  //   console.log(diff);
+  //   let problems = []
+  //   if (diff != -1) {
+  //   for (let i = 0; i < this.allProblems.length; i ++) {
+  //     if (this.allProblems[i].difficulty_level == diff) {
+  //       problems.push(this.allProblems[i])
+  //     }
+  //   }
+  //   // for (let i = 0; i < this.p.length; i ++) {
+  //   //   if (this.p[i].difficulty_level == diff) {
+  //   //     problems.push(this.p[i])
+  //   //   }
+  //   // }
+  //   this.problems = problems
+  //   this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+  //   console.log("//////");
+  //   if (this.pages == 0) {
+  //     this.currentPage = 0;
+  //   }
+    
+  //   console.log(this.pages);
+    
+  //   this.p = []
+  //   for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+  //     this.p.push(this.problems[i])
+  //   }
+  //   // this.p = problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+  //   this.flag = false;
+  // }
+  // else {
+  //   this.flag = true;
+  //   this.problems = this.allProblems
+  //   this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+  //   if (this.pages == 0) {
+  //     this.currentPage = 0;
+  //   }
+  //   this.p = []
+  //   for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+  //     this.p.push(this.problems[i])
+  //   }
+  //   // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+  // }
+  //   // this.router.navigate(
+  //     // ['problems'],
+  //     // {
+  //       // queryParams: { level: diff }
+  //     // }
+  //   // )
+  // }
+
+  toggleTagIndicator() {
+    console.log("//////");
+    this.tagsToggle = !this.tagsToggle;
+    const ele = document.querySelector('.tag') as HTMLSpanElement
+    console.log(ele);
+    
+    if (this.tagsToggle) {
+      ele.classList.remove("hide-tag")
     }
     else {
-      p = this.problems
+      ele.classList.add("hide-tag")
     }
-    for (let i = 0; i < p.length; i ++) {
-      for (let j = 0; j < keywords.length; j ++) {
-        if (p[i].problem_name.toLowerCase().includes(keywords[j])) {
-          problems.push(p[i])
-          break
-        }
-      }
-    }
-    this.problems = problems
-    this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
-      this.p.push(this.problems[i])
-    }
-    this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
-    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
-  }
-
-  submit() {
-
-    const diffs = document.getElementById("group") as HTMLDivElement
-    let diff = -1
-    for (let i = 0; i < diffs.children.length; i ++) {
-      const inp = diffs.children[i] as HTMLInputElement
-      if (inp.checked) {
-        diff = Number(inp.value)
-      }
-    }
-    
-    
-    console.log(diff);
-    let problems = []
-    if (diff != -1) {
-    for (let i = 0; i < this.allProblems.length; i ++) {
-      if (this.allProblems[i].difficulty_level == diff) {
-        problems.push(this.allProblems[i])
-      }
-    }
-    // for (let i = 0; i < this.p.length; i ++) {
-    //   if (this.p[i].difficulty_level == diff) {
-    //     problems.push(this.p[i])
-    //   }
-    // }
-    this.problems = problems
-    this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
-    this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
-      this.p.push(this.problems[i])
-    }
-    // this.p = problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
-    this.flag = false;
-  }
-  else {
-    this.flag = true;
-    this.problems = this.allProblems
-    this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
-    this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
-      this.p.push(this.problems[i])
-    }
-    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
-  }
-    // this.router.navigate(
-      // ['problems'],
-      // {
-        // queryParams: { level: diff }
-      // }
-    // )
   }
 
   sort_based_on_diff() {

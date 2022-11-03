@@ -13,6 +13,7 @@ export class BlogItemComponent implements OnInit {
   blog_id: any;
   blog: any;
   comments: any;
+  replies: number = 0;
   editPopUpFlag: boolean = false;
   deletePopUpFlag: boolean = false;
   replyBox: any = []
@@ -42,8 +43,12 @@ export class BlogItemComponent implements OnInit {
       console.log("////////")
       console.log(data);
       this.comments = data
+      this.replies = 0;
       for (let i = 0; i < this.comments.length; i ++) {
         this.replyBox.push(0);
+        this.replies += Number(this.comments[i].blogcommentreply_set.length)
+        console.log(this.comments[i].blogcommentreply_set.length);
+        
       }
     })
    }

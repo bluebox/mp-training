@@ -1,3 +1,6 @@
+import string    
+import random 
+
 from rest_framework.authtoken.models import Token
 from django.db.models import Count
 from django.http import HttpResponse
@@ -36,6 +39,15 @@ def api(request):
     return Response(api_urls)
 
 @api_view(['GET'])
+def add_data(request):
+    user = User.objects.get(username = 'sairam')
+    for i in range(100):
+        n = int((random.random() * 10) + 6)
+        s = ''.join(random.choices(string.ascii_uppercase, k = n))
+        Problem.objects.create(problem_name = s, description = s, creator_id = user, hints = "<div></div>", test_cases = "0", outputs = "True")
+    return Response({'asas':'sasaa'})
+
+@api_view(['GET'])
 def blogs_api(request):
     return blogsLogic.getAllBlogs(request)
 
@@ -70,7 +82,12 @@ def loginApi(request):
         user = User.objects.get(username = request.data['username'])
         if user.check_password(request.data['password']):
             token_obj, _ = Token.objects.get_or_create(user = user)
-            return Response({"status":200, 'username': request.data['username'], 'token':str(token_obj), "message": "valid register found"})
+            admin = False
+            print(user.is_staff)
+            if user.is_staff:
+                print("yes")
+                admin = True
+            return Response({"status":200, 'username': request.data['username'], 'token':str(token_obj), 'admin': admin, "message": "valid register found"})
         return Response({"status":403})
     except:
         return Response({"status":403})
@@ -225,6 +242,10 @@ def problem_streak(request):
     return problemLogic.get_streak(request)
 
 @api_view(['POST'])
+def filterProblems(request):
+    return problemLogic.filter_all_problems(request)
+
+@api_view(['POST'])
 def add_blog_reply(request):
     return blogsCommentLogic.add_blog_reply_by_comment_id(request)
 
@@ -275,6 +296,10 @@ def addSubmission(request, problem_id, username):
     solved = Solved.objects.create(problem_id = problem, user_id = user_id, solution = request.data['solution'], status = request.data['status'], result = request.data['result'])    
     problem.accuracy = problemLogic.get_accuracy(problem_id)
     problem.save()
+
+@api_view(['POST'])
+def all_submissions(request):
+    return problemLogic.all_submissions(request)
 
 @api_view(['POST'])
 def submitProblem(request, problem_id):

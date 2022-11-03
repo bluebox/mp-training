@@ -43,8 +43,8 @@ class blogsLogic:
         keywords = word.split(" ")
         queryset = Blog.objects.filter(reduce(operator.or_, (Q(title__contains = x) for x in keywords))).order_by("created_date_time")
 
-        if len(queryset) == 0:
-            return Response({"status": 404})    
+        if queryset.count() == 0:
+            return Response({"status": 404})
 
         serializer = BlogsSerializer(instance=queryset, many = True)
         return Response(serializer.data)

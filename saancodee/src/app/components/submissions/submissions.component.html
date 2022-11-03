@@ -1,0 +1,12 @@
+<div>
+    <div *ngFor="let submission of allSubmissions">
+        <div class="submission">
+            <a [routerLink]="['/problems', submission.problem_id.problem_id]"><h3 class="title">{{ submission.problem_id.problem_name }}</h3></a>
+            <p>Submitted on : {{ submission.solved_date_time | date:'mediumDate'}}</p>
+            <p class="status" *ngIf="submission.status === 2" style="color: red;">Wrong Answer</p>
+            <p class="status" *ngIf="submission.status === 1" style="color: green;">Accepted</p>
+            <p class="solution" style="white-space: pre-wrap;">{{ submission.solution }}</p>
+            <p class="result">{{ submission.result }}</p>
+        </div>
+    </div>
+</div>

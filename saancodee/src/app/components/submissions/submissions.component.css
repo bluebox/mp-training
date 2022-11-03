@@ -1,0 +1,22 @@
+.submission {
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+.status {
+    padding: auto;
+}
+
+.result {
+    color: #ff8800;
+}
+
+.solution {
+    background-color: #F6F6F6;
+    padding-left: 1rem;
+}
+
+.title {
+    color: black;
+    font-weight: bold;
+}

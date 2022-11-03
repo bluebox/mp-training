@@ -18,10 +18,10 @@
       <div class="collapse navbar-collapse nav-end" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a title="Notifications" href=""><i class="bi bi-bell navbar-brand"></i></a>
+                <p title="Notifications" ><i class="bi bi-bell navbar-brand"></i></p>
               </li>
               <li class="nav-item active">
-                  <a title="Streak" class="navbar-brand" href="#"><i class="bi bi-fire"></i><span>{{ streak.streak }}</span></a>
+                  <a title="Streak" class="navbar-brand"><i class="bi bi-fire"></i><span>{{ streak.streak }}</span></a>
               </li>
               <li class="nav-item active">
                   <a title="Profile" class="navbar-brand" [routerLinkActive]="['active']" [routerLink]="['/profile', username]"><i class="bi bi-person-fill"></i></a>

@@ -305,3 +305,43 @@ h1{
     justify-content: center;
     align-items: center;
   }
+
+.tag {
+  background-color: #cccccc;
+  font-size: smaller;
+  color: rgb(38, 36, 36);
+  border: 0.1px solid black;
+  margin: 0.1rem;
+}
+
+.tags {
+  display: inline-block;
+}
+
+#select {
+  padding: 0.5rem;
+}
+
+input {
+  padding: 0.4rem;
+}
+
+.hide-tag {
+    color: transparent;
+    text-shadow: 0 0 8px #000;
+}
+
+.box {
+  border: 0.2px solid blue;
+  display: inline-block;
+  padding: 1rem;
+}
+
+.inner-box > p {
+  padding: 0;
+  margin: 0;
+}
+
+.selected-tags > * {
+  display: inline-block;
+}

@@ -37,7 +37,7 @@ export class ProblemComponent implements OnInit {
     
     this.service.getProblem(this.id).subscribe((data:any) => {
       this.problem = data.problems
-      this.tags = data.tags
+      this.tags = data.problems.tags
       console.log(data)
     })
 

@@ -1,7 +1,10 @@
+from functools import reduce
 from django.contrib.auth.models import User
 from home.models import *
-from home.serializers import ProblemSerializer, sortProblemSerializer, tagsSerializer
+from home.serializers import ProblemSerializer, solvedSerializer, sortProblemSerializer, tagsSerializer
 from rest_framework.response import Response
+from django.db.models import Q
+import operator
 
 
 class problemLogic:
@@ -13,12 +16,12 @@ class problemLogic:
 
     def getProblemWithId(req, id):
         problem = Problem.objects.get(problem_id = id)
-        tagsList = list(TopicTag.objects.filter(problem_id = problem.problem_id).iterator())
-        tags = []
-        for tagIndex in tagsList:
-            tags.append(tagIndex.tag_id.tag_name)
+        # tagsList = list(TopicTag.objects.filter(problem_id = problem.problem_id).iterator())
+        # tags = []
+        # for tagIndex in tagsList:
+        #     tags.append(tagIndex.tag_id.tag_name)
         serializer = ProblemSerializer(problem, many = False)
-        return Response({"problems": serializer.data, "tags": tags})
+        return Response({"problems": serializer.data})
 
     def sortAndGetProblems(req):
         params = []
@@ -48,21 +51,46 @@ class problemLogic:
         serializer = tagsSerializer(instance=tags, many = True)
         return Response(serializer.data)
 
+    def filter_all_problems(req):
+        search, diff, tags = req.data['search'], req.data['diff'], req.data['tags']
+        problems = None
+        if diff != -1:
+            if len(tags) != 0:
+                problems = Problem.objects.filter(problem_name__icontains = search, difficulty_level = diff, tags__name__in = tags)
+            else:
+                problems = Problem.objects.filter(problem_name__icontains = search, difficulty_level = diff)
+        elif len(tags) == 0:
+            if diff != -1:
+                problems = Problem.objects.filter(problem_name__icontains = search, difficulty_level = diff)
+            else:
+                problems = Problem.objects.filter(problem_name__icontains = search)                
+        else:
+            problems = Problem.objects.filter(problem_name__icontains = search, tags__name__in = tags)
+        serializer = ProblemSerializer(instance=problems, many = True)
+        print(serializer.data)
+        return Response(serializer.data)
+
     def get_streak(req):
         username = req.data['username']
-        easy = len(Solved.objects.filter(problem_id__difficulty_level = 0, status = 1, user_id__username = username).values('problem_id').distinct())
-        medium = len(Solved.objects.filter(problem_id__difficulty_level = 1, status = 1, user_id__username = username).values('problem_id').distinct())
-        hard = len(Solved.objects.filter(problem_id__difficulty_level = 2, status = 1, user_id__username = username).values('problem_id').distinct())
+        easy = Solved.objects.filter(problem_id__difficulty_level = 0, status = 1, user_id__username = username).values('problem_id').distinct().count()
+        medium = Solved.objects.filter(problem_id__difficulty_level = 1, status = 1, user_id__username = username).values('problem_id').distinct().count()
+        hard = Solved.objects.filter(problem_id__difficulty_level = 2, status = 1, user_id__username = username).values('problem_id').distinct().count()
         return Response({'streak':(easy * 2) + (medium * 4) + (hard * 8)})
 
     def get_accuracy(problem_id):
         solved = Solved.objects.filter(problem_id=problem_id)
-        correct = 0
-        for query in solved:
-            if query.status == 1:
-                correct += 1
-        accuracy = (correct / len(solved)) * 100
+        correct = solved.filter(status = 1).count()
+        # for query in solved:
+        #     if query.status == 1:
+        #         correct += 1
+        accuracy = (correct / solved.count()) * 100
         return accuracy
+
+    def all_submissions(req):
+        username = req.data['username']
+        solved = Solved.objects.filter(user_id__username = username)
+        serializer = solvedSerializer(instance=solved, many = True)
+        return Response(serializer.data)
 
 class problemVoteLogic:
 
@@ -84,8 +112,8 @@ class problemVoteLogic:
                 voted = vote.vote
             except:
                 pass
-            votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
-            votesDislike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D'))
+            votesLike = ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L').count()
+            votesDislike = ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D').count()
             return Response({"like": votesLike, "dislike": votesDislike, "vote": voted})
 
         if (req.method == "POST"):
@@ -120,6 +148,6 @@ class problemVoteLogic:
                     problem.save()
                     # problem.addDisLikes()
                     voted = 'D'
-            votesLike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L'))
-            votesDislike = len(ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D'))
+            votesLike = ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'L').count()
+            votesDislike = ProblemVotes.objects.filter(problem_id = problem.problem_id, vote = 'D').count()
             return Response({"like": votesLike, "dislike": votesDislike, "vote": voted})

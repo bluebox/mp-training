@@ -111,6 +111,7 @@ class tagsSerializer(serializers.ModelSerializer):
         fields = ['name']
 
 class solvedSerializer(serializers.ModelSerializer):
+    problem_id = ProblemSerializer()
     class Meta:
         model = Solved
         fields = "__all__"

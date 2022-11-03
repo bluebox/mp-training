@@ -1,9 +1,10 @@
 <form [formGroup]="blogForm" (ngSubmit)="submit()" >
   <select formControlName="tag" id="">
+    <option value="" disabled selected>Select Category</option>
     <option value="web development" class="tag">Web Development</option>
     <option value="game development" class="tag">Game Development</option>
   </select>
   <input type="text" formControlName="title" class="title" placeholder="Title">
-  <textarea formControlName="discussion" class="editor" name="" id="" cols="30" rows="10"></textarea>
+  <textarea placeholder="write your blog here" formControlName="discussion" class="editor" name="" id="" cols="30" rows="10"></textarea>
   <button type="submit">Publish</button>
 </form>

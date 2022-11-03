@@ -52,10 +52,10 @@
                                         <i class="bi bi-trash"></i>
                                         <p title="delete" (click)="delete_blog()" class="mb-0">delete</p>
                                     </a>
-                                    <a class="d-flex align-items-center me-3">
+                                    <!-- <a class="d-flex align-items-center me-3">
                                         <i class="fas fa-share me-2"></i>
                                         <p class="mb-0">Like <span>{{ blog.likes }}</span></p>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                             <form [formGroup]="commentForm" (ngSubmit)="oncommentSubmit()">
@@ -103,7 +103,7 @@
             </div> -->
             <div class="card">
             <div class="comments-container">
-                <h1>Comments ({{ comments.length }})</h1>
+                <h1>Comments ({{ comments.length + replies }})</h1>
                 <ul id="comments-list" class="comments-list">
                     <li *ngFor="let comment of comments; let i = index;">
                         <div class="comment-main-level">

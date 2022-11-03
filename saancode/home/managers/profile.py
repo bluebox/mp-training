@@ -26,14 +26,14 @@ class profileLogic:
     def problemStatistics(req):
         username = req.data['username']
 
-        totalEasy, totalMedium, totalHard = len(Problem.objects.filter(difficulty_level = 0)), len(Problem.objects.filter(difficulty_level = 1)), len(Problem.objects.filter(difficulty_level = 2))
+        totalEasy, totalMedium, totalHard = Problem.objects.filter(difficulty_level = 0).count(), Problem.objects.filter(difficulty_level = 1).count(), Problem.objects.filter(difficulty_level = 2).count()
 
         total = totalEasy + totalMedium + totalHard
 
         easy, medium, hard = 0, 0, 0
 
-        easy = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 0).values('problem_id').distinct())
-        medium = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 1).values('problem_id').distinct())
-        hard = len(Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 2).values('problem_id').distinct())
+        easy = Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 0).values('problem_id').distinct().count()
+        medium = Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 1).values('problem_id').distinct().count()
+        hard = Solved.objects.select_related('problem_id').filter(status = 1, user_id__username = username, problem_id__difficulty_level = 2).values('problem_id').distinct().count()
 
         return Response({"total": total, "totalEasy": totalEasy, "totalMedium": totalMedium, "totalHard": totalHard, "easy": easy, "medium": medium, "hard": hard})

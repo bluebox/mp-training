@@ -9,6 +9,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 export class RegisterService {
 
+  url = "http://127.0.0.1:8000/api/"
+
   submission: BehaviorSubject<any>;
   profileData!: {};
   discussionData: any;
@@ -36,7 +38,7 @@ export class RegisterService {
 
   getProfile() {
     let username = localStorage.getItem('username')
-    let url = "http://127.0.0.1:8000/api/profile/" + username
+    let url = this.url + "profile/" + username
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',
@@ -48,7 +50,7 @@ export class RegisterService {
 
   getStreak() {
     let username = localStorage.getItem('username')
-    let url = "http://127.0.0.1:8000/api/streak"
+    let url = this.url + "streak"
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',
@@ -61,8 +63,22 @@ export class RegisterService {
     return this.http.post(url, data, { headers: headers })
   }
 
+  getAllSubmissions() {
+    let data = {
+      "username": localStorage.getItem('username')
+    }
+    let url = this.url + "submissions"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    return this.http.post(url, data, { headers: headers })
+  }
+
   getTags() {
-    let url = "http://127.0.0.1:8000/api/tags"
+    let url = this.url + "tags"
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',
@@ -84,7 +100,7 @@ export class RegisterService {
   }
 
   editDiscussionComment(data: any) {
-    let url = "http://127.0.0.1:8000/api/edit-discussion-comment"
+    let url = this.url + "edit-discussion-comment"
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',
@@ -107,7 +123,7 @@ export class RegisterService {
   }
 
   // sortProblems(problems) {
-  //   let url = "http://127.0.0.1:8000/api/problems/sort"
+  //   let url = this.url + "problems/sort"
   //   const headers = new HttpHeaders(
   //     {
   //       'Content-Type': 'application/json',
@@ -125,7 +141,7 @@ export class RegisterService {
 
     //     param.append('level', params['level']);
     //   })
-    let url = "http://127.0.0.1:8000/api/problems"
+    let url = this.url + "problems"
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',
@@ -155,7 +171,7 @@ export class RegisterService {
 
   getStats(username: any) {
     let data = { "username": username }
-    let url = "http://127.0.0.1:8000/api/problems-statistics"
+    let url = this.url + "problems-statistics"
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -240,7 +256,7 @@ export class RegisterService {
   }
 
   edit_comment(comment_id: any, comment: any) {
-    let url = "http://127.0.0.1:8000/api/edit-comment"
+    let url = this.url + "edit-comment"
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -250,7 +266,7 @@ export class RegisterService {
 
   deleteDiscussion(data: any) {
     console.log(data);
-    let url = "http://127.0.0.1:8000/api/delete-discussion"
+    let url = this.url + "delete-discussion"
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -260,7 +276,7 @@ export class RegisterService {
 
   deleteComment(id: any) {
     console.log();
-    let url = "http://127.0.0.1:8000/api/delete-comment"
+    let url = this.url + "delete-comment"
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -270,7 +286,7 @@ export class RegisterService {
 
   editDiscussion(data: any) {
     console.log(data);
-    let url = "http://127.0.0.1:8000/api/edit-discussion"
+    let url = this.url + "edit-discussion"
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -281,7 +297,16 @@ export class RegisterService {
   postVote(id: any, vote: any) {
     let data = { "vote": vote }
     let username = localStorage.getItem('username')
-    let url = `http://127.0.0.1:8000/api/votes/${id}/${username}`
+    let url = this.url + `votes/${id}/${username}`
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      'Authorization': 'token ' + localStorage.getItem('token')
+    })
+    return this.http.post(url, data, { headers: headers })
+  }
+
+  apply_filters(data: any) {
+    let url = this.url + "filter-problems"
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -290,7 +315,7 @@ export class RegisterService {
   }
 
   getDiscussion(data: any) {
-    let url = `http://127.0.0.1:8000/api/discussion/${data.id}/${data.discussionId}`
+    let url = this.url + `discussion/${data.id}/${data.discussionId}`
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       'Authorization': 'token ' + localStorage.getItem('token')
@@ -299,7 +324,7 @@ export class RegisterService {
   }
 
   getProblem(id: any) {
-    let url = `http://127.0.0.1:8000/api/problem-detail/${id}`
+    let url = this.url + `problem-detail/${id}`
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',

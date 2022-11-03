@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   loginForm = this.fb.group (
     {
       username : ['', [Validators.required, Validators.minLength(6)]],
-      password : ['', [Validators.required, Validators.minLength(7)]]
+      password : ['', [Validators.required, Validators.minLength(7)]],
+      type : ['', [Validators.required, Validators.minLength(7)]]
     }
   )
 
@@ -22,8 +23,12 @@ export class LoginComponent implements OnInit {
   loginSubmit() {
     let data = {
       username : this.loginForm.value.username,
-      password: this.loginForm.value.password
+      password: this.loginForm.value.password,
+      // type: this.loginForm.value.type
     }
+
+    console.log(data);
+    
 
     let headers = new HttpHeaders(
       {
@@ -36,6 +41,7 @@ export class LoginComponent implements OnInit {
       if (data.status == 200) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('username', data.username);
+        // localStorage.setItem('admin', data.admin);
         this.router.navigate([''])
       }
       else {

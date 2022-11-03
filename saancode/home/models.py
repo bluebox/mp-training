@@ -59,11 +59,11 @@ class Problem(models.Model):
     problem_id = models.AutoField(primary_key=True, editable=False)
     creator_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     problem_name = models.CharField(max_length=30, blank=False, null=False, unique=True)
-    description = models.TextField(max_length=1000, unique=True, blank=False, null=False)
+    description = models.TextField(max_length=3000, unique=True, blank=False, null=False)
     hints = models.TextField(max_length=50, blank=False, null=False)
-    test_cases = models.TextField(max_length=500, blank=False, null=False)
-    outputs = models.TextField(max_length=500, blank=False, null=False)
-    json_test_cases = models.JSONField(blank=False, null=False)
+    test_cases = models.TextField(max_length=1000, blank=False, null=False)
+    outputs = models.TextField(max_length=2000, blank=False, null=False)
+    json_test_cases = models.JSONField(blank=True, null=True)
     # likes = models.IntegerField(default=0)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
@@ -81,26 +81,19 @@ class Problem(models.Model):
     # difficulty_level = models.CharField(max_length=1, choices=difficulty_level_options, blank=False, default='E', null=False)
     difficulty_level = models.IntegerField(choices=difficulty_level_options, blank=False, default=0, null=False)
 
-    # def deleteLikes(self):
-    #     self.likes -= 1
-    #     self.save()
-
-    # def addLikes(self):
-    #     self.likes += 1
-    #     self.save()
-
-    # def deleteDisLikes(self):
-    #     self.dislikes -= 1
-    #     self.save()
-
-    # def addDisLikes(self):
-    #     self.dislikes += 1
-    #     self.save()
-
-    tags = models.ManyToManyField(ProblemTag, related_name='problems')
+    tags = models.ManyToManyField(ProblemTag, related_name='problems', blank=True, null=True)
 
     def __str__(self):
         return self.problem_name
+
+    class Meta:
+        indexes = [models.Index(fields=['problem_id', ]), ]
+
+class TimeStampedModel(models.Model):
+    created_date_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        abstract = True
 
 
 class ProblemVotes(models.Model):
@@ -144,23 +137,23 @@ class Solved(models.Model):
     def __str__(self):
         return f'{self.user_id.username}_P_{self.problem_id.__str__()}'
 
-class Discussion(models.Model):
+class Discussion(TimeStampedModel):
     discussion_id = models.AutoField(primary_key=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE, null=False, to_field="username", db_column="username")
     problem_id = models.ForeignKey(Problem, on_delete=models.CASCADE, null=False)
     title = models.CharField(max_length=30, null=False, blank=False)
     discussion = models.TextField(max_length=500, null=True, blank=True)
-    created_date_time = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+    # created_date_time = models.DateTimeField(auto_now_add=True, null=False, blank=False)
     upvotes = models.PositiveIntegerField(default=0, null=False, blank=False)
     downvotes = models.PositiveIntegerField(default=0, null=False, blank=False)
 
     def __str__(self):
         return self.title
 
-class Blog(models.Model):
+class Blog(TimeStampedModel):
     blog_id = models.AutoField(primary_key = True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
-    created_date_time = models.DateTimeField(auto_now_add = True)
+    # created_date_time = models.DateTimeField(auto_now_add = True)
     title = models.CharField(max_length = 50, null=False, blank=False)
     discussion = models.TextField(max_length=2000, null=False, blank=False)
     tag_choices = (
@@ -175,12 +168,12 @@ class Blog(models.Model):
     tag = models.CharField(max_length=30, choices=tag_choices, null=False, blank=False)
     likes = models.IntegerField(default=0)
 
-class BlogComment(models.Model):
+class BlogComment(TimeStampedModel):
     comment_id = models.AutoField(primary_key = True)
     blog_id = models.ForeignKey(Blog, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
     comment = models.TextField(max_length = 1000, blank=False, null = False)
-    created_date_time = models.DateTimeField(auto_now_add = True)
+    # created_date_time = models.DateTimeField(auto_now_add = True)
     likes = models.IntegerField(default=0)
 
 class BlogCommentReply(models.Model):
@@ -195,12 +188,12 @@ class BlogCommentLike(models.Model):
     comment_id = models.ForeignKey(BlogComment, on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
         
-class Comment(models.Model):
+class Comment(TimeStampedModel):
     comment_id = models.AutoField(primary_key=True)
     discussion_id = models.ForeignKey(Discussion, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, to_field="username", db_column="username")
     comment = models.TextField(max_length=500, null=False, blank=False)
-    created_date_time = models.DateTimeField(auto_now_add=True)
+    # created_date_time = models.DateTimeField(auto_now_add=True)
     # commented_date_time = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
