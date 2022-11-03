@@ -11,14 +11,17 @@ elegant way of writing code instead of having explicit comparisons
 with base values of the data types like 0, '', [] etc.
 '''
 
-#None is a first class object in python
+""" Program to understand truth"""
 def test_none_type():
+    """ Function to test the none type """
     assert "NoneType" == type(None).__name__
+test_none_type()
 
 #In control flow, builtin objects like string, list, tuple have truth
 #and false values
 
 def test_truth_none():
+    """ Function to test truth of none """
     value = None
     result = "not-set"
     #is None treated as true or false? =>flase(else loop)
@@ -28,15 +31,17 @@ def test_truth_none():
         result = "false"
 
     assert "false" == result
+test_truth_none()
 
 # a helper function used to test the truth value of an object.
-def truth_test(object, description):
-    if object:
+def truth_test(object_1, description):
+    """ function to check the truth """
+    if object_1:
         return description + " is treated as true"
-    else:
-        return description + " is treated as false"
+    return description + " is treated as false"
 
 def test_truth_values():
+    """ function to test the truth values """
     assert "empty string is treated as false" == truth_test("", "empty string")
     assert "empty tuple is treated as false" == truth_test((), "empty tuple")
     assert "empty list is treated as false" == truth_test([], "empty list")
@@ -50,25 +55,28 @@ def test_truth_values():
     assert "non-empty-list is treated as true" == truth_test([1], "non-empty-list")
     assert "non-empty-dict is treated as true" == truth_test({1:2}, "non-empty-dict")
     assert "non-empty-set is treated as true" == truth_test({1}, "non-empty-set")
+test_truth_values()
 
 # The fact that certain things are treated as True or False by
 # control flow statements does not mean that they are equal to True or False.
 def test_equality():
-    assert False == ("" == True)
-    assert False == (() == True)
-    assert False  == ([] == True)
-    assert False == (set() == True)
-    assert False == (0 == True)
-    assert False == ("" == False)
-    assert False == (() == False)
-    assert False == ([] == False)
-    assert False == (set() == False)
-    assert True == (0 == False)
-    assert True == (1 == True)
-    assert False == ("a" == True)
-    assert False == ((1,2) == True)
-    assert False == ([1] == True)
-    assert False == ({1} == True)
+    """ function to test the equality """
+    assert False is ("" == True)
+    assert False is (() == True)
+    assert False is ([] is True)
+    assert False is (set() is True)
+    assert False is bool(0)
+    assert False is ("" == False)
+    assert False is (() == False)
+    assert False is ([] is False)
+    assert False is (set() is False)
+    assert False is bool(0)
+    assert True is bool(True)
+    assert False is ("a" == True)
+    assert False is ((1, 2) == True)
+    assert False is ([1] is True)
+    assert False is ({1} is True)
+test_equality()
 
 
 three_things_i_learnt = """
