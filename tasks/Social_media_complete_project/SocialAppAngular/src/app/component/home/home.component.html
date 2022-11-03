@@ -1,0 +1,85 @@
+<h1>hellojvjnj</h1>
+<div class="container">
+  <div class="chat-list mat-elevation-z5">
+    <div class="search-input">
+      <mat-form-field>
+        <input matInput placeholder="Search for users and start a chat" [matAutocomplete]="users"
+          [formControl]="searchControl" />
+      </mat-form-field>
+      <mat-autocomplete #users="matAutocomplete">
+        <mat-option [value]="'afafsdfdsa'">
+
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <mat-selection-list [multiple]="false" [formControl]="chatListControl" *ngFor="let x of users_data">
+      <mat-divider></mat-divider>
+      <mat-list-option (click)="createChat(x)">
+        <img matListAvatar src="http://127.0.0.1:8000{{x.profile_photo}}" />
+        <p mat-line class="chat-title">
+          <span class="chat-name">{{x.username}}</span><span class="chat-date">{{x.birth_date}}</span>
+        </p>
+        <p mat-line>hello bro</p>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+
+    </mat-selection-list>
+  </div>
+  <div class="messages mat-elevation-z5">
+    <div *ngIf="!selectedUserData">
+
+      <h1 style="align-items: center; margin-top: 11em; margin-left: 5em; font-size:xx-large;">Select a person to chat
+      </h1>
+    </div>
+    <div *ngIf="selectedUserData">
+      <div class="messages-header">
+        <img src="http://127.0.0.1:8000{{selectedUserData.profile_photo}}" />
+        <h2>{{selectedUserData.username}}</h2>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="chat-area" id="chat-area" *ngIf="selectedUserData">
+        <div *ngFor="let chat of chatMessageList">
+          <div class="message-sender" *ngIf="chat.user.id==userData.id">
+            <div class="message-content">
+              <div>{{chat.message}}</div>
+              <div class="date" style="left:0%;font-size: x-small; color: white;">....{{ chat.timestamp|date:"hh:mm a"}}
+              </div>
+            </div>
+
+          </div>
+          <div class="message-receiver" *ngIf="chat.user.id!==userData.id">
+            <div class="message-content">
+              <div>{{chat.message}}</div>
+              <div class="date" style="left:0%;font-size: x-small; color: white;">....{{ chat.timestamp|date:"hh:mm a"}}
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div id="shyam">
+
+          <div id="message-content">
+
+          </div>
+        </div>
+        <div id="shyam1">
+
+          <div id="message-content1">
+
+          </div>
+        </div>
+        <!-- <div #endOfChat></div> -->
+      </div>
+      <div class="input-area">
+        <mat-form-field appearance="outline" [formGroup]="chatInputMessage">
+          <input matInput placeholder="Enter your message..." formControlName="selectedUserData"
+            (keydown.enter)="sendMessage(selectedUserData)" />
+          <button mat-icon-button matSuffix (click)="sendMessage(selectedUserData)" type="submit">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>

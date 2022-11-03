@@ -1,0 +1,23 @@
+<h1>childcomponent works!</h1>
+<h2>{{title}}</h2>
+
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>ADDRESS</th>
+            <th>SELECT</th>
+        
+        </tr>
+        <tr *ngFor="let i of childemp">
+            <th>{{i.id}}</th>
+            <th>{{i.name}}</th>
+            <th>{{i.age}}</th>
+            <th>{{i.address}}</th>
+            <th><button (click)="fun1(i)">select</button></th>
+        </tr>
+    </table>
+</div>
+{{exp|json}}

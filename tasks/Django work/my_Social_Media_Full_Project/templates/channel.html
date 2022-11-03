@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Connecting to django:<p class="xyz">Hello world </p>
+    
+     <h1>link name is:{{group}}</h1>
+     <textarea name="" id="textarea1" cols="100" rows="30">
+        {% for x in message %}
+        {{x.message}}
+        {% endfor %}
+     </textarea><br>
+     <input type="text" id="input1" value="" ><br>
+     <!-- <button type="button" id="btn1">submit</button> -->
+     <input type="button" id="btn1" value="submit">
+
+     {{group|json_script:"group"}}
+    
+
+    <script>
+        const grp = JSON.parse(document.getElementById('group').textContent)
+        console.log(grp)
+        let link = ('ws://'+ window.location.host+ '/ws/sc/' + grp)
+     
+        var x = new WebSocket(link)
+        console.log(link)
+        var v = document.getElementById('input1').value
+        
+
+        x.onopen= function(e){
+            console.log("websocket is opened ....",e)
+  
+        }
+        x.onmessage = function(e){
+            console.log("websocket is on message",e)
+            console.log("websocket is sent  message is ",e.data)
+            console.log("websocket is sent  message type is ",typeof(e.data))
+            data = JSON.parse(e.data)
+            console.log(" Afetr parsedwebsocket is sent  message type is ",typeof(data))
+
+            
+            let ex =  document.querySelector('#textarea1')
+            ex.value += (data.msg +"\n")
+            
+        }
+        x.onclose = function(){
+            console.log("websocket is closed")
+        }
+        x.onerror = function(e){
+            console.log("websocket is error",e)
+        }
+        //  x.addEventListener('open',()=>{
+        //     console.log("message is opened")
+        //     x.send("hello dude")
+        //  })
+        //  x.addEventListener('message',(event)=>{
+        //     console.log("websocket message",event.data)
+        //     console.log("type of data is:",typeof(event.data))
+
+
+            
+
+        //     data  = JSON.parse(event.data)
+        //     console.log("type of data is:",typeof(data))
+        //     let c = document.getElementsByClassName('xyz')[0].innerText=data.count
+        //     console.log("type of data is after parse:",typeof(data))
+
+        //      })
+        //  x.addEventListener('closed',(event)=>{
+        //     console.log("websocket is closed",event)
+        //  })
+        //  x.addEventListener('error',(event)=>{
+        //     console.log("message is error",event)
+        //  })
+
+        u =document.getElementById('btn1')
+        u.onclick = function(){
+           const v = document.getElementById('input1').value
+           console.log(typeof(v))
+           x.send(
+            JSON.stringify({
+                'msg':v
+            })
+            )
+            document.getElementById('input1').value=''
+          
+        }
+
+
+
+
+    </script>
+</body>
+</html>

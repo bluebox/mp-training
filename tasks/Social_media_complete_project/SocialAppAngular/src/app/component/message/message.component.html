@@ -1,0 +1,17 @@
+<p>message works!</p>
+<div class="mt-100 ml-100 mb-100 me-auto ms-auto" style="width: 500px;height: 100px; margin-left: 250px !important;">
+	<mat-card class="p-4">
+		<mat-card-title class="pb-3"
+			[ngClass]="{'text-danger' : messageType === 'error', 'text-success' : messageType === 'success'}">
+			{{ messageHeader }}
+		</mat-card-title>
+
+		<mat-card-subtitle>
+			{{ messageDetail }}
+		</mat-card-subtitle>
+
+		<mat-card-actions align="end" *ngIf="toLogin === true">
+			<a mat-raised-button color="primary" routerLink="/login">Login</a>
+		</mat-card-actions>
+	</mat-card>
+</div>

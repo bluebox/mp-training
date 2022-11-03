@@ -1,0 +1,31 @@
+<p>component1 works!</p>
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+<h1>welcome Mr.{{name}}</h1>
+<div [hidden]="child">Your age is:<div [innerText]="age"></div></div>
+<div [hidden]="bool"> {{myemp1|json}}
+</div>
+<button (click)="function1()">Button</button>
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>ADDRESS</th>
+            <th>SELECT</th>
+        
+        </tr>
+        <tr *ngFor="let i of myemp">
+            <th>{{i.id}}</th>
+            <th>{{i.name}}</th>
+            <th>{{i.age}}</th>
+            <th>{{i.address}}</th>
+            <th><button (click)="fun1(i)">select</button></th>
+        </tr>
+    </table>
+</div>
+<div *ngIf="myemp1">this is happend after selected{{myemp1|json}}</div>
+<app-childcomponent  [childemp]="myemp" [title]="title" (moveparentemp)="fun1($event)"></app-childcomponent>

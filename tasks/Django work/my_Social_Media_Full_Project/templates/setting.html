@@ -1,0 +1,192 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>Settings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <style>
+        body {
+            margin-top: px;
+            background-color: rgb(180, 60, 12);
+        }
+
+        .xyz {
+            background-color: rgb(219, 94, 10) !important;
+
+        }
+
+        .pb-4,
+        .py-4 {
+            padding-bottom: 0rem !important;
+            padding-top: 1rem !important;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Kaushan Script', cursive;
+            font-size: 2.5em;
+        }
+
+        .shadow-none {
+            border-top-left-radius: 0.5rem;
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+           
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class=" bg-white xyz py-4 shadow dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto">
+
+
+            <div class="flex items-center lg:justify-between justify-around">
+
+                <a href="/">
+                    <b>
+                        <h1 style="font-size: 1.5rem; margin-left: -7em; margin-bottom: 1em; color: aqua;">SHYAM
+                            MEDIA_APP </h1>
+                    </b>
+                </a>
+
+                <div class="right-side lg:pr-4">
+                    <!-- welcome user -->
+                    <a href="#" class="" style="color:rgb(212, 255, 0) ; padding-bottom: 8%; font-size: 1.5rem;">
+                        Welcome <b name="" class=""
+                            style="color:rgb(0, 255, 179) ; padding-top: -12%; font-size: 1.5rem;">
+                           <a href="profile/{{user.username}}"> {{user.username}}</a></b>
+
+                    </a>
+                    <a href="profile/{{user.username}}" style="border-radius: 40%; margin-left: 70%; margin-top: -22%;">
+                        <img width="20%" height="10%" src="{{ user_profile.profile_img.url }}"  style="border-radius: 40%; margin-left: 80%; margin-top: -34.2%;" />
+                    </a>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container m-auto">
+
+        <h1 class="text-2xl leading-none text-gray-900 tracking-tight mt-3"><a href="/">HOME</a> Account Setting for
+            <b style="color: rgb(48, 47, 47); font-size: 1.5em;">{{user.first_name}}</b>
+        </h1>
+        <div class="grid lg:grid-cols-3 mt-12 gap-8">
+
+            <h3 class="text-xl mb-2"> General setting</h3>
+
+
+
+            <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2"
+                style=" background-color: rgb(17, 219, 10) !important; border-top-left-radius: 5%;border-bottom-right-radius: 5%;">
+                <form action="" method="post" enctype="multipart/form-data">{%csrf_token%}
+                    <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                        <div>
+                            <label for=""> First name</label>
+
+                            <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100"
+                                value="{{user.first_name}}" name="fname">
+                        </div>
+                        <div>
+                            <label for=""> Last name</label>
+                            <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100"
+                                value="{{user.last_name}}" name="lname">
+                        </div>
+                        <div class="col-span-2">
+                            <label for=""> Email</label>
+                            <input type="email" placeholder="Your name.." class="shadow-none bg-gray-100"
+                                value="{{user.email}}" disabled>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="">Add Profile Image</label>
+                            <img width="150" height="150" src="{{user_profile.profile_img.url}}"
+                                style="border-radius: 5%;" />
+                            <input type="file" placeholder="Your name.." name="image" class="shadow-none bg-gray-100">
+                        </div>
+                        <div class="col-span-2">
+                            <label for="about">About me</label>
+                            <textarea id="about" name="bio" rows="3"
+                                class="shadow-none bg-gray-100">{{user_profile.bio}}</textarea>
+                        </div>
+                        <div class="col-span-2">
+                            <label for=""> Location</label>
+                            <input type="text" name="address" placeholder="" value="{{user_profile.location}}"
+                                class="shadow-none bg-gray-100">
+                        </div>
+                        <div>
+                            <label for=""> Working at</label>
+                            <input type="text"  name="working" value="{{user_profile.working}}" placeholder="address" class="shadow-none bg-gray-100">
+                        </div>
+                        <div>
+                            <label for=""> Relationship </label>
+                            <select id="relationship" name="relationship" class="shadow-none bg-gray-100">
+                                <option value="0">None</option>
+                                <option value="1">Single</option>
+                                <option value="2">In a relationship</option>
+                                <option value="3">Married</option>
+                                <option value="4">Engaged</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                        <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> <a href="/">Cancel</a> </button>
+                        <button type="submit" class="button bg-blue-700"> Save </button>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+
+
+    <!-- Scripts
+    ================================================== -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+</body>
+
+</html>

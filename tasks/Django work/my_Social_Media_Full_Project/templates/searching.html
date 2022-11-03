@@ -1,0 +1,318 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="favicon.png" rel="icon" type="image/png">
+    <title>Search</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color:rgb(139, 140, 138)!important ; z-index: 1;">
+    <form action="search" method="POST">
+        {% csrf_token %}
+        <header style="margin-top: -23px; background-color: rgb(38, 191, 43);">
+            <div class="header_inner">
+                <div class="left-side">
+                    <!-- Logo -->
+                    <div id="logo" class=" uk-hidden@s">
+                        <a href="/">
+
+                        </a>
+                    </div>
+
+
+                    <input type="text" name="username" placeholder="Search for username.."
+                        style="background-color: rgb(175, 227, 228);border-top-right-radius: 45%; border-bottom-left-radius:45%;">&nbsp;
+                    &nbsp;
+                    <button type="submit"><i class="fa fa-search fa-1x"></i></button>
+
+
+                </div>
+                <div class="right-side lg:pr-4">
+                    <!-- welcome user -->
+                    <a href="/" class="sfg" style="color:aqua; font: 2em sans-serif;">
+                        Welcome <b name="" class="">{{user.username}}&nbsp; &nbsp; &nbsp;</b>
+                    </a>
+
+                    <!-- upload -->
+                    
+                   
+                    <!-- Messages -->
+
+                    <!-- <a href="#" class="header-links-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="0.5em" height="0.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="currentColor"><path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/></g></svg>
+                        </a> -->
+                    
+
+                    <!-- profile -->
+
+                    <a href="#">
+                        <img src="{{ user_profile.profile_img.url }}" style="width:80%; " class="header-avatar" alt="">
+                    </a>
+                    <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
+                        <ul>
+                            <li><a href="/settings"> Account setting </a> </li>
+                            <!-- <li><a href="explore.html">explore </a> </li> -->
+                            <li><a href="/signout"> Log Out</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+    </form>
+
+    <div style="margin-left: 250px; margin-right: 250px;">
+
+        <style>
+            body {
+                margin-top: 20px;
+                background-color: rgb(92, 26, 26);
+                opacity: 1;
+            }
+
+            .search-result-categories>li>a {
+                color: #cb2e2e;
+                font-weight: 400
+            }
+
+            .search-result-categories>li>a:hover {
+                background-color: rgb(89, 19, 19);
+                color: #555
+            }
+
+            .search-result-categories>li>a>.glyphicon {
+                margin-right: 5px
+            }
+
+            .search-result-categories>li>a>.badge {
+                float: right
+            }
+            .fw-semi-bold{
+                color: rgb(238, 215, 215);
+            }
+
+            h4 {
+                font-size: 50px;
+                color: gold;
+
+            }
+            .sfg b{
+                color:red;
+                font-size: 1.5em;
+            }
+
+            .search-results-count {
+                margin-top: 10px;
+                font-size: 30px;
+                margin-bottom: 10px;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                color: rgb(179, 223, 245);
+            }
+
+            .text-muted {
+                color: rgb(219, 209, 209);
+            }
+
+            .search-result-item {
+                padding: 20px;
+                background-color: rgb(230, 233, 14);
+                border-radius: 24px;
+                width: 60%;
+                height: 20.0vh;
+            }
+
+            .search-result-item:after,
+            .search-result-item:before {
+                content: " ";
+                display: table
+            }
+
+            .search-result-item:after {
+                clear: both
+            }
+
+            .search-result-item .image-link {
+                /* display: block; */
+                /* overflow: hidden; */
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                border-right: 23px solid rgb(139, 140, 138);
+            }
+
+            .search-result-item .image {
+                height: 20vh;
+                width: 37vw;
+                border-bottom-left-radius: 14px;
+                border-top-left-radius: 14px;
+
+            }
+
+            .search-result-item-body b {
+                font-size: 40px;
+                color: rgb(220, 36, 15);
+            }
+            .search-result-item-body a b :hover{
+               transform: scale(1s);
+                color: rgb(239, 246, 252);
+            }
+
+            .info {
+                font-size: 40px;
+                color: rgb(39, 125, 201);
+            }
+
+
+            @media (min-width:768px) {
+                .search-result-item .image-link {
+                    display: inline-block;
+                    margin: -20px 0 -20px -20px;
+                    float: left;
+                    width: 200px
+                }
+            }
+
+            @media (max-width:767px) {
+                .search-result-item .image-link {
+                    max-height: 200px
+                }
+            }
+
+            .search-result-item .image {
+                max-width: 100%
+            }
+
+            .search-result-item .info {
+                margin-top: 2px;
+                font-size: 12px;
+                color: #999
+            }
+
+            .search-result-item .description {
+                font-size: 13px
+            }
+
+            .search-result-item+.search-result-item {
+                margin-top: 20px
+            }
+
+            @media (min-width:768px) {
+                .search-result-item-body {
+                    margin-left: 200px
+                }
+            }
+
+            .search-result-item-heading {
+                font-weight: 400
+            }
+
+            .search-result-item-heading>a {
+                color: #555
+            }
+
+            @media (min-width:768px) {
+                .search-result-item-heading {
+                    margin: 0
+                }
+            }
+        </style>
+
+        <div class="container">
+            <div class="row ng-scope">
+                <div class="col-md-3 col-md-push-9">
+                    <h4>Results For <span class="fw-semi-bold"><b>{{user_name}}</b></span></h4>
+                    <br>
+                    <p class="text-muted fs-mini">Listed content is categorized by the following groups:</p>
+
+                </div>
+                <div class="col-md-9 col-md-pull-3">
+                    <p class="search-results-count">About {{username_list|length }} results</p>
+
+                    {% for users in username_list %}
+                    <section class="search-result-item">
+                        <a class="image-link" href="/profile/{{users.user}}"><img class="image"
+                                src="{{users.profile_img.url}}">
+                        </a>
+                        <div class="search-result-item-body">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h4 class="search-result-item-heading">
+                                        <a href="/profile/{{users.user}}">
+                                            <b>{{users.user}}</b>
+
+                                        </a>
+                                        <a href="/profile/{{users.user}}">
+                                            <p class="info" style="font-size: 20px; color:azure">{{users.location}}</p>
+                                        </a>
+                                    </h4>
+
+
+                                </div>
+                                <!-- <div class="col-sm-3 text-align-center">
+                                        <p class="value3 mt-sm">$9, 700</p>
+                                        <p class="fs-mini text-muted">PER WEEK</p><a class="btn btn-primary btn-info btn-sm" href="#">Learn More</a>
+                                    </div> -->
+                            </div>
+                        </div>
+                    </section>
+                    {% endfor %}
+
+                    <!-- <div class="text-align-center">
+                            <ul class="pagination pagination-sm">
+                                <li class="disabled"><a href="#">Prev</a>
+                                </li>
+                                <li class="active"><a href="#">1</a>
+                                </li>
+                                <li><a href="#">2</a>
+                                </li>
+                                <li><a href="#">3</a>
+                                </li>
+                                <li><a href="#">4</a>
+                                </li>
+                                <li><a href="#">5</a>
+                                </li>
+                                <li><a href="#">Next</a>
+                                </li>
+                            </ul>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Scripts
+    ================================================== -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+
+    <button mat-button routerLink="/user"><span>HOME</span></button>
+    <span class="spacer"></span>
+    <ng-container *ngIf="!is_Authenticated()">
+      <a mat-button routerLink="/user/register">Register</a>
+    <a mat-button routerLink="/user/login">Login</a>
+    </ng-container>
+    <div *ngIf="is_Authenticated()">
+      <a mat-button (click)="logout()">LogoUT</a>
+    
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="is_Authenticated()">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+      </button>
+      <button mat-menu-item routerLink="/user/changepassword">
+        <mat-icon>password</mat-icon>
+        <span>Change_password</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
