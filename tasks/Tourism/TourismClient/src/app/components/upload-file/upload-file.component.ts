@@ -29,7 +29,7 @@ export class UploadFileComponent implements OnInit {
     this.http.post('/api/bookings/uploadImage/', formData).subscribe(
       (data) => console.log(data),
       (err) => {
-        if (err.status == 404 || 500) {
+        if (err.status == 404) {
           alert(err.message);
         } else {
           alert(err.error.detail);

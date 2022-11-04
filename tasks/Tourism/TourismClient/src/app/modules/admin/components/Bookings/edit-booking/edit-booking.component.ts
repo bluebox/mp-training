@@ -49,7 +49,7 @@ export class EditBookingComponent implements OnInit {
               );
             },
             (err) => {
-              if (err.status == 404 || 500) {
+              if (err.status == 404) {
                 // alert('Requested Url' + err.url + "Not Found")
                 alert(err.message);
               } else {
@@ -80,7 +80,7 @@ export class EditBookingComponent implements OnInit {
         this.userList = data;
       },
       (err) => {
-        if (err.status == 404 || 500) {
+        if (err.status == 404) {
           alert(err.message);
         } else {
           alert(err.error.detail);
@@ -92,7 +92,7 @@ export class EditBookingComponent implements OnInit {
         this.paymentList = data;
       },
       (err) => {
-        if (err.status == 404 || 500) {
+        if (err.status == 404) {
           // alert('Requested Url' + err.url + "Not Found")
           alert(err.message);
         } else {
@@ -105,7 +105,7 @@ export class EditBookingComponent implements OnInit {
         this.tourList = data;
       },
       (err) => {
-        if (err.status == 404 || 500) {
+        if (err.status == 404) {
           // alert('Requested Url' + err.url + "Not Found")
           alert(err.message);
         } else {
@@ -127,7 +127,7 @@ export class EditBookingComponent implements OnInit {
               this.router.navigate(['admin/bookings/bookingList']);
             },
             (err) => {
-              if (err.status == 404 || 500) {
+              if (err.status == 404) {
                 // alert('Requested Url' + err.url + "Not Found")
                 alert(err.message);
               } else {
@@ -147,7 +147,7 @@ export class EditBookingComponent implements OnInit {
               this.router.navigate(['admin/bookings/bookingList']);
             },
             (err) => {
-              if (err.status == 404 || 500) {
+              if (err.status == 404) {
                 // alert('Requested Url' + err.url + "Not Found")
                 alert(err.message);
               } else {

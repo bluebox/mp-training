@@ -29,7 +29,7 @@ export class EditProfileComponent implements OnInit {
           this.ProfileEditForm.get('mobile')?.setValue(this.currentUser.mobile)
       //   },
       //   err => {
-        //   if(err.status == 404 || 500){
+        //   if(err.status == 404){
         //     alert(err.message)
         //   }
         //   else{
@@ -66,7 +66,7 @@ export class EditProfileComponent implements OnInit {
           this.ProfileEditForm.get('mobile')?.setValue(this.currentUser.mobile)
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{

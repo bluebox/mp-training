@@ -43,7 +43,7 @@ export class BookingListComponent implements OnInit {
         this.totalPages = data.totalPages
       },
       err => {
-        if(err.status == 404 || 500){
+        if(err.status == 404){
           // alert('Requested Url' + err.url + "Not Found")
           alert(err.message)
         }

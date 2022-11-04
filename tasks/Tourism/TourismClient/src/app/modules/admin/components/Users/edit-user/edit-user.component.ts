@@ -43,7 +43,7 @@ export class EditUserComponent implements OnInit {
           this.UserForm.get('is_active')?.setValue(userObj.is_active);
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -95,7 +95,7 @@ export class EditUserComponent implements OnInit {
           this.router.navigate(['admin/users/userList'])
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -111,7 +111,7 @@ export class EditUserComponent implements OnInit {
           this.router.navigate(['admin/users/userList'])
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{

@@ -72,7 +72,7 @@ export class CheckoutComponent implements OnInit {
           this.tourObject = resObj
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -152,7 +152,7 @@ export class CheckoutComponent implements OnInit {
                 alert("Tour Booking successful");
               },
               err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -163,7 +163,7 @@ export class CheckoutComponent implements OnInit {
           }
         },
         err=> {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{

@@ -36,7 +36,7 @@ export class CancellationListComponent implements OnInit {
         this.totalPages = data.totalPages
       },
       err => {
-        if(err.status == 404 || 500){
+        if(err.status == 404){
           alert(err.message)
         }
         else{
@@ -63,7 +63,7 @@ export class CancellationListComponent implements OnInit {
           this.ngOnInit()
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{

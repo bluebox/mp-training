@@ -42,7 +42,7 @@ export class AddEmlployeeComponent implements OnInit {
           this.EmployeeForm.get('salary')?.setValue(employeeObj.salary);
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -76,7 +76,7 @@ export class AddEmlployeeComponent implements OnInit {
         this.imageUrl = JSON.parse(dataString)
       },
       err => {
-        if(err.status == 404 || 500){
+        if(err.status == 404){
           alert(err.message)
         }
         else{
@@ -101,7 +101,7 @@ export class AddEmlployeeComponent implements OnInit {
           this.router.navigate(['admin/employees/employeeList'])
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -117,7 +117,7 @@ export class AddEmlployeeComponent implements OnInit {
           this.router.navigate(['admin/employees/employeeList'])
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{

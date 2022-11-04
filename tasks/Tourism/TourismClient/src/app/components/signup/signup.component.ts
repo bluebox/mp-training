@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit {
         console.log(this.imageUrl);
       },
       err => {
-        if(err.status == 404 || 500){
+        if(err.status == 404){
           alert(err.message)
         }
         else{
@@ -85,7 +85,7 @@ export class SignupComponent implements OnInit {
             }
           },
           err => {
-            if(err.status == 404 || 500){
+            if(err.status == 404){
               alert(err.message)
             }
             else{

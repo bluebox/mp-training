@@ -45,7 +45,7 @@ export class BookingPageComponent implements OnInit {
           // console.log("Charges", this.cancellation_charges);
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -80,7 +80,7 @@ export class BookingPageComponent implements OnInit {
         this.router.navigate(['user/bookings'])
       },
       err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{

@@ -35,7 +35,7 @@ export class EditCancellationComponent implements OnInit {
           this.CancellationForm.get('reason_for_cancellation')?.setValue(cancellationObj.reason_for_cancellation);
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -65,7 +65,7 @@ export class EditCancellationComponent implements OnInit {
         this.bookingList = data;
       },
       err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -86,7 +86,7 @@ export class EditCancellationComponent implements OnInit {
             this.router.navigate(['admin/cancellation/cancellationList'])
           },
           err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{
@@ -102,7 +102,7 @@ export class EditCancellationComponent implements OnInit {
       //     this.router.navigate(['admin/cancellation/cancellationList'])
       //   },
       //   err => {
-          //   if(err.status == 404 || 500){
+          //   if(err.status == 404){
           //     alert(err.message)
           //   }
           //   else{

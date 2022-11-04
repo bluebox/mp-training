@@ -34,7 +34,7 @@ export class ContactusComponent implements OnInit {
           alert('enquiry submitted successfully')
         },
         err => {
-          if(err.status == 404 || 500){
+          if(err.status == 404){
             alert(err.message)
           }
           else{

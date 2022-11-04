@@ -28,7 +28,7 @@ export class CancelledBookingsComponent implements OnInit {
         // this.closedBookingList = dataList.filter((booking: any) => new Date(booking.tourid?.start_date) <= new Date() || booking.isCancelled)
       },
       err => {
-        if(err.status == 404 || 500){
+        if(err.status == 404){
           alert(err.message)
         }
         else{
