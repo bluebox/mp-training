@@ -11,12 +11,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./customerpage.component.css']
 })
 export class CustomerpageComponent {
-emailError:any;
+Error:any;
 passwordError:any;
 loginAndLogOutCheck:Boolean;
 token:any;
 obj: any;
 user: any;
+res:any;
 
   constructor(private userdata: UserserviceService, private router:Router, private http: HttpClient) {
     if (localStorage.getItem("customer_refresh_token")) {
@@ -61,6 +62,7 @@ user: any;
           this.http.post("api/user_details/", this.obj).subscribe((res) => {
             let response = JSON.stringify(res)
             let parsed = JSON.parse(response)
+            this.res = parsed
             console.log(parsed);
             this.userdata.loginUser.next(parsed)
     
@@ -76,8 +78,8 @@ user: any;
 
       }
       else{
-        this.emailError = parse.emp_email
-        this.passwordError = parse.emp_password
+        this.Error = this.res
+      
       }
     })
   }

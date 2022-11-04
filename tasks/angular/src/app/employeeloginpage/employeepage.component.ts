@@ -12,9 +12,8 @@ import { window } from 'rxjs';
 })
 export class EmployeepageComponent implements OnInit {
   response: any;
-  emailError:any;
-  passError:any;
-  signInCheck:Boolean = true
+  Error:any;
+ signInCheck:Boolean = true
   customerCheck:Boolean = true
   // obj:Object = {"signInCheck": true, "customerCheck": false}
  
@@ -70,8 +69,8 @@ export class EmployeepageComponent implements OnInit {
       }
   
       else{
-        this.emailError = this.response.emp_email
-        this.passError = this.response.emp_password
+        this.Error = this.response
+       
 
       }
     

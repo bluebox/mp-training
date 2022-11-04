@@ -75,11 +75,11 @@
       <input type="text" placeholder="Email" formControlName = "emp_email" class="input-style">
       <br><br>
       <span *ngIf = "emp_email && emp_email.invalid && emp_email.touched" style = "color: red;font-size: 15px;font-family: Roboto;font-weight: bold;"> Enter Valid Email</span>
-      <h1 style="color:red;font-size:15px;font-family:Roboto;">{{emailError}}</h1>
+      <!-- <h1 style="color:red;font-size:15px;font-family:Roboto;">{{emailError}}</h1> -->
       <input type="password" placeholder="Password" formControlName = "emp_password" class="input-style">
       <br><br>
       <span *ngIf = "emp_password && emp_password.invalid && emp_password.touched" style = "color: red;font-size: 15px;font-family: Roboto;font-weight: bold;"> Enter Valid Password</span>
-      <h1 style="color:red;font-size:15px;font-family:Roboto;">{{passError}}</h1>
+      <h1 style="color:red;font-size:15px;font-family:Roboto;">{{Error}}</h1>
       <p style="color: rgb(12, 11, 11);font-family:Roboto;font-weight:bold;">Forgot Password?</p>
       <br>
       <button type="submit" class="btn-style" [disabled] = "empLoginForm.invalid">Login</button>
