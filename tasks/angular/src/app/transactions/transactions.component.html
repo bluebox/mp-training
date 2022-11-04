@@ -1,0 +1,28 @@
+<div>
+
+<table  class="mb-5">
+    <tr>
+        <th>Transaction ID</th>
+        <th>Transaction Amount</th>
+        <th>Sender ID</th>
+        <th>Receiver ID</th>
+        <th>Sender Status</th>
+        <th>Receiver Status</th>
+        <th>Transaction Date & Time</th>
+    </tr>
+  
+    <tr *ngFor = "let each of transactionData">
+
+        <td>{{each.transaction_id}}</td>
+        <td>{{each.transaction_amount}}</td>
+        <td><a style= "color: rgb(9, 135, 245);font-weight: bold;" (click)="getUser(each.sender_id)">{{each.sender_id}}</a></td>
+        <td><a style= "color: rgb(9, 135, 245);font-weight: bold;" (click)="getUser(each.receiver_id)">{{each.receiver_id}}</a></td>
+        <td>{{each.sender_status}}</td>
+        <td>{{each.receiver_status}}</td>
+        <td>{{each.transaction_time}}</td>
+        
+
+    <tr>
+
+</table>
+</div>

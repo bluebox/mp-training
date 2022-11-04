@@ -1,0 +1,328 @@
+body{
+    margin: 0px;
+}
+.bg-container{
+    background-image: url("https://c8.alamy.com/comp/RKJ16M/home-appliances-gas-cooker-tv-cinema-refrigerator-air-conditioner-microwave-laptop-and-washing-machine-3d-RKJ16M.jpg");
+    height: 100vh;
+   
+    background-size: cover;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+.heading{
+    font-family: "Roboto";
+    font-size: 8vw;
+    font-weight: bold;
+    color:  #66ff99;
+    font-style: italic;
+}
+.button-style{
+    height: 6%;
+    width: 15%;
+    border: 3px solid red;
+    color:   black;
+    font-family: "Roboto";
+    border-radius: 10px;
+    font-size: 1vw;
+    background-color: #80ffff;
+    margin-top: 30px;
+    font-weight: bold;
+
+
+}
+.image{
+    border-radius: 10px;
+    margin-top: 20px;
+    
+}
+.items-section {
+    /* background-color: #80ffff; */
+    padding: 50px;
+}
+.air-conditioners{
+    border-radius: 10px;
+    background-color:#ffcccc;
+    padding: 20px;
+    border: 2px solid yellow;
+}
+.air-conditioners:hover{
+    transform: scale(101%);
+}
+.items-name {
+    
+    font-family: "Roboto";
+    font-weight: bold;
+    color: green;
+    font-size: 2vw;
+    text-align: center;
+    
+}
+
+.Refrigerator-section{
+    padding: 40px;
+   
+    /* background-color: yellow; */
+
+}
+.product-container{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid  #ff99ff;
+
+}
+.image-size{
+    height: 65%;
+    width: 35%;
+}
+.image-size-2{
+    height: 80%;
+    width: 35%;
+}
+.image-size-3{
+    height: 50vh;
+    
+}
+.product-details{
+    font-family: "Roboto";
+    font-size: 1vw;
+    font-weight: bold;
+    background-color: #ccffff;
+    border-radius: 10px;
+    border: 1px solid  #ffcce6;
+    padding: 10px;
+    margin: 10px;
+}
+.buttons{
+    height: 40px;
+    width: 45%;
+    border-radius: 8px;
+    background-color: #ccffcc;
+}
+.rating-btn{
+    background-color:green;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    height: 25px;
+    
+    font-size: 15px;
+}
+.star{
+    margin-top: -5px;
+    margin-left: 2px;
+    color: white;
+    
+}
+.specifications{
+    height: 40%;
+    
+    background-color: #f2d9e6;
+    border-radius: 10px;
+}
+.lists{
+    height: 100px;
+    border-top: 2px solid grey;
+    overflow-y:scroll;
+    font-size: 15px;
+}
+
+
+
+
+
+
+
+.Tv-section{
+    
+    background-color: lightblue;
+    padding: 30px;
+}
+.tv1{
+    padding: 15px;
+    background-color:white;
+    border-radius: 10px;
+    border: 2px solid gold;
+}
+.tv-image{
+    width: 70%;
+    
+}
+.price-card{
+    width: 30%;
+    /* background-color: aqua; */
+    padding: 10px;
+}
+.checked {
+    color: orange;
+  }
+
+.feature-card{
+    height: 150px;
+    background-color: #ffffb3;
+    border-radius: 10px;
+    
+}
+.lists2{
+    height: 100px;
+    overflow-y: scroll;
+    border-top:2px solid  #ff99dd;
+}
+.tv-buttons{
+    background-color:#b3ffe0;
+    border-radius: 5px;
+    background-color:  #99e699;
+    color: blue;
+    border: 1px solid red;
+    height: 40px;
+    width: 200px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .Air-Conditioner{
+    background-color: #ff8080;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.conditioners{
+    height: 80vh;
+    width: 80vw;
+    background-color: aqua;
+    border-radius:20px ;
+    padding: 20px;
+}
+.img-sec{
+    height: 100%;
+    width: 60%;
+    background-color: white;
+    border-radius:10px ;
+    padding: 15px;
+    
+}
+.detail-section{
+    height: 100%;
+    width: 40%;
+    background-color: lightblue;
+    border-radius:10px ;
+    margin-left: 10px;
+    padding: 30px;
+}
+.ac-image{
+    height: 250PX;
+    width: 90%;
+    border-bottom-right-radius: 70px;
+    border-bottom-left-radius: 70px;
+    margin-top: 100px;
+    margin-left: 40px;
+}
+.ac-buttons{
+    height:50px;
+    width: 300px;
+    background-color: transparent;
+    border: 2px solid darkblue;
+    border-radius: 5px;
+    color: darkblue;
+
+}
+.rating-btn2{
+    background-color:green;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    height: 25px;
+    
+    font-size: 15px;
+   
+}
+.ac-lists{
+   font-size: 15px;
+   height: 350px;
+   background-color: white;
+   border-radius: 10px;
+   border: 1px solid grey;
+}
+.ac-lists ul li{
+    margin-top: 15px;
+}
+.ac-lists ul li span{
+    color: lightcoral;
+}
+.pre-next-buttons{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.pre-btn{
+    background-color:red;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    height: 40px;
+    width: 120px;
+    
+    font-size: 15px;
+    margin-right: 20px;
+}
+ 
+.topnav a{
+   color: #e9f504;
+   margin: 20px;
+  
+}
+/* .nav-fixed{
+    position: fixed;
+    top: 0px;
+    overflow: hidden;
+    width: 100%;
+}
+ */
+ .empty{
+    height: 8vh;
+ }
+
+
+
+
+
+

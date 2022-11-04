@@ -1,0 +1,18 @@
+.emp-dash{
+    height: 70vh;
+    width: 100%;
+    /* background-color: rgb(214, 230, 228); */
+}
+.image{
+    height: 70vh;
+    width: 100%;
+}
+    
+.overlay{
+    position: absolute;
+    inset: 0;
+    height: 70vh;
+    width: 100%;
+    background-image: radial-gradient(rgb(21, 18, 18, 0.1), rgb(21, 18, 18, 0.4), rgb(21, 18, 18, 0.6), rgb(21, 18, 18, 0.9));
+
+}

@@ -1,0 +1,103 @@
+.topnav {
+    overflow: hidden;
+    background-color: rgb(161, 244, 249);
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;   
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+.banner .image_box .image{
+    width: 100%;
+}
+
+.categories{
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem auto;
+    background-color: rgb(219, 236, 250);
+}
+.category_image{
+    width: 100%;
+}
+
+.category_image:hover{
+    transform: scale(105%);
+}
+
+.category{
+    position: relative;
+    margin: 1rem;
+}
+
+.category:hover{
+    transform: scale(105%);
+}
+
+.category_name{
+    position: absolute;
+    font-size: 2rem;
+    background-color: rgb(247, 241, 241);
+    bottom: -2rem;
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+}
+
+.kidsCategory{
+    animation: rightToLeft 1.5s ease-in-out;
+}
+
+@keyframes rightToLeft{
+    0%{
+        transform: translateX(100%);
+    }
+    75%{
+        transform: translateX(-20%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+.womenCategory{
+    animation: leftToRight 1.5s ease-in-out;
+}
+
+@keyframes leftToRight{
+    0%{
+        transform: translateX(-100%);
+    }
+    75%{
+        transform: translateX(20%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}

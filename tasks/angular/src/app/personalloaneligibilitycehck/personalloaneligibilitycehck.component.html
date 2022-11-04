@@ -1,0 +1,66 @@
+
+<h1 *ngIf = "noloans == 'No Active Loans'">{{noloans}}</h1>
+<div *ngIf = "!response.loan_status && noloans == '!No Active Loans'">
+    <h1>Loan Status</h1>
+<table  class="mb-5">
+    <tr>
+        <th>ID</th>
+        <th>Loan Amount</th>
+        <th>Rate Of Interest</th>
+        <th>Tenure</th>
+        <th>Monthly EMI</th>
+        <th>Customer ID</th>
+    </tr>
+  
+    <tr >
+
+        <td>{{loanStatus.id}}</td>
+        <td>{{loanStatus.loan_amount}}</td>
+        <td>{{loanStatus.rate_of_interest_in_percent}}</td>
+        <td>{{loanStatus.tenure_in_months}}</td>
+        <td>{{loanStatus.monthly_EMI}}</td>
+        <td>{{loanStatus.customer}}</td>
+        <td><a *ngIf = "!response.loan_status" style="color: green;" (click)="acceptLoan()">ACCEPT</a></td>
+        <td><a *ngIf = "!response.loan_status" style="color: red;" (click)="rejectLoan()">REJECT</a></td>
+
+        
+
+    <tr>
+
+</table>
+</div>
+
+<div *ngIf = "response.loan_status ">
+    <table  class="mb-5">
+        <tr>
+            <th>ID</th>
+            <th>Loan Type</th>
+            <th>Loan Amount</th>
+            
+            <th>Date of Approval</th>
+            <th>Tenure(in Months)</th>
+            <th>Monthly EMI</th>
+            <th>Loan Status</th>
+        </tr>
+      
+        <tr >
+    
+            <td>{{loan.id}}</td>
+            <td>{{loan.loan_type}}</td>
+            <td>{{loan.loan_amount}}</td>
+            <td>{{loan. date_of_approval}}</td>
+            <td>{{loan.tenure}}</td>
+            <td>{{loan.monthly_EMI}}</td>
+            <td><a style="color: green;">Loan Running</a></td>
+  
+    
+            
+    
+        <tr>
+    
+    </table>
+    </div>
+
+    <p [ngStyle]="{'color':Loanstatus =='Loan Sanctioned' ? 'green': 'red'}">{{Loanstatus}}</p>
+
+

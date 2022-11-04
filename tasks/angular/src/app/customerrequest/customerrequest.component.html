@@ -1,0 +1,36 @@
+<h1>Requests For </h1>
+<form [formGroup]="requestForm" (ngSubmit)="sendRequest()">
+<select formControlName= "request_type" class="select-style">
+    <option value="Debit Card" selected>Debit Card</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Personal Loan">Personal Loan</option>
+    <option value="Phone Number Updation">Update Phone Number</option>
+    <option value="Email Updation">Update Email</option>
+</select>
+
+<button type= "submit"> Send Request</button>
+<p style="color: red;font-size: 15px;font-family: Roboto;">{{data}}</p>
+</form>
+
+<table  class="mb-5">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Request Type</th>
+        <th>Request Status</th>
+    </tr>
+  
+    <tr *ngFor = "let each of requestdata ">
+
+        <td>{{each.id}}</td>
+        <td>{{each.customer_name}}</td>
+        <td>{{each.customer_email}}</td>
+        <td>{{each.request_type}}</td>
+        <td><p [ngStyle]="{'color':each.request_status === 'true' ? 'red':'green'}" *ngIf = "each.request_status">Success</p> <p [ngStyle]="{'color':each.request_status === 'true' ? 'green':'red'}"*ngIf = "!each.request_status">Pending</p> </td>
+        <td><i class="fa-solid fa-trash-can icon" (click)="Delete(each)"></i></td>
+        
+
+    <tr>
+
+</table>

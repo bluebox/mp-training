@@ -1,0 +1,36 @@
+<form [formGroup]="MoneyTransferForm" (ngSubmit)="sendMoney()">
+    <h1>Add Benficiary Details</h1>
+    <label for="name" > Account Number</label>
+    <br>
+   <input type="text" id = "name" formControlName= "account_number"> 
+   <br>
+   <br>
+
+
+   <label for="email">  Confirm Account Number </label>
+    <br>
+   <input type="password" id = "email" formControlName= "confirm_account_number"> 
+   <br>
+   <br>
+   <h1 style="color: red; font-size:15px;">{{errorMsg}}</h1>
+
+   <label for="number"> Amount</label>
+   <br>
+  <input type="text" id = "number" formControlName= "amount"> 
+  <br>
+  <br>
+
+   <label for="number"> Full Name</label>
+    <br>
+   <input type="text" id = "number" formControlName= "customer_name"> 
+   <br>
+   <br>
+
+   <p [ngStyle]="{'color': response ==='Transaction Successful' ? 'green': 'red'}" >{{response}}</p>
+
+
+   <button type= "submit" >Submit</button>
+
+
+
+</form>

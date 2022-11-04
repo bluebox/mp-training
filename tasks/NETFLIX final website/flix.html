@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="netflixstyles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+   <div class="whole-container" id = "whole-containers">
+    <div class="main-container">
+        
+    </div>
+    <div class="overlay">
+        <div class="nav-bar">
+            <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" class="logo">
+            <div class="lng-signin  d-flex flex-row">
+                <div class="lng-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-globe globe" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                    </svg>
+                    <select class="selection">
+                        <option value="English" class="text-dark">English</option>
+                        <option value="Hindi" class="text-dark">Hindi</option>
+                        <option value="Kannada" class="text-dark">Kannada</option>
+                    </select>
+                 </div>
+                 <button class="button-style ml-5" id = "sign-in-btn">Sign in</button>
+            </div>
+            
+        </div>
+        <div class="bottom-section">
+            <h1 style="font-size:80px; font-weight: bold;color:white;text-align: center;" >Unlimited Movies, Tv </br>Shows and more</h1>
+            <h2 style=" font-size:30px;color:white;text-align: center; margin-top: 10px;">Watch whenever you want. Cancel whenever you want.</h2>
+            <p style=" font-size:20px;color:white;text-align: center;margin-top: 10px;">Ready to watch? Enter your email address to create or restart your membership.</p>
+            <div class="outer" id = "mail-container">
+                <input type="text" class="input-style" placeholder="E-mail address" id = "email-id">
+                
+                <button class="mail-btn" id = "start-btn"> Start <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chevron-right" style="font-weight: bold;" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                  </svg></button>
+            </div>
+            <div class="password-setting text-center d-none" id = "password-container">
+                <input type="password" class="input-style1" placeholder="Password" id = "pass1"><br>
+                <input type="password" class="input-style1" placeholder="Conform-Password" id = pass2><br>
+                <p id = "error-msg" style="color: white; font-weight: bold;"></p>
+                <button class="mail-btn2" id = "register-btn"> Register</button>
+
+            </div>
+            <h1 style="font-size:50px; font-weight: bold;color:rgb(6, 252, 47);text-align: center;" id = "register"></h1>
+       
+        </div>
+    </div>
+    <div class="black-bottom-section">
+        <hr class="hrline">
+        <div class="section1 d-flex flex-row">
+            <div class="sub-sec1">
+                <h1 style="font-size:50px; font-weight: bold;color:white;text-align: center;" >Have fun on your TV.</h1>
+                <p style="font-size:20px;color:white;text-align: center;" >Watch on smart TVs, PlayStation, Xbox,<br>Chromecast, AppleTV, Blue-ray players as well <br>
+                as other devices.</p>
+            </div>
+            <div class="sub-sec2">
+                <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png " class="tv-image">
+                <div class="netflix-video">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video autoplay loop src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"></video>
+                        <!-- <iframe class="embed-responsive-item " src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v " allowfullscreen></iframe> -->
+                      </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hrline">
+
+        <div class="section1 d-flex flex-row">
+            <div class="sub-sec1">
+                <h1 style="font-size:50px; font-weight: bold;color:white;text-align: center;" >Look everywhere.</h1>
+                <p style="font-size:20px;color:white;text-align: center;" >Watch on smart TVs, PlayStation, Xbox,<br>Chromecast, AppleTV, Blue-ray players as well <br>
+                as other devices.</p>
+            </div>
+            <div class="sub-sec2">
+                <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile-in.png " class="tv-image">
+                <div class="netflix-video2">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video autoplay loop src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v"></video>
+                        <!-- <iframe class="embed-responsive-item loop" src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices-in.m4v" allowfullscreen></iframe> -->
+                      </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hrline">
+
+        <div class="section1 d-flex flex-row">
+            <div class="sub-sec1 order-2">
+                <h1 style="font-size:50px; font-weight: bold;color:white;text-align: center;" >Create a profile for kids.</h1>
+                <p style="font-size:20px;color:white;text-align: center;" >Let the kids go on an exciting journey with <br>their favorite characters just for them - free with<br> your membership.
+                as other devices.</p>
+            </div>
+            <div class="sub-sec3 order-1 ">
+                <img src="https://occ-0-3365-2186.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABQbzZ6fDTnhABFS5CyFMAcKQIMYom26BRE4A7Gtrbl4CgIJPem5gh2koltInpLVhl-JoG3yfW_PGiv48pDeAtcyQIfGL6nZ4NfBT.png?r=fcd " class="tv-image">
+                
+            </div>
+        </div>
+        <hr class="hrline">
+        <div class="questions">
+            <h1 style="font-size:50px; font-weight: bold;color:white;margin-top: 50px;" >Frequently asked Questions</h1>
+            <div class="div1 mt-4" onclick="contentContainer(1)">
+                <h1 style="font-size:30px; color:white;" >What is Netflix?</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg plus" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+            </div>
+            <div id = "sub-div1">
+
+            </div>
+            
+            <div class="div1 mt-4" onclick="contentContainer(2)">
+                <h1 style="font-size:30px; color:white;" >How much does Netflix cost?</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg plus" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+                  
+            </div>
+            <div id = "sub-div2">
+
+            </div>
+
+            <div class="div1 mt-4" onclick="contentContainer(3)">
+                <h1 style="font-size:30px; color:white;" >Where can i watch?</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg plus" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+                  
+            </div>
+            <div id = "sub-div3">
+
+            </div>
+
+            <div class="div1 mt-4" onclick="contentContainer(4)">
+                <h1 style="font-size:30px; color:white;" >How do i cancel?</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg plus" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+                  
+            </div>
+            <div id = "sub-div4">
+
+            </div>
+
+            <div class="div1 mt-4" onclick="contentContainer(5)">
+                <h1 style="font-size:30px; color:white;" >What can i watch on Netflix?</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg plus" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+                  
+            </div>
+            <div id = "sub-div5">
+
+            </div>
+
+            <div class="div1 mt-4" onclick="contentContainer(6)">
+                <h1 style="font-size:30px; color:white;" >Is Netflix Ok for Kids?</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-lg plus" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+                  
+            </div>
+            <div id = "sub-div6">
+
+            </div>
+           
+        </div>
+
+        <hr class="hrline mt-5">
+        <div class="last">
+            <div class="con1">
+                <h4 style="color:grey; margin-top: 30px;"> Got a question? Call 000-800-040-1843</h4>
+            </div>
+            <div class="con d-flex flex-row">
+                <div class="first">
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">FAQ</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Investor Relations</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Privacy</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Speed Test</p>
+                </div>
+                <div class="first">
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Help Center</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Jobs</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">cookie preferences</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">legal notices</p>
+                </div>
+                <div class="first">
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Account</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Ways of seeing</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">corporate information</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">only on Netflix</p>
+                </div>
+                <div class="first">
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Media center</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Terms of Use</p>
+                    <p style="color:grey; font-size:20px;margin-bottom: 10px;">Contact us</p>
+                </div>
+            </div>
+            <div class="con1">
+                <div class="lng-container1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-globe globe1" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                    </svg>
+                    <select class="selection1">
+                        <option value="English" class="text-dark">English</option>
+                        <option value="Hindi" class="text-dark">Hindi</option>
+                        <option value="Kannada" class="text-dark">Kannada</option>
+                    </select>
+                 </div>
+            </div>
+            <div class="con1">
+                <h1 style="color:grey; margin-top: 20px;">Netflix India</h1>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="page d-none" id = "login-Page">
+        <div class="login-page-con" >
+                
+            <!-- <h1 style = "text-align:center;font-family: Roboto; font-size:80px; font-weight: bold; font-style: italic;">MY PROFILE</h1> -->
+            <div class="login-page">
+                <h1 style = "color: white; margin-bottom: 20px; text-align: center;">LOGIN</h1>
+                <div>
+                    <label for = "emailid" style = "color: rgb(14, 235, 224); font-weight: bold; font-size: 25px; margin-bottom: 20px;">EMAIL</label></br>
+                    <input type = "text" class = "email-id1" placeholder="Email" id = "emailid"/>
+                    <p style = "color: chartreuse; font-weight: bold;"id = "email-msg"></p>
+                    <label for = "passwords" style = "color: rgb(14, 213, 235); font-weight: bold; font-size: 25px; margin-bottom: 20px;">Password</label></br>
+                    <input type = "password" class = "email-id1" placeholder="Password" id = "passwords"/>
+                    <p style = "color: chartreuse; font-weight: bold;"id = "password-msg"></p>
+                </div>
+                <button class="button-style123" id = "sign-in-button"> Sign In</button>
+                <p style = "font-family: Bree Serif; font-size: 20px; color: rgb(244, 12, 12); display: inline; font-weight: 900; margin-left: 20%;" class="forgot-pass">Forgot Password ?</p>
+            </div>
+            
+        </div>
+    </div>
+    <div class="videos-page d-none" id = "main-interface">
+        <nav class="navbar navbar-expand-lg navbar-bg">
+            <a class="navbar-brand" href="#"><img src="https://variety.com/wp-content/uploads/2020/05/netflix-logo.png?w=681&h=383&crop=1&resize=681%2C383" class="netflix-logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav anchor-style m-auto">
+                <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+              </div>
+              
+            </div>
+            <div class="icons d-flex flex-row">
+                <div class="icon1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search icon" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </div>
+                <div class="icon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person icon" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                      </svg>
+                    </div>
+                    <div class="icon1">
+                        <button class="button-style ml-5" id = "sign-out-btn">Sign Out</button>
+                    </div>
+            </div>
+          </nav>
+          <div class="banner-setion">
+                <div class="top-section d-flex flex-row">
+                    <div class="content-div mr-2">
+                        
+                    </div>
+                    <div class="content-div1">
+                        <!-- <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item size" src="https://www.youtube.com/embed/r_iaLhn5chU?rel=0" ></iframe>
+                          </div> -->
+                        <img src="https://i0.wp.com/financerewind.com/wp-content/uploads/2020/08/The-New-Legends-Of-Monkey-Season-2.jpg?resize=900%2C540&ssl=1" class="series-img" id = "series-img">
+                    </div>
+                    <div class="top-section2">
+
+                    </div>
+                    <div class="top-section3">
+                        <div class="content">
+                            <h1 style="color: red; font-size: 25px;font-family: Bree Serif;"><b class="mr-2">NETFLIX</b> <span style="color: white;">ORIGINAL</span></h1>
+                            <h1 style="color: white; font-size: 35px; font-family: Bree Serif;" id = "movie-name">THE NEW LEGENDS OF MONKEY</h1>
+                            <p style="color:grey; font-size: 25px;font-family: Roboto;" id = "summary">The Monkey King was imprisoned under a mountain 500 years ago by his enemies in Heaven. 500 years later, the Earthly realm is overrun, and its humans oppressed, by demons. </p>
+                            <button class="play-btn" id = "video-play-button"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-play-fill mr-2" viewBox="0 0 16 16">
+                                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                              </svg>Play</button>
+
+                              <button class="play-btn ml-3"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                              </svg>My List</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="below-section">
+                    <h1 style="color: white; font-size: 20px;">ACTION & ADVENTURE</h1>
+                    <div class="divs">
+                            <img src="https://images.hindustantimes.com/rf/image_size_640x362/HT/p2/2016/07/11/Pictures/_afa6f3e2-471c-11e6-90e0-482a513bad8b.png" alt="" class="movie-image mr-2" onclick="moviefunction(0)">
+                            <img src="https://images.hdqwalls.com/wallpapers/manifest-2020-0z.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(1)">
+                            <img src="https://i.ytimg.com/vi/bXMmCi1iQSQ/maxresdefault.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(2)">
+                            <img src="https://m.timesofindia.com/photo/91472083.jpeg" alt="" class="movie-image mr-2" onclick="moviefunction(3)">
+                            <img src="https://i.ytimg.com/vi/LkkvegaSem8/maxresdefault.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(4)">
+                            
+                            <img src="https://i.ytimg.com/vi/4Msych1asXY/maxresdefault.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(5)"> -->
+                            <img src="https://wallpaperaccess.com/full/1571237.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(6)">
+                            <img src="https://wallpapercave.com/wp/wp7852475.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(7)">
+                            <img src="https://cdn.wallpapersafari.com/71/90/D3qTLs.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(8)">
+                            <img src="https://wallpapercave.com/wp/wp2313481.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(9)">
+                            <img src="https://wallpaperaccess.com/full/1212755.jpg" alt="" class="movie-image mr-2" onclick="moviefunction(10)">
+                            
+                    </div>
+                    <h1 style="color: white; font-size: 20px;">HORROR</h1>
+                    <div class="divs">
+                        <img src="https://images.hungama.com/c/1/ead/ac3/4715822/4715822_1280x800.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://otakukart.com/wp-content/uploads/2020/06/The-Nun.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://images.hungama.com/c/1/00f/0d4/21814861/21814861_1280x800.jpeg" alt="" class="movie-image mr-2">
+                        <img src="https://wallpapercave.com/wp/wc1708503.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://i.ytimg.com/vi/AWma2JYZt9A/maxresdefault.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://flxt.tmsimg.com/assets/p15880871_b_h10_ab.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://phantom-marca.unidadeditorial.es/a9afb2c3eec5db6b5e8bb47ba4d73e9f/crop/0x0/1198x674/f/jpg/assets/multimedia/imagenes/2021/05/20/16215105656946.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-3933-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcGhTd9qL06tpaIbuWViXJLz-Zh9m5vyJVOBUIjhZFfjDvkQVQEO6IlLr8Cs_W_v4e1G8t8Ig-58CugbRIfVqV7K-VsZ56J9TiIePIH62PClczRxYL7x2K9SMubwmL7cqwj7.jpg?r=d64" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Hugh-Jackman%E2%80%99s-Van-Helsing.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2186-1348.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABQGrK8HwuQA-pmIxVbspg_v081ByQS36uimbuFuCSCOFk4dA6QCcoOuX9dPxWdIrrLT8CUr2HVAoNDuz_KzcvWrJrplfS7Kz7kMdxSuEEINuRNSWCPSQUXK9k9TkitRAHrPA.jpg?r=c68" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-3933-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABXduTDUPFYVg7SaLINNIWqu99RNq7H5YendX7GGcQql4e7V0f2JEdHtPhA4ZMWeAOJMv5A2DvL2iMWd-Q0G7pguK3r4YXl40pgY.jpg?r=697" alt="" class="movie-image mr-2">
+                    </div>
+                    <!-- <h1 style="color: white; font-size: 20px;">Drama</h1>
+                    <div class="divs">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/BEST-MOVIES-ON-NETFLIX.jpg?q=50&fit=contain&w=1500&h=&dpr=1.5" alt="" class="movie-image mr-2">
+                    </div> -->
+                    <h1 style="color: white; font-size: 20px; margin: 15px;">TELUGU MOVIES</h1>
+                    <div class="divs">
+                        <img src="https://assets.thehansindia.com/h-upload/2022/03/14/1281604-whatsapp-image-2022-03-14-at-130148-9.webp" alt="" class="movie-image mr-2">
+                        <img src="https://i.ytimg.com/vi/AhFYmy4bAIk/maxresdefault.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://i0.wp.com/photos.tfpc.in/wp-content/gallery/maharshi-movie-hd-posters/maharshi-hd-posters-3.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://www.tollywoodbuzz.com/wp-content/uploads/2021/03/Jathi-Ratnalu-Box-Office-Collection.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://images-na.ssl-images-amazon.com/images/S/pv-target-images/777bd75f89946e1208b0521b9403b9786e9d6d6db790dfd20b8386735ebea7f7._RI_.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://indiaglitz-media.s3.amazonaws.com/telugu/previews/alavaikunta_preview271019_c-491.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://1.bp.blogspot.com/-iFqrtPUm-Y8/YSfW4vXCNdI/AAAAAAAAGjk/sgHvkQu5DvQoxe5VODt1ih7_GsajDDWAgCLcBGAsYHQ/s0/HDgallery%2Bdarling%2Bstills%2B%25282%2529.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://live.staticflickr.com/1972/44530363654_da1f05d5ec_b.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://www.searchhyderabad.com/wp-content/uploads/2022/06/Yevadu-HD-Telugu-Movie.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://www.cinejosh.com/gallereys/movies/normal/brindavanam_movie_new_wallpapers/brindavanam_movie_new_wallpapers_004.jpg" alt="" class="movie-image mr-2">
+                        <img src="https://assets.thehansindia.com/h-upload/feeds/2019/05/24/178048-sita.jpg?width=500&height=300" alt="" class="movie-image mr-2">
+                        
+                    </div>
+                    <h1 style="color: white; font-size: 20px; margin: 15px;">KIDS</h1>
+                    <div class="divs">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABRN2QTrO2PrEQahDr4GEqR_yjFuQajsvLHPcHPDwE1wDZ-xwrXiFTR4NY7RuGxKYo8bWkfqP4hevOlV9h8ng4OVUVdfDoRUXqHU.jpg?r=0e1" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABYKWbKvNUaOuF2qicXHmZ-RG_2UxpiqmHGCJXisUMztma4QfC-cDLx1UTt_WDfB_EJHmwI8QEbUZH15ryGdNwwwmcnGqH7IiKfE.jpg?r=c82" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABS1S6TdRBpuRp7DU_uPDoNZG852kR_IaaLQkKqYbUxuZTrqp2gVAFrfLohh7CkFgC-SX77EXi6acFrbgGTK6Goq2qr1WjAl3h7c.jpg?r=346" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABbHNP8DSwJSYeWk-23Cd2C2PnUxziSZ2tVvXm8bhQ7zQfAvAkWKgsgr0nxsGFpME07Byj6llO2RbgLArftwNzhL-UKSyuAPpdLg.jpg?r=2a7" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABSxZM5kr3yIltow_zLE9gPNFIs1ZLP7vDIsNR4ukq0mcBQK616HBpoZ2LIWV3RLxfuBmqNFYfXyc7WmSSbIxRhk-d0vvzBTQu0Y.jpg?r=9f0" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABUaEEk4-_Ab846dn3CrhsK8tdRKBV-uJOtSrqhOxftgUol5g1kv8pk5BM8YtjID3tvNC3wU2mhRd6mch61XGuNAbz6NzLCpMiso.jpg?r=3bd" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABccLH6cSZtdo9FUrWDptW1D59H2qWTP92duqvL5GSQGsAsaSswKs-moZFC8FPZk1Kd0DW0hGuStwDvuF00Ylj2YmE_FmgDYRCSc.jpg?r=c60" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABY7Zgfw5WhsKLSAQQEc4a4un3QWdh2UsvtW7SFH00NUbq4sfuVRSucwRtLBCOAJa0FuOeW-mu6SbqzyhgIZazmB7Cr8oSLcVKyWuHCocodCR4fqtrvfnk-k1kHx_yRt5Ck1z.jpg?r=011" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABQfb5qiiy84zJOCJB7CYG0nPp59uJqnH3S7beRiPxah4X4A4Dr-UGVnWoxqVJ7BXChYnk85P-6erkEFR6S-yVceYeO3hP9ruCX7ZrqRHnFnbV66lBsU2XBSyj0XZwmESHgRd.jpg?r=81e" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcNeJPfMksLYhm8jhP2xkJIRbByiR1A_7eNnhm4G_EhGC6xkfrf3cAumjvPab5nrYalDL3vGaSizIs3korlNXIPEvfJgqSKT2RI.jpg?r=f20" alt="" class="movie-image mr-2">
+                        <img src="https://occ-0-2590-2164.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABQvnIaAaGhEEoRIi8lN-FvNvOQnsKlbjqvlEW_KTZk1lrCFBz5c5lDPksyu80po-v-mmEacEs_sNYINciCysDrESt7456c4810g.jpg?r=f20" alt="" class="movie-image mr-2">
+                    
+                    </div>
+                </div>
+                
+          </div>
+    </div>
+    <div class="d-none"  id = "main-video-page">
+        <div class="video-container">
+            <div class="video-frame">
+                    <button class="back-button-style" id = "back-btn">Back</button>
+                <div class="embed-responsive embed-responsive-16by9 video-sizes">
+                    <iframe class="embed-responsive-item " src="" id = "I-frame"></iframe>
+                </div>
+                <!-- <video src="https://www.youtube.com/watch?v=CHSnz0bCaUk"></video> -->
+                <!-- <h1 style="color: white; font-family:Roboto;font-size: 35px;margin: 20px;">THE NEW LEGENDS OF MONKEY </h1> -->
+            </div>
+         
+        </div>
+</div>
+<script src="dynamic.js"></script>
+</body>
+</html>

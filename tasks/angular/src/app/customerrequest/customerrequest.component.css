@@ -1,0 +1,30 @@
+table, th, td {
+    border:1px solid rgb(20, 8, 30);
+    padding: 5px;
+    color: red;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+td {
+    color: black;
+    font-weight: bold;
+}
+.icon {
+    color: red;
+    font-size: 20px;
+}
+.select-style{
+    height: 30px;
+    width: 150px;
+    background-color: rgb(213, 213, 198);
+    border-radius: 5px;
+}
+button{
+    background-color: rgb(246, 243, 140);
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    margin-left: 10px;
+}

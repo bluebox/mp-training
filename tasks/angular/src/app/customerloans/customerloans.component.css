@@ -1,0 +1,38 @@
+
+table, th, td {
+    border:1px solid rgb(20, 8, 30);
+    padding: 5px;
+    color: red;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+td {
+    color: rgb(7, 22, 234);
+    font-weight: bold;
+}
+.icon {
+    color: red;
+    font-size: 20px;
+}
+.bg{
+    margin: 30px;
+}
+.Search{
+    height: 50px;
+    width: 270px;
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+input{
+border-bottom: 2px solid rgb(9, 9, 16);
+border-top: none;
+border-left: none;
+border-right: none;
+background: transparent;
+outline: none;
+color: #090707;
+}

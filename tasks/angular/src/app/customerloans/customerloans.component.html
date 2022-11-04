@@ -1,0 +1,44 @@
+<div class="Search">
+    
+    <input type="text" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" #text (input) = "getData(text.value)"/>
+    
+    </div>
+<div class="bg" *ngIf = "status">
+<h1 style="color: black;font-family:'Times New Roman', Times, serif;font-size:30px;">Loans List:</h1>
+<table  class="style">
+    <tr>
+        <th>S.No</th>
+        <th>Customer Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Loan Type</th>
+        <th>Loan Amount</th>
+        <th>Rate Of Interest(%)</th>
+        <th>Monthly EMI</th>
+        <th>Tenure(in months)</th>
+        <th>Date Of Approval</th>
+
+    </tr>
+  
+    <tr *ngFor = "let each of loansList;let i = index;">
+        <td style="color: rgb(255, 0, 0);">{{i+1}}</td>
+        <td>{{each.customer.customer_name}}</td>
+        <td>{{each.customer.phone_number}}</td>
+        <td>{{each.customer.customer_email}}</td>
+        <td>{{each.loan_type}}</td>
+        <td>{{each.loan_amount}}</td>
+        <td>{{11}}</td>
+        <td>{{each.monthly_EMI}}</td>
+        <td>{{each.tenure}}</td>
+        <td>{{each.date_of_approval}}</td>
+        
+
+
+       
+        
+
+    <tr>
+
+</table>
+</div>
+<h1 style="color: red;text-align:center">{{error}}</h1>

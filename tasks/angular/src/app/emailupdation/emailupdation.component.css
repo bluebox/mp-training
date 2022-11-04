@@ -1,0 +1,28 @@
+.debit{
+    height: 500px;
+    width: 60%;
+    /* background-color: yellow; */
+    
+
+}
+form{
+    margin-left: 160px;
+}
+
+form ,label{
+    font-size: 15px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(0, 2, 9);
+
+
+ }
+ button{
+    height: 30px;
+    width: 80px;
+    /* background: linear-gradient(to right,rgb(42, 43, 42), rgb(187, 188, 179)) ; */
+    background-color: rgb(88, 225, 230);
+    border-radius: 5px;
+    color:rgb(11, 11, 11);
+    font-weight: bold;
+}

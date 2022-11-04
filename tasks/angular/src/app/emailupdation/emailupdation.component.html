@@ -1,0 +1,18 @@
+
+<div class="debit">
+    <h1 style="color: black;font-family:'Times New Roman', Times, serif;font-weight: bold;margin-top: 20px;text-align: center;">Change Email</h1>
+    
+    <form [formGroup]="ChangeEmailForm" (ngSubmit)="ChangeEmail()">
+        
+        <input type="email" placeholder="email" formControlName = 'customer_email'>
+        <br><br>
+        <input type="text" placeholder="New Email" formControlName = 'new_email'>
+        <br><br>
+        <p [ngStyle]="{'color': response === 'Successfully Updated' ? 'green':'red'}" class="bg">{{response}}</p>
+        <button type = "submit">Submit</button>
+        
+    
+    </form>
+    </div>
+    
+    

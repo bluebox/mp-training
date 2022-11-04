@@ -1,0 +1,16 @@
+.options-style{
+    height:40px;
+    width:200px;
+    font-size:15px;
+    border-radius:10px;
+    color:#000000;
+   
+    }
+    .sty{
+        height:40px;
+        font-size:25px;
+        border-radius:10px;
+        /* background-color: lightblue; */
+        padding: 5px;
+
+    }
