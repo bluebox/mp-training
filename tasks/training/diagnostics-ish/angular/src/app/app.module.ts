@@ -34,6 +34,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterCustomerComponent } from './components/register-customer/register-customer.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FooterComponent } from './components/footer/footer.component';
+import { LifecycleComponent } from './components/lifecycle/lifecycle.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LogoutComponent,
     RegisterCustomerComponent,
     FooterComponent,
+    LifecycleComponent,
   ],
   imports: [
     BrowserModule,

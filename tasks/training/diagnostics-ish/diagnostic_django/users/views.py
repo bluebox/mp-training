@@ -1,5 +1,5 @@
-#pylint:disable=E1101
-#pylint:disable=R1705
+# pylint:disable=E1101
+# pylint:disable=R1705
 
 """views """
 # jwt
@@ -18,114 +18,88 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, logout
 from django.http import JsonResponse
 
-
 from appointment.models import Branch
 from appointment.serializers import BranchSerializer
 from appointment.models import Appointment
 from appointment.serializers import AppointmentSerializer
 from users.serializers import UserSerializer, CustomerSerializer, EmployeeSerializer
-from .authentication import create_access_token, create_refresh_token,\
- decode_access_token, decode_refresh_token
+from .authentication import create_access_token, create_refresh_token, \
+    decode_access_token, decode_refresh_token
 from .models import User, Customer, Staff
+
+from .managers import StaffManager, CustomerManager
 
 
 # --------------------- Detail staff------------------
 
+
 class DetailStaff(APIView):
     """detail view for employee"""
+
     @staticmethod
-    def get(employee_id):
+    def get(request, employee_id):
         """get employee"""
-        employee = Staff.objects.filter(staff_id=employee_id).first()
-        employee_serializer = EmployeeSerializer(employee, many=False)
-        user_serializer = UserSerializer(employee.user_id, many=False)
-
-        return Response({"employee_details": employee_serializer.data,
-                         "user_details": user_serializer.data}, status=status.HTTP_201_CREATED, )
+        try:
+            response_data = StaffManager.get_detail_staff(request, employee_id)
+            return Response(response_data, status=status.HTTP_201_CREATED, )
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
     @staticmethod
-    def delete(employee_id):
+    def delete(request, employee_id):
         """delete employee"""
-        employee = Staff.objects.filter(staff_id=employee_id).first()
-        if employee:
-            employee.delete()
-            return JsonResponse(data={'success': 'Employee deleted successfully.'}, safe=False)
-        else:
-            return JsonResponse(data={'success': 'Employee is not deleted successfully.'},
-                                safe=False)
+        try:
+            response_data = StaffManager.delete_staff(request, employee_id)
+            return JsonResponse(data=response_data, safe=False)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
     @staticmethod
     def put(request, employee_id):
         """update staff"""
-        employee_data = JSONParser().parse(request)
-        employee = Staff.objects.filter(staff_id=employee_id).first()
-        user = User.objects.filter(id=employee.user_id.id).first()
-        serializer = UserSerializer(user, data=employee_data)
-        empl_serializer = EmployeeSerializer(employee,
-                                            data={"designation":
-                                                                employee_data["designationControl"],
-                                                   "qualification": employee_data['qualification'], 
-                                                   "staff_id": employee.staff_id, 
-                                                   "user_id": user.id,
-                                                   "salary": int(employee_data['salary']), "years_of_experience": int(employee_data['years_of_experience']) or 0,
-                                                   'branch': employee_data['branchControl']})
-        if serializer.is_valid():
-            serializer.save()
-            if empl_serializer.is_valid():
-                empl_serializer.save()
-                return Response({'data': serializer.data, 'message': "updated"}, status=200)
-            else:
-                error_list = [serializer.errors[error][0] for error in serializer.errors]
-                return Response({"message": error_list}, status=200)
-        else:
-            error_list = [serializer.errors[error][0] for error in serializer.errors]
-            return Response({"message": error_list}, status=200)
+        try:
+            response_data = StaffManager.update_staff(request, employee_id)
+            return Response(data=response_data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
 
 class FilterEmployee(APIView):
     """filter staffs"""
+
     @staticmethod
     def get(request):
         """filter employees"""
-        text = request.GET['text']
-        employees = Staff.objects.filter(Q(staff_id__icontains=text)
-                                         |Q(user_id__username__icontains=text))
-        employees = list(employees.values(
-            'staff_id', 'user_id__username'
-        ))
-        return Response({'employees': json.dumps(employees)}, status=200)
+        try:
+            response_data = StaffManager.filter_employee(request)
+            return JsonResponse(data=response_data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
 
 # ------------------- detail customer------------------
 
 class DetailCustomer(APIView):
     """deatil view for customer"""
+
     @staticmethod
-    def get(customer_id):
+    def get(request, customer_id):
         """get customer"""
-        customer = Customer.objects.filter(customer_id=customer_id).first()
-        customer_serializer = CustomerSerializer(customer, many=False)
-        user_serializer = UserSerializer(customer.user_id, many=False)
-        appointments = customer.appointment_set.all()
-        appointments = AppointmentSerializer(appointments, many=True)
-        return Response({"customer_details": customer_serializer.data, 
-                         "user_details": user_serializer.data, 
-                         'appointments': appointments.data}, status=status.HTTP_201_CREATED)
+        try:
+            response_data = CustomerManager.get_detail_customer(request, customer_id)
+            return Response(data=response_data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
     @staticmethod
-    def delete(customer_id):
+    def delete(request, customer_id):
         """delete customer"""
-        customer = Customer.objects.filter(customer_id=customer_id).first()
-        if customer:
-            customer.delete()
-            return JsonResponse(data={'success': 'Customer deleted successfully.'},
-                                safe=False)
+        try:
+            response_data = CustomerManager.delete_customer(request, customer_id)
+            return Response(data=response_data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
 
-        else:
-            return JsonResponse(data={'success': 'customer is not deleted successfully.'},
-                                safe=False)
-
-    
     @staticmethod
     def put(request, customer_id):
         """update customer object"""
@@ -144,6 +118,7 @@ class DetailCustomer(APIView):
 
 class FilterCustomer(APIView):
     """filter customer"""
+
     @staticmethod
     def get(request):
         """get filtered customers"""
@@ -158,6 +133,7 @@ class FilterCustomer(APIView):
 
 class RegisterCustomer(APIView):
     """add customer"""
+
     @staticmethod
     def post(request):
         """add customer"""
@@ -172,8 +148,8 @@ class RegisterCustomer(APIView):
             if serializer.is_valid():
                 user = serializer.save()
                 customer_obj = CustomerSerializer(data={"customer_id":
-                                                        "MEDC" + str(user.id), 
-                                                        "user_id": user.id}) 
+                                                            "MEDC" + str(user.id),
+                                                        "user_id": user.id})
                 if customer_obj.is_valid():
                     customer_obj.save()
                     return Response({'data': serializer.data, 'message': "registered"}, status=200)
@@ -184,19 +160,19 @@ class RegisterCustomer(APIView):
                 error_list = [serializer.errors[error][0] for error in serializer.errors]
                 return Response({"message": error_list}, status=200)
 
-
     @staticmethod
-    def get():
+    def get(request):
         """get all customers"""
         customers = Customer.objects.all()
         customers = list(customers.values(
             'customer_id', 'user_id__username'
         ))
-        return Response({'customers':json.dumps(customers)}, status=200)
+        return Response({'customers': json.dumps(customers)}, status=200)
 
 
 class RegisterEmployee(APIView):
     """register employee"""
+
     @staticmethod
     def post(request):
         """add employee"""
@@ -206,19 +182,20 @@ class RegisterEmployee(APIView):
             return Response({'message': "username already exist "})
         else:
             serializer = UserSerializer(
-                data={'username': request.data["username"], "first_name": request.data["first_name"], 
-                        'last_name': request.data["last_name"], 'email': request.data['email'], 
-                        "mobile_number": request.data["mobile_number"], "age": int(request.data['age']),  
-                        'address': request.data['address'], "pincode": request.data['pincode'], 
-                        "password": request.data['password'], "user_type": 'staff'})
+                data={'username': request.data["username"], "first_name": request.data["first_name"],
+                      'last_name': request.data["last_name"], 'email': request.data['email'],
+                      "mobile_number": request.data["mobile_number"], "age": int(request.data['age']),
+                      'address': request.data['address'], "pincode": request.data['pincode'],
+                      "password": request.data['password'], "user_type": 'staff'})
             if serializer.is_valid():
                 user = serializer.save()
-                employee_obj = EmployeeSerializer(data={"staff_id": "MEDS" + str(user.id), 
+                employee_obj = EmployeeSerializer(data={"staff_id": "MEDS" + str(user.id),
                                                         "user_id": user.id,
                                                         "designation": request.data["designation"],
                                                         "qualification": request.data['qualification'],
-                                                        "salary": int(request.data['salary']), 
-                                                        "years_of_experience": int(request.data['years_of_experience']) or 0,
+                                                        "salary": int(request.data['salary']),
+                                                        "years_of_experience": int(
+                                                            request.data['years_of_experience']) or 0,
                                                         'branch': request.data['branch']})
                 if employee_obj.is_valid():
                     employee_obj.save()
@@ -231,7 +208,7 @@ class RegisterEmployee(APIView):
                 return Response(error_list, status=status.HTTP_400_BAD_REQUEST)
 
     @staticmethod
-    def get():
+    def get(request):
         """get all employees"""
         staffs = Staff.objects.all()
         staffs = list(staffs.values(
@@ -242,14 +219,13 @@ class RegisterEmployee(APIView):
 
 class BranchHandler(APIView):
     """branch view"""
+
     @staticmethod
     def get():
         """get all branches"""
         branches = Branch.objects.all()
         serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data, status=200)
-
-
 
 
 @csrf_exempt
@@ -264,6 +240,7 @@ def logout_user(request):
 
 class LoginView(APIView):
     """login view"""
+
     @staticmethod
     def post(request):
         """login """
@@ -284,18 +261,19 @@ class LoginView(APIView):
                 user_type_id = user_type_obj.staff_id
             else:
                 user_type_id = user.id
-        
+
         access_token = create_access_token(user.id)
         refresh_token = create_refresh_token(user.id)
         response = Response()
 
-        response.set_cookie(key='refreshToken', value=refresh_token, httponly=True) # refresh token in cookie n access token in response data
+        response.set_cookie(key='refreshToken', value=refresh_token,
+                            httponly=True)  # refresh token in cookie n access token in response data
         response.data = {
-            'message':"success", 
-            'token': access_token, 
-            'user_type' : user.user_type, 
-            'username' : user.username, 
-            'user_type_id':user_type_id
+            'message': "success",
+            'token': access_token,
+            'user_type': user.user_type,
+            'username': user.username,
+            'user_type_id': user_type_id
         }
         return response
 
@@ -304,7 +282,7 @@ class LoginView(APIView):
 @api_view(['GET'])
 def user_view(request):
     """get authenticated user"""
-    auth = get_authorization_header(request).split()   # first param is bearer n 2nd is token (access token)
+    auth = get_authorization_header(request).split()  # first param is bearer n 2nd is token (access token)
     if auth and len(auth) == 2:
         token = auth[1].decode('utf-8')
         _id = decode_access_token(token)
@@ -318,15 +296,16 @@ def user_view(request):
         else:
             user_type_id = user.id
         return Response({
-            'user_type' : user.user_type,
-            'username' : user.username,
-            'user_type_id':user_type_id
+            'user_type': user.user_type,
+            'username': user.username,
+            'user_type_id': user_type_id
         })
     raise exceptions.AuthenticationFailed('unauthenticate')
 
 
 class RefreshToken(APIView):
     """refresh token view"""
+
     # authentication_classes = []
     @staticmethod
     def post(request):
@@ -336,32 +315,34 @@ class RefreshToken(APIView):
         access_token = create_access_token(_id)
         print(access_token)
         return Response({
-            'token' : access_token
+            'token': access_token
         })
 
 
 class LogoutView(APIView):
     """view to logout"""
+
     @staticmethod
     def post():
         """logout method"""
         response = Response()
         response.delete_cookie(key='refreshToken')
         response.data = {
-            'message' : 'success'
+            'message': 'success'
         }
         return response
 
 
 class AllCountApi(APIView):
     """get counts for admin page"""
+
     @staticmethod
-    def get():
+    def get(request):
         """get counts"""
         employees = Staff.objects.all().count()
         customers = Customer.objects.all().count()
         branches = Branch.objects.all().count()
         appointments = Appointment.objects.all().count()
 
-        return JsonResponse({'appointments':appointments, 'employees': employees,
-                             'customers':customers, 'branches':branches})
+        return JsonResponse({'appointments': appointments, 'employees': employees,
+                             'customers': customers, 'branches': branches})
