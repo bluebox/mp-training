@@ -1,0 +1,13 @@
+.full-width {
+    width: 90%;
+    /* margin: 2%; */
+}
+
+.form-container {
+    margin: 0 auto;
+    width: 50%;
+}
+.text-danger{
+    color: red;
+    margin-left: 5px;
+}

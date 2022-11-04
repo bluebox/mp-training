@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./home.css">
+</head>
+
+<body>
+    <div id="banner">
+        <header>
+            <div id="navbar">
+                <div id="nav_images">
+                    <a href="./index.html">
+                        <img style="padding:5px; " height="6vh" src="./images/logo.png" alt="" srcset="">
+                    </a>
+                    <a href="./index.html">
+
+                        <img style="padding:1px; " src="./images/netflix-images/netflix-avatar.png" alt="">
+                    </a>
+                </div>
+            </div>
+
+        </header>
+        <div id="banner_contents">
+            <h1 class="title">
+                Stranger Things
+            </h1>
+            <div class="banner_btns">
+                <a href="./play.html">
+                    <input type="button" value="Play">
+                </a>
+                <input type="button" value="My List">
+            </div>
+            <h4 style="margin-top: 20px;">When a young boy vanishes, a small town uncovers a mystery involving secret
+                experiments, terrifying supernatural forces and one strange little girl.</h4>
+        </div>
+    </div>
+    <div class="row">
+        <h1 style="padding:10px;">Netflix Originals</h1>
+
+        <div id="originals" class="row_posters net_originals ">
+            <div onclick="handleScroll( 'originals','left')" class="left">
+                <p style="margin-top: 30px;"  >&#8249;</p>
+            </div>
+            <div onclick="handleScroll( 'originals','right')" class="right">
+                <p style="margin-top: 30px;">&#8250;
+
+                </p>
+            </div>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie1.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie3.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie5.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie7.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie8.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie5.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/large-movie4.jpg" alt="">
+            </a>
+
+        </div>
+    </div>
+    <div class="row">
+        <h1 style="padding:10px;">Comedy Movies</h1>
+        <div id="comedy" class="row_posters  ">
+            <div onclick="handleScroll( 'comedy','left')" class="left">
+                <p style="margin-top: 30px;">&#8249;</p>
+            </div>
+            <div onclick="handleScroll( 'comedy','right')" class="right">
+                <p style="margin-top: 30px;">&#8250;
+
+                </p>
+            </div>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie1.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie3.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie5.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie7.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie8.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <h1 style="padding:10px;">Romance Movies</h1>
+        <div id="romance" class="row_posters  ">
+            <div onclick="handleScroll( 'romance','left')" class="left">
+                <p style="margin-top: 30px;">&#8249;</p>
+            </div>
+            <div onclick="handleScroll( 'romance','right')" class="right">
+                <p style="margin-top: 30px;">&#8250;
+
+                </p>
+            </div>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie7.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie7.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie1.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie8.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie3.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie5.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie1.jpg" alt="">
+            </a>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <h1 style="padding:10px;">Horror Movies</h1>
+        <div id="horror" class="row_posters  ">
+            <div onclick="handleScroll( 'horror','left')" class="left">
+                <p style="margin-top: 30px;">&#8249;</p>
+            </div>
+            <div onclick="handleScroll( 'horror','right')" class="right">
+                <p style="margin-top: 30px;">&#8250;
+
+                </p>
+            </div>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie1.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie3.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie5.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie7.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie8.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <h1 style="padding:10px;">Thriller Movies</h1>
+        <div id="thriller" class="row_posters  ">
+            <div onclick="handleScroll( 'thriller','left')" class="left">
+                <p style="margin-top: 30px;">&#8249;</p>
+            </div>
+            <div onclick="handleScroll( 'thriller','right')" class="right">
+                <p style="margin-top: 30px;">&#8250;
+
+                </p>
+            </div>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie8.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie7.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie1.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie3.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie1.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie6.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie2.jpg" alt="">
+            </a>
+            <a class="row_poster" target="_top" href="./play.html">
+
+                <img src="./images/netflix-images/small-movie4.jpg" alt="">
+            </a>
+
+            <script src="./netflix.js"></script>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

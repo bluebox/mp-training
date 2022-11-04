@@ -1,0 +1,23 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.icon {
+    margin: 10px;
+    transform: scale(1.5);
+    cursor: pointer;
+    color: #3F1651;
+}
+
+.nabButton {
+    margin: 10px;
+    color: #7710ab;
+}
+h1{
+    font-size: 30px;
+    margin-top: 8px;
+    margin-left: 10px;
+    color: #3F1651;
+    font-family: fantasy;
+    cursor: pointer;
+}

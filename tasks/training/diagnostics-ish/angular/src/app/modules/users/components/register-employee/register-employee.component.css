@@ -1,0 +1,9 @@
+.full-width {
+    width: 90%;
+}
+.form-container {
+    margin: 0 auto;
+    width: 60%;
+    margin-bottom: 20px;
+    padding-bottom: 10%;
+}

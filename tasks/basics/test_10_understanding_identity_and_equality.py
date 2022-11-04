@@ -1,8 +1,9 @@
 __author__ = 'Hari'
 
-from tasks.placeholders import *
 
-notes = '''
+
+
+NOTES = '''
  Identity and equality are 2 concepts which most beginners are confused about.
  The 'is' operator is used to test identity and == is used to test equality.
 
@@ -13,80 +14,86 @@ notes = '''
 '''
 
 def test_identity_equality_lists():
-    a = []
-    b = []
-    assert __ == (a is b)
-    assert __ == (a == b)
+    '''identity and equality test'''
+    _a = []
+    _b = []
+    assert False is (_a is _b)
+    assert True is (_a == _b)
 
-    a.append("one")
-    assert __ == (a is b)
-    assert __ == (a == b)
+    _a.append("one")
+    assert False is (_a is _b)
+    assert False is (_a == _b)
 
-    c = []
-    d = c
-    assert __ == (c is d)
-    assert __ == (c == d)
+    _c = []
+    _d = _c
+    assert True is (_c is _d)
+    assert True is (_c == _d)
 
-    c.append("one")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    _c.append("one")
+    assert True is (_c is _d)
+    assert True is (_c == _d)
 
 def test_identity_equality_string():
-    a = b = "hello"
+    '''string equality and identity testting'''
+    _a = _b = "hello"
 
-    assert __ == (a is b)
-    assert __ == (a == b)
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    c = "hello"
-    d = "".join(["hel", "lo"])
-    assert __ == (c is d)
-    assert __ == (c == d)
+    _c = "hello"
+    _d = "".join(["hel", "lo"])
+    assert False is (_c is _d)
+    assert True is (_c == _d)
 
 def test_identity_equality_numbers():
-    a = b = 10000
-    assert __ == (a is b)
-    assert __ == (a == b)
+    '''numbers equality and identity testting'''
+    _a = _b = 10000
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    c = 10000
-    d = int("10000")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    _c = 10000
+    _d = int("10000")
+    assert False is (_c is _d)
+    assert True is (_c == _d)
 
 def test_identity_equality_small_numbers():
     """
     why do small numbers behave differently? google and find out!
     """
-    a = b = 10
-    assert __ == (a is b)
-    assert __ == ( a == b)
+    _a = _b = 10
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    c = 10
-    d = int("10")
-    assert __ == (c is d)
-    assert __ == (c == d)
+    _c = 10
+    _d = int("10")
+    assert True is (_c is _d)
+    assert True is (_c == _d)
 
-def test_identity_equality_None():
-    a = b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+def test_identity_equality_none():
+    '''None equality and identity testting'''
+    _a = _b = None
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
-    a = None
-    b = None
-    assert __ == (a is b)
-    assert __ == (a == b)
+    _a = None
+    _b = None
+    assert True is (_a is _b)
+    assert True is (_a == _b)
 
 
-notes_on_none = '''
+NOTES_ON_NONE = '''
 None is a builtin constant as you can see above. This allows you to write more
 readable code like if x is None: instead of if x == None:
 '''
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+- "is" is used for identity check , == is used for equality check
+- identity is when 2 objects are same objects that is have same address
+- equality is when 2 objects have same value
+- all identical objects are equal but all equal objects are not identical
+- identity works differently for mutable and immutable objects
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 25
 
 

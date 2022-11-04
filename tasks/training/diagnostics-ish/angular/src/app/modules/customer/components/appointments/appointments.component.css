@@ -1,0 +1,11 @@
+.detail-container{
+    margin-top: 20px;
+    background-color: rgb(254, 253, 253);
+}
+.detail{
+    padding: 20px;
+}
+.details{
+    display: flex;
+    padding: 10px;
+}

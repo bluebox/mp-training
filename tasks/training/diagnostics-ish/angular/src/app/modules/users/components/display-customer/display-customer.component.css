@@ -1,0 +1,49 @@
+ .example-large-box {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  height: auto;
+  width: 80%;
+  background-color: #eee5f390;
+
+}
+
+.detail-div{
+  display: flex;
+  padding: 10px;
+  /* justify-content: ; */
+}
+/* .title , .value{
+  width: 50%;
+  text-align: left;
+} */
+.value{
+  font-size: 18px;
+  width: 60%;
+}
+.title {
+  font-size: 20px;
+  color: rgb(82, 11, 116);
+  font-weight: bold;
+  margin-left: 5%;
+  width: 40%;
+}
+.buttons{
+  margin-left: 5%;
+}
+button{
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+}
+.update{
+background-color: rgb(21, 103, 76);
+  color: whitesmoke;
+}
+.delete{
+  background-color: rgb(168, 13, 13);
+  color: whitesmoke;
+}

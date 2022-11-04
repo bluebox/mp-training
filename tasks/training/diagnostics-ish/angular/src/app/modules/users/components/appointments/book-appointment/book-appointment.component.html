@@ -1,0 +1,262 @@
+
+<form [formGroup]="bookAppointmentForm" class="form-container">
+  <mat-card style="background-color: #eee5f390" class="card-container">
+    <mat-card-header>
+      <mat-card-title *ngIf="!id" style="color: #7710ab"
+        >Book Appointment</mat-card-title
+      >
+      <mat-card-title *ngIf="id" style="color: #7710ab"
+        >Edit Appointment</mat-card-title
+      >
+      <mat-card-title *ngIf="formNotValid"
+        >please Fill All required details</mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <!-- User Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Customer</mat-label>
+          <mat-select formControlName="user" required>
+            <mat-option> --- </mat-option>
+            <mat-option *ngFor="let user of users" [value]="user.customer_id">
+              {{ user.user_id__username }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('user')?.touched &&
+              bookAppointmentForm.get('user')?.invalid
+            "
+            >please select branch</small
+          >
+        </mat-form-field>
+      </div>
+      <!-- user error message -->
+      <!-- <div class="col-md-6 " *ngIf="isEmployee">
+        <mat-form-field  class="full-width">
+          <outlinet formControlName="user" matInput placeholder="Customer" />
+        </mat-form-field>
+        <small
+          class="text-danger"
+          *ngIf="
+            bookAppointmentForm.get('username')?.invalid &&
+            bookAppointmentForm.get('username')?.touched
+          "
+          >enter valid mail address</small
+        >
+      </div> -->
+
+      <!-- Status Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let stat of status_arr" [value]="stat">
+              {{ stat }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('status')?.touched &&
+              bookAppointmentForm.get('status')?.invalid
+            "
+            >please select status</small
+          >
+        </mat-form-field>
+      </div>
+      <!-- Status error message -->
+
+      <!-- Sample Collector Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Sample Collector</mat-label>
+          <mat-select formControlName="sample_collector" required>
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let sample_collector of sample_collectors"
+              [value]="sample_collector.staff_id"
+            >
+              {{ sample_collector.user_id__username }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="bookAppointmentForm.hasError('required')"
+            >Please choose a sample collector</mat-error
+          >
+          <mat-hint>{{ bookAppointmentForm.value?.sound }}</mat-hint>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('sample_collector')?.touched &&
+              bookAppointmentForm.get('sample_collector')?.invalid
+            "
+            >please select sample collecor</small
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- Lab Technician Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Lab Technician</mat-label>
+          <mat-select formControlName="lab_technician" required>
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let lab_technician of lab_technicians"
+              [value]="lab_technician.staff_id"
+            >
+              {{ lab_technician.user_id__username }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('lab_technician')?.touched &&
+              bookAppointmentForm.get('lab_technician')?.invalid
+            "
+            >please select lab technician</small
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- Nurse Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nurse</mat-label>
+          <mat-select formControlName="nurse_id" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let nurse of nurses" [value]="nurse.staff_id">
+              {{ nurse.user_id__username }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('nurse_id')?.touched &&
+              bookAppointmentForm.get('nurse_id')?.invalid
+            "
+            >please select Nurse</small
+          >
+        </mat-form-field>
+      </div>
+      <!-- Nurse error message -->
+
+      <!-- Slot Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Slot</mat-label>
+          <mat-select formControlName="slot" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let slot of slots" [value]="slot">
+              {{ slot }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('slot')?.touched &&
+              bookAppointmentForm.get('slot')?.invalid
+            "
+            >please select slot</small
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Select date</mat-label>
+          <input formControlName="date"  matInput [matDatepicker]="picker" [min]="todayDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <!-- Slot error message -->
+
+      <!-- Doctor Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Doctor</mat-label>
+          <mat-select formControlName="doctor_id" required>
+            <mat-option>--</mat-option>
+            <mat-option
+              *ngFor="let doctor of doctors"
+              [value]="doctor.staff_id"
+            >
+              {{ doctor.user_id__username }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('doctor_id')?.touched &&
+              bookAppointmentForm.get('doctor_id')?.invalid
+            "
+            >please select Doctor</small
+          >
+        </mat-form-field>
+      </div>
+      <!-- Doctor error message -->
+
+      <!-- Branch Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Branch</mat-label>
+          <mat-select formControlName="branch" required>
+            <mat-option> --- </mat-option>
+            <mat-option
+              *ngFor="let branch of branches"
+              [value]="branch.branch_id"
+            >
+              {{ branch.branch_name }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('branch')?.touched &&
+              bookAppointmentForm.get('branch')?.invalid
+            "
+            >please select branch</small
+          >
+        </mat-form-field>
+      </div>
+      <!-- Branch error message -->
+
+      <!-- Test Selection -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Tests</mat-label>
+          <!-- <mat-option disabled > --- </mat-option> -->
+          <mat-select formControlName="tests" multiple>
+            <mat-option *ngFor="let test of tests" [value]="test.test_id">{{
+              test.test_name
+            }}</mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('tests')?.touched &&
+              bookAppointmentForm.get('tests')?.invalid
+            "
+            >Please select atleast one Test</small
+          >
+        </mat-form-field>
+      </div>
+      <!-- Branch error message -->
+    </mat-card-content>
+    <mat-card-actions style="margin-left: 20px">
+      <button
+        *ngIf="!id"
+        (click)="bookAppointment()"
+        mat-raised-button=""
+        color="primary"
+      >
+        Book Appointment
+      </button>
+      <button
+        *ngIf="id"
+        (click)="bookAppointment()"
+        mat-raised-button=""
+        color="primary"
+      >
+        Update
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

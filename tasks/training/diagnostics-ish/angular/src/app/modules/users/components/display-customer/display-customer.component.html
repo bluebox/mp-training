@@ -1,0 +1,90 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Personal Details">
+    <div class="example-large-box mat-elevation-z4">
+      <div class="detail-div">
+        <div class="title">
+          <p>Customer ID</p>
+        </div>
+        <div class="value">
+          <p>{{ customerDetails["customer_id"] || "Not Available" }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>User Id</p>
+        </div>
+        <div class="value">
+          <p>{{ customerDetails["user_id"] }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>Username</p>
+        </div>
+        <div class="value">
+          <p>{{ UserDetails["username"] }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>First Name</p>
+        </div>
+        <div class="value">
+          <p>{{ UserDetails["first_name"] }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>Last Name</p>
+        </div>
+        <div class="value">
+          <p>{{ UserDetails["last_name"] }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>Mail ID</p>
+        </div>
+        <div class="value">
+          <p>{{ UserDetails["email"] }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>Mobile No.</p>
+        </div>
+        <div class="value">
+          <p>{{ UserDetails["mobile_number"] }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>Age</p>
+        </div>
+        <div class="value">
+          <p>{{ UserDetails["age"] }}</p>
+        </div>
+      </div>
+      <div class="detail-div">
+        <div class="title">
+          <p>Address</p>
+        </div>
+        <div class="value">
+          <p>{{ UserDetails["address"] }}</p>
+          <p>{{ UserDetails["pincode"] }}</p>
+        </div>
+      </div>
+      <div class="buttons">
+        <button (click)="updateCustomer(customerDetails['customer_id'])"
+          mat-button
+          mat-raised-button="" class="update">Update</button>
+        <button (click)="openDialog(customerDetails['customer_id'])" 
+          mat-button
+          mat-raised-button="" class="delete">Delete</button>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Appointments">
+    <div class="example-large-box mat-elevation-z4">Large content</div>
+  </mat-tab>
+</mat-tab-group>

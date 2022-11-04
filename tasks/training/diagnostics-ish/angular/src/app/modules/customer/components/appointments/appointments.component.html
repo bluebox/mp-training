@@ -1,0 +1,31 @@
+<div class="card" *ngFor="let appointment of appointments">
+  <mat-card class="detail-container">
+    <div class="details">
+      <h2>Appointment ID: </h2>
+      <h2>{{ appointment.appointment_id }}</h2>
+    </div>
+    <div class="details">
+      <h2>Status :</h2>
+      <h2>{{ appointment.status }}</h2>
+    </div>
+    <div class="details">
+      <h2>date :</h2>
+      <h2>{{
+        appointment.date | date: "dd/mm/yyyy"
+      }}</h2>
+    </div>
+    <div class="details">
+      <h2>doctor : </h2>
+      <h2>{{ appointment.doctor || "Not assigned" }}</h2>
+    </div>
+    <div class="details">
+      <h2>lab_technician : </h2>
+      <h2>{{ appointment.lab_technician || "Not assigned" }}</h2>
+    </div>
+    <div class="details">
+      <h2>sample_collector : </h2>
+      <h2>{{ appointment.sample_collector || "Not assigned" }}</h2>
+    </div>
+  </mat-card>
+  <hr />
+</div>

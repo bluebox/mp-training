@@ -1,0 +1,184 @@
+1. What is HTML?
+   HTML (HyperText Markup Language) is the code that is used to structure a web page and its content.
+
+2. What are tags?
+HTML tags are like keywords which defines that how web browser will format and display the content.
+tags must enclosed within < > these brackets.
+If open tag <tag> is used , then must use a close tag </tag>
+Eg : <p> Paragraph Tag </p>
+<h2> Heading Tag </h2>
+
+3. Do all HTML tags come in a pair?
+   NO, there are unpaired tags
+   eg : <img> , <hr>
+
+4. What are some of the common lists that can be used when designing a page?
+   1.Unordered lists.
+   2.Ordered lists.
+   3.Descriptive lists.
+
+5. How do you insert a comment in HTML?
+<!--   -->
+
+6. Do all character entities display properly on all systems?
+   No , some OS may not support few characters , it will be displayed as box.
+
+7. What is an image map?
+   The HTML <map> tag defines an image map. An image map is an image with clickable areas. The areas are defined with one or more <area> tags.
+
+8 ) What is the advantage of collapsing white space?
+Collapsing white spaces decreases the transmission time between the server and the client because collapsing features remove unnecessary bytes that are occupied by the white spaces.
+
+9. Can attribute values be set to anything or are there specific values that they accept?
+   Some attribute values can be set to only predefined values. Other attributes can accept any numerical value that represents the number of pixels for a size.
+
+10. How do you insert a copyright symbol on a browser page?
+    &copy; , & #169; entities can be used to insert copyright symbol.
+11. How do you create links to sections within the same page?
+    Can use id or class name of sections in href attrobute of anchor tag
+
+12. Is there any way to keep list elements straight in an HTML file?
+    Few css properties can be used to keep list elements straight
+    properties are:
+
+1.text-indent property
+2.margin-left & padding-left property
+3.display property
+4.list-style-type property
+
+13. If you see a web address on a magazine, to which web page does it point?
+    The published web address that appears within magazines typically points this top-most page or Home page.
+
+14. What is the use of alternative text in image mapping?
+    The ALT text adds a text description to an image on a Web page
+15. Do older HTML files work on newer browsers?
+    Yes, older HTML files are compliant to the HTML standard.
+16. Does a hyperlink apply to text only?
+    NO, it can be applied with other elements too like image
+
+17. If the user’s operating system does not support the needed character, how can the symbol be represented?
+    In cases wherein their operating system does not support a particular character, it is still possible to display that character by showing it as an image instead
+
+18. How do you change the number type in the middle of a list?
+    the type attribute can be used to change the numbering type for any list item.
+
+19. What are style sheets?
+    Style sheets are files linked to html file to style the elements in html page
+
+20. State bullet types available in HTML
+    With ordered lists, you can select to use some different list types including alphabetical and Roman numerals. The type attribute for unordered lists can be set to disc, square, or circle.
+
+21. How do you create multicolored text in a webpage?
+    use the <font color=”color”>…</font> tags for every character that you want to apply color
+
+22. Why are there both numerical and named character entity values?
+    The numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
+
+23. Write an HTML table tag sequence that outputs the following:
+    50 pcs 100 500
+    10 pcs 5 50
+
+<table>
+<tr>
+<td>50 pcs</td>
+<td>100</td>
+<td>500</td>
+</tr>
+<tr>
+<td>10 pcs</td>
+<td>5</td>
+<td>50</td>
+</tr>
+</table>
+
+24. What is the advantage of grouping several checkboxes together?
+    grouping checkboxes together help to organize them.
+
+25. What will happen if you overlap sets of tags?
+    If two sets of HTML tags are overlapped, only the first tag will be recognized
+
+26. What are applets?
+
+27. What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+    No it will be blank
+
+28. Is it possible to set specific colors for table borders?
+    Yes we can set .
+
+29. How do you create a link that will connect to another web page when clicked?
+    By giving web address of webpage in href attriute of anchor tag
+    eg: <a href="https://web.whatsapp.com/"></a>
+
+30. What other ways can be used to align images and wrap text?
+    Tables can be used to position text and images. Another useful way to wrap text around an image is to use style sheets.
+
+31> Display &nbsp inside <p> paragraph tag.
+
+<p>Hello!,  &amp;nbsp welcome to medplus  </p>
+
+32> Insert a line between two different elements.
+For example:
+<h1> Before line </h1>
+(I need a line here)
+<p>this para should come after line</p>
+
+<h1> Before line </h1>
+        <hr>
+        <p>this para should come after line</p>
+        
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+<pre>
+“ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+</pre>
+
+34> Specify an alternate text for the image, the alternate text should say
+“image not found” if the image don’t get load for any reason
+<img src=”smiley.gif” alt = “image not found” >
+
+35> Make this format in html! (You can use any text but format and font
+size should be similar)
+
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+
+<h1 style="text-align: center;" > lorem Ipsum</h1> 
+<b> <i> "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."</i> </b>
+
+<small>
+"There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+</small>
+
+Lorem Ipsum, sometimes referred to as ‘lipsum’, is the placeholder text used in design when creating content. It helps designers plan out where the content will sit, without needing to wait for the content to be written and approved.
+
+36> Print the following pattern in html using <h1> and <p> separately.
+(note there are spaces before stars)
+
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
+
+    <p>&ensp;&ensp; *</p>
+        <p>&ensp;&ensp;* *</p>
+        <p>&ensp; * * *</p>
+        <p>&emsp13;* * * *</p>
+        <p>* * * * *</p>

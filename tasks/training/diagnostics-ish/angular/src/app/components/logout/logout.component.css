@@ -1,0 +1,26 @@
+.logout-card{
+    width: 40%;
+    margin: 5% auto;
+    background-color: #eee5f352;
+    height: 50%;
+}
+.title{
+    text-align: center;
+    padding: 30px;
+}
+.buttons-container{
+    margin-left: 20%;
+    margin-top: 10%;
+}
+button{
+    width: 150px;
+    height: 45px;
+    color: white;
+}
+.cancel{
+    background-color: rgb(67, 142, 67);
+}
+.logout{
+    background-color: rgb(152, 44, 44);
+    color: white;
+}

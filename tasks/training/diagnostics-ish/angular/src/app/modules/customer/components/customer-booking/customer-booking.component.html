@@ -1,0 +1,101 @@
+<form
+  style="margin-top: 5%"
+  [formGroup]="bookAppointmentForm"
+  class="form-container"
+>
+  <mat-card style="background-color: #eee5f390">
+    <mat-card-header>
+      <mat-card-title style="color: #7710ab">Book Appointment</mat-card-title>
+      <small style="color: red" *ngIf="errorMessage"
+        >please Fill All required details</small
+      >
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Select date</mat-label>
+          <input
+            formControlName="date"
+            matInput
+            [matDatepicker]="picker"
+             [min]="todayDate" 
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Slot</mat-label>
+          <mat-select formControlName="slot" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let slot of slots" [value]="slot">
+              {{ slot }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('slot')?.touched &&
+              bookAppointmentForm.get('slot')?.invalid
+            "
+            >please select Slot</small
+          >
+        </mat-form-field>
+      </div>
+      <!-- select end  -->
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Branch</mat-label>
+          <mat-select formControlName="branch" required>
+            <mat-option> </mat-option>
+            <mat-option
+              *ngFor="let branch of branches"
+              [value]="branch['branch_id']"
+            >
+              {{ branch["branch_name"] }}
+            </mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('branch')?.touched &&
+              bookAppointmentForm.get('branch')?.invalid
+            "
+            >please select branch</small
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Tests</mat-label>
+          <!-- <mat-option disabled > --- </mat-option> -->
+          <mat-select formControlName="tests" multiple>
+            <mat-option *ngFor="let test of tests" [value]="test.test_id">{{
+              test.test_name
+            }}</mat-option>
+          </mat-select>
+          <small
+            *ngIf="
+              bookAppointmentForm.get('tests')?.touched &&
+              bookAppointmentForm.get('tests')?.invalid
+            "
+            >Please select atleast one Test</small
+          >
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        style="color: #3f1651; background-color: #c3a1d5"
+        (click)="bookAppointment()"
+        mat-raised-button=""
+        color="primary"
+      >
+        Book
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

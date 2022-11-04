@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% comment %}
+<h1>using comment here</h1>
+{% endcomment %}
+<a href="{% url 'home' %}">Home Page</a>
+
+<h1>Team Mentor : {{mentor}}</h1>
+<h1>All Team mates : </h1>
+
+<!-- for loop tag -->
+{% for member in team %}
+<h2>{{member.name|title}} from {{member.state|upper}} </h2>
+{% endfor %}
+<hr>
+<!-- if condition -->
+<h1>listing female team members:</h1>
+{% for member in team %}
+{% if member.gender|title == "Female"%}
+<h2>{{member.name}}</h2>
+{% endif %}
+{% endfor %}
+
+<!-- word count -->
+<h1>{{sentence}} has {{sentence|wordcount}} words</h1>
+<!-- slugify filter -->
+<h1>slugify : {{sentence|slugify}}</h1>
+<!-- length -->
+<h1>{{sentence}} has {{sentence|length}} letters</h1>
+<!-- title  -->
+<h1>title on sentence: {{sentence|title}}</h1>
+{% endblock content %}

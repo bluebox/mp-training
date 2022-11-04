@@ -1,0 +1,33 @@
+mat-grid-tile {
+    background: rgb(232, 221, 238);
+  } 
+
+.title-container{
+    height: 8vh;
+    text-align: center;
+    padding-top: 30px;
+}
+.title{
+    font-size: 2.5em;
+    color: rgba(57, 27, 84, 0.863);
+}
+.grid{
+    width: 70%;
+    margin-left: 15% ;
+    margin-top: 5%;
+    border-radius: 15px;
+
+}
+.grid-item{
+    border-radius: 10px;
+}
+.grid :hover{
+    border-radius: 15px;
+    /* background: rgba(232, 221, 238, 0.64); */
+    transform: scale(1.03);
+    cursor: pointer;
+
+}
+.content{
+    text-align: center;
+}

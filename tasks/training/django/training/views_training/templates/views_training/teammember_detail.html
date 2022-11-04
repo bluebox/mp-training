@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href=" {% url 'list-team' %} "> Back to Team Members </a>
+    
+    <h4> {{object.first_name}} {{object.last_name}} </h4>
+    <h4>Employee code : {{object.employee_code}} </h4>
+{% endblock content %}

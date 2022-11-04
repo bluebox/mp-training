@@ -1,0 +1,12 @@
+
+ create table user(user_id varchar(10) primary key , first_name varchar(50) , last_name varchar(50) , phone varchar(10) , location varchar(100));
+ 
+ create table category(category_id varchar(10) , category_name varchar(50));
+ 
+ create table discout(disc_id varchar(10) , offer_name varchar(50) , percent int);
+ 
+ create table product (prod_id varchar(10) primary key , prod_name varchar(100), dicount_id references discount(disc_id) , availability bool , category_id references category(category_id));
+                      
+create table order_details( order_id varchar(10) , product_id references product(prod_id), user_id references user(user_id),orderplaces date , playment_status varchar(10));
+
+create table shipping_details(id varchar(10) primary key , status varchar , order_id references order_details(order_id));
