@@ -17,16 +17,23 @@ from fpapp.models import  Course, Question, Score, User,Student, Teacher
 from fpapp.serializer import  QuestionSerializer, QuestionSerializer1,\
     QuestionSerializer2, ScoreSerializer, UserSerializer, StudentSerializer,\
     TeacherSerializer, CourseSerializer
-from fpapp.managers import CourseRegister
+from fpapp.managers import CourseRegister, StudentRegister
 
 class RegisterStudent(APIView):
     """this is student register class"""
     def get(self,request):
         """this is get method"""
-        print(request.data)
-        sub=Student.objects.all()
-        serializer=StudentSerializer(sub, many=True)
-        return Response(serializer.data)
+        # print(request.data)
+        # sub=Student.objects.all()
+        # serializer=StudentSerializer(sub, many=True)
+        # return Response(serializer.data)
+        try:
+            res = StudentRegister.get_student(request)
+            return Response(res, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
+
+
     def post(self,request):
         """this is docstring"""
         print(request.data)
@@ -144,39 +151,46 @@ class RegisterCourse(APIView):
             res = CourseRegister.post_course(request)
             return Response(res, status=200)
         except Exception as e:
-            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+            return Response(str(e), status=500)
 
 
 class AddCourse(APIView):
     """this is docstring"""
     def post(self,request):
         """this is docstring"""
-        print(request.data)
-        data=request.data.get('form')
-        username=request.data.get('username')
-        course_name=request.data['form'].get('course_name')
-        course=Course.objects.filter(course_name=course_name)
-        print(data)
-        print(course_name)
-        if course:
-            return Response({"message":"course already exists"})
-        user=User.objects.get(username=username)
-        print(user)
-        data['teacher_id']=user.id
-        regi=CourseSerializer(data=data)
-        print(regi)
-        if regi.is_valid():
-            regi.save()
-            return Response({"message": "successful"}, status=200)
-        return Response({"message": "Course not added"}, status=500)
+        # print(request.data)
+        # data=request.data.get('form')
+        # username=request.data.get('username')
+        # course_name=request.data['form'].get('course_name')
+        # course=Course.objects.filter(course_name=course_name)
+        # print(data)
+        # print(course_name)
+        # if course:
+        #     return Response({"message":"course already exists"})
+        # user=User.objects.get(username=username)
+        # print(user)
+        # data['teacher_id']=user.id
+        # regi=CourseSerializer(data=data)
+        # print(regi)
+        # if regi.is_valid():
+        #     regi.save()
+        #     return Response({"message": "successful"}, status=200)
+        # return Response({"message": "Course not added"}, status=500)
+        
+        try:
+            res = CourseRegister.add_course(request)
+            return Response(res, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
-@api_view(["GET"])
-def course_list(request):
-    """this is docstring"""
-    print(request.data)
-    courses = Course.objects.all()
-    serializer = CourseSerializer(courses, many=True)
-    return Response(serializer.data)
+
+# @api_view(["GET"])
+# def course_list(request):
+#     """this is docstring"""
+#     print(request.data)
+#     courses = Course.objects.all()
+#     serializer = CourseSerializer(courses, many=True)
+#     return Response(serializer.data)
 
 
 class RegisterQuestion(APIView):
