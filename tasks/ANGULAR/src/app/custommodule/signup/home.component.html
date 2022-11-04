@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-lg-12 text-center" style="padding-top: 20px">
+        <div class="container box" style="margin-top: 10px; padding-left: 0px; padding-right: 0px">
+          <div class="row">
+            <div class="col-12" style="text-align: center">
+              <form [formGroup]="signform" (ngSubmit)="onsubmit()" class="form-signin">
+                <h2 class="form-signin-heading">Please sign up</h2>
+              <span>userid</span>
+                <input type="text"  name="myName" id="userid" class="form-control" formControlName="userid" placeholder="Userid"
+                  required autofocus />
+                  <span  style="color:red;"    *ngIf="user && user.invalid && user.touched">Input is invalid</span><br>
+                  <span>Email</span>
+                <input type="text" id="email" class="form-control" formControlName="email" placeholder="Email"
+                  required />
+                  <span  style="color:red;"  *ngIf="mail && mail.invalid && mail.touched">Input is invalid</span><br>
+                  <span>mobile</span>
+                <input type="text" id="mobile" class="form-control" formControlName="mobile" placeholder="mobile"
+                  required autofocus />
+                  <span>city</span>
+                <input type="text" id="city" class="form-control" formControlName="city" placeholder="city" required />
+                <span>username</span>
+                <input type="text" id="username" class="form-control" formControlName="username" placeholder="Username"
+                  required autofocus />
+                  <span>password</span>
+                <input type="password" id="password" class="form-control" formControlName="password"
+                  placeholder="Password" required /><br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                  Sign up
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-link" routerLink="/login">already registered? please sign in</button>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

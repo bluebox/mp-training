@@ -1,0 +1,33 @@
+.container
+{
+  width: 60%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 70px 70px;
+  gap: 10px;
+  /* background-color: #2196F3; */
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 30px;
+}
+.grid-container1
+{
+  gap:400px;
+  display: flex;
+
+}
+
+.container
+{
+ align-items: center;
+ width: 50%;
+ top:100px;
+
+}

@@ -1,0 +1,33 @@
+ <div class="container">
+  <span>staffid</span>
+   <input type="text" class="form-control"
+   [(ngModel)] = "staff_id" placeholder="Enter id" style="width: 40%;">
+
+  <span>Designaton</span>
+<input type="text" class="form-control"
+[(ngModel)] ="staff_designation" placeholder="Enter designation"style="width: 40%;">
+
+  <span>Name</span>
+ <input type="text" class="form-control"
+ [(ngModel)] = "staff_name" placeholder="Enter name"style="width: 40%;">
+
+  <span>phone</span>
+  <input type="text" class="form-control"
+  [(ngModel)] = "staff_phone" placeholder="Enter phone"style="width: 40%;">
+
+   <span>Airport id</span>
+<input type="text" class="form-control"
+[(ngModel)] ="airport_id" placeholder="Enter airport id"style="width: 40%;">
+
+   <span>airlines_name</span>
+<input type="text" class="form-control"
+[(ngModel)] = "airlines_name" placeholder="Enter arlines name"style="width: 40%;"><br>
+
+<button (click)="adddemo()" *ngIf= "staf.staff_id ==0"
+class="btn btn primary">add</button>
+<button (click)="updatedemo()" *ngIf= "staf.staff_id!=0"
+class="btn btn primary">update</button>
+</div>
+
+
+<router-outlet></router-outlet>

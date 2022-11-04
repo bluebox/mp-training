@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>STAFF SHIFTS DETAILS</h2>
+  <div class="jumbotron">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">shift_from</th>
+      <th scope="col">shift_to</th>
+       <th scope="col">staff_id</th>
+       <th scope="col">flight_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let item of staff_shifts_list">
+      <td>{{item.shift_from}}</td>
+      <td>{{item.shift_to}}</td>
+       <td>{{item.staff_id}}</td>
+       <td>{{item.flight_id}}</td>
+       <!-- <td>
+      <div class="but">
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target="#exampleModal"
+   (click)="editclick(item)"
+  data-backdrop ="static" data-keybaord ="false" ><span>EDIT</span></button>
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target="#exampleModal"
+   (click)="deleteclick(item)">DELETE</button>
+    </div>
+  </td> -->
+    </tr>
+
+  </tbody>
+</table>
+</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>my bookings</h2>
+  <div class="jumbotron" style="background-color:rgb(245, 249, 250) ;">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Booking From</th>
+      <th scope="col">Booking To</th>
+      <th scope="col">Travel Date</th>
+      <th scope="col">Flight id</th>
+      <th scope="col">passenger id</th>
+      <th scope="col">seat no</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let item of mylist">
+      <td>{{item.ticket_id}}</td>
+      <td>{{item.booking_from}}</td>
+      <td>{{item.booking_to}}</td>
+      <td>{{item.travel_date}}</td>
+      <td>{{item.flight_id}}</td>
+      <td>{{item.passenger_id}}</td>
+      <td>{{item.seat_no}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

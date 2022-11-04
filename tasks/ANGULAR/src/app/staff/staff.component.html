@@ -1,0 +1,81 @@
+<!-- <div class="container">
+  <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
+(click)="addclick()"
+data-backdrop ="static" data-keybaord ="false"> add staff
+</button>
+</div>
+ -->
+
+<!-- Large modal -->
+<div class="container" style="align-items:center">
+  <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
+  (click)="addclick()"
+  data-backdrop ="static" data-keybaord ="false"> add staff
+</button><br><br>
+<button class="btn btn-lg btn-primary btn-block" style="width:30%" type="submit" (click)="onsubmit()" >
+  Show STAFF SHIFTS
+</button><br>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ modaltitle }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          (click)="closeclick()" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-show-staff [staf]="staf"  *ngIf= "Activeaddcom"></app-show-staff>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2>STAFF DETAILS</h2>
+  <div class="jumbotron">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">designation</th>
+       <th scope="col">name</th>
+       <th scope="col">phone</th>
+      <th scope="col">airport_id</th>
+       <th scope="col">airlines_name</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let item of staffList">
+      <td>{{item.staff_id}}</td>
+      <td>{{item.staff_designation}}</td>
+       <td>{{item.staff_name}}</td>
+       <td>{{item.staff_phone}}</td>
+       <td>{{item.airport_id}}</td>
+        <td>{{item.airlines_name}}</td>
+       <td>
+      <div class="but">
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target="#exampleModal"
+   (click)="editclick(item)"
+  data-backdrop ="static" data-keybaord ="false" ><span>EDIT</span></button>
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target="#exampleModal"
+        (click)="deleteclick(item)">DELETE</button>
+    </div>
+  </td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+</div>
+
+ <router-outlet></router-outlet>
+

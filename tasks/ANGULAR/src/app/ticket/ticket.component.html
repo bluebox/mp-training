@@ -1,0 +1,115 @@
+<div class="container" *ngIf= "status == true">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-lg-12 text-center" style="padding-top: 20px">
+        <div class="container box" style="margin-top: 10px; padding-left: 0px; padding-right: 0px">
+          <div class="row">
+            <div class="col-12" style="text-align: center">
+              <form [formGroup]="ticketform" (ngSubmit)="changestatus()" class="form-signin">
+                <h2 class="form-signin-heading">Please Enter details</h2>
+                <!-- <label for="userid" class="sr-only">Email address</label>
+                <input type="text" id="userid" class="form-control" formControlName="ticket_id" placeholder="ticket_id"
+                required autofocus /><br>
+                <input type="text" id="flightid" class="form-control" formControlName="flight_id" placeholder="flight_id"
+                  required autofocus /><br> -->
+                <label for="email" class="sr-only">Password</label>
+                <input type="text" id="email" class="form-control" formControlName="booking_from" placeholder="booking_from"
+                  required /><br>
+                <label for="mobile" class="sr-only">Email address</label>
+                <input type="text" id="mobile" class="form-control" formControlName="booking_to" placeholder="booking_to"
+                  required autofocus /><br>
+                <label for="city" class="sr-only">Password</label>
+                <input type="text" id="city" class="form-control" formControlName="travel_date" placeholder="travel_date" required /><br>
+                <label for="username" class="sr-only">Email address</label>
+
+                <!-- <input type="text" id="password" class="form-control" formControlName="passenger_id"
+                  placeholder="passenger_id" required /><br> -->
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                   selectseats
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-flight [tik]="tik" *ngIf="false"></app-flight> -->
+
+<div class="jumbotron">
+
+  <div class="container" *ngIf= "status==false">
+  <div class="grid-container1">
+  <div class="grid-container">
+  <div class="btn" id="L1" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L1')">L1</div>
+  <div class="btn" id="L2" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L2')">L2</div>
+  <div class="btn" id="L3" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L3')">L3</div>
+  <div class="btn" id="L4" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L4')">L4</div>
+  <div class="btn" id="L5" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L5')">L5</div>
+  <div class="btn" id="L6" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L6')">L6</div>
+  <div class="btn" id="L7" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L7')">L7</div>
+  <div class="btn" id="L8" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L8')">L8</div>
+  <div class="btn" id="L9" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L9')">L9</div>
+  <div class="btn" id="L10" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L10')">L10</div>
+  <div class="btn" id="L11" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L11')">L11</div>
+  <div class="btn" id="L12" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L12')">L12</div>
+  <div class="btn" id="L13" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L13')">L13</div>
+  <div class="btn" id="L14" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L14')">L14</div>
+  <!-- <div class="btn" id="L15" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L15')">L15</div>
+  <div class="btn" id="L16" [ngStyle] ="{'background-color':'blue'}" (click)="onclick('L16')">L16</div> -->
+  </div>
+  <div class="grid-container">
+    <div class="btn" id="R1" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R1')">R1</div>
+    <div class="btn" id="R2" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R2')">R2</div>
+    <div class="btn" id="R3" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R3')">R3</div>
+    <div class="btn" id="R4" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R4')">R4</div>
+    <div class="btn" id="R5" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R5')">R5</div>
+    <div class="btn" id="R6" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R6')">R6</div>
+    <div class="btn" id="R7" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R7')">R7</div>
+    <div class="btn" id="R8" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R8')">R8</div>
+    <div class="btn" id="R9" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R9')">R9</div>
+    <div class="btn" id="R10" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R10')">R10</div>
+    <div class="btn" id="R11" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R11')">R11</div>
+    <div class="btn" id="R12" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R12')">R12</div>
+    <div class="btn" id="R13" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R13')">R13</div>
+    <div class="btn" id="R14" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R14')">R14</div>
+    <!-- <div class="btn" id="R15" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R15')">R15</div>
+    <div class="btn" id="R16" [ngStyle] = "{'background-color':'blue'}"(click)="onclick('R16')">R16</div> -->
+
+   </div>
+  </div><br>
+  <button class="btn btn-lg btn-primary btn-block" style="width=30%" type="submit" (click)="onsubmit()" >
+    book now
+  </button><br>
+  <button class="btn btn-lg btn-primary btn-block" style="width=30%" type="submit" (click)="onsubmit_for()" >
+    ADD LUGGAGE
+  </button><br>
+  <span>Selected seat</span>
+  <h2 id="out">0</h2>
+
+  </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <router-outlet></router-outlet>

@@ -1,0 +1,71 @@
+
+<!-- <h1> hello</h1>
+<ul class = "demo" >
+  <li  *ngFor="let item of DemoList">
+  <span class="badge"> {{ item.airport_id }}</span> {{ item.airport_name }}
+</li>
+</ul> -->
+<div class="container" style="align-items:center">
+  <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
+  (click)="addclick()"
+  data-backdrop ="static" data-keybaord ="false"> add Airport
+</button>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ modaltitle }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          (click)="closeclick()" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-edit-demo [dem]="dem"  *ngIf= "Activeaddcom"></app-edit-demo>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <div class="container">
+  <h2>AIRPORT DETAILS</h2>
+  <div class="jumbotron" style="background-color:rgb(245, 249, 250) ;">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">OWNER</th>
+      <th scope="col">CITY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let item of DemoList">
+      <td>{{item.airport_id}}</td>
+      <td>{{item.airport_name}}</td>
+      <td>{{item.airport_owner}}</td>
+      <td>{{item.city}}</td>
+      <td>
+      <div class="but">
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target="#exampleModal"
+  (click)="editclick(item)"
+  data-backdrop ="static" data-keybaord ="false" >edit</button>
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal"
+        (click)="deleteclick(item)">delete</button>
+    </div>
+  </td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+</div>
+
+ <router-outlet></router-outlet>
+

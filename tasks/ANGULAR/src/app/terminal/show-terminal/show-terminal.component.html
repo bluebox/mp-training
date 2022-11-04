@@ -1,0 +1,27 @@
+<div class="container">
+  <span>Terminal id</span>
+  <div class="col-sm-5">
+   <input type="text" class="form-control"
+   [(ngModel)] ="terminal_id" placeholder="Enter id"><br>
+   </div>
+<div class="col-sm-5">
+  <span>Description</span>
+<input type="text" class="form-control"
+[(ngModel)] ="terminal_description" placeholder="Enter description"><br>
+</div>
+<div class="col-sm-5">
+  <span>Airport id</span>
+ <input type="text" class="form-control"
+ [(ngModel)] = "airport_id" placeholder="Enter id"><br>
+ </div>
+
+<div>
+<button (click)="adddemo()" *ngIf= "ter.terminal_id ==0"
+class="btn btn primary">add</button>
+<button (click)="updatedemo()" *ngIf= "ter.terminal_id !=0"
+class="btn btn primary">update</button>
+</div>
+
+</div>
+
+<router-outlet></router-outlet>

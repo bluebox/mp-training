@@ -1,0 +1,62 @@
+
+<div class="container" >
+  <div class="jumbotron"  style="background-color: rgb(204, 217, 219);">
+  <div class="row">
+     <div class="col-lg-12 text-center" style="padding-top: 20px;">
+        <div class="container box" style="margin-top: 10px; padding-left: 0px; padding-right: 0px;">
+           <div class="row">
+              <div class="col-12" style="text-align: center;">
+                                   <form [formGroup]="luggageForm" (ngSubmit)="onsubmit()"
+                                         class="form-signin">
+
+                                  <span>luggage type</span>
+                                   <input type="text" id="username" class="form-control"
+                                         formControlName="luggage_type" placeholder="luggage_type" required autofocus><br>
+                                         <span>luggage_weight</span>
+                                   <input type="text" id="inputpassword" class="form-control"
+                                         formControlName="password" placeholder="luggage_weight" required autocomplete="on"><br>
+
+                                   <button class="btn btn-lg btn-primary btn-block" type="submit">Book ticket</button>
+                                   </form>
+              </div>
+           </div>
+        </div>
+     </div>
+
+  </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="container">
+  <h2>LUGGAGE DETAILS</h2>
+  <div class="jumbotron">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">TYPE</th>
+      <th scope="col">WEIGHT</th>
+       <th scope="col">TICKETID</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let item of luggageList">
+      <td>{{item.luggage_type}}</td>
+      <td>{{item.luggage_weight}}</td>
+       <td>{{item.ticket_id}}</td>
+
+       <!-- <td>
+      <div class="but">
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target=".bd-example-modal-lg"
+   (click)="editclick(item)"
+  data-backdrop ="static" data-keybaord ="false" ><span>EDIT</span></button>
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target=".bd-example-modal-lg"
+        (click)="deleteclick(item)">DELETE</button>
+    </div>
+  </td> -->
+    <!-- </tr>  -->

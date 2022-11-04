@@ -1,0 +1,61 @@
+<!-- <div class="container" style="height:90%">
+<div class="wrapper">
+  <div class="block">
+
+     <form [formGroup]="login" class="formg">
+         <input type="text" placeholder="Jhon" class="inp" formControlName="name"/>
+         <input type="text" placeholder="password" class="inp" formControlName="email"/>
+         <div class="btns">
+         <button (click)="loginForm(login.value)" [disabled]="!login.valid">LOGIN</button>
+         <button (click)="goToRegister()">SIGN UP</button>
+         </div>
+     </form>
+
+  </div>
+</div>
+</div> -->
+
+<div class="container" >
+  <div class="jumbotron"  style="background-color: rgb(87, 166, 180);">
+  <div class="row">
+     <div class="col-lg-12 text-center" style="padding-top: 20px;">
+        <div class="container box" style="margin-top: 10px; padding-left: 0px; padding-right: 0px;">
+           <div class="row">
+              <div class="col-12" style="text-align: center;">
+                                   <form [formGroup]="profileForm" (ngSubmit)="onsubmit()"
+                                         class="form-signin">
+                                   <h2 class="form-signin-heading">Please sign in</h2>
+                                  <span>Email id</span>
+                                   <input type="text" id="username" class="form-control"
+                                         formControlName="email" placeholder="email" required autofocus><br>
+                                         <span  style="color:red;"    *ngIf="user && user.invalid && user.touched">Input is invalid</span><br>
+                                         <span>password</span>
+                                   <input type="password" id="inputpassword" class="form-control"
+                                         formControlName="password" placeholder="Password" required autocomplete="on">
+                                         <span  style="color:red;"    *ngIf="pass && pass.invalid && pass.touched">Input is invalid</span><br>
+                                         <input type="radio" id="html"  value="true" formControlName="is_admin">
+                                   <label for="html">is_admin</label>
+                                   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                                   </form>
+              </div>
+           </div>
+        </div>
+     </div>
+     <button type="button" class="btn btn-link" routerLink="/signup">not registered yet? please register</button>
+  </div>
+  </div>
+</div>
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">OWNER</th>
+      <th scope="col">CITY</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+
+  </tbody>
+</table> -->

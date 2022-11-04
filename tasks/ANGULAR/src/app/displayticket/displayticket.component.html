@@ -1,0 +1,46 @@
+<!-- <div style="align-items:center">
+<button type="button" class="btn btn-primary" (cick)= "isactive()">SHOW Ticket Details</button>
+</div> -->
+
+<div class="container" *ngIf = "status">
+  <h2>Ticket_DETAILS</h2>
+  <div class="jumbotron">
+<table class="table">
+  <thead>
+    <tr >
+      <th scope="row">TICKET-ID</th>
+      <td>{{tik.ticket_id}}</td>
+      </tr><br>
+      <tr>
+        <th scope="row">BOOKING-FROM</th>
+      <td>{{tik.booking_from}}</td>
+      </tr><br>
+
+      <tr><th scope="row">BOOKING-TO</th>
+        <td>{{tik.booking_to}}</td></tr><br>
+      <tr>
+        <th scope="row">TRAVEL-DATE</th>
+      <td>{{tik.travel_date}}</td>
+      </tr><br>
+
+      <tr>
+        <th scope="row">FLIGHT_ID</th>
+      <td>{{tik.flight_id}}</td>
+      </tr><br>
+      <tr>
+      <th scope="row">PASSENGER_ID</th>
+      <td>{{tik.passenger_id}}</td>
+    </tr><br>
+    <tr>
+      <th scope="row">SEAT NUMBER</th>
+      <td>{{tik.seat_no}}</td>
+    </tr><br>
+    <tr><button type="button" class="btn btn-primary" routerLink="/user">Done</button>
+    </tr>
+  </thead>
+</table>
+</div>
+ </div>
+
+
+<router-outlet></router-outlet>

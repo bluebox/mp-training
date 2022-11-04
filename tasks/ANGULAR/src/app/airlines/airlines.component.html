@@ -1,0 +1,38 @@
+
+
+<div class="container">
+
+<div class="container" *ngFor="let item of Airlineslist">
+
+<mat-card class="example-card">
+
+  <img mat-card-image src="http://127.0.0.1:8000{{item.airlines_img}}" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button type="button" class="btn btn-outline-primary" routerLink ="/flight">flight </button><br>
+  </mat-card-actions>
+</mat-card>
+
+</div>
+<button type="button" class="btn btn-primary" (click)="onsubmit()">update Image</button>
+</div>
+
+
+<!-- <form [formGroup]="controleForm" (submit)="upload()"> -->
+  <!-- <input   #fileInput    formControlName="image" type="file">
+  <input   formControlName="user" type="file">
+  <button   type="submit" > Send </button> -->
+ <!-- </form> -->
+<div class="jumbotron" *ngIf="isactive">
+<div class="container" style="display:flex;">
+<input type="file" (change)="updateFile($event)">
+<input type="text" placeholder="name" (change)="updateName($event)">
+<button (click)="upload()">submit</button>
+</div>
+</div>

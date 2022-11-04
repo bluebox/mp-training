@@ -1,0 +1,64 @@
+<div class="container">
+  <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
+(click)="addclick()"
+data-backdrop ="static" data-keybaord ="false"> add terminal
+</button>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">{{ modaltitle }}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+        (click)="closeclick()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-show-terminal [ter]= "ter"  *ngIf= "Activeaddcom"> </app-show-terminal>
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="container" style="color: rgb(116, 76, 119);">
+  <h2>TERMINAL DETAILS</h2>
+  <div class="jumbotron">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">description</th>
+       <th scope="col">airport_id</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let item of terminalList">
+      <td>{{item.terminal_id}}</td>
+      <td>{{item.terminal_description}}</td>
+       <td>{{item.airport_id}}</td>
+       <td>
+      <div class="but">
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target="#exampleModal"
+   (click)="editclick(item)"
+  data-backdrop ="static" data-keybaord ="false" ><span>EDIT</span></button>
+        <button type="button" class="btn btn-link"
+        data-toggle="modal" data-target="#exampleModal"
+   (click)="deleteclick(item)">DELETE</button>
+    </div>
+  </td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+</div>
+
+ <router-outlet></router-outlet>
