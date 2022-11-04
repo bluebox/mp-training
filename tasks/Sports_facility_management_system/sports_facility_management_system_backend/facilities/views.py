@@ -246,8 +246,6 @@ class SearchFilterWithPagination(APIView):
 
             return Response(str(e), status=500)
 
-        # return Response(Facilities.search_filter_pagination(request),status=200)
-
 
 class SearchFilterWithLoadMore(APIView):
 
@@ -260,6 +258,3 @@ class SearchFilterWithLoadMore(APIView):
             })
         except Exception as e:
             return Response(str(e), status=500)
-
-
-
