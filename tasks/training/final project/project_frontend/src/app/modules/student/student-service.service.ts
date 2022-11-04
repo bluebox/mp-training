@@ -18,7 +18,7 @@ export class StudentServiceService {
   // }
   getCourses():Observable<any>{
 
-    return this.http.get("http://127.0.0.1:8000/courselist")
+    return this.http.get("http://127.0.0.1:8000/courseregister")
   }
   sendCourse(data:any){
     return this.http.post("http://127.0.0.1:8000/startexam",data)

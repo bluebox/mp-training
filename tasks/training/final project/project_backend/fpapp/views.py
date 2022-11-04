@@ -17,7 +17,7 @@ from fpapp.models import  Course, Question, Score, User,Student, Teacher
 from fpapp.serializer import  QuestionSerializer, QuestionSerializer1,\
     QuestionSerializer2, ScoreSerializer, UserSerializer, StudentSerializer,\
     TeacherSerializer, CourseSerializer
-
+from fpapp.managers import CourseRegister
 
 class RegisterStudent(APIView):
     """this is student register class"""
@@ -120,21 +120,32 @@ class RegisterCourse(APIView):
     """this is docstring"""
     def get(self,request):
         """this is docstring"""
-        print(request.data)
-        sub =Course.objects.all()
-        serializer=CourseSerializer(sub,many= True)
-        return Response(serializer.data)
+        # print(request.data)
+        # sub =Course.objects.all()
+        # serializer=CourseSerializer(sub,many= True)
+        # return Response(serializer.data)
+        try:
+            res = CourseRegister.get_course(request)
+            return Response(res, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
     def post(self, request):
         """this is docstring"""
-        serializer= CourseSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            print(serializer.data)
-            return Response(serializer.data)
-        print("invalid")
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # serializer= CourseSerializer(data=request.data)
+        # if serializer.is_valid():
+        #     serializer.save()
+        #     print(serializer.data)
+        #     return Response(serializer.data)
+        # print("invalid")
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            res = CourseRegister.post_course(request)
+            return Response(res, status=200)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+
 
 class AddCourse(APIView):
     """this is docstring"""
@@ -212,7 +223,8 @@ class DisplayQuestion(APIView):
         """this is docstring"""
         print(request.data)
         items = []
-        for i in Question.objects.all():
+        v=Question.objects.all()
+        for i in v:
             items.append({
             'id':i.id,
             "question_name":i.question_name,

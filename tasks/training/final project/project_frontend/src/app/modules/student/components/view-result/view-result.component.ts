@@ -32,8 +32,7 @@ percentage:any
       next:(resp)=>{
         this.h=resp
         console.log(this.h.length)
-        this.k=this.h.length
-
+        this.k=this.h.length 
         this.percentage=(this.present_score/this.k)*100
         console.log(this.percentage)
       }

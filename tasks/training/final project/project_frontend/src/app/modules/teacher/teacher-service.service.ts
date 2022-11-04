@@ -17,7 +17,7 @@ export class TeacherServiceService {
 
   getCourses():Observable<any>{
 
-    return this.http.get("http://127.0.0.1:8000/courselist")
+    return this.http.get("http://127.0.0.1:8000/courseregister")
   }
 
   getQuestion(id:any):Observable<Object>{
