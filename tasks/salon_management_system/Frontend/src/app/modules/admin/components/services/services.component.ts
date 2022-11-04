@@ -23,7 +23,7 @@ export class ServicesComponent implements OnInit {
   }
 
   deleteService(arg :any){
-    if(confirm("do u want to delete")){
+    if(confirm("if the services deleted the appointmnets realted to it may also get deleted are you sure?")){
       var serviceVal = {"service_id": arg}
       console.log(serviceVal)
       this.http.deleteServices(serviceVal).subscribe(result=>{

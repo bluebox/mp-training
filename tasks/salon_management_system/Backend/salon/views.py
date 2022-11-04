@@ -1,47 +1,25 @@
 """views"""
 #pylint:disable=E1101
-# from django.contrib.auth import authenticate, login, logout
+#pylint:disable=C0103
+#pylint:disable=W0703
 from rest_framework.views import APIView
-# from rest_framework.decorators import api_view
-from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework import generics,status,filters
-# from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
-from django.http import JsonResponse
-# from django.contrib import messages
 from .models import Appointment, Branch, User, ServicesProvided, Employee, Client
 from .serializers import AppointmentSerializer, BranchSerializer, EmployeeSerializer
 from .serializers import Userserializer, ClientSerializer, ServicesSerializer
-# from salon import serializers
-
-class UserList(APIView):
-    """This view is used to get and post the user details"""
-    def get(self, request):
-        """this functon is for displaying data from User model"""
-        print(request.data)
-        users = User.objects.all()
-        serializer = Userserializer(users, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        """this function is for posting the data into the User Table"""
-        serializer = Userserializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        print('invalid')
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+from .managers import Branches,Services,Appointments
 
 class BranchList(APIView):
     """View to get the details from Database"""
     def get(self, request):
         """this function is to display all the details of the branch table"""
-        print(request.data)
-        branches = Branch.objects.all()
-        serializer = BranchSerializer(branches, many=True)
-        return Response(serializer.data)
+        try:
+            branch = Branches.get_branch(request)
+            return Response(branch,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class SearchBranches(generics.ListAPIView):
     """this view is for searching """
@@ -50,71 +28,66 @@ class SearchBranches(generics.ListAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['branch_id','branch_name','location']
 
+
 class OneBranch(APIView):
     """this view returns only one branch"""
     def get(self,request,branch_id):
         """this function returns only one record from the branch model"""
-        print(request.data)
-        branch = Branch.objects.get(branch_id=branch_id)
-        serializer = BranchSerializer(branch,many=False)
-        return Response(serializer.data)
+        try:
+            branch = Branches.getonebranch(request, branch_id)
+            return Response(branch,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class NewBranch(APIView):
     """View to post the data into the database"""
     def post(self, request):
         """this function is for posting branch details in to the database"""
-        serializer = BranchSerializer(data=request.data)
-        print(serializer)
-        print(serializer.is_valid)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'data' :serializer.data, 'msg':'successful'},status=200)
-        print('invalid')
-        print(serializer.errors)
-        error_list = [serializer.errors[error][0] for error in serializer.errors]
-        print(error_list)
-        return Response({'msg':error_list},status=200)
+        try:
+            branch = Branches.createbranch(request)
+            return Response(branch,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class UpdateBranch(APIView):
     """this view for updating branch details"""
     def post(self,request,branch_id):
         """this function is for posting the updtae details to the database"""
-        branch = Branch.objects.get(branch_id=branch_id)
-        serializer = BranchSerializer(instance=branch,data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        try:
+            branch=Branches.updatebranch(request,branch_id)
+            return Response(branch,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class DeleteBranch(APIView):
     """this view is for deleting a record"""
     def post(self,request):
         """this function is to delete a record"""
-        data = JSONParser().parse(request)
-        branch = Branch.objects.get(branch_id=data['branch_id'])
-        branch.delete()
-        return JsonResponse("succesfully deleted",safe=False)
+        try:
+            branch = Branches.deletebranch(request)
+            return Response(branch,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
+#services_provided
 class ServicesList(APIView):
     """This view is used to get and post the ServicesProvided details"""
     def get(self, request):
         """this function is to display the services list of the servicesprovided table"""
-        print(request.data)
-        services = ServicesProvided.objects.all()
-        serializer = ServicesSerializer(services, many=True)
-        return Response(serializer.data)
+        try:
+            service = Services.getservices(request)
+            return Response(service)
+        except Exception as e:
+            return Response(str(e), status=500)
 
     def post(self, request):
         """this function is for posting new services data in to the services provided table"""
-        serializer = ServicesSerializer(data=request.data)
-        print(serializer)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'data' :serializer.data, 'msg':'successful'},status=200)
-        print('invalid')
-        error_list = [serializer.errors[error][0] for error in serializer.errors]
-        return Response({'msg':error_list},status=200)
+        try:
+            service =Services.createservice(request)
+            return Response(service,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
+
 class SearchService(generics.ListAPIView):
     """this view is for searching services"""
     queryset = ServicesProvided.objects.all()
@@ -126,84 +99,86 @@ class OneService(APIView):
     """this is to get one service record"""
     def get(self,request,service_id):
         """this function return deatils related to one service"""
-        print(request.data)
-        service = ServicesProvided.objects.get(service_id=service_id)
-        serilaizer = ServicesSerializer(service,many=False)
-        return Response(serilaizer.data)
+        try:
+            service = Services.getoneservice(request,service_id)
+            return Response(service)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class UpdateService(APIView):
     """this view for updating branch details"""
     def post(self,request,service_id):
         """this function is for posting the updtae details to the database"""
-        service = ServicesProvided.objects.get(service_id=service_id)
-        serializer = ServicesSerializer(instance=service,data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        try:
+            service=Services.updateservice(request,service_id)
+            return Response(service)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class DeleteService(APIView):
     """this view is for deleting a record"""
     def post(self,request):
         """this function is to delete a record"""
-        data = JSONParser().parse(request)
-        service = ServicesProvided.objects.get(service_id=data['service_id'])
-        service.delete()
-        return JsonResponse("succesfully deleted",safe=False)
+        try:
+            service = Services.deleteservice(request)
+            return Response(service)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class NewAppointment(APIView):
     """this view to post the data"""
     def post(self,request):
         """this function adds a new appointment record in the appointment table"""
-        serializer = AppointmentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        print('invalid')
-        print(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            appointment = Appointments.createappointment(request)
+            return Response(appointment,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class AppointmentList(APIView):
     """This view is used to get the Appointment details"""
     def get(self, request):
         """this function is for displaying data of the Appointment table"""
-        print(request.data)
-        appointments = Appointment.objects.filter(Appointment_Status = "booked")
-        serializer = AppointmentSerializer(appointments, many=True)
-        return Response(serializer.data)
+        try:
+            appointment=Appointments.getbookedappointments(request)
+            return Response(appointment,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class ConfirmAppointment(APIView):
     """This view is used to get the Appointment details"""
     def get(self, request):
         """this function is for displaying data of the Appointment table"""
-        print(request.data)
-        appointments = Appointment.objects.filter(Appointment_Status = 'confirm')
-        serializer = AppointmentSerializer(appointments, many=True)
-        return Response(serializer.data)
+        try:
+            appointment = Appointments.getconfirmedappointments(request)
+            return Response(appointment,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class CompleteAppointment(APIView):
     """This view is used to get Appointment details"""
     def get(self, request):
         """this function is for displaying data of the Appointment table"""
-        print(request.data)
-        appointments = Appointment.objects.filter(Appointment_Status = 'complete')
-        serializer = AppointmentSerializer(appointments, many=True)
-        return Response(serializer.data)
+        try:
+            appointment=Appointments.getcompleteappointments(request)
+            return Response(appointment,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class RejectAppointment(APIView):
     """This view is used to get the Appointment details"""
     def get(self, request):
         """this function is for displaying data of the Appointment table"""
-        print(request.data)
-        appointments = Appointment.objects.filter(Appointment_Status__in = ['reject','cancel'])
-        serializer = AppointmentSerializer(appointments, many=True)
-        return Response(serializer.data)
+        try:
+            appointment = Appointments.getrejectappointments(request)
+            return Response(appointment,status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class OneAppointment(APIView):
     """this view return only one record from the database"""
     def get(self,request,appointment_id):
         """this view return only one appointment"""
-        print(request.data)
         appointmnet = Appointment.objects.get(Appointment_id=appointment_id)
         serilaizer = AppointmentSerializer(appointmnet,many=False)
         return Response(serilaizer.data)
@@ -286,7 +261,6 @@ class EmpBranch(APIView):
     """view to get the data from the database"""
     def get(self, request):
         """this function for displaying the employeelist and branch"""
-        print(request.data)
         employees = Employee.objects.order_by('emp_id').last()
         serilaizer = EmployeeSerializer(employees, many=False)
         return Response(serilaizer.data)

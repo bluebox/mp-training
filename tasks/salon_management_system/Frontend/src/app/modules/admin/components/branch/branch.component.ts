@@ -26,7 +26,7 @@ export class BranchComponent implements OnInit {
     this.subscription =this.http.getBranch().subscribe((data) =>{this.branches = data ;console.log(data)});
   }
   deleteBranch(arg : any){
-    if(confirm("do u want to delete")){
+    if(confirm("if branch is removed the employee details in the branch removed and appointments assigned will be deleted.are you sure?")){
         var val = {"branch_id": arg}
         console.log(val)
         this.http.deleteBranches(val).subscribe(res=>{
