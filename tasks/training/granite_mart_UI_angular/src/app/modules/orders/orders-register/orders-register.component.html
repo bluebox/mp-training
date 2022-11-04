@@ -1,0 +1,39 @@
+<div class="order-summary">
+    <form [formGroup]="orderForm">
+        <table>
+            <tr class="row">
+                <td>total amount to be paid:</td>
+                <td>{{tot_amount}}</td>
+            </tr>
+            <tr class="row">
+                <td>total no. items:</td>
+                <td>{{item_count}}</td>
+            </tr>
+            <tr class="row">
+                
+                <td>Delivery Address</td>
+                <td><textarea rows="4" cols="20" formControlName="deliveryAddress" style="resize:none"></textarea></td>
+            </tr>
+            <tr><td *ngIf="Address && Address.invalid && Address.invalid && Address.touched"><p style="color:red;border:1px solid white">*Enter Delivery Address</p></td></tr>
+            <button id="buy" (click)="buy()">buy</button>
+        </table>
+    </form>
+</div>
+
+<div class="dataTable">
+    <p class="heading">Purchase Details</p>
+    <table align="center">
+        <tr class="row">
+            <th>item_name</th>
+            <th>store_name</th>
+            <th>price </th>
+            <th>quantity </th>
+        </tr><br><br>
+        <tr class="row" *ngFor="let i of cart_data.data" id="i.contains_id">
+            <td>{{i.item_name}}</td>
+            <td>{{i.store_name}}</td>
+            <td class="price">{{i.price * i.quantity}} </td>
+            <td> <p class="quantity" id={{i.contains_id}}>{{i.quantity}}</td>
+        </tr>
+    </table>
+</div>

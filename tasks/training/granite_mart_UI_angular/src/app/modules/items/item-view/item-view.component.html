@@ -1,0 +1,21 @@
+<app-customer-dashboard></app-customer-dashboard>
+<div class="dataTable">
+    <div class="item">
+        <div class="display">{{item_details[0].contains_details[1].item_name}}</div>
+        <div class="price-store">
+            <p>price: <span>{{item_details[0].price}}</span></p>
+            <p>store: <span>{{item_details[0].contains_details[0].store_name}}</span></p>
+        </div>
+        <div class="actions">
+            <button (click)="addToCart(item_details[0].contains_id)">add to cart</button>
+            <button (click)="buyNow(item_details[0].contains_id)">Buy now</button>
+        </div>
+    </div>
+       <div class="details" [id]="item_details[0].contains_id">
+        <p>description:<span>{{item_details[0].contains_details[1].item_description}}</span></p>
+        <p>patten: <span>{{item_details[0].contains_details[1].item_pattern}}</span></p>
+        <p>store name: <span>{{item_details[0].contains_details[0].store_name}}</span></p>
+        <p>store address: <span>{{item_details[0].contains_details[0].address}}</span></p>
+        <button class="cart" (click)="goToCart()">go to Cart</button>
+    </div>
+</div>

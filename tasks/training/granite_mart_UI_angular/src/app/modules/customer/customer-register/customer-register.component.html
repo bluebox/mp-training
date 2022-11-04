@@ -1,0 +1,40 @@
+<body>
+    <app-customer-dashboard></app-customer-dashboard>
+    <div class="dataTable">
+        <p class="heading">Customer Registration</p>
+        <form [formGroup]="customerReg" style="margin-right:0px;">
+            <table align="center">
+                <tr class="row">
+                    <td>UserName: </td>
+                    <td><input type="text" formControlName="username"></td>
+                </tr>
+                <tr class="row">
+                    <td>Password:</td>
+                    <td> <input type="password" formControlName="password"></td>
+                </tr>
+                <tr class="row">
+                    <td>FullName: </td>
+                    <td><input type="text" formControlName="customer_name"></td>
+                </tr>
+                <tr class="row">
+                    <td>Phone: </td>
+                    <td><input type="tel" formControlName="phone"></td>
+                </tr>
+                <tr class="row">
+                    <td>Email: </td>
+                    <td><input type="email" formControlName="email"></td>
+                </tr>
+                <tr class="row">
+                    <td>Address: </td>
+                    <td><textarea formControlName="address" rows="5" cols="20"></textarea></td>
+                <tr class="row">
+                    <td></td>
+                    <td><input class="save"
+                        type="reset">&nbsp;&nbsp;<button class="save" (click)="register()">save</button></td>
+                </tr>
+            </table>
+        </form>
+        <p>already have an account? <span><a [routerLink]="['/customerLogin']">signin</a></span></p>
+    </div>
+
+</body>

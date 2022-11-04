@@ -1,0 +1,25 @@
+.dataTable{
+    background-image: linear-gradient(blue,violet);
+    margin:8em auto;
+    color:white;
+    padding:1em;
+    height:fit-content;
+    width:35em;
+    overflow: hidden;
+}
+.save,#reset{
+ height:2.5em;
+ width:5em;
+ color:white;
+ background-color: black;
+}
+
+.heading{
+    font-size: 3em;
+    font-weight: 700;   
+    text-align: center;
+}
+
+textarea{
+    resize: none;
+}

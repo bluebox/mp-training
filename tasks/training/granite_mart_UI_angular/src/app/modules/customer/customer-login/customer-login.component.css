@@ -1,0 +1,42 @@
+#title{
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    margin:4rem;
+    border-style: inset;
+    background-color: rgba(245, 245, 245, 0.189)
+}
+
+.dataTable{
+    background-image: linear-gradient(blue,violet);
+    margin:auto;
+    color:white;
+    padding:1em;
+    height:20rem;
+    width:25rem;
+    border-radius: 2%;
+
+}
+.save,#reset{
+ height:3em;
+ width:5em;
+ color:white;
+ background-color: black;
+}
+
+.heading{
+    font-size: 3em;
+    font-weight: 700;   
+    text-align: center;
+}
+a{ 
+    margin-left:1em;
+    border:1px solid white;
+    text-decoration: none;
+    color:white;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a:hover{
+    background-color: black;
+}

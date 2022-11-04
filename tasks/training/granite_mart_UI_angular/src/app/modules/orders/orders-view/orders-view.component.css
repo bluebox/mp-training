@@ -1,0 +1,25 @@
+.container{
+    width:80%;
+    height:100%;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.398),rgba(128, 128, 128, 0.682));
+    margin:auto;
+    
+}
+
+.dataTable{
+    border:1% solid rgb(0, 0, 0);
+    padding:2%;
+    width:95%;
+    height:fit-content;
+}
+
+.Row,.row{
+    background-color: rgb(197, 194, 194);
+    width:90%;
+    height:1%;
+
+}
+p{
+    margin:4%;
+}
+

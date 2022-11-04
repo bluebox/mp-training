@@ -1,0 +1,22 @@
+<app-customer-dashboard></app-customer-dashboard>
+<div class="dataTable">
+    <p class="heading">Cart</p>
+    <table align="center">
+        <tr class="row-headers">
+            <th>item_name</th>
+            <th>store_name</th>
+            <th>price </th>
+            <th>quantity </th>
+            <th>actions</th>
+        </tr>
+        <br>
+        <tr class="row" *ngFor="let i of cart_data.data" id="i.contains_id">{{i.item_name}}<th>{{i.store_name}}</th>
+            <th>{{i.price * i.quantity}} </th>
+            <th><button class="quantity" (click)="decrement(i.contains_id)">-</button>
+                <p class="quantity" id={{i.contains_id}}>{{i.quantity}}</p><button class="quantity" (click)="increment(i.contains_id)">+</button>
+            </th>
+            <th><button (click)="delete(i.contains_id)" style="background-color: red;">Remove</button></th>
+        </tr>
+    </table>
+    <button id="continue" (click)="continue()">continue</button>
+</div>

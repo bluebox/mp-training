@@ -1,0 +1,14 @@
+<app-admin-dashboard></app-admin-dashboard>
+<div class="dataTable">
+    <p class="heading">Employees Data</p>
+    <button class="save" (click)="addEmployee()">addEmployee</button>
+<table *ngIf="employee_list" align="center">
+    <tr class="row"><th>Employee Id</th><th>Employee Name</th><th>Working </th><th>Update Details </th><th>Delete Employee</th></tr>
+    <tr class="row" *ngFor="let i of employee_list">
+        <td>{{i.employee_id}}</td>
+        <td>{{i.employee_name}}</td>
+        <td>{{i.role_id.role_name}}</td>
+    <td><button (click)="updateEmployee(i.employee_id)">Edit</button></td>
+    <td><button (click)="deleteEmployee(i.employee_id)">Delete</button></td></tr>
+</table>
+</div>

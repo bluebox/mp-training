@@ -1,0 +1,26 @@
+<div class="dataTable">
+    <p class="heading">Vehicles Data</p>
+    <button class="save" (click)="addVehicle()">addVehicle</button>
+    <table *ngIf="vehicles_list" align="center">
+        <tr class="row">
+            <th>Vehicle No</th>
+            <th>model</th>
+            <th>Owner Name</th>
+            <th>Permit </th>
+            <th>Fuel Efficiency </th>
+            <th>Load Capacity </th>
+            <th>Update Details </th>
+            <th>Delete Employee</th>
+        </tr>
+        <tr class="row" *ngFor="let i of vehicles_list">
+            <td>{{i.vehicle_no}}</td>
+            <td>{{i.model}}</td>
+            <td>{{i.owner_name}}</td>
+            <td>{{i.permit_range}}</td>
+            <td>{{i.fuel_efficiency}}</td>
+            <td>{{i.load_capacity}}</td>
+            <td><button (click)="updateVehicle(i.vehicle_no)">Edit</button></td>
+            <td><button (click)="deleteVehicle(i.vehicle_no)">Delete</button></td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,22 @@
+
+.dataTable{
+    background-image: linear-gradient(blue,violet);
+    margin:auto;
+    color:white;
+    padding:1em;
+    height:25rem;
+    width:25rem;
+
+}
+.save,#reset{
+ height:3em;
+ width:5em;
+ color:white;
+ background-color: black;
+}
+
+.heading{
+    font-size: 3em;
+    font-weight: 700;   
+    text-align: center;
+}

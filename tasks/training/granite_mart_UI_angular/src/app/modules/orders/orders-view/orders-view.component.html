@@ -1,0 +1,16 @@
+<app-admin-dashboard *ngIf="isAdmin=='True'"></app-admin-dashboard>
+<app-customer-dashboard *ngIf="isAdmin=='False'"></app-customer-dashboard>
+
+<div class="container">
+    <table class="dataTable" align="center" >
+        <tr class="row"><th>OrderId</th><td><p>{{order_data[0].order_id.order_id}}</p></td></tr>
+        <tr class="row"><th>Item</th><td><p>{{order_data[0].contains_id.item_id.item_name}}</p></td></tr>
+        <tr class="row"><th>Store</th><td><p>{{order_data[0].contains_id.store_id.store_name}}</p></td></tr>
+        <tr class="row"><th>Price</th><td><p>{{order_data[0].contains_id.price}}/-</p></td></tr>
+        <tr class="row"><th>Order Time</th><td><p>{{order_data[0].order_id.order_time}}/-</p></td></tr>
+        <tr class="row"><th>Delivery Address</th><td><p>{{order_data[0].order_id.delivery_address}}</p></td></tr>    
+     <tr class="row"><td></td><td><button (click)="delivery()" style="width:95%;height:3em;font-size:1em;"> Delivery Details</button></td></tr>
+        <br><br>
+    </table>
+    
+</div>

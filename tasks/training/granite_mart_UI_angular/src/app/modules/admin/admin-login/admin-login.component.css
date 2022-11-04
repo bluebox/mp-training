@@ -1,0 +1,56 @@
+.dataTable{
+    /* background-color:rgb(59, 59, 80); */
+    background-image: linear-gradient(blue,violet);
+    margin:auto;
+    color:white;
+    padding:1em;
+    height:20rem;
+    width:25rem;
+    border-radius:2%;
+
+}
+.save,#reset{
+ height:3em;
+ width:5em;
+ color:white;
+ background-color: black;
+}
+
+.heading{
+    font-size: 5em;
+    font-weight: 700;   
+    text-align: center;
+}
+
+#title{
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    margin:4rem;
+    color:rgba(21, 12, 12, 0.998);
+    border-style: inset;
+    background-color: rgba(245, 245, 245, 0.189);
+        
+}
+
+.navigation{
+    width: 98%;
+    height:3rem;
+    background-color: black;
+    color:white;
+    padding:0px 2%;
+    
+
+
+}
+
+a:hover{
+    color:darkturquoise
+}
+.logo{
+    display: inline;
+    font-size: 2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 5em;
+    color:white;
+}

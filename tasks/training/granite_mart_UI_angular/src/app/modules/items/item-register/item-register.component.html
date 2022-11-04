@@ -1,0 +1,36 @@
+<p>store-register works!</p>
+<div class="dataTable">
+    <p class="heading">Item Registration</p>
+    <form [formGroup]="ItemReg">
+        <table align="center">
+            <tr class="row">
+                <td>registration_id</td>
+                <td><input formControlName="contains_id" type="number" min=1000></td>
+            </tr>
+            <tr class="row">
+                <td>Select Store</td>
+                <td><select formControlName="store_id">
+                        <option *ngFor="let i of stores" [value]="i.store_id">{{i.store_name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <br>
+            <tr class="row">
+                <td>Select Store</td>
+                <td><select formControlName="item_id">
+                        <option *ngFor="let i of items" [value]="i.item_id">{{i.item_name}}</option>
+                    </select>
+                </td>
+            </tr><br>
+            <tr class="row">
+                <td>Price</td>
+                <td><input formControlName="price" type="number" min="10"></td>
+            </tr>
+            <tr class="row">
+                <td></td>
+                <td><button class="save" (click)="register()">save</button>&nbsp; &nbsp;<input class="save"
+                        type="reset"></td>
+            </tr>
+        </table>
+    </form>
+</div>
