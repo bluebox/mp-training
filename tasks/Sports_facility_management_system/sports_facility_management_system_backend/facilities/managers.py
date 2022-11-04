@@ -167,8 +167,8 @@ class Slots:
     @staticmethod
     def get_all_slots_available(fid, sid):
         slots_sport_facility = Slot.objects.prefetch_related().filter(
-                                            slotsinsportfacility__facility_sport_id__facility=fid,
-                                            slotsinsportfacility__facility_sport_id__sport=sid)
+            slotsinsportfacility__facility_sport_id__facility=fid,
+            slotsinsportfacility__facility_sport_id__sport=sid)
         serializer = SlotsSerializer(slots_sport_facility, many=True)
 
         return serializer.data
@@ -231,12 +231,11 @@ class Bookings:
         list_slot_objects = []
         slots = request.data['slots_id']
         booking_id_obj = BookingData.objects.get(booking_id=booking_id)
-
-        for slot in slots:
-            slot_obj = Slot.objects.get(slot_id=slot)
+        slot_obj = Slot.objects.get(slot_id__in=slots)
+        for slot in slot_obj:
             slots_booked_object = SlotsBookedForBookingId(
                 booking_id=booking_id_obj,
-                slot_id=slot_obj
+                slot_id=slot
             )
             list_slot_objects.append(slots_booked_object)
 
@@ -254,13 +253,12 @@ class Bookings:
         equipments_quantity = request.data['equipments_quantity']
 
         booking_id_obj = BookingData.objects.get(booking_id=booking_id)
-
+        equipments_obj = Equipment.objects.filter(equip_name__in=equipments_booked)  # not verified
         total_cost_per_slot = 0
         for i in range(len(equipments_booked)):
-            equipments_obj = Equipment.objects.get(equip_name=equipments_booked[i])
             equip_booked_object = EquipmentsRentedForBookingId(
                 booking_id=booking_id_obj,
-                equip_id=equipments_obj,
+                equip_id=equipments_obj[i],
                 quantity=equipments_quantity[i]
 
             )
@@ -389,13 +387,11 @@ class UserManager:
 
 
 def get_ratings(fid):
-
-    ratings = BookingData.objects.filter(ratings__gt=0, facility_sport_id__facility__facility_id=fid).\
-                                                                            aggregate(Avg('ratings'))
+    ratings = BookingData.objects.filter(ratings__gt=0, facility_sport_id__facility__facility_id=fid). \
+        aggregate(Avg('ratings'))
     no_of_ratings = BookingData.objects.filter(ratings__gt=0, facility_sport_id__facility__facility_id=fid).count()
 
     return ratings['ratings__avg'], no_of_ratings
-
 
 # def add_data():
 #     # to add random data
@@ -420,5 +416,3 @@ def get_ratings(fid):
 #     for j in slots:
 #         SlotsInSportFacility.objects.create(slot_id=j, facility_sport_id=fsid)
 #
-
-
