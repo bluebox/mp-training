@@ -1,0 +1,73 @@
+<div>
+    <form [formGroup]="updateAppointmentForm" class="example-form">
+      <div class="card1">
+        <mat-card>
+          <mat-card-header class="header">
+            <mat-card-title class="header-title">Update appointment</mat-card-title>
+          </mat-card-header>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>client_id</mat-label>
+            <input formControlName="client_id" matInput placeholder="Enter your
+              client_id" />
+            <small class="text-danger"
+              *ngIf="updateAppointmentForm.get('client_id')?.invalid &&
+              updateAppointmentForm.get('client_id')?.touched ">required</small>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Time_of_appointment</mat-label>
+            <input formControlName="Time_of_appointment" matInput placeholder="Enter your
+            Time_of_appointment" />
+            <small class="text-danger"
+              *ngIf="updateAppointmentForm.get('Time_of_appointment')?.invalid &&
+              updateAppointmentForm.get('Time_of_appointment')?.touched ">required</small>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>appointment_date</mat-label>
+            <input formControlName="appointment_date" matInput placeholder="Enter your
+            appointment_date" />
+            <small class="text-danger"
+              *ngIf="updateAppointmentForm.get('appointment_date')?.invalid &&
+              updateAppointmentForm.get('appointment_date')?.touched ">required</small>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Appointment_Status</mat-label>
+            <mat-select formControlName="Appointment_Status"
+            name="Appointment_Status">
+            <mat-option *ngFor="let status of Statuses" [value]="status.value">
+              {{status.viewValue}}
+            </mat-option>
+          </mat-select>
+            <small class="text-danger"
+              *ngIf="updateAppointmentForm.get('Appointment_Status')?.invalid &&
+              updateAppointmentForm.get('Appointment_Status')?.touched ">required</small>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>emp_id</mat-label>
+            <input formControlName="emp_id" matInput placeholder="Enter your
+              client_id" />
+            <small class="text-danger"
+              *ngIf="updateAppointmentForm.get('emp_id')?.invalid &&
+              updateAppointmentForm.get('emp_id')?.touched ">required</small>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>services</mat-label>
+            <input formControlName="services" matInput placeholder="Enter your
+              client_id" />
+            <small class="text-danger"
+              *ngIf="updateAppointmentForm.get('services')?.invalid &&
+              updateAppointmentForm.get('services')?.touched ">required</small>
+          </mat-form-field>
+          <mat-card-actions>
+            <button (click)="onSubmit()" mat-raised-button="" color="primary">
+                Update
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </form>
+  </div>

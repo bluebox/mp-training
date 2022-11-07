@@ -1,1 +1,38 @@
-<p>review works!</p>
+
+<form [formGroup] = "reviewForm">
+    <div class="card1">
+    <mat-card>
+        <mat-card-header class="header">
+            <mat-card-title class="header-title"> <p>  Add a new Branch </p> </mat-card-title>
+            <!-- <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title> -->
+            <!-- <mat-card-title  class="error-message"><p>{{errorMessage}}</p></mat-card-title> -->
+        </mat-card-header>
+        <!-- <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Branch ID</mat-label>
+            <input formControlName="branch_id" matInput placeholder="Enter new branch id" />
+            <small class="text-danger" *ngIf="newBranchForm.get('branch_id')?.invalid  && newBranchForm.get('branch_id')?.touched " >required</small>
+        </mat-form-field> -->
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Appointment_id</mat-label>
+            <input formControlName="Appointment_id" matInput placeholder="Enter new branch Name" />
+            <small class="text-danger" *ngIf="reviewForm.get('Appointment_id')?.invalid  && reviewForm.get('Appointment_id')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>comments_and_reviews</mat-label>
+            <input formControlName="comments_and_reviews" matInput placeholder="Enter new Address" />
+            <small class="text-danger" *ngIf="reviewForm.get('comments_and_reviews')?.invalid  && reviewForm.get('comments_and_reviews')?.touched " >required</small>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>rating</mat-label>
+            <input formControlName="rating" matInput placeholder="Enter new Address" />
+            <small class="text-danger" *ngIf="reviewForm.get('rating')?.invalid  && reviewForm.get('rating')?.touched " >required</small>
+        </mat-form-field>
+        <mat-card-actions>
+            <button mat-raised-button="" color="primary" class="button">
+                submit
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+    </div>
+</form>

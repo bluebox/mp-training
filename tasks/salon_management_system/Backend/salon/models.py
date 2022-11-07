@@ -43,21 +43,7 @@ def from_100():
         return 100
     return largest.branch_id + 1
 
-# def fromb1():
-#     largest = Branch.objects.all().order_by('branch_id').last()
-#     id = largest.branch_id
-#     split_var = id.split('B')
-#     strinteger = split_var[1]
-#     strstring = split_var[0]
-#     integer = int(strinteger)
-#     if not largest:
-#         # largest = 'B1'
-#         # return largest
-#         return 'B1'
-#     else:
-#         integer+=1
-#         integer = str(integer)
-#     return strstring+integer
+
 
 class Branch(models.Model):
     """Branch model to store Branch details"""
@@ -172,8 +158,8 @@ def from_700():
 
 class Reviews(models.Model):
     """Reviews model to store Reviews details"""
-    review_id = models.IntegerField(primary_key = True,default=from_700)
-    Appointment_id = models.ForeignKey(Appointment,  on_delete=models.CASCADE)
+    review_id = models.IntegerField(primary_key=True, default=from_700)
+    Appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     comments_and_reviews = models.CharField(max_length=500)
     rating = models.IntegerField()
 

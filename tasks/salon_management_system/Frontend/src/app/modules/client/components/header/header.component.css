@@ -20,7 +20,7 @@
    padding-left: 90%;
 }
 .sp1{
-    padding-left: 12%;
+    padding-left: 10%;
 }
 .sp1 a{
     color: white;
@@ -48,3 +48,7 @@ button{
   .toolbar{
     border-bottom: 3px solid #eb008b;
   }
+.icon-name{
+  color: white;
+  background-color: black;
+}

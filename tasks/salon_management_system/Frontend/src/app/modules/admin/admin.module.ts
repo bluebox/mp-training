@@ -31,6 +31,7 @@ import { EditserviceComponent } from './components/editservice/editservice.compo
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UpdateappointmentComponent } from './components/updateappointment/updateappointment.component';
 
 
 
@@ -51,6 +52,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     NewserviceComponent,
     EditbranchComponent,
     EditserviceComponent,
+    UpdateappointmentComponent,
   
   ],
   imports: [

@@ -1,5 +1,5 @@
 .body{
-    background-image: url("/assets/images/clienthome1.jpg");
+    background-image: url("/assets/images/client5.jpeg");
     background-repeat: no-repeat; 
     background-size: cover;
     width: 100%;
@@ -8,10 +8,10 @@
     font-size: 30px;
     font-family:'cursive';
     font-style: italic;
-    color: white;
+    color: black;
     padding-top: 18%;
     padding-bottom: 378px;
-    padding-left: 62%;
+    padding-left: 60%;
 }
 button{
     background-color:#eb008b ;
