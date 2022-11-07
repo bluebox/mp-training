@@ -14,7 +14,7 @@ from .forms import UserRegistrationForm
 from .managers.problem import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
-import requests, json
+import json
 from json import dumps
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response

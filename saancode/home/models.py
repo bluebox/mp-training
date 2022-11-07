@@ -13,6 +13,7 @@ import uuid
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, 
           on_delete = models.CASCADE)
+    # followers = models.ManyToManyField(User, related_name="followed_by", symmetrical = False, blank=True)
     full_name = models.CharField(max_length=30)
     GENDER_CHOICES = (
         ('M', 'Male'),

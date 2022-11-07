@@ -37,11 +37,11 @@ export class ProblemsComponent implements OnInit {
       })
       this.problems = data
       this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
       // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
-      this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+      this.pages = Math.ceil(Number((this.problems.length / 10).toFixed(2)));
     })
   }
 
@@ -54,7 +54,7 @@ export class ProblemsComponent implements OnInit {
   }
 
   apply_filters() {
-    const search = document.getElementById("search") as HTMLInputElement
+    const search = document.getElementById("searchh") as HTMLInputElement
     const difficulty_level = document.getElementById("difficulty-level") as HTMLSelectElement
     const tags = document.querySelector(".selected-tags") as HTMLDivElement
     console.log(search.value, difficulty_level.value, tags);
@@ -73,13 +73,13 @@ export class ProblemsComponent implements OnInit {
       this.problems = data
       this.p = []
       this.currentPage = 1
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
     console.log(this.problems.length);
-      console.log("///", Math.ceil(Number((data.length / 3).toFixed(2))));
+      console.log("///", Math.ceil(Number((data.length / 10).toFixed(2))));
       
-      this.pages = Math.ceil(Number((data.length / 3).toFixed(2)));
+      this.pages = Math.ceil(Number((data.length / 10).toFixed(2)));
       if (this.pages == 0) {
         this.pages = 1;
       }
@@ -92,13 +92,19 @@ export class ProblemsComponent implements OnInit {
     const selectedTag = document.querySelector(".tags") as HTMLSelectElement
     let f = 0
     for (let i = 0; i < tags.children.length; i ++) {
-      if (selectedTag.value == tags.children[i].innerHTML) {
+      console.log(selectedTag.value, tags.children[i].children[0].innerHTML);
+      
+      if (selectedTag.value == tags.children[i].children[0].innerHTML) {
         f = 1;
       }
     }
     if (f == 0 && selectedTag.value != "") {
       const element = document.createElement("div")
       element.setAttribute("id", selectedTag.value)
+      console.log("/////////");
+      
+      console.log(element.id);
+      
       const tag = document.createElement("span")
       tag.innerHTML = selectedTag.value
       element.appendChild(tag)
@@ -115,7 +121,7 @@ export class ProblemsComponent implements OnInit {
     this.currentPage -= 1;
     console.log(this.problems)
     this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
     // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
@@ -126,7 +132,7 @@ export class ProblemsComponent implements OnInit {
     this.currentPage += 1;
     console.log(this.problems)
     this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
     // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)

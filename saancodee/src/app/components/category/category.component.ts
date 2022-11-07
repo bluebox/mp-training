@@ -35,11 +35,11 @@ export class CategoryComponent implements OnInit {
       this.allProblems = data.problem
       
       this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
-      // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
-      this.pages = Math.ceil(Number((this.allProblems.length / 3).toFixed(2)));
+      // this.p = this.problems.splice((this.currentPage - 1) * 10, ((this.currentPage - 1) * 10) + 10)
+      this.pages = Math.ceil(Number((this.allProblems.length / 10).toFixed(2)));
     })
    }
 
@@ -47,21 +47,21 @@ export class CategoryComponent implements OnInit {
     this.currentPage -= 1;
     console.log(this.problems)
     this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
-    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
-    // this.problems = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+    // this.p = this.problems.splice((this.currentPage - 1) * 10, ((this.currentPage - 1) * 10) + 10)
+    // this.problems = this.problems.splice((this.currentPage - 1) * 10, ((this.currentPage - 1) * 10) + 10)
   }
 
   move_to_next_page() {
     this.currentPage += 1;
     console.log(this.problems)
     this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
-    // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+    // this.p = this.problems.splice((this.currentPage - 1) * 10, ((this.currentPage - 1) * 3) + 3)
     // this.problems = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
   }
 
@@ -78,10 +78,10 @@ export class CategoryComponent implements OnInit {
       console.log(data);
       this.problems = data
       this.p = []
-    for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+    for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
       this.p.push(this.problems[i])
     }
-      this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+      this.pages = Math.ceil(Number((this.problems.length / 10).toFixed(2)));
       if (this.pages == 0) {
         this.pages = 1;
       }
@@ -116,14 +116,14 @@ export class CategoryComponent implements OnInit {
   //   }
   //   this.problems = problems
   //   this.p = []
-  //   for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+  //   for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
   //     this.p.push(this.problems[i])
   //   }
-  //   this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+  //   this.pages = Math.ceil(Number((this.problems.length / 10).toFixed(2)));
   //   if (this.pages == 0) {
   //     this.currentPage = 0;
   //   }
-  //   // this.p = this.problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+  //   // this.p = this.problems.splice((this.currentPage - 1) * 10, ((this.currentPage - 1) * 10) + 10)
   // }
 
   // submit() {
@@ -143,7 +143,7 @@ export class CategoryComponent implements OnInit {
   //     }
   //   }
   //   this.problems = problems
-  //   this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+  //   this.pages = Math.ceil(Number((this.problems.length / 10).toFixed(2)));
   //   console.log("//////");
   //   if (this.pages == 0) {
   //     this.currentPage = 0;
@@ -152,21 +152,21 @@ export class CategoryComponent implements OnInit {
   //   console.log(this.pages);
     
   //   this.p = []
-  //   for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+  //   for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
   //     this.p.push(this.problems[i])
   //   }
-  //   // this.p = problems.splice((this.currentPage - 1) * 3, ((this.currentPage - 1) * 3) + 3)
+  //   // this.p = problems.splice((this.currentPage - 1) * 10, ((this.currentPage - 1) * 10) + 10)
   //   this.flag = false;
   // }
   // else {
   //   this.flag = true;
   //   this.problems = this.allProblems
-  //   this.pages = Math.ceil(Number((this.problems.length / 3).toFixed(2)));
+  //   this.pages = Math.ceil(Number((this.problems.length / 10).toFixed(2)));
   //   if (this.pages == 0) {
   //     this.currentPage = 0;
   //   }
   //   this.p = []
-  //   for (let i = (this.currentPage - 1) * 3; i < ((this.currentPage - 1) * 3) + 3; i ++ ) {
+  //   for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {
   //     this.p.push(this.problems[i])
   //   }
   // }

@@ -16,3 +16,5 @@ admin.site.register(BlogComment)
 admin.site.register(BlogCommentReply)
 admin.site.register(BlogCommentLike)
 admin.site.register(ProblemTag)
+
+# admin.site.register(userFollowing)

@@ -40,9 +40,12 @@ class sortProblemSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class profileSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Profile
-        fields = "__all__"
+        fields = (
+            "__all__"
+        )
 
 class submissionSerializer(serializers.ModelSerializer):
     class Meta:
