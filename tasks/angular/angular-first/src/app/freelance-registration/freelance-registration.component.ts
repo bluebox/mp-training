@@ -27,8 +27,7 @@ reset() {
   }
   registerSubmit(){
     this.service.freelancerRegistration(this.freelanceRegister.value).subscribe((data : any)=> { console.log(data);alert('registered successfully'); this.router.navigate(['login']);
-  }
-    )
+  } , (err: any) => { alert('email already registered');})
    }
 
 

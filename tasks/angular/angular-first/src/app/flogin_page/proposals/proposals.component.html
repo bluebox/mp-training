@@ -1,26 +1,27 @@
 <app-fheader></app-fheader>
-<h4 style="text-transform: uppercase;text-align:center;background-color: white;color: black;">Your submitted proposals</h4>
-<div class="sort" style="background-color: black;color:white;padding:10px">
-    <div class="filter" style="width:30%;margin:auto;font-size: 20px;">
-        <label for="sort" style="font-size:17px;"> Filter by :- Proposal Status &nbsp; </label>
-        <select name="sort" id="sort" #sort (change)="sortby($event)">
-            <option value="">all</option>
-            <option value="pending for approval">pending for approval</option>
-            <option value="accepted">accepted</option>
-            <option value="rejected">rejected</option>
-        </select>
-    </div>
-</div>
-<div class="nodata" *ngIf="recevied_data==''">
-
-    <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top"
-        alt="">
-    <h4>No submitted proposal found</h4> <br>
-    <h5>To find a job now <a href="" routerLink="../jobs">click here</a> </h5> or <br> <br>
-    <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
-</div>
-
 <div class="main">
+    <h4 style="text-transform: uppercase;text-align:center;background-color: white;color: black;">Your submitted
+        proposals</h4>
+    <div class="sort" style="background-color: black;color:white;padding:10px">
+        <div class="filter" style="width:30%;margin:auto;font-size: 20px;">
+            <label for="sort" style="font-size:17px;"> Filter by :- Proposal Status &nbsp; </label>
+            <select name="sort" id="sort" #sort (change)="sortby($event)">
+                <option value="">all</option>
+                <option value="pending for approval">pending for approval</option>
+                <option value="accepted">accepted</option>
+                <option value="rejected">rejected</option>
+            </select>
+        </div>
+    </div>
+    <div class="nodata" *ngIf="recevied_data==''" style="background-color: white;">
+
+        <img src="https://cdn.dribbble.com/users/2394319/screenshots/4773525/media/3abebd7f14032c54245cb54cf48d17a3.png?compress=1&resize=800x600&vertical=top"
+            alt="">
+        <h4>No submitted proposal found</h4> <br>
+        <h5>To find a job now <a href="" routerLink="../jobs">click here</a> </h5> or <br> <br>
+        <button type="button" style="background-color:black;color:white" onclick="history.back()">Go Back</button>
+    </div>
+
 
 
 
@@ -77,9 +78,9 @@
     </ul>
 </div>
 
-    <div class="paginator" style="text-align: center;">
-        <button type="button" (click)="getProposals(-1,sorting)">
-            < </button> page {{ page }} out of {{ totalPages}}
-                <button type="button" (click)="getProposals(1,sorting)"> > </button>
-    </div>
+<div class="paginator" style="text-align: center;">
+    <button type="button" (click)="getProposals(-1,sorting)">
+        < </button> page {{ page }} out of {{ totalPages}}
+            <button type="button" (click)="getProposals(1,sorting)"> > </button>
+</div>
 <app-ffooter></app-ffooter>

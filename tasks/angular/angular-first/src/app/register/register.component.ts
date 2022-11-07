@@ -23,8 +23,9 @@ export class RegisterComponent implements OnInit {
     })
   }
   registerSubmit(){
-    this.service.ClientRegistration(this.clientRegister.value).subscribe((data : any) =>{ console.log(data);alert('Registered successfully') ; this.router.navigate(['login']);}
-    );
+    this.service.ClientRegistration(this.clientRegister.value).subscribe((data : any) =>{ console.log(data);alert('Registered successfully') ; this.router.navigate(['login']);} , (err: any) =>{ alert("email already exists");});
+    ;
+    
    }
 
 
