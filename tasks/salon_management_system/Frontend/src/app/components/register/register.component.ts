@@ -50,8 +50,6 @@ export class RegisterComponent implements OnInit {
       this.http.clientRegister(this.ClientRegistrationForm.value).subscribe(data =>{
         console.log(this.errorMessage = data.message);
         if(this.errorMessage == "success"){
-          // alert("Registered succesfully press ok to login")
-          
           this.router.navigate(['client']);
         }
         else{
