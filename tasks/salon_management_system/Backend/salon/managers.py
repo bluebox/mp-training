@@ -270,6 +270,7 @@ class Clients:
 
 
 class Review:
+    """creating reading client reviews"""
 
     def __init__(self):
         pass
@@ -288,6 +289,7 @@ class Review:
 
     @staticmethod
     def get_all_reviews(request):
+        """to get all the reviews"""
         reviews = Reviews.objects.all()
         serializer = ReviewSerializer(reviews, many=True)
         return serializer.data

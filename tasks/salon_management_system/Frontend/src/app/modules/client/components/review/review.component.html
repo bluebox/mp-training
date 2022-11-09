@@ -14,17 +14,17 @@
         </mat-form-field> -->
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Appointment_id</mat-label>
-            <input formControlName="Appointment_id" matInput placeholder="Enter new branch Name" />
+            <input formControlName="Appointment_id" matInput placeholder="Enter appointment_id" />
             <small class="text-danger" *ngIf="reviewForm.get('Appointment_id')?.invalid  && reviewForm.get('Appointment_id')?.touched " >required</small>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>comments_and_reviews</mat-label>
-            <input formControlName="comments_and_reviews" matInput placeholder="Enter new Address" />
+            <input formControlName="comments_and_reviews" matInput placeholder="Enter comment" />
             <small class="text-danger" *ngIf="reviewForm.get('comments_and_reviews')?.invalid  && reviewForm.get('comments_and_reviews')?.touched " >required</small>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>rating</mat-label>
-            <input formControlName="rating" matInput placeholder="Enter new Address" />
+            <input formControlName="rating" matInput placeholder="Enter rating 1 to 5" />
             <small class="text-danger" *ngIf="reviewForm.get('rating')?.invalid  && reviewForm.get('rating')?.touched " >required</small>
         </mat-form-field>
         <mat-card-actions>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpserviceService } from 'src/app/httpservice.service';
 
@@ -11,11 +11,11 @@ import { HttpserviceService } from 'src/app/httpservice.service';
 })
 export class ReviewComponent implements OnInit {
   subscription : Subscription = Subscription.EMPTY
-
+  appointment : any;
   formNotValid : boolean = false
   formError ?: string =""
   errorMessage : string = ""
-  constructor(private http :HttpserviceService ,private router: Router) { }
+  constructor(private http :HttpserviceService ,private router: Router,private route:ActivatedRoute) { }
 
   reviewForm : FormGroup = new FormGroup({
     Appointment_id : new FormControl("",Validators.required),

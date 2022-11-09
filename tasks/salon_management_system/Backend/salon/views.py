@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics, filters
 from .models import Branch, User, ServicesProvided, Client
-from .serializers import BranchSerializer,Userserializer, ClientSerializer, ServicesSerializer
+from .serializers import BranchSerializer, Userserializer, ClientSerializer, ServicesSerializer
 from .managers import Branches, Services, Appointments, Employees, Clients, Review
 
 
@@ -269,8 +269,8 @@ class SearchEmployee(generics.ListAPIView):
     """this view is for searching"""
     queryset = User.objects.filter(is_staff='True', is_superuser="False").values('id',
         'username', "first_name", "last_name",
-        "email","employee__emp_id",
-        "employee__role","employee__emp_contact_number","employee__branch_id")
+        "email", "employee__emp_id",
+        "employee__role", "employee__emp_contact_number", "employee__branch_id")
     serializer_class = Userserializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['username']
@@ -350,9 +350,11 @@ class ClientRegistration(APIView):
 
 
 class NewReview(APIView):
+    """view for creating and reading all reviews"""
 
     @staticmethod
     def get(request):
+        """to get all the reviews"""
         try:
             review = Review.get_all_reviews(request)
             return Response(review)
@@ -361,6 +363,7 @@ class NewReview(APIView):
 
     @staticmethod
     def post(request):
+        """to add a new review"""
         try:
             review = Review.create_review(request)
             return Response(review)
