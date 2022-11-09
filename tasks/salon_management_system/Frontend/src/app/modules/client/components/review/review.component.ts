@@ -20,13 +20,13 @@ export class ReviewComponent implements OnInit {
   reviewForm : FormGroup = new FormGroup({
     Appointment_id : new FormControl("",Validators.required),
     comments_and_reviews :new FormControl("",Validators.required),
-    rating :new FormControl("",Validators.required)
+    rating :new FormControl("",[Validators.required,Validators.max(5)])
   })
   ngOnInit(): void {
   }
   onSubmit(){
     console.log(this.reviewForm.value)
-    if(this.reviewForm.value){
+    if(this.reviewForm.valid){
       this.http.addreview(this.reviewForm.value).subscribe(data => {
         console.log(data);
         this.errorMessage=data.msg;

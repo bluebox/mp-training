@@ -46,7 +46,8 @@ export class BookappointmentComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.bookAppointmentForm.value)
-    this.http.newAppointment(this.bookAppointmentForm.value).subscribe(data => {console.log(data);alert("booked successfully");
+    this.http.newAppointment(this.bookAppointmentForm.value).subscribe(data => {console.log(data);
+    alert("booked successfully");
     window.location.reload();})
 
   }

@@ -3,9 +3,9 @@
     <div class="card1">
     <mat-card>
         <mat-card-header class="header">
-            <mat-card-title class="header-title"> <p>  Add a new Branch </p> </mat-card-title>
-            <!-- <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title> -->
-            <!-- <mat-card-title  class="error-message"><p>{{errorMessage}}</p></mat-card-title> -->
+            <mat-card-title class="header-title"> <p>  Add Review</p> </mat-card-title>
+            <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title> 
+            <mat-card-title  class="error-message"><p>{{errorMessage}}</p></mat-card-title>
         </mat-card-header>
         <!-- <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Branch ID</mat-label>
@@ -25,10 +25,11 @@
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>rating</mat-label>
             <input formControlName="rating" matInput placeholder="Enter rating 1 to 5" />
+            <mat-hint>1 to 5</mat-hint>
             <small class="text-danger" *ngIf="reviewForm.get('rating')?.invalid  && reviewForm.get('rating')?.touched " >required</small>
         </mat-form-field>
         <mat-card-actions>
-            <button mat-raised-button="" (click)="onSubmit()" color="primary" class="button">
+            <button mat-raised-button="" (click)="onSubmit()" color="accent">
                 submit
             </button>
         </mat-card-actions>

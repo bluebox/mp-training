@@ -8,7 +8,6 @@
     background-image: url("/assets/images/clienthome3.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.9;
     width :100%;
     height: 750px;
     /* padding-left: 33%; */
@@ -20,8 +19,6 @@
     margin-left: 6%;
     margin-top: 7%;
     border-radius: 1%;
-    opacity: 0.8;
-    
 }
 .mat-card-actions{
     padding-left: 2%;
