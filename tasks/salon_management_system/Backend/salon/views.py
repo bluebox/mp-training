@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import generics, filters
 from .models import Branch, User, ServicesProvided, Client
 from .serializers import BranchSerializer,Userserializer, ClientSerializer, ServicesSerializer
-from .managers import Branches, Services, Appointments, Employees, Clients
+from .managers import Branches, Services, Appointments, Employees, Clients, Review
 
 
 class BranchList(APIView):
@@ -345,5 +345,24 @@ class ClientRegistration(APIView):
         try:
             client = Clients.client_register(request)
             return Response(client)
+        except Exception as e:
+            return Response(str(e), status=500)
+
+
+class NewReview(APIView):
+
+    @staticmethod
+    def get(request):
+        try:
+            review = Review.get_all_reviews(request)
+            return Response(review)
+        except Exception as e:
+            return Response(str(e), status=500)
+
+    @staticmethod
+    def post(request):
+        try:
+            review = Review.create_review(request)
+            return Response(review)
         except Exception as e:
             return Response(str(e), status=500)

@@ -4,9 +4,9 @@
 # pylint:disable=E1101
 # pylint:disable=C0301
 from rest_framework.parsers import JSONParser
-from .models import Appointment, Branch, User, ServicesProvided, Employee, Client
+from .models import Appointment, Branch, User, ServicesProvided, Employee, Client,Reviews
 from .serializers import AppointmentSerializer, BranchSerializer, EmployeeSerializer,\
-    Userserializer, ClientSerializer, ServicesSerializer
+    Userserializer, ClientSerializer, ServicesSerializer,ReviewSerializer
 
 
 class Branches:
@@ -128,7 +128,7 @@ class Appointments:
 
     @staticmethod
     def get_booked_appointments(request):
-        """to get the list of all booked appoointments"""
+        """to get the list of all booked appointments"""
         appointments = Appointment.objects.filter(Appointment_Status="booked")
         serializer = AppointmentSerializer(appointments, many=True)
         return serializer.data
@@ -267,3 +267,27 @@ class Clients:
                                                                "client__id",
                                                                "client__Client_contact_number")
         return clients
+
+
+class Review:
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def create_review(request):
+        """to add a new review"""
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            review = {'data': serializer.data, 'msg': 'successful'}
+            return review
+        error_list = [serializer.errors[error][0] for error in serializer.errors]
+        message = {'msg': error_list}
+        return message
+
+    @staticmethod
+    def get_all_reviews(request):
+        reviews = Reviews.objects.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer.data

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppointmentComponent } from '../admin/components/appointment/appointment.component';
 import { ClientsComponent } from '../admin/components/clients/clients.component';
 import { ServicesComponent } from '../client/components/services/services.component';
+import { AllreviewsComponent } from './components/allreviews/allreviews.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { BookappointmentComponent } from './components/bookappointment/bookappointment.component';
 import { BranchComponent } from './components/branch/branch.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
     {path : 'branch',component : BranchComponent},
     {path : 'transactions',component :TransactionsComponent },
     {path : 'bookappointment',component :BookappointmentComponent },
-    {path : 'review',component : ReviewComponent}
+    {path : 'review',component : ReviewComponent},
+    {path : 'allreviews',component : AllreviewsComponent}
     
 ]}
 ];

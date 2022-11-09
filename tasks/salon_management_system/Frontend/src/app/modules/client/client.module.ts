@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 
 import {DatePipe} from '@angular/common';
+import { AllreviewsComponent } from './components/allreviews/allreviews.component';
 
 
 
@@ -42,7 +43,8 @@ import {DatePipe} from '@angular/common';
     TransactionsComponent,
     ReviewComponent,
     HomeComponent,
-    BranchComponent
+    BranchComponent,
+    AllreviewsComponent
   ],
   imports: [
     CommonModule,

@@ -28,7 +28,7 @@
             <small class="text-danger" *ngIf="reviewForm.get('rating')?.invalid  && reviewForm.get('rating')?.touched " >required</small>
         </mat-form-field>
         <mat-card-actions>
-            <button mat-raised-button="" color="primary" class="button">
+            <button mat-raised-button="" (click)="onSubmit()" color="primary" class="button">
                 submit
             </button>
         </mat-card-actions>

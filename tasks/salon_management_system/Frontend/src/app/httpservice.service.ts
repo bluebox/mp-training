@@ -84,7 +84,9 @@ export class HttpserviceService {
   getHairStylist(){
     return this.http.get(this.url+'employeelist')
   }
-
+  getSearchEmployees(text:any){
+    return this.http.get(this.url+'serachemp?search='+text)
+  }
 
 
   newAppointment(data:any){
@@ -109,10 +111,10 @@ export class HttpserviceService {
     return this.http.get(this.url+'rejorcancel')
   }
 
-
-
-  getSearchEmployees(text:any){
-    return this.http.get(this.url+'serachemp?search='+text)
+  addreview(data:any){
+    return this.http.post<any>(this.url+'reviews',data)
   }
- 
+  getreviews(){
+    return this.http.get(this.url+'reviews')
+  }
 } 
