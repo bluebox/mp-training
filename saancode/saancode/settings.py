@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     "debug_toolbar",
-    'corsheaders'
+    'corsheaders',
+    "channels"
 ]
 
 REST_FRAMEWORK = {
@@ -93,6 +94,26 @@ INTERNAL_IPS = [
 ]
 
 WSGI_APPLICATION = 'saancode.wsgi.application'
+ASGI_APPLICATION = 'websocketaspire.routing.application'
+
+# CHANNEL_LAYERS = {
+#  'default': {
+#  'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#  'CONFIG': {
+#  'hosts': [('localhost', 6379)],
+#  },
+#  },
+# }
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+        'ROUTING': 'chantest.routing.channel_routing',
+    }
+}
 
 
 # Database

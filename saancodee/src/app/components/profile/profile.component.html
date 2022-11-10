@@ -1,143 +1,207 @@
+<div *ngIf="followingToggle" class="following">
+  <div>
+    <div>
+      <div (click)="showOrHideIng()"
+        style="width: 10%; height: 100%; cursor: pointer; background-color: red; text-align: center;">
+        X
+      </div>
+    </div>
+    <!-- <div class="inner-following"> -->
+    <!-- <input type="text" placeholder="search by name"> -->
+    <!-- </div> -->
+    <div class="inner-following">
+      <ul>
+        <li *ngFor="let user of following; let i = index">
+          <div style="display: flex;">
+            <p (click)="openProfile(user)" style="height: 100%; cursor: pointer;">{{ user.full_name }}</p>
+            <button style="height: 100%;" (click)="unfollowUser(user, i)">Unfollow</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div *ngIf="followersToggle" class="following">
+  <div>
+    <div class="inner-following">
+      <input type="text" placeholder="search by name">
+    </div>
+    <div class="inner-following">
+      <ul>
+        <li *ngFor="let user of followers; let i = index">
+          <div style="display: flex;">
+            <p (click)="openProfile(user)" style="height: 100%; cursor: pointer;">{{ user.full_name }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
 <section style="background-color: #eee;">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col">
-          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-            <ol class="breadcrumb mb-0">
-              <li title="Edit Profile" class="edit-profile"><a class="profile-link" routerLink="/edit-profile"><i class="profile-links bi bi-pencil-square"></i></a></li>
-              <li title="Post Question" class="post-question"><a class="profile-link" routerLink="/post-question"><i class="profile-links bi bi-file-post-fill"></i></a></li>
-              <li title="Submissions" class="submissions"><a class="profile-link" routerLink="/submissions"><i class="profile-links bi bi-activity"></i></a></li>
-            </ol>
-          </nav>
+  <div class="container py-5">
+    <div *ngIf="username === user" class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li title="Edit Profile" class="edit-profile"><a class="profile-link" routerLink="/edit-profile"><i
+                  class="profile-links bi bi-pencil-square"></i></a></li>
+            <li title="Post Question" class="post-question"><a class="profile-link" routerLink="/post-question"><i
+                  class="profile-links bi bi-file-post-fill"></i></a></li>
+            <li title="Submissions" class="submissions"><a class="profile-link" routerLink="/submissions"><i
+                  class="profile-links bi bi-activity"></i></a></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{ profile.full_name }}</h5>
+            <p class="text-muted mb-1">{{ profile.work }}</p>
+            <p [ngClass]="{'private': profile.private === true}" class="text-muted mb-4">{{ profile.location }}</p>
+            <div style="display: flex; justify-content: center;">
+              <p id="following" (click)="showOrHideIng()">following {{ following.length }}</p> &nbsp;
+              <span *ngIf="user != id">
+                <button *ngIf="isFollowing" (click)="unfollowUserAgain(profile, id)">Unfollow</button> &nbsp;
+                <button *ngIf="!isFollowing" (click)="followUser(profile, id)">Follow</button> &nbsp;
+              </span>
+              <p id="followers" (click)="showOrHideErs()">followers {{ followers.length }}</p>
+            </div>
+            <div>
+              <span *ngIf="id != profile.user.username && followingEachOther">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <a style="color: black;" href="{{profile.github}}" class="mb-0"><span><i
+                      class="bi bi-github"></i></span> {{ profile.github }}</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                <a class="mb-0"><span><i class="bi bi-facebook"></i></span>{{ profile.facebook }}</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                <p style="color: #F00309;" class="mb-0"><span><i class="bi bi-instagram"></i></span>{{ profile.instagram
+                  }}</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-  
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">{{ profile.full_name }}</h5>
-              <p class="text-muted mb-1">{{ profile.work }}</p>
-              <p class="text-muted mb-4">{{ profile.location }}</p>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ profile.full_name }}</p>
+              </div>
             </div>
-          </div>
-          <div class="card mb-4 mb-lg-0">
-            <div class="card-body p-0">
-              <ul class="list-group list-group-flush rounded-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fas fa-globe fa-lg text-warning"></i>
-                  <a style="color: black;" href="{{profile.github}}" class="mb-0"><span><i class="bi bi-github"></i></span>  {{ profile.github }}</a>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                  <a class="mb-0"><span><i class="bi bi-facebook"></i></span>{{ profile.facebook }}</a>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                  <p style="color: #F00309;" class="mb-0"><span><i class="bi bi-instagram"></i></span>{{ profile.instagram }}</p>
-                </li>
-              </ul>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Gender</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" *ngIf="profile.gender === 'M'">Male</p>
+                <p class="text-muted mb-0" *ngIf="profile.gender === 'F'">Femalep>
+
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p [ngClass]="{'private': profile.private === true}" class="text-muted mb-0">{{ profile.mobile }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Bio</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ profile.bio }}</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Full Name</p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"><span class="text-primary font-italic me-1">Statistics</span> Solved Problems ({{
+                  problems.easy + problems.medium + problems.hard }} / {{ problems.total }})
+                </p>
+                <p class="mb-1" style="font-size: .77rem; font-weight: bold; color: green;">Easy ({{ problems.easy }} /
+                  {{ problems.totalEasy }})</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" [style.width.%]="easyCent"
+                    style="background-color: green;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ profile.full_name }}</p>
+                <p class="mb-1" style="font-size: .77rem; font-weight: bold; color: orange;">Medium ({{ problems.medium
+                  }} / {{ problems.totalMedium }})</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" [style.width.%]="mediumCent"
+                    style="background-color: orange;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Gender</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0" *ngIf="profile.gender === 'M'">Male</p>
-                  <p class="text-muted mb-0" *ngIf="profile.gender === 'F'">Femalep>
-
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Mobile</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ profile.mobile }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Bio</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ profile.bio }}</p>
+                <p class="mb-1" style="font-size: .77rem; font-weight: bold; color: red;">Hard ({{ problems.hard }} / {{
+                  problems.totalHard }})</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" [style.width.%]="hardCent" style="background-color: red;"
+                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
-                <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">Statistics</span> Solved Problems ({{ problems.easy + problems.medium + problems.hard }} / {{ problems.total }})
-                  </p>
-                  <p class="mb-1" style="font-size: .77rem; font-weight: bold; color: green;">Easy ({{ problems.easy }} / {{ problems.totalEasy }})</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" [style.width.%]="easyCent" style="background-color: green;" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mb-1" style="font-size: .77rem; font-weight: bold; color: orange;">Medium ({{ problems.medium }} / {{ problems.totalMedium }})</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" [style.width.%]="mediumCent" style="background-color: orange;" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mb-1" style="font-size: .77rem; font-weight: bold; color: red;">Hard ({{ problems.hard }} / {{ problems.totalHard }})</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" [style.width.%]="hardCent" style="background-color: red;" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"><span class="text-primary font-italic me-1">Submissions</span> Recent
+                </p>
+                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+                    aria-valuemax="100"></div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card mb-4 mb-md-0">
-                <div class="card-body">
-                  <p class="mb-4"><span class="text-primary font-italic me-1">Submissions</span> Recent
-                  </p>
-                  <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                  <div class="progress rounded" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                  <div class="progress rounded mb-2" style="height: 5px;">
-                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                <div class="progress rounded mb-2" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0"
+                    aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
@@ -145,4 +209,5 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

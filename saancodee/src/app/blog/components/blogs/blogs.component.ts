@@ -1,21 +1,23 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
   styleUrls: ['./blogs.component.css']
 })
-export class BlogsComponent implements OnInit {
+export class BlogsComponent implements OnInit, OnDestroy {
   blogs: any;
+  subscription!: Subscription
 
   constructor(public service: BlogService, private http: HttpClient, private router: Router) {
-    this.service.getBlogs().subscribe((data: any) => {
-      this.blogs = data;
-      console.log(data);
-    })
+    // this.subscription = this.service.getBlogs().subscribe((data: any) => {
+    //   this.blogs = data;
+    //   console.log(data);
+    // })
   }
 
   getBlog(blog_id: any) {
@@ -23,6 +25,14 @@ export class BlogsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscription = this.service.getBlogs().subscribe((data: any) => {
+      this.blogs = data;
+      console.log(data);
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -31,9 +31,12 @@ path('comment/post/<str:discussionId>/<str:username>', postCommentApi, name="log
 
 # profile apis
 
-path('profiles/', profilesApi, name = 'profilesApi'),
+path('profiles/<str:user_id>/', profilesApi, name = 'profilesApi'),
 path('profile/<str:username>/', profileApi, name = 'profileApi'),
 path('edit-profile/<str:username>/', editProfileApi, name = 'editProfileApi'),
+path('unfollow', unfollow_api),
+path('follow', follow_api),
+
 
 # blog apis
 

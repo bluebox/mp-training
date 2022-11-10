@@ -1,6 +1,10 @@
 <div class="blog-container">
     <div class="inner-blog-container"></div>
-    <div class="inner-blog-container">
+    <div class="inner-blog-container middle-grid" *ngIf="blogs.length === 0">
+        <h1>No Blogs Yet, Create One !</h1>
+        <button routerLink="../create" class="btn btn-success">CREATE BLOG</button>
+    </div>
+    <div class="inner-blog-container middle-grid" *ngIf="blogs.length != 0">
         <!-- <div *ngIf="blogs === {}">NOTHING TO DISPLAY</div> -->
         <div *ngFor="let blog of blogs; let i = index;" class="blog-card">
             <h3 class="title">{{ blog.title }}</h3>

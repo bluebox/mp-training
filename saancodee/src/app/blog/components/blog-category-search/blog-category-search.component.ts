@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { BlogService } from '../../services/blog.service';
 
 @Component({
@@ -11,8 +12,32 @@ export class BlogCategorySearchComponent implements OnInit {
 
   searchWord: any;
   blogs: any = {};
+  subscription!: Subscription; 
 
   constructor(private router: Router, private route: ActivatedRoute, private service: BlogService) {
+    // this.route.queryParams
+    //   .subscribe(params => {
+    //     console.log(params);
+    //     this.searchWord = params['tag'];
+    //     console.log(this.searchWord);
+    //     this.service.searchCategoryBlog(this.searchWord).subscribe((data: any) => {
+    //       this.blogs = data;
+    //       console.log(this.blogs);
+    //     })
+    //   }
+    // );
+    
+    // this.service.searchCategoryBlog(this.searchWord).subscribe((data: any) => {
+    //   this.blogs = data;
+    //   console.log(this.blogs);
+    // })
+   }
+
+   getBlog(blog_id: any) {
+    this.router.navigate(['blogs/blog', blog_id]);
+  }
+
+  ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
         console.log(params);
@@ -29,20 +54,6 @@ export class BlogCategorySearchComponent implements OnInit {
       this.blogs = data;
       console.log(this.blogs);
     })
-   }
-
-   getBlog(blog_id: any) {
-    this.router.navigate(['blogs/blog', blog_id]);
-  }
-
-  ngOnInit() {
-    // this.route.queryParams
-    //   .subscribe(params => {
-    //     console.log(params);
-    //     this.searchWord = params['word'];
-    //     console.log(this.searchWord);
-    //   }
-    // );
   }
 
 }

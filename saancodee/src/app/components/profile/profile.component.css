@@ -7,3 +7,52 @@
 .profile-link {
     margin-right: 1rem;
 }
+
+.private {
+    -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  background-color: #ccc;
+}
+
+.following {
+    background-color: black;
+    color: white;
+    border: 1px solid #B6B8B9;
+    /* z-index: 1;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; */
+    z-index: 1;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#following {
+    cursor: pointer;
+}
+
+#following:hover {
+    cursor: pointer;
+    color: #0D6EFD;
+    border-bottom: 1px solid #0D6EFD;
+}
+
+#followers {
+    cursor: pointer;
+}
+
+#followers:hover {
+    cursor: pointer;
+    color: #0D6EFD;
+    border-bottom: 1px solid #0D6EFD;
+}

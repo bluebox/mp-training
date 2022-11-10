@@ -3,12 +3,17 @@
 .blog-container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    height: 100vh;
 }
 
 .inner-blog-container {
-    height: 100%;
-    border: 1px solid black;
+    height: fit-content
+    /* border: 1px solid black; */
+}
+
+.middle-grid {
+   border-left: 1px solid grey;
+   border-left: 1px solid grey;
+   border-right: 1px solid grey;
 }
 
 .blog-title {
@@ -30,6 +35,7 @@
 .right-grid {
     display: grid;
     grid-template-rows: 1fr 3fr;
+    display: flex;
 }
 
 .comment {

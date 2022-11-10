@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Validators } from 'ngx-editor';
+import { Observable } from 'rxjs';
 import { RegisterService } from 'src/app/services/register.service';
 
 
@@ -13,7 +14,7 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class ProblemsComponent implements OnInit {
 
-  tags: any;
+  tags$!: Observable<any>;
   p: any;
   pages: any;
   problems!: any
@@ -30,11 +31,12 @@ export class ProblemsComponent implements OnInit {
 
   constructor(public route: ActivatedRoute, public fb: FormBuilder, public service: RegisterService, private http: HttpClient, private router: Router) {
     this.service.getProblems().subscribe((data: any) => {
-      this.service.getTags().subscribe((data) => {
-        this.tags = data
-        console.log(data);
+      // this.service.getTags().subscribe((data) => {
+      //   this.tags = data
+      //   console.log(data);
         
-      })
+      // })
+      this.tags$ = this.service.getTags();
       this.problems = data
       this.p = []
     for (let i = (this.currentPage - 1) * 10; i < ((this.currentPage - 1) * 10) + 10; i ++ ) {

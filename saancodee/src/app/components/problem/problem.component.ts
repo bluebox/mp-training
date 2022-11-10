@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/register.service';
 import { Validators, FormBuilder } from '@angular/forms'
-import { VirtualTimeScheduler } from 'rxjs';
+import { Subscription, VirtualTimeScheduler } from 'rxjs';
 declare var jQuery: any;
 
 // const app = document.querySelector(".hints");
@@ -22,6 +22,8 @@ export class ProblemComponent implements OnInit {
   tags:any;
   relatedTopicsFlag: boolean = false;
   hintsFlag: boolean = false;
+  problemSubscription!: Subscription;
+  voteSubscription!: Subscription;
 
   submissionForm:any = this.fb.group(
     {
@@ -35,16 +37,16 @@ export class ProblemComponent implements OnInit {
   constructor(private router:Router, private fb:FormBuilder, public service: RegisterService, private route: ActivatedRoute, private http: HttpClient) { 
     this.id = route.snapshot.params['id']
     
-    this.service.getProblem(this.id).subscribe((data:any) => {
-      this.problem = data.problems
-      this.tags = data.problems.tags
-      console.log(data)
-    })
+    // this.service.getProblem(this.id).subscribe((data:any) => {
+    //   this.problem = data.problems
+    //   this.tags = data.problems.tags
+    //   console.log(data)
+    // })
 
-    this.service.getVote(this.id).subscribe((data) => {
-      this.votes = data;
-      console.log(data);
-    })
+    // this.service.getVote(this.id).subscribe((data) => {
+    //   this.votes = data;
+    //   console.log(data);
+    // })
 
    }
 
@@ -99,11 +101,21 @@ export class ProblemComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    (function ($) {
-      $(document).ready(function(){
-        console.log("Hello from jQuery!");
-      });
-    })(jQuery);
+    this.problemSubscription = this.service.getProblem(this.id).subscribe((data:any) => {
+      this.problem = data.problems
+      this.tags = data.problems.tags
+      console.log(data)
+    })
+
+    this.voteSubscription = this.service.getVote(this.id).subscribe((data) => {
+      this.votes = data;
+      console.log(data);
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.problemSubscription.unsubscribe();
+    this.voteSubscription.unsubscribe();
   }
 
 }

@@ -1,5 +1,5 @@
 <section class="body">
-  <h1>PROBLEMS</h1>
+  <h1>PROBLEMS <i style="color: red;" class="bi bi-heart"></i></h1>
   <div>
 
     <div class="box">
@@ -26,7 +26,7 @@
         <div class="selected-tags"></div>
         <select (change)="add_tag()" name="" id="" class="tags">
           <option value=""></option>
-          <option *ngFor="let tag of tags" value="{{ tag.name }}" class="tag">{{ tag.name }}
+          <option *ngFor="let tag of tags$ | async" value="{{ tag.name }}" class="tag">{{ tag.name }}
           </option>
         </select>
       </div>

@@ -26,6 +26,7 @@ export class EditProfileComponent implements OnInit {
     {
       full_name: ['', [Validators.required, Validators.minLength(6)]],
       gender: [''],
+      private: [],
       location: [''],
       bio: [''],
       work: [''],

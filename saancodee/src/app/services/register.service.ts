@@ -36,9 +36,8 @@ export class RegisterService {
     this.router.navigate(['login'])
   }
 
-  getProfile() {
-    let username = localStorage.getItem('username')
-    let url = this.url + "profile/" + username
+  gotoProfile(user: any) {
+    let url = this.url + "profiles/" + user.user
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/json',
@@ -46,6 +45,69 @@ export class RegisterService {
       }
     )
     return this.http.get(url, { headers: headers })
+  }
+
+  getProfile(user: any) {
+    let username = localStorage.getItem('username')
+    let url = this.url + "profile/" + user
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+    return this.http.get(url, { headers: headers })
+  }
+
+  unfollowUser(profile_id: any, following_id: any) {
+    let url = this.url + "unfollow"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+
+    let data = {
+      "profile_id": profile_id,
+      "following_id": following_id
+    }
+
+    return this.http.post(url, data, { headers: headers })
+  }
+
+  followUser(profile_id: any, following_id: any) {
+    let url = this.url + "follow"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+
+    let data = {
+      "profile_id": profile_id,
+      "following_id": following_id
+    }
+
+    return this.http.post(url, data, { headers: headers })
+  }
+
+  checkBothFOllowing(id: any, profile: any) {
+    let url = this.url + "checkfollowstatus"
+    const headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + localStorage.getItem('token')
+      }
+    )
+
+    let data = {
+      "profile_id": id,
+      "following_id": profile
+    }
+
+    return this.http.post(url, data, { headers: headers })
   }
 
   getStreak() {

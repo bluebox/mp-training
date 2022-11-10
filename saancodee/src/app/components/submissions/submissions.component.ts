@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
@@ -10,15 +11,24 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class SubmissionsComponent implements OnInit {
   allSubmissions: any;
+  subscription!: Subscription
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private service: RegisterService) { 
-    this.service.getAllSubmissions().subscribe((data) => {
-      console.log(data);
-      this.allSubmissions = data;
-    })
+    // this.service.getAllSubmissions().subscribe((data) => {
+    //   console.log(data);
+    //   this.allSubmissions = data;
+    // })
    }
 
   ngOnInit(): void {
+    this.subscription = this.service.getAllSubmissions().subscribe((data) => {
+      console.log(data);
+      this.allSubmissions = data;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

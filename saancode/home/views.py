@@ -158,10 +158,16 @@ def editProfileApi(request, username):
     return profileLogic.editProfileWithUsername(request, username)
 
 @api_view(['GET'])
-def profilesApi(request):
-    profile = Profile.objects.all()
-    serialzer = profileSerializer(profile, many = True)
-    return Response(serialzer.data)
+def profilesApi(request, user_id):
+    return profileLogic.get_profiles_by_id(user_id)
+
+@api_view(['POST'])
+def unfollow_api(request):
+    return profileLogic.unfollow_user(request)
+
+@api_view(['POST'])
+def follow_api(request):
+    return profileLogic.follow_user(request)
 
 @api_view(['GET'])
 def profileApi(request, username):

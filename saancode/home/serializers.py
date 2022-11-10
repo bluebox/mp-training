@@ -32,7 +32,7 @@ class ProblemSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['id', 'username']
 
 class sortProblemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,11 +41,11 @@ class sortProblemSerializer(serializers.ModelSerializer):
 
 class profileSerializer(serializers.ModelSerializer):
 
+    user = UserSerializer()
+
     class Meta:
         model = Profile
-        fields = (
-            "__all__"
-        )
+        fields = "__all__"
 
 class submissionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,7 +81,7 @@ class blogCommentSerializer(serializers.ModelSerializer):
 class editProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['full_name', 'gender', 'location', 'work', 'bio', 'education', 'mobile', 'github', 'facebook', 'instagram']
+        fields = ['full_name', 'private', 'gender', 'location', 'work', 'bio', 'education', 'mobile', 'github', 'facebook', 'instagram']
 
 class postQuestionSerializer(serializers.ModelSerializer):
     class Meta:

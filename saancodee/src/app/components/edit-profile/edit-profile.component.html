@@ -1,4 +1,12 @@
 <form class="container" (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+    <section title=".slideThree">
+        <div class="slideThree">  
+          <input type="checkbox" formControlName="private" value="None" id="slideThree" name="check" checked />
+          <label for="slideThree">Private Account
+          </label>
+        </div>
+        <!-- end .slideThree -->
+      </section>
     <div class="form-outline">
         <label class="form-label" for="typeText">Full Name</label>
         <input name="full_name" [(ngModel)]="full_name" formControlName="full_name" full_name="text" id="typeText" class="form-control" />

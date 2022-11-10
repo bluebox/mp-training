@@ -13,12 +13,13 @@ import uuid
 class Profile(models.Model):
     user = models.OneToOneField(User, primary_key=True, 
           on_delete = models.CASCADE)
-    # followers = models.ManyToManyField(User, related_name="followed_by", symmetrical = False, blank=True)
+    follows = models.ManyToManyField("self", related_name="followed_by", symmetrical = False, blank=True)
     full_name = models.CharField(max_length=30)
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
     )
+    private = models.BooleanField(default = False)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     location = models.CharField(max_length=50, blank=True)
     bio = models.CharField(max_length=100, blank=True)
@@ -30,6 +31,13 @@ class Profile(models.Model):
     instagram = models.CharField(max_length=50, default='', blank=True)
     streak = models.IntegerField(default=0)
     # password = models.CharField(max_length=30)
+
+    def get_following(self):
+        return self.follows.all()
+
+    def get_followers(self):
+        return self.followed_by.all()
+        return Profile.objects.filter(follows__user__username = self.user.username)
 
     def __str__(self):
         return self.user.username
