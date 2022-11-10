@@ -1,0 +1,71 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.banner{
+    width:100%;
+    height: 70vh;
+
+}
+.full{
+    background-color: black;
+    color: white;
+    font-family: 'Nunito', sans-serif;font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+.info{
+    position: absolute;
+    margin-top: -300px;
+    margin-left: 650px;
+}
+span{
+    color: gray;
+}
+
+button#b1{
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 10px;
+}
+button:hover{
+    color: white;
+    background-color: gray;
+    transition-delay:0.5s;
+    transition: ease-in-out;
+}
+#drop{
+    margin: 10px;
+    height: 30px;
+    width: 150px;
+    border-color: white;
+    background-color: black;
+    color: white;
+    line-height: 20px;
+ 
+}
+#im{
+    height: 170px;
+    width: 130px;
+    margin: 10px;
+    border-radius: 10px;
+}
+#im:hover{
+    height: 175px;
+    width: 135px;
+    
+}
+.cast{
+    display: flex;
+    overflow-x: scroll;
+}
+.cast::-webkit-scrollbar{
+    display: none;
+}
+#par{
+    text-align: center;
+}
+h2{
+    margin-left: 20px;
+}

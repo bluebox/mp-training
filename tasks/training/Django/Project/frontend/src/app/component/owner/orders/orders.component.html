@@ -1,0 +1,103 @@
+<app-o-navbar></app-o-navbar>
+<div class="main">
+<div class="for" *ngFor="let order of pageItems">
+<div class="card" style="width: 30rem;">
+  <div class="card-body">
+    <h5 class="card-title">Order ID : {{ order.rent_id }}</h5>
+    <h4 class="card-title">Vehicle : {{ order.vehicle_no }}</h4>
+
+    <p class="card-text">Booking date : {{ order.booking_date.substring(0,10)  }}</p>
+    <small>From : {{ order.stringPickDate}}</small> &nbsp;&nbsp;&nbsp;
+    <small>To : {{ order.stringReturnDate}}</small> <br><br>
+
+    <p style="color: brown ;" *ngIf="order.odo_start_reading && order.odo_end_reading">Total Kilo meter driven :{{order.reading }}</p> <br>
+
+
+
+    <div style="color: rgb(106, 165, 11);">
+
+      <p >Customer Name:  {{order.customer_id.name}} </p>
+      <p >Customer email:  {{order.customer_id.email}} </p>
+      <p >Contact number:  {{order.customer_id.contact_no}} </p>
+
+    </div>
+
+    <p *ngIf="order.owner_review" style="color: rgb(179, 123, 19) ;">Your review:  {{order.owner_review}} &nbsp; <a (click)="addReview( content, order.rent_id)"><i style="color:rgb(9, 118, 207) ;" class="fa-solid fa-pen-to-square"></i></a></p>
+
+    <!-- *ngIf="!billList.rental_id_id==order.rent_id" -->
+
+    <a *ngIf="!order.bill_generated"  class="btn btn-primary" (click)="generateBill( order.rent_id )">Generate Bill</a>&nbsp;&nbsp;
+
+
+    <a *ngIf="!order.odo_start_reading  && order.return_date<date"  class="btn btn-primary" (click)="openOdo(content1 ,order.rent_id)" >Add Odo reading</a>
+
+    &nbsp;
+
+    <a (click)="getBill(order.rent_id); getTripDetails(order.rent_id)" class="btn btn-primary">View detail</a> &nbsp;
+
+    <!-- <button *ngIf="order.owner_review"  class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id)" >Edit review
+    </button> -->
+
+    <button *ngIf="order.owner_review == null && order.return_date<= date" class="btn btn-lg btn-outline-primary" style="width:100px; font-size: small;" (click)="addReview( content, order.rent_id)" >Add review</button>
+  </div>
+
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Review</h4>
+    <button  type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Add your review</label>
+        <div class="input-group">
+          <form [formGroup]="review" (submit)="modal.close(order.rent_id)">
+            <input type="text" formControlName="owner_review" placeholder={{order.owner_review}}>
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(order.rent_id)">Save</button>
+  </div>
+</ng-template>
+
+
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Odometer reading</h4>
+    <button  type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Add Odometer reading</label>
+        <div class="input-group">
+          <form [formGroup]="odoReading" (submit)="modal.close(order.rent_id)">
+            <input type="text" formControlName="odo_start_reading" placeholder="start reading"> <BR>
+            <input type="text" formControlName="odo_end_reading" placeholder="End reading">
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(order.rent_id)">Save</button>
+  </div>
+</ng-template>
+</div>
+</div>
+
+<div class="text-center">
+  <button (click)="getPageItems(-1)" class="border-0 bg-light">
+    <i class="fa-solid fa-angle-left"></i>
+  </button>
+  page {{ page }} of {{ totalPages }}
+  <button (click)="getPageItems(1)" class="border-0 bg-light">
+    <i class="fa-solid fa-angle-right"></i>
+  </button>
+</div>
+

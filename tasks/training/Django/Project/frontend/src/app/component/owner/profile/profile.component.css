@@ -1,0 +1,37 @@
+.name{
+  color: Blue;
+  font-family: monospace;
+  font-size: larger;
+  display: flex;
+  justify-content: space-between;
+
+}
+.details{
+  padding: 10px;
+  width: 500px;
+  background-color: antiquewhite;
+}
+div{
+  padding: 20px;
+  width: 500px;
+}
+button{
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  font-size: small;
+  width :70px;
+}
+button:hover{
+
+  background-color: rgb(130, 184, 130) ;
+}
+.main{
+  background-color: rgb(204, 252, 236);
+  width: 100vw;
+  height: 94vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.categorylist{
+    width: 80%;
+    display: grid;;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(1,1fr);
+    padding: 1rem 2rem;
+    grid-gap: 10px;
+}
+.categorylist div{
+    height: 35vh;
+    cursor: pointer;
+    background-size: cover;  
+}
+.categorylist div:nth-child(4){
+    background-image: url("../banners/images/electronics/headphones.png");
+}
+.categorylist div:nth-child(2){
+    background-image: url("../banners/images/electronics/fridge.png");
+}
+.categorylist div:nth-child(1){
+    background-image: url("../banners/images/electronics/laptop.png");
+}
+.categorylist div:nth-child(3){
+    background-image: url("../banners/images/electronics/speakers.png");
+}

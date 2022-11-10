@@ -1,0 +1,23 @@
+.main{
+  /* padding-left: 200px; */
+  /* background-color:rgb(248, 207, 207); */
+  height: 60rempx;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: beige;
+
+}
+.card{
+  background-color:rgb(250, 246, 246);
+
+  align-items:right;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 70%;
+  padding:5% 25% ;
+}
+
+

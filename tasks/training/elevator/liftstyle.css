@@ -1,0 +1,42 @@
+.full{
+    margin:100px;
+    position: relative;
+}
+.floor{
+    display:flex
+   
+}
+.inside{
+    height: 150px;
+    width: 100px;
+    border:1px solid black;
+}
+.outside{
+    /* display:flex; */
+    
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    margin-top: 60px;
+}
+.lift{
+    height: 150px;
+    width: 100px;
+    border:1px solid black;
+    position: absolute;
+    background-color: rgb(161, 161, 192);
+    /* background-image: url("lift.jpeg"); */
+    
+    bottom: 0;
+    transition: bottom 2s ease-in-out;
+
+}
+.btns{
+    width: 30px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-top: 50px;
+}
+.btn{
+    margin: 2px;
+}

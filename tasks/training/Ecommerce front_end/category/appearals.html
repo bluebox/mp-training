@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oneplus</title>
+    <link rel="stylesheet" href="../styles/navbar2.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <!-- <link rel="stylesheet" href="../../../styles/productspage.css"> -->
+    <link rel="stylesheet" href="../styles/categorypage/elect2.css">
+    <link rel="stylesheet" href="../styles/categorypage/wfile.css">
+</head>
+<body>
+            <!-- SLIDER -->
+            <div id="header"></div>
+            <script>
+                load("../../navbar/navbar2.html");
+                function load(url) {
+                    req = new XMLHttpRequest();
+                    req.open("GET", url, false);
+                    req.send(null);
+                    document.getElementById("header").innerHTML = req.responseText;
+                }
+            </script>
+    <div class="one_plus_page">
+        <div class="sideInfo">
+            <div class="delivery">
+                <h5 id="h4">Delivery by</h5>
+                
+                <p><a  id="links" href="">Get it 2 Days</a></p>
+                <p><a  id="links" href="">Get it Today</a></p>
+                </div><br>
+            <div class="customer_review">
+                <h5>Customer review</h5>
+                <img src="ratingImages/cust_review.png" alt="">
+            </div>
+            <div class="brands">
+                <h4 id="h4">Brands</h4>
+                <a id="links"  href=""> <h5>Oneplus</h5> </a>
+                <a id="links"  href=""><h5>Vivo </h5></a>
+                <a id="links"  href=""><h5>Oppo</h5></a>
+                <a id="links"  href=""><h5>Apple</h5></a>
+                <a id="links"  href=""><h5>Samsung</h5></a>
+    
+            </div>
+            <br>
+            <div class="categories">
+                <h4 id="h4">Categories</h4>
+                <a id="links"  href=""> <h5>Mobiles</h5> </a>
+                <a id="links"  href=""><h5>Electronics</h5></a>
+                <a id="links"  href=""><h5>Fashion</h5></a>
+                <a id="links"  href=""><h5>Footwear</h5></a>
+                <a id="links"  href=""><h5>Samsung</h5></a>
+    
+            </div>
+    
+        </div>
+        <div >
+            <h1 id="headcenter">Sort by Mens</h1>
+            <div class="electronicscategory">
+            <div id="eleccom1" onclick="divredirect(1)">
+          
+            </div>
+            <div id="eleccom2" onclick="divredirect(2)">
+          
+            </div>
+            <div id="eleccom3" onclick="divredirect(3)">
+        
+            </div>
+            <div id="eleccom4" onclick="divredirect(4)">
+        
+            </div>  
+        </div>
+        <h1 id="headcenter">Sort by Womens</h1>
+        <div class="electronicscategory2">
+        <div id="eleccom5" onclick="divredirect(5)">
+      
+        </div>
+        <div id="eleccom6" onclick="divredirect(6)">
+      
+        </div>
+        <div id="eleccom7" onclick="divredirect(7)">
+    
+        </div>
+        <div id="eleccom8" onclick="divredirect(8)">
+    
+        </div>  
+        <div id="eleccom9" onclick="divredirect(9)">
+      
+        </div>
+        <div id="eleccom10" onclick="divredirect(10)">
+      
+        </div>
+        
+    </div>
+            </div>
+              </div>       <!-- footer -->
+         <div id="footer"></div>
+         <script>
+             load("../../../footer/footer.html");
+             function load(url) {
+                 req = new XMLHttpRequest();
+                 req.open("GET", url, false);
+                 req.send(null);
+                 document.getElementById("footer").innerHTML = req.responseText;
+             }
+         </script>
+         </body>
+         <script>
+            function divredirect(a){
+                if (a>=1 && a<=4){
+                    window.location.href = "/products/appearl/mens.html";
+                }
+                
+                else if (a>=5  && a<=10){
+                    window.location.href = "/products/appearl/womens.html";
+                }
+               
+            }
+        </script>
+         </html>

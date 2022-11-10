@@ -1,0 +1,52 @@
+.sideInfo{
+    width: 13%;
+    border-right: 2px solid black;
+}
+#links{
+    text-decoration: none;
+    color: rgb(49, 109, 181);
+}
+.brands {
+    line-height: 1px;
+    margin: 10px;
+}
+#h4{
+    padding-bottom: 15px;
+}
+.delivery{
+    line-height: 1px;
+    margin: 10px;
+}
+.customer_review{
+    margin: 10px;
+}
+.categories{
+    line-height: 1px;
+    margin: 10px;
+}
+.Footware_page{
+    display: flex;
+}
+.footware{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    /* align-items: center; */
+    grid-gap: 20px;
+    margin: 20px;
+}
+#footware{
+    
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    
+}
+.footware div{
+    text-align: center;
+    background-color: rgb(244, 246, 246);
+    padding: 20px;
+}
+.footware div:hover{
+    background-color: rgb(211, 245, 245);
+    
+}

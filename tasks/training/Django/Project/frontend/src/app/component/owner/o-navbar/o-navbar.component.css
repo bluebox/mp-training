@@ -1,0 +1,11 @@
+.container{
+  background-color: white;
+  /* display: flex;
+  justify-content: space-between; */
+  /* width:100%; */
+  /* margin-left: 25px; */
+}
+.navbar-expand-lg{
+  width: 50%;
+}
+

@@ -1,36 +1,111 @@
 1.) What is the advantage of grouping several checkboxes together?
+-->to choose Multiple options 
+
 2.) What will happen if you overlap sets of tags?
+-->Only 1st tag will be reconized
+
+
 3.) What are applets?
+-->It is a small application that supports and enhances the hosting web application
+
 4.) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+-->if there is no text b/w tags it won't affect anything, if text omitted by mistake it will affect the display
+
 5.) Is it possible to set specific colors for table borders?
+--> Yes
+
 6.) How do you create a link that will connect to another web page when clicked?
+-->Using anchor tag <a></a>
+
 7.) What other ways can be used to align images and wrap text?
+-->Using Table we can align images and wrap text
+
 8.) Can a single text link point to two different web pages?
+-->No
+
 9.) What is the difference between the directory and menu lists and the unordered list?
+-->directory: doesn’t support styling of bullets, it is no longer in use, less prefered
+    menu: doesn’t support styling of bullets, it is in use, less prefered
+    unordered: Bullets can be styled, more prefered
+
 10.) Can you change the color of bullets?
+-->Yes
+
 11.) What are the limits of the text field size?
+-->limit of 13 characters in a text field size. By setting the size attribute, the size value can be set as low as 1.
+
 12.) Do <th> tags always need to come at the start of a row or column?
+-->No
+
 13.) What is the relationship between the border and rule attributes?
+-->Default cell borders, with a thickness of 1 pixel, are automatically added between cells if the border attribute is set to a nonzero value. Likewise, If the border attribute is not included, a default 1-pixel border appears if the rules attribute is added to the <table> tag.
+
 14.) What is a marquee?
+--> It is a tag used for scolling text.
+
 15.) How do you create text on a webpage that will allow you to send an email when clicked?
+--> <a href=”mailto:<mail address>”>text to be clicked</a> create text on a webpage that will allow you to send an email when clicked.
+
 16.) Are <br> tags the only way to separate sections of text?
+-->No there are other tags also (<p> <secton> <blockquote>)
+
 17.) Are there instances where the text will appear outside of the browser?
+-->By default, the text is wrapped to appear within the browser window. However, if the text is part of a  table cell with a defined width, the text could extend beyond the browser window.
+
 18.) How are active links different from normal links?
+-->Some browsers recognize an active link when the mouse cursor is placed over that link; others recognize active links when the link has the focus. Those that don’t have a mouse cursor over that link is considered a normal link.
+
 19.) Do style sheets limit the number of new style definitions that can be included within the brackets?
+-->
+
 20.) Can I specify fractional weight values such as 670 or 973 for font weight?
+--> Yes you can, but CSS will round off to the nearest actual weight.
+
 21.) What is the hierarchy that is being followed when it comes to style sheets?
+--> Inline styling takes first precedence followed by internal and external.
+
 22.) Can several selectors with class names be grouped together?
+--> Yes, you can group several selectors with class names.
+
 23.) What happens if you open the external CSS file in a browser?
+--> It will just open and display the contents of the css file as it is.
+
 24.) How do you make a picture into a background image of a web page?
+--> To set the background image of a webpage, use the CSS style. Under the CSS <style> tag, add the property background-image.
+
 25.) What happens if the list-style-type property is used on a non-list element like a paragraph?
+--> Property will be ignored and do not affect the paragraph.
+
 26.) When is it appropriate to use frames?
+--> Frames can make navigating a site much easier
+
 27.) What happens if the number of values in the rows or cols attribute doesn’t add up to 100 percent?
+--> The browser sizes the frames relative to the total sum of the values. If the cols attribute is set to 100%, 200% the browser displays two vertical frames with the second being twice as big as the first.
+
 28.) Which browsers support HTML5?
+-->Chrome, Firefox, Safari, IE9, and Opera 
+
 29.) Name two new tags included in the HTML 5
+--><article> ,<audio>,<aside>
+
 30.) Do you know which are two semantic tags are included in HTML5 version?
+--><header> , <footer>
+
 31.) What is <figure> in HTML5?
+--> The <figure> tag specifies self-contained content, like illustrations, diagrams, photos, code listings, etc. 
+
 32.) What is the use of Canvas element?
+-->The HTML <canvas> element is used to draw graphics, on the fly, via JavaScript.
+
 33.) What are the new FORM elements which are available in HTML5?
+-->Datalist , output , keygen , progress , and meter
+
 34.) Tell me two benefits of HTML5 Web Storage
+-->It can store 5 to 10 MB data. That is far more than cookies.
+Web storage data never transferred with an HTTP request, so it increases the performance of the application.
+
 35.) What are two types of Web Storage in HTML5?
+-->The two storages are session storage and local storage 
+
 36.) What is the Application Cache in HTML5 and why it is used?
+--> The current version of HTML5 introduces application cache, which means that a web application is cached, and accessible without an internet connection. Now we can make an offline web application that will run without an internet connection by just creating a manifest file in our application.

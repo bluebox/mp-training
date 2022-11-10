@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <title>login</title>
+</head>
+<style>
+    body{
+        background-image: url("https://images.pexels.com/photos/1654318/pexels-photo-1654318.jpeg?cs=srgb&dl=pexels-maizal-najmi-1654318.jpg&fm=jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+.main{
+    display: flex;
+    justify-content: center;
+    padding-top: 150px
+}
+body{
+
+font-family: 'Anek Bangla', sans-serif;
+}
+.header{
+    padding: 20px;
+    margin: 20px;
+    height: 10vh;
+}
+.sign{
+    background-color: rgb(0,0,0,.8);
+    width: 450px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+
+    align-items: center;
+}
+#in{
+    height: 30px;
+    width: 350px;
+    color: rgb(160, 149, 149);
+    background-color: rgb(13, 8, 8);
+    border:none;
+    border-radius: 6px;
+}
+.btn{
+    height: 50px;
+    width: 350px;
+    border:none;
+    background-color: rgb(240, 13, 13);
+    color:white;
+    border-radius: 6px  ;
+}
+
+.sign h2{
+    align-items: left;
+}
+.check{
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+.new{
+    margin:40px;
+    color:gray;
+}
+span{
+    color:white;
+}
+.plu{
+    padding: 40px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+.register{
+    width: 200px;
+    height: 50px;
+    background-color:red;
+    border-radius: 10px;
+    color:white;
+    font-size: medium;
+
+}
+
+
+</style>
+
+<div class="main">
+    <form action="" method="post">
+        {% csrf_token %}
+    <div class="sign"><br><br><br>
+
+            <h2>Sign Up</h2>
+            <div class="input">
+                <input id="in" type="text" name="name" placeholder="Name">
+                <br><br>
+                <input id="in" type="email" name="email" placeholder="email">
+                <br><br>
+                <input id="in" type="text" name="dl_no" placeholder="DL Number">
+                <br><br>
+                <input id="in" type="password" name="password1" placeholder="password">
+                <br><br>
+                <input id="in" type="password" name="password2" placeholder="confirm password">
+                <br><br>
+                <input id="in" type="text" name="contact" placeholder="contact number">
+                <br><br>
+                <input id="in" type="text" name="address" placeholder="address">
+                <br><br>
+                <a href="{% static 'logo.jpg' %}"><button class="btn">Register</button></a>
+            </div>
+            
+            <div class="new">
+                <h4>Have an account?<h4>
+                    <a href="{% url customer_login %}"><button class="register">Sign in</button></a>
+            </div>
+    </div>
+        </form>
+</div>
+
+</body>
+</html>
