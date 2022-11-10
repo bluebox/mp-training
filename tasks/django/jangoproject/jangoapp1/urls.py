@@ -1,4 +1,4 @@
-from django.contrib import admin
+"""urls"""
 from django.urls import path,register_converter,re_path
 from . import views,converters
 register_converter(converters.MyConverter,'myname')
