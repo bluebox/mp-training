@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="editProfile">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input name="full_name" id="full_name" type="text" class="edit" placeholder="fullname">
+        <input name="location" id="location" type="text" class="edit" placeholder="location">
+        <select name="gender" id="gender">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+        <input name="work" id="work" type="text" class="edit" placeholder="work">
+        <input name="education" id="education" type="text" class="edit" placeholder="education">
+        <input name="bio" id="bio" type="text" class="edit" placeholder="bio">
+        <button type="submit">EDIT</button>
+    </form>
+</div>
+
+{% endblock content %}

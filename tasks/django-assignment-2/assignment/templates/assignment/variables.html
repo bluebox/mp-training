@@ -1,0 +1,13 @@
+{% extends 'assignment/base.html' %}
+
+{% block content %}
+<p>variables are used inside &#123;&#123;&#125;&#125; tags</p>
+<p>to use variables, templates must be passed with context dictionary</p>
+<p>key value pair passed in context dictionary can only be used as variables</p>
+<p>example -></p>
+
+    {{ fname }}
+    {{ lname }}
+    {{ age }}
+
+{% endblock content %}

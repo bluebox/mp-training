@@ -1,0 +1,30 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="postQuestion">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input name="problem_name" id="problem_name" type="text" placeholder="title">
+        <input name="description" id="description" type="text" placeholder="description">
+        <input name="hints" id="hints" type="text" placeholder="hints">
+        <input name="test_cases" id="test_cases" type="text" placeholder="test_cases">
+        <div>
+            <div onclick="myfunc()">V</div>
+            <div class="dropdown" status="off">
+                <input class="postQuestionTags" type="checkbox" name="postProblemTags" value="dynamic programming" onclick="func()" >DP</input>
+                <input class="postQuestionTags" type="checkbox" name="postProblemTags" value="greedy" onclick="func()" >greedy</input>
+                <input class="postQuestionTags" type="checkbox" name="postProblemTags" value="array" onclick="func()" >array</input>
+                <input class="postQuestionTags" type="checkbox" name="postProblemTags" value="string" onclick="func()" >string</input>
+                <input class="postQuestionTags" type="checkbox" name="postProblemTags" value="backtracking" onclick="func()" >backtracking</input>
+            </div>
+        </div>
+        <button type="submit">Post</button>
+    </form>
+</div>
+
+{% endblock content %}

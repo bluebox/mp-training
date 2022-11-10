@@ -1,0 +1,26 @@
+{% extends 'assignment/base.html' %}
+
+{% block content %}
+
+    <p>filters in templates are used to filter out the variables according to the parameter passed as filter</p>
+    <p>filters are used inside &#123;&#123; contextvariable &#124; filter parameter &#125;&#125; tags</p>
+
+    <h1>UPPER</h1>
+    {{ fname | upper }}
+
+    <h1>lower</h1>
+    {{ fname | lower }}
+
+    <h1>wordcount</h1>
+    <p style="display: inline;">{{ fname }} -> </p>
+    {{ fname | wordcount }}
+
+    <h1>length</h1>
+    <p style="display: inline;">{{ fname }} -> </p>
+    {{ fname | length }}
+
+    <h1>slugify</h1>
+    <p style="display: inline;">this is slugified -> </p>
+    {{ slugg | slugify }}
+
+{% endblock content %}

@@ -1,0 +1,54 @@
+.element {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    margin-top: 0.5rem;
+}
+
+form {
+    height: 100%;
+    width: 100%;
+}
+
+.div {
+    background-color: #F6F6F6;
+    height: 100vh;
+    width: 100vw;
+}
+
+textarea {
+    white-space: pre-wrap;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+/* this is only due to codepen display don't use this outside of codepen */
+.container {
+  padding-top: 20px;
+}

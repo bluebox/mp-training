@@ -1,6 +1,6 @@
 __author__ = 'Hari'
 
-notes = """
+NOTES = """
 Exceptions are the default runtime error reporting mechanism in python.
 
 Most modern languages like c#, java have a similar exception model, so your
@@ -16,11 +16,15 @@ def test_exception_flow_1():
         fruit = fruit.upper()
         result.append("one")
         fruit.missingmethod() # what happens to the control flow here?
+        # once an exception occurs, compiler will either stop execution or searches for an 
+        # handling code
+        # once it finds handling code, no other code will be executed in the block where 
+        # exception has occured
         result.append("two")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("three")
 
-    assert [__] == result
+    assert ["one", "three"] == result
 
 def test_exception_flow_2():
     fruit = "orange"
@@ -31,22 +35,24 @@ def test_exception_flow_2():
         result.append("two")
         fruit.missingmethod() #missing attribute
         result.append("three")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("four")
-    except ZeroDivisionError as ze:
+    except ZeroDivisionError:
         result.append("five")
 
-    assert [__] == result
+    assert ["one", "five"] == result
 
 def test_raise_error():
     result = []
     try:
         result.append("one")
         raise AttributeError("some error here")
-    except AttributeError as se:
+        # even this code doesnt work if we wantedly raise error
+        result.append("two")
+    except AttributeError:
         result.append("three")
 
-    assert [__] == result
+    assert ["one", "three"] == result
 
 def test_missing_except():
     result = []
@@ -54,7 +60,10 @@ def test_missing_except():
 
     result.append("one")
     #what happens now? fix it with an appropriate try except
-    fruit.missingmethod()
+    try:
+        fruit.missingmethod()
+    except AttributeError as a_e:
+        print(a_e)
     result.append("two")
 
     assert ["one", "two"] == result
@@ -64,7 +73,7 @@ def function_with_except(result):
     result.append("f:enter")
     try:
         fruit.missingmethod()
-    except AttributeError as ae:
+    except AttributeError:
         result.append("f:except")
 
     result.append("f:return")
@@ -81,9 +90,9 @@ def test_function_call_with_except():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
-    assert [__] == result
+    assert ["m:beforecall", "f:enter", "f:except", "f:return", "m:aftercall"] == result
 
 def test_function_call_without_except():
     result = []
@@ -91,9 +100,9 @@ def test_function_call_without_except():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
-    assert [__] == result
+    assert ["m:beforecall", "f:enter", "m:except"] == result
 
 def test_else_on_exception():
     result = []
@@ -101,12 +110,12 @@ def test_else_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
 
-    assert [__] == result
+    assert ["m:beforecall", "f:enter", "f:except", "f:return", "m:aftercall", "m:else"] == result
 
 
 def test_else_on_no_exception():
@@ -115,12 +124,12 @@ def test_else_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
 
-    assert [__] == result
+    assert ["m:beforecall", "f:enter", "m:except"] == result
 
 def test_finally_on_exception():
     result = []
@@ -128,14 +137,14 @@ def test_finally_on_exception():
         result.append("m:beforecall")
         function_with_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
     finally:
         result.append("m:finally")
 
-    assert [__] == result
+    assert ["m:beforecall", "f:enter", "f:except", "f:return", "m:aftercall", "m:else", "m:finally"] == result
 
 
 
@@ -145,26 +154,30 @@ def test_finally_on_no_exception():
         result.append("m:beforecall")
         function_without_except(result)
         result.append("m:aftercall")
-    except AttributeError as ae:
+    except AttributeError:
         result.append("m:except")
     else:
         result.append("m:else")
     finally:
         result.append("m:finally")
 
-    assert [__] == result
+    assert ["m:beforecall", "f:enter", "m:except", "m:finally"] == result
 
-notes2 = '''
+NOTES2 = '''
 To understand why exceptions are a good thing for writing applications,
 read up the link below after finishing this module.
 http://blogs.msdn.com/b/brada/archive/2003/09/30/50403.aspx
 '''
 
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT = """
+1. if there is an error and if that block handles error, then the next code 
+within the same block wont execute
+2. if there is an error and if that block doesnt handles error, then control 
+flow jumps to outer block and searches handling code in the outer block
+3. if there is an error, then else statement wont execute
+4. if there is no error, then else block doesnt execute
+5. finally always execute even if there is an error or not 
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 30

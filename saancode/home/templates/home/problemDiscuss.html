@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="problemDiscuss">
+    <div class="postDiscussion">
+        <a href="{% url 'postDiscussion' problem %}"><button>POST</button></a>
+    </div>
+    {% for discussion in discussions %}
+        <a href="{% url 'discussionThread' problem discussion.discussion_id %}"><p>{{discussion}}</p></a>
+    {% endfor %}
+</div>
+
+{% endblock content %}

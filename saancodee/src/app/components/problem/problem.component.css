@@ -1,0 +1,71 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+.container {
+    display: flex;
+}
+
+.mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.problem-btn {
+    margin-bottom: 0.5rem;
+}
+
+.menu {
+    display: flex;
+    margin-left: 2rem;
+}
+
+.problem-description {
+    background-color: antiquewhite;
+}
+
+.division {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+}
+
+.active {
+    background-color: #0D6EFD;
+    color: white;
+}
+
+.deactive {
+    background-color: grey;
+}
+
+.topictags {
+    display: flex;
+}
+
+.topictag {
+    padding: 0;
+    color: #0D6EFD;
+}
+
+li {
+    list-style-type: none;
+}
+
+.hints {
+    color: #0D6EFD;
+}
+
+.problem {
+    margin: 2rem;
+}
+
+.btn {
+    margin-right: 0.5rem;
+}

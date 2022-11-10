@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="login">
+    <form class="loginForm" method="POST">
+        {% csrf_token %}
+
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+
+        {{ form }}
+
+        <p>need an account?</p>
+        <a href="{% url 'signin' %}"></a>
+        <button type="submit">LOG IN</button>
+    </form>
+</div>
+
+{% endblock content %}

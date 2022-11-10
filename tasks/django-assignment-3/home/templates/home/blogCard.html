@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="blog">
+    <div class="blogAuthor">{{author}}</div>
+    <div class="blogImage">
+        <img src="{% static '/images/blog.png' %}" alt="">
+    </div>
+    <div class="blogTitle">{{title}}</div>
+    <div class="blogFooter">
+        <div class="blogTags">science</div>
+        <div class="blogLastUpdated">{{blogLastUpdated}}</div>
+    </div>
+</div>

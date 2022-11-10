@@ -1,0 +1,70 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="problem">
+    <div class="problemHeaders">
+        <div class="problemVotes">
+            <p id="problem_id" style="display: none;">{{problem.problem_id}}</p>
+            <div class="problemUpvote">
+                <button type="button" name="like" onclick="problemVote()">Like</button>
+                <p>{{ likes }}</p>
+            </div>
+            <div class="problemDownvote">
+                <button type="button" name="dislike" onclick="problemVote()">Dislike</button>
+                <p>{{ dislikes }}</p>
+            </div>
+        </div>
+        <ul>
+            <a href="">
+                <li class="problemDescription">Description</li>
+                <a href="{% url 'problemDiscuss' problem %}">
+                    <li class="problemDiscuss">Discuss</li>
+                </a>
+        </ul>
+    </div>
+    <div class="problemCard">
+        <p id="problemName">{{ problem.problem_name }}</p>
+        <p>{{ problem.description }}</p>
+        <p>{{ problem.hints }}</p>
+    </div>
+    <form method="POST" class="canvas">
+
+        {% csrf_token %}
+        <div class="problemLanguageTheme">
+            <div class="languageSelect">
+                <p>select language</p>
+                <select name="language" id="language">
+                    <option value="C" name="C" class="lan">C</option>
+                    <option value="CPP" name="CPP" class="lan">CPP</option>
+                    <option value="JAVA" name="JAVA" class="lan">JAVA</option>
+                    <option value="JAVASCRIPT" name="JAVASCRIPT" class="lan">JAVASCRIPT</option>
+                    <option value="PYTHON" name="PYTHON" class="lan">PYTHON</option>
+                </select>
+            </div>
+            <div class="themeSelect">
+                <p>select theme</p>
+                <select name="theme" id="language">
+                    <option value="plain" name="plain" class="thm">Plain</option>
+                    <option value="dark" name="dark" class="thm">Dark</option>
+                </select>
+            </div>
+        </div>
+        <div class="problemCode">
+            <textarea name="codeArea" id="codeArea" class="codeArea" cols="90" rows="30"
+                placeholder="write your code here"></textarea>
+        </div>
+        <div class="problemTerminal">
+            <div class="problemButtons">
+                <button class="run">
+                    Open
+                </button>
+                <button type="submit" class="submit">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

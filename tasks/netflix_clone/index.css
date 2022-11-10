@@ -1,0 +1,348 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.main_div {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.header {
+    border: 1px solid black;
+    padding: 1rem;
+    background-image: linear-gradient(0deg,rgba(0,0,0,.8) 0,transparent 60%,rgba(0,0,0,.8));
+    height: 100%;
+}
+
+.bgImage {
+    position: absolute;
+    z-index: -1;
+    padding: 0;
+    margin: 0;
+    top: -560px;
+    left: 0;
+}
+
+.bgImage img {
+    object-fit: cover;
+}
+
+.head {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: flex-start;
+    justify-content: center;
+    height: 100%;
+    /* align-items: center; */
+}
+
+.headRight {
+    margin: 0 auto;
+    margin-right: 0;
+    display: flex;
+}
+
+.logo {
+    fill: #E50914;
+}
+
+.language {
+    margin-right: 20px;
+    border: 1px solid white;
+    height: 40px;
+    color: white;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.signIn {
+    border: none;
+    height: 40px;
+    background-color: #E50914;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+}
+
+.innerFirst {
+    width: 50%;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.innerFirst h1 {
+    font-size: 4rem;
+    font-weight: 400;
+    margin-bottom: 0px;
+}
+
+.innerFirst h2 {
+    margin-top: 0;
+    padding: 0px;
+    font-size: 1.9rem;
+    font-weight: 100;
+}
+
+form h3 {
+    font-size: 1rem;
+}
+
+.emailbtn {
+    width: 100%;
+    display: flex;
+}
+
+.email {
+    padding: 20px 5px;
+    width: 79%;
+    height: 100%;
+}
+
+.ebtn {
+    background-color: #E50914;
+    color: white;
+    height: 100%;
+    width: 21%;
+    padding: 20px;
+}
+
+/* .header{
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/c8c8a0ad-86d6-45f1-b21d-821afa4e5027/121450d3-2d2f-41a9-acd6-b050ca0e0424/IN-en-20220801-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+    border: 1px solid black;
+} */
+
+/* .tv,.download,.watch{
+    width: 100vw;
+    height: 450px;
+    border: 4px solid rgb(90, 88, 88);
+} */
+.signIn{
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
+}
+.signInRight{
+    display: flex;
+    flex-direction: row;
+}
+.signIn .signup{
+    height: 37px;
+    width: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signIn select{
+ background-color: rgba(0, 0, 0, 0.7);
+ color: white;
+ padding: 10px;
+}
+
+.watch{
+    width: 100%;
+    height: 450px;
+    background-color: black;
+    border: 4px solid rgb(90, 88, 88);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.vid{
+    background-image: url("https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile-in.png");
+    width: 50%;
+    height: 90%;
+    align-items: center;
+}
+.vid1{
+    background-image: url("https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png");
+    width: 50%;
+    align-items: center;
+}
+.vid video{
+    margin-left: 19%;
+    margin-top: 16%;
+    height: 58%;
+    width: 58%;
+}
+
+.monitor {
+    position: relative;
+    z-index: 2;
+}
+
+.vidplay {
+    position: relative;
+    left: -10px;
+    top: -550px;
+}
+
+.vid1 video{
+    margin-left: 12%;
+    margin-top: 14.2%;
+    height: 68%;
+    width: 68%;
+
+}
+.children{
+    width: 100%;
+    height:500px;
+    border: 4px solid rgb(90, 88, 88);
+    /* background-image: url();  */
+}
+.tv{
+    width: 100%;
+    height: 450px;
+    border: 4px solid rgb(90, 88, 88);
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+    justify-content: center;
+}
+
+.tv1{
+    font-size: bold;
+    color:white;
+}
+
+.download{
+    width: 100%;
+    border: 4px solid rgb(90, 88, 88);
+    background-color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.textarea {
+    margin-left: 6%;
+}
+/* .btn1 {
+    /* margin-left: 30%; */
+ */
+.btn1 button{
+    color: aliceblue;
+    background-color: red;
+}
+.searchdiv{
+    display: flex;
+    justify-content: center;
+}
+.children{
+    /* background-image: url("https://occ-0-4875-2186.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABYjXrxZKtrzxQRVQNn2aIByoomnlbXmJ-uBy7du8a5Si3xqIsgerTlwJZG1vMpqer2kvcILy0UJQnjfRUQ5cEr7gQlYqXfxUg7bz.png?r=420");
+    background-size: cover; */
+    width: 100%;
+    border: 4px solid rgb(90, 88, 88);
+    background-color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.content{
+    width: 50%;
+}
+.questions{
+       width: 100%;
+    border: 4px solid rgb(90, 88, 88);
+    background-color: black;
+}
+.q{
+    align-items: center;
+    /* margin-left: 35%; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 30px;
+    justify-content:space-between;
+}
+.ans1{
+    display: none;
+    width: 60%;
+    margin-left: 20%;
+    height: 30px;
+}
+.ans2{
+    display: none;
+    width: 60%;
+    margin-left: 20%;
+}
+.q1,.q2,.q3{
+    align-items: center;
+    display: flex;
+    background-color:rgb(48,48,48);
+    width: 60%;
+    margin-left: 20%;
+   margin-top: 1%;
+   display: flex;
+   /* justify-content: space-between; */
+   flex-direction: column;
+
+}
+.q1 button, .q2 button{
+    background-color: transparent;
+}
+.btn12 {
+    /* background-color: transparent;
+    border-color: rgba(234, 225, 225, 0.843);
+    padding: 0; */
+    background-color:rgb(48,48,48);;
+    margin-right: 4%;
+}
+
+.p1 {
+    padding-left: 16px;
+    font-size: 24px;
+}
+
+.p2 {
+    padding-left: 16px;
+    font-size: 24px;
+}
+
+.p3 {
+    padding-left: 16px;
+    font-size: 24px;
+}
+
+.btn12 button {
+    background-color: rgb(48,48,48);
+    color: white;
+}
+
+footer{
+    padding: 4%;
+    background-color: black;
+    margin-top: 10px;
+    color: antiquewhite;
+}
+
+.footer_items{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}

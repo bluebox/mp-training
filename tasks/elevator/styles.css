@@ -1,0 +1,29 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.in {
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    border: 1px solid black;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.out {
+    display: flex;
+    flex-direction: column;
+}
+
+.lift {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    background-color: greenyellow;
+    transition: all 2s linear;
+}

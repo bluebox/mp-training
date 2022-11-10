@@ -1,0 +1,24 @@
+.navbar-without-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-flexer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.active {
+    color: orange;
+}
+
+.home-active {
+    color: black;
+}
+

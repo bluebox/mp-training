@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sections header">
+            <div class="head">
+                <a class="head_left_side_btns" href="{% url 'home' %}">
+                    HOME
+                </a>
+                <a class="head_left_side_btns" href="{% url 'blog' %}">
+                    BLOGS
+                </a>
+                <a class="head_left_side_btns" href="{% url 'about' %}">
+                    ABOUT
+                </a>
+            </div>
+            <div class="head">
+                {% if user.is_authenticated %}
+                    <a class="head_right_side_btns" href="{% url 'logout' %}">
+                        LOGOUT
+                    </a>
+                {% else %}
+                    <a class="head_right_side_btns" href="{% url 'login' %}">
+                        LOGIN
+                    </a>
+                    <a class="head_right_side_btns" href="{% url 'signup' %}">
+                        SIGNUP
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="sections">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <div class="sections">footer</div>
+    </div>
+</body>
+
+</html>
