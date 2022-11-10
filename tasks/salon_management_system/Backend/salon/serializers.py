@@ -60,6 +60,9 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    """review serializer for review model"""
+
     class Meta:
+        """class to choose required fields from Review model"""
         model = Reviews
         fields = "__all__"

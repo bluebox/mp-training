@@ -1,4 +1,4 @@
-"tests"
+"""tests"""
 #pylint:disable=W0611
 from django.test import TestCase
 

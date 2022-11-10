@@ -4,9 +4,9 @@
 # pylint:disable=E1101
 # pylint:disable=C0301
 from rest_framework.parsers import JSONParser
-from .models import Appointment, Branch, User, ServicesProvided, Employee, Client,Reviews
+from .models import Appointment, Branch, User, ServicesProvided, Employee, Client, Reviews
 from .serializers import AppointmentSerializer, BranchSerializer, EmployeeSerializer,\
-    Userserializer, ClientSerializer, ServicesSerializer,ReviewSerializer
+    Userserializer, ClientSerializer, ServicesSerializer, ReviewSerializer
 
 
 class Branches:
@@ -93,7 +93,7 @@ class Services:
 
     @staticmethod
     def update_service(request, service_id):
-        """to update a existing service"""
+        """to update an existing service"""
         service = ServicesProvided.objects.get(service_id=service_id)
         serializer = ServicesSerializer(instance=service, data=request.data)
         if serializer.is_valid():
@@ -180,7 +180,7 @@ class Employees:
     def get_hairstylist(request):
         """to get the employees who work as hairstylist"""
         employees = User.objects.filter(employee__role="HairStylist").values('id',
-        'username', "first_name","last_name","email","employee__emp_id","employee__role",
+        'username', "first_name", "last_name", "email", "employee__emp_id", "employee__role",
         "employee__emp_contact_number",
         "employee__branch_id")
         return employees
@@ -189,8 +189,8 @@ class Employees:
     def get_all_employees(request):
         """to get all the employees"""
         employees = User.objects.filter(is_staff='True', is_superuser="False").values('id',
-        'username', "first_name","last_name", "email",
-        "employee__emp_id","employee__role","employee__emp_contact_number","employee__branch_id")
+        'username', "first_name", "last_name", "email",
+        "employee__emp_id", "employee__role", "employee__emp_contact_number", "employee__branch_id")
         return employees
 
     @staticmethod
@@ -204,7 +204,8 @@ class Employees:
     def create_employee(request):
         """to create a new employee"""
         serializer = Userserializer(data={'username': request.data["username"],
-         "first_name": request.data["first_name"], 'last_name': request.data["last_name"], 'email': request.data['email'],
+         "first_name": request.data["first_name"], 'last_name': request.data["last_name"],
+         'email': request.data['email'],
          "password": request.data['password'], "is_staff": request.data["is_staff"]})
         if serializer.is_valid():
             user = serializer.save()

@@ -118,9 +118,12 @@ def from_900():
 class Appointment(models.Model):
     """Appointment model to store Appointment details"""
     appointment_time_choices = (('9.00am-10.00am', '9.00am-10.00am'),
-                                ('10.00am-11.00am', '10.00am-11.00am'), ('11.00am-12.00pm', '11.00am-12.00pm'),
-                                ('12.00pm-1.0pm', '12.00pm-1.0pm'), ('1.00pm-2.00pm', '1.00pm-2.00pm'),
-                                ('2.00pm-3.00pm', '2.00pm-3.00pm'), ('3.00pm-4.00pm', '3.00pm-4.00pm'),
+                                ('10.00am-11.00am', '10.00am-11.00am'),
+                                ('11.00am-12.00pm', '11.00am-12.00pm'),
+                                ('12.00pm-1.0pm', '12.00pm-1.0pm'),
+                                ('1.00pm-2.00pm', '1.00pm-2.00pm'),
+                                ('2.00pm-3.00pm', '2.00pm-3.00pm'),
+                                ('3.00pm-4.00pm', '3.00pm-4.00pm'),
                                 ('4.00pm-5.00pm', '4.00pm-5.00pm'))
     Appointment_id = models.IntegerField(primary_key=True, default=from_900)
     client_id = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -141,7 +144,8 @@ class Appointment(models.Model):
 class Transaction(models.Model):
     """Transaction model to store Transaction details"""
     transaction_types = (('Credit Card', 'Credit Card'), ('Debit Card', 'Debit Card'),
-                         ('Net Banking', 'Net Banking'), ('UPI', 'UPI'), ('Pay at Salon', 'Pay at Salon'))
+                         ('Net Banking', 'Net Banking'), ('UPI', 'UPI'),
+                         ('Pay at Salon', 'Pay at Salon'))
     trans_id = models.IntegerField(primary_key=True)
     Appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     trans_date = models.DateTimeField(auto_now_add=True, blank=True)
