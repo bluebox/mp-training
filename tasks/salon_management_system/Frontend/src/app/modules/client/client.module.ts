@@ -28,6 +28,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 import {DatePipe} from '@angular/common';
 import { AllreviewsComponent } from './components/allreviews/allreviews.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -61,7 +62,8 @@ import { AllreviewsComponent } from './components/allreviews/allreviews.componen
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule
   ]
 })
 export class ClientModule { }

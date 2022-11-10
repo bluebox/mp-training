@@ -7,8 +7,7 @@
         </mat-card-header>
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>client_id</mat-label>
-          <input formControlName="client_id" matInput placeholder="Enter your
-            client_id" />
+          <input formControlName="client_id" matInput placeholder="Enter your client_id" />
           <small class="text-danger"
             *ngIf="bookAppointmentForm.get('client_id')?.invalid &&
             bookAppointmentForm.get('client_id')?.touched ">required</small>
