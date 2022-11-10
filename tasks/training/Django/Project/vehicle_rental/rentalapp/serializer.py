@@ -17,6 +17,7 @@ class OwnerSerializer(serializers.ModelSerializer):
 
 
 class VehicleSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Vehicle
         fields = '__all__'
@@ -27,8 +28,13 @@ class VehicleSerializer(serializers.ModelSerializer):
 #         model = Vehicle_status
 #         fields = '__all__'
 
+class Rent_TripDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RentTrip
+        fields = '__all__'
 
 class Rent_TripSerializer(serializers.ModelSerializer):
+    customer_id = CustomerSerializer()
     class Meta:
         model = RentTrip
         fields = '__all__'

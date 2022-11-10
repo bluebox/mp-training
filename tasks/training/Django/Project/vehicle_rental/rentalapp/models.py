@@ -21,7 +21,7 @@ class Customer(models.Model) :
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.email
+        return str(self.email)
 
 class Owner(models.Model):
     owner_id = models.AutoField(primary_key=True)
@@ -35,7 +35,7 @@ class Owner(models.Model):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.email
+        return str(self.email)
 
 class Vehicle(models.Model):
     vehicle_no = models.CharField(max_length=10, primary_key=True, )
@@ -48,7 +48,7 @@ class Vehicle(models.Model):
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
-        return (self.vehicle_no)
+        return str(self.vehicle_no)
 
 class CustomerToken(models.Model):
     customer_token_id = models.IntegerField()
@@ -79,7 +79,7 @@ class RentTrip(models.Model):
     bill_generated = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.rent_id
+        return str(self.rent_id)
 
 class Bill(models.Model):
     bill_no = models.AutoField(primary_key=True)

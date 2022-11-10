@@ -1,5 +1,5 @@
 <app-o-navbar></app-o-navbar>
-<div *ngIf="resp.length > 0" class="main">
+<div *ngIf="resp?.length > 0" class="main">
   <div class="container" *ngFor="let vehicle of resp">
     <!-- Default switch -->
 
@@ -32,23 +32,31 @@
         </button>
         &nbsp;&nbsp;
 
-        <button
+        <!-- <button
           *ngIf="vehicle.is_available"
           class="btn btn-sm btn-outline-primary"
           style="color: green; border: 1px solid green"
           (click)="changeVehicleStatus(vehicle.vehicle_no)"
         >
           Available
-        </button>
+        </button> -->
 
         <button
+          class="btn btn-sm btn-outline-primary"
+          [ngStyle]="{color: vehicle.is_available ? 'green' : 'red'}"
+          (click)="changeVehicleStatus(vehicle.vehicle_no)"
+        >
+          {{vehicle.is_available ? "Available" : "unavailable"}}
+        </button>
+
+        <!-- <button
           *ngIf="!vehicle.is_available"
           class="btn btn-sm btn-outline-primary"
           style="color: red; border: 1px solid red"
           (click)="changeVehicleStatus(vehicle.vehicle_no)"
         >
           Unavailable
-        </button>
+        </button> -->
       </div>
 
       <ng-template #content let-modal>
@@ -94,6 +102,6 @@
   </div>
 </div>
 
-<div class="noResult" style="text-align:center; align-items:center;" *ngIf="resp.length == 0">
+<div class="noResult" style="text-align:center; align-items:center;" *ngIf="resp?.length == 0">
   <h1 style="color: red ;">You have not added any Vehicles</h1>
 </div>

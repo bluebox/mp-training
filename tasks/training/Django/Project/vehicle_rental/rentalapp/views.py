@@ -1,20 +1,19 @@
 from datetime import datetime
-
 from rest_framework.views import View
-
 from rest_framework import status, exceptions
 from rest_framework.response import Response
 from django.http.response import JsonResponse, Http404
-
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
+
+from .managers import Owners, Customers, Vehicles, Rents, Booking, Bills, SearchVehicle, AvailableOnDate
 from .models import Customer, Owner, Vehicle, OwnerToken, CustomerToken, Bill, RentTrip
 from cloudinary import uploader
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 import jwt, datetime
 from .serializer import OwnerSerializer, CustomerSerializer, VehicleSerializer, BillSerializer, \
-    Rent_TripSerializer
+    Rent_TripSerializer, Rent_TripDetailSerializer
 from .jwt_authentication import JwtAuthentication_owner, JwtAuthentication_customer, \
     create_access_token, \
     create_refresh_token, decode_refresh_token
@@ -25,83 +24,88 @@ class OwnerList(APIView):
     """
 
     """
+    def get(self, request):
+        try:
+            res= Owners.owner_list()
+            return Response(res,status=200)
 
-    def get(self, request, format=None):
-        owner = Owner.objects.all()
-        serializer = OwnerSerializer(owner, many=True)
-        return Response(serializer.data)
+        except Exception as e:
+            return Response(str(e), status=500)
 
-    def post(self, request, format=None):
-        serializer = OwnerSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request):
+        try:
+            response = Owners.owner_registration(request)
+            return Response(response, status=200)
 
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class OwnerDetail(APIView):
     authentication_classes = [JwtAuthentication_owner]
 
-    # def get_object(self, pk):
-    #     try:
-    #         return Owner.objects.get(pk=pk)
-    #     except Owner.DoesNotExist:
-    #         raise Http404
+    def get(self, request):
+        try:
+            response = Owners.get_owner(request)
+            return Response(response, status=200)
 
-    def get(self, request, format=None):
-        owner = Owner.objects.get(email=request.user)
-        serializer = OwnerSerializer(owner)
-        return Response(serializer.data)
 
-    def put(self, request, format=None):
-        owner = Owner.objects.get(email=request.user)
-        serializer = OwnerSerializer(owner, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(str(e), status=500)
 
-    def delete(self, request,format=None):
-        owner = Owner.objects.get(email=request.user)
-        owner.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def put(self, request):
+        try:
+            response = Owners.update_owner(request)
+            return Response(response, status=200)
+
+        except Exception as e:
+            return Response(str(e), status=500)
+
+    def delete(self, request):
+        try:
+            response = Owners.delete_owner(request)
+            return Response(response, status=200)
+
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class CustomerList(APIView):
-    def get(self, request, format=None):
-        customer = Customer.objects.all()
-        serializer = CustomerSerializer(customer, many=True)
-        return Response(serializer.data)
+    def get(self, request):
+        try:
+            response = Customers.customer_list()
+            return Response(response, status=200)
 
-    def post(selfself, request, format=None):
-        serializer = CustomerSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(str(e), status=500)
+
+    def post(selfself, request):
+        try:
+            response = Customers.customer_registration(request)
+            return Response(response, status=200)
+
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class CustomerDetail(APIView):
     authentication_classes = [JwtAuthentication_customer]
 
-    # def get_object(self, pk):
-    #     try:
-    #        return Customer.objects.get(pk=pk)
-    #     except Customer.DoesNotExist :
-    #         raise Http404
 
-    def get(self, request, format=None):
-        customer = Customer.objects.get(email=request.user)
-        serializer = CustomerSerializer(customer)
-        return Response(serializer.data)
+    def get(self, request):
+        try:
+            response = Customers.get_customer(request)
+            return Response(response, status=200)
 
-    def put(self, request, format=None):
-        customer = Customer.objects.get(email=request.user)
-        serializer = CustomerSerializer(customer, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(str(e), status=500)
+
+    def put(self, request):
+        try:
+            response = Customers.get_customer((request))
+            return Response(response, status=200)
+
+        except Exception as e :
+            return Response(str(e), status=500)
 
     def delete(self, request, pk, format=None):
         customer = Customer.objects.get(pk=pk)
@@ -111,327 +115,136 @@ class CustomerDetail(APIView):
 
 class LoginCustomerJwt(APIView):
     def post(self, request):
-        email = request.data['email']
-        password = request.data['password']
-        if Customer.objects.filter(email=email).exists():
-            customer = Customer.objects.get(email=email)
-            if customer.password != password:
-                raise exceptions.APIException('Wrong Password!')
+        try:
+            response = Customers.customer_login(request)
+            return response
 
-        else:
-            raise exceptions.APIException("email doesn't exist, Try again")
-
-        customer = Customer.objects.get(email=email, password=password)
-
-        access_token = create_access_token(customer.customer_id)
-        refresh_token = create_refresh_token(customer.customer_id)
-
-        CustomerToken.objects.create(
-            customer_token_id=customer.customer_id,
-            token=refresh_token,
-            expired_at=datetime.datetime.utcnow() + datetime.timedelta(days=5)
-        )
-        response = Response()
-        response.set_cookie(key='refresh_token', value=refresh_token, httponly=False)
-        response.data = {
-            'access_token': access_token,
-            # 'customer_id' : customer.customer_id
-
-        }
-        return response
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class LoginOwnerJwt(APIView):
     def post(self, request):
-        email = request.data['email']
-        password = request.data['password']
-        if Owner.objects.filter(email=email).exists():
-            owner = Owner.objects.get(email=email)
-            if owner.password != password:
-                raise exceptions.APIException('Wrong Password!')
+        try:
+            response = Owners.owner_login(request)
+            return response
 
-        else:
-            raise exceptions.APIException("email doesn't exist, Try again")
+        except Exception as e:
+            return Response(str(e), status=500)
 
-        owner = Owner.objects.get(email=email, password=password)
-
-        access_token = create_access_token(owner.owner_id)
-        refresh_token = create_refresh_token(owner.owner_id)
-
-        OwnerToken.objects.create(
-            owner_token_id=owner.owner_id,
-            token=refresh_token,
-            expired_at=datetime.datetime.utcnow() + datetime.timedelta(days=5)
-        )
-        response = Response()
-        response.set_cookie(key='refresh_token', value=refresh_token, httponly=False)
-        response.data = {
-            'access_token': access_token,
-            # 'owner' : owner.owner_id
-        }
-        return response
 
 
 class RefreshJwtTokenOwner(APIView):
-
     def post(self, request):
-        refresh_token = request.COOKIES.get('refresh_token')
-        token_id = decode_refresh_token(refresh_token)
-        if not OwnerToken.objects.filter(
-                owner_token_id=token_id,
-                token=refresh_token,
-                expired_at__gt=datetime.datetime.now(tz=datetime.timezone.utc)
-        ).exists():
-            raise exceptions.AuthenticationFailed('Unauthenticated')
+        try:
+            response = Owners.refresh_token(request)
+            return Response(response, status=200)
 
-        access_token = create_access_token(token_id)
+        except Exception as e:
+            return Response(str(e), status=500)
 
-        return JsonResponse({
-            'token': access_token
-        })
 
 
 class RefreshJwtTokenCustomer(APIView):
-
     def post(self, request):
-        refresh_token = request.COOKIES.get('refresh_token')
-        token_id = decode_refresh_token(refresh_token)
-        if not CustomerToken.objects.filter(
-                customer_token_id=token_id,
-                token=refresh_token,
-                expired_at__gt=datetime.datetime.now(tz=datetime.timezone.utc)
-        ).exists():
-            raise exceptions.AuthenticationFailed('Unauthenticated')
+        try:
+            response = Customers.refresh_token(request)
+            return Response(response, status=200)
 
-        access_token = create_access_token(token_id)
-
-        return JsonResponse({
-            'token': access_token
-        })
-
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class LogoutOwnerJwt(APIView):
 
     def post(self, request):
+        try:
+            response = Owners.owner_logout(request)
+            return response
 
-        refresh_token = request.COOKIES.get('refresh_token')
-        CustomerToken.objects.filter(
-            token=refresh_token
-        ).delete()
-
-        response = Response()
-        response.delete_cookie(key='refresh_token')
-
-        response.data = {
-            'message': 'Logged out Successfully',
-        }
-        return response
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class LogoutCustomerJwt(APIView):
-
     def post(self, request):
-        refresh_token = request.COOKIES.get('refresh_token')
-        CustomerToken.objects.filter(
-            token=refresh_token
-        ).delete()
+        try:
+            response = Customers.customer_logout(request)
+            return response
 
-        response = Response()
-        response.delete_cookie(key='refresh_token')
-
-        response.data = {
-            'message': 'Logged out Successfully',
-        }
-        return response
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class VehicleList(APIView):
 
     def get(self, request, format=None):
-        vehicle = Vehicle.objects.filter(is_available=True)
-        serializer = VehicleSerializer(vehicle, many=True)
-        return Response(serializer.data)
+       try :
+           response = Vehicles.get_vehicles(request)
+           return Response(response, status=200)
+
+       except Exception as e:
+           return Response(str(e), status=500)
+
 
 
 class UpdateVehiclePrice(APIView):
     def put(self, request, pk ):
-        vehicle = Vehicle.objects.get(vehicle_no=pk)
-        vehicle.price_day = request.data['price_day']
-        vehicle.save()
-        # serializer = VehicleSerializer([vehicle], mant=True)
-        # if serializer.is_valid():
-        #     serializer.save()
-        return Response({"msg" : "updated successfully"})
-        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try :
+            response = Vehicles.update_price(request, pk)
+            return Response({"msg" : response }, status=200)
+
+        except Exception as e:
+            return Response(str(e), status=500)
+
+
 
 class AddVehicle (APIView) :
 
     authentication_classes = [JwtAuthentication_owner]
 
     def post(self, request, format=None):
+        try:
+            response = Vehicles.add_vehicle(request)
+            return Response(response, status=200)
 
-        owner = Owner.objects.get(email=request.user)
-
-        print(owner.owner_id)
-        owner_id = owner.owner_id
-        vehicle_no = request.data.get('vehicle_no')
-        type = request.data.get('type')
-        brand = request.data.get('brand')
-        model = request.data.get('model')
-        image = request.data.get('image')
-        price_day = request.data.get('price_day')
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
-        data = {
-            "owner_id" : owner_id,
-            "vehicle_no" : vehicle_no,
-            "type" :  type,
-            "brand" : brand,
-            "model" : model ,
-            "image" : image,
-            "price_day" :price_day
-        }
-
-        serializer = VehicleSerializer(data={
-            "owner_id": owner_id,
-            "vehicle_no": vehicle_no,
-            "type": type,
-            "brand": brand,
-            "model": model,
-            "image": image,
-            "price_day": price_day
-        })
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'Your Vehicle has beemn Added'})
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class VehicleDetail(APIView):
     authentication_classes = [JwtAuthentication_owner]
-    # def get_object(self, pk):
-    #     try:
-    #         return Vehicle.objects.get(pk=pk)
-    #     except Vehicle.DoesNotExist:
-    #         raise Http404
 
-    def get(self, request, format=None):
-        owner = Owner.objects.get(email=request.user)
-        vehicles = Vehicle.objects.filter(owner_id=owner.owner_id)
-        serializer = VehicleSerializer(vehicles, many=True)
-        return Response(serializer.data)
+    def get(self, request):
+        try:
+            response = Vehicles.get_owners_vehicle(request)
+            return Response(response, status=200)
 
-    def put(self, request,format=None):
-        vehicle = Vehicle.objects.filter(owner_id=request.user)
-        serializer = VehicleSerializer(vehicle, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, format=None):
-        vehicle = Vehicle.object.get(request)
-        vehicle.delete()
-        return Response({"message": "success"}, safe=False, status=status.HTTP_204_NO_CONTENT)
-
-
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class RentTripList(APIView):
     authentication_classes = [JwtAuthentication_customer]
 
     def get(self, request):
-        customer = Customer.objects.get(email=request.user)
-        customer_id = customer.customer_id
+        try:
+            response = Rents.get_customer_trips(request)
+            return Response(response, status=200)
 
-        rent_trip = RentTrip.objects.filter(customer_id=customer_id).order_by('-rent_id')
-
-        users, totalPages, page = listing(request, rent_trip)
-
-        serializer = Rent_TripSerializer(users, many=True)
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class Book(APIView):
     authentication_classes = [JwtAuthentication_customer]
 
     def post(self, request):
-        customer = Customer.objects.get(email=request.user)
-        customer_id = customer.customer_id
-        vehicle_no = request.data.get('vehicle_no')
+        try:
+            response = Booking.book(request)
+            return Response(response, status=200)
 
-        # pick = request.data['pickup_date'
-        # ret = request.data.get['return_date']
-
-        # pick = datetime.date(request.data.get('pickup_date'))
-        # pick = datetime.datetime.strptime(request.data['pickup_date'], '%Y-%d-%m')
-        # # try:
-        # pick2 = datetime.datetime.strptime(request.data['return_date'], '%Y-%d-%m')
-        # except :
-        #     print('err')
-
-        #
-        # rent_arr = RentTrip.objects.filter(pickup_date__lte=request.data.get('pickup_date'),
-        #                                return_date__gte=request.data.get('pickup_date'),
-        #                                vehicle_no=vehicle_no)
-
-        rent = RentTrip.objects.filter(Q(pickup_date__lte=request.data.get('pickup_date')) |
-                                       Q(pickup_date__lte=request.data.get('return_date')),
-                                       Q(return_date__gte=request.data.get('pickup_date')) |
-                                       Q(return_date__gte=request.data.get('return_date')),
-                                       vehicle_no=vehicle_no).exists()
-
-        # date = Rent_Trip.objects.filter(vehicle_no=vehicle_no)
-
-        # vehicle = Rent_Trip.objects.filter(vehicle_no=vehicle_obj)
-        # rent_arr=RentTrip.objects.filter(pickup_date__range=[request.data.get('pickup_date'),
-        #                                             request.data.get('return_date')],
-        #                         vehicle_no=vehicle_no)
-
-        # rent = RentTrip.objects.filter(pickup_date__range=[request.data.get('pickup_date'),
-        #                                                     request.data.get('return_date')],
-        #                                 vehicle_no=vehicle_no).exists()
-
-        if (rent):
-            return Response({"message": 'Not available on this date please Choose different date'})
-        else:
-            owner_id = request.data.get('owner_id')
-            pickup_date = request.data.get('pickup_date')
-            return_date = request.data.get('return_date')
-            request.data['customer_id'] = customer.customer_id
-            data = {
-                'customer_id': customer_id,
-                'vehicle_no': vehicle_no,
-                'owner_id': owner_id,
-                'pickup_date': pickup_date,
-                'return_date': return_date
-            }
-
-            serializer = Rent_TripSerializer(data={
-                'customer_id': customer_id,
-                'vehicle_no': vehicle_no,
-                'owner_id': owner_id,
-                'pickup_date': pickup_date,
-                'return_date': return_date
-            })
-            if serializer.is_valid():
-                serializer.save()
-                days =  no_of_days(pickup_date, return_date)
-                vehicle = Vehicle.objects.get(vehicle_no=vehicle_no)
-                amount = days * vehicle.price_day
-                return Response({'message':'Booked Successfully',
-                                 'amount': amount,
-                                 'days':days,
-                                 'id' : serializer.data['rent_id'] })
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST )
-
-# class GetVehicleByDate(APIView):
-#     def get(self, request):
-        
-
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class RentTripDetail(APIView):
     def get_object(self, pk):
@@ -440,67 +253,31 @@ class RentTripDetail(APIView):
         except RentTrip.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         trip = self.get_object(pk=pk)
         serializer = Rent_TripSerializer(trip)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        rent_trip = self.get_object(pk=pk)
-        rent_trip.customer_review = request.data['customer_review']
-        rent_trip.save()
-        serializer = Rent_TripSerializer([rent_trip], many=True)
-        return Response(serializer.data)
-
-    def delete(self, request, pk):
-        rent_trip = self.get_object(pk=pk)
-        rent_trip.delete()
-        return Response({"message" : "Order Cancelled"})
-
 
 class BillList(APIView):
-    def get(self, request, format=None):
-        bill = Bill.objects.all()
-        print(bill)
-        serializer = BillSerializer(bill, many=True)
-        return Response(serializer.data)
+    def get(self, request):
+        try:
+            response = Bills.get_bill(request)
+            return Response(response, status=200)
 
-    def post(self,request, id):
+        except Exception as e:
+            return Response(str(e), status=500)
 
-        trip = RentTrip.objects.get(rent_id=id)
-        bill = Bill.objects.filter(rental_id=id).exists()
+    def post(self, request, id):
+        try:
+            response = Bills.gerate_bill(request, id)
+            return Response(response, status=200)
 
-        if(bill):
-            return Response({"message": "Bill already exist"})
-        else:
-            rent_id = id
-            pickup_date = trip.pickup_date
-            return_date = trip.return_date
-
-            rental_days = no_of_days(pickup_date, return_date)
-            vehicle = Vehicle.objects.get(vehicle_no=trip.vehicle_no)
-            amount = rental_days * vehicle.price_day
-
-            serializer = BillSerializer(data={
-                "rental_id": rent_id,
-                "rental_days": rental_days,
-                "amount": amount,
-
-                })
-            if serializer.is_valid():
-                serializer.save()
-
-                trip.bill_generated = True
-                trip.save()
-                return Response({'message':'Bill generated successfully'})
-
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 class BillDetail(APIView):
-
-
     def get(self, request, id):
         try :
             bill = Bill.objects.get(rental_id_id=id)
@@ -511,184 +288,111 @@ class BillDetail(APIView):
             return Response({"msg":"No data found"})
 
 
-
 class getOrders(APIView):
     authentication_classes = [JwtAuthentication_owner]
 
     def get(self, request):
-        owner = Owner.objects.get(email=request.user)
-        owner_id = owner.owner_id
 
-        rent_trip = RentTrip.objects.filter(owner_id=owner_id).order_by('-rent_id')
+        try:
+            response = Rents.get_owner_orders(request)
+            return Response(response, status=200)
 
-        orders, totalPages, page = listing(request, rent_trip)
-
-        serializer = Rent_TripSerializer(orders, many=True)
-
-        return Response({
-            'pageItems': serializer.data,
-            'totalPages': totalPages,
-            'page': page
-        })
-
-
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class CustomerReview(APIView):
-    def put(self, request, pk, format=None):
-        rent_trip = RentTrip.objects.get(pk=pk)
-        rent_trip.customer_review = request.data['customer_review']
-        rent_trip.save()
-        serializer = Rent_TripSerializer([rent_trip], many=True)
-
-
-        return Response(serializer.data)
+    def put(self, request, pk):
+       try:
+           response = Rents.customer_review(request, pk)
+           return Response(response, status=200)
+       except Exception as e:
+           return Response(str(e), status=500)
 
 class OwnerReview(APIView):
-    def put(self, request, pk, format=None):
-        rent_trip = RentTrip.objects.get(pk=pk)
-        rent_trip.owner_review= request.data['owner_review']
-        rent_trip.save()
-        serializer = Rent_TripSerializer([rent_trip], many=True)
+    def put(self, request, pk):
+        try:
+            response = Rents.owner_review(request, pk)
+            return Response(response, status=200)
 
-        return Response(serializer.data)
-
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class DeleteVehicle(View):
     def delete(self, request, numid):
-        vehicle = Vehicle.objects.get(vehicle_no=numid)
-        vehicle.delete()
-        return JsonResponse({"message": "success"}, safe=False)
-        # serializer = VehicleSerializer(vehicle)
+        try:
+            response = Vehicles.delete_vehicle(request, numid)
+            return Response({"msg": response})
 
-class GetBookingId(APIView):
-    def get(self, request, id):
-        booking_id = RentTrip.objects.filter(customer_id=id).order_by('-check_in').first
-        serializer = Rent_TripSerializer(booking_id)
-        print(serializer)
-        return JsonResponse(serializer.data)
+        except :
+            return Response({"msg":"No data found"})
 
-def no_of_days(pickup_date, return_date):
-    date_format = "%Y-%m-%d"
-    a = datetime.datetime.strptime(str(pickup_date), date_format)
-    b = datetime.datetime.strptime(str(return_date), date_format)
-    delta = b - a
-    return delta.days+1
 
 class GetVehicle(APIView):
     def get(self,request, id):
-        vehicle = Vehicle.objects.get(vehicle_no=id)
-        serializer = VehicleSerializer(vehicle)
-        return Response(serializer.data)
+        try:
+            response = Vehicles.get_vehicle(request, id)
+            return Response(response, status=200)
+
+        except Exception as e:
+            return Response(str(e), status=500)
+
 
 class GetVehiclesOwner(APIView):
-    def get(self,request, id):
-        vehicle = Vehicle.objects.get(vehicle_no=id)
-        owner = Owner.objects.get(owner_id = vehicle.owner_id_id)
-        serializer = OwnerSerializer(owner)
-        return Response(serializer.data)
+    def get(self, request, id):
+        try:
+            response = Owners.get_owner_details(request, id)
+            return Response(response, status=200)
+
+        except Exception as e:
+            return Response(str(e), status=500)
+
 
 class Search(APIView):
     def get(self, request):
-        vehicicles = Vehicle.objects.filter(Q(model__icontains = request.GET.get('model')) |
-                                            Q(brand__icontains = request.GET.get('model')) )
-        serializer =  VehicleSerializer(vehicicles, many=True)
-        if serializer:
-            return  Response(serializer.data)
-        # else :
-        #      return Response({"message" : "No results found"})
+        try:
+            response = SearchVehicle.search(request)
+            return Response(response, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
+
 
 class UpdateOrderStatus(APIView):
     def put(self, request, pk):
-        trip = RentTrip.objects.get(rent_id = pk)
-        trip.order_status = False
+        try:
+            response = Rents.order_status(request, pk)
+            return Response(response, status=200)
 
-        trip.save()
-        return  Response({"msg" : "Order cancelled"})
+        except Exception as e:
+            return Response(str(e), status=500)
+
 
 class ChangeVehicleStatus(APIView):
     def put(self, request, pk):
-        vehicle = Vehicle.objects.get(vehicle_no = pk)
-
-        if vehicle.is_available == True:
-            vehicle.is_available = False
-            vehicle.save()
-            return Response({"msg": "Vehicle dissabled"})
-
-        else:
-            vehicle.is_available = True
-            vehicle.save()
-            return Response({"msg": "Vehicle enabled"})
+        try:
+            response = Vehicles.vehicle_status(request, pk)
+            return Response(response, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 class AddOdoReading(APIView):
     def put(self, request, pk):
-        trip = RentTrip.objects.get(rent_id=pk)
-        trip.odo_start_reading = request.data['odo_start_reading']
-        trip.odo_end_reading = request.data['odo_end_reading']
-        trip.save()
+        try :
+            response = Rents.odometer_reading(request, pk)
+            return Response(response, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
-        bill = Bill.objects.get(rental_id_id = pk)
-        bill.km_ran = int(trip.odo_end_reading) - int(trip.odo_start_reading)
-        bill.save()
-
-        return Response({"msg" : "data saved successfully"})
-
-from django.core.paginator import Paginator
-
-def listing(request, object_list):
-    paginator = Paginator(object_list, 3)
-    page_number = int(request.GET.get('page'))
-    if not page_number:
-        page_number = 1
-    if page_number > paginator.num_pages:
-        page_number = paginator.num_pages
-    elif page_number < 1:
-        page_number = 1
-    page_obj = paginator.get_page(page_number)
-    return page_obj, paginator.num_pages, page_number
+class AvailableVehicles(APIView):
+    def get(self, request, fromDate, toDate):
+        try:
+            response = AvailableOnDate.get_vehicles(request, fromDate, toDate)
+            return Response(response, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
 
 
 @csrf_exempt
 @api_view(['POST'])
 def save_file(request):
-    # file = request.FILES["img"]
     url = uploader.upload(request.FILES['img'])
-    # file_name = default_storage.save(file.name,file)
     return JsonResponse({'url': url['secure_url']}, safe=False)
-
-#
-# def c_login(request):
-#         data = json.loads(request.body.decode('utf-8'))
-#         email = data['email']
-#         password = data['password']
-#         print(password)
-#         customer = Customer.objects.get(email=email)
-#
-#         serializer= CustomerSerializer(customer)
-#         if customer is None:
-#             return JsonResponse({'mes': 'enter valid email'})
-#
-#         elif customer.password == password :
-#             return JsonResponse(serializer.data)
-#
-#         else:
-#             return JsonResponse({'mes': 'invalid password'})
-#
-#
-#
-# def o_login(request):
-#     data = json.loads(request.body.decode('utf-8'))
-#     email = data['email']
-#     password = data['password']
-#     print(password)
-#
-#     owner = Owner.objects.get(email=email)
-#
-#     serializer = OwnerSerializer(owner)
-#     if owner is None:
-#         return JsonResponse({'mes': 'enter valid email'})
-#
-#     elif owner.password == password:
-#         return JsonResponse(serializer.data)
-#
-#     else:
-#         return JsonResponse({'mes': 'invalid password'})

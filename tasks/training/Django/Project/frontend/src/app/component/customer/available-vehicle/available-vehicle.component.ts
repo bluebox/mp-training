@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GeneralService } from 'src/app/general.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-available-vehicle',
   templateUrl: './available-vehicle.component.html',
@@ -34,6 +35,9 @@ text : string=''
   totalObjects: any
   resp: any
 
+  // fromDate : any
+  // toDate : any
+
 
   constructor(private service:GeneralService, http : HttpClient, private route: Router) { }
 
@@ -63,7 +67,23 @@ text : string=''
     console.log(this.response)})
   }
 
-  checkDate(from: any, to:any){
-    console.log(from + " "+ to)
-  }
+  checkDate(fromDate:any, toDate: any){
+    let date = new Date();
+
+    let newFromDate = new Date(fromDate);
+    let newToDate = new Date(toDate);
+
+    if(newFromDate<date || newToDate<date || newToDate<newFromDate)
+    {
+      alert("Please select valid date")
+    }
+    else{
+    console.log(fromDate, toDate )
+    this.service.availableOnDate(fromDate , toDate).subscribe(data=>{(this.totalObjects=data);
+      console.log(data)
+      this.response=data
+    }
+  )
+    }
+}
 }

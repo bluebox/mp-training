@@ -1,24 +1,6 @@
 <app-navbar></app-navbar>
 <div class="find">
   <div class="search">
-    <!-- <div class="date">
-
-      <input
-        type="date"
-        #fromDate
-      />
-      <input
-        type="date"
-        #toDate
-      />
-      <button type="button" (click)="checkDate(fromDate.value, toDate.value)"
-        class="btn btn-outline-primary"
-        placeholder="Check">
-      </button>
-
-
-    </div> -->
-
     <div class="input-group">
       <!-- <input
         type="search"
@@ -43,6 +25,23 @@
         aria-describedby="search-addon"
       />
     </div>
+  </div>
+  <div>
+    <b>From Date:</b><input
+      #fromDate
+      type="date"
+      name=""
+      id=""
+    />&nbsp;&nbsp;
+    <b>To Date:</b><input
+      #toDate
+      type="date"
+      name=""
+      id=""
+    />&nbsp;&nbsp;
+    <button type="submit" class="btn btn-success" (click)="checkDate(fromDate.value, toDate.value)">
+      Check
+    </button>
   </div>
   <div class="select" style="padding-top: 10px">
     Filter :

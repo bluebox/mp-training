@@ -14,10 +14,13 @@
 
 
 
+    <div style="color: rgb(106, 165, 11);">
 
-    <p *ngIf="order.customer_review">Customer's review :  {{order.customer_review}} </p>
+      <p >Customer Name:  {{order.customer_id.name}} </p>
+      <p >Customer email:  {{order.customer_id.email}} </p>
+      <p >Contact number:  {{order.customer_id.contact_no}} </p>
 
-
+    </div>
 
     <p *ngIf="order.owner_review" style="color: rgb(179, 123, 19) ;">Your review:  {{order.owner_review}} &nbsp; <a (click)="addReview( content, order.rent_id)"><i style="color:rgb(9, 118, 207) ;" class="fa-solid fa-pen-to-square"></i></a></p>
 

@@ -132,7 +132,7 @@ cancelMessage : any
   cancelOrder(id : any){
     if(confirm("Are you sure you want to cancel!!!?"))
     {
-      this.service.cancelOrder(id).subscribe(data => {(this.cancelMessage=data), alert(this.cancelMessage.msg), this.ngOnInit()})
+      this.service.cancelOrder(id).subscribe(data => {(this.cancelMessage=data),this.ngOnInit(), alert(this.cancelMessage.msg) })
     }
   }
 

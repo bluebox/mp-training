@@ -232,6 +232,9 @@ export class GeneralService {
     return this.http.get(baseUrl + 'get-owner-details/' + id)
   }
 
+  availableOnDate(fromDate:any, toDate:any ){
+
+    return this.http.get(baseUrl + 'get-available-vehicles/' +  fromDate + '/' + toDate )
+  }
+
 }
-
-

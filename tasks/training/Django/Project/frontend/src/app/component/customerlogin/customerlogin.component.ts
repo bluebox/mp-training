@@ -15,7 +15,12 @@ export class CustomerloginComponent implements OnInit {
   msg: any
   submit!: boolean;
 
-  constructor( private service: GeneralService, private route: Router) { }
+  constructor( private service: GeneralService, private route: Router) {
+
+    if (window.sessionStorage.getItem('token')){
+      route.navigate(['available-vehicles'])
+    }
+  }
 
   ngOnInit(): void {
 

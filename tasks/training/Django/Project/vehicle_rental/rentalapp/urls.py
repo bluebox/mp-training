@@ -63,7 +63,9 @@ urlpatterns = [
 
     path('owner-vehicle/<str:id>', views.GetVehiclesOwner.as_view()),
     path('delete-vehicle/<str:numid>', views.DeleteVehicle.as_view()),
-    path('save-file/', views.save_file, name='SaveFile')
+    path('save-file/', views.save_file, name='SaveFile'),
+
+    path('get-available-vehicles/<str:fromDate>/<str:toDate>', views.AvailableVehicles.as_view())
 
 
 

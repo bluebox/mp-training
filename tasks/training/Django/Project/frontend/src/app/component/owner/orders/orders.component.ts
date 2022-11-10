@@ -39,7 +39,7 @@ export class OrdersComponent implements OnInit {
   getPageItems(num: number){
     this.subscription = this.service.recievedOrders(this.page + num).subscribe(
       (data: any) => {
-        // console.log(data);
+        console.log(data);
         this.pageItems = data.pageItems
         this.page = data.page
         this.totalPages = data.totalPages
@@ -110,7 +110,7 @@ bill : any
         alert('Review updated'), this.ngOnInit();
       });
   }
-  
+
   addReview(content: any, rent_id: any) {
     this.open(content, rent_id);
   }

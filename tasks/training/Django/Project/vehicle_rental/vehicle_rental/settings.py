@@ -35,6 +35,11 @@ cloudinary.config(
 )
 
 # Application definition
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -46,10 +51,12 @@ INSTALLED_APPS = [
     "rentalapp.apps.RentalappConfig",
     "rest_framework",
     "corsheaders",
-    'cloudinary'
+    'cloudinary',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -58,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 CORS_ORIGIN_ALLOW_ALL=True

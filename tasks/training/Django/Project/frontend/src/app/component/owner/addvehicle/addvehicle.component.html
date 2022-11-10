@@ -51,7 +51,7 @@
 
                             <mat-form-field class="full-width" appearance="outline">
                                <input formControlName="vehicle_no" class="userinput" matInput placeholder="Vehicle number">
-                            </mat-form-field>
+                            </mat-form-field><br>
                             <small class="text-danger msgg"
                                 *ngIf="vehicle.get('vehicle_no')?.invalid  && vehicle.get('vehicle_no')?.touched ">Vehicle number is required
                                </small>
@@ -63,7 +63,7 @@
                               <mat-option value="Bike">Bike</mat-option>
                               <mat-option value="Car">Car</mat-option>
                             </mat-select>
-                          </mat-form-field>
+                          </mat-form-field><br>
                             <small class="text-danger msgg"
                                 *ngIf="vehicle.get('type')?.invalid  && vehicle.get('type')?.touched ">Select type</small>
                         </div>
@@ -73,7 +73,7 @@
                             <mat-form-field class="full-width" appearance="outline">
                                 <input  class="userinput" formControlName="brand" matInput
                                     placeholder="Vehicle brand">
-                            </mat-form-field>
+                            </mat-form-field><br>
                             <small class="text-danger msgg"
                                 *ngIf="vehicle.get('brand')?.invalid  && vehicle.get('brand')?.touched ">Enter brand name</small>
                         </div>
@@ -82,7 +82,7 @@
                           <mat-form-field class="full-width" appearance="outline">
                               <input  class="userinput" formControlName="model" matInput
                                   placeholder="Vehicle model">
-                          </mat-form-field>
+                          </mat-form-field><br>
                           <small class="text-danger msgg"
                               *ngIf="vehicle.get('model')?.invalid  && vehicle.get('model')?.touched ">Enter model name</small>
                       </div>
@@ -92,7 +92,7 @@
                             <mat-form-field class="full-width" appearance="outline">
                                 <input formControlName="price_day" class="userinput" matInput
                                     placeholder="Price per day ">
-                            </mat-form-field>
+                            </mat-form-field><br>
                             <small class="text-danger msgg"
                                 *ngIf="vehicle.get('price_day')?.invalid  && vehicle.get('price_day')?.touched ">This
                                 field is required</small>

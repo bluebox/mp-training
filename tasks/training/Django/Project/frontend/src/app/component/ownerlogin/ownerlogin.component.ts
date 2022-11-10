@@ -11,7 +11,12 @@ export class OwnerloginComponent implements OnInit {
   login! : FormGroup;
   response: any
   submit !: boolean
-  constructor(private service : GeneralService, private route: Router) { }
+  constructor(private service : GeneralService, private route: Router) {
+    // console.log(window.sessionStorage.getItem('token'))
+    if (window.sessionStorage.getItem('owner_token')){
+      route.navigate(['previousvehicles'])
+    }
+  }
 
   ngOnInit(): void {
     this.login= new FormGroup({
