@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpserviceService } from 'src/app/httpservice.service';
 
+interface role {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-registeremployee',
   templateUrl: './registeremployee.component.html',
@@ -25,7 +29,11 @@ export class RegisteremployeeComponent implements OnInit {
   subscription : Subscription = Subscription.EMPTY
 
   constructor(private http :HttpserviceService ,private router: Router) { }
-
+  roles: role[] = [
+    {value: 'HairStylist', viewValue: 'HairStylist'},
+    {value: 'Receptionist', viewValue: 'Receptionist'},
+    {value: 'Manager', viewValue: 'Manager'},
+  ];
 
 
   employeeRegistrationForm : FormGroup = new FormGroup({
@@ -36,7 +44,7 @@ export class RegisteremployeeComponent implements OnInit {
     password: new FormControl("", [Validators.minLength(8),Validators.required]),
     emp_id :new FormControl(this.defaultid,Validators.required),
     branch_id : new FormControl(""),
-    role : new FormControl("",Validators.required),
+    role : new FormControl(this.roles[1].value,Validators.required),
     emp_contact_number : new FormControl("",[Validators.maxLength(10), Validators.required]),
     is_staff : new FormControl(this.defaultvalue)
 

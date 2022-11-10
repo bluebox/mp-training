@@ -9,3 +9,7 @@ table {
    .column-value{
     text-align: center;
   }
+  .icon-name{
+    color: black;
+    background-color: white;
+  }

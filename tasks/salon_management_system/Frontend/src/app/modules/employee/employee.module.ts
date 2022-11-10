@@ -14,6 +14,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { BranchComponent } from './components/branch/branch.component';
 import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -27,14 +28,16 @@ import {MatTableModule} from '@angular/material/table';
     ServicesComponent,
     ProfileComponent,
     HomeComponent,
-    BranchComponent
+    BranchComponent,
+    
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     MatToolbarModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatTabsModule
   ]
 })
 export class EmployeeModule { }

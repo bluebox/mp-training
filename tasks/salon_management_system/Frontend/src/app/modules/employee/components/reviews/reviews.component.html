@@ -1,1 +1,27 @@
-<p>reviews works!</p>
+<div class="body">
+    <table  mat-table [dataSource]="reviews" class="mat-elevation-z8">
+
+    
+        <ng-container matColumnDef="review_id">
+          <th mat-header-cell *matHeaderCellDef class="column-name">review id</th>
+          <td mat-cell *matCellDef="let reviews" class="column-value"> {{reviews.review_id}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Appointment_id">
+          <th mat-header-cell *matHeaderCellDef class="column-name">appointment id</th>
+          <td mat-cell *matCellDef="let reviews" class="column-value"> {{reviews.Appointment_id}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="comments_and_reviews">
+          <th mat-header-cell *matHeaderCellDef class="column-name"> comments </th>
+          <td mat-cell *matCellDef="let reviews" class="column-value"> {{reviews.comments_and_reviews}} </td>
+        </ng-container>
+        <ng-container matColumnDef="rating">
+          <th mat-header-cell *matHeaderCellDef class="column-name"> rating </th>
+          <td mat-cell *matCellDef="let reviews" class="column-value"> {{reviews.rating}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>

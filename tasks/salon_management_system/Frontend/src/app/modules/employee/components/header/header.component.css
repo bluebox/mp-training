@@ -39,3 +39,11 @@
 .toolbar{
     border-bottom: 1px solid gray;
 }
+.icon-name{
+    color: white;
+    background-color: black;
+  }
+  button{
+    border: none;
+    background-color: white;
+  }

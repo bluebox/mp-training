@@ -3,6 +3,6 @@ from django.apps import AppConfig
 
 
 class SalonConfig(AppConfig):
-    """salonconfig"""
+    """salon configuration"""
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'salon'

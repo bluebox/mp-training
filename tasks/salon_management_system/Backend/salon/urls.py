@@ -2,6 +2,7 @@
 from django.urls import path
 from salon import views
 
+
 urlpatterns = [
     path('branch/', views.BranchList.as_view()),
     path('newbranch/', views.NewBranch.as_view()),
