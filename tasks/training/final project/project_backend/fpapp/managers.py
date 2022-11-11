@@ -45,7 +45,7 @@ class StudentRegister:
         sub=Student.objects.all()
         serializer=StudentSerializer(sub, many=True)
         return (serializer.data)
-      
+
      
 
 

@@ -31,41 +31,34 @@ export class RegisterTeacherComponent implements OnInit {
     address: new FormControl("", Validators.required),
     qualification: new FormControl("", Validators.required),
     position: new FormControl("", Validators.required)
-
   })
 
   ngOnInit(): void {
   }
   keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
-
     const inputChar = String.fromCharCode(event.charCode);
     if (event.key != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
   }
-
   onChange(event:any) {
     this.text = event.target.value;
     this.passwordmatch=false;
-    
     if (this.teacherRegisterForm.get('password').value  === this.teacherRegisterForm.get('passwordagain').value) {
       this.passwordmatch=true;
       console.log("rakesh")
     } 
   }
-
   submitRegister() {
     console.log(this.teacherRegisterForm.value);
     if (this.teacherRegisterForm.valid) {
       this.http.registerTeacher(this.teacherRegisterForm.value).subscribe(data =>{
-        
         this.errormsg=data.msg
         if(data.msg=="successful"){
           this.router.navigate(['userlogin'])
         }
         console.log(data)})
-      
     }
     else {
       console.log('fill properly ');
@@ -73,7 +66,6 @@ export class RegisterTeacherComponent implements OnInit {
       console.log(this.teacherRegisterForm.valid);
     }
     console.log(this.teacherRegisterForm.value);
-
   }
-
 }
+

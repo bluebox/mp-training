@@ -16,6 +16,11 @@
   <div class="head">Available Courses</div>
 <table mat-table [dataSource]="courses" class="mat-elevation-z8">
 
+  <ng-container matColumnDef="s.no">
+    <th mat-header-cell *matHeaderCellDef>S.no </th>
+    <td mat-cell *matCellDef="let question; let i=index"> {{i+1}} </td>
+  </ng-container>
+
   
     <ng-container matColumnDef="course_name">
       <th mat-header-cell *matHeaderCellDef> Course Name </th>

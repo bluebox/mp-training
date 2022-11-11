@@ -9,9 +9,10 @@ import { StudentServiceService } from '../../student-service.service';
 })
 export class ShowExamComponent implements OnInit {
 
-  displayedColumns: string[]=['course_name','exam']
+  displayedColumns: string[]=['s.no','course_name','exam']
   courses:any
   course_name:any
+  i:any
 
   constructor(private router:Router, private http: StudentServiceService) { }
 
@@ -20,27 +21,22 @@ export class ShowExamComponent implements OnInit {
     this.http.getCourses().subscribe({
       next:(resp)=>{
         this.courses=resp
-        
+        console.log(resp)
+
       }
-      
     })
 
   }
-
   sendCourseName(arg:any){
 
-    for (var i of this.courses){
-      
+    for (var i of this.courses)
+    {
       var val = {"course_name": arg}
       console.log(val.course_name)
       this.course_name=val.course_name
       console.log(arg)
       this.router.navigate(['student/attemptexam',arg])
-       
-    
-      
     }
-    
   }
-
 }
+

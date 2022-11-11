@@ -12,8 +12,9 @@ import { TeacherServiceService } from '../../teacher-service.service';
 })
 export class DisplayQuestionsComponent implements OnInit {
 
-  displayedColumns: string[]=['question_name','course', 'Action']
+  displayedColumns: string[]=['s.no','question_name','course', 'Action']
   questions: any
+  i:any
 
   dataSource: MatTableDataSource<DisplayQuestionsComponent>;
   
@@ -34,8 +35,6 @@ export class DisplayQuestionsComponent implements OnInit {
         console.log(this.questions)
       }
     })
-  
-     
   }
 
   deleteQuestion(arg: any) {

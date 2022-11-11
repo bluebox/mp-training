@@ -14,7 +14,7 @@ export class TotalAttemptsComponent implements OnInit {
   i:any=0
   scores:any
   exam_name:any
-  displayedColumns: string[]=['exam_name', 'score','date']
+  displayedColumns: string[]=['s.no','exam_name', 'score','date']
 
 
 

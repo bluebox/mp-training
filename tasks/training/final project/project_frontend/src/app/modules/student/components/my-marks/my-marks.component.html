@@ -8,6 +8,12 @@
               The actual rendered columns are set as a property on the row definition" -->
       
         <!-- Position Column -->
+
+        <ng-container matColumnDef="s.no">
+          <th mat-header-cell *matHeaderCellDef>S.no </th>
+          <td mat-cell *matCellDef="let question; let i=index"> {{i+1}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="course_name">
           <th mat-header-cell *matHeaderCellDef>Course </th>
           <td mat-cell *matCellDef="let row"> {{row.course_name}} </td>

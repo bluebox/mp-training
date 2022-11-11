@@ -8,9 +8,10 @@ import { StudentServiceService } from '../../student-service.service';
   styleUrls: ['./my-marks.component.css']
 })
 export class MyMarksComponent implements OnInit {
-  displayedColumns: string[]=['course_name','exam']
+  displayedColumns: string[]=['s.no','course_name','exam']
   courses:any
   course_name:any
+  i:any
 
   constructor(private router:Router, private http: StudentServiceService) { }
 

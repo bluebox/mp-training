@@ -20,7 +20,6 @@ export class TakeExamComponent implements OnInit {
   score:number=0
   answers_user: string[] = [];
   answer_main:string[]=[]
-  // total_scores:number[]=new Array(10)
   event:any
   k:any
   v:any
@@ -35,32 +34,21 @@ export class TakeExamComponent implements OnInit {
       this.course_name=(data['exam_name'])
       console.log('rakesh',this.course_name)
     })
-
   }
-
   ngOnInit(): void {
     this.http.getQuestionlength(this.course_name).subscribe({
       next:(resp)=>{
         this.h=resp
         console.log(this.h)
-     
-  
     for(this.i=0;this.i<this.h?.length;this.i++){
       this.k=this.h[this.i]  
     
       this.answer_main[this.i]=this.k.answer
     }
     console.log('ggg',this.answer_main)
-    // localStorage.setItem('length', JSON.stringify(this.h?.length))
-    // this.v=localStorage.getItem('course_name')
-
       }
-    
     })
-    
   }
-
-
  onChange(i:number, event){
 
   this.answers_user[i] = event.target.value;
@@ -76,20 +64,18 @@ openDialog() {
       this.emp++;
       console.log(this.emp)
     }
-
   }
 
   for(this.i=0;this.i<this.h.length;this.i++){
     if(this.answers_user[this.i]==this.answer_main[this.i]){
       this.score++;
     }
-  }   
- 
+  }
   console.log(this.score)
   console.log(this.answer_main.length)
   console.log(this.answers_user.length)
   this.http.total_scores.push(this.score)
-  
+
 if((this.answers_user.length != this.answer_main.length)|| ((this.emp))) {
 
     let dialogRef = this.dialog.open(CloseComponent)
@@ -105,7 +91,6 @@ if((this.answers_user.length != this.answer_main.length)|| ((this.emp))) {
     }
     })
   }
-
 else{
   
   this.http.AddScore({ 'score':this.score, 'exam_name':this.course_name }).subscribe(data=>{
@@ -113,13 +98,5 @@ else{
   })
   this.router.navigate(['student/viewresult',this.course_name,this.score]);
 }
-
-
-
-
 }
-
-
- 
-
 }

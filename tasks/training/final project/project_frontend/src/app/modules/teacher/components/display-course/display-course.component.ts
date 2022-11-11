@@ -18,11 +18,12 @@ import { Router } from '@angular/router';
 export class DisplayCourseComponent implements OnInit {
 
 
-  displayedColumns: string[]=['course_name','total_marks','Action']
+  displayedColumns: string[]=['s.no','course_name','total_marks','Action']
   courses: any
   result:any
   text:string=''
   v:boolean=true
+  i:any
 
   constructor(private router:Router, private http : TeacherServiceService) { }
 
