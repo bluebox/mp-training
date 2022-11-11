@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<style>
+body {
+  font-family: Arial;
+  color: white;
+}
+.main{
+    background-color: rgb(197, 131, 144);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+    /* overflow: hidden;
+    position: fixed; */
+    height: 80px;
+    top: 0;
+    
+    
+}
+.logo{
+    width: 25%;
+}
+.nav{
+    width: 60%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+/* ul{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 35px;
+} */
+.nav{
+    width: 80%;
+}
+.search{
+    width: 15%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: white;
+}
+
+.right {
+  right: 0;
+  background-color:pink;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width:100%;
+  height: 100%;
+}
+.mySlides {display:none;}
+</style>
+</head>
+<body>
+<div class="irf">
+    <!-- <div class="main">
+        <div class="logo">
+            <img src="logo21.png">
+        </div>
+        <div class="nav">
+            <ul type="none" class="navbar">
+                <li class="list"><a href="#home">Home</a></li>
+                <li class="list"><a href="#">About</a></li>
+                <li class="list"><a href="#">Cart</a></li>
+                <li class="list"><a href="#">Signup/login</a></li>
+            </ul>
+        </div>
+        <div class="search">
+            <img src="search1.png" class="search_img">
+        </div>
+    </div> -->
+<div class="split left" style="height:50vh; margin-top: 50px">
+  <div class="centered">
+    <div class="w3-content w3-display-container" >
+        <img class="mySlides" src="women/ethinic/we6b.jpg" style="width:100%">
+        <img class="mySlides" src="women/ethinic/we6a.jpg" style="width:100%">
+        <img class="mySlides" src="women/ethinic/we6.jpg" style="width:100%">
+        <img class="mySlides" src="women/ethinic/we6b.jpg" style="width:100%">
+        <img class="mySlides" src="women/ethinic/we6a.jpg" style="width:100%">
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+      </div>
+      
+  </div>
+</div>
+
+<div class="split right"style="height:50vh;margin-top: 50px">
+  <div class="centered">
+    <!-- <img src="img_avatar.png" alt="Avatar man"> -->
+    <h2>Product Description</h2>
+    <p>Some text here too.</p>
+  </div>
+</div>
+</div>     
+</body>
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+    
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+    
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      x[slideIndex-1].style.display = "block";  
+    }
+    </script>
+</html> 

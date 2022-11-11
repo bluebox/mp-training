@@ -1,0 +1,159 @@
+/* *{
+    background-color: gray;
+} */
+body{
+  background-color: gray;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: red;
+    margin-top: 10px;
+    height:30px;
+    font-size: large;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+  .btn{
+    background-color: red;
+    color: white;
+    height: 10vh;
+    width: 20vw;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  main{
+    background-image: url("back.jpg");
+    width:100%;height:100vh;
+    /* background-color: black;
+    opacity: 0.9; */
+    /* filter: brightness(50%); */
+  }
+  .top{
+    margin-top: 15vh;
+    color: white;
+    z-index: 1;
+    filter: brightness(100%);
+    text-align: center;
+
+  }
+  .input{
+    width: 55vh;
+    height: 10vh;
+  }
+  .two{
+    margin-top: 5px;
+    background-color:black;
+    display: flex;
+    filter: brightness(100%);
+  }
+  .three{
+    margin-top: 5px;
+    background-color:black;
+    display: flex;
+    filter: brightness(100%);
+  }
+  .left.right{
+    text-align: center;
+    margin:25px 25px 25px 25px;
+    color: white;
+    width: 50%;
+    height:50vh;
+  }
+  .tv{
+    margin-right: 10px;
+    height:50vh;
+    width: 50%;
+    background-image: url("vv.png")
+  }
+  .left1{
+    margin-right: 10px;
+    width: 50%;
+    height:50vh;
+  }
+  .FAQS{
+    margin-top: 10px;
+    background-color:black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+  .q{
+    background-color: rgb(54, 51, 51);
+    color: white;
+    width: 45vw;
+    height: 7vh;
+    margin-left: 27vw;
+    text-align: left;
+    margin-top: 10px;
+    font-size: larger;
+  }
+  .ans{
+    background-color: rgb(54, 51, 51);
+    color: white;
+    width: 45vw;
+    text-align: left;
+    margin-left: 27vw;
+    padding: 1px;
+    margin-bottom: 10px;
+  }
+  .ans{
+    display: none;
+  }
+.fa{
+  display:none
+}
+.act{
+  float: right;
+}
+.lang{
+  background-color: black;
+  opacity: 0.7;
+  border: 1px solid white;  
+  color: white;
+  float: right;
+  margin-top: 10px;
+  height: 60px;
+  width: 112px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: large;
+  border-radius: 15px;
+  font-weight: bold;
+  position:relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.footer{
+  height:50vh;
+  background-color: black;
+  font-size: 15px;
+}
+.log{
+  color: white;
+  display: flex;
+  margin-left: 25vw;
+  margin-bottom: 40px;
+}

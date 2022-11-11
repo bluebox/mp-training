@@ -1,137 +1,174 @@
+'''inheritance'''
 __author__ = 'Hari'
 
-notes = '''
+#from tkinter import NO
+# pylint: disable=unused-variable
+# pylint: disable=too-few-public-methods
+#from tasks.basics.test_08_understanding_truth import THREE_THINGS_I_LEARNT, TIME_TAKEN_MINUTES
+# pylint: disable=protected-access
+
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tasks.placeholders import *
+#from tasks.placeholders import *
 
 def test_inheritance_basic():
-    class A(object): # A inherits from object.
-        def f(self):
+    '''inheritance'''
+    class _A(object): # A inherits from object.
+        '''inheritance'''
+        def _f(self):
+            '''inheritance'''
             pass
 
-    class B(A):      #B inherits from A or B derives A
-        def g(self):
+    class _B(_A):      #B inherits from A or B derives A
+        '''inheritance'''
+        def _g(self):
+            '''inheritance'''
             pass
 
-    assert __ == issubclass(A, object)
-    assert __ == issubclass(A, A)
-    assert __ == issubclass(A, B)
+    assert True is issubclass(_A, object)
+    assert True is issubclass(_A, _A)
+    assert False is issubclass(_A, _B)
 
-    assert __ == issubclass(B, A)
-    assert __ == issubclass(B, B)
-    assert __ == issubclass(B, object)
+    assert True is issubclass(_B, _A)
+    assert True is issubclass(_B, _B)
+    assert True is issubclass(_B, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
-    class A(object): # A inherits from object.
-        def f(self):
-            return "A:f()"
+    '''inheritance'''
+    class _A(object): # A inherits from object.
+        '''inheritance'''
+        def _f(self):
+            '''inheritance'''
+            return "_A:_f()"
 
-    class B(A):      #B inherits A's behavior (attributes)
-        def g(self):
-            return "B:g()"
+    class _B(_A):      #B inherits A's behavior (attributes)
+        '''inheritance'''
+        def _g(self):
+            '''inheritance'''
+            return "_B:_g()"
 
-    b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    _b = _B()
+    assert "_A:_f()"== _b._f()
+    assert "_B:_g()" == _b._g()
 
-    a = A()
-    assert __ == a.f()
+    _a = _A()
+    assert "_A:_f()"== _a._f()
     try:
-        assert __ == a.g()
-    except __:
+        assert ''== _a._g()
+    except AttributeError:
         #print ex  #uncomment this line after filling up
         pass
 
 def test_inheritance_overrides():
-    class A(object): # A inherits from object.
-        def f(self):
-            return "A:f()"
+    '''inheritance'''
+    class _A(object): # A inherits from object.
+        '''inheritance'''
+        def _f(self):
+            '''inheritance'''
+            return "_A:_f()"
 
-        def g(self):
-            return "A:g()"
+        def _g(self):
+            '''inheritance'''
+            return "_A:_g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
-            return "B:g()"
+    class _B(_A):      #B can override A's methods
+        '''inheritance'''
+        def _g(self):
+            '''inheritance'''
+            return "_B:_g()"
 
-    a = A()
-    assert __ == a.f()
-    assert __ == a.g()
+    _a = _A()
+    assert "_A:_f()" == _a._f()
+    assert "_A:_g()"== _a._g()
 
-    b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    _b = _B()
+    assert "_A:_f()"== _b._f()
+    assert "_B:_g()" == _b._g()
 
 def test_inheritance_init():
-    class A(object):
+    '''inheritance'''
+    class _A(object):
+        '''inheritance'''
         def __init__(self):
-            self.a1 = []
+            '''inheritance'''
+            self.a_1 = []
 
         def append(self, obj):
-            self.a1.append(obj)
+            '''inheritance'''
+            self.a_1.append(obj)
 
-    class B(A):
+    class _B(_A):
+        '''inheritance'''
         def __init__(self):
-            self.b1 = []
+            '''inheritance'''
+            self.b_1 = []
 
-    a = A()
-    assert __ == getattr(a, "a1", None)
-    assert __ == getattr(a, "b1", None)
+    _a = _A()
+    assert [] == getattr(_a, "a_1", None)
+    assert None is getattr(_a, "b_1", None)
 
-    b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
+    _b = _B()
+    assert None is getattr(_b, "a_1", None)
+    assert [] == getattr(_b, "b_1", None)
 
     try:
-        b.append("orange")
-    except __ :  #what happened here?
+        _b.append("orange")
+    except AttributeError :  #what happened here?
         pass
 
     # Since methods of A depend on init being called, we must always
     # chain __init__ to the base class if the derived class overrides it.
 
     #lets redefine B now, to chain the inits to the base class.
-    class B(A):
+    class _B(_A):
+        '''inheritance'''
         def __init__(self):
-            A.__init__(self)
-            self.b1 = "b1"
+            '''inheritance'''
+            _A.__init__(self)
+            self.b_1 = "b_1"
 
-    b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
-    b.append("orange")
-    assert __ == b.a1
+    _b = _B()
+    assert [] == getattr(_b, "a_1", None)
+    assert 'b_1'== getattr(_b, "b_1", None)
+    _b.append("orange")
+    assert ['orange'] == _b.a_1
 
 def test_inheritance_invoking_using_super():
+    '''inheritance'''
     #super can be used instead of explicitly invoking base.
-    class A(object): # A inherits from object.
-        def f(self):
-            return "A:f()"
+    class _A(object): # A inherits from object.
+        '''inheritance'''
+        def _f(self):
+            '''inheritance'''
+            return "_A:_f()"
 
-        def g(self):
-            return "A:g()"
+        def _g(self):
+            '''inheritance'''
+            return "_A:_g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
-            return super(B, self).g() + ":"+ "B:g()"
+    class _B(_A):      #B can override A's methods
+        '''inheritance'''
+        def _g(self):
+            '''inheritance'''
+            return super(_B, self)._g() + ":"+ "_B:_g()"
 
-    b = B()
-    assert __ == b.g()
+    _b = _B()
+    assert "_A:_g():_B:_g()" == _b._g()
 
 
-notes_1 = '''
+NOTES_1 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
+THREE_THINGS_I_LEARNT = """
 -
 -
 -
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 30

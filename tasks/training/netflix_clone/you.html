@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix Clone</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style1.css" />
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    <style>
+        .actor1{
+            margin-left:20px;
+            height: 23vh;
+            width: 10vw;
+            background-color: white;
+            color: black;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="nav">
+        <ul style="display: inline-flex;padding: 10px;">
+          <li class="logo" > <img src="netflix_logo-removebg-preview.png" alt="img not found" style="width:180px; height: 50px;"> </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Movies</a></li>
+          <li><a href="#">Netflix Originals</a></li>
+          <li><a href="#">TV Shows</a></li>
+          <li style="margin-left:50vw"><a href="#"><i class="fa fa-search"></i></a></li>
+          <li style="float:right;"><a href="#"><i class="fa fa-bell"></i></a></li>
+          <li style="float:right;"> <img src="profile.png" alt="img not found" style="width:20px;height:20px"> </li>
+        </ul>
+      </div>
+    <main>
+      <div class="featured">
+        <h2>YOU</h2>
+        <div class="featured__buttons">
+          <a href=""><button class="button__play"><i class="fas fa-play"></i>Start From Beginning</button></a> 
+          <button class="button__play">Continue Watching</button>
+          <button class="button__play" onclick="play()">Watch Trailer</button>
+        </div>
+        <div class="featured__description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique
+          magna magna, vit...
+        </div>
+      </div>
+      <div id="trailer" style="display:none">
+        <video width="1000" height="1000" controls>
+            <source src="You Season 3 _ Official Trailer _ Netflix.mp4" type="video/mp4">
+          </video>
+          
+      </div>
+      <h3>Cast</h3>
+      <div class="cast" style="display:flex ; ">
+        <div class="actor1"> <img src="a1.jpeg" alt="" style="height: 20vh;
+            width: 10vw;">Joe Goldberg</div>
+        <div class="actor1"> <img src="a2.jpg" alt="" style="height: 20vh;
+            width: 10vw;">Victoria Pedretti </div>
+        <div class="actor1"> <img src="a3.jpg" alt="" style="height: 20vh;
+            width: 10vw;"> Tati Gabrielle</div>
+        <div class="actor1"> <img src="a4.jpeg" alt="" style="height: 20vh;
+            width: 10vw;">Elizabeth Lail </div>
+        <div class="actor1"> <img src="a5.jpeg" alt="" style="height: 20vh;
+            width: 10vw;">Shay Mitchell </div>
+         <div class="actor1"> <img src="a6.jpeg" alt="" style="height: 20vh;
+            width: 10vw;">Jenna Ortega</div>
+        <div class="actor1"> <img src="a7.jpeg" alt="" style="height: 20vh;
+            width: 10vw;">Carmela Zumbado </div>
+      </div>
+      <h3>Description</h3>
+      <div class="description" style="margin-left:20px">
+        <p>You is an American psychological thriller television series based on the books by Caroline Kepnes, developed by Greg Berlanti and Sera Gamble, and produced by Berlanti Productions, Alloy Entertainment and A+E Studios in association with Warner Horizon Television, now Warner Bros. Television.
+
+        The first season, which is based on the novel You, premiered on Lifetime in September 2018, and follows Joe Goldberg, a bookstore manager and serial killer who falls in love and develops an extreme obsession. The season stars Penn Badgley, Elizabeth Lail, Luca Padovan, Zach Cherry, and Shay Mitchell. Lifetime announced in July 2018 that You had been renewed for a second season, based on Kepnes' follow-up novel Hidden Bodies. The series later moved to Netflix and the second season was released in December 2019. The season follows Joe as he moves to Los Angeles and falls in love with local heiress Love Quinn. For the second season, Ambyr Childers was upgraded to a series regular, joining newly cast Victoria Pedretti, James Scully, Jenna Ortega, and Carmela Zumbado.</p>
+      </div>
+
+      
+    </main>
+  </body>
+  <script>
+    function play(){
+        let y=document.getElementById("trailer")
+        if (y.style.display === "none") {
+            y.style.display = "block";
+        } else {
+            y.style.display = "none";
+            }
+    }
+  </script>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix Clone</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+  </head>
+    <body>
+        <main>
+            <div class="nav">
+                <ul> 
+                    <li class="logo" > <img src="netflix_logo-removebg-preview.png" alt="img not found" style="width:180px; height: 120px;"> </li>
+                    <li class="act" ><a class="active" href="signup.html" >Sign In</a></li>
+                    <li class="lang" id="drop"> <br><i class="fa fa-gear"></i>English <i class="fa fa-angle-down"></i> </li>
+                  </ul>
+            </div>
+            <div class="top">
+                <h1 style="color:white ; font-size:65px"><b>Unlimited movies, TV <br>shows and more.</b></h1>
+                <h1>Watch anywhere. Cancel anytime.</h1>
+                <label class="input_id" placeholder="email"><input class="input"   name="email" value=""  autocomplete="email" maxlength="50" minlength="5" style="font-size:25px;" required></label>
+                 <a href="signup.html"><button class="btn"> Get Started <i style='font-size:25px' class='fas'>&#xf105;</i> </button></a> 
+    
+            </div>
+            
+        </main>
+       
+        <div class="two">
+            <div class="left" style="color:white ;">
+                <h1 style="margin: 50px 50px 50px 50px;">Enjoy on your TV.</h1>
+                <h3 style="margin: 50px 50px 50px 50px;">Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</h3>
+            </div>
+            <div class="tv">
+                <img src="tvgif2.gif" alt="img not found" style="margin-left: 82px;
+                width: 463px;
+                height: 262px;
+                margin-right: 20px;
+                margin-top: 100px;">
+            </div>
+        </div>
+        <div class="three">
+            <div class="left1" style="vertical-align:center;">
+                <img src="mobile.jpg" alt="img not found" style="width:45vh; height:40vh ;margin-left: 40px;">
+            </div>
+            <div class="right" style="color:white ;">
+                <h1 style="margin: 50px 50px 50px 50px;">Download your shows to watch offline.</h1>
+                <h3 style="margin: 50px 50px 50px 50px;">Save your favourites easily and always have something to watch.</h3>
+            </div>
+        </div>
+        <div class="two">
+            <div class="left" style="color:white; width: 50%;
+            height:50vh;">
+            
+                <h1 style="margin: 50px 50px 50px 50px;">Watch everywhere.</h1>
+                <h3 style="margin: 50px 50px 50px 50px;">Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</h3>
+            </div>
+            <div class="left1" style="vertical-align:right;">
+                <img src="four2-removebg-preview.png" alt="img not found" style="width:45vh; height:40vh ;margin-left: 40px;">
+            </div>
+        </div>
+        <div class="three">
+            <div class="left1" style="vertical-align:center;">
+                <img src="five.png" alt="img not found" style="width:45vh; height:40vh ;margin-left: 40px;">
+            </div>
+            <div class="right" style="color:white ;">
+                <h1 style="margin: 50px 50px 50px 50px;">Create profiles for children.</h1>
+                <h3 style="margin: 50px 50px 50px 50px;">Send children on adventures with their favourite characters in a space made just for them—free with your membership.</h3>
+            </div>
+        </div>
+        <div class="FAQS">
+            <h1> Frequently Asked Questions</h1>
+            <button class="q" onclick="disp()">
+                <h4>What is Netflix?</h4>
+            </button>
+            <div class="ans" id="a1" style="display:none">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis aperiam doloribus, maxime natus modi quos molestias corporis fuga minima exercitationem voluptatibus laborum illo quo obcaecati atque eos rerum, magnam rem.</p>
+            </div>
+            <button class="q" onclick="disp1()">
+                <h4>How much does Netflix cost?</h4>
+            </button>
+            <div class="ans">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis aperiam doloribus, maxime natus modi quos molestias corporis fuga minima exercitationem voluptatibus laborum illo quo obcaecati atque eos rerum, magnam rem.</p>
+            </div>
+            <button class="q" onclick="disp2()">
+                <h4>Where can I watch?</h4>
+            </button>
+            <div class="ans">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis aperiam doloribus, maxime natus modi quos molestias corporis fuga minima exercitationem voluptatibus laborum illo quo obcaecati atque eos rerum, magnam rem.</p>
+            </div>
+            <button class="q" onclick="disp3()">
+                <h4>How do I cancel?</h4>
+            </button>
+            <div class="ans">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis aperiam doloribus, maxime natus modi quos molestias corporis fuga minima exercitationem voluptatibus laborum illo quo obcaecati atque eos rerum, magnam rem.</p>
+            </div>
+            <button class="q" onclick="disp4()">
+                <h4>What can I watch on Netflix?</h4>
+            </button>
+            <div class="ans">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis aperiam doloribus, maxime natus modi quos molestias corporis fuga minima exercitationem voluptatibus laborum illo quo obcaecati atque eos rerum, magnam rem.</p>
+            </div>
+            <button class="q" onclick="disp5()">
+                <h4 >Is Netflix good for kids?<br></h4>
+            </button>
+            <div class="ans">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis aperiam doloribus, maxime natus modi quos molestias corporis fuga minima exercitationem voluptatibus laborum illo quo obcaecati atque eos rerum, magnam rem.</p>
+            </div><br>
+            <h3 style="margin-top:40px ;">Ready to watch? Enter your email to create or restart your membership.</h3>
+            <div class="log">
+               
+                <div class="in">
+
+            <label class="input_id" placeholder="email"><input class="input"   name="email" value=""  autocomplete="email" maxlength="50" minlength="5" style="font-size:25px;height:5vh ;width: 40vh;" required></label></div> 
+            <div class="button">
+            <a href="signup.html"><button class="btn" style="height:6vh ;"> Get Started <i style='font-size:25px' class='fas'>&#xf105;</i> </button></a><br>
+        </div>
+        </div>
+        </div>
+        <div class="footer">
+           
+            
+            <pre style="background-color: black ; color:gray ;margin-top: 10px;">
+    
+    
+                Questions? Call 000-800-040-1843
+
+                FAQ             Help                    CentreAccount       Media Centre
+
+                Investor        RelationsJobs           Ways to Watch       Terms of Use
+
+                PrivacyCookie   PreferencesCorporate    Information         Contact Us
+
+            </pre>
+            <button class="lang" style="margin-left:100px;width: 120px;float: left;"><i class="fa fa-gear"></i>English <i class="fa fa-angle-down"></i></button>
+        </div>
+        
+        <script>
+            var x = document.getElementsByClassName("ans");
+            function disp(){
+                console.log(x);
+                if (x[0].style.display === "none") {
+                    x[0].style.display = "block";
+                } else {
+                    x[0].style.display = "none";
+                }
+            }
+            function disp1(){
+                console.log(x);
+                if (x[1].style.display === "none") {
+                    x[1].style.display = "block";
+                } else {
+                    x[1].style.display = "none";
+                }
+            }
+            function disp2(){
+                console.log(x);
+                if (x[2].style.display === "none") {
+                    x[2].style.display = "block";
+                } else {
+                    x[2].style.display = "none";
+                }
+            }
+            function disp3(){
+                console.log(x);
+                if (x[3].style.display === "none") {
+                    x[3].style.display = "block";
+                } else {
+                    x[3].style.display = "none";
+                }
+            }
+            function disp4(){
+                console.log(x);
+                if (x[4].style.display === "none") {
+                    x[4].style.display = "block";
+                } else {
+                    x[4].style.display = "none";
+                }
+            }
+            function disp5(){
+                console.log(x);
+                if (x[5].style.display === "none") {
+                    x[5].style.display = "block";
+                } else {
+                    x[5].style.display = "none";
+                }
+            }
+            
+        </script>
+    </body>
+</html>
