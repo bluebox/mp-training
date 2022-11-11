@@ -3,7 +3,6 @@
 # pylint:disable=R0903
 # pylint:disable=W0611
 # pylint:disable=E0102
-from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
@@ -141,12 +140,20 @@ class Appointment(models.Model):
         return str(self.Appointment_id)
 
 
+def from_15200():
+    """increment from default value"""
+    largest = Transaction.objects.all().order_by('trans_id').last()
+    if not largest:
+        return 15201
+    return largest.trans_id + 1
+
+
 class Transaction(models.Model):
     """Transaction model to store Transaction details"""
     transaction_types = (('Credit Card', 'Credit Card'), ('Debit Card', 'Debit Card'),
                          ('Net Banking', 'Net Banking'), ('UPI', 'UPI'),
                          ('Pay at Salon', 'Pay at Salon'))
-    trans_id = models.IntegerField(primary_key=True)
+    trans_id = models.IntegerField(primary_key=True, default=from_15200)
     Appointment_id = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     trans_date = models.DateTimeField(auto_now_add=True, blank=True)
     trans_type = models.CharField(max_length=20, choices=transaction_types)

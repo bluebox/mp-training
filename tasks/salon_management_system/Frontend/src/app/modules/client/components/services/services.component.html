@@ -1,4 +1,14 @@
-<table mat-table [dataSource]="services" class="mat-elevation-z8">
+
+<div class="search-bar">
+  <form action="">
+    <mat-form-field class="field-search" floatLabel="never" appearance="outline" >
+      <input matInput placeholder="Search" #text (input)="onSearchText(text.value,$event)" >
+    </mat-form-field>
+    <button class="button-cached" (click)="refresh()"><mat-icon>cached</mat-icon></button>
+  </form>
+  </div>
+<p  *ngIf="msg" style="color:black;font-size : 20px;text-align:center;padding-top:10%;padding-bottom: 80%;">No results found!</p>
+<table *ngIf="!msg" mat-table [dataSource]="services" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

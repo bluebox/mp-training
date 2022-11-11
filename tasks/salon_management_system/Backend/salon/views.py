@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import generics, filters
 from .models import Branch, User, ServicesProvided, Client
 from .serializers import BranchSerializer, Userserializer, ClientSerializer, ServicesSerializer
-from .managers import Branches, Services, Appointments, Employees, Clients, Review
+from .managers import Branches, Services, Appointments, Employees, Clients, Review, Transactions
 
 
 class BranchList(APIView):
@@ -367,5 +367,27 @@ class NewReview(APIView):
         try:
             review = Review.create_review(request)
             return Response(review)
+        except Exception as e:
+            return Response(str(e), status=500)
+
+
+class AllTransactions(APIView):
+    """view for creating , reading ,  updating transactions made"""
+
+    @staticmethod
+    def get(request):
+        """to get all the transactions"""
+        try:
+            transaction = Transactions.get_all_transactions(request)
+            return Response(transaction, status=200)
+        except Exception as e:
+            return Response(str(e), status=500)
+
+    @staticmethod
+    def post(request):
+        """to create a new transaction"""
+        try:
+            transaction = Transactions.create_transaction(request)
+            return  Response(transaction, many=True)
         except Exception as e:
             return Response(str(e), status=500)

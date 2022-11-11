@@ -31,6 +31,8 @@
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Password</mat-label>
             <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <mat-hint> Password must contain more than 8 characters, 1 upper case letter, and 1
+                special character</mat-hint>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <small class="text-danger" *ngIf="ClientRegistrationForm.get('Password')?.invalid  && ClientRegistrationForm.get('Password')?.touched " >Password is required</small>
         </mat-form-field>

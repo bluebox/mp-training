@@ -3,8 +3,9 @@
       <span>SALON</span>
       <span class="sp">
         <button mat-button [matMenuTriggerFor]="menu" class = 'button1'><mat-icon>account_circle</mat-icon></button>
-        <mat-menu #menu="matMenu">
+        <mat-menu  class="mat-menu" #menu="matMenu">
         <button mat-menu-item routerLink = "../client/profile">My profile</button>
+        <button mat-menu-item routerLink = "../client/transactions">My Transactions</button>
         <button mat-menu-item>Log out</button>
         </mat-menu>
       </span>

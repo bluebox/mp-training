@@ -14,7 +14,7 @@ export class ReviewsComponent implements OnInit {
   constructor(private http : HttpserviceService) { }
 
   ngOnInit(): void {
-    this.subscription =this.http.getreviews().subscribe((data) =>{this.reviews = data ;console.log(data)});
+    this.subscription =this.http.getReviews().subscribe((data) =>{this.reviews = data ;console.log(data)});
   }
 
 }

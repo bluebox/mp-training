@@ -27,7 +27,7 @@ export class ReviewComponent implements OnInit {
   onSubmit(){
     console.log(this.reviewForm.value)
     if(this.reviewForm.valid){
-      this.http.addreview(this.reviewForm.value).subscribe(data => {
+      this.http.addReview(this.reviewForm.value).subscribe(data => {
         console.log(data);
         this.errorMessage=data.msg;
         if(this.errorMessage == "successful"){

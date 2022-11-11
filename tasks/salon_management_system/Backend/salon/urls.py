@@ -32,5 +32,6 @@ urlpatterns = [
     path('confirmappointment', views.ConfirmAppointment.as_view()),
     path('completeappointment', views.CompleteAppointment.as_view()),
     path('rejorcancel', views.RejectAppointment.as_view()),
-    path('reviews', views.NewReview.as_view())
+    path('reviews', views.NewReview.as_view()),
+    path('transactions', views.AllTransactions.as_view()),
 ]

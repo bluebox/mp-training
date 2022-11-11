@@ -2,7 +2,59 @@
   <div class="div">
   <mat-tab label="scheduled appointments">
       <div class="example-large-box mat-elevation-z4">
+        <div class="body">
+          <table mat-table [dataSource]="confirmappointments" class="mat-elevation-z8">
           
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+            
+              <ng-container matColumnDef="Appointment_id">
+                  <th mat-header-cell *matHeaderCellDef class="column-name">Appointment_id</th>
+                  <td mat-cell *matCellDef="let appointments" class="column-value"> {{appointments.Appointment_id}} </td>
+              </ng-container>
+            
+          
+              <ng-container matColumnDef="Time_of_appointment">
+                <th mat-header-cell *matHeaderCellDef class="column-name">Time_of_appointment</th>
+                <td mat-cell *matCellDef="let appointments" class="column-value"> {{appointments.Time_of_appointment}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="appointment_date">
+                <th mat-header-cell *matHeaderCellDef class="column-name">appointment_date</th>
+                <td mat-cell *matCellDef="let appointments" class="column-value"> {{appointments.appointment_date | date:"dd/MM/yyyy"}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="Appointment_Status">
+                <th mat-header-cell *matHeaderCellDef class="column-name">Appointment_Status</th>
+                <td mat-cell *matCellDef="let appointments" class="column-value"> {{appointments.Appointment_Status}} </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="client_id">
+                  <th mat-header-cell *matHeaderCellDef class="column-name">client_id</th>
+                  <td mat-cell *matCellDef="let appointments" class="column-value"> {{appointments.client_id}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="emp_id">
+                  <th mat-header-cell *matHeaderCellDef class="column-name">emp_id </th>
+                  <td mat-cell *matCellDef="let appointments" class="column-value"> {{appointments.emp_id}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="services">
+                  <th mat-header-cell *matHeaderCellDef class="column-name"> services </th>
+                  <td mat-cell *matCellDef="let appointments" class="column-value"> {{appointments.services}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="button">
+                  <th mat-header-cell *matHeaderCellDef class="column-name"></th>
+                  <td mat-cell *matCellDef="let appointments" class="column-value">
+                    <button mat-flat-button color="warn">cancel</button>
+                  </td>
+                </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="desiredColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: desiredColumns;"></tr>
+            </table>
+          </div>
       </div>
   </mat-tab>
   </div>
@@ -51,7 +103,7 @@
               </ng-container>
     
               <ng-container matColumnDef="button">
-                <th mat-header-cell *matHeaderCellDef class="column-name"> services </th>
+                <th mat-header-cell *matHeaderCellDef class="column-name">  </th>
                 <td mat-cell *matCellDef="let appointments" class="column-value">
                   <button mat-flat-button color="accent" routerLink="../review">Add Review</button>
                 </td>

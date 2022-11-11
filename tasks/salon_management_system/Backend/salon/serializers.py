@@ -2,7 +2,7 @@
 # pylint:disable=R0903
 from rest_framework import serializers
 
-from .models import Branch, Employee, User, ServicesProvided, Client, Appointment, Reviews
+from .models import Branch, Employee, User, ServicesProvided, Client, Appointment, Reviews, Transaction
 
 
 class Userserializer(serializers.ModelSerializer):
@@ -65,4 +65,13 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         """class to choose required fields from Review model"""
         model = Reviews
+        fields = "__all__"
+
+
+class TransactionSerializer(serializers.ModelSerializer):
+    """transaction for transaction model"""
+
+    class Meta:
+        """class to choose required fields from model"""
+        model = Transaction
         fields = "__all__"

@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+  }
+  .column-name{
+    color: black;
+    font-size: 15px;
+    text-align: center;
+   }
+   .column-value{
+    text-align: center;
+  }
+  .icon-name-spa{
+    color: black;
+    background-color: white;
+    margin:none;
+  }
+  .search-bar{
+    background-color: white;
+  }
+  .search-bar{
+    display: flex;
+    justify-content: center;
+    padding-top: 2%;
+  
+  }
+  button{
+    border: none;
+    background-color: white;
+  }

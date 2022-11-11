@@ -111,10 +111,18 @@ export class HttpserviceService {
     return this.http.get(this.url+'rejorcancel')
   }
 
-  addreview(data:any){
+  addReview(data:any){
     return this.http.post<any>(this.url+'reviews',data)
   }
-  getreviews(){
+  getReviews(){
     return this.http.get(this.url+'reviews')
+  }
+
+
+  getTransactions(){
+    return this.http.get(this.url+'transactions')
+  }
+  addTransactions(data:any){
+    return this.http.post<any>(this.url+'transactions',data)
   }
 } 

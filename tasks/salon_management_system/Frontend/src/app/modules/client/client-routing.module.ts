@@ -28,7 +28,8 @@ const routes: Routes = [
     {path : 'transactions',component :TransactionsComponent },
     {path : 'bookappointment',component :BookappointmentComponent },
     {path : 'review',component : ReviewComponent},
-    {path : 'allreviews',component : AllreviewsComponent}
+    {path : 'allreviews',component : AllreviewsComponent},
+    {path : 'transactions',component : TransactionsComponent}
     
 ]}
 ];

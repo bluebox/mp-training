@@ -52,3 +52,9 @@ button{
   color: white;
   background-color: black;
 }
+.mat-menu{
+  background-color: #cfafc2;
+} 
+.mat-menu-item{
+  background-color: #cfafc2;
+}
