@@ -25,13 +25,12 @@ export class AddAdminComponent implements OnInit {
   }
 
   OnSubmit(data:any){
-    console.log(this.Signup.value,document.getElementById("confirm")?.innerHTML)
+  
     if(this.Signup.value.password===this.Signup.value.Confirm_password){
       console.log("YAY")
       this.user.saveUser(this.Signup.value).subscribe(data=>console.log(data))
     }
     else{
-      console.log(this.Signup.value,document.getElementById("confirm")?.innerHTML)
       alert("Fill the form correctly!!")
     }
   }

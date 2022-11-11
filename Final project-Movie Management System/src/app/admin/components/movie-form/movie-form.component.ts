@@ -11,7 +11,7 @@ import { AltermoviesComponent } from '../altermovies/altermovies.component';
     <div class="container-fluid">
     <h1>Add a new movie!</h1>
     <form [formGroup]="newMovie" (ngSubmit)="OnSubmit(newMovie.value)">
-        {{newMovie.value | json}}
+        // {{newMovie.value | json}}
         <div class="form-group" style="margin-bottom:20px">
             <label>id</label>
             <input type="number" #Movie_id class="form-control" name="Movie_id" id="Movie_id" name="Movie_id" formControlName="Movie_id">

@@ -12,8 +12,8 @@
           </div>
           <input type="submit">
         </form> -->
-    <button style="margin-left: 76vw;" mat-button *ngIf="!user.status" (click)="openLogin()">Login</button>
-    <button  style="margin-left: 75vw;" mat-button *ngIf="user.status" (click)="Logout()">Logout</button>
+    <button class="login" mat-button *ngIf="!user.status" (click)="openLogin()">Login</button>
+    <button class="login" mat-button *ngIf="user.status" (click)="Logout()">Logout</button>
     <!-- <button style="float:right" routerLink="/signup" routerLinkActive="active" ariaCurrentWhenActive="page">SignUp/SignIn</button> -->
   </div>
 </nav>

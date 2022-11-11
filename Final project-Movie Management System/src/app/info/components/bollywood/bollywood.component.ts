@@ -15,12 +15,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BollywoodComponent implements OnInit {
   public movies:MovieInterface[]=[]
+  public hindi:MovieInterface[]=[]
+  public telugu:MovieInterface[]=[]
+  public english:MovieInterface[]=[]
+
+
 
   constructor(private movie:MoviedataService,private dialog:MatDialog,private route:ActivatedRoute,private router:Router){ }
 
   ngOnInit(): void {
-    this.movie.getMovieByLang('Hindi')
-    .subscribe((data)=>this.movies=data)
+    this.movie.getMovies()
+    .subscribe((data)=>{this.movies=data
+    for(let i=0;i<this.movies.length;i++){
+      if(this.movies[i].Movie_lang==='Hindi'){
+        this.hindi.push(this.movies[i])
+      }
+      else if(this.movies[i].Movie_lang==='English'){
+        this.english.push(this.movies[i])
+      }
+      else if(this.movies[i].Movie_lang==='Telugu'){
+        this.telugu.push(this.movies[i])
+      }
+
+    }})
   }
 
   openview(mid:number,mname:string,mlang:string,mdetails:string,mreleasedate:Date,mcat:string,mcast:string){ 

@@ -18,9 +18,10 @@ export class ConfirmComponent implements OnInit {
     this.dialog.closeAll()
   }
   cancel(){
-    console.log(this.data.id)
-    this.book.cancelBooking(this.data.id,this.data.Booking_id).subscribe(data=>console.log(data))
-    console.log("cancel ticket",this.data.id)
+    // console.log(this.data.id)
+    this.book.cancelBooking(this.data.Booking_id).subscribe(data=>console.log(data),(err)=>{})
+    this.dialog.closeAll()
+    
   }
 
 }

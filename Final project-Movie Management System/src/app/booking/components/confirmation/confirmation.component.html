@@ -6,7 +6,7 @@
 <!-- <h4>Theatreid={{hallData.Theatre_id}}</h4> -->
 <h4>Screen Number-{{hallData.Hall_no}}</h4>
 <h4>Movie Time-{{datewiseHall.startTime}}</h4>
-<div class="selected" style="display:flex"><h4>Selected seats-</h4><h4 *ngFor="let s of data.selectedSeats">{{s}}&nbsp;</h4></div>
+<div class="selected"><h4>Selected seats-</h4><h4 *ngFor="let s of data.selectedSeats">{{s}}&nbsp;</h4></div>
 <h4>Date-{{sdate}}</h4>
 <h4>Total={{data.price}}</h4>
 <button mat-button color="primary" (click)="gotoPayment()">Proceed</button>

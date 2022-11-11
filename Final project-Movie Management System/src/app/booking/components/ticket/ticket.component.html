@@ -13,8 +13,9 @@
         <div class="nodata"  *ngIf="!available">
             <h1>No tickets available for cancellation...</h1>
         </div>
-        <div class="ticket" *ngIf="available">
-            <div class="left" style="background-image:url({{ticket.Movie_poster}}) ;background-size:contain">
+        <div class="ticket" *ngIf="available" id="ticket1">
+            <div class="left">
+                <img src="{{ticket.Movie_poster}}" alt="Errorrr!" height="100%" width="100%">
             </div>
             <div>
                 <h2>Movie Details</h2>
@@ -37,5 +38,7 @@
         </div>
         <button mat-stroked-button color="primary" (click)="GoHome()">Home</button>
         <button mat-stroked-button color="warn" (click)="Confirm()"  *ngIf="available" >Cancel Ticket</button>
+        <button mat-stroked-button color="warn" (click)="htmltoPDF()"  *ngIf="available" >Download Ticket</button>
+    
     </body>
 </html>

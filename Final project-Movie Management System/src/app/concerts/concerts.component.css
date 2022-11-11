@@ -16,6 +16,7 @@
   background-color: white;
   margin-left:1vw;
   margin-right:1vw;
+ 
 }
 .right{
   margin-left: 63px;
@@ -46,4 +47,19 @@ ul {
   
   li a:hover {
     background-color:crimson;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    
+    align-items: center;
+  }
+  .user,.theatre{
+    margin-left:270px
+  }
+  .des{
+    margin-left:250px 
+  }
+  .header{
+    display:flex
   }

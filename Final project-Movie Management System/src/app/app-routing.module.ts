@@ -2,7 +2,6 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin.guard';
 import { AuthGuard } from './auth.guard';
-import { CancelledComponent } from './cancelled/cancelled.component';
 import { ConcertsComponent } from './concerts/concerts.component';
 import { LoginComponent } from './login/login.component';
 import { MoviesComponent } from './movies/movies.component';
@@ -13,7 +12,6 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   {path:"",redirectTo:"movies",pathMatch:'full'},
   {path:'movies',component:MoviesComponent,canActivate:[]},
-  {path:'cancelled',component:CancelledComponent,canActivate:[AuthGuard,]},
   {path:'movieInfo',
   loadChildren: () => import('./info/info.module').then(m => m.InfoModule)},
   {path:'admin',

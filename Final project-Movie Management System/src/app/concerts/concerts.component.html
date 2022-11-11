@@ -15,23 +15,24 @@
                         {{u.Booking_id}}
                       </mat-panel-title>
                       <mat-panel-description >
-                       {{u.Date }}{{u.Booking_status}}
+                       {{u.Date }}
+                       <h2 class="des">{{u.Booking_status}}</h2>
                        <!-- <button mat-stroked-button color="warn" (click)="Confirm()">Cancel Ticket</button> -->
                       </mat-panel-description>
                     </mat-expansion-panel-header >
-                    <div class="des" style="display:flex;">
+                    <div class="header">
                     <div class="movie" >
                     <h2>Movie Details</h2>
                     <p>Movie name-{{u.Movie_name}}</p>
                     <p>Movie language-{{u.Movie_lang}}</p>
                     <p>Movie category-{{u.Movie_category}}</p>
                     </div>
-                    <div class="user" style="margin-left:270px ;">
+                    <div class="user">
                     <h2> User Details</h2>
                     <P>Name-{{u.User_name}}</P>
                     <p>Phone Number-{{u.User_phone}}</p>
                     </div>
-                    <div class="theatre" style="margin-left:270px ;">
+                    <div class="theatre">
                       <h2>Theatre Details</h2>
                       <p>Theatre-name-{{u.Theatre_name}}</p>
                       <p>Theatre-location-{{u.Theatre_location}}</p>
@@ -45,12 +46,12 @@
                </mat-tab>
 
 
-        <mat-tab (click)="getCancelHistory()" label="Cancelled Tickets"> 
+        <mat-tab label="Cancelled Tickets"> 
                   <h1>Cancelled Tickets</h1>
         <div class="nodata" *ngIf="!available2">
           <h1>No Cancelled Tickets!!</h1>
         </div>
-        <div *ngIf="available" >
+        <div *ngIf="available2" >
         <mat-accordion >
           <mat-expansion-panel hideToggle *ngFor="let u of can">
             <mat-expansion-panel-header>
@@ -58,22 +59,22 @@
                 {{u.Booking_id}}
               </mat-panel-title>
               <mat-panel-description >
-              {{u.Date }}{{u.Booking_status}}
+              {{u.Date }}
               </mat-panel-description>
             </mat-expansion-panel-header >
-            <div class="des" style="display:flex;">
+            <div class="header">
             <div class="movie">
             <h2>Movie Details</h2>
             <p>Movie name-{{u.Movie_name}}</p>
             <p>Movie language-{{u.Movie_lang}}</p>
             <p>Movie category-{{u.Movie_category}}</p>
             </div>
-            <div class="user" style="margin-left:270px">
+            <div class="user" >
             <h2> User Details</h2>
             <P>Name-{{u.User_name}}</P>
             <p>Phone Number-{{u.User_phone}}</p>
             </div>
-            <div class="theatre" style="margin-left:270px">
+            <div class="theatre" >
               <h2>Theatre Details</h2>
               <p>Theatre-name-{{u.Theatre_name}}</p>
               <p>Theatre-location-{{u.Theatre_location}}</p>
@@ -89,12 +90,12 @@
                 </mat-tab>
 
           
-        <mat-tab (click)="getTicket()" label="Last Ticket">
+        <mat-tab label="Last Ticket">
         <h1>Ticket</h1>
-        <div class="nodata"  *ngIf="available3">
+        <div class="nodata"  *ngIf="!available3">
             <h1>No tickets available for cancellation...</h1>
         </div>
-        <div class="ticket" *ngIf="!available3">
+        <div class="ticket" *ngIf="available3" id="ticket1">
             <div class="left" style="background-image:url({{lastticket.Movie_poster}}) ;background-size:contain">
             </div>
             <div>
@@ -117,7 +118,10 @@
             </div>
             
         </div>
-        <button mat-stroked-button color="warn" (click)="Confirm(lastticket.Booking_id)"  *ngIf="!available3" >Cancel Ticket</button>
+        <span *ngIf="!cancel" style="color:red;">Cannot cancel tickets from previous dates</span><br>
+        <button mat-stroked-button color="warn" (click)="Confirm(lastticket.Booking_id)"  *ngIf="available3 && cancel" >Cancel Ticket</button>
+        <button mat-stroked-button color="warn" (click)="htmltoPDF(lastticket.Movie_poster)"  *ngIf="available" >Download Ticket</button>
+
         </mat-tab>
 
 
@@ -133,24 +137,25 @@
                 <mat-panel-title>
                   {{u.Booking_id}}
                 </mat-panel-title>
-                <mat-panel-description >
-                {{u.Date }}{{u.Booking_status}}
-                <button mat-stroked-button color="warn" (click)="Confirm(u.Booking_id)">Cancel Ticket</button>
+                <mat-panel-description  >
+                  {{u.Date }}
+                  <h2 class="des">{{u.Booking_status}}</h2>
+                <button class="des"mat-stroked-button color="warn" (click)="Confirm(u.Booking_id)">Cancel Ticket</button>
                 </mat-panel-description>
               </mat-expansion-panel-header >
-              <div class="des" style="display:flex;">
+              <div class="des" >
               <div class="movie" >
               <h2>Movie Details</h2>
               <p>Movie name-{{u.Movie_name}}</p>
               <p>Movie language-{{u.Movie_lang}}</p>
               <p>Movie category-{{u.Movie_category}}</p>
               </div>
-              <div class="user" style="margin-left:270px ;">
+              <div class="user" >
               <h2> User Details</h2>
               <P>Name-{{u.User_name}}</P>
               <p>Phone Number-{{u.User_phone}}</p>
               </div>
-              <div class="theatre" style="margin-left:270px ;">
+              <div class="theatre">
                 <h2>Theatre Details</h2>
                 <p>Theatre-name-{{u.Theatre_name}}</p>
                 <p>Theatre-location-{{u.Theatre_location}}</p>

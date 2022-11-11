@@ -11,11 +11,20 @@ th{
 .top{
     background-color: rgb(22, 22, 47);
     color: white;
+    display:flex 
 }
 .left{
     margin-left: 10px;
+    width: 50%
 }
 .btn:hover{
     background-color: white;
     color:crimson
+}
+.right{
+    margin-left:70vw;
+    width: 50%;
+}
+.dateinput{
+    height:30px
 }

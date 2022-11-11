@@ -18,9 +18,6 @@ export class MoviedataService {
     getSingleMovie(id: number){
       return this.http.get<MovieInterface>("http://127.0.0.1:8000/movie/"+id+'.json')}
 
-    // saveUser(data:any){
-    //   return this.http.post(this.url,data)
-    // }
     deleteMovie(id:number){
       this.http.delete("http://127.0.0.1:8000/movie/"+id+".json")
     }
@@ -36,5 +33,11 @@ export class MoviedataService {
     }
     getTop(){
       return this.http.get<MovieInterface[]>("http://127.0.0.1:8000/top")
+    }
+    filter(str:string,search:string){
+      return this.http.get<MovieInterface[]>("http://127.0.0.1:8000/filter/"+str+"/"+search)
+    }
+    paginator(pno:number){
+      return this.http.get<MovieInterface[]>("http://127.0.0.1:8000/page/"+pno)
     }
 }

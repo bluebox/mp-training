@@ -5,7 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MoviedataService } from 'src/app/services/moviedata.service';
 import { MovieInterface } from 'src/app/interface/movie';
-import { DatePipe, Location } from '@angular/common';
+import { DatePipe, Location, Time } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 
 
@@ -22,6 +22,7 @@ export class TheatrelistComponent implements OnInit {
   public theatrelist!:any
   public sdate:any
   public text1:string=""
+  public data:boolean=false
   getDate:FormGroup=new FormGroup({
     date:new FormControl("")
   })
@@ -43,7 +44,8 @@ export class TheatrelistComponent implements OnInit {
 });
     
   }
-  OpenSeatNo(id:number){
+  OpenSeatNo(id:number,time:Time){
+    this.hall.setTime(time)
     this.router.navigate(['booking/seating',id])
   }
   goback(){
@@ -52,11 +54,13 @@ export class TheatrelistComponent implements OnInit {
   check(){
     this.hall.setDate(this.getDate.value.date)
     this.selectedDate=this.hall.getDate()
-    console.log(this.selectedDate)
+    console.log(this.data)
     this.hall.getTheatreList(this.id,this.getDate.value.date).subscribe(data=>{this.theatrelist=data;
       console.log(this.theatrelist)
+      this.data=true
       if(this.theatrelist.length==0){
-        alert("sorry no theatres available")
+        this.data=false
+        // alert("sorry no theatres available")
       }}
       )
   }
@@ -64,13 +68,20 @@ export class TheatrelistComponent implements OnInit {
     if(this.text1===""){
       this.hall.getTheatreList(this.id,this.getDate.value.date).subscribe(data=>{this.theatrelist=data;
         console.log(this.theatrelist)
+        this.data=true
         if(this.theatrelist.length==0){
-          alert("sorry no theatres available")
+          this.data=false
+          // alert("sorry no theatres available")
         }}
         )
     }
     else{
-    this.theatre.search(this.id,this.getDate.value.date,this.text1).subscribe(data=>{this.theatrelist=data,console.log(data)})}
+    this.theatre.search(this.id,this.getDate.value.date,this.text1).subscribe(data=>{this.theatrelist=data,console.log(data);
+       if(this.theatrelist.length==0){
+        this.data=false}
+      else{
+        this.data=true
+      }})}
   }
  
 }

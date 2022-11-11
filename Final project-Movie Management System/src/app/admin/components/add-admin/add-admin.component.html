@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <h1>Register Here</h1>
     <form [formGroup]="Signup" (ngSubmit)="OnSubmit(Signup.value)">
-        {{Signup.value | json}}
-        <div class="form-group" style="margin-bottom:20px">
+        <!-- {{Signup.value | json}} -->
+        <div class="form-group">
             <label>Name</label>
             <input type="text" #User_name class="form-control" name="User_name" id="User_name" name="User_name" formControlName="User_name" required>
             <mat-error *ngIf="Signup.get('User_name')?.touched && Signup.get('User_name')?.hasError('required')">Enter your name</mat-error>
@@ -38,7 +38,7 @@
             <mat-error *ngIf="Signup.get('User_Address')?.touched && Signup.get('User_Address')?.hasError('required')">Address required</mat-error>
 
         </div>
-        <div class="form-group" style="margin-bottom:20px">
+        <div class="form-group" >
             <label>Role</label>
             <select formControlName="Role">
                 <option value="Admin">Admin</option>

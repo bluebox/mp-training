@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <h1>Register Here</h1>
     <form [formGroup]="Signup" (ngSubmit)="OnSubmit(Signup.value)">
-        <!-- {{Signup.value | json}} TESTING -->
-        <div class="form-group" style="margin-bottom:20px">
+        <!-- {{Signup.value | json}}  -->
+        <div class="form-group" >
             <label>Name</label>
             <input type="text" #User_name class="form-control" name="User_name" id="User_name" name="User_name" formControlName="User_name" required>
             <mat-error *ngIf="Signup.get('User_name')?.touched && Signup.get('User_name')?.hasError('required')">Enter your name</mat-error>
@@ -21,7 +21,8 @@
         </div>
         <div class="form-group">
             <label>Confirm Password</label>
-            <input id="confirm" type=password class="form-control" name="Password" formControlName="password" required>
+            <input id="confirm" type=password class="form-control" name="Password" formControlName="confirm_password" required>
+            <mat-error *ngIf="Signup.get('confirm_password')?.touched && Signup.get('confirm_password')?.hasError('required')">Password required</mat-error>
 
         </div>
         <div class="form-group">

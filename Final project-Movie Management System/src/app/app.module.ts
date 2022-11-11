@@ -34,9 +34,11 @@ import { AdminGuard } from './admin.guard';
 import {MatInputModule} from '@angular/material/input';
 import { FooterComponent } from './footer/footer.component';
 import { DatePipe } from '@angular/common';
-
+import {MatChipsModule} from '@angular/material/chips';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { CancelledComponent } from './cancelled/cancelled.component';
+// import { CancelledComponent } from './cancelled/cancelled.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,7 @@ import { CancelledComponent } from './cancelled/cancelled.component';
     SlideshowComponent,
     FooterComponent,
 
-    CancelledComponent,
+    // CancelledComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,9 +74,10 @@ import { CancelledComponent } from './cancelled/cancelled.component';
     MatTabsModule,
     MatMenuModule,
     MatInputModule,
-    MatExpansionModule
-    
-    
+    MatExpansionModule,
+    MatChipsModule,
+    MatIconModule,
+    MatPaginatorModule
   ],
   providers: [AuthGuard,AdminGuard,DatePipe],
   bootstrap: [AppComponent]

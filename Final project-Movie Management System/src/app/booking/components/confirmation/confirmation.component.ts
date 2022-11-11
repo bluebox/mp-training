@@ -27,6 +27,7 @@ export class ConfirmationComponent implements OnInit {
   public ss:string=''
   public sdate!:Date
   public datewiseHall:any
+  public time:any
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {selectedSeats: string[],hallid:number,price:number},private hall:HallDataService,private theatre:TheatreDataService,private movie:MoviedataService,private router:Router,private dialog:MatDialog, private user:UserdataService) { }
   id=this.data.hallid
@@ -38,7 +39,9 @@ export class ConfirmationComponent implements OnInit {
 
     this.sdate=this.hall.getDate()
     console.log("c",this.sdate)
-    this.hall.SingleHall(this.id,this.sdate).subscribe(data=>{this.datewiseHall=data;
+    this.time=this.hall.getTime()
+    this.hall.SingleHall(this.id,this.sdate,this.time).subscribe(data=>{this.datewiseHall=data;
+      console.log(this.datewiseHall)
       this.getMovie(this.datewiseHall.Movie_id)})
     
     
@@ -47,9 +50,10 @@ export class ConfirmationComponent implements OnInit {
     this.theatre.getSingleTheatre(id).subscribe(data=>this.theareData=data)
   }
   getMovie(id:number){
-    this.movie.getSingleMovie(id).subscribe(data=>this.movieData=data)
+    this.movie.getSingleMovie(id).subscribe(data=>{this.movieData=data,console.log(this.movieData)})
   }
   getSelectedSeats(seats:any){
+    "converting seatslist to string"
     for(let i=0;i<this.data.selectedSeats.length;i++){
       this.ss=this.ss+" "+this.data.selectedSeats[i]
       console.log(this.data.selectedSeats[i],this.ss)
@@ -63,7 +67,7 @@ export class ConfirmationComponent implements OnInit {
     // this.booking.Hall_id=this.data.hallid
     let booking={
       'User_id':this.user.user.User_id,
-      'Movie_id': this.datewiseHall.Movie_id,
+      'Movie_id': this.movieData.Movie_id,
       'Theatre_id':this.hallData.Theatre_id,
       'Hall_id': this.data.hallid,
       'Date':this.datewiseHall.Date,

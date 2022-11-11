@@ -19,8 +19,8 @@
       <td>{{m.Movie_lang}}</td>
       <td>{{m.Movie_Release_date}}</td>
       <td>{{m.Movie_category}}</td>
-      <td style="width:30vh ;">{{m.Movie_cast}}</td>
-      <td style="width:30vh ;">{{m.Movie_details}}</td>
+      <td class="definewidth">{{m.Movie_cast}}</td>
+      <td class="definewidth">{{m.Movie_details}}</td>
       <td><button (click)="deleteMovie(m.Movie_id)" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
         <mat-icon>delete</mat-icon>
       </button>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { UserdataService } from '../services/userdata.service';
@@ -17,9 +16,10 @@ LoginComponent
 })
 export class SignupComponent implements OnInit {
   Signup:FormGroup =new FormGroup({
-    User_name: new FormControl("",[Validators.required,Validators.pattern('^[A-Za-z]{4}')]),
+    User_name: new FormControl("",[Validators.required]),
     User_email: new FormControl("",[Validators.required, Validators.email]),
     password: new FormControl("",[Validators.required,Validators.minLength(4)]),
+    confirm_password: new FormControl("",[Validators.required,Validators.minLength(4)]),
     User_phone: new FormControl("",[Validators.required,Validators.pattern('^[0-9]{10}')]),
     User_DOB:new FormControl("",Validators.required),
     User_Address:new FormControl("",Validators.required)
@@ -39,17 +39,18 @@ export class SignupComponent implements OnInit {
 
 
   OnSubmit(data:any){
-    if(this.Signup.valid){
-    if(this.Signup.value.password==document.getElementById("confirm")){
+  if(this.Signup.valid){
+    console.log("data valid")
+    if(this.Signup.value.password==this.Signup.value.confirm_password){
     this.user.saveUser(this.Signup.value).subscribe(data=>console.log(data))
     this.dialog.open(LoginComponent);}
     else{
-      console.log(this.Signup.value,document.getElementById("confirm")?.innerHTML)
       alert("Fill the form correctly!!")
     }
   }
   else{
-    alert("invalid data, fill the form correctly")
+    // alert("invalid data, fill the form correctly")
+    console.log("")
   }
   }
 

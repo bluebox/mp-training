@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../booking/components/confirm/confirm.component';
-import { BookingInterface } from '../interface/booking';
-import { MovieInterface } from '../interface/movie';
-import { UserInterface } from '../interface/user';
 import { BookingService } from '../services/booking.service';
-import { MoviedataService } from '../services/moviedata.service';
 import { UserdataService } from '../services/userdata.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-concerts',
   templateUrl: './concerts.component.html',
@@ -22,52 +22,61 @@ export class ConcertsComponent implements OnInit {
   public available3:boolean=false
   public available4:boolean=false
   public lastticket:any
-
+  public myDate:any
+  public cancel:boolean=true
+  public history:any
+     
   
 
-  constructor(public user:UserdataService,private book:BookingService,private dialog:MatDialog,private router:Router) { }
+  constructor(public user:UserdataService,private book:BookingService,private dialog:MatDialog,private router:Router,private datePipe: DatePipe) { 
+    this.myDate=this.datePipe.transform((new Date),'yyyy-MM-dd')
+  }
 
   ngOnInit(): void {
-      this.book.getBookingHistory(this.user.user.User_id,'previous').subscribe(data=>{this.ticket=data; 
-      if(this.ticket.length>0){
-        this.available=true
-      }})
-      this.getCancelHistory()
-     this.getBookingHistory()
-      this.getTicket()
-
+      this.book.getBooking(this.user.user.User_id).subscribe(data=>{this.history=data
+        if(this.history[0].length!=0){
+          this.ticket=this.history[0]
+          this.available=true
+        }
+        if(this.history[1].length!=0){
+          this.can=this.history[1]
+          this.available2=true
+        }
+        if(this.history[3].length!=0){
+          this.up=this.history[3]
+          this.available4=true
+        }
+        this.lastticket=this.history[2]
+        this.available3=true
+        if(this.lastticket.Date<this.myDate){
+          this.cancel=false
+        }
+      }
+        )
+      
     }
-
-  getCancelHistory(){
-    this.user.getuser().subscribe(data=>this.book.cancelHistory(data.User_id).subscribe(data=>{this.can=data;
-        
-      if(this.can.length>0){
-        this.available2=true
-        
-      }}))
-  }
-  getBookingHistory(){
-    this.book.getBookingHistory(this.user.user.User_id,'upcoming').subscribe(data=>{this.up=data, console.log(this.up);
-      if(this.up.length>0){
-        this.available4=true
-        }})
-  }
-  getTicket(){
-    this.book.getTicket(this.user.user.User_id).subscribe(data=>{this.lastticket=data;
-      this.available=true
-    console.log("ticket",this.lastticket)})
-  }
-
-  cancel(){
-    this.dialog.open(ConfirmComponent)
-  }
-
-  // cancelTicket(){
-  //   this.router.navigate(['booking/ticket/',this.user.user.User_id])
-  // }
-
   Confirm(bid:number){
     this.dialog.open(ConfirmComponent,{data:{'id':this.user.user.User_id,'Booking_id':bid}})
   }
+
+  htmltoPDF(link:string)
+  {
+    let el=document.getElementById("ticket1")
+    if(el){
+      html2canvas(el).then(canvas => {
+        var doc = new jsPDF("l", "px", "a4");
+        // var width = doc.internal.pageSize.getWidth();
+        // var height = doc.internal.pageSize.getHeight();
+        console.log(link)
+        var imgData  = canvas.toDataURL('link/png', 1.0);
+        doc.addImage(imgData, 'PNG',100,100,canvas.width,canvas.height);
+        doc.save('converteddoc.pdf');
+
+  
+    });
+  
+  }
+  }
+  
 
 }

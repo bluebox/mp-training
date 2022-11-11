@@ -16,6 +16,8 @@
     background-color: white;
     margin-left:1vw;
     margin-right:1vw;
+    /* background-image:url("{{ticket.Movie_poster}}") ;
+    background-size:contain */
 }
 .right{
     margin-left: 63px;

@@ -1,25 +1,25 @@
 <div class="container-fluid">
     <h1>Add a new movie!</h1>
     <form [formGroup]="theatre" (ngSubmit)="OnSubmit(theatre.value)">
-        <div class="form-group" style="margin-bottom:20px">
+        <div class="form-group" >
             <label>Theatre id</label>
             <input type="number" #Theatre_id class="form-control" name="Theatre_id" id="Theatre_id" name="Theatre_id" formControlName="Theatre_id">
             <mat-error *ngIf="theatre.get('Theatre_id')?.touched && theatre.get('Theatre_id')?.hasError('required')">Enter theatre id</mat-error>
 
         </div>
-        <div class="form-group" style="margin-bottom:20px">
+        <div class="form-group" >
             <label>Theatre Owner Name</label>
             <input type="text" #Theatre_owner class="form-control" name="Theatre_owner" id="Theatre_owner" name="Theatre_owner" formControlName="Theatre_owner" ngModel>
             <mat-error *ngIf="theatre.get('Theatre_owner')?.touched && theatre.get('Theatre_owner')?.hasError('required')">Enter theatre name</mat-error>
 
         </div>
-        <div class="form-group" style="margin-bottom:20px">
+        <div class="form-group" >
             <label>Theatre Name</label>
             <input type="text" #Theatre_name class="form-control" name="Theatre_name" id="Theatre_name" name="Theatre_name" formControlName="Theatre_name" ngModel>
             <mat-error *ngIf="theatre.get('Theatre_name')?.touched && theatre.get('Theatre_name')?.hasError('required')">Enter theatre name</mat-error>
 
         </div>
-        <div class="form-group" style="margin-bottom:20px">
+        <div class="form-group" >
             <label>Theatre Location</label>
             <input type="text" #Theatre_location class="form-control" name="Theatre_location" id="Theatre_location" name="Theatre_location" formControlName="Theatre_location" ngModel>
             <mat-error *ngIf="theatre.get('Theatre_location')?.touched && theatre.get('Theatre_location')?.hasError('required')">Enter theatre location</mat-error>

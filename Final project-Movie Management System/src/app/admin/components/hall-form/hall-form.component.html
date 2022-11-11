@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <h1>Add a new hall!</h1>
     <form [formGroup]="hall" (ngSubmit)="OnSubmit()">
-        {{hall.value | json}}
-        <div class="form-group" style="margin-bottom:20px">
+        <!-- {{hall.value | json}} -->
+        <div class="form-group" >
             <label>Hall Number</label>
             <input type="number" #Hall_no class="form-control" name="Hall_no" id="Hall_no" name="Hall_no" formControlName="Hall_no">
             <mat-error *ngIf="hall.get('Hall_no')?.touched && hall.get('Hall_no')?.hasError('required')">Enter hall id</mat-error>
 
         </div>
-        <!-- <div class="form-group" style="margin-bottom:20px">
+        <!-- <div class="form-group">
             <label>Total Seats</label>
             <input type="number" #T_No_Of_Seats class="form-control" name="T_No_Of_Seats" id="T_No_Of_Seats" name="T_No_Of_Seats" formControlName="T_No_Of_Seats" ngModel>
             <mat-error *ngIf="hall.get('T_No_Of_Seats')?.touched && hall.get('T_No_Of_Seats')?.hasError('required')">Enter movie name</mat-error>

@@ -9,6 +9,9 @@ export class BookingService {
   public url:string="http://127.0.0.1:8000/Booking/"
 
   constructor(private http:HttpClient) { }
+  getBooking(id:number){
+    return this.http.get("http://127.0.0.1:8000/all/"+id)
+  }
   postPayment(data:any){
     return this.http.post("http://127.0.0.1:8000/Payment/",data)
   }
@@ -19,17 +22,17 @@ export class BookingService {
   getSelectedSeats(id:number){
     return this.http.get("http://127.0.0.1:8000/selectedseats/"+id)
   }
-  getTicket(id:number){
-    return this.http.get<BookingInterface>("http://127.0.0.1:8000/ticket/"+id)
+  getTicket(){
+    return this.http.get<BookingInterface>("http://127.0.0.1:8000/ticket/")
   }
-  getBookingHistory(id:number,data:string){
-    return this.http.get<BookingInterface[]>("http://127.0.0.1:8000/history/"+id+'/'+data)
+  getBookingHistory(data:string){
+    return this.http.get<BookingInterface[]>("http://127.0.0.1:8000/history/"+data)
   }
-  cancelBooking(id:number,bid:number){
-    return this.http.post("http://127.0.0.1:8000/cancel/"+id+"/"+bid+"/","")
+  cancelBooking(bid:number){
+    return this.http.post("http://127.0.0.1:8000/cancel/"+bid+"/","")
   }
-  cancelHistory(id:number){
-    return this.http.get("http://127.0.0.1:8000/cancelled/"+id)
+  cancelHistory(){
+    return this.http.get("http://127.0.0.1:8000/cancelled/")
   }
   
 }

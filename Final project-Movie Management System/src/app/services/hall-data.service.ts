@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HallInterface } from '../interface/hall';
@@ -7,6 +8,7 @@ import { HallInterface } from '../interface/hall';
 })
 export class HallDataService {
   public date!:Date
+  public slot!:string
   public url:string= "http://127.0.0.1:8000/Hall/"
 
   constructor(private http:HttpClient) { }
@@ -30,8 +32,8 @@ export class HallDataService {
   DeductSeat(id:number,date:Date,body:any){
     return this.http.put("http://127.0.0.1:8000/deduct/"+id+"/"+date+'/',body)
   }
-  SingleHall(id:number,date:Date){
-    return this.http.get("http://127.0.0.1:8000/singlehall/"+id+'/'+date)
+  SingleHall(id:number,date:Date,time:string){
+    return this.http.get("http://127.0.0.1:8000/singlehall/"+id+'/'+date+'/'+time)
   }
   setDate(date:Date){
     this.date=date
@@ -47,5 +49,11 @@ export class HallDataService {
   }
   postSchedule(data:any){
     return this.http.post("http://127.0.0.1:8000/Date/",data)
+  }
+  setTime(time:Time){
+    this.slot=time.toString()
+  }
+  getTime(){
+    return this.slot
   }
 }

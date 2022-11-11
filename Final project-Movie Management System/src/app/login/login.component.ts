@@ -1,3 +1,4 @@
+import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,8 +23,9 @@ FormControl
           <mat-error *ngIf="Login.get('password')?.touched && Login.get('password')?.hasError('required')">Enter your password</mat-error>
 
       </div>
+      <span style="color:red;margin-top:5px">{{this.error}}</span>
       <br>
-          <button mat-raised-button  color="primary" type="submit" >Login</button>
+          <button style="margin-top:5px" mat-raised-button color="primary" type="submit" >Login</button>
       <p>New User?</p>
       <p style="cursor:pointer" (click)=openSignup()>Register Here</p>
   </form>
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
   public userdata:any
   public token!:any
   public Singleuser!:any
+  public error:string=""
   
 
   constructor(public dialog:MatDialog,private user:UserdataService,private router:Router) { }
@@ -49,6 +52,7 @@ export class LoginComponent implements OnInit {
     if(this.Login.valid){
     let guest=JSON.stringify(this.Login.value)
     this.user.userLogin(this.Login.value).subscribe((data)=>{this.token=data,console.log(guest,this.token.message);
+     
       if(this.token.message==='sucess'){
         this.user.setstatus(true)
         console.log(this.user.status)
@@ -56,23 +60,30 @@ export class LoginComponent implements OnInit {
       else{
         this.user.setstatus(false)
       }
-    this.user.getuser().subscribe(data=>{this.userdata=data;
-      this.user.setUser(this.userdata)
-    if(this.userdata.Role==='User'){
-      this.router.navigate([""])
-    }
-    else{
-      this.user.setrole(this.userdata.role)
-      this.router.navigate(["admin"])
-      this.user.setrole(this.userdata.Role)
-      console.log(this.user.role)
-    }
-  })})
-    this.dialog.closeAll()}
-    else{
-      alert("invalid credentials")
-      console.log("invalid")
-    }
+      this.user.getuser().subscribe(data=>{this.userdata=data;
+        this.user.setUser(this.userdata)
+        if(this.userdata.Role==='User'){
+          this.router.navigate([""])
+        }
+        else{
+          this.user.setrole(this.userdata.role)
+          this.router.navigate(["admin"])
+          this.user.setrole(this.userdata.Role)
+          console.log(this.user.role)
+        }
+        }
+        )
+        this.dialog.closeAll()},
+        (err)=>{
+          this.error=err.error.detail;
+          console.log(err)
+        })
+        }
+      else{
+        alert("invalid credentials")
+        console.log("invalid")
+      }
+    
    
   }
   openSignup(){

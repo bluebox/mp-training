@@ -26,7 +26,7 @@ export class AlterHallsComponent implements OnInit {
     this.dialog.open(HallFormComponent)
   }
   deleteHall(id:number){
-    this.http.delete("http://127.0.0.1:8000/movie/"+id+".json").subscribe(
+    this.http.delete("http://127.0.0.1:8000/halls/"+id+".json").subscribe(
       res => {
         this.hall.getHallList(this.user.user.User_id).subscribe(data=>this.halls=data)
       }

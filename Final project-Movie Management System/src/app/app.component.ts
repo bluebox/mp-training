@@ -21,12 +21,7 @@ ViewComponent
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // public dataSource:any
-  // myControl = new FormControl('');
-  // options: string[] = ['One', 'Two', 'Three'];
-  // filteredOptions!: Observable<string[]>;
-  // public nav:FormGroup=new FormGroup({
-  // })
+
   public loggedIn:boolean=false
   public movies:MovieInterface[]=[]
   public role:string=""
@@ -68,7 +63,7 @@ openview(mid:number,mname:string,mlang:string,mdetails:string,mreleasedate:Date,
     this.dialog.open(LoginComponent);
   }
   Logout(){
-    alert("Thank you, you are being logged out.")
+    // alert("Thank you, you are being logged out.")
     this.user.permit=false
     this.router.navigate([''])
     this.user.setstatus(false)

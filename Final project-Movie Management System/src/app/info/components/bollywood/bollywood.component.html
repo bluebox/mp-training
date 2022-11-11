@@ -1,6 +1,6 @@
 <h2>Bollywood</h2>
 <div class="movies">
-    <ul *ngFor="let m of movies,index as i">
+    <ul *ngFor="let m of hindi,index as i">
       <mat-card class="example-card" style="background-image:url({{m.Movie_poster}}) ;background-size:cover">
         <mat-card-subtitle>Movies</mat-card-subtitle>
         <!-- <mat-card-title>{{m.Movie_name}}</mat-card-title> -->
@@ -20,3 +20,49 @@
       <mat-divider></mat-divider>
     </ul>
   </div>
+
+
+<h2>Hollywood</h2>
+<div class="movies">
+    <ul *ngFor="let m of english,index as i">
+      <!-- <li (click)="moviepage()">{{m.name}}</li> -->
+      
+      <mat-card class="example-card" style="background-image:url({{m.Movie_poster}});background-size: cover;">
+        <mat-card-subtitle>Movies</mat-card-subtitle>
+        <!-- <mat-card-title>{{}}</mat-card-title> -->
+        <mat-card-content>
+          <!-- <p>{{ longText }}</p> -->
+        </mat-card-content>
+        <mat-card-actions style="margin-top:300px">
+          <button class="btn" (click)="openview(m.Movie_id,m.Movie_name,m.Movie_lang,m.Movie_details,m.Movie_Release_date,m.Movie_category,m.Movie_cast)" mat-button >View</button>
+          <button class="btn" (click)="openBooking(m.Movie_id)"mat-button>Book</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-divider></mat-divider>
+    </ul>
+  </div>
+
+  <h2>Tollywood</h2>
+  <div class="movies">
+      <ul *ngFor="let m of telugu,index as i">
+        <mat-card class="example-card" style="background-image:url({{m.Movie_poster}}) ;background-size:cover">
+          <mat-card-subtitle>Movies</mat-card-subtitle>
+          <!-- <mat-card-title>{{m.Movie_name}}</mat-card-title> -->
+          <div class="content" style="height:300px;">
+          <mat-card-content>
+            <!-- <p>{{m.Movie_details }}</p> -->
+            <br>
+            <!-- <p>Release-date-{{m.Movie_Release_date }}</p> -->
+            <!-- <p>Review-{{m.Movie_reviews }}</p> -->
+          </mat-card-content>
+          <mat-card-actions style="margin-top:250px ;">
+            <button mat-button class="btn" (click)="openview(m.Movie_id,m.Movie_name,m.Movie_lang,m.Movie_details,m.Movie_Release_date,m.Movie_category,m.Movie_cast)  " >View</button>
+            <button mat-button class="btn"(click)="openBooking(m.Movie_id)">Book</button>
+          </mat-card-actions>
+        </div>
+        </mat-card>
+        <mat-divider></mat-divider>
+      </ul>
+    </div>
+  
+  

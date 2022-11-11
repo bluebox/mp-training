@@ -16,9 +16,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import { HollywoodComponent } from './components/hollywood/hollywood.component';
+// import { HollywoodComponent } from './components/hollywood/hollywood.component';
 import { ViewComponent } from './components/view/view.component';
-import { TollywoodComponent } from './components/tollywood/tollywood.component';
+// import { TollywoodComponent } from './components/tollywood/tollywood.component';
 
 
 
@@ -29,9 +29,9 @@ import { TollywoodComponent } from './components/tollywood/tollywood.component';
     InfoComponent,
     HeaderComponent,
     BollywoodComponent,
-    HollywoodComponent,
+    // HollywoodComponent,
     ViewComponent,
-    TollywoodComponent
+    // TollywoodComponent
   ],
   imports: [
     CommonModule,

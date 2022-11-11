@@ -1,11 +1,13 @@
+'Models'
 import datetime
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractUser
+     AbstractUser
 )
 
 
 class Users(AbstractUser):
+    'User database'
     User_id = models.AutoField(primary_key=True)
     User_name = models.CharField(max_length=45,default="")
     User_phone = models.CharField(max_length=45,default="",unique=True)
@@ -22,8 +24,11 @@ class Users(AbstractUser):
 
 
 class Movie(models.Model):
+    'Movie Database'
     Movie_id = models.IntegerField(primary_key=True)
-    Movie_poster=models.CharField(max_length=1000,default='https://cdn.bollywoodmdb.com/fit-in/movies/largethumb/2021/jug-jugg-jeeyo/jug-jugg-jeeyo-poster-5.jpg')
+    Movie_poster=models.CharField(max_length=1000,default='https://cdn.bollywoodmdb.com/fit-in/'
+                                                          'movies/largethumb/2021/jug-jugg-jeeyo/'
+                                                          'jug-jugg-jeeyo-poster-5.jpg')
     Movie_name = models.CharField(max_length=45)
     Movie_lang = models.CharField(max_length=45)
     Movie_details = models.CharField(max_length=450)
@@ -33,7 +38,9 @@ class Movie(models.Model):
     Movie_reviews = models.CharField(max_length=450)
 
 
+
 class Theatre(models.Model):
+    'theare Database'
     Theatre_id = models.IntegerField(primary_key=True)
     Theatre_owner=models.CharField(max_length=45,default='Owner')
     Theatre_name = models.CharField(max_length=45)
@@ -42,6 +49,7 @@ class Theatre(models.Model):
 
 
 class Hall(models.Model):
+    'Hall database'
     Hall_id = models.AutoField(primary_key=True)
     Theatre_id = models.ForeignKey(Theatre, on_delete=models.CASCADE)
     Hall_no = models.IntegerField(default=1)
@@ -52,10 +60,12 @@ class Hall(models.Model):
 
 
 class PROMOCODE(models.Model):
+    'promocode database'
     PROMOCODE = models.CharField(max_length=45)
     Discount = models.IntegerField()
 
 class Booking(models.Model):
+    'booking database'
     Booking_id = models.AutoField(primary_key=True)
     User_id = models.ForeignKey(Users, on_delete=models.CASCADE)
     Movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
@@ -73,10 +83,8 @@ class Booking(models.Model):
     Payment_mode = models.CharField(max_length=45, default='Online')
 
 
-
-
-
 class Payment(models.Model):
+    'payment database'
     Booking_id = models.ForeignKey(Booking, on_delete=models.CASCADE)
     PROMOCODE = models.ForeignKey(PROMOCODE, on_delete=models.CASCADE)
     T_price = models.IntegerField()
@@ -85,6 +93,7 @@ class Payment(models.Model):
 
 
 class DatewiseHall(models.Model):
+    'hall data with respect to different dates'
     Date=models.DateField(default=datetime.date.today())
     Hall_id=models.ForeignKey(Hall,on_delete=models.CASCADE)
     T_No_Of_Seats = models.IntegerField(default=100)
@@ -95,8 +104,8 @@ class DatewiseHall(models.Model):
     class Meta:
         unique_together = ('Date', 'Hall_id','startTime','endTime')
 
-# ----------------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 
 
 
@@ -142,7 +151,5 @@ class Bill(models.Model):
     total_price = models.IntegerField()
     Payment_Status = models.CharField(max_length=45)
     Payment_mode = models.CharField(max_length=45)
-
-
 
 
