@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { NewtransactionComponent } from './components/newtransaction/newtransaction.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReviewComponent } from './components/review/review.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
@@ -29,7 +30,8 @@ const routes: Routes = [
     {path : 'bookappointment',component :BookappointmentComponent },
     {path : 'review',component : ReviewComponent},
     {path : 'allreviews',component : AllreviewsComponent},
-    {path : 'transactions',component : TransactionsComponent}
+    {path : 'transactions',component : TransactionsComponent},
+    {path : 'newtransaction',component : NewtransactionComponent}
     
 ]}
 ];

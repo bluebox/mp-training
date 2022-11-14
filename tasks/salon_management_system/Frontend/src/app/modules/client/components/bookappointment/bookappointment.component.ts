@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpserviceService } from 'src/app/httpservice.service';
 
@@ -17,7 +18,7 @@ export class BookappointmentComponent implements OnInit {
   subscription : Subscription = Subscription.EMPTY
   allservices : any;
   employees :any;
-  constructor(private http:HttpserviceService,private datePipe: DatePipe) { }
+  constructor(private http:HttpserviceService,private route : Router) { }
   times: Time[] = [
     {value: '9.00am-10.00am', viewValue: '9.00pm-10.00am'},
     {value: '10.00am-11.00am', viewValue: '10.00pm-11.00am'},
@@ -47,8 +48,10 @@ export class BookappointmentComponent implements OnInit {
   onSubmit(){
     console.log(this.bookAppointmentForm.value)
     this.http.newAppointment(this.bookAppointmentForm.value).subscribe(data => {console.log(data);
-    alert("booked successfully");
-    window.location.reload();})
+    this.route.navigate(['client/newtransaction'])
+    // window.location.reload();
+    
+  })
 
   }
 

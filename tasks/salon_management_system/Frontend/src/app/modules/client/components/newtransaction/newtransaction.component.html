@@ -1,1 +1,36 @@
-<p>newtransaction works!</p>
+<form [formGroup]="transactionForm" class="example-form">
+    <div class="card1">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title class="header-title">
+                    Payments
+                </mat-card-title>
+            </mat-card-header>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Appointment id</mat-label>
+                <input formControlName="Appointment_id" matInput placeholder="Enter Appointment id" />
+                <small class="text-danger"
+                  *ngIf="transactionForm.get('Appointment_id')?.invalid &&
+                  transactionForm.get('Appointment_id')?.touched ">required</small>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>choose your transaction type</mat-label>
+                <!-- <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button formControlName="trans_type" matInput value="1">Option 1</mat-radio-button>
+                    <mat-radio-button formControlName="trans_type" matInput value="2">Option 2</mat-radio-button>
+                  </mat-radio-group> -->
+                <input formControlName="trans_type" matInput placeholder="   " />
+                <small class="text-danger"
+                  *ngIf="transactionForm.get('trans_type')?.invalid &&
+                  transactionForm.get('trans_type')?.touched ">required</small>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Total Amount</mat-label>
+                <input formControlName="Total_amount" matInput placeholder="   " />
+                <small class="text-danger"
+                  *ngIf="transactionForm.get('Total_amount')?.invalid &&
+                  transactionForm.get('Total_amount')?.touched ">required</small>
+            </mat-form-field>
+        </mat-card>
+    </div>
+</form>

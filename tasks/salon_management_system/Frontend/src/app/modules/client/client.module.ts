@@ -30,6 +30,7 @@ import {DatePipe} from '@angular/common';
 import { AllreviewsComponent } from './components/allreviews/allreviews.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { NewtransactionComponent } from './components/newtransaction/newtransaction.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -65,7 +66,8 @@ import { NewtransactionComponent } from './components/newtransaction/newtransact
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatRadioModule
   ]
 })
 export class ClientModule { }

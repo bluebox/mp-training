@@ -12,6 +12,7 @@
             *ngIf="bookAppointmentForm.get('client_id')?.invalid &&
             bookAppointmentForm.get('client_id')?.touched ">required</small>
         </mat-form-field>
+
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>time</mat-label>
           <mat-select formControlName="Time_of_appointment"
@@ -50,8 +51,8 @@
         </mat-form-field>
 
         <mat-card-actions>
-          <button (click)="onSubmit()" mat-raised-button="" color="accent">
-            BOOK
+          <button (click)="onSubmit()" mat-raised-button="" color="primary">
+            continue<mat-icon>fast_forward</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>

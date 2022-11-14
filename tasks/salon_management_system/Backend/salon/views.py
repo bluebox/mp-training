@@ -388,6 +388,6 @@ class AllTransactions(APIView):
         """to create a new transaction"""
         try:
             transaction = Transactions.create_transaction(request)
-            return  Response(transaction, many=True)
+            return Response(transaction, status=200)
         except Exception as e:
             return Response(str(e), status=500)
