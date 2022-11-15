@@ -1,11 +1,11 @@
-div{
+/* div{
     display: flex;
     justify-content: space-between;
     padding-left: 7%;
     padding-right: 10%;
     padding-top: 1%;
     background-color: rgb(58, 57, 57);
-}
+} */
 .footer-body{
     display: flex;
 }
@@ -18,4 +18,9 @@ div{
 }
 .footer-cell-2 p{
     font-size: 20px;
+}
+.div{
+    display: flex;align-items: center;
+    justify-content: center;
+    padding-top: 10%;
 }

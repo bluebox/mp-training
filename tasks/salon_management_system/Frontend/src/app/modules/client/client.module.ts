@@ -31,7 +31,7 @@ import { AllreviewsComponent } from './components/allreviews/allreviews.componen
 import {MatTabsModule} from '@angular/material/tabs';
 import { NewtransactionComponent } from './components/newtransaction/newtransaction.component';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -67,7 +67,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     MatButtonModule,
     MatTabsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ]
 })
 export class ClientModule { }

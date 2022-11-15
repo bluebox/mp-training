@@ -13,24 +13,29 @@
                   *ngIf="transactionForm.get('Appointment_id')?.invalid &&
                   transactionForm.get('Appointment_id')?.touched ">required</small>
             </mat-form-field>
-            <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>choose your transaction type</mat-label>
-                <!-- <mat-radio-group aria-label="Select an option">
-                    <mat-radio-button formControlName="trans_type" matInput value="1">Option 1</mat-radio-button>
-                    <mat-radio-button formControlName="trans_type" matInput value="2">Option 2</mat-radio-button>
-                  </mat-radio-group> -->
-                <input formControlName="trans_type" matInput placeholder="   " />
+            <h3>choose your payment type</h3>
+                <mat-radio-group formControlName="trans_type"  aria-label="Select an option" style="padding-bottom: 2%;">
+                    <mat-radio-button *ngFor="let time of types" [value]="time.value"  style="padding-bottom:2%;">{{time.viewValue}}</mat-radio-button>
+                  </mat-radio-group>
+                <!-- <input formControlName="trans_type" matInput placeholder="   " /> -->
                 <small class="text-danger"
                   *ngIf="transactionForm.get('trans_type')?.invalid &&
                   transactionForm.get('trans_type')?.touched ">required</small>
-            </mat-form-field>
+
+                  <br>
+
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Total Amount</mat-label>
-                <input formControlName="Total_amount" matInput placeholder="   " />
+                <input formControlName="Total_amount" matInput placeholder="" />
                 <small class="text-danger"
                   *ngIf="transactionForm.get('Total_amount')?.invalid &&
                   transactionForm.get('Total_amount')?.touched ">required</small>
             </mat-form-field>
+            <mat-card-actions>
+                <button (click)="onSubmit()" mat-raised-button="" color="primary">
+                  pay now 
+                </button>
+              </mat-card-actions>
         </mat-card>
     </div>
 </form>
