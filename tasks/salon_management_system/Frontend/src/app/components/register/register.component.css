@@ -1,0 +1,19 @@
+
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .card1{
+    width :30%;
+    padding-left: 33%;
+    padding-top: 100px;
+    padding-bottom: 200px;
+  }
+  .body{
+    background-color: rgb(36, 33, 33);
+  }
+  .error-message{
+    font-size: 15px;
+    color: red;
+}

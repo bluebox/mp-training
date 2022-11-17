@@ -1,0 +1,23 @@
+<mat-toolbar class="toolbar">
+    <mat-toolbar-row class="toolbar1">
+      <span>SALON</span>
+      <span class="sp">
+        <button mat-button [matMenuTriggerFor]="menu" class = 'button1'><mat-icon>account_circle</mat-icon></button>
+        <mat-menu  class="mat-menu" #menu="matMenu">
+        <button mat-menu-item routerLink = "../client/profile">My profile</button>
+        <button mat-menu-item routerLink = "../client/transactions">My Transactions</button>
+        <button mat-menu-item>Log out</button>
+        </mat-menu>
+      </span>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row class="toolbar2">
+      <span class="icon-name"><button class="icon-name" routerLink="../client/home"><mat-icon>home</mat-icon></button></span>
+      <span class="sp1"><a routerLink = '../client/services'>SERVICES</a></span>
+      <span class="sp1"><a routerLink = '../client/branch'>SALON LOCATOR</a></span>
+      <span class="sp1"><a routerLink = '../client/bookappointment'>BOOK AN APPOINTMENT</a></span>
+      <span class="sp1"><a routerLink = '../client/appointments'>MY APPOINTMENTS</a></span>
+      <span class="sp1"><a routerLink = '../client/allreviews'>REVIEWS</a></span>
+    </mat-toolbar-row>
+  
+</mat-toolbar>

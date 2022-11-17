@@ -1,137 +1,138 @@
 __author__ = 'Hari'
 
-notes = '''
+from tasks.placeholders import *
+
+NOTES = '''
  Inheritance is another standard feature of object oriented programming.
  This exercise illustrates the syntax and language features for using inheritance in Python.
 '''
 
-from tasks.placeholders import *
 
 def test_inheritance_basic():
-    class A(object): # A inherits from object.
-        def f(self):
+    class Aclass(): # A inherits from object.
+        def var_f(self):
             pass
 
-    class B(A):      #B inherits from A or B derives A
-        def g(self):
+    class Bclass(Aclass):      #B inherits from A or B derives A
+        def var_g(self):
             pass
 
-    assert __ == issubclass(A, object)
-    assert __ == issubclass(A, A)
-    assert __ == issubclass(A, B)
+    assert True is issubclass(Aclass, object)
+    assert True is issubclass(Aclass, Aclass)
+    assert False is issubclass(Aclass, Bclass)
 
-    assert __ == issubclass(B, A)
-    assert __ == issubclass(B, B)
-    assert __ == issubclass(B, object)
+    assert True is issubclass(Bclass, Aclass)
+    assert True is issubclass(Bclass, Bclass)
+    assert True is issubclass(Bclass, object)
 
 # base class methods are available for derived class objects
 def test_inheritance_methods():
-    class A(object): # A inherits from object.
-        def f(self):
+    class Aclass(): # A inherits from object.
+        def var_f(self):
             return "A:f()"
 
-    class B(A):      #B inherits A's behavior (attributes)
-        def g(self):
+    class Bclass(Aclass):      #B inherits A's behavior (attributes)
+        def var_g(self):
             return "B:g()"
 
-    b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    var_b = Bclass()
+    assert "A:f()" == var_b.var_f()
+    assert "B:g()" == var_b.var_g()
 
-    a = A()
-    assert __ == a.f()
+    var_a = Aclass()
+    assert "A:f()" == var_a.var_f()
     try:
-        assert __ == a.g()
-    except __:
+        assert True is var_a.var_g()
+    except AttributeError:
         #print ex  #uncomment this line after filling up
         pass
 
 def test_inheritance_overrides():
-    class A(object): # A inherits from object.
-        def f(self):
+    class Aclass(): # A inherits from object.
+        def var_f(self):
             return "A:f()"
 
-        def g(self):
+        def var_g(self):
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
+    class Bclass(Aclass):      #B can override A's methods
+        def var_g(self):
             return "B:g()"
 
-    a = A()
-    assert __ == a.f()
-    assert __ == a.g()
+    var_a = Aclass()
+    assert "A:f()" == var_a.var_f()
+    assert "A:g()" == var_a.var_g()
 
-    b = B()
-    assert __ == b.f()
-    assert __ == b.g()
+    var_b = Bclass()
+    assert "A:f()" == var_b.var_f()
+    assert "B:g()" == var_b.var_g()
 
 def test_inheritance_init():
-    class A(object):
+    class Aclass():
         def __init__(self):
-            self.a1 = []
+            self.a_1 = []
 
         def append(self, obj):
-            self.a1.append(obj)
+            self.a_1.append(obj)
 
-    class B(A):
+    class Bclass(Aclass):
         def __init__(self):
-            self.b1 = []
+            self.b_1 = []
 
-    a = A()
-    assert __ == getattr(a, "a1", None)
-    assert __ == getattr(a, "b1", None)
+    var_a = Aclass()
+    assert [] == getattr(var_a, "a_1", None)
+    assert None is getattr(var_a, "b_1", None)
 
-    b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
+    var_b = Bclass()
+    assert None is getattr(var_b, "a_1", None)
+    assert [] == getattr(var_b, "b_1", None)
 
     try:
-        b.append("orange")
-    except __ :  #what happened here?
+        var_b.append("orange")
+    except AttributeError :  #what happened here? 'B' object has no attribute 'a1'
         pass
 
     # Since methods of A depend on init being called, we must always
     # chain __init__ to the base class if the derived class overrides it.
 
     #lets redefine B now, to chain the inits to the base class.
-    class B(A):
+    class Bclass(Aclass):
         def __init__(self):
-            A.__init__(self)
-            self.b1 = "b1"
+            Aclass.__init__(self)
+            self.b_1 = "b1"
 
-    b = B()
-    assert __ == getattr(b, "a1", None)
-    assert __ == getattr(b, "b1", None)
-    b.append("orange")
-    assert __ == b.a1
+    var_b = Bclass()
+    assert [] == getattr(var_b, "a_1", None)
+    assert "b1" == getattr(var_b, "b_1", None)
+    var_b.append("orange")
+    assert ["orange"] == var_b.a_1
 
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.
-    class A(object): # A inherits from object.
-        def f(self):
+    class Aclass(): # A inherits from object.
+        def var_f(self):
             return "A:f()"
 
-        def g(self):
+        def var_g(self):
             return "A:g()"
 
-    class B(A):      #B can override A's methods
-        def g(self):
-            return super(B, self).g() + ":"+ "B:g()"
+    class Bclass(Aclass):      #B can override A's methods
+        def var_g(self):
+            return super(Bclass, self).var_g() + ":"+ "B:g()"
 
-    b = B()
-    assert __ == b.g()
+    var_b = Bclass()
+    assert "A:g():B:g()" == var_b.var_g()
 
 
-notes_1 = '''
+NOTES_1 = '''
  Inheritance if one of the most abused features of object oriented programming especially by novices.
  Think carefully before using it :). We will cover usage in assignments.
 '''
 
-three_things_i_learnt = """
--
--
--
+THREE_THINGS_I_LEARNT= """
+-inheritance
+-parent and child classes
+-super keyword
 """
 
-time_taken_minutes = ___
+TIME_TAKEN_MINUTES = 2

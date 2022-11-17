@@ -1,0 +1,24 @@
+.body{
+    background-image: url("/assets/images/client5.jpeg");
+    background-repeat: no-repeat; 
+    background-size: cover;
+    width: 100%;
+}
+.content-home{
+    font-size: 30px;
+    font-family:'cursive';
+    font-style: italic;
+    color: black;
+    padding-top: 18%;
+    padding-bottom: 378px;
+    padding-left: 60%;
+}
+button{
+    background-color:#eb008b ;
+    color: white;
+    font-size: 15px;
+}
+.button-div{
+    padding-left: 22%;
+    padding-top: 2%;
+}

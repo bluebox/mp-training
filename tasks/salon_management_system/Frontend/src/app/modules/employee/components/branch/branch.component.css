@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+  }
+  .column-name{
+    color: black;
+    font-size: 15px;
+    text-align: center;
+   }
+   .column-value{
+    text-align: center;
+  }
+  .icon-name{
+    color: black;
+    background-color: white;
+  }

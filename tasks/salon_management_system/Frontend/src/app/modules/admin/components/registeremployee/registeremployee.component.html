@@ -1,0 +1,95 @@
+
+<div class="body"><form [formGroup]="employeeRegistrationForm"  class="example-form">
+    <mat-card class="card-2">
+        <mat-card-header>
+            <mat-card-title>Add Employee</mat-card-title>
+            {{errorMessage}}
+            <mat-card-title  *ngIf="formNotValid" class="error-message">please Fill All required details</mat-card-title>
+        </mat-card-header>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input  (input)="employeeRegistrationForm.controls.username.setValue(employeeRegistrationForm.controls.username.value.toLowerCase())" formControlName="username" matInput placeholder="Enter your Username" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('username')?.invalid  && employeeRegistrationForm.get('username')?.touched " >username is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="first_name" matInput placeholder="Enter you First Name" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('first_name')?.invalid  && employeeRegistrationForm.get('first_name')?.touched " >First Name is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="last_name" matInput placeholder="last_name" />
+
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input (input)="employeeRegistrationForm.controls.email.setValue(employeeRegistrationForm.controls.email.value.toLowerCase())" formControlName="email" matInput placeholder="Enter your Email id" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('email')?.invalid  && employeeRegistrationForm.get('email')?.touched " >Email is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('Password')?.invalid  && employeeRegistrationForm.get('Password')?.touched " >Password is required</small>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-hint>use : {{hintid}}</mat-hint>
+        <mat-label>Employee ID</mat-label>
+        <input formControlName="emp_id" matInput placeholder="Enter Employee id" />
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('emp_id')?.invalid  && employeeRegistrationForm.get('emp_id')?.touched " >Employee ID is required</small>
+    </mat-form-field>
+    
+    
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Branch</mat-label>
+        <!-- <input formControlName="branch_id" matInput placeholder="Enter Branch id" /> -->
+        <mat-select formControlName="branch_id" required>
+            <mat-option> --- </mat-option>
+            <mat-option
+              *ngFor="let user of branches"
+              [value]="user.branch_id"
+            >
+              {{ user.branch_name }}
+            </mat-option>
+          </mat-select>
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('branch_id')?.invalid  && employeeRegistrationForm.get('branch_id')?.touched " >branch id is required</small>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Role of The Employee</mat-label>
+        <mat-select formControlName="role"
+        name="role">
+        <mat-option *ngFor="let role of roles" [value]="role.value">
+          {{role.viewValue}}
+        </mat-option>
+      </mat-select>
+        <!-- <input formControlName="role" matInput placeholder="Enter Employee role" /> -->
+        <small class="text-danger" *ngIf="employeeRegistrationForm.get('role')?.invalid  && employeeRegistrationForm.get('role')?.touched " >role is required</small>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input formControlName="emp_contact_number" matInput placeholder="Place enter contact number" />
+    </mat-form-field>
+    <!-- <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Is an Employee?</mat-label>
+        <input formControlName="is_staff" matInput placeholder="Place enter true or false" />
+    </mat-form-field> -->
+
+    <!-- <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Is an Employee</mat-label>
+        <mat-select>
+          <mat-option value=1>Yes</mat-option>
+          <mat-option value=0>No</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    <mat-card-actions>
+        <button (click) = "onRegisterSubmit()" mat-raised-button="" color="primary">
+          Register new Employee
+        </button>
+    </mat-card-actions>
+</mat-card>
+
+</form>
+</div>

@@ -1,0 +1,39 @@
+.example-full-width {
+    width: 100%;
+}
+.card1{
+    /* width :100%;
+    padding-left: 33%;
+    padding-top: 5%; */
+    background-image: url("/assets/images/clienthome3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width :100%;
+    height: 750px;
+    /* padding-left: 33%; */
+    padding-top: 11px;
+    /* background-color: black; */
+}
+.mat-card{
+    width: 50%;
+    margin-left: 6%;
+    margin-top: 7%;
+    border-radius: 1%;
+}
+.mat-card-actions{
+    padding-left: 2%;
+    
+}
+.button{
+    background-color:#eb008b;
+}
+.header-title{
+    padding-bottom: 20px;
+    padding-top: 10px;
+    text-align: center;
+    
+}
+.header{
+    text-align: center;
+    padding-left: 35%;
+}

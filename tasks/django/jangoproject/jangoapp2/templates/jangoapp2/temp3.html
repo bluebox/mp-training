@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>temp3 page</title>
+</head>
+<body>
+    {% comment %}
+        <P>this is a comment</P>
+    {% endcomment %}
+
+    {# this is also comment#}
+
+    {% for i in data %}
+    <p>{{i}}</p>
+    {% endfor %}
+
+    {% if data.0 == 1 %}
+    <p>true</p>
+    {% endif %}
+
+    {% include 'jangoapp2/index.html' %}
+
+    <a href="{% url 'temp2' %}">go  to </a>
+    
+</body>
+</html>

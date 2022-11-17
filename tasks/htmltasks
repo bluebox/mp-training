@@ -1,0 +1,183 @@
+1) What is HTML?
+HTML stands for Hyper Text Markup Language. It describe the structure of a Web page. HTML is the standard markup language for creating Web pages.
+
+2) What are tags?
+HTML tags are like keywords which defines that how web browser will format and display the content.
+
+
+3) Do all HTML tags come in a pair?
+no,eg <br>, <hr>, <img> etc. do not have end tags
+
+4) What are some of the common lists that can be used when designing a page?
+The three list types
+    Unordered lists
+      Unordered list markup
+    Ordered lists
+      Ordered list markup : Beginning ordered lists with numbers other than 1
+    Description lists: Description list markup
+
+5) How do you insert a comment in HTML?
+<!-- comment-->
+
+6) Do all character entities display properly on all systems?
+No, some character entities cannot be displayed if the operating system does not support these characters
+
+7) What is an image map?
+Applying the diffeerent links for different objects in a image
+
+8 ) What is the advantage of collapsing white space?
+Collapsing white spaces decreases the transmission time between the server and the client
+
+9) Can attribute values be set to anything or are there specific values that they accept?
+Some attribute values can be set to only predefined values. Other attributes can accept any numerical value that represents the number of pixels for a size
+
+10) How do you insert a copyright symbol on a browser page?
+by using "&copy"
+
+11) How do you create links to sections within the same page?
+<a href= "#id_of_section">some_text</a>
+
+12) Is there any way to keep list elements straight in an HTML file?
+By using <ol>,<ul> tags
+
+13) If you see a web address on a magazine, to which web page does it point?
+magazine's top-most page.
+
+14) What is the use of alternative text in image mapping?
+adds a text description to an image on a Web page
+
+15) Do older HTML files work on newer browsers?
+Yes, but some features may not work.
+
+16) Does a hyperlink apply to text only?
+No, works for text,image, etc.
+
+17) If the user’s operating system does not support the needed character, how can the symbol be represented?
+In the form of some image.
+
+18) How do you change the number type in the middle of a list?
+<li type="list_type" value= "3">
+
+19) What are style sheets?
+Adds effects , designes, style to web page.
+
+20) State  bullet types available in HTML 
+disc
+circle
+square
+none
+21) How do you create multicolored text in a webpage?
+To create text with different colors, use the <font color=”color”>…</font> tags for every character that you want to apply color. You can use this tag combination as many times as needed, surrounding a single character or an entire word.
+22) Why are there both numerical and named character entity values?
+The numerical values are taken from the ASCII values for the various characters, but these can be difficult to remember. Because of this, named character entity values were created to make it easier for web page designers to use.
+23) Write an HTML table tag sequence that outputs the following:
+50 pcs 100 500
+10 pcs 5 50
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <table>
+            <tr>
+                <td>50</td>
+                <td>pcs</td>
+                <td>100</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>pcs</td>
+                <td>5</td>
+                <td>50</td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+
+24) What is the advantage of grouping several checkboxes together?
+Although checkboxes don’t affect one another, grouping checkboxes together help to organize them. Checkbox buttons can have their name and do not need to belong to a group. A single web page can have many different groups of checkboxes.
+25) What will happen if you overlap sets of tags?
+If two sets of html tags are overlapped, only the first tag will be recognized. You will recognize this problem when the text does not display properly on the browser screen.
+
+26) What are applets?
+An applet is a small application that supports and enhances the hosting web application. Commonly created using the Java programming language, applets run within a web browser. Applets can either be small enhancing programs or stand alone as complete applications in themselves, since they have access to the complete Java application program interface (API). Applets are usually embedded within the syntax of the hosting web page, which loads on request by the user. Hypertext Markup Language (HTML) code is received by the web browser and translated into dynamic, graphical, and informative pages we see displayed on our devices. Web pages that contain dynamic content such as animation and sound effects, making the user's experience more interesting, are the result of these small programs called applets.
+
+27) What if there is no text between the tags or if a text was omitted by mistake? Will it affect the display of the HTML file?
+no affect
+28) Is it possible to set specific colors for table borders?
+yes
+29) How do you create a link that will connect to another web page when clicked?
+<a href="link">link</a>
+30) What other ways can be used to align images and wrap text?
+Tables can be used to position text and images. Another useful way to wrap text around an image is to use style sheets.
+31> Display &nbsp inside <p> paragraph tag.
+<p> &amp;nbsp;</p>
+32> Insert a line between two different elements.
+      For example:
+        <h1> Before line </h1>
+        (I need a line here)
+        <p>this para should come after line</p>
+        
+        <h1> Before line </h1>
+        <hr>
+        <p>this para should come after line</p>
+        
+33>  I Have a paragraph,
+      “ Hello I am MedPlus 
+        
+        Medplus            is a          good company 
+ 
+          We    all    love       Med                                 Plus” 
+ 
+      Using a single tag only, I want to preserve the same format (spaces and 
+      line breaks) with using <br> tag.
+      
+      <p>Hello I am Medplus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>Medplus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is a &nbsp;&nbsp;good company&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>we &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;all &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;love&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Medplus</p>
+
+
+34> Specify an alternate text for the image, the alternate text should say 
+      “image not found” if the image don’t get load for any reason
+      <img src=”smiley.gif” _______  >
+      
+      <img src="smiley.gif" alt="image not found">
+35> Make this format in html! (You can use any text but format and font 
+    size should be similar)
+                                
+                             Lorem Ipsum ( h1 and center align )
+    "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."
+
+     "There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+     
+     Share something about what is Lorem Ipsum?
+     Why do we use it?
+     
+ans: <h1 style="text-align: center;" > lorem Ipsum</h1> 
+<b> <i> "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet ( make bold and italic ), consectetur, adipisci velit..."</i> </b>
+
+<small>
+"There is no one who loves pain itself ( make use of small size font ), who seeks after it and wants to have it, simply because it is pain..."
+</small> 
+
+
+Lorem Ipsum, sometimes referred to as ‘lipsum’, is the placeholder text used in design when creating content. It helps designers plan out where the content will sit, without needing to wait for the content to be written and approved.
+
+
+36> Print the following pattern in html using <h1> and <p> separately.
+    (note there are spaces before stars)
+    
+         *
+        * *
+       * * *
+      * * * *
+     * * * * *
+    * * * * * *
+<html>
+    <body>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*&nbsp;*</p>
+    <p>&nbsp;&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;*</p>
+    <p>&nbsp;&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*</p>
+    </body>
+</html>

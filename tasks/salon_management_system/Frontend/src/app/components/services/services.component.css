@@ -1,0 +1,84 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+.toolbar1{
+    background-color: rgb(37, 37, 37);
+    color : white
+
+}
+.toolbar2{
+    background-color: black;
+    color: white;
+    
+}
+.sp{
+   padding-left: 90%;
+}
+.sp1{
+    padding-left: 18%;
+}
+.sp1 a{
+    color: white;
+    text-decoration: none;
+}
+.sp1 a:hover{
+    color:#eb008b;
+}
+.sp2{
+    padding-left: 18%;
+    
+}
+.sp2 a{
+    color: #eb008b;
+    text-decoration: none;
+}
+.sp a{
+    color: white;
+    text-decoration: none;
+}
+.sp a:hover{
+    color:#eb008b;
+}
+table {
+    width: 60%;
+  }
+.table-div{
+  padding-left: 25%;
+  padding-top: 3%;
+  padding-bottom: 176px;
+  /* background-color: black; */
+}
+  .column-name{
+    color: black;
+    font-size: 15px;
+    text-align: center;
+   }
+
+  .icon-name{
+    color : black;
+    background-color: white;
+    margin: none;
+   
+  }
+  .icon-name-spa{
+    color: black;
+    background-color: white;
+    margin:none;
+  }
+  .icon-name{
+    border: none;
+    background-color: black;
+    color: white;
+}
+ 
+.column-value{
+    text-align: center;
+  }
+.mat-toolbar {
+  border-bottom: 2px solid #eb008b;
+}

@@ -1,0 +1,51 @@
+.body{
+  background-color: black;
+}
+table {
+    width: 100%;
+  }
+  .column-name{
+    color: black;
+    font-size: 15px;
+    text-align: center;
+   }
+.add{
+  display: flex;
+  justify-content: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.add button{
+  background-color: #eb008b;
+  
+}
+.icon-name{
+  color : black;
+  background-color: white;
+  margin: none;
+  text-align: center;
+ 
+}
+.icon-name button{
+  color: black;
+  background-color: #eb008b;
+  margin: none;
+  border: none;
+}
+
+button{
+  border: none;
+  background-color: white;
+}
+.column-value{
+  text-align: center;
+}
+.search-bar{
+  background-color: white;
+}
+.search-bar{
+  display: flex;
+  justify-content: center;
+  padding-top: 2%;
+
+}
