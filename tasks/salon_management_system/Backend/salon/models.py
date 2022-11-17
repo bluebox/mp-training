@@ -37,10 +37,6 @@ class Client(models.Model):
 def from_100():
     """increment from default value"""
     largest = Branch.objects.all().order_by('branch_id').last()
-    # smallest = Branch.objects.all().order_by('location').last()
-    # print(largest)
-    # print(largest.branch_id)
-    # print(smallest)
     if not largest:
         return 100
     return largest.branch_id + 1
