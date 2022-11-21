@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('granite_mart.urls')),
+    path('granite_mart/', include('granite_mart.urls')),
+    path('customer/', include('customer.urls')),
+    path('employee/', include('employee.urls')),
+    path('item/', include('item.urls')),
+    path('order/', include('order.urls')),
+    path('vehicle/', include('vehicle.urls')),
     path('admin/', admin.site.urls),
 ]

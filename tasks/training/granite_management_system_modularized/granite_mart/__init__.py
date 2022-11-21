@@ -1,1 +1,0 @@
-default_app_config = 'granite_mart.apps.GraniteMartConfig'

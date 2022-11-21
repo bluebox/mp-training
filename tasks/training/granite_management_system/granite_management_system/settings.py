@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5*v%+apslv+9$lquao4n16rf$9k@#e)^$$y_7ta22t1*hhuit)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,12 +40,19 @@ INSTALLED_APPS = [
     'granite_mart.apps.GraniteMartConfig',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
+    'customer',
+    'employee',
+    'item',
+    'order',
+    'vehicle'
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -53,14 +60,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
 ]
-CORS_ORIGIN_ALLOW_ALL=True
-
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'granite_management_system.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'granite_management_system/templates/graniteMart')],
+        'DIRS': [os.path.join(BASE_DIR, 'granite_management_system/templates/graniteMart')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +96,24 @@ DATABASES = {
         'PASSWORD': 'root'
     }
 }
+REST_FRAMEWORK = {
 
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+
+         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+
+}
+
+SIMPLE_JWT = {'ACCESS_TOKEN_LIFE_TIME': timedelta(minutes=5),
+              'REFRESH_TOKEN_LIFE_TIME': timedelta(minutes=15),
+              'AUTH_COOKIE': 'access_token',
+              'AUTH_COOKIE_DOMAIN': None,
+              'AUTH_COOKIE_SECURE': False,
+              'AUTH_COOKIE_HTTP_ONLY': True,
+              'AUTH_COOKIE_PATH': '/',
+              'AUTH_COOKIE_SAMESITE': 'Lax',
+              }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -115,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
