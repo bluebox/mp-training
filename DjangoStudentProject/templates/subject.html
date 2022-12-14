@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Subject Page{% endblock title %}
+{% block body %}
+<div class="form">
+<form method="post" action="{% url 'subject' %}">
+  {% csrf_token %}
+  <h3 class="form-captions">Subject Names for This Semester</h3>
+
+
+  {% for i in form.branch_id %} <small class="Validation-error">{{i}}</small> {%endfor%}
+  {% for i in form.sem_id %} <small class="Validation-error">{{i}}</small> {%endfor%}
+  <div class="input-group input-group mb-4">
+  <span class="input-group-text"><b>Branch</b></span>
+  <select  class="custom-select" id="studentBranch" name="branch_id">
+  <option selected value="0">Branch</option>
+  {% for i in branch %}
+  <option value="{{i.id}}">{{i.name}}</option>
+  {% endfor %}
+</select>
+  <span class="input-group-text"><b>Semester</b></span>
+  <select  class="custom-select" id="studentSem" name="sem_id">
+  <option selected value="0">Semester</option>
+  {% for i in sem %}
+  <option value="{{i.id}}">{{i.sem_name}}</option>
+  {% endfor %}
+</select>
+</div>
+{% for i in form.sub1 %} <small class="Validation-error">{{i}}</small> {%endfor%}
+  <div class="form-group row">
+    <label for="inputSub1" class="col-sm-2 col-form-label">Subject 1</label>
+    <div class="col-sm-10">
+      <input type="Text" class="form-control" id="inputSub1" placeholder="Enter Subject-1 Name" name="sub1">
+    </div>
+  </div>
+  {% for i in form.sub2 %} <small class="Validation-error">{{i}}</small> {%endfor%}
+  <div class="form-group row">
+    <label for="inputSub2" class="col-sm-2 col-form-label">Subject 2</label>
+    <div class="col-sm-10">
+      <input type="Text" class="form-control" id="inputSub2" placeholder="Enter Subject-2 Name" name="sub2">
+    </div>
+  </div>
+    {% for i in form.sub3 %} <small class="Validation-error">{{i}}</small> {%endfor%}
+  <div class="form-group row">
+    <label for="inputSub3" class="col-sm-2 col-form-label">Subject 3</label>
+    <div class="col-sm-10">
+      <input type="Text" class="form-control" id="inputSub3" placeholder="Enter Subject-3 Name" name="sub3">
+    </div>
+  </div>
+    {% for i in form.sub4 %} <small class="Validation-error">{{i}}</small> {%endfor%}
+  <div class="form-group row">
+    <label for="inputSub4" class="col-sm-2 col-form-label">Subject 4</label>
+    <div class="col-sm-10">
+      <input type="Text" class="form-control" id="inputSub4" placeholder="Enter Subject-4 Name" name="sub4">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock body %}

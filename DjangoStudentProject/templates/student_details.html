@@ -1,0 +1,44 @@
+{%extends 'base.html' %}
+{%block title %}student details {% endblock title%}
+{%block body%}
+
+<div class="form">
+<form method="post" action="{% url 'student_details' %}">
+  {% csrf_token %}
+  <h3 class="form-captions">Student Details</h3>
+  <div class="form-group">
+    <label for="exampleInputName">Name</label>{% for i in form.name %} <small class="Validation-error">{{i}}</small> {%endfor%}
+    <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Enter Name" name="name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPhone">Phone number</label>{% for i in form.phone %} <small class="Validation-error">{{i}}</small> {%endfor%}
+    <input type="number" class="form-control" id="exampleInputPhone" placeholder="Phone no" name="phone">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPhone">Address</label>{% for i in form.address %} <small class="Validation-error">{{i}}</small> {%endfor%}
+    <input type="text" class="form-control" id="exampleInputAddress" aria-describedby="emailHelp" placeholder="Address" name="address">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputGender">Gender</label>{% for i in form.gender %} <small class="Validation-error">{{i}}</small> {%endfor%}
+<select class="form-control" aria-label="Default select example" id="exampleInputGender" name="gender">
+  <option selected value="NA">Gender</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
+  </div>
+  <div  class="form-group">
+  <label for="studentBranch" class="form-label">Branch </label>{% for i in form.branch_id %} <small class="Validation-error">{{i}}</small> {%endfor%}
+  <select class="form-control" aria-label="Default select example" id="studentBranch" name="branch">
+    <option selected value="0">Branch</option>
+    {% for i in branch %}
+    <option value="{{i.id}}">{{i.name}}</option>
+    {% endfor %}
+  </select>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+ {% endblock body%}

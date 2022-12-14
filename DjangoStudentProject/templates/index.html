@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+
+{%block title %}Home Page{%endblock title%}
+{%block body%}
+<div class="filter">
+<form method="POST" action="{% url 'filter_by_branch' %}">
+  {% csrf_token %}
+  <div class="input-group mb-3">
+{% for i in form.filter %}
+  <small class="Validation-error">{{i}}</small>
+  {% endfor %}
+<select  class="custom-select" id="studentBranch" name="branch">
+  <option value="0" selected>Branch</option>
+  {% for i in branch %}
+  <option value="{{i.id}}">{{i.name}}</option>
+  {% endfor %}
+</select>
+<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Filter"/>
+  </div>
+  </form>
+</div>
+<div class="table">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Branch</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for x in students %}
+    <tr>
+      <th scope="row"><a href="{% url 'student_profile' x.id%}">{{x.id}}</a></th>
+      <td>{{x.name}}</td>
+      <td>{{x.gender}}</td>
+      <td>{{x.branch_id.name}}</td>
+      <td>{{x.phone}}</td>
+      <td>{{x.address}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{%endblock body%}

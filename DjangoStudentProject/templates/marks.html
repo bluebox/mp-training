@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{%block title %}Marks Page {% endblock title%}
+{%block body%}
+<div class="container">
+<form method="post" action="{% url 'marks' %}">
+  {% csrf_token %}
+    <h3 class="form-captions">Enter Student Id</h3>
+    <div class="form-group">
+    <label for="exampleInputId">Student Id</label>{% for i in form.std_id %} <small class="Validation-error">{{i}}</small> {%endfor%}
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" id="exampleInputId" aria-describedby="emailHelp" placeholder="Enter Student Id" name="std_id">
+      <input class="btn btn-outline-secondary" type="submit" value="Submit">
+    </div>
+    </div>
+</form>
+</div>
+{{name}}
+{%endblock body %}
