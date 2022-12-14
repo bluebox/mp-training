@@ -1,0 +1,17 @@
+<form action="{% url 'students:addingDetails' %}" method="post">
+    {% csrf_token %}
+    <label for="first">First Name</label><br>
+    <input type="text" name="first"><br>
+    <label for="last">Last Name</label><br>
+    <input type="text" name="last"><br>
+    <label for="dob">Date of Birth</label><br>
+    <input type="date" name="dob"><br>
+    <select name="branch">
+        <option value="1">Mechanical Engineering</option>
+        <option value="3">Civil Engineering</option>
+        <option value="2">Electrical Engineering</option>
+        <option value="4">Computer science</option>
+        <option value="5">Information Technology</option>
+    </select>
+    <input type="submit" value="Add Student">
+</form>

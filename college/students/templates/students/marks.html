@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Semester</th>
+        <th>Marks</th>
+    </tr>
+    {% for mark in marks %}
+    <tr>
+        <td>{{mark.subject.subject}}</td>
+        <td>{{mark.semester.semester}}</td>
+        <td>{{mark.marks}}</td>
+    </tr>  
+    {% endfor %}
+</table>

@@ -1,0 +1,20 @@
+<form action="{% url 'students:filterByBranch' %}" method="POST">
+    {% csrf_token %}
+    <select name="branch_selected">
+        <option value="Mechanical Engineering">Mechanical Engineering</option>
+        <option value="Civil Engineering">Civil Engineering</option>
+        <option value="Electrical Engineering">Electrical Engineering</option>
+        <option value="Computer science">Computer Science Engineering</option>
+        <option value="Information Technology">IT Engineering</option>
+    </select>
+    <input type="submit" value="filter">
+</form>
+
+<form action="{% url 'students:searchByID' %}" method="POST">
+    {% csrf_token %}
+    <label for="student_id">Search By Student ID</label>
+    <input type="text", name="student_id">
+    <input type="submit", value="Search">
+</form>
+
+<h1>Entered Student Doesnot Exist</h1>

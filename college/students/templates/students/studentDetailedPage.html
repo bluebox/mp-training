@@ -1,0 +1,16 @@
+<form action="{{student.id}}/marks" method="POST">
+    {% csrf_token %}
+    <div><label for="name">Student Full Name</label> <br>
+        <input type="text" disabled value="{{student.first_name}} {{student.last_name}}" name="name"> <br></div>
+    <div><label for="branch">Engineering Branch</label> <br>
+        <input type="text" disabled value="{{student.branch}}" name="branch"> <br></div>
+    <div><label for="date_of_birth">Date Of Birth</label> <br>
+        <input type="text" disabled value="{{student.date_of_birth}}" name="date_of_birth"> <br></div>
+    <select name="semster_ID">
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+    </select>
+    <input type="submit" value="Get Marks">
+</form>
