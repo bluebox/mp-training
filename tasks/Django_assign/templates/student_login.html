@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Student_details</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  </head>
+  <body class="mb-4 me-5 ms-5" >
+  <br>
+    <h1 style="font-size:300%">Student Details</h1>
+
+      <p style="font-size:200%">Roll no: {{user.0.0}}</p>
+      <p style="font-size:200%">Name: {{user.0.1}}</p>
+      <p style="font-size:200%">Dept: {{user.0.2}}</p>
+      <table class="table mb-4 me-4 ms-4">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">S1</th>
+          <th scope="col">S2</th>
+          <th scope="col">S3</th>
+          <th scope="col">S4</th>
+          <th scope="col">S5</th>
+          <th scope="col">S6</th>
+          <th scope="col">S7</th>
+          <th scope="col">S8</th>
+          <th scope="col">S9</th>
+          <th scope="col">S10</th>
+          <th scope="col">S11</th>
+          <th scope="col">S12</th>
+        </tr>
+        </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td class="table-primary">{{user.0.3}}</td>
+          <td class="table-secondary">{{user.0.4}}</td>
+          <td class="table-success">{{user.0.5}}</td>
+          <td class="table-danger">{{user.0.6}}</td>
+          <td class="table-warning">{{user.0.7}}</td>
+          <td class="table-primary">{{user.0.8}}</td>
+          <td class="table-secondary">{{user.0.9}}</td>
+          <td class="table-success">{{user.0.10}}</td>
+          <td class="table-danger">{{user.0.11}}</td>
+          <td class="table-warning">{{user.0.12}}</td>
+          <td class="table-info">{{user.0.13}}</td>
+          <td class="table-light">{{user.0.14}}</td>
+          <td class="table-dark">{{user.0.15}}</td>
+        </tr>
+  </tbody>
+</table>
+<!--      <img src=""/>-->
+<!--      <p>Roll no: {{user.0.0}}</p>-->
+<!--      <p>Name: {{user.0.1}}</p>-->
+<!--      <p>Dept: {{user.0.2}}</p>-->
+<!--      <p>S1: {{user.0.3}}</p>-->
+<!--      <p>S2: {{user.0.4}}</p>-->
+<!--      <p>S3: {{user.0.5}}</p>-->
+<!--      <p>S4: {{user.0.6}}</p>-->
+<!--      <p>S5: {{user.0.7}}</p>-->
+<!--      <p>S6: {{user.0.8}}</p>-->
+<!--      <p>S7: {{user.0.9}}</p>-->
+<!--      <p>S8: {{user.0.10}}</p>-->
+<!--      <p>S9: {{user.0.11}}</p>-->
+<!--      <p>S10: {{user.0.12}}</p>-->
+<!--      <p>S11: {{user.0.13}}</p>-->
+<!--      <p>S12: {{user.0.14}}</p>-->
+
+  </body>
+</html>
+

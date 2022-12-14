@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>students_list</title>
+     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <form method="get">
+        {{ myfilter.form }}
+        <input type="submit" value="Search" name="" class="btn btn-primary ms-2">
+        </form>
+    </div>
+    <table class="table mb-4 me-4 ms-4">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">RollNo</th>
+          <th scope="col">Name</th>
+          <th scope="col">Dept</th>
+          <th scope="col">S1</th>
+          <th scope="col">S2</th>
+          <th scope="col">S3</th>
+          <th scope="col">S4</th>
+          <th scope="col">S5</th>
+          <th scope="col">S6</th>
+          <th scope="col">S7</th>
+          <th scope="col">S8</th>
+          <th scope="col">S9</th>
+          <th scope="col">S10</th>
+          <th scope="col">S11</th>
+          <th scope="col">S12</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+      <tbody>
+      {% for users in user %}
+        <tr>
+          <td scope="row"><a href="{% url 'update' users.rollno %}">
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="click 2 update">
+              {{users.rollno}}
+              </button></a>
+          </td>
+          <td class="table-primary">{{users.student_name}}</td>
+          <td class="table-primary">{{users.dept}}</td>
+          <td class="table-primary">{{users.sub1}}</td>
+          <td class="table-secondary">{{users.sub2}}</td>
+          <td class="table-success">{{users.sub3}}</td>
+          <td class="table-danger">{{users.sub4}}</td>
+          <td class="table-warning">{{users.sub5}}</td>
+          <td class="table-primary">{{users.sub6}}</td>
+          <td class="table-secondary">{{users.sub7}}</td>
+          <td class="table-success">{{users.sub8}}</td>
+          <td class="table-danger">{{users.sub9}}</td>
+          <td class="table-warning">{{users.sub10}}</td>
+          <td class="table-info">{{users.sub11}}</td>
+          <td class="table-light">{{users.sub12}}</td>
+          <td class="table-dark"><a href="{% url 'delete' users.rollno %}">Del</a></td>
+        </tr>
+     {% endfor %}
+      </tbody>
+    </table>
+  <button type="button" class="btn btn-outline-info ms-4"><a href="{% url 'addaction' %}">Add Student</a></button>
+</body>
+</html>

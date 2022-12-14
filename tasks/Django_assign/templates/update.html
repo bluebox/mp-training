@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update_details</title>
+    <link href="{% static 'css/bootstrap.min2.css' %}" rel="stylesheet">
+</head>
+<body>
+<p> Just update</p>
+<form action="updaterecord/" method="post">
+            {% csrf_token %}
+            <center><div class="container">
+                <div class="imgcontainer">
+                    <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/The_Importance_of_User_Authentication_Methods_in_Cyber_Security.jpg" alt="Avatar" class="avatar">
+                </div>
+
+                <label ><b>Rollno :  </b></label>
+                <input class="form-control me-sm-2" type="text" placeholder="Enter Rollno" name="Rollno" float="right" value="{{user.0.0}}" required><br>
+                <label ><b>Name : </b></label>
+                <input type="text" placeholder="Enter Name" name="Student_name" value="{{user.0.1}}" required><br>
+                <label ><b>S1 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S1" float="right" min="1" max="100" value="{{user.0.3}}" required><br>
+                <label ><b>S2 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S2" float="right" min="1" max="100" value="{{user.0.4}}" required><br>
+                <label ><b>S3 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S3" float="right" min="1" max="100" value="{{user.0.5}}" required><br>
+                <label ><b>S4 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S4" float="right" min="1" max="100" value="{{user.0.6}}" required><br>
+                <label ><b>S5 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S5" float="right" min="1" max="100" value="{{user.0.7}}" required><br>
+                <label ><b>S6 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S6" float="right" min="1" max="100" value="{{user.0.8}}" required><br>
+                <label ><b>S7 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S7" float="right" min="1" max="100" value="{{user.0.9}}" required><br>
+                <label ><b>S8 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S8" float="right" min="1" max="100" value="{{user.0.10}}" required><br>
+                <label ><b>S9 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S9" float="right" min="1" max="100" value="{{user.0.11}}" required><br>
+                <label ><b>S10 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S10" float="right" min="1" max="100" value="{{user.0.12}}" required><br>
+                <label ><b>S11 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S11" float="right" min="1" max="100" value="{{user.0.13}}" required><br>
+                <label ><b>S12 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S12" float="right" min="1" max="100" value="{{user.0.14}}" required><br>
+                <button type="submit"><b>Submit</b></button><br>
+
+            </div></center>
+        </form>
+</body>
+</html>

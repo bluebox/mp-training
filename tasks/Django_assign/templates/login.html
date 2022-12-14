@@ -1,0 +1,88 @@
+{% load static%}
+<html>
+    <head>
+        <title>login_Page</title>
+        <link href="{% static 'css/bootstrap.min2.css' %}" rel="stylesheet">
+        <style>
+<!--            body{-->
+<!--                font-family: Arial, Helvetica, sans-serif;-->
+<!--                background-color: white;-->
+<!--            }-->
+<!--            button{-->
+<!--                background-color: #4CAF50;-->
+<!--                width: 25%;-->
+<!--                padding: 15px;-->
+<!--                color: black;-->
+<!--                border: none;-->
+<!--                float: center;-->
+<!--                font-size: 15px;-->
+<!--            }-->
+<!--            label{-->
+<!--                font-size: 20px;-->
+<!--            }-->
+<!--            form{-->
+<!--                border: 3px solid #f1f1f1;-->
+<!--            }-->
+<!--            input[type=text],input[type=password]{-->
+<!--                width: 50%;-->
+<!--                font-size: 15px;-->
+<!--                margin: 8px 0px;-->
+<!--                padding: 12px 20px;-->
+<!--                display: inline-block;-->
+<!--                border: 2px solid green;-->
+<!--                box-sizing: border-box;-->
+<!--            }-->
+<!--            button:hover{-->
+<!--                opacity:0.7;-->
+
+<!--            }-->
+<!--            .container{-->
+<!--                padding: 50px;-->
+<!--                background-color: white;-->
+<!--            }-->
+<!--            .imgcontainer {-->
+<!--                text-align: center;-->
+<!--                margin: 24px 0 12px 0;-->
+<!--            }-->
+
+            img.avatar {
+                width: 50%;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+    <br><br><br><br><br><br>
+    <center><div class="card text-white bg-secondary mb-3" style="max-width: 70rem;">
+
+      <div class="card-body">
+
+          <center><h1>Login Form</h1></center>
+            <form action="" method="post">
+            {% csrf_token %}
+            {% load static %}
+            <center><div class="container">
+                <div class="imgcontainer">
+                    <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/The_Importance_of_User_Authentication_Methods_in_Cyber_Security.jpg" alt="Avatar" class="avatar">
+                </div>
+                <label ><b>Student</b></label>
+                <input type="radio"  name="member" value="student_password"/><br>
+                <label ><b>Faculty</b></label>
+                <input type="radio" name="member" value="faculty_password"/><br>
+                <label ><b>Username :  </b></label>
+                <input type="text" placeholder="Enter Username" name="Username" float="right"  required><br>
+                {% if error %}
+                <div class ="alert alert-danger" role="alert">Username shld contain more than 4 char</div>
+                {% endif %}
+                <label ><b>Password : </b></label>
+                <input type="password" placeholder="Enter Password" name="Password" required><br>
+                <button type="submit"><b><a href="">Login</b></button><br>
+
+            </div></center>
+            </form>
+
+      </div></center>
+
+
+    </body>
+</html>

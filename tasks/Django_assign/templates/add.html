@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <link href="{% static 'css/bootstrap.min2.css' %}" rel="stylesheet">
+        <style>
+<!--            body{-->
+<!--                font-family: Arial, Helvetica, sans-serif;-->
+<!--                background-color: white;-->
+<!--            }-->
+<!--            button{-->
+<!--                background-color: #4CAF50;-->
+<!--                width: 25%;-->
+<!--                padding: 15px;-->
+<!--                color: black;-->
+<!--                border: none;-->
+<!--                float: center;-->
+<!--                font-size: 15px;-->
+<!--            }-->
+<!--            label{-->
+<!--                font-size: 20px;-->
+<!--            }-->
+<!--            form{-->
+<!--                border: 3px solid #f1f1f1;-->
+<!--            }-->
+<!--            input[type=text],input[type=password],input[type=number]{-->
+<!--                width: 50%;-->
+<!--                font-size: 15px;-->
+<!--                margin: 8px 0px;-->
+<!--                padding: 12px 20px;-->
+<!--                display: inline-block;-->
+<!--                border: 2px solid green;-->
+<!--                box-sizing: border-box;-->
+<!--            }-->
+<!--            button:hover{-->
+<!--                opacity:0.7;-->
+
+<!--            }-->
+<!--            .container{-->
+<!--                padding: 50px;-->
+<!--                background-color: white;-->
+<!--            }-->
+<!--            .imgcontainer {-->
+<!--                text-align: center;-->
+<!--                margin: 24px 0 12px 0;-->
+<!--            }-->
+
+            img.avatar {
+                width: 20%;
+                border-radius: 50%;
+            }
+        </style>
+</head>
+<body>
+    <center><h1>Add Student</h1></center>
+        <form action="{% url 'addrecord' %}" method="post">
+            {% csrf_token %}
+
+            <center><div class="card text-white bg-danger mb-3" style="max-width: 50rem;">
+              <div class="card-header">Header</div>
+              <div class="card-body">
+                <h4 class="card-title"></h4>
+
+                  <center><div class="container">
+                <div class="imgcontainer">
+                    <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/The_Importance_of_User_Authentication_Methods_in_Cyber_Security.jpg" alt="Avatar" class="avatar">
+                </div>
+
+                <label ><b>Rollno :  </b></label>
+                <input type="text" placeholder="Enter Rollno" name="Rollno" float="right"  required><br>
+                {% if error1 %}
+                <div class ="alert alert-danger"  role="alert">Rollno shld have 5 char and wld start with 'ME','CS','CV','EC'</div>
+                {% endif %}
+
+                <label ><b>Name : </b></label>
+                <input type="text" placeholder="Enter Name" name="Student_name" required><br>
+                {% if error %}
+                <div class ="alert alert-danger" role="alert">Name shld contain more than 4 char</div>
+                {% endif %}
+                <label ><b>Dept :  </b></label>
+
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" name="Dept" id="btnradio1"  value="Mech" autocomplete="off" checked="">
+                  <label class="btn btn-outline-primary" for="btnradio1">Mech</label>
+                  <input type="radio" class="btn-check" name="Dept" id="btnradio2" value="CS" autocomplete="off" checked="">
+                  <label class="btn btn-outline-primary" for="btnradio2">CS</label>
+                  <input type="radio" class="btn-check" name="Dept" id="btnradio3" value="Electronics" autocomplete="off" checked="">
+                  <label class="btn btn-outline-primary" for="btnradio3">Electronics</label>
+                  <input type="radio" class="btn-check" name="Dept" id="btnradio4" value="Civil" autocomplete="off" checked="">
+                  <label class="btn btn-outline-primary" for="btnradio4">Civil</label>
+                </div><br>
+
+<!--                <input type="text" placeholder="Enter Dept Name" name="Dept" float="right"  required><br>-->
+
+                <label ><b>S1 :  </b></label>
+                <input type="number" placeholder="Enter Sub1 Marks" name="S1" float="right" min="1" max="100" required><br>
+                <label ><b>S2 :  </b></label>
+                <input type="number" placeholder="Enter Sub2 Marks" name="S2" float="right" min="1" max="100" required><br>
+                <label ><b>S3 :  </b></label>
+                <input type="number" placeholder="Enter Sub3 Marks" name="S3" float="right" min="1" max="100" required><br>
+                <label ><b>S4 :  </b></label>
+                <input type="number" placeholder="Enter Sub4 Marks" name="S4" float="right" min="1" max="100" required><br>
+                <label ><b>S5 :  </b></label>
+                <input type="number" placeholder="Enter Sub5 Marks" name="S5" float="right" min="1" max="100" required><br>
+                <label ><b>S6 :  </b></label>
+                <input type="number" placeholder="Enter Sub6 Marks" name="S6" float="right" min="1" max="100" required><br>
+                <label ><b>S7 :  </b></label>
+                <input type="number" placeholder="Enter Sub7 Marks" name="S7" float="right" min="1" max="100" required><br>
+                <label ><b>S8 :  </b></label>
+                <input type="number" placeholder="Enter Sub8 Marks" name="S8" float="right" min="1" max="100" required><br>
+                <label ><b>S9 :  </b></label>
+                <input type="number" placeholder="Enter Sub9 Marks" name="S9" float="right" min="1" max="100" required><br>
+                <label ><b>S10 :  </b></label>
+                <input type="number" placeholder="Enter Sub10 Marks" name="S10" float="right" min="1" max="100" required><br>
+                <label ><b>S11 :  </b></label>
+                <input type="number" placeholder="Enter Sub11 Marks" name="S11" float="right" min="1" max="100" required><br>
+                <label ><b>S12 :  </b></label>
+                <input type="number" placeholder="Enter Sub12 Marks" name="S12" float="right" min="1" max="100" required><br>
+
+                <button type="submit"><b>Submit</b></button><br>
+
+                </div></center>
+                </form>
+
+            </div></center>
+
+
+</body>
+</html>
