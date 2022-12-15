@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h3 class="m-4">All Students</h3>
+<div class="row">
+  <div class="col-12">
+    {% if pass_stu %}
+    <div class="card bg-light ms-4 me-4 mb-4">
+      <div class="card-header">
+        <i class="fa-solid fa-list fa-lg"></i> Student Records
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Birth Day</th>
+                  <th scope="col">Field Of Study</th>
+                  <th scope="col">Modify</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for student in pass_stu %}
+                  <tr>
+                    <td><a href='stu_profile/{{student.id}}'>{{ student.name }}</a></td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.d_o_b }}</td>
+                    <td>{{ student.branch }}</td>
+                    <td>
+                      <a class="btn btn-warning me-1" href="{% url 'edit' student.id %}">
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </a>
+
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{student.id}}">
+                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                      </button>
+
+                      <!-- Modal - Delete Student -->
+                      <div class="modal" id="delete{{student.id}}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Student: {{ student.name }}
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you want to delete this student?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <form action="stu_delete/{{student.id}}" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-primary" value="Delete">
+                              </form>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    {% else %}
+      <h5 class="alert alert-primary ms-4 me-4">No Student Records</h5>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+<!--{% load static %}-->
+<!--<head>-->
+<!--    <style>-->
+<!--        .base{-->
+<!--        width: 40px;-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1 style="text-align:center">Student Name</h1>-->
+<!--<div style="display:flex ; margin-right: 20px">-->
+<!--    <div style="margin-right: auto">-->
+<!--        <form action="search/" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <label>Search</label><br>-->
+<!--            <input type = "number" name = "key"><br>-->
+<!--            <button type="submit" value="Submit" style="-->
+<!--            margin: 4px 20px;-->
+<!--            cursor: pointer;">Search By Id</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <div class="base" style="">-->
+<!--        <form action="filter_result/" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <label>Choose a Department</label>-->
+<!--            <select name="Branch" id="branch">-->
+<!--                {% for i in pass_br %}-->
+<!--                <option value="{{i.id}}">{{i.branch}}</option>-->
+<!--                {% endfor %}-->
+<!--            </select><br>-->
+<!--            <button type="submit" value="Submit" style="-->
+<!--               padding: 5px 32px;-->
+<!--               margin: 4px 20px;-->
+<!--               cursor: pointer;">Search By Department</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div>-->
+<!--<table border="1" style="margin-left:auto; margin-right:auto">-->
+<!--    <tr>-->
+<!--        <th>Stud. Id</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Branch</th>-->
+<!--        <th>Modify</th>-->
+<!--    </tr>-->
+<!--    {% for x in pass_stu %}-->
+<!--    <tr>-->
+<!--        <td><a href="stu_profile/{{ x.id }}">{{ x.id }}</a></td>-->
+<!--        <td>{{x.name}}</td>-->
+<!--        <td>{{x.branch}}</td>-->
+<!--        <td><a href="stu_delete/{{ x.id }}">delete</a></td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--</table>-->
+<!--    </div>-->
+
+<!--<p style="text-align:center">-->
+<!--    <a href="add_stu/">Add Student</a>-->
+<!--</p>-->
+<!--</body>-->

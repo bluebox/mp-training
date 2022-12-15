@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1 style="text-align:center">Student Details</h1>
+<div><img src="/media/{{x.image}}"></div>
+<div>
+<div style="display: inline-block">
+    <table border="1" style=" margin-top:auto; margin-bottom:auto">
+        <tr>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Birth-Date</th>
+            <th>Branch</th>
+        </tr>
+        <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ x.address }}</td>
+            <td>{{ x.d_o_b }}</td>
+            <td>{{ x.branch }}</td>
+        </tr>
+    </table>
+</div>
+
+<div style="display: inline-block">
+    <table border="1" style=" margin-top:auto; margin-bottom:auto">
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        {% for i in z %}
+        <tr>
+
+            <td>{{ i.sub_id.subject }}</td>
+            <td>{{ i.mark }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+{% endblock %}

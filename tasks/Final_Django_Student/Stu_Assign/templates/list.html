@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Marks Table</h1>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Student_id</th>
+        <th scope="col">Subject_id</th>
+        <th scope="col">Branch_id</th>
+        <th scope="col">Mark Scored</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Modify</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-primary">
+    {% for x in marks %}
+    <tr>
+        <td>{{ x.stu_id.name }}</td>
+        <td>{{ x.sub_id.subject}}</td>
+        <td>{{ x.stu_id.branch}}</td>
+        <td>{{ x.mark }}</td>
+        <td>{{ x.semester }}</td>
+        <td>
+            <a href="mar_delete/{{ x.id }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tr>
+
+    </tbody>
+</table>
+<div style="text-align: center">
+    <a class="btn btn-warning me-1" href="add_marks/">
+        Add Marks
+    </a>
+</div>
+
+{% endblock %}

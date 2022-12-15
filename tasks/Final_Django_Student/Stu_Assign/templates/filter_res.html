@@ -1,0 +1,32 @@
+<html>
+<head>
+</head>
+<body>
+<h1 style="text-align:center">Filter Students
+</h1>
+{% if obj %}
+<div>
+    <table border="1" style="margin-left:auto; margin-right:auto">
+        <tr>
+            <th>Stud. Id</th>
+            <th>Name</th>
+        </tr>
+        {% for x in obj %}
+        <tr>
+            <td>{{ x.id }}</td>
+            <td>{{x.stu_id.name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% else %}
+<h1>There no student currently added in this department</h1>
+{% endif %}
+<div style="  margin: 20;
+  position: absolute;
+  left: 45%;
+  transform: translate(-50%, -50%);">
+    <input style="text-align:center" type=button value="Previous Page" onClick="javascript:history.go(-1);">
+</div>
+</body>
+</html>

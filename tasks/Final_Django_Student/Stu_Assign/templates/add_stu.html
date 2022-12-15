@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+
+{% block body %}
+  <h3 class="text-center m-4">Add Student</h3>
+  {% if success %}
+    <div class="alert alert-success" role="alert">
+      The new student added successfully.
+      <a href="{% url 'stu' %}" class="alert-link">Go to Home Page.</a>
+    </div>
+  {% else %}
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card bg-light mb-3">
+          <div class="card-header">
+            <i class="fa-solid fa-address-card fa-lg"></i> Student Registration
+          </div>
+          <div class="card-body">
+            <form action="{% url 'add' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.as_p }}
+
+              <button type="submit" class="btn btn-primary">Add</button>
+              <a href="{% url 'stu' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+            {% if img_obj %}
+            <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+            <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+            {% endif %}
+  {% endif %}
+{% endblock %}
+
+<!--{% load static %}-->
+<!--<h1>Add Student</h1>-->
+
+<!--<form action="add_stu_record/" method="POST">-->
+<!--    {% csrf_token %}-->
+<!--    Name:<br>-->
+<!--    <input name="first">-->
+<!--    <br><br>-->
+<!--    Address:<br>-->
+<!--    <input name="address">-->
+<!--    <br><br>-->
+<!--    Birth Date:<br>-->
+<!--    <input name="bday">-->
+<!--    <br><br>-->
+<!--    Branch:<br>-->
+<!--    <input name="branch">-->
+<!--    <br><br>-->
+<!--    <button type="submit" value="Submit">Submit</button>-->
+<!--</form>-->
