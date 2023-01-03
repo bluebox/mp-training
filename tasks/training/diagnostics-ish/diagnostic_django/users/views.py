@@ -167,7 +167,7 @@ class RegisterCustomer(APIView):
         customers = list(customers.values(
             'customer_id', 'user_id__username'
         ))
-        return Response({'customers': json.dumps(customers)}, status=200)
+        return Response({'customers': json.dumps(customers)}, status=503)
 
 
 class RegisterEmployee(APIView):
@@ -213,7 +213,7 @@ class RegisterEmployee(APIView):
         staffs = Staff.objects.all()
         staffs = list(staffs.values(
             'staff_id', 'user_id__username', 'designation'
-        ))
+        ))  
         return Response({'staffs': json.dumps(staffs)}, status=200)
 
 
@@ -323,7 +323,7 @@ class LogoutView(APIView):
     """view to logout"""
 
     @staticmethod
-    def post():
+    def post(request):
         """logout method"""
         response = Response()
         response.delete_cookie(key='refreshToken')

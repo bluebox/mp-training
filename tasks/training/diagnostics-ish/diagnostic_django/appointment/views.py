@@ -110,7 +110,7 @@ class FilterAppointment(APIView):
 class AppointmentAPI(APIView):
     """ api view for appointment addding and get all  """
     @staticmethod
-    def get():
+    def get(request):
         """get all appointment"""
         appointments = Appointment.objects.all()
         appointments_tests = []
@@ -211,10 +211,10 @@ class DetailBranch(APIView):
             return Response({"message":error_list, "action_status": "failure"}, status=200)
 
 
-class BranchAPI(APIView):
+class   BranchAPI(APIView):
     """branch api"""
     @staticmethod
-    def get():
+    def get(request):
         """get all branch"""
         branches = Branch.objects.all()
         serializer = BranchSerializer(branches, many=True)
