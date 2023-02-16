@@ -55,7 +55,7 @@ logout(){
   getAllAppointment():Observable<any>
   {
     console.log('doctors apointment list get')
-    return this.http.get(this.url+'appointment/appointment',{headers: this.httpHeaders});
+    return this.http.get(this.url+'users/apointmentdetails/',{headers: this.httpHeaders});
   }
   getAllSalary():Observable<any>
   {
@@ -82,10 +82,10 @@ logout(){
     console.log('single doc details get')
     return this.http.get(`${this.url}users/getdoctor/${email}/`,{headers: this.httpHeaders});
   }
-  getAPatient(id: any):Observable<any>
+  getAPatient(email: any):Observable<any>
   {
     console.log('one patient')
-    return this.http.get('${this.url}users/getpatient/${email}/',{headers: this.httpHeaders});
+    return this.http.get(this.url+'users/getpatient/'+email+'/',{headers: this.httpHeaders});
   }
   getAApointment(id: any):Observable<any>
   {

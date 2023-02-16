@@ -50,9 +50,8 @@ saveDetails(formlogIn: any): void {
               this.router.navigate(['/appointment/'])
             }
             else if(res.type_of_user=="D"){
-              // this.router.navigate(['/slot/'])
-              this.router.navigate(['/doctorHome/'])
-
+               this.router.navigate(['/slot/'])
+              // this.router.navigate(['/docto/'])
             }
           },
           (error:any)=>{

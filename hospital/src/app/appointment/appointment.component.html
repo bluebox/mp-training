@@ -13,7 +13,7 @@
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
-<button (click)="get_Slot_Data()">Click</button>
+<button  mat-raised-button color="primary" (click)="get_Slot_Data()">Check Availability</button>
   <mat-form-field appearance="fill" >
     <mat-label>Available Slot</mat-label>
       <mat-select matNativeControl name="slot" formControlName="slot">
@@ -28,8 +28,8 @@
       <button mat-raised-button color="primary"  routerLink="/newuser">Back</button>
     </div>
     <router-outlet></router-outlet>
-      <button mat-raised-button color="primary" type="submit"  [disabled]="!form_appointment.valid" (click)="saveDetails(form_appointment)">Submit</button>
+      <button mat-raised-button color="primary" type="submit"  [disabled]="!form_appointment.valid" (click)="saveDetails()">Submit</button>
   </div>
 
-<button (click)="openBottomSheet()">Click</button>
+<button mat-raised-button color="primary" (click)="openBottomSheet()">Doctor's Details</button>
 </form>

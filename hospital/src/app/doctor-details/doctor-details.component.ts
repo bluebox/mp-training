@@ -10,8 +10,10 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
   providers:[ServercomunicationService]
 })
 export class DoctorDetailsComponent implements OnInit {
+  displayedColumns: string[] = ['name', 'email', 'phone_no', 'id','inid','gender','exp'];
   doctor: any;
   doctors:any;
+  dataSource: any;
   id:any;
   constructor(private _bottomSheetRef: MatBottomSheetRef<DoctorDetailsComponent>,private api:ServercomunicationService,private book: BookingService ) {}
 
@@ -40,6 +42,8 @@ export class DoctorDetailsComponent implements OnInit {
   getDocDetails(): any{
     this.doctors=this.book.getDocDetails()
     console.log(this.doctors);
+    this.dataSource = this.doctors;
+    console.log('datasource',this.dataSource)
   }
   getData()
   {

@@ -12,6 +12,7 @@ import { DoctorDetailsComponent } from './doctor-details/doctor-details.componen
 import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SlotBookingComponent } from './slot-booking/slot-booking.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {path: '', redirectTo: 'newuser', pathMatch: 'full'},
   {path: 'doctor', component: DoctorComponent},
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path:'doc-details',component:DoctorDetailsComponent},
   {path:'doctorHome',component:DoctorHomeComponent},
   {path:'logout',component:LogoutComponent},
+  {path:'doctorhome',component:DoctorHomeComponent},
+
 ];
 
 @NgModule({

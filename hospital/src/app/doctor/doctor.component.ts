@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ServercomunicationService } from '../servercomunication.service';
 //import { NgMaterialModule } from '../ng-material/ng-material.module';
 export interface UserFormInterface {
@@ -27,7 +28,7 @@ export class DoctorComponent implements OnInit {
     type_of_user: ''
   };
 
-  constructor(private fb: FormBuilder,private api:ServercomunicationService) { }
+  constructor(private fb: FormBuilder,private api:ServercomunicationService,private router:Router) { }
 
   ngOnInit(): void {
     this.isregistered=false,
@@ -61,13 +62,13 @@ saveDetails(form:any){
   this.api.registerUser(this.userform).subscribe(
     (data)=>{
       console.log(data);
-     this.isregistered=true;
+    //  this.isregistered=true;
     },
     error=>{
 
   console.log(error);
 })
-if(this.isregistered==true){
+// if(this.isregistered==true){
   const data=JSON.stringify(form.value)
   this.api.register_doctor(data).subscribe(
 
@@ -75,11 +76,12 @@ if(this.isregistered==true){
     (data)=>{
       console.log(data);
       this.doctor=data;
-      // console.log(this.doctor)
+      alert('SUCCESS!! :-)\n\n');
+      this.router.navigate(['/login/'])
     },
     error=>{
 
   console.log(error);
 })}
 }
-}
+

@@ -10,8 +10,11 @@ import { ServercomunicationService } from '../servercomunication.service';
   providers:[ServercomunicationService]
 })
 export class ListofpatientComponent implements OnInit {
-
+  displayedColumns: string[] = ['name', 'email', 'phone_no', 'id','inid','gender'];
   patients:any;
+  dataSource: any;
+
+
   constructor(private api:ServercomunicationService) { }
 
   ngOnInit() {
@@ -19,6 +22,8 @@ export class ListofpatientComponent implements OnInit {
     this.getData();
 
     console.log(this.getData());
+
+
   }
 
 
@@ -29,6 +34,8 @@ getData()
       console.log(data);
       this.patients=data;
       console.log(this.patients[0].name)
+      this.dataSource = this.patients;
+      console.log('datasource',this.dataSource)
     },
     error=>{
   console.log(error);

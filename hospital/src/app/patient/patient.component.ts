@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ServercomunicationService } from '../servercomunication.service';
+import { Router } from '@angular/router';
 
 export interface UserFormInterface {
   name:string
@@ -33,7 +34,7 @@ export class PatientComponent implements OnInit {
     password: '',
     type_of_user: ''
   };
-  constructor(private fb: FormBuilder,private api:ServercomunicationService) { }
+  constructor(private fb: FormBuilder,private api:ServercomunicationService,private router:Router) { }
 
   ngOnInit(): void {
     this.patientForm = this.fb.group({
@@ -62,6 +63,8 @@ saveDetails(){
   this.api.registerUser(this.userform).subscribe(
     (data)=>{
       console.log(data);
+      alert('SUCCESS!! :-)\n\n');
+      this.router.navigate(['/login/'])
     },
     error=>{
 

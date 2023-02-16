@@ -21,7 +21,6 @@ export interface Appointment{
 export class AppointmentComponent implements OnInit {
   form_appointment: FormGroup = new FormGroup({});
   doctor: any;
-  date:any;
   user:any;
   appointed:any;
   temp:any;
@@ -29,6 +28,7 @@ export class AppointmentComponent implements OnInit {
   selectedDoctorDetails: any;
   selectedSlotDetails: any;
   patient: any;
+  data: any;
   constructor(private datePipe:DatePipe,private _bottomSheet: MatBottomSheet,private fb: FormBuilder,private api:ServercomunicationService,private book:BookingService) { }
   openBottomSheet(): void {
     this._bottomSheet.open(DoctorDetailsComponent);
@@ -78,39 +78,19 @@ getUserdetails(){
 }
 getPatientData()
 {
-  this.api.getAPatient(this.user.email).subscribe(
+  this.api.getAPatient(this.user).subscribe(
     (data: any)=>{
+      console.log('patients');
       console.log(data);
       this.patient=data[0].id;
       console.log(this.patient)
-      this.book.setDocData(data)
+      // this.book.setDocData(data)
     },
-    (    error: any)=>{
-
+    ( error: any)=>{
   console.log(error);
 })
 }
-saveDetails(form_appointment:any){
-  console.log(this.form_appointment);
-  let app={
-    "slot":this.selectedSlotDetails,
-    "patient":this.patient,
-  }
-  console.log('detail1');
-  console.log(app);
-// this.temp=this.getADocData(this.doc: any);
-const data=JSON.stringify(app)
-this.api.register_appointment(app).subscribe(
-  (data)=>{
-    console.log(data);
-    this.doctor=data;
 
-  },
-  error=>{
-
-console.log(error);
-})
-}
 
 getCellData(id:any){
   this.selectedDoctorDetails=id
@@ -135,5 +115,28 @@ get_Slot_Data()
   console.log(error);
 })
 console.log('detail2')
+}
+
+saveDetails(){
+  console.log(this.form_appointment);
+  let app={
+    "slot":this.selectedSlotDetails,
+    "patient":this.patient,
+  }
+  console.log('detail1');
+  console.log(app);
+// this.temp=this.getADocData(this.doc: any);
+const data=JSON.stringify(app)
+this.api.register_appointment(app).subscribe(
+  (res)=>{
+    console.log(res);
+    this.data=res;
+
+
+  },
+  error=>{
+
+console.log(error);
+})
 }
 }

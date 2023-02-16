@@ -1,8 +1,40 @@
-<p>listofpatient works!</p>
-<ul class="list-group">
+<!-- <p>listofpatient works!</p> -->
+<!-- <ul class="list-group">
   <li   *ngFor="let post of patients"
       class="list-group-item">
-      {{ post.name }}
+      {{ post.name }} ---- {{post.phone_no}} ----- {{post.email}}  ---- {{post.insurance_id}}----{{post.gender}} ----- {{post.age}}
   </li>
-</ul>
-
+</ul> -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="gender">
+    <th mat-header-cell *matHeaderCellDef> Gender </th>
+    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+  </ng-container>
+  <ng-container matColumnDef="phone_no">
+    <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.phone_no}} </td>
+  </ng-container>
+  <ng-container matColumnDef="inid">
+    <th mat-header-cell *matHeaderCellDef> Insurance Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.insurance_id}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

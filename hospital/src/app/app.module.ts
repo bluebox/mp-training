@@ -30,7 +30,10 @@ import { DatePipe } from '@angular/common';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SlotBookingComponent } from './slot-booking/slot-booking.component';
-// import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
+import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,8 @@ import { SlotBookingComponent } from './slot-booking/slot-booking.component';
     PatientHomeComponent,
     LogoutComponent,
     SlotBookingComponent,
-    // DoctorHomeComponent,
+    DoctorHomeComponent,
+
     // ServercomunicationService,
   ],
   imports: [
@@ -68,6 +72,8 @@ import { SlotBookingComponent } from './slot-booking/slot-booking.component';
     MatBottomSheetModule,
     MatCheckboxModule,
     FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
 
 
   ],
