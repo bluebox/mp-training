@@ -1,10 +1,9 @@
 """Creating views"""
-from django.db.models.query_utils import Q
+
 from django.http.response import JsonResponse
 from rest_framework import generics, status
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.renderers import JSONRenderer
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from .models import *
 from .project_manager import CourseRatingManager, filter_course_by_title, AllCourses, \
@@ -23,10 +22,11 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class InstructorView(APIView):
     """Handle List type record (fetch and post data)"""
+    permission_classes = [IsAdminUser]
 
     def get_instructor(self, pk):
         try:
-            teacher = Instructor.objects.get(id=pk)
+            teacher = Instructor.objects.get(_id=pk, user__is_staff=True)
             return teacher
         except Instructor.DoesNotExist:
             raise Http404
@@ -36,24 +36,25 @@ class InstructorView(APIView):
             instructor = self.get_instructor(pk)
             serializer = InstructorSerializer(instructor)
         else:
-            instructor = Instructor.objects.all()
+            instructor = Instructor.objects.filter(user__is_staff=True)
             serializer = InstructorSerializer(instructor, many=True)
         return Response(serializer.data)
 
-    def post(self, request):
-        serializer = InstructorSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse("Instructor Data Added Successfully", safe=False)
-        return JsonResponse(serializer.errors)
-
     def put(self, request, pk=None):
-        instructor = Instructor.objects.get(id=pk)
-        serializer = InstructorSerializer(instance=instructor, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse("success", safe=False)
-        return JsonResponse("Failed to update instructor")
+        instructor = Instructor.objects.get(_id=pk)
+        user = instructor.user
+        data = request.data
+        instructor.qualification = data['qualification']
+        instructor.designation = data['designation']
+        instructor.mobile_no = data['mobile_no']
+        instructor.skills = data['skills']
+        instructor.save()
+        user.first_name = data['first_name']
+        user.last_name = data['last_name']
+        user.email = data['email']
+        user.set_password(data['password'])
+        user.save()
+        return JsonResponse("success", safe=False)
 
     def delete(self, request, pk=None):
         instructor = Instructor.objects.get(id=pk)
@@ -61,7 +62,29 @@ class InstructorView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class InstructorDetailView(APIView):
+    """Handle List type record (fetch and post data)"""
+
+    def get_instructor(self, pk):
+        try:
+            teacher = Instructor.objects.get(_id=pk, user__is_staff=True)
+            return teacher
+        except Instructor.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk=None):
+        if pk:
+            instructor = self.get_instructor(pk)
+            serializer = InstructorSerializer(instructor)
+        else:
+            instructor = Instructor.objects.filter(user__is_staff=True)
+            serializer = InstructorSerializer(instructor, many=True)
+        return Response(serializer.data)
+
+
 class SubCategoryList(APIView):
+    permission_classes = [IsAdminUser]
+
     def get_subcategory(self, pk):
         try:
             sub_category = SubCategory.objects.get(id=pk)
@@ -90,8 +113,8 @@ class SubCategoryList(APIView):
         serializer = SubCategorySerializer(instance=subcategory, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse("Student Updated Successfully", safe=False)
-        return JsonResponse("Failed to update student")
+            return JsonResponse("Sub-Category Updated Successfully", safe=False)
+        return JsonResponse("Failed to update sub-category")
 
     def delete(self, request, pk=None):
         subcategory = SubCategory.objects.get(id=pk)
@@ -100,6 +123,8 @@ class SubCategoryList(APIView):
 
 
 class CourseList(APIView):
+    permission_classes = [IsAdminUser]
+
     def get_course(self, pk):
         try:
             course = Course.objects.get(id=pk)
@@ -117,7 +142,7 @@ class CourseList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = CourseSerializer(data=request.data)
+        serializer = CoursePostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse("Course Data Added Successfully", safe=False)
@@ -140,6 +165,7 @@ class CourseList(APIView):
 class SearchCourseList(generics.ListAPIView):
     queryset = models.Course.objects.all()
     serializer_class = CourseSerializer
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         try:
@@ -161,11 +187,6 @@ class AllCourseList(AllCourses, generics.ListCreateAPIView):
             return super().get_queryset()
         except Exception as e:
             return Course.objects.none()
-        # qs = super().get_queryset()
-        # if 'result' in self.request.GET:
-        #     limit = int(self.request.GET['result'])
-        #     qs = Course.objects.all().order_by('-id')[:limit]
-        # return qs
 
 
 class AllCourseList1(generics.RetrieveUpdateDestroyAPIView):
@@ -175,15 +196,18 @@ class AllCourseList1(generics.RetrieveUpdateDestroyAPIView):
 
 class TeacherCourseList(TeacherCourses, generics.ListAPIView):
     serializer_class = CourseSerializer
+    permission_classes = [IsAdminUser]
 
     def get_queryset(self):
         try:
             return self.get_teacher_courses()
         except Exception as e:
-            pass
+            return e
 
 
 class TopicList(APIView):
+    permission_classes = [IsAdminUser]
+
     def get_topic(self, pk):
         try:
             topic = Topic.objects.get(id=pk)
@@ -212,7 +236,7 @@ class TopicList(APIView):
         serializer = TopicSerializer(instance=topic, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse("topic Updated Successfully", safe=False)
+            return JsonResponse("Topic Updated Successfully", safe=False)
         return JsonResponse("Failed to update topic")
 
     def delete(self, request, pk=None):
@@ -223,6 +247,7 @@ class TopicList(APIView):
 
 class TeacherCourseChapterList(TopicVideoList, generics.ListAPIView):
     serializer_class = TopicSerializer
+    permission_classes = [IsAdminUser]
 
     def get_queryset(self):
         try:
@@ -258,13 +283,13 @@ class CourseRatingDetail(generics.RetrieveUpdateDestroyAPIView):
 
 # ------------------ Student/User side
 
-class StudentViewPost(APIView):
-    def post(self, request):
-        serializer = StudentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse("Student Data Added Successfully", safe=False)
-        return JsonResponse("Student Data failed to add", safe=False)
+# class StudentViewPost(APIView):
+#     def post(self, request):
+#         serializer = StudentSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse("Student Data Added Successfully", safe=False)
+#         return JsonResponse("Student Data failed to add", safe=False)
 
 
 class StudentList(generics.ListCreateAPIView):
@@ -272,18 +297,73 @@ class StudentList(generics.ListCreateAPIView):
     serializer_class = StudentSerializer
 
 
-class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+class StudentDetailIns(APIView):
+
+    def get_student(self, pk):
+        try:
+            student = Student.objects.get(_id=pk)
+            return student
+        except Student.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk=0):
+        if pk:
+            student = self.get_student(pk)
+            serializer = StudentSerializer(student)
+        else:
+            student = Student.objects.all()
+            serializer = StudentSerializer(student, many=True)
+        return Response(serializer.data)
+
+
+class StudentDetail(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_student(self, pk):
+        try:
+            student = Student.objects.get(_id=pk)
+            return student
+        except Student.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk=0):
+        if pk:
+            student = self.get_student(pk)
+            serializer = StudentSerializer(student)
+        else:
+            student = Student.objects.all()
+            serializer = StudentSerializer(student, many=True)
+        return Response(serializer.data)
+
+    def put(self, request, pk=None):
+        student = Student.objects.get(_id=pk)
+        user = student.user
+        data = request.data
+        student.qualification = data['qualification']
+        student.interested_category = data['interested_category']
+        student.mobile_no = data['mobile_no']
+        student.address = data['address']
+        student.save()
+        user.first_name = data['first_name']
+        user.last_name = data['last_name']
+        user.email = data['email']
+        user.set_password(data['password'])
+        user.save()
+        return JsonResponse("success", safe=False)
+
+    def delete(self, request, pk=None):
+        instructor = Instructor.objects.get(id=pk)
+        instructor.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class EnrollCoursePost(APIView):
     def post(self, request):
-        serializer = EnrollCourseSerializer(data=request.data)
+        serializer = EnrollCourseSerializerPost(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse("Student Enrolled Successfully", safe=False)
-        return JsonResponse("Student Failed To Add", safe=False)
+        return JsonResponse(serializer.errors)
 
 
 class EnrollCourseList(generics.ListCreateAPIView):
@@ -299,6 +379,7 @@ class EnrollCourseDetail(generics.RetrieveUpdateDestroyAPIView):
 class EnrolledStudentList(EnrolledStudents, generics.ListAPIView):
     queryset = StudentCourseEnrollment.objects.all()
     serializer_class = EnrollCourseSerializer
+    permission_classes = [IsAdminUser]
 
     def get_queryset(self):
         try:
@@ -310,6 +391,7 @@ class EnrolledStudentList(EnrolledStudents, generics.ListAPIView):
 class EnrolledCourseList(EnrolledCourseStudent, generics.ListAPIView):
     queryset = StudentCourseEnrollment.objects.all()
     serializer_class = EnrollCourseSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         try:
@@ -319,7 +401,6 @@ class EnrolledCourseList(EnrolledCourseStudent, generics.ListAPIView):
 
 
 class TeacherDashboard(generics.RetrieveAPIView):
-
     queryset = Instructor.objects.all()
     serializer_class = TeacherDashboardSerializer
 
@@ -338,4 +419,3 @@ class StudentFavoriteCourseList(FavoriteCourse, generics.ListCreateAPIView):
             return self.student_favorite_courses()
         except Exception as e:
             pass
-

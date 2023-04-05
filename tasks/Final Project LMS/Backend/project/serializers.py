@@ -1,17 +1,26 @@
 """Serializer class"""
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from . import models
 from django.db.models import Avg
 
 
+class UserSerializer(serializers.ModelSerializer):
+    """Serializer for User model"""
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'is_staff')
+
+
 class InstructorSerializer(serializers.ModelSerializer):
     """"Serializer"""
+    user = UserSerializer(read_only=True)
 
     class Meta:
         """Meta Class"""
         model = models.Instructor
-        fields = ('id', 'first_name', 'last_name', 'email', 'password',
-                  'qualification', 'designation', 'mobile_no', 'skills', 'teacher_courses')
+        fields = ('_id', 'user', 'qualification', 'designation', 'mobile_no', 'skills', 'teacher_courses')
         depth = 0
 
     def to_representation(self, instance):
@@ -37,12 +46,19 @@ class TopicSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CoursePostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Course
+        fields = ('title', 'description', 'teacher', 'subcategory', 'language', 'image')
+
+
 class CourseSerializer(serializers.ModelSerializer):
     """Serializer for Course"""
     topic_videos = TopicSerializer(read_only=True, many=True)
-    image = serializers.ImageField(required=False)
     total_enrolled_students = serializers.SerializerMethodField(read_only=True)
     course_rating = serializers.SerializerMethodField(read_only=True)
+    teacher = InstructorSerializer(read_only=True)
+
     class Meta:
         """Meta Class"""
         model = models.Course
@@ -55,13 +71,12 @@ class CourseSerializer(serializers.ModelSerializer):
         self.Meta.depth = 0
 
     def to_representation(self, instance):
-        self.Meta.depth = 1
+        self.Meta.depth = 2
         return super(CourseSerializer, self).to_representation(instance)
 
     def get_total_enrolled_students(self, obj):
         total_enrolled_students = models.StudentCourseEnrollment.objects.filter(course=obj).count()
         return total_enrolled_students
-
 
     def get_course_rating(self, obj):
         course_rating = models.CourseRating.objects.filter(course=obj).aggregate(models.Avg('rating'))['rating__avg']
@@ -75,6 +90,11 @@ class StudentSerializer(serializers.ModelSerializer):
         """Meta Class"""
         model = models.Student
         fields = '__all__'
+        depth = 0
+
+    def to_representation(self, instance):
+        self.Meta.depth = 1
+        return super(StudentSerializer, self).to_representation(instance)
 
 
 class CourseRatingSerializer(serializers.ModelSerializer):
@@ -91,7 +111,7 @@ class CourseRatingSerializer(serializers.ModelSerializer):
         self.Meta.depth = 0
 
     def to_representation(self, instance):
-        self.Meta.depth = 1
+        self.Meta.depth = 2
         return super(CourseRatingSerializer, self).to_representation(instance)
 
 
@@ -101,12 +121,18 @@ class EnrollCourseSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta Class"""
         model = models.StudentCourseEnrollment
-        fields = ('id', 'course', 'student', 'enrolled_time')
-        depth = 0
+        fields = ('course', 'student', 'enrolled_time')
+        depth = 3
 
-    def to_representation(self, instance):
-        self.Meta.depth = 2
-        return super(EnrollCourseSerializer, self).to_representation(instance)
+
+class EnrollCourseSerializerPost(serializers.ModelSerializer):
+    """Serializer for Enroll Course"""
+
+    class Meta:
+        """Meta Class"""
+        model = models.StudentCourseEnrollment
+        fields = ('course', 'student', 'enrolled_time')
+        depth = 0
 
 
 class TeacherDashboardSerializer(serializers.ModelSerializer):
@@ -171,4 +197,4 @@ class FavouriteCourseSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         self.Meta.depth = 0
         if request and request.method == 'GET':
-            self.Meta.depth = 2
+            self.Meta.depth = 3

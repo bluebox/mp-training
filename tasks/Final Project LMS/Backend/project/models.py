@@ -1,51 +1,51 @@
 """Create Models for application"""
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 from django.db import models
 from django.core import serializers
 from django.db.models import Aggregate
+from rest_framework.authtoken.models import Token
 
 
 def upload_to(instance, filename):
     return 'course_images/{filename}'.format(filename=filename)
 
 
+
 class Instructor(models.Model):
     """ Instructor Models"""
-    id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=25)
-    email = models.CharField(max_length=40, unique=True)
-    password = models.CharField(max_length=25, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     qualification = models.CharField(max_length=25)
     designation = models.CharField(max_length=50)
     mobile_no = models.CharField(max_length=25, unique=True)
     skills = models.TextField()
+    _id = models.AutoField(primary_key=True)
+
 
     class Meta:
         """Data about Teacher class"""
         verbose_name_plural = "1. Instructor"
 
     def __str__(self):
-        return f'{self.id}-{self.first_name}'
+        return f'{self._id}-{self.user.first_name}'
+
 
 
 class Student(models.Model):
     """ Student Models"""
-    id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=25)
-    email = models.CharField(max_length=40, unique=True)
-    password = models.CharField(max_length=25, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     qualification = models.CharField(max_length=25)
     interested_category = models.TextField(max_length=25)
     mobile_no = models.CharField(max_length=25, unique=True)
     address = models.TextField()
+    _id = models.AutoField(primary_key=True)
 
     class Meta:
         """Data about Student class"""
         verbose_name_plural = '2. Student'
 
     def __str__(self):
-        return f'{self.id}-{self.first_name}'
+        return f'{self._id}-{self.user.first_name}'
 
 
 
@@ -59,7 +59,7 @@ class Category(models.Model):
         verbose_name_plural = '3. Category'
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.id}-{self.name}'
 
 
 class SubCategory(models.Model):
