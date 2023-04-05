@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MSidebar from "./MSidebar";
 import Swal from "sweetalert2";
 
@@ -9,18 +9,54 @@ const baseUrl1 = 'http://127.0.0.1:8000/api/topic/'
 function TopicVideos() {
     const [topicData, setTopicData] = useState([]);
     const [totaTopic, setTotalTopic] = useState(0);
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
     let { course_id } = useParams();
     useEffect(() => {
-        try {
-            axios.get(baseUrl + course_id)
-                .then((res) => {
-                    setTotalTopic(res.data.length)
-                    setTopicData(res.data);
-                });
+        if (topicData.length === 0) {
+            try {
+                axios.get(baseUrl + course_id, {
+                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                })
+                    .then((res) => {
+                        setTotalTopic(res.data.length)
+                        setTopicData(res.data);
+                    }).catch((error) => {
+                        console.log(error.response);
+                        if (error.response.status === 401) { // Unauthorized - access token expired
+                            axios.post('http://127.0.0.1:8000/api/api/token/refresh/', { refresh: refreshToken })
+                                .then((response) => {
+                                    const newAccessToken = response.data.access;
+                                    // Update the access token in localStorage or state
+                                    localStorage.setItem('accessToken', newAccessToken);
+                                    // Make the original request again with the new access token
+                                    axios.get(baseUrl + course_id, {
+                                        headers: { 'Authorization': `Bearer ${newAccessToken}` }
+                                    })
+                                        .then((res) => {
+                                            setTotalTopic(res.data.length)
+                                            setTopicData(res.data);
+                                        })
+                                        .catch((error) => {
+                                            console.log(error.response);
+                                        });
+                                })
+                                .catch((error) => {
+                                    if (error.response.status === 401 && error.response.data.code === 'token_not_valid') { // Unauthorized - refresh token expired
+                                        window.location.href = '/user-logout';
+                                    }
+                                });
+                        }
+                        else {
+                            console.log(error);
+                        }
+                    });
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
-        catch (error) {
-            console.log(error);
-        }
+
     }, []);
     const handleDeleteClick = (topic_id) => {
         Swal.fire({
@@ -33,11 +69,15 @@ function TopicVideos() {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
-                    axios.delete(baseUrl1 + topic_id)
-                        .then((result) => {
+                    axios.delete(baseUrl1 + topic_id, {
+                        headers: { 'Authorization': `Bearer ${accessToken}` }
+                    })
+                        .then(() => {
                             Swal.fire('success', 'Data has been deleted')
                             try {
-                                axios.get(baseUrl + course_id)
+                                axios.get(baseUrl + course_id, {
+                                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                                })
                                     .then((res) => {
                                         setTotalTopic(res.data.length)
                                         setTopicData(res.data);
@@ -80,8 +120,11 @@ function TopicVideos() {
                                                 <td>{topic.title}</td>
                                                 <td><a href={topic.url}>{topic.url}</a></td>
                                                 <td>
+                                                    <Link to={`/master_edit_video/` + topic.id} className="btn btn-sm active btn-success ms-1">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </Link>
                                                     <button onClick={() => handleDeleteClick(topic.id)} className="btn btn-sm active btn-danger ms-1">
-                                                        Delete
+                                                        <i class="bi bi-trash3"></i>
                                                     </button>
                                                 </td>
                                             </tr>

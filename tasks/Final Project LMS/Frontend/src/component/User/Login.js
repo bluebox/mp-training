@@ -16,29 +16,31 @@ function Login() {
     }
 
     const submitForm = () => {
-        const userFormData=new FormData();
-        userFormData.append('email',userLoginData.email)
-        userFormData.append('password',userLoginData.password)
-        try{
-            axios.post(baseUrl,userFormData)
-            .then((res)=>{
-                if(res.data.bool===true){
-                    localStorage.setItem('userLoginStatus',true);
-                    localStorage.setItem('userId', res.data.student_id);
-                    window.location.href='/user-dashboard';
-                }
-                else{
-                    setErrorMsg('Invalid Email or Password!!')
-                }
-            });
+        const userFormData = new FormData();
+        userFormData.append('email', userLoginData.email)
+        userFormData.append('password', userLoginData.password)
+        try {
+            axios.post(baseUrl, userFormData)
+                .then((res) => {
+                    console.log(res.data);
+                    if (res.data.bool === true) {
+                        localStorage.setItem('userLoginStatus', true);
+                        localStorage.setItem('loginstatus', true);
+                        localStorage.setItem('userId', res.data.id);
+                        window.location.href = '/user-mycourse';
+                    }
+                    else {
+                        setErrorMsg('Invalid Email or Password!!')
+                    }
+                });
         }
-        catch(err){
+        catch (err) {
             console.log(err);
         }
     }
     const userLoginStatus = localStorage.getItem('userLoginStatus')
-    if (userLoginStatus==='true'){
-        window.location.href='/user-dashboard';
+    if (userLoginStatus === 'true') {
+        window.location.href = '/user-mycourse';
     }
     useEffect(() => {
         document.title = 'User Login'
@@ -52,10 +54,10 @@ function Login() {
                             Student Login
                         </h5>
                         <div className="card-body">
-                            {errorMsg &&<p className="text-danger">{errorMsg}</p>}
+                            {errorMsg && <p className="text-danger">{errorMsg}</p>}
                             <div className="mb-3">
                                 <label for="inputEmailI" className="form-label">Email Name</label>
-                                <input type="email" name="email" onChange={handleChange}  className="form-control" id="inputEmailI" aria-describedby="emailHelp" />
+                                <input type="email" name="email" onChange={handleChange} className="form-control" id="inputEmailI" aria-describedby="emailHelp" />
                             </div>
                             <div className="mb-3">
                                 <label for="inputPasswordI" className="form-label">Password</label>

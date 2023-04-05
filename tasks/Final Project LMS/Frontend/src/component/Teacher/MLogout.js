@@ -3,8 +3,14 @@ import React from "react";
 
 function MLogout(){
     localStorage.setItem('teacherLoginStatus',false)
+    localStorage.setItem('userLoginStatus', false)
+    localStorage.setItem('loginstatus', false)
     localStorage.removeItem('teacherId');
-    window.location.href='/master-login';
+    localStorage.removeItem('userId');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('studentId');
+    window.location.href='/';
     return(
         <div></div>
     )

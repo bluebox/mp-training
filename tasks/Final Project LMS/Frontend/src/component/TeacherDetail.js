@@ -7,27 +7,32 @@ function TeacherDetail() {
     const [teacherData, setTeacherData] = useState([]);
     const [courseData, setCourseData] = useState([]);
     let { master_id } = useParams();
+    console.log(master_id);
     useEffect(() => {
-        try {
-            axios.get(baseUrl + '/teacher/' + master_id + '/')
-                .then((res) => {
-                    setTeacherData(res.data);
-                    setCourseData(res.data.teacher_courses);
-                });
-        }
-        catch (error) {
-            console.log(error);
-        }
+        if (teacherData.length === 0)
+            try {
+                axios.get(baseUrl + '/teacher-detail/' + master_id + '/')
+                    .then((res) => {
+                        console.log(res.data);
+                        setTeacherData(res.data);
+                        setCourseData(res.data.teacher_courses);
+                    });
+            }
+            catch (error) {
+                console.log(error);
+            }
     }, []);
-    console.log(teacherData);
-    console.log(courseData);
     return (
         <div className="container mt-4">
             <div className="row">
 
                 <div className="col-8">
-                    <h3>{teacherData.first_name}</h3>
-                    <p>{teacherData.email}</p>
+                    {teacherData.user &&
+                        <>
+                            <h1 className='text-danger'>{teacherData.user.first_name}</h1>
+                            <p><b>E-mail</b> :-{teacherData.user.email}</p>
+                        </>
+                    }
                     <p><b>Qualification :- </b>{teacherData.qualification}</p>
                     <p><b>Skills: </b>{teacherData.skills}
                     </p>
@@ -37,7 +42,7 @@ function TeacherDetail() {
             {/*Course List */}
             <div className="card mt-4">
                 <h4 className="card-header">
-                    Course list by the particular insturctor
+                    Courses by
                 </h4>
                 {courseData && courseData.map(course =>
                     <div className="list-group list-group-flush">

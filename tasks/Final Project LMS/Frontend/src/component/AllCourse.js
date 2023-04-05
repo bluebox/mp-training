@@ -8,17 +8,20 @@ function AllCourses() {
     const [nextPage, setNextPage] = useState();
     const [prevPage, setPrevPage] = useState();
     useEffect(() => {
-        try {
-            axios.get(baseUrl)
-                .then((res) => {
-                    setNextPage(res.data.next);
-                    setPrevPage(res.data.previous);
-                    setCourseData(res.data.results);
-                });
+        if(courseData.length === 0){
+            try {
+                axios.get(baseUrl)
+                    .then((res) => {
+                        setNextPage(res.data.next);
+                        setPrevPage(res.data.previous);
+                        setCourseData(res.data.results);
+                    });
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
-        catch (error) {
-            console.log(error);
-        }
+     
     }, []);
     const handlePagination = (url) => {
         try {
@@ -41,7 +44,7 @@ function AllCourses() {
                 {courseData && courseData.map((course, index) =>
                     <div className="col-md-3 mb-4 ">
                         <div className="card">
-                            <Link to={`/detail/${course.id}`}><img src={course.image} width="200" height="200" className="card-img-top" /></Link>
+                            <Link to={`/detail/${course.id}`}><img src={course.image} width="200" height="200" alt={course.title} className="card-img-top" /></Link>
                             <div className="card-body">
                                 <h5 className="card-title"><Link to={`/detail/${course.id}`}>{course.title}</Link></h5>
                             </div>

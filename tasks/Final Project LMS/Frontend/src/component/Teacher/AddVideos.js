@@ -1,36 +1,44 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { addTopic } from "../service/InstructorService";
 import MSidebar from "./MSidebar";
-const baseUrl="http://127.0.0.1:8000/api/course/";
+
 function AddVideos() {
-    let {course_id} = useParams();
-    const [course, setCourse]=useState([]);
-    useEffect(()=>{
-        try{
-            axios.get(baseUrl+course_id+'/')
-            .then((res)=>{
-                  setCourse(res.data); 
-            });
+    const [formErrors, setFormErrors] = useState({});
+    let { course_id } = useParams();
+    let { course_title } = useParams();
+    const submitForm = (e) => {
+        e.preventDefault();
+        const errors = {};
+        const name_regex = /^[a-zA-Z0-9 @_.:']+$/;
+        const url_regex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;/* eslint-disable-line */
+        if (!name_regex.test(e.target.title.value)) {
+            errors.title = "First name can only contain lower case and upper case letters numbers and @ or _ symbol";
+
         }
-        catch(err){
-            console.log(err);
+        if (!url_regex.test(e.target.url.value)) {
+            errors.url = "Url format is (https://www.)";
+
         }
-    },[]);
-    console.log(course);
-console.log(course_id);
-const submitForm = (e) => {
-    e.preventDefault();
-    addTopic(e.target,course_id)
-    .then((result)=>{
-        alert(result);
-        window.location.reload();
-    },(err)=>{
-        alert(err);
-    })
-}
+        setFormErrors(errors);
+        if (Object.keys(errors).length === 0) {
+            addTopic(e.target, course_id)
+                .then((result) => {
+                    if (result === 'Topic Data Added Successfully') {
+                        Swal.fire({
+                            title: "Topic Added",
+                            confirmButtonText: 'Ok',
+                        }).then(() => {
+                            window.location.href = '/master-mycourse';
+                        })
+                    }
+                }, (err) => {
+                    alert(err);
+                })
+        }
+    }
     return (
         <div className="container mt-4">
             <div className="row">
@@ -43,20 +51,25 @@ const submitForm = (e) => {
                             Course Videos
                         </h5>
                         <div className="card-body">
-                        <Form onSubmit={submitForm}>
-                        <Form.Group controlId="title">
-                                    <Form.Label>Title</Form.Label>
-                                    <Form.Control type="text" name="title" required placeholder="Title of your course" />
+                            <Form onSubmit={submitForm}>
+                                <Form.Group controlId="title">
+                                    <Form.Label>Title <span className="text-danger">*</span></Form.Label>
+                                    <Form.Control type="text" name="title" placeholder="Title of your course" />
                                 </Form.Group>
+                                {formErrors.title &&
+                                    <p className="text-danger">{formErrors.title}</p>
+                                }
                                 <Form.Group controlId="course">
-                                    <Form.Label>Course</Form.Label>
-                                    {/* {course.map((name,id)=>{return<option key={id} value={name.id}>{name.title}</option>})} */}
-                                    <Form.Control type="text" name="course" disabled aria-readonly placeholder={course.title}/>
+                                    <Form.Label>Course </Form.Label>
+                                    <Form.Control type="text" name="course" disabled aria-readonly placeholder={course_title} />
                                 </Form.Group>
                                 <Form.Group controlId="url">
-                                    <Form.Label>URL</Form.Label>
-                                    <Form.Control type="url" name="url" required placeholder="https://www.youtube.com" />
+                                    <Form.Label>URL <span className="text-danger">*</span></Form.Label>
+                                    <Form.Control type="text" name="url" placeholder="https://www.youtube.com" />
                                 </Form.Group>
+                                {formErrors.url &&
+                                    <p className="text-danger">{formErrors.url}</p>
+                                }
                                 <Form.Group>
                                     <p></p>
                                     <Button variant="primary" type="submit">

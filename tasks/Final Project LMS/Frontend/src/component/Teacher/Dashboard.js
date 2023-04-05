@@ -11,7 +11,6 @@ function MDashboard() {
             axios.get(baseUrl + teacherId + '/')
                 .then((res) => {
                     setDashboardData(res.data);
-                    console.log(res.data);
                 });
         }
         catch (error) {

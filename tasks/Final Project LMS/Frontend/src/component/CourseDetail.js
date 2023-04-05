@@ -4,12 +4,12 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { addCourse, addReview, studentEnrollCourse, studentFavouriteCourse, studentRemoveFavouriteCourse } from "./service/InstructorService";
+import {addReview, studentEnrollCourse, studentFavouriteCourse, studentRemoveFavouriteCourse } from "./service/InstructorService";
 const baseUrl = 'http://127.0.0.1:8000/api/';
 const baseUrl1 = 'http://127.0.0.1:8000/api/fetch_enroll_status/';
-const baseUrl2 = 'http://127/0.0.1:8000/api/fetch_favorite_status/';
 function CourseDetial() {
     const [topicData, setTopicData] = useState([]);
+    const [userData, setUserData] = useState([]);
     const [teacherData, setTeacherData] = useState([]);
     const [courseData, setCourseData] = useState([]);
     const [userLoginStatus, setUserLoginStatus] = useState();
@@ -18,28 +18,39 @@ function CourseDetial() {
     const [rating, setRating] = useState(0);
     const [favoriteStatus, setFavoriteStatus] = useState();
     let { course_id } = useParams();
-    const userId = localStorage.getItem('userId');
+    const studentId = localStorage.getItem('studentId');
+    const teacherlogin = localStorage.getItem('teacherLoginStatus');
     useEffect(() => {
-        try {
-            axios.get(baseUrl + 'allcourse/' + course_id + '/')
-                .then((res) => {
-                    setCourseData(res.data);
-                    setTeacherData(res.data.teacher);
-                    setTopicData(res.data.topic_videos);
-                    if (res.data.course_rating != '' && res.data.course_rating != null) {
-                        setRating(res.data.course_rating);
-                    }
-
-                });
-        }
-        catch (error) {
-            console.log(error);
-        };
-        //Fetch enroll Status
-        if (userId != null) {
+        if(courseData.length === 0){
             try {
-                axios.get(baseUrl1 + userId + '/' + course_id)
+                axios.get(baseUrl + 'allcourse/' + course_id + '/')
                     .then((res) => {
+                        console.log(res.data.topic_videos);
+                        setUserData(res.data.teacher.user);
+                        setCourseData(res.data);
+                        setTeacherData(res.data.teacher);
+                        setTopicData(res.data.topic_videos);
+                        // eslint-disable-next-line
+                        if (res.data.course_rating != '' && res.data.course_rating != null) {
+                            setRating(res.data.course_rating);
+                        }
+    
+                    })
+                    .catch((error) => {
+                        console.log(error.response);
+                    });
+            }
+            catch (error) {
+                console.log(error);
+            };
+        }
+
+        //Fetch enroll Status
+        if (studentId != null) {
+            try {
+                axios.get(baseUrl1 + studentId + '/' + course_id)
+                    .then((res) => {
+                        // eslint-disable-next-line
                         if (res.data.bool == true) {
                             setEnrollStatus('success');
                         }
@@ -50,7 +61,7 @@ function CourseDetial() {
             };
             //Fetch rating Status
             try {
-                axios.get(baseUrl + 'fetch_rating_status/' + userId + '/' + course_id)
+                axios.get(baseUrl + 'fetch_rating_status/' + studentId + '/' + course_id)
                     .then((res) => {
                         if (res.data.bool) {
                             setRatingStatus('success');
@@ -64,7 +75,7 @@ function CourseDetial() {
             };
             //Fetch favourite Status
             try {
-                axios.get(baseUrl + 'fetch-favorite-status/' + userId + '/' + course_id)
+                axios.get(baseUrl + 'fetch-favorite-status/' + studentId + '/' + course_id)
                     .then((res) => {
                         if (res.data.bool) {
                             setFavoriteStatus('success');
@@ -84,9 +95,10 @@ function CourseDetial() {
 
     }, []);
     const enrollCourse = () => {
-        studentEnrollCourse(userId, course_id)
+        // eslint-disable-next-line
+        studentEnrollCourse(studentId, course_id)
             .then((result) => {
-                if (result == "Student Enrolled Successfully") {
+                if (result === "Student Enrolled Successfully") {
                     Swal.fire({
                         title: 'Enrolled in the course Successfully',
                         icon: 'success',
@@ -103,8 +115,10 @@ function CourseDetial() {
             })
     };
     const markAsFav = () => {
-        studentFavouriteCourse(userId, course_id)
+        console.log('student:'+ studentId +"course:"+course_id);
+        studentFavouriteCourse(studentId, course_id)
             .then((result) => {
+                // eslint-disable-next-line
                 if (result.status == 200 || result.status == 201) {
                     Swal.fire({
                         title: "Course Added to Favorite",
@@ -121,8 +135,9 @@ function CourseDetial() {
             })
     };
     const removeFav = () => {
-        studentRemoveFavouriteCourse(userId, course_id)
+        studentRemoveFavouriteCourse(studentId, course_id)
             .then((result) => {
+                // eslint-disable-next-line
                 if (result.status == 200 || result.status == 201) {
                     Swal.fire({
                         title: "Course Removed From Favorite",
@@ -140,9 +155,9 @@ function CourseDetial() {
     };
     const submitForm = (e) => {
         e.preventDefault();
-        addReview(e.target, course_id, userId)
+        addReview(e.target, course_id, studentId)
             .then((result) => {
-                console.log(result);
+                // eslint-disable-next-line
                 if (result.status == 200 || result.status == 201) {
                     Swal.fire({
                         title: "Rating Added Successfully",
@@ -161,13 +176,12 @@ function CourseDetial() {
         <div className="container mt-4">
             <div className="row">
                 <div className="col-4">
-                    <img src={courseData.image} className="img-thumbnail" alt="Course Image" />
+                    <img src={courseData.image} className="img-thumbnail" alt="Loading" />
                 </div>
                 <div className="col-8">
                     <h3>{courseData.title}</h3>
                     <p>{courseData.description}</p>
-                    <p className="fw-bold">Course By:<Link className="ms-4" to={`/master-detail/${teacherData.id}`}><Button variant="secondary" className="btn btn-sm">{teacherData.first_name}</Button></Link></p>
-                    <p className="fw-bold">Duration: 2 hours 45 minutes</p>
+                    <p className="fw-bold">Course By:<Link className="ms-4" to={`/master-detail/${teacherData._id}`}><Button variant="secondary" className="btn btn-sm">{userData.first_name}</Button></Link></p>
                     <p><b>Total Enrolled Student(s):</b> {courseData.total_enrolled_students}</p>
                     <p className="fw-bold">Rating: {rating}/5
                         {userLoginStatus === 'success' && enrollStatus === 'success' &&
@@ -176,7 +190,7 @@ function CourseDetial() {
                                     <button className="btn btn-warning btn-sm ms-4" data-bs-toggle='modal' data-bs-target='#ratingModal'>Rating</button>
                                 }
                                 {ratingStatus === 'success' &&
-                                    <span className="btn btn-warning btn-sm ms-4"> Already reviewed</span>
+                                    <Button className="btn btn-warning btn-sm ms-4" disabled> Already reviewed</Button>
                                 }
                                 <div className="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
                                     <div className="modal-dialog modal-lg">
@@ -214,7 +228,6 @@ function CourseDetial() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" className="btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
@@ -223,7 +236,7 @@ function CourseDetial() {
                         }
                     </p>
                     {enrollStatus === 'success' && userLoginStatus === 'success' &&
-                        <p><span className="btn btn-success">Already Enrolled</span></p>
+                        <p><Button className="btn btn-success" disabled>Already Enrolled</Button></p>
                     }
                     {userLoginStatus === 'success' && enrollStatus !== 'success' &&
                         <p><button type="button" onClick={enrollCourse} className="btn btn-success">Enroll in this course</button></p>
@@ -238,10 +251,10 @@ function CourseDetial() {
 
                     }
                     {
-                        userLoginStatus !== 'success' &&
+                        teacherlogin !== 'true' && userLoginStatus !== 'success' &&
                         <>
-                            <p><Link className="btn btn-success" to='/user-login'>Please login to enroll in this course</Link></p>
-                            <p><Link className="btn btn-success" to='/user-register'>Register to enroll in this course</Link></p>
+                            <p><Link className="btn btn-success" to='/login' title="Click Here!!">Please login as student to enroll in this course</Link></p>
+                            <p><Link className="btn btn-success" to='/user-register' title='Click Here!!'>Register as student to enroll in this course</Link></p>
 
                         </>
                     }
@@ -254,7 +267,7 @@ function CourseDetial() {
                         Course Videos
                     </h4>
                     <ul className="list-group list-group-flush">
-                        {topicData && topicData.map((topic, index) =>
+                        {topicData.length !==0 && topicData.map((topic, index) =>
                             <li className="list-group-item">{topic.title}
                                 <span className="float-end">
                                     <button className="btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#videoModal1">
@@ -263,11 +276,14 @@ function CourseDetial() {
                                 </span>
                             </li>
                         )}
+                        {topicData.length === 0 && 
+                        <p className="text-danger text-center fs-1">There are no videos added yet</p>
+                        }
                     </ul>
                 </div>
             }
-
         </div>
+        
     )
 }
 export default CourseDetial

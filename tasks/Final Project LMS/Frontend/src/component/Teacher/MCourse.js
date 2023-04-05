@@ -9,17 +9,51 @@ const baseUrl1 = 'http://127.0.0.1:8000/api/teacher_courses_delete/';
 function MCourse() {
     const [courseData, setCourseData] = useState([]);
     const teacherId = localStorage.getItem('teacherId');
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
     useEffect(() => {
-        try {
-            axios.get(baseUrl + teacherId)
-                .then((res) => {
-                    setCourseData(res.data);
-                });
+        if(courseData.length === 0){
+            try {
+                axios.get(baseUrl + teacherId, {
+                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                  }
+                  )
+                    .then((res) => {
+                        setCourseData(res.data);
+                    })
+                    .catch((error) => {
+                        console.log(error.response);
+                        if (error.response.status === 401) {
+                            axios.post('http://127.0.0.1:8000/api/api/token/refresh/', { refresh: refreshToken })
+                                .then((response) => {
+                                    const newAccessToken = response.data.access;
+                                    localStorage.setItem('accessToken', newAccessToken);
+                                    axios.get(baseUrl + teacherId, {
+                                        headers: { 'Authorization': `Bearer ${newAccessToken}` }
+                                    })
+                                        .then((res) => {
+                                            setCourseData(res.data);
+                                        })
+                                        .catch((error) => {
+                                            console.log(error.response);
+                                        });
+                                })
+                                .catch((error) => {
+                                    console.log(error.response);
+                                    if (error.response.status === 401 && error.response.data.code === 'token_not_valid') { 
+                                        window.location.href = '/user-logout';
+                                    }
+                                });
+                        }
+                        else {
+                            console.log(error);
+                        }
+                    });
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
-        catch (error) {
-            console.log(error);
-        }
-
     }, []);
     const handleDelete = (course_id) =>{
         Swal.fire({
@@ -29,16 +63,16 @@ function MCourse() {
           }).then((result) => {
             if (result.isConfirmed) {
               try{
-                axios.delete(baseUrl1+course_id)
+                axios.delete(baseUrl1+course_id, {
+                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                  })
                 .then((res)=>{
                     console.log(res)
                     Swal.fire({
                         title: "Course Deleted",
                         confirmButtonText: 'Ok',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
+                    }).then(() => {
                             window.location.reload();
-                        }
                     })
                 })
               }
@@ -72,16 +106,19 @@ function MCourse() {
 
                                             <tr>
                                                 <td><Link to={`/all_topic_videos/` + course.id}>{course.title}</Link></td>
-                                                <td><img src={course.image} width="80" className="rounded" alt={course.title} /></td>
+                                                <td><img src={course.image} width="100" height="100" className="rounded" alt={course.title} /></td>
                                                 <td>
                                                     <Link to={`/enrolled_students/` + course.id}>{course.total_enrolled_students}</Link>
                                                 </td>
                                                 <td>
-                                                    <Link to={`/master-add-video/` + course.id} className="btn btn-primary active btn-sm">
-                                                        Add Videos
+                                                    <Link to={`/master-add-video/` + course.id +"/"+ course.title} className="btn btn-primary active btn-sm">
+                                                    <i class="bi bi-plus-square-fill"></i>
+                                                    </Link>
+                                                    <Link to={`/master-edit-course/`+ course.id} className="btn btn-sm active btn-success ms-1">
+                                                    <i class="bi bi-pencil-square"></i>
                                                     </Link>
                                                     <button onClick={()=>handleDelete(course.id)} className="btn btn-sm active btn-danger ms-1">
-                                                        Delete
+                                                    <i class="bi bi-trash3"></i>
                                                     </button>
                                                 </td>
                                             </tr>

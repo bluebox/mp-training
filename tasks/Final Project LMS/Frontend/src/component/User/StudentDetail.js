@@ -1,21 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-const baseUrl = 'http://127.0.0.1:8000/api/student/';
+const baseUrl = 'http://127.0.0.1:8000/api/student-ins/';
 function StudentDetail() {
     const [studentData, setStudentData] = useState([]);
     let { student_id } = useParams();
     useEffect(() => {
-        try {
-            axios.get(baseUrl + student_id + '/')
-                .then((res) => {
-                    setStudentData(res.data);
-                });
+        if (studentData.length === 0) {
+            try {
+                axios.get(baseUrl + student_id + '/')
+                    .then((res) => {
+                        setStudentData(res.data);
+                    });
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
-        catch (error) {
-            console.log(error);
-        }
-    });
+    }, [studentData]);
     return (
         <div className="card">
             <div className="card-header">My Courses</div>
@@ -32,14 +34,18 @@ function StudentDetail() {
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td>{studentData.first_name}</td>
-                                <td>{studentData.last_name}</td>
-                                <td>{studentData.email}</td>
-                                <td>{studentData.qualification}</td>
-                                <td>{studentData.interested_category}</td>
-                                <td>{studentData.mobile_no}</td>
-                            </tr>
+                        <tr>
+                            {studentData.user &&
+                                <>
+                                    <td>{studentData.user.first_name}</td>
+                                    <td>{studentData.user.last_name}</td>
+                                    <td>{studentData.user.email}</td>
+                                </>
+                            }
+                            <td>{studentData.qualification}</td>
+                            <td>{studentData.interested_category}</td>
+                            <td>{studentData.mobile_no}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
