@@ -1,0 +1,56 @@
+main{
+  min-height: 80vh;
+  margin: 16px 0;
+}
+
+.rating span{
+  margin: 0.1rem;
+}
+
+h3{
+  padding: 1rem 0;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+.form-child{
+  margin: 16px;
+}
+.pagination{
+  display: block;
+  width: 15%;
+  margin: auto;
+}
+.link{
+  background-color: #1F51FF;
+  display: inline-block;
+  padding:12px 0px;
+  margin: 2px;
+}
+.active-link{
+  background-color: #B6D0E2;
+  display: inline-block;
+  padding: 12px 0px;
+  border: 1px solid black;
+  margin: 2px;
+}
+.page-not-found{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+}
+.disabled-link{
+  background-color: #1f50ffab;
+  display: inline-block;
+  padding:12px 0px;
+  margin: 2px;
+}
+.form-error{
+  color: red;
+  font-size: small;
+  font-family: 'Courier New', Courier, monospace;
+}
