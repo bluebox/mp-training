@@ -1,0 +1,92 @@
+body {
+  position: relative;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  z-index: -1;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.link {
+  padding: 0.7rem;
+  text-decoration: none;
+}
+
+.link-dropdown {
+  text-decoration: none;
+}
+
+.personal-information {
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 0.1rem;
+  margin-left: 1rem;
+  margin-right: 3.5rem;
+}
+
+.details-nav-bar{
+  margin: 5px solid black;
+}
+
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;   
+  background-color:darkslategray;
+}
+
+.pagination{
+  display: inline-block;
+}
+
+.active{
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.actual-link{
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.applied, .applied:hover, .applied:focus-visible {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.title{
+  margin-bottom: 0;
+}
+
+.button-component{
+  padding: 0px 10px;
+  background-color: lightblue;
+  border-style: none;
+  border-radius: .5rem;
+}
+
+.search-box{
+  margin-left: 2rem;
+  padding: 0px 10px;
+  border-style: none;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
