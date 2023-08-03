@@ -1,0 +1,82 @@
+Script 1:
+
+select  et.name, dt.dept_name, it.insurance_name 
+from Employee_Table et inner join Department_Table dt 
+on et.dept_id = dt.dept_id inner join Insurance_Table it
+on et.insurance_id = it.insurance_id;
+
+Script 2:
+
+select dt.dept_name 
+from Department_Table dt inner join Employee_Table et 
+on dt.dept_id = et.dept_id inner join Employee_Office_Table eo
+on et.emp_id = eo.emp_id inner join Office_Table ot
+on eo.office_id = ot.office_id where place = 'HI-TECH';
+
+Script 3:
+
+SELECT count(emp_id) from Employee_Office_Table et inner join Office_Table ot
+on et.office_id = ot.office_id where place = 'AMB';
+
+Script 4:
+
+select dt.dept_name, avg(ei.Salary) as avg
+from Department_Table dt inner join Employee_Table et 
+on dt.dept_id = et.dept_id inner join Employee_Office_Table eo
+on et.emp_id = eo.emp_id left join Employee_Info_Table ei
+on et.employee_info = ei.id inner join Office_Table ot
+on eo.office_id = ot.office_id where place = 'HI-TECH' group by dt.dept_name;
+
+Script 5:
+
+select dt.dept_name, avg(ei.Salary) as avg
+from Department_Table dt inner join Employee_Table et 
+on dt.dept_id = et.dept_id inner join Employee_Office_Table eo
+on et.emp_id = eo.emp_id left join Employee_Info_Table ei
+on et.employee_info = ei.id inner join Office_Table ot
+on eo.office_id = ot.office_id where place = 'HI-TECH' group by dt.dept_name;
+
+Script 6:
+
+select sum(ei.Salary) as SUM_SALARY from Employee_Info_Table ei 
+inner join Employee_Table et
+on ei.id = et.employee_info inner join Employee_Office_Table eo
+on et.emp_id = eo.emp_id inner join Office_Table ot
+on eo.office_id = ot.office_id where place = 'MADHAPUR' and DOJ>'2022-01-02' ;
+
+Script 7:
+
+select et.name, dt.dept_name, ei.Salary from Employee_Table et
+left join Employee_Info_Table ei
+on et.employee_info = ei.id inner join Employee_Office_Table eo
+on et.emp_id = eo.emp_id inner join Office_Table ot
+on eo.office_id = ot.office_id inner join Insurance_Table it
+on et.insurance_id = it.insurance_id inner join Department_Table dt
+on et.dept_id = dt.dept_id
+where ei.Salary > 20000 and (it.insurance_name like 'LIC%' OR it.insurance_name like 'HDFC%')
+and ot.place = 'MADHAPUR' and ei.DOJ > '2022-02-20'
+
+Script 8:
+
+select A.name, B.name as immediate_head from Employee_Table A, Employee_Table B
+where A.immediate_head_id = B.emp_id
+
+Script 9:
+
+select A.name, D.dept_name as department, ifnull(B.name, "NO BOSS!") as immediate_head, D.dept_name as Department
+from Employee_Table A left join Employee_Table B 
+on A.immediate_head_id = B.emp_id 
+inner join Department_Table D 
+on A.dept_id = D.dept_id
+
+Script 10:
+
+Select et1.name from Employee_Table et1 inner join Employee_Table et2 
+on et1.immediate_head_id=et2.emp_id inner join Employee_Office_Table eo
+on et1.immediate_head_id = eo.emp_id inner join Office_Table ot
+on eo.office_id = ot.office_id inner join Employee_Info_Table ei1 
+on et1.employee_info = ei1.id inner join Employee_Info_Table ei2
+on et2.employee_info = ei2.id 
+where ot.place = 'BANGALORE' and  ei1.Salary * 1.6 < ei2.Salary
+
+
