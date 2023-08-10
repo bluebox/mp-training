@@ -1,0 +1,35 @@
+<form class="example-container" [formGroup]="form_appointment"  >
+  <mat-form-field appearance="fill" hintLabel="Doctor name required">
+    <mat-label>Doctor</mat-label>
+    <mat-select matNativeControl name="doctor" formControlName="doctor">
+        <mat-option *ngFor="let post of doctor" value="{{ post.id }}"  (click)="getCellData(post.id)"
+           >
+      {{ post.name }}
+    </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker1" placeholder="Appointment Date" formControlName="dates">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+<button  mat-raised-button color="primary" (click)="get_Slot_Data()">Check Availability</button>
+  <mat-form-field appearance="fill" >
+    <mat-label>Available Slot</mat-label>
+      <mat-select matNativeControl name="slot" formControlName="slot">
+        <mat-option *ngFor="let post of slot" value="{{ post.id }}" (click)="getSlotCellData(post.id)"
+           >
+      {{ post.startTime}}--{{post.endTime}}
+    </mat-option>
+      </mat-select>
+  </mat-form-field>
+  <div mat-dialog-actions align="end">
+    <div class="example-button-row">
+      <button mat-raised-button color="primary"  routerLink="/newuser">Back</button>
+    </div>
+    <router-outlet></router-outlet>
+      <button mat-raised-button color="primary" type="submit"  [disabled]="!form_appointment.valid" (click)="saveDetails()">Submit</button>
+  </div>
+
+<button mat-raised-button color="primary" (click)="openBottomSheet()">Doctor's Details</button>
+</form>
