@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Collections;
 
 public class SortDescending {
     public static void main(String[] args) {
