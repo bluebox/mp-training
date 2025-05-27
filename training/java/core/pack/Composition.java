@@ -1,4 +1,3 @@
-package pack;
 
 public class Composition {
 	

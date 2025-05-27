@@ -1,4 +1,3 @@
-package pack;
 
 public class DataTypeChecker {
 	public static void main(String[] args) {
