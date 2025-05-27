@@ -1,0 +1,28 @@
+package Overloading;
+
+public class GetDuration {
+	public static void main(String [] args) {
+		int seconds=12300;
+		System.out.println(seconds + " seconds is same as" +getDurationString(seconds));
+		int minutes=120;
+		seconds=59;
+		System.out.println(minutes + " minutes and "+seconds+ "seconds same as"+getDurationString(minutes,seconds));
+	}
+	public static String getDurationString(int seconds) {
+		if(seconds>=0) {
+		int min=seconds/60;
+		int hours=min/60;
+		int remainingMinutes= min % 60;
+		int remainingSeconds = seconds % 60;
+		return " "+hours+ "h "+remainingMinutes+"m "+remainingSeconds+ "s ";}
+		return "";
+	}
+	public static String getDurationString(int minutes, int seconds) {
+		if(seconds<60 && seconds>=0) {
+		int hours=minutes/60;
+		int remainingMinutes= minutes % 60;
+		return " "+hours+ "h "+remainingMinutes+"m "+seconds+ "s ";
+		}
+		return "";
+	}
+}

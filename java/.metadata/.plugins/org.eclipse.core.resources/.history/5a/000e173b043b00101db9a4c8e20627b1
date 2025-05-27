@@ -1,0 +1,18 @@
+package loops;
+
+public class Listfactors {
+	public static void main(String [] args) {
+		int number= 12;
+		int counter ;
+		System.out.println("the factors are:");
+			printFactor(number);
+		}
+	}
+	public static void printFactor( int number) {
+		for(int counter=1; counter<=number; counter++) {
+		if(number % counter == 0) {
+			System.out.println(counter);
+		}
+	}
+
+}

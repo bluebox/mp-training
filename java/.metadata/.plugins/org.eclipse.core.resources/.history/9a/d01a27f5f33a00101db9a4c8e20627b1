@@ -1,0 +1,26 @@
+package inheritence;
+public class Cylinder extends Circle{
+	public double height= 2.5d;
+	public Cylinder(double height,double radius) {
+		super(radius);
+		if(height < 0) {
+			this.height = 0.0d;
+		}
+		else {
+		this.height = height;
+	}
+	}
+	public double getHeightWithoutAnyParameters(){
+		return height;
+	}
+	public double volumeWithoutAnyParameters(){
+		return height*super.getAreaWithoutAnyParameters();
+}
+	public static void main() {
+	Circle circle= new Circle();
+	System.out.println("Area of Circle with radius "+ circle.radius+ " is " + circle.getAreaWithoutAnyParameters());
+	Cylinder c = new Cylinder(10.0d ,circle.getAreaWithoutAnyParameters());
+	double vol = (c.volumeWithoutAnyParameters());
+	System.out.println("Volume of Cylinder with height "+ c.height+ "is " + vol);
+}
+}

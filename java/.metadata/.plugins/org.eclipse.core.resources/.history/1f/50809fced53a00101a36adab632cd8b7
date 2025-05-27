@@ -1,0 +1,27 @@
+package loops;
+
+public class EvenNumber {
+	public static void main(String[] args) {
+		int firstNumber = 5;
+		int lastNumber = 20;
+		int sum = 0;
+		int counter = 0;
+		System.out.println("First 5 even numbers are :");
+		while(firstNumber <= lastNumber && counter<5) {
+			if(isEvenNumber(firstNumber))
+			{
+				System.out.println(firstNumber);
+				counter++;
+				firstNumber+=1;
+			}
+				
+			}
+		}
+	
+public static boolean isEvenNumber(int number) {
+	if(number % 2 ==  0)
+		return true;
+	return false;
+}
+
+}

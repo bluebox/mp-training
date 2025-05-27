@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author medplus
- *
- */
-module JavaTutorial {
-}

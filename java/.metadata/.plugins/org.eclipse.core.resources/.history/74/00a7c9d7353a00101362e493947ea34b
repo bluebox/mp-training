@@ -1,0 +1,16 @@
+package logical;
+
+public class MinutesToDayConversion {
+	public static void main(String [] args) {
+		long minutes = 1000000000;
+		printYearsAndDays( minutes);
+}
+	public static void printYearsAndDays( long minutes) {
+		long hours = minutes/60;
+		int days = (int)hours/24;
+		int years = days/365;
+		int remainingDays = days % 365 ;
+		System.out.println(minutes+ " min = " + years + "y and " + remainingDays + " d");
+		
+	}
+}
