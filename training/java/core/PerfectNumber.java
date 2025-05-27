@@ -1,10 +1,21 @@
 public class PerfectNumber{
     public static void main(String args[])
     {
-        isPerfect(6);
+        if(isPerfect(6))
+        {
+            System.out.println(6+" is perfect number");
+        }
     }
-    public static isPerfect(int num)
+    public static boolean isPerfect(int num)
     {
-        System.out.println("test");
+        int sumOfFactors=0;
+        for(int i=1;i<num;i++)
+        {
+            if(num%i==0){
+                sumOfFactors+=i;
+            }
+
+        }
+        return sumOfFactors==num; 
     }
 }

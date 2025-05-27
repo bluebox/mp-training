@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="Composition/src/|InheritanceChallange/src/" kind="src" path=""/>
+	<classpathentry kind="src" path="Composition/src"/>
+	<classpathentry kind="src" path="InheritanceChallange/src"/>
+	<classpathentry kind="output" path="Composition/bin"/>
+</classpath>
