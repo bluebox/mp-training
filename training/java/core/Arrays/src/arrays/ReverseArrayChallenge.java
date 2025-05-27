@@ -1,0 +1,36 @@
+package arrays;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class ReverseArrayChallenge {
+	public static void main(String args[])
+	{
+		int arr[]=new int[10];
+		int length=arr.length;
+		Random random=new Random();
+		for(int i=0;i<length;i++)
+		{
+			arr[i]=random.nextInt(100);
+				
+		}
+		System.out.println("Orginal Array "+Arrays.toString(arr));
+		reverse(arr);
+		System.out.println("Reversed Array "+Arrays.toString(arr));
+	}
+	public static void reverse(int[] arr)
+	{
+		int low=0;
+		int high=arr.length-1;
+		while(low<high)
+		{
+			int temp=arr[low];
+			arr[low]=arr[high];
+			arr[high]=temp;
+			low++;
+			high--;
+		}
+		
+	}
+
+}
