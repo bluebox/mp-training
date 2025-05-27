@@ -1,0 +1,33 @@
+package logical;
+
+public class AllThreeAreEqual {
+	public static void main(String [] args) {
+		int parameterOne = 12;
+		int parameterTwo = 28;
+		int parameterThree =28;
+		if(parameterOne>0 && parameterTwo > 0 && parameterThree>0 ) {
+		hasTeen(parameterOne, parameterTwo, parameterThree);
+		}
+		else {
+			System.out.println("Invalid Value");
+		}
+	}
+	public static void hasTeen(int ageOne, int ageTwo, int ageThree){
+		if(ageOne == ageTwo) {
+			if((ageTwo ==  ageThree)) {
+				System.out.println("All numbers are Equal");
+			}
+			else {
+				System.out.println("Neither All are Equal or different");
+			}
+			
+		}
+		else if((ageThree == ageTwo ) {
+			System.out.println("Neither All are Equal or different");	
+		}
+		else {
+			System.out.println("All numbers are different");
+		}
+	}
+
+}

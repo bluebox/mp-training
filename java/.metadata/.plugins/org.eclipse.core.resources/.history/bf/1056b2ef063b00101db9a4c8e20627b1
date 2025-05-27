@@ -1,0 +1,32 @@
+package loops;
+
+public class GCD {
+	public static void main(String [] args) {
+		int firstNumber = 15;
+		int secondNumber = 10;
+		System.out.println("GCD of " +firstNumber + " and "+ secondNumber  +" is :" + getGCD(firstNumber,secondNumber));
+		
+	}
+public static int getGCD(int firstNumber, int secondNumber) {
+	int result=1;
+	if(firstNumber < 10 || secondNumber<10) {
+		return -1;
+	}
+	
+	if (firstNumber < secondNumber) {
+		while(result > 0) {
+			result = secondNumber % firstNumber;
+			secondNumber = firstNumber;
+			firstNumber =  result;
+		}
+	}else {
+		while(result > 0) {
+			result = firstNumber % secondNumber;
+			firstNumber = secondNumber;
+			secondNumber =  result;
+	}
+		return result;
+
+	
+}
+}

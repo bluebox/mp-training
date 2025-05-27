@@ -1,0 +1,24 @@
+package loops;
+
+public class DigitSum {
+	public static void main(String[] args) {
+		int myNumber = sumDigits(123);
+		System.out.println("Sum of the digits in given number is:"+myNumber);
+		}
+	
+public static int sumDigits(int number) {
+	//int remainingNumber;
+	int remainder;
+	int result=0;
+	while(number >  0)
+	{
+		//remainingNumber = number/10;
+		remainder = number % 10;
+		result += remainder;
+		number = number / 10;
+	}
+	return result;
+}
+
+
+}
