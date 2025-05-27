@@ -1,0 +1,14 @@
+package operators;
+
+public class Arthematic {
+	public static void main(String args[])
+	{
+		//Arthematic operators examples
+		int operand1 = 10, operand2 = 20;
+		int addSolution = operand1+operand2;
+		System.out.println(addSolution);
+		int intMax = Integer.MAX_VALUE;
+		System.out.println("Max value of data type int:: "+intMax);
+		System.out.println(intMax+1);//signed integer:: If Max_value is incremented we get -ve value
+	}
+}

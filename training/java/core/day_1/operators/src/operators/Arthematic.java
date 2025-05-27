@@ -1,0 +1,35 @@
+package operators;
+
+public class Arthematic {
+	public static void main(String args[])
+	{
+		//Arthematic operators examples
+		
+		//Addition 
+		int operand1 = 10, operand2 = 20;
+		int addSolution = operand1+operand2;
+		System.out.println("10+20 = "+addSolution);
+		int intMax = Integer.MAX_VALUE;
+		System.out.println("Max value of data type int:: "+intMax);
+		System.out.println(intMax+1);//signed integer:: If Max_value is incremented we get -ve value
+		//ans:: -2147483648.(Reason 2's complement)
+		
+		//Subtraction
+		int subSolution = addSolution-20;
+		System.out.println(addSolution+"-"+"20 = "+subSolution);
+		int intMin = Integer.MIN_VALUE;
+		System.out.println("Min value of data type int:: "+intMin);
+		System.out.println(intMin-1);//signed integer:: If Min_value is decrementd we get +ve value
+		//and:: +2147483647.(Reason 2's complement)
+		
+		//Multiplication
+		int mulSolution = subSolution*258;
+		System.out.println(subSolution+"*258 = "+mulSolution);
+		
+		//Division
+		int divSolution = mulSolution/30;
+		System.out.println(mulSolution+"/30 = "+divSolution);
+
+		
+	}
+}

@@ -1,0 +1,33 @@
+package operators;
+
+public class BitWise {
+	
+	public static void main(String args[])
+	{
+		//bit wise operators &, |, !, shift operators(<<,>>)
+		//Binary equvalent
+		int numeric = 1000;
+		System.out.println("Binary equv of "+numeric+" is :: "+Integer.toBinaryString(numeric));
+		
+		//complement
+		int complement = Integer.MAX_VALUE-numeric;
+		System.out.println("Complement :: "+Integer.toBinaryString(complement));
+		
+		//'&' operator
+		System.out.println("Anding :: "+Integer.toBinaryString(numeric&complement));
+		
+		//'|' operator
+		System.out.println("OR :: "+Integer.toBinaryString(numeric|complement));
+		
+		//'<<' left shift operator
+		int leftShiftEqv = numeric<<2;
+		System.out.println("left shift by 2 positions of "+numeric+" :: "+Integer.toBinaryString(leftShiftEqv));
+		
+		//'>>' right shift operator
+		int rightShiftEqv = numeric>>2;
+		System.out.println("left shift by 2 positions of "+numeric+" :: "+Integer.toBinaryString(rightShiftEqv));
+		
+		
+	}
+
+}

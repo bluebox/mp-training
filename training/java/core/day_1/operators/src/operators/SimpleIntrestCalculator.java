@@ -1,0 +1,24 @@
+package operators;
+import java.util.*;
+public class SimpleIntrestCalculator {
+	public static double intrestCalculator(double principle, double rate, int time)
+	{
+		double intrest = (principle*rate*time)/100;
+		return intrest;
+	}
+	public static void main(String args[])
+	{
+		double principle,rate;
+		int time;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Principle amount in rs and paise :: ");
+		principle = sc.nextDouble();
+		System.out.println("Enter intrest rate percentage :: ");
+		rate = sc.nextDouble();
+		System.out.println("Enter time period(in years) :: ");
+		time = sc.nextInt();
+		System.out.println("Intrest amount = "+intrestCalculator(principle,rate, time));
+		sc.close();
+	}
+
+}
