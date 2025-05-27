@@ -9,15 +9,15 @@ class Summation {
         }
         return sum;
     }
-
-    int addition(Integer... numbers) {
-        System.out.println("In wrapper class");
-        int sum = 0;
-        for (int num : numbers) {
-            sum += num;
-        }
-        return sum;
-    }
+// Error prone as java auto boxes the array arguments into the wrapper classes.
+//    int addition(Integer... numbers) {
+//        System.out.println("In wrapper class");
+//        int sum = 0;
+//        for (int num : numbers) {
+//            sum += num;
+//        }
+//        return sum;
+//    }
 }
 
 public class OverLoading {
@@ -25,6 +25,6 @@ public class OverLoading {
         Summation sum = new Summation();
         System.out.println(sum.addition(1, 2, 3, 4, 5)); // uses int... method
         Integer[] arr = {1, 2, 3, 4};
-        System.out.println(sum.addition(arr));          // uses Integer... method
+//        System.out.println(sum.addition(arr));          // uses Integer... method
     }
 }
