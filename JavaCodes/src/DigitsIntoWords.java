@@ -34,12 +34,25 @@ public class DigitsIntoWords {
     	
     	}
     }
-    public static void DigitToWords(int num) {
+    public static void DigitToWords(int num,int digits) {
+    	int newDigitSize=digits-getDigitCount(num);
     	while(num>0) {
     		int rem=num%10;
     		System.out.print(WordsOfDigit(rem)+" ");
     		num/=10;
     	}
+    	 while(newDigitSize>0) {
+         	System.out.print("Zero"+" ");
+         	newDigitSize-=1;
+         }
+    }
+    public static int getDigitCount(int num) {
+    	int cnt=0;
+    	while(num>0) {
+    		cnt++;
+    		num/=10;
+    	}
+    	return cnt;
     }
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
@@ -48,8 +61,9 @@ public class DigitsIntoWords {
 			System.out.print("invalid num");
 			return ;
 		}
+		int digit=getDigitCount(num);
 		int revNum=findReverse(num);
-		DigitToWords(revNum);
+		DigitToWords(revNum,digit);
   }
 
 }
