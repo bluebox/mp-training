@@ -1,0 +1,28 @@
+package iterator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
+public class ListIteratorExample {
+	public static void main(String[] args)
+	{
+		ArrayList<Integer> lst=new ArrayList<Integer>();
+		lst.addAll(List.of(1,2,3,4,5,6));
+		ListIterator<Integer> iterator=lst.listIterator();
+		while(iterator.hasNext()) {
+			System.out.print(iterator.next()+" ");
+			
+		}
+		System.out.println();
+		System.out.println("Using Previous");
+		while(iterator.hasPrevious()) {
+			System.out.print(iterator.previous()+" ");
+			
+		}
+		
+		
+	}
+	
+
+}
