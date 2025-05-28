@@ -1,0 +1,25 @@
+package interfaces;
+
+public class UtilityLine implements Mappable {
+	Geometry shape=Geometry.LINE;
+	
+
+	@Override
+	public String getLable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getMarker() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Geometry getShape() {
+		// TODO Auto-generated method stub
+		return shape;
+	}
+
+}
