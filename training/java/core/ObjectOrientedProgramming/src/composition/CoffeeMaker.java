@@ -1,13 +1,14 @@
 package composition;
 
-public class Refrigerator {
+public class CoffeeMaker {
+	
 	private boolean hasWorkToDo;
 
-	public Refrigerator()
+	public CoffeeMaker()
 	{
 		
 	}
-	public Refrigerator(boolean hasWorkToDo) {
+	public CoffeeMaker(boolean hasWorkToDo) {
 		super();
 		this.hasWorkToDo = hasWorkToDo;
 	}
@@ -20,9 +21,9 @@ public class Refrigerator {
 		this.hasWorkToDo = hasWorkToDo;
 	}
 	
-	public void orderFood()
+	public void brewCoffee()
 	{
-		System.out.println("Food Ordered");
+		System.out.println("Brewing Coffee");
 	}
-	
+
 }
