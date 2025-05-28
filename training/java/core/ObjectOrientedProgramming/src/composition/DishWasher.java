@@ -3,7 +3,10 @@ package composition;
 public class DishWasher {
 	
 	private boolean hasWorkToDo;
-
+	public DishWasher()
+	{
+		
+	}
 	public DishWasher(boolean hasWorkToDo) {
 		super();
 		this.hasWorkToDo = hasWorkToDo;
@@ -19,7 +22,9 @@ public class DishWasher {
 	
 	public void doDishes()
 	{
-		System.out.println("Doing Dishes");
+		if(hasWorkToDo)
+			System.out.println("Doing Dishes");
+		hasWorkToDo = false;
 	}
 
 }

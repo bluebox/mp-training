@@ -31,6 +31,14 @@ public class SmartKitchen {
 		System.out.println("Loading Dish washer");
 	}
 	
-	public setKitcenState(boolean , )
+	public void doKitchenWork()
+	{
+		ref.setHasWorkToDo(true);
+		brewMaster.setHasWorkToDo(true);
+		washer.setHasWorkToDo(true);
+		ref.orderFood();
+		brewMaster.brewCoffee();
+		washer.doDishes();
+	}
 
 }
