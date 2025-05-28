@@ -12,7 +12,7 @@ public class Composition {
 		sk.addMilk();
 		sk.doKitchenWork();
 		
-		sk.setKitchenState(false, true, false);
+		sk.setKitchenState(false, false, true);
 		sk.doKitchenWork();
 		sk.doKitchenWork();
 		
@@ -46,8 +46,8 @@ class SmartKitchen{
 	
 	public void setKitchenState(boolean brew,boolean dish,boolean ice) {
 		brewmaster.hasToDoWork = brew;
-		icebox.hasToDoWork = dish;
-		dishWasher.hasToDoWork = ice;
+		dishWasher.hasToDoWork = dish;
+		icebox.hasToDoWork = ice;
 		
 	}
 	public void doKitchenWork() {
