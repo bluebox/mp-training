@@ -1,0 +1,33 @@
+package enums;
+
+import java.util.List;
+
+public class Main {
+	public static void main(String[] args) {
+		DayOfWeek dow = DayOfWeek.FRI;
+		
+		System.out.println(dow);
+		System.out.println(dow.name());
+		
+		DayOfWeek[] days = dow.values();
+		DayOfWeek nextday = dow.values()[dow.ordinal() + 1];
+		
+		System.out.println(nextday);
+		
+		switch (dow) {
+			case MON -> System.out.println("Monday");
+			default -> {
+				System.out.println("Its not monday");
+			}
+		}
+		
+		if (dow == DayOfWeek.MON) {
+			System.out.println("Its monday");
+		}
+
+		for (var d : days) {
+			System.out.println(d);
+		}
+	}
+
+}
