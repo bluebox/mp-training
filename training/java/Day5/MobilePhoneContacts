@@ -1,0 +1,133 @@
+import java.util.LinkedList;
+import java.util.ListIterator;
+public class Mobile{
+public static void main(String[] args){
+    MobilePhone my=new MobilePhone("PRASAD");
+    my.addContact("VAMSI","123456");
+    my.addContact("SWATHI","33435647");
+    my.addContact("RAJU","5454926");
+    my.addContact("LIKITHA","242563424");
+    my.printContacts();
+    System.out.println("____________________________________");
+    System.out.println(my.checkContact(new Contact("SWATHI")));
+    System.out.println(my.findContact(new Contact("SWATHI","33435647")));
+    System.out.println(my.findContact("SWATHI"));
+    my.updateContact(new Contact("SWATHI","33435647"),new Contact("SWATHI","0000000000"));
+    System.out.println("after updation");
+    my.printContacts();
+    my.removeContact(new Contact("VAMSI","123456"));
+    System.out.println("after removing");
+    my.printContacts();
+    System.out.println(queryContact("VAMSI").getName()+"------->"+queryContact("VAMSI").getPhoneNumber());
+    
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+public static class MobilePhone{
+    private String myNumber;
+    private LinkedList<String> myContacts;
+
+    public MobilePhone(String myNumber){
+        this.myNumber=myNumber;
+        myContacts=new LinkedList<>();
+    }
+    public void addContact(String name,String phoneNumber){
+        myContacts.add(new Contact(name,phoneNumber));
+
+    }
+
+
+    public  boolean checkContact(String contact){
+        for(Contact i:myContacts){
+            if (i==Contact){return false;}
+        }
+        return true;
+
+    }
+    public LinkedList<Contact> updateContact(Contact oldContact,Contact newContact){
+        ListIterator<String> iter=myContacts.listIterator();
+        while(!(iter.next().equals(oldContact)));
+        iter.set(newContact);
+        return myContacts;
+    }
+    public LinkedList<Contact>  removeContact(Contact conntact){
+        ListIterator<String> iter=myContacts.listIterator();
+        while(!(iter.next().equals(contact)));
+        iter.remove();
+        return myContacts;
+    }
+    public int findContact(Contact contact){
+        LinkedList<Contact> iter=myContacts.listIterator();
+        int index=0;
+        while(iter.hasNext()){
+            if (iter.next().equals(conntact)){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+    public int findContact(String contactName){
+        LinkedList<Contact> iter=myContacts.listIterator();
+        int index=0;
+        while(iter.hasNext()){
+            if (iter.next().name.equals(conntact)){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+        }
+
+    public Contact queryContact(String contactName){
+        LinkedList<Contact> iter=myContacts.listIterator();
+        
+        while(iter.hasNext()){
+            if (iter.next().name.equals(conntact)){
+                return iter.next();
+            }
+            
+        }
+        return null;
+        }
+    public void printContacts(){
+        LinkedList<Contact> iter=myContacts.listIterator();
+        while(iter.hasNext()){
+            System.out.println(iter.next.name+" -> "+iter.next.phoneNumber);
+        }
+    }
+
+
+
+}
+
+public static class Contact{
+    String name;
+    String phoneNumber;
+    public Contact(String name,String phoneNumber){
+        this.name=name;
+        this.phoneNumber=phoneNumber;
+    }
+public  String getName(){
+        return name;
+}
+public  String getPhoneNumber(){
+        return phoneNumber;
+}
+public static  Contact createContact(String personName,String personNumber){
+    return new Contact(personName,personNumber);
+}
+}
+}
