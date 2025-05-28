@@ -13,7 +13,10 @@ public class UserInputChallenge {
             c+=1;
         }
 
+        double avg = sum / 5;
+
         System.out.println(sum);
+        System.out.println(avg);
 
     }
 }
