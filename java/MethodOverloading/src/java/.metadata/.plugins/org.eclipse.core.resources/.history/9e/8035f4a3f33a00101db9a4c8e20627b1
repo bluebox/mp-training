@@ -1,0 +1,19 @@
+package inheritence;
+
+public class Circle {
+	public double radius = 0.0d;
+	public Circle() {
+		if(radius < 0) {
+			this.radius = 0.0d;
+		}
+		else {
+		this.radius = radius;
+	}
+	}
+	public double getRadiusWithoutAnyParameters(){
+		return radius;
+	}
+	public double getAreaWithoutAnyParameters(){
+		return Math.PI*getRadiusWithoutAnyParameters()*getRadiusWithoutAnyParameters();
+}
+}

@@ -1,0 +1,23 @@
+package loops;
+
+public class Pack {
+	public static void main(String [] args) {
+		int bigCount = 1;
+		int smallCount = 0;
+		int goal = 4;
+		if(canPack(bigCount,smallCount,goal))
+			System.out.println("Can Pack");
+		else 
+			System.out.println("Cannot Pack");
+	}
+	public static boolean canPack(int bigCount, int smallCount, int goal) {
+		while(goal > 5 && bigCount >0) {
+			goal -= 5;
+			bigCount--;
+			}
+		if(goal < smallCount)
+			return true;
+		return false;
+	}
+
+}

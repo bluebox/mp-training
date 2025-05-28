@@ -1,0 +1,24 @@
+package logical;
+
+public class CheckForLeap {
+	public static void main(String[] args) {
+		int year= 2000;
+		boolean result= isLeapYear(year);
+		if(result) {
+		System.out.println(year+" is leap year");}
+		else {
+			System.out.println(year+" is not leap year");
+		}
+	}
+	public static boolean isLeapYear(int year) {
+		if (year %4==0) {
+			if(year%100==0 && year % 400 != 0) {
+				return false;
+			}
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}

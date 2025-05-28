@@ -1,0 +1,30 @@
+package loops;
+
+public class PaintChallenge {
+	public static void main(String [] args) {
+		double width = 3.10d;
+		double  height = 4.0d;
+		double areaPerBucket = 3.0d;
+		int extraBuckets =2 ;
+		System.out.println("No of buckets With extra buckets");
+		int noOfBuckets = getBucketCount(width,height,areaPerBucket,extraBuckets);
+		System.out.println(noOfBuckets);
+		System.out.println("No of buckets With out extra buckets");
+		int noOfBuckets = getBucketCountWithoutExtraBuckets(width,height,areaPerBucket);
+		System.out.println(noOfBuckets);
+		}
+	public static int getBucketCountWithoutExtraBuckets(double width,double height,double areaPerBucket){
+		if(width<0 || height<0 || areaPerBucket <0) {
+			return -1;
+		}
+		double totalArea = width*height;
+		return (int)(Math.ceil(totalArea/areaPerBucket));
+	}
+	public static int getBucketCount(double width,double height,double areaPerBucket, int extraBuckets){
+		if(width<0 || height<0 || areaPerBucket <0) {
+			return -1;
+		}
+		double totalArea = width*height;
+		return (int)(Math.ceil(totalArea/areaPerBucket)) - extraBuckets;
+	}
+}

@@ -1,0 +1,41 @@
+package loops;
+
+public class LastDigitComparision {
+	public static void main(String [] args) {
+		int firstNumber = 131;
+		int secondNumber = 10;
+		int thirdNumber = 31;
+		boolean result = hasSameLastDigit(firstNumber, secondNumber, thirdNumber);
+		if(result) {
+			System.out.println(" some of two numbers has last digit same");
+		}
+		else{
+			System.out.println(" numbers do not has last digit same");
+		}
+		
+	}
+public static boolean hasSameLastDigit(int firstNumber, int secondNumber, int thirdNumber){
+	if(isValid(firstNumber, secondNumber, thirdNumber)) {
+		int firstNumberLastInteger = firstNumber % 10;
+		int secondNumberLastInteger = secondNumber % 10;
+		int thirdNumberLastInteger = thirdNumber % 10;
+		if( (firstNumberLastInteger == secondNumberLastInteger )|| (secondNumberLastInteger == thirdNumberLastInteger) || (thirdNumberLastInteger == firstNumberLastInteger))
+			return true;
+		return false;
+		
+	}else
+	{
+		return false;
+	}
+	
+}
+public static boolean isValid(int firstNumber, int secondNumber, int thirdNumber) {
+	if((firstNumber < 9 && firstNumber> 1001) && (secondNumber < 9 && secondNumber > 1001)&& (thirdNumber < 9 &&thirdNumber > 1001)) {
+		System.out.println(" invalid");
+		return false;
+	}
+	else
+		System.out.println(" valid " + firstNumber +" "+ secondNumber +" " + thirdNumber);
+		return true;
+}
+}

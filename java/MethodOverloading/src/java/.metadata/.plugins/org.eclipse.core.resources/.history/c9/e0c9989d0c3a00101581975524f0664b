@@ -1,0 +1,5 @@
+package logical;
+
+public class ConvertKiloBytesToMegaBytes {
+
+}
