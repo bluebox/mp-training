@@ -1,7 +1,10 @@
 package samplecodes;
 
-public class SK {
+public class FlourPack {
+
 	public static void main(String[] args) {
-		System.out.println("Dbjaispoe");
+		// TODO Auto-generated method stub
+
 	}
+
 }
