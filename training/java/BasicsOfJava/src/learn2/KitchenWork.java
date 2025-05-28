@@ -4,7 +4,14 @@ public class KitchenWork {
 	
 	public static void main(String[] args) {
 		
-		Kitchen work = new Kitchen(true,false,true);
+		Refrigerator iceBox = new Refrigerator();
+		DishWasher dishWasher = new DishWasher();
+		CoffeeMaker brewMaster = new CoffeeMaker();
+		Kitchen work = new Kitchen(iceBox,dishWasher,brewMaster);
+		work.setKitchenState(false, false, true);
+		work.doKitchenWork();
+		work.setKitchenState(false, false, false);
+		work.doKitchenWork();
 	}
 }
 
@@ -13,18 +20,17 @@ class Kitchen{
 	private Refrigerator iceBox;
 	private DishWasher dishWasher;
 	private CoffeeMaker brewMaster;
-	public Kitchen(boolean hasOrderedFood,boolean hasDoneDishes,boolean hasbrewedCoffee) {
-		setKitchenState(hasOrderedFood,hasDoneDishes,hasbrewedCoffee);
+	public Kitchen(Refrigerator iceBox,DishWasher dishWasher,CoffeeMaker brewMaster) {
 		
+		this.iceBox = iceBox;
+		this.dishWasher = dishWasher;
+		this.brewMaster = brewMaster;
 	}
-	public Kitchen() {
-		doKitchenWork();
-	}
-	public void setKitchenState(boolean hasOrderedFood,boolean hasDoneDishes,boolean hasbrewedCoffee) {
-		iceBox = new Refrigerator(hasOrderedFood);
-		dishWasher = new DishWasher(hasDoneDishes);
-		brewMaster = new CoffeeMaker(hasbrewedCoffee);
-		
+	public void setKitchenState(boolean hasOrderedFood,boolean hasDoneDishes,boolean hasBrewedCoffee) {
+		iceBox.setHasWorkToDo(hasOrderedFood);
+		dishWasher.setHasWorkToDo(hasDoneDishes);
+		brewMaster.setHasWorkToDo(hasBrewedCoffee);
+//		doKitchenWork();
 	}
 	public void addWater() {
 		System.out.println("adding Water");
@@ -37,51 +43,56 @@ class Kitchen{
 	}
 	public void doKitchenWork() {
 		System.out.println("_________________________");
+		iceBox.orderFood();
+		dishWasher.doDishes();
+		brewMaster.brewCoffee();
 	}
 }
-class Refrigerator extends Kitchen{
+class Refrigerator
+{
 	
 	private boolean hasToDo;
-	public Refrigerator(boolean hasToDo){
+	public void setHasWorkToDo(boolean hasToDo){
 		this.hasToDo = hasToDo;
-		orderFood();
+//		orderFood();
 	}
 	public void orderFood() {
 		if(hasToDo) {
 			System.out.println("Ordering Food");
-			this.addWater();
+			 hasToDo = false;
 		}
 	}
 }
 
-class DishWasher extends Kitchen{
+class DishWasher
+{
 	private boolean hasToDo;
 	
-	public DishWasher(boolean hasToDo) {
+	public void setHasWorkToDo(boolean hasToDo) {
 		this.hasToDo = hasToDo;
-		doDishes();
+//		doDishes();
 	}
 	
 	public void doDishes() {
 		if(hasToDo){
 			System.out.println("doing Dishes");
-			this.loadDishWasher();
+			hasToDo = false;
 		}
 	}
 }
 
-class CoffeeMaker extends Kitchen{
+class CoffeeMaker{
 	private boolean hasToDo;
 	
-	public CoffeeMaker(boolean hasToDo) {
+	public void setHasWorkToDo(boolean hasToDo) {
 		this.hasToDo = hasToDo;
-		brewCoffee();
+//		brewCoffee();
 	}
 	
 	public void brewCoffee() {
 		if(hasToDo){
 			System.out.println("brewing coffee");
-			this.pourmilk();
+			hasToDo = false;
 		}
 	}
 }
