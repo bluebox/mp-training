@@ -1,0 +1,21 @@
+import java.util.*;
+public class leepYear {
+	public static void main(String[] args) {
+		
+	System.out.println(isLeapYear(1700));
+	System.out.println(isLeapYear(1800));
+	System.out.println(isLeapYear(1900));
+	System.out.println(isLeapYear(2100));
+	System.out.println(isLeapYear(1600));
+	System.out.println(isLeapYear(2000));
+	System.out.println(isLeapYear(2400));
+	
+	
+	}
+	public static boolean isLeapYear(int year) {
+		if (year%4==0 && year %100!=0) {return true;}
+		if (year%4==0 && year %100==0 && year % 400 ==0) {return true;}
+		return false;
+	}
+
+}
