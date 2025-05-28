@@ -1,0 +1,27 @@
+package loops;
+
+import java.util.Scanner;
+
+public class MinAndMax {
+	public static void main(String[] args) {
+		int i=0;
+		Scanner sc = new Scanner(System.in);
+		int maximum = Integer.MIN_VALUE;
+		int minimum = Integer.MAX_VALUE;
+		while(true) {
+			System.out.print("Enter number #"+ (i+1) + ":");
+			String myVariable = sc.nextLine();
+			if((myVariable.charAt(0)) >  47 && (myVariable.charAt(0))<58) {
+//				sum += (myVariable.charAt(0)) - 48;
+				i++;
+				maximum = maximum < myVariable.charAt(0)?myVariable.charAt(0):maximum;
+				minimum = minimum > myVariable.charAt(0)?myVariable.charAt(0):minimum;
+			}
+			else if(myVariable.charAt(0) == 'q' || myVariable.charAt(0) == 'Q')
+				break;
+			else
+				System.out.println("Invalid number");
+		}
+		System.out.println("Program Ended");
+	}
+}

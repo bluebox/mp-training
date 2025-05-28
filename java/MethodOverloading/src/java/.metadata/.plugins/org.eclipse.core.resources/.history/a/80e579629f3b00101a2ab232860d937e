@@ -1,0 +1,42 @@
+package loops;
+
+public class PrintWords {
+	public static void main(String[] args) {
+		int number = -1203;
+		numberToWords(number);
+	}
+	public static void numberToWords( int number) {
+		String wordString = " ";
+		int remainder = 0;
+		while(number > 0) {
+			remainder = number % 10;
+			switch(remainder) {
+			case 1 : wordString = "One " + wordString;
+			break;
+			case 2 : wordString ="Two " + wordString;
+			break;
+			case 3 : wordString = "Three "+ wordString;
+			break;
+			case 4 : wordString = "Four "+ wordString;
+			break;
+			case 5 : wordString = "Five "+ wordString;
+			break;
+			case 6 : wordString = "Six "+ wordString;
+			break;
+			case 7 : wordString = "Seven "+ wordString;
+			break;
+			case 8 : wordString = "Eight "+ wordString;
+			break;
+			case 9 : wordString = "Nine "+ wordString;
+			break;
+			case 0 : wordString = "Zero "+ wordString;
+			break;
+			default : System.out.println(" Invalid Number");
+			
+			}
+			number /= 10;
+		}
+		System.out.println("Word String is :" + wordString);
+	}
+
+}

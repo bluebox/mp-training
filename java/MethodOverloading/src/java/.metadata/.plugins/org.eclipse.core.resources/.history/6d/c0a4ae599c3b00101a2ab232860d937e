@@ -1,0 +1,29 @@
+package loops;
+
+public class PerfectNUmber {
+	public static void main(String[] args) {
+		int firstNumber = 5;
+//		int lastNumber = 20;
+		//int sum = 0;
+//		int counter = 0;
+		if(isPerfectNumber(firstNumber)) {
+			System.out.println("number is perfect ");}
+		else {
+			System.out.println("number is perfect ");}
+		}
+	
+public static boolean isPerfectNumber(int number) {
+	int sumOfFactors=0;
+	for (int i = 1 ; i< number; i++) {
+	if(number % i ==  0)
+		sumOfFactors+=i;
+	}
+	System.out.println(sumOfFactors);
+	if(number == sumOfFactors) {
+		System.out.println(sumOfFactors);
+		return true;
+	}
+	return false;
+}
+
+}

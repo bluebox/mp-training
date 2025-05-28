@@ -1,0 +1,26 @@
+package loops;
+
+public class LargestFactor {
+	public static void main(String [] args) {
+		int number= 12;
+//		int counter ;
+		System.out.println("the largestfactor of the given number is:" + getLargestFactor(number));
+//			printFactor(number);
+	}
+
+	public static int getLargestFactor( int number) {
+		//System.out.println(1);
+		if(number<1)
+			return  -1;
+		int maxFactor = 1;
+		for(int counter=1; counter<number; counter++) {
+		if(number % counter == 0) {
+			maxFactor = maxFactor < counter ? counter: maxFactor;
+//			System.out.println(counter);
+		}
+	}
+		return maxFactor;
+//		System.out.println(number);
+
+}
+}

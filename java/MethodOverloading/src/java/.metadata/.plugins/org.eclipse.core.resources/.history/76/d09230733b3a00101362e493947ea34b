@@ -1,0 +1,12 @@
+package Overloading;
+
+public class HeightConversion {
+	public static void main(String [] args) {
+		int inches= 128;
+		double centimeters=convertToCentimeters(inches);
+		System.out.println(inches + " inches = "+ centimeters +" centimeters"  );
+	}
+public static double convertToCentimeters(int inches) {
+	return (double)(inches * 2.54d);
+}
+}

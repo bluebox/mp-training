@@ -1,0 +1,18 @@
+package logical;
+
+public class SpeedCalculation {
+	public static void main(String [] args) {
+	double kilometersPerHour = 10.0d;
+	int miles = toMilesPerHour(kilometersPerHour);
+	System.out.println( kilometersPerHour + "km/h = "+ miles + "ml/h");
+	}
+	public static int toMilesPerHour(double kilometersPerHour) {
+		if(kilometersPerHour < 0)
+		{
+			return -1;
+		}
+		else {
+			return (int)(kilometersPerHour / 1.609d);
+		}
+	}
+}

@@ -1,0 +1,11 @@
+package logical;
+import arithmatic.HelloWorld;
+public class LogicalAnd {
+	public static void main(String [] args) {
+		HelloWorld.main(args);
+		int firstVariable = 1;
+		int secondVariable = 0;
+		int logicalAnd = firstVariable && secondVariable;
+		System.out.println("Logical And of given two vriables is: "+ logicalAnd);
+	}
+}

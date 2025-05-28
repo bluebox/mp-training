@@ -1,0 +1,14 @@
+package loops;
+import java.util.Scanner;
+public class PrintUserInput {
+	public static void main(String[] args) {
+		int limit=5, sum =0 ;
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0 ; i < limit; i++) {
+			System.out.print("Enter number #"+ (i+1) + ":");
+			int myVariable = sc.nextInt();
+			sum += myVariable;
+		}
+		System.out.println("sum of given numbers is:"+sum);
+	}
+}
