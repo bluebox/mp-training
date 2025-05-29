@@ -19,7 +19,7 @@ public class CanPack {
             w = 0;
         }
 
-        if(w + rem <= b){
+        if((w*5) + rem <= b){
             System.out.println("true");
             return;
         }
@@ -27,7 +27,6 @@ public class CanPack {
             System.out.println("false");
 
         }
-
         
     }
     public static void main(String[] args) {
