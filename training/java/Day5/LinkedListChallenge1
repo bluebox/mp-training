@@ -1,0 +1,78 @@
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Scanner;
+
+public class LinkedListChallenge1{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        LinkedList<Place> places=new LinkedList<>();
+        Place firstPlace=new Place("Machilipatnam",336);
+        Place vijayawada=new Place("vijayawada",270);
+        Place vizag=new Place("vizag",1500);
+        Place amalaPuram=new Place("amalapuram",765);
+        Place kerala=new Place("kerala",1700);
+        Place tamilnadu=new Place("tamilnadu",1256);
+        Place usa=new Place("usa",987);
+        Place pakisthan=new Place("pakisthan",9864);
+        Place bangladesh=new Place("bangaladesh",7568);
+
+
+        places.add(firstPlace);
+        places.add(vijayawada);
+        places.add(vizag);
+        places.add(amalaPuram);
+        places.add(kerala);
+       places.add(tamilnadu);
+       places.add(usa);
+       places.add(pakisthan);
+       places.add(bangladesh);
+ 
+        System.out.println(places);
+        boolean quit=true;
+        while(quit){
+            System.out.println("Enter a number:");
+            String a=scanner.nextInt().toUpperCase().subString(0,1);
+            switch(a){
+                case "F":System.out.println("GOING FORWWARD");break;
+                case "B":System.out.println("GOING BACKWORD");break;
+                case "M":printMenu();break;
+                case "L":System.out.println(places);break;
+                case "Q":quit=false;break;
+            }
+        }
+    } 
+
+public static void printMenu(){
+    System.out.println("""
+            Available actions (selecr word or latter_:
+            (F)orward
+            (B)ackward
+            (L)ist Places
+            (M)enu
+            (Q)uit
+            """);
+}
+
+        
+
+
+
+public class Place{
+    private String name;
+    private int distance;
+    public Place(String name,int distance){
+        this.name=name;
+        this.distance=distance;
+    }
+     public String getName() {
+        return name;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+    public String toString() {
+            return name + " -> " + distance + "km";
+        }
+}
+}
