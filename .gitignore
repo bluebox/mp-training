@@ -134,3 +134,4 @@ dmypy.json
 .github
 .idea/workspace.xml
 .pytest_cache
+/bin/
