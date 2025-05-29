@@ -27,6 +27,10 @@ public class City implements Comparable<City>{
 		return (int)(this.distance-o.distance);
 		
 	}
+	@Override
+	public String toString() {
+		return "City [city=" + city + ", distance=" + distance + "]";
+	}
 	
-
+	
 }
