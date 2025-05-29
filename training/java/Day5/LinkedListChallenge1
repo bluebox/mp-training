@@ -17,30 +17,71 @@ public class LinkedListChallenge1{
         Place bangladesh=new Place("bangaladesh",7568);
 
 
-        places.add(firstPlace);
-        places.add(vijayawada);
-        places.add(vizag);
-        places.add(amalaPuram);
-        places.add(kerala);
-       places.add(tamilnadu);
-       places.add(usa);
-       places.add(pakisthan);
-       places.add(bangladesh);
- 
-        System.out.println(places);
+        addPlace(places,firstPlace);
+        addPlace(places,vijayawada);
+        addPlace(places,vizag);
+        addPlace(places,amalaPuram);
+        addPlace(places,kerala);
+       addPlace(places,tamilnadu);
+       addPlace(places,usa);
+       addPlace(places,pakisthan);
+       addPlace(places,bangladesh);
+       System.out.println(places);
+       System.out.println("---+++++++++++-----");
+       for(var item:places){
+           
+           System.out.println(item.name+"----->"+item.distance);
+       }
         boolean quit=true;
+        System.out.println("""
+            Available actions (selecr word or latter_:
+            (F)orward
+            (B)ackward
+            (L)ist Places
+            (M)enu
+            (Q)uit
+            """);
         while(quit){
             System.out.println("Enter a number:");
-            String a=scanner.nextInt().toUpperCase().subString(0,1);
+            String a=scanner.nextLine().toUpperCase().substring(0,1);
             switch(a){
-                case "F":System.out.println("GOING FORWWARD");break;
+                case "F":System.out.println("GOING FORWWARD");
+                break;
                 case "B":System.out.println("GOING BACKWORD");break;
                 case "M":printMenu();break;
                 case "L":System.out.println(places);break;
                 case "Q":quit=false;break;
+                default :System.out.println("enter a invalid inout!! try again !!!!1");
             }
         }
     } 
+    public static void addPlace(LinkedList<Place> placesList,Place newPlace){
+        if(placesList.contains(newPlace)){
+            System.out.println(newPlace+"is already exits !!!");
+            return;
+        }
+        for(Place i:placesList){
+            if(i.name.equalsIgnoreCase(newPlace.name)){
+                System.out.println(newPlace.name+"is already exits !!!");
+            return;
+            }
+        }
+        
+        ListIterator<Place> iter= placesList.listIterator();
+        if (placesList.size()==0){placesList.add(newPlace);
+                return;}
+        int i=0;
+        while(iter.hasNext()){
+            if (iter.next().distance>=newPlace.distance){
+                placesList.add(i,newPlace);
+                return;
+            }
+            i++;
+
+        }
+        placesList.add(newPlace);
+        return;
+    }
 
 public static void printMenu(){
     System.out.println("""
@@ -57,7 +98,7 @@ public static void printMenu(){
 
 
 
-public class Place{
+public static class Place{
     private String name;
     private int distance;
     public Place(String name,int distance){
@@ -74,5 +115,6 @@ public class Place{
     public String toString() {
             return name + " -> " + distance + "km";
         }
+        
 }
 }
