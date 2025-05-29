@@ -58,6 +58,7 @@ class Bank{
 					System.out.print(i+" ");
 				}
 				System.out.println();
+				System.out.println("total amount="+ele.getTotalAmount());
 			}
 		}
 		return true;
@@ -115,6 +116,11 @@ class Customer{
 	public void addTransaction(double val) {
 		transaction.add(val);
 	}
+	public double getTotalAmount() {
+		double sum=0;
+		for(Double ele:transaction)sum+=ele;
+		return sum;
+	}
 }
 public class BankingSystemChallenge {
 
@@ -126,6 +132,10 @@ public class BankingSystemChallenge {
 		bank.addCustomerTransaction("marikal", "anand", 10000);
 		bank.addCustomerTransaction("marikal", "abhi", 1000);
 		bank.listCustomers("marikal",true);
+		bank.addBranch("basar");
+		bank.addCustomer("basar", "sai", 10000);
+		System.out.println(bank.addCustomerTransaction("basar", "sai",10000));
+		bank.listCustomers("basar", true);
 	}
 
 }
