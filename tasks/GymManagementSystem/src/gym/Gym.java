@@ -8,6 +8,7 @@ class Gym {
 	static String name="MEDPLUS GYM";
 	static String description="Prevation is better than cure";
 	
+	
 	public Gym() {
 		super();
 		members=new HashMap<>();
@@ -36,6 +37,19 @@ class Gym {
 			
 			
 		});
+	}
+	public Member getMember(long id)
+	{
+		if(members.containsKey(id))
+		{
+			return members.get(id);
+		}
+		else
+		{
+			
+			return null;
+		}
+		
 	}
 
 
