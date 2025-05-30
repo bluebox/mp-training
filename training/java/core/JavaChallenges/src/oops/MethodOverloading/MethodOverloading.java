@@ -1,4 +1,4 @@
-package challenges;
+package oops.MethodOverloading;
 
 public class MethodOverloading {
 
