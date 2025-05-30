@@ -54,10 +54,10 @@ public class Album {
         LinkedList<Song> playlist = new LinkedList<>();
         
        
-        album1.addToPlayList(1, playlist);          // Add Song One by track number
-        album1.addToPlayList("Song Two", playlist); // Add Song Two by title
-        album2.addToPlayList(1, playlist);          // Add Track A by track number
-        album2.addToPlayList("Track B", playlist);  // Add Track B by title
+        album1.addToPlayList(1, playlist);          
+        album1.addToPlayList("Song Two", playlist); 
+        album2.addToPlayList(1, playlist);         
+        album2.addToPlayList("Track B", playlist);  
         
        
         System.out.println("Playlist contents:");
