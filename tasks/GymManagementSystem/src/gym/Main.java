@@ -48,10 +48,25 @@ public class Main {
 		System.out.println("Enter your Age");
 		int age = sc.nextInt();
 		Member member = new Member(name, age);
+		System.out.println("User Created Sucessfully");
 		System.out.println("Do want to take plan\n1.yes\n2.no");
-		int planOption = sc.nextInt();
+		gym.addMember(member);
+		int planOption;
+		try {
+			planOption = sc.nextInt();
+			if(planOption!=1 && planOption!=2)
+			{
+				throw new Exception("Input miss match"); 
+			}
+			
+		}catch(Exception e)
+		{
+			System.out.println("enter 1 or 2 "+e);
+			return;
+			
+		}
+		
 		if (planOption == 2) {
-			gym.addMember(member);
 			return;
 
 		}
