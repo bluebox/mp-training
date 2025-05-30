@@ -14,7 +14,7 @@ public class StreamExample {
    public static void main(String args[]) {
       System.out.println("Using Java 7: ");
 		
-      // Count empty strings
+      
       List<String> strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
       System.out.println("List: " +strings);
       long count = getCountEmptyStringUsingJava7(strings);
@@ -24,16 +24,16 @@ public class StreamExample {
 		
       System.out.println("Strings of length 3: " + count);
 		
-      //Eliminate empty string
+      
       List<String> filtered = deleteEmptyStringsUsingJava7(strings);
       System.out.println("Filtered List: " + filtered);
 		
-      //Eliminate empty string and join using comma.
+      
       String mergedString = getMergedStringUsingJava7(strings,", ");
       System.out.println("Merged String: " + mergedString);
       List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
 		
-      //get list of square of distinct numbers
+      
       List<Integer> squaresList = getSquares(numbers);
       System.out.println("Squares List: " + squaresList);
       List<Integer> integers = Arrays.asList(1,2,13,4,15,6,17,8,19);
@@ -45,7 +45,7 @@ public class StreamExample {
       System.out.println("Average of all numbers : " + getAverage(integers));
       System.out.println("Random Numbers: ");
 		
-      //print ten random numbers
+      
       Random random = new Random();
 		
       for(int i = 0; i < 10; i++) {
@@ -68,8 +68,7 @@ public class StreamExample {
       System.out.println("Merged String: " + mergedString);
 		
       squaresList = numbers.stream().map( i ->i*i).distinct().collect(Collectors.toList());
-      System.out.println("Squares List: " + squaresList);
-      System.out.println("List: " +integers);
+      System.out.println("Squares List: " + squaresList);      System.out.println("List: " +integers);
 		
       IntSummaryStatistics stats = integers.stream().mapToInt((x) ->x).summaryStatistics();
 		
@@ -81,7 +80,7 @@ public class StreamExample {
 		
       random.ints().limit(10).sorted().forEach(System.out::println);
 		
-      //parallel processing
+      
       count = strings.parallelStream().filter(string -> string.isEmpty()).count();
       System.out.println("Empty Strings: " + count);
    }
