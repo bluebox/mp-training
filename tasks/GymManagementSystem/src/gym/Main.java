@@ -5,132 +5,115 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-	static Scanner sc=new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		Gym gym=new Gym();
+		Gym gym = new Gym();
 		sampleData(gym);
 
-		
-//		Member a=new Member("Sai", 45);
-//		MemberShipPlan.PlanDetails pd=MemberShipPlan.PlanDetails.GOLD;
-//		MemberShipPlan mp=new MemberShipPlan(pd,5);
-//		a.addPlan(mp);
-//		
-//		
-//		gym.addMember(a);
-//		gym.printDetails();
-//		
-//		a=new Member("Manoj", 22);
-//		 pd=MemberShipPlan.PlanDetails.PREMINUM;
-//		mp=new MemberShipPlan(pd,30);
-//		a.addPlan(mp);
-		
-//		
-//		gym.addMember(a);
-//		gym.printDetails();
-	
-		
 		do {
 			System.out.println("1.Create new user \n2.remove an user\n3.Print Details\n4.add Plan\n5.exit");
-			
+
 			System.out.println("Please select ");
-			int ch=sc.nextInt();
-			switch(ch)
-			{
-			case 1->createUser(gym);
-			case 2->deleteUser(gym);
-			case 3->gym.printDetails();
-			case 4->addPlan(gym);
-			case 5->System.exit(0);
-			default-> System.out.println("Invalid input please select from options");
-	
-			
+			String sch=sc.next();
+			try {
+				int ch = Integer.valueOf(sch);
+				switch (ch) {
+				case 1 -> createUser(gym);
+				case 2 -> deleteUser(gym);
+				case 3 -> gym.printDetails();
+				case 4 -> addPlan(gym);
+				case 5 -> System.exit(0);
+				default -> System.out.println("Invalid input please select from options");
 			};
-		}while(true);
-		
-		
-		
-		
+			}
+			catch(Exception e)
+			{
+				System.out.println("Please Enter a number "+e);
+			}
+		} while (true);
 	}
-	public static void deleteUser(Gym gym)
-	{
-		
+
+	public static void deleteUser(Gym gym) {
+
 		System.out.println("Enter memberId:");
-		long id=sc.nextLong();
+		long id = sc.nextLong();
 		gym.deleteUser(id);
-		
+
 	}
-	public static void createUser(Gym gym)
-	{		
+
+	public static void createUser(Gym gym) {
 		System.out.println("Enter your Name");
-		String name=sc.next();
+		String name = sc.next();
 		System.out.println("Enter your Age");
-		int age=sc.nextInt();
-		Member member=new Member(name,age);
+		int age = sc.nextInt();
+		Member member = new Member(name, age);
 		System.out.println("Do want to take plan\n1.yes\n2.no");
-		int planOption=sc.nextInt();
-		if(planOption==2)
-		{
+		int planOption = sc.nextInt();
+		if (planOption == 2) {
 			gym.addMember(member);
 			return;
-			
+
 		}
-		addPlan(gym,member);
-			
+		addPlan(gym, member);
+
 	}
-	public static void addPlan(Gym gym,Member member)
-	{
-		System.out.println("Select Plan");
-		ArrayList<PlanDetails> details=new ArrayList<>( List.of(PlanDetails.values()));
-		int count=1;
-		for(PlanDetails p: details)
-		{
-			System.out.println(count++ + ". "+ p.name());
-			
-		}
-		int opiton= sc.nextInt();
-		System.out.println("Enter the duration");
-		int duration=sc.nextInt();
-		member.addPlan(details.get(opiton-1),duration);
-		gym.addMember(member);
-	}
-	public static void addPlan(Gym gym)
-	{
+	
+	public static void addPlan(Gym gym) {
 		System.out.println("Enter the Id of the user");
-		long id=sc.nextInt();
-		Member member=gym.getMember(id);
-		if(member==null) {
+		long id = sc.nextInt();
+		Member member = gym.getMember(id);
+		if (member == null) {
 			System.out.println("User Not found");
 			return;
 		}
-		addPlan(gym,member);
-		
+		if(member.isSubscribed)
+		{
+			System.out.println("You Already have plan");
+			return;
+			
+		}
+		addPlan(gym, member);
+
 	}
-	public static void sampleData(Gym gym)
-	{
-		Member member=new Member("mani",20);
+
+	public static void addPlan(Gym gym, Member member) {
+		System.out.println("Select Plan");
+		ArrayList<PlanDetails> details = new ArrayList<>(List.of(PlanDetails.values()));
+		int count = 1;
+		for (PlanDetails p : details) {
+			System.out.println(count++ + ". " + p.name());
+
+		}
+		int opiton = sc.nextInt();
+		System.out.println("Enter the duration");
+		int duration = sc.nextInt();
+		member.addPlan(details.get(opiton - 1), duration);
+		gym.addMember(member);
+	}
+
+
+
+	public static void sampleData(Gym gym) {
+		Member member = new Member("mani", 20);
 		member.addPlan(PlanDetails.BASIC, 9);
 		gym.addMember(member);
-		member=new Member("Ram",22);
+		member = new Member("Ram", 22);
 		member.addPlan(PlanDetails.GOLD, 6);
 		gym.addMember(member);
-		member=new Member("sai",21);
+		member = new Member("sai", 21);
 		member.addPlan(PlanDetails.PREMINUM, 12);
-		gym.addMember(member);			
+		gym.addMember(member);
 
-		member=new Member("Rakesh",19);
+		member = new Member("Rakesh", 19);
 		member.addPlan(PlanDetails.BASIC, 7);
 		gym.addMember(member);
-		member=new Member("rakesh ram",19);
+		member = new Member("rakesh ram", 19);
 		member.addPlan(PlanDetails.BASIC, 7);
 		gym.addMember(member);
-		member=new Member("Bhanu",19);
-		//member.addPlan(PlanDetails.BASIC, 7);
+		member = new Member("Bhanu", 19);
 		gym.addMember(member);
-		
-		
-		
-		
+
 	}
 
 }
