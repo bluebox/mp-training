@@ -2,7 +2,10 @@ package linkedlist;
 
 public interface NodeList {
 	
-	public Node n1;
+	public Listitem getRoot();
+	public void addItem(Node node);
+	public void RemoveItem(int index);
+	public void traverse();
 	
 
 }
