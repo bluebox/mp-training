@@ -1,4 +1,4 @@
-package javaPrograms;
+package oops.overLoading;
 
 public class MethodOverLoading {
 	
