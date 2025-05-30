@@ -77,7 +77,9 @@ public class Main {
 			
 		}
 		int opiton= sc.nextInt();
-		member.addPlan(details.get(opiton-1),12);
+		System.out.println("Enter the duration");
+		int duration=sc.nextInt();
+		member.addPlan(details.get(opiton-1),duration);
 		gym.addMember(member);
 		
 	}
