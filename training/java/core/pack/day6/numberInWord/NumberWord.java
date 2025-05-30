@@ -4,34 +4,34 @@ public class NumberWord {
 	 public static void printNumberInWord(int number){
 	        switch(number){
 	            case 0:
-	                System.out.println("ZERO");
+	                System.out.print("ZERO ");
 	                break;
 	            case 1:
-	                System.out.println("ONE");
+	                System.out.print("ONE ");
 	                break;
 	            case 2:
-	                System.out.println("TWO");
+	                System.out.print("TWO ");
 	                break;
 	            case 3:
-	                System.out.println("THREE");
+	                System.out.print("THREE ");
 	                break;
 	            case 4:
-	                System.out.println("FOUR");
+	                System.out.print("FOUR ");
 	                break;
 	            case 5:
-	                System.out.println("FIVE");
+	                System.out.print("FIVE ");
 	                break;
 	            case 6:
-	                System.out.println("SIX");
+	                System.out.print("SIX ");
 	                break;
 	            case 7:
-	                System.out.println("SEVEN");
+	                System.out.print("SEVEN ");
 	                break;
 	            case 8:
-	                System.out.println("EIGHT");
+	                System.out.print("EIGHT ");
 	                break;
 	            case 9:
-	                System.out.println("NINE");
+	                System.out.print("NINE ");
 	                break;
 	            default:
 	                System.out.println("OTHER");
