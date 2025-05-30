@@ -1,4 +1,4 @@
-
+package com.example;
 public class SumChecker {
 	public static boolean checkSum(int a,int b,int c) {
 		if((a+b)==c) {

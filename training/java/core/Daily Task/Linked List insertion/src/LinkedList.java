@@ -1,4 +1,4 @@
-
+package com.example;
 public class LinkedList {
 	public int val;
 	public LinkedList next;

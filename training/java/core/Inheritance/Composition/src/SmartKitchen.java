@@ -3,7 +3,8 @@ public class SmartKitchen {
 	CoffeeMaker brewMaster;
 	DishWasher dishwasher;
 	Refrigerator iceBox;
-	public SmartKitchen(CoffeeMaker brewMaster,DishWasher dishwasher,Refrigerator iceBox) {
+	public SmartKitchen(CoffeeMaker brewMaster,DishWasher dishwasher,
+			Refrigerator iceBox) {
 		this.brewMaster=brewMaster;
 		this.dishwasher=dishwasher;
 		this.iceBox=iceBox;

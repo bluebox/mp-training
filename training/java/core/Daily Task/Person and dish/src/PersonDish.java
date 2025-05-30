@@ -1,3 +1,4 @@
+package com.example;
 import java.util.*;
 public class PersonDish {
 	public static void main(String arg[]) {

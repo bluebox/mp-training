@@ -1,4 +1,4 @@
-
+package com.example;
 public class IsEqualByThreeDecimalPlaces {
 	public static boolean isEqualByThreeDecimalPlace(double x,double y) {
 		int a=(int)(x*1000);

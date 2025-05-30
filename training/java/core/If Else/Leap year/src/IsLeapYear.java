@@ -1,4 +1,4 @@
-
+package com.example;
 public class IsLeapYear {
 	public static boolean isLeapYear(int year) {
 		if(year>0) {
