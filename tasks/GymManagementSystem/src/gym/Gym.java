@@ -6,13 +6,15 @@ class Gym {
 
 	HashMap<Long, Member> members;
 	static String name = "MEDPLUS GYM";
-	static String description = "Prevation is better than cure";
+	static String description = "Excuses don’t burn calories.";
+	
 
 	public Gym() {
 		super();
 		members = new HashMap<>();
 		System.out.println("Welcome to " + name);
-		System.out.println("**** " + description);
+		System.out.println("**** " + description+" ****");
+		System.out.println("-".repeat(20));
 	}
 
 	public void addMember(Member member) {
@@ -25,7 +27,7 @@ class Gym {
 	}
 
 	public void printDetails() {
-		System.out.println("-".repeat(50));
+		//System.out.println("-".repeat(50));
 		members.forEach((l, member) -> {
 			System.out.println();
 			member.getDetails();

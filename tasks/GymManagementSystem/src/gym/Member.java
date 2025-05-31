@@ -2,10 +2,10 @@ package gym;
 
 public class Member extends Person{
 	
-	static long idGenerator=100;
-	long memId;
-	boolean isSubscribed;
-	MemberShipPlan memberShip;
+	private static long idGenerator=100;
+	private long memId;
+	public boolean isSubscribed;
+	private MemberShipPlan memberShip;
 	
 	
 	public Member(String name, int age) {
@@ -25,12 +25,13 @@ public class Member extends Person{
 	}
 	@Override
 	public void getDetails() {
-		System.out.println( "Member [memId=" + memId
-				+ "name=" + name + ", age=" + age + "]");
+		System.out.println("-+".repeat(20));
+		System.out.println( "Member ID:- " + memId
+				+ "\nname=" + name + "\nage=" + age);
+		System.out.println();
 		if(isSubscribed)
 		{
-			memberShip.getPlanDetails();
-			
+			memberShip.getPlanDetails();	
 		}
 		else
 		{

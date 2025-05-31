@@ -15,7 +15,7 @@ public class Main {
 			System.out.println("1.Create new user \n2.remove an user\n3.Print Details\n4.add Plan\n5.exit");
 
 			System.out.println("Please select ");
-			String sch=sc.next();
+			String sch = sc.next();
 			try {
 				int ch = Integer.valueOf(sch);
 				switch (ch) {
@@ -25,21 +25,12 @@ public class Main {
 				case 4 -> addPlan(gym);
 				case 5 -> System.exit(0);
 				default -> System.out.println("Invalid input please select from options");
-			};
-			}
-			catch(Exception e)
-			{
-				System.out.println("Please Enter a number "+e);
+				}
+				;
+			} catch (Exception e) {
+				System.out.println("Please Enter a number " + e);
 			}
 		} while (true);
-	}
-
-	public static void deleteUser(Gym gym) {
-
-		System.out.println("Enter memberId:");
-		long id = sc.nextLong();
-		gym.deleteUser(id);
-
 	}
 
 	public static void createUser(Gym gym) {
@@ -54,26 +45,28 @@ public class Main {
 		int planOption;
 		try {
 			planOption = sc.nextInt();
-			if(planOption!=1 && planOption!=2)
-			{
-				throw new Exception("Input miss match"); 
+			if (planOption != 1 && planOption != 2) {
+				throw new Exception("Input miss match");
 			}
-			
-		}catch(Exception e)
-		{
-			System.out.println("enter 1 or 2 "+e);
+
+		} catch (Exception e) {
+			System.out.println("enter 1 or 2 " + e);
 			return;
-			
 		}
-		
+
 		if (planOption == 2) {
 			return;
-
 		}
 		addPlan(gym, member);
+	}
+
+	public static void deleteUser(Gym gym) {
+		System.out.println("Enter memberId:");
+		long id = sc.nextLong();
+		gym.deleteUser(id);
 
 	}
-	
+
 	public static void addPlan(Gym gym) {
 		System.out.println("Enter the Id of the user");
 		long id = sc.nextInt();
@@ -82,14 +75,11 @@ public class Main {
 			System.out.println("User Not found");
 			return;
 		}
-		if(member.isSubscribed)
-		{
+		if (member.isSubscribed) {
 			System.out.println("You Already have plan");
 			return;
-			
 		}
 		addPlan(gym, member);
-
 	}
 
 	public static void addPlan(Gym gym, Member member) {
@@ -97,17 +87,15 @@ public class Main {
 		ArrayList<PlanDetails> details = new ArrayList<>(List.of(PlanDetails.values()));
 		int count = 1;
 		for (PlanDetails p : details) {
-			System.out.println(count++ + ". " + p.name());
+			System.out.println(count++ + ". " + p.name()+"  price-> "+p.price);
 
 		}
 		int opiton = sc.nextInt();
 		System.out.println("Enter the duration");
 		int duration = sc.nextInt();
 		member.addPlan(details.get(opiton - 1), duration);
-		gym.addMember(member);
+		
 	}
-
-
 
 	public static void sampleData(Gym gym) {
 		Member member = new Member("mani", 20);

@@ -14,7 +14,7 @@ class MemberShipPlan {
 	}
 
 	public void getPlanDetails() {
-		System.out.println("MemberShipPlan [name=" + plan.name() + ", duration=" + duration + ", fee=" + fee + "]");
+		System.out.println("MemberShipPlan Details\nPlan Name=" + plan.name() + "\nduration=" + duration + "\nTotal fee=" + fee );
 	}
 
 }
