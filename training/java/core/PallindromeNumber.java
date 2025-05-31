@@ -11,6 +11,7 @@ public class PallindromeNumber{
         else{
             System.out.println(number+" is not a Pallindrome");
         }
+        sc.close();
 
 
     }
