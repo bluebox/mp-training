@@ -23,11 +23,19 @@ class Gym {
 	}
 
 	public void deleteUser(long id) {
-		members.remove(id);
+		if(members.containsKey(id))
+		{
+			members.remove(id);
+			System.out.println("User deleted with user id "+id);
+			
+		}
+		else
+		{
+			System.out.println("User Not Found");
+		}
 	}
 
 	public void printDetails() {
-		//System.out.println("-".repeat(50));
 		members.forEach((l, member) -> {
 			System.out.println();
 			member.getDetails();

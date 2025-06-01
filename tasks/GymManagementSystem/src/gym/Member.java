@@ -7,7 +7,20 @@ public class Member extends Person{
 	public boolean isSubscribed;
 	private MemberShipPlan memberShip;
 	
+
+	public void setMemberShip(MemberShipPlan memberShip) {
+		this.memberShip = memberShip;
+	}
 	
+	public void setName(String name)
+	{
+		this.name=name;
+	}
+	public void setAge(int age)
+	{
+		this.age=age;
+	}
+
 	public Member(String name, int age) {
 		super(name, age);
 		memId=idGenerator++;
