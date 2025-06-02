@@ -1,6 +1,8 @@
 /module-info.class
-<<<<<<< HEAD
-=======
-/inheritance/
+/.classpath
+/.gitignore
+/.project
 /adv/
->>>>>>> 94e7b3243b2c45dd58bac3e12cabf724e4a004a6
+/com/
+/inheritance/
+/medplus/
