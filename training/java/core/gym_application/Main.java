@@ -21,8 +21,8 @@ class MyGym implements Gym{
 
     private String gym_name = "beFit gym";
     private String gymLocation = "Hyderabad";
-    private String manager_name = "nagabhushan";
-    private String managerId = "beFit_1";
+    private String manager_name = "naga";
+    private String managerId = "befit10001";
     private String managerPassword = "naga";
     static ArrayList<Member> members;
     static ArrayList<Trainer> trainers;
@@ -37,6 +37,13 @@ class MyGym implements Gym{
         this.managerPassword = managerPassword;
         members = new ArrayList<>();
         trainers = new ArrayList<>();
+    }
+
+    public String getManagerName(){
+        return this.manager_name;
+    }
+    public String getManagerPassword(){
+        return this.managerPassword;
     }
 
     public void addMember(Member obj){
@@ -84,11 +91,20 @@ class MyGym implements Gym{
     }
 
 
-
     public static Trainer getTrainerByName(String name){
         
         for(Trainer obj: trainers){
             if(obj.name.equals(name)){
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    public static Trainer getTrainerById(String id){
+        
+        for(Trainer obj: trainers){
+            if(obj.trainerId.equals(id)){
                 return obj;
             }
         }
@@ -101,6 +117,16 @@ class MyGym implements Gym{
             if(obj.name.equals(name)){
                 return obj;
                 
+            }
+        }
+        return null;
+    }
+
+    public static Member getMemberById(String id){
+        
+        for(Member obj: members){
+            if(obj.getMemberId().equals(id)){
+                return obj;              
             }
         }
         return null;
@@ -142,42 +168,10 @@ public class Main {
         return formatter.format(date);
     }
 
-    public static void main(String[] args) {
+    public static void createMember(MyGym beFit , Scanner sc){
 
-        Scanner sc = new Scanner(System.in);
-
-        MyGym beFit = new MyGym();
-        System.out.println("-".repeat(20));
-
-        Trainer trainer1 = new Trainer("venkat" , 35);
-        Trainer trainer2 = new Trainer("bharath" , 40);
-        Trainer trainer3 = new Trainer("raju" , 33);
-
-        beFit.addTrainer(trainer1);
-        beFit.addTrainer(trainer2);
-        beFit.addTrainer(trainer3);
-
-        Member member1 = new Member("reddysekhar" , 23 , "basic" , "venkat");
-        Member member2 = new Member("saketh" , 23 , "gold" );
-        Member member3 = new Member("venu" , 24 , "premium" , "raju");
-
-        // beFit.gymManagerDetails();
-        // beFit.gymDetails();
         
-        beFit.addMember(member1);
-        beFit.addMember(member2);
-        beFit.addMember(member3);
-
-        //beFit.getMemberByName("venu").showMemberDetails();
-        // beFit.gymTrainerDetails();
-        // beFit.gymMemberDetails();
-        System.out.println("------------------------------");
-        // trainer1.showTrainees();
-
-        // beFit.gymMemberNames();
-        // beFit.gymTrainerNames();
-       // System.out.println("Choose your plan");
-
+        
         System.out.println("Enter your details");
         System.out.println("Name :");
         String name = sc.nextLine();
@@ -199,7 +193,7 @@ public class Main {
             case "3" -> {System.out.println("You have selected premium plan");plan="premium";}
         }
 
-        System.out.println("Do you need trainer (Y/N)");
+        System.out.println("Do you need trainer (additional cast -> 500/month) (Y/N) :");
 
         ch = sc.nextLine();
         
@@ -219,11 +213,348 @@ public class Main {
         beFit.addMember(member);
         System.out.println("Here your details :");
         System.out.println(beFit.getMemberByName(name).showMemberDetails());
+    }
+
+    public static void createTrainer(MyGym beFit , Scanner sc) {
+        System.out.println("Enter your name :");
+        String name = sc.nextLine();
+        System.out.println("Enter your age : ");
+        int age = sc.nextInt();
+        Trainer trainer = new Trainer(name , age);
+        beFit.addTrainer(trainer);
+        System.out.println("trainer added successfully..");
+    }
+
+    public static boolean takeAdminDetails(MyGym beFit , Scanner sc){
        
+        String name ;
+        String password ;
+        System.out.println("Enter user name");
+        name= sc.nextLine();
+        System.out.println("Enter password :");
+        
+        password= sc.nextLine();
+
+        while(!beFit.getManagerName().equals(name) || !beFit.getManagerPassword().equals(password)){
+            System.out.println("enter valid details..");
+            System.out.println("Enter user name");
+            name= sc.nextLine();
+            System.out.println("Enter password :");      
+            password= sc.nextLine();
+            
+        };
+        return true;
+    }
+
+    public static boolean authAdmin(MyGym beFit , String name , String password ){
+
+        while(!(beFit.getManagerName().equals(name) && beFit.getManagerPassword().equals(password))){
+            System.out.println("enter valid details..");
+            Scanner sc = new Scanner(System.in);
+            takeAdminDetails(beFit, sc);
+        };
+        return true;
+
+    }
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        MyGym beFit = new MyGym();
+        System.out.println("-".repeat(20));
+
+        Trainer trainer1 = new Trainer("venkat" , 35);
+        Trainer trainer2 = new Trainer("bharath" , 40);
+        Trainer trainer3 = new Trainer("raju" , 33);
+
+        beFit.addTrainer(trainer1);
+        beFit.addTrainer(trainer2);
+        beFit.addTrainer(trainer3);
+
+        Member member1 = new Member("reddysekhar" , 23 , "basic" , "venkat");
+        Member member2 = new Member("saketh" , 23 , "gold" );
+        Member member3 = new Member("venu" , 24 , "premium" , "raju");
 
 
+        
+        beFit.addMember(member1);
+        beFit.addMember(member2);
+        beFit.addMember(member3);
+
+        //System.out.println("------------------------------");
+
+        boolean looping = true;
+        while (looping){
+
+            System.out.println("--------------------------------------------------------------------------");
+            System.out.println("Welcome to Befit Gym");
+            System.out.println("1.Admin    2.Existing User    3.New User Registration   4.Trainer   q.Quit");
+
+            String ch = sc.nextLine();
+
+            switch(ch){
+                
+                case "1" -> {
+                    if(takeAdminDetails(beFit, sc)){
+                        boolean inLoop = true;
+
+                        while(inLoop){
+                            System.out.println("choose your operation : (q -> quit)");
+                            System.out.println("""
+
+                                    1.Add a user
+                                    2.Add a trainer
+                                    3.Remove a user by name
+                                    4.Remove a user by id
+                                    5.Remove a trainer by name
+                                    6.Remove a trainer by id
+                                    7.Get user details by name
+                                    8.Get user details by id
+                                    9.Get trainer details by name
+                                    10.Get trainer details by id
+                                    11.Get all users details
+                                    12.Get all trainer details
+                
+                                    """);
+
+                                String choice = sc.nextLine();
+
+                                switch (choice) {
+                                    case "1" -> {
+                                        createMember(beFit, sc);
+                                    }
+
+                                    case "2" -> {
+                                        createTrainer(beFit, sc);
+                                    }
+                                    case "3" -> {
+                                        System.out.println("Enter your name :");
+                                        String user_name;
+                                        user_name= sc.nextLine();
+
+                                        while(beFit.getMemberByName(user_name) == null){
+                                            System.out.println("enter valid name..");
+                                            user_name= sc.nextLine();
+                                        }
+                                        beFit.removeMember(beFit.getMemberByName(user_name));
+                                        System.out.println(user_name + " removed successfully..\n----------------------------");
+                                    }
+
+                                    case "4" -> {
+                                        System.out.println("Enter your id :");
+                                        String user_id ;
+                                        user_id= sc.nextLine();
+                                        while(beFit.getMemberById(user_id) == null){
+                                            System.out.println("enter valid id..");
+                                            user_id= sc.nextLine();
+                                        }
+                                        beFit.removeMember(beFit.getMemberById(user_id));
+                                        System.out.println(user_id + " removed successfully");
+
+                                    }
+                                    case "5" -> {
+                                        System.out.println("Enter your name :");
+                                        String trainer_name;
+                                        trainer_name = sc.nextLine();
+
+                                        while(beFit.getTrainerByName(trainer_name) == null){
+                                            System.out.println("enter valid name..");
+                                            trainer_name= sc.nextLine();
+                                        }
+                                        beFit.removeTrainer(beFit.getTrainerByName(trainer_name));
+                                        System.out.println(trainer_name + " removed successfully..\n----------------------------");
+                                        
+                                    }
+
+                                    case "6" -> {
+                                        System.out.println("Enter your id :");
+                                        String trainer_id;
+                                        trainer_id = sc.nextLine();
+                                        while(beFit.getTrainerById(trainer_id) == null){
+                                            System.out.println("enter valid id..");
+                                            trainer_id= sc.nextLine();
+                                        }
+                                        beFit.removeTrainer(beFit.getTrainerById(trainer_id));
+                                        System.out.println(trainer_id + " removed successfully..");
+
+                                    }
+                                    case "7" -> {
+                                        System.out.println("Enter your name :");
+                                        String user_name;
+                                        user_name= sc.nextLine();
+
+                                        while(beFit.getMemberByName(user_name) == null){
+                                            System.out.println("enter valid name..");
+                                            user_name= sc.nextLine();
+                                        }
+                                        System.out.println(beFit.getMemberByName(user_name).showMemberDetails());
+                                    }
+
+                                    case "8" -> {
+                                        System.out.println("Enter your id :");
+                                        String user_id ;
+                                        user_id= sc.nextLine();
+                                        while(beFit.getMemberById(user_id) == null){
+                                            System.out.println("enter valid id..");
+                                            user_id= sc.nextLine();
+                                        }
+                                        System.out.println(beFit.getMemberById(user_id).showMemberDetails());
+                                    }
+                                    case "9" -> {
+                                        System.out.println("Enter your name :");
+                                        String trainer_name;
+                                        trainer_name = sc.nextLine();
+
+                                        while(beFit.getTrainerByName(trainer_name) == null){
+                                            System.out.println("enter valid name..");
+                                            trainer_name= sc.nextLine();
+                                        }
+                                        beFit.getTrainerByName(trainer_name).details();
+                                    }
+
+                                    case "10" -> {
+                                        System.out.println("Enter your id :");
+                                        String trainer_id;
+                                        trainer_id = sc.nextLine();
+                                        while(beFit.getTrainerById(trainer_id) == null){
+                                            System.out.println("enter valid id..");
+                                            trainer_id= sc.nextLine();
+                                        }
+                                        beFit.getTrainerById(trainer_id).details();
+                                    }
+                                    case "11" -> {
+                                        beFit.gymMemberDetails();
+                                    }
+
+                                    case "12" -> {
+                                        beFit.gymTrainerDetails();
+                                        System.out.println("-------------------------------");
+                                    }
+                                    case "q" -> {
+                                        inLoop = false;
+                                        break;
+                                    }
+                                    case "Q" -> {
+                                        inLoop = false;
+                                        break;
+                                    }
+                                }
+                        }
+                    }
+                }
+
+                case "2" -> {
+                    System.out.println("choose your operation : (q -> quit)");
+                    System.out.println("""
+                            1.Get your details by name
+                            2.Get your details by id
+                            """);
+                    String choice = sc.nextLine();
+
+                    switch(choice){
+                        case "1" -> {
+                            System.out.println("Enter your id :");
+                            String user_id ;
+                            user_id= sc.nextLine();
+                            while(beFit.getMemberById(user_id) == null){
+                                System.out.println("enter valid id..");
+                                user_id= sc.nextLine();
+                            }
+                            System.out.println( beFit.getMemberByName(user_id).showMemberDetails());
+                        }
+
+                        case "2" -> {
+                            System.out.println("Enter your id :");
+                            String user_id ;
+                            user_id= sc.nextLine();
+                            while(beFit.getMemberById(user_id) == null){
+                                System.out.println("enter valid id..");
+                                user_id= sc.nextLine();
+                            }
+                            System.out.println( beFit.getMemberById(user_id).showMemberDetails());
+                        }
+                    
+                    }
+                    
+                    
+
+                }
+                
+                case "3" -> {
+
+                    createMember(beFit, sc);
+
+                }
+
+                case "4" -> {
+                    System.out.println("""
+                            1.get your details by name
+                            2.get your details by id
+                            3.show your trainee list
+                            """);
+                    String op = sc.nextLine();
+
+                    switch(op){
+
+                        case "1" -> {
+                            System.out.println("Enter your name :");
+                            String trainer_name;
+                            trainer_name = sc.nextLine();
+
+                            while(beFit.getTrainerByName(trainer_name) == null){
+                                System.out.println("enter valid name..");
+                                trainer_name= sc.nextLine();
+                            }
+                            beFit.getTrainerByName(trainer_name).details();
+                        }
+
+                        case "2" -> {
+                            System.out.println("Enter your id :");
+                            String trainer_id;
+                            trainer_id = sc.nextLine();
+                            while(beFit.getTrainerById(trainer_id) == null){
+                                System.out.println("enter valid id..");
+                                trainer_id= sc.nextLine();
+                            }
+                            beFit.getTrainerById(trainer_id).details();
+                        }
+
+                        case "3" -> {
+
+                            System.out.println("Enter your name :");
+                            String trainer_name;
+                            trainer_name = sc.nextLine();
+
+                            while(beFit.getTrainerByName(trainer_name) == null){
+                                System.out.println("enter valid name..");
+                                trainer_name= sc.nextLine();
+                            }
+                            beFit.getTrainerByName(trainer_name).showTrainees();
+
+                        }
 
 
+                    }
+                }
+
+                
+                case "q" ->{
+                    looping = false;
+                    break;
+                }
+
+                case "Q" -> {
+                    looping = false;
+                    break;
+                }
+
+                default -> {
+                    System.out.println("Enter valid option (1 or 2 or 3 or 4)");
+                }
+
+            }
+
+        }
 
 
 

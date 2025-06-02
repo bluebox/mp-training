@@ -22,13 +22,13 @@ public class Trainer extends Person{
         this.age = age;
         trainee = new ArrayList<>();
         Member.members_count++;
-        this.trainerId ="beFit_"+Member.members_count;
+        this.trainerId ="befit"+Member.members_count;
 
     }
     void details(){
         // System.out.println("-".repeat(20));
-        System.out.println(this.getClass().getSimpleName() + "\nName : "+ 
-        this.name +" age : "+ this.age + " id :" + trainerId);
+        System.out.println("Name : "+ 
+        this.name +", age : "+ this.age + ", id : " + trainerId);
     }
 
     public void showTrainees(){
