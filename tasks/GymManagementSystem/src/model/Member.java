@@ -1,52 +1,36 @@
 package model;
 
-public class Member extends Person{
-	
-	private String memberId;
-	private Subscription subscribe;
+import java.time.LocalDate;
 
-	public Member(String name, int age, String gender, String address, String memberId,Subscription subscribe) {
-		super(name, age, gender, address);
-		this.memberId = memberId;
-		this.subscribe = subscribe;
-	}
-	
-	
-	
-	public String getMemberId() {
-		return memberId;
-	}
+public class Member extends Person {
 
+    private Subscription subscribe;
+    private LocalDate startDate;
 
+    public Member(String name, int age, String gender, String address, Subscription subscribe) {
+        super(name, age, gender, address);
+        this.startDate = LocalDate.now(); 
+        this.subscribe = subscribe;
+    }
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
+    public LocalDate getStartDate() {
+        return startDate;
+    }
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
 
+    public Subscription getSubscribe() {
+        return subscribe;
+    }
 
-	public Subscription getSubscribe() {
-		return subscribe;
-	}
+    public void setSubscribe(Subscription subscribe) {
+        this.subscribe = subscribe;
+    }
 
-
-
-	public void setSubscribe(Subscription subscribe) {
-		this.subscribe = subscribe;
-	}
-
-
-
-	/*
-	 * needs proper definition.
-	 * */
-	@Override
-	public void getPersonalDetails() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	
-	
+    @Override
+    public void getPersonalDetails() {
+        // TODO: Display details
+    }
 }
