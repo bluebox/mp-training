@@ -1,4 +1,4 @@
-package Assignments.GymCaseStudy;
+package Gym;
 
 public abstract class Person {
     protected String Name;

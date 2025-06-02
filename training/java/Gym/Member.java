@@ -1,4 +1,4 @@
-package Assignments.GymCaseStudy;
+package Gym;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -18,8 +18,8 @@ public class Member extends Person{
         this.membershipPlan = membershipPlan;
     }
 
-     public void updateName(String membershipPlan){
-        this.membershipPlan = membershipPlan;
+     public void updateName(String name){
+        this.Name = name;
     }
 
     public long calculateRemainingDays(String end){
@@ -47,14 +47,14 @@ public class Member extends Person{
     }
 
 
-    public long getRemainingDays(){
-        return remainingDays;
-    }
+    // public long getRemainingDays(){
+    //     return remainingDays;
+    // }
 
-    public String getMemberId(){
-        return memberId;
-    }
-    public String getName(){ return Name;}
+    // public String getMemberId(){
+    //     return memberId;
+    // }
+    // public String getName(){ return Name;}
     public void setAge(String age){ this.Age=age;}
     public String showMembersDetails(){
         return ""+memberId+"  "+Name+"  "+Age+"  "+Gender+"  ["+membershipPlan+"]  ["+startDate+" to "+endDate+"]  "+remainingDays+"-days left";
