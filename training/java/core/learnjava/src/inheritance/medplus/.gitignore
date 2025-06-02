@@ -24,3 +24,8 @@
 /worker.class
 /EncapsulationPrinter.class
 /Printer.class
+/Car.class
+/CarParent.class
+/ElectricCar.class
+/GasPoweredCar.class
+/HybridCar.class

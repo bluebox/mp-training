@@ -23,12 +23,13 @@ public  enum MembershipPlan{BASIC(500),GOLD(1000),PREMIUM(1300);
 
 
 	public static void showPlans() {
-		System.out.printf("%n%10s -> %s%n%n".formatted("Plan Type","Price"));
+		System.out.printf("%10s -> %s".formatted("Plan Type","Price"));
+		int count = 1;
 		for ( MembershipPlan i : MembershipPlan.values()) {
-			System.out.printf("%10s -> %d%n".formatted(i.name(),i.getPrice()));
+			System.out.printf("%d. %10s -> %d%n".formatted(count,i.name(),i.getPrice()));
+			count++;
 		}
-		
-		
+		System.out.println("Select a Plan : ");
 	}
 
 
