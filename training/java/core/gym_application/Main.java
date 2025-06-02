@@ -314,7 +314,7 @@ public class Main {
                                     10.Get trainer details by id
                                     11.Get all users details
                                     12.Get all trainer details
-                
+                                    13.Get trainee list of trainer
                                     """);
 
                                 String choice = sc.nextLine();
@@ -430,6 +430,19 @@ public class Main {
                                         beFit.gymTrainerDetails();
                                         System.out.println("-------------------------------");
                                     }
+                                    case "13" -> {
+
+                                        System.out.println("Enter your name :");
+                                        String trainer_name;
+                                        trainer_name = sc.nextLine();
+
+                                        while(beFit.getTrainerByName(trainer_name) == null){
+                                            System.out.println("enter valid name..");
+                                            trainer_name= sc.nextLine();
+                                        }
+                                        beFit.getTrainerByName(trainer_name).showTrainees();
+
+                                    }
                                     case "q" -> {
                                         inLoop = false;
                                         break;
@@ -454,13 +467,13 @@ public class Main {
                     switch(choice){
                         case "1" -> {
                             System.out.println("Enter your id :");
-                            String user_id ;
-                            user_id= sc.nextLine();
-                            while(beFit.getMemberById(user_id) == null){
+                            String user_name ;
+                            user_name= sc.nextLine();
+                            while(beFit.getMemberByName(user_name) == null){
                                 System.out.println("enter valid id..");
-                                user_id= sc.nextLine();
+                                user_name= sc.nextLine();
                             }
-                            System.out.println( beFit.getMemberByName(user_id).showMemberDetails());
+                            System.out.println( beFit.getMemberByName(user_name).showMemberDetails());
                         }
 
                         case "2" -> {
@@ -476,14 +489,10 @@ public class Main {
                     
                     }
                     
-                    
-
                 }
                 
                 case "3" -> {
-
                     createMember(beFit, sc);
-
                 }
 
                 case "4" -> {
@@ -555,11 +564,6 @@ public class Main {
             }
 
         }
-
-
-
-
-
         
     }
 }
