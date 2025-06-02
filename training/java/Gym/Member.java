@@ -51,9 +51,9 @@ public class Member extends Person{
     //     return remainingDays;
     // }
 
-    // public String getMemberId(){
-    //     return memberId;
-    // }
+    public String getMemberId(){
+        return memberId;
+    }
     // public String getName(){ return Name;}
     public void setAge(String age){ this.Age=age;}
     public String showMembersDetails(){
