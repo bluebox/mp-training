@@ -10,7 +10,7 @@ public class Member extends Person {
     private String memberId;
     private String trainer_name;
 
-    static int members_count = 1;
+    static int members_count = 10001;
 
     Member(){
         this("" );
@@ -44,7 +44,11 @@ public class Member extends Person {
 
         this.joiningDate = Main.getTodayDate();
         this.members_count+=1;
-        this.memberId = "beFit_" + this.members_count;
+        this.memberId = "befit" + this.members_count;
+    }
+
+    public String getMemberId(){
+        return this.memberId;
     }
 
 
@@ -58,14 +62,14 @@ public class Member extends Person {
     }
 
     public String showMemberDetails(){
-        String s = "Name : " + this.name + "\nage : " + this.age + 
-        "\nid : " +  
-        this. memberId+"\nplan taken : "+ this.planTaken + 
-        "\nDate of joining : "+ this.joiningDate;
+        String s = "Name : " + this.name + ", age : " + this.age + 
+        ", id : " +  
+        this. memberId+", plan taken : "+ this.planTaken + 
+        ", DOJ : "+ this.joiningDate;
 
         if (trainer_name!=null && trainer_name!=""){
 
-         s = s + "\ntrainer name : " + trainer_name;
+         s = s + ", trainer name : " + trainer_name;
         }
 
         return s + "\n------------------------";
