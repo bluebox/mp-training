@@ -1,4 +1,4 @@
-package Assignments.GymCaseStudy;
+package Gym;
 import java.util.ArrayList;
 public class Gym{
     public static ArrayList<Member> membersRecord = new ArrayList<>();

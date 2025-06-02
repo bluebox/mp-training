@@ -1,4 +1,4 @@
-package Assignments.GymCaseStudy;
+package Gym;
 
 public class MembershipPlan {
     public String basicPlan="Basic / 4-Months / 2099/-";
