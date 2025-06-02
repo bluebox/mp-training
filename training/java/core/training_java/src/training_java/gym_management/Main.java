@@ -53,7 +53,8 @@ public class Main {
             System.out.println("4. View All Trainers");
             System.out.println("5. Assign the Trainer");
             System.out.println("6. Update Member Name");
-            System.out.println("7.Update Member Age");
+            System.out.println("7. Update Member Age");
+            System.out.println("8. Get Member By Id");
             System.out.print("Choose an option: ");
     
             int choice = Integer.parseInt(sc.nextLine());
@@ -82,6 +83,16 @@ public class Main {
                     break;
                 case 7:
                     updateMemberAge();
+                    break;
+                case 8:
+                    Member m=getMember();
+                    if(m==null)
+                    {
+                      System.out.println("Member Not Found");   
+                    }
+                    else{
+                        m.showDetails();
+                    }
                     break;
                 default:
                     System.out.println("Invalid choice in additional info.\n");
@@ -318,5 +329,10 @@ public class Main {
         long memberId=getMemberId(sc);
         String name=getName(sc);
         gym.updateMemberName(memberId,name);
+    }
+    private static Member getMember()
+    {
+        long id=getMemberId(sc);
+        return gym.getMember(id);
     }
 }
