@@ -17,7 +17,16 @@ public class Main {
                     System.out.println("Enter Name: ");
                     String name = sc.nextLine();
                     System.out.println("Enter Age: ");
-                    int age = Integer.parseInt(sc.nextLine());
+                    int age;
+                    while(true) {
+                        System.out.println("Enter Age(Age should be positive): ");
+
+                        age = Integer.parseInt(sc.nextLine());
+
+                    	if(age>0) {
+                    		break;
+                    	}
+                    }
                     String id = MemberIdGenerator.generateId();
 
                     Member m = new Member(id, name, age);
