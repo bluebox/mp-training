@@ -6,7 +6,7 @@ public class Gym {
      public Gym() {
     	 members=new ArrayList<>();
      }
-     public int getSize() {
+     public int getId() {
     	 return cnt;
      }
      public void addMember(Member newNumber) {
@@ -60,7 +60,7 @@ public class Gym {
     		 System.out.println("user deleted successfully of id "+id);
     		 return ;
     	 }
-    	 System.out.println("User not found");
+    	 System.out.println("User not found to delete");
      }
      public void getByAge(int age) {
     	 System.out.println("Members with age "+age);

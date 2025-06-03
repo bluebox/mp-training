@@ -1,6 +1,6 @@
 
 public abstract class Person {
-    protected String name;
-    protected int age;
+    public String name;
+    public int age;
     abstract void getDetails();
 }

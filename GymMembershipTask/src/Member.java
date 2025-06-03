@@ -33,4 +33,8 @@ public class Member extends Person{
     public String getMemberShipDetails() {
     	return this.type.toString();
     }
+    public static boolean validateAge(int age) {
+    	if(age>=18 && age<=100)return true;
+    	return false;
+    }
 }
