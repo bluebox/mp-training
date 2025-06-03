@@ -71,21 +71,27 @@ public class Gym {
 		}
 	}
 
-	public void assignTrainer(Member member, Trainer trainer) {
+	public boolean assignTrainer(Member member, Trainer trainer) {
 		if (!member.isTrainer()) {
-			member.setTrainer(trainer);
+			boolean flag=this.setTrainer(member,trainer);
+			if(flag) {
 			System.out.println("The trainer " + trainer.getName() + " is assigned to " + member.getName());
-		} else {
+			return true;
+		} 
+		}else {
 			System.out.println("A trainer is already assigned " + member.getTrainer());
 			System.out.println("Want to update Trainer?");
 		}
+		return false;
 	}
 
-	public void setTrainer(Member member, Trainer trainer) {
+	public boolean setTrainer(Member member, Trainer trainer) {
 		if (member.getPlan().equals(trainer.getTrainerType())) {
 			member.setTrainer(trainer);
+			return true;
 		} else {
-			System.out.println("Please Choose Trainers from your" + member.getPlan() + "Plan");
+			System.out.println("Please Choose Trainers from your " + member.getPlan() + " Plan");
+			return false;
 		}
 	}
 
@@ -179,3 +185,4 @@ public class Gym {
 	}
 
 }
+

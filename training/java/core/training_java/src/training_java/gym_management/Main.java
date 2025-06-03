@@ -6,6 +6,13 @@ public class Main {
 
     public static void main(String[] args) {
         boolean exit = false;
+        gym.addMember(1234567890,"Aravind", 43,"MALE");
+        gym.addMember(2345678901L,"Bharath", 32,"MALE");
+        gym.addMember(5678901234L,"Chandu", 26,"MALE");
+        gym.addTrainer(3456789012L,"BASIC","Dhanush",28,"MALE");
+        gym.addTrainer(4567890123L,"GOLD","Ravi",35,"MALE");
+        gym.addTrainer(6789012345L,"PREMIUM","Sarath",38,"MALE");
+        
         while (!exit) {
             printMenu();
             int choice = getValidChoice();
@@ -198,6 +205,26 @@ public class Main {
         }
         return memberId;
     }
+    private static long getTrainerId(Scanner sc)
+    {
+          // Trainer ID
+        long trainerId=0;
+        while (true) {
+            System.out.print("Enter Trainer ID (10 digits): ");
+            String idInput = sc.nextLine().trim();
+            if (!idInput.matches("\\d{10}")) {
+                System.out.println("Error: Trainer ID must be exactly 10 digits.");
+                continue;
+            }
+            try {
+                trainerId = Long.parseLong(idInput);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Trainer ID must be a valid number.");
+            }
+        }
+        return trainerId;
+    }
     
     private static String getName(Scanner sc)
     {
@@ -303,11 +330,13 @@ public class Main {
         System.out.print("Enter Trainer ID:");
         String planName=getPlanName(sc);
         gym.showTrainersOfPlan(planName);
-        long trainId=getMemberId(sc);
+        long trainId=getTrainerId(sc);
         Trainer train=gym.getTrainer(trainId);
         if (mem != null && train!=null) {
-            gym.assignTrainer(mem,train);
+            boolean prin=gym.assignTrainer(mem,train);
+            if(prin) {
             System.out.println("Trainer Assigned successfully.\n");
+            }
         } else if(mem==null){
             System.out.println("Member not found.\n");
         }
@@ -336,3 +365,4 @@ public class Main {
         return gym.getMember(id);
     }
 }
+
