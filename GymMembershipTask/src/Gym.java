@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Gym {
-     private static int cnt=0;
+     private int cnt=0;
      private List<Member>members;
      public Gym() {
     	 members=new ArrayList<>();
