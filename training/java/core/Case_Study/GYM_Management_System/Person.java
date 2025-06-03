@@ -4,7 +4,7 @@ public abstract class Person implements Display{
 
     public Person(String name,int age){
         this.name=name;
-        this.age=age;
+        setAge(age);
 
     }
     public String getName(){
