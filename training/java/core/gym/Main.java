@@ -24,7 +24,7 @@ public class Main {
 			Scanner scanValue = new Scanner(System.in);
 			while(true)
 			{
-				System.out.println("\nPress : \n1 -> To add a member\n2 -> View Member Details\n3 -> Show Gym Plans\n4 -> To change gym plans\n5 -> To renew plan of a member\n6 -> To remove a member\n0 -> To exit the Application\nEnter your value : ");
+				System.out.println("\nPress : \n1 -> To add a member\n2 -> View Member Details\n3 -> Show Gym Plans\n4 -> To renew plan of a member\n5 -> To remove a member\n0 -> To exit the Application\nEnter your value : ");
 				int value=scanValue.nextInt();
 				switch(value) {
 					case 0:
@@ -49,7 +49,9 @@ public class Main {
 					case 3:
 						gym.showPlans();
 						break;
-					case 4:
+					case 4: //bonus challenge
+						break;
+					case 5: //bonus challenge
 						break;
 						
 					default:
