@@ -1,62 +1,62 @@
-package admin;
+package WarriorsForgeGym.admin;
 
-import coreEntities.*;
-import enums.*;
-import exceptions.*;
+import WarriorsForgeGym.coreEntities.*;
+import WarriorsForgeGym.enums.*;
+import WarriorsForgeGym.exceptions.*;
 import java.util.*;
 
 public class GymnasiumAdmin 
 {
     private List<FitnessMember> membersEnrolled;
     private List<TrainerProfile> availableTrainers;
-    private List<TrainingProgramBlueprint> availableTrainingPlans;
+    private List<TrainingProgramBlueprint> availableTrainingPrograms;
 
     // we have used this map to put members of the gym and the meals plan assigned to them together.
     private Map<FitnessMember, TrainingDietPlan> membersToDietPlanMap;
 
     private void initializeDefaultTrainingPrograms()
     {
-        if (availableTrainingPlans.isEmpty()) 
+        if (availableTrainingPrograms.isEmpty()) 
         {
-            availableTrainingPlans.add(new TrainingProgramBlueprint(
+            availableTrainingPrograms.add(new TrainingProgramBlueprint(
                     "Calisthenics Champions",
-                    TrainingPlanType.WEIGHT_TRAINING,
+                    TrainingProgramType.WEIGHT_TRAINING,
                     TrainingMode.BODYWEIGHT_ONLY,
                     null,
                     FitnessGoal.ENDURANCE,
                     Level.NOVICE,
                     8,
                     2500));
-            availableTrainingPlans.add(new TrainingProgramBlueprint(
+            availableTrainingPrograms.add(new TrainingProgramBlueprint(
                     "Lifting Warriors",
-                    TrainingPlanType.WEIGHT_TRAINING,
+                    TrainingProgramType.WEIGHT_TRAINING,
                     TrainingMode.WITH_EQUIPMENT,
                     null,
                     FitnessGoal.MUSCLE_GAIN,
                     Level.INTERMEDIATE,
                     6,
                     3000));
-            availableTrainingPlans.add(new TrainingProgramBlueprint(
+            availableTrainingPrograms.add(new TrainingProgramBlueprint(
                     "Kalari Warriors",
-                    TrainingPlanType.MARTIAL_ARTS,
+                    TrainingProgramType.MARTIAL_ARTS,
                     null,
                     MartialArtType.KALARIPAYATTU,
                     FitnessGoal.FUNCTIONAL_FITNESS,
                     Level.NOVICE,
                     12,
                     3000));
-            availableTrainingPlans.add(new TrainingProgramBlueprint(
+            availableTrainingPrograms.add(new TrainingProgramBlueprint(
                     "Grappling Kings",
-                    TrainingPlanType.MARTIAL_ARTS,
+                    TrainingProgramType.MARTIAL_ARTS,
                     null,
                     MartialArtType.WRESTLING,
                     FitnessGoal.FUNCTIONAL_FITNESS,
                     Level.INTERMEDIATE,
                     12,
                     4000));
-            availableTrainingPlans.add(new TrainingProgramBlueprint(
+            availableTrainingPrograms.add(new TrainingProgramBlueprint(
                     "Strike Masters",
-                    TrainingPlanType.MARTIAL_ARTS,
+                    TrainingProgramType.MARTIAL_ARTS,
                     null,
                     MartialArtType.BOXING,
                     FitnessGoal.FUNCTIONAL_FITNESS,
@@ -76,7 +76,7 @@ public class GymnasiumAdmin
 
     public List<TrainingProgramBlueprint> getAllAvailableTrainingPrograms()
     {
-        return this.availableTrainingPlans;
+        return this.availableTrainingPrograms;
     }
     
     protected List<String> generateMealsForPhysiqueType(FitnessGoal goal, PhysiqueType type) {
@@ -149,9 +149,9 @@ public class GymnasiumAdmin
     {
         membersEnrolled = new ArrayList<FitnessMember>();
         availableTrainers = new ArrayList<TrainerProfile>();
-        availableTrainingPlans = new ArrayList<TrainingProgramBlueprint>();
+        availableTrainingPrograms = new ArrayList<TrainingProgramBlueprint>();
         membersToDietPlanMap = new HashMap<FitnessMember, TrainingDietPlan>();
-        if (this.availableTrainingPlans.isEmpty()) 
+        if (this.availableTrainingPrograms.isEmpty()) 
         {
             initializeDefaultTrainingPrograms();
         }
@@ -212,10 +212,10 @@ public class GymnasiumAdmin
             return;
         }
         TrainingProgramBlueprint selectedProgram = null;
-        for (int i = 0; i < availableTrainingPlans.size(); i++) 
+        for (int i = 0; i < availableTrainingPrograms.size(); i++) 
         {
-            TrainingProgramBlueprint program = availableTrainingPlans.get(i);
-            if (program.getPlanTitle().equalsIgnoreCase(programName)) 
+            TrainingProgramBlueprint program = availableTrainingPrograms.get(i);
+            if (program.getProgramTitle().equalsIgnoreCase(programName)) 
             {
                 selectedProgram = program;
                 break;
@@ -226,7 +226,7 @@ public class GymnasiumAdmin
         {
             throw new TrainingPlanNotFoundException("\nTraining program \"" + programName + "\" does not exist.");
         }
-        targetTrainer.enrollInTrainingProgram(selectedProgram.getPlanType());
+        targetTrainer.enrollInTrainingProgram(selectedProgram.getProgramType());
     }
     
 
@@ -235,10 +235,10 @@ public class GymnasiumAdmin
         FitnessMember member = getMemberByID(memberID);
         TrainingProgramBlueprint selectedTrainingPlan = null;
 
-        for (int i = 0; i < availableTrainingPlans.size(); i++) 
+        for (int i = 0; i < availableTrainingPrograms.size(); i++) 
         {
-            TrainingProgramBlueprint trainingPlan = availableTrainingPlans.get(i);
-            if (trainingPlan.getPlanTitle().equalsIgnoreCase(trainingPlanName)) 
+            TrainingProgramBlueprint trainingPlan = availableTrainingPrograms.get(i);
+            if (trainingPlan.getProgramTitle().equalsIgnoreCase(trainingPlanName)) 
             {
                 selectedTrainingPlan = trainingPlan;
                 break;
@@ -251,7 +251,7 @@ public class GymnasiumAdmin
 
         member.setMembershipPlan(selectedTrainingPlan);
         System.out.println("Training program successfully assigned to member " + member.getName() + ": "
-                + selectedTrainingPlan.getPlanTitle());
+                + selectedTrainingPlan.getProgramTitle());
     }
     
     public void assigningTrainerToMember(String memberID) throws MemberNotFoundException 
@@ -336,7 +336,7 @@ public class GymnasiumAdmin
             System.out.println("Age: " + member.getAge());
 
             TrainingProgramBlueprint trainingPlan = member.getMembershipPlan();
-            System.out.println("Plan: " + (trainingPlan != null ? trainingPlan.getPlanTitle() : "Not assigned"));
+            System.out.println("Plan: " + (trainingPlan != null ? trainingPlan.getProgramTitle() : "Not assigned"));
 
             TrainerProfile trainer = member.getTrainerAssigned();
             System.out.println("Trainer: " + (trainer != null ? trainer.getName() : "Not assigned"));
@@ -346,19 +346,19 @@ public class GymnasiumAdmin
     
     public void displayAllAvailableTrainingPrograms()
     {
-        if (availableTrainingPlans.isEmpty())
+        if (availableTrainingPrograms.isEmpty())
         {
             System.out.println("No training programs have been designed as of now.");
             return;
         }
         System.out.println("------------ Available Training Programs at Warrior's Forge --------------");
-        for (int i = 0; i < availableTrainingPlans.size(); i++) 
+        for (int i = 0; i < availableTrainingPrograms.size(); i++) 
         {
             System.out.println(
-                    availableTrainingPlans.get(i).getPlanTitle() + " [ "
-                            + availableTrainingPlans.get(i).getPlanType()
-                            + " ] - " + availableTrainingPlans.get(i).getDurationInMonths() + " months - Rs."
-                            + availableTrainingPlans.get(i).getMonthlyCharges());
+                    availableTrainingPrograms.get(i).getProgramTitle() + " [ "
+                            + availableTrainingPrograms.get(i).getProgramType()
+                            + " ] - " + availableTrainingPrograms.get(i).getDurationInMonths() + " months - Rs."
+                            + availableTrainingPrograms.get(i).getMonthlyCharges());
         }
     }
     

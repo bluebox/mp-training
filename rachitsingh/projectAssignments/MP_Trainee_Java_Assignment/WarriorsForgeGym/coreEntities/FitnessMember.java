@@ -1,6 +1,6 @@
-package coreEntities;
+package WarriorsForgeGym.coreEntities;
 
-import enums.*;
+import WarriorsForgeGym.enums.*;
 
 public class FitnessMember extends Person 
 {
@@ -85,14 +85,14 @@ public class FitnessMember extends Person
 
         if (membershipPlan != null) 
         {
-            System.out.println("Membership  : " + membershipPlan.getPlanTitle() +
-                    " [" + membershipPlan.getPlanType());
+            System.out.println("Membership  : " + membershipPlan.getProgramTitle() +
+                    " [" + membershipPlan.getProgramType());
 
-            if (membershipPlan.getPlanType() == TrainingPlanType.WEIGHT_TRAINING) 
+            if (membershipPlan.getProgramType() == TrainingProgramType.WEIGHT_TRAINING) 
             {
                 System.out.print(" - " + membershipPlan.getTrainingMode());
             } 
-            else if (membershipPlan.getPlanType() == TrainingPlanType.MARTIAL_ARTS) 
+            else if (membershipPlan.getProgramType() == TrainingProgramType.MARTIAL_ARTS) 
             {
                 System.out.print(" - " + membershipPlan.getMartialArtType());
             }

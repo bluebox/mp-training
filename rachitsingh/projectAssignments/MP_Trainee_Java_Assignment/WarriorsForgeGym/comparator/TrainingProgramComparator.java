@@ -1,5 +1,5 @@
-package comparator;
-import coreEntities.TrainingProgramBlueprint;
+package WarriorsForgeGym.comparator;
+import WarriorsForgeGym.coreEntities.TrainingProgramBlueprint;
 import java.util.Comparator;
 
 public class TrainingProgramComparator implements Comparator<TrainingProgramBlueprint> 

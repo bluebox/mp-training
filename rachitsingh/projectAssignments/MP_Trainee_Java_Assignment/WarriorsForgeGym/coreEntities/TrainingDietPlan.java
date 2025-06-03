@@ -1,7 +1,7 @@
-package coreEntities;
+package WarriorsForgeGym.coreEntities;
 
-import enums.PhysiqueType;
-import enums.FitnessGoal;
+import WarriorsForgeGym.enums.PhysiqueType;
+import WarriorsForgeGym.enums.FitnessGoal;
 import java.util.List;
 
 public class TrainingDietPlan

@@ -1,4 +1,4 @@
-package enums;
+package WarriorsForgeGym.enums;
 
 public enum FitnessGoal {
     WEIGHT_LOSS,
