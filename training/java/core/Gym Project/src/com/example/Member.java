@@ -1,7 +1,5 @@
 package com.example;
 
-import java.util.List;
-
 public class Member extends Person{
 	private MembershipPlan mPlan;
 	private Plan plan;
