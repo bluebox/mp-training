@@ -22,13 +22,18 @@ public class Theater {
 			}
 		}
 	}
+	public void reserveSeat(String seatId)
+	{
+		
+	}
 	
-	static class Seat implements Comparable<Seat>{
+ 	static class Seat implements Comparable<Seat>{
 		String seatId;
 		boolean flag;
 		public Seat(char row,int no)
 		{
 			seatId=row+String.format("%03d", no);
+			this.flag=false;
 		}
 		@Override
 		public int compareTo(Seat o) {
@@ -45,7 +50,7 @@ public class Theater {
 		}
 		public String toString()
 		{
-			return seatId+(flag?"(.)": "   ");
+			return seatId+(flag?"(\u2B24) ": "    ");
 		}
 		
 		
