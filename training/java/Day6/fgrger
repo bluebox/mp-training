@@ -1,0 +1,10 @@
+new ProductItem("paneer tikka", 5.50, "a spicy grilled vegetarian starter"),
+        new ProductItem("butter chicken", 7.95, "a creamy North Indian chicken dish"),
+        new ProductItem("veg biryani", 4.25, "flavorful rice with mixed vegetables"),
+        new ProductItem("egg curry", 3.99, "boiled eggs in a spicy curry sauce"),
+        new ProductItem("masala dosa", 2.75, "crispy South Indian crepe with potato filling"),
+        new ProductItem("chole bhature", 3.85, "spicy chickpeas served with fried bread"),
+        new ProductItem("grilled sandwich", 2.20, "toasted sandwich with veggies and cheese"),
+        new ProductItem("lemon rice", 1.80, "tangy rice flavored with lemon and spices"),
+        new ProductItem("fish curry", 6.50, "spicy coastal-style curry with fish"),
+        new ProductItem("gulab jamun", 1.50, "sweet dessert soaked in sugar syrup")
