@@ -1,0 +1,28 @@
+
+
+ class Trainers {
+	private String name;
+	private int age;
+	private int experiance;
+    public ArrayList<Members> assignedCoustomers;
+	public Trainers(String name,int age,int experiance) {
+		this.name=name;
+		this.age=age;
+		this.experiance=experiance;
+        assignedCoustomers=new ArrayList<>();
+	}
+    public String getName(){
+	    return name;
+	}
+	public int  getAge(){
+	    return age;
+    }
+    public int  getExperiance(){
+	    return experiance;
+	}
+    public void allocateCostomer(Members member){
+        assignedCoustomers.add(member);
+
+    }
+
+}

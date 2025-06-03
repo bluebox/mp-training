@@ -1,0 +1,46 @@
+
+
+class Members {
+	private String name;
+	private int age;
+	private String address ;
+	private double weight;
+	private String planType;
+	private String startDate;
+    private String trainerName;
+    
+    public Members(String name,int age,String address,double weight,String planType,String startDate){
+       this( name, age, address, weight, planType, startDate,"no trainer needed");
+
+    }
+	
+	public Members(String name,int age,String address,double weight,String planType,String startDate,String trainerName) {
+		this.name=name;
+		this.age=age;
+		this.address=address;
+		this.weight=weight;
+		this.planType=planType;
+		this.startDate=startDate;
+        this.trainerName=trainerName;
+		
+	}
+	public String getName(){
+	    return name;
+	}
+	public int  getAge(){
+	    return age;
+	}
+	public String getAddress(){
+	    return address;
+	}
+	public double getWeight(){
+	    return weight;
+	}
+	public String getPlanType(){
+	    return planType;
+	}
+	public String getStartDate(){
+	    return startDate;
+	}
+
+}

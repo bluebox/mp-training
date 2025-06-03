@@ -1,0 +1,69 @@
+
+class Gym {
+	private String gymName = "SLIM FIT";
+    private String gymLocation = "HYDERBAD";
+    private String managerName = "DP";
+    private String managerId = "SF1096642";
+    private String managerPassword = "Password123#";
+    static ArrayList<Members> members;
+    static ArrayList<Trainers> trainers;
+    public  Gym() {
+    	
+    	members = new ArrayList<>();
+       trainers = new ArrayList<>();
+    }
+    
+    public  boolean checkLogin(String id,String password) {
+    	if( (id.equals("DP")) && (password.equals("Password123#"))){ return true; }
+    	return false;
+ 
+}	
+    public String getName() {
+    	return "DP"; 
+    }
+    public void membersDetails() {
+        for(Members member:members){
+            System.out.println("Name: "+member.getName());
+            System.out.println("Age: "+member.getAge());
+            System.out.println("Weight: "+member.getWeight());
+            System.out.println("Address :"+member.getAddress());
+            System.out.println("PlanType:"+member.getPlanType());
+            System.out.println("StartDate: "+member.getStartDate());
+            System.out.println("-".repeat(30));
+        }
+    	
+    }
+   
+    public void trainersDetails() {
+        for(Trainers trainer:trainers){
+        System.out.println("Name: "+trainer.getName());
+            System.out.println("Age: "+trainer.getAge());
+    	System.out.println("Experiances: "+trainer.getExperiance());
+        System.out.println("-".repeat(30));
+        }
+    }
+    public void addCoustomer(Members member,String trainee){
+         for(Trainers trainer:trainers){
+            if(trainer.getName().equals(member.getName())){
+                trainer.allocateCostomer(member);
+            }
+         }
+
+    }
+    public void displayTrainers(){
+        System.out.println("-".repeat(30));
+        for(Trainers trainer:trainers){
+           
+        System.out.println("Name: "+trainer.getName());}
+        System.out.println("-".repeat(30));
+        
+
+    }
+    public void addUser(Members member) {
+    	this.members.add(member);
+    }
+    public void addTrainer(Trainers trainer) {
+    	trainers.add(trainer);
+    }
+}
+
