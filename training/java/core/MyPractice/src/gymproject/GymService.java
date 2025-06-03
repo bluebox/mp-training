@@ -46,7 +46,6 @@ public class GymService {
         if (members.isEmpty()) {
             System.out.println("\n No members found. \n");
         } else {
-            members.sort(Comparator.comparing(Member::getMemberId));
             for (Member m : members) {
                 m.showDetails();
             }
@@ -58,5 +57,8 @@ public class GymService {
         for (MembershipPlan plan : plans.values()) {
             plan.showDetails();
         }
+    }
+    public boolean existsById(String id){
+        return memberDAO.existsById(id);
     }
 }
