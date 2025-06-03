@@ -28,7 +28,7 @@ public class Trainer extends Person{
     void details(){
         // System.out.println("-".repeat(20));
         System.out.println("Name : "+ 
-        this.name +", age : "+ this.age + ", id : " + trainerId);
+        this.name +",  age : "+ this.age + ",  id : " + trainerId);
     }
 
     public void showTrainees(){
