@@ -8,7 +8,9 @@ public class Member extends Person {
         super(name, age);
         this.memberId = memberId;
     }
-
+    public MembershipPlan getPlan(){
+        return this.plan;
+    }
     public String getMemberId() {
         return memberId;
     }

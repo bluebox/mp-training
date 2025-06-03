@@ -6,10 +6,7 @@ public class Main {
     public static void main(String[] args) throws InvalidPlanException{
         Scanner sc = new Scanner(System.in);
         GymService gymService = new GymService();
-        HashSet<String>plans=new HashSet<>();
-        plans.add("Premium");
-        plans.add("Gold");
-        plans.add("Basic");
+       
         
 
         while (true) {
@@ -33,45 +30,27 @@ public class Main {
                 case 1:
                     System.out.println("Enter ID: ");
                     String id = sc.nextLine();
-                    System.out.println("Enter Name: ");
-                    int age = 0;
-                    try {
-                    String name = sc.nextLine();
-                    if(!name.matches("[a-zA-Z]+"))
-                    	throw new InvalidPlanException("Enter the correct name");
-                    System.out.print("Enter Age: ");
-                    
-                   
-                        age = Integer.parseInt(sc.nextLine());
-                        System.out.println();
-                        gymService.addMember(id, name, age);
-                        break;
-                        
-                    } catch (NumberFormatException e) {
-                        System.out.println("\nInvalid age. Please enter a number.");
-                        break;
-                    }
-                    catch(InvalidPlanException t) {
-                    	System.out.println("\nenter the correct name");
-                    	break;
-                    }
-                   
 
+                    System.out.println("Enter Name: ");
+                    String name = sc.nextLine();
+
+                    System.out.print("Enter Age: ");
+                    int age = Integer.parseInt(sc.nextLine());
+
+                    gymService.addMember(id, name, age);
+                    break;
                 case 2:
                     System.out.print("Enter ID: ");
                     id = sc.nextLine();
                     System.out.print("Enter Plan Name (Basic/Premium/Gold): ");
                     String plan = sc.nextLine();
-                    System.out.println();
-                    try {
-                    if(!plans.contains(plan))
-                    	throw new InvalidPlanException("invalid plan");
-                    } 
-                    catch(InvalidPlanException e) {
-                    	System.out.println("Enter the valid plan");
-                    	break;
+                    String lowerPlan=plan.toLowerCase();
+                    if(lowerPlan.equals("basic") || (lowerPlan.equals("premium")) || (lowerPlan.equals("gold"))){
+                        gymService.assignPlan(id, plan);
                     }
-                    gymService.assignPlan(id, plan);
+                    else{
+                        System.out.println("Please enter valid plan : (Gold/Premium/Basic)");
+                    }
                     break;
 
                 case 3:
