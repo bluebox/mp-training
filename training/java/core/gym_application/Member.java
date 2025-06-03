@@ -62,17 +62,17 @@ public class Member extends Person {
     }
 
     public String showMemberDetails(){
-        String s = "Name : " + this.name + ", age : " + this.age + 
-        ", id : " +  
-        this. memberId+", plan taken : "+ this.planTaken + 
-        ", DOJ : "+ this.joiningDate;
+        String s = "Name : " + this.name + ",  age : " + this.age + 
+        ",  id : " +  
+        this. memberId+",  plan taken : "+ this.planTaken + 
+        ",  DOJ : "+ this.joiningDate;
 
         if (trainer_name!=null && trainer_name!=""){
 
-         s = s + ", trainer name : " + trainer_name;
+         s = s + ",  trainer name : " + trainer_name;
         }
 
-        return s + "\n------------------------";
+        return s + "\n----------------------------------------------------------------------";
 
     }
 

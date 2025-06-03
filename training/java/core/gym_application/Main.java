@@ -94,7 +94,7 @@ class MyGym implements Gym{
     public static Trainer getTrainerByName(String name){
         
         for(Trainer obj: trainers){
-            if(obj.name.equals(name)){
+            if(obj.name.equalsIgnoreCase(name)){
                 return obj;
             }
         }
@@ -114,7 +114,7 @@ class MyGym implements Gym{
     public static Member getMemberByName(String name){
         
         for(Member obj: members){
-            if(obj.name.equals(name)){
+            if(obj.name.equalsIgnoreCase(name)){
                 return obj;
                 
             }
@@ -229,17 +229,17 @@ public class Main {
        
         String name ;
         String password ;
-        System.out.println("Enter user name");
+        System.out.println("Enter Admin name");
         name= sc.nextLine();
-        System.out.println("Enter password :");
+        System.out.println("Enter Admin password :");
         
         password= sc.nextLine();
 
         while(!beFit.getManagerName().equals(name) || !beFit.getManagerPassword().equals(password)){
             System.out.println("enter valid details..");
-            System.out.println("Enter user name");
+            System.out.println("Enter Admin name");
             name= sc.nextLine();
-            System.out.println("Enter password :");      
+            System.out.println("Enter Admin password :");      
             password= sc.nextLine();
             
         };
