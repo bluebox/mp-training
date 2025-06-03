@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;abstractexamples.Milk&apos; to &apos;Dairy&apos;&#x0A;- Original project: &apos;AbstractClasses&apos;&#x0A;- Original element: &apos;abstractexamples.Milk&apos;&#x0A;- Renamed element: &apos;abstractexamples.Dairy&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Milk&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;abstractexamples{Milk.java[Milk" matchStrategy="1" name="Dairy" qualified="false" references="true" similarDeclarations="false" stamp="1748435861978" textual="false" version="1.0"/>
+</session>

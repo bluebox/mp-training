@@ -1,0 +1,18 @@
+package abstractexamples;
+
+public abstract class ProductForSale {
+	String type;
+	double price;
+	String description;
+	
+	public double getSalesPrice(int quantity)
+	{
+		return quantity * price; 
+	}
+	public void printPrizesItem(int quantity)
+	{
+		System.out.println("for "+quantity+ "price "+ quantity * price);
+	}
+	
+
+}

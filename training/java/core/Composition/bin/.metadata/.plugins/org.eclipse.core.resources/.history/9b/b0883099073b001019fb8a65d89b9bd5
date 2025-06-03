@@ -1,0 +1,16 @@
+package iterator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Iterator {
+	public static void main(String[] args)
+	{
+		ArrayList<Integer> lst=new ArrayList<Integer>();
+		lst.addAll(List.of(1,2,3,4,5,6));
+		IteratorExample<Integer> iterator=lst.iterator();
+		
+		
+	}
+
+}

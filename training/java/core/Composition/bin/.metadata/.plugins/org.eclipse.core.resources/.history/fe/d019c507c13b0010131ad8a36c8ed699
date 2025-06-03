@@ -1,0 +1,18 @@
+package abstractexamples;
+
+public class Dairy extends ProductForSale {
+
+	public Dairy(double price) {
+		super("Diary", price, "Is a diary Product");
+		// TODO Auto-generated constructor stub
+		
+	}
+
+	@Override
+	public void showDetails() {
+		// TODO Auto-generated method stub
+		System.out.println(type+" "+description);
+		
+	}
+
+}

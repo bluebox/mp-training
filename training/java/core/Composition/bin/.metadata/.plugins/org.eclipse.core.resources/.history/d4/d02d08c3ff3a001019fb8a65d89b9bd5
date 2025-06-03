@@ -1,0 +1,60 @@
+package boxing;
+
+import java.util.ArrayList;
+
+class Bank {
+	String name;
+	ArrayList<Customer> customers;
+
+	public Bank(String name) {
+		super();
+		this.name = name;
+		customers = new ArrayList<>();
+	}
+
+	public void addCustomer(String name) {
+		int length = customers.size();
+		for (int i = 0; i < customers.size(); i++) {
+			if (customers.get(i).name.equals(name)) {
+				System.out.println("Customer Alredy exists");
+				return;
+			}
+
+		}
+		customers.add(new Customer(name));
+
+	}
+
+	public void addtranscation(String customerName,Double amount)
+	{
+		for(int i=0;i<customers.size();i++)
+		{
+			if(customers.get(i).name.equals(name))
+			{
+				customers.get(i).addTransaction(amount);
+				System.out.println("Transcation Added");
+				return;
+			}
+			
+		}
+		
+	}
+
+	public void printtranscation(String customerName)
+	{
+		for(int i=0;i<customers.size();i++)
+		{
+			if(customers.get(i).name.equals(customerName))
+			{
+				customers.get(i).printStatement();
+				System.out.println("Transcation Added");
+				return;
+			}
+			
+		}
+		System.out.println("Customer not found");
+		
+	}
+	
+
+}

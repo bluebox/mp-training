@@ -1,0 +1,35 @@
+package abstractexamples;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Store {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<ProductForSale> pfs=new ArrayList<>();
+		ArrayList<OrderItem> orders=new ArrayList<>(); 
+		
+		ProductForSale milk=new Dairy("Milk",12);
+		addItem(orders,milk,3);
+		printOrderedItems(orders);
+		
+
+	}
+	public static void addItem(ArrayList<OrderItem> lst,ProductForSale item,int quantity)
+	{
+		lst.add(new OrderItem(quantity,item));
+		
+		
+	}
+	public static void printOrderedItems(List<OrderItem> lst)
+	{
+		for(OrderItem item : lst)
+		{
+			var product=item.product();
+			product.showDetails();
+		}
+		
+	}
+
+}

@@ -1,0 +1,11 @@
+INDEX VERSION 1.134+/home/developer/Desktop/mp-training/training/java/core/.metadata/.plugins/org.eclipse.jdt.core
+3091364924.index
+3456903314.index
+4027907994.index
+1865797976.index
+793669427.index
+4083394299.index
+573446507.index
+1549653844.index
+2558667370.index
+175870395.index

@@ -1,0 +1,18 @@
+package boxing;
+
+public class AutoBoxingChallenge {
+	public static void main(String[] args)
+	{
+		System.out.println("Tesing");
+		Bank bank=new Bank("KDCC");
+		bank.addCustomer("manoj");
+		bank.addCustomer("surya");
+		bank.addtranscation("manoj", 55000.0);
+		System.out.println("Second");
+		bank.addtranscation("manoj", -500.0);
+		bank.printtranscation("manoj");
+		
+	}
+	
+
+}

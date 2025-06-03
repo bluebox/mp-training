@@ -1,0 +1,16 @@
+package enums;
+
+public class PlanetMain {
+	public static void main(String args[]) {
+		Planet planet=Planet.Earth;
+		System.out.println(planet.distance);
+		System.out.println(planet);
+		System.out.println();
+		for(Planet p:Planet.values())
+		{
+			System.out.println(p);
+		}
+	}
+	
+
+}
