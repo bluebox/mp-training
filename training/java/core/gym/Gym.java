@@ -1,6 +1,7 @@
 package gym;
 import java.util.ArrayList;
 
+
 public class Gym {
 	private ArrayList<Member> members;
 	private ArrayList<Plan> plans;
@@ -62,14 +63,32 @@ public class Gym {
 		}
 		return null;
 	}
+	public boolean listMemberDetails() {
+		ArrayList<Member> allMembers = getMembers();
+		System.out.println("                              Details of all Members in the Gym  : ");
+		for(int i=0;i<allMembers.size();i++) {
+			Member member = allMembers.get(i);
+			System.out.println("--------------------------------------------------------------------------------------------------------------");
+			System.out.println(" Member Name : "+ member.getName()+"\n Age         : "+member.getAge()+"\n Member Id   : "+member.getMemberId()+"\n Plan Chosen : "+member.getPlan());
+			System.out.println("--------------------------------------------------------------------------------------------------------------\n");
+			
+		}
+		return true;
+	}
 	public void showPlans() {
-		System.out.println("Plans Overview : ");
+		System.out.println("--------------------------------------------");
+		System.out.println("             Plans Overview :              |");           
+		System.out.println("--------------------------------------------");
+		System.out.println(" Name    | Duration |  Total cost          |");      
+		System.out.println("--------------------------------------------");
 		for(int i=0;i<this.plans.size();i++) {
 			Plan plan =this.plans.get(i);
-			String month=(plan.getDurationMonths()>1)?"months":"month";
-			String discount =(plan.getDurationMonths()>1)?((plan.getDurationMonths()==12)?"(50% Discount)":"(33% Discount)"):"";
-			System.out.println(plan.getPlanName()+" : "+plan.getDurationMonths()+month+" - Rs"+plan.getFee()+""+discount);
+			String month=(plan.getDurationMonths()>1)?"months":"month  ";
+			String discount =(plan.getDurationMonths()>1)?((plan.getDurationMonths()==12)?"(50% Discount) |":"(33% Discount)  |"):"               |";
+			System.out.println(" "+plan.getPlanName()+" | "+plan.getDurationMonths()+month+" | Rs"+plan.getFee()+""+discount);
 		}
+		System.out.println("--------------------------------------------");
+		System.out.print("\n");
 			
 	}
 	
