@@ -8,7 +8,7 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("=== Welcome to Gym Management System ===");
+        System.out.println("Gym Management System");
         Trainer trainer = new Trainer("Surya", 22, "fat burn");
         trainers.add(trainer);
 
@@ -62,7 +62,8 @@ public class Main {
                     }
                     case 3 -> t.showProgressHistory();
                     case 4 -> assignMembershipPlan(t);
-                    case 5 -> {
+                    case 5 -> showTrainers();
+                    case 6 -> {
                         return;
                     }
                     default -> System.out.println("Invalid choice.");
@@ -73,7 +74,17 @@ public class Main {
         }
     }
 
-    private static void trainerLogin() {
+    private static void showTrainers() {
+		// TODO Auto-generated method stub
+		for(Trainer t:trainers)
+		{
+			System.out.println(t.getName()+" :"+t.getExpertise());
+//			t.getName();
+//			t.getExpertise();
+		}
+	}
+
+	private static void trainerLogin() {
         System.out.print("Enter Trainer ID: ");
         int id = Integer.parseInt(sc.nextLine());
         Trainer trainer = findTrainerById(id);
