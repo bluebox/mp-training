@@ -63,7 +63,8 @@ public class Main {
 	
 	public static void createUser(Gym gym) {
 		System.out.println("Enter your Name");
-		String name = sc.next();
+		sc.nextLine();
+		String name = sc.nextLine();
 		System.out.println("Enter your Age");
 		int age = sc.nextInt();
 		Member member = new Member(name, age);
