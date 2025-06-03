@@ -1,0 +1,26 @@
+package interfaces;
+
+public class Building implements Mappable {
+	Geometry shape=Geometry.POINT;
+	private String label;
+	private String marker;
+
+	@Override
+	public String getLable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getMarker() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Geometry getShape() {
+		// TODO Auto-generated method stub
+		return shape;
+	}
+
+}

@@ -1,0 +1,22 @@
+package abstractexamples;
+
+import java.util.ArrayList;
+
+public class Store {
+	ArrayList<ProductForSale> pfs=new ArrayList<>();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ProductForSale milk=new Dairy("Milk",12);
+		pfs.add(milk);
+		milk.showDetails();
+		ArrayList<OrderItem> orders=new ArrayList<>();
+
+	}
+	public static void addItem(ProductForSale item,int quantity)
+	{
+		
+		
+	}
+
+}

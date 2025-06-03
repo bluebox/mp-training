@@ -1,0 +1,5 @@
+package abstractexamples;
+
+public record OrderItem() {
+
+}

@@ -1,0 +1,13 @@
+package enums;
+
+public class Main {
+	public static void main(String[] args)
+	{
+		DayOfWeek dow=DayOfWeek.MON;
+		System.out.println(dow);
+		System.out.println(dow.name());
+	}
+	
+	
+
+}

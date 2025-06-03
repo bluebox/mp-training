@@ -1,0 +1,15 @@
+package arraylistmethods;
+import java.util.*;
+
+public class Main {
+	public static void main(String args[])
+	{
+		int[] arr=new int[] {1,2,3,4,5};
+		ArrayList<Integer> list=new ArrayList<>();
+		List<Integer> immutableList=List.of(1,2,3,4);
+		System.out.println(immutableList);
+		immutableList.add(3);
+		System.out.println(immutableList);
+	}
+
+}

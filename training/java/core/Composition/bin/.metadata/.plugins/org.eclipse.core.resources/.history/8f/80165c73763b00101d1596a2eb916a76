@@ -1,0 +1,14 @@
+package stringbuilder;
+
+public class StringBuilderUsage {
+	public static void main(String args[])
+	{
+		StringBuilder sb1=new StringBuilder("manoj");
+		StringBuilder sb2=new StringBuilder(10);
+		System.out.println(sb1+" of size "+sb1.length());
+		System.out.println(sb2 + " of size "+sb2.length());
+		sb1.insert(sb1.length()-1," reddy");
+		System.out.println(sb1);
+	}
+
+}

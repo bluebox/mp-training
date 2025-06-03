@@ -1,0 +1,19 @@
+package abstractexamples;
+
+public class Electronics extends ProductForSale 
+{
+
+	public Electronics(String type, double price, String description) {
+		super(type, price, description);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void showDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+}

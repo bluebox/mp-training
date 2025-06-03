@@ -1,0 +1,24 @@
+package boxing;
+
+import java.util.ArrayList;
+
+public class Customer {
+	String name;
+	ArrayList<Double> transactions;
+	public Customer(String name) {
+		super();
+		this.name = name;
+		transactions=new ArrayList<>();
+	}
+	public void printStatement()
+	{
+		System.out.println(this.name +" transaction");
+	}
+	public void addTransaction(Double amount)
+	{
+		transactions.add(amount);
+	}
+	
+	
+
+}
