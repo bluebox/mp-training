@@ -1,10 +1,11 @@
-import enums.*;
-import exceptions.InvalidEnumValueException;
-import exceptions.InvalidInputException;
-import admin.GymnasiumAdmin;
-import coreEntities.FitnessMember;
-import coreEntities.TrainingProgramBlueprint;
-import comparator.TrainingProgramComparator;
+package WarriorsForgeGym;
+import WarriorsForgeGym.enums.*;
+import WarriorsForgeGym.exceptions.InvalidEnumValueException;
+import WarriorsForgeGym.exceptions.InvalidInputException;
+import WarriorsForgeGym.admin.GymnasiumAdmin;
+import WarriorsForgeGym.coreEntities.FitnessMember;
+import WarriorsForgeGym.coreEntities.TrainingProgramBlueprint;
+import WarriorsForgeGym.comparator.TrainingProgramComparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -80,19 +81,19 @@ public class Main
                         String trainerName = input.nextLine();
                     
                         System.out.print("Enter Specialization (WEIGHT_TRAINING / MARTIAL_ARTS): ");
-                        TrainingPlanType specialization = TrainingPlanType.valueOf(input.nextLine().trim().toUpperCase().replace(" ","_"));
+                        TrainingProgramType specialization = TrainingProgramType.valueOf(input.nextLine().trim().toUpperCase().replace(" ","_"));
                     
                         System.out.print("Enter Experience in Years: ");
                         int experience = input.nextInt();
                         input.nextLine();
                     
-                        if (specialization == TrainingPlanType.WEIGHT_TRAINING) 
+                        if (specialization == TrainingProgramType.WEIGHT_TRAINING) 
                         {
                             System.out.print("Enter Training Mode (BODYWEIGHT_ONLY / WITH_EQUIPMENT): ");
                             TrainingMode mode = TrainingMode.valueOf(input.nextLine().trim().toUpperCase().replace(" ","_"));
                             admin.registerNewTrainer(trainerID, trainerName, mode, experience);
                         } 
-                        else if (specialization == TrainingPlanType.MARTIAL_ARTS) 
+                        else if (specialization == TrainingProgramType.MARTIAL_ARTS) 
                         {
                             System.out.print("Enter Martial Art Type (KALARIPAYATTU / BOXING / WRESTLING): ");
                             MartialArtType martialArt = MartialArtType.valueOf(input.nextLine().toUpperCase());
@@ -107,7 +108,7 @@ public class Main
                         System.out.print("Enter the Trainer ID to assign a training program: ");
                         String targetTrainerID = input.nextLine();
                     
-                        System.out.print("Enter Training Program Name: ");
+                        System.out.print("Enter Training Program Name (Calisthenics Champions / Lifting Warriors / Kalari Warriors / Strike Masters / Grappling Kings): ");
                         String assignedProgramName = input.nextLine();
                     
                         admin.assignTrainingProgramToTrainer(targetTrainerID, assignedProgramName);
@@ -146,7 +147,7 @@ public class Main
                         List<TrainingProgramBlueprint> orderedTrainingPrograms = admin.getAllAvailableTrainingPrograms();
                         orderedTrainingPrograms.sort(new TrainingProgramComparator());
                         System.out.println(
-                                "---- Training Programs have been ordered on the basis of length of duration ----");
+                                "-------------------------------------------------- Training Programs have been ordered on the basis of length of duration ------------------------------------------------------");
                         for (int i = 0; i < orderedTrainingPrograms.size(); i++) 
                         {
                             System.out.println(orderedTrainingPrograms.get(i));
@@ -185,7 +186,7 @@ public class Main
         }
         catch( NoSuchElementException exception)
         {
-            System.out.println("\n Program is exiting due to end of input oe invalid expression encountered.");
+            System.out.println("\n Program is exiting due to end of input or invalid expression encountered.");
             exitStatus = true;
         }
         catch( Exception exception)

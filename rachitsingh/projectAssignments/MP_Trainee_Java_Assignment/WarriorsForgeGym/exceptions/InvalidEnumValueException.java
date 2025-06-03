@@ -1,4 +1,4 @@
-package exceptions;
+package WarriorsForgeGym.exceptions;
 
 public class InvalidEnumValueException extends RuntimeException
 {

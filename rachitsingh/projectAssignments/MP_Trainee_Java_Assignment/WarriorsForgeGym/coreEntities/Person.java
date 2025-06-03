@@ -1,5 +1,5 @@
-package coreEntities;
-import enums.Gender;
+package WarriorsForgeGym.coreEntities;
+import WarriorsForgeGym.enums.Gender;
 
 public abstract class Person 
 {

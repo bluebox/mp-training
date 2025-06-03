@@ -1,15 +1,15 @@
-package coreEntities;
+package WarriorsForgeGym.coreEntities;
 
-import enums.FitnessGoal;
-import enums.TrainingPlanType;
-import enums.Level;
-import enums.MartialArtType;
-import enums.TrainingMode;
+import WarriorsForgeGym.enums.FitnessGoal;
+import WarriorsForgeGym.enums.TrainingProgramType;
+import WarriorsForgeGym.enums.Level;
+import WarriorsForgeGym.enums.MartialArtType;
+import WarriorsForgeGym.enums.TrainingMode;
 
 public class TrainingProgramBlueprint
 {
-    private String planTitle;
-    private TrainingPlanType planType;
+    private String programTitle;
+    private TrainingProgramType programType;
     private TrainingMode trainingMode;
     private MartialArtType martialArtType;
     private FitnessGoal goal;
@@ -17,10 +17,10 @@ public class TrainingProgramBlueprint
     private int durationInMonths;
     private double monthlyCharges;
 
-    public TrainingProgramBlueprint(String planTitle, TrainingPlanType planType, TrainingMode trainingMode, MartialArtType martialArtType, FitnessGoal goal, Level proficiencyLevel, int durationInMonths, double monthlyCharges)
+    public TrainingProgramBlueprint(String programTitle, TrainingProgramType programType, TrainingMode trainingMode, MartialArtType martialArtType, FitnessGoal goal, Level proficiencyLevel, int durationInMonths, double monthlyCharges)
     {
-        this.planTitle = planTitle;
-        this.planType = planType;
+        this.programTitle = programTitle;
+        this.programType = programType;
         this.trainingMode = trainingMode;
         this.martialArtType = martialArtType;
         this.goal = goal;
@@ -29,23 +29,23 @@ public class TrainingProgramBlueprint
         this.monthlyCharges = monthlyCharges;
     }
 
-    public String getPlanTitle()
+    public String getProgramTitle()
     {
-        return planTitle;
+        return programTitle;
     }
     
-    public void setPlanID(String planTitle)
+    public void setPlanID(String programTitle)
     {
-        this.planTitle = planTitle;
+        this.programTitle = programTitle;
     }
 
-    public TrainingPlanType getPlanType()
+    public TrainingProgramType getProgramType()
     {
-        return planType;
+        return programType;
     }
-    public void setPlanType(TrainingPlanType planType)
+    public void setProgramType(TrainingProgramType programType)
     {
-        this.planType = planType;
+        this.programType = programType;
     }
 
     public TrainingMode getTrainingMode()
@@ -117,14 +117,14 @@ public class TrainingProgramBlueprint
     public String toString()
     {
         StringBuilder builder = new StringBuilder().append("\nTraining Program Blueprint : [")
-                .append("Plan Name: ").append(planTitle).append(", ")
-                .append("Plan Type").append(planType).append(", ");
+                .append("Program Name: ").append(programTitle).append(", ")
+                .append("Program Type: ").append(programType).append(", ");
 
-                if (planType == TrainingPlanType.WEIGHT_TRAINING)
+                if (programType == TrainingProgramType.WEIGHT_TRAINING)
                 {
                     builder.append("Training Mode: ").append(trainingMode).append(", ");
                 }
-                else if (planType == TrainingPlanType.MARTIAL_ARTS)
+                else if (programType == TrainingProgramType.MARTIAL_ARTS)
                 {
                     builder.append("Martial Art: ").append(martialArtType).append(", ");
                 }

@@ -1,9 +1,9 @@
-package interfaces;
+package WarriorsForgeGym.interfaces;
 
-import enums.TrainingPlanType;
+import WarriorsForgeGym.enums.TrainingProgramType;
 
 public interface TrainableEntity 
 {
-    void enrollInTrainingProgram(TrainingPlanType trainingPlanType);
+    void enrollInTrainingProgram(TrainingProgramType trainingProgramType);
     void displayTrainersAbout();
 }

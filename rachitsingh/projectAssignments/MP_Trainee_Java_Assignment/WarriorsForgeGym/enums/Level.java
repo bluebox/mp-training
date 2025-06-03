@@ -1,4 +1,4 @@
-package enums;
+package WarriorsForgeGym.enums;
 
 public enum Level {
     NOVICE,

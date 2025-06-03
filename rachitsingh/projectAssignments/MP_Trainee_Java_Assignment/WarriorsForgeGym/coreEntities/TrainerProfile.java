@@ -1,9 +1,9 @@
-package coreEntities;
+package WarriorsForgeGym.coreEntities;
 
-import enums.TrainingPlanType;
-import enums.MartialArtType;
-import enums.TrainingMode;
-import interfaces.TrainableEntity;
+import WarriorsForgeGym.enums.TrainingProgramType;
+import WarriorsForgeGym.enums.MartialArtType;
+import WarriorsForgeGym.enums.TrainingMode;
+import WarriorsForgeGym.interfaces.TrainableEntity;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,18 +12,18 @@ public class TrainerProfile implements TrainableEntity
 
     private String trainerID;
     private String name;
-    private TrainingPlanType specializedIn;
+    private TrainingProgramType specializedIn;
     private TrainingMode trainingMode;
     private MartialArtType martialArtType;
     private int experienceInYears;
-    private Set<TrainingPlanType> assignedTrainingPrograms = new HashSet<>();
+    private Set<TrainingProgramType> assignedTrainingPrograms = new HashSet<>();
 
     // this parameterised constructor is for trainers who are specialized in WeightTraining
     public TrainerProfile(String trainerID, String name, TrainingMode trainingMode, int experienceInYears) 
     {
         this.trainerID = trainerID;
         this.name = name;
-        this.specializedIn = TrainingPlanType.WEIGHT_TRAINING;
+        this.specializedIn = TrainingProgramType.WEIGHT_TRAINING;
         this.trainingMode = trainingMode;
         this.experienceInYears = experienceInYears;
     }
@@ -33,7 +33,7 @@ public class TrainerProfile implements TrainableEntity
     {
         this.trainerID = trainerID;
         this.name = name;
-        this.specializedIn = TrainingPlanType.MARTIAL_ARTS;
+        this.specializedIn = TrainingProgramType.MARTIAL_ARTS;
         this.martialArtType = martialArtType;
         this.experienceInYears = experienceInYears;
     }
@@ -43,7 +43,7 @@ public class TrainerProfile implements TrainableEntity
         return trainerID;
     }
     
-    public TrainingPlanType getSpecializedIn()
+    public TrainingProgramType getSpecializedIn()
     {
         return specializedIn;
     }
@@ -97,17 +97,17 @@ public class TrainerProfile implements TrainableEntity
     }
     // to avoid assigning an already assigned program to the same trainer
     @Override
-    public void enrollInTrainingProgram(TrainingPlanType trainingPlanType)
+    public void enrollInTrainingProgram(TrainingProgramType TrainingProgramType)
     {
-        if (assignedTrainingPrograms.contains(trainingPlanType)) 
+        if (assignedTrainingPrograms.contains(TrainingProgramType)) 
         {
-            System.out.println("\nTrainer " + name + " is already assigned to: " + trainingPlanType + " program");
+            System.out.println("\nTrainer " + name + " is already assigned to: " + TrainingProgramType + " program");
         } 
         else 
         {
-            assignedTrainingPrograms.add(trainingPlanType);
+            assignedTrainingPrograms.add(TrainingProgramType);
             System.out.println("\n" +
-                    name + " has been successfully registered as a trainer for: " + trainingPlanType + " program");
+                    name + " has been successfully registered as a trainer for: " + TrainingProgramType + " program");
         }
     }
     
