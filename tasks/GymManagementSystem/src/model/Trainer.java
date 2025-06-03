@@ -59,7 +59,12 @@ public class Trainer extends Person{
 	@Override
 	public void getPersonalDetails() {
 		
-		super.toString();
+		System.out.println("Name of the Trainer :: "+super.getName());
+        System.out.println("Age of the Trainer :: "+super.getAge());
+        System.out.println("Gender of the Trainer :: "+super.getGender());
+        System.out.println("Address of the Trainer :: "+super.getAddress());
+        System.out.println("Years of Experience :: "+this.getYearsOfExperience());
+        System.out.println("Subscription details :: "+this.getSubscription());
 		
 	}
 	

@@ -22,6 +22,13 @@ public class GymController {
 		members = new ArrayList<>();
 		subscriptions = new ArrayList<>();
 		trainers = new ArrayList<>();
+		subscriptions.add(new Subscription("Yearly",1000,12,"Yearly Subscription for gym",null));
+		members.add(new Member("Madhav",21,"Male","bagh-amberpet",null));
+		trainers.add(new Trainer("Ravi", 28, "male", "KPHB", 5, null));
+		members.get(0).setStartDate(LocalDate.of(2025, 2, 1));
+		trainers.get(0).setSubscription(subscriptions.get(0));
+		members.get(0).setSubscribe(subscriptions.get(0));
+		subscriptions.get(0).setTrainer(trainers.get(0));
 	}
 	
 	
@@ -79,6 +86,7 @@ public class GymController {
 		Member newMember = new Member(name,age,gender,address,null);
 		
 		members.add(newMember);
+		newMember.getPersonalDetails();
 		return newMember;
 		
 	}
@@ -204,12 +212,13 @@ public class GymController {
 		        else
 		        {
 		        	int amountToPay = newSubscription.getAmount() - credit;
+		        	int returnAmount = amountToPay;
 		            if (amountToPay < 0) amountToPay = 0;
 	
 		            
 		            System.out.println("New subscription: " + newSubscription.getSubscriptionName());
 		            System.out.println("Amount to pay after credit: ₹" + amountToPay);
-	
+		            System.out.println("Amount Returned :: "+(returnAmount<0?-(returnAmount):0));
 		            getMember.setSubscribe(newSubscription);
 		            getMember.setStartDate(LocalDate.now());
 	
@@ -334,7 +343,6 @@ public class GymController {
 	        }
 	    }
 
-	    // If not already assigned, create and assign the trainer
 	    Trainer ourTrainer = null;
 	    for(var trainer:trainers)
 	    {
@@ -365,6 +373,8 @@ public class GymController {
 			trainer = new Trainer(name, age,gender, address,yearsOfExperience,null);
 			trainers.add(trainer);
 			System.out.println("Successfully added Trainer");
+			System.out.println("Details...");
+			trainer.getPersonalDetails();;
 			return;
 		}
 		

@@ -97,6 +97,8 @@ public class Main {
 							case 5->{
 								condition3 = 1;
 								break;
+							}default->{
+								System.out.println("Wrong option Entered...");
 							}
 						}
 					}while(condition3 != 1);
@@ -192,6 +194,9 @@ public class Main {
 									condition4 = 1;
 									break;
 								}
+								default->{
+									System.out.println("Received unknown command...");
+								}
 							}
 							
 							
@@ -277,6 +282,10 @@ public class Main {
 					case 4->{
 						condition1 = 1;
 						break;
+					}
+					default ->
+					{
+						System.out.println("Received unknown command...");
 					}
 				}
 			
