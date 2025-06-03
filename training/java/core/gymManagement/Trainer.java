@@ -46,4 +46,8 @@ public class Trainer extends Person {
 		}
 	}
 
+	public String getExpertise() {
+		return expertise;
+	}
+
 }
