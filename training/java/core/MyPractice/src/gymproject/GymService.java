@@ -6,9 +6,9 @@ public class GymService {
     private Map<String, MembershipPlan> plans = new LinkedHashMap<>();
 
     public GymService() {
-        plans.put("Basic", new MembershipPlan("Basic", 1, 999));
-        plans.put("Premium", new MembershipPlan("Premium", 3, 2499));
-        plans.put("Gold", new MembershipPlan("Gold", 6, 4499));
+        plans.put("basic", new MembershipPlan("basic", 1, 999));
+        plans.put("premium", new MembershipPlan("premium", 3, 2499));
+        plans.put("gold", new MembershipPlan("gold", 6, 4499));
     }
 
     public  void addMember(String memberId, String name, int age) {
@@ -24,14 +24,18 @@ public class GymService {
     public void assignPlan(String memberId, String planName) {
         Member member = memberDAO.getMemberById(memberId);
         if (member != null) {
-            MembershipPlan plan = plans.get(planName);
-            if (plan != null) {
-            	
-                member.assignPlan(plan);
-                System.out.println("Plan assigned successfully.");
-            } else {
-                System.out.println("Invalid plan name.");
-            }
+           if(member.getPlan()!=null && member.getPlan().getPlanName().toLowerCase().equals(planName.toLowerCase())){
+                System.out.println("Same plan already exists ! Please try some other plan");
+            }else{
+                MembershipPlan plan = plans.get(planName);
+                if (plan != null) {
+
+                    member.assignPlan(plan);
+                    System.out.println("Plan assigned successfully.");
+                } else {
+                    System.out.println("Invalid plan name.");
+                }
+            } 
         } else {
             System.out.println("Member not found.");
         }
