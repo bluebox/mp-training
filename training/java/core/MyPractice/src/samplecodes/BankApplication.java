@@ -14,12 +14,12 @@ public class BankApplication {
 	        bank.addCustomerTransaction("Uptown", "Charlie", 100.00);
 	        System.out.println("Listing customers for Downtown branch (no transactions):");
 	        bank.listCustomers("Downtown", false);
-	        System.out.println("\nListing customers for Downtown branch (with transactions):");
+	        System.out.println("Listing customers for Downtown branch (with transactions):");
 	        bank.listCustomers("Downtown", true);
-	        System.out.println("\nListing customers for Uptown branch (with transactions):");
+	        System.out.println("Listing customers for Uptown branch (with transactions):");
 	        bank.listCustomers("Uptown", true);
 	        if (!bank.addBranch("Downtown")) {
-	            System.out.println("\nDowntown branch already exists!");
+	            System.out.println("Downtown branch already exists!");
 	        }
 	        if (!bank.addCustomer("Suburb", "David", 200.00)) {
 	            System.out.println("\nSuburb branch does not exist!");
