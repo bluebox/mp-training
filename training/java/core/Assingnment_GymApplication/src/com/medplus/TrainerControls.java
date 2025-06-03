@@ -22,6 +22,8 @@ public abstract class TrainerControls {
 		int choosingNumber;
 		while(true) {
 			System.out.println("""
+					
+					
 					1.Search Member By Name
 					2.Search Member By Id
 					3.Create a New Member
@@ -40,7 +42,7 @@ public abstract class TrainerControls {
 					System.out.println("No Match Found");
 				}else {
 					printMembers(listedNames);
-					System.out.println("\nChoose corresponding index for a perticular Member \n else press 0");
+					System.out.println("\nChoose corresponding index for a perticular Member \n else press 0\n");
 					int temp =Input.getNumberInRange(0,listedNames.size());
 					if (temp ==0) {
 						System.out.println("Going to Previous Menu ");
@@ -73,7 +75,7 @@ public abstract class TrainerControls {
 					System.out.println("No Match Found");
 				}else {
 					printMembers(listedNames);
-					System.out.println("Choose corresponding index for a perticular Member \n else press 0");
+					System.out.println("\nChoose corresponding index for a perticular Member \n else press 0\n");
 					int temp =Input.getNumberInRange(0,listedNames.size());
 					if (temp ==0) {
 						System.out.println("Going to Previous Menu ");
@@ -139,8 +141,10 @@ public abstract class TrainerControls {
 	
 	public void printMembers(ArrayList<Member> PrintingList) {
 		System.out.printf("%10s %10s %10s %10s %15s %15s %s".formatted("Member Id","Name","Age","Plan","Start Date","EndDate","Status"));
+		int count =1;
 		for (var i : PrintingList)
-			System.out.printf("%n%10d %10s %10d %10s %15s %15s %s ".formatted(i.getMemberId(),i.getName(),i.getAge(),i.getPlan(),i.getStartDate(),i.getEndDate(),i.getStatus()));
+			System.out.printf("%n%d %10d %10s %10d %10s %15s %15s %s ".formatted(count,i.getMemberId(),i.getName(),i.getAge(),i.getPlan(),i.getStartDate(),i.getEndDate(),i.getStatus()));
+		count++;
 	}
 	
 	
