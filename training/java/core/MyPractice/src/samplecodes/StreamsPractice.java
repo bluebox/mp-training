@@ -13,10 +13,10 @@ public class StreamsPractice {
 		l.add(6);
 		
 		List<Integer> res=new ArrayList<>();
-		l.stream()
+		res=l.stream()
 				.filter(n->n%2==0)
 				.map(n->n*3)
-				.forEach(x -> System.out.println(x));
+				.collect(Collectors.toList());
 		//System.out.println(res);
 	}
 	
