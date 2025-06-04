@@ -47,12 +47,26 @@ public class Gym {
 		for(int i=0;i<this.members.size();i++) {
 			Member member =this.members.get(i);
 			if(member.getName().equals(memberName)) {
-				return member;
+				return member; //returns the first member with the given Name if multiple members have same name
 			}
 			
 		}
 		return null;
 	}
+	
+	private Member findMember(int memberId) {  //Method Overloading(Polymorphism)
+		for(int i=0;i<this.members.size();i++) {
+			Member member =this.members.get(i);
+			String mid=String.valueOf(memberId);
+			String gotmid=String.valueOf(member.getMemberId());
+			if(gotmid.equals(mid)) {
+				return member; //returns the first member with the given Name if multiple members have same name
+			}
+			
+		}
+		return null;
+	}
+	
 	private Plan findPlan(String planName) {
 		for(int i=0;i<this.plans.size();i++) {
 			Plan plan =this.plans.get(i);
@@ -91,5 +105,32 @@ public class Gym {
 		System.out.print("\n");
 			
 	}
+	public boolean removeMember(String memberName) {
+		Member m1=findMember(memberName);
+		if(m1==null) {
+			return false;
+		}
+		else {
+			members.remove(m1);
+			return true;
+		}
+		
+	}
+	
+	public boolean listMemberDetailsById(int memberId) {
+		Member m1=findMember(memberId);
+		if(m1==null) {
+			System.out.println("Member with given Id does not exist.");
+			return false;
+		}else {
+			System.out.println("Details of the Member are : ");
+			System.out.println("--------------------------------------------------------------------------------------------------------------");
+			System.out.println(" Member Name : "+ m1.getName()+"\n Age         : "+m1.getAge()+"\n Member Id   : "+m1.getMemberId()+"\n Plan Chosen : "+m1.getPlan());
+			System.out.println("--------------------------------------------------------------------------------------------------------------\n");
+			
+			return true;
+		}
+	}
+	
 	
 }
