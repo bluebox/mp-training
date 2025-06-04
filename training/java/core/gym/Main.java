@@ -21,16 +21,20 @@ public class Main {
 			gym.addMember("Sam",26, "Gold", 003);
 			
 			System.out.println("Gym name : "+gym.getName());
+			
 			Scanner scanValue = new Scanner(System.in);
+			//Menu Based User Interaction
 			while(true)
 			{
-				System.out.println("\nPress : \n1 -> To add a member\n2 -> View Member Details\n3 -> Show Gym Plans\n4 -> To renew plan of a member\n5 -> To remove a member\n0 -> To exit the Application\nEnter your value : ");
+				System.out.println("\nPress : \n1 -> To add a member\n2 -> View All Members Details\n3 -> To Search Member Details by Id\n4 -> Show Gym Plans\n5 -> Bonus Feature(Not Yet added)\n6 -> To remove a member\n0 -> To exit the Application\nEnter your value : ");
 				int value=scanValue.nextInt();
 				switch(value) {
+				
 					case 0:
 						scanValue.close();
 						System.out.println("Exited the Application.");
 						return;
+						
 					case 1:
 						System.out.println("Enter the member Name : ");
 						String name=scanValue.next();
@@ -42,16 +46,34 @@ public class Main {
 						String plan=scanValue.next();
 						gym.addMember(name, age, plan, id);
 						break;
+						
 					case 2:				
 						gym.listMemberDetails();
 						break;
 						
 					case 3:
+						System.out.println("Enter The Id of the Member : ");
+						int mid=scanValue.nextInt();
+						gym.listMemberDetailsById(mid);
+						break;
+						
+					case 4:
 						gym.showPlans();
 						break;
-					case 4: //bonus challenge
+
+					case 5:
 						break;
-					case 5: //bonus challenge
+						
+					case 6:
+						System.out.println("Enter the Name of the the Member : ");
+						String memberName = scanValue.next();
+						if(gym.removeMember(memberName)){
+							System.out.println("Successfully removed the "+memberName+" from the gym");
+							}
+						else {
+							System.out.println(memberName+" doesn't exist in the gym.");
+							}
+						
 						break;
 						
 					default:
