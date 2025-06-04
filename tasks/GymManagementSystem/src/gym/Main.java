@@ -49,8 +49,10 @@ public class Main {
 				return;
 			}
 			System.out.println("Enter new name");
-			member.setName(sc.next());
+			member.setName(sc.nextLine());
+			sc.nextLine();
 			System.out.println("Enter new age");
+			
 			member.setAge(sc.nextInt());
 			System.out.println("User updated succesfully");
 			
