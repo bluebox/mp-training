@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws InvalidPlanException{
@@ -13,12 +15,15 @@ public class Main {
             System.out.println("\n===== Gym Membership System =====");
             System.out.println("1. Add New Member using Scanner Class");
             System.out.println("2. Add New Member using files");
-            System.out.println("3. Assign Membership Plan");
-            System.out.println("4. View All Members");
-            System.out.println("5. View All Plans");
-            System.out.println("6. Exit");
+            System.out.println("3. Update Member");
+            System.out.println("4. Delete Member");
+            System.out.println("5. Assign Membership Plan");
+            System.out.println("6. Update Membership Plan");
+            System.out.println("7. Delete Membership Plan");
+            System.out.println("8. View All Members");
+            System.out.println("9. View All Plans");
+            System.out.println("10. Exit");
             System.out.print("Enter your choice: ");
-
             int choice = 0;
             try {
                 choice = Integer.parseInt(sc.nextLine()); 
@@ -26,19 +31,15 @@ public class Main {
                 System.out.println("Check the input format again! Please enter only numeric data.");
                 continue;
             }
-
             switch (choice) {
                 case 1:
                     System.out.println("Enter ID: ");
                     String id = sc.nextLine();
-<<<<<<< HEAD
                     if(gymService.existsById(id)){
                         System.out.println("Member already exists");
                         break;
                     }
-=======
->>>>>>> be42989f9e9e7eb05fcd04e08bd457fc5facc534
-
+                    
                     System.out.println("Enter Name: ");
                     String name = sc.nextLine();
 
@@ -47,43 +48,6 @@ public class Main {
 
                     gymService.addMember(id, name, age);
                     break;
-<<<<<<< HEAD
-                case 3:
-=======
-                case 2:
->>>>>>> be42989f9e9e7eb05fcd04e08bd457fc5facc534
-                    System.out.print("Enter ID: ");
-                    id = sc.nextLine();
-                    if(!gymService.existsById(id)){
-                        System.out.println("User Doesn't exists");
-                        break;
-                    }
-                    System.out.print("Enter Plan Name (Basic/Premium/Gold): ");
-                    String plan = sc.nextLine();
-                    String lowerPlan=plan.toLowerCase();
-                    if(lowerPlan.equals("basic") || (lowerPlan.equals("premium")) || (lowerPlan.equals("gold"))){
-                        gymService.assignPlan(id, lowerPlan);
-                    }
-                    else{
-                        System.out.println("Please enter valid plan : (Gold/Premium/Basic)");
-                    }
-                    break;
-
-                case 4:
-                	System.out.println();
-                    gymService.viewAllMembers();
-                    break;
-
-                case 5:
-                    gymService.viewAllPlans();
-                    break;
-<<<<<<< HEAD
-                case 6:
-=======
-                case 5:
->>>>>>> be42989f9e9e7eb05fcd04e08bd457fc5facc534
-                    System.out.println("\nExiting the system. Goodbye!");
-                    return;
                 case 2:
                 	System.out.println("\nEnter file name:");
                 	String line;
@@ -102,18 +66,74 @@ public class Main {
             				}
             				i++;
             			}
-            			
             		}
             		catch(Exception e) {
             			System.out.println(e.getMessage());
             			System.out.println("Please check the file ");
             		}
             		break;
-                	
+                case 7:
+                	 System.out.print("Enter ID to update: ");
+                     id = sc.nextLine();
+                     if(!gymService.existsById(id)){
+                         System.out.println("User Doesn't exists");
+                         break;
+                     }
+                     System.out.println("Enter new name to update: ");
+                     name= sc.nextLine();
+                     gymService.updateMember(id,name);
+                     System.out.println("Member updated Successfully");
+                     break;
+                case 8:
+                	System.out.print("Enter ID to delete: ");
+                    id = sc.nextLine();
+                    if(!gymService.existsById(id)){
+                        System.out.println("User Doesn't exists");
+                        break;
+                    }
+                    gymService.deleteMember(id);
+                    System.out.println("Member Deleted Successfully");
+                    break;
+                case 3:
+                    System.out.print("Enter ID: ");
+                    id = sc.nextLine();
+                    if(!gymService.existsById(id)){
+                        System.out.println("User Doesn't exists");
+                        break;
+                    }
+                    System.out.print("Enter Plan Name (Basic/Premium/Gold): ");
+                    String plan = sc.nextLine();
+                    String lowerPlan=plan.toLowerCase();
+                    if(isValidPlan(lowerPlan,gymService)) {
+                    	 gymService.assignPlan(id, lowerPlan);
+                    }
+                    else{
+                        System.out.println("\nPlease enter valid plan : (Gold/Premium/Basic)");
+                    }
+                    break;
+
+                case 4:
+                	System.out.println();
+                    gymService.viewAllMembers();
+                    break;
+
+                case 5:
+                    gymService.viewAllPlans();
+                    break;
+                case 6:
+                    System.out.println("\nExiting the system. Goodbye!");
+                    return;
                 default:
                     System.out.println("\nInvalid choice. Please select a valid option.");
             }
             System.out.println();       
         }
+    }
+    public static boolean isValidPlan(String plan,GymService gymService) {
+    	Map<String, MembershipPlan> plans = gymService.getPlans();
+    	for(String s:plans.keySet()) {
+    		if(s.equals(plan)) return true;
+    	}
+    	return false;
     }
 }

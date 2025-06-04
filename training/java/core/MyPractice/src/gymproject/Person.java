@@ -17,6 +17,9 @@ public abstract class Person {
     public int getAge() {
         return age;
     }
+    public void setName(String name) {
+    	this.name=name;
+    }
 
     public abstract void showDetails();
 }

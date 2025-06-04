@@ -18,7 +18,6 @@ public class Member extends Person {
     public void assignPlan(MembershipPlan plan) {
         this.plan = plan;
     }
-
     @Override
     public void showDetails() {
         System.out.println("Member ID: " + memberId);

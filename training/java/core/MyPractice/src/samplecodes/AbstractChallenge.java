@@ -1,7 +1,28 @@
 package samplecodes;
 
 public class AbstractChallenge {
-    
+    public static void main(String[] args) {
+    	System.out.println("Linked Lists");
+        MyLinkedList linkedList = new MyLinkedList(null);
+        String[] linkedListItems = {"Apple", "Banana", "Cherry", "Date", "Apple", "Elderberry"};
+        for (String item : linkedListItems) {
+            linkedList.addItem(new Node(item));
+        }
+        linkedList.traverse(linkedList.getRoot());
+        linkedList.removeItem(new Node("Cherry"));
+        linkedList.traverse(linkedList.getRoot());
+        
+        
+        System.out.println("Search Tree");
+        SearchTree searchTree = new SearchTree(null);
+        String[] treeItems = {"Apple", "Banana", "Cherry", "Date", "Apple", "Elderberry"};
+        for (String item : treeItems) {
+            searchTree.addItem(new Node(item));
+        } 
+        searchTree.traverse(searchTree.getRoot());
+        searchTree.removeItem(new Node("Cherry"));
+        searchTree.traverse(searchTree.getRoot());
+    }
 }
 
 interface NodeList {
