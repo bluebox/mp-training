@@ -1,4 +1,5 @@
 
+package myjavaprograms;
 
 public class AreaCalculation {
 
@@ -19,8 +20,8 @@ public class AreaCalculation {
         System.out.printf("area of rectangle is : %f\n" , len*breadth);
     }
     public static void main(String[] args) {
-        area(5);
-        area(4,-1);
-        area(3,2);
+        AreaCalculation.area(5);
+        AreaCalculation.area(4,-1);
+        AreaCalculation.area(3,2);
     }
 }
