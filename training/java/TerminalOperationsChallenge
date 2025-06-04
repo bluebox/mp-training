@@ -1,0 +1,80 @@
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Course{
+    private String courseCode;
+    private String title;
+    private int lectureCount;
+    public Course(String courseCode,String title,int lectureCount){
+        this.courseCode=courseCode;
+        this.title=title;
+        this.lectureCount=lectureCount;
+    }
+    public Course(String courseCode,String title){
+        this(String courseCode,String title,100);
+    }
+    public String toString(){
+        return (courseCode+" "+title);
+    }
+
+}
+
+
+public class courseEngagement{
+    private Course course;
+    private LocalDate enrollmentDate;
+    private String engagementType;
+    private int lastLecture;
+    private LocalDate lastActivityDate;
+public String getCourseCode(){
+    return 
+}
+public int getEnrollmentYear(){
+    return 
+}
+public int getLastActivityYear(){
+    return 
+}
+public String getLastActivityMonth(){
+    return 
+}
+public int getMonthsSinceActive(){
+    return 
+}
+public double getPercentageComplete(){
+
+}
+
+
+}
+
+
+public class Student{
+    private long studentId;
+    private String countryCode;
+    private int yearEnrolled;
+    private int ageEnrolled;
+    private String gender;
+    private boolean programmingExperience;
+    public Map<String,courseEngagement> engagementMap;
+    public Student(long studentId,String countryCode,int yearEnrolled,int ageEnrolled,String gender,boolean programmingExperience){
+        this.studentId=studentId;
+        this.countryCode=countryCode;
+        this.yearEnrolled=yearEnrolled;
+        this.ageEnrolled=ageEnrolled;
+        this.gender=gender;
+        this.programmingExperience=programmingExperience;
+        engagementMap=new Map<>();
+    }
+    public void addCourse(Course course){
+        this(Course,LocalDate.now());
+
+    }
+    public int getAge(){
+        return 
+    }
+    public void addCourse(Course course ,LocalDate enrollmentDate){
+
+    }
+
+}
