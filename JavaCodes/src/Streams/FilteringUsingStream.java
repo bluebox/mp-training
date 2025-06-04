@@ -9,7 +9,7 @@ public class FilteringUsingStream {
 		List<String>ans=new ArrayList<>(Arrays.asList("Shiva","Ram","shiva","ram","Anand","anand"));
 		List<String>filteredans=ans.stream()
 				.filter((i)->isCapital(i))
-				.map(i->i)
+				.map(i->i.toUpperCase())
 				.collect(Collectors.toList());
 		filteredans.forEach(System.out::println);
 	}
