@@ -1,4 +1,4 @@
-package gym_application;
+package gymapp;
 abstract class Person{
 
      String name;
