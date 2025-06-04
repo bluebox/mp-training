@@ -1,11 +1,7 @@
 package myjavaprograms.date;
-
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
-
-
 
 public class DatePractice {
 	public static void main(String args[] ){

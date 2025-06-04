@@ -1,4 +1,4 @@
-package gym_application;
+package gymapp;
 
 public class Member extends Person {
 

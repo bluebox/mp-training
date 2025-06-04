@@ -1,4 +1,4 @@
-package gym_application;
+package gymapp;
 import java.util.ArrayList;
 
 public class Trainer extends Person{
