@@ -1,54 +1,63 @@
 package gymapp;
-
+import java.time.LocalDate;
 public class Member extends Person {
 
-    String name;
+    private String name;
     private int age;
     private String planTaken;
-    private String joiningDate;
-    private String endingDate;
+    private LocalDate joiningDate;
+    private LocalDate endingDate;
     private String memberId;
-    private String trainer_name;
+    private String trainerName;
 
-    static int members_count = 10001;
+    static int membersCount = 10001;
 
     Member(){
         this("" );
     }
 
     Member(String name){
-        this(name , -1 , "" , "");
+        this(name , -1 , "" , null);
     }
 
     Member(String name , int age ){
-        this(name , age , "" , "");
+        this(name , age , "" , null);
     }
 
     Member(String name , int age , String planTaken ){
-       this(name, age , planTaken , "");
+       this(name, age , planTaken , null);
     }
 
-    Member(String name , int age , String planTaken , String trianer_name){
+    Member(String name , int age , String planTaken , Trainer trainer){
         this.name = name;
         this.age = age;
-
+        this.joiningDate = LocalDate.now();
         if(!planTaken.isEmpty())
             this.planTaken = planTaken;
+            switch (planTaken) {
+                case "basic" -> this.endingDate = this.joiningDate.plusMonths(1);
+                case "gold" -> this.endingDate = this.joiningDate.plusDays(6);
+                case "premium" -> this.endingDate = this.joiningDate.plusYears(1);
+            }
 
-        if(!trianer_name.isEmpty()){
-            this.trainer_name = trianer_name;
-            MyGym.getTrainerByName(trainer_name).trainee.add(this.name);
-            
+        
+        if(trainer!=null){
+            trainer.addTrainee(this.name);
+            this.trainerName = trainer.getName();
         }
          
 
-        this.joiningDate = Main.getTodayDate();
-        this.members_count+=1;
-        this.memberId = "befit" + this.members_count;
+        
+        this.membersCount+=1;
+        this.memberId = "befit" + this.membersCount;
     }
 
     public String getMemberId(){
         return this.memberId;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
 
@@ -65,11 +74,11 @@ public class Member extends Person {
         String s = "Name : " + this.name + ",  age : " + this.age + 
         ",  id : " +  
         this. memberId+",  plan taken : "+ this.planTaken + 
-        ",  DOJ : "+ this.joiningDate;
+        "\nDOJ : "+ this.joiningDate + ",  ending date : " + this.endingDate ;
 
-        if (trainer_name!=null && trainer_name!=""){
+        if (trainerName!=null && trainerName!=""){
 
-         s = s + ",  trainer name : " + trainer_name;
+         s = s + ",  trainer name : " + trainerName;
         }
 
         return s + "\n----------------------------------------------------------------------";

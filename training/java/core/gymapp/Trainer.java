@@ -2,11 +2,11 @@ package gymapp;
 import java.util.ArrayList;
 
 public class Trainer extends Person{
-    String name;
-    int age;
-    String trainerId;
-    protected ArrayList<String> trainee;
-    static int trainers_count = 0;
+
+    private String name;
+    private int age;
+    private String trainerId;
+    private ArrayList<String> trainee;
 
     Trainer(){
         this("unknown" , -1);
@@ -21,10 +21,27 @@ public class Trainer extends Person{
         this.name = name;
         this.age = age;
         trainee = new ArrayList<>();
-        Member.members_count++;
-        this.trainerId ="befit"+Member.members_count;
+        Member.membersCount++;
+        this.trainerId ="befit"+Member.membersCount;
 
     }
+
+    public void addTrainee(String name){
+        trainee.add(name);
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getTrainerId(){
+        return this.trainerId;
+    }
+
+    public int getAge(){
+        return this.age;
+    }
+
     void details(){
         // System.out.println("-".repeat(20));
         System.out.println("Name : "+ 
@@ -33,8 +50,16 @@ public class Trainer extends Person{
 
     public void showTrainees(){
         System.out.println("Trainer : " + this.name);
-        System.out.println("Trainee List : ");
-        trainee.forEach(System.out::println);
+        if(trainee.size() > 0){
+            System.out.println("Trainee List : ");
+        
+            trainee.forEach(System.out::println);
+        }
+        else{
+            System.out.println("you have no trainee's");
+        }
+        
+
         System.out.println("---------------");
     }
 
