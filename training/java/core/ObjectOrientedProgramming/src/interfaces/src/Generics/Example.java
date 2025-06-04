@@ -18,9 +18,9 @@ public class Example<E> {
 	
 	public static void main(String[] args) {
 		innerClass<Integer, Integer> inner = new Example.innerClass<Integer, Integer>();
-		inner.function(n->{
-			
-		}, 10);
+//		inner.function(n->{
+//			
+//		}, 10);
 	}
 
 }

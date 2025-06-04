@@ -5,6 +5,10 @@ public class UtilityLine implements Mappable {
 	
 	private String name;
 	private UtilityType type;
+	private String Label;
+	private Marker marker;
+	private Geometry geometry;
+	
 	
 	
 	public String getName() {
@@ -13,6 +17,15 @@ public class UtilityLine implements Mappable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public UtilityLine(String name, UtilityType type, String label, Marker marker, Geometry geometry) {
+		super();
+		this.name = name;
+		this.type = type;
+		Label = label;
+		this.marker = marker;
+		this.geometry = geometry;
 	}
 
 	public UtilityType getType() {
@@ -26,21 +39,26 @@ public class UtilityLine implements Mappable {
 	@Override
 	public String getLabel() {
 		
-		return null;
+		return this.Label;
 	}
 
 	@Override
-	public String getMarker() {
-		// TODO Auto-generated method stub
-		return null;
+	public Marker getMarker() {
+		
+		return this.marker;
 	}
 
 	@Override
 	public Geometry getShape() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.geometry;
 	}
+
 	
-	
+	@Override
+	public String toJSON()
+	{
+		return Mappable.super.toJSON()+"\", \"UtilityType\": \""+getType()+"\", \"Name : \""+getName()+"\"";
+	}
 
 }
