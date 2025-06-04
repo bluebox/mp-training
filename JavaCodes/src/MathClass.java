@@ -13,5 +13,5 @@ public class MathClass {
          System.out.println(Math.round(5.5));
          System.out.println((int)(Math.random()*1001));
 	}
-
 }
+	
