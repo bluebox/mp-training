@@ -19,8 +19,8 @@ public class Main {
 
         while (true) {
 
-            System.out.print("\n\n1. Member   2. Trainer\n3. New Membership   4. Quit\n\n");
-            typeOfMember = Input.getNumberInRange(1, 4);
+            System.out.print("\n\n1. Member   2. Trainer\n3. New Membership   4. View Plans \n 5.Quit\n\n");
+            typeOfMember = Input.getNumberInRange(1, 5);
 
             if (typeOfMember == 3) {
 
@@ -31,11 +31,15 @@ public class Main {
                 System.out.print("\nEnter your Membership Id: ");
                 MemberController.getMyDetails(Input.getNumberInRange(10000,100000));
 
-            } else if (typeOfMember == 4) {
+            } else if (typeOfMember == 5) {
                 System.out.println("\n\nHave a Nice Day !!!");
                 break;
             }else if(typeOfMember == 2) {
             	new TrainerControls() {};
+            }
+            else if (typeOfMember ==4) {
+            	System.out.println("\nThe Plans Available ");
+            	MembershipPlan.showPlans();
             }
         }
 
