@@ -38,7 +38,7 @@ public class Member extends Person{
 	}
 	@Override
 	public void getDetails() {
-		System.out.println("-+".repeat(20));
+		System.out.println("-".repeat(50));
 		System.out.println( "Member ID:- " + memId
 				+ "\nname=" + name + "\nage=" + age);
 		System.out.println();
