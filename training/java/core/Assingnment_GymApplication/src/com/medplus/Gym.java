@@ -14,7 +14,7 @@ public class Gym {
 	private static ArrayList<Member> members = new ArrayList<Member>();
 	
 	
-	public void addMember(String name, int age,LocalDate StartDate,MembershipPlan plan) {
+	public void addMember(String name, int age,LocalDate StartDate,MembershipPlans plan) {
 		
 		id = random.nextInt(10000,100000);
 		for (var i : members) {
