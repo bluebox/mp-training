@@ -1,6 +1,5 @@
 package dayjun03;
 
-
 import java.util.stream.Stream;
 import java.util.stream.IntStream;
 import java.util.Arrays;
