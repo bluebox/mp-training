@@ -23,6 +23,7 @@ public class Album {
             playlist.add(checkSong);
             return true;
         }
+        System.out.println("no track "+track);
         return false;
     }
     
@@ -32,6 +33,7 @@ public class Album {
             playlist.add(checkSong);
             return true;
         }
+        System.out.println(title+" does not exist");
         return false;
     }
     
