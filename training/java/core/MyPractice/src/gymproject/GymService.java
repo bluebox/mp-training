@@ -10,11 +10,14 @@ public class GymService {
         plans.put("premium", new MembershipPlan("premium", 3, 2499));
         plans.put("gold", new MembershipPlan("gold", 6, 4499));
     }
+    public Map getPlans() {
+    	return this.plans;
+    }
 
     public  void addMember(String memberId, String name, int age) {
         Member member = new Member(memberId, name, age);
         memberDAO.addMember(member);
-        System.out.println("Member added successfully.");
+        System.out.println("Member with "+ memberId + " added successfully.");
     }
 
     public void assignPlan(String memberId, String planName) {
@@ -25,7 +28,6 @@ public class GymService {
             }else{
                 MembershipPlan plan = plans.get(planName);
                 if (plan != null) {
-
                     member.assignPlan(plan);
                     System.out.println("Plan assigned successfully.");
                 } else {
@@ -56,5 +58,13 @@ public class GymService {
     }
     public boolean existsById(String id){
         return memberDAO.existsById(id);
+    }
+    public void updateMember(String memberId,String name) {
+    	 Member member = memberDAO.getMemberById(memberId);
+    	 member.setName(name);
+    }
+    public void deleteMember(String memberId) {
+    	Member member = memberDAO.getMemberById(memberId);
+    	memberDAO.deleteMember(member);
     }
 }

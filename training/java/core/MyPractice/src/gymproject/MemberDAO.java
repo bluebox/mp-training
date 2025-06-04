@@ -24,4 +24,8 @@ public class MemberDAO implements MemberRepository {
     public boolean existsById(String id) {
         return memberMap.containsKey(id);
     }
+    @Override
+    public void deleteMember(Member member) {
+    	memberMap.remove(member.getMemberId());
+    }
 }

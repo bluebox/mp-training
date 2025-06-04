@@ -7,4 +7,5 @@ public interface MemberRepository {
     List<Member> getAllMembers();
     Member getMemberById(String id);
     boolean existsById(String id);
+    void deleteMember(Member member);
 }

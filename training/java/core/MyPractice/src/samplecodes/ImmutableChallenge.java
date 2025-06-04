@@ -3,9 +3,6 @@ import java.util.*;
 public class ImmutableChallenge {
     
 }
-
-
-
 final class Location {
     private final int locationID;
     private final String description;
@@ -34,7 +31,6 @@ final class Location {
     public Map<String, Integer> getExits() {
         try {
             Map<String, Integer> exitsClone = new HashMap<String, Integer>(exits);
-
             return (Map<String, Integer>) exitsClone;
         } catch (Exception e) {
             return null;
