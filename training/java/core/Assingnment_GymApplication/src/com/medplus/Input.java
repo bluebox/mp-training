@@ -42,14 +42,14 @@ public abstract class Input {
         }
     }
 
-    public static MembershipPlan getValidatedMembershipPlan() {
+    public static MembershipPlans getValidatedMembershipPlan() {
         try {
-            MembershipPlan.showPlans();
+            MembershipPlans.showPlans();
             int planNumber = Integer.parseInt(scanner.nextLine().trim());
             switch (planNumber) {
-                case 1: return MembershipPlan.BASIC;
-                case 2: return MembershipPlan.GOLD;
-                case 3: return MembershipPlan.PREMIUM;
+                case 1: return MembershipPlans.BASIC;
+                case 2: return MembershipPlans.GOLD;
+                case 3: return MembershipPlans.PREMIUM;
                 default:
                     throw new IllegalArgumentException("Plan must be a number between 1 and 3.");
             }

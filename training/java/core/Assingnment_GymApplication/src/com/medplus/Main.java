@@ -39,7 +39,7 @@ public class Main {
             }
             else if (typeOfMember ==4) {
             	System.out.println("\nThe Plans Available ");
-            	MembershipPlan.showPlans();
+            	MembershipPlans.showPlans();
             }
         }
 
