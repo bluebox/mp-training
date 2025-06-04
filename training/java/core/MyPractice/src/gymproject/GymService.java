@@ -20,9 +20,8 @@ public class GymService {
         System.out.println("Member with "+ memberId + " added successfully.");
     }
 
-    public void assignPlan(String memberId, String planName) {
-        Member member = memberDAO.getMemberById(memberId);
-        if (member != null) {
+        public void assignPlan(String memberId, String planName) {
+            Member member = memberDAO.getMemberById(memberId);
            if(member.getPlan()!=null && member.getPlan().getPlanName().toLowerCase().equals(planName.toLowerCase())){
                 System.out.println("Same plan already exists ! Please try some other plan");
             }else{
@@ -34,10 +33,8 @@ public class GymService {
                     System.out.println("Invalid plan name.");
                 }
             } 
-        } else {
-            System.out.println("Member not found.");
         }
-    }
+    
 
     public void viewAllMembers() {
         List<Member> members = memberDAO.getAllMembers();
@@ -66,5 +63,35 @@ public class GymService {
     public void deleteMember(String memberId) {
     	Member member = memberDAO.getMemberById(memberId);
     	memberDAO.deleteMember(member);
+    }
+    public void updateMembershipPlan(String id,String oldPlan,String newPlan){
+        Member member = memberDAO.getMemberById(id);
+        if(member.getPlan()==null) {
+            System.out.println("No plan exists for this member! You can update only when you have existing plan");
+            return ;
+        }
+        //Validate oldPlan 
+        if(!member.getPlan().getPlanName().toLowerCase().equals(oldPlan.toLowerCase())){
+            System.out.println("Please enter valid existing plan only.");
+            return;
+        }
+        // Add newPlan
+        MembershipPlan plan = plans.get(newPlan);
+        member.assignPlan(plan);
+        System.out.println("Plan Updated successfully.");
+    }
+    public void deleteMembershipPlan(String id,String oldPlan){
+        Member member = memberDAO.getMemberById(id);
+        if (member.getPlan() == null) {
+            System.out.println("No plan exists for this member! You can update only when you have existing plan");
+            return;
+        }
+        // Validate oldPlan
+        if (!member.getPlan().getPlanName().toLowerCase().equals(oldPlan.toLowerCase())) {
+            System.out.println("Please enter valid existing plan only.");
+            return;
+        }
+        member.assignPlan(null);
+        System.out.println("Plan removed successfully.");
     }
 }
