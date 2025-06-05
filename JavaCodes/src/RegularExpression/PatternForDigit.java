@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class PatternForDigit {
 
 	public static void main(String[] args) {
-		Pattern pattern=Pattern.compile("\\d{5}");
+		Pattern pattern=Pattern.compile("\\d{4}");
 		Matcher matches=pattern.matcher("9701674944");
 		while(matches.find()) {
 			String match=matches.group();
