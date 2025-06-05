@@ -24,6 +24,10 @@ public class BankCustomer {
 	public List<BankAccount> getAccounts() {
 		return new ArrayList<>(accounts);
 	}
+	public void addBankAccount(BankAccount bk) {
+		accounts.add(bk);
+	}
+
 	public String toString() {
 		String[] string = new String[accounts.size()];
 		Arrays.setAll(string, i ->accounts.get(i).toString());
