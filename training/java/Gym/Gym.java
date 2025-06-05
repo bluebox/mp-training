@@ -1,6 +1,14 @@
 package Gym;
 import java.util.ArrayList;
-public class Gym{
+
+interface GymMethods {
+	public void add(Member member);
+	public void deleteMember(String id);
+	public void deleteRecordData();
+	public void displayMembersRecord();
+	
+}
+public class Gym implements GymMethods{
     public static ArrayList<Member> membersRecord = new ArrayList<>();
 
     public void add(Member member1){
@@ -22,14 +30,32 @@ public class Gym{
         }
         System.out.println("No Member with that ID");
     }
+    
+    public void showMemberPlan(String memId){
+        for(Member member: membersRecord){
+            if(member.getMemberId().equals(memId)){
+               member.showPlanDetails(member.membershipPlan);
+            }
+        }
+        System.out.println("No Member with that ID");
+    }
 
     public void deleteRecordData(){
         membersRecord.clear();
     }
-    public void update(String memId,String age){
+    public void updateAge(String memId,String age){
         for(Member member: membersRecord){
             if(member.getMemberId().equals(memId)){
                 member.setAge(age);
+                return;
+            }
+        }
+        System.out.println("No Member with that ID");
+    }
+    public void updateName(String memId,String name){
+        for(Member member: membersRecord){
+            if(member.getMemberId().equals(memId)){
+                member.setName(name);
                 return;
             }
         }
@@ -45,7 +71,8 @@ public class Gym{
         }
         System.out.println("No Member with that ID");
     }
-    public void DisplayMembersRecord(){
+    public void displayMembersRecord(){
+    	System.out.println("-".repeat(60));
         if(membersRecord.size() >0){
             for(Member member : membersRecord){
                 System.out.println(member.showMembersDetails());
@@ -53,5 +80,6 @@ public class Gym{
         }else{
             System.out.println("No Members in the Record");
         }
+        System.out.println("-".repeat(60));
     }
 }

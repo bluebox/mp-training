@@ -31,10 +31,11 @@ public class Main {
             System.out.println("1. Add Member Manually");
             System.out.println("2. Add Member by Scanner");
             System.out.println("3. Delete Member");
-            System.out.println("4. Update Membership Plan");
+            System.out.println("4. Update (eg: Name, Age)");
             System.out.println("5. Delete the Record data");
             System.out.println("6. Display Members");
             System.out.println("7. Show Single Member Details");
+            System.out.println("8. Show Member Plan");
             System.out.println("0. To Exit");
             System.out.println("-".repeat(40));
             System.out.print("Select an option to continue :");
@@ -53,11 +54,15 @@ public class Main {
              switch(optedChoice){
                 case 1 -> {
 
-                    Member newMember1 = new Member("Varun", "20", "Male", plan.platinumPlan3, "02/06/2025",getEndDate(plan.goldPlan1,"02/06/2025"));
-                    Member newMember2 = new Member("Shyam", "20", "Male", plan.platinumPlan3, "02/09/2025",getEndDate(plan.goldPlan1,"02/06/2025"));
+                    Member newMember1 = new Member("Varun", "30", "Male", plan.goldPlan3, "02/06/2025",getEndDate(plan.goldPlan1,"02/06/2025"));
+                    Member newMember2 = new Member("Shyam", "21", "Male", plan.platinumPlan1, "02/09/2025",getEndDate(plan.goldPlan1,"02/06/2025"));
+                    Member newMember3 = new Member("Venkat", "35", "Male", plan.platinumPlan2, "02/06/2025",getEndDate(plan.goldPlan1,"02/06/2025"));
+                    Member newMember4 = new Member("Murthy", "24", "Male", plan.platinumPlan3, "02/09/2025",getEndDate(plan.goldPlan1,"02/06/2025"));
                     
                     gymRecord.add(newMember1);
                     gymRecord.add(newMember2);
+                    gymRecord.add(newMember3);
+                    gymRecord.add(newMember4);
                 }
                 case 2 ->{
                     System.out.println("-".repeat(15)+"\nAdd Member");
@@ -195,9 +200,9 @@ public class Main {
                     
                     String endDate="";
                     endDate=getEndDate(planName,startDate);
-                    Member newMember3 = new Member(name,age,gender,planName,startDate,endDate);
-                    gymRecord.add(newMember3);
-                    gymRecord.DisplayMembersRecord();
+                    Member newMember = new Member(name,age,gender,planName,startDate,endDate);
+                    gymRecord.add(newMember);
+                    //gymRecord.DisplayMembersRecord();
                 }
                 case 3 ->{
                     System.out.println("Enter the member Id: ");
@@ -205,10 +210,27 @@ public class Main {
                     gymRecord.deleteMember(memberId);
                 }
                 case 4 ->{
-                    System.out.println("Enter the member Id: ");
-                    String memberId = sc.next();
-                    String age=sc.next();
-                    gymRecord.update(memberId,age);
+                	String inp=sc.next();
+                	System.out.println("Click 1 - to Update Age\n2 - to upateName");
+                	while(true) {
+                		if(inp == "1") {
+                			System.out.println("Enter the member Id: ");
+                            String memberId = sc.next();
+                            String age=sc.next();
+                            gymRecord.updateAge(memberId,age);
+                    		break;
+                    	}
+                    	else if(inp =="2"){
+                    		System.out.println("Enter the member Id: ");
+                            String memberId = sc.next();
+                            String name=sc.next();
+                            gymRecord.updateName(memberId,name);
+                    		break;
+                    	}
+                    	else {
+                    		System.out.println("Invalid choice");
+                    	}
+                	}
 
                 }
                 case 5 ->{
@@ -217,12 +239,17 @@ public class Main {
                 }
                 case 6 ->{
                     System.out.println("-".repeat(15)+"\nGym Members Record!\n"+"-".repeat(15));
-                    gymRecord.DisplayMembersRecord();
+                    gymRecord.displayMembersRecord();
                 }
                 case 7 ->{
                     System.out.println("Enter the member Id: ");
                     String memberId = sc.next();
                     gymRecord.getMember(memberId);
+                }
+                case 8 ->{
+                    System.out.println("Enter the member Id: ");
+                    String memberId = sc.next();
+                    gymRecord.showMemberPlan(memberId);
                 }
                 case 0 -> {
                     exit=0;

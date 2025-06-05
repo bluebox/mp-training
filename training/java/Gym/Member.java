@@ -18,7 +18,7 @@ public class Member extends Person{
         this.membershipPlan = membershipPlan;
     }
 
-     public void updateName(String name){
+     public void setName(String name){
         this.Name = name;
     }
 
@@ -41,8 +41,8 @@ public class Member extends Person{
     }
 
     public String getMember(){
-        String details="-".repeat(20)+"\nMember Id :"+memberId+"\nMember Name :"+getName()+"\nAge :"+getAge()+"\nGender :"+getGender()+"\nMembership Plan :"
-        +membershipPlan+"\nDuration :"+startDate+" - "+endDate+"\n"+"-".repeat(20);
+        String details="-".repeat(50)+"\nMember Id :"+memberId+"\nMember Name :"+getName()+"\nAge :"+getAge()+"\nGender :"+getGender()+"\nMembership Plan :"
+        +membershipPlan+"\nDuration :"+startDate+" - "+endDate+"\n"+"-".repeat(50);
         return details;
     }
 
@@ -50,7 +50,12 @@ public class Member extends Person{
     // public long getRemainingDays(){
     //     return remainingDays;
     // }
-
+    
+    
+    public void showPlanDetails(String planDetails) {
+    	Plan plan= new Plan(planDetails);
+    	System.out.println("-".repeat(40)+"\nPlan Taken :"+plan.getPlanName()+"\nDuration of Plan :"+plan.getPlanPeriod()+" Months \nPlan Amount :"+plan.getPlanAmount()+"\\-\n"+"-".repeat(40));
+    }
     public String getMemberId(){
         return memberId;
     }
