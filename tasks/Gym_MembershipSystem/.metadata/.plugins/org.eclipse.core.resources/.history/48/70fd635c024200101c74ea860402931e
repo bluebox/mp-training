@@ -1,0 +1,86 @@
+package com.gym.services;
+
+import com.gym.domain.*;
+import java.util.*;
+
+public class GymService {
+    private ArrayList<Member> members = new ArrayList<>();
+    private Scanner scanner = new Scanner(System.in);
+
+    public void addMember(int id, String name, int age) {
+        members.add(new Member(id, name, age));
+        System.out.println("Member added successfully!");
+        System.out.println("name : "+name+", assigned id : " + id);
+    }
+
+    public Member findMember(int id) {
+        for (Member member : members) {
+            if (member.getMemberId() == id) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    public void assignPlan(int id, String plan, int durationInMonths) {
+        Member member = findMember(id);
+        if (member == null) {
+            System.out.println("No member found with ID: " + id);
+            return;
+        }
+
+        if (member.membershipPlan != null) {
+            System.out.println("Member already has a plan. Do you want to update it? (yes/no)");
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("yes")) {
+                member.updatePlan(plan, durationInMonths);
+                System.out.println("Updated Plan Details: " + member);
+            } else {
+                System.out.println("Plan not updated.");
+            }
+        } else {
+            member.assignPlan(plan, durationInMonths);
+        }
+    }
+    
+    
+
+    public void displayRecords() {
+        System.out.println("_".repeat(120));
+        if (members.isEmpty()) {
+            System.out.println("No members found. Please add some!");
+        } else {
+        	System.out.println("Total members now: " + members.size());
+        	System.out.println("\nCurrent Registered Members:");
+            for (Member member : members) {
+                System.out.println(member);
+            }
+        }
+        System.out.println("_".repeat(120));
+    }
+    
+    
+
+    public void removeRecord(Member member) {
+        members.remove(member);
+        System.out.println("Member removed. Remaining members: " + members.size());
+    }
+
+    public void updatePersonalDetails(Member member) {
+        try {
+            System.out.print("Enter updated name: ");
+            String name = scanner.nextLine();
+            System.out.print("Enter updated age: ");
+            int age = Integer.parseInt(scanner.nextLine());
+            if(member.getName().equalsIgnoreCase(name) && member.getAge()==age) {
+            	System.out.println("Details are same as before ");
+            }
+            else {
+            	member.updateDetails(name, age);
+            	System.out.println("Details updated: " + member);
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input. Try again.");
+        }
+    }
+}

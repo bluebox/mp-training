@@ -24,7 +24,38 @@ public class Branch {
 	
 	public boolean newCustomer(String customerName, double transaction) {
 		
+		Customer customer = findCustomer(customerName);
 		
+		if(customer == null) {
+			
+			customers.add(new Customer(customerName, transaction));
+			return true;
+		}
+		System.out.println("Customer already exists  ");
 		return false;
+	}
+	
+	public boolean addCustomerTransaction(String customerName,double transaction) {
+		
+		Customer customer = findCustomer(customerName);
+		
+		if(customer != null) {
+			customer.addTransaction(transaction);
+			return true;
+		}
+		return false;
+	}
+	
+	public Customer findCustomer(String customerName) {
+		
+		for(Customer customer : customers) {
+			
+			if(customer.getName().equalsIgnoreCase(name)) {
+				
+				return customer;
+			}
+		}
+		return null;
+		
 	}
 }

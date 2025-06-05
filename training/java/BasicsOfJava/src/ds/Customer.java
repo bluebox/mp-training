@@ -1,7 +1,6 @@
 package ds;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Customer {
@@ -12,7 +11,8 @@ public class Customer {
 	public Customer(String name,double transaction) {
 		
 		this.name = name;
-		this.transactions = new ArrayList<>(List.of(transaction));
+		this.transactions = new ArrayList<>();
+		addTransaction(transaction);
 	}
 	
 	public String getName() {
@@ -25,5 +25,10 @@ public class Customer {
 		return transactions;
 	}
 	
+	public void addTransaction(double transaction) {
+		
+		transactions.add(transaction);
+		System.out.println("Transaction successful ");
+	}
 
 }
