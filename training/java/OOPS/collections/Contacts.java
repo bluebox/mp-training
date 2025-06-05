@@ -17,11 +17,13 @@ public class Contacts {
 		mph.printContacts();
 		System.out.println(mph.findContact("ram"));
 		System.out.println(mph.removeContact("ram"));
+		
+		Contact cont= mph.queryContact(contact1.getName());
 		System.out.println(mph.updateContact(contact1,new Contact("ramsai","9440141537")));
+		System.out.println(cont);
 		mph.printContacts();
 				
 	}
-
 }
 class MobilePhone 
 {
@@ -36,20 +38,24 @@ class MobilePhone
 	
 	public boolean updateContact(Contact oldContact,Contact newContact)
 	{
-		Contact cont= queryContact(oldContact.getName());
-
-		int i=0;
-		for(Contact contact:myContacts)
-		{
-			if(contact.getName() == oldContact.getName())
-			{
-				this.removeContact(oldContact.getName());
-				 myContacts.add(i, newContact);
-				 return true;
-			}
-			i++;
-		}
-		return false;
+		int idx = myContacts.indexOf(oldContact);
+		myContacts.remove(oldContact);
+		myContacts.set(idx,newContact);
+		
+//		cont=newContact;
+//		System.out.println(cont);
+		//int i=0;
+//		for(Contact contact:myContacts)
+//		{
+//			if(contact.getName() == oldContact.getName())
+//			{
+//				this.removeContact(oldContact.getName());
+//				 myContacts.add(i, newContact);
+//				 return true;
+//			}
+//			i++;
+//		}
+		return true;
 	}
 	
 	public void printContacts()
@@ -112,5 +118,9 @@ class Contact
 	{
 		Contact newContact= new Contact(name,number);
 		return newContact;
+	}
+	@Override
+	public String toString() {
+		return "Contact [name=" + name + ", number=" + number + "]";
 	}
 }
