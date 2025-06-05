@@ -1,6 +1,8 @@
 package MyGymApplication;
 
 interface Gym{
+	
+	
 
     void gymMemberDetails();
 
