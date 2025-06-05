@@ -1,4 +1,4 @@
-package gymProject;
+package gymproject;
 
 public class MembershipPlan {
     private String planName;

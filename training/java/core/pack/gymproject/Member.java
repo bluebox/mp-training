@@ -1,4 +1,4 @@
-package gymProject;
+package gymproject;
 
 public class Member extends Person {
     private String memberId;
@@ -8,7 +8,9 @@ public class Member extends Person {
         super(name, age);
         this.memberId = memberId;
     }
-
+    public MembershipPlan getPlan(){
+        return this.plan;
+    }
     public String getMemberId() {
         return memberId;
     }
@@ -16,7 +18,6 @@ public class Member extends Person {
     public void assignPlan(MembershipPlan plan) {
         this.plan = plan;
     }
-
     @Override
     public void showDetails() {
         System.out.println("Member ID: " + memberId);

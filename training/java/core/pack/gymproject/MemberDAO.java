@@ -1,4 +1,4 @@
-package gymProject;
+package gymproject;
 
 import java.util.*;
 
@@ -23,5 +23,9 @@ public class MemberDAO implements MemberRepository {
     @Override
     public boolean existsById(String id) {
         return memberMap.containsKey(id);
+    }
+    @Override
+    public void deleteMember(Member member) {
+    	memberMap.remove(member.getMemberId());
     }
 }
