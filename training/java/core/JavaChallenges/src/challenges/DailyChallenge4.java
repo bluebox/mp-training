@@ -4,7 +4,7 @@ public class DailyChallenge4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int arr[] = {1,2,2,3,4,4};
+		int arr[] = {11,2,2,11,11,2,2};
 		int xor = 0;
 		for (int i : arr) {
 			xor ^= i;

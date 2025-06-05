@@ -32,6 +32,7 @@ public class BingoStreamChallenge {
 				Stream.concat(
 						Stream.concat(
 								Stream.concat(bStream, iStream), nStream), gStream), oStream);
+
 		finalStream.forEach(System.out::println);
 		
 	}
