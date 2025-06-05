@@ -1,4 +1,4 @@
-package gymProject;
+package gymproject;
 
 public class InvalidPlanException extends Exception {
  
