@@ -6,9 +6,9 @@ import com.gym.domain.Member;
 
 public class GymService {
 
-	HashMap<Long, Member> members;
-	static String name = "MEDPLUS GYM";
-	static String description = "Excuses don’t burn calories.";
+	private HashMap<Long, Member> members;
+	private static String name = "MEDPLUS GYM";
+	private static String description = "Excuses don’t burn calories.";
 	
 
 	public GymService() {
@@ -20,7 +20,7 @@ public class GymService {
 	}
 
 	public void addMember(Member member) {
-		members.put(member.getMemberId(), member);
+		members.put(member.getId(), member);
 
 	}
 

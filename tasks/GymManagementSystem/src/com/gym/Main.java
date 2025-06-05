@@ -1,4 +1,5 @@
 package com.gym;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,8 +9,9 @@ import com.gym.domain.PlanDetails;
 import com.gym.service.GymService;
 
 public class Main {
-	static Scanner sc = new Scanner(System.in);
-	static GymService gym = new GymService();
+	private static long idGenerator = 100;
+	private final static Scanner sc = new Scanner(System.in);
+	private static GymService gym = new GymService();
 
 	public static void main(String[] args) {
 
@@ -66,20 +68,22 @@ public class Main {
 	}
 
 	public static void createUser(GymService gym) {
+
 		System.out.print("Enter your name:");
 		sc.nextLine();
 		String name = sc.nextLine();
 		System.out.print("Enter your Age:");
 		int age = sc.nextInt();
-		Member member = new Member(name, age);
+		Member member = new Member(idGenerator++ ,name, age);
 		System.out.println("User created sucessfully!");
 		member.getDetails();
 		gym.addMember(member);
-		planAssignment(gym,member);
+		planAssignment(gym, member);
+
 	}
-	public static void planAssignment(GymService gym,Member member)
-	{
-		System.out.println("Do want to take plan\n1.yes\n2.no");
+
+	public static void planAssignment(GymService gym, Member member) {
+		System.out.println("Do you want to take plan\n1.yes\n2.no");
 		int planOption;
 		try {
 			planOption = sc.nextInt();
@@ -94,13 +98,11 @@ public class Main {
 		} catch (Exception e) {
 			System.out.println("Please, enter 1 or 2 ");
 			sc.nextLine();
-			planAssignment(gym,member);
+			planAssignment(gym, member);
 		}
 
-		
-		
-		
 	}
+
 	public static void deleteUser(GymService gym) {
 		System.out.println("Enter memberId:");
 		long id;
@@ -108,6 +110,7 @@ public class Main {
 			id = sc.nextLong();
 			gym.deleteUser(id);
 		} catch (Exception e) {
+			sc.nextLine();
 			System.out.println("Please enter the correct user id");
 
 		}
@@ -130,7 +133,7 @@ public class Main {
 			System.out.println("User Not found");
 			return;
 		}
-		if (member.isSubscribed) {
+		if (member.isSubscribed()) {
 			System.out.println("You already have a plan");
 			return;
 		}
@@ -142,20 +145,44 @@ public class Main {
 		ArrayList<PlanDetails> details = new ArrayList<>(List.of(PlanDetails.values()));
 		int count = 1;
 		System.out.println("+-------------+----------------+-----------+");
-        System.out.println("Option | Plan Name  | Price  |  Duration   |");
-        System.out.println("+-------------+----------------+-----------+");
+		System.out.println("Option | Plan Name  | Price  |  Duration   |");
+		System.out.println("+-------------+----------------+-----------+");
 
-        for (PlanDetails p : details) {
-            System.out.printf("%-7d| %-10s | %-6d | %d month(s) |\n",count++, p.name(), p.price, p.duration);
-        }
+		for (PlanDetails p : details) {
+			System.out.printf("%-7d| %-10s | %-6d | %d month(s) |\n", count++, p.name(), p.getPrice(), p.getDuration());
+		}
 
-        System.out.println("+------------+------------------+-----------+");
-        System.out.print("Enter the plan option:");
+		System.out.println("+------------+------------------+-----------+");
+		System.out.print("Enter the plan option:");
 		int opiton = sc.nextInt();
 		System.out.print("Enter the duration:");
 		int duration = sc.nextInt();
-		member.addPlan(details.get(opiton - 1), duration);
-		System.out.println("Plan sucessfull added to the user with id " + member.getMemberId());
+		System.out.println("Total amount= " + duration * details.get(opiton - 1).getPrice());
+		System.out.println("Do want to take this plan\n1.yes\n2.no");
+		System.out.print("Enter the option:");
+		int planOption;
+		while (true) {
+			try {
+				planOption = sc.nextInt();
+				if (planOption != 1 && planOption != 2) {
+					throw new Exception();
+				}
+				if (planOption == 2) {
+					System.out.println("Plan not assigned");
+					return;
+				}
+
+				member.addPlan(details.get(opiton - 1), duration);
+				break;
+			} catch (Exception e) {
+				System.out.print("Please, enter option 1 or 2 :");
+				sc.nextLine();
+				// return;
+			}
+			// System.out.println();
+		}
+
+		System.out.println("Plan sucessfull added to the user with id " + member.getId());
 		member.getDetails();
 
 	}
@@ -165,14 +192,12 @@ public class Main {
 		long id;
 		try {
 			id = sc.nextLong();
-			Member member=gym.getMember(id);
-			if(member==null)
-			{
+			Member member = gym.getMember(id);
+			if (member == null) {
 				System.out.println("user not found");
 			}
-			
-			else
-			{
+
+			else {
 				member.getDetails();
 			}
 		} catch (Exception e) {
@@ -181,23 +206,23 @@ public class Main {
 	}
 
 	public static void sampleData(GymService gym) {
-		Member member = new Member("mani", 20);
+		Member member = new Member(idGenerator++,"mani", 20);
 		member.addPlan(PlanDetails.BASIC, 9);
 		gym.addMember(member);
-		member = new Member("Ram", 22);
+		member = new Member(idGenerator++,"Ram", 22);
 		member.addPlan(PlanDetails.GOLD, 6);
 		gym.addMember(member);
-		member = new Member("sai", 21);
+		member = new Member(idGenerator++,"sai", 21);
 		member.addPlan(PlanDetails.PREMINUM, 12);
 		gym.addMember(member);
 
-		member = new Member("Rakesh", 19);
+		member = new Member(idGenerator++,"Rakesh", 19);
 		member.addPlan(PlanDetails.BASIC, 7);
 		gym.addMember(member);
-		member = new Member("rakesh ram", 19);
+		member = new Member(idGenerator++,"rakesh ram", 19);
 		member.addPlan(PlanDetails.BASIC, 7);
 		gym.addMember(member);
-		member = new Member("Bhanu", 19);
+		member = new Member(idGenerator++,"Bhanu", 19);
 		gym.addMember(member);
 
 	}
