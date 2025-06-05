@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 
 public class BigDecimalExample {
-
+	
 	public static void main(String[] args) {
 	    BigDecimal a=new BigDecimal("1000000000.0000001");
 	    System.out.println(a.scale());
@@ -13,5 +13,4 @@ public class BigDecimalExample {
 	    b=b.setScale(2,0);
 	    System.out.println(b);
 	}
-
 }
