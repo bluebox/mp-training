@@ -29,10 +29,10 @@ public class LinkedList1 {
 				}
 				);
 		ListIterator<Town> itr= list.listIterator();
-		while(itr.hasNext())
-		{
-			System.out.println(itr.next().getTownName());
-		}
+//		while(itr.hasNext())
+//		{
+//			System.out.println(itr.next().getTownName());
+//		}
 		do {
 		System.out.println("select options:\n"
 				+ "1.(F)ordard\n2.(B)ackward\n3.(p)rint\n4.(Q)uit");
@@ -53,12 +53,18 @@ public class LinkedList1 {
 		}
 		case "q"->
 		{
-			break;
+			return ;
 		}
 		case "p"->{
 			if(itr.hasNext())
-			System.out.println(itr.next().getTownName());
-		}
+			{System.out.println(itr.next().getTownName());
+			itr.previous();
+			}
+			else
+			{
+				System.out.println("no more towns to visit go back");
+			}
+			}
 			default->{
 				System.out.println("ntg");
 			}
