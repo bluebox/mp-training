@@ -9,6 +9,17 @@ public class RegexChallenge3 {
 		String s2 = "K hello world!";
 		String s3 = "This is new?";
 		
+		String msg = "hello this is narutoo your name please";
+		
+		String ptr = "[A-Za-z]{7}";
+		
+		Pattern pattern1 = Pattern.compile(ptr);
+		Matcher matcher_new = pattern1.matcher(msg);
+		
+		if(matcher_new.find()) {
+			System.out.println("7 chars matching : "+ matcher_new.group());
+		}
+		
 		String regex= "[A-Z][a-z ]+[\\?\\.!]";
 		
 		

@@ -63,8 +63,7 @@ public class FilesClassExample {
 
             // 11. Delete Files
             Files.deleteIfExists(filePath);
-            Files.deleteIfExists(movedFilePath);}
-
+            Files.deleteIfExists(movedFilePath);
             Files.deleteIfExists(dirPath);
             System.out.println("Files and directory deleted.");
 
