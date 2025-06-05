@@ -63,6 +63,8 @@ public class Trainer extends Person{
         System.out.println("---------------");
     }
 
-
+    public String toString(){
+        return "Trainer Name : %s, Id : %s, age : %d".formatted(this.name , this.trainerId ,this.age );
+    }
 
 }

@@ -85,4 +85,8 @@ public class Member extends Person {
 
     }
 
+    public String toString(){
+        return "Member Name : %s, Id : %s, age : %d\n, plan : %s, DOJ : %s,ending date : %s, trainer : %s".formatted(this.name , this.memberId ,this.age , this.planTaken , this.joiningDate ,this.endingDate , this.trainerName);
+    }
+
 }
