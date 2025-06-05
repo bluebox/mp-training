@@ -1,3 +1,10 @@
 /module-info.class
-/datechallenges/
+/.classpath
+/.gitignore
+/.project
 /adv/
+/com/
+/inheritance/
+/medplus/
+/datechallenges/
+/modifier/
