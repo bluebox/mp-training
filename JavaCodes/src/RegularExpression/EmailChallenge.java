@@ -9,7 +9,7 @@ public class EmailChallenge {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		String s=sc.nextLine();
-		Pattern pat=Pattern.compile("[a-z][^A-Z]{10,}\\@gmail.[[com][in][ac]]");
+		Pattern pat=Pattern.compile("[a-z][^A-Z]{6,}@[a-z]{2,10}\\.(com|in)");
 		Matcher mat=pat.matcher(s);
 		if(mat.find()) {
 			System.out.println(s+" is a valid email");
