@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 public class RegexChallenge2 {
 	
 	public static void main(String args[]) {
-		String s = "I like red.";
+		String s = "I like red";
 		String s2 = "K hello world.";
 		String regex= "[A-Z][a-z ]+\\.";
 		
