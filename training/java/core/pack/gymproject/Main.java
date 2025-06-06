@@ -143,7 +143,7 @@ public class Main {
                             }
                             break;
                         case 7:
-                            System.out.print("Enter ID to Delete Membership: ");
+                            System.out.print("Enter User ID to Delete Membership: ");
                             id = sc.nextLine();
 
                             if (!gymService.existsById(id)) {
