@@ -11,9 +11,20 @@ public class Main {
 			System.out.println("enter the details of "+(i+1)+" user ");
 			System.out.println("enter name");
 			String name=sc.nextLine();
-			System.out.println("enter age");
-			int age=sc.nextInt();
-			sc.nextLine();
+//			System.out.println("enter age");
+			int age;
+			while(true) {
+				try {
+					System.out.println("enter age");
+					age=sc.nextInt();
+					sc.nextLine();
+					break;
+				}
+				catch(InputMismatchException e) {
+					System.out.println(e);
+					sc.nextLine();
+				}
+			}
 			if(Member.validateAge(age)) {
 				String s=null;
 				boolean temp=true;

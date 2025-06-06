@@ -1,6 +1,12 @@
 import java.util.*;
-
-public class Gym {
+interface GymInterface{
+	void addMember(Member newMember);
+	void getByPlan(String plan);
+	void getAllMember();
+	void getAllMemberByJoiningDate();
+	void deleteById(int id);
+}
+public class Gym implements GymInterface{
      private int cnt=0;
      private List<Member>members;
      public Gym() {
@@ -9,6 +15,7 @@ public class Gym {
      public int getId() {
     	 return cnt;
      }
+     @Override
      public void addMember(Member newNumber) {
     	  if(members.add(newNumber)) {
     		  System.out.println("added successfully");
@@ -17,6 +24,7 @@ public class Gym {
     	  }
     	  System.out.println("error occured");
      }
+     @Override
      public void getByPlan(String plan){
     	 System.out.println("members with "+plan+" plan");
     	 List<Member> val=new ArrayList<>();
@@ -29,6 +37,7 @@ public class Gym {
     		 ele.getDetails();
     	 }
      }
+     @Override
      public void getAllMember(){
     	 System.out.println("sorted by name");
     	 List<Member> member=new ArrayList<>();
@@ -38,6 +47,7 @@ public class Gym {
     		 ele.getDetails();
     	 }
      }
+     @Override
      public void getAllMemberByJoiningDate(){
     	 System.out.println("orderedy by Date");
     	 List<Member> member=new ArrayList<>();
@@ -47,6 +57,7 @@ public class Gym {
     		 ele.getDetails();
     	 }
      }
+     @Override
      public void deleteById(int id) {
     	 Member val=null;
     	 for(Member ele:this.members) {

@@ -14,8 +14,10 @@ public class CreatingACSVFile {
 			 f.createNewFile();
 		 }
 		 FileWriter wr=new FileWriter("/home/developer/eclipse-workspace/JavaCodes/src/FileManagement/resume.csv");
+		 String a="abhi",age="22",city="hyd";
 		 wr.append("name,age,city\n");
 		 wr.append("anand,22,hyd\n");
+		 wr.append(a+","+age+","+city+"\n");
 		 wr.flush();
 		 BufferedReader br=new BufferedReader(new FileReader(path));
 		 String ch="";
