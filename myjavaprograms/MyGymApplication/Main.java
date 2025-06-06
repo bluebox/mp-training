@@ -73,7 +73,7 @@ public class Main {
                         while(inLoop){
                             System.out.println("choose your operation : (q -> quit)");
                             System.out.println("""
-
+                            		
                                     1.Add a member
                                     2.Add a trainer
                                     3.Remove a member by name
@@ -89,9 +89,30 @@ public class Main {
                                     13.Get trainee list of trainer
                                     """);
 
-                                String choice = sc.nextLine();
+                                
 
-                                switch (choice) {
+                                //String choice = sc.nextLine();
+
+                                int op = 0;
+                                boolean isValid = false;
+
+                                while (!isValid) {
+                                    System.out.println("choose your operation : (q -> quit)");
+                                    
+                                    try {
+                                        op = Integer.parseInt(sc.nextLine());
+                                        
+                                        if (op >= 1 && op <= 13) {
+                                            isValid = true;
+                                        } else {
+                                            System.out.println("must be between 1 and 13. Try again.");
+                                        }
+                                    } catch (NumberFormatException e) {
+                                        System.out.println("Invalid input. Please enter a number.");
+                                    }
+                                }
+
+                                switch (String.valueOf(op)) {
                                     case "1" ->   beFit.createMember( sc);
                                     
                                     case "2" -> beFit.createTrainer( sc);
@@ -151,14 +172,33 @@ public class Main {
                 }
 
                 case "2" -> {
-                    System.out.println("choose your operation : (q -> quit)");
+                    //System.out.println("choose your operation : (q -> quit)");
                     System.out.println("""
                             1.Get your details by name
                             2.Get your details by id
                             """);
-                    String choice = sc.nextLine();
+                    //String choice = sc.nextLine();
 
-                    switch(choice){
+                    int op = 0;
+                    boolean isValid = false;
+
+                    while (!isValid) {
+                        System.out.println("choose your operation : (q -> quit)");
+                        
+                        try {
+                            op = Integer.parseInt(sc.nextLine());
+                            
+                            if (op >= 1 && op <= 2) {
+                                isValid = true;
+                            } else {
+                                System.out.println("must be between 1 and 2. Try again.");
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input. Please enter a number.");
+                        }
+                    }
+
+                    switch(String.valueOf(op)){
                         case "1" -> System.out.println( beFit.getMemberByValidName(sc).showMemberDetails());                 
 
                         case "2" -> System.out.println( beFit.getMemberByValidId(sc).showMemberDetails());        
@@ -176,9 +216,28 @@ public class Main {
                             2.get your details by id
                             3.show your trainee list
                             """);
-                    String op = sc.nextLine();
+                    //String op = sc.nextLine();
 
-                    switch(op){
+                    int op = 0;
+                    boolean isValid = false;
+
+                    while (!isValid) {
+                        System.out.println("choose your operation : (q -> quit)");
+                        
+                        try {
+                            op = Integer.parseInt(sc.nextLine());
+                            
+                            if (op >= 1 && op <= 3) {
+                                isValid = true;
+                            } else {
+                                System.out.println("must be between 1 and 3. Try again.");
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input. Please enter a number.");
+                        }
+                    }
+
+                    switch(String.valueOf(op)){
 
                         case "1" -> beFit.getTrainerByValidName(sc).details();
                        
