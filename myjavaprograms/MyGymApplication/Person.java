@@ -1,8 +1,8 @@
 package MyGymApplication;
 abstract class Person{
 
-     String name;
-     int age;
+     private String name;
+     private int age;
 
     void details(){
         System.out.println("-".repeat(20));
