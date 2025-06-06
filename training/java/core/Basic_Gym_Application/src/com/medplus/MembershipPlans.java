@@ -24,6 +24,5 @@ public enum MembershipPlans {
 			System.out.printf("%d. %10s -> %d%n".formatted(count, i.name(), i.getPrice()));
 			count++;
 		}
-		System.out.println("Select a Plan : ");
 	}
 }
