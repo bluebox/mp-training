@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.gym.domain.Member;
 
+
 public class GymService {
 
 	private HashMap<Long, Member> members;
@@ -40,7 +41,8 @@ public class GymService {
 	public void printDetails() {
 		members.forEach((l, member) -> {
 			System.out.println();
-			member.getDetails();
+			System.out.println(member);
+			System.out.println( member.getMemberShip() !=null ?member.getMemberShip():"memeber has no plan");
 
 			
 		});

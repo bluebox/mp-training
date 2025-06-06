@@ -12,6 +12,7 @@ public class Member extends Person {
 	}
 	
 	public void setMemberShip(MemberShipPlan memberShip) {
+		subscribed = true;
 		this.memberShip = memberShip;
 	}
 
@@ -34,22 +35,27 @@ public class Member extends Person {
 	}
 
 
+	
 
-	public void addPlan(PlanDetails plan, int duration) {
-		subscribed = true;
-		this.memberShip = new MemberShipPlan(plan, duration);
+	public MemberShipPlan getMemberShip() {
+		return memberShip;
 	}
 
 	@Override
-	public void getDetails() {
-		System.out.println("-".repeat(50));
-		System.out.println("Member ID:- " + id + "\nname=" + name + "\nage=" + age);
-		System.out.println();
-		if (subscribed) {
-			memberShip.getPlanDetails();
-		} else {
-			System.out.println("Not Subscribed under any plan");
-		}
+	public String toString() {
+		return "Member ID:- " + this.id + "\nname=" + this.name + "\nage=" + this.age;
 	}
+
+//	@Override
+//	public void getDetails() {
+//		System.out.println("-".repeat(50));
+//		System.out.println();
+//		System.out.println();
+//		if (subscribed) {
+//			memberShip.getPlanDetails();
+//		} else {
+//			System.out.println("Not Subscribed under any plan");
+//		}
+//	}
 
 }
