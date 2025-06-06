@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import  java.util.ArrayList;
 
@@ -6,12 +7,15 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scanner =new Scanner(System.in);
 		Gym myGym=new Gym();
+		boolean f=true;
+		while(f){
 		System.out.println("""
 				WELCOMETO OUR GYM!!!
 				please select your option.
 				1)login as a gym manager.
 				2)register as a new user.
 				3)register as a new trainer.
+				4)enter '4' to exit.
 				""");
 		int userOption = scanner.nextInt();
 		scanner.nextLine();
@@ -27,13 +31,13 @@ public class Main {
 				login=myGym.checkLogin(logInId, logInPassword);
 				count+=1;
 				if(login) {
-				    System.out.println("hai "+myGym.getName()+"Welcome");
+				    System.out.println("hai "+myGym.getName()+" Welcome");
 				    }
 				else {System.out.print("wrong id or  password.please try again");
 				scanner.nextLine();
 					}
 				}
-			while(count<3 && login==false);
+			while(count<3 && !login);
 			if(!login) {
 				System.out.println("you crossed the number of limits.Thank you !!!");
 			}
@@ -42,7 +46,7 @@ public class Main {
 			
 				while(T) {
 				System.out.println("""
-						dear AjayRock you have the following options.
+						dear Durga Prasad you have the following options.
 						please select one out of these.
 						1)to get members list and their details.
 						2)to get trainers list and their details.
@@ -105,9 +109,9 @@ public class Main {
 			
 			System.out.println("""
 					Select your plan:
-					1)Basic-$300/-
-					2)premium -$500/-
-					3)Gold -$900/-
+					1)Basic-3 months -$300/-
+					2)premium-6 months -$500/-
+					3)Gold-9 months -$900/-
 					""");
 			String planType=scanner.nextLine();
 			System.out.println("enter your preferable Date of Starting:");
@@ -116,10 +120,11 @@ public class Main {
                 Did you need a trainers?
                 Yes (Y)/No (N)""");
             String b=scanner.nextLine();
-            if (b.equals("Y") || b.equals("y")){
+            if (b.equalsIgnoreCase("Y")){
                 System.out.println("select your trainer name");
             myGym.displayTrainers();
             String trainer=scanner.nextLine();
+
            
             Members newUser=new Members(name,age,address,weight,planType,startDate,trainer);
                  myGym.addCoustomer(newUser,trainer);
@@ -145,8 +150,9 @@ public class Main {
 			
 			System.out.println("Thank you.your registartion was succesfully completed.");
 			break;}
+		case 4:{f=false;
+		       break;}
 		}
-		}
+		}}
 		
 	}
-
