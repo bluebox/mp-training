@@ -14,7 +14,8 @@ public class Challenge1 {
         System.out.println(t1.bookSeat("E007"));
         System.out.println(t1.bookSeat("B004"));
         System.out.println(t1.bookSeat("A010"));
-        t1.printedSeatMap();
+        // t1.printedSeatMap();
+        t1.printSeatMap();
     }
 }
 class Theatre{
