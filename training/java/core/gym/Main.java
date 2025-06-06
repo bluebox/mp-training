@@ -11,9 +11,9 @@ public class Main {
 			Gym gym =new Gym("Gym1"); 
 			
 			//Configuring Gym plans
-			gym.addPlan("Basic  ",1,1000);
+			gym.addPlan("Basic",1,1000);
 			gym.addPlan("Premium",3,2000);
-			gym.addPlan("Gold   ",12,6000);
+			gym.addPlan("Gold",12,6000);
 			
 			//Adding some members to the gym 
 			gym.addMember("Ravi",25,"Basic",001);
@@ -82,10 +82,18 @@ public class Main {
 						break;
 
 					case 5:
+						System.out.println("Enter the Name of the new Plan : ");
+						String planName= scanValue.next();
+						System.out.println("Enter the duration: ");
+						int duration=scanValue.nextInt();
+						System.out.println("Enter the fee : ");
+						int fee=scanValue.nextInt();
+						gym.addPlan(planName,duration,fee);
+						System.out.println("Plan Added Successfulyt.");
 						break;
 						
 					case 6:
-						System.out.println("Enter the Name of the the Member : ");
+						System.out.println("Enter the Name of the Member : ");
 						String memberName = scanValue.next();
 						if(gym.removeMember(memberName)){
 							System.out.print("Removing the Member");
@@ -123,7 +131,7 @@ public class Main {
 					+ "2 -> View All Members Details\n"
 					+ "3 -> To Search Member Details by Id\n"
 					+ "4 -> Show Gym Plans\n"
-					+ "5 -> ..................\n"
+					+ "5 -> To Add a new Gym Plan\n"
 					+ "6 -> To remove a member\n"
 					+ "0 -> To exit the Application\n"
 					+ "Enter your value : ");
