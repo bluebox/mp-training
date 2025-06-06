@@ -6,6 +6,10 @@ import java.util.Locale;
 
 public class MeetingScheduler {
     public static void main(String[] args) {
+    	
+//    	ZoneId ind = ZoneId.of("India/");
+//    	System.out.println(ind);
+    	
         ZoneId newYorkZone = ZoneId.of("America/New_York");
         ZoneId sydneyZone = ZoneId.of("Australia/Sydney");
         LocalDate today = LocalDate.now();
@@ -16,7 +20,9 @@ public class MeetingScheduler {
         DateTimeFormatter sydneyFormatter = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a", Locale.ENGLISH);
 
         for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
-            if (date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY) continue;
+            if (date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY) {
+            	continue;
+            }
 
             for (int hour = 7; hour <= 20; hour++) {
                 ZonedDateTime nyTime = ZonedDateTime.of(date, LocalTime.of(hour, 0), newYorkZone);
