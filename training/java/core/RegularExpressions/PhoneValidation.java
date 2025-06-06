@@ -11,7 +11,7 @@ public class PhoneValidation {
         if(number.matches("^[6-9]\\d{9}")){
             System.out.println("it is valid number");
         }else{
-            System.out.println("not valiud" );
+            System.out.println("not valid" );
         }
     }   
 }
