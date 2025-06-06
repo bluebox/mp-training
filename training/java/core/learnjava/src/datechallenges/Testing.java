@@ -11,8 +11,8 @@ public class Testing {
 		Optional<String> found = names.stream()
 				.filter(i -> i.startsWith("S"))
 				.findFirst();
-		String returnOne = found.orElseGet(() -> method("saketh"));
-		String returnTwo = found.orElse(method("naga"));
+		String returnOne = found.orElseGet(() -> method("saketh"));//if there is a value in found the method is not called
+		String returnTwo = found.orElse(method("naga"));//irrespective of value in found method is called
 
 	}
 

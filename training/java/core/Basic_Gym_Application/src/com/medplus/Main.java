@@ -29,8 +29,9 @@ public class Main {
 			case (7) -> System.out.println("Have a nice Day !!");
 			default -> System.out.println("Enter a valid Input");
 			}
-			if (selection == 7)
+			if (selection == 7) {
 				break;
+			}
 		}
 
 	}
