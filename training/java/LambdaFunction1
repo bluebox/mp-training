@@ -1,0 +1,7 @@
+//Challeneg 1
+
+Arrays,asList(sentance.split(" ")).forEach(System.out.println);
+
+
+//Challenge 2
+

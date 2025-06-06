@@ -1,8 +1,6 @@
 
-
-class Members {
-	private String name;
-	private int age;
+class Members extends Person{
+	
 	private String address ;
 	private double weight;
 	private String planType;
@@ -15,8 +13,7 @@ class Members {
     }
 	
 	public Members(String name,int age,String address,double weight,String planType,String startDate,String trainerName) {
-		this.name=name;
-		this.age=age;
+		super(name,age);
 		this.address=address;
 		this.weight=weight;
 		this.planType=planType;
@@ -24,12 +21,7 @@ class Members {
         this.trainerName=trainerName;
 		
 	}
-	public String getName(){
-	    return name;
-	}
-	public int  getAge(){
-	    return age;
-	}
+	
 	public String getAddress(){
 	    return address;
 	}
@@ -42,5 +34,15 @@ class Members {
 	public String getStartDate(){
 	    return startDate;
 	}
+    public String getTrainer(){
+        return trainerName;
+    }
+    @Override
+public String toString() {
+    return "Name: " + name + ", Age: " + age + ", Plan: " + planType;
+}
+
+
 
 }
+
