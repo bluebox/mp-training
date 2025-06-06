@@ -89,3 +89,8 @@
 /EmailValidator.class
 /EmailValidatorChallenge.class
 /FileReaderChallenge.class
+/FileWritingChallenge.class
+/Student.class
+/ThreadsChallenge.class
+/EvenNumbers.class
+/OddNumbers.class

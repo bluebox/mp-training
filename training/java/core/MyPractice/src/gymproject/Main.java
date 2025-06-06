@@ -1,5 +1,7 @@
 package gymproject;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.*;
 public class Main {
     public static void main(String[] args) throws InvalidPlanException {
@@ -34,28 +36,37 @@ public class Main {
                         case 1:
                             System.out.println("Enter ID: ");
                             String id = sc.nextLine();
+                            if(!isValidId(id)) {
+                            	System.out.println("Please enter valid ID");
+                            	break;
+                            }
                             if (gymService.existsById(id)) {
                                 System.out.println("Member already exists");
                                 break;
                             }
-
                             System.out.println("Enter Name: ");
                             String name = sc.nextLine();
-
+                            if(!isValidName(name)) {
+                            	System.out.println("Please enter valid name only");
+                            	break;
+                            }
                             System.out.print("Enter Age: ");
                             int age = Integer.parseInt(sc.nextLine());
-
+                            
                             gymService.addMember(id, name, age);
                             break;
 
                         case 2:
-                            System.out.println("\nEnter file name:");
+                            System.out.println("\nEnter file path:");
                             String line;
                             String filePath = sc.nextLine();
-                            try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-                                int i = 0;
-                                while ((line = br.readLine()) != null) {
-                                    String[] text = line.split(",");
+                         
+                            filePath="samplecodes/data.csv";
+                    		try {
+                    			int i=0;
+                    			BufferedReader br=new BufferedReader(new FileReader(filePath));
+                    			while((line=br.readLine())!=null) {
+                    				String[] text = line.split(",");
                                     if (i != 0) {
                                         id = text[0];
                                         String nameFromFile = text[1];
@@ -63,8 +74,9 @@ public class Main {
                                         gymService.addMember(id, nameFromFile, ageFromFile);
                                     }
                                     i++;
-                                }
-                            } catch (Exception e) {
+                    			}
+                    		}
+                            catch (Exception e) {
                                 System.out.println("Error reading file: " + e.getMessage());
                                 System.out.println("Please check the file ");
                             }
@@ -82,7 +94,6 @@ public class Main {
                             gymService.updateMember(id, newName);
                             System.out.println("Member updated Successfully");
                             break;
-
                         case 4:
                             System.out.print("Enter ID to delete: ");
                             id = sc.nextLine();
@@ -93,7 +104,6 @@ public class Main {
                             gymService.deleteMember(id);
                             System.out.println("Member Deleted Successfully");
                             break;
-
                         case 5:
                             System.out.print("Enter ID: ");
                             id = sc.nextLine();
@@ -109,7 +119,6 @@ public class Main {
                                 System.out.println("\nPlease enter valid plan: (Gold/Premium/Basic)");
                             }
                             break;
-
                         case 6:
                             System.out.print("Enter ID to Update Membership: ");
                             id = sc.nextLine();
@@ -132,7 +141,7 @@ public class Main {
                             }
                             break;
 
-                        case 7:
+                        case 7: //
                             System.out.print("Enter ID to Delete Membership: ");
                             id = sc.nextLine();
                             if (!gymService.existsById(id)) {
@@ -177,5 +186,17 @@ public class Main {
 
     public static boolean isValidPlan(String plan, GymService gymService) {
         return gymService.getPlans().containsKey(plan.toLowerCase());
+    }
+    public static boolean isValidId(String id) {
+    	String regex="[0-9]+";
+    	Pattern p=Pattern.compile(regex);
+    	Matcher match=p.matcher(id);
+    	return match.matches();
+    }
+    public static boolean isValidName(String name) {
+    	String regex="[A-Za-z]+";
+    	Pattern p=Pattern.compile(regex);
+    	Matcher match=p.matcher(name);
+    	return match.matches();
     }
 }
