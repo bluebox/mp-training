@@ -4,7 +4,7 @@ interface Gym{
 	
 	
 
-    void gymMemberDetails();
+    public abstract void gymMemberDetails();
 
     void gymMembershipPlans();
 
