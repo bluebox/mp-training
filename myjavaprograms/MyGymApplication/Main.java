@@ -260,7 +260,7 @@ public class Main {
                     break;
                 }
 
-                default ->   System.out.println("Enter valid option (1 or 2 or 3 or 4)");
+                default ->   System.out.println("Enter valid option (1 or 2 or 3 or 4 or 4 or 5 or q)");
                 
 
             }
