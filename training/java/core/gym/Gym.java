@@ -27,14 +27,14 @@ public class Gym  extends Main{
 		return plans;
 	}
 	
-	public boolean addMember(String memberName,int age, String plan, int memberId) {
+	protected boolean addMember(String memberName,int age, String plan, int memberId) {
 		if(findMember(memberName)==null) {
 			this.members.add(new Member(memberName,age,plan,memberId));
 			return true;
 		}
 		return false;
 	}
-	public boolean addPlan(String planName,int durationMonths,int fee) {
+	protected boolean addPlan(String planName,int durationMonths,int fee) {
 		if(findPlan(planName)==null) {
 			this.plans.add(new Plan(planName,durationMonths,fee));
 			return true;
@@ -77,8 +77,9 @@ public class Gym  extends Main{
 		}
 		return null;
 	}
-	public boolean listAllMembersDetails() {
+	protected boolean listAllMembersDetails() {
 		ArrayList<Member> allMembers = getMembers();
+		if(allMembers.size()>0) {
 		System.out.println("                              Details of all Members in the Gym  : ");
 		for(int i=0;i<allMembers.size();i++) {
 			Member member = allMembers.get(i);
@@ -87,9 +88,12 @@ public class Gym  extends Main{
 			System.out.println("--------------------------------------------------------------------------------------------------------------\n");
 			wait(1000);
 		}
-		return true;
+		return true;}
+		else 
+			System.out.println("No Member exists in the Gym.");
+			return false;
 	}
-	public void showPlans() {
+	protected void showPlans() {
 		System.out.println("--------------------------------------------");
 		System.out.println("             Plans Overview :              |");           
 		System.out.println("--------------------------------------------");
@@ -97,15 +101,17 @@ public class Gym  extends Main{
 		System.out.println("--------------------------------------------");
 		for(int i=0;i<this.plans.size();i++) {
 			Plan plan =this.plans.get(i);
-			String month=(plan.getDurationMonths()>1)?"months":"month  ";
-			String discount =(plan.getDurationMonths()>1)?((plan.getDurationMonths()==12)?"(50% Discount) |":"(33% Discount)  |"):"               |";
-			System.out.println(" "+plan.getPlanName()+" | "+plan.getDurationMonths()+month+" | Rs"+plan.getFee()+""+discount);
+			String month=(plan.getDurationMonths()>1)?"-months":"-month  ";
+			String discount =(plan.getDurationMonths()>1)?((plan.getDurationMonths()==12)?"(50% Discount) |":"(33% Discount) |"):"               |";
+			System.out.printf(" %-7s",plan.getPlanName());
+			System.out.println(" | "+plan.getDurationMonths()+month+"| Rs"+plan.getFee()+""+discount);
+			
 		}
 		System.out.println("--------------------------------------------");
 		System.out.print("\n");
 			
 	}
-	public boolean removeMember(String memberName) {
+	protected boolean removeMember(String memberName) {
 		Member m1=findMember(memberName);
 		if(m1==null) {
 			return false;
@@ -117,7 +123,7 @@ public class Gym  extends Main{
 		
 	}
 	
-	public boolean listMemberDetailsById(int memberId) {
+	protected boolean listMemberDetailsById(int memberId) {
 		Member m1=findMember(memberId);
 		if(m1==null) {
 			System.out.println("Member with given Id does not exist.");
