@@ -3,13 +3,13 @@ import exceptions.NoPlanException;
 
 public class Member extends Person{
 	
-	private static int currCntOfMembers = 0;
+	private static int currCntOfMembers = 0; // auto increment
 	{
 		currCntOfMembers+=1;
 	}
 	
 	private int memberId;
-	private MembershipPlan myPlan;
+	private MemberShipPlan myPlan;
 	
 	Member(String name,int age){
 		super(name,age);
@@ -17,7 +17,7 @@ public class Member extends Person{
 		myPlan = null;
 	}
 	
-	public void setMemberShip(MembershipPlan myPlan) {
+	public void setMemberShip(MemberShipPlan myPlan) { // setter function membership
 		try {
 			this.myPlan = myPlan;
 			if(myPlan == null) {
@@ -27,9 +27,17 @@ public class Member extends Person{
 			npe.msg();
 		}
 	}
+	public MemberShipPlan getMemberShip() { // getter function for membership
+		return this.myPlan;
+	}
 	
-	public int getMemberId() {
+	public int getMemberId() { //getter for id attr
 		return this.memberId;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString()+" currentPlan= " + myPlan.toString();
 	}
 	
 }

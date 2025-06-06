@@ -1,12 +1,12 @@
 package gymManagementSystem;
 
-public class MembershipPlan {
+public class MemberShipPlan {
 	
 	private String nameOfThePlan;
 	private int durationInMonth;
 	private int fee;
 	
-	public MembershipPlan(String nameOfThePlan, int durationInMonth, int fee) {
+	public MemberShipPlan(String nameOfThePlan, int durationInMonth, int fee) {
 		this.nameOfThePlan = nameOfThePlan;
 		this.durationInMonth = durationInMonth;
 		this.fee = fee;
@@ -38,8 +38,8 @@ public class MembershipPlan {
 
 	@Override
 	public String toString() {
-		return "MembershipPlan [nameOfThePlan=" + nameOfThePlan + ", durationInMonth=" + durationInMonth + ", fee="
-				+ fee + "]";
+		return "NameOfThePlan= " + nameOfThePlan + ", DurationInMonth= " + durationInMonth + ", Fee= "
+				+ fee;
 	}
 	
 	
