@@ -1,8 +1,8 @@
 package com.gym.domain;
 
-class MemberShipPlan {
+public class MemberShipPlan {
 
-	PlanDetails plan;
+	private PlanDetails plan;
 	private int duration;
 	private double fee;
 
@@ -12,10 +12,37 @@ class MemberShipPlan {
 		this.fee = plan.getPrice() * duration;
 	}
 
-	public void getPlanDetails() {
-		System.out.println("MemberShipPlan Details\nPlan Name=" + plan.name() + 
-				"\nduration=" + duration + 
-				"\nTotal fee=" + fee );
+	public PlanDetails getPlan() {
+		return plan;
 	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public double getFee() {
+		return fee;
+	}
+
+	public void setPlan(PlanDetails plan) {
+		this.plan = plan;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setFee(double fee) {
+		this.fee = fee;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "MemberShipPlan Details\nPlan Name=" + plan.name() + 
+				"\nduration=" + duration + 
+				"\nTotal fee=" + fee ;
+	}
+
 
 }

@@ -1,10 +1,12 @@
 package com.gym;
 
+import java.lang.invoke.StringConcatFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.gym.domain.Member;
+import com.gym.domain.MemberShipPlan;
 import com.gym.domain.PlanDetails;
 import com.gym.service.GymService;
 
@@ -53,13 +55,16 @@ public class Main {
 				System.out.println("User not found");
 				return;
 			}
-			System.out.print("Enter new name:");
-			member.setName(sc.nextLine());
 			sc.nextLine();
+			System.out.print("Enter new name:");
+			String name= sc.nextLine();
+			member.setName(name);
+			
 			System.out.print("Enter new age:");
 
 			member.setAge(sc.nextInt());
 			System.out.println("User updated succesfully!");
+			System.out.println(member);
 
 		} catch (Exception e) {
 			System.out.println("Please enter a valid user details");
@@ -74,9 +79,10 @@ public class Main {
 		String name = sc.nextLine();
 		System.out.print("Enter your Age:");
 		int age = sc.nextInt();
-		Member member = new Member(idGenerator++ ,name, age);
+		Member member = new Member(idGenerator++, name, age);
 		System.out.println("User created sucessfully!");
-		member.getDetails();
+		System.out.println(member);
+		System.out.println( member.getMemberShip() !=null ?member.getMemberShip():"memeber has no plan");
 		gym.addMember(member);
 		planAssignment(gym, member);
 
@@ -171,8 +177,8 @@ public class Main {
 					System.out.println("Plan not assigned");
 					return;
 				}
-
-				member.addPlan(details.get(opiton - 1), duration);
+				MemberShipPlan plan = new MemberShipPlan(details.get(opiton - 1), duration);
+				member.setMemberShip(plan);
 				break;
 			} catch (Exception e) {
 				System.out.print("Please, enter option 1 or 2 :");
@@ -183,7 +189,8 @@ public class Main {
 		}
 
 		System.out.println("Plan sucessfull added to the user with id " + member.getId());
-		member.getDetails();
+		System.out.println(member);
+		System.out.println( member.getMemberShip() !=null ?member.getMemberShip():"memeber has no plan");
 
 	}
 
@@ -198,7 +205,9 @@ public class Main {
 			}
 
 			else {
-				member.getDetails();
+				System.out.println(member);
+			
+				System.out.println( member.getMemberShip() !=null ?member.getMemberShip():"memeber has no plan");
 			}
 		} catch (Exception e) {
 			System.out.println("Enter correct user id ");
@@ -206,23 +215,32 @@ public class Main {
 	}
 
 	public static void sampleData(GymService gym) {
-		Member member = new Member(idGenerator++,"mani", 20);
-		member.addPlan(PlanDetails.BASIC, 9);
-		gym.addMember(member);
-		member = new Member(idGenerator++,"Ram", 22);
-		member.addPlan(PlanDetails.GOLD, 6);
-		gym.addMember(member);
-		member = new Member(idGenerator++,"sai", 21);
-		member.addPlan(PlanDetails.PREMINUM, 12);
+		Member member = new Member(idGenerator++, "mani", 20);
+		MemberShipPlan plan = new MemberShipPlan(PlanDetails.BASIC, 7);
+		member.setMemberShip(plan);
 		gym.addMember(member);
 
-		member = new Member(idGenerator++,"Rakesh", 19);
-		member.addPlan(PlanDetails.BASIC, 7);
+		member = new Member(idGenerator++, "Ram", 22);
+		plan = new MemberShipPlan(PlanDetails.GOLD, 6);
+		member.setMemberShip(plan);
 		gym.addMember(member);
-		member = new Member(idGenerator++,"rakesh ram", 19);
-		member.addPlan(PlanDetails.BASIC, 7);
+
+		member = new Member(idGenerator++, "sai", 21);
+		plan = new MemberShipPlan(PlanDetails.PREMINUM, 12);
+		member.setMemberShip(plan);
 		gym.addMember(member);
-		member = new Member(idGenerator++,"Bhanu", 19);
+
+		member = new Member(idGenerator++, "Rakesh", 19);
+		plan = new MemberShipPlan(PlanDetails.GOLD, 7);
+		member.setMemberShip(plan);
+		gym.addMember(member);
+
+		member = new Member(idGenerator++, "rakesh ram", 19);
+		plan = new MemberShipPlan(PlanDetails.BASIC, 7);
+		member.setMemberShip(plan);
+		gym.addMember(member);
+
+		member = new Member(idGenerator++, "Bhanu", 19);
 		gym.addMember(member);
 
 	}
