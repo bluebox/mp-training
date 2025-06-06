@@ -3,22 +3,21 @@ package com.student;
 import java.time.LocalDate;
 
 import java.util.*;
-public non-sealed class Student extends CourseEngagement{
+public class Student implements Comparable<Student>{
 	public static Map<Long,Student> studentList=new HashMap<>();
-	private long studentId;
-	private String countryCode;
-	private int yearEnrolled;
-	private int ageEnrolled;
-	private String gender;
-	private boolean programmingExperience;
-	private Map<String,CourseEngagement> engagementMap;
+	public long studentId;
+	public String countryCode;
+	public int yearEnrolled;
+	public int ageEnrolled;
+	public String gender;
+	public boolean programmingExperience;
+	public Map<String,CourseEngagement> engagementMap;
 	public Course course;
 	public LocalDate enrollmentDate;
 	public String engagementType;
 	public int lastLecture;
 	public LocalDate lastActivityDate;
-	public Student(long studentId,String countryCode,int yearEnrolled,int ageEnrolled,String gender,boolean programmingExperience,Map<String,CourseEngagement> engagementMap,Course course,LocalDate enrollmentDate,String engagementType,int lastLecture,LocalDate lastActivityDate) {
-		super(course, enrollmentDate, engagementType, lastLecture, lastActivityDate);
+	public Student(long studentId,String countryCode,int yearEnrolled,int ageEnrolled,String gender,boolean programmingExperience,Map<String,CourseEngagement> engagementMap) {
 		this.studentId=studentId;
 		this.countryCode=countryCode;
 		this.yearEnrolled=yearEnrolled;
@@ -31,19 +30,15 @@ public non-sealed class Student extends CourseEngagement{
 		return this.studentId;
 	}
 	public void addCourse(Course c) {
-		CourseEngagement ce=new CourseEngagement(c, LocalDate.now(), "Sincere",0, LocalDate.now());
-		engagementMap.put(c.courseCode, ce);
-		System.out.println(engagementMap.keySet());
+		engagementMap.put(c.courseCode,new CourseEngagement(c, LocalDate.now(), "Sincere",0, LocalDate.now()));
 	}
 	public void addCourse(Course c,LocalDate enrollDate) {
-		CourseEngagement ce;
-		try {
-			ce=new CourseEngagement(c, enrollDate, engagementMap.get(c.courseCode).engagementType,engagementMap.get(c).lastLecture, LocalDate.now());
+		if(engagementMap.containsKey(c.courseCode)) {
+			engagementMap.put(c.courseCode, new CourseEngagement(c, enrollDate, engagementMap.get(c.courseCode).engagementType,engagementMap.get(c.courseCode).lastLecture, LocalDate.now()));
 		}
-		catch(Exception e) {
-			ce=new CourseEngagement(c, enrollDate, engagementMap.get(c.courseCode).engagementType,0, LocalDate.now());
+		else {
+			engagementMap.put(c.courseCode,new CourseEngagement(c, enrollDate, "Sincere",0, LocalDate.now()));
 		}
-		engagementMap.put(c.courseCode, ce);
 	}
 	public int getAge() {
 		return ageEnrolled;
@@ -58,7 +53,7 @@ public non-sealed class Student extends CourseEngagement{
 		
 	}
 	public double getPercentComplete(String courseCode) {
-		return this.getPercentageComplete();
+		return this.getPercentComplete(courseCode);
 	}
 	public int getYearsSinceEnrolled() {
 		return LocalDate.now().getYear()-this.yearEnrolled;
@@ -80,5 +75,9 @@ public non-sealed class Student extends CourseEngagement{
 			System.out.println(engagementMap.containsKey(c));
 		}
 		return "Student ID : "+studentId+"\nCountry code : "+countryCode+"\nEnrolled year : "+yearEnrolled+"\nEnrolled Age : "+ageEnrolled+"\nGender : "+gender+"\nProgramming Experience : "+programmingExperience+"\nCourses engaged : \n"+engagementMap.toString()+"\nCourses : "+course+"\nEnrollment date : "+enrollmentDate+"\nEngagement type : "+engagementType+"\nLast Lecture : "+lastLecture+"\nLast Active Date : "+lastActivityDate;
+	}
+	@Override
+	public int compareTo(Student o) {
+		return Integer.compare(this.yearEnrolled, o.yearEnrolled);
 	}
 }

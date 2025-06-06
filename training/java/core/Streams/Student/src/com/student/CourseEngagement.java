@@ -3,7 +3,7 @@ package com.student;
 import java.time.LocalDate;
 
 @SuppressWarnings("preview")
-public sealed class CourseEngagement  permits Student{
+public class CourseEngagement{
 	public Course course;
 	public LocalDate enrollmentDate;
 	public String engagementType;
@@ -36,7 +36,9 @@ public sealed class CourseEngagement  permits Student{
 		return LocalDate.now().until(lastActivityDate).getMonths();
 	}
 	public double getPercentageComplete() {
-		return (this.lastLecture/course.lectureCount)*100;
+	    if (course == null || course.lectureCount == 0) return 0.0;
+	    double x= ((double) this.lastLecture / course.lectureCount) * 100;
+	    return x>0?x:0;
 	}
 	public void watchLecture(int lecture,LocalDate date) {
 		this.lastLecture=lecture;

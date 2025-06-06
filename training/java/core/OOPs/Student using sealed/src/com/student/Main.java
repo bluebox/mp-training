@@ -23,6 +23,7 @@ public class Main {
 			s=randStudent();
 			Student.studentList.put(s.getStudentId(), s);
 		}
+		System.out.println(Student.studentList.size());
 		
 	}
 	public static Student randStudent() {

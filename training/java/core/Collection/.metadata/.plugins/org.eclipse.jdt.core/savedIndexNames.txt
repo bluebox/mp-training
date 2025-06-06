@@ -1,4 +1,3 @@
 INDEX VERSION 1.134+C:\Users\VASA BHANU PRAKASH\Desktop\mp-training\training\java\core\Collection\.metadata\.plugins\org.eclipse.jdt.core
 3188881467.index
-3413725848.index
 1865797976.index
