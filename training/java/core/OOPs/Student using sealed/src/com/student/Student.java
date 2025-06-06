@@ -31,19 +31,15 @@ public non-sealed class Student extends CourseEngagement{
 		return this.studentId;
 	}
 	public void addCourse(Course c) {
-		CourseEngagement ce=new CourseEngagement(c, LocalDate.now(), "Sincere",0, LocalDate.now());
-		engagementMap.put(c.courseCode, ce);
-		System.out.println(engagementMap.keySet());
+		engagementMap.put(c.courseCode,new CourseEngagement(c, LocalDate.now(), "Sincere",0, LocalDate.now()));
 	}
 	public void addCourse(Course c,LocalDate enrollDate) {
-		CourseEngagement ce;
-		try {
-			ce=new CourseEngagement(c, enrollDate, engagementMap.get(c.courseCode).engagementType,engagementMap.get(c).lastLecture, LocalDate.now());
+		if(engagementMap.containsKey(c.courseCode)) {
+			engagementMap.put(c.courseCode, new CourseEngagement(c, enrollDate, engagementMap.get(c.courseCode).engagementType,engagementMap.get(c.courseCode).lastLecture, LocalDate.now()));
 		}
-		catch(Exception e) {
-			ce=new CourseEngagement(c, enrollDate, engagementMap.get(c.courseCode).engagementType,0, LocalDate.now());
+		else {
+			engagementMap.put(c.courseCode,new CourseEngagement(c, enrollDate, "Sincere",0, LocalDate.now()));
 		}
-		engagementMap.put(c.courseCode, ce);
 	}
 	public int getAge() {
 		return ageEnrolled;

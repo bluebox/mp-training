@@ -9,4 +9,7 @@ public class Course{
 		this.title=title;
 		this.lectureCount=lectureCount;
 	}
+	public String toString() {
+		return "Course code: "+courseCode+"\nTitle : "+title+"\nNo of lectures : "+lectureCount;
+	}
 }
