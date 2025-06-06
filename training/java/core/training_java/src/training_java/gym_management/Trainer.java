@@ -2,15 +2,15 @@
 
 public class Trainer extends Person {
 	private long trainerId;
-	private Plan type;
+	private PlanConstants type;
 
 	public Trainer(long trainerId, String type, String name, int age, String gender) {
 		super(name, age, Gender.valueOf(gender));
-		this.type = Plan.valueOf(type);
+		this.type = PlanConstants.valueOf(type);
 		this.trainerId = trainerId;
 	}
 	
-	public void setTrainerDomain(Plan type) {
+	public void setTrainerDomain(PlanConstants type) {
 		this.type=type;
 	}
     public String getDomain() {

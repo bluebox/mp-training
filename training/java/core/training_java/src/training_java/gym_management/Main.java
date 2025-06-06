@@ -365,4 +365,3 @@ public class Main {
         return gym.getMember(id);
     }
 }
-
