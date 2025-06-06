@@ -2,7 +2,7 @@ package gym;
 import java.util.ArrayList;
 
 
-public class Gym {
+public class Gym  extends Main{
 	private ArrayList<Member> members;
 	private ArrayList<Plan> plans;
 	private String name;
@@ -57,9 +57,9 @@ public class Gym {
 	private Member findMember(int memberId) {  //Method Overloading(Polymorphism)
 		for(int i=0;i<this.members.size();i++) {
 			Member member =this.members.get(i);
-			String mid=String.valueOf(memberId);
-			String gotmid=String.valueOf(member.getMemberId());
-			if(gotmid.equals(mid)) {
+			String memberid=String.valueOf(memberId);
+			String gotMemberId=String.valueOf(member.getMemberId());
+			if(gotMemberId.equals(memberid)) {
 				return member; //returns the first member with the given Name if multiple members have same name
 			}
 			
@@ -77,7 +77,7 @@ public class Gym {
 		}
 		return null;
 	}
-	public boolean listMemberDetails() {
+	public boolean listAllMembersDetails() {
 		ArrayList<Member> allMembers = getMembers();
 		System.out.println("                              Details of all Members in the Gym  : ");
 		for(int i=0;i<allMembers.size();i++) {
@@ -85,7 +85,7 @@ public class Gym {
 			System.out.println("--------------------------------------------------------------------------------------------------------------");
 			System.out.println(" Member Name : "+ member.getName()+"\n Age         : "+member.getAge()+"\n Member Id   : "+member.getMemberId()+"\n Plan Chosen : "+member.getPlan());
 			System.out.println("--------------------------------------------------------------------------------------------------------------\n");
-			
+			wait(1000);
 		}
 		return true;
 	}
@@ -123,9 +123,9 @@ public class Gym {
 			System.out.println("Member with given Id does not exist.");
 			return false;
 		}else {
-			System.out.println("Details of the Member are : ");
+			System.out.println("\n\nDetails of the Member are : ");
 			System.out.println("--------------------------------------------------------------------------------------------------------------");
-			System.out.println(" Member Name : "+ m1.getName()+"\n Age         : "+m1.getAge()+"\n Member Id   : "+m1.getMemberId()+"\n Plan Chosen : "+m1.getPlan());
+			System.out.println(" Member Id   : "+ m1.getMemberId()+"\n Member Name : "+m1.getName()+"\n Age         : "+m1.getAge()+"\n Plan Chosen : "+m1.getPlan());
 			System.out.println("--------------------------------------------------------------------------------------------------------------\n");
 			
 			return true;
