@@ -17,12 +17,9 @@ public class GroupAnagrams {
 		{
 			char ch[]=s.toCharArray();
 			Arrays.sort(ch);
-			hm.getOrDefault(String.valueOf(ch),new ArrayList<>()).add(s);
-//			hm.putIfAbsent(String.valueOf(ch),new ArrayList<>());
-//			hm.get(String.valueOf(ch)).add(s);
+			hm.putIfAbsent(String.valueOf(ch),new ArrayList<>());
+			hm.get(String.valueOf(ch)).add(s);
 		}
-
-
 		List<List<String>> res=new ArrayList<>();
 		for(List<String> v:hm.values())
 		{

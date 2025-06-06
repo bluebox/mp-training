@@ -1,12 +1,9 @@
-package Streams;
+package RegularExpressions;
 
-public class Main {
+public class EmailValidation {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-	}
+	
 
 }
-
-
