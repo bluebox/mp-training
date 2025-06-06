@@ -175,14 +175,13 @@ public class Gym {
 	//added another function
 	public void showAvailablePlans() {
         System.out.println("---- Available Membership Plans ----");
-        for (Plan plan : Plan.values()) {
-            MemberShip membership = new MemberShip(plan);
+        for (PlanConstants plan : PlanConstants.values()) {
+//            MemberShip membership = new MemberShip(plan);
             System.out.println("Plan: " + plan);
-            System.out.println("Duration: " + membership.getDuration() + " months");
-            System.out.println("Fee: ₹" + membership.getFee());
+            System.out.println("Duration: " + plan.getDurationMonths() + " months");
+            System.out.println("Fee: ₹" + plan.getFee());
             System.out.println("-------------------------------");
         }
 	}
 
 }
-

@@ -64,7 +64,7 @@ public class Member extends Person {
     	}
     }
 	public void setMemberShip(String plan) {
-		membership = new MemberShip(Plan.valueOf(plan));
+		membership = new MemberShip(PlanConstants.valueOf(plan));
 	}
 	
 	public void setTrainer(Trainer trainer) {

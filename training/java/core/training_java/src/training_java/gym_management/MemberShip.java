@@ -1,42 +1,19 @@
 
 import java.time.LocalDate;
 
-enum Plan {
-	BASIC, PREMIUM, GOLD
-}
-
 public class MemberShip {
 	private int durationMonths;
 	private double fee;
-	private Plan plan;
+	private PlanConstants plan;
 	private LocalDate joiningDate;
 
-	public MemberShip(Plan plan) {
+	public MemberShip(PlanConstants plan) {
 		this.plan = plan;
 		this.joiningDate = LocalDate.now();
-		{
-			switch (plan.ordinal())
-
-			{
-			case 0:
-				this.durationMonths = 3;
-				this.fee = 1548.43;
-				break;
-			case 1:
-				this.durationMonths = 6;
-				this.fee = 4087.76;
-				break;
-			case 2:
-				this.durationMonths = 12;
-				this.fee = 8765.43;
-				break;
-			default:
-				this.durationMonths = 0;
-				this.fee = 0;
-			}
-		}
-
+		this.durationMonths = plan.getDurationMonths();
+		this.fee = plan.getFee();
 	}
+
 
 	public int getDuration() {
 		return durationMonths;
