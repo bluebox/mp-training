@@ -18,7 +18,7 @@ public static void main(String args[]) throws InvalidInputException {
 	System.out.println("Enter \n (F) to list the location \n (M) to see all locations \n (N) for next location \n (B) for previous location \n (Q) to quit");
 	try {
 	s=sc.next().trim().toUpperCase();
-	if(!s.matches("[FMBQ]")) 
+	if(!s.matches("[FMBQN]")) 
 		throw new InvalidInputException("Enter input from given data only");
 	
 	switch(s) {
@@ -32,11 +32,21 @@ public static void main(String args[]) throws InvalidInputException {
 	case "M"->{
 		lo.showLocation();
 	}
+	case "N" ->{
+		System.out.println(lo.forwardLocation());
+	}
+	case "B" ->{
+		System.out.println(lo.backwardLocation());
+	}
+	case "Q"->{
+		System.out.println("exiting");
+		return;
+	}
 	}
 	
 	}
 	catch(InvalidInputException  e) {
-		System.out.println("enter the valid number");
+		System.out.println("enter the valid number "+e);
 	}
 	
 	}
@@ -71,25 +81,32 @@ class Location implements Comparable<Location>{
 
 }
 
-class ListOperations{
-	LinkedList<Location>lis=new LinkedList<Location>();
-	public void listLocation(Location l){
-		lis.add(l);
-	}
-	public void showLocation() {
-		Iterator<Location> i=lis.iterator();
-		while(i.hasNext()) {
-			System.out.println(i.next());
-		}
-	}
-//	public Location forwardLocation(int forward) {
-//		if(lis.isEmpty()) {
-//			return new 
-//		}
-//		
-//		
-//	}
-//	public String BackwardLocation() {
-//		
-//	}
+ class ListOperations {
+    LinkedList<Location> lis = new LinkedList<>();
+    private int currentIndex = 0;
+
+    public void listLocation(Location l) {
+        lis.add(l); // directly modify the list
+    }
+
+    public void showLocation() {
+        for (Location loc : lis) {
+            System.out.println(loc);
+        }
+    }
+
+    public Location forwardLocation() {
+        if (currentIndex < lis.size()) {
+            return lis.get(currentIndex++);
+        }
+        return null;
+    }
+
+    public Location backwardLocation() {
+        if (currentIndex > 0) {
+            return lis.get(--currentIndex);
+        }
+        return null;
+    }
 }
+
