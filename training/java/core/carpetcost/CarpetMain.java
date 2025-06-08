@@ -1,4 +1,4 @@
-package prog;
+package carpetcost;
 
 public class CarpetMain {
 	public static void main(String[] args) {
