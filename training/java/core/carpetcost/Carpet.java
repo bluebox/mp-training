@@ -1,4 +1,4 @@
-package prog;
+package carpetcost;
 
 public class Carpet {
 	private double cost;
