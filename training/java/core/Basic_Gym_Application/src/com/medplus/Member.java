@@ -2,7 +2,7 @@ package com.medplus;
 
 import java.time.LocalDate;
 
-public class Member extends Person {
+public final class Member extends Person {
 
 	private int memberId;
 	private MembershipPlans plan;
