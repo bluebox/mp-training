@@ -1,8 +1,5 @@
 import java.time.LocalDate;
 
-/**
- * Domain model representing a single work log entry for an employee.
- */
 public class EmployeesWorkLogPOJO 
 {
     private String employeeID;
