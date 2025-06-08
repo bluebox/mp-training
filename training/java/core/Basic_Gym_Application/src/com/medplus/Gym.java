@@ -36,4 +36,7 @@ public class Gym {
 	public void remove(int id) {
 		gymMembers.remove(id);
 	}
+	public Member getMember(int id) {
+		return gymMembers.get(id);
+	}
 }
