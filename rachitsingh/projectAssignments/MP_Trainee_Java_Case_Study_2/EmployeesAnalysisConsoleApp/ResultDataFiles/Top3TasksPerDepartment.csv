@@ -1,0 +1,31 @@
+Department,Employee ID,Name,Task Category,Hours Worked,Date
+QA,EMP0016,Renaiah,Bug Fix,7.05,2025-03-18
+QA,EMP0004,Bhanu prakash,Bug Fix,4.53,2025-05-28
+QA,EMP0013,Rachith,Client Meeting,8.52,2025-03-22
+Data Science,EMP0017,Rishi,Bug Fix,5.82,2025-05-09
+Data Science,EMP0016,Renaiah,Bug Fix,3.88,2025-04-11
+Data Science,EMP0002,Anand,Bug Fix,2.12,2025-06-03
+Design,EMP0004,Bhanu prakash,Bug Fix,4.22,2025-05-24
+Design,EMP0007,Madhav,Client Meeting,7.14,2025-06-01
+Design,EMP0001,Abhinav,Client Meeting,4.55,2025-03-25
+Engineering,EMP0009,Manoj,Bug Fix,3.03,2025-03-15
+Engineering,EMP0003,Bala sathvik,Client Meeting,8.65,2025-03-22
+Engineering,EMP0010,Mourya,Client Meeting,6.18,2025-05-21
+Product Management,EMP0020,Sameer,Bug Fix,9.98,2025-03-20
+Product Management,EMP0022,Surya,Bug Fix,9.25,2025-05-03
+Product Management,EMP0017,Rishi,Bug Fix,7.3,2025-06-03
+DevOps,EMP0013,Rachith,Bug Fix,7.1,2025-03-09
+DevOps,EMP0017,Rishi,Bug Fix,6.31,2025-05-21
+DevOps,EMP0020,Sameer,Bug Fix,5.72,2025-03-16
+Support,EMP0004,Bhanu prakash,Bug Fix,9.62,2025-03-15
+Support,EMP0022,Surya,Bug Fix,6.68,2025-04-11
+Support,EMP0009,Manoj,Bug Fix,6.52,2025-03-30
+Finance,EMP0011,Naga bhushan,Bug Fix,9.29,2025-04-17
+Finance,EMP0012,Niranjan,Bug Fix,8.09,2025-04-15
+Finance,EMP0016,Renaiah,Bug Fix,7.54,2025-04-07
+HR,EMP0003,Bala sathvik,Bug Fix,7.86,2025-05-03
+HR,EMP0006,durga prasad,Bug Fix,2.68,2025-04-25
+HR,EMP0023,Uday,Bug Fix,1.4,2025-04-18
+IT,EMP0014,Ram,Client Meeting,8.26,2025-04-24
+IT,EMP0009,Manoj,Client Meeting,4.93,2025-04-16
+IT,EMP0008,Maneesh,Client Meeting,3.95,2025-03-19
