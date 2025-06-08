@@ -1,0 +1,66 @@
+EmployeeId,Name,Department,ProjectId,Date,TaskCategory,HoursWorked,Remarks
+EMP0010,Mourya,Support,PRJ183,2025-05-04,Development,5.84,follow up
+EMP0008,Maneesh,DevOps,PRJ180,2025-04-09,Client Meeting,9.45,follow up
+EMP0004,Bhanu prakash,QA,PRJ185,2025-05-23,Code Review,8.19,approved
+EMP0016,Renaiah,Support,PRJ139,2025-03-25,Documentation,9.67,approved
+EMP0011,Naga bhushan,Design,PRJ106,2025-05-08,Design Review,9.82,completed
+EMP0015,Ram sai,Finance,PRJ179,2025-04-10,Design Review,9.03,needs review
+EMP0009,Manoj,Engineering,PRJ107,2025-04-21,Development,9.66,needs review
+EMP0012,Niranjan,QA,PRJ121,2025-04-05,Monitoring,9.40,delayed
+EMP0009,Manoj,Support,PRJ190,2025-03-30,Bug Fix,6.52,urgent
+EMP0023,Uday,QA,PRJ152,2025-03-14,Training,9.46,critical
+EMP0017,Rishi,Engineering,PRJ190,2025-05-26,Deployment,9.05,urgent
+EMP0014,Ram,Finance,PRJ165,2025-03-26,Training,2.12,completed
+EMP0009,Manoj,HR,PRJ102,2025-06-06,Monitoring,3.34,urgent
+EMP0004,Bhanu prakash,Support,PRJ151,2025-03-15,Bug Fix,9.62,needs review
+EMP0009,Manoj,Support,PRJ134,2025-05-25,Monitoring,8.45,blocked
+EMP0008,Maneesh,Support,PRJ105,2025-05-03,Monitoring,9.32,completed
+EMP0009,Manoj,Engineering,PRJ136,2025-04-30,Code Review,9.13,in progress
+EMP0008,Maneesh,Design,PRJ147,2025-03-08,Development,2.95,follow up
+EMP0014,Ram,DevOps,PRJ193,2025-05-14,Client Meeting,9.41,delayed
+EMP0021,Sri sai,Support,PRJ128,2025-05-23,Deployment,9.39,delayed
+EMP0009,Manoj,Design,PRJ168,2025-03-28,Documentation,9.84,blocked
+EMP0011,Naga bhushan,Finance,PRJ112,2025-04-17,Bug Fix,9.29,blocked
+EMP0019,Saketh,Support,PRJ186,2025-05-10,Client Meeting,9.36,needs review
+EMP0020,Sameer,Product Management,PRJ135,2025-03-20,Bug Fix,9.98,follow up
+EMP0008,Maneesh,Data Science,PRJ130,2025-03-08,Training,8.49,completed
+EMP0013,Rachith,HR,PRJ124,2025-05-16,Deployment,8.09,delayed
+EMP0010,Mourya,Finance,PRJ114,2025-05-04,Training,7.72,approved
+EMP0007,Madhav,Data Science,PRJ148,2025-05-16,Training,6.36,urgent
+EMP0008,Maneesh,QA,PRJ191,2025-04-25,Testing,9.06,critical
+EMP0022,Surya,Product Management,PRJ166,2025-05-03,Bug Fix,9.25,needs review
+EMP0020,Sameer,IT,PRJ165,2025-05-01,Documentation,9.71,escalated
+EMP0022,Surya,Finance,PRJ166,2025-03-10,Training,9.40,escalated
+EMP0007,Madhav,Finance,PRJ123,2025-06-05,Development,9.43,in progress
+EMP0024,Vara prasad,HR,PRJ191,2025-04-14,Testing,4.88,escalated
+EMP0004,Bhanu prakash,Data Science,PRJ168,2025-05-23,Testing,8.54,critical
+EMP0001,Abhinav,Design,PRJ121,2025-03-25,Client Meeting,4.55,blocked
+EMP0003,Bala sathvik,Product Management,PRJ120,2025-05-08,Deployment,7.91,delayed
+EMP0014,Ram,IT,PRJ101,2025-05-25,Code Review,9.60,completed
+EMP0009,Manoj,Product Management,PRJ129,2025-05-17,Training,3.85,delayed
+EMP0004,Bhanu prakash,Support,PRJ102,2025-04-06,Development,9.64,critical
+EMP0010,Mourya,Data Science,PRJ101,2025-04-01,Deployment,8.10,needs review
+EMP0009,Manoj,DevOps,PRJ140,2025-05-25,Deployment,7.88,follow up
+EMP0013,Rachith,Finance,PRJ117,2025-03-18,Client Meeting,9.88,completed
+EMP0015,Ram sai,Product Management,PRJ170,2025-05-27,Training,9.08,delayed
+EMP0009,Manoj,Data Science,PRJ182,2025-06-06,Training,9.80,needs review
+EMP0007,Madhav,DevOps,PRJ114,2025-05-16,Training,6.21,approved
+EMP0021,Sri sai,Product Management,PRJ185,2025-04-20,Monitoring,8.50,blocked
+EMP0013,Rachith,Design,PRJ142,2025-05-16,Deployment,1.59,follow up
+EMP0003,Bala sathvik,Support,PRJ195,2025-05-08,Documentation,5.44,follow up
+EMP0009,Manoj,Support,PRJ105,2025-03-30,Client Meeting,6.34,blocked
+EMP0010,Mourya,Data Science,PRJ117,2025-04-01,Testing,4.38,needs review
+EMP0024,Vara prasad,Engineering,PRJ113,2025-04-14,Testing,8.28,urgent
+EMP0021,Sri sai,QA,PRJ151,2025-04-20,Code Review,8.37,delayed
+EMP0001,Abhinav,Engineering,PRJ101,2025-03-25,Code Review,6.03,critical
+EMP0019,Saketh,Support,PRJ124,2025-03-19,Training,9.71,completed
+EMP0014,Ram,Finance,PRJ192,2025-05-18,Documentation,9.02,blocked
+EMP0012,Niranjan,QA,PRJ127,2025-04-26,Training,9.47,escalated
+EMP0023,Uday,IT,PRJ156,2025-05-30,Testing,9.15,needs review
+EMP0014,Ram,Product Management,PRJ189,2025-04-25,Monitoring,9.35,critical
+EMP0006,durga prasad,QA,PRJ162,2025-05-09,Training,9.88,blocked
+EMP0009,Manoj,DevOps,PRJ108,2025-04-20,Training,10.00,completed
+EMP0018,Sai krishna,Data Science,PRJ179,2025-05-22,Deployment,9.67,follow up
+EMP0009,Manoj,Support,PRJ134,2025-05-17,Deployment,8.42,approved
+EMP0014,Ram,IT,PRJ131,2025-03-26,Documentation,7.93,in progress
+EMP0012,Niranjan,HR,PRJ116,2025-04-05,Code Review,5.73,urgent
