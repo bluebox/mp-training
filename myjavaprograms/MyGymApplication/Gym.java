@@ -2,12 +2,10 @@ package MyGymApplication;
 
 interface Gym{
 	
-	
-
     public abstract void gymMemberDetails();
 
-    void gymMembershipPlans();
+    public void gymMembershipPlans();
 
-    void gymTrainerDetails();
+    public void gymTrainerDetails();
 
 }
