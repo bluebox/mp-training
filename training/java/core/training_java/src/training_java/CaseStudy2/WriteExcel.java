@@ -72,7 +72,7 @@ public class WriteExcel {
 	    header18.createCell(0).setCellValue("Employee ID");
 	    header18.createCell(1).setCellValue("Date 1");
 	    header18.createCell(2).setCellValue("Date 2");
-	    header18.createCell(3).setCellValue("Date 3");
+//	    header18.createCell(3).setCellValue("Date 3");
 
 	    for (Map.Entry<String, List<LocalDate>> entry : q18ThreeConsecDates.entrySet()) {
 	        Row row = q18Sheet.createRow(rowIdx++);

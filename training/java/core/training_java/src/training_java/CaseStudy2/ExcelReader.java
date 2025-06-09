@@ -101,7 +101,7 @@ public class ExcelReader {
 		List<Employee> extractedEmployeeData = new ArrayList<Employee>();
 		try {
 			extractedEmployeeData = getContentFromExcelSheets.readRecordsFromExcelFile(
-					"C:\\Users\\acer\\eclipse-workspace\\CaseStudy2\\src\\Sample_Employee_WorkLogs.xlsx");
+					"/home/developer/eclipse-workspace/training_java/src/CaseStudy2/Sample_Employee_WorkLogs.xlsx");
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -155,15 +155,16 @@ public class ExcelReader {
 		Map<String, List<LocalDate>> emp3Dates = new HashMap<>();
 		empDateMap.forEach((empId, dates) -> {
 			int consecutiveCount = 1;
+			boolean flag=false;
 			for (int i = 1; i < dates.size(); i++) {
-				if (dates.get(i).equals(dates.get(i - 1).plusDays(1))) {
-					consecutiveCount++;
-					if (consecutiveCount >= 3) {
-						emp3Dates.putIfAbsent(empId, List.of(dates.get(i - 2), dates.get(i - 1), dates.get(i)));
+				if (dates.get(i).compareTo(dates.get(i - 1))>=3) {
+					flag=true;
+					if (flag) {
+						emp3Dates.putIfAbsent(empId, List.of(dates.get(i - 1), dates.get(i)));
 						break;
 					}
 				} else {
-					consecutiveCount = 1;
+					flag=false;
 				}
 			}
 		});// 18
@@ -174,7 +175,7 @@ public class ExcelReader {
 			   sortedResult6,
 			    monthDrop,
 			    emp3Dates,
-			    "C:\\Users\\acer\\eclipse-workspace\\CaseStudy2\\src\\Variant_Output.xlsx"
+			    "/home/developer/eclipse-workspace/training_java/src/CaseStudy2/Variant_Output.xlsx"
 			);
 	}
 }
