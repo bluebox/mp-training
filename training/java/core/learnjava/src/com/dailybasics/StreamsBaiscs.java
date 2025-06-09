@@ -123,7 +123,7 @@ public class StreamsBaiscs {
 		
 		
 	}
-
+	//Creating employee list
 	static class EmployeeList {
 		List<Employee> employees = new ArrayList<>();
 		Random random = new Random();
@@ -134,7 +134,7 @@ public class StreamsBaiscs {
 			}
 		}
 	}
-
+	//creating a class employee for object
 	static class Employee {
 		int id;
 		int salary;
@@ -143,7 +143,6 @@ public class StreamsBaiscs {
 			this.id = id;
 			this.salary = salary;
 			
-		
 		}
 		public int getid() {
 			return id;
@@ -155,5 +154,4 @@ public class StreamsBaiscs {
 			return "id : %d , salary : %d".formatted(id,salary);
 		}
 	}
-
 }
