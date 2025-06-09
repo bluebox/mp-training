@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class BufferedReaderExample {
-	public static final String path="/home/developer/eclipse-workspace/JavaCodes/src/FileManagement/example.txt";
+	public static final String path="/home/developer/eclipse-workspace/JavaCodes/src/FileManagement/examples.txt";
 	public static void main(String[] args) throws IOException {
 		BufferedReader br=new BufferedReader(new FileReader(path));
 		String ch="";
