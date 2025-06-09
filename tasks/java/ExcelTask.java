@@ -103,7 +103,7 @@ public class ExcelTask {
             outWorkbook.close();
         }
 
-        System.out.println("✅ Grouped and sorted employee work logs written to: " + outputPath);
+        System.out.println("Grouped and sorted employee work logs written to: " + outputPath);
     }
 
     private static String getCellAsString(Cell cell) {
