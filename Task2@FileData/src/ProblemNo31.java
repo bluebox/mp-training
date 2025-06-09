@@ -10,11 +10,6 @@ public class ProblemNo31 {
         Map<String, Map<LocalDate, Double>> mp = new HashMap<>();
 
         for (EmployeeData ele : val) {
-            if (ele.getDate() == null) {
-                System.out.println("Warning: Date is null for EmployeeID: " + ele.getEmployeeId());
-                continue;
-            }
-
             mp.putIfAbsent(ele.getEmployeeId(), new HashMap<>());
             Map<LocalDate, Double> inner = mp.get(ele.getEmployeeId());
 
