@@ -25,6 +25,9 @@ public class InventoryItem {
 	public Integer getQtyLow() {
 		return qtyLow;
 	}
+	public Integer getQtyTotal() {
+		return qtyTotal;
+	}
 
 	public boolean reserveItem(Integer quantityToBeReserved) {
 		if (quantityToBeReserved <= (qtyTotal - qtyReserved)) {
