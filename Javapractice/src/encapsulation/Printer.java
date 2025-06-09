@@ -9,7 +9,18 @@ public class Printer {
 		this.tonerLevel=tonerLevel;
 		this.duplex=duplex;
 	}
-	public void printValues() {
-		System.out.print(tonerLevel);
+	
+	public int addToner(int tonerAmount) {
+		if (tonerLevel+tonerAmount>100) {
+			return -1;
+		}
+		else {
+			tonerLevel+=tonerLevel;
+			return tonerLevel;
+		}
+	}
+	
+	public int printPages(int pages) {
+		
 	}
 }
