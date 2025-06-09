@@ -9,8 +9,8 @@ public class InteractiveGroceryList {
 		addItem("Biscuits",groceryList);
 		addItem("Shampoo",groceryList);
 		addItem("Toothpaste",groceryList);
-		
 		removeItem("Toothpaste",groceryList);
+		display(groceryList);
 		
 	}
 	public static void addItem(String item, ArrayList<String> groceryList) {
@@ -27,5 +27,8 @@ public class InteractiveGroceryList {
 	}
 	public static boolean checkExists(String item,ArrayList<String> groceryList) {
 		return groceryList.contains(item);
+	}
+	public static void display(ArrayList<String> groceryList) {
+		System.out.print(groceryList);
 	}
 }
