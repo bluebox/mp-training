@@ -30,9 +30,7 @@ public class ProblemNo9 {
     		 ans.add(new Pair(entry.getValue(),entry.getKey()));
     	 }
     	 Collections.sort(ans);
-    	 File f=new File("TestCase9.csv");
-    	 if(!f.exists())f.createNewFile();
-    	 else f.delete();
+    	 
     	 try(BufferedWriter a=new BufferedWriter(new FileWriter("TestCase9.csv"))){
     		 a.append("EMPLOYEEID,TOTALWORKINGHRS\n");
     		 int cnt=0;
@@ -41,7 +39,7 @@ public class ProblemNo9 {
     			 cnt++;
     			 String vals=ele.emp+","+Double.toString(ele.hrs)+"\n";
     			 a.append(vals);
-    			 System.out.println("added");
+//    			 System.out.println("added");
     		 }
     	 }
     	 catch(Exception e) {

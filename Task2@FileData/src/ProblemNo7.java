@@ -14,9 +14,7 @@ public class ProblemNo7 {
     		mp.putIfAbsent(employeeId, new HashMap<>());
     		mp.get(employeeId).put(date,mp.get(employeeId).getOrDefault(date,(double) 0)+ele.getHoursWorked());
     	}
-    	File f=new File("TestCase7.csv");
-    	if(!f.exists())f.createNewFile();
-    	else f.delete();
+
     	try(BufferedWriter a=new BufferedWriter(new FileWriter("TestCase7.csv"))){
     		a.append("EMPLOYEEID,LOCALDATE,WORKINGHOURS\n");
     		for(Map.Entry<String,Map<LocalDate,Double>>entry:mp.entrySet()) {

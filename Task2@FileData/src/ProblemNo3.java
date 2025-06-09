@@ -14,10 +14,7 @@ public class ProblemNo3 {
     		 }
     	 }
     	
-    	 File f=new File("TestCase3.csv");
-    	 if(!f.exists())f.createNewFile();
-    	 else f.delete();
-    	 try(BufferedWriter a=new BufferedWriter(new FileWriter("TestCase3.csv",true))){
+    	 try(BufferedWriter a=new BufferedWriter(new FileWriter("TestCase3.csv"))){
     		 String vals="ProjectId,"+"HoursWorked\n";
     		 a.append(vals);
     		 for(Map.Entry<String,Double> entry:mp.entrySet()) {

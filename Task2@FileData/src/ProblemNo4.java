@@ -22,9 +22,6 @@ public class ProblemNo4 {
     		 int monthNo=month.getValue();
     		 mp.get(name).put(monthNo,mp.get(name).getOrDefault(monthNo,(double)0)+ele.getHoursWorked());
     	 }
-    	 File f=new File("TestCase4.csv");
-    	 if(!f.exists())f.createNewFile();
-    	 else f.delete();
     	 try(BufferedWriter a=new BufferedWriter(new FileWriter("TestCase4.csv"))){
     		 String vals="NAME,JAN,FEB,MAR,APR,MAY,JUNE,JULY,AUG,SEP,OCT,NOV,DEC\n";
     		 a.append(vals);

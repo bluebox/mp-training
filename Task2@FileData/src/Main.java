@@ -9,6 +9,8 @@ public class Main {
 		ProblemNo4.getData(Data);
 		ProblemNo7.getData(Data);
 		ProblemNo9.getData(Data);
+		ProblemNo31 a=new ProblemNo31();
+		a.getData(Data);
 	}
 
 }
