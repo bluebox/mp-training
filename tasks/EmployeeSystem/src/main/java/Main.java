@@ -148,7 +148,7 @@ public class Main {
         results.add(new String[]{"Employee ID", "Name", "Consecutive Zero-Hour Days"});
 
         for (Map.Entry<String, List<EmployeeWorkLog>> entry : logsByEmployee.entrySet()) {
-            System.out.println("Processing employee: " + entry.getKey());
+            //System.out.println("Processing employee: " + entry.getKey());
             String employeeId = entry.getKey();
             String name = entry.getValue().get(0).getName();
             List<LocalDate> datesWithWork = entry.getValue().stream()
@@ -195,7 +195,7 @@ public class Main {
             maxCount = Math.max(maxCount, tempCount);
 
             if (maxCount >= 3) {
-                System.out.println("Found " + maxCount + " consecutive zero-hour days for employee: " + employeeId);
+                //System.out.println("Found " + maxCount + " consecutive zero-hour days for employee: " + employeeId);
                 results.add(new String[]{employeeId, name, String.valueOf(maxCount)});
             }
         }
@@ -293,7 +293,7 @@ public class Main {
                     .mapToDouble(EmployeeWorkLog::getHoursWorked)
                     .sum();
 
-            if (employees.size() > 5 && totalHours > 100) {
+            if (employees.size() > 5 && totalHours > 50) {
                 results.add(new String[]{projectId, String.valueOf(employees.size()), String.format("%.2f", totalHours)});
             }
         }
