@@ -48,7 +48,7 @@ public class Printer {
 		System.out.println("Pages are :"+p.printPages(3));
 		System.out.println("Present Toner Level is :"+p.addToner(3));
 		p.setDuplex();
-		System.out.println("Pages printed are :"+p.getPagesPrinted(5));
+		System.out.println("Pages printed are :"+p.getPagesPrinted());
 		System.out.println("Present Toner Level is :"+p.addToner(30));
 		
 	}
