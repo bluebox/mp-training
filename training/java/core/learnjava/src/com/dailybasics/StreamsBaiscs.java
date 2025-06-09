@@ -129,7 +129,7 @@ public class StreamsBaiscs {
 		Random random = new Random();
 
 		public EmployeeList() {
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < 100; i++) {
 				employees.add(new Employee(i, random.nextInt(50000)+30000));
 			}
 		}
