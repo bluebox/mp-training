@@ -1,3 +1,5 @@
+package EmployeesAnalysisConsoleApp.src;
+
 import java.time.LocalDate;
 
 public class EmployeesWorkLogPOJO 

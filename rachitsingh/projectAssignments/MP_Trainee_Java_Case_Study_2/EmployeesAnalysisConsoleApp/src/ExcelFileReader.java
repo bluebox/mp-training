@@ -1,3 +1,5 @@
+package EmployeesAnalysisConsoleApp.src;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class ExcelFileReader
                     skipHeaderRow = true;
                     continue;
                 }
-                String[] attributes = record.split(",", -1);
+                String[] attributes = record.split(",");
 
                 if (attributes.length != 8) {
                     continue;
