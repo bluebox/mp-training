@@ -46,6 +46,8 @@ public class Main {
         Member member1 = new Member("reddysekhar" , 23 , "basic" , trainer1);
         Member member2 = new Member("saketh" , 23 , "gold" );
         Member member3 = new Member("venu" , 24 , "premium" , trainer2);
+        
+        
 
         
         beFit.addMember(member1);
