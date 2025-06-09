@@ -1,6 +1,7 @@
 package com.domain;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class EmployeePojo {
 
@@ -8,12 +9,12 @@ public class EmployeePojo {
 	private String name;
 	private String department;
 	private String projectId;
-	private Date date;
+	private LocalDate date;
 	private String task;
 	private double hoursWorked;
 	private String remarks;
 	
-	public EmployeePojo(String employeeId, String name, String department, String projectId, Date date,
+	public EmployeePojo(String employeeId, String name, String department, String projectId, LocalDate date,
 			String task, double hoursWorked, String remarks) {
 		this.employeeId = employeeId;
 		this.name = name;
@@ -41,7 +42,7 @@ public class EmployeePojo {
 		return projectId;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
