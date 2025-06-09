@@ -8,11 +8,11 @@ public class Main {
 
 
         
-        Writer writer25 = new Writer("/home/developer/eclipse-workspace/Task2/src/result_25.csv");
+        Writer writer25 = new Writer("/home/developer/eclipse-workspace/Task2/src/25th.csv");
         writer25.writeSectionTitle("result of 25 : Sorted by Department > Project > Date");
         writer25.writeLines(Task25.process(details));
         writer25.close();
-        System.out.println("Output stored in result_25.csv");
+        System.out.println("Output stored in 25th.csv");
        
     }
 }
