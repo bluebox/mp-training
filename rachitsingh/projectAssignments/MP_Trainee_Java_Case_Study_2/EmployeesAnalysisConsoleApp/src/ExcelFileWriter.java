@@ -1,3 +1,5 @@
+package EmployeesAnalysisConsoleApp.src;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -76,5 +78,27 @@ public class ExcelFileWriter
         {
             System.err.println("Error occured while writing <2 hour days: " + IOE.getMessage());
         }
+    }
+    
+    public static void writePercentTimeSpentTaskCategoryWisePerEmployee(Map<String, Map<String, Double>> data, String filePathName)
+    {
+    	try(FileWriter fileWriter = new FileWriter(filePathName))
+    	{
+    		fileWriter.write("Employee ID, Task Category, % Time Spent\n");
+    		 for (Map.Entry<String, Map<String, Double>> employeeEntry : data.entrySet())
+    		 {
+    	            String employeeID = employeeEntry.getKey();
+    	            Map<String, Double> taskToPercentMap = employeeEntry.getValue();
+
+    	            for (Map.Entry<String, Double> taskEntry : taskToPercentMap.entrySet())
+    	            {
+    	                fileWriter.write(employeeID + "," + taskEntry.getKey() + "," + taskEntry.getValue() + "\n");
+    	            }
+    	        } 
+    	}
+    	catch (IOException IOE)
+    	{
+	        System.err.println("Error occurred while writing Task Category wise Percentage data: " + IOE.getMessage());
+	    }
     }
 }

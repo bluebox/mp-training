@@ -1,10 +1,13 @@
+package EmployeesAnalysisConsoleApp.src;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class AnalysingExcelData {
@@ -62,11 +65,31 @@ public class AnalysingExcelData {
         employeeLogs.stream()
                 .filter(employeeLog -> employeeLog.getHoursWorked() < 2.0)
                 .forEach(employeeLog -> {
-                    queryResult.computeIfAbsent(employeeLog.getEmployeeID(), _ -> new ArrayList<>())
+                    queryResult.computeIfAbsent(employeeLog.getEmployeeID(), k -> new ArrayList<>())
                             .add(employeeLog.getDate());
                 });
         return queryResult;
     }
-    // Query-5  Time period-based grouping (morning, afternoon, evening).
-    // => Data insufficient (no time related data is given, only date is given)
+    // Query-5. Time % spent in each task category per employee
+    public static Map<String, Map<String, Double>> getPercentTimeSpentTaskCategoryWisePerEmployee(List<EmployeesWorkLogPOJO> employeeLogs)
+    {
+    	Map<String, Map<String, Double>> groupedByEIDandTaskMap = new HashMap<>();
+  
+    	Map<String, List<EmployeesWorkLogPOJO>> logsGroupedByEmployee = employeeLogs.stream()
+    			.collect(Collectors.groupingBy(EmployeesWorkLogPOJO::getEmployeeID));
+    	
+    	for (Map.Entry<String, List<EmployeesWorkLogPOJO>> entry : logsGroupedByEmployee.entrySet())
+    	{
+    	    groupedByEIDandTaskMap.put(entry.getKey(), getTimeSpentByEmployee(entry.getValue()));
+    	}
+    	return groupedByEIDandTaskMap;
+    }
+    
+    private static Map<String, Double> getTimeSpentByEmployee(List<EmployeesWorkLogPOJO> workLogs) {
+    	Double totalTimeSpent = workLogs.stream().mapToDouble(EmployeesWorkLogPOJO::getHoursWorked).sum();
+    	Map<String, Double> timeSpentPerCategory = workLogs.stream().collect(Collectors.groupingBy(EmployeesWorkLogPOJO::getTaskCategory, Collectors.summingDouble(EmployeesWorkLogPOJO::getHoursWorked)));
+    	return timeSpentPerCategory.entrySet().stream().collect(Collectors.toMap(Entry::getKey, entry -> {
+    		return entry.getValue() / totalTimeSpent * 100;
+    	}));
+    }
 }
