@@ -14,7 +14,7 @@ public class connectDriver {
             {System.out.println("Connection successful!");
 
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Connection failed: " + e.getMessage());
         } 
     }
