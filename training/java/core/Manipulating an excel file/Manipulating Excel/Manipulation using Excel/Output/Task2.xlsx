@@ -1,0 +1,81 @@
+Employee ID,Name,Department,Project ID,Date,Task Category,Hours Worked,Remarks
+EMP0001,Abhinav,HR,PRJ122,2025-05-08,Deployment,2.98,critical
+EMP0001,Abhinav,QA,PRJ180,2025-05-20,Deployment,2.69,critical
+EMP0001,Abhinav,HR,PRJ105,2025-05-11,Deployment,8.05,critical
+EMP0001,Abhinav,Engineering,PRJ101,2025-03-25,Code Review,6.03,critical
+EMP0002,Anand,DevOps,PRJ195,2025-03-27,Code Review,6.62,urgent
+EMP0002,Anand,Product Management,PRJ150,2025-04-08,Deployment,4.87,urgent
+EMP0003,Bala sathvik,Support,PRJ117,2025-05-06,Monitoring,3.35,urgent
+EMP0004,Bhanu prakash,DevOps,PRJ152,2025-03-24,Training,7.22,critical
+EMP0004,Bhanu prakash,Design,PRJ176,2025-05-24,Bug Fix,4.22,critical
+EMP0004,Bhanu prakash,Data Science,PRJ193,2025-04-08,Bug Fix,1.06,critical
+EMP0004,Bhanu prakash,Data Science,PRJ168,2025-05-23,Testing,8.54,critical
+EMP0004,Bhanu prakash,HR,PRJ195,2025-04-07,Development,3.89,urgent
+EMP0004,Bhanu prakash,Support,PRJ102,2025-04-06,Development,9.64,critical
+EMP0004,Bhanu prakash,IT,PRJ150,2025-03-20,Design Review,2.79,critical
+EMP0005,Chaitanya,QA,PRJ163,2025-05-17,Deployment,3.58,critical
+EMP0005,Chaitanya,Engineering,PRJ191,2025-03-18,Code Review,8.98,critical
+EMP0005,Chaitanya,Engineering,PRJ117,2025-05-03,Testing,7.88,urgent
+EMP0005,Chaitanya,Support,PRJ179,2025-05-16,Documentation,3.73,urgent
+EMP0005,Chaitanya,Finance,PRJ180,2025-04-27,Design Review,7.44,urgent
+EMP0005,Chaitanya,Engineering,PRJ156,2025-03-09,Design Review,6.67,urgent
+EMP0006,durga prasad,HR,PRJ196,2025-04-25,Bug Fix,2.68,urgent
+EMP0007,Madhav,DevOps,PRJ171,2025-05-05,Code Review,4.11,urgent
+EMP0007,Madhav,Data Science,PRJ148,2025-05-16,Training,6.36,urgent
+EMP0007,Madhav,Design,PRJ167,2025-06-01,Client Meeting,7.14,urgent
+EMP0008,Maneesh,QA,PRJ191,2025-04-25,Testing,9.06,critical
+EMP0008,Maneesh,Finance,PRJ195,2025-03-22,Deployment,3.13,critical
+EMP0009,Manoj,Support,PRJ190,2025-03-30,Bug Fix,6.52,urgent
+EMP0009,Manoj,HR,PRJ102,2025-06-06,Monitoring,3.34,urgent
+EMP0009,Manoj,Product Management,PRJ117,2025-04-02,Monitoring,8.53,critical
+EMP0009,Manoj,Support,PRJ192,2025-05-31,Deployment,1.48,urgent
+EMP0009,Manoj,DevOps,PRJ196,2025-04-27,Monitoring,8.68,critical
+EMP0011,Naga bhushan,Finance,PRJ143,2025-04-07,Development,7.11,critical
+EMP0011,Naga bhushan,Support,PRJ136,2025-03-24,Documentation,2.25,critical
+EMP0011,Naga bhushan,Product Management,PRJ132,2025-05-20,Testing,5.19,critical
+EMP0011,Naga bhushan,Finance,PRJ196,2025-04-10,Code Review,7.83,critical
+EMP0012,Niranjan,Design,PRJ196,2025-04-11,Documentation,7.85,urgent
+EMP0012,Niranjan,Finance,PRJ157,2025-05-05,Training,3.04,critical
+EMP0012,Niranjan,QA,PRJ126,2025-05-25,Deployment,1.67,critical
+EMP0012,Niranjan,HR,PRJ116,2025-04-05,Code Review,5.73,urgent
+EMP0013,Rachith,DevOps,PRJ184,2025-04-15,Deployment,2.16,critical
+EMP0013,Rachith,DevOps,PRJ196,2025-03-09,Bug Fix,7.10,urgent
+EMP0013,Rachith,Engineering,PRJ102,2025-04-26,Code Review,1.87,critical
+EMP0014,Ram,HR,PRJ183,2025-04-27,Client Meeting,8.93,critical
+EMP0014,Ram,Product Management,PRJ192,2025-03-12,Deployment,5.76,critical
+EMP0014,Ram,Data Science,PRJ192,2025-05-15,Testing,3.32,critical
+EMP0014,Ram,HR,PRJ142,2025-06-01,Deployment,3.40,critical
+EMP0014,Ram,Product Management,PRJ189,2025-04-25,Monitoring,9.35,critical
+EMP0014,Ram,IT,PRJ111,2025-04-24,Client Meeting,8.26,urgent
+EMP0015,Ram sai,Design,PRJ109,2025-03-30,Documentation,1.91,critical
+EMP0015,Ram sai,HR,PRJ157,2025-03-22,Bug Fix,1.21,urgent
+EMP0015,Ram sai,Design,PRJ183,2025-05-05,Deployment,3.86,urgent
+EMP0016,Renaiah,Support,PRJ190,2025-05-31,Design Review,4.75,critical
+EMP0016,Renaiah,Engineering,PRJ191,2025-05-11,Deployment,7.85,critical
+EMP0017,Rishi,Engineering,PRJ190,2025-05-26,Deployment,9.05,urgent
+EMP0017,Rishi,Finance,PRJ127,2025-03-28,Training,1.87,urgent
+EMP0017,Rishi,Product Management,PRJ164,2025-04-11,Testing,1.64,urgent
+EMP0017,Rishi,DevOps,PRJ148,2025-05-21,Bug Fix,6.31,critical
+EMP0017,Rishi,QA,PRJ132,2025-05-02,Testing,3.63,urgent
+EMP0018,Sai krishna,Design,PRJ176,2025-05-16,Development,1.18,critical
+EMP0018,Sai krishna,Data Science,PRJ153,2025-05-02,Design Review,4.70,critical
+EMP0018,Sai krishna,IT,PRJ141,2025-05-06,Testing,2.08,critical
+EMP0019,Saketh,Support,PRJ109,2025-05-27,Monitoring,5.51,critical
+EMP0020,Sameer,Finance,PRJ151,2025-05-23,Documentation,7.89,urgent
+EMP0020,Sameer,DevOps,PRJ160,2025-05-26,Client Meeting,7.64,critical
+EMP0020,Sameer,DevOps,PRJ108,2025-06-04,Code Review,8.96,critical
+EMP0020,Sameer,Finance,PRJ147,2025-05-13,Client Meeting,6.35,urgent
+EMP0021,Sri sai,DevOps,PRJ139,2025-06-01,Design Review,2.60,urgent
+EMP0021,Sri sai,Design,PRJ123,2025-03-17,Monitoring,3.47,urgent
+EMP0021,Sri sai,Support,PRJ111,2025-05-15,Design Review,1.50,critical
+EMP0022,Surya,Support,PRJ112,2025-04-11,Bug Fix,6.68,urgent
+EMP0023,Uday,Product Management,PRJ146,2025-03-25,Training,4.31,critical
+EMP0023,Uday,QA,PRJ152,2025-03-14,Training,9.46,critical
+EMP0023,Uday,Design,PRJ133,2025-05-01,Design Review,2.52,urgent
+EMP0023,Uday,DevOps,PRJ157,2025-04-06,Design Review,7.46,critical
+EMP0023,Uday,HR,PRJ134,2025-04-18,Bug Fix,1.40,urgent
+EMP0023,Uday,Support,PRJ100,2025-05-14,Client Meeting,3.08,urgent
+EMP0024,Vara prasad,Finance,PRJ150,2025-05-08,Bug Fix,3.44,critical
+EMP0024,Vara prasad,DevOps,PRJ121,2025-05-04,Training,2.30,urgent
+EMP0024,Vara prasad,DevOps,PRJ143,2025-04-15,Deployment,7.86,urgent
+EMP0024,Vara prasad,Engineering,PRJ113,2025-04-14,Testing,8.28,urgent

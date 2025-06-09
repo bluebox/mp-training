@@ -22,7 +22,7 @@ import org.apache.poi.ss.usermodel.*;
 public class EmployeeManipulation {
 	public static void main(String[] args) {
 		try {
-			FileInputStream f=new FileInputStream("C:/Users/VASA BHANU PRAKASH/Desktop/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/src/Sample_Employee_WorkLogs.xlsx");
+			FileInputStream f=new FileInputStream("/home/developer/eclipse-workspace/Bhanu/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Input/Sample_Employee_WorkLogs.xlsx");
 			Workbook w=WorkbookFactory.create(f);
 			Sheet s = w.getSheetAt(0);
 			ArrayList<Employee> e=new ArrayList<>();
@@ -43,7 +43,7 @@ public class EmployeeManipulation {
 				e.add(e1);
 			}
 			Map<String, Map<String, Double>> hpm = e.stream().collect(Collectors.groupingBy(s1->s1.employeeId,Collectors.groupingBy(s1->s1.date.getMonth().toString(),Collectors.averagingDouble(s1->s1.hoursWorked))));
-			File f1=new File("C:/Users/VASA BHANU PRAKASH/Desktop/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task1.csv");
+			File f1=new File("/home/developer/eclipse-workspace/Bhanu/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task1.xlsx");
 			try(PrintWriter p1=new PrintWriter(f1)){
 				p1.println("Employee ID,Month,Average Hours Worked");
 				for(String i:hpm.keySet()) {
@@ -52,26 +52,19 @@ public class EmployeeManipulation {
 					}
 				}
 			}
-			List<Employee> l=e.stream().filter(s1->{
-				if(s1==null) {
-					return false;
-				}
-				else {
-					return (s1.name.toLowerCase().equals("urgent"))||(s1.name.toLowerCase().equals("critical"));
-				}
-			})
+			List<Employee> l=e.stream().filter(s1->(s1.remarks.toLowerCase().trim().equals("urgent")||s1.remarks.toLowerCase().trim().equals("critical")))
 					.sorted((x,y)->x.name.compareToIgnoreCase(y.name)).collect(Collectors.toList());
 			System.out.println(l.size());
-			File f2=new File("C:/Users/VASA BHANU PRAKASH/Desktop/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task2.csv");
+			File f2=new File("/home/developer/eclipse-workspace/Bhanu/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task2.xlsx");
 			try(PrintWriter p2=new PrintWriter(f2)){
 				p2.println("Employee ID,Name,Department,Project ID,Date,Task Category,Hours Worked,Remarks");
 				for(Employee i:l) {
-					p2.printf("%s,%s,%s,%s,%s,%s,%.2f,%s\n",i.employeeId,i.name,i.department,i.projectId,i.date,i.taskCategory,i.hoursWorked,i.remarks);
+					p2.printf("%s,%s,%s,%s,%s,%s,%.2f,%s\n",i.employeeId,i.name,i.department,i.projectId,i.date.toString(),i.taskCategory,i.hoursWorked,i.remarks);
 					
 				}
 			}
 			Map<String, Map<String, List<Employee>>> l1 = e.stream().collect(Collectors.groupingBy(s1->s1.name,Collectors.groupingBy(s1->s1.date.getMonth().toString())));
-			File f3=new File("C:/Users/VASA BHANU PRAKASH/Desktop/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task3.csv");
+			File f3=new File("/home/developer/eclipse-workspace/Bhanu/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task3.xlsx");
 			try(PrintWriter p3=new PrintWriter(f3)){
 				p3.println("Employee ID,Name,month,no of departments changed");
 				for(String i:l1.keySet()) {
@@ -92,7 +85,7 @@ public class EmployeeManipulation {
 				                        .collect(Collectors.toList())
 				        )
 				    ));
-			File f4=new File("C:/Users/VASA BHANU PRAKASH/Desktop/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task4.csv");
+			File f4=new File("/home/developer/eclipse-workspace/Bhanu/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task4.xlsx");
 			try(PrintWriter p4=new PrintWriter(f4)){
 				p4.println("Employee ID,Name,Department,Hours Worked");
 				for(String i:l2.keySet()) {
@@ -122,7 +115,7 @@ public class EmployeeManipulation {
 				                (a, b) -> a,LinkedHashMap::new));
 				        }
 				    ));
-			File f5=new File("C:/Users/VASA BHANU PRAKASH/Desktop/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task5.csv");
+			File f5=new File("/home/developer/eclipse-workspace/Bhanu/mp-training/training/java/core/Manipulating an excel file/Manipulating Excel/Manipulation using Excel/Output/Task5.xlsx");
 			try(PrintWriter p4=new PrintWriter(f5)){
 				p4.println("Name,Date,Average Hours Worked per week");
 				for(String i:l3.keySet()) {
