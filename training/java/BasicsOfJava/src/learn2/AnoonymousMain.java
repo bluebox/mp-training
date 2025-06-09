@@ -8,7 +8,7 @@ public class AnoonymousMain {
 
 			@Override
 			public void print() {
-				System.out.println("The name in the interface is "+name);
+				System.out.println("The name in the interface is "+ AnonymousClass.getName());
 			}
 			
 		};

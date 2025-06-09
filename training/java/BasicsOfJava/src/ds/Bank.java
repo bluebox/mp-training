@@ -2,6 +2,7 @@ package ds;
 
 import java.util.ArrayList;
 
+
 public class Bank {
 	
 	private String name;
@@ -91,10 +92,10 @@ public class Bank {
 					ArrayList<Double> transactions = customer.getTransactions();
 					int i = 0;
 					System.out.println(" Customer name " + customer.getName() + "\n Customer transactions");
-					System.out.println(transactions);
+//					System.out.println(transactions);
 					for(double transaction : transactions) {
 						
-						System.out.println("\t transaction #" + i + transaction);
+						System.out.println("\t transaction #" + i + " " + transaction);
 						i += 1;
 					}
 				}

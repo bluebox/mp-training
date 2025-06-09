@@ -28,7 +28,13 @@ public class Customer {
 	public void addTransaction(double transaction) {
 		
 		transactions.add(transaction);
-		System.out.println("Transaction successful ");
+		if(transaction < 0) {
+			
+			System.out.println("Transaction successful , Money Debited");
+		}
+		else {
+			System.out.println("Transaction successful , Money Credited");
+		}
 	}
 
 }

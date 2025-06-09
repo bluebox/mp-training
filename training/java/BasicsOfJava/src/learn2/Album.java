@@ -11,8 +11,8 @@ public class Album {
 	
 	public Album(String name,String artist) {
 		
-		this.artist = artist;
-		this.name = name;
+		this.setArtist(artist);
+		this.setName(name);
 		songs = new ArrayList<>();
 	}
 	public boolean addSong(String title,double duration) {
@@ -33,12 +33,17 @@ public class Album {
 	}
 	
 	public boolean addToPlayList(int trackNumber, LinkedList<Song> playlist) {
-	    int index = trackNumber - 1;
-	    if (index >= 0 && index < songs.size()) {
-	        playlist.add(songs.get(index));
-	        return true;
-	    }
-	    System.out.println("This album does not have a track " + trackNumber);
+		try {
+			int index = trackNumber - 1;
+	    	if (index >= 0 && index < songs.size()) {
+	        	playlist.add(songs.get(index));
+	        	return true;
+	    	}
+		}
+		catch(IndexOutOfBoundsException e) {
+			
+			System.out.println("This album does not have a track " + trackNumber);
+		}
 	    return false;
 	}
 
@@ -50,6 +55,18 @@ public class Album {
 	    }
 	    System.out.println("The song " + title + " is not in this album");
 	    return false;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getArtist() {
+		return artist;
+	}
+	public void setArtist(String artist) {
+		this.artist = artist;
 	}
 
 }

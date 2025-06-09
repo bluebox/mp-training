@@ -50,7 +50,7 @@ public class Branch {
 		
 		for(Customer customer : customers) {
 			
-			if(customer.getName().equalsIgnoreCase(name)) {
+			if(customer.getName().equalsIgnoreCase(customerName)) {
 				
 				return customer;
 			}
