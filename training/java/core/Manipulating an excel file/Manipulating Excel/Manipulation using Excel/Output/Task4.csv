@@ -1,0 +1,21 @@
+Employee ID,Name,Department,Hours Worked
+EMP0006,durga prasad,QA,9.88
+EMP0012,Niranjan,QA,9.47
+EMP0009,Manoj,Data Science,9.8
+EMP0018,Sai krishna,Data Science,9.67
+EMP0009,Manoj,Design,9.84
+EMP0011,Naga bhushan,Design,9.82
+EMP0009,Manoj,Engineering,9.66
+EMP0009,Manoj,Engineering,9.13
+EMP0020,Sameer,Product Management,9.98
+EMP0014,Ram,Product Management,9.35
+EMP0009,Manoj,DevOps,10.0
+EMP0008,Maneesh,DevOps,9.45
+EMP0019,Saketh,Support,9.71
+EMP0016,Renaiah,Support,9.67
+EMP0013,Rachith,Finance,9.88
+EMP0007,Madhav,Finance,9.43
+EMP0014,Ram,HR,8.93
+EMP0019,Saketh,HR,8.6
+EMP0020,Sameer,IT,9.71
+EMP0014,Ram,IT,9.6
