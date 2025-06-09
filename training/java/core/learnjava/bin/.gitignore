@@ -1,7 +1,11 @@
 /module-info.class
- HEAD
+/.classpath
+/.gitignore
+/.project
+/adv/
 /com/
-
 /datechallenges/
- 033258ff83b3fd0c9d8b25bd14bd59bdfd80dc78
 /inheritance/
+/medplus/
+/modifier/
+/streams/
