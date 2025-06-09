@@ -13,19 +13,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
-	
-	private final static EmployeeService employeeService=new EmployeeService();
-    // Test main
-    public static void main(String[] args) {
-        String filePath = "C:\\Users\\mahip\\OneDrive\\Desktop\\medplus\\"
-        		+ "mp-training\\training\\java\\core\\EmployeeProductivityAndAnalyticsSystem\\src\\com\\employee\\data.xlsx"; // change to your actual file path
-        List<Employee> employeeList = employeeService.readEmployeesFromExcel(filePath);
-        
-        //System.out.println(employeeList);
-//        for (Employee emp : employeeList) {
-//            System.out.println(emp.getId() + " - " + emp.getName() + " - " + emp.getHoursWorked());
-//        }
-    }
+
+	private final static EmployeeService employeeService = new EmployeeService();
+
+	public static void main(String[] args) {
+		String filePath = "/home//developer//Desktop//mp-training//training//java//core//EmployeeProductivityAndAnalyticsSystem//src//com//employee//data.xlsx";
+		employeeService.readEmployeesFromExcel(filePath);
+		employeeService.task1();
+		employeeService.task2();
+		employeeService.task3();
+		employeeService.task4();
+		employeeService.task5();
+	}
 }

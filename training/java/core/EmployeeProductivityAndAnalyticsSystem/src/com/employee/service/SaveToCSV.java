@@ -1,4 +1,4 @@
-package com.employee.domain;
+package com.employee.service;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -10,14 +10,7 @@ public class SaveToCSV {
 			for (String[] row : rows) {
 				StringBuilder line = new StringBuilder();
 				for (int i = 0; i < row.length; i++) {
-					String value = row[i];
-
-					if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
-						value = value.replace("\"", "\"\""); 
-						value = "\"" + value + "\""; 
-					}
-
-					line.append(value);
+					line.append(row[i]);
 
 					if (i != row.length - 1) {
 						line.append(",");
