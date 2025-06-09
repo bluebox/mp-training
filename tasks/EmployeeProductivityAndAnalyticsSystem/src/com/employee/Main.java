@@ -22,10 +22,10 @@ public class Main {
 	public static void main(String[] args) {
 		String filePath = "/home//developer//Desktop//mp-training//training//java//core//EmployeeProductivityAndAnalyticsSystem//src//com//employee//data.xlsx";
 		employeeService.readEmployeesFromExcel(filePath);
-		employeeService.task1();
-		employeeService.task2();
+//		employeeService.task1();
+//		employeeService.task2();
 		employeeService.task3();
-		employeeService.task4();
-		employeeService.task5();
+	//	employeeService.task4();
+	//	employeeService.task5();
 	}
 }
