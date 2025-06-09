@@ -17,12 +17,12 @@ public class MultiCategoryEmployees {
 	public void employees()
 	{
 		CsvReader reader = new CsvReader();
-		List<Employee> employees = reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+		List<Employee> employees = reader.decipherCSV(reader.readCSV("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
 		int i = 0;
-		employees.forEach((emp->{
-			System.out.println(emp.date());
-		}));
-		Map<String, Map<Integer, Set<String>>> grouped = employees.stream().collect(
+		// employees.forEach((emp->{
+		// 	System.out.println(emp.date());
+		// }));
+		Map<String, Map<Integer, Set<String>>> grouped = employees.stream().filter(emp->emp.date()!= null).collect(
 			    Collectors.groupingBy(
 			        Employee::employeeId,
 			        Collectors.groupingBy(
@@ -63,7 +63,7 @@ public class MultiCategoryEmployees {
             }
         }
         
-        try (FileWriter writer = new FileWriter("multi_category_employees.csv")) {
+        try (FileWriter writer = new FileWriter("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/multi_category_employees.csv")) {
             for (String[] row : csvRows) {
                 writer.write(String.join(",", row));
                 writer.write("\n");

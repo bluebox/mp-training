@@ -14,12 +14,12 @@ public class TagAnalysis {
 
     public void tagCount() {
         CsvReader reader = new CsvReader();
-        List<Employee> employees = reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+        List<Employee> employees = reader.decipherCSV(reader.readCSV("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
         Map<String, Set<String>> tagToEmployees = new HashMap<>();
 
         for (Employee emp : employees) {
             String remark = emp.remarks();
-            Matcher matcher = Pattern.compile("#\\w+").matcher(remark);
+            Matcher matcher = Pattern.compile("\\w+").matcher(remark);
             while (matcher.find()) {
                 String tag = matcher.group().toLowerCase();
                 tagToEmployees.computeIfAbsent(tag, k -> new HashSet<>()).add(emp.employeeId());
@@ -47,7 +47,7 @@ public class TagAnalysis {
             });
         });
 
-        try (FileWriter writer = new FileWriter("tag_analysis.csv")) {
+        try (FileWriter writer = new FileWriter("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/tag_analysis.csv")) {
             for (String[] row : csvRows) {
                 writer.write(String.join(",", row));
                 writer.write("\n");

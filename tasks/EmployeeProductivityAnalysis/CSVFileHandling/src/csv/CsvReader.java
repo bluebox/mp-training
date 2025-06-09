@@ -55,7 +55,7 @@ public class CsvReader {
                         }
 
                         Employee emp = new Employee(
-                            entry.get("Employee ID"),
+                            entry.get(headers[0]),
                             entry.get("Name"),
                             entry.get("Department"),
                             entry.get("Project ID"),
@@ -83,7 +83,7 @@ public class CsvReader {
     public static void main(String[] args) {
         System.out.println("Reading CSV...");
         CsvReader reader = new CsvReader();
-        String csvPath = "/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv";
+        String csvPath = "/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv";
         List<Employee> empDetails = reader.decipherCSV(reader.readCSV(csvPath));
 
         System.out.println("Total records: " + empDetails.size());
