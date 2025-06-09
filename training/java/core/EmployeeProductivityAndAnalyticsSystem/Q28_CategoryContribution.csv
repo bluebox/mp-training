@@ -1,0 +1,325 @@
+Project ID,Task Category,Contribution %
+PRJ166,Training,24.50
+PRJ166,Bug Fix,24.11
+PRJ166,Documentation,21.87
+PRJ166,Development,18.04
+PRJ166,Testing,11.47
+PRJ165,Training,34.11
+PRJ165,Documentation,33.62
+PRJ165,Monitoring,32.27
+PRJ168,Documentation,50.59
+PRJ168,Monitoring,5.50
+PRJ168,Testing,43.91
+PRJ167,Training,13.91
+PRJ167,Documentation,10.75
+PRJ167,Client Meeting,39.75
+PRJ167,Deployment,35.59
+PRJ169,Deployment,45.84
+PRJ169,Monitoring,54.16
+PRJ160,Documentation,38.15
+PRJ160,Client Meeting,37.03
+PRJ160,Code Review,24.82
+PRJ162,Training,21.35
+PRJ162,Development,18.99
+PRJ162,Code Review,42.42
+PRJ162,Design Review,17.24
+PRJ161,Documentation,27.52
+PRJ161,Development,50.44
+PRJ161,Design Review,22.04
+PRJ164,Bug Fix,31.25
+PRJ164,Code Review,47.99
+PRJ164,Monitoring,13.74
+PRJ164,Testing,7.02
+PRJ163,Deployment,21.94
+PRJ163,Client Meeting,78.06
+PRJ155,Client Meeting,77.15
+PRJ155,Testing,22.85
+PRJ154,Documentation,58.81
+PRJ154,Client Meeting,41.19
+PRJ157,Training,16.68
+PRJ157,Bug Fix,36.88
+PRJ157,Development,5.49
+PRJ157,Design Review,40.94
+PRJ156,Development,20.23
+PRJ156,Code Review,6.36
+PRJ156,Design Review,30.95
+PRJ156,Testing,42.46
+PRJ159,Documentation,37.82
+PRJ159,Design Review,47.14
+PRJ159,Testing,15.03
+PRJ158,Deployment,23.30
+PRJ158,Monitoring,27.46
+PRJ158,Testing,49.23
+PRJ151,Bug Fix,24.53
+PRJ151,Documentation,20.12
+PRJ151,Development,14.07
+PRJ151,Code Review,21.34
+PRJ151,Design Review,19.94
+PRJ150,Bug Fix,11.03
+PRJ150,Documentation,55.18
+PRJ150,Development,9.23
+PRJ150,Deployment,15.61
+PRJ150,Design Review,8.95
+PRJ153,Bug Fix,15.00
+PRJ153,Development,6.03
+PRJ153,Client Meeting,37.51
+PRJ153,Design Review,18.17
+PRJ153,Monitoring,23.28
+PRJ152,Training,81.36
+PRJ152,Testing,18.64
+PRJ100,Training,48.72
+PRJ100,Documentation,34.17
+PRJ100,Client Meeting,17.11
+PRJ188,Training,20.71
+PRJ188,Client Meeting,38.52
+PRJ188,Code Review,29.87
+PRJ188,Design Review,10.90
+PRJ187,Testing,100.00
+PRJ102,Development,71.04
+PRJ102,Code Review,6.60
+PRJ102,Design Review,10.58
+PRJ102,Monitoring,11.78
+PRJ101,Training,6.50
+PRJ101,Deployment,29.08
+PRJ101,Code Review,56.12
+PRJ101,Design Review,8.29
+PRJ189,Documentation,29.78
+PRJ189,Code Review,13.14
+PRJ189,Design Review,13.79
+PRJ189,Monitoring,36.02
+PRJ189,Testing,7.28
+PRJ104,Bug Fix,13.69
+PRJ104,Client Meeting,61.93
+PRJ104,Monitoring,24.37
+PRJ106,Training,9.90
+PRJ106,Bug Fix,34.34
+PRJ106,Deployment,29.56
+PRJ106,Design Review,26.20
+PRJ105,Development,35.36
+PRJ105,Deployment,21.95
+PRJ105,Client Meeting,17.28
+PRJ105,Monitoring,25.41
+PRJ180,Bug Fix,17.46
+PRJ180,Development,6.62
+PRJ180,Deployment,7.06
+PRJ180,Client Meeting,24.81
+PRJ180,Design Review,34.31
+PRJ180,Testing,9.74
+PRJ182,Training,37.04
+PRJ182,Documentation,8.73
+PRJ182,Development,8.99
+PRJ182,Design Review,32.35
+PRJ182,Testing,12.89
+PRJ181,Deployment,25.29
+PRJ181,Code Review,38.89
+PRJ181,Design Review,35.81
+PRJ184,Training,68.37
+PRJ184,Deployment,31.63
+PRJ183,Documentation,9.95
+PRJ183,Development,15.45
+PRJ183,Deployment,10.21
+PRJ183,Client Meeting,32.52
+PRJ183,Code Review,11.38
+PRJ183,Monitoring,20.48
+PRJ186,Client Meeting,100.00
+PRJ185,Deployment,8.48
+PRJ185,Code Review,58.32
+PRJ185,Monitoring,33.20
+PRJ108,Training,26.57
+PRJ108,Code Review,36.22
+PRJ108,Monitoring,10.52
+PRJ108,Design Review,15.92
+PRJ108,Testing,10.76
+PRJ107,Development,53.40
+PRJ107,Client Meeting,39.80
+PRJ107,Design Review,6.80
+PRJ109,Documentation,22.55
+PRJ109,Monitoring,65.05
+PRJ109,Testing,12.40
+PRJ177,Client Meeting,62.30
+PRJ177,Monitoring,37.70
+PRJ176,Bug Fix,28.81
+PRJ176,Documentation,28.94
+PRJ176,Development,8.05
+PRJ176,Client Meeting,34.20
+PRJ179,Bug Fix,22.15
+PRJ179,Documentation,10.21
+PRJ179,Development,11.99
+PRJ179,Deployment,26.47
+PRJ179,Design Review,29.18
+PRJ178,Training,45.28
+PRJ178,Deployment,54.72
+PRJ171,Documentation,24.71
+PRJ171,Client Meeting,49.91
+PRJ171,Code Review,25.39
+PRJ170,Training,43.97
+PRJ170,Documentation,56.03
+PRJ173,Documentation,77.25
+PRJ173,Code Review,22.75
+PRJ172,Code Review,100.00
+PRJ175,Training,11.00
+PRJ175,Development,19.02
+PRJ175,Deployment,28.05
+PRJ175,Code Review,41.93
+PRJ174,Testing,100.00
+PRJ122,Client Meeting,30.78
+PRJ122,Deployment,49.17
+PRJ122,Testing,20.05
+PRJ121,Training,8.64
+PRJ121,Bug Fix,26.87
+PRJ121,Deployment,12.06
+PRJ121,Client Meeting,17.10
+PRJ121,Monitoring,35.33
+PRJ124,Training,43.17
+PRJ124,Deployment,43.22
+PRJ124,Design Review,13.61
+PRJ123,Development,55.31
+PRJ123,Client Meeting,24.34
+PRJ123,Monitoring,20.35
+PRJ126,Bug Fix,54.96
+PRJ126,Development,32.87
+PRJ126,Deployment,12.17
+PRJ125,Development,28.25
+PRJ125,Deployment,31.64
+PRJ125,Code Review,35.31
+PRJ125,Testing,4.80
+PRJ128,Deployment,86.71
+PRJ128,Design Review,13.29
+PRJ127,Training,100.00
+PRJ120,Development,44.41
+PRJ120,Deployment,55.59
+PRJ129,Training,23.23
+PRJ129,Bug Fix,18.29
+PRJ129,Code Review,58.48
+PRJ199,Deployment,29.15
+PRJ199,Code Review,60.38
+PRJ199,Design Review,10.47
+PRJ111,Client Meeting,35.90
+PRJ111,Monitoring,12.78
+PRJ111,Design Review,38.07
+PRJ111,Testing,13.26
+PRJ198,Code Review,100.00
+PRJ110,Bug Fix,14.05
+PRJ110,Development,53.33
+PRJ110,Design Review,32.62
+PRJ113,Documentation,16.43
+PRJ113,Code Review,22.00
+PRJ113,Testing,61.56
+PRJ112,Bug Fix,43.30
+PRJ112,Documentation,9.00
+PRJ112,Client Meeting,17.27
+PRJ112,Deployment,16.38
+PRJ112,Testing,14.05
+PRJ115,Documentation,9.77
+PRJ115,Client Meeting,35.66
+PRJ115,Deployment,19.19
+PRJ115,Code Review,22.53
+PRJ115,Testing,12.85
+PRJ114,Training,33.75
+PRJ114,Documentation,3.20
+PRJ114,Development,19.84
+PRJ114,Code Review,33.44
+PRJ114,Monitoring,9.76
+PRJ117,Documentation,3.10
+PRJ117,Client Meeting,28.14
+PRJ117,Monitoring,33.84
+PRJ117,Testing,34.92
+PRJ116,Code Review,49.27
+PRJ116,Monitoring,50.73
+PRJ191,Deployment,23.87
+PRJ191,Client Meeting,5.16
+PRJ191,Code Review,19.47
+PRJ191,Testing,51.50
+PRJ190,Training,9.65
+PRJ190,Bug Fix,13.62
+PRJ190,Development,17.63
+PRJ190,Deployment,18.90
+PRJ190,Monitoring,12.91
+PRJ190,Design Review,9.92
+PRJ190,Testing,17.38
+PRJ193,Bug Fix,3.83
+PRJ193,Documentation,27.19
+PRJ193,Development,29.32
+PRJ193,Client Meeting,39.66
+PRJ192,Documentation,36.47
+PRJ192,Deployment,50.10
+PRJ192,Testing,13.42
+PRJ195,Training,10.04
+PRJ195,Documentation,15.96
+PRJ195,Development,11.41
+PRJ195,Deployment,9.18
+PRJ195,Code Review,19.42
+PRJ195,Monitoring,33.98
+PRJ194,Development,100.00
+PRJ197,Documentation,23.42
+PRJ197,Development,10.82
+PRJ197,Deployment,47.71
+PRJ197,Design Review,18.05
+PRJ196,Bug Fix,22.54
+PRJ196,Documentation,18.10
+PRJ196,Development,2.65
+PRJ196,Deployment,18.65
+PRJ196,Code Review,18.05
+PRJ196,Monitoring,20.01
+PRJ119,Documentation,80.23
+PRJ119,Client Meeting,19.77
+PRJ118,Client Meeting,39.10
+PRJ118,Code Review,60.90
+PRJ144,Bug Fix,63.85
+PRJ144,Documentation,27.86
+PRJ144,Deployment,8.29
+PRJ143,Training,35.85
+PRJ143,Documentation,4.33
+PRJ143,Development,22.14
+PRJ143,Deployment,24.48
+PRJ143,Testing,13.20
+PRJ146,Training,100.00
+PRJ145,Monitoring,100.00
+PRJ148,Training,18.15
+PRJ148,Bug Fix,18.00
+PRJ148,Documentation,24.31
+PRJ148,Code Review,39.54
+PRJ147,Development,25.25
+PRJ147,Client Meeting,45.60
+PRJ147,Code Review,10.02
+PRJ147,Testing,19.13
+PRJ149,Development,22.55
+PRJ149,Client Meeting,77.45
+PRJ140,Documentation,58.83
+PRJ140,Deployment,28.06
+PRJ140,Client Meeting,13.11
+PRJ142,Deployment,49.95
+PRJ142,Testing,50.05
+PRJ141,Training,45.42
+PRJ141,Deployment,20.59
+PRJ141,Testing,33.99
+PRJ133,Code Review,62.72
+PRJ133,Design Review,37.28
+PRJ132,Bug Fix,42.80
+PRJ132,Testing,57.20
+PRJ135,Bug Fix,35.30
+PRJ135,Development,7.25
+PRJ135,Client Meeting,17.83
+PRJ135,Code Review,18.22
+PRJ135,Monitoring,21.40
+PRJ134,Bug Fix,5.67
+PRJ134,Documentation,25.94
+PRJ134,Deployment,34.13
+PRJ134,Monitoring,34.25
+PRJ137,Training,11.21
+PRJ137,Client Meeting,3.46
+PRJ137,Deployment,34.86
+PRJ137,Code Review,14.86
+PRJ137,Monitoring,17.37
+PRJ137,Testing,18.25
+PRJ136,Bug Fix,29.02
+PRJ136,Documentation,11.42
+PRJ136,Code Review,59.56
+PRJ139,Documentation,52.33
+PRJ139,Development,33.60
+PRJ139,Design Review,14.07
+PRJ138,Client Meeting,100.00
+PRJ131,Training,42.66
+PRJ131,Documentation,57.34
+PRJ130,Training,63.79
+PRJ130,Documentation,36.21

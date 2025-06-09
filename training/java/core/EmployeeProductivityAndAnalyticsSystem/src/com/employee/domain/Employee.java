@@ -3,6 +3,12 @@ package com.employee.domain;
 import java.time.LocalDate;
 
 public class Employee {
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", department=" + department + ", projectId=" + projectId
+				+ ", date=" + date + ", taskCategory=" + taskCategory + ", hoursWorked=" + hoursWorked + ", remark="
+				+ remark + "]\n";
+	}
 	private String id;
 	private String name;
 	private String department;
