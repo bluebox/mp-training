@@ -1,3 +1,5 @@
+package casestudy2;
+
 import java.time.LocalDate;
 
 public class EmployeeWorkLog {
@@ -31,3 +33,4 @@ public class EmployeeWorkLog {
     public double getHoursWorked() { return hoursWorked; }
     public String getRemarks() { return remarks; }
 }
+

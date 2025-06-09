@@ -1,3 +1,4 @@
+package casestudy2;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -6,33 +7,33 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        List<EmployeeWorkLog> logs = CSVReader.readCSV("Sample_Employee_WorkLogs.csv");
+        List<EmployeeWorkLog> logs = CSVReader.readCSV("casestudy2/Sample_Employee_WorkLogs.csv");
 
-        CSVWriter writer1 = new CSVWriter("task1_output.csv");
+        CSVWriter writer1 = new CSVWriter("casestudy2/task1_output.csv");
         writer1.writeSectionTitle("Task 1: Engineering employees with >2 projects");
         writer1.writeLines(Task1.process(logs));
         writer1.close();
         System.out.println("Outputs has been written to task1_output.csv");
 
-        CSVWriter writer9 = new CSVWriter("task9_output.csv");
+        CSVWriter writer9 = new CSVWriter("casestudy2/task9_output.csv");
         writer9.writeSectionTitle("Task 9: Top 5 employees with highest hours in last 60 days");
         writer9.writeLines(Task9.process(logs));
         writer9.close();
         System.out.println("Outputs has been written to task9_output.csv");
 
-        CSVWriter writer10 = new CSVWriter("task10_output.csv");
+        CSVWriter writer10 = new CSVWriter("casestudy2/task10_output.csv");
         writer10.writeSectionTitle("Task 10: 'Bug Fix' tasks grouped by category and day");
         writer10.writeLines(Task10.process(logs));
         writer10.close();
         System.out.println("Outputs has been written to task10_output.csv");
 
-        CSVWriter writer12 = new CSVWriter("task12_output.csv");
+        CSVWriter writer12 = new CSVWriter("casestudy2/task12_output.csv");
         writer12.writeSectionTitle("Task 12: Project-wise productivity");
         writer12.writeLines(Task12.process(logs));
         writer12.close();
         System.out.println("Outputs has been written to task12_output.csv");
 
-        CSVWriter writer25 = new CSVWriter("task25_output.csv");
+        CSVWriter writer25 = new CSVWriter("casestudy2/task25_output.csv");
         writer25.writeSectionTitle("Task 25: Sorted by Department > Project > Date");
         writer25.writeLines(Task25.process(logs));
         writer25.close();
