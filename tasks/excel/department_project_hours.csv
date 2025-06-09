@@ -1,0 +1,328 @@
+Department,Project ID,Total Hours
+QA,PRJ190,12.94
+QA,PRJ121,12.61
+QA,PRJ137,11.25
+QA,PRJ162,9.88
+QA,PRJ127,9.47
+QA,PRJ152,9.46
+QA,PRJ191,9.06
+QA,PRJ153,8.52
+QA,PRJ150,8.44
+QA,PRJ151,8.37
+QA,PRJ185,8.19
+QA,PRJ180,7.22
+QA,PRJ106,7.05
+QA,PRJ178,6.95
+QA,PRJ135,6.05
+QA,PRJ111,5.99
+QA,PRJ160,5.12
+QA,PRJ184,4.67
+QA,PRJ132,3.63
+QA,PRJ163,3.58
+QA,PRJ115,3.20
+QA,PRJ188,2.78
+QA,PRJ108,2.03
+QA,PRJ126,1.67
+Data Science,PRJ182,9.80
+Data Science,PRJ179,9.67
+Data Science,PRJ164,8.94
+Data Science,PRJ100,8.77
+Data Science,PRJ153,8.58
+Data Science,PRJ168,8.54
+Data Science,PRJ130,8.49
+Data Science,PRJ106,8.34
+Data Science,PRJ101,8.10
+Data Science,PRJ171,8.08
+Data Science,PRJ180,7.75
+Data Science,PRJ183,7.74
+Data Science,PRJ197,7.72
+Data Science,PRJ114,7.14
+Data Science,PRJ129,6.40
+Data Science,PRJ148,6.36
+Data Science,PRJ107,6.04
+Data Science,PRJ181,5.58
+Data Science,PRJ108,4.67
+Data Science,PRJ117,4.38
+Data Science,PRJ177,3.74
+Data Science,PRJ140,3.68
+Data Science,PRJ172,3.65
+Data Science,PRJ192,3.32
+Data Science,PRJ191,3.16
+Data Science,PRJ136,2.61
+Data Science,PRJ174,2.28
+Data Science,PRJ119,1.90
+Data Science,PRJ124,1.63
+Data Science,PRJ137,1.60
+Data Science,PRJ167,1.55
+Data Science,PRJ149,1.15
+Data Science,PRJ196,1.15
+Data Science,PRJ193,1.06
+Design,PRJ196,15.94
+Design,PRJ167,14.92
+Design,PRJ137,13.56
+Design,PRJ162,11.67
+Design,PRJ168,9.84
+Design,PRJ106,9.82
+Design,PRJ191,9.01
+Design,PRJ150,8.77
+Design,PRJ140,8.73
+Design,PRJ190,8.44
+Design,PRJ148,8.41
+Design,PRJ166,8.39
+Design,PRJ105,7.69
+Design,PRJ123,7.62
+Design,PRJ161,6.99
+Design,PRJ114,6.66
+Design,PRJ142,6.59
+Design,PRJ147,6.14
+Design,PRJ125,6.00
+Design,PRJ176,5.40
+Design,PRJ110,5.03
+Design,PRJ175,4.97
+Design,PRJ197,4.67
+Design,PRJ121,4.55
+Design,PRJ115,3.94
+Design,PRJ138,3.90
+Design,PRJ183,3.86
+Design,PRJ151,3.40
+Design,PRJ124,3.06
+Design,PRJ109,2.96
+Design,PRJ133,2.52
+Design,PRJ135,2.05
+Design,PRJ193,1.56
+Design,PRJ130,1.49
+Design,PRJ107,1.23
+Engineering,PRJ191,16.83
+Engineering,PRJ156,11.03
+Engineering,PRJ113,10.76
+Engineering,PRJ107,9.66
+Engineering,PRJ136,9.13
+Engineering,PRJ190,9.05
+Engineering,PRJ188,8.65
+Engineering,PRJ114,8.19
+Engineering,PRJ117,7.88
+Engineering,PRJ140,7.79
+Engineering,PRJ193,7.52
+Engineering,PRJ177,6.18
+Engineering,PRJ147,6.09
+Engineering,PRJ112,6.04
+Engineering,PRJ101,6.03
+Engineering,PRJ131,5.90
+Engineering,PRJ148,5.45
+Engineering,PRJ128,5.29
+Engineering,PRJ102,4.87
+Engineering,PRJ198,4.60
+Engineering,PRJ158,4.50
+Engineering,PRJ197,3.79
+Engineering,PRJ180,3.71
+Engineering,PRJ164,3.21
+Engineering,PRJ129,3.03
+Engineering,PRJ195,2.80
+Engineering,PRJ187,2.72
+Engineering,PRJ182,2.31
+Engineering,PRJ175,1.95
+Engineering,PRJ108,1.93
+Engineering,PRJ157,1.00
+Product Management,PRJ189,17.08
+Product Management,PRJ143,15.75
+Product Management,PRJ135,15.13
+Product Management,PRJ120,12.80
+Product Management,PRJ192,10.91
+Product Management,PRJ185,10.67
+Product Management,PRJ166,9.25
+Product Management,PRJ170,9.08
+Product Management,PRJ164,8.94
+Product Management,PRJ117,8.53
+Product Management,PRJ148,8.52
+Product Management,PRJ122,8.30
+Product Management,PRJ153,7.58
+Product Management,PRJ137,6.88
+Product Management,PRJ159,6.49
+Product Management,PRJ134,6.40
+Product Management,PRJ154,6.34
+Product Management,PRJ162,6.32
+Product Management,PRJ190,6.18
+Product Management,PRJ186,5.97
+Product Management,PRJ188,5.28
+Product Management,PRJ105,5.28
+Product Management,PRJ132,5.19
+Product Management,PRJ147,5.09
+Product Management,PRJ165,4.87
+Product Management,PRJ150,4.87
+Product Management,PRJ179,4.38
+Product Management,PRJ146,4.31
+Product Management,PRJ183,4.30
+Product Management,PRJ114,4.03
+Product Management,PRJ129,3.85
+Product Management,PRJ106,3.71
+Product Management,PRJ110,3.63
+Product Management,PRJ182,3.41
+Product Management,PRJ175,3.37
+Product Management,PRJ112,3.32
+Product Management,PRJ180,2.52
+Product Management,PRJ115,2.49
+Product Management,PRJ128,2.25
+DevOps,PRJ108,18.96
+DevOps,PRJ196,15.78
+DevOps,PRJ169,15.68
+DevOps,PRJ137,13.01
+DevOps,PRJ180,9.45
+DevOps,PRJ193,9.41
+DevOps,PRJ139,8.81
+DevOps,PRJ140,7.88
+DevOps,PRJ143,7.86
+DevOps,PRJ160,7.64
+DevOps,PRJ114,7.53
+DevOps,PRJ199,7.51
+DevOps,PRJ157,7.46
+DevOps,PRJ152,7.22
+DevOps,PRJ122,7.06
+DevOps,PRJ195,6.62
+DevOps,PRJ148,6.31
+DevOps,PRJ116,5.90
+DevOps,PRJ136,5.72
+DevOps,PRJ112,5.18
+DevOps,PRJ144,4.45
+DevOps,PRJ133,4.24
+DevOps,PRJ171,4.11
+DevOps,PRJ130,3.33
+DevOps,PRJ158,2.51
+DevOps,PRJ121,2.30
+DevOps,PRJ184,2.16
+DevOps,PRJ113,1.01
+Support,PRJ134,16.87
+Support,PRJ105,15.66
+Support,PRJ151,14.04
+Support,PRJ102,11.86
+Support,PRJ190,11.27
+Support,PRJ124,9.71
+Support,PRJ139,9.67
+Support,PRJ128,9.39
+Support,PRJ186,9.36
+Support,PRJ183,9.20
+Support,PRJ195,8.86
+Support,PRJ161,8.76
+Support,PRJ110,8.43
+Support,PRJ193,8.11
+Support,PRJ119,7.71
+Support,PRJ121,7.15
+Support,PRJ112,6.68
+Support,PRJ152,5.58
+Support,PRJ109,5.51
+Support,PRJ166,4.40
+Support,PRJ141,4.04
+Support,PRJ179,3.73
+Support,PRJ189,3.58
+Support,PRJ117,3.35
+Support,PRJ129,3.29
+Support,PRJ191,3.18
+Support,PRJ199,3.09
+Support,PRJ100,3.08
+Support,PRJ170,2.97
+Support,PRJ101,2.31
+Support,PRJ136,2.25
+Support,PRJ111,1.50
+Support,PRJ192,1.48
+Support,PRJ168,1.07
+Finance,PRJ179,17.12
+Finance,PRJ147,14.52
+Finance,PRJ118,13.17
+Finance,PRJ195,11.91
+Finance,PRJ169,11.15
+Finance,PRJ117,9.88
+Finance,PRJ165,9.85
+Finance,PRJ123,9.43
+Finance,PRJ166,9.40
+Finance,PRJ112,9.29
+Finance,PRJ192,9.02
+Finance,PRJ163,8.85
+Finance,PRJ162,8.77
+Finance,PRJ161,8.73
+Finance,PRJ155,8.71
+Finance,PRJ157,8.55
+Finance,PRJ188,8.02
+Finance,PRJ181,7.90
+Finance,PRJ151,7.89
+Finance,PRJ160,7.87
+Finance,PRJ196,7.83
+Finance,PRJ114,7.72
+Finance,PRJ126,7.54
+Finance,PRJ180,7.44
+Finance,PRJ175,7.43
+Finance,PRJ143,7.11
+Finance,PRJ173,6.68
+Finance,PRJ110,6.65
+Finance,PRJ132,6.60
+Finance,PRJ150,6.32
+Finance,PRJ135,5.04
+Finance,PRJ108,4.05
+Finance,PRJ167,3.04
+Finance,PRJ104,3.03
+Finance,PRJ182,2.38
+Finance,PRJ127,1.87
+Finance,PRJ120,1.43
+Finance,PRJ153,1.18
+HR,PRJ183,12.69
+HR,PRJ102,11.62
+HR,PRJ176,9.25
+HR,PRJ170,8.60
+HR,PRJ181,8.58
+HR,PRJ106,8.56
+HR,PRJ124,8.09
+HR,PRJ159,8.09
+HR,PRJ105,8.05
+HR,PRJ162,7.98
+HR,PRJ144,7.86
+HR,PRJ125,7.50
+HR,PRJ111,7.26
+HR,PRJ161,7.24
+HR,PRJ166,6.92
+HR,PRJ112,6.37
+HR,PRJ100,6.15
+HR,PRJ116,5.73
+HR,PRJ151,5.52
+HR,PRJ191,4.88
+HR,PRJ126,4.51
+HR,PRJ154,4.44
+HR,PRJ171,4.00
+HR,PRJ163,3.89
+HR,PRJ195,3.89
+HR,PRJ142,3.40
+HR,PRJ113,3.32
+HR,PRJ122,2.98
+HR,PRJ196,2.68
+HR,PRJ155,2.58
+HR,PRJ164,2.27
+HR,PRJ158,2.13
+HR,PRJ110,2.10
+HR,PRJ101,1.81
+HR,PRJ179,1.63
+HR,PRJ145,1.57
+HR,PRJ115,1.42
+HR,PRJ134,1.40
+HR,PRJ143,1.39
+HR,PRJ157,1.21
+IT,PRJ165,14.16
+IT,PRJ188,11.43
+IT,PRJ156,10.52
+IT,PRJ101,9.60
+IT,PRJ194,8.91
+IT,PRJ182,8.56
+IT,PRJ178,8.40
+IT,PRJ111,8.26
+IT,PRJ131,7.93
+IT,PRJ125,7.74
+IT,PRJ152,7.67
+IT,PRJ185,6.74
+IT,PRJ108,5.99
+IT,PRJ189,5.30
+IT,PRJ104,4.93
+IT,PRJ122,4.60
+IT,PRJ149,3.95
+IT,PRJ150,2.79
+IT,PRJ159,2.58
+IT,PRJ167,2.35
+IT,PRJ141,2.08
+IT,PRJ162,1.66
+IT,PRJ107,1.16
+IT,PRJ117,1.09

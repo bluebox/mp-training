@@ -1,0 +1,171 @@
+import java.util.regex.Pattern
+
+/* ====================================================================
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+==================================================================== */
+
+final String TEST9_SRC = 'src/test/java9'
+final String TEST9_OUT = "${buildDir}/classes/java9/test/"
+final String VERSIONS9 = 'META-INF/versions/9'
+final boolean IBMVM = System.getProperty("java.vendor").contains("IBM")
+
+configurations {
+    tests
+    misc
+}
+
+sourceSets {
+    test {
+        output.dir(TEST9_OUT, builtBy: 'compileTest9')
+        if (IBMVM) {
+            java {
+                exclude '**/HeapDump**'
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.apache.ant:ant:1.10.15'
+    testImplementation 'org.apache.commons:commons-collections4:4.4'
+    testImplementation 'com.google.guava:guava:33.3.0-jre'
+
+    misc(project(':poi-ooxml')) {
+        capabilities {
+            requireCapability("${project.group}:poi-ooxml-rendersign")
+        }
+        if (NO_SCRATCHPAD) {
+            exclude group: 'org.apache.poi', module: 'poi-scratchpad'
+        }
+    }
+    if (NO_SCRATCHPAD) {
+        testCompileOnly project(':poi-scratchpad')
+        testCompileOnly project(path:':poi-scratchpad', configuration:'tests')
+    } else {
+        testImplementation project(':poi-scratchpad')
+        testImplementation project(path:':poi-scratchpad', configuration:'tests')
+    }
+    testImplementation(project(':poi-examples')) {
+        if (NO_SCRATCHPAD) {
+            exclude group: 'org.apache.poi', module: 'poi-scratchpad'
+        }
+    }
+    testImplementation(project(path:':poi-examples', configuration:'archives')) {
+        if (NO_SCRATCHPAD) {
+            exclude group: 'org.apache.poi', module: 'poi-scratchpad'
+        }
+    }
+    testImplementation project(path:':poi', configuration:'tests')
+    testImplementation(project(path:':poi-ooxml', configuration:'tests')) {
+        if (NO_SCRATCHPAD) {
+            exclude group: 'org.apache.poi', module: 'poi-scratchpad'
+        }
+    }
+    testImplementation project(path: ':poi-ooxml-lite-agent', configuration: 'archives')
+    testImplementation "org.apache.logging.log4j:log4j-slf4j2-impl:${log4jVersion}"
+    testImplementation 'org.slf4j:slf4j-simple:2.0.17'
+    testRuntimeOnly "org.apiguardian:apiguardian-api:${apiGuardianVersion}"
+}
+
+final String MODULE_NAME = 'org.apache.poi.stress'
+final Pattern MODULE_NOT_REGEX = ~'((poi|poi-scratchpad|poi-ooxml)[/\\\\][^/\\\\]+$|batik-script)'
+final Pattern MODULE_REGEX = ~'\\.jar$'
+final List MODULE_COMPILE_PATH = (sourceSets.test.compileClasspath + configurations.misc.files).findAll{ it.path =~ MODULE_REGEX && !(it.path =~ MODULE_NOT_REGEX) }.collect{ it.parent }.unique()
+final List MODULE_RUNTIME_PATH = (sourceSets.test.runtimeClasspath + configurations.misc.files).findAll{ it.path =~ MODULE_REGEX && !(it.path =~ MODULE_NOT_REGEX) }.collect{ it.parent }.unique()
+
+final String OOXML_LITE_AGENT = "../build/dist/maven/poi-ooxml-lite-agent/poi-ooxml-lite-agent-${project.version}.jar"
+final String OOXML_LITE_REPORT = '../src/resources/ooxml-lite-report'
+final String OOXML_LITE_INCLUDES = "^(com/microsoft/schemas|org/(etsi|openxmlformats|w3/)|org/apache/poi/schemas)"
+
+tasks.register('compileTest9', JavaCompile) {
+    dependsOn 'compileTestJava', ':poi-ooxml:testJar', ':poi-scratchpad:testJar', ':poi-examples:jar'
+
+    javaCompiler = javaToolchains.compilerFor {
+        languageVersion = JavaLanguageVersion.of(Math.max(11, jdkVersion))
+    }
+    sourceCompatibility = 1.9
+    targetCompatibility = 1.9
+    destinationDirectory = file(TEST9_OUT + VERSIONS9)
+    source = file(TEST9_SRC)
+    options.compilerArgs = [
+            '--patch-module', "${MODULE_NAME}=${(sourceSets.main.output.classesDirs + sourceSets.test.output.classesDirs).asPath}",
+            '--module-path', files(MODULE_COMPILE_PATH).asPath
+    ]
+    classpath = files()
+}
+
+
+jar {
+    destinationDirectory = file("../build/dist/maven/${project.archivesBaseName}")
+
+    manifest {
+        attributes('Automatic-Module-Name': MODULE_NAME, 'Multi-Release': 'true')
+    }
+}
+
+// Create a separate jar for test-code to depend on it in other projects
+// See http://stackoverflow.com/questions/5144325/gradle-test-dependency
+task testJar(type: Jar, dependsOn: [ testClasses, compileTest9 ] ) {
+    destinationDirectory = file("../build/dist/maven/${project.archivesBaseName}-tests")
+
+    setArchiveClassifier 'tests'
+    // ignore second module-info.class from main
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from sourceSets.test.output + sourceSets.main.output
+
+    manifest {
+        attributes('Automatic-Module-Name': MODULE_NAME, 'Multi-Release': 'true')
+    }
+}
+
+artifacts {
+    tests testJar
+}
+
+test {
+    // exclude these from the normal test-run
+    exclude '**/*FileHandler.class'
+
+    dependsOn { testJar }
+
+    systemProperties['junit.jupiter.execution.parallel.enabled'] = 'true'
+    if (jdkVersion == 8)  {
+        systemProperties['sun.java2d.renderer'] = 'sun.java2d.marlin.MarlinRenderingEngine'
+    }
+
+    doFirst {
+        jvmArgs += [
+            "-javaagent:${OOXML_LITE_AGENT}=${OOXML_LITE_REPORT}|${OOXML_LITE_INCLUDES}",
+        ]
+        if (jdkVersion > 8) {
+            jvmArgs += [
+                '--add-modules', MODULE_NAME,
+                '--module-path', '../build/dist/maven/poi-integration-tests' + File.pathSeparator + files(MODULE_RUNTIME_PATH).asPath,
+            ]
+        }
+        if (NO_SCRATCHPAD) {
+            systemProperty 'scratchpad.ignore', 'true'
+        }
+    }
+}
+
+javadoc { enabled(false) }
+
+sourcesJar { enabled(false) }
+
+generateMetadataFileForPOIPublication.enabled = false
+publishPOIPublicationToMavenLocal.enabled = false

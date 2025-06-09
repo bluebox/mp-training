@@ -1,0 +1,110 @@
+/* ====================================================================
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+==================================================================== */
+
+import java.util.regex.Pattern
+
+sourceSets {
+    main {
+        output.dir(JAVA9_OUT, builtBy: 'compileJava9')
+    }
+}
+
+dependencies {
+    api project(':poi-ooxml')
+    implementation project(path: ':poi', configuration: 'archives')
+    compileOnly project(path: ':poi-ooxml', configuration: 'archives')
+    compileOnly project(path: ':poi-ooxml-full', configuration: 'archives')
+
+    if (NO_SCRATCHPAD) {
+        compileOnly project(path: ':poi-scratchpad', configuration: 'archives')
+    } else {
+        implementation project(path: ':poi-scratchpad', configuration: 'archives')
+    }
+
+    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+
+    testImplementation(project(path: ':poi-ooxml', configuration: 'tests')) {
+        if (NO_SCRATCHPAD) {
+            exclude group: 'org.apache.poi', module: 'poi-scratchpad'
+        }
+    }
+    testImplementation project(path: ':poi', configuration: 'tests')
+}
+
+final String MODULE_NAME = 'org.apache.poi.examples'
+final Pattern MODULE_REGEX = ~'\\.jar$'
+final List MODULE_COMPILE_PATH = sourceSets.main.compileClasspath.findAll{ it.path =~ MODULE_REGEX }.collect{ it.parent }.unique()
+
+tasks.register('compileJava9', JavaCompile) {
+    dependsOn 'compileJava', ':poi-ooxml:jar', ':poi-scratchpad:jar'
+
+    javaCompiler = javaToolchains.compilerFor {
+        languageVersion = JavaLanguageVersion.of(Math.max(11, jdkVersion))
+    }
+    sourceCompatibility = 1.9
+    targetCompatibility = 1.9
+    destinationDirectory = file(JAVA9_OUT + VERSIONS9)
+    source = file(JAVA9_SRC)
+    classpath = files()
+    options.compilerArgs = [
+            '--patch-module', "${MODULE_NAME}=${sourceSets.main.output.classesDirs.asPath}",
+            '--module-path', files(MODULE_COMPILE_PATH).asPath
+    ]
+}
+
+jar {
+    dependsOn compileJava9
+
+    destinationDirectory = file("../build/dist/maven/${project.archivesBaseName}")
+
+    manifest {
+        attributes('Automatic-Module-Name': MODULE_NAME, 'Multi-Release': 'true')
+    }
+}
+
+javadocJar {
+    metaInf {
+        from("$projectDir/../legal/LICENSE")
+        from("$projectDir/../legal/NOTICE")
+    }
+}
+
+sourcesJar {
+    metaInf {
+        from("$projectDir/../legal/LICENSE")
+        from("$projectDir/../legal/NOTICE")
+    }
+}
+
+cyclonedxBom {
+    // includeConfigs is the list of configuration names to include when generating the BOM (leave empty to include every configuration)
+    includeConfigs = ["runtimeClasspath"]
+    // skipConfigs is a list of configuration names to exclude when generating the BOM
+    //skipConfigs = ["compileClasspath", "testCompileClasspath"]
+    // Specified the type of project being built. Defaults to 'library'
+    projectType = "library"
+    // Specified the version of the CycloneDX specification to use. Defaults to 1.4.
+    schemaVersion = "1.4"
+    // Boms destination directory (defaults to build/reports)
+    destination = file("build/reports")
+    // The file name for the generated BOMs (before the file format suffix). Defaults to 'bom'
+    outputName = "poi-examples-${project.version}.bom"
+    // The file format generated, can be xml, json or all for generating both
+    outputFormat = "all"
+    // Exclude BOM Serial Number
+    includeBomSerialNumber = true
+}

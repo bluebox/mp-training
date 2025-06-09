@@ -10,109 +10,85 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
-
-/*
- * CSV file format is given below for reference...
- * File stores the logs of employee's daily activity.
- * These logs are analyzed to know the productivity of the employee.
- * 
- * 								CSV file format
- *  EmployeeId,Name,Department,ProjectId,Date,TaskCatagory,HoursWorked,Remarks
- * 
- * */
-
-
 public class CsvReader {
-	
-	public BufferedReader readCSV(String path)
-	{
-		if((path == null)||(path == ""))
-		{
-			return null;
-		}
-		BufferedReader br = null;
-		try {
-			 br = new BufferedReader(new InputStreamReader(new FileInputStream(path))); 
-		}catch(IOException ex)
-		{
-			ex.printStackTrace();
-		}
-		return br;
-	}
-	
-	
-	public ArrayList<Employee> decipherCSV(BufferedReader br)
-	{
-		ArrayList<Employee> employees = new ArrayList<Employee>();
-		
-		try {
-			String line;
-			String[] labels = null;
-			int i = 0;
-			do {
-				HashMap<String,String> entry = new HashMap<String, String>();
-				line = br.readLine();
-				if(line != null)
-				{
-					if(i == 0)
-					{
-						labels = line.split(",");
-					}else
-					{
-						
-						String[] fields = line.split(",");
-						for(int j = 0;j<fields.length;j++)
-						{
-							entry.put(labels[j].trim(), fields[j].trim());
-						}
-						if(fields.length<labels.length)
-						{
-							entry.put("Remarks", null);
-						}
-						System.out.println(line);
-						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//						System.out.print(entry.get("Date"));
-						LocalDate date = LocalDate.parse(entry.get("Date"),dtf);
-						double hoursWorked = Double.parseDouble(entry.get("HoursWorked"));
-						
-						Employee emp = new Employee(entry.get("EmployeeId"),entry.get("Name"),entry.get("Department"),entry.get("ProjectId"),date,
-								entry.get("TaskCatagory"),hoursWorked, entry.get("Remarks"));
-						
-						employees.add(emp);
-						
-						
-					}
-				}
-				i++;
-			}while(line != null);
-		}catch(NullPointerException npe)
-		{
-			npe.printStackTrace();
-		}catch(IOException ioe)
-		{
-			ioe.printStackTrace();
-		}
-		
-		
-		return employees;
-	}
-	
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		System.out.println("Hello");
-		CsvReader reader = new CsvReader();
-		List<Employee> empDetails = reader.decipherCSV(reader.readCSV("/home/mphs/Desktop/mp-training/training/java/core/FileSystem/src/csv/emp.csv"));
-		System.out.println(empDetails.size());
-		for(var emp:empDetails)
-		{
-			System.out.println(emp);
-		}
-		
-	}
 
+    public BufferedReader readCSV(String path) {
+        if (path == null || path.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Employee> decipherCSV(BufferedReader br) {
+        ArrayList<Employee> employees = new ArrayList<>();
+        if (br == null) return employees;
+
+        try {
+            String line;
+            String[] headers = null;
+            int lineCount = 0;
+
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split(",", -1);
+                if (lineCount == 0) {
+                    headers = fields;
+                } else {
+                    HashMap<String, String> entry = new HashMap<>();
+                    for (int i = 0; i < headers.length && i < fields.length; i++) {
+                        entry.put(headers[i].trim(), fields[i].trim());
+                    }
+
+                    try {
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        LocalDate date = LocalDate.parse(entry.get("Date"), dtf);
+
+                        double hoursWorked = 0.0;
+                        try {
+                            hoursWorked = Double.parseDouble(entry.get("Hours Worked"));
+                        } catch (NumberFormatException e) {
+                            System.err.println("Invalid Hours Worked value at line " + (lineCount + 1));
+                        }
+
+                        Employee emp = new Employee(
+                            entry.get(headers[0]),
+                            entry.get("Name"),
+                            entry.get("Department"),
+                            entry.get("Project ID"),
+                            date,
+                            entry.get("Task Category"),
+                            hoursWorked,
+                            entry.getOrDefault("Remarks", null)
+                        );
+
+                        employees.add(emp);
+
+                    } catch (Exception e) {
+                        System.err.println("Failed to parse line " + (lineCount + 1) + ": " + e.getMessage());
+                    }
+                }
+                lineCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return employees;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Reading CSV...");
+        CsvReader reader = new CsvReader();
+        String csvPath = "/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv";
+        List<Employee> empDetails = reader.decipherCSV(reader.readCSV(csvPath));
+
+        System.out.println("Total records: " + empDetails.size());
+        for (Employee emp : empDetails) {
+            System.out.println(emp);
+        }
+    }
 }

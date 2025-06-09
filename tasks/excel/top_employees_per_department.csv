@@ -1,0 +1,21 @@
+Department,Employee ID,Name,Project ID,Date,Task Category,Hours Worked,Remarks
+QA,EMP0006,durga prasad,PRJ162,2025-05-09,Training,9.88,blocked
+QA,EMP0012,Niranjan,PRJ127,2025-04-26,Training,9.47,escalated
+Data Science,EMP0009,Manoj,PRJ182,2025-06-06,Training,9.8,needs review
+Data Science,EMP0018,Sai krishna,PRJ179,2025-05-22,Deployment,9.67,follow up
+Design,EMP0009,Manoj,PRJ168,2025-03-28,Documentation,9.84,blocked
+Design,EMP0011,Naga bhushan,PRJ106,2025-05-08,Design Review,9.82,completed
+Engineering,EMP0009,Manoj,PRJ107,2025-04-21,Development,9.66,needs review
+Engineering,EMP0009,Manoj,PRJ136,2025-04-30,Code Review,9.13,in progress
+Product Management,EMP0020,Sameer,PRJ135,2025-03-20,Bug Fix,9.98,follow up
+Product Management,EMP0014,Ram,PRJ189,2025-04-25,Monitoring,9.35,critical
+DevOps,EMP0009,Manoj,PRJ108,2025-04-20,Training,10.0,completed
+DevOps,EMP0008,Maneesh,PRJ180,2025-04-09,Client Meeting,9.45,follow up
+Support,EMP0019,Saketh,PRJ124,2025-03-19,Training,9.71,completed
+Support,EMP0016,Renaiah,PRJ139,2025-03-25,Documentation,9.67,approved
+Finance,EMP0013,Rachith,PRJ117,2025-03-18,Client Meeting,9.88,completed
+Finance,EMP0007,Madhav,PRJ123,2025-06-05,Development,9.43,in progress
+HR,EMP0014,Ram,PRJ183,2025-04-27,Client Meeting,8.93,critical
+HR,EMP0019,Saketh,PRJ170,2025-03-13,Documentation,8.6,completed
+IT,EMP0020,Sameer,PRJ165,2025-05-01,Documentation,9.71,escalated
+IT,EMP0014,Ram,PRJ101,2025-05-25,Code Review,9.6,completed
