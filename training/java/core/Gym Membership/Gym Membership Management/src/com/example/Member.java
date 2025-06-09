@@ -1,11 +1,13 @@
 package com.example;
 
+import java.time.LocalDate;
+
 public class Member extends Person {
 	private String memberId;
     private MembershipPlan plan;
 
-    public Member(String memberId, String personName,String personGender,String personDob,int personAge,double personWeight,String personJoinDate) {
-        super(personName,personGender,personDob,personAge,personWeight,personJoinDate);
+    public Member(String memberId, String personName,String personGender,LocalDate personDob,double personWeight,LocalDate personJoinDate) {
+        super(personName,personGender,personDob,personWeight,personJoinDate);
         this.memberId = memberId;
     }
 
