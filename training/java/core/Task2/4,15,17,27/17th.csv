@@ -1,74 +1,75 @@
+result of 17: Track Department switches mid month
 Employee-Month,Departments Switched
-EMP0020_2025-6,Product Management | DevOps | HR
-EMP0020_2025-5,Data Science | DevOps | Finance | IT
-EMP0020_2025-4,Data Science | Engineering
-EMP0020_2025-3,Design | Data Science | Engineering | DevOps | Product Management | Support | HR
-EMP0021_2025-4,QA | Product Management | HR
-EMP0021_2025-5,Engineering | Product Management | Support | HR | IT
-EMP0022_2025-5,Data Science | Product Management
-EMP0019_2025-4,Engineering | DevOps
-EMP0019_2025-3,Support | HR
-EMP0017_2025-5,Design | Data Science | QA | Engineering | DevOps | Product Management | HR
-EMP0017_2025-3,DevOps | Product Management | Finance | HR
-EMP0015_2025-3,Design | Data Science | QA | HR
-EMP0017_2025-4,Design | Product Management
-EMP0015_2025-4,Product Management | DevOps | Finance | HR | IT
-EMP0015_2025-5,Design | DevOps | Product Management | Support | IT
-EMP0019_2025-5,Design | Product Management | Support
-EMP0024_2025-5,Design | DevOps | Finance
-EMP0022_2025-4,DevOps | Support | IT
-EMP0024_2025-4,Data Science | Engineering | Product Management | DevOps | HR
-EMP0022_2025-3,Design | Product Management | Finance
-EMP0024_2025-3,Design | Engineering | DevOps | Product Management
-EMP0004_2025-3,DevOps | Product Management | Support | IT
-EMP0013_2025-5,Design | Finance | HR | IT
-EMP0004_2025-4,QA | Data Science | Design | Engineering | Support | Finance | HR
-EMP0013_2025-3,QA | DevOps | Finance
-EMP0013_2025-4,Design | QA | Engineering | DevOps | Support | Finance | HR
-EMP0006_2025-4,Finance | HR
-EMP0011_2025-4,Finance | IT
-EMP0011_2025-3,Product Management | Support
-EMP0006_2025-3,Design | DevOps | Product Management | Support
-EMP0002_2025-4,Design | QA | Product Management | Finance | HR
-EMP0004_2025-5,QA | Design | Data Science | Engineering | Support | HR | IT
-EMP0004_2025-6,Finance | HR
-EMP0006_2025-5,Design | Data Science | QA | Support | Finance
-EMP0008_2025-5,Design | QA | Engineering | Support | Finance | IT
-EMP0008_2025-4,Data Science | QA | Engineering | DevOps | Product Management | Finance | HR | IT
-EMP0008_2025-3,Design | Data Science | Product Management | Finance | IT
-EMP0010_2025-4,Data Science | QA | DevOps
-EMP0011_2025-5,Design | QA | Product Management | Finance
-EMP0010_2025-5,Design | Engineering | Product Management | Support | Finance | HR
-EMP0018_2025-3,QA | Finance
-EMP0009_2025-3,Design | Data Science | Engineering | Support | HR | IT
-EMP0009_2025-4,Design | Engineering | Product Management | DevOps | Support | Finance | HR | IT
-EMP0009_2025-5,Product Management | DevOps | Support
-EMP0016_2025-3,Design | QA | Product Management | Support
-EMP0009_2025-6,Data Science | HR
-EMP0016_2025-5,Engineering | Support | HR
-EMP0018_2025-5,Design | Data Science | Engineering | Product Management | DevOps | IT
-EMP0018_2025-4,Product Management | DevOps | Finance | HR
-EMP0016_2025-4,Design | Data Science | DevOps | Finance | HR
-EMP0023_2025-4,Design | QA | Data Science | DevOps | Product Management | Support | HR | IT
-EMP0016_2025-6,Design | HR
-EMP0023_2025-5,Design | Data Science | Support | IT
-EMP0021_2025-3,QA | Design | Data Science | Engineering | Product Management
-EMP0023_2025-3,QA | Product Management | IT
-EMP0012_2025-3,Data Science | DevOps
-EMP0003_2025-3,Design | Engineering | DevOps
-EMP0012_2025-4,QA | Design | Engineering | Support | Finance | HR
-EMP0014_2025-5,Data Science | Design | Engineering | DevOps | Finance | HR | IT
-EMP0014_2025-4,Design | Product Management | Support | HR | IT
-EMP0012_2025-5,QA | Finance | HR
-EMP0007_2025-6,Design | Finance
-EMP0003_2025-5,Product Management | Support | Finance | HR | IT
-EMP0014_2025-3,QA | Engineering | Product Management | Finance | HR | IT
-EMP0010_2025-3,Design | Data Science | Engineering | DevOps | IT
-EMP0003_2025-4,Data Science | Design
-EMP0005_2025-4,Data Science | Engineering | Product Management | Finance
-EMP0007_2025-4,Support | Finance | IT
-EMP0005_2025-5,Design | QA | Data Science | Engineering | Support | Finance
-EMP0007_2025-5,Data Science | Engineering | DevOps | IT
-EMP0001_2025-5,QA | Data Science | DevOps | Product Management | Finance | HR
-EMP0007_2025-3,Finance | HR
-EMP0001_2025-3,Design | Engineering | Support
+EMP0020_2025-6,Product Management -> DevOps -> HR
+EMP0020_2025-5,Data Science -> DevOps -> Finance -> IT
+EMP0020_2025-4,Data Science -> Engineering
+EMP0020_2025-3,Design -> Data Science -> Engineering -> DevOps -> Product Management -> Support -> HR
+EMP0021_2025-4,QA -> Product Management -> HR
+EMP0021_2025-5,Engineering -> Product Management -> Support -> HR -> IT
+EMP0022_2025-5,Data Science -> Product Management
+EMP0019_2025-4,Engineering -> DevOps
+EMP0019_2025-3,Support -> HR
+EMP0017_2025-5,Design -> Data Science -> QA -> Engineering -> DevOps -> Product Management -> HR
+EMP0017_2025-3,DevOps -> Product Management -> Finance -> HR
+EMP0015_2025-3,Design -> Data Science -> QA -> HR
+EMP0017_2025-4,Design -> Product Management
+EMP0015_2025-4,Product Management -> DevOps -> Finance -> HR -> IT
+EMP0015_2025-5,Design -> DevOps -> Product Management -> Support -> IT
+EMP0019_2025-5,Design -> Product Management -> Support
+EMP0024_2025-5,Design -> DevOps -> Finance
+EMP0022_2025-4,DevOps -> Support -> IT
+EMP0024_2025-4,Data Science -> Engineering -> Product Management -> DevOps -> HR
+EMP0022_2025-3,Design -> Product Management -> Finance
+EMP0024_2025-3,Design -> Engineering -> DevOps -> Product Management
+EMP0004_2025-3,DevOps -> Product Management -> Support -> IT
+EMP0013_2025-5,Design -> Finance -> HR -> IT
+EMP0004_2025-4,QA -> Data Science -> Design -> Engineering -> Support -> Finance -> HR
+EMP0013_2025-3,QA -> DevOps -> Finance
+EMP0013_2025-4,Design -> QA -> Engineering -> DevOps -> Support -> Finance -> HR
+EMP0006_2025-4,Finance -> HR
+EMP0011_2025-4,Finance -> IT
+EMP0011_2025-3,Product Management -> Support
+EMP0006_2025-3,Design -> DevOps -> Product Management -> Support
+EMP0002_2025-4,Design -> QA -> Product Management -> Finance -> HR
+EMP0004_2025-5,QA -> Design -> Data Science -> Engineering -> Support -> HR -> IT
+EMP0004_2025-6,Finance -> HR
+EMP0006_2025-5,Design -> Data Science -> QA -> Support -> Finance
+EMP0008_2025-5,Design -> QA -> Engineering -> Support -> Finance -> IT
+EMP0008_2025-4,Data Science -> QA -> Engineering -> DevOps -> Product Management -> Finance -> HR -> IT
+EMP0008_2025-3,Design -> Data Science -> Product Management -> Finance -> IT
+EMP0010_2025-4,Data Science -> QA -> DevOps
+EMP0011_2025-5,Design -> QA -> Product Management -> Finance
+EMP0010_2025-5,Design -> Engineering -> Product Management -> Support -> Finance -> HR
+EMP0018_2025-3,QA -> Finance
+EMP0009_2025-3,Design -> Data Science -> Engineering -> Support -> HR -> IT
+EMP0009_2025-4,Design -> Engineering -> Product Management -> DevOps -> Support -> Finance -> HR -> IT
+EMP0009_2025-5,Product Management -> DevOps -> Support
+EMP0016_2025-3,Design -> QA -> Product Management -> Support
+EMP0009_2025-6,Data Science -> HR
+EMP0016_2025-5,Engineering -> Support -> HR
+EMP0018_2025-5,Design -> Data Science -> Engineering -> Product Management -> DevOps -> IT
+EMP0018_2025-4,Product Management -> DevOps -> Finance -> HR
+EMP0016_2025-4,Design -> Data Science -> DevOps -> Finance -> HR
+EMP0023_2025-4,Design -> QA -> Data Science -> DevOps -> Product Management -> Support -> HR -> IT
+EMP0016_2025-6,Design -> HR
+EMP0023_2025-5,Design -> Data Science -> Support -> IT
+EMP0021_2025-3,QA -> Design -> Data Science -> Engineering -> Product Management
+EMP0023_2025-3,QA -> Product Management -> IT
+EMP0012_2025-3,Data Science -> DevOps
+EMP0003_2025-3,Design -> Engineering -> DevOps
+EMP0012_2025-4,QA -> Design -> Engineering -> Support -> Finance -> HR
+EMP0014_2025-5,Data Science -> Design -> Engineering -> DevOps -> Finance -> HR -> IT
+EMP0014_2025-4,Design -> Product Management -> Support -> HR -> IT
+EMP0012_2025-5,QA -> Finance -> HR
+EMP0007_2025-6,Design -> Finance
+EMP0003_2025-5,Product Management -> Support -> Finance -> HR -> IT
+EMP0014_2025-3,QA -> Engineering -> Product Management -> Finance -> HR -> IT
+EMP0010_2025-3,Design -> Data Science -> Engineering -> DevOps -> IT
+EMP0003_2025-4,Data Science -> Design
+EMP0005_2025-4,Data Science -> Engineering -> Product Management -> Finance
+EMP0007_2025-4,Support -> Finance -> IT
+EMP0005_2025-5,Design -> QA -> Data Science -> Engineering -> Support -> Finance
+EMP0007_2025-5,Data Science -> Engineering -> DevOps -> IT
+EMP0001_2025-5,QA -> Data Science -> DevOps -> Product Management -> Finance -> HR
+EMP0007_2025-3,Finance -> HR
+EMP0001_2025-3,Design -> Engineering -> Support

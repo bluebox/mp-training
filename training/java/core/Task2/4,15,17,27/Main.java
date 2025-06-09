@@ -62,7 +62,8 @@ public class Main {
             ));
  
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
-            writer.write("Employee-Month,Average Weekly Hours\n");
+            writer.write("result of 4: Group by Employee and Month based on Average weekly hours\n");
+        	writer.write("Employee-Month,Average Weekly Hours\n");
             avgWeeklyHours.forEach((key, totalHours) -> {
                 try {
                     double avgWeekly = totalHours / 4.0; // approximate 4 weeks/month
@@ -83,6 +84,7 @@ public class Main {
             ));
  
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
+        	writer.write("result of 15: Detect >9hrs/Daylogs , Group by Employee and Date\n");
             writer.write("Employee ID,Date,Total Hours\n");
             dailyTotals.entrySet().stream()
                 .filter(entry -> entry.getValue() > 9.0)
@@ -107,11 +109,12 @@ public class Main {
             ));
      
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
+        	writer.write("result of 17: Track Department switches mid month\n");
             writer.write("Employee-Month,Departments Switched\n");
             empMonthToDepartments.forEach((key, departments) -> {
                 if (departments.size() > 1) {
                     try {
-                        writer.write(key + "," + String.join(" | ", departments) + "\n");
+                        writer.write(key + "," + String.join(" -> ", departments) + "\n");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -127,12 +130,13 @@ public class Main {
         Map<String, Long> timePeriodCounts = details.stream()
             .collect(Collectors.groupingBy(i -> {
                 int hour = 5 + rand.nextInt(15); 
-                if (hour >= 5 && hour < 12) return "Morning";
-                else if (hour >= 12 && hour < 17) return "Afternoon";
-                else return "Evening";
+                if (hour >= 5 && hour < 12) return "Morning"; //Morning: 5-12
+                else if (hour >= 12 && hour < 17) return "Afternoon"; //Afternoon : 12-17
+                else return "Evening"; //Evening : 17 - 5
             }, Collectors.counting()));
      
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
+        	writer.write("result of 27: Time period based grouping (morning-afternoon-evening)\n");
             writer.write("Time Period,Task Count\n");
             for (Map.Entry<String, Long> entry : timePeriodCounts.entrySet()) {
                 writer.write(entry.getKey() + "," + entry.getValue() + "\n");
