@@ -1,12 +1,13 @@
 package EmployeesAnalysisConsoleApp.src;
 import java.util.Map;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 
 public class Main {
 	public static void main(String[] args) {
-		String sourceDataPath = "/home/medplus/eclipse-workspace-1/OOP_Module/src/EmployeesAnalysisConsoleApp/SourceDataFiles/Sample_Employee_WorkLogs.csv";
-		String resultDataPath = "/home/medplus/eclipse-workspace-1/OOP_Module/src/EmployeesAnalysisConsoleApp/ResultDataFiles/";
+		String sourceDataPath = "EmployeesAnalysisConsoleApp/SourceDataFiles/Sample_Employee_WorkLogs.csv";
+		String resultDataPath = "EmployeesAnalysisConsoleApp/ResultDataFiles/";
 
 		List<EmployeesWorkLogPOJO> employeeLogs = ExcelFileReader.readingEmployeesWorkLogs(sourceDataPath);
 
@@ -22,6 +23,8 @@ public class Main {
 		Map<String, List<LocalDate>> lessThan2Hours = AnalysingExcelData.getLessthanTwoHourWorkDaysData(employeeLogs);
 		Map<String, Map<String, Double>> PercentTimeSpentTaskCategoryWisePerEmployeeData = AnalysingExcelData
 				.getPercentTimeSpentTaskCategoryWisePerEmployee(employeeLogs);
+		Map<String, Map<YearMonth, Double>> averageWeeklyHoursGroupByEmployeeAndMonthData = AnalysingExcelData.getAverageWeeklyHoursGroupByEmployeeAndMonth(employeeLogs);
+		
 
 		ExcelFileWriter.writeTopThreeTasks(topThreeTasks, resultDataPath + "Top3TasksPerDepartment.csv");
 		ExcelFileWriter.writeWeekendSummary(weekendHours, resultDataPath + "WeekendWorkingHoursSummary.csv");
@@ -30,6 +33,7 @@ public class Main {
 		ExcelFileWriter.writePercentTimeSpentTaskCategoryWisePerEmployee(
 				PercentTimeSpentTaskCategoryWisePerEmployeeData,
 				resultDataPath + "PercentTimeSpentTaskCategoryWisePerEmployeeData.csv");
+		ExcelFileWriter.writeAverageWeeklyHoursGroupByEmployeeAndMonth(averageWeeklyHoursGroupByEmployeeAndMonthData, resultDataPath + "averageWeeklyHoursGroupByEmployeeAndMonthData.csv");
 
 		System.out.println(
 				"Given Employee Logs data has been analysed and all 5 query results have been generated successfully!");
