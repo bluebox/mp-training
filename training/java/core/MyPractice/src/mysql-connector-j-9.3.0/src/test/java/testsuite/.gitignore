@@ -1,0 +1,17 @@
+/BaseQueryInterceptor.class
+/BaseTestCase$MockConnectionConfiguration.class
+/BaseTestCase.class
+/BufferingLogger.class
+/InjectedSocketFactory$InjectedInputStream.class
+/InjectedSocketFactory$SocketWrapper.class
+/InjectedSocketFactory.class
+/JUnitSummary.class
+/MockJndiContextFactory$MockJndiContext.class
+/MockJndiContextFactory$MockJndiName.class
+/MockJndiContextFactory$MockJndiNameParser.class
+/MockJndiContextFactory.class
+/TestUtils.class
+/UnreliableSocketFactory$HangingInputStream.class
+/UnreliableSocketFactory$HangingOutputStream.class
+/UnreliableSocketFactory$HangingSocket.class
+/UnreliableSocketFactory.class

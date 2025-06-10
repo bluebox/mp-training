@@ -1,0 +1,6 @@
+/MysqlCallback.class
+/MysqlCallbackHandler.class
+/OpenidConnectAuthenticationCallback.class
+/OpenidConnectIdTokenFromFileCallbackHandler.class
+/UsernameCallback.class
+/WebAuthnAuthenticationCallback.class
