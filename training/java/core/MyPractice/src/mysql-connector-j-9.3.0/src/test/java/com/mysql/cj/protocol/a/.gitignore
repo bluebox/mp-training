@@ -1,0 +1,10 @@
+/CompressedPacketSenderTest$CompressedPackets.class
+/CompressedPacketSenderTest.class
+/DebugBufferingPacketSenderTest.class
+/MysqlBinaryValueDecoderTest.class
+/MysqlTextValueDecoderTest.class
+/PacketSenderTestBase.class
+/SimplePacketReaderTest$FixedBufferSocketConnection.class
+/SimplePacketReaderTest$MockSocketConnection.class
+/SimplePacketReaderTest.class
+/SimplePacketSenderTest.class

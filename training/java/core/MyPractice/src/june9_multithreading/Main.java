@@ -14,11 +14,11 @@ public class Main {
 
         ShoeWarehouse warehouse = new ShoeWarehouse();
 
-        ExecutorService orderingService = Executors.newCachedThreadPool();
+        ExecutorService orderingService = Executors.newSingleThreadExecutor();
 
         // Creating and submitting order tasks
         for (int i = 0; i < 15; i++) {
-            Runnable task = () -> {
+            Callable<Object> task = () -> {
                 Order order = generateOrder();
                 try {
                     // Random delay before placing the order
@@ -28,6 +28,7 @@ public class Main {
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt(); // safer than RuntimeException
                 }
+				return order;
             };
 
             try {

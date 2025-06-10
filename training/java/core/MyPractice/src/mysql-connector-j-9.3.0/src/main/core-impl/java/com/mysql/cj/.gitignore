@@ -1,0 +1,16 @@
+/AbstractQuery.class
+/CancelQueryTaskImpl.class
+/ClientPreparedQuery.class
+/CoreSession.class
+/DataStoreMetadataImpl.class
+/LicenseConfiguration.class
+/MysqlxSession.class
+/NativeCharsetSettings.class
+/NativeQueryAttributesBindings.class
+/NativeQueryBindValue.class
+/NativeQueryBindings.class
+/NativeSession.class
+/NoSubInterceptorWrapper.class
+/ServerPreparedQuery.class
+/ServerPreparedQueryTestcaseGenerator.class
+/SimpleQuery.class

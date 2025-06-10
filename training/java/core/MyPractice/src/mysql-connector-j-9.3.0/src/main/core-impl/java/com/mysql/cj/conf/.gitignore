@@ -1,0 +1,16 @@
+/AbstractPropertyDefinition.class
+/AbstractRuntimeProperty.class
+/BooleanProperty.class
+/BooleanPropertyDefinition$AllowableValues.class
+/BooleanPropertyDefinition.class
+/DefaultPropertySet.class
+/EnumProperty.class
+/EnumPropertyDefinition.class
+/IntegerProperty.class
+/IntegerPropertyDefinition.class
+/LongProperty.class
+/LongPropertyDefinition.class
+/MemorySizeProperty.class
+/MemorySizePropertyDefinition.class
+/StringProperty.class
+/StringPropertyDefinition.class
