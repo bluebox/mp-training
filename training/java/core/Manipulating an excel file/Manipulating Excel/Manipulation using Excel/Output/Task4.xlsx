@@ -1,21 +1,22 @@
 Employee ID,Name,Department,Hours Worked
-EMP0006,durga prasad,QA,9.88
+EMP0010,Mourya,Design,8.77
+EMP0013,Rachith,Design,8.39
 EMP0012,Niranjan,QA,9.47
+EMP0021,Sri sai,QA,8.37
 EMP0009,Manoj,Data Science,9.8
-EMP0018,Sai krishna,Data Science,9.67
-EMP0009,Manoj,Design,9.84
-EMP0011,Naga bhushan,Design,9.82
-EMP0009,Manoj,Engineering,9.66
-EMP0009,Manoj,Engineering,9.13
-EMP0020,Sameer,Product Management,9.98
-EMP0014,Ram,Product Management,9.35
-EMP0009,Manoj,DevOps,10.0
-EMP0008,Maneesh,DevOps,9.45
+EMP0010,Mourya,Data Science,8.1
+EMP0024,Vara prasad,Engineering,8.28
+EMP0001,Abhinav,Engineering,6.03
+EMP0009,Manoj,DevOps,7.88
+EMP0020,Sameer,DevOps,7.64
+EMP0015,Ram sai,Product Management,9.08
+EMP0021,Sri sai,Product Management,8.5
 EMP0019,Saketh,Support,9.71
-EMP0016,Renaiah,Support,9.67
+EMP0022,Surya,Support,6.68
 EMP0013,Rachith,Finance,9.88
-EMP0007,Madhav,Finance,9.43
-EMP0014,Ram,HR,8.93
+EMP0014,Ram,Finance,9.02
 EMP0019,Saketh,HR,8.6
-EMP0020,Sameer,IT,9.71
-EMP0014,Ram,IT,9.6
+EMP0016,Renaiah,HR,8.58
+EMP0015,Ram sai,IT,8.91
+EMP0021,Sri sai,IT,7.49
+P0004,Bhanu prakash,IT,8.4
