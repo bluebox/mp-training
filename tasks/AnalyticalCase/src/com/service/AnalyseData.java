@@ -16,7 +16,8 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class AnalyseData {
-	public static WriteToExcel writeToExcel = new WriteToExcel();
+
+	private static WriteToExcel writeToExcel = new WriteToExcel();
 
 	public static Map<String, List<EmployeePojo>> timeConsumingWork(List<EmployeePojo> employeeList) {
 		Map<String, List<EmployeePojo>> groupedEmployees = new HashMap<>();
@@ -100,28 +101,19 @@ public class AnalyseData {
 	public static void calculateProjectProductivity(List<EmployeePojo> employeeList) {
 		Map<String, List<EmployeePojo>> projectMap = new HashMap<>();
 
-		projectMap = employeeList.stream()
-				.collect(Collectors.groupingBy(EmployeePojo::getProjectId));
+		projectMap = employeeList.stream().collect(Collectors.groupingBy(EmployeePojo::getProjectId));
 
 		List<List<Object>> data = new ArrayList<>();
+		projectMap.forEach((projectId, employees) -> {
+			double totalHours = employees.stream().mapToDouble(EmployeePojo::getHoursWorked).sum();
 
-		for (Map.Entry<String, List<EmployeePojo>> entry : projectMap.entrySet()) {
-			String projectId = entry.getKey();
-			List<EmployeePojo> employees = entry.getValue();
+			long uniqueEmployeeCount = employees.stream().map(EmployeePojo::getEmployeeId).distinct().count();
 
-			double totalHours = 0.0;
-			for (EmployeePojo emp : employees) {
-				totalHours += emp.getHoursWorked();
-			}
+			double avgHours = uniqueEmployeeCount == 0 ? 0.0 : totalHours / uniqueEmployeeCount;
 
-			Set<String> uniqueEmployees = new HashSet<>();
-			for (EmployeePojo emp : employees) {
-				uniqueEmployees.add(emp.getEmployeeId());
-			}
-
-			double avgHours = uniqueEmployees.isEmpty() ? 0.0 : totalHours / uniqueEmployees.size();
 			data.add(Arrays.asList(projectId, totalHours, avgHours));
-		}
+		});
+
 		List<String> headers = Arrays.asList("Project", "Total Hours", "Avg Hours/Employee");
 
 		writeToExcel.writeToExcel("ProjectProductivity", headers, data);
@@ -130,38 +122,25 @@ public class AnalyseData {
 	public static void calculateStdDevPerProject(List<EmployeePojo> employeeList) {
 		Map<String, List<EmployeePojo>> projectGroups = new HashMap<>();
 
-		projectGroups = employeeList.stream()
-				.collect(Collectors.groupingBy(EmployeePojo::getProjectId));
-		
+		projectGroups = employeeList.stream().collect(Collectors.groupingBy(EmployeePojo::getProjectId));
 
 		List<String> headers = Arrays.asList("Project", "Std Dev of Employee Hours");
 		List<List<Object>> data = new ArrayList<>();
 
-		for (String projectId : projectGroups.keySet()) {
-			List<EmployeePojo> employees = projectGroups.get(projectId);
-
-			Map<String, Double> employeeHours = new HashMap<>();
-			for (EmployeePojo emp : employees) {
-				String empId = emp.getEmployeeId();
-				employeeHours.put(empId, employeeHours.getOrDefault(empId, 0.0) + emp.getHoursWorked());
-			}
+		projectGroups.forEach((projectId, employees) -> {
+			Map<String, Double> employeeHours = employees.stream().collect(Collectors
+					.groupingBy(EmployeePojo::getEmployeeId, Collectors.summingDouble(EmployeePojo::getHoursWorked)));
 
 			List<Double> hoursList = new ArrayList<>(employeeHours.values());
-			double sum = 0.0;
-			for (Double hours : hoursList) {
-				sum += hours;
-			}
-			double mean = hoursList.isEmpty() ? 0.0 : sum / hoursList.size();
 
-			double sumSquaredDiff = 0.0;
-			for (Double hours : hoursList) {
-				sumSquaredDiff += Math.pow(hours - mean, 2);
-			}
-			double stdDev = hoursList.isEmpty() ? 0.0 : Math.sqrt(sumSquaredDiff / hoursList.size());
+			double mean = hoursList.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
+
+			double stdDev = Math.sqrt(hoursList.stream().mapToDouble(h -> Math.pow(h - mean, 2)).average().orElse(0.0));
 
 			data.add(Arrays.asList(projectId, stdDev));
-		}
+		});
 
 		writeToExcel.writeToExcel("StdDevEmployeeHours", headers, data);
 	}
+
 }
