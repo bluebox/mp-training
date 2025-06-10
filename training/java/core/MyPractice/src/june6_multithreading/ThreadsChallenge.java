@@ -1,4 +1,4 @@
-package samplecodes;
+package june6_multithreading;
 
 public class ThreadsChallenge {
 

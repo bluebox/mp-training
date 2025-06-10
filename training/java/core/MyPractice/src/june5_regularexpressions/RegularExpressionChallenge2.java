@@ -1,4 +1,4 @@
-package samplecodes;
+package june5_regularexpressions;
 import java.util.regex.*;
 public class RegularExpressionChallenge2 {
 	public static void main(String[] args) {

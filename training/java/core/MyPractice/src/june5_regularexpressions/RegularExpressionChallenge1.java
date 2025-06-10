@@ -1,4 +1,4 @@
-package samplecodes;
+package june5_regularexpressions;
 
 public class RegularExpressionChallenge1 {
 
