@@ -369,6 +369,11 @@ public class MyGym implements Gym{
         String password ;
         System.out.println("Enter Admin name");
         name= sc.nextLine();
+        while(!Main.isOnlyAphabets(name)) {
+        	System.out.print("Enter only alphabets : ")
+        	name= sc.nextLine();
+        }
+        
         System.out.println("Enter Admin password :");
         
         password= sc.nextLine();
