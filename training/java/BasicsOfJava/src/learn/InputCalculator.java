@@ -4,6 +4,7 @@ public class InputCalculator {
 	
 	public static void main(String[] args) {
 		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		int minimumNumber = 0, maximumNumber = 0,sum = 0,countOfNumbers = 0;
 		try
@@ -11,7 +12,7 @@ public class InputCalculator {
 			do {
 				System.out.println("Enter a number ");
 				
-				var input = scanner.nextLine();
+				String input = scanner.nextLine();
 				int number = Integer.parseInt(input);
 				
 				countOfNumbers += 1;

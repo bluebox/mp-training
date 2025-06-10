@@ -1,6 +1,6 @@
 [ {
-  "version" : "9.0.0-20250608010218+0000",
-  "buildTime" : "20250608010218+0000",
+  "version" : "9.0.0-20250610013625+0000",
+  "buildTime" : "20250610013625+0000",
   "current" : false,
   "snapshot" : true,
   "nightly" : false,
@@ -9,12 +9,12 @@
   "rcFor" : "",
   "milestoneFor" : "",
   "broken" : false,
-  "downloadUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.0.0-20250608010218+0000-bin.zip",
-  "checksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.0.0-20250608010218+0000-bin.zip.sha256",
-  "wrapperChecksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.0.0-20250608010218+0000-wrapper.jar.sha256"
+  "downloadUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.0.0-20250610013625+0000-bin.zip",
+  "checksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.0.0-20250610013625+0000-bin.zip.sha256",
+  "wrapperChecksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.0.0-20250610013625+0000-wrapper.jar.sha256"
 }, {
-  "version" : "9.1.0-20250608001320+0000",
-  "buildTime" : "20250608001320+0000",
+  "version" : "9.1.0-20250610001512+0000",
+  "buildTime" : "20250610001512+0000",
   "current" : false,
   "snapshot" : true,
   "nightly" : true,
@@ -23,9 +23,9 @@
   "rcFor" : "",
   "milestoneFor" : "",
   "broken" : false,
-  "downloadUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.1.0-20250608001320+0000-bin.zip",
-  "checksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.1.0-20250608001320+0000-bin.zip.sha256",
-  "wrapperChecksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.1.0-20250608001320+0000-wrapper.jar.sha256"
+  "downloadUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.1.0-20250610001512+0000-bin.zip",
+  "checksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.1.0-20250610001512+0000-bin.zip.sha256",
+  "wrapperChecksumUrl" : "https://services.gradle.org/distributions-snapshots/gradle-9.1.0-20250610001512+0000-wrapper.jar.sha256"
 }, {
   "version" : "8.14.2",
   "buildTime" : "20250605133201+0000",

@@ -3,7 +3,6 @@ package com.employee;
 import com.employee.domain.EmployeeWorkLog;
 import com.employee.services.CountOfTagsInRemarks;
 import com.employee.services.DaysWithLessthanTwoHours;
-import com.employee.services.EmployeeAnalytics;
 import com.employee.services.ExcelReader;
 import com.employee.services.ProjectWiseProductivity;
 import com.employee.services.SummarizeWeekendHours;
@@ -24,11 +23,11 @@ public class Main {
         urgentCritical.writeUrgentCriticalLogs(logs, "UrgentLogs.xlsx");
         
         ProjectWiseProductivity projectWiseProductivity = new ProjectWiseProductivity();
-        projectWiseProductivity.writeProjectProductivity(logs, "Project-wise productivity.xlsx");
+        projectWiseProductivity.writeProjectProductivity(logs, "Projectwiseproductivity.xlsx");
         
         
         SummarizeWeekendHours summarizeWeekendHours = new SummarizeWeekendHours();
-        summarizeWeekendHours.writeWeekendSummary(logs, "Weekend summary.xlsx");
+        summarizeWeekendHours.writeWeekendSummary(logs, "WeekendSummary.xlsx");
         
         DaysWithLessthanTwoHours daysWithLessthanTwoHours = new DaysWithLessthanTwoHours();
         daysWithLessthanTwoHours.writeLowHourLogs(logs, "LowHoursLogs.xlsx");
@@ -39,6 +38,6 @@ public class Main {
         
         
 
-        System.out.println("Analytics exported");
+        System.out.println("Files created");
     }
 }

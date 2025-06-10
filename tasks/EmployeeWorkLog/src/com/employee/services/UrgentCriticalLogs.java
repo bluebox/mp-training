@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+//import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -33,6 +34,7 @@ public class UrgentCriticalLogs {
 	        }
 
 	        int rowIndex = 1;
+	        // use AtomicInteger
 	        for (EmployeeWorkLog log : logs) {
 	            Row row = sheet.createRow(rowIndex++);
 	            row.createCell(0).setCellValue(log.getEmployeeId());
@@ -47,9 +49,6 @@ public class UrgentCriticalLogs {
 
 	        try (FileOutputStream fos = new FileOutputStream(filePath)) {
 	            workbook.write(fos);
-	        }
-	        catch(IOException e) {
-	        	e.printStackTrace();
 	        }
 	        workbook.close();
 	    }

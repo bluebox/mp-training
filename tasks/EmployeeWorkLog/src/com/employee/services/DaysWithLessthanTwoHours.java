@@ -42,9 +42,6 @@ public class DaysWithLessthanTwoHours {
         try (FileOutputStream fos = new FileOutputStream(filePath)) {
             workbook.write(fos);
         }
-        catch(IOException e) {
-        	e.printStackTrace();
-        }
         workbook.close();
     }
 }

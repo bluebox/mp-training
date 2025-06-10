@@ -28,8 +28,6 @@ public class SummarizeWeekendHours {
 	    		        Collectors.summingDouble(EmployeeWorkLog::getHoursWorked)
 	    		    ));
 	    	
-	    	
-	    	
 	        Workbook workbook = new XSSFWorkbook();
 	        Sheet sheet = workbook.createSheet("Weekend Summary");
 	        Row header = sheet.createRow(0);

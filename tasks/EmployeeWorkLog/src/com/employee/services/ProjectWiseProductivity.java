@@ -20,11 +20,11 @@ public class ProjectWiseProductivity {
     	
     	
     	Map<String, Map<String, Double>> data = new HashMap<>();
-        Map<String, List<EmployeeWorkLog>> groupedByProject = logs.stream()
+        Map<String, List<EmployeeWorkLog>> groupedByProjectId = logs.stream()
         				.collect(Collectors
         				.groupingBy(EmployeeWorkLog::getProjectId));
 
-        for (Map.Entry<String, List<EmployeeWorkLog>> entry : groupedByProject.entrySet()) {
+        for (Map.Entry<String, List<EmployeeWorkLog>> entry : groupedByProjectId.entrySet()) {
             String projectId = entry.getKey();
             List<EmployeeWorkLog> projectLogs = entry.getValue();
             
@@ -57,10 +57,6 @@ public class ProjectWiseProductivity {
 
         try (FileOutputStream fos = new FileOutputStream(filePath)) {
             workbook.write(fos);
-        }
-        catch(IOException e) {
-        	
-        	e.printStackTrace();
         }
         workbook.close();
     }
