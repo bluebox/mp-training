@@ -2,7 +2,7 @@ public class PrintSquareStars{
     public static void main(String [] args){
         printSquareStars(8);
     
-        printSquareStars(10);
+        printSquareStars(100);
         printSquareStars(4);
 
         printSquareStars(0);

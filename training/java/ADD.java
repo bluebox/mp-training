@@ -4,6 +4,7 @@ public class Add {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner S=new Scanner(System.in);
+		System.out.println("hai");
 		int a=S.nextInt();
 		int b=S.nextInt();
 		System.out.print(a+b);
