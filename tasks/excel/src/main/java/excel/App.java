@@ -92,7 +92,9 @@ public class App {
 
     public static void main(String[] args) {
         App reader = new App();
+        //Runnable thread1 = reader::readExcel("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.xlsx");
         ArrayList<Employee> emps = reader.readExcel("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.xlsx");
+        //ArrayList<Employee>emps = thread1.run();
         emps.forEach(System.out::println);
     }
 }
