@@ -13,8 +13,8 @@ public class TeenCheck {
 			return true;
 		
 		}return false;
-	}
+
 
 }
 
-
+}
