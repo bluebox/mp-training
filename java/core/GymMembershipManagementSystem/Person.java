@@ -1,19 +1,21 @@
 package GymMembershipManagementSystem;
 
+import java.time.LocalDate;
+import java.time.Period;
 
 abstract class Person {
     private String name;
     private int age;
     private String gender;
-    private String dob;
+    private LocalDate dob;
     private double weight;
-    private String dateOfJoining;
+    private LocalDate dateOfJoining;
 
-    public Person(String personName,String personGender,String personDob, int personAge,double personWeight,String personJoinDate) {
+    public Person(String personName,String personGender,LocalDate personDob,double personWeight,LocalDate personJoinDate) {
     	this.name = personName;
     	this.gender = personGender;
     	this.dob = personDob;
-        this.age = personAge;
+        this.age = Period.between(dob, LocalDate.now()).getYears();
         this.weight = personWeight;
         this.dateOfJoining=personJoinDate;
     }
@@ -26,7 +28,7 @@ abstract class Person {
     	return gender; 
     }
     
-    public String getDOB() { 
+    public LocalDate getDOB() { 
     	return dob; 
     }
     
@@ -36,7 +38,7 @@ abstract class Person {
     	return weight; 
     }
     
-    public String getJoinDate() {
+    public LocalDate getJoinDate() {
     	return dateOfJoining;
     }
     

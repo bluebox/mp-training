@@ -1,7 +1,10 @@
 package GymMembershipManagementSystem;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-
+import java.util.regex.Pattern;
 public class Main {
 
 	public static void main(String[] args) {
@@ -25,22 +28,63 @@ public class Main {
 
                 switch (choice) {
                     case 1 -> {
-                        System.out.print("Enter Member ID: ");
-                        String id = sc.nextLine();
+                        Random r=new Random();
+                        String id=Integer.toString(LocalDate.now().getYear());
+                        int id1;
+                        while(true) {
+                        	id1=r.nextInt(1000);
+                        	if(!Gym.members.containsKey(id+String.format("%03d", id1))) {
+                        		break;
+                        	}
+                        };
+                        id+=String.format("%03d", id1);
                         System.out.print("Enter Name: ");
                         String name = sc.nextLine();
-                        System.out.print("Enter Member Gender (Male/Female/Other) : ");
+                        if(!Pattern.matches("^[A-Za-z ]+$", name)) {
+                        	
+                        	throw new InvalidDataException("Invalid Name.Please give me correct name");
+                        }
+                        System.out.print("Enter Member Gender (Male/Female/Others) : ");
                         String gender = sc.nextLine();
+                        if(!gender.toLowerCase().equals("male")&&!gender.toLowerCase().equals("female")&&!gender.toLowerCase().equals("others")) {
+                        	throw new InvalidDataException("Invalid Gender");
+                        }
+                        else {
+                        	gender=gender.substring(0, 1).toUpperCase()+gender.substring(1).toLowerCase();
+                        }
                         System.out.print("Enter Member Date of Birth (DD-MM-YYYY) : ");
-                        String dob=sc.nextLine();
-                        System.out.print("Enter Age: ");
-                        int age = sc.nextInt();
+                        String date=sc.nextLine();
+                        LocalDate dob;
+                        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                        try {
+                        	dob=LocalDate.parse(date, format);
+                        	if(dob.isAfter(LocalDate.now())) {
+                        		throw new InvalidDataException("Given date "+date+" is not valid");
+                        	}
+                        	int age=Period.between(dob, LocalDate.now()).getYears();
+                        	if(age>65||age<10) {
+                        		throw new InvalidDataException("Sorry to say this but your age is not preferrable for gym");
+                        	}
+                        }
+                        catch(Exception e) {
+                        	throw new InvalidDataException("Given date "+date+" is not in correct format");
+                        }
                         System.out.print("Enter Member Weight: ");
                         double weight = sc.nextDouble();
                         System.out.print("Enter Member Date of Joining (DD-MM-YYYY) : ");
                         sc.nextLine();
-                        String dateOfJoining=sc.nextLine();
-                        gym.addMember(id,name,gender,dob,age,weight,dateOfJoining);
+                        String doj=sc.nextLine();
+                        LocalDate dateOfJoining;
+                        try {
+                        	dateOfJoining=LocalDate.parse(doj,format);
+                        	if(dateOfJoining.isAfter(LocalDate.now())||dateOfJoining.isBefore(dob)) {
+                        		throw new InvalidDataException("Given date "+date+" is not valid");
+                        	}
+                        }
+                        catch(Exception e) {
+                        	throw new InvalidDataException("Given date "+date+" is not in correct format");
+                        }
+                        gym.addMember(id,name,gender,dob,weight,dateOfJoining);
                     }
 
                     case 2 -> {

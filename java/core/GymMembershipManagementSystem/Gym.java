@@ -1,9 +1,11 @@
 package GymMembershipManagementSystem;
 
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Gym {
-    private ArrayList<Member> members = new ArrayList<>();
+    public static Map<String,Member> members = new HashMap<>();
     private ArrayList<MembershipPlan> plans = new ArrayList<>();
     
     public Gym() {
@@ -14,37 +16,33 @@ public class Gym {
         plans.add(new MembershipPlan("Gold", 12, 4500.00));
     }
 
-    public void addMember(String id, String name,String gender,String dob,int age,double weight,String dateOfJoining) {
-    	for (Member member : members) {
-            if (member.getMemberId().equals(id)) {
+    public void addMember(String id, String name,String gender,LocalDate dob,double weight,LocalDate dateOfJoining) {
+    	members.keySet().stream().forEach(s->{
+    		if (s.equals(id)) {
             	System.out.println("	Already there is a member with the ID "+id+" please create with another ID...");
             	return;
             }
-           
-    	}
-         members.add(new Member(id,name,gender,dob,age,weight,dateOfJoining));
-          System.out.println("	"+name + " added successfully.Add his/her membership plan...");
+    	});
+        members.put(id,new Member(id,name,gender,dob,weight,dateOfJoining));
+        System.out.println("	"+name + " added successfully.Add his/her membership plan...");
     }
 
     public void assignPlanToMember(String memberId, int planIndex) {
-        for (Member member : members) {
-            if (member.getMemberId().equals(memberId)) {
-                if (planIndex >= 0 && planIndex < plans.size()) {
-                    member.assignPlan(plans.get(planIndex));
-                    System.out.println("	Plan assigned successfully to "+member.getName());
-                } else {
-                    System.out.println("	Invalid plan index,Please choose the plane (0-3) only..");
-                }
-                return;
+        members.keySet().stream().filter(s->s.equals(memberId))
+        .findFirst()
+        .ifPresentOrElse(s->{
+        	if (planIndex >= 0 && planIndex < plans.size()) {
+                members.get(s).assignPlan(plans.get(planIndex));
+                System.out.println("	Plan assigned successfully to "+members.get(s).getName());
+            } else {
+                System.out.println("	Invalid plan index,Please choose the plane (0-3) only..");
             }
-        }
-        System.out.println("	Member not found on this ID "+memberId+".Please register first...");
+        }, ()->{
+        	System.out.println("	Member not found on this ID "+memberId+".Please register first...");
+        });
     }
-
     public void showAllPlans() {
-    	for (int i = 0; i < plans.size(); i++) {
-    		System.out.println(i + ". " + plans.get(i));
-    	}
+    	IntStream.range(0, plans.size()).forEach(i->System.out.println(i+" "+plans.get(i)));
     }
     
     public void viewAllMembers() {
@@ -57,10 +55,7 @@ public class Gym {
             System.out.println("--------------------------------------------------------------");
         } 
         else {
-            
-            for (Member member : members) {
-                member.showDetails();
-            }
+            members.values().stream().forEach(Member::showDetails);
         }
 
     }

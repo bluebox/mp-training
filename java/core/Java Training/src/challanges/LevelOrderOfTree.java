@@ -1,5 +1,7 @@
 package challanges;
+
 import java.util.*;
+import java.util.Scanner;
 
 class Node{
 	public int data;
@@ -10,7 +12,7 @@ class Node{
 		left=right=null;
 	}
 }
-public class TreeTraversals {
+public class LevelOrderOfTree {
 	
 	public static Node insertNode(Node root,int data) {
 		if(root==null) {
@@ -25,27 +27,23 @@ public class TreeTraversals {
 		return root;
 	}
 	            
-	public static void preOrder(Node root) {
-		if(root!=null) {
-			System.out.print(root.data+"  ");
-			preOrder(root.left);
-			preOrder(root.right);
-		}
-	}
-	
-	public static void inOrder(Node root) {
-		if(root!=null) {
-			inOrder(root.left);
-			System.out.print(root.data+"  ");
-			inOrder(root.right);
-		}
-	}
-	
-	public static void postOrder(Node root) {
-		if(root!=null) {
-			postOrder(root.left);
-			postOrder(root.right);
-			System.out.print(root.data+"  ");
+	public static void levelOrderOfTree(Node root) {
+		if(root==null)
+			return;
+		Queue<Node> que=new LinkedList<>();
+		que.add(root);
+		
+		while(!que.isEmpty()) {
+			Node tmpNode = que.poll();
+			
+			System.out.print(tmpNode.data+" ");
+			
+			if(tmpNode.left != null) {
+				que.add(tmpNode.left);
+			}
+			if(tmpNode.right != null) {
+				que.add(tmpNode.right);
+			}
 		}
 	}
 
@@ -64,14 +62,10 @@ public class TreeTraversals {
 			root=insertNode(root,tree[i]);
 		}
 		System.out.println("Tree data : "+Arrays.toString(tree));
-		System.out.println("Pre order tree traversal : ");
-		preOrder(root);
-		System.out.println();
-		System.out.println("In order tree traversal : ");
-		inOrder(root);
-		System.out.println();
-		System.out.println("Post order tree traversal : ");
-		postOrder(root);
+		System.out.println("Level order of tree : ");
+		levelOrderOfTree(root);
+		
 	}
 
 }
+
