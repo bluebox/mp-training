@@ -13,10 +13,10 @@ public class Contact {
 	public String getName() {
 		return name;		
 	}
-	public String getPhoneNUmber() {
+	public String getPhoneNumber() {
 		return phoneNumber;		
 	}
-	public Contact createContact(String name, String phoneNumber) {
-		
+	public static Contact createContact(String name, String phoneNumber) {
+		return new Contact(name,phoneNumber);
 	}
 }
