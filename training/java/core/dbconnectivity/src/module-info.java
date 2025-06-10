@@ -4,6 +4,6 @@
 /**
  * 
  */
-module learnjava {
+module dbconnectivity {
 	requires java.sql;
 }
