@@ -20,11 +20,10 @@ public class DeletingARecordInDbUsingJDBC {
 			String q="delete from orders where order_id=1";
 			Statement st=conn.createStatement();
 			st.executeUpdate(q);
-			System.out.println("deleted");
+			System.out.println("deleted");	
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
 }
