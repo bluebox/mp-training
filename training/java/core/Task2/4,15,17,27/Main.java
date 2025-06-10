@@ -25,11 +25,11 @@ class EmployeeDetails {
         this.remarks = parts[7];
     }
  
-    public String getMonthKey() {
+    public String getMonthDetail() {
         return employeeId + "_" + date.getYear() + "-" + date.getMonthValue();
     }
  
-    public String getDateKey() {
+    public String getDateDetail() {
         return employeeId + "_" + date.toString();
     }
 }
@@ -57,7 +57,7 @@ public class Main {
     private static void solveQuestion4(List<EmployeeDetails> details, String outputPath) throws IOException {
         Map<String, Double> avgWeeklyHours = details.stream()
             .collect(Collectors.groupingBy(
-                EmployeeDetails::getMonthKey,
+                EmployeeDetails::getMonthDetail,
                 Collectors.summingDouble(i -> i.hoursWorked)
             ));
  
@@ -79,21 +79,21 @@ public class Main {
     private static void solveQuestion15(List<EmployeeDetails> details, String outputPath) throws IOException {
         Map<String, Double> dailyTotals = details.stream()
             .collect(Collectors.groupingBy(
-                EmployeeDetails::getDateKey,
-                Collectors.summingDouble(log -> log.hoursWorked)
+                EmployeeDetails::getDateDetail,
+                Collectors.summingDouble(i -> i.hoursWorked)
             ));
  
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
         	writer.write("result of 15: Detect >9hrs/Daylogs , Group by Employee and Date\n");
             writer.write("Employee ID,Date,Total Hours\n");
             dailyTotals.entrySet().stream()
-                .filter(entry -> entry.getValue() > 9.0)
-                .forEach(entry -> {
+                .filter(i -> i.getValue() > 9.0)
+                .forEach(i -> {
                     try {
-                        String[] parts = entry.getKey().split("_");
+                        String[] parts = i.getKey().split("_");
                         String empId = parts[0];
                         String date = parts[1];
-                        writer.write(empId + "," + date + "," + String.format("%.2f", entry.getValue()) + "\n");
+                        writer.write(empId + "," + date + "," + String.format("%.2f", i.getValue()) + "\n");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -105,7 +105,7 @@ public class Main {
         Map<String, Set<String>> empMonthToDepartments = details.stream()
             .collect(Collectors.groupingBy(
                 i -> i.employeeId + "_" + i.date.getYear() + "-" + i.date.getMonthValue(),
-                Collectors.mapping(log -> log.department, Collectors.toSet())
+                Collectors.mapping(i -> i.department, Collectors.toSet())
             ));
      
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
