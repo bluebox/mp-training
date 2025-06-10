@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
 
-public class LearningJdbc {
+public class OrderDb {
 
     // JDBC URL, username and password of MySQL server
     private static final String URL = "jdbc:mysql://localhost:3306/mydb";
@@ -31,20 +31,28 @@ public class LearningJdbc {
             stmt = conn.createStatement();
 
             // 4. Execute a query
-            String query = "SELECT age, name FROM employee";
+            //String query = "SELECT orderId, item FROM orders";
             
-            rs = stmt.executeQuery(query);
+            String query = "insert into orders values ('mobile' , 3)";
+           // String query = "delete from orders where orderId = 1";
+            
+            
+            int r = stmt.executeUpdate(query);
+            
+            if(r > 0) {
+            	System.out.println(r + " rows changed");
+            }
             
             
 
             // 5. Process the ResultSet
-            while (rs.next()) {
-                int age = rs.getInt("age");
-                String name = rs.getString("name");
-                
-
-                System.out.println("age: " + age + ", Name: " + name );
-            }
+//            while (rs.next()) {
+//                int orderId = rs.getInt("orderId");
+//                String item = rs.getString("item");
+//                
+//
+//                System.out.println("orderID: " + orderId + ", item: " + item );
+//            }
 
         } catch (ClassNotFoundException e) {
             System.out.println("MySQL JDBC Driver not found.");
@@ -65,3 +73,4 @@ public class LearningJdbc {
         }
     }
 }
+
