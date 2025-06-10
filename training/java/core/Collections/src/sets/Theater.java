@@ -22,8 +22,25 @@ public class Theater {
 			}
 		}
 	}
-	public void reserveSeat(String seatId)
+	public String reserveSeat(String seatId)
 	{
+		for(Seat seat:seats)
+		{
+			if(seat.getSeatId().equals(seatId))
+			{
+				if(seat.isReserved())
+				{
+					return "Seat Already Reserved";
+				}
+				else
+				{
+					seat.reserve();
+					return "Seat Reserved";
+				}
+			}
+			
+		}
+		return "Seat Not found";
 		
 	}
 	
@@ -52,6 +69,13 @@ public class Theater {
 		{
 			return seatId+(flag?"(\u2B24) ": "    ");
 		}
+		public String getSeatId() {
+			return seatId;
+		}
+		public void setSeatId(String seatId) {
+			this.seatId = seatId;
+		}
+
 		
 		
 	}
