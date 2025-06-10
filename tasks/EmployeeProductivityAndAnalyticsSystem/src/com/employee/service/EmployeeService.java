@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -142,6 +143,7 @@ public class EmployeeService {
 
 			categoryPercent.put(projectId, percentByCategory);
 		}
+
 		List<String[]> rows = new ArrayList<>();
 		rows.add(new String[] { "Project ID", "Task Category", "Contribution %" });
 
@@ -162,14 +164,19 @@ public class EmployeeService {
 		List<String[]> rows = new ArrayList<>();
 		rows.add(new String[] { "Employee ID" });
 
-		employees.entrySet().stream()
-				.filter(entry -> entry.getValue().stream()
-						.collect(Collectors.groupingBy(
-								employee -> employee.getDate().getYear() + "-" + employee.getDate().getMonthValue(),
-								Collectors.mapping(Employee::getProjectId, Collectors.toSet())))
-						.values().stream().anyMatch(projects -> projects.size() > 1))
-				.map(Map.Entry::getKey).map(id -> new String[] { id }).forEach(rows::add);
+		for (Map.Entry<String, List<Employee>> entry : employees.entrySet()) {
+			String empId = entry.getKey();
+			List<Employee> empLogs = entry.getValue();
 
+			Map<String, Set<String>> projectsByMonth = empLogs.stream()
+					.collect(Collectors.groupingBy(emp -> emp.getDate().getYear() + "-" + emp.getDate().getMonthValue(),
+							Collectors.mapping(Employee::getProjectId, Collectors.toSet())));
+			boolean switchedProject = projectsByMonth.values().stream().anyMatch(projectSet -> projectSet.size() > 1);
+
+			if (switchedProject) {
+				rows.add(new String[] { empId });
+			}
+		}
 		save.writeToCSV("Task4_ProjectSwitchers.csv", rows);
 
 	}
