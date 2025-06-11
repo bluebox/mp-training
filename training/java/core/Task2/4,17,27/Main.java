@@ -45,12 +45,9 @@ public class Main {
  
         solveQuestion4(details, "/home/developer/eclipse-workspace/Task22/src/4th.csv");
         System.out.println("Outputted 4th answer to 4th.csv");
-        solveQuestion15(details, "/home/developer/eclipse-workspace/Task22/src/15th.csv");
-        System.out.println("Outputted 15th answer to 15th.csv");
         solveQuestion17(details, "/home/developer/eclipse-workspace/Task22/src/17th.csv");
         System.out.println("Outputted 17th answer to 17th.csv");
-        solveQuestion27(details, "/home/developer/eclipse-workspace/Task22/src/27th.csv");
-        System.out.println("Outputted 27th answer to 27th.csv");
+        System.out.println("Insufficient data to solve 27th question;Timeperiods not mentioned.");
         
     }
  
@@ -72,32 +69,6 @@ public class Main {
                     e.printStackTrace();
                 }
             });
-        }
-    }
- 
-    
-    private static void solveQuestion15(List<EmployeeDetails> details, String outputPath) throws IOException {
-        Map<String, Double> dailyTotals = details.stream()
-            .collect(Collectors.groupingBy(
-                EmployeeDetails::getDateDetail,
-                Collectors.summingDouble(i -> i.hoursWorked)
-            ));
- 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
-        	writer.write("result of 15: Detect >9hrs/Daylogs , Group by Employee and Date\n");
-            writer.write("Employee ID,Date,Total Hours\n");
-            dailyTotals.entrySet().stream()
-                .filter(i -> i.getValue() > 9.0)
-                .forEach(i -> {
-                    try {
-                        String[] parts = i.getKey().split("_");
-                        String empId = parts[0];
-                        String date = parts[1];
-                        writer.write(empId + "," + date + "," + String.format("%.2f", i.getValue()) + "\n");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
         }
     }
     
@@ -124,23 +95,5 @@ public class Main {
     }
     
     
-    private static void solveQuestion27(List<EmployeeDetails> details, String outputPath) throws IOException {
-        Random rand = new Random();
-     
-        Map<String, Long> timePeriodCounts = details.stream()
-            .collect(Collectors.groupingBy(i -> {
-                int hour = 5 + rand.nextInt(15); 
-                if (hour >= 5 && hour < 12) return "Morning"; //Morning: 5-12
-                else if (hour >= 12 && hour < 17) return "Afternoon"; //Afternoon : 12-17
-                else return "Evening"; //Evening : 17 - 5
-            }, Collectors.counting()));
-     
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
-        	writer.write("result of 27: Time period based grouping (morning-afternoon-evening)\n");
-            writer.write("Time Period,Task Count\n");
-            for (Map.Entry<String, Long> entry : timePeriodCounts.entrySet()) {
-                writer.write(entry.getKey() + "," + entry.getValue() + "\n");
-            }
-        }
-    }
+    
 }
