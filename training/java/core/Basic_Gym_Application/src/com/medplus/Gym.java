@@ -13,18 +13,17 @@ import java.util.LinkedHashMap;
 public class Gym {
 	private final LinkedHashMap<Integer, Member> gymMembers = new LinkedHashMap<Integer, Member>();
 	private String url = "jdbc:mysql://localhost:3306/GymApplication"; // replace with your DB name
-	private String  user = "root"; // your username
-	private String password = "Medplus@321" ;  // your password
+	private String user = "root"; // your username
+	private String password = "Medplus@321"; // your password
 	private Connection conn;
 
-
 	public Gym() {
-			try{
+		try {
 			// 1. Load and register JDBC driver (optional for modern versions)
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// 2. Create connection
-			 conn = DriverManager.getConnection(url, user, password);
+			conn = DriverManager.getConnection(url, user, password);
 			System.out.println("Connected to the database!");
 
 			// 3. Create a statement
@@ -60,15 +59,11 @@ public class Gym {
 //			stmt.close();
 //			conn.close();
 
-		}catch(
-		SQLException e)
-		{
+		} catch (SQLException e) {
 			System.out.println("SQL Error: " + e.getMessage());
-		}catch(
-		ClassNotFoundException e)
-		{
+		} catch (ClassNotFoundException e) {
 			System.out.println("JDBC Driver not found: " + e.getMessage());
-		}
+		}  
 	}
 
 	public void add(Member member) {
@@ -79,9 +74,9 @@ public class Gym {
 			add.setInt(1, member.getMemberId());
 			add.setString(2, member.getName());
 			add.setInt(3, member.getAge());
-			add.setString(4,member.getPlan().name());
+			add.setString(4, member.getPlan().name());
 			add.setDate(5, Date.valueOf(member.getStartDate()));
-			add.setDate(6, Date.valueOf(member.getEndDate()));	
+			add.setDate(6, Date.valueOf(member.getEndDate()));
 			add.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Connection Failed !!!");
@@ -95,7 +90,7 @@ public class Gym {
 		String deleting = "DELETE FROM GymMembers where memberId = ?";
 		try {
 			PreparedStatement delete = conn.prepareStatement(deleting);
-			System.out.println("deleting mermeber : "+member.getMemberId());
+			System.out.println("deleting mermeber : " + member.getMemberId());
 			delete.setInt(1, member.getMemberId());
 			delete.executeUpdate();
 		} catch (SQLException e) {
@@ -106,6 +101,7 @@ public class Gym {
 	}
 
 	public ArrayList<Member> serachByName(String name) {
+
 		ArrayList<Member> arrayListByName = new ArrayList<>();
 		for (var i : gymMembers.values()) {
 			if (i.getName() == name) {
@@ -116,7 +112,7 @@ public class Gym {
 	}
 
 	public ArrayList<Member> getAllMembers() {
-		
+
 		return new ArrayList<Member>(gymMembers.values());
 	}
 
@@ -128,7 +124,7 @@ public class Gym {
 		String deleting = "DELETE FROM GymMembers where memberId = ?";
 		try {
 			PreparedStatement delete = conn.prepareStatement(deleting);
-			delete.setInt(1,id);
+			delete.setInt(1, id);
 			delete.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Connection Failed !!!");
