@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GymService {
+	
+	
 	private Gym gym;
 
 	public GymService() {

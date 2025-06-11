@@ -2,6 +2,7 @@ package com.dbconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,7 +10,7 @@ import java.sql.Statement;
 public class DBConnection {
 
 	public static void main(String[] args) {
-		String url = "jdbc:mysql://learnjava:3306/dblearnjava"; // replace with your DB name
+		String url = "jdbc:mysql://localhost:3306/dblearnjava"; // replace with your DB name
 		String user = "root"; // your username
 		String password = "Medplus@321"; // your password
 
@@ -29,9 +30,25 @@ public class DBConnection {
 
 			// 5. Process the result
 			while (rs.next()) {
-				System.out.println("name : " + rs.getString("name"));
+				System.out.println("name : " + rs.getString("name")+" Age : "+rs.getInt("Age"));
 				// Add more columns as needed
 			}
+			String sql = "INSERT INTO Employee (name,Age) VALUES (?,?)";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, "Ajay");
+			statement.setInt(2, 42);
+//			int Check = statement.executeUpdate();
+//			if (Check > 0 ) {
+//				System.out.println("Insertion done !!!");
+//			}else {
+//				System.out.println("Some Error Occured ");
+//			}
+			String delete = "DELETE FROM Employee where name = ?";
+			PreparedStatement deleteStatement = conn.prepareStatement(delete);
+			deleteStatement.setString(1, "Ajay");
+			deleteStatement.executeUpdate();
+			System.out.println("Deletion done !!!");
 
 			// 6. Close resources
 			rs.close();
