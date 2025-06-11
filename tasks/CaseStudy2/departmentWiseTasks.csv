@@ -1,0 +1,11 @@
+Department,Top 3 Time-Consuming Tasks
+QA,Training;Code Review;Testing
+Data Science,Deployment;Training;Code Review
+Design,Documentation;Development;Design Review
+Engineering,Code Review;Testing;Deployment
+Product Management,Monitoring;Documentation;Deployment
+DevOps,Deployment;Client Meeting;Training
+Support,Development;Documentation;Bug Fix
+Finance,Client Meeting;Code Review;Bug Fix
+HR,Development;Deployment;Client Meeting
+IT,Code Review;Testing;Design Review
