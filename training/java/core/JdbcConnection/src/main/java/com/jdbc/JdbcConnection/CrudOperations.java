@@ -82,8 +82,8 @@ public class CrudOperations {
 			ResultSet rs=st.executeQuery(query);
 			while(rs.next()) {
 				System.out.println("id : "+rs.getInt(1));
-//				System.out.println("name : "+rs.getString("name"));
-//				System.out.println("age : "+rs.getInt(3));
+				System.out.println("name : "+rs.getString("name"));
+				System.out.println("age : "+rs.getInt(3));
 				System.out.println();
 			}
 			
