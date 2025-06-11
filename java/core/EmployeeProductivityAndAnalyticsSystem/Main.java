@@ -19,7 +19,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<EmployeeWorkLog> employees = new ArrayList<>();
 
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= 400; i++) {
             String empid = ReadExcel("Sheet1", i, 0);
             String name = ReadExcel("Sheet1", i, 1);
             String dept = ReadExcel("Sheet1", i, 2);
@@ -43,83 +43,112 @@ public class Main {
 
 //        calling operation methods 
 //        Weekly Average hours employees month wise
-        Map<String, Map<String, Double>> empAvgHours = opeOnEmp.employeeAverageWeeklyHours(employees);
-        
-        int sheet2row = 0;
-        WriteExcel("Sheet2", sheet2row, 0, "Emp ID");
-        WriteExcel("Sheet2", sheet2row, 1, "Month");
-        WriteExcel("Sheet2", sheet2row, 2, "Avg Weekly Hours");
-        sheet2row++;
-
-        for (String empId : empAvgHours.keySet()) {
-            for (String month : empAvgHours.get(empId).keySet()) {
-                double avg = empAvgHours.get(empId).get(month) / 4.0;
-                WriteExcel("Sheet2", sheet2row, 0, empId);
-                WriteExcel("Sheet2", sheet2row, 1, month);
-                WriteExcel("Sheet2", sheet2row, 2, String.format("%.2f", avg));
-                sheet2row++;
-            }
-        }
+        Thread t1 = new Thread(()->{
+        	
+        	Map<String, Map<String, Double>> empAvgHours = opeOnEmp.employeeAverageWeeklyHours(employees);
+        	
+        	int sheet2row = 0;
+        	WriteExcel("Sheet2", sheet2row, 0, "Emp ID");
+        	WriteExcel("Sheet2", sheet2row, 1, "Month");
+        	WriteExcel("Sheet2", sheet2row, 2, "Avg Weekly Hours");
+        	sheet2row++;
+        	
+        	for (String empId : empAvgHours.keySet()) {
+        		for (String month : empAvgHours.get(empId).keySet()) {
+        			double avg = empAvgHours.get(empId).get(month) / 4.0;
+        			WriteExcel("Sheet2", sheet2row, 0, empId);
+        			WriteExcel("Sheet2", sheet2row, 1, month);
+        			WriteExcel("Sheet2", sheet2row, 2, String.format("%.2f", avg));
+        			sheet2row++;
+        		}
+        	}
+        	
+        });
 
 //        Top 5 emolyees with heighest hours in last 60 days
-        List<EmployeeWorkLog> empList = opeOnEmp.heighestHoursWorkedEmps(employees);
-        
-        int sheet3row = 0;
-        WriteExcel("Sheet3", sheet3row++, 0, "Top 5 Employees (in the Last 60 Days)");
-        WriteExcel("Sheet3", sheet3row, 0, "Emp ID");
-        WriteExcel("Sheet3", sheet3row, 1, "Name");
-        WriteExcel("Sheet3", sheet3row, 2, "Hours");
-        sheet3row++;
-
-        for (EmployeeWorkLog emp : empList) {
-            WriteExcel("Sheet3", sheet3row, 0, emp.getEmployeeId());
-            WriteExcel("Sheet3", sheet3row, 1, emp.getName());
-            WriteExcel("Sheet3", sheet3row, 2, String.valueOf(emp.getHoursWorked()));
-            sheet3row++;
-        }
+        Thread t2 = new Thread(()->{
+        	
+        	List<EmployeeWorkLog> empList = opeOnEmp.heighestHoursWorkedEmps(employees);
+        	
+        	int sheet3row = 0;
+        	WriteExcel("Sheet3", sheet3row++, 0, "Top 5 Employees (in the Last 60 Days)");
+        	WriteExcel("Sheet3", sheet3row, 0, "Emp ID");
+        	WriteExcel("Sheet3", sheet3row, 1, "Name");
+        	WriteExcel("Sheet3", sheet3row, 2, "Hours");
+        	sheet3row++;
+        	
+        	for (EmployeeWorkLog emp : empList) {
+        		WriteExcel("Sheet3", sheet3row, 0, emp.getEmployeeId());
+        		WriteExcel("Sheet3", sheet3row, 1, emp.getName());
+        		WriteExcel("Sheet3", sheet3row, 2, String.valueOf(emp.getHoursWorked()));
+        		sheet3row++;
+        	}
+        	
+        });
         
 //        Critical projects : > 2 employees and morethan 20 + hours
-        List<List<String>> criticalProjects = opeOnEmp.criticalProjects(employees);
-        
-        int sheet4row = 0;
-        WriteExcel("Sheet4", sheet4row++, 0, "Critical Projects (More than 2 Employees & 20+ Total Hours)");
-        WriteExcel("Sheet4", sheet4row, 0, "Project");
-        WriteExcel("Sheet4", sheet4row, 1, "Employees");
-        WriteExcel("Sheet4", sheet4row++, 2, "Total Hours");
-        
-        for (List<String> proj : criticalProjects) {
-            int col = 0;
-            for (String val : proj) {
-                WriteExcel("Sheet4", sheet4row, col++, val);
-            }
-            sheet4row++;
-        }
+        Thread t3 = new Thread(()->{
+        	
+        	List<List<String>> criticalProjects = opeOnEmp.criticalProjects(employees);
+        	
+        	int sheet4row = 0;
+        	WriteExcel("Sheet4", sheet4row++, 0, "Critical Projects (More than 2 Employees & 20+ Total Hours)");
+        	WriteExcel("Sheet4", sheet4row, 0, "Project");
+        	WriteExcel("Sheet4", sheet4row, 1, "Employees");
+        	WriteExcel("Sheet4", sheet4row++, 2, "Total Hours");
+        	
+        	for (List<String> proj : criticalProjects) {
+        		int col = 0;
+        		for (String val : proj) {
+        			WriteExcel("Sheet4", sheet4row, col++, val);
+        		}
+        		sheet4row++;
+        	}
+        });
         
 //        Sorted Employess Dept -> Project -> Date
         
-        List<String> sortedEmployeeLogs = opeOnEmp.sortByDeptProjectDate(employees);
-
-        int sheet5row = 0;
-        WriteExcel("Sheet5", sheet5row, 0, "Sorted Employee Logs by Dept → Project → Date");
-        sheet5row++;
-
-        WriteExcel("Sheet5", sheet5row, 0, "Emp ID");
-        WriteExcel("Sheet5", sheet5row, 1, "Name");
-        WriteExcel("Sheet5", sheet5row, 2, "Department");
-        WriteExcel("Sheet5", sheet5row, 3, "Project ID");
-        WriteExcel("Sheet5", sheet5row, 4, "Date");
-        WriteExcel("Sheet5", sheet5row, 5, "Task Category");
-        WriteExcel("Sheet5", sheet5row, 6, "Hours Worked");
-        WriteExcel("Sheet5", sheet5row, 7, "Remarks");
-        sheet5row++;
-
-        for (String line : sortedEmployeeLogs) {
+        Thread t4 = new Thread(()->{
         	
-            String[] parts = line.trim().split("\\s{2,}");
-            for (int column = 0; column < parts.length && column < 8; column++) {
-                WriteExcel("Sheet5", sheet5row, column, parts[column]);
-            }
-            sheet5row++;
+        	List<String> sortedEmployeeLogs = opeOnEmp.sortByDeptProjectDate(employees);
+        	
+        	int sheet5row = 0;
+        	WriteExcel("Sheet5", sheet5row, 0, "Sorted Employee Logs by Dept → Project → Date");
+        	sheet5row++;
+        	
+        	WriteExcel("Sheet5", sheet5row, 0, "Emp ID");
+        	WriteExcel("Sheet5", sheet5row, 1, "Name");
+        	WriteExcel("Sheet5", sheet5row, 2, "Department");
+        	WriteExcel("Sheet5", sheet5row, 3, "Project ID");
+        	WriteExcel("Sheet5", sheet5row, 4, "Date");
+        	WriteExcel("Sheet5", sheet5row, 5, "Task Category");
+        	WriteExcel("Sheet5", sheet5row, 6, "Hours Worked");
+        	WriteExcel("Sheet5", sheet5row, 7, "Remarks");
+        	sheet5row++;
+        	
+        	for (String line : sortedEmployeeLogs) {
+        		
+        		String[] parts = line.trim().split("\\s{2,}");
+        		for (int column = 0; column < parts.length && column < 8; column++) {
+        			WriteExcel("Sheet5", sheet5row, column, parts[column]);
+        		}
+        		sheet5row++;
+        	}
+        });
+        
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        
+        try {
+        	t1.join();
+        	t2.join();
+        	t3.join();
+        	t4.join();
+        }
+        catch(InterruptedException e) {
+        	e.printStackTrace();
         }
 
 
@@ -129,7 +158,7 @@ public class Main {
     public static String ReadExcel(String SheetName, int rNum, int cNum) {
         String data = "";
 
-        try (FileInputStream fis = new FileInputStream("/home/developer/eclipse-workspace/MP_Training/src/EmployeeProductivityAndAnalyticsSystem/Sample_Employee_WorkLogs.xlsx")) {
+        try (FileInputStream fis = new FileInputStream("/home/developer/eclipse-workspace/MP_Training/src/EmployeeProductivityAndAnalyticsSystem/Sample_Employee_WorkLogs1.xlsx")) {
             Workbook wb = WorkbookFactory.create(fis);
             Sheet s = wb.getSheet(SheetName);
             if (s == null) 
@@ -169,9 +198,9 @@ public class Main {
     }
     
     
-    public static void WriteExcel(String SheetName, int rNum, int cNum,String data) {
+    public static synchronized void WriteExcel(String SheetName, int rNum, int cNum,String data) {
         try {
-            FileInputStream fis = new FileInputStream("/home/developer/eclipse-workspace/MP_Training/src/EmployeeProductivityAndAnalyticsSystem/Sample_Employee_WorkLogs.xlsx");
+            FileInputStream fis = new FileInputStream("/home/developer/eclipse-workspace/MP_Training/src/EmployeeProductivityAndAnalyticsSystem/Sample_Employee_WorkLogs1.xlsx");
             Workbook wb = WorkbookFactory.create(fis);
             Sheet s = wb.getSheet(SheetName);
             if (s == null) {
@@ -190,49 +219,12 @@ public class Main {
 
             c.setCellValue(data);
 
-            FileOutputStream fos = new FileOutputStream("/home/developer/eclipse-workspace/MP_Training/src/EmployeeProductivityAndAnalyticsSystem/Sample_Employee_WorkLogs.xlsx");
+            FileOutputStream fos = new FileOutputStream("/home/developer/eclipse-workspace/MP_Training/src/EmployeeProductivityAndAnalyticsSystem/Sample_Employee_WorkLogs1.xlsx");
             wb.write(fos);
 
         } catch (Exception e) {
             System.out.println("Excel write exception");
             e.printStackTrace();
         }
-    }
-
-    
-//    public static void WriteExcel(String SheetName, int rNum, int cNum,String data) {
-//
-//	    try {
-//	        FileInputStream fis = new FileInputStream("E:\\Medplus Training\\Java Training\\UserData.xlsx");
-//	        Workbook wb = WorkbookFactory.create(fis);
-//	        Sheet s = wb.getSheet(SheetName);
-//	        if (s == null) {
-//	            System.out.println("Sheet not found: " + SheetName);
-//	            return;
-//	        }
-//
-//	        Row r = s.getRow(rNum);
-//	        if (r == null) {
-//	            System.out.println("Row not found: " + rNum);
-//	            return;
-//	        }
-//
-//	        Cell c = r.createCell(cNum);
-//	        if (c == null) {
-//	            System.out.println("Cell not found: " + cNum);
-//	            return;
-//	        }
-//	        c.setCellValue(data);
-//	        
-//	        FileOutputStream fos=new FileOutputStream("E:\\Medplus Training\\Java Training\\UserData.xlsx");
-//	        wb.write(fos);
-//
-//	    } catch (Exception e) {
-//	        System.out.println("Excel write exception");
-//	        e.printStackTrace();
-//	    }
-//	}
-
-    
-    
+    }    
 }
