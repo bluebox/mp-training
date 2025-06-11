@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module learnjava {
-	requires java.sql;
-}
