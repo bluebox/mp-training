@@ -1,0 +1,24 @@
+package GymCaseStudy;
+
+
+import java.util.ArrayList;
+
+class Trainers extends Person{
+
+    private int experiance;
+    public ArrayList<Members> assignedCoustomers;
+    public Trainers(String name,int age,int experiance) {
+        super(name,age);
+        this.experiance=experiance;
+        assignedCoustomers=new ArrayList<>();
+    }
+
+    public int  getExperiance(){
+        return experiance;
+    }
+    public void allocateCostomer(Members member){
+        assignedCoustomers.add(member);
+
+    }
+
+}
