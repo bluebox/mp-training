@@ -1,17 +1,16 @@
 package com.employee.services;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.DayOfWeek;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import com.employee.domain.EmployeeWorkLog;
 
 public class SummarizeWeekendHours {
@@ -28,15 +27,16 @@ public class SummarizeWeekendHours {
 	    		        Collectors.summingDouble(EmployeeWorkLog::getHoursWorked)
 	    		    ));
 	    	
-	        Workbook workbook = new XSSFWorkbook();
-	        Sheet sheet = workbook.createSheet("Weekend Summary");
-	        Row header = sheet.createRow(0);
-	        header.createCell(0).setCellValue("Week day");
-	        header.createCell(1).setCellValue("Total Hours");
+	    	List<String> headers = Arrays.asList("Week day", "Total hours worked");
+	    	
+	    	ExcelWriter excelWriter  = new ExcelWriter();
+	    	Workbook workbook = excelWriter.createWorkBook(headers);
+	    	Sheet sheet = workbook.getSheetAt(0);
 	        
-	        int rowIndex = 1;
+	        
+	        AtomicInteger rowIndex = new AtomicInteger(1);
 	        for (Map.Entry<DayOfWeek, Double> entry : weekendHours.entrySet()) {
-	            Row row = sheet.createRow(rowIndex++);
+	            Row row = sheet.createRow(rowIndex.getAndIncrement());
 	            if(entry.getKey().getValue() == 6) {
 	            	
 	            	row.createCell(0).setCellValue("Saturday");
@@ -48,9 +48,7 @@ public class SummarizeWeekendHours {
 	            row.createCell(1).setCellValue(entry.getValue());
 	        }
 
-	        try (FileOutputStream fos = new FileOutputStream(filePath)) {
-	            workbook.write(fos);
-	        }
+	        excelWriter.writeToExcel(workbook, filePath);
 	        workbook.close();
 	    }
 

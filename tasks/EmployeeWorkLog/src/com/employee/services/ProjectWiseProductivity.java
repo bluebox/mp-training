@@ -1,16 +1,16 @@
 package com.employee.services;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.employee.domain.EmployeeWorkLog;
 
@@ -20,11 +20,11 @@ public class ProjectWiseProductivity {
     	
     	
     	Map<String, Map<String, Double>> data = new HashMap<>();
-        Map<String, List<EmployeeWorkLog>> groupedByProjectId = logs.stream()
+        Map<String, List<EmployeeWorkLog>> groupedByProject = logs.stream()
         				.collect(Collectors
         				.groupingBy(EmployeeWorkLog::getProjectId));
 
-        for (Map.Entry<String, List<EmployeeWorkLog>> entry : groupedByProjectId.entrySet()) {
+        for (Map.Entry<String, List<EmployeeWorkLog>> entry : groupedByProject.entrySet()) {
             String projectId = entry.getKey();
             List<EmployeeWorkLog> projectLogs = entry.getValue();
             
@@ -39,25 +39,22 @@ public class ProjectWiseProductivity {
             metrics.put("Average", avg);
             data.put(projectId, metrics);
         }
+        
+        List<String> headers = Arrays.asList("Project ID","Total Hours","Average Hours per Employee");
     	
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Project Productivity");
-        Row header = sheet.createRow(0);
-        header.createCell(0).setCellValue("Project ID");
-        header.createCell(1).setCellValue("Total Hours");
-        header.createCell(2).setCellValue("Average Hours per Employee");
+        ExcelWriter excelWriter  = new ExcelWriter();
+    	Workbook workbook = excelWriter.createWorkBook(headers);
+    	Sheet sheet = workbook.getSheetAt(0);
 
-        int rowIndex = 1;
+        AtomicInteger rowIndex = new AtomicInteger(1);
         for (Map.Entry<String, Map<String, Double>> entry : data.entrySet()) {
-            Row row = sheet.createRow(rowIndex++);
+            Row row = sheet.createRow(rowIndex.getAndIncrement());
             row.createCell(0).setCellValue(entry.getKey());
             row.createCell(1).setCellValue(entry.getValue().get("Total"));
             row.createCell(2).setCellValue(entry.getValue().get("Average"));
         }
 
-        try (FileOutputStream fos = new FileOutputStream(filePath)) {
-            workbook.write(fos);
-        }
+        excelWriter.writeToExcel(workbook, filePath);
         workbook.close();
     }
 }

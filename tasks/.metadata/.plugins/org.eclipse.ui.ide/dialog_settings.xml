@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/mphs/Desktop/mp-training/tasks/EmployeeWork"/>
 			<item value="/home/mphs/Desktop/mp-training/tasks/GymMembershipManagementSystem"/>
 			<item value="/home/mphs/Desktop/mp-training/training/java/BasicsOfJava"/>
 			<item value="/home/mphs/Desktop/mp-training/tasks"/>
@@ -17,5 +18,8 @@
 			<item key="DIALOG_HEIGHT" value="644"/>
 			<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
 		</section>
+	</section>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item key="OUTSIDE_LOCATION" value="/home/mphs/Desktop/mp-training/training/java/BasicsOfJava"/>
 	</section>
 </section>

@@ -1,17 +1,16 @@
 package com.employee.services;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.employee.domain.EmployeeWorkLog;
 
@@ -27,19 +26,14 @@ public class CountOfTagsInRemarks {
                 .filter(remark -> !remark.isEmpty())
                 .collect(Collectors.groupingBy(remark -> remark, Collectors.counting()));
     	
-        	Workbook workbook = new XSSFWorkbook();
-          
-            Sheet sheet = workbook.createSheet("Tags Summary");
-
-            Row header = sheet.createRow(0);
-            Cell tagHeader = header.createCell(0);
-            tagHeader.setCellValue("Tag");
-          
-            Cell countHeader = header.createCell(1);
-            countHeader.setCellValue("Count");
+    	List<String> headers = Arrays.asList("Tag in Remarks","count");
+    	
+        ExcelWriter excelWriter  = new ExcelWriter();
+    	Workbook workbook = excelWriter.createWorkBook(headers);
+    	Sheet sheet = workbook.getSheetAt(0);
 
 
-            int rowIndex = 1;
+            AtomicInteger rowIndex = new AtomicInteger(1);
             for (Map.Entry<String, Long> entry : tagCounts.entrySet()) {
                 String tag = entry.getKey();
                 Long count = entry.getValue();
@@ -48,15 +42,12 @@ public class CountOfTagsInRemarks {
                 	continue;
                 }
 
-                Row row = sheet.createRow(rowIndex++);
+                Row row = sheet.createRow(rowIndex.getAndIncrement());
                 row.createCell(0).setCellValue(tag);
                 row.createCell(1).setCellValue(count);
             }
 
-            try (FileOutputStream fos = new FileOutputStream(filePath)) {
-                workbook.write(fos);
-            }
-
+            excelWriter.writeToExcel(workbook, filePath);
             workbook.close();
     }
     

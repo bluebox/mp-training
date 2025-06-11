@@ -6,7 +6,7 @@ import com.employee.services.DaysWithLessthanTwoHours;
 import com.employee.services.ExcelReader;
 import com.employee.services.ProjectWiseProductivity;
 import com.employee.services.SummarizeWeekendHours;
-import com.employee.services.UrgentCriticalLogs;
+import com.employee.services.FilterByUrgentAndCriticalInRemarks;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class Main {
         List<EmployeeWorkLog> logs = reader.readExcel("Sample_Employee_WorkLogs.xlsx");
         
         
-        UrgentCriticalLogs urgentCritical = new UrgentCriticalLogs(); 
+        FilterByUrgentAndCriticalInRemarks urgentCritical = new FilterByUrgentAndCriticalInRemarks(); 
         urgentCritical.writeUrgentCriticalLogs(logs, "UrgentLogs.xlsx");
         
         ProjectWiseProductivity projectWiseProductivity = new ProjectWiseProductivity();

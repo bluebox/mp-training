@@ -1,16 +1,16 @@
 package com.employee.services;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.employee.domain.EmployeeWorkLog;
 
@@ -26,22 +26,20 @@ public class DaysWithLessthanTwoHours {
                         Collectors.mapping(EmployeeWorkLog::getDate, Collectors.toList())
                 ));
     	
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Low Hour Days");
-        Row header = sheet.createRow(0);
-        header.createCell(0).setCellValue("Employee ID");
-        header.createCell(1).setCellValue("Dates with <2 Hours");
+    	List<String> headers = Arrays.asList("Employee ID","Dates with <2 Hours");
+      	
+        ExcelWriter excelWriter  = new ExcelWriter();
+      	Workbook workbook = excelWriter.createWorkBook(headers);
+      	Sheet sheet = workbook.getSheetAt(0);
 
-        int rowIndex = 1;
+        AtomicInteger rowIndex = new AtomicInteger(1);
         for (Map.Entry<String, List<LocalDate>> entry : data.entrySet()) {
-            Row row = sheet.createRow(rowIndex++);
+            Row row = sheet.createRow(rowIndex.getAndIncrement());
             row.createCell(0).setCellValue(entry.getKey());
             row.createCell(1).setCellValue(entry.getValue().toString());
         }
 
-        try (FileOutputStream fos = new FileOutputStream(filePath)) {
-            workbook.write(fos);
-        }
+        excelWriter.writeToExcel(workbook, filePath);
         workbook.close();
     }
 }
