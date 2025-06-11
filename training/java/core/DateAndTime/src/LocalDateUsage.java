@@ -1,10 +1,9 @@
-package dateandtime;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 
-public class Main {
+public class LocalDateUsage {
 	public static void main(String[] args) {
 		LocalDate tdy=LocalDate.now();
 		System.out.println(tdy);
