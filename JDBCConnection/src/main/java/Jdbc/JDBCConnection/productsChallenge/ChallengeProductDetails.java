@@ -1,11 +1,11 @@
-package Jdbc.JDBCConnection;
+package Jdbc.JDBCConnection.productsChallenge;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
-public class ChallengeProducts {
+public class ChallengeProductDetails {
 
 	public static void main(String[] args) {
 		String url="jdbc:mysql://localhost:3306/test";
@@ -17,11 +17,14 @@ public class ChallengeProducts {
 		md.setPassword(password);
 		try(Connection conn=md.getConnection()){
 		    String q="""
-		    		create table products
+		    		create table productDetails
 		    		(
-		    		 product_id int primary key not null auto_increment,
+		    		 id int primary key not null auto_increment,
+		    		 product_id int,
 		    		 product_name varchar(2000),
-		    		 cost int
+		    		 cost int,
+		    		 order_date date,
+		    		 foreign key (product_id) references products(product_id) 
 		    		 );
 		    		""";
 		    ChallengeClassToCreateTable.createTable(conn, q);

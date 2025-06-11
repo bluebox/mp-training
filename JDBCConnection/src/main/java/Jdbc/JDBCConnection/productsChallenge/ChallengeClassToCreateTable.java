@@ -1,4 +1,4 @@
-package Jdbc.JDBCConnection;
+package Jdbc.JDBCConnection.productsChallenge;
 
 import java.sql.Connection;
 import java.sql.SQLException;
