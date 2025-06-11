@@ -1,85 +1,22 @@
 package com.employee.service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import com.employee.domain.Employee;
 
 public class EmployeeService {
 
-	SaveToCSV save = new SaveToCSV();
-	private Map<String, List<Employee>> employees;
-
-	public void readEmployeesFromExcel(String filePath) {
-		employees = new HashMap<>();
-		System.out.println(filePath);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-		try (FileInputStream fis = new FileInputStream(new File(filePath)); Workbook workbook = new XSSFWorkbook(fis)) {
-
-			Sheet sheet = workbook.getSheetAt(0);
-			Iterator<Row> rowIterator = sheet.iterator();
-
-			// Skiping header row
-			if (rowIterator.hasNext()) {
-				rowIterator.next();
-			}
-
-			while (rowIterator.hasNext()) {
-				Row row = rowIterator.next();
-
-				String id = row.getCell(0).getStringCellValue();
-				String name = row.getCell(1).getStringCellValue();
-				String department = row.getCell(2).getStringCellValue();
-				String projectId = row.getCell(3).getStringCellValue();
-
-				Cell dateCell = row.getCell(4);
-				LocalDate date = LocalDate.parse(dateCell.getStringCellValue(), formatter);
-
-				String taskCategory = row.getCell(5).getStringCellValue();
-				double hoursWorked = row.getCell(6).getNumericCellValue();
-				String remark = row.getCell(7).getStringCellValue();
-
-				Employee emp = new Employee(id, name, department, projectId, date, taskCategory, hoursWorked, remark);
-
-				if (employees.containsKey(id)) {
-					employees.get(id).add(emp);
-
-				} else {
-					employees.put(id, new ArrayList<Employee>());
-					employees.get(id).add(emp);
-
-				}
-			}
-
-		} catch (Exception e) {
-			System.out.println("File not found Quiting the application");
-			System.exit(0);
-		}
-
-		// System.out.println(employees);
-	}
+	DataManager save = new DataManager();
 
 	// Task 1
-	public void task1() {
+	public void task1(Map<String, List<Employee>> employees) {
 
 		Map<String, List<Employee>> overworkedEmployees = employees.entrySet().stream()
 				.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue().stream()
@@ -101,7 +38,7 @@ public class EmployeeService {
 	}
 
 	// Task 2
-	public void task2() {
+	public void task2(Map<String, List<Employee>> employees) {
 		Map<String, Map<java.time.DayOfWeek, List<Employee>>> bugFixGroup = employees.values().stream()
 				.flatMap(List::stream).filter(e -> e.getTaskCategory().equals("Bug Fix")).collect(Collectors
 						.groupingBy(Employee::getTaskCategory, Collectors.groupingBy(e -> e.getDate().getDayOfWeek())));
@@ -123,7 +60,7 @@ public class EmployeeService {
 	}
 
 	// task 3
-	public void task3() {
+	public void task3(Map<String, List<Employee>> employees) {
 		Map<String, Map<String, Double>> projectCategoryHours = employees.values().stream().flatMap(List::stream)
 				.collect(Collectors.groupingBy(Employee::getProjectId, Collectors.groupingBy(Employee::getTaskCategory,
 						Collectors.summingDouble(Employee::getHoursWorked))));
@@ -160,7 +97,7 @@ public class EmployeeService {
 	}
 
 	// task 4
-	public void task4() {
+	public void task4(Map<String, List<Employee>> employees) {
 
 		List<String[]> rows = new ArrayList<>();
 		rows.add(new String[] { "Employee ID" });
@@ -184,7 +121,7 @@ public class EmployeeService {
 
 	// task 5
 
-	public void task5() {
+	public void task5(Map<String, List<Employee>> employees) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter Employee ID: ");
 		String empId = scanner.nextLine();
