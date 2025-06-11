@@ -25,7 +25,7 @@ public class PreparedStatementChallenge {
         Map<Integer, String> customerMap = new HashMap<>();
         Map<Integer, String> dateMap = new HashMap<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Orders.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("/myjavaprograms/learnjdbc/Orders.csv"))) {
             String line = br.readLine(); // Skip header
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
