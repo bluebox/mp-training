@@ -1,4 +1,4 @@
-package training.java.core.Challenges.ImplementMinFinder;
+package Challenges.ImplementMinFinder;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package training.java.core.Challenges.BedroomCompositionExercise;
+package Challenges.BedroomCompositionExercise;
 
 public class Bedroom {
     String name;

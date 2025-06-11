@@ -1,4 +1,4 @@
-package training.java.core.Challenges.EncapsulationChallenge;
+package Challenges.EncapsulationChallenge;
 
 public class EncapsulationChallenge {
     int tonerLevel;

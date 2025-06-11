@@ -1,4 +1,4 @@
-package training.java.core.Challenges.CarpetCostCalculator;
+package Challenges.CarpetCostCalculator;
 
 public class Carpet {
     double cost;

@@ -1,4 +1,4 @@
-package training.java.core.Challenges.ReverseAnArray;
+package Challenges.ReverseAnArray;
 
 import java.util.Arrays;
 
