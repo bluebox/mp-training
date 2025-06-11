@@ -1,0 +1,13 @@
+/AuthenticationKerberosClient.class
+/AuthenticationLdapSaslClientPlugin$AuthenticationMechanisms.class
+/AuthenticationLdapSaslClientPlugin.class
+/AuthenticationOciClient.class
+/AuthenticationOpenidConnectClient.class
+/AuthenticationWebAuthnClient$AuthStage.class
+/AuthenticationWebAuthnClient.class
+/CachingSha2PasswordPlugin$AuthStage.class
+/CachingSha2PasswordPlugin.class
+/MysqlClearPasswordPlugin.class
+/MysqlNativePasswordPlugin.class
+/MysqlOldPasswordPlugin.class
+/Sha256PasswordPlugin.class

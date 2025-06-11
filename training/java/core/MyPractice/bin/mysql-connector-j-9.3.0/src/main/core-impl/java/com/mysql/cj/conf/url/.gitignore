@@ -1,0 +1,9 @@
+/FailoverConnectionUrl.class
+/FailoverDnsSrvConnectionUrl.class
+/LoadBalanceConnectionUrl.class
+/LoadBalanceDnsSrvConnectionUrl.class
+/ReplicationConnectionUrl.class
+/ReplicationDnsSrvConnectionUrl.class
+/SingleConnectionUrl.class
+/XDevApiConnectionUrl.class
+/XDevApiDnsSrvConnectionUrl.class
