@@ -8,9 +8,11 @@ public class Practice {
 	public static void main(String[] args) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","practice","bhanu@123");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","practice","bhanu@2003");
 			int x = 0;
 			try {
+				Statement stmt = conn.createStatement();
+				stmt.execute("create table student(StudentId varchar(20) primary key,Name varchar(20),class varchar(20),marks double)");
 				PreparedStatement stmt1 = conn.prepareStatement("insert into student values('4RG','Raghav','3-C',96.5)");
 				stmt1.execute();
 				x+=stmt1.getUpdateCount();
@@ -43,7 +45,6 @@ public class Practice {
 				stmt1.setDouble(4, 87.57);
 				stmt1.execute();
 				x += stmt1.getUpdateCount();
-				System.out.println(x);
 			}
 			catch (Exception e) {
 				PreparedStatement stmt2=conn.prepareStatement("truncate table student");
@@ -62,6 +63,28 @@ public class Practice {
 			while(rset.next()) {
 				System.out.printf("%-20s%-20s%-20s%.2f\n",rset.getString(1),rset.getString(2),rset.getString(3),rset.getDouble(4));
 			}
+			stmt2=conn.prepareStatement("Update student set Name=? where StudentId=?");
+			stmt2.setString(1,"Rajv");
+			stmt2.setString(2, "4RG");
+			System.out.println(stmt2.executeUpdate()+" no of rows are updated");
+			stmt2 = conn.prepareStatement("select * from student");
+			rset = stmt2.executeQuery();
+			System.out.printf("%-20s%-20s%-20s%-20s\n","Student ID","Name","Class","Marks(in percentage)");
+			while(rset.next()) {
+				System.out.printf("%-20s%-20s%-20s%.2f\n",rset.getString(1),rset.getString(2),rset.getString(3),rset.getDouble(4));
+			}
+			stmt2=conn.prepareStatement("delete from student where Class=?");
+			stmt2.setString(1, "5-A");
+			System.out.println(stmt2.executeUpdate()+" no of rows are deleted");
+			stmt2 = conn.prepareStatement("select * from student");
+			rset = stmt2.executeQuery();
+			System.out.printf("%-20s%-20s%-20s%-20s\n","Student ID","Name","Class","Marks(in percentage)");
+			while(rset.next()) {
+				System.out.printf("%-20s%-20s%-20s%.2f\n",rset.getString(1),rset.getString(2),rset.getString(3),rset.getDouble(4));
+			}
+			stmt2=conn.prepareStatement("Drop table student");
+			stmt2.execute();
+			System.out.println("Student class is droped");
 			
 		}
 		
