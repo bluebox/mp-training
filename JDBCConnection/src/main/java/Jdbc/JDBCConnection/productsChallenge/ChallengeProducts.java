@@ -26,8 +26,9 @@ public class ChallengeProducts {
 		    ChallengeClassToCreateTable.createTable(conn, q);
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
+		InsertingIntoProductsUsingCSVFile.addProducts();
 	}
 
 }
