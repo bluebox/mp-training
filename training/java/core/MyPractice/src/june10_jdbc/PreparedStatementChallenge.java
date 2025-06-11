@@ -15,8 +15,8 @@ public class PreparedStatementChallenge {
             String sql = "ALTER TABLE order_details ADD COLUMN quantity INT DEFAULT 1";
             st.executeUpdate(sql);
             System.out.println("Column 'quantity' added to 'order_details' table successfully");
-            insertOrders(con, "orders.csv");
-            insertOrderDetails(con, "order_details.csv");
+            insertOrders(con, "june10_jdbc/orders.csv");
+            insertOrderDetails(con, "june10_jdbc/order_details.csv");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -11,14 +11,14 @@ public class Storefront {
             Connection con = DriverManager.getConnection(url, username, password);
             Statement st = con.createStatement();
             String ordersTable = """
-                        CREATE TABLE orders (
+                        CREATE TABLE if not exists orders (
                             order_id INT AUTO_INCREMENT,
                             order_date DATETIME NOT NULL,
                             PRIMARY KEY (order_id)
                         )
                     """;
             String orderDetailsTable = """
-                        CREATE TABLE order_details (
+                        CREATE TABLE if not exists order_details (
                             order_detail_id INT AUTO_INCREMENT,
                             item_description TEXT,
                             order_id INT DEFAULT NULL,
@@ -33,7 +33,7 @@ public class Storefront {
             System.out.println("Orders table created successfully");
             st.execute(orderDetailsTable);
             System.out.println("Order details table created successfully");
-
+            insertIntoOrdersTable(st,"2025-06-14 10:30:12");
             insertIntoOrdersTable(st, "2025-06-11 10:30:00");
             insertIntoOrdersTable(st, "2025-06-12 11:00:00");
             insertIntoOrdersTable(st, "2025-06-13 12:15:00");
