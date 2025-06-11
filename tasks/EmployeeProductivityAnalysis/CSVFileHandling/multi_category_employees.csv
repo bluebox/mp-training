@@ -8,15 +8,15 @@ EMP0008,18,3,Client Meeting | Deployment | Monitoring
 EMP0008,10,3,Training | Development | Code Review
 EMP0008,12,3,Client Meeting | Deployment | Monitoring
 EMP0008,14,4,Development | Code Review | Monitoring | Testing
-EMP0021,20,3,Training | Development | Design Review
-EMP0021,12,3,Deployment | Code Review | Monitoring
 EMP0010,18,4,Training | Development | Client Meeting | Testing
 EMP0010,14,3,Deployment | Code Review | Testing
+EMP0021,20,3,Training | Development | Design Review
+EMP0021,12,3,Deployment | Code Review | Monitoring
 EMP0020,12,3,Bug Fix | Deployment | Testing
 EMP0012,14,3,Bug Fix | Code Review | Monitoring
 EMP0001,21,3,Documentation | Deployment | Code Review
-EMP0001,13,4,Deployment | Client Meeting | Code Review | Monitoring
-EMP0023,14,3,Deployment | Client Meeting | Design Review
+EMP0001,13,4,Client Meeting | Deployment | Code Review | Monitoring
+EMP0023,14,3,Client Meeting | Deployment | Design Review
 EMP0023,15,4,Documentation | Development | Client Meeting | Testing
 EMP0003,19,5,Documentation | Development | Deployment | Client Meeting | Monitoring
 EMP0014,20,4,Documentation | Client Meeting | Code Review | Testing
@@ -26,10 +26,10 @@ EMP0013,15,3,Client Meeting | Code Review | Design Review
 EMP0024,11,3,Documentation | Code Review | Testing
 EMP0024,15,3,Documentation | Development | Deployment
 EMP0005,15,3,Deployment | Monitoring | Testing
+EMP0004,21,3,Bug Fix | Code Review | Testing
 EMP0015,19,3,Development | Deployment | Code Review
 EMP0015,12,3,Training | Bug Fix | Deployment
 EMP0015,15,3,Client Meeting | Design Review | Testing
-EMP0004,21,3,Bug Fix | Code Review | Testing
-EMP0006,18,3,Bug Fix | Design Review | Testing
 EMP0017,19,4,Bug Fix | Deployment | Client Meeting | Monitoring
 EMP0017,21,3,Bug Fix | Documentation | Code Review
+EMP0006,18,3,Bug Fix | Design Review | Testing

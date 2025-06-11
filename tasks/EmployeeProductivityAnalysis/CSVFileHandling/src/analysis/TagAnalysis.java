@@ -9,12 +9,13 @@ import java.util.stream.Collectors;
 
 import csv.CsvReader;
 import csv.Employee;
+import excel.ExcelReader;
 
 public class TagAnalysis {
 
     public void tagCount() {
         CsvReader reader = new CsvReader();
-        List<Employee> employees = reader.decipherCSV(reader.readCSV("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+        List<Employee> employees = ExcelReader.readExcel();//reader.decipherCSV(reader.readCSV("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
         Map<String, Set<String>> tagToEmployees = new HashMap<>();
 
         for (Employee emp : employees) {

@@ -6,16 +6,19 @@ import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+//import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelReader {
 
-    public ArrayList<Employee> readExcel(String path) {
+    public ArrayList<Employee> readExcel(String path, int startRow,int endRow) {
         ArrayList<Employee> employees = new ArrayList<>();
 
         try (FileInputStream fis = new FileInputStream(path)) {
@@ -28,14 +31,17 @@ public class ExcelReader {
             } else {
                 throw new IllegalArgumentException("Unsupported file type: " + path);
             }
-
+//            workbook = new HSSFWorkbook(fis);
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rowIterator = sheet.iterator();
 
             boolean isFirstRow = true;
             while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
-
+                if(row.getRowNum() <startRow || row.getRowNum()>endRow)
+                {
+                	continue;
+                }
             
                 if (isFirstRow) {
                     isFirstRow = false;
@@ -92,10 +98,42 @@ public class ExcelReader {
 
         return employees;
     }
+    
+    public static List<Employee>readExcel()
+    {
+    	ExcelReader reader = new ExcelReader();
+        List<Employee>emps = Collections.synchronizedList(new ArrayList<Employee>());
+        Runnable thread1 = ()->{
+        	List<Employee>empPartial = reader.readExcel("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.xlsx", 0, 166);
+        	empPartial.forEach(e->emps.add(e));
+        };
+        Runnable thread2 = ()->{
+        	List<Employee>empPartial = reader.readExcel("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.xlsx", 167, 223);
+        	empPartial.forEach(e->emps.add(e));
+        };
+        Runnable thread3 = ()->{
+        	List<Employee>empPartial = reader.readExcel("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.xlsx", 224, 400);
+        	empPartial.forEach(e->emps.add(e));
+        };
+        //ArrayList<Employee> emps = reader.readExcel("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.xlsx");
+        Thread t1 = new Thread(thread1);
+        Thread t2 = new Thread(thread2);
+        Thread t3 = new Thread(thread3);
+        t1.start();
+        t2.start();
+        t3.start();
+        try {
+        	t1.join();
+        	t2.join();
+        	t3.join();
+        }catch (InterruptedException e) {
+        	e.printStackTrace();
+		}
+        emps.forEach(System.out::println);
+        return emps;
+    }
 
     public static void main(String[] args) {
-        ExcelReader reader = new ExcelReader();
-        ArrayList<Employee> emps = reader.readExcel("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.xlsx");
-        emps.forEach(System.out::println);
+        
     }
 }

@@ -9,13 +9,14 @@ import java.util.stream.Collectors;
 
 import csv.CsvReader;
 import csv.Employee;
+import excel.ExcelReader;
 
 public class ProjectAnalysis {
 	
 	public void projectHours()
 	{
 		CsvReader reader = new CsvReader();
-		List<Employee> employees = reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+		List<Employee> employees = ExcelReader.readExcel();//= reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
 		
 		Map<String, Map<String, Double>> deptProjectHours = employees.stream().collect(Collectors.groupingBy(Employee::department,Collectors.groupingBy(Employee::projectId,Collectors.summingDouble(Employee::hoursWorked))));
 		

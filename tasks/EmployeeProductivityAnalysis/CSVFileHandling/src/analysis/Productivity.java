@@ -7,13 +7,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import csv.*;
+import excel.ExcelReader;
 
 public class Productivity {
 	
 	public void AverageHoursPerEmployee()
 	{
 		CsvReader reader = new CsvReader();
-		List<Employee> employees = reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+		List<Employee> employees; //= reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+		employees = ExcelReader.readExcel();
 		Map<String, Double> noOfHrs = employees.stream()
 	            .collect(Collectors.groupingBy(Employee::projectId,
 	                     Collectors.summingDouble(Employee::hoursWorked)));

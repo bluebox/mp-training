@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import csv.CsvReader;
 import csv.Employee;
+import excel.ExcelReader;
 
 public class MultiCategoryEmployees {
 	
@@ -18,6 +19,7 @@ public class MultiCategoryEmployees {
 	{
 		CsvReader reader = new CsvReader();
 		List<Employee> employees = reader.decipherCSV(reader.readCSV("/home/mphs/Desktop/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+		employees = ExcelReader.readExcel();
 		int i = 0;
 		// employees.forEach((emp->{
 		// 	System.out.println(emp.date());

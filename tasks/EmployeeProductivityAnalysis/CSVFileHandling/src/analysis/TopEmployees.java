@@ -10,13 +10,14 @@ import java.util.stream.Collectors;
 
 import csv.CsvReader;
 import csv.Employee;
+import excel.ExcelReader;
 
 public class TopEmployees {
 	
 	public void computeTop()
 	{
 		CsvReader reader = new CsvReader();
-		List<Employee> employees = reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
+		List<Employee> employees = ExcelReader.readExcel();//reader.decipherCSV(reader.readCSV("/root/mp-training/tasks/EmployeeProductivityAnalysis/CSVFileHandling/src/Sample_Employee_WorkLogs.csv"));
 		
 		Map<String,List<Employee>> topEmp= employees.stream().collect(Collectors.groupingBy(Employee::department,Collectors.collectingAndThen(Collectors.toList(), list->list.stream().sorted(Comparator.comparingDouble(Employee::hoursWorked).reversed()).limit(2).collect(Collectors.toList()))));
 		topEmp.forEach((dept, list) -> {

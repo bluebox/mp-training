@@ -1,28 +1,4 @@
 Department,Project ID,Total Hours
-QA,PRJ190,12.94
-QA,PRJ121,12.61
-QA,PRJ137,11.25
-QA,PRJ162,9.88
-QA,PRJ127,9.47
-QA,PRJ152,9.46
-QA,PRJ191,9.06
-QA,PRJ153,8.52
-QA,PRJ150,8.44
-QA,PRJ151,8.37
-QA,PRJ185,8.19
-QA,PRJ180,7.22
-QA,PRJ106,7.05
-QA,PRJ178,6.95
-QA,PRJ135,6.05
-QA,PRJ111,5.99
-QA,PRJ160,5.12
-QA,PRJ184,4.67
-QA,PRJ132,3.63
-QA,PRJ163,3.58
-QA,PRJ115,3.20
-QA,PRJ188,2.78
-QA,PRJ108,2.03
-QA,PRJ126,1.67
 Data Science,PRJ182,9.80
 Data Science,PRJ179,9.67
 Data Science,PRJ164,8.94
@@ -92,6 +68,30 @@ Design,PRJ135,2.05
 Design,PRJ193,1.56
 Design,PRJ130,1.49
 Design,PRJ107,1.23
+QA,PRJ190,12.94
+QA,PRJ121,12.61
+QA,PRJ137,11.25
+QA,PRJ162,9.88
+QA,PRJ127,9.47
+QA,PRJ152,9.46
+QA,PRJ191,9.06
+QA,PRJ153,8.52
+QA,PRJ150,8.44
+QA,PRJ151,8.37
+QA,PRJ185,8.19
+QA,PRJ180,7.22
+QA,PRJ106,7.05
+QA,PRJ178,6.95
+QA,PRJ135,6.05
+QA,PRJ111,5.99
+QA,PRJ160,5.12
+QA,PRJ184,4.67
+QA,PRJ132,3.63
+QA,PRJ163,3.58
+QA,PRJ115,3.20
+QA,PRJ188,2.78
+QA,PRJ108,2.03
+QA,PRJ126,1.67
 Engineering,PRJ191,16.83
 Engineering,PRJ156,11.03
 Engineering,PRJ113,10.76
@@ -123,45 +123,6 @@ Engineering,PRJ182,2.31
 Engineering,PRJ175,1.95
 Engineering,PRJ108,1.93
 Engineering,PRJ157,1.00
-Product Management,PRJ189,17.08
-Product Management,PRJ143,15.75
-Product Management,PRJ135,15.13
-Product Management,PRJ120,12.80
-Product Management,PRJ192,10.91
-Product Management,PRJ185,10.67
-Product Management,PRJ166,9.25
-Product Management,PRJ170,9.08
-Product Management,PRJ164,8.94
-Product Management,PRJ117,8.53
-Product Management,PRJ148,8.52
-Product Management,PRJ122,8.30
-Product Management,PRJ153,7.58
-Product Management,PRJ137,6.88
-Product Management,PRJ159,6.49
-Product Management,PRJ134,6.40
-Product Management,PRJ154,6.34
-Product Management,PRJ162,6.32
-Product Management,PRJ190,6.18
-Product Management,PRJ186,5.97
-Product Management,PRJ188,5.28
-Product Management,PRJ105,5.28
-Product Management,PRJ132,5.19
-Product Management,PRJ147,5.09
-Product Management,PRJ165,4.87
-Product Management,PRJ150,4.87
-Product Management,PRJ179,4.38
-Product Management,PRJ146,4.31
-Product Management,PRJ183,4.30
-Product Management,PRJ114,4.03
-Product Management,PRJ129,3.85
-Product Management,PRJ106,3.71
-Product Management,PRJ110,3.63
-Product Management,PRJ182,3.41
-Product Management,PRJ175,3.37
-Product Management,PRJ112,3.32
-Product Management,PRJ180,2.52
-Product Management,PRJ115,2.49
-Product Management,PRJ128,2.25
 DevOps,PRJ108,18.96
 DevOps,PRJ196,15.78
 DevOps,PRJ169,15.68
@@ -190,6 +151,43 @@ DevOps,PRJ158,2.51
 DevOps,PRJ121,2.30
 DevOps,PRJ184,2.16
 DevOps,PRJ113,1.01
+Product Management,PRJ189,17.08
+Product Management,PRJ143,15.75
+Product Management,PRJ135,15.13
+Product Management,PRJ120,12.80
+Product Management,PRJ192,10.91
+Product Management,PRJ185,10.67
+Product Management,PRJ166,9.25
+Product Management,PRJ170,9.08
+Product Management,PRJ164,8.94
+Product Management,PRJ117,8.53
+Product Management,PRJ148,8.52
+Product Management,PRJ122,8.30
+Product Management,PRJ153,7.58
+Product Management,PRJ137,6.88
+Product Management,PRJ159,6.49
+Product Management,PRJ134,6.40
+Product Management,PRJ154,6.34
+Product Management,PRJ162,6.32
+Product Management,PRJ190,6.18
+Product Management,PRJ188,5.28
+Product Management,PRJ105,5.28
+Product Management,PRJ132,5.19
+Product Management,PRJ147,5.09
+Product Management,PRJ165,4.87
+Product Management,PRJ150,4.87
+Product Management,PRJ179,4.38
+Product Management,PRJ146,4.31
+Product Management,PRJ183,4.30
+Product Management,PRJ114,4.03
+Product Management,PRJ106,3.71
+Product Management,PRJ110,3.63
+Product Management,PRJ182,3.41
+Product Management,PRJ175,3.37
+Product Management,PRJ112,3.32
+Product Management,PRJ180,2.52
+Product Management,PRJ115,2.49
+Product Management,PRJ128,2.25
 Support,PRJ134,16.87
 Support,PRJ105,15.66
 Support,PRJ151,14.04
