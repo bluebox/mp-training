@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+/home/developer/eclipse-workspace/Training/.metadata/.plugins/org.eclipse.jdt.core
-1865797976.index
-4194098558.index
