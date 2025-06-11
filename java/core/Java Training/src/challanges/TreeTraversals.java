@@ -48,6 +48,80 @@ public class TreeTraversals {
 			System.out.print(root.data+"  ");
 		}
 	}
+	
+	public static void levelOrderOfTree(Node root) {
+		if(root==null)
+			return;
+		Queue<Node> que=new LinkedList<>();
+		que.add(root);
+		
+		while(!que.isEmpty()) {
+			Node tmpNode = que.poll();
+			
+			System.out.print(tmpNode.data+" ");
+			
+			if(tmpNode.left != null) {
+				que.add(tmpNode.left);
+			}
+			if(tmpNode.right != null) {
+				que.add(tmpNode.right);
+			}
+		}
+	}
+	
+	public static void adjacentNodes(Node root,int t,int d) {
+		ArrayList<Integer> res = new ArrayList<>();
+		getDistance(root,t,d,res);		
+		if(res.size()==0) {
+			System.out.println("There are no nodes for given distance "+d+" for Target node "+t);
+		}
+		else {
+			System.out.println("There are nodes for given distance "+d+" for Target node "+t+" : "+res);
+		}
+	}
+	
+	public static int getDistance(Node root,int t,int d,ArrayList<Integer> res) {
+		if(root==null)
+			return -1;
+		if(root.data==t) {
+			findNodes(root,d,res);
+			return 1;
+		}
+		
+		int left = getDistance(root.left, t, d, res);
+		if(left!=-1) {
+			if(d-left==0) {
+				res.add(root.data);
+			}
+			else {
+				findNodes(root.right,d-left-1,res);
+			}
+			return left+1;
+		}
+		
+		int right = getDistance(root.right, t, d, res);
+		if(right!=-1) {
+			if(d-right==0) {
+				res.add(root.data);
+			}
+			else {
+				findNodes(root.left,d-right-1,res);
+			}
+			return right+1;
+		}
+		return -1;
+	}
+	
+	public static void findNodes(Node root,int d,ArrayList<Integer> res) {
+		if(root==null)
+			return;
+		if(d==0) {
+			res.add(root.data);
+			return;
+		}
+		findNodes(root.left,d-1,res);
+		findNodes(root.right,d-1,res);
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -72,6 +146,13 @@ public class TreeTraversals {
 		System.out.println();
 		System.out.println("Post order tree traversal : ");
 		postOrder(root);
+		System.out.println("Level order Traversal : ");
+		levelOrderOfTree(root);
+		System.out.print("Enter the target node : ");
+		int t=sc.nextInt();
+		System.out.print("Enter  the distance : ");
+		int d=sc.nextInt();
+		adjacentNodes(root,t,d);
 	}
 
 }
