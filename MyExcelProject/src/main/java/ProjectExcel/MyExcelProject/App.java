@@ -103,8 +103,7 @@ public class App {
 
     public static void main(String[] args) {
         try {
-            String inputPath = "C:\\Users\\saket\\Desktop\\Medplus caseStudies\\Sample_Employee_WorkLogs.xlsx"
-            		+ "";
+            String inputPath ="/home/purnima/Desktop/mp-training/MyExcelProject/src/main/java/ProjectExcel/MyExcelProject/Sample_Employee_WorkLogs.xlsx";
             List<EmployeeWorkLog> logs = readExcelData(inputPath);
 
             if (logs.isEmpty()) {

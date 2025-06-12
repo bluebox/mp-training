@@ -2,20 +2,26 @@ package jdbclearning;
 
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OrderTable {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/mydb";
+    private static final String URL = "jdbc:mysql://localhost:3306/dblearnjava";
     private static final String USER = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "Medplus@321";
 
     public static void main(String[] args) {
-        JDBCOrderExample app = new JDBCOrderExample();
+    	OrderTable app = new OrderTable();
         int orderId = app.insertOrderWithDetails();
-        app.deleteOrder(orderId);
+      //  app.deleteOrder(orderId);
+        
     }
 
     public int insertOrderWithDetails() {
@@ -31,27 +37,33 @@ public class OrderTable {
             // Insert into orders
             String orderSQL = "INSERT INTO orders (customer_name, order_date) VALUES (?, ?)";
             orderStmt = conn.prepareStatement(orderSQL, Statement.RETURN_GENERATED_KEYS);
-            orderStmt.setString(1, "John Doe");
+            orderStmt.setString(1, "D");
 
             String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             orderStmt.setString(2, currentDate);
-            orderStmt.executeUpdate();
+            int val = orderStmt.executeUpdate();
 
+            System.out.println("updated values : "+val);
             // Get generated order ID
             ResultSet rs = orderStmt.getGeneratedKeys();
             if (rs.next()) {
                 orderId = rs.getInt(1);
             }
+//            String test = "Update orders where order_id = ? set customer_name = ?";
+//            PreparedStatement te = conn.prepareStatement(test);
+//            te.setInt(1, 7);
+//            te.setString(0, "E");
+//            te.executeUpdate();
 
             // Insert into order_details
             String detailSQL = "INSERT INTO order_details (order_id, product_name, quantity) VALUES (?, ?, ?)";
             detailStmt = conn.prepareStatement(detailSQL);
 
             detailStmt.setInt(1, orderId);
-            detailStmt.setString(2, "Laptop");
+            detailStmt.setString(2, "keyboard");
             detailStmt.setInt(3, 1);
-            detailStmt.executeUpdate();
-
+             detailStmt.executeUpdate();
+             
             detailStmt.setInt(1, orderId);
             detailStmt.setString(2, "Mouse");
             detailStmt.setInt(3, 2);
