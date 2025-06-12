@@ -103,12 +103,12 @@ public class Main {
 
 		//Print to show the user
 		System.out.println("\n----------------Your Order Details-----------------");
-		System.out.println("Customer Name :"+firstName+lastName);
+		System.out.println("Customer Name :"+firstName+" "+lastName);
 		for(String str:orderedProducts) {
 			String[] strArray=str.split(",");
-			System.out.println(strArray[1]+"---"+strArray[3]+"pieces ---"+((Integer.parseInt(strArray[2])*(Integer.parseInt(strArray[3]))))+"/-");
+			System.out.println(strArray[1]+"---"+strArray[3]+" pieces ---"+((Integer.parseInt(strArray[2])*(Integer.parseInt(strArray[3]))))+"/-");
 		}
-		System.out.println("Total Cost :"+orderTotalCost);
+		System.out.println("Total Cost :"+orderTotalCost+"/-");
 		System.out.println("\n----------------Thank You-----------------");
 		con.close();
 	}
