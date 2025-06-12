@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ToggleGroup?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.TextField?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.company.controller.EntryPointController" alignment="center"
+          prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: black;
+                                -fx-border-style: dashed" hgap="10" vgap="10">
+
+    <Label text="My name is Mourya" layoutX="200.0" layoutY="180.0" GridPane.rowIndex="0" GridPane.columnIndex="0"
+           style="-fx-border-color: red;-fx-background-color: cyan"/>
+
+    <fx:define>
+        <ToggleGroup fx:id="colorToggleGroup"/>
+    </fx:define>
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="1">
+        <RadioButton text="Option 1" toggleGroup="$colorToggleGroup"/>
+        <RadioButton text="Option 2" toggleGroup="$colorToggleGroup"/>
+        <RadioButton text="Option 3" toggleGroup="$colorToggleGroup"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">
+        <CheckBox text="Option 1"/>
+        <CheckBox text="Option 2"/>
+        <CheckBox text="Option 3"/>
+    </VBox>
+
+    <Slider GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"
+       showTickMarks="true" showTickLabels="true" snapToTicks="true" minorTickCount="4" />
+
+    <ColorPicker GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+
+    <Button GridPane.rowIndex="1" GridPane.columnIndex="0" text="Button" onAction="#buttonClickHandler"/>
+
+    <DatePicker GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Accordion GridPane.rowIndex="2" GridPane.columnIndex="2">
+        <panes>
+            <TitledPane text="Titled Pane">
+                <Label text="Accordion 1"/>
+            </TitledPane>
+        </panes>
+    </Accordion>
+
+    <TextField GridPane.rowIndex="3" GridPane.columnIndex="1" fx:id="$name" onKeyReleased="#keyReleased"/>
+
+</GridPane>
