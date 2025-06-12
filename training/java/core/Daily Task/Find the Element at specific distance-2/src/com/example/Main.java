@@ -9,20 +9,21 @@ public class Main {
 		
 	}
 	
-	public void dist(Tree t,int d,String dir) {
+	public int dist(Tree t,int val,int d) {
 		if(t==null) {
-			return;
+			return -1;
+		}
+		if(t.data==val) {
+			return d;
 		}
 		if(d==0) {
 			System.out.println(t.data);
 		}
 		else {
-			if(dir!="left") {
-				dist(t.left,d-1, dir);
-			}
-			if(dir!="right") {
-				dist(t.right,d-1, dir);
+			if(dist(t.left, val, d)>0) {
+				int d1 = dist(t.right, val, d);
 			}
 		}
+		return 0;
 	}
 }
