@@ -69,6 +69,7 @@ public class TreeTraversals {
 		}
 	}
 	
+//	Level Oder
 	public static void adjacentNodes(Node root,int t,int d) {
 		ArrayList<Integer> res = new ArrayList<>();
 		getDistance(root,t,d,res);		
@@ -122,6 +123,26 @@ public class TreeTraversals {
 		findNodes(root.left,d-1,res);
 		findNodes(root.right,d-1,res);
 	}
+	
+//	Target Sum Pairs
+	
+	public static int targetSumPairs(Node root,int tarSum) {
+		Set<Integer> seen = new HashSet<>();
+		return dfsTargetSum(root,tarSum,seen);
+	}
+	
+	public static int dfsTargetSum(Node root,int tarSum,Set<Integer> seen) {
+		int counter = 0;
+		if(root==null)
+			return counter;
+		if(seen.contains(tarSum-root.data)) {
+			counter++;
+		}
+		seen.add(root.data);
+		counter += dfsTargetSum(root.left, tarSum, seen);
+		counter += dfsTargetSum(root.right, tarSum, seen);
+		return counter;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -153,6 +174,11 @@ public class TreeTraversals {
 		System.out.print("Enter  the distance : ");
 		int d=sc.nextInt();
 		adjacentNodes(root,t,d);
+		System.out.print("Enter the targetSum : ");
+		int tarSum = sc.nextInt();
+		int pairs = targetSumPairs(root,tarSum);
+		System.out.println("Node pairs which are equal to target sum "+tarSum+" are : "+pairs);
+		
 	}
 
 }
