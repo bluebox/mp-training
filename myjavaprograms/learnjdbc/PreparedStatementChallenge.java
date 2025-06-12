@@ -91,19 +91,3 @@ public class PreparedStatementChallenge {
 
 
 
-/*
- CREATE TABLE orders (
-    order_id INT PRIMARY KEY,
-    customer_name VARCHAR(100),
-    order_date DATETIME
-);
-
-CREATE TABLE order_details (
-    detail_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    product_name VARCHAR(100),
-    quantity INT,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE
-);
-
- */
