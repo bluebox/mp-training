@@ -25,7 +25,11 @@ class Pair
 	}
 }
 public class TreeTraversals {
+	static int count=0;
+	static List<Node> u=new ArrayList<>();
 	Node root=null;
+	static Node t=null;
+	static HashMap<Node,Node> hm;
 	public void addNode(int data)
 	{
 		if(root==null)
@@ -172,16 +176,73 @@ public class TreeTraversals {
 		}
 		System.out.println(l);
 	}
+	public void countPaths (Node root,int val,int tsum)
+	{
+		hm=new HashMap<>();
+		Queue<Node> q1=new LinkedList<>();
+		q1.offer(root);
+	
+		while(q1.size()>0)
+		{
+			int s=q1.size();
+			for(int i=0;i<s;i++)
+			{
+				Node p=q1.poll();
+				if(p.data==val)
+				{
+					t=p;
+				}
+				if(p.left!=null)
+				{
+					hm.put(p.left, p);
+					q1.offer(p.left);
+				}
+				if(p.right!=null)
+				{
+					hm.put(p.right, p);
+					q1.offer(p.right);
+				}
+			}
+		}
+		solve(t,tsum,0);
+	}
+	public static void solve(Node root,int tsum,int sum)
+	{
+		
+		if(root==null || u.contains(root) )
+		{
+			return;
+		}
+		u.add(root);
+		if(sum+root.data==tsum)
+		{
+			count++;
+		}
+		if(hm.get(root)!=null)
+		  solve(hm.get(root),tsum,sum+root.data);
+		if(root.left!=null)
+		  solve(root.left,tsum,sum+root.data);
+		if(root.right!=null)
+		  solve(root.right,tsum,sum+root.data);
+		
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TreeTraversals r=new TreeTraversals();
-		r.addNode(50);
-		r.addNode(30);
-		r.addNode(20);
-		r.addNode(40);
-		r.addNode(70);
-		r.addNode(60);
-		r.addNode(80);
+		r.addNode(10);
+		r.addNode(5);
+		r.addNode(15);
+		r.addNode(3);
+		r.addNode(7);
+		r.addNode(12);
+		r.addNode(18);
+		r.addNode(2);
+		r.addNode(4);
+		r.addNode(6);
+		r.addNode(8);
+		r.addNode(-2);
+		r.addNode(1);
+		
 		System.out.println("Inorder Traversal:");
 		r.inOrder(r.root);
 		System.out.println();
@@ -196,7 +257,10 @@ public class TreeTraversals {
 		System.out.println();
 		System.out.println("k Distance Neighbours:");
 		r.kDistanceNodes(r.root,30,3);
-		
+		System.out.println();
+		System.out.println("TSum From Node Paths:");
+		r.countPaths(r.root,5,8);
+		System.out.println(count);
 	}
 
 }
