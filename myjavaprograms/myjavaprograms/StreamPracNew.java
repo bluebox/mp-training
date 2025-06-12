@@ -117,7 +117,12 @@ public class StreamPracNew {
 		
 		//find highest salary by dept wise
 		
-		list.stream().collect(Collectors.groupingBy(emp -> emp.dept , Collectors.maxBy(Comparator.comparing(e -> e.salary)))));		
+		Map<String, Optional<Employee>> maxSalaryByDept = list.stream()
+				.collect(Collectors.groupingBy(emp -> emp.dept , Collectors.maxBy(Comparator.comparingDouble(e -> e.salary)))));	
+				
+		maxSalaryDept.forEach( (k, v) ->{
+			System.out.println(k+" : " + "max salary :" + v.salary())
+		})		
 		//find minimum salary by dept wise
 		
 		//find total salary dept wise

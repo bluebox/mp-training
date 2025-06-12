@@ -45,8 +45,9 @@ public class JDBCOrderExample {
             String detailSQL = "INSERT INTO order_details (order_id, product_name, quantity) VALUES (?, ?, ?)";
             detailStmt = conn.prepareStatement(detailSQL);
 
-            detailStmt.setInt(1, orderId);
+            
             detailStmt.setString(2, "Laptop");
+            detailStmt.setInt(1, orderId);
             detailStmt.setInt(3, 1);
             detailStmt.executeUpdate();
 

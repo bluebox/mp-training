@@ -91,34 +91,34 @@ public class DeadLockHandsOn {
 			if(lock1.tryLock(100 , TimeUnit.MILLISECONDS)) {
 				
 			
-			System.out.println(Thread.currentThread().getName() + " has lock1");
+				System.out.println(Thread.currentThread().getName() + " has lock1");
 			
-			try {
-				Thread.sleep(100);
+				try {
+					Thread.sleep(100);
 				
 				//trying to get lock2
 				
-				if(lock2.tryLock(100 , TimeUnit.MILLISECONDS)) {
+					if(lock2.tryLock(100 , TimeUnit.MILLISECONDS)) {
 					
 				
-				System.out.println(Thread.currentThread().getName() + " has lock2");
+						System.out.println(Thread.currentThread().getName() + " has lock2");
+					}
+					else {
+						System.out.println("thread1 failed to acquire lock2");
+					}
+				
+				}
+			
+				catch(Exception e) {
+					e.printStackTrace();
+				}finally {
+					lock2.unlock();
+					lock1.unlock();
+				}
 				}
 				else {
-					System.out.println("thread1 failed to acquire lock2");
+					System.out.println("thread1 failed to acquire lock1");
 				}
-				
-			}
-			
-			catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				lock2.unlock();
-				lock1.unlock();
-			}
-			}
-			else {
-				System.out.println("thread1 failed to acquire lock1");
-			}
 	}
 	
 	public void methodB() {
