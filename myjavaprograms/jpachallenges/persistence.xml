@@ -1,0 +1,38 @@
+import javax.persistence.*;
+import javax.persistence.criteria.*;
+import java.util.List;
+
+public class SongQuery {
+    private EntityManager entityManager;
+
+    public SongQuery(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    // JPQL version
+    public List<Object[]> findSongsWithArtistAndAlbumJpql() {
+        String jpql = "SELECT s.title, a.name, al.name " +
+                     "FROM Song s " +
+                     "JOIN s.artist a " +
+                     "JOIN s.album al";
+        return entityManager.createQuery(jpql, Object[].class).getResultList();
+    }
+
+    // Criteria API version
+    public List<Object[]> findSongsWithArtistAndAlbumCriteria() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> query = cb.createQuery(Object[].class);
+        Root<Song> song = query.from(Song.class);
+        
+        Join<Song, Artist> artist = song.join("artist");
+        Join<Song, Album> album = song.join("album");
+        
+        query.multiselect(
+            song.get("title"),
+            artist.get("name"),
+            album.get("name")
+        );
+        
+        return entityManager.createQuery(query).getResultList();
+    }
+}
