@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class ShoeWarehouse {
 
@@ -52,4 +53,12 @@ public class ShoeWarehouse {
         notifyAll();
         return item;
     }
-}
+    public void printorder() {
+    	List<Long>result=shippingItems.stream().
+    			     filter(order -> order.qty()==1)
+    			     .map(order->order.orderId())
+    			     .collect(Collectors.toList());
+    	System.out.println(result);
+    }
+    }
+    
