@@ -3,7 +3,6 @@ package com.example;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 public class Tree {
 	public int data;
 	public Tree parent;
@@ -17,6 +16,7 @@ public class Tree {
 		this.right=null;
 		this.b=true;
 	}
+	
 	public static Tree binTree(int ...args) {
 		Tree t=new Tree(args[0]);
 		for(int i=1;i<args.length;i++)

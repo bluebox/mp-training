@@ -1,8 +1,12 @@
-drop procedure if exists addMembers;
-CREATE PROCEDURE addMembers (
-	IN students json
+drop procedure if exists updateMember;
+delimiter $$
+CREATE PROCEDURE updateMember (
+	IN sid varchar(20),
+    In sname varchar(20)
 )  
-BEGIN
-    declare count numeric default 0
-    
-END ;
+Begin
+    update student set Name=sname where StudentId=sid;
+End$$
+
+DELIMITER ;
+

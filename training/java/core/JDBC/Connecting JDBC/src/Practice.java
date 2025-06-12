@@ -11,8 +11,8 @@ public class Practice {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","practice","bhanu@2003");
 			int x = 0;
 			try {
-				Statement stmt = conn.createStatement();
-				stmt.execute("create table student(StudentId varchar(20) primary key,Name varchar(20),class varchar(20),marks double)");
+//				Statement stmt = conn.createStatement();
+//				stmt.execute("create table student(StudentId varchar(20) primary key,Name varchar(20),class varchar(20),marks double)");
 				PreparedStatement stmt1 = conn.prepareStatement("insert into student values('4RG','Raghav','3-C',96.5)");
 				stmt1.execute();
 				x+=stmt1.getUpdateCount();
@@ -83,8 +83,8 @@ public class Practice {
 				System.out.printf("%-20s%-20s%-20s%.2f\n",rset.getString(1),rset.getString(2),rset.getString(3),rset.getDouble(4));
 			}
 			stmt2=conn.prepareStatement("Drop table student");
-			stmt2.execute();
-			System.out.println("Student class is droped");
+//			stmt2.execute();
+//			System.out.println("Student class is droped");
 			
 		}
 		
