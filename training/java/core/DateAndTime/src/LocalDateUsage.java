@@ -30,6 +30,8 @@ public class LocalDateUsage {
 		System.out.println(mar16.isBefore(mar16));
 		System.out.println(mar16.isBefore(nov19));
 		
+		System.out.println(mar16.isBefore(nov19));
+		
 		//LocalDate sai=new LocalDate(2004, 6, 20); constructor is private
 		
 
