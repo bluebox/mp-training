@@ -1,0 +1,20 @@
+package FileOperations;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Arrays;
+
+public class BasicFileOperations {
+	String line="";
+	
+	try{
+		BufferedReader csvReader = new BufferedReader(new FileReader("/home/mphs/Downloads/Sample_Employee_WorkLogs.csv"));
+		while ((line=csvReader.readLine())!=null) {
+			System.out.println(line);
+		}
+	}
+	catch(Exception e) {
+		
+	}
+	
+}
