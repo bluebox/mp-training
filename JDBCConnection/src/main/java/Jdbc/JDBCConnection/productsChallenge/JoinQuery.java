@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class JoinQuery {
-     public static  void getCount(int id) {
+     public static  void getCountAndTotCost(int id) {
     	 String url="jdbc:mysql://localhost:3306/test";
  		String user="Anand";
  		String password="1925112816@Aa";

@@ -1,0 +1,24 @@
+
+<hibernate-configuration>
+    <session-factory>
+
+      
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/test</property>
+        <property name="connection.username">Anand</property>
+        <property name="connection.password">1925112816@Aa</property>
+
+        <property name="connection.pool_size">5</property>
+
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <property name="show_sql">true</property>
+
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="Orm.Employee" />	
+         <mapping class="Orm.Order" />	
+          <mapping class="Orm.OrderItem" />	
+
+    </session-factory>
+</hibernate-configuration>
