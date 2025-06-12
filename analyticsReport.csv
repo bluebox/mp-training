@@ -1,5 +1,15 @@
 Tags Count:
-No tags found.
+Tag,Count
+approved,43
+blocked,38
+critical,44
+in progress,39
+escalated,38
+needs review,32
+delayed,43
+completed,47
+urgent,36
+follow up,40
 
 Employee Work Summary:
 EmployeeId,Min Hours,Max Hours,Average Hours
