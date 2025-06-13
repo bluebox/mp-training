@@ -55,6 +55,8 @@ public class Main {
             throw new RuntimeException(e);
         }
         warehouse.shutDown();
+        
+        warehouse.printorder();
     }
 
     private static Order generateOrder() {
@@ -62,5 +64,6 @@ public class Main {
                 random.nextLong(1000000, 9999999),
                 ShoeWarehouse.PRODUCT_LIST[random.nextInt(0, 5)],
                 random.nextInt(1, 4));
+                  
     }
 }
