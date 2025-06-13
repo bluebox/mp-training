@@ -1,6 +1,5 @@
 package junitprograms;
 
-//StringUtil.java
 public class StringUtil {
 
 
