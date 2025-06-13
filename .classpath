@@ -7,5 +7,24 @@
 	</classpathentry>
 	<classpathentry excluding="pack/" kind="src" path="training/java/core"/>
 	<classpathentry kind="src" path="training/java/core/pack"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-examples-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-excelant-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-javadoc-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-ooxml-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-ooxml-full-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-ooxml-lite-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-scratchpad-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/ooxml-lib/commons-compress-1.21.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/ooxml-lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/ooxml-lib/curvesapi-1.07.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/ooxml-lib/jakarta.activation-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/ooxml-lib/jakarta.xml.bind-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/ooxml-lib/slf4j-api-1.7.36.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/casestudy2/poi-bin-5.2.3-20220909/poi-bin-5.2.3/ooxml-lib/xmlbeans-5.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/Downloads/commons-io-2.15.1.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/Downloads/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/Downloads/log4j-api-2.20.0.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/Downloads/log4j-core-2.20.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

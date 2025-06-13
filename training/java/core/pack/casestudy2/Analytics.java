@@ -35,10 +35,14 @@ public class Analytics {
         System.out.println("Tags Count:");
         writer.println("Tags Count:");
 
+//        Map<String, Long> tagCounts = logs.stream()
+//            .flatMap(log -> Arrays.stream(log.getRemarks().split("\\s+")))
+//            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        
         Map<String, Long> tagCounts = logs.stream()
-            .flatMap(log -> Arrays.stream(log.getRemarks().split("\\s+")))
-            .filter(word -> word.startsWith("#"))
-            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+                .map(log -> log.getRemarks())
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
 
         if (tagCounts.isEmpty()) {
             System.out.println("  No tags found.");
@@ -77,6 +81,7 @@ public class Analytics {
         writer.println("Category % Contribution per Project:");
         writer.println("Project,Category,Percentage");
 
+        //Map<projectId,Map<Category,hoursworked>>
         Map<String, Map<String, Double>> projectCategoryMap = logs.stream()
             .collect(Collectors.groupingBy(EmployeeWorkLog::getProjectId,
                     Collectors.groupingBy(EmployeeWorkLog::getTaskCategory,
@@ -103,6 +108,7 @@ public class Analytics {
         writer.println("Top 3 Tasks per Department:");
         writer.println("Department,Date,Category,Hours");
 
+       // Map<department,list of top3 rows that have highest task>
         Map<String, List<EmployeeWorkLog>> topTasks = logs.stream()
             .collect(Collectors.groupingBy(EmployeeWorkLog::getDepartment,
                     Collectors.collectingAndThen(Collectors.toList(), list -> list.stream()
