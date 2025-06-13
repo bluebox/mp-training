@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controller"
+      spacing="10"
+      alignment="CENTER"
+      prefWidth="400"
+      prefHeight="300">
+
+    <Label text="Enter your name:"/>
+    <TextField fx:id="nameField"/>
+    <Button text="Greet" onAction="#handleGreet"/>
+    <Label fx:id="greetingLabel"/>
+
+</VBox>
