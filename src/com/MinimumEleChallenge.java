@@ -1,4 +1,4 @@
-package com.company.day2;
+package com;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -10,8 +10,8 @@ public class MinimumEleChallenge {
         int n = scanner.nextInt();
         int[] arr = new int[n];
 
-        for(int i=0;i<n;i++) {
-            System.out.println("Enter element " + (i+1));
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter element " + (i + 1));
             arr[i] = scanner.nextInt();
         }
 
@@ -22,7 +22,7 @@ public class MinimumEleChallenge {
 
     public static int findMinMethod(int[] arr) {
         int mini = Integer.MAX_VALUE;
-        for(int i:arr) {
+        for (int i : arr) {
             mini = Math.min(mini, i);
         }
         return mini;
