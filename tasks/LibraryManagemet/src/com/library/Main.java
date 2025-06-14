@@ -12,15 +12,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	public static void main(String[] args) {
-		//launch(args);
-		Connection conn=ConnectionMaker.getConnection();
+		launch(args);
+		//Connection conn=ConnectionMaker.getConnection();
 
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
 		primaryStage.setTitle("Book Entry Form");
 		primaryStage.setScene(new Scene(root, 600, 600));
 		primaryStage.show();
