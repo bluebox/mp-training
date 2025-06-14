@@ -3,6 +3,7 @@ package com.library;
 import java.sql.Connection;
 
 import com.library.service.MemberService;
+import com.library.service.BookService;
 import com.library.utilities.ConnectionMaker;
 
 import javafx.application.Application;
@@ -15,14 +16,15 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		//launch(args);
 		//Connection conn=ConnectionMaker.getConnection();
-		MemberService ms=new MemberService();
-		ms.addMember(null);
+//		MemberService ms=new MemberService();
+//		ms.addMember(null);
+		BookService bs=new BookService();
+		bs.viewAllBooks();
 
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		Parent root = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
 		primaryStage.setTitle("Book Entry Form");
 		primaryStage.setScene(new Scene(root, 600, 600));
