@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.IssueBookController"
+            prefWidth="400" prefHeight="300">
+    <children>
+        <Label text="Take Book" layoutX="160" layoutY="20" style="-fx-font-size: 20;" />
+
+        <Label text="Book ID:" layoutX="50" layoutY="80" />
+        <TextField fx:id="bookIdField" layoutX="150" layoutY="75" prefWidth="200" />
+
+        <Label text="Member ID:" layoutX="50" layoutY="130" />
+        <TextField fx:id="memberIdField" layoutX="150" layoutY="125" prefWidth="200" />
+
+        <Button text="Submit" fx:id="submitButton" layoutX="150" layoutY="180" onAction="#handleSubmit" />
+
+        <Label fx:id="messageLabel" layoutX="100" layoutY="230" textFill="red" />
+    </children>
+</AnchorPane>

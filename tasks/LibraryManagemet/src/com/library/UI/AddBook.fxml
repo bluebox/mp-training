@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.AddBookController"
+          hgap="10" vgap="10" alignment="CENTER" style="-fx-padding: 20;">
+    
+    <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="titleField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    
+    <Label text="Author:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="authorField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Label text="Category:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="categoryField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label text="Status (A/I):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <ChoiceBox fx:id="statusChoiceBox" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <Label text="Availability (A/I):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <ChoiceBox fx:id="availabilityChoiceBox" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+  <Button fx:id="submitButton" text="Submit" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+</GridPane>
