@@ -2,6 +2,7 @@ package com.library;
 
 import java.sql.Connection;
 
+import com.library.service.MemberService;
 import com.library.utilities.ConnectionMaker;
 
 import javafx.application.Application;
@@ -12,8 +13,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
 		//Connection conn=ConnectionMaker.getConnection();
+		MemberService ms=new MemberService();
+		ms.addMember(null);
 
 	}
 
