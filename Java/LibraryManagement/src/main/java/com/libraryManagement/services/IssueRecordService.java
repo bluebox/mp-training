@@ -1,5 +1,5 @@
 package com.libraryManagement.services;
 
-public class IssueRecordService {
+public interface IssueRecordService {
 
 }
