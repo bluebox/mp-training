@@ -2,17 +2,21 @@ package com.library.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.library.domain.Book;
 import com.library.domain.Member;
 import com.library.utilities.ConnectionMaker;
 
 public class MemberDAO {
 
 	public void addMember(Member member) {
-		try (Connection conn = ConnectionMaker.getConnection();)
-			{
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO member(name,email,mobile,gender,address) VALUES(?,?,?,?,?)");
+		try (Connection conn = ConnectionMaker.getConnection();) {
+			PreparedStatement ps = conn
+					.prepareStatement("INSERT INTO member(name,email,mobile,gender,address) VALUES(?,?,?,?,?)");
 			ps.setString(1, member.getName());
 			ps.setString(2, member.getEmail());
 			ps.setLong(3, member.getMobile());
@@ -24,5 +28,7 @@ public class MemberDAO {
 		}
 
 	}
+
+	
 
 }
