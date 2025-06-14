@@ -1,0 +1,191 @@
+Employee ID,Task Category,Percentage of Time
+EMP0009,Training,14.04
+EMP0009,Bug Fix,5.67
+EMP0009,Documentation,5.84
+EMP0009,Development,20.30
+EMP0009,Deployment,11.31
+EMP0009,Client Meeting,8.88
+EMP0009,Code Review,7.80
+EMP0009,Design Review,4.31
+EMP0009,Monitoring,20.72
+EMP0009,Testing,1.12
+EMP0019,Training,16.70
+EMP0019,Documentation,28.63
+EMP0019,Development,7.53
+EMP0019,Deployment,7.64
+EMP0019,Client Meeting,16.10
+EMP0019,Design Review,13.92
+EMP0019,Monitoring,9.48
+EMP0008,Training,10.27
+EMP0008,Documentation,15.21
+EMP0008,Development,6.27
+EMP0008,Deployment,4.10
+EMP0008,Client Meeting,12.59
+EMP0008,Code Review,23.35
+EMP0008,Monitoring,19.14
+EMP0008,Testing,9.08
+EMP0021,Training,15.17
+EMP0021,Development,16.17
+EMP0021,Deployment,20.07
+EMP0021,Code Review,14.36
+EMP0021,Monitoring,22.33
+EMP0021,Design Review,8.04
+EMP0021,Testing,3.86
+EMP0010,Training,9.73
+EMP0010,Documentation,12.27
+EMP0010,Development,12.09
+EMP0010,Client Meeting,11.39
+EMP0010,Deployment,26.59
+EMP0010,Code Review,16.89
+EMP0010,Testing,11.04
+EMP0020,Training,1.54
+EMP0020,Bug Fix,13.37
+EMP0020,Documentation,21.39
+EMP0020,Development,3.71
+EMP0020,Deployment,6.14
+EMP0020,Client Meeting,16.99
+EMP0020,Code Review,16.99
+EMP0020,Monitoring,5.48
+EMP0020,Design Review,3.44
+EMP0020,Testing,10.94
+EMP0012,Training,26.61
+EMP0012,Bug Fix,16.97
+EMP0012,Documentation,9.36
+EMP0012,Development,6.58
+EMP0012,Deployment,9.19
+EMP0012,Code Review,9.54
+EMP0012,Monitoring,21.75
+EMP0001,Documentation,14.92
+EMP0001,Client Meeting,21.22
+EMP0001,Deployment,25.34
+EMP0001,Code Review,25.95
+EMP0001,Monitoring,1.43
+EMP0001,Design Review,5.15
+EMP0001,Testing,6.00
+EMP0023,Training,15.43
+EMP0023,Bug Fix,1.57
+EMP0023,Documentation,7.11
+EMP0023,Development,2.49
+EMP0023,Deployment,8.72
+EMP0023,Client Meeting,8.62
+EMP0023,Code Review,9.32
+EMP0023,Design Review,22.01
+EMP0023,Testing,24.73
+EMP0011,Training,16.65
+EMP0011,Bug Fix,13.95
+EMP0011,Documentation,3.38
+EMP0011,Development,10.68
+EMP0011,Client Meeting,13.08
+EMP0011,Code Review,11.76
+EMP0011,Design Review,18.13
+EMP0011,Testing,12.37
+EMP0022,Training,24.09
+EMP0022,Bug Fix,23.78
+EMP0022,Documentation,39.06
+EMP0022,Client Meeting,5.82
+EMP0022,Testing,7.25
+EMP0003,Bug Fix,10.07
+EMP0003,Documentation,6.97
+EMP0003,Development,2.00
+EMP0003,Deployment,26.39
+EMP0003,Client Meeting,29.78
+EMP0003,Code Review,9.61
+EMP0003,Design Review,7.67
+EMP0003,Monitoring,7.51
+EMP0014,Training,4.22
+EMP0014,Documentation,19.30
+EMP0014,Development,0.86
+EMP0014,Deployment,12.23
+EMP0014,Client Meeting,22.88
+EMP0014,Code Review,14.40
+EMP0014,Design Review,9.50
+EMP0014,Monitoring,10.56
+EMP0014,Testing,6.05
+EMP0002,Bug Fix,27.61
+EMP0002,Documentation,3.42
+EMP0002,Client Meeting,13.14
+EMP0002,Deployment,22.39
+EMP0002,Code Review,20.96
+EMP0002,Design Review,12.48
+EMP0013,Bug Fix,9.08
+EMP0013,Documentation,12.13
+EMP0013,Development,3.68
+EMP0013,Deployment,17.87
+EMP0013,Client Meeting,35.03
+EMP0013,Code Review,10.31
+EMP0013,Design Review,11.90
+EMP0024,Training,10.63
+EMP0024,Bug Fix,3.30
+EMP0024,Documentation,18.60
+EMP0024,Development,17.30
+EMP0024,Deployment,15.51
+EMP0024,Code Review,8.07
+EMP0024,Monitoring,8.10
+EMP0024,Testing,18.48
+EMP0005,Documentation,10.93
+EMP0005,Development,11.73
+EMP0005,Client Meeting,8.78
+EMP0005,Deployment,9.79
+EMP0005,Code Review,13.05
+EMP0005,Design Review,20.50
+EMP0005,Monitoring,7.61
+EMP0005,Testing,17.61
+EMP0016,Bug Fix,22.88
+EMP0016,Documentation,11.98
+EMP0016,Development,2.60
+EMP0016,Deployment,19.41
+EMP0016,Code Review,22.41
+EMP0016,Monitoring,4.99
+EMP0016,Design Review,15.73
+EMP0015,Training,24.43
+EMP0015,Bug Fix,2.60
+EMP0015,Documentation,14.91
+EMP0015,Development,10.46
+EMP0015,Client Meeting,4.57
+EMP0015,Deployment,11.78
+EMP0015,Code Review,19.46
+EMP0015,Design Review,10.60
+EMP0015,Testing,1.19
+EMP0004,Training,5.82
+EMP0004,Bug Fix,16.55
+EMP0004,Documentation,1.12
+EMP0004,Development,27.79
+EMP0004,Deployment,9.36
+EMP0004,Client Meeting,4.26
+EMP0004,Code Review,9.28
+EMP0004,Design Review,5.81
+EMP0004,Monitoring,6.43
+EMP0004,Testing,13.58
+EMP0007,Training,12.73
+EMP0007,Documentation,6.23
+EMP0007,Development,37.37
+EMP0007,Client Meeting,15.51
+EMP0007,Code Review,12.29
+EMP0007,Monitoring,6.17
+EMP0007,Design Review,8.67
+EMP0007,Testing,1.03
+EMP0018,Training,4.77
+EMP0018,Bug Fix,5.70
+EMP0018,Documentation,17.00
+EMP0018,Development,1.85
+EMP0018,Deployment,26.55
+EMP0018,Client Meeting,7.87
+EMP0018,Design Review,9.12
+EMP0018,Monitoring,23.87
+EMP0018,Testing,3.27
+EMP0006,Training,27.16
+EMP0006,Bug Fix,16.37
+EMP0006,Development,4.10
+EMP0006,Client Meeting,3.20
+EMP0006,Code Review,14.23
+EMP0006,Design Review,18.41
+EMP0006,Testing,16.55
+EMP0017,Training,10.08
+EMP0017,Bug Fix,20.40
+EMP0017,Documentation,3.95
+EMP0017,Development,5.54
+EMP0017,Client Meeting,15.31
+EMP0017,Deployment,15.98
+EMP0017,Code Review,8.15
+EMP0017,Monitoring,2.84
+EMP0017,Testing,17.75
