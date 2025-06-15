@@ -58,9 +58,5 @@ public class EmployeePojo {
 		return remarks;
 	}
 
-	@Override
-	public String toString() {
-		return this.name+ " "+this.department+" "+this.hoursWorked+" "+this.date;
-	}
 	
 }

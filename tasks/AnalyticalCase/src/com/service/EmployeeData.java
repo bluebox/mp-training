@@ -6,11 +6,11 @@ import org.openxmlformats.schemas.drawingml.x2006.main.CTRegularTextRun;
 
 import com.domain.EmployeePojo;
 
-public class EmployeeDataAnalytics {
+public class EmployeeData {
 	
 	private  List<EmployeePojo> employeeList;
 
-	public EmployeeDataAnalytics() {
+	public EmployeeData() {
 		this.employeeList= new ArrayList<>();
 	}
 

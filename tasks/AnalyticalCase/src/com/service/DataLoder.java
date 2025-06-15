@@ -15,10 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.domain.EmployeePojo;
 
 public class DataLoder {
-	
-	public  void dataLoder(EmployeeDataAnalytics employeeDataAnalytics,EmployeePojo employeePojo)
-	{
-		 String filePath = "/home/mphs/Desktop/mp-training/tasks/AnalyticalCase/src/Sample_Employee_WorkLogs.xlsx";
+	public   void dataLoder(EmployeeData employeeData,String filePath) {
 
 	        try (FileInputStream inputStream = new FileInputStream(filePath);
 	             XSSFWorkbook workbook = new XSSFWorkbook(inputStream)) {
@@ -51,10 +48,8 @@ public class DataLoder {
 	                double hoursWorked = row.getCell(6).getNumericCellValue();
 	                String remarks = row.getCell(7).getStringCellValue();
 
-	                employeePojo = new EmployeePojo(employeeId, name, department, projectId,
-	                        date, task, hoursWorked, remarks);
-
-	                employeeDataAnalytics.setEmployeePojo(employeePojo);
+	                employeeData.setEmployeePojo(new EmployeePojo(employeeId, name, department, projectId,
+	                        date, task, hoursWorked, remarks));
 	            }
 
 	        } catch (Exception e) {
