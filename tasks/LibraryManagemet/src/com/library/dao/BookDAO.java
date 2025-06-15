@@ -31,8 +31,8 @@ public class BookDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		//Used For Testing
+
+		// Used For Testing
 //		for (Book book : books) {
 //            System.out.println("ID: " + book.getBookId());
 //            System.out.println("Title: " + book.getTitle());
@@ -42,9 +42,28 @@ public class BookDAO {
 //            System.out.println("Availability: " + (book.getAvailability() == 'A' ? "Available" : "Issued"));
 //            System.out.println("--------------------------------------------------");
 //        }
-		//System.out.print(books);
+		// System.out.print(books);
 		return books;
 
+	}
+	public void updateDetails(Book book) {
+		try (Connection conn = ConnectionMaker.getConnection();
+				PreparedStatement p = conn.prepareStatement(
+						"INSERT INTO books_log (BookId, Title, Author, Category, Status, Availability) "
+								+ "SELECT BookId, Title, Author, Category, Status, Availability FROM books WHERE BookId = ?");) {
+			p.setInt(1, book.getBookId());
+
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE books SET Title = ?, Author = ?, Category = ?, Status = ? WHERE BookId = ?");
+			ps.setString(1, book.getTitle());
+			ps.setString(2, book.getAuthor());
+			ps.setString(3, String.valueOf(book.getCategory()));
+			ps.setString(4, String.valueOf(book.getStatus()));
+			ps.setInt(5, book.getBookId());
+			System.out.println(ps.executeUpdate());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

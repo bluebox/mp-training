@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	public static void main(String[] args) {
-		//launch(args);
+		launch(args);
 		//Connection conn=ConnectionMaker.getConnection();
 //		MemberService ms=new MemberService();
 //		ms.addMember(null);
-		BookService bs=new BookService();
-		bs.viewAllBooks();
+//		BookService bs=new BookService();
+//		bs.viewAllBooks();
 
 	}
 
