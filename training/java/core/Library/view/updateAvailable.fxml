@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.UpdateBookController"
+            prefWidth="400" prefHeight="350">
+
+    <children>
+        <Label layoutX="150" layoutY="20" text="Update Availability Details" />
+
+        <Label layoutX="50" layoutY="70" text="Book ID:"/>
+        <TextField fx:id="bookIdField" layoutX="150" layoutY="65"/>
+
+        <!-- <Label layoutX="50" layoutY="110" text="Title:"/>
+        <TextField fx:id="titleField" layoutX="150" layoutY="105"/>
+
+        <Label layoutX="50" layoutY="150" text="Author:"/>
+        <TextField fx:id="authorField" layoutX="150" layoutY="145"/>
+
+        <Label layoutX="50" layoutY="190" text="Category:"/>
+        <TextField fx:id="categoryField" layoutX="150" layoutY="185"/> -->
+
+        <Label layoutX="50" layoutY="230" text="Availability (A/I):"/>
+        <TextField fx:id="availabilityField" layoutX="150" layoutY="225"/>
+        <!-- <ComboBox fx:id="cbStatus">
+    </ComboBox> -->
+        <Button text="Update" layoutX="150" layoutY="270" onAction="#handleUpdateAvailability"/>
+    </children>
+</AnchorPane>
