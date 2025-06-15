@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.HomeController"
+            prefWidth="400" prefHeight="450">
+    <children>
+        <Label text="Library Management System" layoutX="60" layoutY="20" style="-fx-font-size: 18;" />
+
+        <VBox layoutX="100" layoutY="70" spacing="10">
+            <Button text="Add Book" onAction="#goToAddBook" prefWidth="200"/>
+            <Button text="Add Member" onAction="#goToAddMember" prefWidth="200"/>
+            <Button text="View All Books" onAction="#goToViewBooks" prefWidth="200"/>
+            <Button text="View All Members" onAction="#goToViewMembers" prefWidth="200"/>
+            <Button text="Issue Book" onAction="#goToIssueBook" prefWidth="200"/>
+            <Button text="Return Book" onAction="#goToReturnBook" prefWidth="200"/>
+            <Button text="Show Issued Records" onAction="#goToIssuedRecords" prefWidth="200"/>
+        </VBox>
+    </children>
+</AnchorPane>

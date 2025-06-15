@@ -1,0 +1,15 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.ViewIssuedBooksController">
+    <center>
+        <TableView fx:id="issueTable" prefHeight="300" prefWidth="600">
+            <columns>
+                <TableColumn text="Book ID" fx:id="bookIdCol" />
+                <TableColumn text="Member ID" fx:id="memberIdCol" />
+                <TableColumn text="Issue Date" fx:id="issueDateCol" />
+                <TableColumn text="Return Date" fx:id="returnDateCol" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
