@@ -8,62 +8,43 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 
-
-<VBox xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.library.controller.MemberController"
-      		spacing="10" alignment="CENTER" style="-fx-padding: 40;">
+<VBox
+    xmlns:fx="http://javafx.com/fxml/"
+    fx:controller="com.library.controller.MemberController"
+    spacing="10" alignment="CENTER" style="-fx-padding: 40;">
     
     <fx:define>
         <ToggleGroup fx:id="gender"/>
     </fx:define>
 
-      		
-	<HBox spacing="10"> 
-		
-      	<Label fx:id="label1" text="Enter your Name"/>
-      		
-    	<TextField fx:id="name" promptText="Enter your Name "/>
-    	    	
+    <HBox spacing="10"> 
+        <Label fx:id="label1" text="Enter your Name"/>
+        <TextField fx:id="name" promptText="Enter your Name "/>
     </HBox>
     
     <HBox spacing="10"> 
-    
-    	<Label fx:id="label2" text="Enter your EmailId"/>
-    	
-    	<TextField fx:id="email" promptText="Enter your EmailId"/>
-    	
+        <Label fx:id="label2" text="Enter your EmailId"/>
+        <TextField fx:id="email" promptText="Enter your EmailId"/>
     </HBox>
     
     <HBox spacing="10"> 
-    
-    	<Label fx:id="label3" text="Enter your Mobile Number"/>
-    	<TextField fx:id="mobile" promptText="Enter your Mobile Number"/>
-    	
+        <Label fx:id="label3" text="Enter your Mobile Number"/>
+        <TextField fx:id="mobile" promptText="Enter your Mobile Number"/>
     </HBox>
     
     <HBox spacing="10"> 
-    	
-			<Label fx:id="label4" text="Enter your Gender"/>
-			<RadioButton text="Male" toggleGroup="$gender" userData="M"/>
-			<RadioButton text="Female" toggleGroup="$gender" userData="F"/>
-		
-    	
-    </HBox>
-    
-    
-    <HBox spacing="10"> 
-    
-    	<Label fx:id="label5" text="Enter your Address"/>
-    	
-    	<TextField fx:id="address" promptText="Enter your Address"/>
-    	
+        <Label fx:id="label4" text="Enter your Gender"/>
+        <RadioButton text="Male" toggleGroup="$gender" userData="M"/>
+        <RadioButton text="Female" toggleGroup="$gender" userData="F"/>
     </HBox>
     
     <HBox spacing="10"> 
-    	
-    	<Button text="Submit" onAction="#addAMember"/>
-    	
+        <Label fx:id="label5" text="Enter your Address"/>
+        <TextField fx:id="address" promptText="Enter your Address"/>
     </HBox>
     
+    <HBox spacing="10"> 
+        <Button text="Submit" onAction="#addAMember"/>
+    </HBox>
+
 </VBox>
