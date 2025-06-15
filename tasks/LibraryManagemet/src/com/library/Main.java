@@ -1,9 +1,8 @@
 package com.library;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
-import com.library.service.MemberService;
-import com.library.service.BookService;
 import com.library.utilities.ConnectionMaker;
 
 import javafx.application.Application;
@@ -13,13 +12,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		launch(args);
-		//Connection conn=ConnectionMaker.getConnection();
-//		MemberService ms=new MemberService();
-//		ms.addMember(null);
-//		BookService bs=new BookService();
-//		bs.viewAllBooks();
+		Connection conn=ConnectionMaker.getConnection();
 
 	}
 

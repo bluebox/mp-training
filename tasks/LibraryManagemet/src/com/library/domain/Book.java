@@ -1,22 +1,15 @@
 package com.library.domain;
 
-
-
 public class Book {
-
-    private int id;              
+    private int id;
     private String title;
     private String author;
     private String category;
-    private char status;            
-    private char availability;      
+    private String status;
+    private String availability;
 
-    // Constructors
-    public Book() {
-    }
-
-    public Book(int bookId, String title, String author, String category, char status, char availability) {
-        this.id = bookId;
+    public Book(int id, String title, String author, String category, String status, String availability) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.category = category;
@@ -24,52 +17,18 @@ public class Book {
         this.availability = availability;
     }
 
-    public int getBookId() {
-        return id;
-    }
-
-    public void setBookId(int bookId) {
-        this.id = bookId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
+    public Book(String title, String author, String category, String status, String availability) {
         this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
         this.category = category;
-    }
-
-    public char getStatus() {
-        return status;
-    }
-
-    public void setStatus(char status) {
         this.status = status;
-    }
-
-    public char getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(char availability) {
         this.availability = availability;
     }
+
+    public int getBookId() { return id; }
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+    public String getCategory() { return category; }
+    public String getStatus() { return status; }
+    public String getAvailability() { return availability; }
 }
-

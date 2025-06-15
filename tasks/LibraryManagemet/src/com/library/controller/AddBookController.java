@@ -1,5 +1,7 @@
 package com.library.controller;
 
+import com.library.domain.Book;
+import com.library.service.BookService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -52,18 +54,21 @@ public class AddBookController {
   }
 	@FXML
 	private void handleSubmit() {
+		String title = titleField.getText().trim();
+		String author = authorField.getText().trim();
+		String category = categoryField.getText().trim();
+		String status = statusChoiceBox.getValue().substring(0, 1);       // Extract "A" or "I"
+		String availability = availabilityChoiceBox.getValue().substring(0, 1); // Extract "A" or "I"
 
-		String title = titleField.getText();
-		String author = authorField.getText();
-		String category = categoryField.getText();
-		String status = statusChoiceBox.getValue();
-		String availability = availabilityChoiceBox.getValue();
+		Book book = new Book(title, author, category, status, availability);
+		BookService bookService = new BookService();
+		boolean success = bookService.addBook(book);
 
-		System.out.println("Book Info:");
-		System.out.println("Title: " + title);
-		System.out.println("Author: " + author);
-		System.out.println("Category: " + category);
-		System.out.println("Status: " + status);
-		System.out.println("Availability: " + availability);
+		if (success) {
+			System.out.println("Book successfully added to DB.");
+		} else {
+			System.out.println("Failed to add book.");
+		}
 	}
+
 }

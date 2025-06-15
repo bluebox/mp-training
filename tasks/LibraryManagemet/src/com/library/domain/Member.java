@@ -13,6 +13,7 @@ public class Member {
 		this.id = id;
 	}
 
+
 	public Member(String name, String email, long mobile, char gender, String address) {
 		this.name = name;
 		this.email = email;
@@ -21,51 +22,45 @@ public class Member {
 		this.address = address;
 	}
 
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
-
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
+
 	public int getId() {
 		return id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public long getMobile() {
 		return mobile;
 	}
-
 	public char getGender() {
 		return gender;
 	}
-
 	public String getAddress() {
 		return address;
 	}
+	
 
-	// REMOVE it
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", name=" + name + ", email=" + email + ", mobile=" + mobile + ", gender=" + gender

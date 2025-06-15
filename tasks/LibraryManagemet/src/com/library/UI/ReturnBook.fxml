@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.ReturnBookController"
+      spacing="20" alignment="CENTER" style="-fx-padding: 20;">
+
+    <Label text="Return Book" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Book ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="bookIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Member ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="memberIdField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Return Book" onAction="#handleReturnBook"/>
+        <Button text="Cancel" onAction="#handleCancel"/>
+    </HBox>
+</VBox>

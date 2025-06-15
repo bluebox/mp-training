@@ -1,22 +1,26 @@
 package com.library.service;
 
-import java.util.List;
-
 import com.library.dao.MemberDAO;
+import com.library.dao.UpdateMemberDetailsDAO;
 import com.library.domain.Member;
 
+import java.util.List;
+
 public class MemberService {
-	MemberDAO memberdao = new MemberDAO();
 
-	public void addMember(Member member) {
+	MemberDAO memberdao=new MemberDAO();
+	
+	public void addMember(Member member)
+	{
 		memberdao.addMember(member);
-
 	}
 
 	public List<Member> viewAllMembers() {
-		MemberDAO memberDAO = new MemberDAO();
+		return memberdao.getAllMembers();
+	}
 
-		return memberDAO.viewAllMembers();
+	public void updateMember(Member member) {
+		memberdao.updateMember(member);
 	}
 
 }
