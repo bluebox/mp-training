@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.ViewMembersController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TableView fx:id="memberTable" layoutX="14.0" layoutY="14.0" prefHeight="350.0" prefWidth="570.0">
+        <columns>
+            <TableColumn fx:id="idCol" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="nameCol" text="Name" prefWidth="100"/>
+            <TableColumn fx:id="emailCol" text="Email" prefWidth="150"/>
+            <TableColumn fx:id="mobileCol" text="Mobile" prefWidth="100"/>
+            <TableColumn fx:id="genderCol" text="Gender" prefWidth="70"/>
+            <TableColumn fx:id="addressCol" text="Address" prefWidth="100"/>
+        </columns>
+    </TableView>
+</AnchorPane>
