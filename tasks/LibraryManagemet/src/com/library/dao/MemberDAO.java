@@ -31,7 +31,7 @@ public class MemberDAO {
 public List<Member> viewAllMembers() {
 		
 	    List<Member> members = new ArrayList<>();
-	    String query = "SELECT * FROM members";
+	    String query = "SELECT * FROM member";
 	    
 	    try (Connection conn = ConnectionMaker.getConnection();
 			PreparedStatement ps = conn.prepareStatement(query);){
@@ -40,12 +40,12 @@ public List<Member> viewAllMembers() {
 	        		 
 	        while (rs.next()) {
 	            Member member = new Member(
-	                rs.getInt("MemberId"),
-	                rs.getString("Name"),
-	                rs.getString("Email"),
-	                rs.getLong("Mobile"),
-	                rs.getString("Gender").charAt(0),
-	                rs.getString("Address")
+	                rs.getInt("id"),
+	                rs.getString("name"),
+	                rs.getString("email"),
+	                rs.getLong("mobile"),
+	                rs.getString("gender").charAt(0),
+	                rs.getString("address")
 	            );
 	            members.add(member);
 	        }

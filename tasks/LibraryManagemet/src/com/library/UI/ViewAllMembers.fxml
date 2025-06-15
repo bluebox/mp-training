@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/"
+      fx:controller="com.library.controller.ViewMembersController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+    
+    <TableView fx:id="memberTable" prefHeight="400" prefWidth="700">
+        <columns>
+            <TableColumn fx:id="idCol" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="nameCol" text="Name" prefWidth="120"/>
+            <TableColumn fx:id="emailCol" text="Email" prefWidth="150"/>
+            <TableColumn fx:id="mobileCol" text="Mobile" prefWidth="120"/>
+            <TableColumn fx:id="genderCol" text="Gender" prefWidth="70"/>
+            <TableColumn fx:id="addressCol" text="Address" prefWidth="180"/>
+        </columns>
+    </TableView>
+
+    <Button text="Back" onAction="#goBack"/>
+</VBox>

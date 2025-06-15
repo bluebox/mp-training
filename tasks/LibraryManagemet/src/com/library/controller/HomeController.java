@@ -34,7 +34,7 @@ public class HomeController {
     }
 
     @FXML private void goToViewMembers(ActionEvent event) throws IOException {
-        loadScene("ViewMembers.fxml", event);
+        loadScene("ViewAllMembers.fxml", event);
     }
 
     @FXML private void goToIssueBook(ActionEvent event) throws IOException {
