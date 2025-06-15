@@ -19,52 +19,85 @@ import javafx.stage.Stage;
 
 public class ViewMembersController {
 
-	@FXML
-	private TableView<Member> memberTable;
+    @FXML
+    private TableView<Member> memberTable;
 
-	@FXML
-	private TableColumn<Member, Integer> idCol;
+    @FXML
+    private TableColumn<Member, Integer> idCol;
 
-	@FXML
-	private TableColumn<Member, String> nameCol;
+    @FXML
+    private TableColumn<Member, String> nameCol;
 
-	@FXML
-	private TableColumn<Member, String> emailCol;
+    @FXML
+    private TableColumn<Member, String> emailCol;
 
-	@FXML
-	private TableColumn<Member, Long> mobileCol;
+    @FXML
+    private TableColumn<Member, Long> mobileCol;
 
-	@FXML
-	private TableColumn<Member, Character> genderCol;
+    @FXML
+    private TableColumn<Member, Character> genderCol;
 
-	@FXML
-	private TableColumn<Member, String> addressCol;
+    @FXML
+    private TableColumn<Member, String> addressCol;
 
-	private MemberService memberService = new MemberService();
+    private MemberService memberService = new MemberService();
 
-	@FXML
-	public void initialize() {
-		idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-		emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-		mobileCol.setCellValueFactory(new PropertyValueFactory<>("mobile"));
-		genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
-		addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+    @FXML
+    public void initialize() {
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        mobileCol.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
 
-		List<Member> members = memberService.viewAllMembers(); 
-		memberTable.setItems(FXCollections.observableArrayList(members));
-	}
+        List<Member> members = memberService.viewAllMembers();
+        memberTable.setItems(FXCollections.observableArrayList(members));
+    }
 
-	@FXML
-	private void goBack(ActionEvent event) {
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml")); 
-																								
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			stage.setScene(new Scene(root));
-			stage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @FXML
+    private void updateSelectedMember(ActionEvent event) {
+        Member selected = memberTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/library/UI/MemberForm.fxml"));
+                Parent root = loader.load();
+
+                MemberController controller = loader.getController();
+                controller.setUpdateMode(selected);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Update Member");
+
+                // Add event handler to refresh table after closing the update window
+                stage.setOnHidden(e -> refreshMemberTable());
+
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Utility method to refresh the member list
+    private void refreshMemberTable() {
+        List<Member> updatedMembers = memberService.viewAllMembers();
+        memberTable.setItems(FXCollections.observableArrayList(updatedMembers));
+    }
+
+
+    @FXML
+    private void goBack(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

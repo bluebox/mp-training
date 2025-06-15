@@ -28,7 +28,23 @@ public class MemberDAO {
 
 	}
 
-public List<Member> viewAllMembers() {
+	public void updateMember(Member member) {
+		String sql = "UPDATE member SET name=?, email=?, mobile=?, gender=?, address=? WHERE id=?";
+		try (Connection conn = ConnectionMaker.getConnection();
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, member.getName());
+			stmt.setString(2, member.getEmail());
+			stmt.setLong(3, member.getMobile());
+			stmt.setString(4, String.valueOf(member.getGender()));
+			stmt.setString(5, member.getAddress());
+			stmt.setInt(6, member.getId());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+public List<Member> getAllMembers() {
 		
 	    List<Member> members = new ArrayList<>();
 	    String query = "SELECT * FROM member";
@@ -55,7 +71,5 @@ public List<Member> viewAllMembers() {
 
 	    return members;
 	}
-
-	
 
 }
