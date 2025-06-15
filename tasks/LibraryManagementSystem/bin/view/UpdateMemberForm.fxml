@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllerr.MemberFormController">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <TextField fx:id="idField" promptText="Member ID"/>
+    <TextField fx:id="nameField" promptText="Name"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <TextField fx:id="mobileField" promptText="Mobile"/>
+    <ChoiceBox fx:id="genderBox"/>
+    <TextField fx:id="addressField" promptText="Address"/>
+
+    <Button text="Update Member" onAction="#handleUpdateMember"/>
+    <Label fx:id="messageLabel"/>
+</VBox>
