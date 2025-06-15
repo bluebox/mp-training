@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="PustakaLokam.library.controller.MenuController"
+      spacing="15" alignment="CENTER" prefWidth = "400" prefHeight = "300" style="-fx-padding: 30;">
+
+    <Label text="PustakaLokam Library" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <Button text="Add a New Book" onAction="#onInsertBookClick" prefWidth="200"/>
+    <Button text="Update Book Details" onAction="#onUpdateBookClick" prefWidth="200"/>
+    <Button text="View All Books" onAction="#onDisplayBooksClick" prefWidth="200"/>
+    <Separator/>
+
+</VBox>
+
