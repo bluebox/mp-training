@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.library.controller.ReturnBookController"
+          hgap="10" vgap="10" alignment="CENTER">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Book ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="bookIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <Button text="Return Book" onAction="#handleReturnBook" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+     <Label fx:id="statusLabel" layoutX="30" layoutY="180" prefWidth="340" style="-fx-text-fill: green;"/>
+</GridPane>

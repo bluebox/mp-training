@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.HomeController"
+      spacing="20" alignment="CENTER" prefWidth="300" prefHeight="400">
+
+    <Button text="Issue Book to Member" onAction="#handleIssueBook" prefWidth="200"/>
+    <Button text="Display Issued Records" onAction="#handleDisplayRecords" prefWidth="200"/>
+    <Button text="Form to Add a Member" onAction="#goToAddMember" prefWidth="200"/>
+    <Button text="View All Books" onAction="#goToViewBooks" prefWidth="200"/>
+    <Button text="Return a Book" onAction="#goToReturnBook" prefWidth="200"/>
+
+</VBox>
