@@ -1,10 +1,10 @@
-package com.LibraryManagement.ui;
+package Library.src.main.java.com.LibraryManagement.ui;
 
-import com.LibraryManagement.model.Member;
-import com.LibraryManagement.service.MemberService;
-import com.LibraryManagement.service.MemberServiceImpl;
-import com.LibraryManagement.dao.MemberDAOImpl;
-import com.LibraryManagement.util.DBConnection;
+import Library.src.main.java.com.LibraryManagement.model.Member;
+import Library.src.main.java.com.LibraryManagement.service.MemberService;
+import Library.src.main.java.com.LibraryManagement.service.MemberServiceImpl;
+import Library.src.main.java.com.LibraryManagement.dao.MemberDAOImpl;
+import Library.src.main.java.com.LibraryManagement.util.DBConnection;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -85,6 +85,7 @@ public class AddBookUI {
                 book.setAvailability('A');
 
                 bookService.addBook(book);
+                
                 messageLabel.setText("Book added successfully.");
                 idField.clear();
                 titleField.clear();

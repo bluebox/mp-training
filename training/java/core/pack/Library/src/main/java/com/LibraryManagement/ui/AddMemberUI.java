@@ -1,9 +1,9 @@
 package Library.src.main.java.com.LibraryManagement.ui;
-import com.LibraryManagement.model.Member;
-import com.LibraryManagement.service.MemberService;
-import com.LibraryManagement.service.MemberServiceImpl;
-import com.LibraryManagement.dao.MemberDAOImpl;
-import com.LibraryManagement.util.DBConnection;
+import Library.src.main.java.com.LibraryManagement.model.Member;
+import Library.src.main.java.com.LibraryManagement.service.MemberService;
+import Library.src.main.java.com.LibraryManagement.service.MemberServiceImpl;
+import Library.src.main.java.com.LibraryManagement.dao.MemberDAOImpl;
+import Library.src.main.java.com.LibraryManagement.util.DBConnection;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -76,7 +76,7 @@ public class AddMemberUI {
 
             try {
                 int memberId = Integer.parseInt(idText);
-                int mobile = Integer.parseInt(mobileText);
+                String mobile = mobileText;
 
                 Member member = new Member();
                 member.setMemberId(memberId);
@@ -87,6 +87,7 @@ public class AddMemberUI {
                 member.setAddress(address);
 
                 memberService.addMember(member);
+                
                 messageLabel.setText("Member registered successfully.");
                 idField.clear();
                 nameField.clear();
@@ -100,7 +101,10 @@ public class AddMemberUI {
                 messageLabel.setText("Database error: " + ex.getMessage());
             } catch (RuntimeException ex) {
                 messageLabel.setText("Unexpected error: " + ex.getMessage());
-            }
+            } catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         });
 
         stage.setScene(new Scene(pane, 450, 350));

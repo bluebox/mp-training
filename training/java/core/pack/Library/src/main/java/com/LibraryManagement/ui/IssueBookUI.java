@@ -1,9 +1,12 @@
-package com.LibraryManagement.ui;
+package Library.src.main.java.com.LibraryManagement.ui;
 
-import com.LibraryManagement.service.TransactionService;
-import com.LibraryManagement.service.TransactionServiceImpl;
-import com.LibraryManagement.dao.TransactionDAOImpl;
-import com.LibraryManagement.util.DBConnection;
+import Library.src.main.java.com.LibraryManagement.service.IssueRecordService;
+import Library.src.main.java.com.LibraryManagement.service.IssueRecordServiceImpl;
+import Library.src.main.java.com.LibraryManagement.dao.IssueRecordDAOImpl;
+
+import Library.src.main.java.com.LibraryManagement.dao.BookDAOImpl;
+
+import Library.src.main.java.com.LibraryManagement.util.DBConnection;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,12 +18,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class IssueBookUI {
-    private final TransactionService transactionService;
+    private final IssueRecordService issueService;
 
+  
+    
     public IssueBookUI() {
         try {
             Connection conn = DBConnection.getConnection();
-            this.transactionService = new TransactionServiceImpl(new TransactionDAOImpl(conn));
+            //this.issueService = new IssueRecordServiceImpl(new IssueRecordDAOImpl(conn));
+           this.issueService= new IssueRecordServiceImpl(new IssueRecordDAOImpl(conn),new BookDAOImpl(conn));
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize service: " + e.getMessage());
         }
@@ -48,7 +54,7 @@ public class IssueBookUI {
             try {
                 int bookId = Integer.parseInt(bookIdField.getText());
                 int memberId = Integer.parseInt(memberIdField.getText());
-                transactionService.issueBook(bookId, memberId);
+                issueService.issueBook(bookId, memberId);
                 messageLabel.setText("Book issued successfully.");
             } catch (Exception ex) {
                 messageLabel.setText("Error: " + ex.getMessage());

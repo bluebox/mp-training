@@ -32,8 +32,8 @@ public class Main {
 
     public static void printList(List<?> students) {
 
-        for (var student : students) {
+        for (var student : students) 
             System.out.println(student);
-        }
+        
     }
 }

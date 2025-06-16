@@ -26,5 +26,13 @@
 	<classpathentry kind="lib" path="/home/medplus/Downloads/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="/home/medplus/Downloads/log4j-api-2.20.0.jar"/>
 	<classpathentry kind="lib" path="/home/medplus/Downloads/log4j-core-2.20.0.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx-swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
