@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.MainMenuController"
+            prefWidth="800" prefHeight="500">
+
+    <!-- Center Content: TabPane for Issue and Return/Renew -->
+    <center>
+        <TabPane fx:id="tabPane">
+            <Tab text="Issue Book">
+                <VBox spacing="10" alignment="TOP_CENTER">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="BOOK INFORMATION" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="bookIdField" promptText="Enter Book ID"/>
+                    <Label text="MEMBER INFORMATION" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="memberIdField" promptText="Member ID"/>
+                    <Button text="Issue Book" fx:id="issueBookTabBtn" onAction="#handleIssueBookTab"/>
+                </VBox>
+            </Tab>
+            <Tab text="Return / Renew Book">
+                <VBox spacing="10" alignment="TOP_CENTER">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Label text="BOOK RETURN" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="returnBookIdField" promptText="Book ID"/>
+                    <TextField fx:id="returnMemberIdField" promptText="Member ID"/>
+                    <Button text="Return Book" fx:id="returnBookTabBtn" onAction="#handleReturnBookTab"/>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </center>
+
+    <!-- Right Side Menu Buttons -->
+    <right>
+        <VBox spacing="10" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Button text="Add Book" fx:id="addBookBtn" maxWidth="120"/>
+            <Button text="Add Member" fx:id="addMemberBtn" maxWidth="120"/>
+            <Button text="Search Book" fx:id="searchBookBtn" maxWidth="120"/>
+            <Button text="Return Book" fx:id="searchMemberBtn" maxWidth="120"/>
+            <Button text="View Books" fx:id="allBooksBtn" maxWidth="120"/>
+            <Button text="View Members" fx:id="allMembersBtn" maxWidth="120"/>
+            <Button text="Issued Books" fx:id="issuedBooksBtn" maxWidth="120"/>
+        </VBox>
+    </right>
+
+</BorderPane>
