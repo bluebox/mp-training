@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="tasks"/>
 	<classpathentry excluding="mysql-connector-j-9.3.0/src/main/user-impl/java/|mysql-connector-j-9.3.0/src/main/user-api/java/|mysql-connector-j-9.3.0/src/generated/java/|mysql-connector-j-9.3.0/src/main/core-api/java/|mysql-connector-j-9.3.0/src/legacy/java/|mysql-connector-j-9.3.0/src/test/java/|mysql-connector-j-9.3.0/src/main/core-impl/java/|mysql-connector-j-9.3.0/src/main/protocol-impl/java/|mysql-connector-j-9.3.0/src/demo/java/" kind="src" path="training/java/core/MyPractice/src"/>
 	<classpathentry kind="src" path="training/java/core/MyPractice/src/mysql-connector-j-9.3.0/src/demo/java"/>
@@ -12,5 +16,18 @@
 	<classpathentry kind="src" path="training/java/core/MyPractice/src/mysql-connector-j-9.3.0/src/main/user-api/java"/>
 	<classpathentry kind="src" path="training/java/core/MyPractice/src/mysql-connector-j-9.3.0/src/main/user-impl/java"/>
 	<classpathentry kind="src" path="training/java/core/MyPractice/src/mysql-connector-j-9.3.0/src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/jdk.jsobject.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/jfx.incubator.input.jar"/>
+	<classpathentry kind="lib" path="/home/mphs/Desktop/mp-training/training/java/core/MyPractice/src/javafx-sdk-24.0.1/lib/jfx.incubator.richtext.jar"/>
 	<classpathentry kind="output" path="training/java/core/MyPractice/bin"/>
 </classpath>

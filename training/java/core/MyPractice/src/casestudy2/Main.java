@@ -11,79 +11,37 @@ public class Main {
 
         CSVWriter writer1 = new CSVWriter("task1_output.csv");
         writer1.writeSectionTitle("Task 1: Engineering employees with >2 projects");
-<<<<<<< HEAD
-        writer1.writeLines(Task1.getEngineersWithMultipleProjects(logs));
-=======
         writer1.writeLines(Task1.getEngineersWithMoreThanTwoProjects(logs));
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         writer1.close();
         System.out.println("Outputs has been written to task1_output.csv");
 
         CSVWriter writer9 = new CSVWriter("task9_output.csv");
         writer9.writeSectionTitle("Task 9: Top 5 employees with highest hours in last 60 days");
-<<<<<<< HEAD
-        writer9.writeLines(Task9.getEmployeesHighestWorkingHours(logs));
-=======
         writer9.writeLines(Task9.getTop5EmployeesInLast60Days(logs));
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         writer9.close();
         System.out.println("Outputs has been written to task9_output.csv");
 
         CSVWriter writer10 = new CSVWriter("task10_output.csv");
         writer10.writeSectionTitle("Task 10: 'Bug Fix' tasks grouped by category and day");
-<<<<<<< HEAD
-        writer10.writeLines(Task10.getBugFixStatsByCategoryAndDay(logs));
-=======
         writer10.writeLines(Task10.groupBugFixTasksByCategoryAndDayOfWeek(logs));
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         writer10.close();
         System.out.println("Outputs has been written to task10_output.csv");
 
         CSVWriter writer12 = new CSVWriter("task12_output.csv");
         writer12.writeSectionTitle("Task 12: Project-wise productivity");
-<<<<<<< HEAD
-        writer12.writeLines(Task12.generateProjectHoursReport(logs));
-=======
         writer12.writeLines(Task12.getProjectWiseEmployeeProductivity(logs));
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         writer12.close();
         System.out.println("Outputs has been written to task12_output.csv");
 
         CSVWriter writer25 = new CSVWriter("task25_output.csv");
         writer25.writeSectionTitle("Task 25: Sorted by Department > Project > Date");
-<<<<<<< HEAD
-        writer25.writeLines(Task25.exportWorkLogsAsCSV(logs));
-=======
         writer25.writeLines(Task25.sortByDepartmentProjectAndDate(logs));
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         writer25.close();
         System.out.println("Outputs has been written to task25_output.csv");
     }
 }
 
 class Task1 {
-<<<<<<< HEAD
-    public static List<String> getEngineersWithMultipleProjects(List<EmployeeWorkLog> logs) {
-        Stream<EmployeeWorkLog> engineeringLogs = logs.stream()
-            .filter(log -> log.getDepartment().toLowerCase().contains("engineer"));
-        Map<String, Set<String>> employeeToProjects = engineeringLogs
-            .collect(Collectors.groupingBy(
-                log -> log.getEmployeeId(),  
-                Collectors.mapping(
-                    log -> log.getProjectId(),  
-                    Collectors.toSet()  
-                )
-            ));
-        Stream<Map.Entry<String, Set<String>>> filteredEntries = employeeToProjects.entrySet().stream()
-            .filter(entry -> entry.getValue().size() > 2);
-        
-       //format the results from map to string to display
-        List<String> result = filteredEntries
-            .map(entry -> entry.getKey() + "," + entry.getValue().size() + " unique projects")
-            .collect(Collectors.toList());
-        
-        return result;
-=======
     public static List<String> getEngineersWithMoreThanTwoProjects(List<EmployeeWorkLog> logs) {
         return logs.stream()
                 .filter(log -> log.getDepartment().toLowerCase().contains("engineer"))
@@ -93,16 +51,11 @@ class Task1 {
                 .filter(e -> e.getValue().size() > 2)
                 .map(e -> e.getKey() + "," + e.getValue().size() + " unique projects")
                 .collect(Collectors.toList());
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
     }
 }
 
 class Task9 {
-<<<<<<< HEAD
-    public static List<String> getEmployeesHighestWorkingHours(List<EmployeeWorkLog> logs) {
-=======
     public static List<String> getTop5EmployeesInLast60Days(List<EmployeeWorkLog> logs) {
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         LocalDate thresholdDate = LocalDate.now().minusDays(60);
         return logs.stream()
                 .filter(log -> log.getDate().isAfter(thresholdDate))
@@ -117,11 +70,7 @@ class Task9 {
 }
 
 class Task10 {
-<<<<<<< HEAD
-    public static List<String> getBugFixStatsByCategoryAndDay(List<EmployeeWorkLog> logs) {
-=======
     public static List<String> groupBugFixTasksByCategoryAndDayOfWeek(List<EmployeeWorkLog> logs) {
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         return logs.stream()
                 .filter(log -> log.getTaskCategory().toLowerCase().contains("bug fix"))
                 .collect(Collectors.groupingBy(
@@ -134,11 +83,7 @@ class Task10 {
 }
 
 class Task12 {
-<<<<<<< HEAD
-    public static List<String> generateProjectHoursReport(List<EmployeeWorkLog> logs) {
-=======
     public static List<String> getProjectWiseEmployeeProductivity(List<EmployeeWorkLog> logs) {
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
         Map<String, Map<String, List<EmployeeWorkLog>>> grouped = logs.stream()
                 .collect(Collectors.groupingBy(EmployeeWorkLog::getProjectId,
                         Collectors.groupingBy(EmployeeWorkLog::getEmployeeId)));
@@ -155,28 +100,8 @@ class Task12 {
         return result;
     }
 }
-class Task25 {
-<<<<<<< HEAD
-	//Export sorted work logs as CSV data.
-    public static List<String> exportWorkLogsAsCSV(List<EmployeeWorkLog> logs) {
-        logs.sort(Comparator
-                .comparing(EmployeeWorkLog::getDepartment)
-                .thenComparing(EmployeeWorkLog::getProjectId)
-                .thenComparing(EmployeeWorkLog::getDate));
-        List<String> result = new ArrayList<>();
-        for (EmployeeWorkLog log : logs) {
-            String formatted = String.join(",",
-                    log.getDepartment(),
-                    log.getProjectId(),
-                    log.getDate().toString(),
-                    log.getEmployeeId(),
-                    log.getName(),
-                    String.valueOf(log.getHoursWorked()));
-            result.add(formatted);
-        }
-        return result;
 
-=======
+class Task25 {
     public static List<String> sortByDepartmentProjectAndDate(List<EmployeeWorkLog> logs) {
         return logs.stream()
                 .sorted(Comparator.comparing(EmployeeWorkLog::getDepartment)
@@ -186,6 +111,5 @@ class Task25 {
                         log.getDepartment(), log.getProjectId(), log.getDate().toString(),
                         log.getEmployeeId(), log.getName(), String.valueOf(log.getHoursWorked())))
                 .collect(Collectors.toList());
->>>>>>> e6e3aa9ea0d475828547aa20704128bd663e1b79
     }
 }
