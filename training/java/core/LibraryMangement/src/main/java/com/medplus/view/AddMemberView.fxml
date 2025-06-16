@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AddMemberViewController">
+    <Label text="Add New Member"/>
+    <TextField fx:id="nameField" promptText="Name"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <TextField fx:id="mobileField" promptText="Mobile"/>
+    <ComboBox fx:id="genderCombo">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="M"/>
+                <String fx:value="F"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <TextField fx:id="addressField" promptText="Address"/>
+    <Button text="Add Member" onAction="#handleAddMember"/>
+</VBox>

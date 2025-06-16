@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.medplus.controller.IssueBookViewController">
+    <Label text="Issue Book"/>
+    <TextField fx:id="bookIdField" promptText="Book ID"/>
+    <TextField fx:id="memberIdField" promptText="Member ID"/>
+    <Button text="Issue Book" onAction="#handleIssueBook"/>
+</VBox>
