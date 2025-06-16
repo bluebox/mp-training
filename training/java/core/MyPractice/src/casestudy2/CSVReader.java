@@ -20,12 +20,7 @@ public class CSVReader {
                     i++;
                     continue;
                 }
-
-                String[] rows = line.split(",", -1); // -1 keeps trailing empty strings
-
-                if (rows.length < 8)
-                    continue; // safety
-
+                String[] rows = line.split(",");
                 String empId = rows[0].trim();
                 String name = rows[1].trim();
                 String dept = rows[2].trim();

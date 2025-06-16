@@ -1,43 +1,55 @@
 package casestudy2;
 import java.util.*;
 import java.util.stream.Collectors;
-
 import java.time.LocalDate;
-
-public class Main {
+public class StreamsPracticeCase {
     public static void main(String[] args) throws Exception {
 
-        List<EmployeeWorkLog> logs = CSVReader.readCSV("casestudy2/Sample_Employee_WorkLogs.csv");
+        List<EmployeeWorkLog> list = new ArrayList<>();
 
-        CSVWriter writer1 = new CSVWriter("casestudy2/task1_output.csv");
-        writer1.writeSectionTitle("Task 1: Engineering employees with >2 projects");
-        writer1.writeLines(Task1.getEngineersWithMoreThanTwoProjects(logs));
-        writer1.close();
-        System.out.println("Outputs has been written to task1_output.csv");
+        list.add(new EmployeeWorkLog("E101", "Alice", "Engineering", "P1", LocalDate.of(2024, 3, 1), "Development", 6.0,
+                "initial commit"));
+        list.add(new EmployeeWorkLog("E101", "Alice", "Engineering", "P2", LocalDate.of(2024, 3, 3), "Bug Fix", 5.0,
+                "urgent issue"));
+        list.add(new EmployeeWorkLog("E101", "Alice", "Engineering", "P3", LocalDate.of(2024, 3, 5), "Documentation",
+                3.0, ""));
+        list.add(new EmployeeWorkLog("E102", "Bob", "QA", "P1", LocalDate.of(2024, 3, 1), "Testing", 4.0, ""));
+        list.add(new EmployeeWorkLog("E103", "Charlie", "Engineering", "P1", LocalDate.of(2024, 3, 2), "Development",
+                8.0, ""));
+        list.add(new EmployeeWorkLog("E103", "Charlie", "Engineering", "P2", LocalDate.of(2024, 3, 3), "Bug Fix", 6.0,
+                ""));
+        list.add(new EmployeeWorkLog("E104", "David", "HR", "P1", LocalDate.of(2024, 3, 2), "Meeting", 2.0,
+                "monthly meeting"));
+        Task1.fun(list);
+        // CSVWriter writer1 = new CSVWriter("casestudy2/task1_output.csv");
+        // writer1.writeSectionTitle("Task 1: Engineering employees with >2 projects");
+        // writer1.writeLines(Task1.getEngineersWithMoreThanTwoProjects(logs));
+        // writer1.close();
+        // System.out.println("Outputs has been written to task1_output.csv");
 
-        CSVWriter writer9 = new CSVWriter("casestudy2/task9_output.csv");
-        writer9.writeSectionTitle("Task 9: Top 5 employees with highest hours in last 60 days");
-        writer9.writeLines(Task9.getTop5EmployeesInLast60Days(logs));
-        writer9.close();
-        System.out.println("Outputs has been written to task9_output.csv");
+        // CSVWriter writer9 = new CSVWriter("casestudy2/task9_output.csv");
+        // writer9.writeSectionTitle("Task 9: Top 5 employees with highest hours in last 60 days");
+        // writer9.writeLines(Task9.getTop5EmployeesInLast60Days(logs));
+        // writer9.close();
+        // System.out.println("Outputs has been written to task9_output.csv");
 
-        CSVWriter writer10 = new CSVWriter("casestudy2/task10_output.csv");
-        writer10.writeSectionTitle("Task 10: 'Bug Fix' tasks grouped by category and day");
-        writer10.writeLines(Task10.groupBugFixTasksByCategoryAndDayOfWeek(logs));
-        writer10.close();
-        System.out.println("Outputs has been written to task10_output.csv");
+        // CSVWriter writer10 = new CSVWriter("casestudy2/task10_output.csv");
+        // writer10.writeSectionTitle("Task 10: 'Bug Fix' tasks grouped by category and day");
+        // writer10.writeLines(Task10.groupBugFixTasksByCategoryAndDayOfWeek(logs));
+        // writer10.close();
+        // System.out.println("Outputs has been written to task10_output.csv");
 
-        CSVWriter writer12 = new CSVWriter("casestudy2/task12_output.csv");
-        writer12.writeSectionTitle("Task 12: Project-wise productivity");
-        writer12.writeLines(Task12.getProjectWiseEmployeeProductivity(logs));
-        writer12.close();
-        System.out.println("Outputs has been written to task12_output.csv");
+        // CSVWriter writer12 = new CSVWriter("casestudy2/task12_output.csv");
+        // writer12.writeSectionTitle("Task 12: Project-wise productivity");
+        // writer12.writeLines(Task12.getProjectWiseEmployeeProductivity(logs));
+        // writer12.close();
+        // System.out.println("Outputs has been written to task12_output.csv");
 
-        CSVWriter writer25 = new CSVWriter("casestudy2/task25_output.csv");
-        writer25.writeSectionTitle("Task 25: Sorted by Department > Project > Date");
-        writer25.writeLines(Task25.sortByDepartmentProjectAndDate(logs));
-        writer25.close();
-        System.out.println("Outputs has been written to task25_output.csv");
+        // CSVWriter writer25 = new CSVWriter("casestudy2/task25_output.csv");
+        // writer25.writeSectionTitle("Task 25: Sorted by Department > Project > Date");
+        // writer25.writeLines(Task25.sortByDepartmentProjectAndDate(logs));
+        // writer25.close();
+        // System.out.println("Outputs has been written to task25_output.csv");
     }
 }
 
@@ -52,6 +64,14 @@ class Task1 {
                 .map(e -> e.getKey() + "," + e.getValue().size() + " unique projects")
                 .collect(Collectors.toList());
     }
+
+    public static void fun(List<EmployeeWorkLog> logs) {
+        List<EmployeeWorkLog> l=logs.stream()
+                .filter(log -> log.getDepartment().toLowerCase().contains("engineer"))
+                .collect(Collectors.toList());
+        System.out.println(l);
+    }
+
 }
 
 class Task9 {
@@ -114,3 +134,4 @@ class Task25 {
                 .collect(Collectors.toList());
     }
 }
+   
