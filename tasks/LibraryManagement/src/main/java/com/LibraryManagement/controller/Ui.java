@@ -568,13 +568,15 @@ public class Ui extends Application {
 
         TextField nameField = new TextField();
         nameField.setPromptText("Enter new name");
+        restrictTextField(nameField,20);
 
         TextField emailField = new TextField();
         emailField.setPromptText("Enter new email");
 
         TextField mobileField = new TextField();
         mobileField.setPromptText("Enter new mobile number");
-
+        restrictNumericField(mobileField,10);
+        
         Button updateBtn = new Button("Update Member");
         Label messageLabel = new Label();
         messageLabel.setStyle("-fx-text-fill: red;");
@@ -597,6 +599,15 @@ public class Ui extends Application {
                 messageLabel.setText("All fields are required.");
                 return;
             }
+            if (!isValidGmail(email)) {
+		        showAlert(Alert.AlertType.ERROR, "Invalid Email", "Email must be in '@gmail.com' or '@gmail.in' format.");
+		        return;
+		    }
+		
+		    if (!mobileText.matches("\\d{10}")) {
+		        showAlert(Alert.AlertType.ERROR, "Invalid Phone", "Phone number must be exactly 10 digits.");
+		        return;
+		    }
 
             int memberId;
             long mobile;
