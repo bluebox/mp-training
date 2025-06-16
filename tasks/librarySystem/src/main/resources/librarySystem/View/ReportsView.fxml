@@ -3,6 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.ReportsController">
+<MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+<menus>
+		<Menu mnemonicParsing="false" text="Tables">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleBooks" text="Books"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleMembers" text="Members"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleIssueReturn" text="Issues"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleReports" text="Reports"/>
+            </items>
+        </Menu>
+</menus>
+</MenuBar>
   <Label text="Reports"/>
   <Button text="Show Overdue Books" onAction="#showOverdue"/>
   <TableView fx:id="reportTable" prefHeight="300">

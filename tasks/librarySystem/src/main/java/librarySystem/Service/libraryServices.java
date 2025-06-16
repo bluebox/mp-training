@@ -103,7 +103,7 @@ public class libraryServices {
     
     public boolean issueBook(int bookId, int memberId, Date issueDate) {
         BookPojo book = bookDao.getBookById(bookId);
-        if (book == null || book.getAvailability() == 'N') return false;
+        if (book == null || book.getAvailability() == 'I') return false;
 
         IssueRecordPojo issue = new IssueRecordPojo();
         issue.setBookId(bookId);
@@ -113,7 +113,7 @@ public class libraryServices {
 
         boolean success = issueDao.issueBook(issue);
         if (success) {
-            book.setAvailability('N');
+            book.setAvailability('I');
             return bookDao.updateBookAvailability(book.getBookId(),book.getAvailability());
         }
         return false;
@@ -123,7 +123,7 @@ public class libraryServices {
         boolean returned = issueDao.returnBook(bookId, memberId, returnDate);
         if (returned) {
             BookPojo book = bookDao.getBookById(bookId);
-            book.setAvailability('Y');
+            book.setAvailability('A');
             return bookDao.updateBookAvailability(book.getBookId(),book.getAvailability());
         }
         return false;

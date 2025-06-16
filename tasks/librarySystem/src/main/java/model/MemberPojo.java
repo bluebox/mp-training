@@ -4,14 +4,14 @@ public class MemberPojo {
     private int memberId;
     private String name;
     private String email;
-    private int mobile;
+    private String mobile;
     private char gender;
     private String address;
 
     public MemberPojo() {
     }
 
-    public MemberPojo(int memberId, String name, String email, int mobile, char gender, String address) {
+    public MemberPojo(int memberId, String name, String email, String mobile, char gender, String address) {
         this.memberId = memberId;
         this.name = name;
         this.email = email;
@@ -44,11 +44,11 @@ public class MemberPojo {
         this.email = email;
     }
 
-    public int getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(int mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 

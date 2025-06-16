@@ -24,7 +24,7 @@ public class BookDao {
                 book.setAuthor(rs.getString("Author"));
                 book.setCategory(rs.getString("Category"));
                 book.setStatus(rs.getString("Status").charAt(0));
-                book.setAvailability(rs.getString("Availablity").charAt(0));
+                book.setAvailability(rs.getString("Availability").charAt(0));
                 books.add(book);
             }
 
@@ -38,15 +38,18 @@ public class BookDao {
     //overloaded isPresent for using already established connection
     public static boolean isPresent(BookPojo book, Connection conn) {
         String sql = "SELECT COUNT(*) FROM books WHERE Title = ? AND Author = ?";
+        System.out.println("check-side-1");
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        	System.out.println("check-side-2");
             stmt.setString(1, book.getTitle());
             stmt.setString(2, book.getAuthor());
             ResultSet rs = stmt.executeQuery();
-
+            System.out.println("check-side-3");
             return rs.next() && rs.getInt(1) > 0;
         } catch (SQLException e) {
             System.err.println("Error checking if book exists: " + e.getMessage());
         }
+        System.out.println("check-side-4");
         return false;
     }
 
@@ -78,7 +81,7 @@ public class BookDao {
                 copyBook.setAuthor(rs.getString("Author"));
                 copyBook.setCategory(rs.getString("Category"));
                 copyBook.setStatus(rs.getString("Status").charAt(0));
-                copyBook.setAvailability(rs.getString("Availablity").charAt(0));
+                copyBook.setAvailability(rs.getString("Availability").charAt(0));
                 return copyBook;
             }
 
@@ -90,29 +93,44 @@ public class BookDao {
     }
 
     public boolean insertBook(BookPojo book) {
-        String bookSql = "INSERT INTO books (Title, Author, Category, Status, Availablity) VALUES (?, ?, ?, ?, ?)";
+        String bookSql = "INSERT INTO books (Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?)";
         Connection conn = null;
 
         try {
+            System.out.println("check-(-1)");
             conn = DbConnection.getConnection();
+            System.out.println("check-0");
+            if(conn == null)
+            {
+            	System.out.println("NULL");
+            	return false;
+            }else if(conn.isClosed())
+            {
+            	System.out.println("connection is closed");
+            	return false;
+            }
             conn.setAutoCommit(false);
-
+            System.out.println("check-1");
             // Use connection-safe isPresent
             if (isPresent(book, conn)) {
                 System.out.println("Book already Present");
-                conn.rollback();  // rollback since you started a transaction
+//                conn.rollback();
+                System.out.println("check-2");
+                conn.close();
                 return false;
             }
-
+            System.out.println("check-3");
             try (PreparedStatement stmt = conn.prepareStatement(bookSql)) {
+                System.out.println("check-4");
                 stmt.setString(1, book.getTitle());
                 stmt.setString(2, book.getAuthor());
                 stmt.setString(3, book.getCategory());
                 stmt.setString(4, String.valueOf(book.getStatus()));
                 stmt.setString(5, String.valueOf(book.getAvailability()));
                 stmt.executeUpdate();
+                System.out.println("check-5");
             }
-
+            System.out.println("check-6");
             conn.commit();
             System.out.println("Book inserted successfully.");
             return true;
@@ -143,7 +161,7 @@ public class BookDao {
 
     public boolean updateBookDetails(BookPojo oldBook, BookPojo newBook) {
         String updateSql = "UPDATE books SET Title = ?, Author = ?, Category = ?, Status = ? WHERE BookId = ?";
-        String logSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availablity) VALUES (?, ?, ?, ?, ?, ?)";
+        String logSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?, ?)";
 
         Connection conn = null;
 
@@ -207,8 +225,8 @@ public class BookDao {
     }
 
     public boolean updateBookAvailability(int bookId, char availability) {
-        String updateSql = "UPDATE books SET Availablity = ? WHERE BookId = ?";
-        String logSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availablity) VALUES (?, ?, ?, ?, ?, ?)";
+        String updateSql = "UPDATE books SET Availability = ? WHERE BookId = ?";
+        String logSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?, ?)";
 
         Connection conn = null;
 
@@ -278,7 +296,7 @@ public class BookDao {
                     book.setAuthor(rs.getString("Author"));
                     book.setCategory(rs.getString("Category"));
                     book.setStatus(rs.getString("Status").charAt(0));
-                    book.setAvailability(rs.getString("Availablity").charAt(0));
+                    book.setAvailability(rs.getString("Availability").charAt(0));
                     return book;
                 }
             }

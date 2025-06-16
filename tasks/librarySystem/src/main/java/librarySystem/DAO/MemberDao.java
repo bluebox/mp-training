@@ -22,7 +22,7 @@ public class MemberDao {
                 member.setMemberId(rs.getInt("MemberId"));
                 member.setName(rs.getString("Name"));
                 member.setEmail(rs.getString("Email"));
-                member.setMobile(rs.getInt("Mobile"));
+                member.setMobile(rs.getString("Mobile"));
                 member.setGender(rs.getString("Gender").charAt(0));
                 member.setAddress(rs.getString("Address"));
                 members.add(member);
@@ -41,7 +41,7 @@ public class MemberDao {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, member.getEmail());
-            stmt.setInt(2, member.getMobile());
+            stmt.setString(2, member.getMobile());
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -55,13 +55,13 @@ public class MemberDao {
         return false;
     }
 
-    public MemberPojo getMemberByEmailOrMobile(String email, int mobile) {
+    public MemberPojo getMemberByEmailOrMobile(String email, String mobile) {
         String sql = "select * from members where Email = ? or Mobile = ?";
         try (Connection conn = DbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, email);
-            stmt.setInt(2, mobile);
+            stmt.setString(2, mobile);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -69,7 +69,7 @@ public class MemberDao {
                 member.setMemberId(rs.getInt("MemberId"));
                 member.setName(rs.getString("Name"));
                 member.setEmail(rs.getString("Email"));
-                member.setMobile(rs.getInt("Mobile"));
+                member.setMobile(rs.getString("Mobile"));
                 member.setGender(rs.getString("Gender").charAt(0));
                 member.setAddress(rs.getString("Address"));
                 return member;
@@ -94,7 +94,7 @@ public class MemberDao {
 
             stmt.setString(1, member.getName());
             stmt.setString(2, member.getEmail());
-            stmt.setInt(3, member.getMobile());
+            stmt.setString(3, member.getMobile());
             stmt.setString(4, String.valueOf(member.getGender()));
             stmt.setString(5, member.getAddress());
 
@@ -138,7 +138,7 @@ public class MemberDao {
 
             updateStmt.setString(1, updatedMember.getName());
             updateStmt.setString(2, updatedMember.getEmail());
-            updateStmt.setInt(3, updatedMember.getMobile());
+            updateStmt.setString(3, updatedMember.getMobile());
             updateStmt.setString(4, String.valueOf(updatedMember.getGender()));
             updateStmt.setString(5, updatedMember.getAddress());
             updateStmt.setInt(6, current.getMemberId());
@@ -146,7 +146,7 @@ public class MemberDao {
             logStmt.setInt(1, current.getMemberId());
             logStmt.setString(2, current.getName());
             logStmt.setString(3, current.getEmail());
-            logStmt.setInt(4, current.getMobile());
+            logStmt.setString(4, current.getMobile());
             logStmt.setString(5, String.valueOf(current.getGender()));
             logStmt.setString(6, current.getAddress());
 

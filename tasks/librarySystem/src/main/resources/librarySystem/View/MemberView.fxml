@@ -6,6 +6,18 @@
 <VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.MemberController">
   <Label text="Member Management"/>
   <HBox spacing="10">
+  <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+<menus>
+		<Menu mnemonicParsing="false" text="Tables">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleBooks" text="Books"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleMembers" text="Members"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleIssueReturn" text="Issues"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleReports" text="Reports"/>
+            </items>
+        </Menu>
+</menus>
+</MenuBar>
     <TextField fx:id="nameField" promptText="Name"/>
     <TextField fx:id="emailField" promptText="Email"/>
     <TextField fx:id="mobileField" promptText="Mobile"/>

@@ -20,7 +20,7 @@ public class DashboardController {
     }
 
     public void handleIssueReturn(ActionEvent event) throws IOException {
-        switchScene(event, "/librarySystem/View/IssueReturnView.fxml");
+        switchScene(event, "/librarySystem/View/IssueReturn.fxml");
     }
 
     public void handleReports(ActionEvent event) throws IOException {

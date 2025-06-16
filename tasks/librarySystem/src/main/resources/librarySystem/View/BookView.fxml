@@ -2,22 +2,40 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.BookController">
+<MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+<menus>
+		<Menu mnemonicParsing="false" text="Tables">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleBooks" text="Books"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleMembers" text="Members"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleIssueReturn" text="Issues"/>
+                <MenuItem mnemonicParsing="false" onAction="#handleReports" text="Reports"/>
+            </items>
+        </Menu>
+</menus>
+</MenuBar>
     <Label text="Book Management"/>
     <HBox spacing="10">
         <TextField fx:id="titleField" promptText="Title"/>
         <TextField fx:id="authorField" promptText="Author"/>
         <TextField fx:id="categoryField" promptText="Category"/>
-        <Button text="Add Book" onAction="#handleAddBook"/>
+        <HBox spacing="10">
+    		<Button text="Add Book" onAction="#handleAddBook"/>
+    		<Button text="Update Book" onAction="#handleUpdateBook"/>
+    		<Button text="Delete Book" onAction="#handleDelete"/>
+		</HBox>
+
     </HBox>
     <TableView fx:id="bookTable" prefHeight="300">
         <columns>
-            <TableColumn text="ID" fx:id="colId"/>
-            <TableColumn text="Title" fx:id="colTitle"/>
-            <TableColumn text="Author" fx:id="colAuthor"/>
-            <TableColumn text="Category" fx:id="colCategory"/>
-            <TableColumn text="Status" fx:id="colStatus"/>
-            <TableColumn text="Availability" fx:id="colAvailability"/>
+            <TableColumn text="ID" fx:id="Id"/>
+            <TableColumn text="Title" fx:id="Title"/>
+            <TableColumn text="Author" fx:id="Author"/>
+            <TableColumn text="Category" fx:id="Category"/>
+            <TableColumn text="Status" fx:id="Status"/>
+            <TableColumn text="Availability" fx:id="Availability"/>
         </columns>
     </TableView>
 </VBox>
