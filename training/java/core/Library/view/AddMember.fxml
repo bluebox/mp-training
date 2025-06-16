@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.AddMemberController"
+      spacing="10" alignment="TOP_LEFT" xmlns="http://javafx.com/javafx/8">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Add Member" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <HBox spacing="10">
+        <Label text="Name:"/>
+        <TextField fx:id="nameField"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Email:"/>
+        <TextField fx:id="emailField"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Mobile:"/>
+        <TextField fx:id="mobileField"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Gender:"/>
+        <ComboBox fx:id="genderBox"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Address:"/>
+        <TextField fx:id="addressField"/>
+    </HBox>
+
+    <Button text="Add Member" onAction="#handleSave"/>
+</VBox>

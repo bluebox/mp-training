@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="MainController"
+      alignment="CENTER">
+
+    <Button fx:id="btnAddBook" text="Add Book" onAction="#handleAddBook"/>
+    <Button text="Update Book" onAction="#handleUpdateBook" />
+    <!-- <Button text="All Books" onAction="#handleAllBooks" /> -->
+
+    <Button fx:id="btnAddMember" text="Add Member" onAction="#handleAddMember"/>
+    <Button fx:id="btnUpdateMember" text="Update Member" onAction="#handleUpdateMember"/>
+
+    <Button fx:id="btnIssueReturn" text="Issue/Return Book" onAction="#handleIssueReturn"/>
+    <Button fx:id="btnReports" text="Reports" onAction="#handleReports"/>
+
+</VBox>
