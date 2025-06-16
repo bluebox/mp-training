@@ -1,7 +1,7 @@
 package com.library.controller;
 
 import com.library.domain.IssueRecord;
-import com.library.service.IssueBookService;
+import com.library.service.LibraryServiceImplementation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class IssueBookController {
 	
 	@FXML
@@ -24,7 +23,7 @@ public class IssueBookController {
     @FXML private TextField memberIdField;
     @FXML private Label messageLabel;
 
-    private IssueBookService service = new IssueBookService();
+    private LibraryServiceImplementation service = new LibraryServiceImplementation();
 
     @FXML
     private void handleSubmit() {

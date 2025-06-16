@@ -1,7 +1,8 @@
 package com.library.controller;
 
 import com.library.domain.Book;
-import com.library.service.BookService;
+import com.library.service.LibraryServiceImplementation;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -61,7 +62,7 @@ public class AddBookController {
 		String availability = availabilityChoiceBox.getValue().substring(0, 1); // Extract "A" or "I"
 
 		Book book = new Book(title, author, category, status, availability);
-		BookService bookService = new BookService();
+		LibraryServiceImplementation bookService = new LibraryServiceImplementation();
 		boolean success = bookService.addBook(book);
 
 		if (success) {
