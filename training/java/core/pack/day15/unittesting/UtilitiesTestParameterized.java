@@ -7,9 +7,7 @@ import java.util.Collection;
 
 import static junit.framework.TestCase.assertEquals;
 
-/**
- * Created by timbuchalka on 29/11/16.
- */
+
 @RunWith(Parameterized.class)
 public class UtilitiesTestParameterized {
 
