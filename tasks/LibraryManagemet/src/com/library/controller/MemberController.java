@@ -27,7 +27,7 @@ public class MemberController {
 
     private ToggleGroup genderGroup;
 
-    private final LibraryServiceImplementation libraryService = new LibraryServiceImplementation(); // assumes default "member" table
+    private final LibraryService libraryService = new LibraryServiceImplementation(); // assumes default "member" table
 
     @FXML
     public void initialize() {

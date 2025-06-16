@@ -9,27 +9,35 @@ import java.util.List;
 
 public class BookDAO {
 
-    private boolean isTestMode = false;
-
-    public void setTestMode(boolean testMode) {
-        this.isTestMode = testMode;
-    }
-
-    private String getTableName() {
-        return isTestMode ? "books_test" : "book";
-    }
+    private static final String TABLE_NAME = "book";
 
     private boolean isValid(Book book) {
         return ("A".equals(book.getStatus()) || "I".equals(book.getStatus())) &&
                ("A".equals(book.getAvailability()) || "I".equals(book.getAvailability()));
     }
+    public boolean changeAvailability(int bookId,String query) {
+    	
+        try (Connection conn = ConnectionMaker.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setInt(1, bookId);
+            int rowsUpdated = ps.executeUpdate();
+
+            return rowsUpdated > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public boolean insertBook(Book book) {
         if (!isValid(book)) return false;
 
-        String sql = "INSERT INTO " + getTableName() + " (title, author, category, status, availability) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + TABLE_NAME + " (title, author, category, status, availability) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = getConnection();
+        try (Connection conn = ConnectionMaker.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, book.getTitle());
@@ -48,10 +56,10 @@ public class BookDAO {
     public List<Book> getAllBooks(String query) {
         List<Book> books = new ArrayList<>();
 
-        try (Connection conn = getConnection();
+        try (Connection conn = ConnectionMaker.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
-
+        	
             while (rs.next()) {
                 books.add(new Book(
                         rs.getInt("id"),
@@ -69,59 +77,4 @@ public class BookDAO {
         return books;
     }
 
-    public List<Book> getBooksByAvailability(String availability) {
-        List<Book> books = new ArrayList<>();
-        String sql = "SELECT * FROM " + getTableName() + " WHERE availability = ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, availability);
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                books.add(new Book(
-                        rs.getInt("id"),
-                        rs.getString("title"),
-                        rs.getString("author"),
-                        rs.getString("category"),
-                        rs.getString("status"),
-                        rs.getString("availability")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return books;
-    }
-
-    public void updateDetails(Connection conn, Book book) {
-        try {
-            String table = getTableName();
-            PreparedStatement logStmt = conn.prepareStatement(
-                "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availability) " +
-                "SELECT BookId, Title, Author, Category, Status, Availability FROM " + table + " WHERE BookId = ?"
-            );
-            logStmt.setInt(1, book.getBookId());
-            logStmt.executeUpdate();
-
-            PreparedStatement updateStmt = conn.prepareStatement(
-                "UPDATE " + table + " SET Title = ?, Author = ?, Category = ?, Status = ? WHERE BookId = ?"
-            );
-            updateStmt.setString(1, book.getTitle());
-            updateStmt.setString(2, book.getAuthor());
-            updateStmt.setString(3, book.getCategory());
-            updateStmt.setString(4, book.getStatus());
-            updateStmt.setInt(5, book.getBookId());
-            updateStmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected Connection getConnection() throws SQLException {
-        return ConnectionMaker.getConnection();
-    }
 }

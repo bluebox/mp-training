@@ -3,7 +3,7 @@ package com.library.controller;
 import java.io.IOException;
 
 import com.library.domain.IssueRecord;
-import com.library.service.IssueBookService;
+import com.library.service.LibraryServiceImplementation;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -30,7 +30,7 @@ public class ViewIssuedBooksController {
     private Button backButton;
 
 
-    private IssueBookService service = new IssueBookService();
+    private LibraryServiceImplementation service = new LibraryServiceImplementation();
 
     @FXML
     public void initialize() {
