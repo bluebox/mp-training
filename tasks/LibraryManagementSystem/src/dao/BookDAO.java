@@ -2,7 +2,6 @@ package dao;
 
 
 import model.Book;
-//import util.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +29,7 @@ public class BookDAO {
 	                    rs.getString("Availability").charAt(0)
 	                );
 	            } else {
-	                return null; // Book not found
+	                return null; 
 	            }
 	        }
 	    }
