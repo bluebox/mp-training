@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.controllers.AddBookController"
+          hgap="10" vgap="10">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Add Book" style="-fx-font-size: 18px;" GridPane.columnSpan="2" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+    <Label text="Title:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="titleField" promptText="Title" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Label text="Author:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="authorField" promptText="Author" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label text="Category:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <TextField fx:id="categoryField" promptText="Category" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <Label text="Status:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <ComboBox fx:id="statusComboBox" promptText="Select Status" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+    <Label text="Availability:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <ComboBox fx:id="availabilityComboBox" promptText="Select Availability" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+    <Button text="Add Book" onAction="#handleAddBook" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+    
+    <Label fx:id="messageLabel" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+
+</GridPane>

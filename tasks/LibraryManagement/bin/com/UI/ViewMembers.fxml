@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.controllers.ViewMembersController">
+    <center>
+        <TableView fx:id="membersTable" prefWidth="600">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="nameColumn" text="Name" />
+                <TableColumn fx:id="emailColumn" text="Email" />
+                <TableColumn fx:id="mobileColumn" text="Mobile" />
+                <TableColumn fx:id="genderColumn" text="Gender" />
+                <TableColumn fx:id="addressColumn" text="Address" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
