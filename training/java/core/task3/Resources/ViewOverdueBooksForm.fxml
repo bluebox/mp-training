@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+    <Label text="View Overdue Books" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <TableView fx:id="overdueTable">
+        <columns>
+            
+            <TableColumn fx:id="issueIdColumn" text="Issue ID"/>
+            <TableColumn fx:id="bookIdColumn" text="Book ID"/>
+            <TableColumn fx:id="memberIdColumn" text="Member ID"/>
+            <TableColumn fx:id="issueDateColumn" text="Issue Date"/>
+        </columns>
+    </TableView>
+    <Button text="Back" onAction="#goBack" style="-fx-background-color: #f44336; -fx-text-fill: white;"/>
+</VBox>

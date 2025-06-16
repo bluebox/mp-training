@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.MainController" spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+    <Label text="Library Management System" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <Button text="Add Book" onAction="#showAddBookForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="View/Update Books" onAction="#showViewBooksForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="Add Member" onAction="#showAddMemberForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="View/Update Members" onAction="#showViewMembersForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="Issue Book" onAction="#showIssueBookForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="Return Book" onAction="#showReturnBookForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="View Overdue Books" onAction="#showViewOverdueBooksForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="View Issued Books by Member" onAction="#showViewMemberIssuesForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="View Members Who Used Book" onAction="#showViewBookMembersForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    <Button text="View Books by Category" onAction="#showViewBooksByCategoryForm" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+</VBox>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+    <Label text="Add New Book" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <Label text="Book Title"/>
+    <TextField fx:id="titleField" promptText="Book Title"/>
+    <Label text="Author"/>
+    <TextField fx:id="authorField" promptText="Author"/>
+    <Label text="Category"/>
+    <TextField fx:id="categoryField" promptText="Category"/>
+    <Label text="Status"/>
+    <ComboBox fx:id="statusCombo" promptText="Status">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Active (A)"/>
+                <String fx:value="Inactive (I)"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+        <Button text="Add Book" onAction="#handleAddBook" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+        <Button text="Clear" onAction="#handleClear" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+        <Button text="Back" onAction="#goBack" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+    </HBox>
+</VBox>
