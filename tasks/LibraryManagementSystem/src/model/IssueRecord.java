@@ -10,7 +10,6 @@ public class IssueRecord {
     private LocalDate issueDate;
     private LocalDate returnDate;
 
-    // Constructor for issuing a book (no return date yet)
     public IssueRecord(int bookId, int memberId, char status, LocalDate issueDate) {
         this.bookId = bookId;
         this.memberId = memberId;
@@ -19,7 +18,7 @@ public class IssueRecord {
         this.returnDate = null;
     }
 
-    // Full constructor
+    
     public IssueRecord(int issueId, int bookId, int memberId, char status, LocalDate issueDate, LocalDate returnDate) {
         this.issueId = issueId;
         this.bookId = bookId;
@@ -29,7 +28,6 @@ public class IssueRecord {
         this.returnDate = returnDate;
     }
 
-    // Getters and Setters...
 
     public int getIssueId() { return issueId; }
     public void setIssueId(int issueId) { this.issueId = issueId; }
