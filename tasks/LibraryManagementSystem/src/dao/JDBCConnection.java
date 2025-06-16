@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCConnection {
-
-    // Update your DB URL, user, and password
     private static final String URL = "jdbc:mysql://localhost:3306/librarymanagement";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
@@ -16,20 +14,19 @@ public class JDBCConnection {
             // Optional in modern JDBC, but safe to load driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("✅ Connection established successfully!");
+            System.out.println("Connection established successfully!");
             return conn;
         } catch (ClassNotFoundException e) {
-            System.err.println("⚠️ MySQL JDBC Driver not found.");
+            System.err.println("MySQL JDBC Driver not found.");
             e.printStackTrace();
         } catch (SQLException e) {
-            System.err.println("❌ Connection failed: " + e.getMessage());
+            System.err.println("Connection failed: " + e.getMessage());
             e.printStackTrace();
         }
         return null;
     }
 
-    // Test connection
     public static void main(String[] args) {
-        getConnection();  // Just to test
+        getConnection(); 
     }
 }
