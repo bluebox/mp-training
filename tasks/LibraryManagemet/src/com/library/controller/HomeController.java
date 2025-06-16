@@ -61,6 +61,7 @@ public class HomeController {
         }
     }
 
+
     @FXML
     private void goToUpdateMember(ActionEvent event) {
         try {
@@ -121,6 +122,6 @@ public class HomeController {
 
     @FXML
     private void goToIssuedRecords(ActionEvent event) throws IOException {
-        loadScene("IssuedBooks.fxml", event);
+        loadScene("ViewIssuedBooks.fxml", event);
     }
 }

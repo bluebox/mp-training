@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,6 +40,8 @@ public class ViewMembersController {
 
     @FXML
     private TableColumn<Member, String> addressCol;
+    @FXML
+    private Button backButton;
 
     private MemberService memberService = new MemberService();
 
@@ -92,7 +95,6 @@ public class ViewMembersController {
     private void goBack(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -100,4 +102,5 @@ public class ViewMembersController {
             e.printStackTrace();
         }
     }
+
 }

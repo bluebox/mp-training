@@ -37,9 +37,7 @@ public class MemberController {
         other.setUserData("O");
     }
 
-    /** Called by HomeController for Add operation */
     public void setAddMode() {
-        // If you touch any @FXML fields here, make sure they are not null
         isUpdateMode = false;
         selectedMember = null;
 
@@ -48,12 +46,13 @@ public class MemberController {
         }
     }
 
-
     public void setUpdateMode(Member member) {
         isUpdateMode = true;
         selectedMember = member;
-        if(titleLabel!=null)
+
+        if (titleLabel != null) {
             titleLabel.setText("Update Member Details");
+        }
 
         // Pre-fill fields
         name.setText(member.getName());
@@ -86,11 +85,21 @@ public class MemberController {
                 return;
             }
 
+            if (!memberEmail.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Email", "Please enter a valid email address.");
+                return;
+            }
+
             long memberMobile;
             try {
                 memberMobile = Long.parseLong(mobileInput);
             } catch (NumberFormatException e) {
                 showAlert(Alert.AlertType.ERROR, "Invalid Input", "Mobile number must be numeric.");
+                return;
+            }
+
+            if (mobileInput.length() != 10) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Mobile Number", "Mobile number must be exactly 10 digits.");
                 return;
             }
 
@@ -140,4 +149,21 @@ public class MemberController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private void handleBack() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/library/UI/Home.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = (javafx.stage.Stage) backButton.getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Library System - Home");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

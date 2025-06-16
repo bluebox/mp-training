@@ -1,26 +1,38 @@
 package com.library.service;
 
 import com.library.dao.MemberDAO;
-import com.library.dao.UpdateMemberDetailsDAO;
 import com.library.domain.Member;
 
 import java.util.List;
 
 public class MemberService {
 
-	MemberDAO memberdao=new MemberDAO();
-	
-	public void addMember(Member member)
-	{
-		memberdao.addMember(member);
-	}
+    private MemberDAO memberDAO;
 
-	public List<Member> viewAllMembers() {
-		return memberdao.getAllMembers();
-	}
+    // Default constructor
+    public MemberService() {
+        this.memberDAO = new MemberDAO();
+    }
 
-	public void updateMember(Member member) {
-		memberdao.updateMember(member);
-	}
+    // Constructor for testing (injecting fake/mock DAO)
+    public MemberService(MemberDAO memberDAO) {
+        this.memberDAO = memberDAO;
+    }
 
+    // Protected method to be overridden in test subclass if needed
+    public MemberDAO getMemberDAO() {
+        return memberDAO;
+    }
+
+    public boolean addMember(Member member) {
+        return memberDAO.addMember(member);
+    }
+
+    public List<Member> viewAllMembers() {
+        return memberDAO.getAllMembers();
+    }
+
+    public boolean updateMember(Member member) {
+        return memberDAO.updateMember(member);
+    }
 }
