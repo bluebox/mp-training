@@ -6,7 +6,7 @@
 
 <VBox spacing="20" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllerr.Controller">
-    <Label text="📚 Library Management System" style="-fx-font-size: 18;" />
+    <Label text="Library Management System" style="-fx-font-size: 18;" />
 
     <Button text="Add Book" onAction="#openAddBookForm"/>
     <Button text="Update Member" onAction="#openUpdateMemberForm"/>
