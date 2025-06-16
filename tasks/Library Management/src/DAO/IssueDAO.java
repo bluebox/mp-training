@@ -88,23 +88,14 @@ public class IssueDAO {
 
 			conn.commit();
 		} catch (SQLException e) {
-			try {
-				if (conn != null) {
-					conn.rollback();
-				}
-			} catch (SQLException ex) {
-				throw new LibraryException("Rollback failed: " + ex.getMessage());
+			if (conn != null) {
+//					conn.rollback();
 			}
 			throw new LibraryException("Error issuing book: " + e.getMessage());
 		} finally {
 			if (conn != null) {
-				try {
-					// conn.setAutoCommit(true);
-					DatabaseUtil.closeConnection(conn);
-				} catch (SQLException e) {
-					// Log error but don't throw as we're in finally block
-					System.err.println("Error resetting connection: " + e.getMessage());
-				}
+				// conn.setAutoCommit(true);
+				DatabaseUtil.closeConnection(conn);
 			}
 		}
 	}
@@ -161,12 +152,8 @@ public class IssueDAO {
 			throw new LibraryException("Error returning book: " + e.getMessage());
 		} finally {
 			if (conn != null) {
-				try {
-					// conn.setAutoCommit(true);
-					DatabaseUtil.closeConnection(conn);
-				} catch (SQLException e) {
-					System.err.println("Error resetting connection: " + e.getMessage());
-				}
+				// conn.setAutoCommit(true);
+				DatabaseUtil.closeConnection(conn);
 			}
 		}
 	}
