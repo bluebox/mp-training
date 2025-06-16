@@ -20,7 +20,7 @@ public class IssueBookForm extends VBox {
         TextField bookIdField = new TextField();
         TextField memberIdField = new TextField();
 
-       
+        
         addDigitLimiter(bookIdField, 10);
         addDigitLimiter(memberIdField, 10);
 

@@ -29,6 +29,7 @@ public class SearchAndIssueBookForm extends VBox {
         title.setFont(new Font(18));
 
         TextField searchField = new TextField();
+        addLiveLimiter(searchField, 50);
         searchField.setPromptText("Enter book title");
 
         Button searchBtn = new Button("Search");
@@ -122,5 +123,13 @@ public class SearchAndIssueBookForm extends VBox {
             return false;
         }
     }
+    private void addLiveLimiter(TextField field, int maxLength) {
+        field.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.length() > maxLength) {
+                field.setText(oldVal);
+            }
+        });
+    }
+
 
 }
