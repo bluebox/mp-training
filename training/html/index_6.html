@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWebsite</title>
+</head>
+<body>
+    <h2>My Form</h2>
+    <form action="action_page.php" method="get">
+        <div>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter your first name" required>
+
+        </div>
+        
+        <br>
+        <div>
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter your last name">
+        </div>
+        <br>
+        <div>
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="pass" placeholder="Enter password" maxlength="10">
+        </div>
+        <br>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter email">
+        </div>
+        <br>
+        <div>
+            <label for="phone">Mobile Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 9999999999">
+        </div>
+        <br>        
+        <div>
+            <label for="bdate">Date of Birth:</label>
+            <input type="date" id="bdate" name="bdate">
+        </div>
+        <br>
+        <div>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="0" max="99" value="1" >
+        </div>
+        <br>
+        <div>
+            <label for="title">Title: </label>
+            <label for="Mr." >Mr.</label>
+            <input type="radio" id="Mr." name="title" value="Mr.">
+            <label for="Mrs.">Mrs.</label>
+            <input type="radio" id="Mrs."  name="title" value="Mrs.">
+            <label for="Ms.">Ms.</label>
+            <input type="radio" id="Ms."  name="title" value="Ms.">
+        </div>
+        <br>
+        <div>
+            <label for="payment">Payment:</label>
+            <select name="payment" id="payment">
+                <option value="cash">Cash</option>
+                <option value="visa">Visa</option>
+                <option value="giftcard">GiftCard</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label for="subcribe">Subscribe:</label>
+            <input type="checkbox" id="subcribe" name="subcribe">
+        </div>
+        <div>
+            <input type="reset">
+        </div>
+        <br>
+        <div>
+            <input type="submit">
+        </div>
+        
+        
+    </form>
+    
+</body>
+</html>

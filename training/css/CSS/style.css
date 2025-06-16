@@ -1,0 +1,34 @@
+body{
+    background-color: lightgray;
+}
+
+h1{
+    color: aliceblue;
+    color: black;
+
+}
+
+p{
+    background-color: rgb(255, 255, 255);
+    color: rgb(14, 81, 139);
+}
+
+/* #p1{
+    font-family: 'Courier New', Courier, monospace;
+    color: yellowgreen;
+
+} */
+
+#p2{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+
+.odd{
+    color: brown;
+    font-family: "savate";
+}
+
+.even{
+    color: blueviolet;
+}

@@ -1,0 +1,18 @@
+body{
+    background-image: url("/images/pexels-george-dolgikh-551816-1303081.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+
+}
+h1{
+    background: linear-gradient(to right,skyblue,lightpink);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+p{
+    background: linear-gradient(to left,skyblue,lightpink);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
