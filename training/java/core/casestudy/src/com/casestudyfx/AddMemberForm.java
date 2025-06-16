@@ -27,11 +27,10 @@ public class AddMemberForm extends VBox {
         ComboBox<String> genderBox = new ComboBox<>();
         genderBox.getItems().addAll("M - Male", "F - Female");
 
-        
-        addLiveLimiter(nameField, 50);
-        addLiveLimiter(emailField, 50);
-        addLiveLimiter(mobileField, 10, true);
-        addLiveLimiter(addressField, 200);
+        addNameLimiter(nameField, 30);
+        addEmailLimiter(emailField, 40);
+        addMobileLimiter(mobileField, 10);
+        addAddressLimiter(addressField, 200);
 
         Button submit = new Button("Add Member");
         submit.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;");
@@ -49,13 +48,13 @@ public class AddMemberForm extends VBox {
                 return;
             }
 
-            if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-                UtilMethods.showAlert(Alert.AlertType.WARNING, "Validation Error", "Invalid email format.");
+            if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$") || !email.endsWith("@gmail.com")) {
+                UtilMethods.showAlert(Alert.AlertType.WARNING, "Validation Error", "Invalid email format. Must end with @gmail.com.");
                 return;
             }
 
             if (!mobileStr.matches("\\d{10}")) {
-                UtilMethods.showAlert(Alert.AlertType.WARNING, "Validation Error", "Mobile number must be 10 digits.");
+                UtilMethods.showAlert(Alert.AlertType.WARNING, "Validation Error", "Mobile number must be exactly 10 digits.");
                 return;
             }
 
@@ -77,7 +76,7 @@ public class AddMemberForm extends VBox {
             }
         });
 
-        // Layout without counter labels
+        // Layout
         grid.add(new Label("Name:"), 0, 0);
         grid.add(nameField, 1, 0);
 
@@ -98,22 +97,39 @@ public class AddMemberForm extends VBox {
         this.getChildren().add(grid);
     }
 
-    // Without digit-only
-    private void addLiveLimiter(TextField field, int maxLength) {
+    // Only alphabets and single space allowed
+    private void addNameLimiter(TextField field, int maxLength) {
         field.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal.length() > maxLength) {
+            if (newVal.length() > maxLength || !newVal.matches("[a-zA-Z ]*") || newVal.matches(".*\\s{2,}.*")) {
                 field.setText(oldVal);
             }
         });
     }
 
-    // With digit-only enforcement
-    private void addLiveLimiter(TextField field, int maxLength, boolean digitsOnly) {
+    // Email: no spaces, limit length
+    private void addEmailLimiter(TextField field, int maxLength) {
+        field.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.length() > maxLength || newVal.contains(" ")) {
+                field.setText(oldVal);
+            }
+        });
+    }
+
+    // Digits only, exact 10 length
+    private void addMobileLimiter(TextField field, int maxLength) {
         field.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!newVal.matches("\\d*") || newVal.length() > maxLength) {
                 field.setText(oldVal);
             }
         });
     }
-}
 
+    // Address allows letters, numbers, spaces, ., |, -
+    private void addAddressLimiter(TextField field, int maxLength) {
+        field.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.length() > maxLength || !newVal.matches("[a-zA-Z0-9 ,./\\-_|]*")) {
+                field.setText(oldVal);
+            }
+        });
+    }
+}

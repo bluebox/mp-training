@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public class Service {
 
+	public class getBookById extends Book {
+
+	}
+
 	public boolean addBook(Book book) {
 		BooksDao bookDao = new BooksDao();
 		try {
@@ -123,6 +127,11 @@ public class Service {
 	public List<IssueRecord> getActiveIssuedBooksSerivce() {
 		IssueRecordDao issueRecordDao = new IssueRecordDao();
 		return issueRecordDao.getActiveIssuedBooks();
+	}
+
+	public Book getBookById(int bookId) {
+		BooksDao booksDao = new BooksDao();
+		return booksDao.searchBook(bookId);
 	}
 
 }

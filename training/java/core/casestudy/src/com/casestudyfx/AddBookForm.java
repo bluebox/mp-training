@@ -24,7 +24,7 @@ public class AddBookForm extends VBox {
         TextField authorField = new TextField();
         TextField categoryField = new TextField();
 
-        
+        // Realtime limit: 50 characters
         addTextLimiter(titleField, 50);
         addTextLimiter(authorField, 50);
         addTextLimiter(categoryField, 50);
@@ -92,7 +92,7 @@ public class AddBookForm extends VBox {
         this.getChildren().add(grid);
     }
 
-    
+    // Reusable method for input character limiting
     private void addTextLimiter(TextField textField, int maxLength) {
         textField.textProperty().addListener((obs, oldText, newText) -> {
             if (newText.length() > maxLength) {
