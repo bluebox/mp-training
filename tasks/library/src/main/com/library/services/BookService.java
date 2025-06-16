@@ -2,13 +2,6 @@ package main.com.library.services;
 
 import main.com.library.domain.Book;
 import main.com.library.dao.BookDAO;
-import main.com.library.util.DB;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookService {

@@ -1,0 +1,15 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Sample.Controller"
+      alignment="CENTER"
+      spacing="10"
+      prefWidth="300"
+      prefHeight="200">
+
+    <Label fx:id="label" text="Welcome to JavaFX!" />
+    <Button text="Click Me" onAction="#printing" />
+
+</VBox>

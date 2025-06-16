@@ -1,6 +1,5 @@
 package main.com.library.dao;
 
-package main.com.library.dao;
 
 import main.com.library.domain.Member;
 import main.com.library.util.DB;
