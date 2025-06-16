@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" style="margin: 100px;padding: 100px; background-color: antiquewhite;">
+        <table>
+        <h1> Hotel Registration Page</h1>
+            <tr>
+                <td>
+                    <label for="count">No of people staying : </label>
+                </td>
+                <td>
+                    <input name="count" type="text" placeholder="No of people staying:"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button onclick="addDetails(count)">Click here to enter details</button>
+                </td>
+            </tr>
+            <tr>
+                <div id="fillData"></div>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Name">Name</label>
+                </td>
+                <td>
+                    <input type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for=""><input type="checkbox" name="Has Id" id="Has Id"> Has ID</label>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script src="form.js"></script>
+</html>

@@ -13,7 +13,6 @@ import enums.Status;
 
 public class BookDAO {
 
-    // Create (Add Book)
     public void addBook(Book book) throws DatabaseException {
         String sql = "INSERT INTO books (title, author, category, status, availability) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
@@ -23,7 +22,7 @@ public class BookDAO {
             stmt.setString(2, book.getAuthor());
             stmt.setString(3, book.getCategory());
             stmt.setString(4, book.getStatus().toString().substring(0, 1));
-            stmt.setString(5, book.getAvailability().toString().substring(0, 1));
+            stmt.setString(5, String.valueOf(book.getAvailability().getChar()));
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -31,7 +30,6 @@ public class BookDAO {
         }
     }
 
-    // Read (Get All Books)
     public List<Book> getAllBooks() throws DatabaseException {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM books";
@@ -59,7 +57,6 @@ public class BookDAO {
         return books;
     }
 
-    // Update Book Details (except availability)
     public void updateBookDetails(Book book) throws DatabaseException {
         String sql = "UPDATE books SET title=?, author=?, category=?, status=? WHERE bookId=?";
         try (Connection conn = DBConnection.getConnection();
@@ -77,7 +74,6 @@ public class BookDAO {
         }
     }
 
-    // Update Availability Only
     public void updateAvailability(int bookId, char availability) throws DatabaseException {
         String sql = "UPDATE books SET availability=? WHERE bookId=?";
         try (Connection conn = DBConnection.getConnection();
@@ -92,7 +88,6 @@ public class BookDAO {
         }
     }
 
-    // Check if Book is Available
     public boolean isBookAvailable(int bookId) throws DatabaseException {
         String sql = "SELECT availability FROM books WHERE bookId=?";
         try (Connection conn = DBConnection.getConnection();
@@ -111,7 +106,6 @@ public class BookDAO {
             throw new DatabaseException("Error checking book availability: " + e.getMessage(), e);
         }
     }
- // Get Book by ID
     public Book getBookById(int bookId) throws DatabaseException {
         String sql = "SELECT * FROM books WHERE bookId = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -129,7 +123,7 @@ public class BookDAO {
                         rs.getString("availability").charAt(0)=='A'?Availability.Available:Availability.Issued
                         );
                 } else {
-                    return null; // Book not found
+                    return null;
                 }
             }
 
