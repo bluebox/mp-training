@@ -17,8 +17,12 @@ public class IssueBookService {
         }
         return false;
     }
+    public boolean isBookIssuedToMember(int bookId, int memberId) throws SQLException {
+        return dao.isBookIssuedToMember(bookId, memberId);
+    }
 
-    // ✅ Updated method
+
+
     public void returnBook(int bookId, int memberId) throws SQLException {
         dao.returnBook(bookId, memberId);
     }

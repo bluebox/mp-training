@@ -2,6 +2,7 @@ package com.library.service;
 
 import com.library.dao.MemberDAO;
 import com.library.domain.Member;
+import com.library.utilities.MemberValidation;
 
 import java.util.List;
 
@@ -9,24 +10,26 @@ public class MemberService {
 
     private MemberDAO memberDAO;
 
-    // Default constructor
     public MemberService() {
         this.memberDAO = new MemberDAO();
     }
 
-    // Constructor for testing (injecting fake/mock DAO)
     public MemberService(MemberDAO memberDAO) {
         this.memberDAO = memberDAO;
     }
 
-    // Protected method to be overridden in test subclass if needed
     public MemberDAO getMemberDAO() {
         return memberDAO;
     }
 
     public boolean addMember(Member member) {
+        if (!MemberValidation.isValidMember(member)) {
+            throw new IllegalArgumentException("Invalid member data");
+        }
         return memberDAO.addMember(member);
     }
+
+ 
 
     public List<Member> viewAllMembers() {
         return memberDAO.getAllMembers();

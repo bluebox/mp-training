@@ -11,69 +11,68 @@ import com.library.domain.Member;
 import com.library.utilities.ConnectionMaker;
 
 public class MemberDAO {
+	private final String tableName;
 
-    public boolean addMember(Member member) {
-        int check = 0;
-        try (Connection conn = ConnectionMaker.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(
-                "INSERT INTO member(name, email, mobile, gender, address) VALUES(?,?,?,?,?)"
-            );
-            ps.setString(1, member.getName());
-            ps.setString(2, member.getEmail());
-            ps.setLong(3, member.getMobile());
-            ps.setString(4, String.valueOf(member.getGender()));
-            ps.setString(5, member.getAddress());
-            
-            check = ps.executeUpdate(); // ✅ Update the check variable
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return check == 1; // ✅ Correct success condition
-    }
+	public MemberDAO() {
+		this("member");
+	}
 
-    public boolean updateMember(Member member) {
-        int check = 0;
-        String sql = "UPDATE member SET name=?, email=?, mobile=?, gender=?, address=? WHERE id=?";
-        try (Connection conn = ConnectionMaker.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, member.getName());
-            stmt.setString(2, member.getEmail());
-            stmt.setLong(3, member.getMobile());
-            stmt.setString(4, String.valueOf(member.getGender()));
-            stmt.setString(5, member.getAddress());
-            stmt.setInt(6, member.getId());
+	public MemberDAO(String tableName) {
+		this.tableName = tableName;
+	}
 
-            check = stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return check == 1;
-    }
+	public boolean addMember(Member member) {
+		int check = 0;
+		try (Connection conn = ConnectionMaker.getConnection()) {
+			String sql = "INSERT INTO " + tableName + "(name, email, mobile, gender, address) VALUES(?,?,?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, member.getName());
+			ps.setString(2, member.getEmail());
+			ps.setLong(3, member.getMobile());
+			ps.setString(4, String.valueOf(member.getGender()));
+			ps.setString(5, member.getAddress());
+			check = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check == 1;
+	}
 
-    public List<Member> getAllMembers() {
-        List<Member> members = new ArrayList<>();
-        String query = "SELECT * FROM member";
+	public boolean updateMember(Member member) {
+		int check = 0;
+		String sql = "UPDATE member SET name=?, email=?, mobile=?, gender=?, address=? WHERE id=?";
+		try (Connection conn = ConnectionMaker.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, member.getName());
+			stmt.setString(2, member.getEmail());
+			stmt.setLong(3, member.getMobile());
+			stmt.setString(4, String.valueOf(member.getGender()));
+			stmt.setString(5, member.getAddress());
+			stmt.setInt(6, member.getId());
 
-        try (Connection conn = ConnectionMaker.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
+			check = stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check == 1;
+	}
 
-            ResultSet rs = ps.executeQuery();
+	public List<Member> getAllMembers() {
+		List<Member> members = new ArrayList<>();
+		String query = "SELECT * FROM member";
 
-            while (rs.next()) {
-                Member member = new Member(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getLong("mobile"),
-                    rs.getString("gender").charAt(0),
-                    rs.getString("address")
-                );
-                members.add(member);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+		try (Connection conn = ConnectionMaker.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
 
-        return members;
-    }
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Member member = new Member(rs.getInt("id"), rs.getString("name"), rs.getString("email"),
+						rs.getLong("mobile"), rs.getString("gender").charAt(0), rs.getString("address"));
+				members.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return members;
+	}
 }
