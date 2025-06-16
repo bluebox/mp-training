@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="/home/medplus/eclipse-workspace/DataTypeChecking/mp-training/training/java/core/pack/Library/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="/home/medplus/Downloads/mysql-connector-java-8.0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

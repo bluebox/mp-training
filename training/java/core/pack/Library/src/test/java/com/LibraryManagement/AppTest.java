@@ -1,4 +1,4 @@
-package com.LibraryManagement;
+package Library.src.test.java.com.LibraryManagement;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
