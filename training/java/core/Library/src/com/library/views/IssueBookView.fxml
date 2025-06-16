@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.IssueBookController"
+      spacing="10" alignment="CENTER" padding="20"
+      xmlns="http://javafx.com/javafx/8.0.171">
+
+    <Label text="Issue Book" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Book ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="bookIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Member ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="memberIdField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Button text="Issue Book" onAction="#handleIssueBook"/>
+
+</VBox>

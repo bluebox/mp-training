@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:controller="com.library.controller.AddBookController"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="center" hgap="10" vgap="10">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="titleField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <Label text="Author:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="authorField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Label text="Category:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="categoryField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Button text="Add Book" onAction="#handleAddBook"
+            GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+</GridPane>
