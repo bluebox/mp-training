@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberDAO {
+	
 
 	public boolean updateMember(Member member) {
 	    String sql = "UPDATE members SET Name=?, Email=?, Mobile=?, Gender=?, Address=? WHERE MemberId=?";

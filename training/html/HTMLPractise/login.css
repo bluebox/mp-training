@@ -1,0 +1,45 @@
+
+.outer-card
+{
+    height: 100%;
+    width: 100%;
+    /* margin: auto; */
+    text-align: center;
+    display: flex;
+    
+    justify-content: center;
+}
+
+.card
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    margin-top: 100px;
+    width: 400px;
+    padding:30px;
+    border: 1px solid black;
+    border-radius: 8px;
+
+}
+#logo-wrapper
+{
+    
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+}
+#login-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    word-spacing: 20px;
+    
+}
+button{
+    display: block;
+    margin: auto;
+    width: 80px;
+}

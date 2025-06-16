@@ -15,16 +15,6 @@ public class IssueRecordDAO {
     }
     
     public void insertIssueRecord(Connection conn, int bookId, int memberId) throws SQLException {
-//        String checkSQL = "SELECT * FROM issue_records WHERE BookId = ? AND Status = 'I'";
-//        try (PreparedStatement checkStmt = conn.prepareStatement(checkSQL)) {
-//            checkStmt.setInt(1, bookId);
-//            ResultSet rs = checkStmt.executeQuery();
-//
-//            if (rs.next()) {
-//                throw new SQLException("Book is already issued and not yet returned.");
-//            }
-//        }
-
         
         String insertSQL = "INSERT INTO issue_records (BookId, MemberId, Status, IssueDate) VALUES (?, ?, 'I', ?)";
         try (PreparedStatement insertStmt = conn.prepareStatement(insertSQL)) {

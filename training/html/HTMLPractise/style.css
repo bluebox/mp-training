@@ -1,0 +1,130 @@
+*
+{
+    padding: 0px;
+    border: 0px;
+    margin:0px;
+}
+
+#logo-contianer
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo{
+   
+   display: flex;
+  
+}
+.box
+{
+    height: 200px;
+    width:300px;
+    background-image: url(https://www.gstatic.com/webp/gallery/4.sm.jpg);
+    /* background-position: center; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+#content
+{
+
+    align-items: center;
+
+    .para{
+
+        font: 300;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: large;
+        color: rgb(37, 26, 11);
+        text-align: center;
+        text-decoration:line-through;
+        line-height: 38px;
+        letter-spacing: 45px;
+        word-spacing: 45px;
+    }
+}
+.relativebox
+{
+    background-color: black;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    top:10px;
+    left:10px;
+}
+.fixedbox
+{
+     background-color:brown;
+    height: 50px;
+    width: 50px;
+    position:fixed;
+    top:10px;
+    left:20px;
+}
+.absolute
+{
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top:10px;
+    left:3  0px;
+}
+.sticky
+{
+    background-color: green;
+    height: 50px;
+    width: 50px;
+    position: sticky;
+    top:10px;
+    left:400px;
+}
+.flex-container {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 150px;
+    background:black;
+  }
+
+  .flex-item {
+    background: #3498db;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    flex: 1;
+    text-align: center;
+  }
+
+  
+  
+  #myTable {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse; /* Removes double borders */
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#myTable th, #myTable td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#myTable th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+}
+
+#myTable tr:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra striping */
+}
+
+#myTable tr:hover {
+  background-color: #e0f7fa; /* Row highlight on hover */
+}
+
+  

@@ -1,4 +1,4 @@
-package test.com.dao;
+package test.com.library;
 
 import com.library.domain.Book;
 import com.library.services.BookService;

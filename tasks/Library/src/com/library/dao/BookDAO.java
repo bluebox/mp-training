@@ -11,6 +11,7 @@ import java.util.List;
 
 public class BookDAO {
 
+	
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM books";
@@ -89,6 +90,8 @@ public class BookDAO {
                     logStmt.setString(5, rs.getString("Status"));
                     logStmt.setString(6, rs.getString("Availability"));
                     logStmt.executeUpdate();
+                }catch (Exception e) {
+                    e.printStackTrace();
                 }
 
              
@@ -97,6 +100,9 @@ public class BookDAO {
                     updateStmt.setString(1, String.valueOf(status));
                     updateStmt.setInt(2, bookId);
                     updateStmt.executeUpdate();
+                }
+                catch (Exception e) {
+                    e.printStackTrace(); 
                 }
 
             } else {

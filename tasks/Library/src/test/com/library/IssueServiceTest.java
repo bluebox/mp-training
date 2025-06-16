@@ -1,4 +1,4 @@
-package test.com.dao;
+package test.com.library;
 
 import com.library.services.IssueService;
 import com.library.util.DB;
@@ -85,7 +85,7 @@ public class IssueServiceTest {
     }
 
     @Test(expected = Exception.class)
-    public void testIssueBook_whenBookNotAvailable_shouldThrow() throws Exception {
+    public void testIssueBook_whenBookNotAvailable() throws Exception {
         
         try (PreparedStatement ps = conn.prepareStatement("UPDATE books SET Availability = 'I' WHERE BookId = ?")) {
             ps.setInt(1, TEST_BOOK_ID);

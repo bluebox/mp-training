@@ -9,7 +9,6 @@ import com.library.util.DB;
 
 public class IssueService {
     private BookDAO bookDAO = new BookDAO();
-//    private MemberDAO memberDAO = new MemberDAO();
     private IssueRecordDAO issueDAO = new IssueRecordDAO();
 
     public void issueBook(int bookId, int memberId) throws Exception {

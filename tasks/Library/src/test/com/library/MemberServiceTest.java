@@ -1,4 +1,4 @@
-package test.com.dao;
+package test.com.library;
 
 import com.library.domain.Member;
 import com.library.services.MemberService;

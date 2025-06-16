@@ -8,6 +8,7 @@ import java.util.List;
 
 public class MemberService {
 	
+	
 	public List<Member> fetchmembers() throws SQLException
 	{
 		MemberDAO memebersDao= new MemberDAO ();
@@ -15,6 +16,7 @@ public class MemberService {
 	}
 	public void addMember(Member member)
 	{
+		//pavan
 		System.out.println("added");
 	}
 
