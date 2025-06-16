@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="index.php"  method="POST" enctype="multipart/form-data">
+
+        <label for="username">Username:</label>
+        <!-- for is used helpful to screen reader-->
+        <input type="text" id="username" placeholder="Spongebob"  required minlength="5"
+        maxlength="10">
+        <br>
+        
+        <input type="password" placeholder="Password" required>
+
+        <input type="submit">
+        <input type="email" placeholder="email">
+        <input type="phone" >
+        <input type="tel" pattern="[0-9]{3}-{0-9}{3}-{0-9}{4}">
+ 
+        <input type="date">
+        <input type="number" value="1">
+        <input type="time">
+        <input type="color">
+        <input type="range">
+        <input type="file" accept="image/*">
+
+        <label for="mr.">Mr.</label>
+        <input type="radio" id="mr." name="title1">
+        <label for="mrs.">Mrs.</label>
+        <input type="radio" id="mrs." name="title">
+        <label for="ms.">Ms.</label>
+        <input type="radio" id="ms." name="title">
+
+        <label for="payment">Payment</label>
+        <select id="payment">
+            <option value="visa">Visa</option>
+            <option value="mastercard">Mastercard</option>
+            <option value="amex">Amex</option>
+        </select>
+
+        <input type="reset">
+
+
+        <label for="subscribe">Subscribe</label>
+        <input type="checkbox" id="subscribe">
+
+        <label for="comment">Comment</label>
+        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+
+    </form>
+</body>
+</html>

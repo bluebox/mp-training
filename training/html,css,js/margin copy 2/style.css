@@ -1,0 +1,14 @@
+*
+{
+    box-sizing: border-box;
+}
+.box
+{
+    
+    border: 2px solid;
+    height: auto;
+    /* min-width: auto; */
+    max-width: 20%;
+    float: left;    
+
+}

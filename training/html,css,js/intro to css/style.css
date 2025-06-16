@@ -1,0 +1,20 @@
+body
+{
+    background-color: lightblue;
+}
+h1
+{
+    color: white;
+}
+#p1
+{
+    color: pink;
+}
+.odd
+{
+    color: red;
+}
+.even
+{
+    color: green;
+}

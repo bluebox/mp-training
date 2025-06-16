@@ -1,0 +1,26 @@
+.box
+{
+    border: 5px solid;
+    font-size: 5em;
+    width: 250px;
+    height: 250px;
+    /* display: inline-block;
+     */
+}
+#box1
+{
+    background-color: red;
+    /* margin-left: auto; */
+    display: inline-block;
+    visibility: hidden;
+}
+#box2
+{
+    /* margin: auto; */
+
+    background-color: green;
+}
+#box3
+{
+    
+}

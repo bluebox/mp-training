@@ -1,0 +1,18 @@
+#box1
+{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position: relative;
+    top: 
+}
+body{
+    background-image: url("image.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+
+
+}
