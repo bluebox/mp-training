@@ -2,8 +2,6 @@ package casestudy2;
 
 import java.time.LocalDate;
 
-import java.time.LocalDate;
-
 public class EmployeeWorkLog {
     private String employeeId;
     private String name;
@@ -28,6 +26,7 @@ public class EmployeeWorkLog {
     }
 
     // Getters and Setters
+    
     public String getEmployeeId() { return employeeId; }
     public String getName() { return name; }
     public String getDepartment() { return department; }

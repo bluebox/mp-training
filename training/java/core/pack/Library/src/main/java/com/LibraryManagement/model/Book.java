@@ -52,7 +52,7 @@ public class Book {
 		this.availability = availability;
 	}
 	public Book() {
-		// TODO Auto-generated constructor stub
+		
 	}
     
     // Constructors, getters, setters, toString

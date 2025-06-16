@@ -107,7 +107,6 @@ public class ExcelReader {
 
         return switch (cell.getCellType()) {
             case STRING -> LocalDate.parse(cell.getStringCellValue().trim(), DATE_FORMATTER);
-            case NUMERIC -> cell.getLocalDateTimeCellValue().toLocalDate();
             default -> throw new IllegalStateException("Unsupported date cell type: " + cell.getCellType());
         };
     }

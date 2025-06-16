@@ -49,8 +49,8 @@ public class Challenge2 {
         var dataSource = new MysqlDataSource();
         dataSource.setServerName("localhost");
         dataSource.setPort(3306);
-        dataSource.setUser(System.getenv("MYSQLUSER"));
-        dataSource.setPassword(System.getenv("MYSQLPASS"));
+        dataSource.setUser("root");
+        dataSource.setPassword("Elect!ons123");
         List<Order> orders = readData();
 
         try (Connection conn = dataSource.getConnection()) {
@@ -97,7 +97,7 @@ public class Challenge2 {
 
         List<Order> vals = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(Path.of("Orders.csv"))) {
+        try (Scanner scanner = new Scanner(Path.of("training/java/core/pack/day15/jdbc2/Orders.csv"))) {
 
             scanner.useDelimiter("[,\\n]");
             var list = scanner.tokens().map(String::trim).toList();

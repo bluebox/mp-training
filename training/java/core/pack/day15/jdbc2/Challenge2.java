@@ -61,7 +61,7 @@ public class Challenge2 {
 
         List<Order> vals = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(Path.of("Orders.csv"))) {
+        try (Scanner scanner = new Scanner(Path.of("training/java/core/pack/day15/jdbc2/Orders.csv"))) {
 
             scanner.useDelimiter("[,\\n]");
             var list = scanner.tokens().map(String::trim).toList();
