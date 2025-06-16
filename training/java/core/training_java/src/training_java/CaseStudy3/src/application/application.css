@@ -1,0 +1,29 @@
+/* application.css */
+
+.main-container {
+    -fx-padding: 20;
+    -fx-background-color: #f5f5f5;
+}
+
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 10 0 20 0;
+}
+
+.button {
+    -fx-pref-width: 200px;
+    -fx-font-size: 14px;
+}
+
+.feature-container {
+    -fx-padding: 20;
+    -fx-background-color: #eef;
+}
+
+.back-button {
+    -fx-pref-width: 150px;
+    -fx-font-size: 13px;
+    -fx-background-color: #ddd;
+}
