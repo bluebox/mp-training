@@ -21,11 +21,10 @@ public class MemberDAO {
 		this.tableName = tableName;
 	}
 
-	public boolean addMember(Member member) {
+	public boolean addMember(Member member,String query) {
 		int check = 0;
 		try (Connection conn = ConnectionMaker.getConnection()) {
-			String sql = "INSERT INTO " + tableName + "(name, email, mobile, gender, address) VALUES(?,?,?,?,?)";
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, member.getName());
 			ps.setString(2, member.getEmail());
 			ps.setLong(3, member.getMobile());
@@ -38,23 +37,7 @@ public class MemberDAO {
 		return check == 1;
 	}
 
-	public boolean updateMember(Member member) {
-		int check = 0;
-		String sql = "UPDATE member SET name=?, email=?, mobile=?, gender=?, address=? WHERE id=?";
-		try (Connection conn = ConnectionMaker.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, member.getName());
-			stmt.setString(2, member.getEmail());
-			stmt.setLong(3, member.getMobile());
-			stmt.setString(4, String.valueOf(member.getGender()));
-			stmt.setString(5, member.getAddress());
-			stmt.setInt(6, member.getId());
 
-			check = stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return check == 1;
-	}
 
 	public List<Member> getAllMembers() {
 		List<Member> members = new ArrayList<>();

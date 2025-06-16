@@ -24,10 +24,6 @@ public class BookService {
         return new BookDAO();
     }
 
-    public List<Book> fetchAllBooks() {
-        return getBookDAO().getAllBooks();
-    }
-
     public boolean addBook(Book book) {
         if (!isValidStatusAndAvailability(book)) {
             return false;
