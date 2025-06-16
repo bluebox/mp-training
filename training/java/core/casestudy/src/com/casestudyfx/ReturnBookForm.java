@@ -19,12 +19,15 @@ public class ReturnBookForm extends VBox {
 
         TextField bookIdField = new TextField();
         TextField memberIdField = new TextField();
+        
+        addDigitLimiter(bookIdField, 10);
+        addDigitLimiter(memberIdField, 10);
 
         Button submit = new Button("Return Book");
         submit.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;");
         
         submit.setOnAction(e -> {
-            // TODO: Insert logic for returning the book
+            // Insert logic for returning the book
         	String bookIdText = bookIdField.getText().trim();
         	String memberIdText = memberIdField.getText().trim();
 
@@ -66,5 +69,14 @@ public class ReturnBookForm extends VBox {
         grid.add(submit, 1, 2);
 
         this.getChildren().add(grid);
+    }
+    
+
+    private void addDigitLimiter(TextField field, int maxLength) {
+        field.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.matches("\\d*") || newVal.length() > maxLength) {
+                field.setText(oldVal);
+            }
+        });
     }
 }

@@ -109,7 +109,7 @@ public class BooksDao {
 		}
 	}
 
-	public void updateBook(Book book) {
+	public boolean updateBook(Book book) {
 		ResultSet rs = null;
 		try {
 			conn = DBUtil.getConnection();
@@ -148,9 +148,11 @@ public class BooksDao {
 			if (updated > 0) {
 				conn.commit();
 				System.out.println("Book updated successfully.");
+				return true;
 			} else {
 				conn.rollback();
 				System.out.println("Book update failed.");
+				return false;
 			}
 
 		} catch (SQLException e) {
@@ -161,6 +163,7 @@ public class BooksDao {
 				ex.printStackTrace();
 			}
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				if (rs != null)

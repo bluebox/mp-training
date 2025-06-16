@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 public class UpdateBookForm extends VBox {
 
     public UpdateBookForm() {
+    	
         this.setPadding(new Insets(10));
 
         GridPane grid = new GridPane();
@@ -23,6 +24,11 @@ public class UpdateBookForm extends VBox {
         TextField titleField = new TextField();
         TextField authorField = new TextField();
         TextField categoryField = new TextField();
+        
+        addTextLimiter(bookIdField, 10);
+        addTextLimiter(titleField, 50);
+        addTextLimiter(authorField, 50);
+        addTextLimiter(categoryField, 50);
 
         ComboBox<String> statusBox = new ComboBox<>();
         statusBox.getItems().addAll("A - Active", "I - Inactive");
@@ -45,8 +51,8 @@ public class UpdateBookForm extends VBox {
             	String category = categoryField.getText().trim();
 
             	// Get selected status and availability (e.g., "A - Active")
-            	String statusSelected = statusBox.getValue(); // e.g., "A - Active"
-            	String availabilitySelected = availabilityBox.getValue(); // e.g., "I - Issued"
+            	String statusSelected = statusBox.getValue(); 
+            	String availabilitySelected = availabilityBox.getValue(); 
             	
             	if (id.isEmpty() || title.isEmpty() || author.isEmpty() || category.isEmpty() ||
             		    statusSelected == null || availabilitySelected == null) {
@@ -54,8 +60,8 @@ public class UpdateBookForm extends VBox {
             		    return;
             	}
             	// Extract the first character from each selection
-            	String status = statusSelected.substring(0,1);         // 'A' or 'I'
-            	String  availability = availabilitySelected.substring(0,1); // 'A' or 'I'
+            	String status = statusSelected.substring(0,1);         
+            	String  availability = availabilitySelected.substring(0,1); 
 
             	// Create the Book object
             	Book book = new Book(bookId , title, author, category.toLowerCase(), Status.fromCode(status), Availability.fromCode(availability));
@@ -71,7 +77,7 @@ public class UpdateBookForm extends VBox {
             	else {
                     UtilMethods.showAlert(Alert.AlertType.ERROR, "Failure", "Book updation failed.");
                 }
-                // TODO: Write JDBC update logic here
+                // Write JDBC update logic here
                 System.out.println("Updated Book ID: " + bookIdField.getText());
             });
         }
@@ -96,6 +102,13 @@ public class UpdateBookForm extends VBox {
         grid.add(submit, 1, 6);
 
         this.getChildren().add(grid);
+    }
+    private void addTextLimiter(TextField textField, int maxLength) {
+        textField.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.length() > maxLength) {
+                textField.setText(oldText);
+            }
+        });
     }
 }
 

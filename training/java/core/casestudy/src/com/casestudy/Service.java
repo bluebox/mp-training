@@ -21,8 +21,8 @@ public class Service {
 	public boolean updateBookService(Book book) {
 		BooksDao bookDao = new BooksDao();
 		try {
-			bookDao.updateBook(book);
-			return true;
+			return bookDao.updateBook(book);
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
