@@ -31,7 +31,6 @@ public class IssueBookDAO {
     }
 
     public void issueBook(IssueRecord record) throws SQLException {
-        // Insert into main table
         String sql = "INSERT INTO issue_records(BookId, MemberId, Status, IssueDate) VALUES (?, ?, 'I', NOW())";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, record.getBookId());
@@ -39,7 +38,7 @@ public class IssueBookDAO {
             ps.executeUpdate();
         }
 
-        // Log action
+
         String logSql = "INSERT INTO issue_log(BookId, MemberId, Action, ActionTime) VALUES (?, ?, 'ISSUE', NOW())";
         try (PreparedStatement logStmt = conn.prepareStatement(logSql)) {
             logStmt.setInt(1, record.getBookId());
@@ -47,7 +46,7 @@ public class IssueBookDAO {
             logStmt.executeUpdate();
         }
 
-        // Update book availability
+
         try (PreparedStatement update = conn.prepareStatement("UPDATE book SET availability = 'I' WHERE id = ?")) {
             update.setInt(1, record.getBookId());
             update.executeUpdate();
@@ -57,7 +56,7 @@ public class IssueBookDAO {
     public void returnBook(int bookId, int memberId) throws SQLException {
         conn.setAutoCommit(false);
         try {
-            // Update main table
+   
             String sql = "UPDATE issue_records SET ReturnDate = NOW(), Status = 'R' WHERE BookId = ? AND MemberId = ? AND ReturnDate IS NULL";
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, bookId);
@@ -65,13 +64,13 @@ public class IssueBookDAO {
                 ps.executeUpdate();
             }
 
-            // Update book table
+            
             try (PreparedStatement ps = conn.prepareStatement("UPDATE book SET availability = 'A' WHERE id = ?")) {
                 ps.setInt(1, bookId);
                 ps.executeUpdate();
             }
 
-            // Log action
+
             try (PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO issue_log(BookId, MemberId, Action, ActionTime) VALUES (?, ?, 'RETURN', NOW())")) {
                 ps.setInt(1, bookId);
@@ -87,6 +86,17 @@ public class IssueBookDAO {
             conn.setAutoCommit(true);
         }
     }
+    public boolean isBookIssuedToMember(int bookId, int memberId) throws SQLException {
+        String sql = "SELECT * FROM issue_records WHERE BookId = ? AND MemberId = ? AND Status = 'I' AND ReturnDate IS NULL";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, bookId);
+            ps.setInt(2, memberId);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next(); 
+            }
+        }
+    }
+
 
     public List<IssueRecord> getAllIssuedBooks() throws SQLException {
         List<IssueRecord> list = new ArrayList<>();

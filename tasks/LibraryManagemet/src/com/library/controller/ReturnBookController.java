@@ -41,6 +41,14 @@ public class ReturnBookController {
             int memberId = Integer.parseInt(memberIdStr);
 
             IssueBookService service = new IssueBookService();
+
+
+            if (!service.isBookIssuedToMember(bookId, memberId)) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Details", "No active issue found for this Book ID and Member ID.");
+                return;
+            }
+
+
             service.returnBook(bookId, memberId);
 
             showAlert(Alert.AlertType.INFORMATION, "Success", "Book returned successfully!");
@@ -53,6 +61,7 @@ public class ReturnBookController {
             showAlert(Alert.AlertType.ERROR, "Database Error", "Error returning the book.");
         }
     }
+
 
 
     @FXML
