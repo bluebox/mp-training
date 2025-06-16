@@ -1,4 +1,4 @@
-package com.libraryManagement;
+package com.LibraryManagement;
 
 /**
  * Hello world!

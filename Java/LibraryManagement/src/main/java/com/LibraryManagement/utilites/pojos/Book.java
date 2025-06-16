@@ -1,4 +1,4 @@
-package com.libraryManagement.utility.pojos;
+package com.LibraryManagement.utilites.pojos;
 
 public class Book {
      private Integer bookId;
@@ -7,6 +7,19 @@ public class Book {
      private String category;
      private Character status;
      private Character availability;
+     
+     public Book(Integer bookId, String title, String author, String category, Character status, Character availability) {
+    	 this.bookId=bookId;
+    	 this.title=title;
+    	 this.author=author;
+    	 this.category=category;
+    	 this.status=status;
+    	 this.availability=availability;
+     }
+     public Book(String title, String author, String category, Character status, Character availability) {
+    	 super();
+     }
+     
 	 public Integer getBookId() {
 		 return bookId;
 	 }
@@ -42,6 +55,9 @@ public class Book {
 	 }
 	 public void setAvailability(Character availability) {
 		 this.availability = availability;
+	 }
+	 public String toString() {
+		 return bookId+" "+title+" "+author+" "+category+" "+status+" "+availability;
 	 }
      
 }
