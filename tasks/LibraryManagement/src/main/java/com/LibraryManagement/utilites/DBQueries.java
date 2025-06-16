@@ -24,7 +24,7 @@ public class DBQueries {
 
 	//IssueREcord Queries
 	public static final String INSERT_TO_ISSUE_RECORDS="insert into issue_records (BookId,MemberId,Statuss,IssueDate,ReturnDate) values(?,?,'I',?,null)";
-	public static final String UPDATE_ISSUE_RECORD="update issue_records set Statuss='A', ReturnDate=? where IssueId=?";
+	public static final String UPDATE_ISSUE_RECORD="update issue_records set Statuss='R', ReturnDate=? where IssueId=?";
 	public static final String GET_ALL_ISSUE_RECORDS="select IssueId,BookId,MemberId,Statuss,IssueDate,ReturnDate from issue_records";
 	public static final String GET_ISSUE_RECORD_WITH_ID="select IssueId,BookId,MemberId,Statuss,IssueDate,ReturnDate from issue_records where IssueId=?";
 	public static final String INSERT_TO_ISSUE_RECORDS_LOG="insert into issue_records_log (IssueId,BookId,MemberId,Statuss,IssueDate,ReturnDate) values(?,?,?,?,?,?)";
