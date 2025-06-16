@@ -1,5 +1,7 @@
 package day15.immutableclass;
 
+
+
 public class BankAccount {
 
     public enum AccountType {CHECKING, SAVINGS}

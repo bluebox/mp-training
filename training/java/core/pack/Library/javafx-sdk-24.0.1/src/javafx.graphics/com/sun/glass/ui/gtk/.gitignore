@@ -1,0 +1,15 @@
+/GtkApplication.class
+/GtkClipboardDelegate.class
+/GtkCommonDialogs.class
+/GtkCursor.class
+/GtkDnDClipboard.class
+/GtkMenuBarDelegate.class
+/GtkMenuDelegate.class
+/GtkMenuItemDelegate.class
+/GtkPixels.class
+/GtkPlatformFactory.class
+/GtkRobot.class
+/GtkSystemClipboard.class
+/GtkTimer.class
+/GtkView.class
+/GtkWindow.class

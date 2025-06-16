@@ -1,0 +1,15 @@
+/Affine$AffineAtomicChange.class
+/Affine$AffineElementProperty.class
+/Affine.class
+/MatrixType.class
+/NonInvertibleTransformException.class
+/Rotate$MatrixCache.class
+/Rotate.class
+/Scale.class
+/Shear.class
+/Transform$ImmutableTransform.class
+/Transform$LazyBooleanProperty.class
+/Transform.class
+/TransformChangedEvent.class
+/Translate.class
+/package-info.class

@@ -1,0 +1,17 @@
+/AudioSpectrumEvent.class
+/AudioSpectrumListener.class
+/BufferListener.class
+/BufferProgressEvent.class
+/MarkerEvent.class
+/MarkerListener.class
+/MediaErrorListener.class
+/MetadataListener.class
+/NewFrameEvent.class
+/PlayerEvent.class
+/PlayerStateEvent$PlayerState.class
+/PlayerStateEvent.class
+/PlayerStateListener.class
+/PlayerTimeListener.class
+/VideoFrameRateListener.class
+/VideoRendererListener.class
+/VideoTrackSizeListener.class

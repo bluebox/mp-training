@@ -1,0 +1,12 @@
+/BinaryExpression.class
+/Expression$Parser$Token.class
+/Expression$Parser$TokenType.class
+/Expression$Parser.class
+/Expression.class
+/ExpressionValue$KeyPathMonitor.class
+/ExpressionValue.class
+/KeyPath.class
+/LiteralExpression.class
+/Operator.class
+/UnaryExpression.class
+/VariableExpression.class

@@ -1,0 +1,12 @@
+/Affine2D.class
+/Affine3D.class
+/AffineBase.class
+/BaseTransform$Degree.class
+/BaseTransform.class
+/CanTransformVec3d.class
+/GeneralTransform3D.class
+/Identity.class
+/NoninvertibleTransformException.class
+/SingularMatrixException.class
+/TransformHelper.class
+/Translate2D.class
