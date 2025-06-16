@@ -67,8 +67,6 @@ public class Member {
     public void setGender(char gender) {
         this.gender = gender;
     }
-
-    // Optional: toString() method
     @Override
     public String toString() {
         return "Member{" +
