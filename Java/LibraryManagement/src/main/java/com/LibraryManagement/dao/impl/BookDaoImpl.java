@@ -23,7 +23,7 @@ public class BookDaoImpl implements BookDao{
 		try{
 			con=DBConnection.getConnection();
 			con.setAutoCommit(false);
-			PreparedStatement pst=con.prepareStatement(DBQueries.insertToBooks);
+			PreparedStatement pst=con.prepareStatement(DBQueries.INSERT_TO_BOOKS);
 			pst.setString(1,book.getTitle());
 			pst.setString(2, book.getAuthor());
 			pst.setString(3,book.getCategory());
@@ -34,22 +34,23 @@ public class BookDaoImpl implements BookDao{
 				 return false;
 			}
 			con.commit();
-			return true;
+			
 		}catch(Exception e){
 			con.rollback();
 			throw new DataBaseException("Error with DataBase", e);
 		}finally {
 			con.setAutoCommit(true);
 		}
+		return true;
 	}
 
 	@Override
 	public boolean verifyBook(Book book) throws InvalidBookException, DataBaseException{
-		if(book.getAuthor()==null || book.getAvailability()==null || book.getTitle()==null) {
+		if(book.getAuthor()==null || book.getCategory()==null|| book.getTitle()==null) {
 			throw new InvalidBookException("Incomplete book data for verification.");
 		}
 		try(Connection con=DBConnection.getConnection()){
-			PreparedStatement pst=con.prepareStatement(DBQueries.getBook);
+			PreparedStatement pst=con.prepareStatement(DBQueries.GET_BOOK);
 			pst.setString(1, book.getTitle());
 			pst.setString(2, book.getAuthor());
 			pst.setString(3,book.getCategory());
@@ -71,7 +72,7 @@ public class BookDaoImpl implements BookDao{
 		ArrayList<Book> arr = new ArrayList<>();
 		Connection con=DBConnection.getConnection();
 		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(DBQueries.getAllBooks);
+		ResultSet rs=st.executeQuery(DBQueries.GET_ALL_BOOKS);
 		while(rs.next()) {
 			Reader ch1=rs.getCharacterStream(5);
 			Reader ch2=rs.getCharacterStream(6);
@@ -84,7 +85,7 @@ public class BookDaoImpl implements BookDao{
 	public boolean addBookToLog(int bookId){
 		try(Connection con=DBConnection.getConnection()) {
 			con.setAutoCommit(false);
-			PreparedStatement pst=con.prepareStatement(DBQueries.getBookWithId);
+			PreparedStatement pst=con.prepareStatement(DBQueries.GET_BOOK_WITH_ID);
 			pst.setInt(1, bookId);
 			ResultSet rs=pst.executeQuery();
 			
@@ -99,7 +100,7 @@ public class BookDaoImpl implements BookDao{
 			Reader ch2=rs.getCharacterStream(6);
 			
 			Book book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),(char) (ch1.read()),(char)(ch2.read()));
-			pst=con.prepareStatement(DBQueries.insertToBooksLog);
+			pst=con.prepareStatement(DBQueries.INSERT_TO_BOOK_LOG);
 			pst.setInt(1, book.getBookId());
 			pst.setString(2,book.getTitle());
 			pst.setString(3, book.getAuthor());
@@ -128,7 +129,7 @@ public class BookDaoImpl implements BookDao{
 			con.rollback();
 			return false;
 		}
-		PreparedStatement pst=con.prepareStatement(DBQueries.updateBook);
+		PreparedStatement pst=con.prepareStatement(DBQueries.UPDATE_BOOK);
 		pst.setString(1, String.valueOf(availability));
 		pst.setInt(2, bookId);
 		
@@ -147,7 +148,7 @@ public class BookDaoImpl implements BookDao{
 		ArrayList<Book> arr = new ArrayList<>();
 		Connection con=DBConnection.getConnection();
 		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(DBQueries.getAllBooksLog);
+		ResultSet rs=st.executeQuery(DBQueries.GET_ALL_BOOKS_LOG);
 		while(rs.next()) {
 			Reader ch1=rs.getCharacterStream(5);
 			Reader ch2=rs.getCharacterStream(6);
@@ -160,7 +161,7 @@ public class BookDaoImpl implements BookDao{
 	@Override
 	public boolean verifyBook(int bookId, Character availability) throws Exception {
 		Connection con=DBConnection.getConnection();
-		PreparedStatement pst=con.prepareStatement(DBQueries.getBookWithId);
+		PreparedStatement pst=con.prepareStatement(DBQueries.GET_BOOK_WITH_ID);
 		pst.setInt(1, bookId);
 		ResultSet rs=pst.executeQuery();
 		if(rs.next() && !rs.getString(6).equals(String.valueOf(availability))) {

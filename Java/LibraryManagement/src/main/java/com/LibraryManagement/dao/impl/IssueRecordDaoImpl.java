@@ -14,18 +14,18 @@ import com.LibraryManagement.utilites.DBQueries;
 import com.LibraryManagement.utilites.pojos.IssueRecord;
 
 public class IssueRecordDaoImpl implements IssueRecordDao{
-	BookDaoImpl bd=new BookDaoImpl();
+	BookDaoImpl bookDao=new BookDaoImpl();
 	
 	@Override
 	public boolean issueBook(int bookId, int memberId) {
 		try {
 			Connection con=DBConnection.getConnection();
-			PreparedStatement pst=con.prepareStatement(DBQueries.insertToIssueRecords);
+			PreparedStatement pst=con.prepareStatement(DBQueries.INSERT_TO_ISSUE_RECORD);
 			pst.setInt(1, bookId);
 			pst.setInt(2, memberId);
 			pst.setDate(3, Date.valueOf(LocalDate.now()));
 			pst.executeUpdate();
-			bd.updateBook(bookId,'I');
+			bookDao.updateBook(bookId,'I');
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,22 +38,22 @@ public class IssueRecordDaoImpl implements IssueRecordDao{
 	public boolean verifyBookAndMember(int bookId, int memberId) {
 		try {
 			Connection con=DBConnection.getConnection();
-			PreparedStatement pst=con.prepareStatement(DBQueries.getBookWithId);
+			PreparedStatement pst=con.prepareStatement(DBQueries.GET_BOOK_WITH_ID);
 			pst.setInt(1, bookId);
 			ResultSet rs=pst.executeQuery();
-			PreparedStatement pst1=con.prepareStatement(DBQueries.getMemberWithId);
+			PreparedStatement pst1=con.prepareStatement(DBQueries.GET_MEMBER_WITH_ID);
 			pst1.setInt(1, memberId);
 			ResultSet rs1=pst1.executeQuery();
 			if(rs.next() && rs1.next()) {
 				if(rs.getString(5).equals("A") && rs.getString(6).equals("A")) {
 					return true;
 				}else {
-					System.out.println("Book is not Available");
-					return true;
+					return false;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 		return false;
@@ -63,26 +63,25 @@ public class IssueRecordDaoImpl implements IssueRecordDao{
 	public boolean verifyRecord(int issuedId) {
 		try {
 			Connection con=DBConnection.getConnection();
-			PreparedStatement pst=con.prepareStatement(DBQueries.getIssueRecordWithId);
+			PreparedStatement pst=con.prepareStatement(DBQueries.GET_ISSUE_RECORD_WITH_ID);
 			pst.setInt(1, issuedId);
-			pst.executeQuery();
-			return true;
+			ResultSet rs=pst.executeQuery();
+			if(!rs.next()) return false;
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		}
 		
-		return false;
+		return true;
 	}
 	
 	public void addToIssueRecordLog(int issueId) {
 		try {
 			Connection con=DBConnection.getConnection();
-			PreparedStatement pst=con.prepareStatement(DBQueries.getIssueRecordWithId);
+			PreparedStatement pst=con.prepareStatement(DBQueries.GET_ISSUE_RECORD_WITH_ID);
 			pst.setInt(1, issueId);
 			ResultSet rs=pst.executeQuery();
 			rs.next();
-			pst=con.prepareStatement(DBQueries.insertToIssueRecordsLog);
+			pst=con.prepareStatement(DBQueries.INSERT_TO_ISSUE_RECORD_LOG);
 			pst.setInt(1, rs.getInt(1));
 			pst.setInt(2,rs.getInt(2));
 			pst.setInt(3, rs.getInt(3));
@@ -98,7 +97,7 @@ public class IssueRecordDaoImpl implements IssueRecordDao{
 	public void updateIssueRecord(int issueId) throws Exception {
 		addToIssueRecordLog(issueId);
 		Connection con=DBConnection.getConnection();
-		PreparedStatement pst=con.prepareStatement(DBQueries.updateIssueRecord);
+		PreparedStatement pst=con.prepareStatement(DBQueries.UPDATE_ISSUE_RECORD);
 		pst.setDate(1, Date.valueOf(LocalDate.now()));
 		pst.setInt(2, issueId);
 		pst.executeUpdate();
@@ -108,12 +107,14 @@ public class IssueRecordDaoImpl implements IssueRecordDao{
 	public boolean returnBook(int issueId) throws Exception {
 		Connection con=DBConnection.getConnection();
 		PreparedStatement pst;
-		pst = con.prepareStatement(DBQueries.getIssueRecordWithId);
+		pst = con.prepareStatement(DBQueries.GET_ISSUE_RECORD_WITH_ID);
 		pst.setInt(1,issueId);
 		ResultSet rs=pst.executeQuery();
 		if(rs.next()) {
-			bd.updateBook(rs.getInt(2), 'A');
+			if(rs.getDate(6)!=null) return false;
+			bookDao.updateBook(rs.getInt(2), 'A');
 			updateIssueRecord(issueId);
+			return true;
 		}
 		return false;
 	}
@@ -123,7 +124,7 @@ public class IssueRecordDaoImpl implements IssueRecordDao{
 		ArrayList<IssueRecord> arr= new ArrayList<>();
 		Connection con=DBConnection.getConnection();
 		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(DBQueries.getAllIssueRecords);
+		ResultSet rs=st.executeQuery(DBQueries.GET_ALL_ISSUE_RECORD);
 		while(rs.next()) {
 			Character ch=rs.getString(4).charAt(0);
 			IssueRecord ir=new IssueRecord(rs.getInt(1),rs.getInt(2),rs.getInt(3),ch,rs.getDate(5),rs.getDate(6));
@@ -137,7 +138,7 @@ public class IssueRecordDaoImpl implements IssueRecordDao{
 		ArrayList<IssueRecord> arr= new ArrayList<>();
 		Connection con=DBConnection.getConnection();
 		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(DBQueries.getAllIssueRecordsLog);
+		ResultSet rs=st.executeQuery(DBQueries.GET_ALL_ISSUE_RECORD_LOG);
 		while(rs.next()) {
 			Character ch=rs.getString(4).charAt(0);
 			IssueRecord ir=new IssueRecord(rs.getInt(1),rs.getInt(2),rs.getInt(3),ch,rs.getDate(5),rs.getDate(6));

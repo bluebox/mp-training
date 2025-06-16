@@ -13,13 +13,6 @@ public class DBConnection {
 	}
 
 	public static Connection getConnection() throws ClassNotFoundException, IOException, SQLException {
-		Properties prop = new Properties();
-		FileInputStream input = new FileInputStream("config.properties");
-		prop.load(input);
-		String url = prop.getProperty("db.url");
-		String user = prop.getProperty("db.user");
-		String password = prop.getProperty("db.password");
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		return DriverManager.getConnection(url, user, password);
+		return  DriverManager.getConnection("jdbc:mysql://localhost:3306/Library","Anand","1925112816@Aa");
 	}
 }

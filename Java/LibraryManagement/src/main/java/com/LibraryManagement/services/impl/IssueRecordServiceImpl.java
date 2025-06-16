@@ -1,30 +1,44 @@
 package com.LibraryManagement.services.impl;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.LibraryManagement.dao.IssueRecordDao;
 import com.LibraryManagement.dao.impl.IssueRecordDaoImpl;
 import com.LibraryManagement.exceptions.InvalidInputException;
 import com.LibraryManagement.services.IssueRecordService;
+import com.LibraryManagement.utilites.DBConnection;
 import com.LibraryManagement.utilites.pojos.IssueRecord;
 
 public class IssueRecordServiceImpl implements IssueRecordService{
-	private IssueRecordDaoImpl ir=new IssueRecordDaoImpl();
+	private IssueRecordDao ir=new IssueRecordDaoImpl();
 	@Override
-	public boolean issueBookToMember(int bookId, int memberId) throws InvalidInputException {
+	public boolean issueBookToMember(int bookId, int memberId) throws Exception {
+		Connection con =DBConnection.getConnection();
+		con.setAutoCommit(false);
 		if(ir.verifyBookAndMember(bookId, memberId)) {
-			ir.issueBook(bookId,memberId);
-			return true;
+			if(ir.issueBook(bookId,memberId)) {
+				con.commit();
+				con.setAutoCommit(true);
+				return true;
+			}
 		}
 		else {
-			throw new InvalidInputException("Book not available or member doesn't exist.");
-				
+			con.rollback();
+			con.setAutoCommit(true);
+			throw new InvalidInputException("Book not available or member doesn't exist.");	
 		}
+		return false;
 	}
 
 	@Override
 	public boolean returnBook(int issuedId) throws Exception {
+		Connection con =DBConnection.getConnection();
 		if(ir.verifyRecord(issuedId)) {
-			ir.returnBook(issuedId);
+			System.out.println("verified");
+			if(ir.returnBook(issuedId)){
+				return true;
+			}
 		}
 		return false;
 	}

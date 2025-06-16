@@ -11,14 +11,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.LibraryManagement.dao.impl.BookDaoImpl;
+import com.LibraryManagement.utilites.DBConnection;
 import com.LibraryManagement.utilites.pojos.Book;
 
 public class BookDaoImplTest {
 
     private static BookDaoImpl bookDao;
-    private static final String TEST_TITLE = "Test AddBook";
-    private static final String TEST_AUTHOR = "Test Author";
-    private static final String TEST_CATEGORY = "Test Category";
+    private static final String TEST_TITLE = "texook";
+    private static final String TEST_AUTHOR = "abl";
+    private static final String TEST_CATEGORY = "Comedy";
 
     @BeforeClass
     public static void setup() {
@@ -27,8 +28,8 @@ public class BookDaoImplTest {
 
     @Before
     public void cleanUpBefore() throws Exception {
-        try (Connection con = com.LibraryManagement.utilites.DBConnection.getConnection()) {
-            PreparedStatement pst = con.prepareStatement("DELETE FROM books WHERE Title = ?");
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement pst = con.prepareStatement("DELETE FROM Book WHERE Title = ?");
             pst.setString(1, TEST_TITLE);
             pst.executeUpdate();
         }
@@ -36,7 +37,7 @@ public class BookDaoImplTest {
 
     @Test
     public void testAddBook_Success() throws Exception {
-        Book book = new Book(1, TEST_TITLE, TEST_AUTHOR, TEST_CATEGORY, 'A', 'A');
+        Book book = new Book(TEST_TITLE, TEST_AUTHOR, TEST_CATEGORY, 'A', 'A');
         boolean result = bookDao.addBook(book);
         assertTrue("Book should be added successfully", result);
     }
@@ -45,7 +46,7 @@ public class BookDaoImplTest {
     @SuppressWarnings("unused")
 	private int getBookIdByTitle(String title) throws Exception {
         try (Connection con = com.LibraryManagement.utilites.DBConnection.getConnection()) {
-            PreparedStatement pst = con.prepareStatement("SELECT book_id FROM books WHERE Title = ?");
+            PreparedStatement pst = con.prepareStatement("SELECT BookId FROM Book WHERE Title = ?");
             pst.setString(1, title);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {

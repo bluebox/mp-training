@@ -17,7 +17,11 @@ public class Book {
     	 this.availability=availability;
      }
      public Book(String title, String author, String category, Character status, Character availability) {
-    	 super();
+    	 this.title=title;
+    	 this.author=author;
+    	 this.category=category;
+    	 this.status=status;
+    	 this.availability=availability;
      }
      
 	 public Integer getBookId() {

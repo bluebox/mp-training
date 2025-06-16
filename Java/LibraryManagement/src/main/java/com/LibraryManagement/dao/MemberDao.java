@@ -1,11 +1,13 @@
 package com.LibraryManagement.dao;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.LibraryManagement.utilites.pojos.Member;
 
 public interface MemberDao {
-	public boolean addMember(Member member);
+	public boolean addMember(Member member) throws SQLException, ClassNotFoundException, IOException, Exception;
 	public boolean updateMemberDetails(int memberId,String name,String email, Long mobile) throws Exception;
 	public ArrayList<Member>  viewAllMembers() throws Exception;
 	public boolean verifyMember(int memberId,String name,String email, Long mobile) throws Exception;
