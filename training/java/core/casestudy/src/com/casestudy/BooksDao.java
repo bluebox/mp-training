@@ -249,4 +249,49 @@ public class BooksDao {
 
 		return false;
 	}
+	public Book searchBook(int tempId) {
+		ResultSet rs = null;
+		Book book = null ;
+		try {
+			conn = DBUtil.getConnection();
+			String query = "SELECT bookId, title, author, category, status, availability FROM Books where bookId = ?";
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, tempId);
+			rs = ps.executeQuery();
+			
+
+			if (rs.next()) {
+				int bookId = rs.getInt("bookId");
+				String title = rs.getString("title");
+				String author = rs.getString("author");
+				String category = rs.getString("category");
+				String status = rs.getString("status");
+				String availability = rs.getString("availability");
+
+				book = new Book(bookId, title, author, category, Status.fromCode(status),
+						Availability.fromCode(availability));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (SQLException ignored) {
+			}
+			try {
+				if (ps != null)
+					ps.close();
+			} catch (SQLException ignored) {
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ignored) {
+			}
+		}
+
+		return book;
+	}
 }

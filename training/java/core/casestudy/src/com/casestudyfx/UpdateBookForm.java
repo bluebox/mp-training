@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 public class UpdateBookForm extends VBox {
 
     public UpdateBookForm() {
-    	
         this.setPadding(new Insets(10));
 
         GridPane grid = new GridPane();
@@ -52,7 +51,7 @@ public class UpdateBookForm extends VBox {
 
             	// Get selected status and availability (e.g., "A - Active")
             	String statusSelected = statusBox.getValue(); 
-            	String availabilitySelected = availabilityBox.getValue(); 
+            	String availabilitySelected = availabilityBox.getValue(); // e.g., "I - Issued"
             	
             	if (id.isEmpty() || title.isEmpty() || author.isEmpty() || category.isEmpty() ||
             		    statusSelected == null || availabilitySelected == null) {
@@ -60,8 +59,8 @@ public class UpdateBookForm extends VBox {
             		    return;
             	}
             	// Extract the first character from each selection
-            	String status = statusSelected.substring(0,1);         
-            	String  availability = availabilitySelected.substring(0,1); 
+            	String status = statusSelected.substring(0,1);         // 'A' or 'I'
+            	String  availability = availabilitySelected.substring(0,1); // 'A' or 'I'
 
             	// Create the Book object
             	Book book = new Book(bookId , title, author, category.toLowerCase(), Status.fromCode(status), Availability.fromCode(availability));
@@ -77,7 +76,7 @@ public class UpdateBookForm extends VBox {
             	else {
                     UtilMethods.showAlert(Alert.AlertType.ERROR, "Failure", "Book updation failed.");
                 }
-                // Write JDBC update logic here
+                // TODO: Write JDBC update logic here
                 System.out.println("Updated Book ID: " + bookIdField.getText());
             });
         }
