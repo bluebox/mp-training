@@ -1,0 +1,45 @@
+.Lion{
+   width : 440px;
+   border-radius: 10px;
+   float :left;
+   margin-right: 10px;
+   }
+   h1{color : green;
+   font-size=32px;}
+
+
+   .class{
+   font-style:italic;
+   color: red;
+    float :left;
+     font-size:32px;
+   }
+   p{
+   color:blue;
+   font-size:32px;
+   }
+
+
+    .buffalo{
+       width : 440px;
+       border-radius: 1000px;
+       float :right;
+       margin-right: 50px;
+       }
+    strong{
+    color:black;
+    }
+
+    .moving-heading {
+      position: relative;
+      animation: slide 10s linear infinite; /* animation name, duration, speed, and repeat */
+      white-space: nowrap; /* Prevent text from wrapping */
+    }
+    @keyframes slide {
+      0% {
+        left: -50%;
+      }
+      100% {
+        left: 100%;
+      }
+    }

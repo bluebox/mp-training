@@ -1,0 +1,157 @@
+.a{
+  font-size:24px;
+}
+
+body{
+background-color:  #ffff;
+}
+
+.logo{
+ padding-left: 4em;
+ float : left;
+width:100px;}
+
+.logo2{
+position: absolute;
+ top:85px;
+ right:70px;
+width:100px;}
+
+.main-heading{
+text-align: center;
+//color:white;
+
+}
+
+
+.navbar {
+
+list-style: none;
+ margin: 0;
+  padding:0;
+  align:center;
+gap:50px;
+display: flex;
+// background-color: #5263e94;
+
+}
+
+.navbar li{
+text-decoration: none;
+
+}
+
+.navbar li a{
+text-decoration: none;
+font-size:24px;
+ 
+}
+
+.new-logo-img{
+width:30px;
+}
+h{
+font-size:20px;}
+
+.Moving-navigation {
+      position: relative;
+      animation: slide 20s linear infinite; /* animation name, duration, speed, and repeat */
+      white-space: nowrap; /* Prevent text from wrapping */
+    }
+    @keyframes slide {
+      0% {
+        left: 100%;
+      }
+      100% {
+        left: -100%;
+      }
+    }
+
+
+.left-tabs{
+width: 1100px;
+  height: 40px
+
+  border: 1px solid #333;
+  padding: 10px;
+  margin: 20px;
+}
+.active{
+width: 450px;
+  height: 80px;
+  font-size:64px;
+background:blue;
+}
+
+.active2{
+width: 640px;
+height: 80px;
+font-size:32px;
+background:green;
+}
+
+
+.right-tabs{
+
+width: 1100px;
+   height: 40px
+   background-color: lightblue;
+   border: 1px solid #333;
+   padding: 10px;
+   margin: 20px;
+ }
+
+.Box{
+box-shadow: 0 0.75rem 1.75rem 0 rgb(33 40 50 / 15%);
+            border-radius: 20px;
+font-size:32px;
+width: 400px;
+  height: 200px;
+  background-color: #F;
+
+}
+.Box:hover{
+background-color: #8F00FF;
+
+}
+
+.Instructions{
+
+width: 700px;
+font-size:32px;
+  height: 250px;
+
+
+}
+
+
+.left{
+width: 1500px;
+  height: 500px;
+}
+
+.main{
+display:flex;}
+
+.Right-Box{
+width: 230px;
+  height: 50px
+}
+
+.logoFor{
+width:90px;}
+
+inside-image-of-right-boxes{
+ float :left;
+ width:90px;
+ }
+
+ .blue-dot{
+
+  list-style-type: circle;}
+  .green-dot{
+
+    list-style-type: circle;}
+    .yellow-dot{
+
+      list-style-type: circle;}

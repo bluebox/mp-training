@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/training/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tasks/CaseStudy3/dao" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tasks/CaseStudy3/model" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tasks/CaseStudy3/ui" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
