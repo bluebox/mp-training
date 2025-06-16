@@ -5,7 +5,8 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.library.controller.ViewBooksController"
             prefWidth="600" prefHeight="400">
-    <TableView fx:id="table" layoutX="10" layoutY="10" prefWidth="580" prefHeight="380">
+
+    <TableView fx:id="table" layoutX="10" layoutY="10" prefWidth="580" prefHeight="340">
         <columns>
             <TableColumn fx:id="titleCol" text="Title" prefWidth="120"/>
             <TableColumn fx:id="authorCol" text="Author" prefWidth="100"/>
@@ -14,4 +15,6 @@
             <TableColumn fx:id="availabilityCol" text="Availability" prefWidth="100"/>
         </columns>
     </TableView>
+
+    <Button fx:id="backButton" text="Back" layoutX="500" layoutY="360" onAction="#handleBack"/>
 </AnchorPane>

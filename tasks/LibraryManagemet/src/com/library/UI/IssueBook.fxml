@@ -15,6 +15,7 @@
         <TextField fx:id="memberIdField" layoutX="150" layoutY="125" prefWidth="200" />
 
         <Button text="Submit" fx:id="submitButton" layoutX="150" layoutY="180" onAction="#handleSubmit" />
+	<Button text="Back" fx:id="backButton" layoutX="250" layoutY="180" onAction="#handleBack" />
 
         <Label fx:id="messageLabel" layoutX="100" layoutY="230" textFill="red" />
     </children>

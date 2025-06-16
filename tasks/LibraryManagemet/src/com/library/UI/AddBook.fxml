@@ -22,4 +22,6 @@
     <ChoiceBox fx:id="availabilityChoiceBox" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
   <Button fx:id="submitButton" text="Submit" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+  <Button fx:id="backButton" text="Back" onAction="#handleBack" GridPane.rowIndex="6"  layoutY="10" />
+  
 </GridPane>

@@ -24,7 +24,8 @@
     </GridPane>
 
     <HBox spacing="15" alignment="CENTER">
-        <Button text="Return Book" onAction="#handleReturnBook"/>
-        <Button text="Cancel" onAction="#handleCancel"/>
-    </HBox>
+    <Button text="Return Book" onAction="#handleReturnBook"/>
+    <Button text="Back" fx:id="backButton" onAction="#handleBack"/>
+</HBox>
+
 </VBox>

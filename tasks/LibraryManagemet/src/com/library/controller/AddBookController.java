@@ -70,5 +70,22 @@ public class AddBookController {
 			System.out.println("Failed to add book.");
 		}
 	}
+	@FXML
+	private Button backButton;
+
+	@FXML
+	private void handleBack() {
+	    try {
+	        javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/library/UI/Home.fxml"));
+	        javafx.scene.Parent root = loader.load();
+	        javafx.stage.Stage stage = (javafx.stage.Stage) backButton.getScene().getWindow();
+	        stage.setScene(new javafx.scene.Scene(root));
+	        stage.setTitle("Library System - Home");
+	        stage.show();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 
 }

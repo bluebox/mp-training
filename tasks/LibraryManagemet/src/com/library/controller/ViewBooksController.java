@@ -1,13 +1,22 @@
 package com.library.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.library.domain.Book;
 import com.library.service.BookService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-
-import java.util.List;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 public class ViewBooksController {
 
@@ -32,4 +41,19 @@ public class ViewBooksController {
         ObservableList<Book> list = FXCollections.observableArrayList(books);
         table.setItems(list);
     }
+    
+    @FXML
+    private void handleBack() {
+        try {
+            Parent homeView = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
+            Stage stage = (Stage) table.getScene().getWindow();
+            stage.setScene(new Scene(homeView));
+            stage.setTitle("Library - Home");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
