@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.library.serviceInterface.IssueServiceInterface;
 import com.library.services.IssueService;
 
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ public class ReturnBookController {
 
     @FXML
     private Label statusLabel;
-    private final IssueService issueService = new IssueService();
+    private final IssueServiceInterface issueService = new IssueService();
 
     @FXML
     private void handleReturnBook() {

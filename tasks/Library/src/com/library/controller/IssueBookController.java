@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import com.library.serviceInterface.IssueServiceInterface;
 import com.library.services.IssueService;
 
 public class IssueBookController {
@@ -27,7 +28,7 @@ public class IssueBookController {
             return;
         }
         
-        IssueService issueService= new IssueService();
+        IssueServiceInterface issueService= new IssueService();
         try {
 			issueService.issueBook(Integer.parseInt(bookIdText),Integer.parseInt(memberIdText));
 			

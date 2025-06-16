@@ -1,6 +1,7 @@
 package com.library.controller;
 
 import com.library.domain.Member;
+import com.library.serviceInterface.MemberServiceInterface;
 import com.library.services.MemberService;
 
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ public class AddMemberController {
 
     @FXML
     private Label statusLabel;
-    private final MemberService memberService = new MemberService();
+    private final MemberServiceInterface memberService = new MemberService();
 
     public void initialize() {
         genderChoice.getItems().addAll("M", "F");

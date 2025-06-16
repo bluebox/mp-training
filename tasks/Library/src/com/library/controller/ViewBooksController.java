@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 
 import com.library.domain.Book;
+import com.library.serviceInterface.BookServiceInterface;
 import com.library.services.BookService;
 
 public class ViewBooksController {
@@ -21,7 +22,7 @@ public class ViewBooksController {
     @FXML private TableColumn<Book, String> categoryCol;
     @FXML private TableColumn<Book, Character> availabilityCol;
 
-    private final BookService bookService = new BookService();
+    private final BookServiceInterface bookService = new BookService();
 
     @FXML
     public void initialize() {
