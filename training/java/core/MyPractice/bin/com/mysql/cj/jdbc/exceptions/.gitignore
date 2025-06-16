@@ -1,0 +1,12 @@
+/CommunicationsException.class
+/ConnectionFeatureNotAvailableException.class
+/MySQLQueryInterruptedException.class
+/MySQLStatementCancelledException.class
+/MySQLTimeoutException.class
+/MySQLTransactionRollbackException.class
+/MysqlDataTruncation.class
+/NotUpdatable.class
+/OperationNotSupportedException.class
+/PacketTooBigException.class
+/SQLError.class
+/SQLExceptionsMapping.class
