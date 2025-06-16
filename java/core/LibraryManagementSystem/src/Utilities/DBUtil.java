@@ -9,7 +9,7 @@ public class DBUtil {
 	public static Connection getConnection() throws SQLException {
 		if (conn == null||conn.isClosed()) {
 			try {
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "devuser", "M@Neesh123");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "renaiah", "renaiahMysql");
 				conn.setAutoCommit(false);
 				statement = conn.createStatement();
 				final String bookTableCreation = "CREATE TABLE IF NOT EXISTS books ("
