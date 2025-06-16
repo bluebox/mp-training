@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+    <Label text="Add New Member" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <Label text="Name"/>
+    <TextField fx:id="nameField" promptText="Name"/>
+    <Label text="Email"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <Label text="Mobile"/>
+    <TextField fx:id="mobileField" promptText="Mobile"/>
+    <Label text="Gender"/>
+    <ComboBox fx:id="genderCombo" promptText="Gender">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Male (M)"/>
+                <String fx:value="Female (F)"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <Label text="Address"/>
+    <TextField fx:id="addressField" promptText="Address"/>
+    <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+        <Button text="Add Member" onAction="#handleAddMember" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+        <Button text="Clear" onAction="#handleClear" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+        <Button text="Back" onAction="#goBack" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+    </HBox>
+</VBox>

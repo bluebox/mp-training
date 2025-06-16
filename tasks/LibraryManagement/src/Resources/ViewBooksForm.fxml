@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import java.lang.String?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+    <Label text="View/Update Books" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+    
+    <TableView fx:id="booksTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="bookIdColumn" text="Book ID"/>
+            <TableColumn fx:id="titleColumn" text="Title"/>
+            <TableColumn fx:id="authorColumn" text="Author"/>
+            <TableColumn fx:id="categoryColumn" text="Category"/>
+            <TableColumn fx:id="statusColumn" text="Status"/>
+            <TableColumn fx:id="availabilityColumn" text="Availability"/>
+        </columns>
+    </TableView>
+    
+    <GridPane vgap="10" hgap="10" alignment="CENTER">
+        <Label text="Book ID to Update" style="-fx-font-weight: bold; -fx-text-fill: #333333;"/>
+        <TextField fx:id="bookIdField" promptText="Book ID to Update" GridPane.columnIndex="1"/>
+        
+        <Label text="New Title" style="-fx-font-weight: bold; -fx-text-fill: #333333;" GridPane.rowIndex="1"/>
+        <TextField fx:id="titleField" promptText="New Title" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        
+        <Label text="New Author" style="-fx-font-weight: bold; -fx-text-fill: #333333;" GridPane.rowIndex="2"/>
+        <TextField fx:id="authorField" promptText="New Author" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        
+        <Label text="New Category" style="-fx-font-weight: bold; -fx-text-fill: #333333;" GridPane.rowIndex="3"/>
+        <TextField fx:id="categoryField" promptText="New Category" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        
+        <Label text="New Status" style="-fx-font-weight: bold; -fx-text-fill: #333333;" GridPane.rowIndex="4"/>
+        <ComboBox fx:id="statusCombo" promptText="New Status" GridPane.rowIndex="4" GridPane.columnIndex="1">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Active (A)"/>
+                    <String fx:value="Inactive (I)"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </GridPane>
+    
+    <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+        <Button text="Update Book" onAction="#handleUpdateBook" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+        <Button text="Clear" onAction="#handleClear" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+        <Button text="Back" onAction="#goBack" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+    </HBox>
+</VBox>
