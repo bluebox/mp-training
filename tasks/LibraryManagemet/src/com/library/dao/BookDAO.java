@@ -45,12 +45,11 @@ public class BookDAO {
         }
     }
 
-    public List<Book> getAllBooks() {
+    public List<Book> getAllBooks(String query) {
         List<Book> books = new ArrayList<>();
-        String sql = "SELECT * FROM " + getTableName();
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
+             PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {

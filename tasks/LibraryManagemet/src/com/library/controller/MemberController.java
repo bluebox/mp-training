@@ -1,10 +1,17 @@
 package com.library.controller;
 
 import com.library.domain.Member;
-import com.library.service.MemberService;
+import com.library.service.LibraryService;
+import com.library.service.LibraryServiceImplementation;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 
 public class MemberController {
 
@@ -12,146 +19,91 @@ public class MemberController {
     @FXML private TextField email;
     @FXML private TextField mobile;
     @FXML private TextField address;
-    @FXML private Label titleLabel;
 
     @FXML private RadioButton male;
     @FXML private RadioButton female;
     @FXML private RadioButton other;
-    private ToggleGroup gender;
+    @FXML private Button backButton;
 
-    private boolean isUpdateMode = false;
-    private Member selectedMember = null;
+    private ToggleGroup genderGroup;
 
-    private final MemberService service = new MemberService();
+    private final LibraryServiceImplementation libraryService = new LibraryServiceImplementation(); // assumes default "member" table
 
     @FXML
     public void initialize() {
-        gender = new ToggleGroup();
-        male.setToggleGroup(gender);
-        female.setToggleGroup(gender);
-        other.setToggleGroup(gender);
-
-        // Set gender user data
-        male.setUserData("M");
-        female.setUserData("F");
-        other.setUserData("O");
-    }
-
-    public void setAddMode() {
-        isUpdateMode = false;
-        selectedMember = null;
-
-        if (titleLabel != null) {
-            titleLabel.setText("Add New Member");
-        }
-    }
-
-    public void setUpdateMode(Member member) {
-        isUpdateMode = true;
-        selectedMember = member;
-
-        if (titleLabel != null) {
-            titleLabel.setText("Update Member Details");
-        }
-
-        // Pre-fill fields
-        name.setText(member.getName());
-        email.setText(member.getEmail());
-        mobile.setText(String.valueOf(member.getMobile()));
-        address.setText(member.getAddress());
-
-        // Set selected gender
-        for (Toggle toggle : gender.getToggles()) {
-            if (toggle.getUserData().toString().charAt(0) == member.getGender()) {
-                gender.selectToggle(toggle);
-                break;
-            }
-        }
+        genderGroup = new ToggleGroup();
+        male.setToggleGroup(genderGroup);
+        female.setToggleGroup(genderGroup);
+        other.setToggleGroup(genderGroup);
     }
 
     @FXML
     private void saveMember() {
-        try {
-            String memberName = getTextSafely(name);
-            String memberEmail = getTextSafely(email);
-            String mobileInput = getTextSafely(mobile);
-            String memberAddress = getTextSafely(address);
-            Toggle selectedGender = gender.getSelectedToggle();
+        String nameText = name.getText().trim();
+        String emailText = email.getText().trim();
+        String mobileText = mobile.getText().trim();
+        String addressText = address.getText().trim();
+        Toggle selectedToggle = genderGroup.getSelectedToggle();
 
-            // Validation
-            if (memberName.isEmpty() || memberEmail.isEmpty() || mobileInput.isEmpty()
-                    || memberAddress.isEmpty() || selectedGender == null) {
-                showAlert(Alert.AlertType.ERROR, "Validation Error", "Please fill in all fields.");
-                return;
-            }
+        // === Validation ===
+        if (nameText.isEmpty()) {
+            showAlert("Name is required.");
+            return;
+        }
 
-            if (!memberEmail.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-                showAlert(Alert.AlertType.ERROR, "Invalid Email", "Please enter a valid email address.");
-                return;
-            }
+        if (!emailText.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            showAlert("Invalid email format.");
+            return;
+        }
 
-            long memberMobile;
-            try {
-                memberMobile = Long.parseLong(mobileInput);
-            } catch (NumberFormatException e) {
-                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Mobile number must be numeric.");
-                return;
-            }
+        if (!mobileText.matches("\\d{10}")) {
+            showAlert("Mobile number must be exactly 10 digits.");
+            return;
+        }
 
-            if (mobileInput.length() != 10) {
-                showAlert(Alert.AlertType.ERROR, "Invalid Mobile Number", "Mobile number must be exactly 10 digits.");
-                return;
-            }
+        if (selectedToggle == null) {
+            showAlert("Please select a gender.");
+            return;
+        }
 
-            String memberGender = selectedGender.getUserData().toString();
+        if (addressText.isEmpty()) {
+            showAlert("Address is required.");
+            return;
+        }
 
-            if (isUpdateMode) {
-                if (selectedMember == null) {
-                    showAlert(Alert.AlertType.ERROR, "Error", "No member selected for update.");
-                    return;
-                }
+        // Create Member object
+        char gender = selectedToggle.getUserData().toString().charAt(0);
+        Member member = new Member(nameText, emailText, Long.parseLong(mobileText), gender, addressText);
 
-                selectedMember.setName(memberName);
-                selectedMember.setEmail(memberEmail);
-                selectedMember.setMobile(memberMobile);
-                selectedMember.setGender(memberGender.charAt(0));
-                selectedMember.setAddress(memberAddress);
-
-                service.updateMember(selectedMember);
-            } else {
-                Member newMember = new Member(memberName, memberEmail, memberMobile, memberGender.charAt(0), memberAddress);
-                service.addMember(newMember);
-            }
-
-            closeWindow();
-
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Unexpected Error", "An error occurred while saving member:\n" + e.getMessage());
-            e.printStackTrace();
+        boolean success = libraryService.addMember(member);
+        if (success) {
+            showAlert("Member added successfully!", AlertType.INFORMATION);
+            clearFields();
+        } else {
+            showAlert("Failed to add member. Please try again later.");
         }
     }
 
-    private String getTextSafely(TextField field) {
-        return field.getText() != null ? field.getText().trim() : "";
+
+    private void showAlert(String message) {
+        showAlert(message, AlertType.WARNING);
     }
 
-    private void closeWindow() {
-        Stage stage = (Stage) name.getScene().getWindow();
-        if (stage != null) {
-            stage.close();
-        }
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String content) {
+    private void showAlert(String message, AlertType type) {
         Alert alert = new Alert(type);
-        alert.setTitle(title);
+        alert.setTitle("Member Form");
         alert.setHeaderText(null);
-        alert.setContentText(content);
+        alert.setContentText(message);
         alert.showAndWait();
     }
-    @FXML
-    private Button backButton;
 
+    private void clearFields() {
+        name.clear();
+        email.clear();
+        mobile.clear();
+        address.clear();
+        genderGroup.selectToggle(null);
+    }
     @FXML
     private void handleBack() {
         try {

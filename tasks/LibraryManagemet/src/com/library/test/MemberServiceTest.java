@@ -12,7 +12,7 @@ public class MemberServiceTest {
 
     @BeforeEach
     public void setup() {
-        service = new MemberService(new TestMemberDAO());
+        service = new MemberService();
     }
 
     @Test

@@ -3,7 +3,6 @@ package com.library.controller;
 import java.util.List;
 
 import com.library.domain.Member;
-import com.library.service.MemberService;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -43,7 +42,7 @@ public class ViewMembersController {
     @FXML
     private Button backButton;
 
-    private MemberService memberService = new MemberService();
+    //private MemberService memberService = new MemberService();
 
     @FXML
     public void initialize() {
@@ -54,8 +53,8 @@ public class ViewMembersController {
         genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
 
-        List<Member> members = memberService.viewAllMembers();
-        memberTable.setItems(FXCollections.observableArrayList(members));
+        //List<Member> members = memberService.viewAllMembers();
+        //memberTable.setItems(FXCollections.observableArrayList(members));
     }
 
     @FXML
@@ -86,8 +85,8 @@ public class ViewMembersController {
 
     // Utility method to refresh the member list
     private void refreshMemberTable() {
-        List<Member> updatedMembers = memberService.viewAllMembers();
-        memberTable.setItems(FXCollections.observableArrayList(updatedMembers));
+        //List<Member> updatedMembers = memberService.viewAllMembers();
+        //memberTable.setItems(FXCollections.observableArrayList(updatedMembers));
     }
 
 
