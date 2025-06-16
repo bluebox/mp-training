@@ -1,6 +1,8 @@
 package service;
 
 import dao.BookDAO;
+import enums.Availability;
+import enums.Status;
 import model.Book;
 import exception.DatabaseException;
 import exception.InvalidInputException;
@@ -16,14 +18,12 @@ public class BookService {
     public BookService() {
         this.bookDAO = new BookDAO();
     }
-
-    // Add a new book
+    
     public void addBook(Book book) throws InvalidInputException, DatabaseException {
         validateBook(book);
         bookDAO.addBook(book);
     }
 
-    // Update book details (excluding availability)
     public void updateBook(Book book) throws InvalidInputException, DatabaseException {
         if (book.getBookId() <= 0) {
             throw new InvalidInputException("Book ID is required for update.");
@@ -32,7 +32,6 @@ public class BookService {
         bookDAO.updateBookDetails(book);
     }
 
-    // Update availability only
     public void updateAvailability(int bookId, char availability) throws DatabaseException {
         if (availability != 'A' && availability != 'I') {
             throw new DatabaseException("Invalid availability status.");
@@ -40,26 +39,22 @@ public class BookService {
         bookDAO.updateAvailability(bookId, availability);
     }
 
-    // Get all books
     public List<Book> getAllBooks() throws DatabaseException {
         return bookDAO.getAllBooks();
     }
 
-    // Get books by category using Java 8 Streams
     public long countBooksByCategory(String category) throws DatabaseException {
         return getAllBooks().stream()
                 .filter(book -> Objects.equals(book.getCategory(), category))
                 .count();
     }
 
-    // Get list of books with 'I' (Issued) availability
     public List<Book> getIssuedBooks() throws DatabaseException {
         return getAllBooks().stream()
-                .filter(book -> book.getAvailability() == 'I')
+                .filter(book -> book.getAvailability() == Availability.Issued)
                 .collect(Collectors.toList());
     }
 
-    // Helper method for validation
     private void validateBook(Book book) throws InvalidInputException {
         if (book == null) {
             throw new InvalidInputException("Book cannot be null.");
@@ -67,7 +62,7 @@ public class BookService {
         if (isEmpty(book.getTitle()) || isEmpty(book.getAuthor()) || isEmpty(book.getCategory())) {
             throw new InvalidInputException("Title, Author, and Category are required.");
         }
-        if (book.getStatus() != 'A' && book.getStatus() != 'I') {
+        if (book.getStatus() != Status.Active && book.getStatus() != Status.Inactive) {
             throw new InvalidInputException("Status must be A or I.");
         }
     }

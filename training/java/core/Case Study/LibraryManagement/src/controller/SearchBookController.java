@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Book;
 import service.BookService;
+import enums.Availability;
 import exception.DatabaseException;
 
 public class SearchBookController {
@@ -41,7 +42,7 @@ public class SearchBookController {
             if (book != null) {
                 titleLabel.setText("Title: " + book.getTitle());
                 authorLabel.setText("Author: " + book.getAuthor());
-                statusLabel.setText("Status: " + (book.getAvailability() == 'A' ? "Available" : "Issued"));
+                statusLabel.setText("Status: " + (book.getAvailability() == Availability.Available ? "Available" : "Issued"));
             } else {
                 showMessage("Book not found.");
             }

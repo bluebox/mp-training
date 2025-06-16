@@ -21,7 +21,6 @@ public class MemberService {
         if (member.getEmail() == null || member.getEmail().trim().isEmpty()) {
             throw new InvalidInputException("Email cannot be empty");
         }
-        // Add more validations as needed
         memberDAO.addMember(member);
     }
 

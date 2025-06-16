@@ -24,7 +24,6 @@ public class MainMenuController {
 
     @FXML private TabPane tabPane;
 
-    // Tab-specific controls
     @FXML private Button issueBookTabBtn;
     @FXML private Button returnBookTabBtn;
     @FXML private TextField bookIdField;
@@ -32,7 +31,6 @@ public class MainMenuController {
     @FXML private TextField returnBookIdField;
     @FXML private TextField returnMemberIdField;
 
-    // Helper method to open a new stage
     private void openWindow(String fxmlPath, String title) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
@@ -41,7 +39,7 @@ public class MainMenuController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Optionally show a dialog here
+            e.printStackTrace(); 
         }
     }
 
@@ -86,8 +84,6 @@ public class MainMenuController {
     private void handleIssuedBooks(ActionEvent event) {
         openWindow("/ui/views/IssueBookView.fxml", "Issued Books");
     }
-
-    // Tab Button Handlers
 
     @FXML
     private void handleIssueBookTab(ActionEvent event) {

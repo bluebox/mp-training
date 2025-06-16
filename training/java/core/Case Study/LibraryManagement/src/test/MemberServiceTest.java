@@ -6,6 +6,8 @@ import exception.InvalidInputException;
 import org.junit.Before;
 import org.junit.Test;
 
+import enums.Gender;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -25,7 +27,7 @@ public class MemberServiceTest {
         m.setName("Alice");
         m.setEmail("alice@example.com");
         m.setMobile(9876543210L);
-        m.setGender('F');
+        m.setGender(Gender.Female);
         m.setAddress("Wonderland");
 
         memberService.addMember(m);
@@ -42,7 +44,7 @@ public class MemberServiceTest {
         m.setName("");
         m.setEmail("bob@example.com");
         m.setMobile(1234567890L);
-        m.setGender('M');
+        m.setGender(Gender.Male);
         m.setAddress("Nowhere");
 
         memberService.addMember(m);

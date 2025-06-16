@@ -1,7 +1,14 @@
 package model;
 
+import enums.Gender;
+
 public class Member {
-	
+	private int memberId;
+    private String name;
+    private String email;
+    private long mobile;
+    private Gender gender;
+    private String address;
 	public Member()
 	{
 		
@@ -12,18 +19,10 @@ public class Member {
 		this.name = name;
 		this.email = email;
 		this.mobile = mobile;
-		this.gender = gender;
+		this.gender = gender=='M'?Gender.Male:Gender.Female;
 		this.address = address;
 	}
 
-	private int memberId;
-    private String name;
-    private String email;
-    private long mobile;
-    private char gender;
-    private String address;
-
-    // Getters and Setters
     public int getMemberId() {
         return memberId;
     }
@@ -56,11 +55,11 @@ public class Member {
         this.mobile = mobile;
     }
 
-    public char getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

@@ -8,12 +8,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.StatusRecords;
+
 public class IssueDAO {
 
     public void issueBook(int bookId, int memberId) throws SQLException, BookAlreadyIssuedException {
         Connection conn = DBConnection.getConnection();
 
-        // Step 1: Check if the book is already issued
         String checkQuery = "SELECT Availability FROM books WHERE BookId = ?";
         try (PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
             checkStmt.setInt(1, bookId);
@@ -28,7 +29,6 @@ public class IssueDAO {
             }
         }
 
-        // Step 2: Insert issue record
         String insertQuery = "INSERT INTO issue_records (BookId, MemberId, Status, IssueDate) VALUES (?, ?, 'I', CURDATE())";
         try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
             insertStmt.setInt(1, bookId);
@@ -36,7 +36,6 @@ public class IssueDAO {
             insertStmt.executeUpdate();
         }
 
-        // Step 3: Update book availability
         String updateBookQuery = "UPDATE books SET Availability = 'I' WHERE BookId = ?";
         try (PreparedStatement updateStmt = conn.prepareStatement(updateBookQuery)) {
             updateStmt.setInt(1, bookId);
@@ -59,7 +58,7 @@ public class IssueDAO {
                 record.setIssueId(rs.getInt("IssueId"));
                 record.setBookId(rs.getInt("BookId"));
                 record.setMemberId(rs.getInt("MemberId"));
-                record.setStatus(rs.getString("Status").charAt(0));
+                record.setStatus(rs.getString("Status").charAt(0)=='I'?StatusRecords.Issued:StatusRecords.Returned);
                 record.setIssueDate(rs.getDate("IssueDate"));
                 record.setReturnDate(rs.getDate("ReturnDate"));
                 records.add(record);
@@ -71,10 +70,9 @@ public class IssueDAO {
     }
     public void returnBook(int bookId, int memberId) throws SQLException {
         Connection conn = DBConnection.getConnection();
-        conn.setAutoCommit(false); // Optional: ensures both updates happen atomically
+        conn.setAutoCommit(false);
 
         try {
-            // Step 1: Update issue_records
             String updateIssue = "UPDATE issue_records SET Status = 'R', ReturnDate = CURDATE() " +
                                  "WHERE BookId = ? AND MemberId = ? AND Status = 'I'";
             try (PreparedStatement issueStmt = conn.prepareStatement(updateIssue)) {
@@ -87,7 +85,6 @@ public class IssueDAO {
                 }
             }
 
-            // Step 2: Update books table to mark availability
             String updateBook = "UPDATE books SET Availability = 'A' WHERE BookId = ?";
             try (PreparedStatement bookStmt = conn.prepareStatement(updateBook)) {
                 bookStmt.setInt(1, bookId);

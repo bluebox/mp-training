@@ -14,8 +14,8 @@ public class ViewBooksController {
     @FXML private TableColumn<Book, String> titleCol;
     @FXML private TableColumn<Book, String> authorCol;
     @FXML private TableColumn<Book, String> categoryCol;
-    @FXML private TableColumn<Book, Character> statusCol;
-    @FXML private TableColumn<Book, Character> availabilityCol;
+    @FXML private TableColumn<Book, String> statusCol;
+    @FXML private TableColumn<Book, String> availabilityCol;
 
     private final BookService bookService = new BookService();
 
@@ -25,9 +25,8 @@ public class ViewBooksController {
         titleCol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getTitle()));
         authorCol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getAuthor()));
         categoryCol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getCategory()));
-        statusCol.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getStatus()));
-        availabilityCol.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getAvailability()));
-
+        statusCol.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getStatus().toString().substring(0, 1)));
+        availabilityCol.setCellValueFactory(data -> new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getAvailability().toString().substring(0, 1)));
         loadBooks();
     }
 

@@ -14,7 +14,6 @@ public class ReturnBookController {
             int bookId = Integer.parseInt(bookIdField.getText().trim());
             int memberId = Integer.parseInt(memberIdField.getText().trim());
 
-            // Simulate book return
             showAlert(Alert.AlertType.INFORMATION, "Book returned successfully.");
             bookIdField.clear();
             memberIdField.clear();

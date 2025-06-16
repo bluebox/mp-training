@@ -1,5 +1,6 @@
 package controller;
 
+import enums.Gender;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Member;
@@ -43,7 +44,7 @@ public class AddMemberController {
             member.setName(name);
             member.setEmail(email);
             member.setMobile(mobile);
-            member.setGender(gender.charAt(0));
+            member.setGender(gender.charAt(0)=='M'?Gender.Male:Gender.Female);
             member.setAddress(address);
 
             memberService.addMember(member);

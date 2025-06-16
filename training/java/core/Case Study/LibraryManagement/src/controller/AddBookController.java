@@ -1,5 +1,7 @@
 package controller;
 
+import enums.Availability;
+import enums.Status;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -30,8 +32,8 @@ public class AddBookController {
             book.setTitle(title);
             book.setAuthor(author);
             book.setCategory(category);
-            book.setStatus('A');
-            book.setAvailability('A');
+            book.setStatus(Status.Active);
+            book.setAvailability(Availability.Available);
 
             bookService.addBook(book);
             showAlert("Book added successfully!");

@@ -7,6 +7,9 @@ import exception.DatabaseException;
 import org.junit.Before;
 import org.junit.Test;
 
+import enums.Availability;
+import enums.Status;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -26,12 +29,11 @@ public class BookServiceTest {
         book.setTitle("Java Programming");
         book.setAuthor("James Gosling");
         book.setCategory("Programming");
-        book.setStatus('A');
-        book.setAvailability('A');
+        book.setStatus(Status.Active);
+        book.setAvailability(Availability.Available);
 
-        bookService.addBook(book); // Insert book
-        List<Book> books = bookService.getAllBooks(); // Fetch all
-
+        bookService.addBook(book); 
+        List<Book> books = bookService.getAllBooks(); 
         assertTrue(
             books.stream().anyMatch(b -> b.getTitle().equals("Java Programming"))
         );
@@ -43,8 +45,8 @@ public class BookServiceTest {
         book.setTitle("");
         book.setAuthor("Author");
         book.setCategory("Category");
-        book.setStatus('A');
-        book.setAvailability('A');
+        book.setStatus(Status.Active);
+        book.setAvailability(Availability.Available);
 
         bookService.addBook(book);
     }

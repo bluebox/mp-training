@@ -2,15 +2,16 @@ package model;
 
 import java.sql.Date;
 
+import enums.StatusRecords;
+
 public class IssueRecord {
 	private int issueId;
 	private int bookId;
 	private int memberId;
-	private char status; // 'I' for Issued, 'R' for Returned
+	private StatusRecords status;
 	private Date issueDate;
 	private Date returnDate;
 
-	// Getters and Setters
 	public int getIssueId() {
 		return issueId;
 	}
@@ -35,11 +36,11 @@ public class IssueRecord {
 		this.memberId = memberId;
 	}
 
-	public char getStatus() {
+	public StatusRecords getStatus() {
 		return status;
 	}
 
-	public void setStatus(char status) {
+	public void setStatus(StatusRecords status) {
 		this.status = status;
 	}
 

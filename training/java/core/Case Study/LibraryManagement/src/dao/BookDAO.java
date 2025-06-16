@@ -8,6 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.Availability;
+import enums.Status;
+
 public class BookDAO {
 
     // Create (Add Book)
@@ -19,8 +22,8 @@ public class BookDAO {
             stmt.setString(1, book.getTitle());
             stmt.setString(2, book.getAuthor());
             stmt.setString(3, book.getCategory());
-            stmt.setString(4, String.valueOf(book.getStatus()));
-            stmt.setString(5, String.valueOf(book.getAvailability()));
+            stmt.setString(4, book.getStatus().toString().substring(0, 1));
+            stmt.setString(5, book.getAvailability().toString().substring(0, 1));
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -43,8 +46,8 @@ public class BookDAO {
                     rs.getString("title"),
                     rs.getString("author"),
                     rs.getString("category"),
-                    rs.getString("status").charAt(0),
-                    rs.getString("availability").charAt(0)
+                    rs.getString("status").charAt(0)=='A'?Status.Active:Status.Inactive,
+                    rs.getString("availability").charAt(0)=='A'?Availability.Available:Availability.Issued
                 );
                 books.add(book);
             }
@@ -122,9 +125,9 @@ public class BookDAO {
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getString("category"),
-                        rs.getString("status").charAt(0),
-                        rs.getString("availability").charAt(0)
-                    );
+                        rs.getString("status").charAt(0)=='A'?Status.Active:Status.Inactive,
+                        rs.getString("availability").charAt(0)=='A'?Availability.Available:Availability.Issued
+                        );
                 } else {
                     return null; // Book not found
                 }

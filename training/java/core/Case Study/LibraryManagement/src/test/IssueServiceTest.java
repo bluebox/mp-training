@@ -8,6 +8,8 @@ import model.IssueRecord;
 import org.junit.Before;
 import org.junit.Test;
 
+import enums.StatusRecords;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -23,28 +25,24 @@ public class IssueServiceTest {
 
     @Test
     public void testSuccessfulBookIssue() throws Exception {
-        int bookId = 2; // Ensure this book exists and is available in the DB
-        int memberId = 2; // Ensure this member exists
-
-        // First, make sure the book is available before issuing
+        int bookId = 2; 
+        int memberId = 2; 
         issueService.issueBook(bookId, memberId);
 
         List<IssueRecord> records = issueService.getAllIssueRecords();
         boolean issued = records.stream()
-                .anyMatch(r -> r.getBookId() == bookId && r.getMemberId() == memberId && r.getStatus() == 'I');
+                .anyMatch(r -> r.getBookId() == bookId && r.getMemberId() == memberId && r.getStatus() == StatusRecords.Issued);
 
         assertTrue("Book should be issued", issued);
     }
 
     @Test
     public void testIssueAlreadyIssuedBook() throws Exception {
-        int bookId = 3; // Make sure this book exists and is 'A' initially
+        int bookId = 3; 
         int memberId = 2;
 
-        // First issue - should pass
         issueService.issueBook(bookId, memberId);
 
-        // Second issue - should throw BookAlreadyIssuedException
         try {
             issueService.issueBook(bookId, memberId);
             fail("Expected BookAlreadyIssuedException to be thrown");
