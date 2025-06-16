@@ -39,8 +39,7 @@ public class IssueDAO {
 	            logStmt.setNull(6, java.sql.Types.DATE); // no return date yet
 	            logStmt.executeUpdate();
 	        }
-
-	        // Update book availability
+ 
 	        PreparedStatement updateStmt = conn.prepareStatement(updateBook);
 	        updateStmt.setInt(1, issue.getBookId());
 	        updateStmt.executeUpdate();
