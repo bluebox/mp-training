@@ -4,9 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.MemberController">
-  <Label text="Member Management"/>
-  <HBox spacing="10">
-  <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
+<MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0">
 <menus>
 		<Menu mnemonicParsing="false" text="Tables">
             <items>
@@ -18,6 +16,8 @@
         </Menu>
 </menus>
 </MenuBar>
+  <Label text="Member Management"/>
+  <HBox spacing="10">
     <TextField fx:id="nameField" promptText="Name"/>
     <TextField fx:id="emailField" promptText="Email"/>
     <TextField fx:id="mobileField" promptText="Mobile"/>

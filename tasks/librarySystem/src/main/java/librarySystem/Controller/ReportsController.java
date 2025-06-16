@@ -19,13 +19,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ReportsController {
-    @FXML private TableView<IssueRecordPojo> reportTable;
-    @FXML private TableColumn<IssueRecordPojo,Integer> colReportBookId, colReportMemberId;
-    @FXML private TableColumn<IssueRecordPojo,java.sql.Date> colReportIssueDate, colReportReturnDate;
-    @FXML private ListView<String> countList, activeMembersList;
+    @FXML 
+    private TableView<IssueRecordPojo> reportTable;
+    @FXML 
+    private TableColumn<IssueRecordPojo,Integer> colReportBookId, colReportMemberId;
+    @FXML 
+    private TableColumn<IssueRecordPojo,java.sql.Date> colReportIssueDate, colReportReturnDate;
+    @FXML 
+    private ListView<String> countList, activeMembersList;
     private final libraryServices service = new libraryServices();
 
-    @FXML public void initialize() {
+    @FXML 
+    public void initialize() {
         colReportBookId.setCellValueFactory(d -> new SimpleIntegerProperty(d.getValue().getBookId()).asObject());
         colReportMemberId.setCellValueFactory(d -> new SimpleIntegerProperty(d.getValue().getMemberId()).asObject());
         colReportIssueDate.setCellValueFactory(d -> new SimpleObjectProperty<>(d.getValue().getIssueDate()));

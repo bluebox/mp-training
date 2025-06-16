@@ -18,13 +18,20 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class MemberController {
-    @FXML private TextField nameField, emailField, mobileField, addressField;
-    @FXML private ComboBox<String> genderCombo;
-    @FXML private TableView<MemberPojo> memberTable;
-    @FXML private TableColumn<MemberPojo,Integer> colId;
-    @FXML private TableColumn<MemberPojo,String> colName, colEmail, colAddress;
-    @FXML private TableColumn<MemberPojo,Character> colGender;
-    @FXML private TableColumn<MemberPojo, String> colMobile;
+    @FXML 
+    private TextField nameField, emailField, mobileField, addressField;
+    @FXML 
+    private ComboBox<String> genderCombo;
+    @FXML 
+    private TableView<MemberPojo> memberTable;
+    @FXML 
+    private TableColumn<MemberPojo,Integer> colId;
+    @FXML 
+    private TableColumn<MemberPojo,String> colName, colEmail, colAddress;
+    @FXML 
+    private TableColumn<MemberPojo,Character> colGender;
+    @FXML 
+    private TableColumn<MemberPojo, String> colMobile;
     private final libraryServices service = new libraryServices();
 
     @FXML public void initialize() {

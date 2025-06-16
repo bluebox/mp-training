@@ -6,7 +6,7 @@ public class IssueRecordPojo {
     private int issueId;
     private int bookId;
     private int memberId;
-    private char status; // 'I' or 'R'
+    private char status; // 'A' or 'I'
     private Date issueDate;
     private Date returnDate;
 

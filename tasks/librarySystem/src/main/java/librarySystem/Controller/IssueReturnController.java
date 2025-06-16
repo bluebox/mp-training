@@ -21,11 +21,16 @@ import javafx.beans.property.SimpleObjectProperty;
 
 
 public class IssueReturnController {
-    @FXML private TextField bookIdField, memberIdField;
-    @FXML private TableView<IssueRecordPojo> issueTable;
-    @FXML private TableColumn<IssueRecordPojo,Integer> colIssueId, colBookId, colMemberId;
-    @FXML private TableColumn<IssueRecordPojo,Character> colStatus;
-    @FXML private TableColumn<IssueRecordPojo,Date> colIssueDate, colReturnDate;
+    @FXML 
+    private TextField bookIdField, memberIdField;
+    @FXML 
+    private TableView<IssueRecordPojo> issueTable;
+    @FXML 
+    private TableColumn<IssueRecordPojo,Integer> colIssueId, colBookId, colMemberId;
+    @FXML 
+    private TableColumn<IssueRecordPojo,Character> colStatus;
+    @FXML 
+    private TableColumn<IssueRecordPojo,Date> colIssueDate, colReturnDate;
     private final libraryServices service = new libraryServices();
 
     @FXML public void initialize() {
