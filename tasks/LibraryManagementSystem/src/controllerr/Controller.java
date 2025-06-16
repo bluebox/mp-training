@@ -35,7 +35,7 @@ public class Controller {
     private void openWindow(String fxmlPath, String title) {
         try {
             URL path = getClass().getResource(fxmlPath);
-            System.out.println("FXML path = " + path); // Debug
+            System.out.println("FXML path = " + path); 
             if (path == null) throw new RuntimeException("FXML file not found at " + fxmlPath);
 
             FXMLLoader loader = new FXMLLoader(path);
