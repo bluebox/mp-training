@@ -1,0 +1,58 @@
+CREATE TABLE books (
+    BookId INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(255) NOT NULL,
+    Author VARCHAR(255) NOT NULL,
+    Category VARCHAR(100) NOT NULL,
+    Status CHAR(1) NOT NULL CHECK (Status IN ('A', 'I')),           -- A: Active, I: Inactive
+    Availability CHAR(1) NOT NULL CHECK (Availability IN ('A', 'I')) -- A: Available, I: Issued
+);
+
+CREATE TABLE books_log (
+    BookId INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Author VARCHAR(255) NOT NULL,
+    Category VARCHAR(100) NOT NULL,
+    Status CHAR(1) NOT NULL CHECK (Status IN ('A', 'I')),
+    Availability CHAR(1) NOT NULL CHECK (Availability IN ('A', 'I'))
+);
+
+CREATE TABLE members (
+    MemberId INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    Mobile BIGINT NOT NULL UNIQUE, -- BIGINT preferred for large phone numbers
+    Gender CHAR(1) NOT NULL CHECK (Gender IN ('M', 'F')),
+    Address VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE members_log (
+    MemberId INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Mobile BIGINT NOT NULL,
+    Gender CHAR(1) NOT NULL CHECK (Gender IN ('M', 'F')),
+    Address VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE issue_records (
+    IssueId INT PRIMARY KEY AUTO_INCREMENT,
+    BookId INT NOT NULL,
+    MemberId INT NOT NULL,
+    Status CHAR(1) NOT NULL CHECK (Status IN ('I', 'R')), -- I: Issued, R: Returned
+    IssueDate DATE NOT NULL,
+    ReturnDate DATE,
+
+    -- Foreign key constraints (optional, ensure referenced tables exist)
+    CONSTRAINT fk_book FOREIGN KEY (BookId) REFERENCES books(BookId),
+    CONSTRAINT fk_member FOREIGN KEY (MemberId) REFERENCES members(MemberId)
+);
+
+CREATE TABLE issue_records_log (
+    IssueId INT PRIMARY KEY,
+    BookId INT NOT NULL,
+    MemberId INT NOT NULL,
+    Status CHAR(1) NOT NULL CHECK (Status IN ('I', 'R')),
+    IssueDate DATE NOT NULL,
+    ReturnDate DATE
+);
+
