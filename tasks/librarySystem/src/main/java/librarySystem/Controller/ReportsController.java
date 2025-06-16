@@ -33,7 +33,8 @@ public class ReportsController {
     }
 
     public void showOverdue() {
-        ObservableList<IssueRecordPojo> data = FXCollections.observableArrayList(service.getOverdueBooks(14));
+    	int overDueLimit = 5;
+        ObservableList<IssueRecordPojo> data = FXCollections.observableArrayList(service.getOverdueBooks(overDueLimit));
         reportTable.setItems(data);
     }
 

@@ -131,12 +131,12 @@ public class libraryServices {
     
     //analysis
     
-    public List<IssueRecordPojo> getOverdueBooks(int daysLimit) {
-        List<IssueRecordPojo> all = issueDao.getAllRecords();
-        LocalDate today = LocalDate.now();
-        return all.stream()
+    public List<IssueRecordPojo> getOverdueBooks(int limit) {
+        List<IssueRecordPojo> records = issueDao.getAllRecords();
+        LocalDate now = LocalDate.now();
+        return records.stream()
                 .filter(i -> i.getStatus() == 'I')
-                .filter(i -> i.getIssueDate().toLocalDate().plusDays(daysLimit).isBefore(today))
+                .filter(i -> i.getIssueDate().toLocalDate().plusDays(limit).isBefore(now))
                 .collect(Collectors.toList());
     }
 
@@ -146,10 +146,10 @@ public class libraryServices {
     }
 
     public List<MemberPojo> getMembersWithActiveIssues() {
-        List<IssueRecordPojo> active = issueDao.getAllRecords().stream()
+        List<IssueRecordPojo> records = issueDao.getAllRecords().stream()
                 .filter(i -> i.getStatus() == 'I')
                 .collect(Collectors.toList());
-        Set<Integer> memberIds = active.stream()
+        Set<Integer> memberIds = records.stream()
                 .map(IssueRecordPojo::getMemberId)
                 .collect(Collectors.toSet());
 
