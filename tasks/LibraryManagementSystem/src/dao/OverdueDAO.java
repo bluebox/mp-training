@@ -33,7 +33,7 @@ public class OverdueDAO {
                         rs.getInt("MemberId"),
                         rs.getString("Status").charAt(0),
                         rs.getDate("IssueDate").toLocalDate(),
-                        null // ReturnDate is null for overdue
+                        null 
                     );
                 overdueList.add(record);
             }
