@@ -1,8 +1,6 @@
 package com.LibraryManagement.services.impl;
 
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.LibraryManagement.dao.BookDao;
@@ -41,23 +39,12 @@ public class BookServiceImpl implements BookService{
 
 
 	@Override
-	public boolean updateBookService(int bookId, Character availability) throws ClassNotFoundException, IOException, SQLException {
-		Connection con=DBConnection.getConnection();
-		try {
-			con.setAutoCommit(false);
+	public boolean updateBookService(int bookId, Character availability) throws Exception {
 			if(bd.verifyBook(bookId,availability)) {
 				if(bd.updateBook(bookId, availability)) {
-					con.commit();
 					return true;
 				}
 			}
-		} catch (Exception e) {
-			con.rollback();
-			e.printStackTrace();
-		}
-		finally {
-			con.setAutoCommit(true);
-		}
 		return false;
 	}
 

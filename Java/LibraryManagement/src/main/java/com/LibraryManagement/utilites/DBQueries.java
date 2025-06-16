@@ -2,7 +2,7 @@ package com.LibraryManagement.utilites;
 
 public class DBQueries {
 	public static final String INSERT_TO_BOOKS = "insert into Book (Title,Author,Category,statuss,Availability) values(?,?,?,'A','A')";
-	public static final String UPDATE_BOOK = "update Book set stauss=? where BookId=?";
+	public static final String UPDATE_BOOK = "update Book set statuss=? where BookId=?";
 	public static final String GET_ALL_BOOKS_LOG = "select BookId,Title,Author,Category,statuss,Availability from BookLog";
 	public static final String INSERT_TO_BOOK_LOG = "insert into BookLog (BookId,Title,Author,Category,statuss,Availability) values(?,?,?,?,?,?)";
 	public static final String GET_BOOK_WITH_ID = "select BookId,Title,Author,Category,statuss,Availability from Book where BookId=?";
@@ -15,9 +15,9 @@ public class DBQueries {
 	public static final String GET_MEMBER_WITH_ID = "select MemberId,Name, Email, Mobile,Gender from Members where MemberId=?";
 	public static final String GET_MEMBER = "select Name,Email,Mobile from Members where Name=? && Email=? && Mobile=?";
 	public static final String GET_ALL_MEMBERS = "select MemberId,Name,Email,Mobile,Gender from Members";
-	public static final String GET_ALL_MEMBERS_LOG = "select MemberId,Name, Email, Mobile,Gender from MembersLog";
+	public static final String GET_ALL_MEMBERS_LOG = "select MemberId,Name, Email, Mobile,Gender from MemberLog";
 	public static final String UPDATE_MEMBER = "update Members set Name=?,Email=?,Mobile=? where memberId=?";
-	public static final String INSERT_TO_MEMBERS_LOG = "insert into MemebersLog(MemberId,Name, Email, Mobile,Gender) values(?,?,?,?,?)";
+	public static final String INSERT_TO_MEMBERS_LOG = "insert into MemeberLog(MemberId,Name, Email, Mobile,Gender) values(?,?,?,?,?)";
 
 	// IssueREcord Queries
 	public static final String INSERT_TO_ISSUE_RECORD = "insert into IssueRecord (BookId,MemberId,status,IssueDate,ReturnDate) values(?,?,'I',?,null)";

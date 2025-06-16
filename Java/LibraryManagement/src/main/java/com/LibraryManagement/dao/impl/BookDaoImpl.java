@@ -15,127 +15,131 @@ import com.LibraryManagement.utilites.DBConnection;
 import com.LibraryManagement.utilites.DBQueries;
 import com.LibraryManagement.utilites.pojos.Book;
 
-public class BookDaoImpl implements BookDao{
+public class BookDaoImpl implements BookDao {
 
 	@Override
 	public boolean addBook(Book book) throws SQLException, DataBaseException {
 		Connection con = null;
-		try{
-			con=DBConnection.getConnection();
+		try {
+			con = DBConnection.getConnection();
 			con.setAutoCommit(false);
-			PreparedStatement pst=con.prepareStatement(DBQueries.INSERT_TO_BOOKS);
-			pst.setString(1,book.getTitle());
+			PreparedStatement pst = con.prepareStatement(DBQueries.INSERT_TO_BOOKS);
+			pst.setString(1, book.getTitle());
 			pst.setString(2, book.getAuthor());
-			pst.setString(3,book.getCategory());
-			int countAffectedRows=pst.executeUpdate();
-			if(countAffectedRows==0) {
-				 con.rollback();
-				 System.out.println("Book Not Added");
-				 return false;
+			pst.setString(3, book.getCategory());
+			int countAffectedRows = pst.executeUpdate();
+			if (countAffectedRows == 0) {
+				con.rollback();
+				System.out.println("Book Not Added");
+				return false;
 			}
 			con.commit();
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			con.rollback();
 			throw new DataBaseException("Error with DataBase", e);
-		}finally {
+		} finally {
 			con.setAutoCommit(true);
 		}
 		return true;
 	}
 
 	@Override
-	public boolean verifyBook(Book book) throws InvalidBookException, DataBaseException{
-		if(book.getAuthor()==null || book.getCategory()==null|| book.getTitle()==null) {
+	public boolean verifyBook(Book book) throws InvalidBookException, DataBaseException {
+		if (book.getAuthor() == null || book.getCategory() == null || book.getTitle() == null) {
 			throw new InvalidBookException("Incomplete book data for verification.");
 		}
-		try(Connection con=DBConnection.getConnection()){
-			PreparedStatement pst=con.prepareStatement(DBQueries.GET_BOOK);
+		try (Connection con = DBConnection.getConnection()) {
+			PreparedStatement pst = con.prepareStatement(DBQueries.GET_BOOK);
 			pst.setString(1, book.getTitle());
 			pst.setString(2, book.getAuthor());
-			pst.setString(3,book.getCategory());
-			ResultSet rs=pst.executeQuery();
-			if(!rs.next()) return true;
-			if(rs.getString(1).equals(book.getTitle()) && rs.getString(2).equals(book.getAuthor()) && rs.getString(3).equals(book.getCategory())) {
+			pst.setString(3, book.getCategory());
+			ResultSet rs = pst.executeQuery();
+			if (!rs.next())
+				return true;
+			if (rs.getString(1).equals(book.getTitle()) && rs.getString(2).equals(book.getAuthor())
+					&& rs.getString(3).equals(book.getCategory())) {
 				System.out.println("Already Exists");
 				return false;
 			}
-		}catch(Exception e) {
-			  throw new DataBaseException("Error in DataBase", e);
+		} catch (Exception e) {
+			throw new DataBaseException("Error in DataBase", e);
 		}
 		return true;
 	}
-	
 
 	@Override
 	public ArrayList<Book> viewAllBooks() throws Exception {
 		ArrayList<Book> arr = new ArrayList<>();
-		Connection con=DBConnection.getConnection();
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(DBQueries.GET_ALL_BOOKS);
-		while(rs.next()) {
-			Reader ch1=rs.getCharacterStream(5);
-			Reader ch2=rs.getCharacterStream(6);
-			Book book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),(char) (ch1.read()),(char)(ch2.read()));
+		Connection con = DBConnection.getConnection();
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(DBQueries.GET_ALL_BOOKS);
+		while (rs.next()) {
+			Reader ch1 = rs.getCharacterStream(5);
+			Reader ch2 = rs.getCharacterStream(6);
+			Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), (char) (ch1.read()),
+					(char) (ch2.read()));
 			arr.add(book);
 		}
 		return arr;
 	}
 
-	public boolean addBookToLog(int bookId){
-		try(Connection con=DBConnection.getConnection()) {
+	public boolean addBookToLog(int bookId) {
+
+		try (Connection con = DBConnection.getConnection()) {
 			con.setAutoCommit(false);
-			PreparedStatement pst=con.prepareStatement(DBQueries.GET_BOOK_WITH_ID);
+			PreparedStatement pst = con.prepareStatement(DBQueries.GET_BOOK_WITH_ID);
 			pst.setInt(1, bookId);
-			ResultSet rs=pst.executeQuery();
-			
-			 if (!rs.next()) {
-                 System.out.println("No Log Book Data");
-                 con.rollback();
-                 return false;
-             }
-			 else rs.next();
-			
-			Reader ch1=rs.getCharacterStream(5);
-			Reader ch2=rs.getCharacterStream(6);
-			
-			Book book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),(char) (ch1.read()),(char)(ch2.read()));
-			pst=con.prepareStatement(DBQueries.INSERT_TO_BOOK_LOG);
+			ResultSet rs = pst.executeQuery();
+			if (!rs.next()) {
+				System.out.println("No Log Book Data");
+				con.rollback();
+				return false;
+			}
+			System.out.println(bookId);
+			Reader ch1 = rs.getCharacterStream(5);
+			Reader ch2 = rs.getCharacterStream(6);
+
+			Book book = new Book(1, "sdfs", "sdfsd", "sfdsf", 'A', 'A');
+			pst = con.prepareStatement(DBQueries.INSERT_TO_BOOK_LOG);
 			pst.setInt(1, book.getBookId());
-			pst.setString(2,book.getTitle());
+			pst.setString(2, book.getTitle());
 			pst.setString(3, book.getAuthor());
-			pst.setString(4,book.getCategory());
-			pst.setString(5,String.valueOf(book.getStatus()));
+			pst.setString(4, book.getCategory());
+			pst.setString(5, String.valueOf(book.getStatus()));
 			pst.setString(6, String.valueOf(book.getAvailability()));
-			int countAffectedRows=pst.executeUpdate();
-			if(countAffectedRows==0) {
+			int countAffectedRows = pst.executeUpdate();
+			System.out.println(countAffectedRows);
+			if (countAffectedRows == 0) {
 				con.rollback();
 				return false;
 			}
 			con.commit();
-			
-		}catch(Exception e) {
-			System.out.println(e);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return true;
 	}
 
 	@Override
 	public boolean updateBook(int bookId, Character availability) throws Exception {
-		Connection con=DBConnection.getConnection();
+		Connection con = DBConnection.getConnection();
 		con.setAutoCommit(false);
-		boolean logBook=addBookToLog(bookId);
-		if(!logBook) {
+		System.out.println("sdfjsldfjs");
+		boolean logBook = addBookToLog(bookId);
+		if (!logBook) {
 			con.rollback();
 			return false;
 		}
-		PreparedStatement pst=con.prepareStatement(DBQueries.UPDATE_BOOK);
+		System.out.println("update bosdfsdok");
+		PreparedStatement pst = con.prepareStatement(DBQueries.UPDATE_BOOK);
 		pst.setString(1, String.valueOf(availability));
 		pst.setInt(2, bookId);
-		
-		int rowsAffected=pst.executeUpdate();
-		
-		if(rowsAffected==0) {
+
+		int rowsAffected = pst.executeUpdate();
+
+		if (rowsAffected == 0) {
 			con.rollback();
 			throw new InvalidBookException("No book record found to update");
 		}
@@ -146,13 +150,14 @@ public class BookDaoImpl implements BookDao{
 	@Override
 	public ArrayList<Book> viewAllBooksLogs() throws Exception {
 		ArrayList<Book> arr = new ArrayList<>();
-		Connection con=DBConnection.getConnection();
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(DBQueries.GET_ALL_BOOKS_LOG);
-		while(rs.next()) {
-			Reader ch1=rs.getCharacterStream(5);
-			Reader ch2=rs.getCharacterStream(6);
-			Book book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),(char) (ch1.read()),(char)(ch2.read()));
+		Connection con = DBConnection.getConnection();
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(DBQueries.GET_ALL_BOOKS_LOG);
+		while (rs.next()) {
+			Reader ch1 = rs.getCharacterStream(5);
+			Reader ch2 = rs.getCharacterStream(6);
+			Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), (char) (ch1.read()),
+					(char) (ch2.read()));
 			arr.add(book);
 		}
 		return arr;
@@ -160,11 +165,11 @@ public class BookDaoImpl implements BookDao{
 
 	@Override
 	public boolean verifyBook(int bookId, Character availability) throws Exception {
-		Connection con=DBConnection.getConnection();
-		PreparedStatement pst=con.prepareStatement(DBQueries.GET_BOOK_WITH_ID);
+		Connection con = DBConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(DBQueries.GET_BOOK_WITH_ID);
 		pst.setInt(1, bookId);
-		ResultSet rs=pst.executeQuery();
-		if(rs.next() && !rs.getString(6).equals(String.valueOf(availability))) {
+		ResultSet rs = pst.executeQuery();
+		if (rs.next() && !rs.getString(6).equals(String.valueOf(availability))) {
 			return true;
 		}
 		System.out.println("Update is Same");

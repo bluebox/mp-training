@@ -111,8 +111,10 @@ public class IssueRecordDaoImpl implements IssueRecordDao{
 		pst.setInt(1,issueId);
 		ResultSet rs=pst.executeQuery();
 		if(rs.next()) {
+			//return date should be null
 			if(rs.getDate(6)!=null) return false;
-			bookDao.updateBook(rs.getInt(2), 'A');
+			System.out.println("verifiedddd");
+			bookDao.updateBook(rs.getInt(2), 'R');
 			updateIssueRecord(issueId);
 			return true;
 		}
