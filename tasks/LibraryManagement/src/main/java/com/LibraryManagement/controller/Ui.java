@@ -110,6 +110,14 @@ public class Ui extends Application {
         welcomeBox.getChildren().addAll(title, subtitle);
         contentArea.getChildren().setAll(welcomeBox);
     }
+    private void restrictTextField(TextField textField, int maxLength) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*") || newValue.length() > maxLength) {
+                textField.setText(oldValue);
+            }
+        });
+    }
+
 
     private void showAddBookForm() {
         VBox form = new VBox(10);
@@ -117,12 +125,15 @@ public class Ui extends Application {
 
         TextField titleField = new TextField();
         titleField.setPromptText("Enter book title");
+        restrictTextField(titleField,20);
 
         TextField authorField = new TextField();
         authorField.setPromptText("Enter author name");
+        restrictTextField(authorField,20);
 
         TextField categoryField = new TextField();
         categoryField.setPromptText("Enter category");
+        restrictTextField(categoryField,15);
 
         Button submitBtn = new Button("Submit");
 
@@ -173,12 +184,14 @@ public class Ui extends Application {
 
         TextField nameField = new TextField();
         nameField.setPromptText("Enter member name");
+        restrictTextField(nameField,20);
 
         TextField emailField = new TextField();
         emailField.setPromptText("Enter email");
-
+        
         TextField numberField = new TextField();
         numberField.setPromptText("Enter phone number");
+        restrictNumericField(numberField, 10);
 
         ToggleGroup genderGroup = new ToggleGroup();
         RadioButton maleRadio = new RadioButton("Male");
@@ -210,7 +223,15 @@ public class Ui extends Application {
                 showAlert(Alert.AlertType.ERROR, "Validation Error", "All fields are required.");
                 return;
             }
-
+		    if (!isValidGmail(email)) {
+		        showAlert(Alert.AlertType.ERROR, "Invalid Email", "Email must be in '@gmail.com' or '@gmail.in' format.");
+		        return;
+		    }
+		
+		    if (!numberText.matches("\\d{10}")) {
+		        showAlert(Alert.AlertType.ERROR, "Invalid Phone", "Phone number must be exactly 10 digits.");
+		        return;
+		    }
             long phone;
             try {
                 phone = Long.parseLong(numberText);
@@ -241,7 +262,17 @@ public class Ui extends Application {
 
         contentArea.getChildren().setAll(new ScrollPane(form));
     }
-    
+    private void restrictNumericField(TextField textField, int maxLength) {
+        textField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.matches("\\d*") || newVal.length() > maxLength) {
+                textField.setText(oldVal);
+            }
+        });
+    }
+
+    private boolean isValidGmail(String email) {
+        return email.matches("^[A-Za-z0-9._%+-]+@gmail\\.(com|in)$");
+    }
     private void showViewBooks() {
         TableView<Book> table = new TableView<>();
 
@@ -442,7 +473,7 @@ public class Ui extends Application {
 
             try {
                 boolean returned = issueRecordServiceImpl.returnBook(issueId);
-                if (!returned) {
+                if (returned) {
                     messageLabel.setStyle("-fx-text-fill: green;");
                     messageLabel.setText("Book returned successfully!");
                 } else {
