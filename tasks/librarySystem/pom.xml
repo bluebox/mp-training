@@ -11,7 +11,7 @@
   <name>librarySystem</name>
 
   <properties>
-    <java.version>21</java.version>
+    <java.version>17</java.version>
     <javafx.version>21.0.2</javafx.version>
   </properties>
 
@@ -34,7 +34,7 @@
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.8</version>
         <configuration>
-          <mainClass>librarySystem.View.FxApplication</mainClass>
+          <mainClass>librarySystem.Main</mainClass>
         </configuration>
       </plugin>
     </plugins>
@@ -60,6 +60,12 @@
 	  <artifactId>javafx-fxml</artifactId>
 	  <version>${javafx.version}</version>
 	</dependency>
+  <dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.3.0</version>
+</dependency>
+
   </dependencies>
   
 

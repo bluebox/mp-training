@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.DashboardController">
+    <Label text="Library Management System" style="-fx-font-size: 20px;"/>
+    <Button text="Books" onAction="#handleBooks"/>
+    <Button text="Members" onAction="#handleMembers"/>
+    <Button text="Issue/Return" onAction="#handleIssueReturn"/>
+    <Button text="Reports" onAction="#handleReports"/>
+</VBox>

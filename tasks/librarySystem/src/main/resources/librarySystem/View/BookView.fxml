@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.BookController">
+    <Label text="Book Management"/>
+    <HBox spacing="10">
+        <TextField fx:id="titleField" promptText="Title"/>
+        <TextField fx:id="authorField" promptText="Author"/>
+        <TextField fx:id="categoryField" promptText="Category"/>
+        <Button text="Add Book" onAction="#handleAddBook"/>
+    </HBox>
+    <TableView fx:id="bookTable" prefHeight="300">
+        <columns>
+            <TableColumn text="ID" fx:id="colId"/>
+            <TableColumn text="Title" fx:id="colTitle"/>
+            <TableColumn text="Author" fx:id="colAuthor"/>
+            <TableColumn text="Category" fx:id="colCategory"/>
+            <TableColumn text="Status" fx:id="colStatus"/>
+            <TableColumn text="Availability" fx:id="colAvailability"/>
+        </columns>
+    </TableView>
+</VBox>

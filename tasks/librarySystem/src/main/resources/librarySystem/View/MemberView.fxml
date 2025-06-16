@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.MemberController">
+  <Label text="Member Management"/>
+  <HBox spacing="10">
+    <TextField fx:id="nameField" promptText="Name"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <TextField fx:id="mobileField" promptText="Mobile"/>
+    <TextField fx:id="addressField" promptText="Address"/>
+    <ComboBox fx:id="genderCombo" promptText="Gender"/>
+    <Button text="Add Member" onAction="#handleAddMember"/>
+  </HBox>
+  <TableView fx:id="memberTable" prefHeight="300">
+    <columns>
+      <TableColumn text="ID" fx:id="colId"/>
+      <TableColumn text="Name" fx:id="colName"/>
+      <TableColumn text="Email" fx:id="colEmail"/>
+      <TableColumn text="Mobile" fx:id="colMobile"/>
+      <TableColumn text="Gender" fx:id="colGender"/>
+      <TableColumn text="Address" fx:id="colAddress"/>
+    </columns>
+  </TableView>
+</VBox>

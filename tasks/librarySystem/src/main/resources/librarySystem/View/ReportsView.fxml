@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.ReportsController">
+  <Label text="Reports"/>
+  <Button text="Show Overdue Books" onAction="#showOverdue"/>
+  <TableView fx:id="reportTable" prefHeight="300">
+    <columns>
+      <TableColumn text="Book ID" fx:id="colReportBookId"/>
+      <TableColumn text="Member ID" fx:id="colReportMemberId"/>
+      <TableColumn text="Issue Date" fx:id="colReportIssueDate"/>
+      <TableColumn text="Return Date" fx:id="colReportReturnDate"/>
+    </columns>
+  </TableView>
+  <Button text="Show Count per Category" onAction="#showCounts"/>
+  <ListView fx:id="countList"/>
+  <Button text="Members with Active Issues" onAction="#showActiveMembers"/>
+  <ListView fx:id="activeMembersList"/>
+</VBox>

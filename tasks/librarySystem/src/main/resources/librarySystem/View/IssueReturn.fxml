@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="librarySystem.Controller.IssueReturnController">
+  <Label text="Issue / Return Books"/>
+  <HBox spacing="10">
+    <TextField fx:id="bookIdField" promptText="Book ID"/>
+    <TextField fx:id="memberIdField" promptText="Member ID"/>
+    <Button text="Issue Book" onAction="#handleIssue"/>
+    <Button text="Return Book" onAction="#handleReturn"/>
+  </HBox>
+  <TableView fx:id="issueTable" prefHeight="300">
+    <columns>
+      <TableColumn text="IssueId" fx:id="colIssueId"/>
+      <TableColumn text="BookId" fx:id="colBookId"/>
+      <TableColumn text="MemberId" fx:id="colMemberId"/>
+      <TableColumn text="Status" fx:id="colStatus"/>
+      <TableColumn text="Issue Date" fx:id="colIssueDate"/>
+      <TableColumn text="Return Date" fx:id="colReturnDate"/>
+    </columns>
+  </TableView>
+</VBox>
