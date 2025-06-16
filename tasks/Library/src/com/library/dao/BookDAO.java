@@ -1,4 +1,5 @@
 package com.library.dao;
+import com.library.domain.Book;
 import com.library.util.DB;
 
 import java.sql.Connection;
@@ -53,7 +54,7 @@ public class BookDAO {
             return false;
         }
     }
-    public boolean isAvailable(Connection conn, int bookId) throws SQLException {
+    public boolean isAvailable(Connection conn, int bookId) throws Exception {
         String query = "SELECT Availability FROM books WHERE BookId = ?";
         try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, bookId);
@@ -62,9 +63,11 @@ public class BookDAO {
                 String availability = rs.getString("Availability");
                 return "A".equalsIgnoreCase(availability);
             }
-            return false;
+           
+            throw new Exception("book doesn't exist");
         }
     }
+    
 
     public void updateAvailability(Connection conn, int bookId, char status) throws SQLException {
         if (status != 'A' && status != 'I') {
@@ -77,7 +80,7 @@ public class BookDAO {
             ResultSet rs = fetchStmt.executeQuery();
 
             if (rs.next()) {
-                String logSQL = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?, ?)";
+                String logSQL = "INSERT INTO books_log (book_id, title, author, category, status, availablity) VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement logStmt = conn.prepareStatement(logSQL)) {
                     logStmt.setInt(1, rs.getInt("BookId"));
                     logStmt.setString(2, rs.getString("Title"));

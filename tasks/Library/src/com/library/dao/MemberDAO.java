@@ -1,5 +1,6 @@
 package com.library.dao;
 
+import com.library.domain.Member;
 import com.library.util.DB;
 
 import java.sql.Connection;

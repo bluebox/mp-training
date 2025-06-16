@@ -7,10 +7,7 @@
           fx:controller="com.library.controller.AddMemberController"
           hgap="10" vgap="10" alignment="CENTER">
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
-
+    
     <Label text="Name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
     <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
@@ -27,5 +24,5 @@
     <TextField fx:id="addressField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
     <Button text="Add Member" onAction="#handleAddMember" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-     <Label fx:id="statusLabel" layoutX="30" layoutY="180" prefWidth="340" style="-fx-text-fill: green;"/>
+     <Label fx:id="statusLabel" GridPane.rowIndex="5" GridPane.columnIndex="0" layoutX="80" layoutY="60" prefWidth="340" style="-fx-text-fill: green;"/>
 </GridPane>

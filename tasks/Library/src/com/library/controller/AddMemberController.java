@@ -1,6 +1,6 @@
 package com.library.controller;
 
-import com.library.dao.Member;
+import com.library.domain.Member;
 import com.library.services.MemberService;
 
 import javafx.fxml.FXML;

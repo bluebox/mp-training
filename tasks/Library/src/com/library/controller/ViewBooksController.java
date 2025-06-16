@@ -9,12 +9,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
-import com.library.dao.Book;
+import com.library.domain.Book;
 import com.library.services.BookService;
 
 public class ViewBooksController {
 
-    @FXML private TableView<Book> bookTable;
+    @FXML private TableView<com.library.domain.Book> bookTable;
     @FXML private TableColumn<Book, Integer> idCol;
     @FXML private TableColumn<Book, String> titleCol;
     @FXML private TableColumn<Book, String> authorCol;

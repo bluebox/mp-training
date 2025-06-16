@@ -1,11 +1,7 @@
 package com.library.services;
 
-import com.library.dao.Member;
+import com.library.domain.Member;
 import com.library.dao.MemberDAO;
-import com.library.util.DB;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +18,11 @@ public class MemberService {
 		System.out.println("added");
 	}
 
-    public void updateMember(Member member) throws Exception {
+    public boolean updateMember(Member member) throws Exception {
     	MemberDAO memberDAO =new MemberDAO();
     	try {
 			
-        	memberDAO.updateMember(member);
+        	return memberDAO.updateMember(member);
 
 		} catch (Exception e) {
 			throw new Exception("user not updated");

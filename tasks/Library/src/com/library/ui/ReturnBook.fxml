@@ -15,5 +15,5 @@
     <TextField fx:id="bookIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
     <Button text="Return Book" onAction="#handleReturnBook" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-     <Label fx:id="statusLabel" layoutX="30" layoutY="180" prefWidth="340" style="-fx-text-fill: green;"/>
+     <Label fx:id="statusLabel" GridPane.rowIndex="2" GridPane.columnIndex="0" layoutX="30" layoutY="180" prefWidth="340" style="-fx-text-fill: green;"/>
 </GridPane>

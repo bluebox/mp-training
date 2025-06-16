@@ -1,4 +1,4 @@
-package com.library.dao;
+package com.library.domain;
 
 public class Member {
     private int memberId;

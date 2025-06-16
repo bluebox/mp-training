@@ -1,6 +1,6 @@
 package com.library.dao;
 
-import com.library.util.DB;
+import com.library.domain.IssueRecord;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,15 +15,15 @@ public class IssueRecordDAO {
     }
     
     public void insertIssueRecord(Connection conn, int bookId, int memberId) throws SQLException {
-        String checkSQL = "SELECT * FROM issue_records WHERE BookId = ? AND Status = 'I'";
-        try (PreparedStatement checkStmt = conn.prepareStatement(checkSQL)) {
-            checkStmt.setInt(1, bookId);
-            ResultSet rs = checkStmt.executeQuery();
-
-            if (rs.next()) {
-                throw new SQLException("Book is already issued and not yet returned.");
-            }
-        }
+//        String checkSQL = "SELECT * FROM issue_records WHERE BookId = ? AND Status = 'I'";
+//        try (PreparedStatement checkStmt = conn.prepareStatement(checkSQL)) {
+//            checkStmt.setInt(1, bookId);
+//            ResultSet rs = checkStmt.executeQuery();
+//
+//            if (rs.next()) {
+//                throw new SQLException("Book is already issued and not yet returned.");
+//            }
+//        }
 
         
         String insertSQL = "INSERT INTO issue_records (BookId, MemberId, Status, IssueDate) VALUES (?, ?, 'I', ?)";
@@ -47,7 +47,7 @@ public class IssueRecordDAO {
                 int issueId = rs.getInt("IssueId");
 
                 
-                String insertLogSQL = "INSERT INTO issue_records_log (IssueId, BookId, MemberId, Status, IssueDate, ReturnDate) VALUES (?, ?, ?, ?, ?, ?)";
+                String insertLogSQL = "INSERT INTO issue_records_log (issue_id, bookid, memberid, status, issuedate, returndate) VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement logStmt = conn.prepareStatement(insertLogSQL)) {
                     logStmt.setInt(1, rs.getInt("IssueId"));
                     logStmt.setInt(2, rs.getInt("BookId"));

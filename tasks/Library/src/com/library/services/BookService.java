@@ -1,6 +1,6 @@
 package com.library.services;
 
-import com.library.dao.Book;
+import com.library.domain.Book;
 import com.library.dao.BookDAO;
 import com.library.util.DB;
 
@@ -41,7 +41,7 @@ public class BookService {
             }
 
         } catch (SQLException e) {
-            System.err.println("Error fetching books: " + e.getMessage());
+            System.out.println("Error fetching books: " + e.getMessage());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

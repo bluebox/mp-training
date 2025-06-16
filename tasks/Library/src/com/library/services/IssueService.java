@@ -9,7 +9,7 @@ import com.library.util.DB;
 
 public class IssueService {
     private BookDAO bookDAO = new BookDAO();
-    private MemberDAO memberDAO = new MemberDAO();
+//    private MemberDAO memberDAO = new MemberDAO();
     private IssueRecordDAO issueDAO = new IssueRecordDAO();
 
     public void issueBook(int bookId, int memberId) throws Exception {
@@ -18,7 +18,7 @@ public class IssueService {
             conn = DB.getConnection();
             conn.setAutoCommit(false);
 
-            if (!bookDAO.isAvailable(conn, bookId)) throw new Exception("Book not available");
+            if (!bookDAO.isAvailable(conn, bookId)) throw new Exception("Book is not available");
             if (!MemberDAO.exists(conn, memberId)) throw new Exception("Member does not exist");
 
             issueDAO.insertIssueRecord(conn, bookId, memberId);

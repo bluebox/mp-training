@@ -1,6 +1,6 @@
 package com.library.controller;
 
-import com.library.dao.IssueRecord;
+import com.library.domain.IssueRecord;
 import com.library.dao.IssueRecordDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
