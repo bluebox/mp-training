@@ -1,104 +1,89 @@
 package PustakaLokam.library.dao;
 
-import PustakaLokam.library.enums.AvailabilityStatus;
-import PustakaLokam.library.enums.BookCondition;
-import PustakaLokam.library.model.Book;
-import PustakaLokam.library.utilities.DBConnectivityUtility;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import PustakaLokam.library.enums.AvailabilityStatus;
+import PustakaLokam.library.enums.BookCondition;
+import PustakaLokam.library.exceptionhandler.BookNotFoundException;
+import PustakaLokam.library.exceptionhandler.DatabaseOperationException;
+import PustakaLokam.library.model.Book;
+import PustakaLokam.library.utilities.DBConnectivityUtility;
+
 public class BookDAO {
+
     public boolean insertBook(Book book) throws SQLException {
         String sqlQuery = "INSERT INTO books (Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBConnectivityUtility.getConnection();
-                PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
+             PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
+
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthor());
             statement.setString(3, book.getCategory());
-            String bookCondition = (book.getCondition() == BookCondition.ACTIVE ? "Active" : "Inactive");
-            statement.setString(4, bookCondition);
-            String bookAvailability = (book.getAvailability() == AvailabilityStatus.AVAILABLE ? "Available"
-                    : "Issued");
-            statement.setString(5, bookAvailability);
+            statement.setString(4, book.getCondition().getCode());
+            statement.setString(5, book.getAvailability().name().equals("AVAILABLE") ? "Available" : "Issued");
 
             return statement.executeUpdate() > 0;
         }
     }
 
     public boolean updateBookDetails(Book book) {
-        String query = "UPDATE books SET Title = ?, Author = ?, Category = ? WHERE BookID = ?";
+        String query = "UPDATE books SET Title = ?, Author = ?, Category = ?, Status = ?, Availability = ? WHERE BookID = ?";
 
         try (Connection conn = DBConnectivityUtility.getConnection();
-                PreparedStatement statement = conn.prepareStatement(query)) {
+             PreparedStatement statement = conn.prepareStatement(query)) {
 
-            int bookID = book.getBookID();
-            String bookTitle = book.getTitle();
-            String author = book.getAuthor();
-            String category = book.getCategory();
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getAuthor());
+            statement.setString(3, book.getCategory());
+            statement.setString(4, book.getCondition().getCode());
+            statement.setString(5, book.getAvailability().name().equals("AVAILABLE") ? "Available" : "Issued");
+            statement.setInt(6, book.getBookID());
 
-            statement.setString(1, bookTitle);
-            statement.setString(2, author);
-            statement.setString(3, category);
-            statement.setInt(4, bookID);
-
-            return statement.executeUpdate() > 0;
+            int updatedRows = statement.executeUpdate();
+            
+            // if none of the rows got updated, it indicates the book with given ID does not exist in the table.
+            if (updatedRows == 0) {
+                throw new BookNotFoundException("Book with ID " + book.getBookID() + " not found for update.");
+            }
+            
+            // logging the successful update to books table into books_log table
+            insertBookLog(book);
+            return true;
 
         } catch (SQLException SQLE) {
-            SQLE.printStackTrace();
-            return false;
+            throw new DatabaseOperationException("Failed to update book with ID " + book.getBookID(), SQLE);
         }
     }
 
-    // public boolean updateBookAvailability(int bookID, AvailabilityStatus
-    // availabilityStatus) {
-    // String sqlQuery = "UPDATE books SET Availability = ? WHERE BookID = ?";
-
-    // try (Connection conn = DBConnectivityUtility.getConnection();
-    // PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
-    // String availabilityStatusStr = (availabilityStatus ==
-    // AvailabilityStatus.AVAILABLE) ? "Available"
-    // : "Issued";
-    // statement.setString(1, availabilityStatusStr);
-    // statement.setInt(2, bookID);
-
-    // int recordsUpdated = statement.executeUpdate();
-    // return recordsUpdated > 0;
-
-    // } catch (SQLException SQLE) {
-    // SQLE.printStackTrace();
-    // return false;
-    // }
-    // }
 
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
 
-        String sqlQuery = "SELECT * FROM books";
+        String sqlQuery = "SELECT BookID, Title, Author, Category, Status, Avalilability FROM books";
         try (Connection conn = DBConnectivityUtility.getConnection();
-                PreparedStatement statement = conn.prepareStatement(sqlQuery);
+             PreparedStatement statement = conn.prepareStatement(sqlQuery);
+             ResultSet rs = statement.executeQuery()) {
 
-                ResultSet setOfBooks = statement.executeQuery()) {
-            while (setOfBooks.next()) {
+            while (rs.next()) {
                 Book book = new Book();
-                book.setBookID(setOfBooks.getInt("BookID"));
-                book.setAuthor(setOfBooks.getString("Author"));
-                book.setTitle(setOfBooks.getString("Title"));
-                book.setCategory(setOfBooks.getString("Category"));
+                book.setBookID(rs.getInt("BookID"));
+                book.setAuthor(rs.getString("Author"));
+                book.setTitle(rs.getString("Title"));
+                book.setCategory(rs.getString("Category"));
 
-                String readAvailabilityFromTable = setOfBooks.getString("Availability");
-                if ("Available".equalsIgnoreCase(readAvailabilityFromTable)) {
-                    book.setAvailability(AvailabilityStatus.AVAILABLE);
-                } else {
-                    book.setAvailability(AvailabilityStatus.ISSUED);
-                }
-                String readConditionFromTable = setOfBooks.getString("Status");
-                if ("Active".equalsIgnoreCase(readConditionFromTable)) {
-                    book.setCondition(BookCondition.ACTIVE);
-                } else {
-                    book.setCondition(BookCondition.INACTIVE);
-                }
+                String status = rs.getString("Status"); // "A" or "I"
+                book.setCondition("A".equalsIgnoreCase(status) ? BookCondition.ACTIVE : BookCondition.INACTIVE);
+
+                String availability = rs.getString("Availability"); // "Available" or "Issued"
+                book.setAvailability("Available".equalsIgnoreCase(availability)
+                        ? AvailabilityStatus.AVAILABLE
+                        : AvailabilityStatus.ISSUED);
 
                 books.add(book);
             }
@@ -109,29 +94,26 @@ public class BookDAO {
     }
 
     public Book getBookByID(int bookID) throws SQLException {
-        String sqlQuery = "SELECT * FROM books WHERE bookID = ?";
+        String sqlQuery = "SELECT * FROM books WHERE BookID = ?";
         try (Connection conn = DBConnectivityUtility.getConnection();
-                PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
+             PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
+
             statement.setInt(1, bookID);
-            try (ResultSet resultBook = statement.executeQuery()) {
-                if (resultBook.next()) {
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
                     Book book = new Book();
-                    book.setBookID(resultBook.getInt("BookID"));
-                    book.setTitle(resultBook.getString("Title"));
-                    book.setAuthor(resultBook.getString("Author"));
-                    book.setCategory(resultBook.getString("Category"));
+                    book.setBookID(rs.getInt("BookID"));
+                    book.setTitle(rs.getString("Title"));
+                    book.setAuthor(rs.getString("Author"));
+                    book.setCategory(rs.getString("Category"));
 
-                    if ("Available".equalsIgnoreCase(resultBook.getString("Availability"))) {
-                        book.setAvailability(AvailabilityStatus.AVAILABLE);
-                    } else {
-                        book.setAvailability(AvailabilityStatus.ISSUED);
-                    }
+                    String status = rs.getString("Status");
+                    book.setCondition("A".equalsIgnoreCase(status) ? BookCondition.ACTIVE : BookCondition.INACTIVE);
 
-                    if ("Active".equalsIgnoreCase(resultBook.getString("Status"))) {
-                        book.setCondition(BookCondition.ACTIVE);
-                    } else {
-                        book.setCondition(BookCondition.INACTIVE);
-                    }
+                    String availability = rs.getString("Availability");
+                    book.setAvailability("Available".equalsIgnoreCase(availability)
+                            ? AvailabilityStatus.AVAILABLE
+                            : AvailabilityStatus.ISSUED);
 
                     return book;
                 }
@@ -143,56 +125,80 @@ public class BookDAO {
     public boolean removeBook(int bookID) throws SQLException {
         String sqlQuery = "DELETE FROM books WHERE BookID = ?";
         try (Connection conn = DBConnectivityUtility.getConnection();
-                PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
+             PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
             statement.setInt(1, bookID);
             return statement.executeUpdate() > 0;
         }
     }
 
     public boolean insertBatchOfBooks(List<Book> books) {
-        String sqlQuery = "INSERT INTO books(Title, Author, Category, Status, Availability) VALUES (?,?,?,?,?)";
+        String sqlQuery = "INSERT INTO books (Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?)";
         Connection conn = null;
+
         try {
             conn = DBConnectivityUtility.getConnection();
             conn.setAutoCommit(false);
-            try (
-                    PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
 
-                for (int i = 0; i < books.size(); i++) {
-                    statement.setString(1, books.get(i).getTitle());
-                    statement.setString(2, books.get(i).getAuthor());
-                    statement.setString(3, books.get(i).getCategory());
-
-                    String bookCondition = (books.get(i).getCondition() == BookCondition.ACTIVE ? "Active"
-                            : "Inactive");
-                    statement.setString(4, bookCondition);
-                    String bookAvailability = (books.get(i).getAvailability() == AvailabilityStatus.AVAILABLE
-                            ? "Available"
-                            : "Issued");
-                    statement.setString(5, bookAvailability);
+            try (PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
+                for (Book book : books) {
+                    statement.setString(1, book.getTitle());
+                    statement.setString(2, book.getAuthor());
+                    statement.setString(3, book.getCategory());
+                    statement.setString(4, book.getCondition().getCode());
+                    statement.setString(5, book.getAvailability().name().equals("AVAILABLE") ? "Available" : "Issued");
                     statement.addBatch();
                 }
 
                 int[] acknowledgements = statement.executeBatch();
                 conn.commit();
 
-                for (int i = 0; i < acknowledgements.length; i++) {
-                    if (acknowledgements[i] == Statement.EXECUTE_FAILED) {
+                for (int ack : acknowledgements) {
+                    if (ack == Statement.EXECUTE_FAILED) {
                         return false;
                     }
                 }
                 return true;
             }
+
         } catch (SQLException SQLE) {
             if (conn != null) {
                 try {
                     conn.rollback();
-                } catch (SQLException rollbackException) {
-                    rollbackException.printStackTrace();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
                 }
             }
             SQLE.printStackTrace();
             return false;
+        }
+    }
+    public void insertBookLog(Book book) throws SQLException {
+        String query = "INSERT INTO books_log (BookID, Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DBConnectivityUtility.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, book.getBookID());
+            stmt.setString(2, book.getTitle());
+            stmt.setString(3, book.getAuthor());
+            stmt.setString(4, book.getCategory());
+            stmt.setString(5, book.getCondition().getCode());
+            stmt.setString(6, book.getAvailability().name().equals("AVAILABLE") ? "Available" : "Issued");
+
+            stmt.executeUpdate();
+        }
+    }
+
+    public void updateBookAvailability(int bookID, AvailabilityStatus status, Connection conn) throws SQLException {
+        String sql = "UPDATE books SET Availability = ? WHERE BookID = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            String availability = (status == AvailabilityStatus.AVAILABLE) ? "Available" : "Issued";
+            ps.setString(1, availability);
+            ps.setInt(2, bookID);
+            int rows = ps.executeUpdate();
+            if (rows == 0) {
+                throw new SQLException("No book found with ID " + bookID + " to update availability.");
+            }
         }
     }
 }
