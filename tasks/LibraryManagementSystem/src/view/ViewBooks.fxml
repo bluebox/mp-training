@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controllerr.ViewBooksController">
+    <Label text="📚 All Books" style="-fx-font-size: 18px;" />
+    <TableView fx:id="booksTable">
+        <columns>
+            <TableColumn fx:id="bookIdCol" text="Book ID" />
+            <TableColumn fx:id="titleCol" text="Title" />
+            <TableColumn fx:id="authorCol" text="Author" />
+            <TableColumn fx:id="categoryCol" text="Category" />
+            <TableColumn fx:id="statusCol" text="Status" />
+            <TableColumn fx:id="availabilityCol" text="Availability" />
+        </columns>
+    </TableView>
+</VBox> 
