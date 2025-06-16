@@ -15,7 +15,7 @@ public class MemberDAO {
 	    try (Connection conn = JDBCConnection.getConnection()) {
 	        conn.setAutoCommit(false);
 
-	        // Update member
+
 	        PreparedStatement stmt = conn.prepareStatement(update);
 	        stmt.setString(1, member.getName());
 	        stmt.setString(2, member.getEmail());
@@ -25,7 +25,7 @@ public class MemberDAO {
 	        stmt.setInt(6, member.getMemberId());
 	        stmt.executeUpdate();
 
-	        // Log member update
+	    
 	        PreparedStatement logStmt = conn.prepareStatement(insertLog);
 	        logStmt.setInt(1, member.getMemberId());
 	        logStmt.setString(2, member.getName());
