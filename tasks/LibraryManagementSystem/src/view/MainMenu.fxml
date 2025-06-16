@@ -8,9 +8,9 @@
       fx:controller="controllerr.Controller">
     <Label text="📚 Library Management System" style="-fx-font-size: 18;" />
 
-    <Button text="➕ Add Book" onAction="#openAddBookForm"/>
-    <Button text="✏️ Update Member" onAction="#openUpdateMemberForm"/>
-    <Button text="📕 Issue Book" onAction="#openIssueBookForm"/>
-    <Button text="📅 View Overdue Records" onAction="#openOverdueRecords"/>
+    <Button text="Add Book" onAction="#openAddBookForm"/>
+    <Button text="Update Member" onAction="#openUpdateMemberForm"/>
+    <Button text="Issue Book" onAction="#openIssueBookForm"/>
+    <Button text="View Overdue Records" onAction="#openOverdueRecords"/>
     
 </VBox>
