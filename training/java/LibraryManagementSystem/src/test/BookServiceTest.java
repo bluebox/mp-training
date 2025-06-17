@@ -12,7 +12,7 @@ class BookServiceTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize BookService, use a mock or real instance as appropriate
+        
         bookService = new BookService();
     }
 
@@ -31,6 +31,6 @@ class BookServiceTest {
     void testAddBook_ValidBook() throws Exception {
         Book book = new Book(0, "Java Basics", "John Doe", "Programming",  "A", "A");
         bookService.addBook(book);
-        assertTrue(true); // if no exception, test passed
+        assertTrue(true); 
     }
 } 

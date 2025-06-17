@@ -12,7 +12,6 @@ class MemberServiceTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize MemberService, use a mock or real instance as appropriate
         memberService = new MemberService();
     }
 
@@ -31,6 +30,6 @@ class MemberServiceTest {
     void testAddMember_ValidMember() throws Exception {
         Member member = new Member(0, "Alice", "alice@example.com", "1234567890");
         memberService.addMember(member);
-        assertTrue(true); // if no exception, test passed
+        assertTrue(true); 
     }
 } 

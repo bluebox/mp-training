@@ -12,7 +12,7 @@ class IssueServiceTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize IssueService, use a mock or real instance as appropriate
+        
         issueService = new IssueService();
     }
 
@@ -23,7 +23,7 @@ class IssueServiceTest {
 
     @Test
     void testIssueBook_InvalidInput() {
-        IssueRecord record = null; // or invalid IssueRecord
+        IssueRecord record = null; 
         assertThrows(Exception.class, () -> issueService.issueBook(record));
     }
 
@@ -31,6 +31,6 @@ class IssueServiceTest {
     void testIssueBook_ValidInput() throws Exception {
         IssueRecord record = new IssueRecord(0, 1, 1, "2024-01-01", null, false);
         issueService.issueBook(record);
-        assertTrue(true); // if no exception, test passed
+        assertTrue(true);
     }
 } 
