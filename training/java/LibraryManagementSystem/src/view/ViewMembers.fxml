@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="controllerr.ViewMembersController">
+    <Label text="👥 All Members" style="-fx-font-size: 18px;" />
+    <TableView fx:id="membersTable">
+        <columns>
+            <TableColumn fx:id="memberIdCol" text="Member ID" />
+            <TableColumn fx:id="nameCol" text="Name" />
+            <TableColumn fx:id="emailCol" text="Email" />
+            <TableColumn fx:id="mobileCol" text="Mobile" />
+            <TableColumn fx:id="genderCol" text="Gender" />
+            <TableColumn fx:id="addressCol" text="Address" />
+        </columns>
+    </TableView>
+</VBox> 

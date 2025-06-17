@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllerr.IssueBookFormController">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Book ID"/>
+    <TextField fx:id="bookIdField" promptText="Book ID"/>
+    <Label text="Member ID"/>
+    <TextField fx:id="memberIdField" promptText="Member ID"/>
+    <Label text="Issue Date"/>
+    <DatePicker fx:id="issueDatePicker"/>
+    <Button text="Issue Book" onAction="#handleIssueBook"/>
+    <Label fx:id="messageLabel"/>
+</VBox>
