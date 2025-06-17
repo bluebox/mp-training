@@ -11,6 +11,7 @@
 
     <Button text="Add a New Book" onAction="#onInsertBookClick" prefWidth="200"/>
     <Button text="Update Book Details" onAction="#onUpdateBookClick" prefWidth="200"/>
+    <Button text="Delete a Book" onAction="#openDeleteBookWindow" prefWidth="200"/>
     <Button text="View All Books" onAction="#onDisplayBooksClick" prefWidth="200"/>
     <Separator/>
 

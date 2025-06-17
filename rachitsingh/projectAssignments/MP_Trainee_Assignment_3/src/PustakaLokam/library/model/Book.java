@@ -4,7 +4,7 @@ import PustakaLokam.library.enums.AvailabilityStatus;
 import PustakaLokam.library.enums.BookCondition;
 
 public class Book {
-    private int bookID;
+    private Integer bookID;
     private String title;
     private String author;
     private String category;
@@ -14,7 +14,7 @@ public class Book {
     public Book() {
     };
 
-    public Book(int bookID, String title, String author, String category,
+    public Book(Integer bookID, String title, String author, String category,
             BookCondition condition, AvailabilityStatus availability) {
         this.bookID = bookID;
         this.title = title;
@@ -24,11 +24,11 @@ public class Book {
         this.availability = availability;
     }
 
-    public int getBookID() {
+    public Integer getBookID() {
         return bookID;
     }
 
-    public void setBookID(int bookID) {
+    public void setBookID(Integer bookID) {
         this.bookID = bookID;
     }
 

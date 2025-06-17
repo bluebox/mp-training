@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="PustakaLokam.library.controller.book.BookListController">
+    <center>
+        <TableView fx:id="bookTable" prefHeight="400" prefWidth="600">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="titleColumn" text="Title" />
+                <TableColumn fx:id="authorColumn" text="Author" />
+                <TableColumn fx:id="categoryColumn" text="Category" />
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+        <padding>
+        	<Insets top="10" right="10" bottom="10" left="10"/>
+    	</padding>
+            <Button text="Update Selected Book" onAction="#onUpdateClick" />
+        </HBox>
+    </bottom>
+</BorderPane>

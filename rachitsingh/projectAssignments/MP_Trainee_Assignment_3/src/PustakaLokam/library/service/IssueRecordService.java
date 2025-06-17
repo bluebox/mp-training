@@ -20,26 +20,26 @@ public class IssueRecordService {
 	private final BookDAO bookDao = new BookDAO();
 	private final MemberDAO memberDao = new MemberDAO();
 
-	public IssueRecord issueBook(int bookId, int memberId) {
+	public IssueRecord issueBook(int bookID, int memberId) {
 		Connection conn = null;
 		try {
 			conn = DBConnectivityUtility.getConnection();
 			conn.setAutoCommit(false);
 
-			Book book = bookDao.getBookByID(bookId);
+			Book book = bookDao.getBookByID(bookID);
 			if (book == null)
-				throw new BookNotFoundException("Book " + bookId + " not found.");
+				throw new BookNotFoundException("Book " + bookID + " not found.");
 			if (book.getAvailability() != AvailabilityStatus.AVAILABLE)
-				throw new BookNotFoundException("Book " + bookId + " is not available.");
+				throw new BookNotFoundException("Book " + bookID + " is not available.");
 
 			Member member = memberDao.getMemberByID(memberId);
 			if (member == null)
 				throw new MemberNotFoundException("Member " + memberId + " not found.");
 
-			IssueRecord rec = new IssueRecord(bookId, memberId);
+			IssueRecord rec = new IssueRecord(bookID, memberId);
 			issueDao.insertIssue(rec, conn);
 
-			bookDao.updateBookAvailability(bookId, AvailabilityStatus.ISSUED, conn);
+			bookDao.updateBookAvailability(bookID, AvailabilityStatus.ISSUED, conn);
 
 			conn.commit();
 			return rec;
@@ -68,14 +68,13 @@ public class IssueRecordService {
 		try (Connection conn = DBConnectivityUtility.getConnection()) {
 			conn.setAutoCommit(false);
 
-			// fetch record to know which book
 			IssueRecord rec = issueDao.findByID(issueId, conn);
 			if (rec == null)
 				throw new IssueNotFoundException("Issue record " + issueId + " not found.");
 
-			issueDao.markReturnedBooks(issueId, LocalDate.now(), conn);
+			issueDao.markReturnedBook(issueId, LocalDate.now(), conn);
 
-			bookDao.updateBookAvailability(rec.getbookID(), AvailabilityStatus.AVAILABLE, conn);
+			bookDao.updateBookAvailability(rec.getBookID(), AvailabilityStatus.AVAILABLE, conn);
 
 			conn.commit();
 		} catch (SQLException | RuntimeException e) {
@@ -83,11 +82,7 @@ public class IssueRecordService {
 		}
 	}
 
-	public List<IssueRecord> listOverdueBooks(int days) throws SQLException {
-		return issueDao.findOverdueBooks(LocalDate.now().minusDays(days));
-	}
-
 	public List<IssueRecord> activeIssuesForMember(int memberID) throws SQLException {
-		return issueDao.findStatusByMember(memberID);
+		return issueDao.findActiveIssuesByMember(memberID);
 	}
 }

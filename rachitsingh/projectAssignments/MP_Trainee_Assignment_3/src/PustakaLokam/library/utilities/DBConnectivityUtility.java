@@ -8,7 +8,7 @@ public class DBConnectivityUtility {
     public static Connection getConnection() throws SQLException {
         String URL = "jdbc:mysql://localhost:3306/libraryDB";
         String USER = "root";
-        String PASSWORD = "test@123";
+        String PASSWORD = "root";
 
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }

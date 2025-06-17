@@ -1,6 +1,6 @@
 package PustakaLokam.library.exceptionhandler;
 
-public class MemberNotFoundException extends RuntimeException {
+public class MemberNotFoundException extends Exception {
 
     public MemberNotFoundException(String message) {
         super(message);

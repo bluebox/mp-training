@@ -1,26 +1,28 @@
 package PustakaLokam.library.model;
 
+import PustakaLokam.library.enums.IssueStatus;
 import java.time.LocalDate;
 
 public class IssueRecord {
-	private int issueID;
-	private int bookID;
-	private int memberID;
-	private char status;
+	private Integer issueID;
+	private Integer bookID;
+	private Integer memberID;
+	private IssueStatus status;
 	private LocalDate issueDate;
 	private LocalDate returnDate;
 
 	public IssueRecord() {
 	}
 
-	public IssueRecord(int bookID, int memberID) {
+	public IssueRecord(Integer bookID, Integer memberID) {
 		this.bookID = bookID;
 		this.memberID = memberID;
-		this.status = 'I';
+		this.status = IssueStatus.I;
 		this.issueDate = LocalDate.now();
 	}
 
-	public IssueRecord(int issueID, int bookID, int memberID, char status, LocalDate issueDate, LocalDate returnDate) {
+	public IssueRecord(Integer issueID, Integer bookID, Integer memberID, IssueStatus status, LocalDate issueDate,
+			LocalDate returnDate) {
 		this.issueID = issueID;
 		this.bookID = bookID;
 		this.memberID = memberID;
@@ -29,37 +31,35 @@ public class IssueRecord {
 		this.returnDate = returnDate;
 	}
 
-	// ─── Getters and Setters ─────────────────────────────────────────
-
-	public int getissueID() {
+	public Integer getIssueID() {
 		return issueID;
 	}
 
-	public void setissueID(int issueID) {
+	public void setIssueID(Integer issueID) {
 		this.issueID = issueID;
 	}
 
-	public int getbookID() {
+	public Integer getBookID() {
 		return bookID;
 	}
 
-	public void setbookID(int bookID) {
+	public void setBookID(Integer bookID) {
 		this.bookID = bookID;
 	}
 
-	public int getmemberID() {
+	public Integer getMemberID() {
 		return memberID;
 	}
 
-	public void setmemberID(int memberID) {
+	public void setMemberID(Integer memberID) {
 		this.memberID = memberID;
 	}
 
-	public char getStatus() {
+	public IssueStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(char status) {
+	public void setStatus(IssueStatus status) {
 		this.status = status;
 	}
 
@@ -79,6 +79,7 @@ public class IssueRecord {
 		this.returnDate = returnDate;
 	}
 
+	@Override
 	public String toString() {
 		return "IssueRecord{" + "issueID=" + issueID + ", bookID=" + bookID + ", memberID=" + memberID + ", status="
 				+ status + ", issueDate=" + issueDate + ", returnDate=" + returnDate + '}';

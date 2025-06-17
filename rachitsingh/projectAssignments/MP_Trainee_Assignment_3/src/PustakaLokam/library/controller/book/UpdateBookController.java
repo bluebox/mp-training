@@ -29,7 +29,8 @@ public class UpdateBookController {
     private ChoiceBox<String> availabilityChoiceBox;
 
     private final BookService bookService = new BookService();
-
+	private Book book;
+    private static int bookIdToLoad = -1;
     @FXML
     public void initialize() {
     	conditionChoiceBox.getItems().addAll("Active", "Inactive");
@@ -84,6 +85,46 @@ public class UpdateBookController {
             statusLabel.setText("Book ID provided is invalid.");
         } catch (IllegalArgumentException e) {
             statusLabel.setText("Invalid selection in status or condition.");
+        }
+    }
+    public void setBook(Book book) {
+        this.book = book;
+
+        // If you have text fields like titleField, authorField, etc.,
+        // populate them here
+        bookIdField.setText(String.valueOf(book.getBookID()));
+        titleField.setText(book.getTitle());
+        authorField.setText(book.getAuthor());
+        categoryField.setText(book.getCategory());
+    }
+    public static void setBookIdToLoad(int id) {
+        bookIdToLoad = id;
+    }
+    public void loadBookDetails(int bookId) {
+        Book book = bookService.getBookByID(bookId);
+        if (book != null) {
+            bookIdField.setText(String.valueOf(book.getBookID()));
+            titleField.setText(book.getTitle());
+            authorField.setText(book.getAuthor());
+            categoryField.setText(book.getCategory());
+
+            // Set condition choice box
+            if (book.getCondition().name().equalsIgnoreCase("ACTIVE")) {
+                conditionChoiceBox.setValue("Active");
+            } else {
+                conditionChoiceBox.setValue("Inactive");
+            }
+
+            // Set availability choice box
+            if (book.getAvailability().name().equalsIgnoreCase("AVAILABLE")) {
+                availabilityChoiceBox.setValue("Available");
+            } else {
+                availabilityChoiceBox.setValue("Issued");
+            }
+
+            statusLabel.setText("Editing Book ID: " + bookId);  // optional
+        } else {
+            statusLabel.setText("Book not found.");
         }
     }
 

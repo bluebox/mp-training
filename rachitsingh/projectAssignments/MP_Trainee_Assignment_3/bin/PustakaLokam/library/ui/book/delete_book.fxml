@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="PustakaLokam.library.controller.book.DeleteBookController"
+            prefWidth="600" prefHeight="400">
+
+    <VBox spacing="10" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <TableView fx:id="bookTable" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="titleColumn" text="Title" prefWidth="150"/>
+                <TableColumn fx:id="authorColumn" text="Author" prefWidth="150"/>
+                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <Button fx:id="deleteButton" text="Delete Selected Book" onAction="#handleDelete"/>
+    </VBox>
+
+</AnchorPane>
