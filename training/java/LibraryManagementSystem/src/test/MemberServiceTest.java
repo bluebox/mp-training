@@ -21,13 +21,13 @@ class MemberServiceTest {
     }
 
     @Test
-    void testAddMember_InvalidName() {
+    void testAddMemberInvalidName() {
         Member member = new Member(0, "", "email@example.com", "1234567890");
         assertThrows(Exception.class, () -> memberService.addMember(member));
     }
 
     @Test
-    void testAddMember_ValidMember() throws Exception {
+    void testAddMemberValidMember() throws Exception {
         Member member = new Member(0, "Alice", "alice@example.com", "1234567890");
         memberService.addMember(member);
         assertTrue(true); 

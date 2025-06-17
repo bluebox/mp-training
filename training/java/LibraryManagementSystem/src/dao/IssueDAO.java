@@ -49,6 +49,10 @@ public class IssueDAO {
 
 	        conn.commit();
 	    }
+		catch(Exception e) {
+			conn.rollback();
+			System.err.println(e.getMessage());
+		}
 	}
 
     public void returnBook(int issueId, int bookId, java.time.LocalDate returnDate) throws Exception {
@@ -73,6 +77,10 @@ public class IssueDAO {
             logStmt.executeUpdate();
             conn.commit();
         }
+		catch(Exception e) {
+			conn.rollback();
+			System.err.println(e.getMessage());
+		}
     }
 
     public List<IssueRecord> getAllIssuedRecords() throws Exception {

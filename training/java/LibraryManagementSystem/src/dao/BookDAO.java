@@ -14,7 +14,7 @@ import java.util.List;
 public class BookDAO {
 	
 	 public Book getBookById(int bookId) throws DatabaseException {
-	        String query = "SELECT * FROM books WHERE bookId = ?";
+	        String query = "SELECT bookId, title, author, category, status, availability FROM books WHERE bookId = ?";
 
 	        try (Connection conn = JDBCConnection.getConnection();
 	             PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -88,7 +88,7 @@ public class BookDAO {
 
 	public List<Book> getAllBooks() throws Exception {
 	    List<Book> books = new ArrayList<>();
-	    String query = "SELECT * FROM books";
+	    String query = "SELECT bookId, title, author, category, status, availability FROM books";
 	    try (Connection conn = JDBCConnection.getConnection();
 	         PreparedStatement stmt = conn.prepareStatement(query);
 	         ResultSet rs = stmt.executeQuery()) {
@@ -129,6 +129,10 @@ public class BookDAO {
 	        logStmt.executeUpdate();
 	        conn.commit();
 	    }
+		catch(Exception e) {
+			conn.rollback();
+			System.err.println(e.getMessage());
+		}
 	}
 	
 	public void updateBookAvailability(int bookId,Character availability) throws Exception{

@@ -90,6 +90,10 @@ public class MemberDAO {
 
 	        conn.commit();
 	    }
+		catch(Exception e) {
+			conn.rollback();
+			System.err.println(e.getMessage());
+		}
 	}
 
 	private boolean isEqual(Member member, Member newMember) {
@@ -98,7 +102,7 @@ public class MemberDAO {
 
 	public List<Member> getAllMembers() throws Exception {
 		List<Member> members = new ArrayList<>();
-		String query = "SELECT * FROM members";
+		String query = "SELECT memberId, name, email, mobile, gender, address FROM members";
 		try (Connection conn = JDBCConnection.getConnection();
 			 PreparedStatement stmt = conn.prepareStatement(query);
 			 ResultSet rs = stmt.executeQuery()) {
@@ -117,7 +121,7 @@ public class MemberDAO {
 	}
 	
 	public Member getMemberById(int memberId) throws Exception {
-		String query = "SELECT * FROM members where memberId=?";
+		String query = "SELECT memberId, name, email, mobile, gender, address FROM members where memberId=?";
 		try (Connection conn = JDBCConnection.getConnection()){
 			 PreparedStatement stmt = conn.prepareStatement(query);
 			 stmt.setString(1, Integer.toString(memberId));

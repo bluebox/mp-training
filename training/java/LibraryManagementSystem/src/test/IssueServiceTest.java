@@ -22,13 +22,13 @@ class IssueServiceTest {
     }
 
     @Test
-    void testIssueBook_InvalidInput() {
+    void testIssueBookInvalidInput() {
         IssueRecord record = null; 
         assertThrows(Exception.class, () -> issueService.issueBook(record));
     }
 
     @Test
-    void testIssueBook_ValidInput() throws Exception {
+    void testIssueBookValidInput() throws Exception {
         IssueRecord record = new IssueRecord(0, 1, 1, "2024-01-01", null, false);
         issueService.issueBook(record);
         assertTrue(true);

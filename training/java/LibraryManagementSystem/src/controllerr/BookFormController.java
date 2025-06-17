@@ -19,8 +19,8 @@ public class BookFormController {
 
     @FXML
     public void initialize() {
-        statusChoiceBox.getItems().addAll("A", "I"); // Active/Inactive
-        availabilityChoiceBox.getItems().addAll("A", "I"); // Available/Issued
+        statusChoiceBox.getItems().addAll("A", "I"); 
+        availabilityChoiceBox.getItems().addAll("A", "I"); 
     }
 
     @FXML

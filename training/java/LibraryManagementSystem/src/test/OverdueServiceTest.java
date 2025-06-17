@@ -21,7 +21,7 @@ class OverdueServiceTest {
     }
 
     @Test
-    void testGetOverdueRecords_NoException() {
+    void testGetOverdueRecordsNoException() {
         assertDoesNotThrow(() -> overdueService.getOverdueRecords());
     }
 } 

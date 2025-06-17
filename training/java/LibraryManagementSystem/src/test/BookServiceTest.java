@@ -22,13 +22,13 @@ class BookServiceTest {
     }
 
     @Test
-    void testAddBook_InvalidTitle() {
+    void testAddBookInvalidTitle() {
         Book book = new Book(0, "", "Author", "Category", "A", "A");
         assertThrows(Exception.class, () -> bookService.addBook(book));
     }
 
     @Test
-    void testAddBook_ValidBook() throws Exception {
+    void testAddBookValidBook() throws Exception {
         Book book = new Book(0, "Java Basics", "John Doe", "Programming",  "A", "A");
         bookService.addBook(book);
         assertTrue(true); 
