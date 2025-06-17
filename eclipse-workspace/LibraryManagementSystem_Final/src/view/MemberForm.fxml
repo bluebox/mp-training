@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="controllerr.AddMemberController">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Name"/>
+    <TextField fx:id="nameId" promptText="Name"/>
+    <Label text="Email"/>
+    <TextField fx:id="emailId" promptText="Email"/>
+    <Label text="Address"/>
+    <TextField fx:id="addressField" promptText="address"/>
+    <Label text="Mobile"/>
+    <TextField fx:id="mobileField" promptText="mobile"/>
+    <Label text="Gender"/>
+    <ChoiceBox fx:id="genderBox" />
+    <Button text="Add Member" onAction="#handleAddMember"/>
+    <Label fx:id="messageLabel"/>
+</VBox>
