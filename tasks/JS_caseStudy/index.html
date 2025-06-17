@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Entry Form</title>
+    <link rel="stylesheet" href="Styless.css">
+</head>
+<body>
+
+<img src="LOGO.jpeg" class="logo">
+<h2 class="main-heading">MEDPLUS </h2>
+
+<img src="Logo2.jpeg" class="logo2">
+
+
+<hr>
+<ul class ="Moving-navigation">
+    <img src="plus.webp" alt="Animated GIF"  class="new-logo-img" >
+    <h>WELCOME TO MEDPLUS</br></h>
+</ul>
+
+<div class="floating-box">
+    <h1>Fill the following details.</h1>
+
+    <div class="text-fields">
+
+        <div class="Name">
+            <label for="name">Name<span class="required">*</span></label></br>
+            <input type="text" id="name" name="Registration Number"><br><br>
+            <div class="text-fields2">
+                <label class="Branch">Branch:</label><br>
+                <input type="radio"  id="cse" name="branch" value="CSE" >
+                <label for="cse">CSE</label><br>
+
+                <input type="radio" id="ece" name="branch" value="ECE">
+                <label for="ece">ECE</label><br>
+
+                <input type="radio" id="eee" name="branch" value="EEE">
+                <label for="eee">EEE</label><br>
+            </div>
+        </div>
+        <div class ="Name">
+
+            <label for="email">AGE<span class="required">*</span></label></br>
+            <input type="email" id="AGE" name="EAPCET Hallticket No"><br><br>
+            <div class="Branch">
+
+
+                <label class ="Branch">Languages Known <span class="required">*</span>:</label><br>
+                <input type="checkbox" id="english" name="languages" value="English">
+                <label for="english">English</label>
+
+                <input type="checkbox" id="hindi" name="languages" value="Hindi">
+                <label for="hindi">Hindi</label>
+
+                <input type="checkbox" id="french" name="languages" value="French">
+                <label for="french">French</label>
+
+            </div>
+        </div>
+
+        <div class ="Name">
+
+            <label for="email">MAIL ID<span class="required">*</span></label></br>
+            <input type="email" id="email" name="EAPCET Hallticket No"><br><br>
+            <div>
+                <!-- State Dropdown -->
+                <label for="state">State <span class="required">*</span>:</label><br>
+                <select id="state" name="state">
+                    <option value="">--Select State--</option>
+                </select><br><br>
+            </div>
+        </div>
+
+
+        <div class ="Name">
+
+            <label for="email">Phone Number<span class="required">*</span></label></br>
+            <input type="email" id="Phone-Number" name="EAPCET Hallticket No"><br><br>
+            <div>
+                <!-- City Dropdown -->
+                <label for="city">City <span class="required">*</span>:</label><br>
+                <select id="city" name="city">
+                    <option value="">--Select City--</option>
+                </select>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="floating-box3">
+    <button class="Submmit">Submit</button>
+</div>
+
+
+    </div>
+
+    </div>
+
+
+
+</div>
+
+<!-- Link your JS files -->
+<script src="fetchStates.js"></script>
+<script src="fetchCities.js"></script>
+
+</body>
+</html>
