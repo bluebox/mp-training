@@ -27,19 +27,19 @@ public class Main extends Application {
 //            stage.setScene(scene);
 //           stage.show();
             
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/UI/ViewMembers.fxml"));
-           Parent root = loader.load();
-          stage.setScene(new Scene(root, 800, 400));
-         stage.setTitle("View Members");
-        stage.show();
+//           FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/UI/ViewMembers.fxml"));
+//           Parent root = loader.load();
+//          stage.setScene(new Scene(root, 800, 400));
+//         stage.setTitle("View Members");
+//        stage.show();
   		
   		
 //  		MemberService ms= new MemberService();
 //  		ms.addMember("Pavan","pasham@gmail.com",1351661022,'M',"Reddy Gudem");
   		
   		
-//  		BookService bs=new BookService();
-//  		bs.updateBook(2,"Royal Gun","xyz","Moral",'I', 'I');
+  		BookService bs=new BookService();
+  		bs.updateBook(2,"Royal Gun Reddy","xyz","Moral",'I', 'I');
   		
 //  		BookService bs=new BookService();
 //  		bs.returnBook(1);

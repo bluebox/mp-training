@@ -6,6 +6,7 @@ import javafx.collections.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.*;
 import com.models.Member;
+import com.services.MemberService;
 
 public class ViewMembersController {
 
@@ -18,6 +19,8 @@ public class ViewMembersController {
     @FXML private TableColumn<Member, String> addressColumn;
 
     private ObservableList<Member> memberList = FXCollections.observableArrayList();
+   
+
 
     @FXML
     public void initialize() {
@@ -51,9 +54,10 @@ public class ViewMembersController {
         	
         	memberList.add(m);
         	memberList.add(m2);
+        	//memberList= MemberService.fetchAll();
+        	 membersTable.setItems(memberList);
 
-            membersTable.setItems(memberList);
-
+           
         } catch (Exception e) {
             e.printStackTrace();
         }
