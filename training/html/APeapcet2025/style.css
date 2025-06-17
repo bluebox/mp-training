@@ -1,9 +1,15 @@
 .a{
   font-size:24px;
 }
-
-body{
-background-color:  #ffff;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #005d82, #6b1ca3);
+    color: white;
+}
+.bottom-body{
+background:white;
 }
 
 .logo{
@@ -23,27 +29,33 @@ text-align: center;
 
 }
 
-
 .navbar {
-
+height:70px;
 list-style: none;
  margin: 0;
   padding:0;
   align:center;
-gap:50px;
+gap:5px;
 display: flex;
-// background-color: #5263e94;
+background: linear-gradient(to right, #005dac, #4B0082);
 
 }
 
 .navbar li{
+
+padding:25px;
+
 text-decoration: none;
+
 
 }
 
 .navbar li a{
 text-decoration: none;
 font-size:24px;
+color:white;
+
+
 
 }
 
@@ -77,9 +89,11 @@ width: 1100px;
   margin: 20px;
 }
 .active{
-width: 450px;
+width: 200px;
   height: 80px;
-  font-size:64px;
+  font-size:32px;
+   border-radius: 10px;
+   color: white;
 background:blue;
 }
 
@@ -87,7 +101,9 @@ background:blue;
 width: 640px;
 height: 80px;
 font-size:32px;
-background:green;
+ border-radius: 10px;
+ color: white;
+background:#7b2fc0;
 }
 
 
@@ -95,7 +111,7 @@ background:green;
 
 width: 1100px;
    height: 40px
-   background-color: lightblue;
+background:black
    border: 1px solid #333;
    padding: 10px;
    margin: 20px;
@@ -107,11 +123,11 @@ box-shadow: 0 0.75rem 1.75rem 0 rgb(33 40 50 / 15%);
 font-size:32px;
 width: 400px;
   height: 200px;
-  background-color: #F;
+  background-color: #FFFFF;
 
 }
 .Box:hover{
-background-color: #8F00FF;
+background: linear-gradient(to right, #005d82, #6b1ca3);
 
 }
 
@@ -120,6 +136,7 @@ background-color: #8F00FF;
 width: 700px;
 font-size:32px;
   height: 250px;
+  color: black;
 
 
 }
@@ -155,3 +172,86 @@ inside-image-of-right-boxes{
     .yellow-dot{
 
       list-style-type: circle;}
+
+
+  .floating-box {
+  margin:100px;
+  padding:0px;
+  width:1800px;
+    position: relative;
+    bottom: 20px;
+    top:0px;
+    left:50px:
+    right: 80px;
+    background-color: #FFFF;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    font-size:11px;
+    color:black;
+    height:370px;
+
+  }
+
+
+
+  .floating-box2{
+  margin:0px;
+  padding:20px;
+   border-radius: 5px;
+  width:1760px;
+  background-color: #7b2fc0;
+  height:35px;
+  font-weight: bold;
+  color:white;
+   font-size:28px;
+  }
+
+  input {
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 470px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+
+.text-fields{
+display:flex;
+gap:200px;}
+
+.Registration-Number-input{
+width:470px;
+font-size:32px;
+}
+.APCET-Hallticket-No{
+width:470px;
+font-size:32px;
+}
+.required{
+color: red;
+    font-weight: bold;}
+
+.floating-box3{
+
+   border-radius: 50px;
+    width:100px;
+  background:#FFFFF;
+  position: relative;
+  left:600px;
+  }
+ .Submit{
+ color:white;
+ padding:20px;
+ border-radius: 50px;
+     width:300px;
+     font-size:32px;
+ background:green;}
