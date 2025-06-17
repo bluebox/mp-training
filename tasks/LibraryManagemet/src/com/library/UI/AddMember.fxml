@@ -7,7 +7,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
 	xmlns:fx="http://javafx.com/fxml"
 	fx:controller="com.library.controller.MemberController" prefWidth="400"
-	prefHeight="400">
+	prefHeight="450">
 
 	<VBox spacing="10">
 		<padding>

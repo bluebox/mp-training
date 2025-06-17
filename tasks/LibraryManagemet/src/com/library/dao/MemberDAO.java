@@ -8,23 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.library.domain.Member;
+import com.library.queries.SQLQueries;
 import com.library.utilities.ConnectionMaker;
 
-public class MemberDAO {
-	private final String tableName;
+public class MemberDAO extends SQLQueries {
 
-	public MemberDAO() {
-		this("member");
-	}
 
-	public MemberDAO(String tableName) {
-		this.tableName = tableName;
-	}
-
-	public boolean addMember(Member member,String query) {
+	public boolean addMember(Member member,Connection conn) {
 		int check = 0;
-		try (Connection conn = ConnectionMaker.getConnection()) {
-			PreparedStatement ps = conn.prepareStatement(query);
+		try {
+			PreparedStatement ps = conn.prepareStatement(insertMember);
 			ps.setString(1, member.getName());
 			ps.setString(2, member.getEmail());
 			ps.setLong(3, member.getMobile());

@@ -40,16 +40,18 @@ public class ReturnBookController {
 
 			LibraryServiceImplementation service = new LibraryServiceImplementation();
 
-			if (!service.isBookIssuedToMember(bookId, memberId)) {
+			if (!service.returnBook(bookId, memberId)) {
 				showAlert(Alert.AlertType.ERROR, "Invalid Details",
 						"No active issue found for this Book ID and Member ID.");
 				return;
 			}
-
-			service.returnBook(bookId, memberId);
-
-			showAlert(Alert.AlertType.INFORMATION, "Success", "Book returned successfully!");
-			clearFields();
+			else
+			{
+				showAlert(Alert.AlertType.INFORMATION, "Success", "Book returned successfully!");
+				clearFields();
+				
+			}
+			
 
 		} catch (NumberFormatException e) {
 			showAlert(Alert.AlertType.ERROR, "Input Error", "Book ID and Member ID must be numbers.");
