@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="employee.css">
+</head>
+<body>
+    <form action="" style="margin-left: 400px;margin-right: 500px;margin-top: 200px; padding: 100px; background-color: #d8e247;">
+        <div style="width: 100%;text-align: center;">
+            <h1>Employee Details</h1>
+            <br><br><br>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <label for="name">Name : </label>
+                </td>
+                <td>
+                    <input type="text" id="name" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="age">Age : </label>
+                </td>
+                <td>
+                    <input type="number" name="age" id="Age" min="20" max="60" style="width: 178px;" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email : </label>
+                </td>
+                <td>
+                    <input type="email" name="email" id="email" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="phno">Phone no : </label>
+                </td>
+                <td>
+                    <input type="number" name="phno" id="phno" min="1000000000" max="9999999999" style="width: 178px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="branch">Branch Name : </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"  style="padding-left: 200px;">
+                    <input type="radio" name="branch" id="cse">
+                    <label for="cse" style="padding: 0%;"> CSE</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="branch" id="ese">
+                    <label for="ese" style="padding: 0%;"> ESE</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="branch" id="eee">
+                    <label for="eee" style="padding: 0%;"> EEE</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left;">
+                    <label for="lang">Languages you know : </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-left: 200px;">
+                    <input type="checkbox" name="lang" id="English"/>
+                    <label for="English"style="padding: 0%;">English</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="lang" id="Hindi"/>
+                    <label for="Hindi"style="padding: 0%;">Hindi</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="lang" id="French"/>
+                    <label for="French" style="padding: 0%;">French</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="state">Select the state you are from : </label>
+                </td>
+                <td>
+                    <select name="state" id="state">
+                        <option value="Andra Pradesh">Andra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Telangana">Telangana</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="city">Select the city you are from : </label>
+                </td>
+                <td>
+                    <select name="city" id="city">
+                        <option value="Nagarkurnool">Nagarkurnool</option>
+                        <option value="Achampet">Achampet</option>
+                        <option value="Kotalgadda">Kotalgadda</option>
+                        <option value="Uyalwada">Uyalwada</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;padding-left: 150px;">
+                    <input type="submit" value="Submit" onclick="add()" style="background-color: antiquewhite;">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script src="employee.js"></script>
+</body>
+</html>
