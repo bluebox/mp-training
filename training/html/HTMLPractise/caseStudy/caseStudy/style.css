@@ -1,0 +1,36 @@
+
+        body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 0; }
+       .container {
+    max-width: 1200px; 
+    margin: 30px auto;
+    background: #fff;
+    padding: 40px 60px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+        h2 { text-align: center; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; margin-bottom: 4px; }
+        input[type="text"], input[type="number"], input[type="email"], select {
+            width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;
+        }
+        input[type="radio"], input[type="checkbox"] { margin-right: 4px; }
+        button[type="submit"]:disabled { background: #ccc; cursor: not-allowed; }
+        button[type="submit"] { background: #007bff; color: #fff; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .error { color: #d00; font-size: 12px; display: block; }
+        .search-group { margin: 20px 0 10px 0; display: flex; justify-content: space-between; align-items: center; }
+        #search { width: 60%; padding: 6px; }
+        #entryCount { font-size: 14px; color: #555; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background: #f0f0f0; }
+        tr.added-row { animation: fadeIn 0.5s; }
+        tr.removed-row { animation: fadeOut 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        #noResults { text-align: center; color: #d00; margin-top: 10px; }
+        @media (max-width: 700px) {
+            .container { padding: 10px; }
+            table, thead, tbody, th, td, tr { font-size: 12px; }
+        }

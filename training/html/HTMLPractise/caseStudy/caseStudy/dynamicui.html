@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Data Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Data Entry</h2>
+        <form id="dataForm" autocomplete="off">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="name" required>
+                <span class="error" id="nameError"></span>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" id="age" min="1" required>
+                <span class="error" id="ageError"></span>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="email" required>
+                <span class="error" id="emailError"></span>
+            </div>
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="text" id="phone" maxlength="10" required>
+                <span class="error" id="phoneError"></span>
+
+            </div>
+            <div class="form-group">
+                <label>Branch:</label>
+                <label><input type="radio" name="branch" value="CSE"> CSE</label>
+                <label><input type="radio" name="branch" value="ECE"> ECE</label>
+                <label><input type="radio" name="branch" value="EEE"> EEE</label>
+                <span class="error" id="branchError"></span>
+            </div>
+            <div class="form-group">
+                <label>Languages Known:</label>
+                <label><input type="checkbox" name="languages" value="English"> English</label>
+                <label><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+                <label><input type="checkbox" name="languages" value="French"> French</label>
+                <span class="error" id="languagesError"></span>
+            </div>
+            <div class="form-group">
+                <label>State:</label>
+                <select id="state" required>
+                    <option value="">Select State</option>
+                </select>
+                <span class="error" id="stateError"></span>
+            </div>
+            <div class="form-group">
+                <label>City:</label>
+                <select id="city" required>
+                    <option value="">Select City</option>
+                </select>
+                <span class="error" id="cityError"></span>
+            </div>
+            <button type="submit" id="addBtn" disabled>Add</button>
+        </form>
+
+        <div class="search-group">
+            <input type="text" id="search" placeholder="Search...">
+            <span id="entryCount"></span>
+        </div>
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Branch</th>
+                    <th>Languages</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+        <div id="noResults" style="display:none;">No results found</div>
+    </div>
+    <script src="./funtionality.js">
+        
+    </script>
+</body>
+</html>

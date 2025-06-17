@@ -1,25 +1,48 @@
-    //form input into objects
-    let userData=[];
-    let form=document.getElementById("userData");
-    form.addEventListener("submit",function(e) {
-        e.preventDefault();
-    let formdata= new FormData(this);
-       let formuser={};
-    for(let[key,value] of formdata.entries())
-    {
-        formuser[key]=value;
+let userData = [];
+let form = document.getElementById("userData");
+let tableBody = document.getElementById("data-entry");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const formdata = new FormData(this);
+  let formuser = {};
+
+  // Get regular input values
+  for (let [key, value] of formdata.entries()) {
+    // If key already exists (like checkboxes), turn into array
+    if (formuser[key]) {
+      if (Array.isArray(formuser[key])) {
+        formuser[key].push(value);
+      } else {
+        formuser[key] = [formuser[key], value];
+      }
+    } else {
+      formuser[key] = value;
     }
-    userData.push(formuser);
+  }
 
-    this.reset();
+  // Ensure checkbox values (Language) are stringified for display
+  if (Array.isArray(formuser.Language)) {
+    formuser.Language = formuser.Language.join(", ");
+  }
 
+  userData.push(formuser);
 
-    })
+  // Create and append row
+  let row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${formuser.Name || ""}</td>
+    <td>${formuser.Age || ""}</td>
+    <td>${formuser.Email || ""}</td>
+    <td>${formuser.Branch || ""}</td>
+    <td>${formuser.Language || ""}</td>
+    <td>${formuser.State || ""}</td>
+    <td>${formuser.City || ""}</td>
+  `;
 
-//form data pushing into table
+  tableBody.appendChild(row);
 
-let tableBody= document.getElementById("data-entry");
-for(let person of userData)
-{
-   
-}
+  // Reset form after submit
+  this.reset();
+});
