@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+input, select, button {
+  margin: 5px;
+  padding: 5px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow: scroll;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+thead th{
+    position: sticky;
+  top: 60px; 
+  z-index: 5; 
+  background: white;
+}
+form{
+top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; 
+  background: white;
+}

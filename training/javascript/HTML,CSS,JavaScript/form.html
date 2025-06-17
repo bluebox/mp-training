@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="sample.js"></script>
+    </head>
+    <body>
+        <form id="userdata">
+           <label for="name" placeholder="Name">Name:</label>
+           <input type="text" id="name" name="name" required>
+           <label for="age" placeholder="Age">Age:</label>
+           <input type="number" min="1" max="120" id="age" name="age" required>
+           <br>
+           <label for="contact" >Phone Number</label>
+           <input type="text" id="contact" name="contact" pattern="[5-9]{1}[0-9]{9}"   maxlength="10" required>
+           <br>
+           <label for="email" >Email:</label>
+           <input type="text" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
+           <br>
+
+           Select Branch:<br>
+           <label>
+            <input type="radio" id="branch" name="branch" value="CSE" required>
+            CSE
+           </label><br>
+            <input type="radio" id="branch" name="branch" value="ECE">
+            ECE
+           </label><br>
+            <input type="radio" id="branch" name="branch" value="EEE">
+            EEE
+           </label><br>
+
+           Select Languages Known:<br>
+           <label>
+            <input type="checkbox" id="lang" name="lang" value="Telugu" >
+            Telugu
+           </label><br>
+            <input type="checkbox"  id="lang" name="lang" value="English">
+            English
+           </label><br>
+            <input type="checkbox" id="lang" name="lang" value="Hindi">
+            Hindi
+           </label><br>
+            <input type="checkbox" id="lang" name="lang" value="French">
+            French
+           </label><br>
+           <select id="state"><option value="">Select State</option>
+            <option value="Telangana">Telangana</option>
+                                         </select><br>
+           <select id="city"><option value="">Select city</option>
+        <option value="Hyderabad">Hyderabad</option></select><br>
+
+           <button type="submit" value="submit" id="add" onclick="validateForm(event)">Add</button>
+           <button type="reset" value="reset" id="reset">Reset</button>
+        </form>
+        <table id="userTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Branch</th>
+        <th>Languages</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      </tbody>
+  </table>
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Table App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h2 {
+      color: #333;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="number"] {
+      padding: 8px;
+      margin: 5px;
+      width: 200px;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background-color: #fff;
+      
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    #search {
+      margin-bottom: 10px;
+      width: 300px;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h2>User Management</h2>
+  <form id="userForm">
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="number" id="age" placeholder="Age" required>
+    <button type="submit">Add User</button>
+  </form>
+  <input type="text" id="search" placeholder="Search by name...">
+  <table id="userTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      </tbody>
+  </table>
+  <script>
+    const form = document.getElementById("userForm");
+    const nameInput = document.getElementById("name");
+    const ageInput = document.getElementById("age");
+    const tableBody = document.querySelector("#userTable tbody");
+    const searchInput = document.getElementById("search");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = nameInput.value.trim();
+      const age = ageInput.value.trim();
+
+      if (name === "" || age === "") return;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${age}</td>
+        <td><button class="deleteBtn">Delete</button></td>
+      `;
+      tableBody.appendChild(row);
+
+      // Clear form
+      nameInput.value = "";
+      ageInput.value = "";
+    });
+
+    // Delete row
+    tableBody.addEventListener("click", function (e) {
+      if (e.target.classList.contains("deleteBtn")) {
+        e.target.closest("tr").remove();
+      }
+    });
+
+    // Search/filter table
+    searchInput.addEventListener("input", function () {
+      const searchValue = searchInput.value.toLowerCase();
+      const rows = tableBody.querySelectorAll("tr");
+
+      rows.forEach(row => {
+        const nameCell = row.querySelector("td").textContent.toLowerCase();
+        row.style.display = nameCell.includes(searchValue) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
