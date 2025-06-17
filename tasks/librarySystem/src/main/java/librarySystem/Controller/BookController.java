@@ -22,7 +22,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class BookController {
     @FXML
-    private TextField titleField, authorField, categoryField;
+    private TextField titleField, authorField, categoryField, statusField;
     @FXML
     private TableView<BookPojo> bookTable;
     @FXML
@@ -51,6 +51,7 @@ public class BookController {
                 titleField.setText(selectedBook.getTitle());
                 authorField.setText(selectedBook.getAuthor());
                 categoryField.setText(selectedBook.getCategory());
+                statusField.setText(String.valueOf(selectedBook.getStatus()));
             }
         });
 
@@ -67,7 +68,7 @@ public class BookController {
         update.setTitle(titleField.getText());
         update.setAuthor(authorField.getText());
         update.setCategory(categoryField.getText());
-        update.setStatus(selectedBook.getStatus());  
+        update.setStatus(statusField.getText().charAt(0));  
         update.setAvailability(selectedBook.getAvailability()); 
 
         if (service.updateBookDetails(selectedBook, update)) {
