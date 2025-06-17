@@ -135,12 +135,15 @@ public class Ui extends Application {
                 new Label("Category:"), categoryField,
                 submitBtn, messageLabel
         );
-
+        
         submitBtn.setOnAction(e -> {
             String title = titleField.getText().trim();
             String author = authorField.getText().trim();
             String category = categoryField.getText().trim();
-
+            if (!title.matches("[a-zA-Z]+") || !author.matches("[a-zA-Z]+") || !category.matches("[a-zA-Z]+")) {
+                messageLabel.setText("Enter valid details");
+                return;
+            }
             if (title.isEmpty() || author.isEmpty() || category.isEmpty()) {
                 messageLabel.setText("All fields are required.");
                 return;
@@ -191,7 +194,7 @@ public class Ui extends Application {
         Button submitBtn = new Button("Submit");
         Label messageLabel = new Label();
         messageLabel.setStyle("-fx-text-fill: red;");
-
+        
         form.getChildren().addAll(
             new Label("Name:"), nameField,
             new Label("Email:"), emailField,
@@ -205,7 +208,14 @@ public class Ui extends Application {
             String email = emailField.getText().trim();
             String numberText = numberField.getText().trim();
             RadioButton selectedGender = (RadioButton) genderGroup.getSelectedToggle();
-
+            if (!name.matches("[a-zA-Z]+")) {
+                messageLabel.setText("Enter valid UserName");
+                return;
+            }
+            if (!numberText.matches("\\d{10}")) {
+                messageLabel.setText("Enter valid PhoneNo");
+                return;
+            }
             if (name.isEmpty() || email.isEmpty() || numberText.isEmpty() || selectedGender == null) {
                 showAlert(Alert.AlertType.ERROR, "Validation Error", "All fields are required.");
                 return;
