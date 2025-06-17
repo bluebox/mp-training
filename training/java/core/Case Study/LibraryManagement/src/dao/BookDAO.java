@@ -77,12 +77,25 @@ public class BookDAO {
     public void updateAvailability(int bookId, char availability) throws DatabaseException {
         String sql = "UPDATE books SET availability=? WHERE bookId=?";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, String.valueOf(availability));
-            stmt.setInt(2, bookId);
-            stmt.executeUpdate();
-
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+        	if(availability=='A') {
+        		stmt.setString(1, String.valueOf(availability));
+                stmt.setInt(2, bookId);
+                stmt.executeUpdate();
+                Statement ps = conn.createStatement();
+                ResultSet res = ps.executeQuery("select * from books where bookId="+bookId);
+                while(res.next()) {
+                	stmt1=conn.prepareStatement("");
+                }
+                
+        	}
+        	else {
+        		stmt.setString(1, String.valueOf(availability));
+                stmt.setInt(2, bookId);
+                stmt.executeUpdate();
+        	}
+            
+            
         } catch (SQLException e) {
             throw new DatabaseException("Error updating book availability: " + e.getMessage(), e);
         }
