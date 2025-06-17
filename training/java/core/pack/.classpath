@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="/home/krishnaprasad/mp-training/training/java/core/pack/Library/javafx-sdk-17.0.15/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="/home/krishnaprasad/mp-training/training/java/core/pack/Library/javafx-sdk-17.0.15/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="/home/krishnaprasad/mp-training/training/java/core/pack/Library/javafx-sdk-17.0.15/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="/home/krishnaprasad/devops/mysql-connector-j-9.3.0/mysql-connector-j-9.3.0.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
