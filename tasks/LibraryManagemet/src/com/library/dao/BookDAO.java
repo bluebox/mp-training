@@ -1,14 +1,17 @@
 package com.library.dao;
 
-import com.library.domain.Book;
-import com.library.queries.SQLQueries;
-import com.library.utilities.ConnectionMaker;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookDAO extends SQLQueries {
+import com.library.domain.Book;
+import com.library.queries.BookSQLQueries;
+import com.library.utilities.ConnectionMaker;
+
+public class BookDAO extends BookSQLQueries {
 
 	private static final String TABLE_NAME = "book";
 

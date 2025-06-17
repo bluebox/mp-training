@@ -18,7 +18,7 @@ public class LibraryServiceImplementation implements LibraryService {
 	private final BookDAO bookDAO = new BookDAO();
 	private final MemberDAO memberDAO = new MemberDAO();
 
-	private final Connection conn = ConnectionMaker.getConnection();
+	private static final Connection conn = ConnectionMaker.getConnection();
 
 	public boolean addMember(Member member) {
 
