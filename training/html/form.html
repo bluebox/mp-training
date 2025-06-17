@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item{
+            margin-top: 15px;
+        }
+        .item input{
+            padding: 5px;
+            border: 1px solid black;
+        }
+        .item button{
+            padding: 5px;
+            margin-left: 160px;
+            margin-top: 10px;
+        }
+        #email{
+            margin-left: 35px;
+        }
+        #mnumber{
+            margin-left: 30px;
+        }
+        .item label{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="">
+    <div class="item">
+    <label for="fname">Enter FirstName* :</label>
+    <input type="text" id="fname" required>
+    <br>
+    <button type="button" id="fn">Click To Change</button>
+    </div>
+    <br>
+     <div class="item">
+    <label for="lname">Enter LastName* :</label>
+    <input type="text" id="lname" required>
+    <br>
+    <button type="button" id="ln">Click To Change</button>
+    <br>
+    </div>
+     <div class="item">
+    <label for="email">Enter Email* :</label>
+    <input type="email" id="email" required>
+    <br>
+    <button type="button" id="em">Click To Change</button>
+    <br>
+    </div>
+     <div class="item">
+    <label for="mnumber">Enter Mobile* :</label>
+    <input type="text" id="mnumber" required>
+    <br>
+    <button type="button" id="mn">Click To Change</button>
+    </div>
+    <button type="submit" onclick="sub()">Submit</button>
+    </form>
+    <div class="tables"></div>
+    <script src="form.js"></script>
+</body>
+</html>
