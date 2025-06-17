@@ -1,0 +1,62 @@
+
+.roboto-fontfam {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+nav{
+
+    text-align: center;
+}
+main
+{
+    margin:25px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    
+}
+#form-wrapper
+{
+    display: flex;
+    width: 40%;
+    height: 40%;
+    align-items: center;
+    justify-content: center;
+}
+form
+{
+    display: flex;
+    flex-direction: column;
+    width:90%;
+    height: 90%;
+    padding: 5%;
+    background-color:white;
+    box-shadow: 5px 5px 5px 5px rgb(170, 216, 231);
+}
+fieldset
+{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    line-height: 50px;
+    word-spacing: 50px;
+
+}
+input
+{
+
+    margin: 20px;
+    padding: 5px;
+    font-size: medium;
+    font-family:roboto-fontfam;
+}

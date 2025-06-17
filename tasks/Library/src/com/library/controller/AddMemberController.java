@@ -3,6 +3,7 @@ package com.library.controller;
 import com.library.domain.Member;
 import com.library.serviceInterface.MemberServiceInterface;
 import com.library.services.MemberService;
+import com.library.util.ValidationException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,7 +22,16 @@ public class AddMemberController {
 
     @FXML
     private void handleAddMember() {
+    	
+    	
+    	
+    	
         try {
+        	
+        	if(mobileField.getText().length() < 10)
+        	{
+        		throw new ValidationException("mobile number is not valid");
+        	}
             Member member = new Member(0,
            nameField.getText(),
             emailField.getText(),
@@ -31,9 +41,15 @@ public class AddMemberController {
 
             memberService.addMember(member);
             statusLabel.setText("Member added successfully");
-        } catch (Exception e) {
-        	statusLabel.setText(e.getMessage());
-            
         }
+        catch(ValidationException e)
+        {
+        	statusLabel.setText(e.getMessage());
+        }
+        
+        catch (Exception e) {
+        	System.out.println(e.getMessage());;
+        }
+       
     }
 }

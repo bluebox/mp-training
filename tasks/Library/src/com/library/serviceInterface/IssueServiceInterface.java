@@ -11,8 +11,7 @@ public interface IssueServiceInterface {
     public abstract  List<IssueRecord> getAllIssuedRecords() throws Exception;
     
     public abstract void updateIssueRecord(Connection conn)throws Exception;
-
-	void insertIssueRecord(int bookId, int memberId) throws Exception;
     
+    public abstract void returnBook(int bookId) throws Exception;
 
 }

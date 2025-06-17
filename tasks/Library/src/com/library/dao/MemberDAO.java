@@ -1,6 +1,8 @@
 package com.library.dao;
 
+import com.library.DaoInterface.MemberDAOInterface;
 import com.library.domain.Member;
+import com.library.sqlQueryLoader.memberSqlQueryStore;
 import com.library.sqlQueryLoader.sqlQueryStore;
 import com.library.util.DB;
 
@@ -11,10 +13,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberDAO extends sqlQueryStore{
+public class MemberDAO extends memberSqlQueryStore implements MemberDAOInterface{
 
 
-	public void updateMember(Connection conn,Member member)throws Exception {
+	public boolean updateMember(Connection conn,Member member)throws Exception {
 	    String sql = updateMember;
 	        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 	            stmt.setString(1, member.getName());
@@ -23,7 +25,7 @@ public class MemberDAO extends sqlQueryStore{
 	            stmt.setString(4,String.valueOf(member.getGender()));
 	            stmt.setString(5, member.getAddress());
 	            stmt.setInt(6, member.getMemberId());
-	             stmt.executeUpdate();
+	             return stmt.executeUpdate()>0;
 	        }
 
 	  } 
@@ -74,5 +76,12 @@ public class MemberDAO extends sqlQueryStore{
 		        }
 	        return members;
     }
+
+
+	@Override
+	public boolean addMember(Connection conn, Member member) throws Exception {
+		//pavan
+		return false;
+	}
 
 }

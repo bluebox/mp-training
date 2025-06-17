@@ -9,7 +9,7 @@ public interface MemberServiceInterface {
 
 	 public abstract List<Member> fetchmembers() throws SQLException;
 
-	    public abstract void addMember(Member member);
+	    public abstract void addMember(Member member) throws Exception;
 
-	    public abstract void updateMember(Member member) throws Exception;
+	    public abstract boolean updateMember(Member member) throws Exception;
 }

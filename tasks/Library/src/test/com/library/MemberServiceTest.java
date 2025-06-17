@@ -88,7 +88,7 @@ public class MemberServiceTest {
     }
 
     @Test
-    public void testAddMember_doesNotThrowException() {
+    public void testAddMember_doesNotThrowException() throws Exception {
         
         Member dummy = new Member(TEST_MEMBER_ID + 1, "Dummy", "dummy@abc.com", 9999999999L, 'F', "Dummy Addr");
         service.addMember(dummy); 

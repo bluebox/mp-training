@@ -120,11 +120,11 @@
 }
 
 #myTable tr:nth-child(even) {
-  background-color: #f9f9f9; /* Zebra striping */
+  background-color: #f9f9f9; 
 }
 
-#myTable tr:hover {
-  background-color: #e0f7fa; /* Row highlight on hover */
+#myTable td:hover {
+  background-color: #e0f7fa; 
 }
 
   

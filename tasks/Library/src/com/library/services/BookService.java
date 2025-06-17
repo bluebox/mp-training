@@ -40,41 +40,18 @@ public class BookService implements BookServiceInterface {
 		return books;
 	}
 
-	 public void returnBook(int bookId) throws Exception {
-//	    	Connection conn = null;
-//	        try {
-//			            conn = DB.getConnection();
-//			            conn.setAutoCommit(false);
-//			
-//			            if (!bookDAO.isAvailable(conn, bookId)) throw new Exception("Book is not available");
-//			
-//			            ResultSet resultData=bookDAO.getBookById(conn, bookId, 'I');
-//			            bookDAO.insertIntoBookLog(conn, resultData);
-//			           
-//			            ResultSet rs= IssueRecordDAO.getIssueRecord(conn, bookId);
-//			            IssueRecordDAO.insertIntoIssueRecordLog(ResultSet rs);
-//			            IssueRecordDAO.updateIssueRecord(conn,bookId);
-//			            bookDAO.updateAvailability(conn, bookId, 'A');
-//			
-//			            conn.commit();
-//	        } 
-//	        catch (Exception e)
-//	        {
-//			            if (conn != null) conn.rollback();
-//			            throw e;
-//	        } 
-//	        finally {
-//	            
-//	        			if (conn != null) conn.close();
-//	        }
-		 
-	 
-	 }
+
 
 	@Override
 	public void updateBook(Book book) {
 		// pavan
 
+	}
+
+	@Override
+	public void returnBook(int bookId) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

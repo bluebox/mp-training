@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic form</title>
+    <link rel="stylesheet" href="./caseStudy.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav>
+        <h1>
+            Dynamic Data Management Web Page
+        </h1>
+    </nav>
+
+    <main>
+
+        <div id="form-wrapper">
+
+            <form action="" id="userData">
+                <fieldset>
+                <input type="text" name="Name" id="Name" placeholder="Name" required>
+                <input type="number" name="Age" id="Age" placeholder="Age" required >
+               <input type="email" name="Email" id="Email" placeholder="Email" required>
+               <input type="tel" name="Number" id="Number" placeholder="Phone Number" maxlength="10" required/>
+               </fieldset>
+               <fieldset>
+               <input type="radio" name="Branch" id="Branch" value="CSE" required>CSE
+                <input type="radio" name="Branch" id="Branch" value="ECE"required>ECE
+                <input type="radio" name="Branch" id="Branch" value="EEE"required>EEE
+                </fieldset>
+                <fieldset>
+                <input type="checkbox" name="Language" id="Language" value="English" >English
+                <input type="checkbox" name="Language" id="Language" value="Telugu" >Telugu
+                <input type="checkbox" name="Language" id="Language" value="Hindi" >Hindi
+                <input type="checkbox" name="Language" id="Language" value="French" >French
+                </fieldset>
+                <fieldset>
+                <label for="State">Select State:
+                <select name="State" id="State">
+                    <!-- options from api -->
+                </select>
+                </label>
+                <label for="City">City:
+                <select name="City" id="City">
+                    <!-- options from api -->
+                </select>
+            </label>
+        </fieldset>
+                <input type="submit" value="submit">
+
+            </form>
+        </div>
+
+        <div id="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Age
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Branch
+                    </th>
+                    <th>
+                        Language
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        City
+                    </th>
+                </thead>
+                <tbody id="data-entry">
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="./caseStudy.js"></script>
+</body>
+</html>

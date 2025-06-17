@@ -1,5 +1,6 @@
 package com.library.dao;
 
+import com.library.DaoInterface.BookDAOInterface;
 import com.library.domain.Book;
 import com.library.sqlQueryLoader.sqlQueryStore;
 import com.library.util.DB;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookDAO extends sqlQueryStore {
+public class BookDAO extends sqlQueryStore implements BookDAOInterface{
 
 	public List<Book> getAllBooks(Connection conn) {
 
@@ -73,7 +74,7 @@ public class BookDAO extends sqlQueryStore {
 	
 	
 	
-	public ResultSet getBookById(Connection conn,int bookId,char status) throws Exception
+	public Book getBookById(Connection conn,int bookId,char status) throws Exception
 	{
 		
 
@@ -82,15 +83,23 @@ public class BookDAO extends sqlQueryStore {
 		}
 
 		String fetchSQL = getBookById;
-		ResultSet rs=null;
+		ResultSet resultData=null;
 		try (PreparedStatement fetchStmt = conn.prepareStatement(fetchSQL)) {
 			fetchStmt.setInt(1, bookId);
-			rs = fetchStmt.executeQuery();
+			resultData = fetchStmt.executeQuery();
+			if (resultData.next()) {
+
+				Book book = new Book(resultData.getInt("BookId"), resultData.getString("Title"),
+						resultData.getString("Author"), resultData.getString("Category"),
+						resultData.getString("Status").charAt(0), resultData.getString("Availability").charAt(0));
+			
+				return book;
+			}
 		}
 		catch (Exception e) {
 			 throw new Exception("error while retriving book by id");
 		}
-			return rs;
+			return null;
 		
 	}
 
@@ -98,18 +107,18 @@ public class BookDAO extends sqlQueryStore {
 	
 	
 	
-	public boolean insertIntoBookLog(Connection conn,ResultSet rs) throws Exception
+	public boolean insertIntoBookLog(Connection conn,Book book) throws Exception
 	{
-		if (rs.next()) {
+		if (book !=null) {
 			
 			String logSQL = insertIntoBookLog;
 			try (PreparedStatement logStmt = conn.prepareStatement(logSQL)) {
-				logStmt.setInt(1, rs.getInt("BookId"));
-				logStmt.setString(2, rs.getString("Title"));
-				logStmt.setString(3, rs.getString("Author"));
-				logStmt.setString(4, rs.getString("Category"));
-				logStmt.setString(5, rs.getString("Status"));
-				logStmt.setString(6, rs.getString("Availability"));
+				logStmt.setInt(1, book.getBookId());
+				logStmt.setString(2, book.getTitle());
+				logStmt.setString(3, book.getAuthor());
+				logStmt.setString(4, book.getCategory());
+				logStmt.setString(5, String.valueOf(book.getStatus()));
+				logStmt.setString(6, String.valueOf( book.getAvailability()));
 				return logStmt.execute();
 			} catch (Exception e) {
 				e.printStackTrace();

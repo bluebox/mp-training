@@ -1,5 +1,6 @@
 package com.library.dao;
 
+import com.library.DaoInterface.IssueRecordDAOInterface;
 import com.library.domain.IssueRecord;
 import com.library.sqlQueryLoader.sqlQueryStore;
 import com.library.util.DB;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IssueRecordDAO extends sqlQueryStore{
+public class IssueRecordDAO extends sqlQueryStore implements IssueRecordDAOInterface{
 
     public List<IssueRecord> getAllRecords(Connection conn) {
         List<IssueRecord> records = new ArrayList<>();
