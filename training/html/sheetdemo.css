@@ -1,18 +1,44 @@
 p{
     color:violet;
 }
-h1{
-    color:indigo;
-}
+
 h2{
     color: blue;
 }
 h3{
     color:green;
 }
-h4{
-    color:red;
-}
+
 body{
     background-color: antiquewhite;
+    transition:background-color 2s ; 
+}
+
+h3:hover{
+    color:darkgreen
+}
+h2:hover{
+    color:cornflowerblue
+}
+
+h1{
+    display:inline-block;
+    color:indigo;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+h1:hover{
+     color:darkslateblue;
+     transform: translate(150%,175%);
+}
+
+h4 {
+    display: inline-block;
+     color:red;
+    transition: transform 0.8s ease, color 0.2s ease;
+}
+
+h4:hover {
+    color: brown;
+    transform: translate(100%, 60%);
 }

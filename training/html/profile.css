@@ -1,0 +1,22 @@
+
+.card {
+  max-width: 300px;
+  margin: auto;
+  padding: 1em;
+  background: #f9f9f9;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.avatar {
+  width: 100px;
+  border-radius: 50%;
+}
+.socials a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #0077cc;
+}
+.socials a:hover {
+  text-decoration: underline;
+}

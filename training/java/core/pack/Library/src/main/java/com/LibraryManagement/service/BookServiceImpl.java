@@ -1,8 +1,13 @@
 package Library.src.main.java.com.LibraryManagement.service;
 
 import java.util.List;
+
+//import com.sun.jdi.connect.spi.Connection;
+import java.sql.*;
 import Library.src.main.java.com.LibraryManagement.dao.BookDAO;
+import Library.src.main.java.com.LibraryManagement.dao.BookDAOImpl;
 import Library.src.main.java.com.LibraryManagement.model.*;
+import Library.src.main.java.com.LibraryManagement.util.DBConnection;
 
 public class BookServiceImpl implements BookService {
 
@@ -16,10 +21,25 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void addBook(Book book) throws Exception {
-        if (book == null || book.getTitle() == null || book.getAuthor() == null) {
-            throw new IllegalArgumentException("Book title and author cannot be null");
+        if (book == null || book.getTitle() == null || book.getAuthor() == null || book.getCategory()==null) {
+            throw new IllegalArgumentException("Book title  author and category cannot be null");
         }
-        bookDAO.addBook(book);
+        Connection conn = null;
+        try {
+            conn = (Connection) DBConnection.getConnection();
+            ((java.sql.Connection) conn).setAutoCommit(false);
+            bookDAO.addBook(book);
+            ((java.sql.Connection) conn).commit();
+        } catch (Exception e) {
+            if (conn != null) ((java.sql.Connection) conn).rollback();
+            throw e;
+        } finally {
+            if (conn != null) {
+                ((java.sql.Connection) conn).setAutoCommit(true);
+                conn.close();
+            }
+        }
+       // bookDAO.addBook(book);
     }
 
     @Override

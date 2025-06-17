@@ -1,0 +1,32 @@
+
+.header {
+  background: linear-gradient(#2193b0, #6dd5ed);
+  color: white;
+  padding: 20px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+}
+.hero {
+  text-align: center;
+  margin-top: 50px;
+}
+.cta {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: white;
+  color: #2193b0;
+  border-radius: 5px;
+}

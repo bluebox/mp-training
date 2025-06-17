@@ -5,8 +5,8 @@ public class Book {
     private String title;
     private String author;
     private String category;
-    private char status;      // 'A' or 'I'
-    private char availability;// 'A' or 'I'
+    private char status;      // 'Active' or 'Inactive'
+    private char availability;// 'Available' or 'Issued'
 	public int getBookId() {
 		return bookId;
 	}

@@ -20,21 +20,26 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button addBookBtn = new Button("Add Book");
+        Button updateBookBtn=new Button("Update Book");
+        Button updateBookAvail=new Button("Update Book Availability");
         Button addMemberBtn = new Button("Add Member");
         Button issueBookBtn = new Button("Issue Book");
         Button returnBookBtn = new Button("Return Book");
         Button viewBooksBtn = new Button("View Books");
         Button viewMembersBtn = new Button("View Members");
+        
 
         // Use lambda to launch windows
         addBookBtn.setOnAction(e -> openWindow(stage -> new AddBookUI().start(stage)));
+        updateBookBtn.setOnAction(e -> openWindow(stage -> new UpdateBookUI().start(stage)));
+        updateBookAvail.setOnAction(e -> openWindow(stage -> new UpdateBookAvailUI().start(stage)));
         addMemberBtn.setOnAction(e -> openWindow(stage -> new AddMemberUI().start(stage)));
         issueBookBtn.setOnAction(e -> openWindow(stage -> new IssueBookUI().start(stage)));
         returnBookBtn.setOnAction(e -> openWindow(stage -> new ReturnBookUI().start(stage)));
         viewBooksBtn.setOnAction(e -> openWindow(stage -> new ViewBooksUI().start(stage)));
         viewMembersBtn.setOnAction(e -> openWindow(stage -> new ViewMembersUI().start(stage)));
 
-        VBox root = new VBox(10, addBookBtn, addMemberBtn, issueBookBtn, returnBookBtn, viewBooksBtn, viewMembersBtn);
+        VBox root = new VBox(10, addBookBtn,updateBookBtn,updateBookAvail, addMemberBtn, issueBookBtn, returnBookBtn, viewBooksBtn, viewMembersBtn);
         root.setPadding(new javafx.geometry.Insets(20));
 
         primaryStage.setTitle("Library Management System");

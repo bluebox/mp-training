@@ -45,6 +45,7 @@ public class IssueRecord {
 	public void setReturnDate(LocalDate returnDate) {
 		this.returnDate = returnDate;
 	}
+	
 	public IssueRecord(int issueId, int bookId, int memberId, char status, LocalDate issueDate, LocalDate returnDate) {
 		super();
 		this.issueId = issueId;

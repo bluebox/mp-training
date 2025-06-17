@@ -1,0 +1,24 @@
+
+.pricing {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 50px;
+}
+.plan {
+  border: 1px solid #ccc;
+  padding: 2em;
+  width: 200px;
+  text-align: center;
+}
+.popular {
+  background-color: #f0f8ff;
+  border: 2px solid #2193b0;
+}
+button {
+  background-color: #2193b0;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-top: 10px;
+}
