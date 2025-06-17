@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.ViewAllIssuedBooksController"
+      spacing="10" style="-fx-padding: 20;">
+
+    <Label text="Issued Books"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <TableView fx:id="issueTable" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="colIssueId" text="Issue ID"/>
+            <TableColumn fx:id="colBookId" text="Book ID"/>
+            <TableColumn fx:id="colMemberId" text="Member ID"/>
+            <TableColumn fx:id="colStatus" text="Status"/>
+            <TableColumn fx:id="colIssueDate" text="Issue Date"/>
+            <TableColumn fx:id="colReturnDate" text="Return Date"/>
+        </columns>
+    </TableView>
+</VBox>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.MainMenuController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 40;">
+    
+    <Label text="Library Management System"
+           style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-padding:0 0 100 0; -fx-text-fill:skyblue;" />
+
+    <Button text="Add Book" onAction="#openAddBook"/>
+    <Button text="View Books" onAction="#openViewBooks"/>
+    <Button text="Add Member" onAction="#openAddMember"/>
+    <Button text="View Members" onAction="#openViewMembers"/>
+    <Button text="Issue Book" onAction="#openIssueBook"/>
+    <Button text="Return Book" onAction="#openReturnBook"/>
+    <Button text="View IssuedBooks" onAction="#openViewAllIssuedBooks"/>
+</VBox>
