@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.medplus.controller.ReturnBookViewController">
+    <Label text="Return Book"/>
+    <TextField fx:id="issueIdField" promptText="Issue ID"/>
+    <Button text="Return Book" onAction="#handleReturnBook"/>
+</VBox>

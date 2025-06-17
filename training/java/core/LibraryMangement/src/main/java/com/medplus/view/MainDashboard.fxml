@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.medplus.controller.MainDashboardController" spacing="10" alignment="CENTER">
+    <Label text="Library Dashboard"/>
+    <Button fx:id="addBookBtn" text="Add Book" onAction="#handleNavigation"/>
+    <Button fx:id="viewBooksBtn" text="View Books" onAction="#handleNavigation"/>
+    <Button fx:id="issueBookBtn" text="Issue Book" onAction="#handleNavigation"/>
+    <Button fx:id="returnBookBtn" text="Return Book" onAction="#handleNavigation"/>
+</VBox>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.medplus.controller.IssuedRecordsViewController">
+    <Label text="Issued Records"/>
+    <TableView fx:id="recordTable">
+        <columns>
+            <TableColumn fx:id="bookIdCol" text="Book ID"/>
+            <TableColumn fx:id="memberIdCol" text="Member ID"/>
+            <TableColumn fx:id="issueDateCol" text="Issue Date"/>
+        </columns>
+    </TableView>
+</VBox>
