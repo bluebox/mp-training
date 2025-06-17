@@ -1,0 +1,41 @@
+body{
+    min-height: 800px;
+    border: 10px solid black;
+    display: flex;
+    /* flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; */
+
+    /* gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-evenly; */
+    gap: 10px;
+}
+#box1{
+    /* flex-shrink: 5; */
+    /* align-self: center; */
+    margin-right: auto;
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    background-color: aquamarine;
+    font-size: 40pt;
+    text-align: center;
+
+    flex-shrink: 1;
+    min-width: 100px;
+}
+
+@media(max-width:570px){
+    body{
+        flex-wrap: wrap;
+    }
+
+}
