@@ -1,100 +1,102 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Management App</title>
+    <title>Dynamic Data Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-      const settings = {
-        async: true,
-        crossDomain: true,
-        url: "https://country-state-city-search-rest-api.p.rapidapi.com/allcountries",
-        method: "GET",
-        headers: {
-          "x-rapidapi-host":
-            "country-state-city-search-rest-api.p.rapidapi.com",
-        },
-      };
-
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-      });
-    </script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <form>
-      <label for="name">name:</label><br />
-      <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="enter name"
-        required
-      /><br />
-      <label for="age">age:</label><br />
-      <input
-        type="number"
-        id="age"
-        name="age"
-        placeholder="enter age"
-        min="1"
-        max="100"
-        required
-      /><br />
-
-      <label for="emailid">email id:</label><br />
-      <input
-        type="email"
-        id="emailid"
-        name="emailid"
-        placeholder="enter email"
-        required
-      /><br />
-
-      <label for="mobile">number</label><br />
-      <input
-        type="tel"
-        id="mobile"
-        name="mobile"
-        placeholder="enter number"
-        pattern="[0-9]{10}"
-        maxlength="10"
-        required
-      /><br />
-
-      <label for="branch">Branch</label><br />
-      <input type="radio" id="cse" name="branch" value="CSE" required />
-      <label for="cse">CSE</label><br />
-      <input type="radio" id="eee" name="branch" value="EEE" required />
-      <label for="eee">EEE</label><br />
-      <input type="radio" id="ece" name="branch" value="ECE" required />
-      <label for="ece">ECE</label><br />
-
-      <label>Languages Known:</label><br />
-
-      <input type="checkbox" id="english" name="languages" value="English" />
-      <label for="english">English</label><br />
-
-      <input type="checkbox" id="hindi" name="languages" value="Hindi" />
-      <label for="hindi">Hindi</label><br />
-
-      <input type="checkbox" id="french" name="languages" value="French" />
-      <label for="french">French</label><br />
-
-      <input type="checkbox" id="spanish" name="languages" value="Spanish" />
-      <label for="spanish">Spanish</label><br />
-
-      <label for="state">State:</label><br />
-      <select id="state" name="state" required>
-        <option value="">-- Select State --</option></select
-      ><br />
-
-      <label for="city">City:</label><br />
-      <select id="city" name="city" required>
-        <option value="">-- Select City --</option></select
-      ><br />
-
-      <br />
-      <input type="submit" value="Submit" />
-    </form>
+    <div class="container">
+      <h1>Dynamic Data Management</h1>
+      <!-- Data Entry Form -->
+      <form id="dataForm" autocomplete="off">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter name">
+          <span class="error-message" id="nameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" min="1" max="100" placeholder="Enter age">
+          <span class="error-message" id="ageError"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter email">
+          <span class="error-message" id="emailError"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit number">
+          <span class="error-message" id="phoneError"></span>
+        </div>
+        <div class="form-group">
+          <label>Branch</label>
+          <div>
+            <input type="radio" id="cse" name="branch" value="CSE">
+            <label for="cse">CSE</label>
+            <input type="radio" id="ece" name="branch" value="ECE">
+            <label for="ece">ECE</label>
+            <input type="radio" id="eee" name="branch" value="EEE">
+            <label for="eee">EEE</label>
+          </div>
+          <span class="error-message" id="branchError"></span>
+        </div>
+        <div class="form-group">
+          <label>Languages Known</label>
+          <div>
+            <input type="checkbox" id="english" name="languages[]" value="English">
+            <label for="english">English</label>
+            <input type="checkbox" id="hindi" name="languages[]" value="Hindi">
+            <label for="hindi">Hindi</label>
+            <input type="checkbox" id="french" name="languages[]" value="French">
+            <label for="french">French</label>
+          </div>
+          <span class="error-message" id="languagesError"></span>
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <select id="state" name="state">
+            <option value="">Select State</option>
+          </select>
+          <span class="error-message" id="stateError"></span>
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <select id="city" name="city">
+            <option value="">Select City</option>
+          </select>
+          <span class="error-message" id="cityError"></span>
+        </div>
+        <div class="form-group" style="align-self: center;">
+          <button type="submit" id="addBtn">Add</button>
+        </div>
+      </form>
+      <!-- Search Bar and Entry Count -->
+      <div class="entry-count" id="entryCount">Entries shown: 0</div>
+      <!-- Data Table -->
+      <div class="table-container">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th>Name<br><input type="text" id="searchName" class="col-search" placeholder="Search Name"></th>
+              <th>Age<br><input type="text" id="searchAge" class="col-search" placeholder="Search Age"></th>
+              <th>Email<br><input type="text" id="searchEmail" class="col-search" placeholder="Search Email"></th>
+              <th>Phone Number<br><input type="text" id="searchPhone" class="col-search" placeholder="Search Phone"></th>
+              <th>Branch<br><input type="text" id="searchBranch" class="col-search" placeholder="Search Branch"></th>
+              <th>Languages<br><input type="text" id="searchLanguages" class="col-search" placeholder="Search Languages"></th>
+              <th>State<br><input type="text" id="searchState" class="col-search" placeholder="Search State"></th>
+              <th>City<br><input type="text" id="searchCity" class="col-search" placeholder="Search City"></th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic rows go here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>

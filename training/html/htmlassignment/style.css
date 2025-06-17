@@ -1,0 +1,223 @@
+/* style.css - Full-width, modern, visually appealing styles for the assignment */
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #e0e7ff 0%, #f4f6f8 100%);
+  margin: 0;
+  padding: 0 0 32px 0;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  background: rgba(255,255,255,0.98);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 32px 2vw 24px 2vw;
+  margin: 0;
+}
+
+h1 {
+  text-align: left;
+  color: #2d3a4a;
+  margin-bottom: 24px;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 32px;
+  margin-bottom: 32px;
+  background: #f7faff;
+  border-radius: 10px;
+  padding: 24px 18px 10px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.form-group {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  min-width: 180px;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+select {
+  padding: 10px 12px;
+  border: 1px solid #bfc9d9;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafdff;
+  transition: border 0.2s;
+  margin-bottom: 2px;
+}
+
+input:focus, select:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 0.92em;
+  margin-top: 2px;
+  min-height: 18px;
+}
+
+button[type="submit"], .delete-btn {
+  background: linear-gradient(90deg, #6366f1 60%, #60a5fa 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+}
+
+button[type="submit"]:disabled {
+  background: #b0c4de;
+  cursor: not-allowed;
+}
+
+.delete-btn {
+  background: linear-gradient(90deg, #ef4444 60%, #f87171 100%);
+  margin: 0 4px;
+  padding: 8px 18px;
+  font-size: 0.98rem;
+  border-radius: 6px;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-top: 18px;
+}
+
+table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+th, td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  font-size: 1.04rem;
+}
+
+th {
+  background: #f0f4fa;
+  color: #333;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+tr {
+  transition: background 0.2s;
+}
+
+tr.added {
+  animation: fadeIn 0.5s;
+  background: #e3f2fd;
+}
+
+tr.removed {
+  animation: fadeOut 0.5s forwards;
+}
+
+.col-search {
+  width: 98%;
+  margin-top: 4px;
+  padding: 7px 8px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+  font-size: 0.98rem;
+  background: #fafdff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; height: 0; }
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 10px 1vw;
+  }
+  form {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 4vw 6px 4vw;
+  }
+  .form-group {
+    min-width: 120px;
+  }
+  table {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  .container {
+    padding: 2px 0;
+  }
+  form {
+    padding: 8px 2vw 2px 2vw;
+  }
+  th, td {
+    padding: 7px 3px;
+    font-size: 0.97rem;
+  }
+  .col-search {
+    font-size: 0.93rem;
+    padding: 5px 4px;
+  }
+}
+
+.entry-count {
+  font-size: 1.08em;
+  color: #555;
+  margin-bottom: 10px;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+} 
