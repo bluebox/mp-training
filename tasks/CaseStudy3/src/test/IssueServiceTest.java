@@ -1,0 +1,36 @@
+package test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.model.IssueRecord;
+import com.service.IssueService;
+
+class IssueServiceTest {
+    IssueService issueService;
+
+    @BeforeEach
+    void setUp() {
+        // Initialize IssueService, use a mock or real instance as appropriate
+        issueService = new IssueService();
+    }
+
+    @Test
+    void testNotYetImplemented() {
+        fail("Not yet implemented");
+    }
+
+    @Test
+    void testIssueBook_InvalidInput() {
+        IssueRecord record = null; // or invalid IssueRecord
+        assertThrows(Exception.class, () -> issueService.issueBook(record));
+    }
+
+    @Test
+    void testIssueBook_ValidInput() throws Exception {
+        IssueRecord record = new IssueRecord(0, 1, 1, "2024-01-01", null, false);
+        issueService.issueBook(record);
+        assertTrue(true); // if no exception, test passed
+    }
+} 
