@@ -1,5 +1,62 @@
 #para{
     color:red;
     height: 10px;
-    width: 200px;
+    width: 200pt;
+}
+
+body{
+    background-color: aliceblue;
+}
+
+body input{
+    border: 0.5px solid;
+    height: 25px;
+    width: auto;
+    box-shadow:2px 6.5px rgb(201, 201, 201);
+    padding: auto;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
+#input_fields{
+    border: 1px solid;
+    width: 500px;
+    height: 33px;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.box{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    width:600px;
+    height:200px;
+    background-color: rgb(174, 236, 216);
+}
+
+.box #header{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 3px solid;
+    background-color: aquamarine;
+    /* padding-bottom: ; */
+}
+
+#button{
+    display: flex;
+    justify-content: center;
+    border: 2.3px solid;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(233, 84, 84);
+    
+}
+#button a{
+    padding-top: 7px;
+}
+#button:active{
+    width: 100px;
+    height: 35px;
 }

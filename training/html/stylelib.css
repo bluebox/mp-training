@@ -1,0 +1,36 @@
+.table{
+    margin-top: 20px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 90%;
+    height:1000px;
+    box-sizing: border-box;
+}
+
+.table table{
+    border: 2.5px solid black;
+    border-collapse:collapse ;
+    width: 80%;
+    box-shadow: 10px 10px rgb(202, 214, 231);
+    min-width: 600px;
+
+}
+
+.table td{
+    border: 1px solid black;
+    border-collapse:collapse;
+    text-align: center;
+    padding-bottom: 3px;
+    background-color: rgb(201, 220, 236);
+}
+
+
+.table th{
+    border: 1.5px solid black;
+    border-collapse:collapse;
+    padding: 30px;
+    text-align: center;
+    background-color: rgb(120, 155, 231);
+}
