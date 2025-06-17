@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Management App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      const settings = {
+        async: true,
+        crossDomain: true,
+        url: "https://country-state-city-search-rest-api.p.rapidapi.com/allcountries",
+        method: "GET",
+        headers: {
+          "x-rapidapi-host":
+            "country-state-city-search-rest-api.p.rapidapi.com",
+        },
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      });
+    </script>
+  </head>
+  <body>
+    <form>
+      <label for="name">name:</label><br />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="enter name"
+        required
+      /><br />
+      <label for="age">age:</label><br />
+      <input
+        type="number"
+        id="age"
+        name="age"
+        placeholder="enter age"
+        min="1"
+        max="100"
+        required
+      /><br />
+
+      <label for="emailid">email id:</label><br />
+      <input
+        type="email"
+        id="emailid"
+        name="emailid"
+        placeholder="enter email"
+        required
+      /><br />
+
+      <label for="mobile">number</label><br />
+      <input
+        type="tel"
+        id="mobile"
+        name="mobile"
+        placeholder="enter number"
+        pattern="[0-9]{10}"
+        maxlength="10"
+        required
+      /><br />
+
+      <label for="branch">Branch</label><br />
+      <input type="radio" id="cse" name="branch" value="CSE" required />
+      <label for="cse">CSE</label><br />
+      <input type="radio" id="eee" name="branch" value="EEE" required />
+      <label for="eee">EEE</label><br />
+      <input type="radio" id="ece" name="branch" value="ECE" required />
+      <label for="ece">ECE</label><br />
+
+      <label>Languages Known:</label><br />
+
+      <input type="checkbox" id="english" name="languages" value="English" />
+      <label for="english">English</label><br />
+
+      <input type="checkbox" id="hindi" name="languages" value="Hindi" />
+      <label for="hindi">Hindi</label><br />
+
+      <input type="checkbox" id="french" name="languages" value="French" />
+      <label for="french">French</label><br />
+
+      <input type="checkbox" id="spanish" name="languages" value="Spanish" />
+      <label for="spanish">Spanish</label><br />
+
+      <label for="state">State:</label><br />
+      <select id="state" name="state" required>
+        <option value="">-- Select State --</option></select
+      ><br />
+
+      <label for="city">City:</label><br />
+      <select id="city" name="city" required>
+        <option value="">-- Select City --</option></select
+      ><br />
+
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
