@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.library.domain.IssueRecord;
+import com.library.queries.SQLQueries;
 import com.library.utilities.ConnectionMaker;
 
-public class IssueBookDAO {
+public class IssueBookDAO extends SQLQueries {
 
 	private Connection conn = ConnectionMaker.getConnection();
 
@@ -49,8 +50,8 @@ public class IssueBookDAO {
 		}
 	}
 
-	public boolean returnBook(int bookId, int memberId, String query) throws SQLException {
-		try (PreparedStatement ps = conn.prepareStatement(query)) {
+	public boolean returnBook(int bookId, int memberId, Connection conn) throws SQLException {
+		try (PreparedStatement ps = conn.prepareStatement(updateReturnBook)) {
 			ps.setInt(1, bookId);
 			ps.setInt(2, memberId);
 			int rowsAffected = ps.executeUpdate();
@@ -61,8 +62,8 @@ public class IssueBookDAO {
 		}
 	}
 
-	public boolean logReturn(int bookId, int memberId, String query) {
-		try (Connection conn = ConnectionMaker.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+	public boolean logReturn(int bookId, int memberId, Connection conn ) {
+		try (PreparedStatement ps = conn.prepareStatement(returnIssueLog)) {
 			ps.setInt(1, bookId);
 			ps.setInt(2, memberId);
 			int rowsAffected = ps.executeUpdate();
@@ -73,8 +74,8 @@ public class IssueBookDAO {
 		}
 	}
 
-	public boolean isBookIssuedToMember(int bookId, int memberId, String query) throws SQLException {
-		try (PreparedStatement ps = conn.prepareStatement(query)) {
+	public boolean isBookIssuedToMember(int bookId, int memberId, Connection conn) throws SQLException {
+		try (PreparedStatement ps = conn.prepareStatement(isBookIssued)) {
 			ps.setInt(1, bookId);
 			ps.setInt(2, memberId);
 			try (ResultSet rs = ps.executeQuery()) {
