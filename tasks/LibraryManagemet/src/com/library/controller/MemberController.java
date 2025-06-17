@@ -71,7 +71,6 @@ public class MemberController {
             return;
         }
 
-        // Create Member object
         char gender = selectedToggle.getUserData().toString().charAt(0);
         Member member = new Member(nameText, emailText, Long.parseLong(mobileText), gender, addressText);
 

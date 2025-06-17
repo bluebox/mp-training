@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.library.domain.Member;
-import com.library.queries.SQLQueries;
+import com.library.queries.MemberSQLQueries;
 import com.library.utilities.ConnectionMaker;
 
-public class MemberDAO extends SQLQueries {
+public class MemberDAO extends MemberSQLQueries {
 
 
 	public boolean addMember(Member member,Connection conn) {

@@ -11,7 +11,7 @@ public class AddMemberTest {
 
     @Test
     void validMember() {
-        Member member = new Member("Mani", "mani@test.com", 9876543210L, 'M', "Hyderabad");
+        Member member = new Member("Mani", "manirdy@test.com", 9876543210L, 'M', "Hyderabad");
         boolean result = service.addMember(member);
         assertTrue(result);
     }

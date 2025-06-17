@@ -25,29 +25,5 @@ public class ConnectionMaker {
 		return conn;
 
 	}
-	public static void setAutoCommit(boolean flag)
-	{
-		try {
-			conn.setAutoCommit(flag);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	public static void rollback()
-	{
-		try {
-			conn.rollback();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	public static void commit()
-	{
-		try {
-			conn.commit();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 }

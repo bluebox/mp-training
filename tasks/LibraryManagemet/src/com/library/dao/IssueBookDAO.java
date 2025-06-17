@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.library.domain.IssueRecord;
-import com.library.queries.SQLQueries;
+import com.library.queries.IssueTableSQLQueries;
 import com.library.utilities.ConnectionMaker;
 
-public class IssueBookDAO extends SQLQueries {
 
-	private Connection conn = ConnectionMaker.getConnection();
+public class IssueBookDAO extends IssueTableSQLQueries {
+
+	private final Connection conn = ConnectionMaker.getConnection();
 
 	public boolean isBookAvailable(int bookId) throws SQLException {
 		String sql = "SELECT status, availability FROM book WHERE id = ?";
@@ -83,7 +84,7 @@ public class IssueBookDAO extends SQLQueries {
 			}
 		}
 	}
-
+	
 	public List<IssueRecord> getAllIssuedBooks() throws SQLException {
 		List<IssueRecord> list = new ArrayList<>();
 		String sql = "SELECT * FROM issue_records";
