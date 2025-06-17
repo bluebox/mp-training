@@ -1,0 +1,25 @@
+h1::first-letter
+{
+    font-size: 2em;
+    font-style: italic;
+    color: red;
+}
+p::first-line
+{
+
+}
+p::selection
+{
+    color: white;
+    background-color: black;
+}
+#fruit li::before{
+    content: "check mark";
+    color: red;
+}
+#apple::after{
+    content: "🍎";
+}
+#orange::after{
+    content: "🍊";
+}

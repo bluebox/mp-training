@@ -1,0 +1,21 @@
+#container
+{
+    border: 2px solid;
+}
+#container > p
+{
+    background-color:blue;
+
+}
+/* #container > div > p
+{
+    background-color: red;
+} */
+#container
+{
+    background-color: green;
+}
+#container + p
+{
+    background-color: red;
+}

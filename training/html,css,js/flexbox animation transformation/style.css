@@ -1,0 +1,36 @@
+.container
+{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    /* justify-content: center; */
+    border:10px solid black;
+    height:90vh;
+    /* align-items: baseline; */
+    /* text-align: center; */
+    flex-wrap: wrap;
+    align-content: flex-end;
+    
+}
+.box
+{
+    width:150px;
+    height:150px;
+    /* text-align: center; */
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#box1
+{
+    background-color: red;
+}
+#box2
+{
+    background-color: green;
+}
+#box3
+{
+    background-color: blue;
+}
