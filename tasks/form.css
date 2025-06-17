@@ -1,0 +1,137 @@
+body{
+    background-color:bisque;
+    border-radius:20px 20px 0 0;
+    padding:20px;
+    
+}
+.formdiv{
+    background-color:rgba(145, 131, 86, 0.24);
+    border-radius:20px;
+    padding:20px;
+    margin-left:20vw;
+    margin-right:20vw;
+}
+.formhead{
+    text-align: center;
+    font-size:2rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+}
+#form{
+    padding:10px;
+    padding-left:5vw;
+}
+.inputs_div1{
+    display: flex;
+    flex-direction: row;
+}
+.inputs_div2{
+    display: flex;
+    flex-direction: row;
+}
+label {
+    font-family:monospace;
+    font-size:22px;
+    font-weight:bold;
+}
+input{
+    border-width: 0;
+    font-size:20px;
+    border-radius:5px;
+    padding:5px;
+    margin-bottom:10px;
+}
+table input{
+    border-width: 0;
+    font-size:10px;
+    border-radius:5px;
+    margin-bottom:10px;
+}
+#addBtn{
+    border-radius:5px;
+    border-width:0;
+    background-color:rgb(41, 168, 41);
+    color:white;
+    padding:10px 30px;;
+    font-family:'Courier New', Courier, monospace;
+    font-size:1rem;
+    font-weight:bold;
+    align-self: center;
+    cursor: pointer;
+}
+
+.dataheaddiv{
+    display:flex;
+    flex-direction:row;
+    align-items: center;  
+    justify-content: space-between; 
+}
+.dataheaddiv h1{
+    font-size:2rem;
+}
+.resultcountdiv{
+    background-color: rgb(233, 194, 144);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:5px 15px;
+    border-radius:15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+#detailscount{
+    font-size:25px;
+    font-weight:bold;
+}
+.tablediv{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+   
+}
+table{
+    border:2px  dotted rgba(0, 0, 0, 0.384);
+    width:80vw;
+}
+
+th{
+    padding:10px 20px;
+    border:1px solid rgba(0, 0, 0, 0.247);
+    font-size:20px;
+    font-weight:bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+tr{
+    border:1px solid rgba(0, 0, 0, 0.247);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+td{
+    padding:10px 20px;
+    border:1px solid rgba(0, 0, 0, 0.247);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.action{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+#editBtn{
+    display:flex;
+    flex-direction: column;
+    border-width:0;
+    background-color: transparent;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-weight:bold;
+}
+#deleteBtn{
+    display:flex;
+    flex-direction: column;
+    border-width:0;
+    background-color: transparent;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-weight:bold;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dynamic Data Entry Form</title>
+        <link rel="stylesheet" href="./form.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="formdiv">
+            <h1 class="formhead">Data Entry Form</h1>
+            <form id="form">
+                <div class="inputs_div1">
+                    <div>
+                        <label>Enter Name :</label>
+                        <input type="text" placeholder="Enter name...">
+                    </div>
+                    <div>
+                        <label>Age :</label>
+                        <input type="number" min=6 max=100 placeholder="age">
+                    </div>
+                </div>
+                <div class="inputs_div2">
+                    <div>
+                        <label>Email :</label>
+                        <input type="email" placeholder="Enter email...">
+                    </div>
+                    <div>
+                        <label for="mobile" >Mobile :</label>
+                        <input id="mobile" type="tel" placeholder="Phone number">
+                    </div> 
+                </div>
+                <div>
+                    <label>Branch :</label>
+                    <input type="radio" id="ece" name="branch">
+                    <label for="ece">ECE</label>
+                    <input type="radio" id="cse" name="branch">
+                    <label for="cse">CSE</label>
+                    <input type="radio" id="eee" name="branch">
+                    <label for="eee">EEE</label>
+                    <input type="radio" id="civil" name="branch">
+                    <label for="civil">CIVIL</label>
+                    <input type="radio" id="mech" name="branch">
+                    <label for="mech">MECH</label>
+                </div>
+                <div>
+                    <label>Language :</label>
+                    <input type="checkbox" id="english">
+                    <label for="english">English</label>
+                    <input type="checkbox" id="telugu">
+                    <label for="telugu">Telugu</label>
+                    <input type="checkbox" id="hindi">
+                    <label for="hindi">Hindi</label>
+                    <input type="checkbox" id="french">
+                    <label for="french">French</label>
+                    <input type="checkbox" id="spanish">
+                    <label for="hindi">Spanish</label>
+                    <input type="checkbox" id="urdu">
+                    <label for="french">Urdu</label>  
+                </div>
+                <label for="state">State :</label>
+                <input type="text" id="state">
+                <label for="city">City :</label>
+                <input type="text" id="city">
+                <br>
+                <div><button id="addBtn" type="submit">Add Details</button></div>
+            </form>
+        </div>
+        <hr>
+        <div class="dataheaddiv">
+            <h1>Collected Form Data</h1>
+            <div class="resultcountdiv">
+                <span id="detailscount">4</span>
+                <span>results</span>
+            </div>
+        </div>
+        <div class="tablediv">
+             <table id="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Branch</th>
+                    <th>Language</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+                 <tr>
+                    <th><input id="namesearch"></th>
+                    <th><input id="agesearch"></th>
+                    <th><input id="emailsearch"></th>
+                    <th><input id="branchsearch"></th>
+                    <th><input id="languagesearch"></th>
+                    <th><input id="statesearch"></th>
+                    <th><input id="citysearch"></th>
+                </tr>
+                <tr>
+                    <td>Rakeshram</td>
+                    <td>23</td>
+                    <td>rakeshram@123</td>
+                    <td>ECE</td>
+                    <td>English, Telugu, Hindi</td>
+                    <td>Telangana</td>
+                    <td>Hyderabad</td>
+                    <td class="action">
+                        <button id="editBtn"><i class="fa fa-2x fa-edit"></i>Edit</button>
+                        <button id="deleteBtn"><i class="fa fa-2x fa-trash"></i>Delete</button>
+                    </td>
+                </tr>
+             </table>
+        </div>
+    </body>
+</html>
