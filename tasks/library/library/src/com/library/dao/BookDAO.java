@@ -2,6 +2,7 @@ package com.library.dao;
 
 import com.library.domain.Book;
 import com.library.util.DB;
+import com.library.queryLoader.getSqlQuery;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ public class BookDAO {
 
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
-        String sql = "SELECT * FROM books";
+        String sql = getSqlQuery.getAllBooks;
 
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -37,7 +38,7 @@ public class BookDAO {
     }
 
     public boolean addBook(Book book) {
-        String sql = "INSERT INTO books (Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?)";
+        String sql = getSqlQuery.insertIntoBook;
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 

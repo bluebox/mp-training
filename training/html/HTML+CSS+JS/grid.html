@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            *{
+                color: white;
+                background-color: black;
+            }
+            .container {
+                display: grid;
+                grid-template-areas:
+                    "header header"
+                    "menu content"
+                    "footer footer";
+                grid-template-columns: 1fr 3fr;
+                gap: 5px;
+                background-color: #ffffff;
+                padding: 5px;
+            }
+            div {
+                background-color: rgba(0, 0, 0, 1);
+                padding: 10px;
+            }
+            .header {
+                grid-area: header;
+                text-align: center;
+            }
+            .menu {
+                display:flex;
+                flex-direction: column;
+                grid-area: menu;
+            }
+            .content {
+                grid-area: content;
+            }
+            .footer {
+                text-align: center;
+                grid-area: footer;
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>CSS Grid Layout</h1>  
+        <div class="container">
+            <div class="header">
+                <h2>My Header</h2>
+            </div>
+            <div class="menu">
+                <a href="#">Link 1</a><br>
+                <a href="#">Link 2</a><br>
+                <a href="#">Link 3</a>
+            </div>
+            <div class="content">
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Ridiculus sit nisl laoreet facilisis aliquet. Potenti dignissim litora eget montes rhoncus sapien neque urna. Cursus libero sapien integer magnis ligula lobortis quam ut.</p>
+            </div>
+            <div class="footer">
+                <h4>Footer</h4>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+

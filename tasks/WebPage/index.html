@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <table>
+        <form>
+            <tr>
+                <td>
+                    <label for="name">Name</label>
+                </td>
+                <td>
+                    <input type="text" id="name" name="name"  placeholder="ENTER NAME " required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="age">Age</label>
+                </td>
+                <td>
+                    <input type="number" name="Age" id="age" min="15" max="90" placeholder="ENTER AGE" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email</label>
+                </td>
+                <td>
+                    <input type="email" id="email" name="email" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="mobile">Phone Number</label>
+                </td>
+                <td>
+                    <input type="number" id="mobile" name="mobile" placeholder="ENTER PHONE NUMBER" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="branch">Branch</label>
+                </td>
+                <td>
+                    <input type="radio" name="branch" value="CSE">CSE
+                    <input type="radio" name="branch" value="ECE">ECE
+                    <input type="radio" name="branch" value="EEE">EEE
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="languagesKnown">Languages Known</label>
+                </td>
+                <td>
+                    <input type="checkbox" name="languagesKnown" value="Telugu">Telugu
+                    <input type="checkbox" name="languagesKnown" value="English">English
+                    <input type="checkbox" name="languagesKnown" value="Hindi">Hindi
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="state">State</label>
+                </td>
+                <td>
+                    <!-- api -->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="city">City</label>
+                </td>
+                <td>
+                    <!-- api -->
+                </td>
+            </tr>
+            <tr></tr>
+            <tr colspan="2">
+                <td>
+                    <input type="submit" value="submit" onclick="">
+                </td>
+            </tr>
+        </form>
+    </table>
+    <script src="script.js"></script>
+
+    <table id="showRecords"></table>
+</body>
+</html>

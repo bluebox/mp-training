@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import com.library.services.IssueService;
+import com.library.serviceInterface.IssueServiceInterface;
 
 public class IssueBookController {
 
@@ -28,7 +29,7 @@ public class IssueBookController {
             return;
         }
 
-        IssueService issueService= new IssueService();
+        IssueServiceInterface issueService= new IssueService();
         try {
             issueService.issueBook(Integer.parseInt(bookIdText),Integer.parseInt(memberIdText));
             statusLabel.setText("Book issued successfully");

@@ -1,7 +1,8 @@
 package com.library.controller;
 
 import com.library.domain.IssueRecord;
-import com.library.dao.IssueRecordDAO;
+import com.library.services.IssueService;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,7 +22,7 @@ public class IssuedRecordsController {
     @FXML private TableColumn<IssueRecord, java.time.LocalDate> issueDateCol;
     @FXML private TableColumn<IssueRecord, java.time.LocalDate> returnDateCol;
 
-    private final IssueRecordDAO issueRecordDAO = new IssueRecordDAO();
+    private final IssueService issueService = new IssueService();
 
     @FXML
     public void initialize() {
@@ -32,8 +33,13 @@ public class IssuedRecordsController {
         issueDateCol.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
         returnDateCol.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
 
-        List<IssueRecord> records = issueRecordDAO.getAllRecords();
-        ObservableList<IssueRecord> data = FXCollections.observableArrayList(records);
-        issueTable.setItems(data);
+        List<IssueRecord> records;
+		try {
+			records = issueService.getAllIssuedRecords();
+			ObservableList<IssueRecord> data = FXCollections.observableArrayList(records);
+			issueTable.setItems(data);
+		} catch (Exception e) {
+			System.out.println("no records");
+		}
     }
 }

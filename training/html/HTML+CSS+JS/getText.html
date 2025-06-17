@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <script>
+
+        function getText(){
+            document.getElementById("para").innerHTML="<h2>hello</h2>";
+        }
+        function getName(){
+            document.getElementById("para").innerText="hello! user";
+            <!-- console.log(20); -->
+            var x=131;
+            y=x;
+            console.log(y);
+        }
+        
+    </script>
+    <p id="para"></p>
+    <button id="b1" onclick="getText()" ondblclick="getName()">getText</button>
+    <!-- <button id="b1" onclick="getText(); document.write()" ondblclick="getName()">getText</button> -->
+</body>
+</html>
