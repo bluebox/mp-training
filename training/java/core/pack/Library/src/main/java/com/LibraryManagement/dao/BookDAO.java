@@ -3,7 +3,7 @@
 package Library.src.main.java.com.LibraryManagement.dao;
 import java.sql.SQLException;
 import java.util.List;
-import Library.src.main.java.com.LibraryManagement.model.*;
+import Library.src.main.java.com.LibraryManagement.model.Book;
 
 public interface BookDAO {
     void addBook(Book book) throws SQLException;

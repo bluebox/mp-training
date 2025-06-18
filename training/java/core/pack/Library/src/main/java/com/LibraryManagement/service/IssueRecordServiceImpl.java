@@ -19,7 +19,7 @@ public class IssueRecordServiceImpl implements IssueRecordService {
     public IssueRecordServiceImpl(IssueRecordDAO issueRecordDAO, BookDAO bookDAO) {
         this.issueRecordDAO = issueRecordDAO;
         this.bookDAO = bookDAO;
-//        this.memberDAO=memberDAO;
+       //this.memberDAO=memberDAO;
     }
 
     @Override
@@ -32,14 +32,15 @@ public class IssueRecordServiceImpl implements IssueRecordService {
         if (book.getAvailability() == 'I') {
             throw new IllegalStateException("Book is already issued");
         }
-
+       
         // Create issue record
         IssueRecord issueRecord = new IssueRecord();
         issueRecord.setBookId(bookId);
         issueRecord.setMemberId(memberId);
         issueRecord.setStatus('I');
         issueRecord.setIssueDate(LocalDate.now());
-        issueRecord.setReturnDate(null);
+        issueRecord.setReturnDate(LocalDate.now().plusDays(13));
+
 
         issueRecordDAO.addIssueRecord(issueRecord);
 

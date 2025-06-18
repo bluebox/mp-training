@@ -23,6 +23,7 @@ public class App extends Application {
         Button updateBookBtn=new Button("Update Book");
         Button updateBookAvail=new Button("Update Book Availability");
         Button addMemberBtn = new Button("Add Member");
+        Button updateMemberBtn=new Button("Update Member");
         Button issueBookBtn = new Button("Issue Book");
         Button returnBookBtn = new Button("Return Book");
         Button viewBooksBtn = new Button("View Books");
@@ -34,12 +35,13 @@ public class App extends Application {
         updateBookBtn.setOnAction(e -> openWindow(stage -> new UpdateBookUI().start(stage)));
         updateBookAvail.setOnAction(e -> openWindow(stage -> new UpdateBookAvailUI().start(stage)));
         addMemberBtn.setOnAction(e -> openWindow(stage -> new AddMemberUI().start(stage)));
+        updateMemberBtn.setOnAction(e -> openWindow(stage -> new UpdateMemberUI().start(stage)));
         issueBookBtn.setOnAction(e -> openWindow(stage -> new IssueBookUI().start(stage)));
         returnBookBtn.setOnAction(e -> openWindow(stage -> new ReturnBookUI().start(stage)));
         viewBooksBtn.setOnAction(e -> openWindow(stage -> new ViewBooksUI().start(stage)));
         viewMembersBtn.setOnAction(e -> openWindow(stage -> new ViewMembersUI().start(stage)));
 
-        VBox root = new VBox(10, addBookBtn,updateBookBtn,updateBookAvail, addMemberBtn, issueBookBtn, returnBookBtn, viewBooksBtn, viewMembersBtn);
+        VBox root = new VBox(10, addBookBtn,updateBookBtn,updateBookAvail, addMemberBtn, updateMemberBtn, issueBookBtn, returnBookBtn, viewBooksBtn, viewMembersBtn);
         root.setPadding(new javafx.geometry.Insets(20));
 
         primaryStage.setTitle("Library Management System");

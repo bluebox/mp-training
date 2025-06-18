@@ -3,9 +3,10 @@ package Library.src.main.java.com.LibraryManagement.ui;
 import Library.src.main.java.com.LibraryManagement.service.IssueRecordService;
 import Library.src.main.java.com.LibraryManagement.service.IssueRecordServiceImpl;
 import Library.src.main.java.com.LibraryManagement.dao.IssueRecordDAOImpl;
+import Library.src.main.java.com.LibraryManagement.dao.MemberDAOImpl;
 import Library.src.main.java.com.LibraryManagement.dao.BookDAOImpl;
 import Library.src.main.java.com.LibraryManagement.util.DBConnection;
-
+import gymproject.MemberDAO;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,6 +24,7 @@ public class IssueBookUI {
     public IssueBookUI() {
         try {
             Connection conn = DBConnection.getConnection();
+     
             this.issueService = new IssueRecordServiceImpl(new IssueRecordDAOImpl(conn), new BookDAOImpl(conn));
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize service: " + e.getMessage());

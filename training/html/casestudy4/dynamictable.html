@@ -12,10 +12,9 @@
     <form id="userForm">
         <label>name:
             <input type="text" id="name" pattern="^[A-Za-z]+( [A-Za-z]+)*$"
-                title="Only alphabets and single spaces between words allowed, no leading/trailing spaces" required>
-
-
+                title="Only alphabets and single spaces between words allowed, no leading/trailing spaces" required>                
         </label><br>
+
         <label>Age: <input type="number" id="age" required></label><br>
         <label>Email: <input type="email" id="email" required></label><br>
         <label>Phone: <input type="text" id="phone" pattern="\d{10}" required></label><br>
@@ -26,9 +25,9 @@
         <label><input type="radio" name="branch" value="MECH"> MECH</label><br>
 
         Languages Known:<br>
-        <label><input type="checkbox" name="languages" value="Java"> Java</label>
-        <label><input type="checkbox" name="languages" value="Python"> Python</label>
-        <label><input type="checkbox" name="languages" value="C++"> C++</label><br>
+        <label><input type="checkbox" name="languages" value="Java">Telugu</label>
+        <label><input type="checkbox" name="languages" value="Python">Hindi</label>
+        <label><input type="checkbox" name="languages" value="C++">English</label><br>
 
         <label>State:
             <select id="state" required>
@@ -60,6 +59,7 @@
         </select>
     </label>
     <input type="text" id="searchInput" placeholder="Search...">
+   <p id="recordCount">Showing 0 of 0 record(s)</p>
 
     <div class="table-container">
         <table id="dataTable">
@@ -83,6 +83,7 @@
     <p id="noRecords" style="display: none; color: red;">No records found.</p>
 
     <script src="script.js"></script>
+
 </body>
 
 </html>

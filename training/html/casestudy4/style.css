@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    /* margin: 20px;
     background-color: #f7f9fb;
-    color: #333;
+    color: #333; */
 }
 
 h2,
@@ -53,12 +53,14 @@ button:hover {
     background-color: #2980b9;
 }
 
+ 
 .table-container {
-    max-height: 300px;
+   max-height: 300px;
     overflow-y: auto;
     margin-top: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+
 }
 
 table {
@@ -104,3 +106,22 @@ tr:hover {
         max-width: 100%;
     }
 }
+
+.highlight-green {
+  background-color: #d4edda;
+  transition: background-color 0.5s ease;
+}
+
+
+
+
+/* .fade-in {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+} */
