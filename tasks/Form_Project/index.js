@@ -94,11 +94,13 @@ function insert_form(event){
   record.push(event.target.State.value)
   record.push(event.target.City.value)
   insert_row(record)
-  event.target.reset();  
+  // event.target.reset();  
 
 }
 var form_data=document.getElementById("form_schema");
 form_data.addEventListener("submit",insert_form)
+
+
 
 
 var searchObj=document.getElementById("search").querySelectorAll('input');
@@ -135,4 +137,57 @@ function filter_rows(event) {
         rows[i].style.display = visible ? "" : "none";
     }
 }
+
+window.onload = () => {
+  const stateSelect = document.getElementById("State");
+  const citySelect = document.getElementById("City");
+  let states = {};
+
+  fetch('http://192.168.0.73:32114/partner/get-states?countryCode=IN')
+    .then(response => response.json())
+    .then(data => {
+      if (data.responseStatus === "SUCCESS" && data.response) {
+        states = JSON.parse(data.response);
+        Object.keys(states).forEach(stateName => {
+          const opt = document.createElement("option");
+          opt.value = stateName;
+          opt.textContent = stateName;
+          stateSelect.appendChild(opt);
+        });
+      } else {
+        console.error("Failed to get states", data);
+      }
+    })
+    .catch(error => {
+      console.error("Error fetching states:", error);
+    });
+
+  stateSelect.addEventListener("change", () => {
+    const selectedStateCode = states[stateSelect.value];
+    citySelect.innerHTML = '<option value="">Select City</option>';
+
+    if (!selectedStateCode) return;
+
+    fetch(`http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=${selectedStateCode}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.responseStatus === "SUCCESS" && data.response) {
+          const cities = JSON.parse(data.response);
+          Object.keys(cities).forEach(cityName => {
+            const opt = document.createElement("option");
+            opt.value = cityName;
+            opt.textContent = cityName;
+            citySelect.appendChild(opt);
+          });
+        } else {
+          console.error("Failed to get cities", data);
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching cities:", error);
+      });
+  });
+};
+
+
 
