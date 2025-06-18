@@ -32,7 +32,21 @@
                 <label for="pno">Phone No</label>
                 <input type="text" id="pno" name="pno" pattern="\d{10}" title="Enter a valid Phone Number" required />
             </div>
-
+            <div class="languages">
+                <h3>Languages</h3>
+                <div>
+                    <input type="checkbox" id="telugu" value="Telugu">
+                    <label for="telugu">Telugu</label>
+                </div>
+                 <div>
+                    <input type="checkbox" id="hindi" value="Hindi">
+                    <label for="hindi">Hindi</label>
+                </div>
+                 <div>
+                     <input type="checkbox" id="english" value="English">
+                    <label for="english">English</label>
+                </div>
+            </div>
             <div>
                 <label>Branch</label>
                 <div style="display: flex; justify-content: space-between;">
@@ -53,8 +67,8 @@
                     </select>
                 </div>
                 <div id="cities">
-                    <label for="city">City</label required>
-                    <select name="city" id="city">
+                    <label for="city">City</label>
+                    <select name="city" id="city" required>
                         <option value="" disabled selected>Loading...</option>
                     </select>
                 </div>
@@ -68,26 +82,29 @@
 
     <h2 style="text-align:center;">Submitted Data</h2>
 
-    <div >
-        <table id="dataTable" style="width:100%; text-align:center; overflow-y:auto;">
+    <div class="table-container">
+        <table id="dataTable">
             <thead>
                 <tr>
                     <th><input type="text" placeholder="Filter Name" class="filter" data-col="0"></th>
                     <th><input type="text" placeholder="Filter Age" class="filter" data-col="1"></th>
                     <th><input type="text" placeholder="Filter Email" class="filter" data-col="2"></th>
                     <th><input type="text" placeholder="Filter Phone" class="filter" data-col="3"></th>
-                    <th><input type="text" placeholder="Filter Branch" class="filter" data-col="4"></th>
-                    <th><input type="text" placeholder="Filter State" class="filter" data-col="5"></th>
-                    <th><input type="text" placeholder="Filter City" class="filter" data-col="6"></th>
+                    <th><input type="text" placeholder="Filter languages" class="filter" data-col="4"></th>
+                    <th><input type="text" placeholder="Filter Branch" class="filter" data-col="5"></th>
+                    <th><input type="text" placeholder="Filter State" class="filter" data-col="6"></th>
+                    <th><input type="text" placeholder="Filter City" class="filter" data-col="7"></th>
                 </tr>
                 <tr>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Languages</th>
                     <th>Branch</th>
                     <th>State</th>
                     <th>City</th>
+                    <th>Option</th>
                 </tr>
             </thead>
             <tbody>
