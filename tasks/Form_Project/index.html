@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <title>Form Submission</title>
         <link rel="stylesheet" href="./index.css">
         <meta charset="UTF-8">
     </head>
+
     <body>
+
         <header>
             <h1 id="title">Welcome to StorageTempo</h1>
         </header>
@@ -13,18 +16,52 @@
             <div id="form">
                 <form id="form_schema">
                     <label for="Name">Enter your name:</label>
-                    <input id="Name" type="text" placeholder="Enter your name" required ><br>
-                    <label for="Age">Enter your age: </label>
-                    <input  id="Age" type="number" placeholder="Age" required >
-
-
+                    <input id="Name" type="text" placeholder="Enter your name" required name="Name_1"><br>
+                    <label for="Age" name="Age">Enter your age: </label>
+                    <input id="Age" type="number" placeholder="Age" required min="1" step="1"><br>
+                    <label for="Email">Enter your Email:</label>
+                    <input id="Email" type="email" placeholder="Enter your Email" required name="Email"><br>
+                    <label for="Number">Enter your Phone Number: +91-</label>
+                    <input  id="Number" type="tel" placeholder="Enter your Number" required maxlength="10" minlength="10" pattern="[1-9]{1}[0-9]{9}" name="mobile"><br>
+                    <label>Select your branch</label>
+                    <input type="radio" name="Branch" id="CSE" value="CSE">
+                    <label for="CSE">CSE</label>
+                    <input type="radio" name="Branch" id="AI&DS" value="AI&DS">
+                    <label for="AI&DS">AI&DS</label>
+                    <input type="radio" name="Branch" id="ECE" value="ECE">
+                    <label for="ECE">ECE</label><br>
+                    <label>Languages</label>
+                    <span id="Lang">
+                    <label>
+                    <input type="checkbox" name="English">English
+                </label>
+                <label>
+                    <input type="checkbox" name="Telugu" >Telugu
+                </label>
+                <label>
+                    <input type="checkbox" name="German" >German
+                </label></span><br>
+                <label for="State">State</label>
+                <select id="State" name="State">
+                    <option id="Telangana" value="Telangana">Telangana</option>
+                    <option id="AP" value="AP">AP</option>
+                    <option id="Maharashtra" value="Maharashtra">Maharashtra</option>
+                    <option id="Kerala" value="Kerala">Kerala</option>
+                </select>
+               <label for="City">City</label>
+               <select id="City" name="City">
+                <option id="Hyderabad" value="Hyderabad">Hyderabad</option>
+                <option id="Warangal" value="Warangal">Warangal</option>
+                <option id="Vijayawada" value="Vijayawada">Vijayawada</option>
+                <option id="Karimnagar" value="Karimnagar">Karimnagar</option>
+                <input type="submit" id="submit_button">
+            </select>
                 </form>
-
             </div>
             <br>
             <hr>
-            <div id="Data_Div">
-            <table id="Database" >
+            <div id="Data_Div" >
+            <table id="Database" border="1" >
                 <tr align="center">
                     <th><input type="text"></th>
                     <th><input type="text"></th>
@@ -34,9 +71,7 @@
                     <th><input type="text"></th>
                     <th><input type="text"></th>
                     <th><input type="text"></th>
-
-
-                </tr align="center">
+                </tr>
                 <tr>
                     <th>Name</th>
                     <th>Age</th>
@@ -46,16 +81,14 @@
                     <th>Languages</th>
                     <th>State</th>
                     <th>City</th>
+                    <th>Action</th>
                 </tr>
-
             </table>
             </div>
-
         </main>
         <footer>
           &copy;
         </footer>
         <script src="./index.js"></script>
-
     </body>
 </html>
