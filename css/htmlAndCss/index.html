@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+        @keyframes spinner {
+            from{
+                transform: rotate(0);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .spinner{
+           animation: spinner 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <input type="radio" name="gender" id="male">
+    <label for="male">male</label><br>
+    <input type="radio" name="gender" id="female">
+    <label for="female">female</label><br>
+    <input type="radio" name="gender" id="other">
+     <label for="other">other</label>
+     <br><br>
+     <select name="country" id="">
+         <option value="india">india</option>
+         <option value="aus">aus</option>
+     </select>
+     <br><br>
+     <input type="checkbox" id="val">
+     <label for="val">valjd</label>
+     <input type="checkbox" id="valjsd">
+     <label for="valjsd">fdo</label>
+     <div>
+         <div class="spinner"style="width: 96px;height: 96px;border-radius: 50%; border: 10px solid black; border-top-color:blue;">
+         </div>
+     </div>
+</body>
+</html>

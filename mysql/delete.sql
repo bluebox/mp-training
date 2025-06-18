@@ -1,0 +1,3 @@
+-- delete from student where studentId=1;
+-- select * from student
+-- delete from student where school="basar"

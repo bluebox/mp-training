@@ -1,0 +1,18 @@
+-- alter table student modify studentId int 
+-- show keys from student 
+-- alter table student drop primary key
+-- show keys from student 
+-- alter table student add constraint primary key(studentId)
+-- show keys from student 
+-- alter tabel student add constraint fk foreign key(studentId) references employee(studentId)
+-- alter table student rename students
+-- show tables
+-- alter table students change age ages int
+-- select * from students
+-- alter table students change ages age int	
+-- alter table students rename student
+-- alter table student add column teacher varchar(200)
+-- alter table student drop teacher
+-- SHOW CREATE TABLE student;
+-- alter table student add constraint u unique (studentId)
+show create table student

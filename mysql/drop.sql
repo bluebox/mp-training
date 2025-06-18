@@ -1,0 +1,4 @@
+-- drop database student
+-- drop table student
+-- completely deletes the all and also the structure of the table or database
+-- alter table student drop teacher

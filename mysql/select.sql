@@ -1,0 +1,9 @@
+-- select * from student
+-- select * from student where studentId=1
+-- select * from student order by studentId desc
+-- select count(age) as no_of_people_with_same_age from student group by age
+-- select age from student group by studentId
+-- select sum(age) from student group by age
+-- select min(name) from student
+-- select max(name) from student
+-- select avg(age) from student group by age

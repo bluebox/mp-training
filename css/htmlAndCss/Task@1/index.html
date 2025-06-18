@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Management</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <form id="userForm">
+        <div class="form-div">
+            <h1 style="text-align: center">Details Form</h1>
+
+            <div class="input">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" pattern="[a-zA-Z ]+" title="Enter a valid name" required />
+            </div>
+
+            <div class="input">
+                <label for="age">Age</label>
+                <input type="text" id="age" name="age" pattern="^[0-9]+$" title="Enter a valid age" required />
+            </div>
+
+            <div class="input">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="input">
+                <label for="pno">Phone No</label>
+                <input type="text" id="pno" name="pno" pattern="\d{10}" title="Enter a valid Phone Number" required />
+            </div>
+
+            <div>
+                <label>Branch</label>
+                <div style="display: flex; justify-content: space-between;">
+                    <div><input type="radio" name="branch" id="cse" value="CSE" required /><label for="cse">CSE</label>
+                    </div>
+                    <div><input type="radio" name="branch" id="ece" value="ECE" /><label for="ece">ECE</label></div>
+                    <div><input type="radio" name="branch" id="mech" value="MECH" /><label for="mech">MECH</label></div>
+                    <div><input type="radio" name="branch" id="civil" value="CIVIL" /><label for="civil">CIVIL</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slt">
+                <div>
+                    <label for="state">State</label>
+                    <select name="state" id="state" required>
+                        <option value="" disabled selected>Loading...</option>
+                    </select>
+                </div>
+                <div id="cities">
+                    <label for="city">City</label required>
+                    <select name="city" id="city">
+                        <option value="" disabled selected>Loading...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btn">
+                <button type="submit" id="button">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <h2 style="text-align:center;">Submitted Data</h2>
+
+    <div >
+        <table id="dataTable" style="width:100%; text-align:center; overflow-y:auto;">
+            <thead>
+                <tr>
+                    <th><input type="text" placeholder="Filter Name" class="filter" data-col="0"></th>
+                    <th><input type="text" placeholder="Filter Age" class="filter" data-col="1"></th>
+                    <th><input type="text" placeholder="Filter Email" class="filter" data-col="2"></th>
+                    <th><input type="text" placeholder="Filter Phone" class="filter" data-col="3"></th>
+                    <th><input type="text" placeholder="Filter Branch" class="filter" data-col="4"></th>
+                    <th><input type="text" placeholder="Filter State" class="filter" data-col="5"></th>
+                    <th><input type="text" placeholder="Filter City" class="filter" data-col="6"></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Branch</th>
+                    <th>State</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script src="states.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

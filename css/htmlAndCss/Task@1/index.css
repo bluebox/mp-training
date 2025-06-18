@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 50px;
+  background-color: rgb(223, 222, 213);
+}
+
+.form-div {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+}
+
+.input {
+  margin-bottom: 15px;
+}
+
+.input label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.slt {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}   
+
+.slt div {
+  width: 48%;
+}
+.slt #cities{
+    display: flex;
+    justify-content: end;
+}
+table {
+  margin-top: 30px;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #333;
+}
+
+th, td {
+  padding: 10px;
+}
+#state{
+    max-width: 100px;
+}
+#city{
+    max-width: 100px;
+}
+#dataTable{
+    background-color: white;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+}
+#button{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(126, 201, 219);
+}
+#button:hover{
+    padding: 11px;
+    transition: ease-in-out;
+    cursor: pointer;
+}

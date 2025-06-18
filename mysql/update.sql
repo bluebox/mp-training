@@ -1,0 +1,4 @@
+-- update student set school="zphs" where studentId=1
+-- select * from student
+-- update student set school='basar' where school='zphs';
+-- select * from student

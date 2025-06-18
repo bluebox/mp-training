@@ -1,0 +1,2 @@
+-- truncate table student
+-- deletes the data but not the structure of that table

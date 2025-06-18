@@ -1,0 +1,13 @@
+-- inner join or join retrieve all the data which is common in both tables 
+-- select * from student a
+-- join enrollments b on a.studentId=b.student_id
+-- left join retreieve the left table and common elements
+-- select * from student a 
+-- left join enrollments b on a.studentId=b.student_id 
+-- right join retrieve the right table data and common
+-- select * from student a 
+-- right join enrollments b on a.studentId=b.student_id 
+-- natural join
+-- select * from student natural join enrollments 
+--  self join retrieve and maps to within the same table
+-- select b.name,a.name from manager a join manager b on a.emp_id=b.manager_id 
