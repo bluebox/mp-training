@@ -1,36 +1,57 @@
-.table{
-    margin-top: 20px;
-    display: block;
-    justify-content: center;
-    align-items: center;
+.table {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 100%;
     border: 1px solid black;
-    width: 90%;
-    height:1000px;
     box-sizing: border-box;
+    overflow-x: auto;
+    background-color: #f9f9f9;
 }
 
-.table table{
-    border: 2.5px solid black;
-    border-collapse:collapse ;
-    width: 80%;
-    box-shadow: 10px 10px rgb(202, 214, 231);
-    min-width: 600px;
 
+.table table {
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 800px; 
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.table td{
+.table th, .table td {
     border: 1px solid black;
-    border-collapse:collapse;
     text-align: center;
-    padding-bottom: 3px;
+    padding: 8px 10px;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.table th {
+    background-color: rgb(120, 155, 231);
+    font-weight: bold;
+}
+
+.table td {
     background-color: rgb(201, 220, 236);
 }
 
 
-.table th{
-    border: 1.5px solid black;
-    border-collapse:collapse;
-    padding: 30px;
-    text-align: center;
-    background-color: rgb(120, 155, 231);
+input.invalid {
+    border-color: red;
+    background-color: #ffe5e5;
+}
+
+
+.action-btn {
+    margin: 2px;
+    padding: 5px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4d90fe;
+    color: white;
+}
+
+.action-btn:hover {
+    background-color: #2b6cd4;
 }

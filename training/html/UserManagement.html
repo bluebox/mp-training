@@ -10,19 +10,19 @@
                 <h2>Users</h2>
                 <form id = "userForm">
                     <label for="Name">Name</label>
-                    <input id="name" name="name"><br>
+                    <input id="name" name="name" required><br>
                     <label for="age">Age</label>
-                    <input id="age" name = "age"><br>
+                    <input id="age" name = "age" required><br>
                     <label for="email">Email</label>
-                    <input id="email" name="email" type="email"><br>
+                    <input id="email" name="email" type="email" required><br>
                     <label for="phone">Phone Number</label>
-                    <input id="phone" name="phone" type="number"><br>
+                    <input id="phone" name="phone" type="number" required><br>
                     <label for="branch">Branch</label><br>
-                    <input type="radio" id="cse" name="branch" value="CSE">
+                    <input type="radio" id="cse" name="branch" value="CSE" >
                     <label for="CSE">CSE</label>
-                    <input type="radio" id="ece" name="branch" value="ECE">
+                    <input type="radio" id="ece" name="branch" value="ECE" >
                     <label for="ECE">ECE</label>
-                    <input type="radio" id="eee" name="branch" value="EEE">
+                    <input type="radio" id="eee" name="branch" value="EEE" >
                     <label for="EEE">EEE</label>
                     <label for="languages"></label><br>
                     <input type="checkbox" id="english" name="language" value="English">
@@ -32,33 +32,47 @@
                     <input type="checkbox" id="telugu" name="language" value="Telugu">
                     <label for="Telugu">Telugu</label><br>
                     <label for="state">State</label>
-                    <!-- <select id="state">
+                    <select id="state">
                         <option value="">Select State</option>
-                    </select> -->
-                    <input id="state" name="state">
+                    </select>
+                    <!-- <input id="state" name="state" required> -->
                     <label for="city">City</label>
-                    <!-- <select id="city">
+                    <select id="city">
                         <option value="">Select City</option>
-                    </select> -->
-                    <input id="city" name="city">
-                    <button type="submit">Submit</button>
+                    </select>
+                    <!-- <input id="city" name="city" required> -->
+                    <button type="submit" class="submit-buttons">Submit</button>
+                    <button type="button" id = "alter" class="submit-buttons">Alter</button>
 
                 </form>
             </div>
             <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Branch</th>
-                    <th>Languages</th>
-                    <th>State</th>
-                    <th>City</th>
-                </tr>
-                <tr>
-                    
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Name<br><input id="name-search" class="search"></th>
+                        
+                        <th>Age<br><input id="age-search" class="search"></th>
+                        
+                        <th>Email<br><input id="email-search" class="search"></th>
+                        
+                        <th>Phone<br><input id="phone-search" class="search"></th>
+                        
+                        <th>Branch<br><input id="branch-search" class="search"></th>
+                        
+                        <th>Languages<br><input id="lang-search" class="search"></th>
+                        
+                        <th>State<br><input id="state-search" class="search"></th>
+                        
+                        <th>City<br><input id="city-search" class="search"></th>
+                        
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        
+                    </tr>
+                </tbody>
             </table>
         </div>
     </body>
