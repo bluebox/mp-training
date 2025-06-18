@@ -5,6 +5,10 @@ window.onload=function(){
 function loadStates(){
     state = document.getElementById("state");
     state.innerHTML = "";
+    opt=document.createElement("option");
+    opt.textContent="Select A state";
+    opt.style.visibility="hidden";
+    state.appendChild(opt);
     fetch('http://192.168.0.73:32114/partner/get-states?countryCode=IN')
     .then(response => response.json())
     .then(data => {
@@ -18,21 +22,23 @@ function loadStates(){
             });
             state.addEventListener('change',loadCities);
         } else {
-            city.textContent = "Failed to load states.";
+            state.textContent = "Failed to load states.";
         }
     })
     .catch(err => {
         console.error("Error fetching states:", err);
-        city.textContent = "Error loading states.";
+        state.textContent = "Error loading states.";
     });
 }
 function loadCities(){
     city = document.getElementById("city");
     city.innerHTML = "";
-    const sel = document.createElement("select");
-    sel.id = "citySelect";
+    city.disabled=false;
+    opt=document.createElement("option");
+    opt.textContent="Select A city";
+    opt.style.visibility="hidden";
+    city.appendChild(opt);
     st=document.getElementById('state').value;
-    alert(st);
     fetch('http://192.168.0.73:32114/partner/get-cities-for-state?stateCode='+st)
     .then(response => response.json())
     .then(data => {
@@ -42,9 +48,8 @@ function loadCities(){
                 const opt = document.createElement("option");
                 opt.value = code;
                 opt.textContent = name;
-                sel.appendChild(opt);
+                city.appendChild(opt);
             });
-            city.appendChild(sel);
         } else {
             city.textContent = "Failed to load states.";
         }
@@ -54,13 +59,32 @@ function loadCities(){
         city.textContent = "Error loading states.";
     });
 }
-let state=document.getElementById("state").value;
 
 function add(){
     let eName=document.getElementById("name").value;
+    if(eName==""){
+        alert("Name needed");
+        return;
+    }
     let age=document.getElementById("Age").value;
+    if(age==undefined || age==0){
+        alert("Age is required");
+        return;
+    }
+    if(age<15 || age>30){
+        alert("Give a valid number");
+        return;
+    }
     let email=document.getElementById("email").value;
+    if(email==""){
+        alert("Email is required");
+        return;
+    }
     let phno=document.getElementById("phno").value;
+    if(phno==0){
+        alert("Phno is required");
+        return;
+    }
     let update=false;
     for(let i=0;i<localStorage.length;i++){
         let index=localStorage.key(i);
@@ -122,9 +146,27 @@ function deletion(i){
     render();
 }
 function update(i){
-    emp=localStorage.getItem(i);
-    emp.Name=prompt("Enter the name");
-    emp.Age=prompt("Enter the Age");
+    emp=JSON.parse(localStorage.getItem(i));
+    ename=document.getElementById("name");
+    ename.value=emp.Name;
+    age=document.getElementById("Age");
+    age.value=emp.Age;
+    email=document.getElementById("email");
+    email.value=emp.Email;
+    phno=document.getElementById("phno");
+    phno.value=emp.Phoneno;
+    document.querySelectorAll('input[name="branch"]').forEach((x)=>{
+        if(x.value==emp.Branch){
+            x.checked=true;
+        }
+    });
+    document.querySelectorAll('input[name="lang"]').forEach((x)=>{
+        if(emp.Languages.includes(x.value)){
+            x.checked=true;
+        }
+    });
+    document.getElementById("state").value=emp.State;
+    document.getElementById("city").value=emp.City;
 }
 function render(){
     fill=document.getElementById("fill");
@@ -135,6 +177,7 @@ function render(){
     x=document.createElement("th");
     x.style.border="3px solid";
     x.style.padding="3px";
+    x.style.width="800px";
     x.textContent="Name";
     c.appendChild(x);
     x=document.createElement("th");

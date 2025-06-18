@@ -26,7 +26,7 @@
                     <label for="age">Age : </label>
                 </td>
                 <td>
-                    <input type="number" name="age" id="Age" min="20" max="60" style="width: 178px;" required/>
+                    <input type="number" name="age" id="Age" min="15" max="30" style="width: 178px;" required/>
                 </td>
             </tr>
             <tr>
@@ -89,8 +89,10 @@
                 <td>
                     <label for="city">Select the city you are from : </label>
                 </td>
-                <td id="city">
-                    
+                <td>
+                    <select name="city" id="city" disabled>
+                        <option value="" style="visibility: hidden;">Select a City</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -100,7 +102,7 @@
             </tr>
         </table>
     </form>
-    <div id="fill" style="text-align: center; padding-left: 450px;" auto></div>
+    <div id="fill" style="text-align: center; margin-left: 450px; padding: 50px; width: 800px; height: 300px; overflow: scroll;" auto></div>
     <script src="employee.js"></script>
 </body>
 </html>
