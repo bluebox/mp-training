@@ -123,12 +123,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
             form.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
 
+            const label = form.querySelector("input[name='Name']");
+            const old = label.querySelector("p");
+            if(old)
+            {
+                label.removeChild(old);
+            }
+
+            const phlabel = form.querySelector("input[name='phone']");
+            const old1 = label.querySelector("p");
+
+            if(old1)
+            {
+                phlabel.removeChild(old1);
+            }
+
+            const langlabel = form.querySelector("label[for='language']");
+            const old2 = label.querySelector("p");
+            if(old2)
+            {
+                langlabel.removeChild(old2);
+            }
+
             if (!data.name.trim() || data.name.length<3) {
                 if(data.name.length < 3) {
                     const label = document.createElement("p");
                     label.textContent = "Name should be at least 3 characters.";
                     label.style.color = "red";
-                    form.querySelector("label[for='Name']").appendChild(label);
+                    label.style.fontSize = "0.7em";
+                    form.querySelector("div .table .form .name").appendChild(label);
                 }
 
                 form.name.classList.add("invalid");
@@ -143,6 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = false;
             }
             if (!data.phone || data.phone.toString().length !== 10) {
+                if(data.phone.toString().length !== 10)
+                {
+                    const label = document.createElement("p");
+                    label.textContent = "Phone whould be 10 numbers only.";
+                    label.style.color = "red";
+                    label.style.fontSize = "0.7em";
+                    form.querySelector("input[name='phone']").appendChild(label);
+                }
                 form.phone.classList.add("invalid");
                 isValid = false;
             }
@@ -151,6 +182,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = false;
             }
             if (lang.length === 0) {
+                const label = document.createElement("p");
+                label.textContent = "This is a required Field";
+                label.style.color = "red";
+                label.style.fontSize = "0.7em";
+                form.querySelector("label[for='languages']").appendChild(label);
                 form.querySelectorAll('input[name="language"]').forEach(cb => cb.classList.add("invalid"));
                 isValid = false;
             }
