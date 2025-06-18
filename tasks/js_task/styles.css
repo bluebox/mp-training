@@ -1,0 +1,96 @@
+/* General Styles */
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+/* Form Styles */
+.card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  border-color: #86b7fe;
+}
+
+/* Table Styles */
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Animation for row addition/deletion */
+.table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.table tbody tr.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search Section */
+.search-section {
+  position: relative;
+}
+
+#searchCount {
+  font-size: 0.875rem;
+}
+
+/* Invalid Feedback Styling */
+.invalid-feedback {
+  display: none;
+  font-size: 0.875rem;
+  color: #dc3545;
+}
+
+.form-control.is-invalid ~ .invalid-feedback,
+.form-select.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* Delete Button */
+.btn-delete {
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-responsive {
+    border: none;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
