@@ -1,0 +1,18 @@
+.container{
+    display: grid;
+}
+.ab{
+    background-color: blue;
+}
+.ac{
+    background-color: rgb(190, 28, 223);
+}
+.ad{
+    background-color: rgb(233, 150, 26);
+}
+.ae{
+    background-color: rgb(19, 221, 86);
+}
+.af{
+    background-color: rgb(219, 10, 10);
+}

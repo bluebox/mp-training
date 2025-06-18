@@ -1,0 +1,119 @@
+h1{
+    text-align: center;
+}
+h2{
+    text-align: end;
+}
+.t1,th,td{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 5px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.containe{
+    border: 1px solid;
+    border-radius: 20px;
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+    height: auto;
+    background-color: rgb(235, 228, 220);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    border: 1px solid;
+    border-radius: 20px;
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+    height: auto;
+    /* background-color: rgb(235, 228, 220); */
+    background-color: rgb(61, 61, 61);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table{
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 20px;
+    width: 50%;
+    height: auto;
+    /* background-color: rgb(235, 228, 220); */
+    background-color: rgb(63, 63, 63);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+    display: block;
+}
+.t1 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="number"],
+.form select,
+.t1 input[type="text"] {
+    width: 90%;
+    padding: 8px 10px;
+    margin: 6px 0 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border 0.2s;
+}
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form input[type="number"]:focus,
+.t1 input[type="text"]:focus{
+    border: 1.5px solid #4caf50;
+    outline: none;
+    background: #333;
+}
+.form input[type="radio"],
+.form input[type="checkbox"] {
+    accent-color: #4caf50;
+    margin-right: 6px;
+    transform: scale(1.1);
+}
+.form label {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+.form button[type="submit"],
+.form button[type="reset"] {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    margin: 10px 8px 0 0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.form button[type="submit"]:hover,
+.form button[type="reset"]:hover {
+    background: #388e3c;
+}
+

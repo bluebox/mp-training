@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <link rel="stylesheet" href="task.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Registration Form</h1>
+        <div class="form">
+            <form action="" id="myForm">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required>
+                <br>
+                <label for="emai">Email</label>
+                <input type="email" name="" id="email" require>
+                <br>
+                <label for="age">Age</label><br>
+                <input type="number" min="0" id="age" require>
+                <br>
+                <label for="phone">Phone Number</label>
+                <input type="text" name="phone" id="phone" require>
+                <br>
+                <label>Branch</label><br>
+
+                <label for="cse">CSE</label>
+                <input type="radio" name="branch" id="cse" value="cse">
+                <br>
+
+                <label for="ece">ECE</label>
+                <input type="radio" name="branch" id="ece" value="ece">
+                <br>
+
+                <label for="eee">EEE</label>
+                <input type="radio" name="branch" id="eee" value="eee">
+                <br>
+                <label for="language">Languages Know</label>
+                <br>
+                <label for="">English</label>
+                <input type="checkbox" name="language" id="english">
+                 <br>
+                <label for="">Hindi</label>
+                <input type="checkbox" name="language" id="hindi">
+                 <br>
+                <label for="">Telugu</label>
+                <input type="checkbox" name="language" id="telugu"> <br>
+                <label for="">French</label>
+                <input type="checkbox" name="language" id="french">
+                <br>
+                <label for="state">State</label><br>
+                <select id="state" name="state" required>
+                    <option value="">Select State</option>
+                </select>
+                <br>
+
+                <label for="city">City</label><br>
+                <select id="city" name="city" required>
+                    <option value="">Select City</option>
+                </select>
+                <br>
+                <button type="submit">Submit</button>
+                <button type="reset">Clear</button>
+            </form>
+        </div>
+        <div class="table">
+            <h1>Students Data</h1>
+            <h2 id="entries"></h2>
+            <table class="t1">
+                <tr>
+                    <th><input type="text" placeholder="Search Name" onkeyup="filterTable(0, this.value)"></th>
+                    <th><input type="text" placeholder="Search Email" onkeyup="filterTable(1, this.value)"></th>
+                    <th><input type="text" placeholder="Search Age" onkeyup="filterTable(2, this.value)"></th>
+                    <th><input type="text" placeholder="Search Phone" onkeyup="filterTable(3, this.value)"></th>
+                    <th><input type="text" placeholder="Search Branch" onkeyup="filterTable(4, this.value)"></th>
+                    <th><input type="text" placeholder="Search Languages" onkeyup="filterTable(5, this.value)"></th>
+                    <th><input type="text" placeholder="Search State" onkeyup="filterTable(6, this.value)"></th>
+                    <th><input type="text" placeholder="Search City" onkeyup="filterTable(7, this.value)"></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Phone Number</th>
+                    <th>Branch</th>
+                    <th>Languages Know</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="task.js"></script>
+</body>
+</html>

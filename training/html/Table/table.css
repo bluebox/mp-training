@@ -1,0 +1,49 @@
+.t1,th,td{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.t2,th,td{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    background-color: aqua;
+}
+
+.t3,th,td{
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    background-color: yellow;
+}
+
+th,td{
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+    background-color: blanchedalmond;
+}
+
+.t5,th,td{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: white;
+}
+
+h1{
+    /* text-align: center; */
+    color: blue;
+    text-decoration: dotted;
+}

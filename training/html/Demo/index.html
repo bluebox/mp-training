@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Search in Table</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+    #searchInput {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Search by Name</h2>
+<input type="text" id="searchInput" placeholder="Type a name...">
+
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Doe</td>
+      <td>john@example.com</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <td>Jane Smith</td>
+      <td>jane@example.com</td>
+      <td>Los Angeles</td>
+    </tr>
+    <tr>
+      <td>Mike Johnson</td>
+      <td>mike@example.com</td>
+      <td>Chicago</td>
+    </tr>
+    <tr>
+      <td>Emily Davis</td>
+      <td>emily@example.com</td>
+      <td>Houston</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const table = document.getElementById('dataTable');
+  const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+  searchInput.addEventListener('keyup', function() {
+    const filter = searchInput.value.toLowerCase();
+    for (let row of rows) {
+      const nameCell = row.getElementsByTagName('td')[0];
+      const nameText = nameCell.textContent.toLowerCase();
+      row.style.display = nameText.includes(filter) ? '' : 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

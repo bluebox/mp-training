@@ -1,0 +1,17 @@
+.form{
+    border: 1px solid;
+    border-radius: 20px;
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+    height: auto;
+    background-color: rgb(235, 228, 220);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label,input{
+    padding: 10px;
+    margin: 5px;
+    
+}

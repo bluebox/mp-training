@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function getData(){
+            let num = document.getElementById("num").value;
+            document.getElementById("output").textContent = "Counter : "+num;
+        }
+        // alert("num is : "+num);
+        function increment(){
+                let num = document.getElementById("num").value;
+            // return num+1;
+                    document.getElementById("output").textContent = "Counter : "+num;
+
+        }
+
+        function decrement(){
+            // return num-1;
+                            let num = document.getElementById("num").value;
+
+                    document.getElementById("output").textContent = "Counter : "+num;
+
+        }
+        document.getElementById("output").textContent = "Counter : "+num;
+    </script>
+</head>
+<body>
+    <div class="main">
+        <input type="number" name="" id="num" required placeholder="Enter number">
+        <br>
+        <button onclick="getData()">Submit</button>
+        <br>
+        <button onclick="decrement()">-</button>
+        <h1 id="output"></h1>
+        <button onclick="increment()">+</button>
+    </div>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Get Input Data</title>
+</head>
+<body>
+    <label for="myInput">Enter your name:</label>
+    <input type="text" id="myInput" value="Default Name">
+    <button onclick="getData()">Get Data</button>
+
+    <p id="output"></p>
+
+    <script>
+        function getData() {
+            // Get the input element by its ID
+            const inputElement = document.getElementById('myInput');
+
+            // Get the value of the input element
+            const inputValue = inputElement.value;
+
+            // Display the value (e.g., in a paragraph)
+            document.getElementById('output').textContent = 'Hello, ' + inputValue + '!';
+        }
+    </script>
+</body>
+</html> -->
