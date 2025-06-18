@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8"
+      fx:controller="controller.ReturnController" spacing="10">
+     <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+     <Label text="Issue ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="issueIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <Label text="Book ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="bookIdField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Button text="Return Book" onAction="#handleConfirmReturn"
+</VBox>
