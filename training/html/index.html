@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">Registration Form</h1>
+    <form id="dataForm">
+        <label>Name: <input type="text" id="name" required /></label>
+        <label>Age: <input type="number" id="age" required/></label>
+        <label>Email: <input type="email" id="email" required/></label>
+        <label>Phone: <input type="text" id="phone" maxlength="10" required/></label>
+
+        <label>Branch:
+            <input type="radio" name="branch" value="CSE" required> CSE
+            <input type="radio" name="branch" value="ECE" required> ECE
+            <input type="radio" name="branch" value="EEE" required> EEE
+        </label>
+
+        <label >Languages Known:
+            <input type="checkbox" name="language" value="English" /> English
+            <input type="checkbox" name="language" value="Hindi" /> Hindi
+            <input type="checkbox" name="language" value="Telugu" /> Telugu
+        </label>
+        <label>Country:
+            <select class="country">
+                <option value="">Select Country</option>
+            </select>
+        </label>
+
+        <label>State:
+            <select class="state">
+                <option value="">Select State</option>
+            </select>
+        </label>
+
+        <label>City:
+            <select class="city">
+                <option value="">Select City</option>
+            </select>
+        </label>
+
+        <button type="submit" id="addBtn" disabled>Add</button>
+        <p id="formError" class="error"></p>
+    </form>
+
+    <h3>Search:</h3>
+    <input type="text" id="searchInput" placeholder="Search..." />
+    <p id="entryCount">Entries: 0</p>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Branch</th>
+                <th>Languages</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <p id="noResults" class="hidden">No results found.</p>
+
+    <script src="index.js"></script>
+</body>
+</html>
