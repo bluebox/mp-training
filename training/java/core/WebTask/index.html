@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h1>Dynamic Form</h1>
+
+    <div class="formDiv">
+        <form class="form">
+            <label for="nameField">Name<span class="required-star">*</label>
+            <input type="text" placeholder="Name" id="nameField"
+             required minlength="3" pattern="^[a-zA-Z ]*$"><br>
+            <p class="error-message" id="username-error"></p>
+            <label>Age<span class="required-star">*</label>
+            <input type="number" placeholder="Age" id="ageField"><br>
+            <label>Email<span class="required-star">*</label>
+            <input type="email" placeholder="Email" id="emailField"><br>
+            <label>Phone<span class="required-star">*</label>
+            <input type="text" placeholder="Phone" id="mobileField"><br>
+
+            <label>Branch<span class="required-star">*</label><br>
+            <div class="group-inline"><input type="radio" id="branch1" name="branch" value="CSE">
+                <label for="branch1">CSE</label><br>
+
+                <input type="radio" id="branch2" name="branch" value="ECE">
+                <label for="branch2">ECE</label><br>
+
+                <input type="radio" id="branch3" name="branch" value="EEE">
+                <label for="branch3">EEE</label><br>
+            </div>
+
+
+            <label>Languages<span class="required-star">*</label><br>
+            <div class="group-inline">
+                <input type="checkbox" id="lang1" name="language" value="English">
+                <label for="lang1">English</label><br>
+                <input type="checkbox" id="lang2" name="language" value="Hindi">
+                <label for="lang2">Hindi</label><br>
+                <input type="checkbox" id="lang3" name="language" value="Telugu">
+                <label for="lang3">Telugu</label><br>
+            </div>
+
+
+            <!-- <label>State</label>
+            <input type="text" id="stateName" placeholder="State"><br>
+            <label>City</label>
+            <input type="text" id="cityName" placeholder="City"><br> -->
+            <label for="stateSelect">State<span class="required-star">*</label>
+            <select id="stateSelect">
+                <option value="">Select State</option>
+            </select><br>
+
+            <label for="citySelect">City<span class="required-star">*</label>
+            <select id="citySelect" disabled>
+                <option value="">Select City</option>
+            </select><br>
+
+            <div>
+                <button type="reset" class="s1" id="clearButton">Reset</button>
+                <button type="submit" class='s' value="Submit" onclick="handleSubmit(event)">Submit</button>
+            </div>
+
+
+        </form>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+
+    <section class="searchBar">
+        <div id="input-group">
+            <label for="srcCol">Search by:</label>
+            <select id="srcCol">
+                <option value="0" checked>name</option>
+                <option value="1">Age</option>
+                <option value="2">email</option>
+                <option value="3">Phone</option>
+                <option value="4">Branch</option>
+                <option value="5">Language</option>
+                <option value="6">State</option>
+                <option value="7">City</option>
+            </select>
+            <input type="search" id="searchBx" placeholder="Type Here..." />
+        </div>
+
+
+
+        <p id="result"></p>
+    </section>
+
+    <div id="tableBox">
+        <table class="ourTable" id="tble">
+            <thead>
+                <tr id="header">
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Branch</th>
+                    <th>Language</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr class="no-data">
+                    <td colspan="9" style="text-align:center; color: gray;">No data available</td>
+                </tr> -->
+                <td colspan="9"></td>
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="worker.js"> </script>
+
+</body>
+
+</html>
