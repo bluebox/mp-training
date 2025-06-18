@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form with Table and Filters</title>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f0f0f5;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #218838;
+    }
+    table {
+      width: 100%;
+      background: #fff;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-update {
+      background-color: #ffc107;
+      color: white;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    #customSearch {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .dataTables_wrapper {
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="userForm">
+  <input type="hidden" id="editIndex">
+  <label>Name:</label>
+  <input type="text" id="name" maxlength="50" required>
+
+  <label>Age:</label>
+  <input type="text" id="age" required>
+
+  <label>Email:</label>
+  <input type="email" id="email" maxlength="60" required>
+
+  <label>Phone:</label>
+  <input type="text" id="phone" required>
+
+  <label>State:</label>
+  <select id="state" required>
+    
+  </select>
+
+  <label>City:</label>
+  <select id="city" required>
+    
+  </select>
+
+  <button type="submit">Submit</button>
+</form>
+
+<h2>User Data</h2>
+
+<!-- Custom Search -->
+<input type="text" id="customSearch" placeholder="Search by Name...">
+
+<table id="userTable" class="display">
+  <thead>
+    <tr>
+      <th>Name</th><th>Age</th><th>Email</th><th>Phone</th><th>State</th><th>City</th><th>Update</th><th>Delete</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+
+async function getStates(country) {
+      const response = await fetch("https://countriesnow.space/api/v0.1/countries/states", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ country: country })
+      });
+
+      const result = await response.json();
+       const dropDown = $("#state");
+        dropDown.empty(); // Clear previous options
+
+      if (!result.error) {
+        console.log("data fetch successfully")
+       
+
+        dropDown.append('<option value="">--Select State--</option>'); // Default option
+
+        result.data.states.forEach(state => {
+          dropDown.append(`<option value="${state.name}">${state.name}</option>`);
+        });
+      }
+
+      else{
+         console.log("data fetch failed")
+        dropDown.append('<option value="">--Select State--</option>');
+      }
+}
+
+async function getCities(country, state) {
+      const response = await fetch("https://countriesnow.space/api/v0.1/countries/state/cities", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ country, state })
+      });
+
+      const result = await response.json();
+
+      if (!result.error) {
+        const $cityDropdown = $("#city");
+        $cityDropdown.empty().append('<option value="">--Select City--</option>');
+
+        result.data.forEach(city => {
+          $cityDropdown.append(`<option value="${city}">${city}</option>`);
+        });
+      }
+    }
+
+
+// Example: Load states of India on page load
+$(document).ready(function () {
+    getStates("India");
+
+     $("#state").change(function () {
+        const selectedState = $(this).val();
+        if (selectedState) {
+          getCities("India", selectedState);
+        } else {
+          $("#city").empty().append('<option value="">--Select City--</option>');
+        }
+    });
+});
+
+
+
+$(document).ready(function () {
+  const table = $('#userTable').DataTable({
+    scrollY: '300px',
+    scrollCollapse: true,
+    paging: false,
+    dom: 'lrtip'  // Remove default search box
+  });
+
+  // Custom search for Name column
+  $('#customSearch').on('keyup', function () {
+    table.columns(0).search(this.value).draw(); // column 0 = Name
+  });
+
+  // Form input validations
+  $('#name').on('input', function () {
+    this.value = this.value.replace(/[^a-zA-Z\s]/g, '').replace(/\s{2,}/g, ' ');
+  });
+  $('#age').on('input', function () {
+    this.value = this.value.replace(/\D/g, '').slice(0, 3);
+  });
+  $('#phone').on('input', function () {
+    this.value = this.value.replace(/\D/g, '').slice(0, 10);
+  });
+
+  // Submit handler
+  $('#userForm').submit(function (e) {
+    e.preventDefault();
+    const name = $('#name').val().trim();
+    const age = parseInt($('#age').val());
+    const email = $('#email').val();
+    const phone = $('#phone').val();
+    const state = $('#state option:selected').text();
+    const city = $('#city option:selected').text();
+    const editIndex = $('#editIndex').val();
+
+    if (!name || !email || !phone || age < 1 || age > 120 || phone.length !== 10 || city === "") {
+      alert('Please enter valid details.');
+      return;
+    }
+
+    const rowData = [
+      name, age, email, phone, state, city,
+      `<button class="btn btn-update">Update</button>`,
+      `<button class="btn btn-delete">Delete</button>`
+    ];
+
+    if (editIndex !== "") {
+      table.row(editIndex).data(rowData).draw();
+    } else {
+      table.row.add(rowData).draw();
+    }
+
+    $('#userForm')[0].reset();
+    $('#editIndex').val('');
+    $('#state').val("2");
+    $('#city').html(`
+      <option value="">--Select City--</option>
+    `);
+  });
+
+  // Delete row
+  $('#userTable tbody').on('click', '.btn-delete', function () {
+    table.row($(this).parents('tr')).remove().draw();
+  });
+
+  // Update row
+  $('#userTable tbody').on('click', '.btn-update',async function () {
+    const row = table.row($(this).parents('tr'));
+    const data = row.data();
+    $('#editIndex').val(row.index());
+    $('#name').val(data[0]);
+    $('#age').val(data[1]);
+    $('#email').val(data[2]);
+    $('#phone').val(data[3]);
+    $('#state option').filter(function () {
+      return $(this).text() === data[4];
+    }).prop('selected' , true);
+
+    // Only proceed if a state is selected
+    if (data[4]) {
+        // Load cities for the selected state
+        await getCities("India", data[4]);
+        
+        // Now set the city selection after cities are loaded
+        $('#city').val($('#city option').filter(function () {
+            return $(this).text() === data[5];
+        }).val());
+    }
+    /*
+    $('#city option').filter(function ()
+        {
+            return $(this).text() === data[5];
+        }
+        ).prop('selected' , true);*/
+  });
+});
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

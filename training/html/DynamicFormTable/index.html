@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Data Management</title>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+  <link rel="stylesheet" href="style.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="userForm">
+  <input type="hidden" id="editIndex">
+  <label>Name:</label>
+  <input type="text" id="name" maxlength="50" required>
+
+  <label>Age:</label>
+  <input type="text" id="age" required>
+
+  <label>Email:</label>
+  <input type="email" id="email" maxlength="60" required>
+
+  <label>Phone:</label>
+  <input type="text" id="phone" required>
+
+  <label>State:</label>
+  <select id="state" required>
+    
+  </select>
+
+  <label>City:</label>
+  <select id="city" required>
+    
+  </select>
+
+  <button type="submit">Submit</button>
+</form>
+
+<h2>User Data</h2>
+
+<!-- Custom Search -->
+<input type="text" id="customSearch" placeholder="Search by Name...">
+
+<table id="userTable" class="display">
+  <thead>
+    <tr>
+      <th>Name</th><th>Age</th><th>Email</th><th>Phone</th><th>State</th><th>City</th><th>Update</th><th>Delete</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script src="index.js"></script>
+
+</body>
+
+</html>

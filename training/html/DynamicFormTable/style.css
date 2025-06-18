@@ -1,0 +1,67 @@
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background: #f0f0f5;
+  }
+  form {
+    background: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  input, select, button {
+    padding: 10px;
+    margin: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover {
+    background: #218838;
+  }
+  table {
+    width: 100%;
+    background: #fff;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #007bff;
+    color: white;
+  }
+  .btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .btn-update {
+    background-color: #ffc107;
+    color: white;
+  }
+  .btn-delete {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  #customSearch {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .dataTables_wrapper {
+    overflow-x: auto;
+  }
