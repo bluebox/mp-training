@@ -18,34 +18,37 @@
                     <label for="phone">Phone Number</label>
                     <input id="phone" name="phone" type="number" required><br>
                     <label for="branch">Branch</label><br>
-                    <input type="radio" id="cse" name="branch" value="CSE" >
+                    <input type="radio" id="cse" name="branch" value="CSE" checked>
                     <label for="CSE">CSE</label>
                     <input type="radio" id="ece" name="branch" value="ECE" >
                     <label for="ECE">ECE</label>
                     <input type="radio" id="eee" name="branch" value="EEE" >
                     <label for="EEE">EEE</label>
-                    <label for="languages"></label><br>
-                    <input type="checkbox" id="english" name="language" value="English">
-                    <label for="English">English</label>
-                    <input type="checkbox" id="hindi" name="language" value="Hindi">
-                    <label for="Hindi">Hindi</label>
-                    <input type="checkbox" id="telugu" name="language" value="Telugu">
-                    <label for="Telugu">Telugu</label><br>
+                    <div class = "checkboxes required">
+                        <label for="languages"></label><br>
+                        <input type="checkbox" id="english" name="language" value="English">
+                        <label for="English">English</label>
+                        <input type="checkbox" id="hindi" name="language" value="Hindi">
+                        <label for="Hindi">Hindi</label>
+                        <input type="checkbox" id="telugu" name="language" value="Telugu">
+                        <label for="Telugu">Telugu</label><br>
+                    </div>
                     <label for="state">State</label>
-                    <select id="state">
+                    <select id="state" name="state">
                         <option value="">Select State</option>
                     </select>
                     <!-- <input id="state" name="state" required> -->
                     <label for="city">City</label>
-                    <select id="city">
+                    <select id="city" name="city">
                         <option value="">Select City</option>
                     </select>
                     <!-- <input id="city" name="city" required> -->
                     <button type="submit" class="submit-buttons">Submit</button>
-                    <button type="button" id = "alter" class="submit-buttons">Alter</button>
+                    <!-- <button type="button" id = "alter" class="submit-buttons">Alter</button> -->
 
                 </form>
             </div>
+            
             <table>
                 <thead>
                     <tr>

@@ -1,10 +1,10 @@
-const { Console } = require("console");
+//const { Console } = require("console");
 const fetch = require("node-fetch");
 url1 = "http://192.168.0.73:32114/partner/get-states?countryCode=IN";
 url = "http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=RJ";
-export async function getStates() {    
+async function getStates() {    
     try{
-        const response = await fetch(url1);
+        const response = await fetch(url);
         if(!response.ok)
         {
             console.log("Error");   

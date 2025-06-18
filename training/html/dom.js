@@ -1,8 +1,9 @@
-import {getStates} from "test.js";
+// const { json } = require("stream/consumers");
+
 document.addEventListener("DOMContentLoaded", function () {
         let userId = 0;
         let selectedUserId = null;
-
+        let alterSelect = false;
         class User {
             constructor(name, age, email, phone, branch, langs, state, city) {
                 this.id = ++userId;
@@ -16,15 +17,101 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.city = city;
             }
         }
+        async function getCities(){
 
-        const states = getStates();
-        console.log(states);
-        states.forEach(e =>{
-            const ele = document.createElement("option");
-            ele.value = e;
-            ele.text = e;
-            document.getElementById("state").appendChild(ele);
-        })
+            const statecode = document.getElementById("state");
+            // if(statecode.value === null)
+            // {
+
+            // }
+            console.log(statecode);
+
+            url = "http://192.168.0.73:32114/partner/get-cities-for-state?stateCode="+statecode.value;
+            try{
+                var response = await fetch(url);
+                if(!response.ok)
+                {
+                    console.log("Error");
+                    throw new Error(response.status)
+                }
+                json = await response.json();
+                console.log(json);
+                res = JSON.parse(json.response);
+                return res;
+            }catch(e)
+            {
+                console.error(e);
+            }
+        }
+
+        document.getElementById("state").addEventListener("change", async function () {
+            const cities = await getCities(); 
+            const citySelect = document.getElementById("city");
+            citySelect.innerHTML = "";
+
+            if (cities) {
+                for (const city in cities) {
+                    const option = document.createElement("option");
+                    option.value = city;
+                    option.text = city;
+                    citySelect.appendChild(option);
+                }
+            }
+        });
+
+
+
+        // getCities().then(cities =>{
+        //     if(cities){
+        //         for(const city of cities){
+        //             const ele = document.createElement("option");
+        //             ele.value = cities[city];
+        //             ele.text = city;
+        //             document.getElementById("cities").appendChild(ele);
+        //         }
+        //     }
+        // });
+
+        async function getStates() {  
+            url = "http://192.168.0.73:32114/partner/get-states?countryCode=IN";
+            try{
+                const response = await fetch(url);
+                if(!response.ok)
+                {
+                    console.log("Error");   
+                    throw new Error(response.status);
+                }
+                console.log("no error")
+                const json = await response.json();
+                console.log(json);
+                res = JSON.parse(json.response);
+                // console.log(res["RAJASTHAN"]);
+                // return Object.keys(res);
+                return res
+                // for(const r of Object.keys(res)){
+                //     console.log(r);
+                // }
+            }catch(e)
+            {
+                console.log("Error 1");
+                console.error(e.message);
+            }
+        }
+
+        getStates().then(states =>{
+            if(states){
+                for(const key in states)
+                {
+                    const ele = document.createElement("option");
+                    ele.value = states[key];
+                    ele.text = key;
+
+                    document.getElementById("state").appendChild(ele);
+                }
+            }
+        });
+
+
 
         const users = [];
         const form = document.getElementById("userForm");
@@ -60,10 +147,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 form.querySelectorAll('input[name="language"]').forEach(cb => cb.classList.add("invalid"));
                 isValid = false;
             }
+            console.log(data.state)
             if (!data.state.trim()) {
                 form.state.classList.add("invalid");
                 isValid = false;
             }
+            console.log(data.city);
             if (!data.city.trim()) {
                 form.city.classList.add("invalid");
                 isValid = false;
@@ -116,6 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 selectedUserId = user.id;
+                alterSelect = true;
                 row.remove(); 
             });
 
@@ -138,57 +228,62 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         form.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const { data, langs } = getFormData();
+            if(!alterSelect){
+                e.preventDefault();
+                const { data, langs } = getFormData();
 
-            if (!validateForm(data, langs)) return;
+                if (!validateForm(data, langs)) return;
 
-            const newUser = new User(
-                data.name,
-                data.age,
-                data.email,
-                data.phone,
-                data.branch,
-                langs.join(","),
-                data.state,
-                data.city
-            );
+                const newUser = new User(
+                    data.name,
+                    data.age,
+                    data.email,
+                    data.phone,
+                    data.branch,
+                    langs.join(","),
+                    data.state,
+                    data.city
+                );
 
-            users.push(newUser);
-            renderTable();
-            form.reset();
-        });
-
-        alterBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            const {data,langs} = getFormData();
-
-            if (!validateForm(data, langs)) return;
-
-            var user;
-            for(var usr of users)
-            {
-                if(usr.id === selectedUserId)
-                {
-                    user = usr;
-                }
-            }
-            if (user) {
-                user.name = data.name;
-                user.age = data.age;
-                user.email = data.email;
-                user.phone = data.phone;
-                user.branch = data.branch;
-                user.langs = langs.join(",");
-                user.state = data.state;
-                user.city = data.city;
-
-                selectedUserId = null;
+                users.push(newUser);
                 renderTable();
                 form.reset();
-            }
+                
+            }else{
+                e.preventDefault();
+                const {data,langs} = getFormData();
 
+                if (!validateForm(data, langs)) return;
+
+                var user;
+                for(var usr of users)
+                {
+                    if(usr.id === selectedUserId)
+                    {
+                        user = usr;
+                    }
+                }
+                if (user) {
+                    user.name = data.name;
+                    user.age = data.age;
+                    user.email = data.email;
+                    user.phone = data.phone;
+                    user.branch = data.branch;
+                    user.langs = langs.join(",");
+                    user.state = data.state;
+                    user.city = data.city;
+
+                    selectedUserId = null;
+                    renderTable();
+                    form.reset();
+                }
+                alterSelect = false;
+            }
         });
+
+        // alterBtn.addEventListener("click", function (e) {
+            
+        // });
         
         function filterUsers() {
             const name = document.getElementById("name-search").value.toLowerCase();
