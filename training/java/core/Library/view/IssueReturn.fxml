@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8"
+      fx:controller="controller.IssueReturnController" spacing="10">
+     <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label text="Choose Update Option:" />
+    <Button text="Issue Book" onAction="#handleIssueBook"/>
+    <Button text="Return Book" onAction="#handleReturnBook"/>
+
+</VBox>
