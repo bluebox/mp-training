@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Form Table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Registration Form</h2>
+    <form id="userForm">
+        <label>name:
+            <input type="text" id="name" pattern="^[A-Za-z]+( [A-Za-z]+)*$"
+                title="Only alphabets and single spaces between words allowed, no leading/trailing spaces" required>
+
+
+        </label><br>
+        <label>Age: <input type="number" id="age" required></label><br>
+        <label>Email: <input type="email" id="email" required></label><br>
+        <label>Phone: <input type="text" id="phone" pattern="\d{10}" required></label><br>
+
+        Branch:<br>
+        <label><input type="radio" name="branch" value="CSE" required> CSE</label>
+        <label><input type="radio" name="branch" value="ECE"> ECE</label>
+        <label><input type="radio" name="branch" value="MECH"> MECH</label><br>
+
+        Languages Known:<br>
+        <label><input type="checkbox" name="languages" value="Java"> Java</label>
+        <label><input type="checkbox" name="languages" value="Python"> Python</label>
+        <label><input type="checkbox" name="languages" value="C++"> C++</label><br>
+
+        <label>State:
+            <select id="state" required>
+                <option value="">Select</option>
+            </select>
+        </label><br>
+
+        <label>City:
+            <select id="city" required>
+                <option value="">Select</option>
+            </select>
+        </label><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Search Records</h3>
+    <label>Search By:
+        <select id="searchField">
+            <option value="">Select</option>
+            <option value="name">Name</option>
+            <option value="age">Age</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+            <option value="branch">Branch</option>
+            <option value="languages">Languages</option>
+            <option value="state">State</option>
+            <option value="city">City</option>
+        </select>
+    </label>
+    <input type="text" id="searchInput" placeholder="Search...">
+
+    <div class="table-container">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Branch</th>
+                    <th>Languages</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <p id="noRecords" style="display: none; color: red;">No records found.</p>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
