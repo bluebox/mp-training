@@ -3,3 +3,8 @@
   width:auto;
   overflow-y: scroll;
 }
+#table_view{
+  height:20rem;
+  width:auto;
+  overflow-y: scroll;
+}

@@ -101,5 +101,38 @@ var form_data=document.getElementById("form_schema");
 form_data.addEventListener("submit",insert_form)
 
 
+var searchObj=document.getElementById("search").querySelectorAll('input');
 
+searchObj.forEach(
+  (element)=>{
+    element.addEventListener("input",filter_rows);
+
+  }
+);
+var changes={"N_S":"","A_S":"","E_S":"","P_S":"","B_S":"","L_S":"","S_S":"","C_S":""};
+
+
+
+
+function filter_rows(event) {
+    changes[event.target.name] = event.target.value.trim().toLowerCase();
+
+    const rows = document.querySelectorAll("#Database tr");
+    
+    for (let i = 2; i < rows.length; i++) {
+        const cells = rows[i].querySelectorAll("td");
+        let visible = true;
+
+        if (changes["N_S"] && !cells[0].innerText.toLowerCase().includes(changes["N_S"])) visible = false;
+        if (changes["A_S"] && !cells[1].innerText.toLowerCase().includes(changes["A_S"])) visible = false;
+        if (changes["E_S"] && !cells[2].innerText.toLowerCase().includes(changes["E_S"])) visible = false;
+        if (changes["P_S"] && !cells[3].innerText.toLowerCase().includes(changes["P_S"])) visible = false;
+        if (changes["B_S"] && !cells[4].innerText.toLowerCase().includes(changes["B_S"])) visible = false;
+        if (changes["L_S"] && !cells[5].innerText.toLowerCase().includes(changes["L_S"])) visible = false;
+        if (changes["S_S"] && !cells[6].innerText.toLowerCase().includes(changes["S_S"])) visible = false;
+        if (changes["C_S"] && !cells[7].innerText.toLowerCase().includes(changes["C_S"])) visible = false;
+
+        rows[i].style.display = visible ? "" : "none";
+    }
+}
 
