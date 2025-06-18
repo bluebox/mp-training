@@ -123,11 +123,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
             form.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
 
-            if (!data.name.trim()) {
+            if (!data.name.trim() || data.name.length<3) {
+                if(data.name.length < 3) {
+                    const label = document.createElement("p");
+                    label.textContent = "Name should be at least 3 characters.";
+                    label.style.color = "red";
+                    form.querySelector("label[for='Name']").appendChild(label);
+                }
+
                 form.name.classList.add("invalid");
                 isValid = false;
             }
-            if (!data.age || isNaN(data.age) || data.age <= 0) {
+            if (!data.age || isNaN(data.age) || data.age <= 0 || data.age>100   ) {
                 form.age.classList.add("invalid");
                 isValid = false;
             }
@@ -135,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 form.email.classList.add("invalid");
                 isValid = false;
             }
-            if (!data.phone || data.phone.length !== 10) {
+            if (!data.phone || data.phone.toString().length !== 10) {
                 form.phone.classList.add("invalid");
                 isValid = false;
             }

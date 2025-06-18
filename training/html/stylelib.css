@@ -1,3 +1,4 @@
+/* Layout Container */
 .table {
     margin: 20px auto;
     padding: 20px;
@@ -6,16 +7,75 @@
     box-sizing: border-box;
     overflow-x: auto;
     background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
 }
 
 
+form {
+    margin-bottom: 20px;
+    background-color: #eef3f7;
+    padding: 20px;
+    border-radius: 8px;
+}
 
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
 
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form select {
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+form input[type="radio"],
+form input[type="checkbox"] {
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+.btns {
+    display: flex;
+    gap: 15px; /* space between buttons */
+    margin-top: 10px;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.checkboxes {
+    margin-top: 8px;
+}
+
+/* Submit Buttons */
+.submit-buttons {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #2f80ed;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.submit-buttons:hover {
+    background-color: #155ab6;
+}
+
+/* Table Styling */
 .table table {
     border: 2px solid black;
     border-collapse: collapse;
     width: 100%;
-    min-width: 800px; 
+    min-width: 800px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -36,13 +96,13 @@
     background-color: rgb(201, 220, 236);
 }
 
-
+/* Invalid Input */
 input.invalid {
     border-color: red;
     background-color: #ffe5e5;
 }
 
-
+/* Action Buttons (Alter, Delete) */
 .action-btn {
     margin: 2px;
     padding: 5px 10px;
@@ -56,4 +116,14 @@ input.invalid {
 
 .action-btn:hover {
     background-color: #2b6cd4;
+}
+
+/* Search Input Fields */
+.search {
+    width: 90%;
+    padding: 5px;
+    font-size: 13px;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    border-radius: 4px;
 }
