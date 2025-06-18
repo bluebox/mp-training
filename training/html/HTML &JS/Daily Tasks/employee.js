@@ -98,7 +98,8 @@ function add(){
         alert("Provide atleast a single language");
         return;
     }
-    let city=document.getElementById("city").value;
+    let state=document.getElementById("state").value;
+    let city=document.getElementById("citySelect").value;
     let employee={
         Name : eName,
         Age : age,
