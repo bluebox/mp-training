@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Members</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f8ff;
+    }
+    form {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 95%;
+      padding: 8px;
+    }
+    .inline-group {
+      display: flex;
+      gap: 10px;
+    }
+    .form-buttons {
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      cursor: pointer;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    table {
+      width: 100%;
+      margin-top: 30px;
+      background: #ffffff;
+    }
+    thead input {
+      width: 90%;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center">Student Registration Form</h2>
+  <form id="studentForm">
+    <div class="form-row">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" required maxlength="40">
+      </div>
+      <div>
+        <label for="age">Age</label>
+        <input type="number" id="age" min="3" max="80" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label for="number">Phone</label>
+        <input type="text" id="number" maxlength="10" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" maxlength="50" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Branch</label>
+        <div class="inline-group">
+          <input type="radio" name="branch" value="CSE" required> CSE
+          <input type="radio" name="branch" value="ECE"> ECE
+          <input type="radio" name="branch" value="EEE"> EEE
+        </div>
+      </div>
+      <div>
+        <label>Languages</label>
+        <div class="inline-group">
+          <input type="checkbox" name="language" value="English"> English
+          <input type="checkbox" name="language" value="Hindi"> Hindi
+          <input type="checkbox" name="language" value="Telugu"> Telugu
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label for="stateSelect">State</label>
+        <select id="stateSelect" required><option value="">--Select--</option></select>
+      </div>
+      <div>
+        <label for="citySelect">City</label>
+        <select id="citySelect" required><option value="">--Select--</option></select>
+      </div>
+    </div>
+    <div class="form-buttons">
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+
+  <table id="studentsTable" border="1">
+    <thead>
+      <tr>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(0, this)"></th>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(1, this)"></th>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(2, this)"></th>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(3, this)"></th>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(4, this)"></th>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(5, this)"></th>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(6, this)"></th>
+        <th><input type="text" placeholder="Filter" oninput="filterTable(7, this)"></th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Branch</th>
+        <th>Languages</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="studentTableBody"></tbody>
+  </table>
+
+  <script>
+    const studentList = document.getElementById('studentTableBody');
+    let students = [];
+    let editIndex = -1;
+
+    document.getElementById('number').addEventListener('input', e => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    document.getElementById('name').addEventListener('input', e => {
+      e.target.value = e.target.value.replace(/[^A-Za-z ]/g, '').replace(/\s{2,}/g, ' ').trimStart();
+    });
+
+    function renderTable() {
+      studentList.innerHTML = '';
+      students.forEach((s, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${s.name}</td>
+          <td>${s.age}</td>
+          <td>${s.number}</td>
+          <td>${s.email}</td>
+          <td>${s.branch}</td>
+          <td>${s.languages.join(', ')}</td>
+          <td>${s.state}</td>
+          <td>${s.city}</td>
+          <td>
+            <button onclick="editStudent(${index})">Edit</button>
+            <button onclick="deleteStudent(${index})">Delete</button>
+          </td>`;
+        studentList.appendChild(row);
+      });
+    }
+
+    function editStudent(index) {
+      const s = students[index];
+      document.getElementById('name').value = s.name;
+      document.getElementById('age').value = s.age;
+      document.getElementById('number').value = s.number;
+      document.getElementById('email').value = s.email;
+      document.querySelectorAll('input[name="branch"]').forEach(r => r.checked = r.value === s.branch);
+      document.querySelectorAll('input[name="language"]').forEach(cb => cb.checked = s.languages.includes(cb.value));
+      document.getElementById('stateSelect').value = s.state;
+      document.getElementById('citySelect').value = s.city;
+      editIndex = index;
+    }
+
+    function deleteStudent(index) {
+      students.splice(index, 1);
+      renderTable();
+    }
+
+    document.getElementById('studentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const age = parseInt(document.getElementById('age').value);
+      const number = document.getElementById('number').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const branch = document.querySelector('input[name="branch"]:checked')?.value;
+      const languages = [...document.querySelectorAll('input[name="language"]:checked')].map(cb => cb.value);
+      const state = document.getElementById('stateSelect').value;
+      const city = document.getElementById('citySelect').value;
+
+      if (languages.length === 0) return alert("Select at least one language");
+
+      const student = { name, age, number, email, branch, languages, state, city };
+
+      if (editIndex === -1) students.push(student);
+      else students[editIndex] = student;
+
+      editIndex = -1;
+      renderTable();
+      this.reset();
+    });
+
+    function filterTable(colIndex, input) {
+      input.value = input.value.replace(/[^a-zA-Z0-9 ]/g, '');
+      const query = input.value.toLowerCase();
+      const rows = document.querySelectorAll("#studentsTable tbody tr");
+      rows.forEach(row => {
+        const cell = row.children[colIndex];
+        const value = cell ? cell.textContent.toLowerCase() : '';
+        row.style.display = value.includes(query) ? '' : 'none';
+      });
+    }
+
+    // Load dynamic states and cities
+    const API_KEY = 'aW04eDJ0aHJWRXo0Zk81WEs0Mm53eEkzcUdEWUl3T3FOY3h1b3NQSg=='; // Replace with your actual API key
+    const headers = { "X-CSCAPI-KEY": API_KEY };
+    const countryCode = "IN";
+
+    async function loadStates() {
+      const res = await fetch(`https://api.countrystatecity.in/v1/countries/${countryCode}/states`, { headers });
+      const states = await res.json();
+      const stateSelect = document.getElementById('stateSelect');
+      states.forEach(state => {
+        const opt = document.createElement('option');
+        opt.value = state.iso2;
+        opt.textContent = state.name;
+        stateSelect.appendChild(opt);
+      });
+    }
+
+    async function loadCities(stateCode) {
+      const res = await fetch(`https://api.countrystatecity.in/v1/countries/${countryCode}/states/${stateCode}/cities`, { headers });
+      const cities = await res.json();
+      const citySelect = document.getElementById('citySelect');
+      citySelect.innerHTML = '<option value="">--Select--</option>';
+      cities.forEach(city => {
+        const opt = document.createElement('option');
+        opt.value = city.name;
+        opt.textContent = city.name;
+        citySelect.appendChild(opt);
+      });
+    }
+
+    document.getElementById('stateSelect').addEventListener('change', function () {
+      const stateCode = this.value;
+      if (stateCode) loadCities(stateCode);
+    });
+
+    // Load states on page load
+    loadStates();
+  </script>
+</body>
+</html>
