@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="/home/purnima/Downloads/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="/home/purnima/Downloads/junit-4.10-javadoc.jar"/>
 	<classpathentry kind="lib" path="/home/purnima/Downloads/junit-4.10-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
