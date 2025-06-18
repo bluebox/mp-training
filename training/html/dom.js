@@ -1,4 +1,5 @@
-    document.addEventListener("DOMContentLoaded", function () {
+import {getStates} from "test.js";
+document.addEventListener("DOMContentLoaded", function () {
         let userId = 0;
         let selectedUserId = null;
 
@@ -15,6 +16,15 @@
                 this.city = city;
             }
         }
+
+        const states = getStates();
+        console.log(states);
+        states.forEach(e =>{
+            const ele = document.createElement("option");
+            ele.value = e;
+            ele.text = e;
+            document.getElementById("state").appendChild(ele);
+        })
 
         const users = [];
         const form = document.getElementById("userForm");
