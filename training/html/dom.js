@@ -328,6 +328,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 form.email.value = user.email;
                 form.phone.value = user.phone;
                 form.state.value = user.state;
+                getCities().then(states =>{
+                    if(states){
+                        statesJson = states;
+                        for(const key in states)
+                        {
+                            const ele = document.createElement("option");
+                            ele.value = states[key];
+                            ele.text = key;
+
+                            document.getElementById("state").appendChild(ele);
+                        }
+                    }
+                });
+                console.log(city.value,user.city);
                 form.city.value = user.city;
 
 
@@ -463,7 +477,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 form.reset();
                 cancelBtn.style.display = "none";
             }
-            document.getElementById("city").value = -1;
+            document.getElementById("city").value = 0;
         });
 
         // alterBtn.addEventListener("click", function (e) {
