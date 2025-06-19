@@ -1,4 +1,4 @@
-package com.casestudy.domain
+package com.casestudy.domain;
 
 import java.time.LocalDate;
 

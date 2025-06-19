@@ -92,6 +92,7 @@ public class SearchAndIssueBookForm extends VBox {
             return;
         }
 
+        
         try (Connection conn = DBUtil.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Books WHERE title LIKE ?");
             stmt.setString(1, "%" + title + "%");

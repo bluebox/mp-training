@@ -105,7 +105,7 @@ public class MainMenu {
     private void showMainMenu() {
         contentArea.getChildren().clear();
 
-        Text welcomeText = new Text("Welcome to the Library Management System");
+        Text welcomeText = new Text("Welcomeretyer to the Library Management System");
         welcomeText.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
 
         VBox mainLayout = new VBox(10); // Increased spacing for cleaner layout
