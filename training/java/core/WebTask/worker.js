@@ -268,3 +268,38 @@ usernameInput.addEventListener('input', () => {
     usernameError.textContent = 'Username must be more than 3 chars and only alphabets';
   }
 });
+//age
+const ageInput = document.getElementById('ageField');
+const ageError = document.getElementsByClassName('error-message')[1];
+ageInput.addEventListener('input', () => {
+  const age = parseInt(ageInput.value);
+  if (!ageInput.value || age < 1 || age > 99) {
+    ageError.textContent = 'Age must be between 1 and 99';
+  } else {
+    ageError.textContent = '';
+  }
+});
+
+//Email
+const emailInput = document.getElementById('emailField');
+const emailError = document.getElementsByClassName('error-message')[2];
+emailInput.addEventListener('input', () => {
+  const emailPattern = /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(emailInput.value)) {
+    emailError.textContent = 'Enter a valid email address';
+  } else {
+    emailError.textContent = '';
+  }
+});
+//Phone
+const phoneInput = document.getElementById('mobileField');
+const phoneError = document.getElementsByClassName('error-message')[3];
+
+phoneInput.addEventListener('input', () => {
+  const phonePattern = /^[0-9]{10}$/;
+  if (!phonePattern.test(phoneInput.value)) {
+    phoneError.textContent = 'Phone number must be exactly 10 digits';
+  } else {
+    phoneError.textContent = '';
+  }
+});
