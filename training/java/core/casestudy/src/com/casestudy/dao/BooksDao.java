@@ -9,9 +9,9 @@ import java.util.List;
 
 import com.casestudy.domain.Availability;
 import com.casestudy.domain.Book;
+import com.casestudy.domain.Status;
 import com.casestudy.util.DBUtil;
 
-import javafx.animation.Animation.Status;
 
 public class BooksDao {
 	private Connection conn;
