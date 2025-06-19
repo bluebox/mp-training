@@ -1,9 +1,12 @@
-// const { json } = require("stream/consumers");
 
+
+let statesJson = null;
 document.addEventListener("DOMContentLoaded", function () {
         let userId = 0;
         let selectedUserId = null;
         let alterSelect = false;
+        let submitSelect = false;
+        
         class User {
             constructor(name, age, email, phone, branch, langs, state, city) {
                 this.id = ++userId;
@@ -43,21 +46,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error(e);
             }
         }
-
-        document.getElementById("state").addEventListener("change", async function () {
-            const cities = await getCities(); 
-            const citySelect = document.getElementById("city");
-            citySelect.innerHTML = "";
-
-            if (cities) {
-                for (const city in cities) {
-                    const option = document.createElement("option");
-                    option.value = city;
-                    option.text = city;
-                    citySelect.appendChild(option);
+        async function citiesFetch() {
+            console.log("Value", this.value)
+            if(this.value !== ""){
+                console.log("in cities");
+                const cities = await getCities(); 
+                const citySelect = document.getElementById("city");
+                citySelect.innerHTML = "";
+                console.log(this.value);
+                if (cities) {
+                    for (const city in cities) {
+                        const option = document.createElement("option");
+                        option.value = city;
+                        option.text = city;
+                        citySelect.appendChild(option);
+                    }
                 }
+            }else{
+                console.log("jashgdjkas")
+                document.getElementById("city").selectedIndex = 0;
             }
-        });
+        }
+
+        document.getElementById("state").addEventListener("change", citiesFetch);
 
 
 
@@ -100,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         getStates().then(states =>{
             if(states){
+                statesJson = states;
                 for(const key in states)
                 {
                     const ele = document.createElement("option");
@@ -121,11 +133,11 @@ document.addEventListener("DOMContentLoaded", function () {
         function validateForm(data, lang) {
             let isValid = true;
 
-            // Remove all previous validation messages
+            
             form.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
             form.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-            // Helper to show error
+            
             function showError(inputId, message) {
                 const input = form.querySelector(`#${inputId}`);
                 input.classList.add("invalid");
@@ -159,11 +171,63 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) {
                 showError("email", "Enter a valid email address.");
             }
+            if(chechMail(data.email))
+            {
+                showError("email","Email already Taken. Please use another");
+            }
 
-            
+            function checkPhone(phone)
+            {
+                if(!alterSelect)
+                {
+                    for(let usr of users)
+                    {
+                        if(usr.phone.toString() === phone.toString())
+                        {
+                            return true;
+                        }
+                    }
+                }else{
+                    for(let usr of users)
+                    {
+                        if(usr.phone.toString() === phone.toString() && usr.id !== selectedUserId)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            function chechMail(mail)
+            {
+                if(!alterSelect)
+                {
+                    for(let usr of users)
+                    {
+                        if(usr.email === mail)
+                        {
+                            return true;
+                        }
+                    }
+                }else{
+                    for(let usr of users)
+                    {
+                        if(usr.email === mail && usr.id !== selectedUserId)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
 
             if (!data.phone  ||data.phone.toString().length !== 10) {
                 showError("phone", "Phone No. must be exactly 10 digits.");
+            }
+            if(checkPhone(data.phone))
+            {
+                showError("phone","Phone No. already in use. Please use another Phone No.");
             }
 
             if(!/^\d+$/.test(data.phone))
@@ -196,18 +260,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 showError("state", "Please select a state.");
             }
 
-            
-            if (!data.city || data.city.trim() === "") {
-                showError("city", "Please select a city.");
+            if(document.getElementById("city").options.length !== 0)
+            {
+                if (!data.city || data.city.trim() === "") {
+                    showError("city", "Please select a city.");
+                }
+            }else
+            {
+                data.city = data.state;
             }
 
             return isValid;
         }
 
-
+    
         function getFormData() {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+            console.log(formData);
+            // data.state = formData.state.text;
             const langs = [];
             form.querySelectorAll('input[name="language"]:checked').forEach(el => langs.push(el.value));
             return { data, langs };
@@ -220,14 +291,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function addToTable(user) {
             const row = document.createElement("tr");
-
-            Object.values(user).filter((_, i) => i !== 0).forEach(val => {
-                const cell = document.createElement("td");
-                cell.textContent = val;
-                row.appendChild(cell);
+            console.log(Object.values(user));
+            Object.values(user).filter((_, i) => i !== 0).forEach((val,i) => {
+                if(i !== 6){
+                    const cell = document.createElement("td");
+                    cell.textContent = val;
+                    row.appendChild(cell);
+                }else{
+                    console.log(i,val);
+                    const cell = document.createElement("td");
+                    let sel = document.getElementById("state");
+                    let opt = sel.querySelectorAll('option');
+                    for(let j = 0;j<opt.length;j++)
+                    {
+                        if(opt[j].value === val)
+                        {
+                            cell.textContent = opt[j].text;
+                            row.appendChild(cell);
+                            break;
+                        }
+                    }
+                    
+                }
             });
 
             const actionCell = document.createElement("td");
+
+            
 
             const editBtn = document.createElement("button");
             editBtn.textContent = "Alter";
@@ -240,6 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 form.state.value = user.state;
                 form.city.value = user.city;
 
+
                 form.querySelectorAll('input[name="branch"]').forEach(rb => {
                     rb.checked = rb.value === user.branch;
                 });
@@ -249,9 +340,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     cb.checked = langSet.has(cb.value);
                 });
 
+                // Object.assign(alterUserInfo,user);
+
                 selectedUserId = user.id;
                 alterSelect = true;
-                row.remove(); 
+                if(alterSelect)
+                {
+                    cancelBtn.style.display = "block";
+                }
+                // row.remove(); 
             });
 
             const deleteBtn = document.createElement("button");
@@ -260,10 +357,16 @@ document.addEventListener("DOMContentLoaded", function () {
             deleteBtn.addEventListener("click", function () {
                 const index = users.findIndex(u => u.id === user.id);
                 if (index !== -1) {
-                    users.splice(index, 1);
-                    renderTable();
+                    if(confirm("Do You want to delete?"))
+                    {
+                        users.splice(index, 1);
+                        renderTable();
+                    }else{
+
+                    }
                 }
             });
+
 
             actionCell.appendChild(editBtn);
             actionCell.appendChild(deleteBtn);
@@ -272,11 +375,26 @@ document.addEventListener("DOMContentLoaded", function () {
             tableBody.appendChild(row);
         }
 
+        const cancelBtn = document.createElement("button");
+        cancelBtn.textContent = "Cancel";
+        cancelBtn.classList.add("submit-buttons");
+        cancelBtn.addEventListener("click",function(e){
+            form.reset();
+            form.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
+            form.querySelectorAll(".error-msg").forEach(el => el.remove());
+            document.getElementById("city").value = -1;
+            renderTable();
+            cancelBtn.style.display = "none";  
+        });
+        cancelBtn.style.display = "none";
+        document.getElementById("userForm").appendChild(cancelBtn);
+
+        
+
         form.addEventListener("submit", function (e) {
             if(!alterSelect){
                 e.preventDefault();
-                const { data, langs } = getFormData();
-
+                const {data,langs} = getFormData();
                 if (!validateForm(data, langs)) return;
 
                 const newUser = new User(
@@ -289,7 +407,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     data.state,
                     data.city
                 );
-
                 users.push(newUser);
                 renderTable();
                 form.reset();
@@ -297,18 +414,31 @@ document.addEventListener("DOMContentLoaded", function () {
             }else{
                 e.preventDefault();
                 const {data,langs} = getFormData();
-
                 if (!validateForm(data, langs)) return;
 
-                var user;
+                let user;
+                let tempUser;
+
+                // users.forEach(
+                //     (u,i)=>{
+                //         if(users[i].id === selectedUserId)
+                //         {
+                //             tempUser = users[i];
+                //         }
+                //     }
+                // )
+
                 for(var usr of users)
                 {
                     if(usr.id === selectedUserId)
                     {
                         user = usr;
+                        tempUser = new User(usr.name,usr.age,usr.email,usr.phone,usr.branch,usr.langs,usr.state,usr.city);
                     }
                 }
                 if (user) {
+
+
                     user.name = data.name;
                     user.age = data.age;
                     user.email = data.email;
@@ -319,11 +449,21 @@ document.addEventListener("DOMContentLoaded", function () {
                     user.city = data.city;
 
                     selectedUserId = null;
+                    if(confirm("Do you want to apply changes"))
+                    {
+                        
+                    }else{
+                        console.log("tmep :",tempUser);
+                        Object.assign(user,tempUser);
+                    }
                     renderTable();
-                    form.reset();
+                    
                 }
                 alterSelect = false;
+                form.reset();
+                cancelBtn.style.display = "none";
             }
+            document.getElementById("city").value = -1;
         });
 
         // alterBtn.addEventListener("click", function (e) {
@@ -347,15 +487,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 renderTable();
                 return;
             }
-        
+            
+            function check(langSet,lang)
+            {
+                for(var l of langSet)
+                {
+                    if(l.startsWith(lang))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
             const filteredData = users.filter(user => {
+                langSet = user.langs.split(",");
+                langSet.forEach((u,index)=>{
+                    langSet[index] = u.toLowerCase();
+                })
+                console.log(langSet);
                 return (
                     user.name.toLowerCase().startsWith(name) &&
                     user.age.toString().startsWith(age) &&
                     user.email.toLowerCase().startsWith(email) &&
                     user.phone.toString().startsWith(phone) &&
                     user.branch.toLowerCase().startsWith(branch) &&
-                    user.langs.toLowerCase().includes(lang) &&
+                    check(langSet,lang) &&
                     user.state.toLowerCase().startsWith(state) &&
                     user.city.toLowerCase().startsWith(city)
                 );
