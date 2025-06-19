@@ -123,7 +123,7 @@ function add(){
         return;
     }
     let state=document.getElementById("state").value;
-    let city=document.getElementById("citySelect").value;
+    let city=document.getElementById("city").value;
     let employee={
         Name : eName,
         Age : age,
@@ -272,9 +272,10 @@ function render(){
         x.appendChild(y);
         y=document.createElement("button");
         y.textContent="Delete";
-        y.onclick = function(){
-            deletion(emp.Email);
-        };
+        y.onclick = (()=>{
+            localStorage.removeItem(emp.Email);
+            render();
+        });
         y.style.padding="5px";
         x.appendChild(y);
         c.appendChild(x);
