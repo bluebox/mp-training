@@ -50,7 +50,7 @@ public class ViewIssuedBooksController {
     @FXML
     private void handleBack(javafx.event.ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/UI/Home.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Library - Home");

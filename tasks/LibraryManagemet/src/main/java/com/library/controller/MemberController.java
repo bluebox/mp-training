@@ -46,9 +46,8 @@ public class MemberController {
         String addressText = address.getText().trim();
         Toggle selectedToggle = genderGroup.getSelectedToggle();
 
-        // === Validation ===
-        if (nameText.isEmpty()) {
-            showAlert("Name is required.");
+        if (nameText.isEmpty() && nameText.length()<2 ) {
+            showAlert("Invalid Name.");
             return;
         }
 
@@ -107,7 +106,7 @@ public class MemberController {
     @FXML
     private void handleBack() {
         try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/library/UI/Home.fxml"));
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/UI/Home.fxml"));
             javafx.scene.Parent root = loader.load();
             javafx.stage.Stage stage = (javafx.stage.Stage) backButton.getScene().getWindow();
             stage.setScene(new javafx.scene.Scene(root));

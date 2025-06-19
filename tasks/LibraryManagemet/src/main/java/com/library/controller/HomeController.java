@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class HomeController {
 
 	private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/library/UI/" + fxmlFile));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/" + fxmlFile));
 		Parent root = loader.load();
 
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

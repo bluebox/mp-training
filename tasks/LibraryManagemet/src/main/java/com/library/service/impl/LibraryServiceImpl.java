@@ -55,91 +55,109 @@ public class LibraryServiceImpl implements LibraryService {
 	}
 
 	public boolean issueBook(IssueRecord issue) {
-		boolean bookExists=false;
-		boolean memberExists=false;
+		boolean bookExists = false;
+		boolean memberExists = false;
 		try {
-				Connection conn = ConnectionMaker.getConnection();
-				conn.setAutoCommit(false);
+			Connection conn = ConnectionMaker.getConnection();
+			//conn.setAutoCommit(false);
 
-				if(issue==null||issue.getBookId()<=0||issue.getMemberId()<=0) {
-					return false;
+			if (issue == null || issue.getBookId() <= 0 || issue.getMemberId() <= 0) {
+				return false;
+			}
+			bookExists = bookDAO.isBookExists(issue.getBookId(), conn);
+			memberExists = memberDAO.isMemberExists(issue.getMemberId(), conn);
+			if (bookExists && memberExists) {
+				if (bookDAO.isBookAvailable(issue.getBookId(), conn)) {
+					issueBookDAO.issueBook(conn, issue.getBookId(), issue.getMemberId());
+					bookDAO.updateBookAvailability(conn, issue.getBookId());
+					//conn.commit();
+					return true;
 				}
-					bookExists=bookDAO.isBookExists(issue.getBookId(), conn);
-					memberExists = memberDAO.isMemberExists(issue.getMemberId(), conn);
-				if(bookExists&&memberExists) {
-						if(bookDAO.isBookAvailable(issue.getBookId(), conn)) {
-								issueBookDAO.issueBook(conn,issue.getBookId(),issue.getMemberId());
-								bookDAO.updateBookAvailability(conn,issue.getBookId());
-								conn.commit();
-								return true;
-							}
-						
-						}
-							conn.rollback();
-		}
-		catch(Exception e) {
+
+			}
+			//conn.rollback();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			return false;
+		return false;
 	}
 
 	public List<IssueRecord> viewAllRecords() {
-		List<IssueRecord> issue=null;
-			try{
-				Connection conn = ConnectionMaker.getConnection();
-			    	conn.setAutoCommit(false);
-			    	issue = issueBookDAO.getAllIssuedBooks(conn);
-			         
-			        }
-			catch(Exception e) {
-				e.printStackTrace();
-			}
+		List<IssueRecord> issue = null;
+		try {
+			conn.setAutoCommit(false);
+			issue = issueBookDAO.getAllIssuedBooks(conn);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return issue;
 	}
 
 	@Override
 	public boolean addBook(Book book) {
+		if (book == null) {
+			throw new IllegalArgumentException("Book is null, please pass a valid book");
+		}
+
+		if (book.getTitle() == null || book.getTitle().trim().isEmpty()) {
+			throw new IllegalArgumentException("Book title is required");
+		}
+
+		if (book.getAuthor() == null || book.getAuthor().trim().isEmpty()) {
+			throw new IllegalArgumentException("Book author is required");
+		}
+
+		if (book.getCategory() == null || book.getCategory().trim().isEmpty()) {
+			throw new IllegalArgumentException("Book category is required");
+		}
+
+		if (book.getStatus() == null
+				|| (!book.getStatus().equalsIgnoreCase("A") && !book.getStatus().equalsIgnoreCase("I"))) {
+			throw new IllegalArgumentException("Book status must be 'A' (Available) or 'I' (Issued)");
+		}
+
+		if (book.getAvailability() == null
+				|| (!book.getAvailability().equalsIgnoreCase("A") && !book.getAvailability().equalsIgnoreCase("I"))) {
+			throw new IllegalArgumentException("Book availability must be 'A' (Available) or 'I' (Unavailable)");
+		}
 
 		return bookDAO.insertBook(book);
 	}
+
 	public List<Member> viewAllMembers() {
-		List<Member> member=null;
-			try{
-				Connection conn = ConnectionMaker.getConnection();
-			    	conn.setAutoCommit(false);
-			    	member = memberDAO.getAllMembers(conn);
-			         
-			        }
-			catch(Exception e) {
-				e.printStackTrace();
-			}
+		List<Member> member = null;
+		try (Connection conn = ConnectionMaker.getConnection()) {
+			member = memberDAO.getAllMembers(conn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return member;
 	}
+
 	public Boolean updateBookDetails(Book book) {
 
-		boolean bookExists=false;
+		boolean bookExists = false;
 
 		try {
 			Connection conn = ConnectionMaker.getConnection();
 			conn.setAutoCommit(false);
-			if(book==null||book.getBookId()<=0||book.getAuthor()==null||book.getCategory()==null||book.getStatus()==null||book.getTitle()==null) {
+			if (book == null || book.getBookId() <= 0 || book.getAuthor() == null || book.getCategory() == null
+					|| book.getStatus() == null || book.getTitle() == null) {
 				return false;
 			}
-				bookExists=bookDAO.isBookExists(book.getBookId(), conn);
-			if(bookExists) {
-					bookDAO.updateDetails(conn, book);
-					conn.commit();
-					return true;
+			bookExists = bookDAO.isBookExists(book.getBookId(), conn);
+			if (bookExists) {
+				bookDAO.updateDetails(conn, book);
+				conn.commit();
+				return true;
 			}
-					
-		conn.rollback();
-		}
-		catch(Exception e) {
+
+			conn.rollback();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-			return false;
+		return false;
 	}
-	
-
 
 }

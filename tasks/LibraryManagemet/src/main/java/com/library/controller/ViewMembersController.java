@@ -60,7 +60,7 @@ public class ViewMembersController {
         Member selected = memberTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/library/UI/MemberForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/MemberForm.fxml"));
                 Parent root = loader.load();
 
                 MemberController controller = loader.getController();
@@ -83,7 +83,7 @@ public class ViewMembersController {
 
     // Utility method to refresh the member list
     private void refreshMemberTable() {
-        List<Member> updatedMembers = memberService.viewAllMembers();
+        List<Member> updatedMembers =service.viewAllMembers();
         memberTable.setItems(FXCollections.observableArrayList(updatedMembers));
     }
 
@@ -91,7 +91,7 @@ public class ViewMembersController {
     @FXML
     private void goBack(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/UI/Home.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

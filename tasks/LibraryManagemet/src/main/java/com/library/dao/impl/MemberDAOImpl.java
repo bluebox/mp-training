@@ -11,10 +11,9 @@ import com.library.dao.MemberDAO;
 import com.library.dao.queries.MemberSQLQueries;
 import com.library.domain.Member;
 
-public class MemberDAOImpl extends MemberSQLQueries implements MemberDAO{
+public class MemberDAOImpl extends MemberSQLQueries implements MemberDAO {
 
-
-	public boolean addMember(Member member,Connection conn) {
+	public boolean addMember(Member member, Connection conn) {
 		int check = 0;
 		try {
 			PreparedStatement ps = conn.prepareStatement(insertMember);
@@ -30,42 +29,35 @@ public class MemberDAOImpl extends MemberSQLQueries implements MemberDAO{
 		return check == 1;
 	}
 
+	public boolean isMemberExists(int memberId, Connection conn) {
+		try (PreparedStatement ps = conn.prepareStatement(isMemberExists);) {
+			ps.setInt(1, memberId);
+			ResultSet rs = ps.executeQuery();
+			return rs.next();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
-	public boolean isMemberExists(int memberId,Connection conn) {
-    	try(PreparedStatement ps =conn.prepareStatement(isMemberExists);){
-    		ps.setInt(1, memberId);
-    		ResultSet rs = ps.executeQuery();
-    		return rs.next();
-    	}
-    	catch(Exception e) {
-    		e.printStackTrace();
-    	}
-    	return false;
-    }
-	
 	public List<Member> getAllMembers(Connection conn) {
-		
-	    List<Member> members = new ArrayList<>();
-	    
-	    try {	
-	    	PreparedStatement ps = conn.prepareStatement(viewAllMembers);
-	         ResultSet rs = ps.executeQuery();
-	        		 
-	        while (rs.next()) {
-	            Member member = new Member(
-	                rs.getInt("id"),
-	                rs.getString("name"),
-	                rs.getString("email"),
-	                rs.getLong("mobile"),
-	                rs.getString("gender").charAt(0),
-	                rs.getString("address")
-	            );
-	            members.add(member);
-	        }
-	    } catch (SQLException e) {
+
+		List<Member> members = new ArrayList<>();
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(viewAllMembers);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Member member = new Member(rs.getInt("id"), rs.getString("name"), rs.getString("email"),
+						rs.getLong("mobile"), rs.getString("gender").charAt(0), rs.getString("address"));
+				members.add(member);
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-	    return members;
+		return members;
 	}
+
 }

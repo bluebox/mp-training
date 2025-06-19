@@ -8,5 +8,6 @@ import com.library.domain.Member;
 public interface MemberDAO {
 	public boolean isMemberExists(int memberId,Connection conn);
 	public List<Member> getAllMembers(Connection conn);
+	public boolean addMember(Member member,Connection conn);
 	
 }

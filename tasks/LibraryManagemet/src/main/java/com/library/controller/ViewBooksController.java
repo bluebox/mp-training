@@ -45,7 +45,7 @@ public class ViewBooksController {
     @FXML
     private void handleBack() {
         try {
-            Parent homeView = FXMLLoader.load(getClass().getResource("/com/library/UI/Home.fxml"));
+            Parent homeView = FXMLLoader.load(getClass().getResource("/UI/Home.fxml"));
             Stage stage = (Stage) table.getScene().getWindow();
             stage.setScene(new Scene(homeView));
             stage.setTitle("Library - Home");

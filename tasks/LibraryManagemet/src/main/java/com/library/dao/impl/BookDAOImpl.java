@@ -13,53 +13,50 @@ import com.library.domain.Book;
 import com.library.utilities.ConnectionMaker;
 
 public class BookDAOImpl extends BookSQLQueries implements BookDAO {
-    public boolean isBookExists(int bookId,Connection conn) {
-    	try(PreparedStatement ps =conn.prepareStatement(isBookExists);){
-    		
-	    		ps.setInt(1, bookId);
-	    		ResultSet rs = ps.executeQuery();
-	        	return rs.next();
-    	}
-    	catch(Exception e) {
-    		e.printStackTrace();
-    	}
-    	return false;
-    }
-    public boolean isBookAvailable(int bookId,Connection conn) {
-        try(PreparedStatement ps =conn.prepareStatement(checkBookAvailability);) {
-            ps.setInt(1, bookId);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return "A".equals(rs.getString("status")) && "A".equals(rs.getString("availability"));
-                }
-            }
-            catch(Exception e) {
-            	e.printStackTrace();
-            }
-        }
-        catch(Exception e) {
-        	e.printStackTrace();
-        }
-        return false;
-    }
-    public boolean updateDetails(Connection conn, Book book) {
-        try {
-            PreparedStatement updateStmt = conn.prepareStatement(updateBook);
-            updateStmt.setString(1, book.getTitle());
-            updateStmt.setString(2, book.getAuthor());
-            updateStmt.setString(3, book.getCategory());
-            updateStmt.setString(4, book.getStatus());
-            updateStmt.setInt(5, book.getBookId());
-            updateStmt.executeUpdate();
+	public boolean isBookExists(int bookId, Connection conn) {
+		try (PreparedStatement ps = conn.prepareStatement(isBookExists);) {
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        	return false;
-        }
-        return true;
-    }
+			ps.setInt(1, bookId);
+			ResultSet rs = ps.executeQuery();
+			return rs.next();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
-	private static final String TABLE_NAME = "book";
+	public boolean isBookAvailable(int bookId, Connection conn) {
+		try (PreparedStatement ps = conn.prepareStatement(checkBookAvailability);) {
+			ps.setInt(1, bookId);
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return "A".equals(rs.getString("status")) && "A".equals(rs.getString("availability"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean updateDetails(Connection conn, Book book) {
+		try {
+			PreparedStatement updateStmt = conn.prepareStatement(updateBook);
+			updateStmt.setString(1, book.getTitle());
+			updateStmt.setString(2, book.getAuthor());
+			updateStmt.setString(3, book.getCategory());
+			updateStmt.setString(4, book.getStatus());
+			updateStmt.setInt(5, book.getBookId());
+			updateStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 
 	private boolean isValid(Book book) {
 		return ("A".equals(book.getStatus()) || "I".equals(book.getStatus()))
@@ -85,10 +82,8 @@ public class BookDAOImpl extends BookSQLQueries implements BookDAO {
 		if (!isValid(book))
 			return false;
 
-		String sql = "INSERT INTO " + TABLE_NAME
-				+ " (title, author, category, status, availability) VALUES (?, ?, ?, ?, ?)";
-
-		try (Connection conn = ConnectionMaker.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = ConnectionMaker.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(insertBookQuery)) {
 
 			stmt.setString(1, book.getTitle());
 			stmt.setString(2, book.getAuthor());
@@ -118,16 +113,15 @@ public class BookDAOImpl extends BookSQLQueries implements BookDAO {
 
 		return books;
 	}
+
 	@Override
-    public void updateBookAvailability(Connection conn, int bookId) {
-    	try (PreparedStatement ps = conn.prepareStatement(updateBookAvailability)) {
-            ps.setInt(1, bookId);
-            ps.executeUpdate();
-        }
-    	catch(Exception e) {
-    		e.printStackTrace();
-    	}
-    }
-    
+	public void updateBookAvailability(Connection conn, int bookId) {
+		try (PreparedStatement ps = conn.prepareStatement(updateBookAvailability)) {
+			ps.setInt(1, bookId);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

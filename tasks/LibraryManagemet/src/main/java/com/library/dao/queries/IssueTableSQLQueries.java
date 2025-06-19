@@ -6,5 +6,5 @@ public class IssueTableSQLQueries {
 	protected String returnIssueLog = "INSERT INTO issue_log(BookId, MemberId, Action, ActionTime) VALUES (?, ?, 'RETURN', NOW())";
 	protected String insertIntoIssueRecords = "INSERT INTO issue_records(BookId, MemberId, Status, IssueDate) VALUES (?, ?, 'I', NOW())";
 	protected String showAllIssuedRecords = "SELECT * FROM issue_records";
-	
+
 }

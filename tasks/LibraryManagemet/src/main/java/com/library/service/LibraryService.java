@@ -17,8 +17,11 @@ public interface LibraryService {
 
 	public boolean isBookIssuedToMember(int bookId, int memberId) throws SQLException;
 
-
-
 	public boolean addBook(Book book);
+	public boolean issueBook(IssueRecord issue);
+	public List<IssueRecord> viewAllRecords();
+	
+	public List<Member> viewAllMembers();
+	public Boolean updateBookDetails(Book book);
 
 }
