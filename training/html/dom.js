@@ -121,87 +121,89 @@ document.addEventListener("DOMContentLoaded", function () {
         function validateForm(data, lang) {
             let isValid = true;
 
+            // Remove all previous validation messages
             form.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
+            form.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-            const label = form.querySelector("input[name='Name']");
-            const old = label.querySelector("p");
-            if(old)
-            {
-                label.removeChild(old);
-            }
+            // Helper to show error
+            function showError(inputId, message) {
+                const input = form.querySelector(`#${inputId}`);
+                input.classList.add("invalid");
 
-            const phlabel = form.querySelector("input[name='phone']");
-            const old1 = label.querySelector("p");
+                const error = document.createElement("p");
+                error.textContent = message;
+                error.classList.add("error-msg");
+                error.style.color = "red";
+                error.style.fontSize = "0.7em";
 
-            if(old1)
-            {
-                phlabel.removeChild(old1);
-            }
-
-            const langlabel = form.querySelector("label[for='language']");
-            const old2 = label.querySelector("p");
-            if(old2)
-            {
-                langlabel.removeChild(old2);
-            }
-
-            if (!data.name.trim() || data.name.length<3) {
-                if(data.name.length < 3) {
-                    const label = document.createElement("p");
-                    label.textContent = "Name should be at least 3 characters.";
-                    label.style.color = "red";
-                    label.style.fontSize = "0.7em";
-                    form.querySelector("div .table .form .name").appendChild(label);
-                }
-
-                form.name.classList.add("invalid");
+                input.parentElement.appendChild(error);
                 isValid = false;
             }
-            if (!data.age || isNaN(data.age) || data.age <= 0 || data.age>100   ) {
-                form.age.classList.add("invalid");
-                isValid = false;
+
+            
+            if (!data.name.trim() || data.name.length < 3) {
+                showError("name", "Name should be at least 3 characters.");
             }
+
+            if(data.name.match(/\d/) !== null)
+            {
+                showError("name","Name should not have any digits");
+            }
+
+            
+            if (!data.age || isNaN(data.age)|| !/^\d+$/.test(data.age) || data.age <= 0 || data.age > 100) {
+                showError("age", "Enter a valid number age between (1-100).");
+            }
+
+    
             if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) {
-                form.email.classList.add("invalid");
-                isValid = false;
+                showError("email", "Enter a valid email address.");
             }
-            if (!data.phone || data.phone.toString().length !== 10) {
-                if(data.phone.toString().length !== 10)
-                {
-                    const label = document.createElement("p");
-                    label.textContent = "Phone whould be 10 numbers only.";
-                    label.style.color = "red";
-                    label.style.fontSize = "0.7em";
-                    form.querySelector("input[name='phone']").appendChild(label);
-                }
-                form.phone.classList.add("invalid");
-                isValid = false;
+
+            
+
+            if (!data.phone  ||data.phone.toString().length !== 10) {
+                showError("phone", "Phone No. must be exactly 10 digits.");
             }
+
+            if(!/^\d+$/.test(data.phone))
+            {
+                showError("phone","Phone No. must not have any characters");
+            }
+            
             if (!data.branch) {
                 form.querySelectorAll('input[name="branch"]').forEach(rb => rb.classList.add("invalid"));
                 isValid = false;
             }
+
+            
             if (lang.length === 0) {
-                const label = document.createElement("p");
-                label.textContent = "This is a required Field";
-                label.style.color = "red";
-                label.style.fontSize = "0.7em";
-                form.querySelector("label[for='languages']").appendChild(label);
+                const langLabel = form.querySelector(".form-group .check");
+                const langGroup = form.querySelector('.check');
+                const error = document.createElement("p");
+                error.textContent = "Please select at least one language.";
+                error.classList.add("error-msg");
+                error.style.color = "red";
+                error.style.fontSize = "0.7em";
+                langGroup.appendChild(error);
+
                 form.querySelectorAll('input[name="language"]').forEach(cb => cb.classList.add("invalid"));
                 isValid = false;
             }
-            console.log(data.state)
-            if (!data.state.trim()) {
-                form.state.classList.add("invalid");
-                isValid = false;
+
+            
+            if (!data.state || data.state.trim() === "") {
+                showError("state", "Please select a state.");
             }
-            console.log(data.city);
-            if (!data.city.trim()) {
-                form.city.classList.add("invalid");
-                isValid = false;
+
+            
+            if (!data.city || data.city.trim() === "") {
+                showError("city", "Please select a city.");
             }
+
             return isValid;
         }
+
 
         function getFormData() {
             const formData = new FormData(form);

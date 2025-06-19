@@ -70,7 +70,30 @@ public class BookController {
         update.setCategory(categoryField.getText());
         update.setStatus(statusField.getText().charAt(0));  
         update.setAvailability(selectedBook.getAvailability()); 
-
+        if(update.getTitle() == null)
+        {
+        	showAlert("Warning","Please Specify Title");
+        	return;
+        }
+        if(update.getAuthor() == null)
+        {
+        	showAlert("Warning","Please Specify Author");
+        	return;
+        }
+        
+        if(update.getCategory() == null)
+        {
+        	showAlert("Warning","Please Specify Category");
+        	return;
+        }
+        
+        if(statusField.getText().length() != 1)
+        {
+        	showAlert("Warning","Please Specify Correct Status(A(Available)/I(Inavailable))");
+        	return;
+        }
+        
+        
         if (service.updateBookDetails(selectedBook, update)) {
             showAlert("Success", "Book updated successfully.");
             refreshTable();
