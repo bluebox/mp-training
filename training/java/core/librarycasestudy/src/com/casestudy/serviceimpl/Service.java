@@ -1,4 +1,4 @@
-package com.casestudy.serviceimplimentation;
+package com.casestudy.serviceimpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,9 +13,12 @@ import com.casestudy.domain.IssueRecord;
 import com.casestudy.domain.Member;
 
 public class Service {
-
+	private BooksDao bookDao = new BooksDao();
+	private MembersDao membersDao = new MembersDao();
+	private IssueRecordDao issueRecordDao = new IssueRecordDao();
+	
+	//books
 	public boolean addBook(Book book) {
-		BooksDao bookDao = new BooksDao();
 		try {
 			bookDao.createBook(book);
 			return true;
@@ -26,7 +29,6 @@ public class Service {
 	}
 
 	public boolean updateBookService(Book book) {
-		BooksDao bookDao = new BooksDao();
 		try {
 			return bookDao.updateBook(book);
 						
@@ -38,18 +40,18 @@ public class Service {
 	}
 
 	public void updateBookAvailabilityService(int id) {
-		BooksDao bookDao = new BooksDao();
 		bookDao.updateBookAvailability(id);
 	}
 
 	public List<Book> viewAllBooksService() {
-		BooksDao bookDao = new BooksDao();
 		List<Book> result = bookDao.viewAllBooks();
 		return result;
 	}
-
+	public Book getBookById(int bookId) {
+		return bookDao.searchBook(bookId);
+	}
+	//Member
 	public boolean addMemberService(Member member) {
-		MembersDao membersDao = new MembersDao();
 
 		try {
 			membersDao.addMember(member);
@@ -62,25 +64,26 @@ public class Service {
 	}
 
 	public boolean updateMemberService(Member member) {
-		MembersDao membersDao = new MembersDao();
 		return membersDao.updateMember(member);
 	}
 
 	public List<Member> getAllMembersService() {
-		MembersDao membersDao = new MembersDao();
 		List<Member> allMembers = membersDao.getAllMembers();
 		return allMembers;
 	}
-
+	
+	public Member getMemberById(int id) {
+		return membersDao.getMemberById(id);
+	}
+	//issuebooks
 	public boolean issueBookService(IssueRecord issueRecord) {
-		BooksDao booksDao = new BooksDao();
 		MembersDao membersDao = new MembersDao();
-		if (booksDao.CanBeIssued(issueRecord.getBookId()) && membersDao.findMember(issueRecord.getMemberId())) {
+		if (bookDao.CanBeIssued(issueRecord.getBookId()) && membersDao.findMember(issueRecord.getMemberId())) {
 			IssueRecordDao issueRecordDao = new IssueRecordDao();
 			try {
 				System.out.println("issuing");
 				issueRecordDao.issueBook(issueRecord);
-				booksDao.updateBookAvailability(issueRecord.getBookId());
+				bookDao.updateBookAvailability(issueRecord.getBookId());
 				return true;
 			} catch (SQLException e) {
 				System.out.println("Someting went wrong in insertion .");
@@ -92,16 +95,16 @@ public class Service {
 	}
 
 	public boolean returnBookService(IssueRecord issueRecord) {
-		IssueRecordDao issueRecordDao = new IssueRecordDao();
-		BooksDao booksDao = new BooksDao();
 		if (issueRecordDao.alreadyIssued(issueRecord)) {
 			try {
 				issueRecordDao.returnBook(issueRecord);
-				booksDao.updateBookAvailability(issueRecord.getBookId());
+				bookDao.updateBookAvailability(issueRecord.getBookId());
+				System.out.println("insdie try service , return book service");
 				return true;
 			} catch (SQLException e) {
 				System.out.println("Return unsucessful !!!");
 				e.printStackTrace();
+				System.out.println("insdie try service , return book service");
 				return false;
 			}
 		}
@@ -109,18 +112,15 @@ public class Service {
 	}
 
 	public List<IssueRecord> getAllIssuedRecordsService() {
-		IssueRecordDao issueRecordDao = new IssueRecordDao();
 		return issueRecordDao.getAllIssuedRecords();
 	}
 
 	public List<IssueRecord> getOverdueBooks() {
-		IssueRecordDao issueRecordDao = new IssueRecordDao();
 		return issueRecordDao.getIssuedBooks();
 	}
 
 	public Map<String, Long> getBooksCountPerCategory() {
-		BooksDao booksDao = new BooksDao();
-		List<Book> books = booksDao.viewAllBooks();
+		List<Book> books = bookDao.viewAllBooks();
 		Map<String, Long> categoryCountMap = books.stream()
 				.collect(Collectors.groupingBy(Book::getCategory, Collectors.counting()));
 		return categoryCountMap;
@@ -128,18 +128,7 @@ public class Service {
 	}
 
 	public List<IssueRecord> getActiveIssuedBooksSerivce() {
-		IssueRecordDao issueRecordDao = new IssueRecordDao();
 		return issueRecordDao.getActiveIssuedBooks();
-	}
-
-	public Book getBookById(int bookId) {
-		BooksDao booksDao = new BooksDao();
-		return booksDao.searchBook(bookId);
-	}
-	
-	public Member getMemberById(int id) {
-		MembersDao membersDao = new MembersDao();
-		return membersDao.getMemberById(id);
 	}
 
 }

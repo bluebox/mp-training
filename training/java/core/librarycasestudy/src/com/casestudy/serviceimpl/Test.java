@@ -1,4 +1,4 @@
-package com.casestudy.serviceimplimentation;
+package com.casestudy.serviceimpl;
 
 import com.casestudy.domain.IssueRecord;
 

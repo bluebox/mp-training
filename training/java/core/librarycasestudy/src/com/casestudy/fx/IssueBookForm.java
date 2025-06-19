@@ -1,6 +1,6 @@
 package com.casestudy.fx;
 import com.casestudy.domain.IssueRecord;
-import com.casestudy.serviceimplimentation.Service;
+import com.casestudy.serviceimpl.Service;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
@@ -53,7 +53,7 @@ public class IssueBookForm extends VBox {
                     memberIdField.clear();
 
                 } else {
-                    UtilMethods.showAlert(Alert.AlertType.ERROR, "Failure", "Failed to issue the book.");
+                    UtilMethods.showAlert(Alert.AlertType.ERROR, "Sorry!!!", "Book Cannot be issued now .");
                     System.out.println("Book issued failed");
                 }
 

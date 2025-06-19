@@ -9,7 +9,7 @@ public class Main extends Application {
     	System.out.println("this is running !!!");
         MainMenu mainMenu = new MainMenu();
         Scene scene = new Scene(mainMenu.getRoot(), 800, 600);
-        primaryStage.setTitle("Librarian Management System");
+        primaryStage.setTitle("Library Management System");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

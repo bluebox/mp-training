@@ -9,11 +9,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.casestudy.dao.models.IssueRecordDaoModel;
 import com.casestudy.domain.IssueRecord;
 import com.casestudy.domain.RecordStatus;
 import com.casestudy.util.DBUtil;
 
-public class IssueRecordDao {
+public class IssueRecordDao implements IssueRecordDaoModel{
 
 	private Connection conn;
 
@@ -270,15 +271,19 @@ public class IssueRecordDao {
 	}
 
 	public boolean alreadyIssued(IssueRecord issueRecord) {
-		String isReturned = "SELECT status FROM IssueRecords WHERE bookId = ? AND memberId = ?";
+		String isReturned = "SELECT status FROM IssueRecords WHERE bookId = ? AND memberId = ? AND status = 'I'";
 
-		try (Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(isReturned)) {
+		try {
+			 conn = DBUtil.getConnection();
+			PreparedStatement ps = conn.prepareStatement(isReturned);
+		
 
 			ps.setInt(1, issueRecord.getBookId());
 			ps.setInt(2, issueRecord.getMemberId());
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				System.out.println("insdie  rs.next() alreadyissued , ");
 				if ("I".equals(rs.getString("status"))) {
 					return true;
 				}
@@ -287,7 +292,7 @@ public class IssueRecordDao {
 		} catch (SQLException e) {
 			e.printStackTrace(); 
 		}
-
+		System.out.println("insdie alreadyissued , ");
 		return false;
 	}
 	

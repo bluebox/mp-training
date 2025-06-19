@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.casestudy.dao.models.BooksDaoModel;
 import com.casestudy.domain.Availability;
 import com.casestudy.domain.Book;
 import com.casestudy.domain.Status;
@@ -14,7 +15,7 @@ import com.casestudy.util.DBUtil;
 
 
 
-public class BooksDao {
+public class BooksDao implements BooksDaoModel{
 	private Connection conn;
 	private PreparedStatement ps;
 
