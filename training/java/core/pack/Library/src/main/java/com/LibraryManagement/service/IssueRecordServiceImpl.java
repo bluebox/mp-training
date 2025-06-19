@@ -44,7 +44,6 @@ public class IssueRecordServiceImpl implements IssueRecordService {
 
         issueRecordDAO.addIssueRecord(issueRecord);
 
-       
         bookDAO.updateBookAvailability(bookId, 'I');
     }
 
@@ -75,6 +74,7 @@ public class IssueRecordServiceImpl implements IssueRecordService {
         issueToUpdate.setStatus('R');
         issueToUpdate.setReturnDate(LocalDate.now());
 
+        
         issueRecordDAO.updateIssueRecord(issueToUpdate);
         bookDAO.updateBookAvailability(bookId, 'A');
     }

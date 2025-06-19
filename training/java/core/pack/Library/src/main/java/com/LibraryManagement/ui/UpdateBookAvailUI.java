@@ -4,6 +4,7 @@ import Library.src.main.java.com.LibraryManagement.service.BookService;
 import Library.src.main.java.com.LibraryManagement.service.BookServiceImpl;
 import Library.src.main.java.com.LibraryManagement.dao.BookDAOImpl;
 import Library.src.main.java.com.LibraryManagement.util.DBConnection;
+import Library.src.main.java.com.LibraryManagement.model.Book;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -67,6 +68,13 @@ public class UpdateBookAvailUI {
 
             try {
                 int bookId = Integer.parseInt(bookIdText);
+                
+                Book existingBook=bookService.getBookById(bookId);
+                if(existingBook==null) {
+                	messageLabel.setText("No Book found with ID: " + bookId);
+                    return;
+                }
+                
                 bookService.updateBookAvailability(bookId, availability.charAt(0));
                 messageLabel.setText(" Availability updated to '" + availability + "' for Book ID " + bookId);
                 bookIdField.clear();

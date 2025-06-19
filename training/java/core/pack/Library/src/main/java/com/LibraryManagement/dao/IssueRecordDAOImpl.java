@@ -17,7 +17,7 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
     @Override
     public void addIssueRecord(IssueRecord issueRecord) throws SQLException {
         String sql = "INSERT INTO issue_records (BookId, MemberId, Status, IssueDate, ReturnDate) VALUES (?, ?, ?, ?, ?)";
-        String sql_logs="INSERT INTO issueRecord_logs(BookId,MemberId,Status,IssueDate,ReturnDate,Time) VALUES (?,?,?,?,?,?)";
+       // String sql_logs="INSERT INTO issueRecord_logs(BookId,MemberId,Status,IssueDate,ReturnDate,Time) VALUES (?,?,?,?,?,?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, issueRecord.getBookId());
             ps.setInt(2, issueRecord.getMemberId());
@@ -31,19 +31,19 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
             ps.executeUpdate();
         }
        
-        try (PreparedStatement ps = connection.prepareStatement(sql_logs)){
-        	ps.setInt(1, issueRecord.getBookId());
-        	ps.setInt(2, issueRecord.getMemberId());
-        	ps.setString(3, String.valueOf(issueRecord.getStatus()));
-        	ps.setDate(4, Date.valueOf(issueRecord.getIssueDate()));
-        	if (issueRecord.getReturnDate() != null) {
-                ps.setDate(5, Date.valueOf(issueRecord.getReturnDate()));
-            } else {
-                ps.setNull(5, Types.DATE);
-            } 
-        	 ps.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
-        	 ps.executeUpdate();
-        }
+//        try (PreparedStatement ps = connection.prepareStatement(sql_logs)){
+//        	ps.setInt(1, issueRecord.getBookId());
+//        	ps.setInt(2, issueRecord.getMemberId());
+//        	ps.setString(3, String.valueOf(issueRecord.getStatus()));
+//        	ps.setDate(4, Date.valueOf(issueRecord.getIssueDate()));
+//        	if (issueRecord.getReturnDate() != null) {
+//                ps.setDate(5, Date.valueOf(issueRecord.getReturnDate()));
+//            } else {
+//                ps.setNull(5, Types.DATE);
+//            } 
+//        	 ps.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
+//        	 ps.executeUpdate();
+//        }
     }
 
     @Override
@@ -74,7 +74,6 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
             ps.executeUpdate();
         }
        
-        
         
     }
 

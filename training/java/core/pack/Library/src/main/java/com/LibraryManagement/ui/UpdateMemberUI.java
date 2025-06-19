@@ -110,6 +110,7 @@ public class UpdateMemberUI {
                     messageLabel.setText("No Member found with ID: " + memberId);
                     return;
                 }
+            	
             	if (!name.isEmpty()) existingMember.setName(name);
             	if(!email.isEmpty()) {
             		 if (!email.endsWith("@gmail.com")) {

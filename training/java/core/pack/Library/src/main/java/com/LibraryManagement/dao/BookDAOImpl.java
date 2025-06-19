@@ -127,3 +127,128 @@ public class BookDAOImpl implements BookDAO {
     	return map;
     }
 }
+
+
+
+//
+//package com.LibraryManagement.dao;
+//
+//import com.LibraryManagement.model.Book;
+//
+//import java.sql.*;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//public class BookDAOImpl implements BookDAO {
+//
+//    private final Connection connection;
+//
+//    public BookDAOImpl(Connection connection) {
+//        this.connection = connection;
+//    }
+//
+//    @Override
+//    public void addBook(Book book) throws SQLException {
+//        String insertSql = "INSERT INTO books (Title, Author, Category, Status, Availability) VALUES (?, ?, ?, ?, ?)";
+//        String logSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availability, Action, LogTime) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
+//
+//        try {
+//            connection.setAutoCommit(false);
+//
+//            try (PreparedStatement ps = connection.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS)) {
+//                ps.setString(1, book.getTitle());
+//                ps.setString(2, book.getAuthor());
+//                ps.setString(3, book.getCategory());
+//                ps.setString(4, String.valueOf(book.getStatus()));
+//                ps.setString(5, String.valueOf(book.getAvailability()));
+//                ps.executeUpdate();
+//
+//                ResultSet rs = ps.getGeneratedKeys();
+//                if (rs.next()) {
+//                    int bookId = rs.getInt(1);
+//                    book.setBookId(bookId);
+//
+//                    try (PreparedStatement logPs = connection.prepareStatement(logSql)) {
+//                        logPs.setInt(1, bookId);
+//                        logPs.setString(2, book.getTitle());
+//                        logPs.setString(3, book.getAuthor());
+//                        logPs.setString(4, book.getCategory());
+//                        logPs.setString(5, String.valueOf(book.getStatus()));
+//                        logPs.setString(6, String.valueOf(book.getAvailability()));
+//                        logPs.setString(7, "INSERT");
+//                        logPs.executeUpdate();
+//                    }
+//                }
+//            }
+//
+//            connection.commit();
+//        } catch (SQLException e) {
+//            connection.rollback();
+//            throw e;
+//        } finally {
+//            connection.setAutoCommit(true);
+//        }
+//    }
+//
+//    @Override
+//    public void updateBook(Book book) throws SQLException {
+//        String updateSql = "UPDATE books SET Title=?, Author=?, Category=?, Status=?, Availability=? WHERE BookId=?";
+//        String logSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availability, Action, LogTime) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
+//
+//        try {
+//            connection.setAutoCommit(false);
+//
+//            try (PreparedStatement ps = connection.prepareStatement(updateSql)) {
+//                ps.setString(1, book.getTitle());
+//                ps.setString(2, book.getAuthor());
+//                ps.setString(3, book.getCategory());
+//                ps.setString(4, String.valueOf(book.getStatus()));
+//                ps.setString(5, String.valueOf(book.getAvailability()));
+//                ps.setInt(6, book.getBookId());
+//                ps.executeUpdate();
+//            }
+//
+//            try (PreparedStatement logPs = connection.prepareStatement(logSql)) {
+//                logPs.setInt(1, book.getBookId());
+//                logPs.setString(2, book.getTitle());
+//                logPs.setString(3, book.getAuthor());
+//                logPs.setString(4, book.getCategory());
+//                logPs.setString(5, String.valueOf(book.getStatus()));
+//                logPs.setString(6, String.valueOf(book.getAvailability()));
+//                logPs.setString(7, "UPDATE");
+//                logPs.executeUpdate();
+//            }
+//
+//            connection.commit();
+//        } catch (SQLException e) {
+//            connection.rollback();
+//            throw e;
+//        } finally {
+//            connection.setAutoCommit(true);
+//        }
+//    }
+//
+//    @Override
+//    public List<Book> getAllBooks() throws SQLException {
+//        List<Book> books = new ArrayList<>();
+//        String sql = "SELECT * FROM books";
+//        try (PreparedStatement ps = connection.prepareStatement(sql);
+//             ResultSet rs = ps.executeQuery()) {
+//            while (rs.next()) {
+//                Book book = new Book();
+//                book.setBookId(rs.getInt("BookId"));
+//                book.setTitle(rs.getString("Title"));
+//                book.setAuthor(rs.getString("Author"));
+//                book.setCategory(rs.getString("Category"));
+//                book.setStatus(rs.getString("Status").charAt(0));
+//                book.setAvailability(rs.getString("Availability").charAt(0));
+//                books.add(book);
+//            }
+//        }
+//        return books;
+//    }
+//}
+//
+//
+//
+//
