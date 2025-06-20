@@ -1,3 +1,14 @@
 /module-info.class
-/jars/
+/.classpath
+/.gitignore
+/.project
+/adv/
 /com/
+/datechallenges/
+/inheritance/
+/jars/
+/jdbclearning/
+/medplus/
+/modifier/
+/orderTracking.json
+/streams/
