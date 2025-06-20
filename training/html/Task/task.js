@@ -16,7 +16,7 @@ function updateTable() {
             <td>${person.age}</td>
             <td>${person.phone}</td>
             <td>${person.branch}</td>
-            <td>${person.languages.join(', ')}</td>
+            <td>${person.languages.join(',')}</td>
             <td>${person.state || ''}</td>
             <td>${person.city || ''}</td>
             <td>
@@ -27,6 +27,7 @@ function updateTable() {
     });
 }
 
+// filter the person data
 function filterTable(colIndex, query) {
     const table = document.querySelector('.t1');
     const rows = Array.from(table.rows).slice(2); 
@@ -42,6 +43,7 @@ function filterTable(colIndex, query) {
     });
 }
 
+// fetching data from api's
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('myForm');
     const stateSelect = document.getElementById('state');
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(err => console.error("Error fetching cities:", err));
     });
 
+    // form submission
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -182,11 +185,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Delete Person Data
 function deletePerson(idx) {
     persons.splice(idx, 1);
     updateTable();
 }
 
+// Update Person Data
 function editPerson(idx) {
     const person = persons[idx];
     document.getElementById('name').value = person.name;
@@ -230,7 +235,8 @@ function editPerson(idx) {
                 console.error("Error fetching cities on edit:", err);
                 citySelect.innerHTML = '<option value="">Select City</option>';
             });
-    } else {
+    } 
+    else {
         stateSelect.value = '';
         citySelect.innerHTML = '<option value="">Select City</option>';
     }
