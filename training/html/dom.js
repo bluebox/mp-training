@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const citySelect = document.getElementById("city");
                 citySelect.innerHTML = "";
                 console.log(this.value);
+                let option = document.createElement("option");
+                // option.value = "
                 if (cities) {
                     for (const city in cities) {
                         const option = document.createElement("option");
@@ -322,45 +324,39 @@ document.addEventListener("DOMContentLoaded", function () {
             const editBtn = document.createElement("button");
             editBtn.textContent = "Alter";
             editBtn.classList.add("action-btn");
-            editBtn.addEventListener("click", function () {
+            editBtn.addEventListener("click", async function () {
                 form.name.value = user.name;
                 form.age.value = user.age;
                 form.email.value = user.email;
                 form.phone.value = user.phone;
                 form.state.value = user.state;
-                getCities().then(states =>{
-                    if(states){
-                        statesJson = states;
-                        for(const key in states)
-                        {
-                            const ele = document.createElement("option");
-                            ele.value = states[key];
-                            ele.text = key;
 
-                            document.getElementById("state").appendChild(ele);
-                        }
+                const cities = await getCities();
+
+                const citySelect = document.getElementById("city");
+                citySelect.innerHTML = ""; 
+
+                if (cities) {
+                    for (const city in cities) {
+                        const option = document.createElement("option");
+                        option.value = city;
+                        option.text = city;
+                        citySelect.appendChild(option);
                     }
-                });
-                console.log(city.value,user.city);
-                let citySelect = document.getElementById("city");
-                let cityflag = false;
-                for(let i = 0;i<citySelect.options.length;i++)
-                {
-                    if(citySelect.options[i].value === user.city)
-                    {
-                        cityflag = true;
-                        break;
+
+                    
+                    if (cities.hasOwnProperty(user.city)) {
+                        form.city.value = user.city;
+                    } else {
+                        citySelect.selectedIndex = 0;
                     }
-                }
-                if(cityflag)
-                {
-                    form.city.value = user.city;
-                }else {
+                } else {
+                    
+                    citySelect.innerHTML = `<option value="">Select city</option>`;
                     citySelect.selectedIndex = 0;
                 }
+
                 
-
-
                 form.querySelectorAll('input[name="branch"]').forEach(rb => {
                     rb.checked = rb.value === user.branch;
                 });
@@ -370,16 +366,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     cb.checked = langSet.has(cb.value);
                 });
 
-                // Object.assign(alterUserInfo,user);
-
                 selectedUserId = user.id;
                 alterSelect = true;
-                if(alterSelect)
-                {
-                    cancelBtn.style.display = "block";
-                }
-                // row.remove(); 
+                cancelBtn.style.display = "block";
             });
+
 
             const deleteBtn = document.createElement("button");
             deleteBtn.textContent = "Delete";
@@ -414,6 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
             form.querySelectorAll(".error-msg").forEach(el => el.remove());
             // document.getElementById("city").value = -1;
             citySelect = document.getElementById("city");
+            citySelect.innerHTML = `<option value="">Select city</option>`;
             citySelect.selectedIndex = 0;
             renderTable();
             cancelBtn.style.display = "none";  
