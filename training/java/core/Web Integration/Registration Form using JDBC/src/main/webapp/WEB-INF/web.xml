@@ -1,7 +1,7 @@
 <web-app> 
 	<servlet>
 		<servlet-name>Data Management</servlet-name>
-		<servlet-class>DataManagement</servlet-class>
+		<servlet-class>com.form.DataManagement</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Data Management</servlet-name>

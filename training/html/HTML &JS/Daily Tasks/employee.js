@@ -261,7 +261,8 @@ function render(){
         x.style.padding="3px";
         c.appendChild(x);
         x=document.createElement("td");
-        x.style.border="3px solid";
+        x.style.bord
+        er="3px solid";
         x.style.padding="3px";
         y=document.createElement("button");
         y.textContent="Edit";
@@ -272,6 +273,7 @@ function render(){
         x.appendChild(y);
         y=document.createElement("button");
         y.textContent="Delete";
+        y.id=emp.Email;
         y.onclick = (()=>{
             localStorage.removeItem(emp.Email);
             render();
