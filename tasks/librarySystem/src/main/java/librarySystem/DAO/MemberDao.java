@@ -119,7 +119,20 @@ public class MemberDao {
             return false;
         }
     }
-
+    
+    public boolean deleteMember(int id)
+    {
+    	String sql = "delete from members where MemberId = ?";
+    	try(Connection conn = DbConnection.getConnection();
+    		PreparedStatement deleteStmt = conn.prepareStatement(sql)){
+    		deleteStmt.setInt(1, id);
+    		return deleteStmt.executeUpdate()>0;
+    	} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return false;
+    }
+    
     public boolean updateMember(MemberPojo existingMember, MemberPojo updatedMember) {
         String updateSql = "UPDATE members SET Name = ?, Email = ?, Mobile = ?, Gender = ?, Address = ? WHERE MemberId = ?";
         String logSql = "INSERT INTO members_log (MemberId, Name, Email, Mobile, Gender, Address) VALUES (?, ?, ?, ?, ?, ?)";

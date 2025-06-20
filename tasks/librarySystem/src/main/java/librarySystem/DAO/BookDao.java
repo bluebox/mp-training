@@ -307,4 +307,18 @@ public class BookDao {
 
         return null;
     }
+    public boolean deleteBookById(int bookId)
+    {
+    	String sql = "delete from books where BookId = ?";
+    	try(Connection conn = DbConnection.getConnection();
+    		PreparedStatement stmt = conn.prepareStatement(sql))
+    	{
+    		stmt.setInt(1, bookId);
+    		int res = stmt.executeUpdate();
+    		return res>0;
+    	} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return false;
+    }
 }

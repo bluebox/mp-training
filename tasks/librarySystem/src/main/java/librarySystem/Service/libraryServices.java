@@ -94,6 +94,10 @@ public class libraryServices {
         
         return memberDao.updateMember(oldMember, newMember);
     }
+    public boolean deleteMember(int id)
+    {
+    	return memberDao.deleteMember(id);
+    }
 
     public List<MemberPojo> viewAllMembers() {
         return memberDao.getMembers();
@@ -156,6 +160,11 @@ public class libraryServices {
         return memberDao.getMembers().stream()
                 .filter(m -> memberIds.contains(m.getMemberId()))
                 .collect(Collectors.toList());
+    }
+    
+    public boolean deleteBook(int id)
+    {
+    	return bookDao.deleteBookById(id);
     }
     
     public List<IssueRecordPojo> getAllRecords()

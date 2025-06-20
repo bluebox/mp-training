@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) {
                 showError("email", "Enter a valid email address.");
             }
-            if(chechMail(data.email))
+            if(checkMail(data.email))
             {
                 showError("email","Email already Taken. Please use another");
             }
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
 
-            function chechMail(mail)
+            function checkMail(mail)
             {
                 if(!alterSelect)
                 {
@@ -342,7 +342,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
                 console.log(city.value,user.city);
-                form.city.value = user.city;
+                let citySelect = document.getElementById("city");
+                let cityflag = false;
+                for(let i = 0;i<citySelect.options.length;i++)
+                {
+                    if(citySelect.options[i].value === user.city)
+                    {
+                        cityflag = true;
+                        break;
+                    }
+                }
+                if(cityflag)
+                {
+                    form.city.value = user.city;
+                }else {
+                    citySelect.selectedIndex = 0;
+                }
+                
 
 
                 form.querySelectorAll('input[name="branch"]').forEach(rb => {
@@ -396,7 +412,9 @@ document.addEventListener("DOMContentLoaded", function () {
             form.reset();
             form.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
             form.querySelectorAll(".error-msg").forEach(el => el.remove());
-            document.getElementById("city").value = -1;
+            // document.getElementById("city").value = -1;
+            citySelect = document.getElementById("city");
+            citySelect.selectedIndex = 0;
             renderTable();
             cancelBtn.style.display = "none";  
         });

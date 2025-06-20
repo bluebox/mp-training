@@ -25,7 +25,7 @@
         <HBox spacing="10">
     		<Button text="Add Book" onAction="#handleAddBook"/>
     		<Button text="Update Book" onAction="#handleUpdateBook"/>
-    		<Button text="Delete Book" onAction="#handleDelete"/>
+    		<Button text="Delete Book" onAction="#handleDeleteBook"/>
 		</HBox>
 
     </HBox>

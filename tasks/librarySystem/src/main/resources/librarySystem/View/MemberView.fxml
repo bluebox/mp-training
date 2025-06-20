@@ -24,6 +24,8 @@
     <TextField fx:id="addressField" promptText="Address"/>
     <ComboBox fx:id="genderCombo" promptText="Gender"/>
     <Button text="Add Member" onAction="#handleAddMember"/>
+    <Button text="Update Member" onAction="#handleUpdateMember"/>
+    <Button text="Delete Member" onAction="#handleDeleteMember"/>
   </HBox>
   <TableView fx:id="memberTable" prefHeight="300">
     <columns>
