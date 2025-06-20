@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Knapsack {
 	public static int solve(int W[],int V[],int dp[][],int n,int w) {
@@ -26,6 +28,8 @@ public class Knapsack {
 			Arrays.fill(dp[i], -1);
 		}
 		System.out.println(solve(W,V,dp,n-1,w));
+		List<Integer>ans=Arrays.stream(W).boxed()
+		.collect(Collectors.toList());
+		ans.forEach(System.out::print);
 	}
-
 }
