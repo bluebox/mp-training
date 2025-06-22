@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form</title>
+</head>
+<body>
+	<form action="/Demo1/form" method="post">
+		<table>
+			<tr>
+				<td><label for="name"> Name : </label></td>
+				<td><input type="text" name="name" required></td>
+			</tr>
+			<tr>
+				<td><label> Age : </label></td>
+				<td><input type="number" name="age" min=15 max=30 required></td>
+			</tr>
+			<tr>
+				<td><label> Email : </label></td>
+				<td><input type="email" name="email" required></td>
+			</tr>
+			<tr>
+				<td><label> Phone no : </label></td>
+				<td><input type="number" name="phno" min=1000000000 max=9999999999 required></td>
+			</tr>
+			<tr>
+				<td><label> Branch name : </label></td>
+				<td>
+					<input type="radio" name="branch" value="cse">CSE
+					<input type="radio" name="branch" value="ece">ECE
+					<input type="radio" name="branch" value="eee">EEE
+				</td>
+			</tr>
+			<tr>
+				<td><label> Languages you know : </label></td>
+				<td><input type="checkbox" name="lang" value="Telugu">Telugu
+					<input type="checkbox" name="lang" value="Hindi">Hindi
+					<input type="checkbox" name="lang" value="English">English
+				</td>
+			</tr>
+			<tr>
+				<td><label> State : </label></td>
+				<td><select name="state">
+					<option value="Telangana">Telangana</option>
+					<option value="Andra Pradesh">Andra Pradesh</option>
+					<option value="Rajasthan">Rajasthan</option>
+					<option value="Maharashtra">Maharashtra</option>
+					<option value="Goa">Goa</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><label> City : </label></td>
+				<td><input type="text" name="city" required></td>
+			</tr>
+			<tr>
+				<td colspan=2><input type="submit" name="submit" value="submit"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
