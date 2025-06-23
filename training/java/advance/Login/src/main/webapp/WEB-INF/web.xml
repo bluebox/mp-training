@@ -11,4 +11,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
+  <context-param>
+  	<param-name>user</param-name>
+  	<param-value>manoj</param-value>
+  </context-param>
+    <context-param>
+  	<param-name>password</param-name>
+  	<param-value>Manoj@123</param-value>
+  </context-param>
+  
+  
 </web-app>

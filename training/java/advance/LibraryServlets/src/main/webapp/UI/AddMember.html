@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Add Member</h1>
+     <form class="form"  action="/LibraryServlets/addMember" method="post">
+
+        <label for="name">Title:</label><br>
+        <input type="text" id="name"  name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email"  name="email" required><br><br>
+
+        <label for="mobile">Mobile:</label><br>
+        <input type="text" id="mobile" name="mobile"  required pattern="[0-9]{10}" max="10"><br><br>
+
+
+        <label>Gender (M/F):</label><br>
+        <input type="radio" id="male" name="gender" value="M" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="F">
+        <label for="female">female</label><br><br>
+
+        <label for="address">address:</label><br>
+    <textarea id="address" name="address" rows="5" cols="30"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+        <input type="button" value="Back" onclick="window.location.href='Home.html'">
+
+     </form>
+    
+</body>
+</html>

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,10 @@ public class Validate extends HttpServlet{
 	public void init() throws ServletException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/security", "manoj", "Manoj@123");  
+			ServletContext context=getServletContext();
+			String user=context.getInitParameter("user");
+			String password=context.getInitParameter("password");
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/security", user, password);  
 			ps=conn.prepareStatement("Select * from logins where username=? and password=?");
 			
 		} catch (Exception e) {
