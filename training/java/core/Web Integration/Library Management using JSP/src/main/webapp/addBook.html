@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/Library_Management_using_JSP/AddBookController" method="post">
+		<label for="bookId">Book ID : </label>
+		<input type="number" name="bookId" id="bookId"/><br>
+		<label for="title">Title : </label>
+		<input type="text" name="title" id="title"/><br>
+		<label for="author">Author : </label>
+		<input type="text" name="author" id="author"/><br>
+		<label for="category">Category : </label>
+		<input type="text" name="category" id="category"/><br>
+		<div id="sVisible" style="visibility:hidden">
+			<label for "status">Status</label>
+			<select name="status">
+				<option style="visibility:hidden">Select your choice</option>
+				<option id="A" value="A">Active</option>
+				<option id="I" value="I">Inactive</option>
+			</select>
+		</div>
+		<input type="submit">
+	</form>
+	<script>
+		var parameter=new URLSearchParams(window.location.search);
+		var mode=parameter.get("mode");
+		if(mode!=null){
+			change(mode);
+		}
+		function change(mode){
+			var form=document.querySelector("form");
+			var submit=document.querySelector('input[type="submit"]');
+			if(mode=="update"){
+				form.action="/Library_Management_using_JSP/UpdateBookController";
+				if(parameter.has("bookId")){
+					document.getElementById("bookId").value=parameter.get("bookId");
+					document.getElementById("bookId").disabled=true;
+				}
+				if(parameter.has("title")){
+					document.getElementById("title").value=parameter.get("title");
+				}
+				if(parameter.has("author")){
+					document.getElementById("author").value=parameter.get("author");
+				}
+				if(parameter.has("category")){
+					document.getElementById("category").value=parameter.get("category");
+				}
+				document.getElementById("sVisible").style.visibility=true;
+				if(parameter.has("status")){
+					document.getElementById("status").value=parameter.get("status");
+				}
+			}
+			else{
+				form.action="/Library_Management_using_JSP/AddBookController";
+			}
+		}
+	</script>
+</body>
+</html>

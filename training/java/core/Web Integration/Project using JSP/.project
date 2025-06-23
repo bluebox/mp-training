@@ -30,14 +30,19 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>src/main/webapp/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar</name>
+			<type>1</type>
+			<location>/home/developer/Downloads/javax.servlet.jsp.jstl-1.2.1.jar</location>
+		</link>
+		<link>
 			<name>src/main/webapp/WEB-INF/lib/jstl-1.2.jar</name>
 			<type>1</type>
-			<location>C:/Users/VASA BHANU PRAKASH/Downloads/jstl-1.2.jar</location>
+			<location>/home/developer/eclipse/C::/Users/VASA BHANU PRAKASH/Downloads/jstl-1.2.jar</location>
 		</link>
 		<link>
 			<name>src/main/webapp/WEB-INF/lib/standard-1.1.2.jar</name>
 			<type>1</type>
-			<location>C:/Users/VASA BHANU PRAKASH/Downloads/standard-1.1.2.jar</location>
+			<location>/home/developer/eclipse/C::/Users/VASA BHANU PRAKASH/Downloads/standard-1.1.2.jar</location>
 		</link>
 	</linkedResources>
 </projectDescription>

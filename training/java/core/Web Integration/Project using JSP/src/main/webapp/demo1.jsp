@@ -11,10 +11,10 @@
         <div><h1>The sum of two numbers is:</h1></div>
 
         <label>The first number is:</label>
-        <input type="number" name="num1" value="${param.num1}" required /><br><br>
+        <input type="number" name="num1" required /><br><br>
 
         <label>The second number is:</label>
-        <input type="number" name="num2" value="${param.num2}" required /><br><br>
+        <input type="number" name="num2" required /><br><br>
 
         <input type="submit" value="Submit" />
     </form>
@@ -30,7 +30,7 @@
     <c:forEach var="i" begin="1" end="5" step="1">
     	<c:out value="${i}"/><br>
     </c:forEach>
-    <c:forEach var="i" items="${['Ram','Raj','Raghu','Gopi','Madhav']}">
+    <c:forEach var="i" items="${'Ram','Raj','Raghu','Gopi','Madhav'}">
     	<c:out value="${i}"/><br>
     </c:forEach>
     <h1>Fabinocci Series</h1>

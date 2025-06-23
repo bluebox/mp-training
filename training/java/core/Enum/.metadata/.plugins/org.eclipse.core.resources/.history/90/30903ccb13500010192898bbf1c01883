@@ -1,0 +1,23 @@
+package com.library.enums;
+
+public enum Status {
+	Active('A'),Inactive('I');
+	char status;
+	Status s;
+	Status(char status) {
+		this.status=status;
+		this.s=s;
+	}
+	public char getStatus() {
+		return status;
+	}
+	public void setStatus(char status) {
+		this.status = status;
+	}
+	public Status getS() {
+		return s;
+	}
+	public void setS(Status s) {
+		this.s = s;
+	}
+}
