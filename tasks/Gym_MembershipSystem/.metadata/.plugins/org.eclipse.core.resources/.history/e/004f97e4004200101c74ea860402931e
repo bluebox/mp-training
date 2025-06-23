@@ -1,0 +1,59 @@
+package com.gym.domain;
+
+public class MembershipPlan {
+    public enum Plan {
+        BASIC(700, 1),
+        GOLD(1200, 1),
+        PREMIUM(1000, 1);
+
+    	private int duration;
+        private final double monthlyFee;
+
+        Plan(double monthlyFee, int durationInMonths) {
+            this.monthlyFee = monthlyFee;
+            this.duration = durationInMonths;
+        }
+
+        public double getMonthlyFee() {
+            return monthlyFee;
+        }
+        
+        public int getDuration() {
+        	return duration;
+        }
+        
+    }
+
+    private Plan plan;
+    private int durationMonths;
+    private double fee;
+
+    public MembershipPlan(Plan plan, int durationMonths) {
+        this.plan = plan;
+        this.durationMonths = durationMonths;
+        this.fee = calculateFee();
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public String getDurationMonths() {
+        return durationMonths + " months";
+    }
+
+    public double getFee() {
+        return fee;
+    }
+
+    private double calculateFee() {
+        double monthlyFee = plan.getMonthlyFee();
+        if (durationMonths >= 6) {
+            return durationMonths * monthlyFee * 0.9;
+        } else if (durationMonths >= 3) {
+            return durationMonths * monthlyFee * 0.95;
+        } else {
+            return durationMonths * monthlyFee;
+        }
+    }
+}

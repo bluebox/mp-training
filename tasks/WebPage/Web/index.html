@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Form with Table</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Student Registration Form</h2>
+    <form id="studentForm">
+      <table class="inputForm">
+        <tr>
+          <td><label for="name">Name</label></td>
+          <td><input type="text" id="name" placeholder="Enter Name" /></td>
+        </tr>
+        <tr>
+          <td><label for="age">Age</label></td>
+          <td>
+            <input type="number" id="age" placeholder="Enter Age" min="15" max="99"/>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">Email</label></td>
+          <td><input type="email" id="email" placeholder="Enter Email" /></td>
+        </tr>
+        <tr>
+          <td><label for="mobile">Phone Number</label></td>
+          <td>
+            <input type="text" id="mobile" placeholder="Enter 10-digit number" maxlength="10"/>
+          </td>
+        </tr>
+        <tr>
+          <td><label>Branch</label></td>
+          <td>
+            <input type="radio" name="branch" value="CSE" /> <label for="CSE">CSE</label>
+            <input type="radio" name="branch" value="ECE" /> <label for="ECE">ECE</label>
+            <input type="radio" name="branch" value="EEE" /> <label for="EEE">EEE</label>
+          </td>
+        </tr>
+        <tr>
+          <td><label>Languages Known</label></td>
+          <td>
+            <input type="checkbox" name="languagesKnown" value="Telugu" />
+            <label for="Telugu">Telugu</label>
+            <input type="checkbox" name="languagesKnown" value="English" />
+            <label for="English">English</label>
+            <input type="checkbox" name="languagesKnown" value="Hindi" /> 
+            <label for="Hindi">Hindi</label>
+            <input type="checkbox" name="languagesKnown" value="Tamil" /> 
+            <label for="Tamil">Tamil</label>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="state">State</label></td>
+          <td>
+            <select id="state">
+              <option value="">Select State</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="city">City</label></td>
+          <td>
+            <select id="city">
+              <option value="">Select City</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button id="submitBtn" type="submit">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <h2>Submitted Records</h2>
+    <div class="table-container">
+      <table id="recordsTable">
+        <thead>
+          <tr>
+            <th>
+              <input type="text" placeholder="Search Name" onkeyup="searchTable(0, this)"/>
+            </th>
+            <th>
+              <input type="text" placeholder="Search Age" onkeyup="searchTable(1, this)"
+              />
+            </th>
+            <th>
+              <input type="text" placeholder="Search Email" onkeyup="searchTable(2, this)"
+              />
+            </th>
+            <th>
+              <input type="text" placeholder="Search Phone" onkeyup="searchTable(3, this)"
+              />
+            </th>
+            <th>
+              <input type="text" placeholder="Search Branch" onkeyup="searchTable(4, this)"
+              />
+            </th>
+            <th>
+              <input type="text" placeholder="Search Languages" onkeyup="searchTable(5, this)"
+              />
+            </th>
+            <th>
+              <input type="text" placeholder="Search State" onkeyup="searchTable(6, this)"
+              />
+            </th>
+            <th>
+              <input type="text" placeholder="Search City" onkeyup="searchTable(7, this)"
+              />
+            </th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Branch</th>
+            <th>Languages</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

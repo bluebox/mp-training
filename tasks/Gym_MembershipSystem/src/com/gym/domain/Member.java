@@ -1,0 +1,75 @@
+package com.gym.domain;
+import java.util.Scanner;
+
+public class Member extends Person {
+	
+	
+    private int memberId;
+    public MembershipPlan membershipPlan = null;
+
+    public Member(int memberId, String name, int age) {
+        super(age, name);
+        this.memberId = memberId;
+    }
+
+    
+    
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public void assignPlan(String plan, int duration) {
+        try {
+            MembershipPlan.Plan enumPlan = MembershipPlan.Plan.valueOf(plan);
+            double fees = duration * enumPlan.getMonthlyFee();
+            fees =  ( duration>=3 && duration<6) ? 0.95*fees : (duration>=6) ? 0.9*fees : fees;
+            System.out.println("The plan details you chose are:\t Plan Type: " + enumPlan + "\tFees: " + fees);
+            
+            System.out.println("Do you want to proceed with the plan ? (Give yes/no)");
+            String inputPrompt = new Scanner(System.in).nextLine();
+            
+            try {
+            	
+	            if(inputPrompt.equalsIgnoreCase("YES")) {
+	            	this.membershipPlan = new MembershipPlan(enumPlan, duration);
+	            	System.out.println("Plan assigned successfully.");
+	            }
+	            else if(inputPrompt.equalsIgnoreCase("NO")) {
+	            	System.out.println("Try again choosing suitable plan.");
+	            }
+	            else {
+	            	System.out.println("Please choose between yes/no only!");
+	            }
+            }
+	        catch(IllegalArgumentException e) {
+	        	System.out.println("Retry to assign the plan by confirming with yes/no!");
+	        }
+	        
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid plan name: " + plan);
+        }
+    }
+
+    public void updatePlan(String plan, int duration) {
+        assignPlan(plan, duration);
+    }
+
+    public void updateDetails(String name, int age) {
+        super.updateDetails(name, age);
+    }
+
+    public String toString() {
+        if (membershipPlan == null) {
+            return String.format("id: %-10s\t Name: %-14s\t Age: %-7d\t Plan: Not Selected\t\t",
+                    memberId, getName(), getAge());
+        }
+        return String.format("id: %-10s\t Name: %-14s\t Age: %-7d\t Plan: %-11s\t\t Duration: %-7s\t\t Fee: ₹%-10.2f",
+                memberId,
+                getName(),
+                getAge(),
+                membershipPlan.getPlan(),
+                membershipPlan.getDurationMonths(),
+                membershipPlan.getFee());
+    }
+}
+

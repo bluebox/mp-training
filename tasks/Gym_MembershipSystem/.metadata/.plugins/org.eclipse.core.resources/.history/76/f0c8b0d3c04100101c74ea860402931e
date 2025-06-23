@@ -1,0 +1,174 @@
+package com.gym;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import com.gym.domain.*;
+import com.gym.services.GymService;
+
+
+public class Main {
+    int id = 0;
+    Scanner scanner = new Scanner(System.in);
+    GymService gym = new GymService();
+    boolean flag = true;
+    int choice;
+
+    
+    
+    public static void main(String[] args) {
+        new Main().run();
+    }
+    
+    
+
+    public void run() {
+        do {
+            try {
+                System.out.println("\n1. Add a member");
+                System.out.println("2. Assign/Update a gym membership plan");
+                System.out.println("3. View all records of registered members");
+                System.out.println("4. Update personal details");
+                System.out.println("5. Remove a member from the gym...");
+                System.out.println("6. Quit");
+                System.out.print("Enter your choice (Enter number only): ");
+                choice = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (choice) {
+                    case 1:
+                        addMember();
+                        break;
+                    case 2:
+                        assignOrUpdatePlan();
+                        break;
+                    case 3:
+                        viewAllMembers();
+                        break;
+                    case 4:
+                        updatePersonalDetails();
+                        break;
+                    case 5:
+                        removeMember();
+                        break;
+                    case 6:
+                        flag = false;
+                        System.out.println("The System has been shut down");
+                        break;
+                    default:
+                        System.out.println("Invalid choice ....! Try again...");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                scanner.nextLine();
+            }
+        } while (flag);
+    }
+
+    
+    
+    public void addMember() {
+        try {
+            System.out.print("Enter name: ");
+            String name = scanner.nextLine();
+            System.out.print("Enter age: ");
+            int age = scanner.nextInt();
+            scanner.nextLine();
+            id += 1;
+            gym.addMember(id, name, age);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input for age. Please enter a number.");
+            scanner.nextLine();
+        }
+    }
+
+    
+    
+    
+    public void assignOrUpdatePlan() {
+        try {
+            System.out.print("Enter the Id of the member to assign/update a membership plan: ");
+            int memberId = scanner.nextInt();
+            scanner.nextLine();
+
+            Member member = gym.findMember(memberId);
+            if (member == null) {
+                System.out.println("Id not found.");
+                return;
+            }
+
+            System.out.println("Available Membership Plans with Pricing:");
+            MembershipPlan.Plan[] plansAvbl = MembershipPlan.Plan.values();
+            
+            for(MembershipPlan.Plan p : plansAvbl) {
+            	System.out.println(p + " -> " + p.getMonthlyFee() + " for a duration of " + p.getDuration() + " months!");
+            }
+            
+            
+
+            System.out.print("\nEnter the required plan (choose from Basic, Premium, Gold): ");
+            String plan = scanner.nextLine().toUpperCase().trim();
+
+            System.out.print("Enter the duration in months: ");
+            int duration = scanner.nextInt();
+            scanner.nextLine();
+
+            gym.assignPlan(memberId, plan, duration);
+
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Duration must be a number.");
+            scanner.nextLine();
+        }
+    }
+    
+    
+    
+
+    public void viewAllMembers() {
+        gym.displayRecords();
+    }
+
+    
+    
+    
+    public void updatePersonalDetails() {
+        try {
+            System.out.print("Enter the ID of the member to update personal details: ");
+            int memberId = scanner.nextInt();
+            scanner.nextLine();
+
+            Member member = gym.findMember(memberId);
+            if (member != null) {
+                gym.updatePersonalDetails(member);
+            } else {
+                System.out.println("Enter a valid ID to update the details!");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a numeric ID.");
+            scanner.nextLine();
+        }
+    }
+    
+    
+    
+
+    public void removeMember() {
+        try {
+            System.out.print("Enter the ID of the member to be removed: ");
+            int memberId = scanner.nextInt();
+            scanner.nextLine();
+
+            Member member = gym.findMember(memberId);
+            if (member != null) {
+                gym.removeRecord(member);
+            } else {
+                System.out.println("Enter a valid ID to be removed!");
+            }
+        } 
+        catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a numeric ID.");
+            scanner.nextLine();
+        }
+    }
+    
+    
+}

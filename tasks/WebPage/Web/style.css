@@ -1,0 +1,92 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+form {
+  max-width: 800px;
+  margin: auto;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: whitesmoke;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 8px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select {
+  width: 80%;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: rgb(71, 107, 190);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  margin: 10px auto;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.table-container {
+  max-width: 95%;
+  margin: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#recordsTable th,
+#recordsTable td {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+#recordsTable th {
+  background-color: whitesmoke;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+#studentForm{
+  height: 470px;
+  padding: 50px;
+}
+
+.inputForm{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 22px;
+  margin-top: 22px;
+}

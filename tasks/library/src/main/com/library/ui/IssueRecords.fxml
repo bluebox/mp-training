@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.com.library.controller.IssuedRecordsController"
+            prefWidth="600" prefHeight="400">
+    <children>
+        <TableView fx:id="issueTable" layoutX="20" layoutY="20" prefWidth="560" prefHeight="350">
+            <columns>
+                <TableColumn fx:id="issueIdCol" text="Issue ID" prefWidth="70"/>
+                <TableColumn fx:id="bookIdCol" text="Book ID" prefWidth="70"/>
+                <TableColumn fx:id="memberIdCol" text="Member ID" prefWidth="90"/>
+                <TableColumn fx:id="statusCol" text="Status" prefWidth="80"/>
+                <TableColumn fx:id="issueDateCol" text="Issue Date" prefWidth="120"/>
+                <TableColumn fx:id="returnDateCol" text="Return Date" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
