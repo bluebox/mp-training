@@ -1,0 +1,20 @@
+#all sizes are in bytes
+i = pow(10,1)
+print(i.__sizeof__())
+print(type(i))
+i = pow(10,7)
+print(i.__sizeof__())
+print(type(i))
+i = pow(10,15)
+print(i.__sizeof__())
+print(type(i))
+i = pow(10,28)
+print(i.__sizeof__())
+print(type(i))
+i = pow(10,100)#int is a dynamic size datatype. the size increases when larger numbers are stored
+print(i.__sizeof__())
+print(type(i))
+i = pow(10.0,308)#float is a fixed size datatype. the size remains constant for all numbers. when exceeds it becomes inf. The largest finite number a standard double-precision float can represent is approximately 1.7976931348623157×10308.
+print(i.__sizeof__())
+print(type(i))
+print(i)
