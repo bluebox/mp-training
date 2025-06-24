@@ -31,3 +31,5 @@ def outerfunc1(args):
 def func1(a):
     print(a)
 func1("hello")
+
+class
