@@ -1,0 +1,27 @@
+<web-app>
+	<servlet>
+		<servlet-name>UpdateUser</servlet-name>
+		<servlet-class>uday.UpdateUser</servlet-class>
+		<init-param>
+			<param-name>url</param-name>
+			<param-value>jdbc:mysql://localhost:3306/uday</param-value>
+		</init-param>
+		<init-param>
+			<param-name>user</param-name>
+			<param-value>devUser</param-value>
+		</init-param>
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>Medplus@1234</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateUser</servlet-name>
+		<url-pattern>/UpdateUser</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>preint</servlet-name>
+		<servlet-class>uday.preinit</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+</web-app>

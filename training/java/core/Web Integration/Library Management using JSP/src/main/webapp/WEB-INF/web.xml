@@ -1,0 +1,10 @@
+<web-app>
+	<filter>
+		<filter-name>Show</filter-name>
+		<filter-class>com.library.controller.ShowBookFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Show</filter-name>
+		<url-pattern>/ShowBooks</url-pattern>
+	</filter-mapping>
+</web-app>
