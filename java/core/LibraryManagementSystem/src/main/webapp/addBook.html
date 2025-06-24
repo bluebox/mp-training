@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Book</title>
+</head>
+<body>
+	<h1>Add Book</h1>
+	<form action="./addBook" method="post">
+		Book Title : <input type="text" name="title"	required/><br>
+		Book Author : <input type="text" name="author"	required/><br>
+		Book Category : <input type="text" name="category"	required/><br>
+		Book Status <br>
+		 <input type="radio" name="status" value="active"	required/> Active<br>
+		 <input type="radio" name="status" value="inactive"	/> Inactive<br>
+		Book Availability <br>
+		 <input type="radio" name="availability" value="available"	required/>Available<br>
+		 <input type="radio" name="availability" value="issued"	/>Issued<br>
+		<input type="submit"/>
+	</form>
+	<button onclick="location.href='mainMenu.html'" type="button">Go to Main Menu</button>
+</body>
+</html>
