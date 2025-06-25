@@ -1,9 +1,11 @@
-package com.config;
+package beans.com.config;
+
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.beans.Person;
+import beans.com.bean.Person;
+
 
 @Configuration
 public class ProjectConfig {
@@ -11,6 +13,7 @@ public class ProjectConfig {
 	@Bean
 	Person person() {
 		var per = new Person();
+		per.setId(20);
 		per.setName("Jai");
 		return per;
 	}

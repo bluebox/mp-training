@@ -1,9 +1,9 @@
-package com.main;
+package beans.com.main;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.beans.Person;
-import com.config.ProjectConfig;
+import beans.com.bean.Person;
+import beans.com.config.ProjectConfig;
 
 public class Demo {
 	public static void main(String[] args) {
@@ -16,6 +16,8 @@ public class Demo {
 		var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
 		
 		Person per = context.getBean(Person.class);
+		System.out.println("Person ID (spring context) is : "+per.getId());
+
 		System.out.println("Person name (spring context) is : "+per.getName());
 		
 		String hello = context.getBean(String.class);
