@@ -57,7 +57,7 @@ public class ViewBooksServlet extends HttpServlet {
                 out.println("<td>" + a + "</td>");
                 out.println("</tr>");
             }
-
+            req.
             out.println("</table>");
         }
 
