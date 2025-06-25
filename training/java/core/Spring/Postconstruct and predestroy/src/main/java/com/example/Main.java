@@ -8,7 +8,7 @@ import com.example.dao.Vehicle;
 
 public class Main {
 	public static void main(String[] args) {
-		var context=new AnnotationConfigApplicationContext(ProductConfig.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProductConfig.class);
 		Person p = context.getBean(Person.class);
 		System.out.println("Before initiallizing in the main class "+p.getName());
 		p.setName("Ram");
