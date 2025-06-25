@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Library Management - Main Menu</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { margin-bottom: 30px; }
+        button {
+            width: 160px;
+            height: 40px;
+            margin: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Main Menu</h1>
+
+    <form action="./MainMenu" method="post">
+        <button type="submit" name="action" value="addBook">Add Book</button>
+        <button type="submit" name="action" value="addMember">Add Member</button>
+        <button type="submit" name="action" value="searchBook">Search Book</button>
+        <button type="submit" name="action" value="updateBook">Update Book</button>
+        <button type="submit" name="action" value="allBooks">All Books</button>
+        <button type="submit" name="action" value="allMembers">All Members</button>
+        <button type="submit" name="action" value="issuedBooks">Issued Books</button>
+        <button type="submit" name="action" value="issueBookTab">Issue Book</button>
+        <button type="submit" name="action" value="returnBookTab">Return Book</button>
+    </form>
+
+</body>
+</html>

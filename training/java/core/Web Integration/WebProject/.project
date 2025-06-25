@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>WebProject</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/WEB-INF/lib/jstl-1.2.jar</name>
+			<type>1</type>
+			<location>/home/developer/Downloads/jstl-1.2.jar</location>
+		</link>
+	</linkedResources>
+</projectDescription>

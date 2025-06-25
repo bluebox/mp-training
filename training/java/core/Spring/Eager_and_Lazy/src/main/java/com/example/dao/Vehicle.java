@@ -1,16 +1,16 @@
 package com.example.dao;
 
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.config.BeanDefinition;
 
-public class Person {
+@Component
+@ComponentScan("com.example.dao")
+public class Vehicle extends Member{
 	String name;
-
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -18,6 +18,5 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [name=" + name + "]";
-	}
-	
+	}	
 }

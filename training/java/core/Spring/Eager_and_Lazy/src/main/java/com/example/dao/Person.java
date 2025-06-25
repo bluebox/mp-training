@@ -1,16 +1,22 @@
 package com.example.dao;
 
-import org.springframework.context.annotation.Scope;
+import javax.annotation.PostConstruct;
+
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.config.BeanDefinition;
 
+@Component
+@Lazy
 public class Person {
+	@PostConstruct
+	public void initialize() {
+		System.out.println("Intialisation done");
+	}
 	String name;
-
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -18,6 +24,5 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [name=" + name + "]";
-	}
-	
+	}	
 }

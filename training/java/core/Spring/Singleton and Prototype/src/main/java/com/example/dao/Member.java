@@ -1,10 +1,9 @@
 package com.example.dao;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.config.BeanDefinition;
 
-public class Person {
+@Component
+public class Member {
 	String name;
 
 	public String getName() {
@@ -19,5 +18,4 @@ public class Person {
 	public String toString() {
 		return "Person [name=" + name + "]";
 	}
-	
 }

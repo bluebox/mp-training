@@ -15,8 +15,12 @@ public class Main {
 		System.out.println("After initiallizing in the main class "+p.getName());
 		Vehicle v=context.getBean(Vehicle.class);
 		System.out.println("Before initiallizing in the main class "+v.getName());
-		p.setName("Hero");
+		v.setName("Hero");
 		System.out.println("After initiallizing in the main class "+v.getName());
+		Person p1 = context.getBean(Person.class);
+		System.out.println("Before initiallizing in the main class "+p.getName());
+		p1.setName("Ramesh");
+		System.out.println("After initiallizing in the main class "+p.getName());
 		context.close();
 	}
 }
