@@ -1,4 +1,6 @@
+'''this is a doc str'''
 def format_currency(amount,currency_symbol='$'):
+    '''this is function doc str'''
     amount = float(amount)
     amount = round(amount,2)
     str_amt = str(amount)
