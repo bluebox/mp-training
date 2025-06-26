@@ -3,5 +3,5 @@ def generator():
         yield i
         print("i= ",i)
 
-for i in generator():
-    print(i)
+for j in generator():
+    print(j)
