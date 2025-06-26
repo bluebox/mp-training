@@ -8,6 +8,8 @@ def convert_to_custom_base(decimal_num, base):
             if base == 16:
                 if rem > 9:
                     temp += chr(55 + rem)
+                else:
+                    temp += str(rem) 
             else:
                 temp += str(rem)
         decimal_num = decimal_num // base
