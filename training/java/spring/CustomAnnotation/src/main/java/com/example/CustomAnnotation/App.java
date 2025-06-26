@@ -5,9 +5,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.example.CustomAnnotation.beans.Vehicle;
 import com.example.CustomAnnotation.config.ProjectConfig;
 
-/**
- * Hello world!
- */
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
