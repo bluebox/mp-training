@@ -85,17 +85,23 @@
       <div>
         <label>Branch</label>
         <div class="inline-group">
-          <input type="radio" name="branch" value="CSE" required> CSE
-          <input type="radio" name="branch" value="ECE"> ECE
-          <input type="radio" name="branch" value="EEE"> EEE
+          <input id = "CSE" type="radio" name="branch" value="CSE" required> 
+          <label for="CSE">CSE</label>
+          <input id="ECE" type="radio" name="branch" value="ECE"> 
+          <label for="ECE">ECE</label>
+          <input id="EEE" type="radio" name="branch" value="EEE"> 
+          <label for="EEE">EEE</label>
         </div>
       </div>
       <div>
         <label>Languages</label>
         <div class="inline-group">
-          <input type="checkbox" name="language" value="English"> English
-          <input type="checkbox" name="language" value="Hindi"> Hindi
-          <input type="checkbox" name="language" value="Telugu"> Telugu
+          <input id="English" type="checkbox" name="language" value="English"> 
+          <label for="English">English</label>
+          <input id="Hindi" type="checkbox" name="language" value="Hindi"> 
+          <label for="Hindi">Hindi</label>
+          <input id="Telugu" type="checkbox" name="language" value="Telugu"> 
+          <label for="Telugu">Telugu</label>
         </div>
       </div>
     </div>
@@ -111,7 +117,7 @@
     </div>
     <div class="form-buttons">
       <button type="submit">Submit</button>
-      <button type="reset">Reset</button>
+      <button onclick="reseting()">Reset</button>
     </div>
   </form>
 
@@ -156,6 +162,11 @@
       e.target.value = e.target.value.replace(/[^A-Za-z ]/g, '').replace(/\s{2,}/g, ' ').trimStart();
     });
 
+    function resetting(){
+      this.reset();
+      editIndex = -1;
+    }
+
     function renderTable() {
       studentList.innerHTML = '';
       students.forEach((s, index) => {
@@ -191,8 +202,12 @@
     }
 
     function deleteStudent(index) {
+      if(editIndex !== -1){
+        alert("The following row is updating ")
+      }else{
       students.splice(index, 1);
       renderTable();
+    }
     }
 
     document.getElementById('studentForm').addEventListener('submit', function(e) {

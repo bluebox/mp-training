@@ -14,7 +14,7 @@ import com.casestudy.domain.IssueRecord;
 import com.casestudy.domain.RecordStatus;
 import com.casestudy.util.DBUtil;
 
-public class IssueRecordDao implements IssueRecordDaoModel{
+public class IssueRecordDao implements IssueRecordDaoModel {
 
 	private Connection conn;
 
@@ -166,7 +166,7 @@ public class IssueRecordDao implements IssueRecordDaoModel{
 
 		return overdueList;
 	}
-	
+
 	public List<IssueRecord> getAllIssuedRecords() {
 		List<IssueRecord> allIssuedBooks = new ArrayList<>();
 		PreparedStatement ps = null;
@@ -216,7 +216,6 @@ public class IssueRecordDao implements IssueRecordDaoModel{
 
 		return allIssuedBooks;
 	}
-	
 
 	public List<IssueRecord> getActiveIssuedBooks() {
 		List<IssueRecord> activeIssuedBooks = new ArrayList<>();
@@ -274,9 +273,8 @@ public class IssueRecordDao implements IssueRecordDaoModel{
 		String isReturned = "SELECT status FROM IssueRecords WHERE bookId = ? AND memberId = ? AND status = 'I'";
 
 		try {
-			 conn = DBUtil.getConnection();
+			conn = DBUtil.getConnection();
 			PreparedStatement ps = conn.prepareStatement(isReturned);
-		
 
 			ps.setInt(1, issueRecord.getBookId());
 			ps.setInt(2, issueRecord.getMemberId());
@@ -290,12 +288,10 @@ public class IssueRecordDao implements IssueRecordDaoModel{
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 		System.out.println("insdie alreadyissued , ");
 		return false;
 	}
-	
-	
 
 }
