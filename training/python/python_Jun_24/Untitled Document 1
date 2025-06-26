@@ -1,0 +1,130 @@
+📌 1. Lists
+
+Task 1:
+Write a program that takes a list of integers and returns a new list with only the even numbers.
+
+Task 2:
+Create a list of 10 numbers. Replace all numbers at even indexes with 0.
+
+Task 3:
+Reverse a list using slicing and without using .reverse().
+📌 2. List Slicing
+
+Task 1:
+Extract the middle 3 elements from a list of 7 numbers.
+
+Task 2:
+Use slicing to copy a list. Modify the original and show that the copy didn’t change.
+
+Task 3:
+Slice a list to get every 3rd item, then reverse that slice.
+📌 3. Matrix (List of Lists)
+
+Task 1:
+Print the sum of each row in a 3×3 matrix.
+
+Task 2:
+Flatten a 2D matrix into a 1D list using list comprehension.
+
+Task 3:
+Transpose a matrix without using external libraries.
+📌 4. List Methods (Part 1)
+
+Task 1:
+Use .append(), .extend() and .insert() to modify a list and explain the difference.
+
+Task 2:
+Sort a list of strings alphabetically and in reverse.
+
+Task 3:
+Remove all occurrences of a specific item from a list using .remove() and .count().
+📌 5. List Methods (Part 2)
+
+Task 1:
+Use .pop() to remove the last item, then remove the first item with del.
+
+Task 2:
+Use .index() to find the position of an element, then use slicing to extract 3 elements around it.
+
+Task 3:
+Use .clear() and .copy() to demonstrate their behavior on lists.
+📌 6. List Methods (Part 3) / List Patterns
+
+Task 1:
+Remove duplicates from a list using a loop (no set).
+
+Task 2:
+Write a program to check if two lists have any common items.
+
+Task 3:
+Combine two lists into a single list of tuples (like zip()).
+📌 7. List Unpacking
+
+Task 1:
+Unpack a list of 5 elements into 3 variables using * (e.g. a, *b, c = [...]).
+
+Task 2:
+Swap two variables without using a temp variable using unpacking.
+
+Task 3:
+Use unpacking in a for loop to iterate over a list of (name, age) tuples.
+📌 8. None
+
+Task 1:
+Write a function that returns None when input is invalid (e.g., negative number for factorial).
+
+Task 2:
+Check if a variable is None using is None.
+
+Task 3:
+Use a default return value when a function returns None.
+📌 9. Dictionaries
+
+Task 1:
+Create a dictionary of students and their grades. Add, update, and delete a student.
+
+Task 2:
+Loop through dictionary keys and values separately using .keys() and .values().
+
+Task 3:
+Create a dictionary from two lists using zip().
+📌 10. OrderedDict
+
+Task 1:
+Use collections.OrderedDict to create a dictionary and demonstrate that it remembers insertion order.
+
+Task 2:
+Sort an OrderedDict by key and by value.
+
+Task 3:
+Compare dict and OrderedDict by inserting keys in random order.
+📌 11. Dictionary Keys & Methods
+
+Task 1:
+Use .get() to safely access a key, with a fallback value.
+
+Task 2:
+Use .items() in a loop to print formatted dictionary content.
+
+Task 3:
+Use dictionary comprehension to create a dictionary of squares (e.g., {1:1, 2:4, ..., 10:100}).
+📌 12. Tuples
+
+Task 1:
+Create a tuple and try to modify it — explain the error.
+
+Task 2:
+Use a tuple to store coordinates and unpack them.
+
+Task 3:
+Use tuples as keys in a dictionary (e.g., (x, y) grid points).
+📌 13. Sets
+
+Task 1:
+Find unique elements from a list using a set.
+
+Task 2:
+Find common elements between two lists using set intersection.
+
+Task 3:
+Use set difference to find items in set A not in set B.
