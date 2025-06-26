@@ -1,0 +1,207 @@
+package Library.src.main.java.com.LibraryManagement.ui;
+
+import Library.src.main.java.com.LibraryManagement.model.Member;
+import Library.src.main.java.com.LibraryManagement.service.MemberService;
+import Library.src.main.java.com.LibraryManagement.service.MemberServiceImpl;
+import Library.src.main.java.com.LibraryManagement.dao.MemberDAOImpl;
+import Library.src.main.java.com.LibraryManagement.util.DBConnection;
+
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.scene.control.TextFormatter;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.function.UnaryOperator;
+
+public class UpdateMemberUI {
+    private final MemberService memberService;
+
+    public UpdateMemberUI() {
+        try {
+            Connection conn = DBConnection.getConnection();
+            this.memberService = new MemberServiceImpl(new MemberDAOImpl(conn));
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to initialize MemberService: " + e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("Unexpected error during DB initialization: " + e.getMessage());
+        }
+    }
+
+    public void start(Stage stage) {
+        GridPane pane = new GridPane();
+        pane.setPadding(new Insets(10));
+        pane.setVgap(8);
+        pane.setHgap(10);
+
+        TextField idField = new TextField();
+        TextField nameField = new TextField();
+        TextField emailField = new TextField();
+        TextField mobileField = new TextField();
+        ComboBox<String> genderBox = new ComboBox<>();
+        genderBox.getItems().addAll("M", "F");
+        genderBox.setValue("M");
+        TextField addressField = new TextField();
+
+        Button addButton = new Button("Update");
+        Label messageLabel = new Label();
+
+        // === INPUT RESTRICTIONS ===
+
+        // Allow only digits for ID and Mobile
+        UnaryOperator<TextFormatter.Change> digitsFilter = change -> {
+            return change.getControlNewText().matches("\\d*") ? change : null;
+        };
+
+        // Allow only letters and spaces for name
+        UnaryOperator<TextFormatter.Change> lettersFilter = change -> {
+            return change.getControlNewText().matches("[a-zA-Z ]*") ? change : null;
+        };
+
+        idField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter(), 0, digitsFilter));
+        idField.setText("");
+
+        mobileField.setTextFormatter(new TextFormatter<>(digitsFilter));
+        nameField.setTextFormatter(new TextFormatter<>(lettersFilter));
+
+        // === UI SETUP ===
+        pane.add(new Label("Member ID:"), 0, 0);
+        pane.add(idField, 1, 0);
+        pane.add(new Label("Name:"), 0, 1);
+        pane.add(nameField, 1, 1);
+        pane.add(new Label("Email:"), 0, 2);
+        pane.add(emailField, 1, 2);
+        pane.add(new Label("Mobile:"), 0, 3);
+        pane.add(mobileField, 1, 3);
+        pane.add(new Label("Gender (M/F):"), 0, 4);
+        pane.add(genderBox, 1, 4);
+        pane.add(new Label("Address:"), 0, 5);
+        pane.add(addressField, 1, 5);
+        pane.add(addButton, 1, 6);
+        pane.add(messageLabel, 1, 7);
+
+        // === BUTTON ACTION ===
+        addButton.setOnAction(e -> {
+            String idText = idField.getText().trim();
+            String name = nameField.getText().trim();
+            String email = emailField.getText().trim();
+            String mobileText = mobileField.getText().trim();
+            String gender = genderBox.getValue();
+            String address = addressField.getText().trim();
+
+//            if (name.isEmpty() || email.isEmpty() || mobileText.isEmpty() || gender == null || address.isEmpty()) {
+//                messageLabel.setText("Please fill in all fields.");
+//                return;
+//            }
+            if (idText.isEmpty()) {
+                messageLabel.setText("Member ID is required to update.");
+                return;
+            }
+            
+            try {
+            	int memberId=Integer.parseInt(idText);
+            	Member existingMember=memberService.getMemberById(memberId);
+            	
+            	if (existingMember == null) {
+                    messageLabel.setText("No Member found with ID: " + memberId);
+                    return;
+                }
+            	
+            	if (!name.isEmpty()) existingMember.setName(name);
+            	if(!email.isEmpty()) {
+            		 if (!email.endsWith("@gmail.com")) {
+                         messageLabel.setText("Email must end with @gmail.com");
+                         return;
+                     }
+            		 existingMember.setEmail(email);
+            	}
+            	if(!mobileText.isEmpty()) {
+            		 if (mobileText.length() != 10) {
+                         messageLabel.setText("Mobile number must be exactly 10 digits.");
+                         return;
+                     }
+            		 existingMember.setMobile(mobileText);
+            	}
+            	if(!gender.isEmpty()) {
+            		existingMember.setGender(gender.charAt(0));
+            	}
+            	if(!address.isEmpty())
+            		existingMember.setAddress(address);
+            	
+            	memberService.updateMember(existingMember);
+            	
+            	messageLabel.setText("Member updated successfully.");
+
+                idField.clear();
+                nameField.clear();
+                emailField.clear();
+                mobileField.clear();
+                genderBox.setValue("M");
+                addressField.clear();
+            }
+           
+            catch (NumberFormatException ex) {
+                messageLabel.setText(" Member ID must be a number.");
+            } catch (SQLException ex) {
+                messageLabel.setText(" Database error: " + ex.getMessage());
+            } catch (Exception ex) {
+                messageLabel.setText(" Unexpected error: " + ex.getMessage());
+            }
+        });
+
+        stage.setScene(new Scene(pane, 450, 350));
+        stage.setTitle("Update Member");
+        stage.show();
+    }
+}
+            
+            
+            
+            
+//           
+//
+//           
+//
+//            try {
+//                //int memberId = Integer.parseInt(idText);
+//
+//                Member member = new Member();
+//                //member.setMemberId(memberId);
+//                member.setName(name);
+//                member.setEmail(email);
+//                member.setMobile(mobileText);
+//                member.setGender(gender.charAt(0));
+//                member.setAddress(address);
+//
+//                memberService.addMember(member);
+//
+//                messageLabel.setText("Member registered successfully.");
+//
+//                idField.clear();
+//                nameField.clear();
+//                emailField.clear();
+//                mobileField.clear();
+//                genderBox.setValue("M");
+//                addressField.clear();
+//            } catch (NumberFormatException ex) {
+//                messageLabel.setText(" Member ID must be a number.");
+//            } catch (SQLException ex) {
+//                messageLabel.setText(" Database error: " + ex.getMessage());
+//            } catch (Exception ex) {
+//                messageLabel.setText(" Unexpected error: " + ex.getMessage());
+//            }
+//        });
+//
+//        stage.setScene(new Scene(pane, 450, 350));
+//        stage.setTitle("Add Member");
+//        stage.show();
+//    }
+//}
+
+
+
+
