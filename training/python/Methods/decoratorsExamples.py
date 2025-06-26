@@ -32,4 +32,26 @@ def func1(a):
     print(a)
 func1("hello")
 
-class
+class Wrappers:
+    @staticmethod
+    def wrapper1(func):
+        def inner_funct(arg):
+            func(arg)
+        return inner_funct
+    def wrapper2(self,func):
+        def inner_funct(arg):
+            func(arg)
+        return inner_funct
+
+@Wrappers.wrapper1
+def funct(i):
+    print("in funct ",i)
+
+funct(100)
+
+wrap = Wrappers()
+@wrap.wrapper2
+def funct2(i):
+    print("in funct2 ",i)
+
+funct2(100)

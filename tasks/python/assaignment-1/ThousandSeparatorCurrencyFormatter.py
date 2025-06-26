@@ -25,7 +25,7 @@ def format_currency(amount,currency_symbol='$'):
     lhs_str = "".join(lhs)
     rhs_str = "".join(rhs)
     return f"{currency_symbol}{lhs_str}.{rhs_str}"
-print(format_currency(123456789.1234))
+print(format_currency(123456789))
 
 
 

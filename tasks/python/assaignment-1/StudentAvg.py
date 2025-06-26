@@ -22,6 +22,9 @@ def get_student_info()->list:
 # print(get_student_info())
 
 student_details = get_student_info()
+print(student_details)
 for id,name,scores in student_details:
     print(f"{name} baring id no. {id} has got an average score of {sum(scores)/len(scores)}")
+
+
 

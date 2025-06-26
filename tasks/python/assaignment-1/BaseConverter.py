@@ -29,7 +29,7 @@ def convert_to_custom_base(decimal_num,base):
         conv_num = map_num_to_chars(rem)+conv_num
         decimal_num = decimal_num//base
     return conv_num
-print(convert_to_custom_base(100,2))
+print(convert_to_custom_base(5,2))
 print(convert_to_custom_base(255,16))
 print(convert_to_custom_base(42,8))
 print(convert_to_custom_base(48,7))

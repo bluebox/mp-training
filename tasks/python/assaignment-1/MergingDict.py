@@ -11,4 +11,5 @@ def merge_and_sum(dict1:dict,dict2:dict)->dict:
 
 dict_1 = {"a":21,"b":40,"c":22,"d":50}
 dict_2 = {"e":50,"a":49,"f":80,"c":50}
+
 print(merge_and_sum(dict_1,dict_2))
