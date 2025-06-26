@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/.m2/repository/org/apache/poi/poi/5.2.5/poi-5.2.5.jar" sourcepath="/home/developer/.m2/repository/org/apache/poi/poi/5.2.5/poi-5.2.5-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.apache.poi"/>
+			<attribute name="maven.artifactId" value="poi"/>
+			<attribute name="maven.version" value="5.2.5"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.base.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.controls.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.fxml.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.graphics.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.media.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.swing.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx.web.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/developer/Downloads/openjfx-21.0.7_linux-x64_bin-sdk/javafx-sdk-21.0.7/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
