@@ -7,14 +7,17 @@ import org.springframework.stereotype.Component;
 public class Vehicle {
 	@Autowired
 	private VehicleService vehicleService;
+
 	public VehicleService getVehicleService() {
 		return vehicleService;
 	}
+
 	public void setVehicleService(VehicleService vehicleService) {
 		this.vehicleService = vehicleService;
 	}
+
 	public Vehicle(VehicleService vehicleService) {
-		this.vehicleService=vehicleService;
+		this.vehicleService = vehicleService;
 	}
-	
+
 }

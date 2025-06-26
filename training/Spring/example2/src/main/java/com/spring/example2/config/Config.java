@@ -14,12 +14,7 @@ import com.spring.example2.model.Tyre;
 
 @Configuration
 public class Config {
-	@Bean
-	public Music player1() {
-		Music ply1 = new Sony();
-		return ply1;
-	}
-	
+
 	@Bean
 	@Primary
 	public Music player2() {
@@ -47,5 +42,12 @@ public class Config {
 		car.setMusic(player1);
 		return car;
 	}
+	
+	@Bean
+	public Music player1() {
+		Music ply1 = new Sony();
+		return ply1;
+	}
+	
 	
 }
