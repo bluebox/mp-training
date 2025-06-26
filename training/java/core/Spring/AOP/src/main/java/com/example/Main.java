@@ -12,5 +12,7 @@ public class Main {
 		System.out.println(p.getName());
 		p.setName("Ram");
 		System.out.println(p.getName());
+		p.setName("");
+		System.out.println(p.toString());
 	}
 }
