@@ -1,0 +1,5 @@
+order_id,customer_name,order_date,product_name,quantity
+101,John,2024-06-10 10:10:10,Book,2
+101,John,2024-06-10 10:10:10,Pen,5
+102,Jane,2024-06-11 12:00:00,Notebook,3
+102,Jane,2024-06-11 12:00:00,Pencil,10
