@@ -2,9 +2,10 @@ def group_by_key(tuples_list):
     new_dic = {}
     for pair in tuples_list:
         key, value = pair
-        if key not in new_dic:
-            new_dic[key] = []
-        new_dic[key].append(value)
+        new_dic.setdefault(key,[]).append(value)
+        # if key not in new_dic:
+        #     new_dic[key] = []
+        # new_dic[key].append(value)
     return new_dic
 
 

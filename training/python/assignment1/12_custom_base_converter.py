@@ -10,6 +10,6 @@ def convert_to_custom_base(decimal_num, base):
         decimal_num //=base
     return s
 
-num = 500
-base_value  = 16
-print(convert_to_custom_base(num,base_value))
+NUM = 500
+BASE  = 16
+print(convert_to_custom_base(NUM,BASE))
