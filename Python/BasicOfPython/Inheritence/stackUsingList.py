@@ -1,0 +1,5 @@
+ans=list((10,20,30))
+ans.append(50)
+val=ans.pop()
+print(val)
+print(ans)
