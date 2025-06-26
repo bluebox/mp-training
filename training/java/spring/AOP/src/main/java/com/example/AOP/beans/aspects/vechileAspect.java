@@ -1,11 +1,10 @@
 package com.example.AOP.beans.aspects;
 
 
-import java.util.Arrays;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -31,11 +30,27 @@ public class vechileAspect {
 		System.out.println("Hey manoj Its Aspect MAN");
 	}
 	
-	@Around("execution(* play*(..))")
-	public void aroundPlayMusic(ProceedingJoinPoint joinPoint) throws Throwable
+	
+	@After("execution(* move*(..))")
+	public void afterMove()
 	{
-		System.out.println("HAHA");
-		joinPoint.proceed();
+		System.out.println("After Kadha");
+		
+	}
+	
+	@Around("execution(* play*(..))")
+	public String aroundPlayMusic(ProceedingJoinPoint joinPoint) throws Throwable
+	{
+		System.out.println("Hii Hii");
+		String ret=(String) joinPoint.proceed();
+		System.out.println("Bye Bye");
+		return ret;
+	}
+	@AfterReturning(pointcut="execution(* play*(..))", returning="result")
+	public void afterReturn(String result)
+	{
+		System.out.println("Returning test");
+		System.out.println(result);
 	}
 	
 
