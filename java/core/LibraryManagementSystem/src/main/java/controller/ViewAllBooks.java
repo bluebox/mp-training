@@ -30,17 +30,37 @@ public class ViewAllBooks extends HttpServlet {
         PrintWriter out = response.getWriter();
 		try {
 			lib = new LibraryService();
-			List<Book> books = lib.viewAllBooks();
+			List<Book> books = lib.viewAllBooks();			
+			
+			
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<link rel='stylesheet' href='styles.css'");
+			out.println("</head>");
+			out.println("<body>");
 			out.println("<h1>All Books</h1>");
+			out.println("<table>");
+			out.println("<tr>");
+			out.println("<th> BookId </th>");
+			out.println("<th> Title </th>");
+			out.println("<th> Category </th>");
+			out.println("<th> Author </th>");
+			out.println("<th> Status </th>");
+			out.println("<th> Availability </th>");
+			out.println("</tr>");
 			for(Book book:books) {
-				out.println("<h3>Book ID : "+book.getBookId()+"</h3>");
-				out.println("<h3>Title : "+book.getTitle()+"</h3>");
-				out.println("<h3>Author : "+book.getAuthor()+"</h3>");
-				out.println("<h3>Category : "+book.getCategory()+"</h3>");
-				out.println("<h3>Status : "+book.getStatus()+"</h3>");
-				out.println("<h3>Availability : "+book.getAvailability()+"</h3>");
-				out.println("-".repeat(40));
+				out.println("<tr>");
+				out.println("<td>"+book.getBookId()+ "</td>");
+				out.println("<td>"+book.getTitle()+ "</td>");
+				out.println("<td>"+book.getCategory()+ "</td>");
+				out.println("<td>"+book.getAuthor()+ "</td>");
+				out.println("<td>"+book.getStatus()+ "</td>");
+				out.println("<td>"+book.getAvailability()+ "</td>");
+				out.println("</tr>");
 			}
+			out.println("</table>");
+			out.println("</body>");
+			out.println("</html>");
 		} catch (Exception e) {
 			out.println("<html><body><b>No Books there..</b></body></html>");
 			e.printStackTrace();

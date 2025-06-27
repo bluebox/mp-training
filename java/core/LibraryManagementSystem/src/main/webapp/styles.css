@@ -1,0 +1,21 @@
+@charset "UTF-8";
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  margin: 20px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+th {
+  background-color: #ffbe6f;
+  color: white;
+  font-weight: bold;
+}
+

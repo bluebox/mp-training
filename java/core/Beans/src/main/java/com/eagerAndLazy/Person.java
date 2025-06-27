@@ -1,20 +1,35 @@
 package com.eagerAndLazy;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
+@Lazy
 public class Person {
-	@Bean
-	public String eagerBean() {
-//		System.out.println("Eager bean is initialized");
-		return "Eager bean initialized";
+	private String name;
+	private Vehicle veh;
+	
+	@Autowired
+	public Person(Vehicle veh) {
+		this.veh=veh;
 	}
-	@Bean
-	public String lazyBean() {
-//		System.out.println("Lazy bean initialized");
-		return "lazy bean initialized";
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setVehicle(Vehicle veh) {
+		this.veh=veh;
+	}
+	
+	public String getVehicle() {
+		return veh.getName();
 	}
 }
