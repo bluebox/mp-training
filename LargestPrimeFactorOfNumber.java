@@ -15,7 +15,7 @@ public class LargestPrimeFactorOfNumber {
 		}
 		else
 		{
-			for(int i=1;i<=n;i++) {
+			for(int i=1;i<n;i++) {
 				if(n%i == 0) {
 					if(max<i) {
 						max=i;
