@@ -22,10 +22,10 @@ else:
     print("num1 and num2 are different objects")
 
 #explictly interning by using sys.intern
-sys.intern(str(num1))
-sys.intern(str(num2))
+str_num1 = sys.intern(str(num1))
+str_num2 = sys.intern(str(num2))
 
-if num1 is num2:
+if str_num1 is str_num2:
     print("num1 and num2 are same objects")
 else:
     print("num1 and num2 are different objects")

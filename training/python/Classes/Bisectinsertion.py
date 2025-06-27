@@ -4,3 +4,4 @@ print(bisect.bisect_right(a,4))
 bisect.insort(a,8)
 bisect.insort(a,4)
 print(bisect.bisect_left(a,4))
+

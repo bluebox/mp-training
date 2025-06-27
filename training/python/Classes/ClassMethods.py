@@ -16,5 +16,6 @@ class circle:
         return 2*math.pi*(self.radius)
 
 c1 = circle.classFromDiameter(10)
+print(c1.__dict__)
 print(c1.area())
 print(c1.perimeter())
