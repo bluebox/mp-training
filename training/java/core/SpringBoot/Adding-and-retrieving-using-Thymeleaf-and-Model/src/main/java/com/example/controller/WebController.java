@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.example.model.Student;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +24,14 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class WebController {
+	public static int count=0;
 	Logger log=LoggerFactory.getLogger(WebController.class.getName());
 	@RequestMapping(value={"","/","/home"})
+	@RequestScope
 	public String webApp(Model m) {
+		System.out.println(++count);
 		m.addAttribute("student", new Student());
+		m.addAttribute("val", false);
 		return "web.html";
 	}
 	@RequestMapping("/hi")
@@ -35,6 +41,7 @@ public class WebController {
 				log.error(i.getDefaultMessage());
 			}
 			m.addAttribute("error",e);
+			m.addAttribute("val", true);
 			return "web.html";
 		}
 		m.addAttribute("name",name);

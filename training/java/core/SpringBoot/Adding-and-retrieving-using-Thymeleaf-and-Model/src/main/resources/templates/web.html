@@ -5,9 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <ul th:each="i:${error}">
-		<li th:text="${i}"></li><br>
-    </ul>
+	<div th:if="${val}">
+		<div th:if="${error.hasErrors()}">
+			<ul th:each="i:${error.getAllErrors()}">
+				<li th:text="${i}"></li><br>
+		    </ul>
+		</div>	
+	</div>
 	<form action="/hi" method="post" th:object="${student}">
 		<label for="name">Name : </label>
 		<input type="text" id="name" name="name" placeholder="Enter your name"/><br>
