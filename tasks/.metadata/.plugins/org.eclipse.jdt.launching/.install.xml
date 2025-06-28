@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
     <entry loc="/home/developer/Downloads/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_16.0.2.v20210721-1149" stamp="1631284748000"/>
+    <entry loc="/home/beluga/Downloads/eclipse-jee-2025-03-R-linux-gtk-x86_64/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.6.v20250130-0529" stamp="1741254203082"/>
+    <entry loc="/home/beluga/Downloads/eclipse-jee-2025-03-R-linux-gtk-x86_64/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.6.v20250130-0529/jre" stamp="1741254203082"/>
+    <entry loc="/usr/lib/jvm/java-11-openjdk-amd64" stamp="1746591042916"/>
     <entry loc="/home/developer/Downloads/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_16.0.2.v20210721-1149/jre" stamp="1631284748000"/>
+    <entry loc="/usr/lib/jvm/java-19-openjdk-amd64" stamp="1678064928283"/>
 </dirs>
