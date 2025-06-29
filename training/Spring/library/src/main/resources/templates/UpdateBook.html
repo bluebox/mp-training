@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef3f7;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        form {
+            width: 50%;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[readonly] {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button {
+            margin-top: 15px;
+            background-color: #28a745;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Update Book Details</h2>
+
+    <form th:action="@{/UpdateSaveBook}" th:object="${book}" method="post">
+        
+        <!-- Read-only Book ID -->
+        <label for="bookId">Book ID:</label>
+        <input type="text" th:field="*{bookId}" readonly />
+
+        <label for="title">Title:</label>
+        <input type="text" th:field="*{title}" required />
+
+        <label for="author">Author:</label>
+        <input type="text" th:field="*{author}" required />
+
+        <label for="category">Category:</label>
+        <input type="text" th:field="*{category}" required />
+
+        <label for="status">Status:</label>
+        <select th:field="*{status}">
+            <option th:each="s : ${T(com.casestudy.spring.library.beans.Status).values()}"
+                    th:value="${s}" 
+                    th:text="${s.name()}">
+            </option>
+        </select>
+
+        <label for="available">Availability:</label>
+        <select th:field="*{available}">
+            <option th:each="a : ${T(com.casestudy.spring.library.beans.Availability).values()}"
+                    th:value="${a}" 
+                    th:text="${a.name()}">
+            </option>
+        </select>
+
+        <button type="submit">Update Book</button>
+    </form>
+
+    <div class="button-container" style="text-align:center;">
+        <form th:action="@{/MainMenu}" method="get">
+            <button type="submit" class="back-button">Back to Main Menu</button>
+        </form>
+    </div>
+
+</body>
+</html>

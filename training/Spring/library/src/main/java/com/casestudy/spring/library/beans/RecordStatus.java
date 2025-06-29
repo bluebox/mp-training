@@ -1,4 +1,4 @@
-package com.casestudy.domain;
+package com.casestudy.spring.library.beans;
 
 
 public enum RecordStatus {

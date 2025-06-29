@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Library</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef3f7;
+        padding: 40px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    table {
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 30px 50px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    td {
+        padding: 15px;
+    }
+
+    button {
+        padding: 12px 20px;
+        width: 200px;
+        font-size: 15px;
+        font-weight: bold;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    form {
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+    <h1>Welcome to Library</h1>
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/Books}" method="get">
+                    <button type="submit">Books</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form th:action="@{/Members}" method="get">
+                    <button type="submit">Members</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form th:action="@{/Issue}" method="get">
+                    <button type="submit">Issue</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form th:action="@{/Records}" method="get">
+                    <button type="submit">Records</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

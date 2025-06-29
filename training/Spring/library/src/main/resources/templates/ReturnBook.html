@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Return Book</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f7fa;
+        padding: 30px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 25px;
+    }
+
+    form {
+        background-color: #ffffff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        width: 420px;
+        margin: 0 auto 20px auto;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding: 10px;
+        vertical-align: top;
+    }
+
+    label {
+        font-weight: bold;
+        color: #444;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .button-group {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+    }
+
+    button {
+        flex: 1;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .back-btn {
+        background-color: #28a745;
+    }
+
+    .back-btn:hover {
+        background-color: #218838;
+    }
+</style>
+</head>
+<body>
+
+    <h2>Return Book</h2>
+
+    <form th:action="@{/SaveRetrunBook}" th:object="${issueRecord}" method="post">
+        <table>
+            <tr>
+                <td><label for="bookId">Book ID:</label></td>
+                <td><input type="number" th:field="*{bookId}" id="bookId" required /></td>
+            </tr>
+            <tr>
+                <td><label for="memberId">Member ID:</label></td>
+                <td><input type="number" th:field="*{memberId}" id="memberId" required /></td>
+            </tr>
+        </table>
+        <div class="button-group">
+            <button type="submit">Return Book</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+
+    <form th:action="@{/MainMenu}" method="get">
+        <div class="button-group">
+            <button type="submit" class="back-btn">Back to Main Menu</button>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Records</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f8fc;
+        padding: 40px;
+        text-align: center;
+    }
+
+    h3 {
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    table {
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 30px 50px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    td {
+        padding: 15px;
+    }
+
+    button {
+        padding: 12px 20px;
+        width: 260px;
+        font-size: 15px;
+        font-weight: bold;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    form {
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+    <h3>Records</h3>
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/OverDueBooks}" method="get">
+                    <button type="submit">List of OverDue Books</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form th:action="@{/BooksPerCategory}" method="get">
+                    <button type="submit">Count of Books Per Category</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form th:action="@{/ActiveIssuedBooks}" method="get">
+                    <button type="submit">List Of Members With Active Issued Books</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form th:action="@{/MainMenu}" method="get">
+                    <button type="submit">Main Menu</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

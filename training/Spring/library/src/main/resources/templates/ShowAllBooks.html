@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Books</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f9fc;
+        padding: 40px;
+        text-align: center;
+    }
+
+    h2 {
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 90%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: left;
+    }
+
+    thead {
+        background-color: #3498db;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f8fcff;
+    }
+
+    .back-btn {
+        margin-top: 30px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #27ae60;
+    }
+
+    form {
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+
+    <h2>All Books</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.bookId}">1</td>
+                <td th:text="${book.title}">Sample Title</td>
+                <td th:text="${book.author}">Author Name</td>
+                <td th:text="${book.category}">Category</td>
+                <td th:text="${book.status}">ACTIVE</td>
+                <td th:text="${book.available}">YES</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="back-btn">
+        <form th:action="@{/MainMenu}" method="get">
+            <button type="submit">Back to Main Menu</button>
+        </form>
+    </div>
+
+</body>
+</html>

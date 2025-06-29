@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Members</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f9;
+        padding: 40px;
+        margin: 0;
+    }
+
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    th, td {
+        padding: 14px 18px;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f8f9fb;
+    }
+
+    tr:hover {
+        background-color: #e6f0ff;
+    }
+
+    form {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    button {
+        padding: 12px 24px;
+        background-color: #28a745;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+</style>
+</head>
+<body>
+    <h2>All Registered Members</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Gender</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.memberId}">1</td>
+                <td th:text="${member.name}">Name</td>
+                <td th:text="${member.email}">email@example.com</td>
+                <td th:text="${member.mobile}">1234567890</td>
+                <td th:text="${member.gender}">MALE</td>
+                <td th:text="${member.address}">City, State</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{/MainMenu}" method="get">
+        <button type="submit">Go Back to Main Menu</button>
+    </form>
+</body>
+</html>

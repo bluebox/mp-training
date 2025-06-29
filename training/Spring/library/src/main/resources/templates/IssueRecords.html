@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>All Issue Records</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #eef3f7;
+	padding: 30px;
+}
+
+h2 {
+	text-align: center;
+	color: #2c3e50;
+	margin-bottom: 25px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 25px;
+}
+
+th, td {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+
+th {
+	background-color: #007bff;
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.button-container {
+	text-align: center;
+}
+
+.main-button {
+	background-color: #28a745;
+	color: white;
+	padding: 10px 18px;
+	font-size: 15px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.main-button:hover {
+	background-color: #218838;
+}
+</style>
+</head>
+<body>
+
+	<h2 th:text="${heading}">Issued Book Records</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Issue ID</th>
+				<th>Book ID</th>
+				<th>Member ID</th>
+				<th>Status</th>
+				<th>Issue Date</th>
+				<th>Return Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="record : ${issueRecords}">
+				<td th:text="${record.issueId}"></td>
+				<td th:text="${record.bookId}"></td>
+				<td th:text="${record.memberId}"></td>
+				<td th:text="${record.status}"></td>
+				<td th:text="${record.issueDate}"></td>
+				<td th:text="${record.returnDate}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="button-container">
+		<form th:action="@{/MainMenu}" method="get">
+			<button type="submit" class="main-button">Back to Main Menu</button>
+		</form>
+	</div>
+
+</body>
+</html>
