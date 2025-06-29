@@ -197,10 +197,10 @@ public class GymManagementApp {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input! Please enter numeric values only.");
-                sc.nextLine(); // Clear the invalid input
+                sc.nextLine(); 
             } catch (Exception e) {
                 System.out.println("An unexpected error occurred: " + e.getMessage());
-                sc.nextLine(); // Clear input buffer
+                sc.nextLine(); 
             }
         }
     }
