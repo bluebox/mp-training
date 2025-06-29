@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Member ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone no</th>
+            <th>Gender</th>
+            <th>Address</th>
+        </tr>
+        <tr th:each="i:${l}">
+            <td th:text="${i.memberId}"></td>
+            <td th:text="${i.name}"></td>
+            <td th:text="${i.email}"></td>
+            <td th:text="${i.mobile}"></td>
+            <td th:text="${i.gender}"></td>
+            <td th:text="${i.address}"></td>
+            <td><a th:href="@{/deleteMember(memberId=${i.memberId})}"><button>Delete Member</button></a></td>
+			<td><a th:href="@{/updateMember(memberId=${i.memberId})}"><button>Update Member</button></a></td>
+        </tr>
+    </table>
+    <td><a href="/addMember"><button>Add Member</button></a></td>
+</body>
+</html>

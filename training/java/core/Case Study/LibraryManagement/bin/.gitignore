@@ -1,3 +1,9 @@
-/model/
-/enums/
+/controller/
 /dao/
+/enums/
+/exception/
+/model/
+/service/
+/test/
+/ui/
+/util/

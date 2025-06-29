@@ -162,7 +162,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Demo" path="/Demo" reloadable="true" source="org.eclipse.jst.jee.server:Demo"/><Context docBase="Library Management using JSP" path="/Library_Management_using_JSP" reloadable="true" source="org.eclipse.jst.jee.server:Library Management using JSP"/><Context docBase="Basics" path="/Basics" reloadable="true" source="org.eclipse.jst.jee.server:Basics"/><Context docBase="Project using JSP" path="/Project_using_JSP" reloadable="true" source="org.eclipse.jst.jee.server:Project using JSP"/></Host>
+      <Context docBase="Demo" path="/Demo" reloadable="true" source="org.eclipse.jst.jee.server:Demo"/><Context docBase="Library Management using JSP" path="/Library_Management_using_JSP" reloadable="true" source="org.eclipse.jst.jee.server:Library Management using JSP"/><Context docBase="Basics" path="/Basics" reloadable="true" source="org.eclipse.jst.jee.server:Basics"/><Context docBase="Project using JSP" path="/Project_using_JSP" reloadable="true" source="org.eclipse.jst.jee.server:Project using JSP"/><Context docBase="Library Management using JSP" path="/Library_Management_using_JSP" reloadable="true" source="org.eclipse.jst.jee.server:Library Management using JSP"/></Host>
     </Engine>
   </Service>
 </Server>

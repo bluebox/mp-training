@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+        	<th>Issue ID</th>
+            <th>Book ID</th>
+            <th>Member ID</th>
+            <th>Status</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+        </tr>
+        <tr th:each="i:${l}">
+            <td th:text="${i.getIssueId()}"></td>
+            <td th:text="${i.getBookId()}"></td>
+            <td th:text="${i.getMemberId()}"></td>
+            <td th:text="${i.getStatusrec()}"></td>
+            <td th:text="${i.getIssueDate()}"></td>
+            <td th:text="${i.getReturnDate()}"></td>
+            <td><a th:href="@{/returnIssues(issueId=${i.issueId})}"><button>Return Book</button></a></td>
+			<td><a th:href="@{/updateStatus(bookId=${i.bookId})}"><button>Update Status</button></a></td>
+			<td><a th:href="@{/update(bookId=${i.bookId})}"><button>Update Book</button></a></td>
+        </tr>
+    </table>
+    <td><a href="/issue"><button>Issue Book</button></a></td>
+</body>
+</html>

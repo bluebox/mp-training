@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/updatedata" method="post">
+        <label for="bookId" style="visibility:hidden">Book ID : </label>
+         <input type="number" name="bookId" th:value="${bookId}" style="visibility:hidden"/><br>
+         <label for="title">Title : </label>
+         <input type="text" name="title"/><br>
+         <label for="author">Author : </label>
+         <input type="text" name="author"/><br>
+         <label for="category">Category : </label>
+         <input type="text" name="category"/><br>
+         <label for="status">Status : </label>
+         <input type="text" name="status"/><br>
+         <label for="availability">Availability : </label>
+         <input type="text" name="availability"/><br>
+         <input type="submit" value="update">
+    </form>
+</body>
+</html>

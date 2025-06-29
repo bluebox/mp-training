@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Availability</th>
+        </tr>
+        <tr th:each="i:${l}">
+            <td th:text="${i.getBookId()}"></td>
+            <td th:text="${i.getTitle()}"></td>
+            <td th:text="${i.getAuthor()}"></td>
+            <td th:text="${i.getCategory()}"></td>
+            <td th:text="${i.getStatus()}"></td>
+            <td th:text="${i.getAvailability()}"></td>
+            <td><a th:href="@{/delete(bookId=${i.bookId})}"><button>Delete Book</button></a></td>
+			<td><a th:href="@{/updateStatus(bookId=${i.bookId})}"><button>Update Status</button></a></td>
+			<td><a th:href="@{/update(bookId=${i.bookId})}"><button>Update Book</button></a></td>
+        </tr>
+    </table>
+    <td><a href="/add"><button>Add Book</button></a></td>
+</body>
+</html>
