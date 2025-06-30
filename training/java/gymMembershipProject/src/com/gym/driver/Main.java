@@ -12,7 +12,7 @@ public class Main {
 		
 		while(true) {
 			System.out.println("Welcome to the gym , entered your desired option");
-			System.out.println("1.View Gym Members \n2.Add new member\n3.Assign membership plan to member. \nq. Quit");
+			System.out.println("1.View Gym Members \n2.Add new member\n3.Assign membership plan to member.\n4.Remove Member \nq. Quit");
 			String input = sc.next();
 			
 			switch(input) {
@@ -70,6 +70,9 @@ public class Main {
 						System.out.println("NOT VALID! Please enter a number\n");
 						sc.nextLine();
 					}
+					break;
+				case "4":
+					gym.deleteMember();
 					break;
 				case "q":
 					quit = true;
