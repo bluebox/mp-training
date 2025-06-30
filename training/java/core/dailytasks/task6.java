@@ -4,8 +4,7 @@ public class task6 {
         return number %  2== 0;
     }
     public static void main (String[] args) {
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.println("enter a value: ");
+       
         int c =5;
         int startRange = 5;
         int endRange = 20;
@@ -30,8 +29,7 @@ public class task6 {
 
         
         
-        // System.out.println("seraching for next 5 even numbers betwwen"+ startRange+"and" + endRange+"(inclusive:)");
-}
+       
 
 System.out.println("no.of evennumbers found: " + evenNumbersFound);
 System.out.println("no.of odd numbers found: "+ oddNumbersFound);
