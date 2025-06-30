@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class SmartDevice(ABC):
     _device_count = 0
 
@@ -31,6 +32,7 @@ class SmartDevice(ABC):
     def perform_action(self, action_type, value=None):
         pass
 
+
 class SmartLight(SmartDevice):
     def __init__(self, device_id):
         super().__init__(device_id)
@@ -57,6 +59,7 @@ class SmartLight(SmartDevice):
             self.set_brightness(value)
         else:
             print(f"Action {action_type} not supported.")
+
 
 class SmartThermostat(SmartDevice):
     def __init__(self, device_id):
@@ -85,9 +88,11 @@ class SmartThermostat(SmartDevice):
         else:
             print(f"Action {action_type} not supported.")
 
+
 class Programmable:
     def schedule_task(self):
         print("Alarm system task scheduled.")
+
 
 class SecuritySensor(SmartDevice):
     def __init__(self, device_id):
@@ -106,6 +111,7 @@ class SecuritySensor(SmartDevice):
             self.arm_sensor()
         else:
             print(f"Action {action_type} not supported.")
+
 
 class SmartAlarmSystem(SmartDevice, Programmable):
     def __init__(self, device_id):
@@ -128,6 +134,7 @@ class SmartAlarmSystem(SmartDevice, Programmable):
     def schedule_task(self):
         print(f"{self._device_id} alarm task scheduled.")
 
+
 class HomeManager:
     def __init__(self):
         self._devices = []
@@ -146,6 +153,7 @@ class HomeManager:
     def get_all_device_statuses(self):
         for device in self._devices:
             print(device.get_status_report())
+
 
 light = SmartLight("a")
 thermostat = SmartThermostat("b")
@@ -168,5 +176,8 @@ alarm.schedule_task()
 
 manager.get_all_device_statuses()
 
-mro_result = [cls.__name__ for cls in SmartAlarmSystem.__mro__]
-print("MRO:", mro_result)
+print(HomeManager.__mro__)
+print(SmartDevice.__mro__)
+print(SecuritySensor.__mro__)
+print(Programmable.__mro__)
+

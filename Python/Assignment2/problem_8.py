@@ -11,10 +11,11 @@ class BankAccount:
             self.__balance -= amount
             print("withdrawal success")
         else:
-           print("insufficient funds")
+            print("insufficient funds")
+
     def get_balance(self):
         return self.__balance
 
 
-sbi=BankAccount(123,10000)
+sbi = BankAccount(123, 10000)
 sbi.withdrawal(100000)

@@ -1,9 +1,9 @@
-def check_mixed_input(data1,data2,data3):
+def check_mixed_input(data1, data2, data3):
     if data1:
         if not data2:
             if data3:
                 return "Stage 1A: Data1 True, Data2 False, Data3 True"
-            else :
+            else:
                 return 'Stage 1B: Data1 True, Data2 False, Data3 False'
         else:
             return 'Stage 1C: Data1 True, Data2 True'
@@ -11,10 +11,11 @@ def check_mixed_input(data1,data2,data3):
         if not data3:
             if data2:
                 return "Stage 2A: Data1 False, Data3 False, Data2 True"
-            else :
-                return  "Stage 2B: Data1 False, Data3 False, Data2 False"
+            else:
+                return "Stage 2B: Data1 False, Data3 False, Data2 False"
         else:
             return "Stage 2C: Data1 False, Data3 True"
+
 
 print(check_mixed_input("hello", [], True))
 print(check_mixed_input([1], None, False))

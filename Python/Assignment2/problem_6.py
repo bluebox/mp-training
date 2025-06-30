@@ -4,6 +4,8 @@ def custom_enumerate_filter(iterable, start=0, step=1, predicate=None):
         if predicate is None or predicate(item):
             yield (index, item)
         index += step
+
+
 for idx, val in custom_enumerate_filter(['a', 'b', 'c'], start=10, step=5):
     print(idx, val)
 nums = [1, 2, 3, 4, 5, 6]

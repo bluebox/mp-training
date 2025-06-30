@@ -33,6 +33,7 @@ def maze_runner(maze, start_pos, end_pos):
 
     return None
 
+
 maze = [
     ['S', ' ', '#', ' ', 'E'],
     ['#', ' ', '#', ' ', '#'],
