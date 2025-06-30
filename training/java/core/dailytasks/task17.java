@@ -48,12 +48,7 @@ public class task17 {
 }
 public class AreaCalculator {
 
-    /**
-     * Calculates the area of a circle.
-     *
-     * @param radius The radius of the circle. Must be non-negative.
-     * @return The area of the circle if radius is valid, otherwise -1.0 to indicate an invalid value.
-     */
+   
     public static double area(double radius) {
         if (radius < 0) {
             return -1.0; // Invalid Value
