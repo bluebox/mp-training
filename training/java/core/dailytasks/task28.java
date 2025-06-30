@@ -23,7 +23,7 @@ public class task28 {
             return true;
         }
 
-        // 5. No shared digit found
+        
         return false;
     }
 }
