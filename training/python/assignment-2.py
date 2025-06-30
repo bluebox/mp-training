@@ -10,6 +10,7 @@ This is Assignment -2 i'm finishing it by monday
 Task -1
 '''
 
+
 '''
 Problem Statement:
  Implement a Python function create_counter(initial_count=0) that acts as a factory for counter functions.
@@ -449,7 +450,6 @@ class SmartThermostat(SmartDevice):
 # print(thermo_1.get_temperature)
 # thermo_1.set_temperature=29
 # print(thermo_1.get_temperature)
-    
 
 
 
