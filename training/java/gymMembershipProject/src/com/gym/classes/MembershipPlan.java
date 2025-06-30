@@ -1,7 +1,7 @@
 package com.gym.classes;
 
 public class MembershipPlan {
-	String planName;
+	public String planName;
 	int durationMonths;
 	int fee;
 	

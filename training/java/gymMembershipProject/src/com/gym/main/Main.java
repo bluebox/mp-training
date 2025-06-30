@@ -1,8 +1,9 @@
-package com.gym.driver;
+package com.gym.main;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import com.gym.classes.Gym;
+
+import com.gym.service.Gym;
 
 public class Main {
 	public static void main(String[] args) {

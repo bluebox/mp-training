@@ -1,8 +1,12 @@
-package com.gym.classes;
+package com.gym.service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.gym.classes.Member;
+import com.gym.classes.MembershipPlan;
+
 
 public class Gym {
     private ArrayList<Member> members;
@@ -75,8 +79,8 @@ public class Gym {
         try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_NAME))) {
             for (Member m : members) {
                 pw.println(
-                        m.getMemberId() + "," + m.name + "," + m.age + "," + m.height + "," + m.weight + "," +
-                                (m.getMemPlan() != null ? m.getMemPlan().planName : "NoPlan")
+                        m.getMemberId() + "," + m.getMemberName() + "," + m.getMemberAge() + "," + m.getMemberHeight() + "," + m.getMemberWeight() + "," +
+                                (m.getMembershipPlan() != null ? m.getMembershipPlan().planName : "NoPlan")
                 );
             }
         } catch (IOException e) {
