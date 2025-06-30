@@ -23,8 +23,8 @@ public class Gym {
         }
 
         if(membershipPlan.getPlanName().equals("")){
-            MembershipPlan m=null;
-            member.setMembershipPlan(m);
+            
+            member.setMembershipPlan(membershipPlan);
             return;
             
         }
