@@ -21,6 +21,12 @@ public class Main {
                     case 1:
                         System.out.print("Enter Member ID: ");
                         int id = Integer.parseInt(scanner.nextLine());
+                        for(Member mem:gym.getMembers()) {
+                        	if(mem.getMemberId()==id) {
+                        		System.out.println("Duplicate id");
+                        		throw new IllegalArgumentException("Duplicate id");
+                        	}
+                        }
                         System.out.print("Enter Name: ");
                         String name = scanner.nextLine();
                         System.out.print("Enter Age: ");
