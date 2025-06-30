@@ -1,10 +1,10 @@
 import java.util.Scanner; 
 
-// Circle Class
+
 class Circle {
     private double radius;
 
-    // Constructor
+ 
     public Circle(double radius) {
         if (radius < 0) {
             this.radius = 0;
@@ -13,7 +13,8 @@ class Circle {
         }
     }
 
-    // Method to get radius
+   
+    
     public double getRadius() {
         return radius;
     }
@@ -24,7 +25,7 @@ class Circle {
     }
 }
 
-// Cylinder Class extending Circle
+
 class Cylinder extends Circle {
     private double height;
 
@@ -38,12 +39,12 @@ class Cylinder extends Circle {
         }
     }
 
-    // Method to get height
+   
     public double getHeight() {
         return height;
     }
 
-    // Method to calculate volume
+    
     public double getVolume() {
         return getArea() * height; // Calculate volume by multiplying area with height
     }
@@ -75,6 +76,6 @@ public class Main {
         System.out.println("Cylinder Height: " + cylinder.getHeight());
         System.out.println("Cylinder Volume: " + cylinder.getVolume());
 
-        scanner.close(); // Close the scanner
+        scanner.close();
     }
 }
