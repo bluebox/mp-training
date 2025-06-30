@@ -7,8 +7,7 @@ public class Customer {
     private double creditLimit;
     private String emailAddress;
 
-    // 1. First Constructor: for all three fields
-    // Assigns arguments directly to instance fields
+  
     public Customer(String name, double creditLimit, String emailAddress) {
         this.name = name;
         this.creditLimit = creditLimit;
