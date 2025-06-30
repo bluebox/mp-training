@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+	<h1>Update Book Details</h1>
+	<form action="" method="post">
+		Book ID : <input type="text" name="bookId"	/><br><br>
+		Book Title : <input type="text" name="title"	/><br><br>
+		Book Author : <input type="text" name="author"	/><br><br>
+		Book Category : <input type="text" name="category"	/><br><br>
+		Book Status <br><br>
+		 <input type="radio" name="status" value="active"	/> Active<br><br>
+		 <input type="radio" name="status" value="inactive"	/> Inactive<br><br>
+		Book Availability <br><br>
+		 <input type="radio" name="availability" value="available"	/> Available<br><br>
+		 <input type="radio" name="availability" value="issued"	/> Issued<br><br>
+		<input type="Submit"/><br><br>
+	</form>
+		 <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+	<h1>Issue the Book</h1>
+	<form action="" method="post">
+		Book ID : <input type="text" name="bookId"	required/><br><br>
+		Member ID : <input type="text" name="memberId"	required/><br><br>
+		<input type="Submit"/><br><br>
+	</form>
+		 <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+</html>

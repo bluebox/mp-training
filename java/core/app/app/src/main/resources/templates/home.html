@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	 <h1 th:text="'Library Management App'"></h1>
+	 
+	 <a th:href="@{/addMember}">
+        <button>Register Member</button>
+      </a><br><br>
+	  <a th:href="@{/addBook}">
+        <button>Add Book</button>
+      </a><br><br>
+      <a th:href="@{/updateBook}">
+        <button>Update Book Details</button>
+      </a><br><br>
+      <a th:href="@{/updateMember}">
+        <button>Update Member Details</button>
+      </a><br><br>
+      <a th:href="@{/issueBook}">
+        <button>Issue Book</button>
+      </a><br><br>  
+      <a th:href="@{/returnBook}">
+        <button>Return Book</button>
+      </a><br><br>  
+      <a th:href="@{/books}">
+        <button>View All Books</button>
+      </a><br><br>	
+      <a th:href="@{/issuedRecords}">
+        <button>View All Issued Records</button>
+      </a><br><br>  
+      <a th:href="@{/members}">
+        <button>View All Members</button>
+      </a>
+
+</body>
+</html>
