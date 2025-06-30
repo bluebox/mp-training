@@ -1,12 +1,13 @@
 package com.example.practice.beans;
 
 import org.springframework.stereotype.Component;
+
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Max;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,8 @@ public class Contact {
 
     @NotBlank
     @Size(min = 3, max = 50, message = "The name should be between 3 and 50 chars")
+    @Pattern(regexp = "^(?!.*  )[A-Za-z ]+$",
+    message = "Must contain only letters and spaces, and no consecutive spaces")
     private String name;
 
     @Pattern(regexp = "\\d{10}", message = "Enter exactly 10 digits")
