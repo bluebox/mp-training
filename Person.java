@@ -1,50 +1,20 @@
-public class Person {
 
-    private String firstName;
-    private String lastName;
+abstract class Person {
+    private String name;
     private int age;
 
-    public String getFirstName() {
-        return firstName;
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public abstract void showDetails();
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getName() {
+        return name;
     }
 
     public int getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        if (age < 0 || age > 100) {
-            this.age = 0;
-        } else {
-            this.age = age;
-        }
-    }
-
-    public boolean isTeen() {
-        return age > 12 && age < 20;
-    }
-
-    public String getFullName() {
-        if ((firstName == null || firstName.isEmpty()) && (lastName == null || lastName.isEmpty())) {
-            return "";
-        } else if (lastName == null || lastName.isEmpty()) {
-            return firstName;
-        } else if (firstName == null || firstName.isEmpty()) {
-            return lastName;
-        } else {
-            return firstName + " " + lastName;
-        }
     }
 }

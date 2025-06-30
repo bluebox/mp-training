@@ -1,15 +1,15 @@
 public class Main {
     public static void main(String[] args) {
-        BankAccount myAccount = new BankAccount("12345", 1000.0, "Lakshmi Pranamya", "lakshmi@email.com", "9876543210");
+        MembershipPlan basic = new MembershipPlan("Basic", 3, 1000);
+        MembershipPlan premium = new MembershipPlan("Premium", 6, 2500);
 
-        System.out.println("Initial balance: ₹" + myAccount.getBalance());
+        Member m1 = new Member("Pranamya", 24, "M001");
+        Member m2 = new Member("Praneela", 30, "M002");
 
-        myAccount.deposit(500.0);         
-        myAccount.withdraw(200.0);        
-        myAccount.withdraw(1500.0);       
-        myAccount.deposit(-100);          
-        myAccount.withdraw(-50);          
+        m1.assignPlan(basic);
+        m2.assignPlan(premium);
 
-        System.out.println("Final balance: ₹" + myAccount.getBalance());
+        m1.showDetails();
+        m2.showDetails();
     }
 }
