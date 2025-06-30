@@ -5,7 +5,7 @@ public class task17 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // --- Test Circle Area ---
+  
         System.out.println("--- Circle Area Calculator ---");
         System.out.print("Enter the radius of the circle: ");
         while (!scanner.hasNextDouble()) {
@@ -20,7 +20,7 @@ public class task17 {
             System.out.printf("Area of circle with radius %.2f = %.2f%n", radius, circleArea);
         }
 
-        // --- Test Rectangle Area ---
+       
         System.out.println("\n--- Rectangle Area Calculator ---");
         System.out.print("Enter the length of side X: ");
         while (!scanner.hasNextDouble()) {
