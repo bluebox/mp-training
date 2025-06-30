@@ -1,4 +1,4 @@
-package day_2_june26_basics_of_oops;
+package day2;
 
 import java.util.Scanner;
 
