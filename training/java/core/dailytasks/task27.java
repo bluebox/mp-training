@@ -13,14 +13,14 @@ public class task27 {
                 sum += number;
                 count++;
             } else {
-                break; // User entered something that is not an int
+                break; 
             }
-            scanner.nextLine(); // Handle end of line (enter key)
+            scanner.nextLine();
         }
 
         long average = 0;
         if (count > 0) {
-            average = Math.round((double) sum / count); // Calculate average as long
+            average = Math.round((double) sum / count);
         }
 
         System.out.println("SUM=" + sum + " AVG=" + average);
