@@ -31,11 +31,11 @@ public class MinMaxChallenge {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Quitting program.");
-                break; // Exit the loop if input is not a number
+                break;
             }
         }
 
-        if (!firstInput) { // Check if any numbers were entered
+        if (!firstInput) { 
             System.out.println("Minimum number entered: " + minNumber);
             System.out.println("Maximum number entered: " + maxNumber);
         } else {
