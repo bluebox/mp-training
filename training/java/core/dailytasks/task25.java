@@ -3,24 +3,23 @@ public class task25 {
     private int age;
     private String email;
 
-    // Constructor 1: All fields
+   
     public task25(String name, int age, String email) {
         this.name = name;
         this.age = age;
         this.email = email;
     }
 
-    // Constructor 2: No-args, calls other constructor
     public task25() {
         this("Default Name", 0, "default@example.com");
     }
 
-    // Constructor 3: Name and email, calls other constructor
+    
     public task25(String name, String email) {
         this(name, 0, email);
     }
 
-    // Getters (optional, but good practice)
+
     public String getName() {
         return name;
     }
