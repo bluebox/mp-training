@@ -23,3 +23,10 @@ class Rectangle(Shape):
         self.breadth = breadth
     def area(self):
         return self.length*self.breadth
+
+rect = Rectangle(10,20)
+print(rect.area())
+print(rect.describe_shapes())
+
+circle = Circle(14)
+print(circle.area())
