@@ -18,6 +18,10 @@
            return planName;
        }
        public void planDetails(){
+        if(this.planName.equals("")){
+            System.out.println("No plan is assigned");
+            return ;
+        }
         System.out.println("plan name is "+this.planName);
         System.out.println("plan duration is "+this.durationMonths);
         System.out.println("plan fee is "+this.fee);
