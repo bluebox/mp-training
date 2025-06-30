@@ -1,15 +1,14 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ClassesChallenge { // New project called ClassesChallenge with the usual Main class
+public class ClassesChallenge { 
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("--- Welcome to Bank Account Management ---");
 
-        // Create an instance of an Account class
-        // Let's create an account using the default constructor first, then set details.
+        
         Account myAccount = new Account();
 
         System.out.println("\nLet's set up your new account details:");
@@ -39,19 +38,18 @@ public class ClassesChallenge { // New project called ClassesChallenge with the 
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a numeric value for balance.");
-                scanner.next(); // Consume the invalid input
+                scanner.next(); 
             }
         }
-        scanner.nextLine(); // Consume the remaining newline character after nextDouble()
+        scanner.nextLine(); 
+        myAccount.printAccountInfo(); 
 
-        myAccount.printAccountInfo(); // Print information to the console
-
-        // Test deposit and withdraw methods
+        
         System.out.println("\n--- Testing Account Operations ---");
 
         double amount;
 
-        // Deposit funds
+      
         while (true) {
             System.out.print("Enter amount to deposit ($): ");
             try {
@@ -63,29 +61,29 @@ public class ClassesChallenge { // New project called ClassesChallenge with the 
                 scanner.next();
             }
         }
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); 
 
         // Print balance after deposit
         System.out.printf("Balance after deposit: $%.2f%n", myAccount.getBalance());
 
-        // Withdraw funds
+    
         while (true) {
             System.out.print("Enter amount to withdraw ($): ");
             try {
                 amount = scanner.nextDouble();
-                myAccount.withdraw(amount); // Test your withdraw methods
+                myAccount.withdraw(amount); 
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a numeric value for withdrawal.");
                 scanner.next();
             }
         }
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine(); 
 
-        // Print balance after withdrawal
+     
         System.out.printf("Balance after withdrawal: $%.2f%n", myAccount.getBalance());
 
-        // Test another withdrawal that makes balance negative (should be prevented)
+
         System.out.println("\nAttempting to withdraw more than current balance...");
         myAccount.withdraw(myAccount.getBalance() + 100); // Try to withdraw more than available
         System.out.printf("Balance after attempted overdraft: $%.2f%n", myAccount.getBalance());
@@ -95,14 +93,14 @@ public class ClassesChallenge { // New project called ClassesChallenge with the 
     }
 }
 public class Account {
-    // Fields (characteristics) of a bank account
+   
     private String accountNumber;
     private double balance;
     private String customerName;
     private String email;
     private String phoneNumber;
 
-    // Constructor to initialize an Account object (optional, but good practice)
+    
     public Account(String accountNumber, double balance, String customerName, String email, String phoneNumber) {
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -111,9 +109,9 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    // Default constructor (no arguments)
+    
     public Account() {
-        // You can set default values here if needed, or leave empty
+        
         this("00000000", 0.00, "Default Name", "default@example.com", "000-000-0000");
     }
 
@@ -158,7 +156,6 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    // Method to deposit funds
     public void deposit(double amount) {
         if (amount > 0) {
             this.balance += amount;
@@ -168,9 +165,8 @@ public class Account {
         }
     }
 
-    // Method to withdraw funds
     public void withdraw(double amount) {
-        // A customer should not be allowed to withdraw funds if that withdrawal takes their balance negative.
+        
         if (amount > 0 && this.balance - amount >= 0) {
             this.balance -= amount;
             System.out.printf("Withdrawal of $%.2f successful. New balance: $%.2f%n", amount, this.balance);
@@ -181,7 +177,7 @@ public class Account {
         }
     }
 
-    // Method to print account information
+    
     public void printAccountInfo() {
         System.out.println("--- Account Information ---");
         System.out.println("Account Number: " + accountNumber);
