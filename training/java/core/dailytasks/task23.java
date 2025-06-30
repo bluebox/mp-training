@@ -10,7 +10,7 @@ public class task23 {
 
         int reverse = 0;
         int tempNum = number; 
-        // Logic to reverse a number
+        
         while (tempNum > 0) {
             int lastDigit = tempNum % 10; // Extract the last digit
             reverse = reverse * 10 + lastDigit; 
@@ -22,7 +22,7 @@ public class task23 {
     }
 
     public static void main(String[] args) {
-        // Example Input/Output from the problem description
+       
         System.out.println("isPalindrome(-1221): " + isPalindrome(-1221)); // Expected: true
         System.out.println("isPalindrome(707): " + isPalindrome(707));     // Expected: true
         System.out.println("isPalindrome(11212): " + isPalindrome(11212)); // Expected: false
