@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Library Management Dashboard</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<style>
+body {
+	background: #f8f9fa;
+}
+
+.nav-link {
+	font-weight: 500;
+}
+
+.card {
+	transition: transform 0.2s ease;
+}
+
+.card:hover {
+	transform: scale(1.02);
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Library System</a>
+		</div>
+	</nav>
+
+	<div class="container my-5">
+		<h2 class="mb-4 text-center text-primary">Library Dashboard</h2>
+		<div class="row g-4">
+
+			<!-- Books Section -->
+			<div class="col-md-4">
+				<div class="card border-primary">
+					<div class="card-header bg-primary text-white">Books</div>
+					<div class="card-body">
+						<a th:href="@{/books/add}"
+							class="btn btn-outline-primary w-100 mb-2">Add Book</a> <a
+							th:href="@{/books/list}"
+							class="btn btn-outline-primary w-100 mb-2">View Books</a> <a
+							th:href="@{/books/search}" class="btn btn-outline-primary w-100">Update
+							Book</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Members Section -->
+			<div class="col-md-4">
+				<div class="card border-success">
+					<div class="card-header bg-success text-white">Members</div>
+					<div class="card-body">
+						<a th:href="@{/members/add}"
+							class="btn btn-outline-success w-100 mb-2">Add Member</a> <a
+							th:href="@{/members/list}"
+							class="btn btn-outline-success w-100 mb-2">View Members</a> <a
+							th:href="@{/members/search}"
+							class="btn btn-outline-success w-100">Update Member</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Issues Section -->
+			<div class="col-md-4">
+				<div class="card border-warning">
+					<div class="card-header bg-warning text-dark">Issues</div>
+					<div class="card-body">
+						<a th:href="@{/issues/issueForm}"
+							class="btn btn-outline-warning w-100 mb-2">Issue Book</a> <a
+							th:href="@{/issues/returnForm}"
+							class="btn btn-outline-warning w-100 mb-2">Return Book</a> <a
+							th:href="@{/issues/list}" class="btn btn-outline-warning w-100">Issued
+							Books</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		<br>
+
+		<div style="width:50%; margin :auto;" class="row g-4">
+			<div class="card border-success">
+				<div class="card-header bg-warning text-dark">Reports</div>
+				<div class="card-body">
+					<a th:href="@{/books/category-count}"
+						class="btn btn-outline-primary w-100 mb-2">Books category
+						count</a> 
+						
+						<a th:href="@{/issues/getActiveIssuedBooks}"
+						class="btn btn-outline-primary w-100 mb-2">Active Issued Books</a> 
+						
+						<a
+						th:href="@{/issues/overdue-books}" class="btn btn-outline-primary w-100">Overdue
+						Books</a>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

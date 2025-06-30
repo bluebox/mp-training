@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Active Issued Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e6f7ff;
+        }
+    </style>
+</head>
+<body>
+    <h2>Active Issued Books</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Issue ID</th>
+                <th>Book ID</th>
+                <th>Member ID</th>
+                <th>Status</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="record : ${books}">
+                <td th:text="${record.issueId}">1</td>
+                <td th:text="${record.bookId}">101</td>
+                <td th:text="${record.memberId}">201</td>
+                <td th:text="${record.status}">ISSUED</td>
+                <td th:text="${record.issueDate}">2025-06-01</td>
+                <td th:text="${record.returnDate != null ? record.returnDate : 'Not Returned'}">-</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

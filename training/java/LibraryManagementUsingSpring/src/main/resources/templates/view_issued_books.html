@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Issued Books</title>
+</head>
+<body>
+<a style="background-color : blue; color:white; padding:5px; border-radius:10px;" th:href="@{/home}">Home</a>
+	<br>
+    <h1>Currently Issued Books</h1>
+    <a th:href="@{/issues/issueForm}">Issue New Book</a> |
+    <a th:href="@{/issues/returnForm}">Return Book</a>
+    <br/><br/>
+
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Issue ID</th>
+                <th>Book ID</th>
+                <th>Member ID</th>
+                <th>Status</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="record : ${issuedBooks}">
+                <td th:text="${record.issueId}">1</td>
+                <td th:text="${record.bookId}">101</td>
+                <td th:text="${record.memberId}">1001</td>
+                <td th:text="${record.status}">ISSUED</td>
+                <td th:text="${record.issueDate}">2025-06-29</td>
+                <td th:text="${record.returnDate} ?: 'Not Returned'">Not Returned</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

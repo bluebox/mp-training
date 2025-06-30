@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Book</title>
+    
+    
+</head>
+<body>
+
+	<a style="background-color : blue; color:white; padding:5px; border-radius:10px;" th:href="@{/home}">Home</a>
+	<br>
+    <h2>Add Book Form</h2>
+
+    <form th:action="@{/books/add}" th:object="${book}" method="post">
+        Title: <input type="text" th:field="*{title}"  maxlength="100" required/><br/>
+        Author: <input type="text" pattern="[A-Za-z]+" title="Please enter alphabets only" th:field="*{author}"  maxlength=50 required/><br/>
+        Category: <input type="text" th:field="*{category}"  maxlength="50" required/><br/>
+
+        Status:
+        <select th:field="*{status}">
+            <option th:each="s : ${T(com.library.domain.Status).values()}"
+                    th:value="${s}" th:text="${s.name()}">Status</option>
+        </select><br/>
+
+        Availability:
+        <select th:field="*{available}">
+            <option th:each="a : ${T(com.library.domain.Availability).values()}"
+                    th:value="${a}" th:text="${a.name()}">Availability</option>
+        </select><br/>
+
+        <input type="submit" value="Add Book" />
+    </form>
+</body>
+</html>

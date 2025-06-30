@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Member</title>
+</head>
+<body>
+<a style="background-color : blue; color:white; padding:5px; border-radius:10px;" th:href="@{/home}">Home</a>
+	<br>
+    <h2>Add Member Form</h2>
+
+    <form th:action="@{/members/add}" th:object="${member}" method="post">
+        Name: <input type="text" pattern="[A-Za-z]+" title="Please enter alphabets only" th:field="*{name}"  maxlength=50 required/><br/>
+        Email: <input type="email" th:field="*{email}"  maxlength="100" required/><br/>
+        Mobile: <input type="number" th:field="*{mobile}"  minlength="10" maxlength="10" required/><br/>
+        Gender:
+        <select th:field="*{gender}">
+            <option th:each="g : ${genders}"
+                    th:value="${g}"
+                    th:text="${g.name()}">
+            </option>
+        </select><br/>
+        Address: <input type="text" th:field="*{address}" /><br/>
+        <input type="submit" value="Add Member" />
+    </form>
+</body>
+</html>

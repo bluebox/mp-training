@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Book</title>
+</head>
+<body>
+<a style="background-color : blue; color:white; padding:5px; border-radius:10px;" th:href="@{/home}">Home</a>
+	<br>
+    <h2>Search Book By ID</h2>
+
+    <form th:action="@{/books/search}" method="post">
+        <label for="bookId">Book ID:</label>
+        <input type="number" name="bookId" required />
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${error}" style="color:red; margin-top:10px;">
+        <p th:text="${error}"></p>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books Per Category</title>
+</head>
+<body>
+    <h2>Books Count Per Category</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="entry : ${categoryCountMap}">
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

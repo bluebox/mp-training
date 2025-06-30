@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Issue Book</title>
+</head>
+<body>
+<a style="background-color : blue; color:white; padding:5px; border-radius:10px;" th:href="@{/home}">Home</a>
+	<br>
+    <h1>Issue Book</h1>
+
+    <form th:action="@{/issues/issue}" th:object="${issueRecord}" method="post">
+        <label for="bookId">Book ID:</label>
+        <input type="number" th:field="*{bookId}" id="bookId" required />
+        <br/><br/>
+        
+        <label for="memberId">Member ID:</label>
+        <input type="number" th:field="*{memberId}" id="memberId" required />
+        <br/><br/>
+        
+        <button type="submit">Issue Book</button>
+    </form>
+
+    <br/>
+    <a th:href="@{/issues/list}">Back to Issued Books List</a>
+</body>
+</html>
