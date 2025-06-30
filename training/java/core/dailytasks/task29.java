@@ -16,10 +16,10 @@ public class task29 {
             String input = scanner.nextLine();
 
             try {
-                // Attempt to parse as a double (for double validation)
+                
                 double currentNumber = Double.parseDouble(input);
 
-                // If parsing is successful, it's a number
+               
                 if (!firstNumberEntered) {
                     minNumber = currentNumber;
                     maxNumber = currentNumber;
@@ -33,7 +33,7 @@ public class task29 {
                     }
                 }
             } catch (NumberFormatException e) {
-                // If parsing fails, it's not a number, so quit the loop
+               
                 System.out.println("Invalid input. Exiting loop.");
                 break;
             }
