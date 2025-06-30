@@ -6,12 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.casestudy.spring.library.beans.IssueRecord;
 import com.casestudy.spring.library.impl.Implementation;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class IssueBookController {
@@ -25,7 +28,11 @@ public class IssueBookController {
 	}
 
 	@PostMapping("/SaveIssueRecord")
-	public String issueBook(@ModelAttribute IssueRecord issueRecord, Model model) {
+	public String issueBook(@Valid @ModelAttribute IssueRecord issueRecord,Errors errors, Model model) {
+		if(errors.hasErrors()) {
+			model.addAttribute("issueRecord", issueRecord);
+			return "IssueBook";
+		}
 		issueRecord.setIssueDate(LocalDate.now());
 		boolean flag = impl.issueBookService(issueRecord);
 		if (flag == true) {
@@ -49,7 +56,11 @@ public class IssueBookController {
 	}
 
 	@PostMapping("/SaveRetrunBook")
-	public String returnBook(@ModelAttribute IssueRecord issueRecord, Model model) {
+	public String returnBook(@Valid @ModelAttribute IssueRecord issueRecord,Errors errors, Model model) {
+		if(errors.hasErrors()) {
+			model.addAttribute("issueRecord",issueRecord);
+			return "ReturnBook";
+		}
 		issueRecord.setReturnDate(LocalDate.now());
 		boolean flag = impl.returnBookService(issueRecord);
 		if (flag == true) {

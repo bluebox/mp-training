@@ -1,117 +1,112 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Update Member</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f8fb;
-            padding: 40px;
-        }
+<meta charset="UTF-8">
+<title>Update Member</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f8fb;
+	padding: 40px;
+}
 
-        h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
+h2 {
+	text-align: center;
+	color: #2c3e50;
+	margin-bottom: 30px;
+}
 
-        form {
-            width: 50%;
-            margin: auto;
-            background: #fff;
-            padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+form {
+	width: 50%;
+	margin: auto;
+	background: #fff;
+	padding: 25px 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
+label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: bold;
+	color: #333;
+}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
+input[type="text"], input[type="email"], input[type="number"], select,
+	textarea {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
 
-        input[readonly] {
-            background-color: #e9ecef;
-            cursor: not-allowed;
-        }
+input[readonly] {
+	background-color: #e9ecef;
+	cursor: not-allowed;
+}
 
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+button {
+	background-color: #007bff;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 16px;
+}
 
-        button:hover {
-            background-color: #0056b3;
-        }
+button:hover {
+	background-color: #0056b3;
+}
 
-        .back-button {
-            margin-top: 15px;
-            background-color: #28a745;
-        }
+.back-button {
+	margin-top: 15px;
+	background-color: #28a745;
+}
 
-        .back-button:hover {
-            background-color: #218838;
-        }
-    </style>
+.back-button:hover {
+	background-color: #218838;
+}
+</style>
 </head>
 <body>
 
-    <h2>Update Member Details</h2>
+	<h2>Update Member Details</h2>
 
-    <form th:action="@{/UpdateSaveMember}" th:object="${member}" method="post">
-        <!-- Read-only Member ID -->
-        <label for="memberId">Member ID:</label>
-        <input type="text" th:field="*{memberId}" readonly />
+	<form th:action="@{/UpdateSaveMember}" th:object="${member}"
+		method="post">
+		<div th:if="(${#fields.hasErrors('*')})">
+			<b>Correct These fields</b>
+			<ul>
+				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">
+			</ul>
 
-        <label for="name">Name:</label>
-        <input type="text" th:field="*{name}" required />
+		</div>
+		<!-- Read-only Member ID -->
+		<label for="memberId">Member ID:</label> <input type="text"
+			th:field="*{memberId}" readonly /> <label for="name">Name:</label> <input
+			type="text" th:field="*{name}" required /> <label for="email">Email:</label>
+		<input type="email" th:field="*{email}" required /> <label
+			for="mobile">Mobile:</label> <input type="number"
+			th:field="*{mobile}" required /> <label for="gender">Gender:</label>
+		<select th:field="*{gender}">
+			<option
+				th:each="g : ${T(com.casestudy.spring.library.beans.Gender).values()}"
+				th:value="${g}" th:text="${g.name()}"
+				th:selected="${g} == ${member.gender}"></option>
+		</select> <label for="address">Address:</label>
+		<textarea th:field="*{address}" rows="3" required></textarea>
 
-        <label for="email">Email:</label>
-        <input type="email" th:field="*{email}" required />
+		<button type="submit">Update Member</button>
+	</form>
 
-        <label for="mobile">Mobile:</label>
-        <input type="number" th:field="*{mobile}" required />
-
-        <label for="gender">Gender:</label>
-        <select th:field="*{gender}">
-            <option th:each="g : ${T(com.casestudy.spring.library.beans.Gender).values()}"
-                    th:value="${g}"
-                    th:text="${g.name()}"
-                    th:selected="${g} == ${member.gender}">
-            </option>
-        </select>
-
-        <label for="address">Address:</label>
-        <textarea th:field="*{address}" rows="3" required></textarea>
-
-        <button type="submit">Update Member</button>
-    </form>
-
-    <div class="button-container" style="text-align:center;">
-        <form th:action="@{/MainMenu}" method="get">
-            <button type="submit" class="back-button">Back to Main Menu</button>
-        </form>
-    </div>
+	<div class="button-container" style="text-align: center;">
+		<form th:action="@{/MainMenu}" method="get">
+			<button type="submit" class="back-button">Back to Main Menu</button>
+		</form>
+	</div>
 
 </body>
 </html>

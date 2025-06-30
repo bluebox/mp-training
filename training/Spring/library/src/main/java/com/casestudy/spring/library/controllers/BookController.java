@@ -3,6 +3,7 @@ package com.casestudy.spring.library.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.casestudy.spring.library.beans.Book;
 import com.casestudy.spring.library.impl.Implementation;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class BookController {
@@ -23,7 +26,11 @@ public class BookController {
 	}
 
 	@PostMapping("/SaveBook")
-	public String AddBookToDb(@ModelAttribute Book book, Model model) {
+	public String AddBookToDb(@Valid @ModelAttribute Book book,Errors errors, Model model) {
+		if (errors.hasErrors()) {
+			model.addAttribute("book", book);
+			return "AddBook";
+		}
 		boolean flag = impl.addBook(book);
 		if (flag == true) {
 			model.addAttribute("message", "Book added successfully!");
@@ -59,7 +66,11 @@ public class BookController {
 	}
 
 	@PostMapping("/UpdateSaveBook")
-	public String updateBook(@ModelAttribute("book") Book book, Model model) {
+	public String updateBook(@Valid @ModelAttribute("book") Book book,Errors errors, Model model) {
+		if (errors.hasErrors()) {
+			model.addAttribute("book", book);
+			return "UpdateBook";
+		}
 		boolean flag = impl.updateBookService(book);
 		if (flag == true) {
 			model.addAttribute("message", "Book Updated successfully!");

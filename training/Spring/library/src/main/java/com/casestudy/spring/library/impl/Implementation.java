@@ -127,7 +127,7 @@ public class Implementation {
 	public Map<String, Long> getBooksCountPerCategory() {
 		List<Book> books = bookDao.viewAllBooks();
 		Map<String, Long> categoryCountMap = books.stream()
-				.collect(Collectors.groupingBy(Book::getCategory, Collectors.counting()));
+				.collect(Collectors.groupingBy(n -> n.getCategory().toLowerCase(), Collectors.counting()));
 		return categoryCountMap;
 
 	}

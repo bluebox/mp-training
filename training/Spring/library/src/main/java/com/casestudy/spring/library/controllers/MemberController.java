@@ -3,14 +3,16 @@ package com.casestudy.spring.library.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.casestudy.spring.library.beans.Book;
 import com.casestudy.spring.library.beans.Member;
 import com.casestudy.spring.library.impl.Implementation;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class MemberController {
@@ -24,7 +26,11 @@ public class MemberController {
 	}
 
 	@PostMapping("/SaveMember")
-	public String addMember(@ModelAttribute Member member, Model model) {
+	public String addMember(@Valid @ModelAttribute Member member,Errors errors, Model model) {
+		if(errors.hasErrors()) {
+			model.addAttribute("member",member);
+			return "AddMember";
+		}
 		boolean flag = impl.addMemberService(member);
 		if (flag == true) {
 			model.addAttribute("message", "Member added successfully!");
@@ -60,7 +66,11 @@ public class MemberController {
 	}
 
 	@PostMapping("/UpdateSaveMember")
-	public String updateBook(@ModelAttribute("member") Member member, Model model) {
+	public String updateBook(@Valid @ModelAttribute("member") Member member,Errors errors, Model model) {
+		if(errors.hasErrors()) {
+			model.addAttribute("member", member);
+			return "UpdateMember";
+		}
 		boolean flag = impl.updateMemberService(member);
 		if (flag == true) {
 			model.addAttribute("message", "Member Updated successfully!");

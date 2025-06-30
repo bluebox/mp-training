@@ -4,127 +4,131 @@
 <meta charset="UTF-8">
 <title>Add Member</title>
 <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f0f4f8;
-        padding: 40px;
-    }
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f0f4f8;
+	padding: 40px;
+}
 
-    h2 {
-        color: #2c3e50;
-        text-align: center;
-        margin-bottom: 25px;
-    }
+h2 {
+	color: #2c3e50;
+	text-align: center;
+	margin-bottom: 25px;
+}
 
-    form {
-        background-color: #ffffff;
-        padding: 25px 30px;
-        border-radius: 12px;
-        width: 450px;
-        margin: 0 auto;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
+form {
+	background-color: #ffffff;
+	padding: 25px 30px;
+	border-radius: 12px;
+	width: 450px;
+	margin: 0 auto;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
-    table {
-        width: 100%;
-    }
+table {
+	width: 100%;
+}
 
-    td {
-        padding: 10px 5px;
-    }
+td {
+	padding: 10px 5px;
+}
 
-    label {
-        font-weight: 600;
-        color: #555;
-        display: inline-block;
-        margin-bottom: 6px;
-    }
+label {
+	font-weight: 600;
+	color: #555;
+	display: inline-block;
+	margin-bottom: 6px;
+}
 
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        box-sizing: border-box;
-        font-size: 14px;
-    }
+input[type="text"], input[type="email"], input[type="number"], select,
+	textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
 
-    textarea {
-        resize: vertical;
-    }
+textarea {
+	resize: vertical;
+}
 
-    button {
-        background-color: #3498db;
-        color: white;
-        padding: 10px 18px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-        margin: 10px 8px;
-        transition: background-color 0.3s;
-    }
+button {
+	background-color: #3498db;
+	color: white;
+	padding: 10px 18px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: bold;
+	margin: 10px 8px;
+	transition: background-color 0.3s;
+}
 
-    button[type="reset"] {
-        background-color: #e74c3c;
-    }
+button[type="reset"] {
+	background-color: #e74c3c;
+}
 
-    button:hover {
-        opacity: 0.9;
-    }
+button:hover {
+	opacity: 0.9;
+}
 
-    .button-group {
-        text-align: center;
-        margin-top: 20px;
-    }
+.button-group {
+	text-align: center;
+	margin-top: 20px;
+}
 </style>
 </head>
 <body>
-    <h2>Add New Member</h2>
-    
-    <form th:action="@{/SaveMember}" th:object="${member}" method="post">
-        <table>
-            <tr>
-                <td><label for="name">Name:</label></td>
-                <td><input type="text" th:field="*{name}" id="name" required /></td>
-            </tr>
-            <tr>
-                <td><label for="email">Email:</label></td>
-                <td><input type="email" th:field="*{email}" id="email" required /></td>
-            </tr>
-            <tr>
-                <td><label for="mobile">Mobile:</label></td>
-                <td><input type="number" th:field="*{mobile}" id="mobile" required /></td>
-            </tr>
-            <tr>
-                <td><label for="gender">Gender:</label></td>
-                <td>
-                    <select th:field="*{gender}" id="gender" required>
-                        <option value="">--Select--</option>
-                        <option th:value="MALE" th:text="'Male'"></option>
-                        <option th:value="FEMALE" th:text="'Female'"></option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="address">Address:</label></td>
-                <td><textarea th:field="*{address}" id="address" rows="3" required></textarea></td>
-            </tr>
-        </table>
-        <div class="button-group">
-            <button type="submit">Add Member</button>
-            <button type="reset">Reset</button>
-        </div>
-    </form>
+	<h2>Add New Member</h2>
 
-    <form th:action="@{/MainMenu}" method="get">
-        <div class="button-group">
-            <button type="submit" style="background-color: #2ecc71;">Go Back To Main Menu</button>
-        </div>
-    </form>
+	<form th:action="@{/SaveMember}" th:object="${member}" method="post">
+		<div th:if="${#fields.hasErrors('*')}">
+			<b>Correct These Errors</b>
+			<ul>
+				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">
+			</ul>
+		</div>
+		<table>
+			<tr>
+				<td><label for="name">Name:</label></td>
+				<td><input type="text" th:field="*{name}" id="name" required /></td>
+			</tr>
+			<tr>
+				<td><label for="email">Email:</label></td>
+				<td><input type="email" th:field="*{email}" id="email" required /></td>
+			</tr>
+			<tr>
+				<td><label for="mobile">Mobile:</label></td>
+				<td><input type="number" th:field="*{mobile}" id="mobile"
+					required min="1000000000" max="9999999999" /></td>
+			</tr>
+			<tr>
+				<td><label for="gender">Gender:</label></td>
+				<td><select th:field="*{gender}" id="gender" required>
+						<option value="">--Select--</option>
+						<option th:value="MALE" th:text="'Male'"></option>
+						<option th:value="FEMALE" th:text="'Female'"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><label for="address">Address:</label></td>
+				<td><textarea th:field="*{address}" id="address" rows="3"
+						required></textarea></td>
+			</tr>
+		</table>
+		<div class="button-group">
+			<button type="submit">Add Member</button>
+			<button type="reset">Reset</button>
+		</div>
+	</form>
+
+	<form th:action="@{/MainMenu}" method="get">
+		<div class="button-group">
+			<button type="submit" style="background-color: #2ecc71;">Go
+				Back To Main Menu</button>
+		</div>
+	</form>
 </body>
 </html>

@@ -2,13 +2,16 @@ package com.casestudy.spring.library.beans;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
 public class IssueRecord {
 
 	private int issueId;
+	@Positive(message = "it should be a Positive numbe")
 	private int bookId;
+	@Positive(message = "it should be a Positive numbe")
 	private int memberId;
 	private RecordStatus status; // 'I' or 'R'
 	private LocalDate issueDate;
@@ -25,7 +28,7 @@ public class IssueRecord {
 		this.issueDate = LocalDate.now();
 
 	}
-	
+
 	public IssueRecord(int issueId, int bookId, int memberId, RecordStatus status, LocalDate issueDate,
 			LocalDate returnDate) {
 		super();
@@ -36,7 +39,6 @@ public class IssueRecord {
 		this.issueDate = issueDate;
 		this.returnDate = returnDate;
 	}
-
 
 	// Getters and Setters
 //	public int getIssueId() {
@@ -87,7 +89,7 @@ public class IssueRecord {
 //	public void setReturnDate(LocalDate returnDate) {
 //		this.returnDate = returnDate;
 //	}
-	
+
 	@Override
 	public String toString() {
 		return "IssueRecord [issueId=" + issueId + ", bookId=" + bookId + ", memberId=" + memberId + ", status="
