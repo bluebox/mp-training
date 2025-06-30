@@ -19,8 +19,8 @@ public class MemberService {
 	public String addMember(Member m) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","Practice","Vbhanu@2003");
-			PreparedStatement ps= conn.prepareStatement("insert into member values(?,?,?,?,?,?)");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","practice","Vbhanu@123");
+			PreparedStatement ps= conn.prepareStatement("insert into members values(?,?,?,?,?,?)");
 			ps.setInt(1, m.getMemberId());
 			ps.setString(2, m.getName());
 			ps.setString(3, m.getEmail());
@@ -43,9 +43,9 @@ public class MemberService {
 	public ArrayList<Member> showMembers(){
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","Practice","Vbhanu@2003");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","practice","Vbhanu@123");
 			Statement s= conn.createStatement();
-			ResultSet res = s.executeQuery("select * from member");
+			ResultSet res = s.executeQuery("select * from members");
 			ArrayList<Member> l=new ArrayList<Member>();
 			while(res.next()) {
 				l.add(new Member(res.getInt(1), res.getString(2), res.getString(3), res.getLong(4),res.getString(5).charAt(0),res.getString(6)));
@@ -63,11 +63,11 @@ public class MemberService {
 	public String update(int memberId,String name,String email,Long mobile,char gender,String address) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","Practice","Vbhanu@2003");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","practice","Vbhanu@123");
 			Statement s=conn.createStatement();
-			ResultSet res=s.executeQuery("select * from member where memberId="+memberId);
+			ResultSet res=s.executeQuery("select * from members where memberId="+memberId);
 			if(res.next()) {
-				PreparedStatement ps = conn.prepareStatement("UPDATE member SET name=?, email=?, mobile=?, gender=?, address=? WHERE memberId=?");
+				PreparedStatement ps = conn.prepareStatement("UPDATE members SET name=?, email=?, mobile=?, gender=?, address=? WHERE memberId=?");
 				ps.setString(1, name);
 				ps.setString(2, email);
 				ps.setLong(3, mobile);
@@ -92,8 +92,8 @@ public class MemberService {
 	public String delete(int memberId) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","Practice","Vbhanu@2003");
-			PreparedStatement ps = conn.prepareStatement("delete from member where memberId=?");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu","practice","Vbhanu@123");
+			PreparedStatement ps = conn.prepareStatement("delete from members where memberId=?");
 			ps.setInt(1, memberId);
 			if(ps.executeUpdate()>0) {
 				return "deleted";

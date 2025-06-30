@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+	<div th:if="${error!=null}">
+        <p th:text="${error}"></p>
+    </div>
     <table>
         <tr>
             <th>Book ID</th>
@@ -28,5 +31,7 @@
         </tr>
     </table>
     <td><a href="/add"><button>Add Book</button></a></td>
+    <a th:href="@{/main}">Main Page</a>
+    <a th:href="@{/logout}">log Out</a>
 </body>
 </html>

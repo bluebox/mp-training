@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/updatedata" method="post">
+    <form th:action="@{/updatedata}" method="post">
         <label for="bookId" style="visibility:hidden">Book ID : </label>
          <input type="number" name="bookId" th:value="${bookId}" style="visibility:hidden"/><br>
          <label for="title">Title : </label>
@@ -21,5 +21,7 @@
          <input type="text" name="availability"/><br>
          <input type="submit" value="update">
     </form>
+    <a th:href="@{/main}">Main Page</a>
+    <a th:href="@{/logout}">log Out</a>
 </body>
 </html>

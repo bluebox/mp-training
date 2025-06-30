@@ -6,7 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/addMemberData" method="post">
+	<div th:if="${error!=null}">
+        <p th:text="${error}"></p>
+    </div>
+    <form th:action="@{/addMemberData}" method="post" th:object="${members}">
         <label for="memberId">Member ID : </label>
          <input type="number" name="memberId" min="0"/><br>
          <label for="name">Name : </label>
@@ -21,5 +24,7 @@
          <input type="text" name="address"/><br>
          <input type="submit" value="submit">
     </form>
+    <a th:href="@{/main}">Main Page</a>
+    <a th:href="@{/logout}">log Out</a>
 </body>
 </html>

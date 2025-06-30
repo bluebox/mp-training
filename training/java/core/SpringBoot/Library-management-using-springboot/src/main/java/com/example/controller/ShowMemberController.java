@@ -19,7 +19,8 @@ public class ShowMemberController {
 		return "showMember.html";
 	}
 	@RequestMapping("/addMember")
-	public String addMember() {
+	public String addMember(Model m) {
+		m.addAttribute("members", new Member());
 		return "addMember.html";
 	}
 	@RequestMapping("/addMemberData")
@@ -29,6 +30,7 @@ public class ShowMemberController {
 			return showMember(m);
 		}
 		else {
+			m.addAttribute("error", x);
 			return "addMember.html";
 		}
 	}
@@ -39,18 +41,22 @@ public class ShowMemberController {
 	}
 	@RequestMapping("/updateMemberData")
 	public String updateData(Model m,@RequestParam(required = false) int memberId,@RequestParam(required = false) String name,@RequestParam(required = false) String email,@RequestParam(required = false) long mobile,@RequestParam(required = false) char gender,@RequestParam(required = false) String address) {
-		if(ms.update(memberId, name, email, mobile, gender, address).equals("updated")) {
+		String s=ms.update(memberId, name, email, mobile, gender, address);
+		if(s.equals("updated")) {
 			System.out.println("updated");
 			return showMember(m);
 		}
+		m.addAttribute("error", s);
 		return "addmember.html";
 	}
 	@RequestMapping("/deleteMember")
 	public String deleteMember(Model m,int memberId) {
-		if(ms.delete(memberId).equals("deleted")) {
+		String s=ms.delete(memberId);
+		if(s.equals("deleted")) {
 			return showMember(m);
 		}
 		else {
+			m.addAttribute("error", s);
 			return "showMember.html";
 		}
 	}

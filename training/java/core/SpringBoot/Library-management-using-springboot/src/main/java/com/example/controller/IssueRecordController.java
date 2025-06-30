@@ -17,7 +17,8 @@ public class IssueRecordController {
 	private IssueBookService ibs;
 	Logger log=LoggerFactory.getLogger(IssueRecordController.class.getName());
 	@RequestMapping("/issue")
-	public String issue() {
+	public String issue(Model m) {
+		m.addAttribute("issue", new IssueRecord());
 		return "issue.html";
 	}
 	@RequestMapping("/issueBook")
@@ -27,8 +28,9 @@ public class IssueRecordController {
 			return showIssues(m);
 		}
 		else {
+			m.addAttribute("error", s);
 			log.error(s);
-			return "issueBook.html";
+			return issue(m);
 		}
 	}
 	@RequestMapping("/showIssue")
@@ -37,8 +39,15 @@ public class IssueRecordController {
 		return "issueBook.html";
 	}
 	@RequestMapping("/returnIssues")
-	public String returnIssues(Model m) {
-	    m.addAttribute("l", ibs.showIssues());
-	    return "issueBook.html";
+	public String returnIssues(Model m,@RequestParam int issueId) {
+		String s=ibs.returnBook(issueId);
+		if(s.equals("Book returned")) {
+			m.addAttribute("l", ibs.showIssues());
+		    return "issueBook.html";
+		}
+		else {
+			m.addAttribute("error", s);
+			return "issueBook.html"; 
+		}
 	}
 }

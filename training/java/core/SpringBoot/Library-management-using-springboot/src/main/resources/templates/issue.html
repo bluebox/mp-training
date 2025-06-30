@@ -6,16 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/issueBook" method="post">
+	<div th:if="${error!=null}">
+        <p th:text="${error}"></p>
+    </div>
+    <form th:action="@{/issueBook}" method="post" th:object="${issue}">
         <label for="issueId">Issue ID : </label>
         <input type="number" name="issueId" min="0"/><br>
         <label for="bookId">Book ID : </label>
         <input type="number" name="bookId" min="0"/><br>
         <label for="memberId">Member ID : </label>
         <input type="number" name="memberId" min="0"/><br>
-        <label for="statusrec">Status record : </label>
-        <input type="text" name="statusrec"/>
+        <input type="text" name="statusrec" value='I' style="visibility:hidden"/>
         <input type="submit" value="submit">
     </form>
+    <a th:href="@{/main}">Main Page</a>
+    <a th:href="@{/logout}">log Out</a>
 </body>
 </html>

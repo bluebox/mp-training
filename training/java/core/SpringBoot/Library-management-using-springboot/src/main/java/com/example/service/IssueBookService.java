@@ -17,9 +17,9 @@ public class IssueBookService {
     public String issueBook(IssueRecord i) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "Practice", "Vbhanu@2003")) {
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "practice", "Vbhanu@123")) {
                 conn.setAutoCommit(false);
-                PreparedStatement ps1 = conn.prepareStatement("SELECT availabilty FROM books WHERE bookId = ?");
+                PreparedStatement ps1 = conn.prepareStatement("SELECT availability FROM books WHERE BookId = ?");
                 ps1.setLong(1, i.getBookId());
                 ResultSet rs1 = ps1.executeQuery();
                 if (!rs1.next()) {
@@ -29,19 +29,24 @@ public class IssueBookService {
                 if (availability != 'A') {
                     return "Book not available";
                 }
-                PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM member WHERE memberId = ?");
+                PreparedStatement ps2 = conn.prepareStatement("SELECT * FROM members WHERE memberId = ?");
                 ps2.setInt(1, i.getMemberId());
                 ResultSet rs2 = ps2.executeQuery();
                 if (!rs2.next()) {
                     return "Member not found";
                 }
-                PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM issuerecords WHERE bookId = ? AND statusrec = 'I'");
+                PreparedStatement ps3 = conn.prepareStatement("SELECT * FROM issue_records WHERE bookId = ? AND status = 'I'");
                 ps3.setLong(1, i.getBookId());
                 ResultSet rs3 = ps3.executeQuery();
                 if (rs3.next()) {
                     return "Book already issued";
                 }
-                PreparedStatement ps4 = conn.prepareStatement("INSERT INTO issuerecords VALUES (?, ?, ?, ?, ?, ?)");
+                PreparedStatement ps6=conn.prepareStatement("select * from issue_records where issueId=?");
+                ps6.setInt(1, i.getIssueId());
+                if(ps6.executeQuery().next()) {
+                	return "Issue record with record id "+i.getIssueId()+" is already present";
+                }
+                PreparedStatement ps4 = conn.prepareStatement("INSERT INTO issue_records VALUES (?, ?, ?, ?, ?, ?)");
                 ps4.setInt(1, i.getIssueId());
                 ps4.setLong(2, i.getBookId());
                 ps4.setInt(3, i.getMemberId());
@@ -49,7 +54,7 @@ public class IssueBookService {
                 ps4.setDate(5, Date.valueOf(i.getIssueDate()));
                 ps4.setDate(6, Date.valueOf(i.getReturnDate()));
                 ps4.executeUpdate();
-                PreparedStatement ps5 = conn.prepareStatement("UPDATE books SET availabilty = 'N' WHERE bookId = ?");
+                PreparedStatement ps5 = conn.prepareStatement("UPDATE books SET availability = 'I' WHERE bookId = ?");
                 ps5.setLong(1, i.getBookId());
                 int updated = ps5.executeUpdate();
                 if (updated > 0) {
@@ -69,16 +74,11 @@ public class IssueBookService {
         ArrayList<IssueRecord> list = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "Practice", "Vbhanu@2003");
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "practice", "Vbhanu@123");
                  Statement stmt = conn.createStatement();
-                 ResultSet rs = stmt.executeQuery("SELECT * FROM issuerecords")) {
+                 ResultSet rs = stmt.executeQuery("SELECT * FROM issue_records")) {
                 while (rs.next()) {
-                    list.add(new IssueRecord(
-                            rs.getInt(1),
-                            rs.getLong(2),
-                            rs.getInt(3),
-                            rs.getString(4).charAt(0)
-                    ));
+                    list.add(new IssueRecord(rs.getInt(1),rs.getLong(2),rs.getInt(3),rs.getString(4).charAt(0)));
                 }
             }
         } catch (Exception e) {
@@ -89,9 +89,9 @@ public class IssueBookService {
     public String returnBook(int issueId) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "Practice", "Vbhanu@2003")) {
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "practice", "Vbhanu@123")) {
                 conn.setAutoCommit(false);
-                PreparedStatement ps = conn.prepareStatement("SELECT bookId FROM issuerecords WHERE issueId = ?");
+                PreparedStatement ps = conn.prepareStatement("SELECT bookId FROM issue_records WHERE issueId = ?");
                 ps.setInt(1, issueId);
                 ResultSet rs = ps.executeQuery();
                 long bookId;
@@ -100,10 +100,10 @@ public class IssueBookService {
                 } else {
                     return "Issue record not found";
                 }
-                PreparedStatement ps2 = conn.prepareStatement("UPDATE issuerecords SET statusrec = 'R' WHERE issueId = ?");
+                PreparedStatement ps2 = conn.prepareStatement("UPDATE issue_records SET status = 'R' WHERE issueId = ?");
                 ps2.setInt(1, issueId);
                 int updatedStatus = ps2.executeUpdate();
-                PreparedStatement ps3 = conn.prepareStatement("UPDATE books SET availabilty = 'A' WHERE bookId = ?");
+                PreparedStatement ps3 = conn.prepareStatement("UPDATE books SET availability = 'A' WHERE bookId = ?");
                 ps3.setLong(1, bookId);
                 int updatedBook = ps3.executeUpdate();
                 if (updatedStatus > 0 && updatedBook > 0) {

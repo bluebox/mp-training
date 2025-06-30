@@ -37,9 +37,6 @@ public class WebController {
 	@RequestMapping("/hi")
 	public String show(@Valid @ModelAttribute("student") Student s,BindingResult e,Model m,@RequestParam(required=false) String name,@RequestParam(required=false) int age,@RequestParam(required=false) String sType,@RequestParam(required=false) String sname,@RequestParam(required=false) String marks) {
 		if(e.hasErrors()) {
-			for(ObjectError i:e.getAllErrors()) {
-				log.error(i.getDefaultMessage());
-			}
 			m.addAttribute("error",e);
 			m.addAttribute("val", true);
 			return "web.html";

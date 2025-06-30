@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+	<div th:if="${error!=null}">
+        <p th:text="${error}"></p>
+    </div>
     <table>
         <tr>
         	<th>Issue ID</th>
@@ -23,10 +26,10 @@
             <td th:text="${i.getIssueDate()}"></td>
             <td th:text="${i.getReturnDate()}"></td>
             <td><a th:href="@{/returnIssues(issueId=${i.issueId})}"><button>Return Book</button></a></td>
-			<td><a th:href="@{/updateStatus(bookId=${i.bookId})}"><button>Update Status</button></a></td>
-			<td><a th:href="@{/update(bookId=${i.bookId})}"><button>Update Book</button></a></td>
         </tr>
     </table>
     <td><a href="/issue"><button>Issue Book</button></a></td>
+    <a th:href="@{/main}">Main Page</a>
+    <a th:href="@{/logout}">log Out</a>
 </body>
 </html>
