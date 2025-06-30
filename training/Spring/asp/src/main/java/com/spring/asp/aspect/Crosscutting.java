@@ -37,18 +37,21 @@ public class Crosscutting {
 	}
 
 	@Around("execution(* com.spring.asp.beans.*.*(..))")
-	public void around(ProceedingJoinPoint joinPoint) throws Throwable {
+	public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
 		logger.info("By Around .");
 		Instant start = Instant.now();
-		joinPoint.proceed();
+		Object val = joinPoint.proceed();
 		Instant stop = Instant.now();
 		logger.info("By Around : " + Duration.between(start, stop).toMillis());
+		return val;
+		
 	}
 
 	@Around("@annotation(com.spring.asp.interfaces.CustomAnnotation)")
-	public void Custom(ProceedingJoinPoint joinPoint) throws Throwable {
+	public Object Custom(ProceedingJoinPoint joinPoint) throws Throwable {
 		logger.info("Custom Annotation");
-		joinPoint.proceed();
+		Object val = joinPoint.proceed();
+		return val;
 	}
 
 	@AfterReturning(value = "execution(* com.spring.asp.beans.*.*(..))",returning="result")

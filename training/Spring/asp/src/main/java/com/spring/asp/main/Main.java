@@ -24,7 +24,8 @@ public class Main {
 		}
 		flight.isLanding();
 		
-		flight.flightName();
+		String name = flight.flightName();
+		System.out.println(name);
 	}
 
 }
