@@ -24,52 +24,115 @@ public class BookDAOImpl implements BookDAO {
             ps.executeUpdate();
         }
     }
-
+    
     @Override
     public void updateBook(Book book) throws SQLException {
-        String sql = "UPDATE books SET Title=?, Author=?, Category=?, Status=? WHERE BookId=?";
-        String sql_logs= "INSERT INTO book_logs (BookId,Title, Author, Category, Status,Time) VALUES (?, ?, ?, ?, ?,?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, book.getTitle());
-            ps.setString(2, book.getAuthor());
-            ps.setString(3, book.getCategory());
-            ps.setString(4, String.valueOf(book.getStatus()));
-            ps.setInt(5, book.getBookId());
-            
-            ps.executeUpdate();
+        String sqlUpdate = "UPDATE books SET Title=?, Author=?, Category=?, Status=? WHERE BookId=?";
+        String sqlInsertLog = "INSERT INTO book_logs (BookId, Title, Author, Category, Status, Time) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlSelectOld = "SELECT * FROM books WHERE BookId=?";
+
+        // Start transaction
+        try {
+            connection.setAutoCommit(false); // Begin transaction
+
+            // 1. Get the old book data before update
+            Book oldBook = null;
+            try (PreparedStatement ps = connection.prepareStatement(sqlSelectOld)) {
+                ps.setInt(1, book.getBookId());
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        oldBook = new Book();
+                        oldBook.setBookId(rs.getInt("BookId"));
+                        oldBook.setTitle(rs.getString("Title"));
+                        oldBook.setAuthor(rs.getString("Author"));
+                        oldBook.setCategory(rs.getString("Category"));
+                        oldBook.setStatus(rs.getString("Status").charAt(0)); // Assuming 'Status' is CHAR(1)
+                    }
+                }
+            }
+
+            // 2. Insert the old data into book_logs
+            if (oldBook != null) {
+                try (PreparedStatement ps = connection.prepareStatement(sqlInsertLog)) {
+                    ps.setInt(1, oldBook.getBookId());
+                    ps.setString(2, oldBook.getTitle());
+                    ps.setString(3, oldBook.getAuthor());
+                    ps.setString(4, oldBook.getCategory());
+                    ps.setString(5, String.valueOf(oldBook.getStatus()));
+                    ps.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
+                    ps.executeUpdate();
+                }
+            }
+
+            // 3. Now update the books table with the new data
+            try (PreparedStatement ps = connection.prepareStatement(sqlUpdate)) {
+                ps.setString(1, book.getTitle());
+                ps.setString(2, book.getAuthor());
+                ps.setString(3, book.getCategory());
+                ps.setString(4, String.valueOf(book.getStatus()));
+                ps.setInt(5, book.getBookId());
+                ps.executeUpdate();
+            }
+
+            connection.commit(); // Commit transaction
+        } catch (SQLException e) {
+            connection.rollback(); // Rollback if anything fails
+            throw e;
+        } finally {
+            connection.setAutoCommit(true); // Restore auto-commit mode
         }
-        
-        try (PreparedStatement ps = connection.prepareStatement(sql_logs)) {
-        	ps.setInt(1, book.getBookId());
-        	ps.setString(2, book.getTitle());
-            ps.setString(3, book.getAuthor());
-            ps.setString(4, book.getCategory());
-            ps.setString(5, String.valueOf(book.getStatus()));
-            ps.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
-            ps.executeUpdate();
-        	
-        }
-        }
+    }
+
+
         
     
     @Override
-    public void updateBookAvailability(int bookId, char availability) throws SQLException {
-        String sql = "UPDATE books SET Availability=? WHERE BookId=?";
-        String sql_logs="INSERT INTO bookUpdate_logs (BookId,Availability,Time) VALUES (?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, String.valueOf(availability));
-            ps.setInt(2, bookId);
-            ps.executeUpdate();
-        }
-        
-        try (PreparedStatement ps = connection.prepareStatement(sql_logs)) {
-        	
-        	 ps.setInt(1, bookId);
-             ps.setString(2, String.valueOf(availability)); 
-             ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
-             ps.executeUpdate();
+    public void updateBookAvailability(int bookId, char newAvailability) throws SQLException {
+        String getOldSql = "SELECT Availability FROM books WHERE BookId=?";
+        String updateSql = "UPDATE books SET Availability=? WHERE BookId=?";
+        String logSql = "INSERT INTO bookUpdate_logs (BookId, Availability, Time) VALUES (?, ?, ?)";
+
+        try {
+            connection.setAutoCommit(false); // Begin transaction
+
+            char oldAvailability;
+
+            // Step 1: Fetch previous availability
+            try (PreparedStatement ps = connection.prepareStatement(getOldSql)) {
+                ps.setInt(1, bookId);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        oldAvailability = rs.getString("Availability").charAt(0);
+                    } else {
+                        throw new SQLException("Book not found with ID: " + bookId);
+                    }
+                }
+            }
+
+            // Step 2: Insert log of previous value
+            try (PreparedStatement ps = connection.prepareStatement(logSql)) {
+                ps.setInt(1, bookId);
+                ps.setString(2, String.valueOf(oldAvailability));
+                ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+                ps.executeUpdate();
+            }
+
+            // Step 3: Update availability
+            try (PreparedStatement ps = connection.prepareStatement(updateSql)) {
+                ps.setString(1, String.valueOf(newAvailability));
+                ps.setInt(2, bookId);
+                ps.executeUpdate();
+            }
+
+            connection.commit(); // All successful
+        } catch (SQLException e) {
+            connection.rollback(); // Roll back if any part fails
+            throw e;
+        } finally {
+            connection.setAutoCommit(true); // Restore default
         }
     }
+
 
     @Override
     public Book getBookById(int bookId) throws SQLException {

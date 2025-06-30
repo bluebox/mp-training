@@ -12,7 +12,8 @@ public class Main {
         Thread green = new Thread(greenWatch::countDown, ThreadColor.ANSI_GREEN.name());
         Thread purple = new Thread(() -> purpleWatch.countDown(7),
                 ThreadColor.ANSI_PURPLE.name());
-        Thread red = new Thread(redWatch::countDown, ThreadColor.ANSI_RED.name());
+       // Thread red = new Thread(redWatch::countDown, ThreadColor.ANSI_RED.name());
+        Thread red = new Thread(()->redWatch.countDown(), ThreadColor.ANSI_RED.name());
         green.start();
         purple.start();
         red.start();

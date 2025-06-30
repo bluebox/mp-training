@@ -10,6 +10,7 @@ public class Main {
         Thread thread2 = new Thread(() -> companyAccount.deposit(5000));
         Thread thread3 = new Thread(() -> companyAccount.withdraw(2500));
         Thread thread4 = new Thread(() -> companyAccount.withdraw(5000));
+        Thread thread5=new Thread(()->companyAccount.withdraw(6000));
 
         thread1.start();
         thread2.start();

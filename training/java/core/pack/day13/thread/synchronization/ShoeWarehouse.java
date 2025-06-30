@@ -7,7 +7,7 @@ public class ShoeWarehouse {
 
     private List<Order> shippingItems;
     public final static String[] PRODUCT_LIST =
-            {"Running Shoes", "Sandals", "Boots", "Slippers", "High Tops"};
+    	{"Running Shoes", "Sandals", "Boots", "Slippers", "High Tops"};
 
     public ShoeWarehouse() {
         this.shippingItems = new ArrayList<>();
@@ -24,7 +24,7 @@ public class ShoeWarehouse {
         }
         shippingItems.add(item);
         System.out.println("Incoming: " + item);
-        notifyAll();
+       notifyAll();
     }
 
     public synchronized Order fulfillOrder() {
