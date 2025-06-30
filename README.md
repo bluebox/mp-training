@@ -51,7 +51,7 @@ A Java-based **Gym Membership Management System** designed to demonstrate core *
    ```
 2. Open in **Eclipse** or any Java IDE.
 
-3. Run the `Main` class for the console app or `GymUI` class for the JavaFX GUI (if configured).
+3. Run the `Main` class for the console app.
 
 4. Data will be saved in `members.txt` in the project directory.
 
