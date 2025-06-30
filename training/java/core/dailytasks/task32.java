@@ -5,13 +5,13 @@ public class FirstLastDigitSum {
             return -1; // Return -1 for negative numbers
         }
 
-        int lastDigit = number % 10; // Get the last digit
+        int lastDigit = number % 10; 
 
         int firstDigit = number;
         while (firstDigit >= 10) {
-            firstDigit /= 10; // Remove the last digit until only the first remains
+            firstDigit /= 10; 
         }
 
-        return firstDigit + lastDigit; // Return the sum of the first and last digits
+        return firstDigit + lastDigit;
     }
 }
