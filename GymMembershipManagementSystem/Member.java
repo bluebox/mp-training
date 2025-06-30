@@ -36,6 +36,7 @@ public class Member extends Person{
 		this.plan = plan; 
 	}
 	
+	@Override
 	public void showDetails() {
         System.out.print("ID: " + memberId + ", Name: " + getName() + ", Age: " + getAge() + ",");
         if (plan != null) System.out.println(" " + plan.toString());

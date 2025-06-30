@@ -26,4 +26,5 @@ abstract class Person {
 		this.age = age;
 	}
     
+	public abstract void showDetails();
 }
