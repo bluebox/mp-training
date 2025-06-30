@@ -26,13 +26,13 @@ public class Gym {
 			}
 		}
 		
+		MembershipPlan selectedPlan=plans.get(index);
+		selected.setMembershipPlan(selectedPlan);
+		
 		if(index<0||index>plans.size()) {
 			System.out.println("Invalid plan selection ");
 			return;
 		}
-		
-		MembershipPlan selectedPlan=plans.get(index);
-		selected.setMembershipPlan(selectedPlan);
 		
 		System.out.println("plan : "+selectedPlan.getPlanName()+" is assigned to "+selected.getName());
 		System.out.println("-".repeat(25));
