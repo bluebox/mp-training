@@ -94,8 +94,9 @@ public class LinkedPlaces{
                 }
                 case "B" -> {
                     if (goingForward) {
-                        if (iterator.hasPrevious()) iterator.previous();
-                        goingForward = false;
+                        if (iterator.hasPrevious()) 
+                        	iterator.previous();
+                        	goingForward = false;
                     }
                     if (iterator.hasPrevious()) {
                         System.out.println("Visiting: " + iterator.previous());
