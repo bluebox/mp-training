@@ -1,0 +1,45 @@
+Getting Started with Java Programming
+Java Development Environment Setup
+First Steps in Java Programming
+Transitioning from JShell to IntelliJ IDEA: A Comprehensive IDE Guide
+Mastering Java Expressions, Statements, Code Blocks, And Method Overloading
+Mastering Conditional Logic, Loops, And Interactive Java Applications
+Mastering Java OOP: Classes & Inheritance
+Advanced OOP Techniques: Composition, Encapsulation, and Polymorphism in Action
+Advanced Arrays in Java: Single & Multi-Dimensional Techniques
+Mastering Lists, Iterators, and Autoboxing: ArrayList, LinkedList & Enums
+Mastering Abstraction &amp; Interfaces: Expand Polymorphism & Java Hierarchies
+Deep Dive into Java Generics: Bounds, Comparators & Advanced Techniques
+Exploring Nested Classes, Local Types & Anonymous Classes
+Mastering Java Lambdas: Expressions, Interfaces, and Method References
+Mastering Java Collections: Framework, Lists, Sets, and Maps
+Mastering Mutability, Immutability and Final Keyword in Java OOP
+Comprehensive Java Streams: Operations, Pipelines, and Sources
+Java Core Fundamentals: Math, Randomization, BigDecimal, and Date/Time
+Regular Expressions in Java: Mastering Pattern Matching and Text Manipulation
+Comprehensive Java Input/Output (I/O) and File Operations
+Mastering Java Concurrency and Multithreading
+Mastering Java Database Connectivity: Interactions, Queries, and Frameworks
+Mastering Java Network Programming: Sockets, NIO, and Modern Frameworks
+Debugging and Testing in Java: A Comprehensive Guide
+Comprehensive JavaFX UI Design
+Deep Dive into the Java 9 Module System: JPMS Fundamentals
+Migrating Existing Java Projects to Java 9 and the Module System
+Course Introduction - Old content for Java 11
+Software Tools Setup - Old content for Java 11
+First Steps - Old content for Java 11
+Java Tutorial: Expressions, Statements, and More - Old content for Java 11
+Control Flow Statements - Old content for Java 11
+Arrays, Java inbuilt Lists, Autoboxing and Unboxing – Old content for Java 11
+Inner and Abstract Classes & Interfaces – Old content for Java 11
+Java Generics – Old content for Java 11
+Lambda Expressions – Old content for Java 11
+Streams - Old content for Java 11
+Naming Conventions and Packages.  static and final – Old content for Java 11
+Java Collections - Old content for Java 11
+Basic Input & Output including java.util – Old content for Java 11
+Regular Expressions – Old content for Java 11
+Databases -&nbsp;Old content for Java 11
+Java Networking Programming – Old content for Java 11
+Archived Videos
+Extra Information - Source code, and other stuff
