@@ -1,5 +1,4 @@
 import math
-import numpy as np
 import random as r
 s = set()
 while(len(s) < 10):

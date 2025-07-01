@@ -24,6 +24,6 @@ def dynamic_calculator(operation,*numbers,**options):
     if round_result:
         initial_value = round(initial_value,2)
     return initial_value
-print(dynamic_calculator("divide",1,2,3,4,5,6,7,initial_value=10,safe_division = True))
+print(dynamic_calculator("divide",initial_value=10,safe_division = True))
 
 

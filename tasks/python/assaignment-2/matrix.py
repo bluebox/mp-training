@@ -1,7 +1,7 @@
 def process_matrix(matrix):
     i = 0
     total = 0
-    while(i<len(matrix)):
+    while i<len(matrix):
         j = 0
         while(j<len(matrix[i])):
             if matrix[i][j]%2 == 0:
@@ -13,5 +13,5 @@ def process_matrix(matrix):
             j+=1
         i+=1
     return total
-matrix = [[1,2,3],[4,5,6],[7,8,9]]
+matrix = [[1,2,3],[4,12,6],[7,8,9]]
 print(f"Matrix Total:{process_matrix(matrix)}")

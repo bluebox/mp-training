@@ -16,4 +16,12 @@ while True:
     #     print("reached finally")
 print("out of while")
 
-
+li = list("hello")
+print(" ".join(li))
+s = "".join(li)
+n = len(li)
+for i in " ".join(li):
+    print(n*" "+i)
+    n-=1
+print(s)
+print((4//4))

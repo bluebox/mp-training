@@ -40,8 +40,8 @@ def maze_runer(maze, start_pos, end_pos):
             # stack.append((pos[0]-1,pos[1]))
             
     return None
-maze = [[' ','#',' '],
-        [' ',' ','#'],
-        ['#',' ','#'],
-        [' ',' ',' ']]
-print(maze_runer(maze, (0,0),(3,2)))
+maze = [[' ',' ',' '],
+        [' ',' ',' '],
+        [' ','#','#'],
+        [' ','#',' ']]
+print(maze_runer(maze, (0,0),(0,0)))

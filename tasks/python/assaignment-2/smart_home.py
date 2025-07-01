@@ -62,21 +62,22 @@ class SmartThermostat(SmartDevice):
             if not 18<=temp<=30:
                 print("Temperature must be between 18 and 30")
             else:
-                self.brightness = temp
-                print(f"Temperature level set to {temp}")
+                self._temperature = temp
+                print(f"Temperature level set to {self._temperature}")
                 return
 
 light = SmartLight()
 thermostat = SmartThermostat()
 light.set_brightness(50)   
 light.turn_on()
-light.brightness = 75      
-light.set_brightness(110)  
-thermostat.turn_on()
-thermostat.set_temperature(25)
-thermostat.temperature = 16  
-thermostat.turn_off()
-thermostat.set_temperature(23)  
+light._brightness = 75
+print(light._brightness)
+# light.set_brightness(110)
+# thermostat.turn_on()
+# thermostat.set_temperature(25)
+# thermostat.temperature = 16
+# thermostat.turn_off()
+# thermostat.set_temperature(23)
 
         
         

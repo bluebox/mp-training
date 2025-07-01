@@ -1,6 +1,4 @@
 from abc import ABC, abstractmethod, abstractproperty
-
-
 class Vehicle(ABC):
     @abstractmethod
     def start(self):
