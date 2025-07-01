@@ -1,7 +1,5 @@
 package com.casestudy.spring.library.impl;
 
-
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -16,16 +14,18 @@ import com.casestudy.spring.library.beans.Member;
 import com.casestudy.spring.library.dao.BooksDao;
 import com.casestudy.spring.library.dao.IssueRecordDao;
 import com.casestudy.spring.library.dao.MembersDao;
+
 @Service
 public class Implementation {
+
 	@Autowired
-	private BooksDao bookDao ;
+	private BooksDao bookDao;
 	@Autowired
-	private MembersDao membersDao ;
+	private MembersDao membersDao;
 	@Autowired
 	private IssueRecordDao issueRecordDao;
-	
-	//books
+
+	// books
 	public boolean addBook(Book book) {
 		try {
 			bookDao.createBook(book);
@@ -39,7 +39,7 @@ public class Implementation {
 	public boolean updateBookService(Book book) {
 		try {
 			return bookDao.updateBook(book);
-						
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -55,10 +55,12 @@ public class Implementation {
 		List<Book> result = bookDao.viewAllBooks();
 		return result;
 	}
+
 	public Book getBookById(int bookId) {
 		return bookDao.searchBook(bookId);
 	}
-	//Member
+
+	// Member
 	public boolean addMemberService(Member member) {
 		try {
 			membersDao.addMember(member);
@@ -78,27 +80,33 @@ public class Implementation {
 		List<Member> allMembers = membersDao.getAllMembers();
 		return allMembers;
 	}
-	
+
 	public Member getMemberById(int id) {
 		return membersDao.getMemberById(id);
 	}
-	//issuebooks
-	public boolean issueBookService(IssueRecord issueRecord) {
+
+	// issuebooks
+	public String issueBookService(IssueRecord issueRecord) {
 		MembersDao membersDao = new MembersDao();
-		if (bookDao.CanBeIssued(issueRecord.getBookId()) && membersDao.findMember(issueRecord.getMemberId())) {
-			IssueRecordDao issueRecordDao = new IssueRecordDao();
-			try {
-				System.out.println("issuing");
-				issueRecordDao.issueBook(issueRecord);
-				bookDao.updateBookAvailability(issueRecord.getBookId());
-				return true;
-			} catch (SQLException e) {
-				System.out.println("Someting went wrong in insertion .");
-				e.printStackTrace();
-				return false;
+		if (bookDao.findBook(issueRecord.getBookId()) && membersDao.findMember(issueRecord.getMemberId())) {
+			if (bookDao.CanBeIssued(issueRecord.getBookId())) {
+				IssueRecordDao issueRecordDao = new IssueRecordDao();
+				try {
+					System.out.println("issuing");
+					issueRecordDao.issueBook(issueRecord);
+					bookDao.updateBookAvailability(issueRecord.getBookId());
+					return "Book Issued";
+				} catch (SQLException e) {
+					System.out.println("Someting went wrong in insertion .");
+					e.printStackTrace();
+					return "Something Went Wrong";
+				}
+			} else {
+				return "Book Cannot be Issued Now !!!";
 			}
+		} else {
+			return "Invalid details";
 		}
-		return false;
 	}
 
 	public boolean returnBookService(IssueRecord issueRecord) {
@@ -137,4 +145,3 @@ public class Implementation {
 	}
 
 }
-

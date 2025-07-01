@@ -20,7 +20,7 @@ public class MembersDao {
 
 	public void addMember(Member member) {
 		try {
-			conn = DBUtil.getConnection();
+			
 			String adding = "INSERT INTO Member (name,email,mobile,gender,address) VALUES(?,?,?,?,?)";
 			temp = conn.prepareStatement(adding);
 			temp.setString(1, member.getName());

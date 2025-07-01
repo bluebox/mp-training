@@ -16,20 +16,25 @@ import jakarta.validation.Valid;
 
 @Controller
 public class BookController {
-	@Autowired
+
 	Implementation impl;
+
+	@Autowired
+	public BookController(Implementation impl) {
+		this.impl = impl;
+	}
 
 	@GetMapping("/AddBook")
 	public String showAddBookForm(Model model) {
 		model.addAttribute("book", new Book());
-		return "AddBook";
+		return "Books/AddBook";
 	}
 
 	@PostMapping("/SaveBook")
-	public String AddBookToDb(@Valid @ModelAttribute Book book,Errors errors, Model model) {
+	public String AddBookToDb(@Valid @ModelAttribute Book book, Errors errors, Model model) {
 		if (errors.hasErrors()) {
 			model.addAttribute("book", book);
-			return "AddBook";
+			return "Books/AddBook";
 		}
 		boolean flag = impl.addBook(book);
 		if (flag == true) {
@@ -48,7 +53,7 @@ public class BookController {
 
 	@GetMapping("/UpdateBook")
 	public String showEmptyUpdateForm(Model model) {
-		return "SearchBook";
+		return "Books/SearchBook";
 	}
 
 	@GetMapping("/UpdateBookPopulate")
@@ -56,7 +61,7 @@ public class BookController {
 		Book book = impl.getBookById(id);
 		if (book != null) {
 			model.addAttribute("book", book);
-			return "UpdateBook"; 
+			return "Books/UpdateBook";
 		} else {
 			model.addAttribute("message", "Book not found!");
 			model.addAttribute("targetUrl", "/UpdateBook");
@@ -66,10 +71,10 @@ public class BookController {
 	}
 
 	@PostMapping("/UpdateSaveBook")
-	public String updateBook(@Valid @ModelAttribute("book") Book book,Errors errors, Model model) {
+	public String updateBook(@Valid @ModelAttribute("book") Book book, Errors errors, Model model) {
 		if (errors.hasErrors()) {
 			model.addAttribute("book", book);
-			return "UpdateBook";
+			return "Books/UpdateBook";
 		}
 		boolean flag = impl.updateBookService(book);
 		if (flag == true) {
@@ -88,7 +93,7 @@ public class BookController {
 	@GetMapping("/ViewAllBooks")
 	public String showAllBooks(Model model) {
 		model.addAttribute("books", impl.viewAllBooksService());
-		return "ShowAllBooks";
+		return "Books/ShowAllBooks";
 	}
 
 }

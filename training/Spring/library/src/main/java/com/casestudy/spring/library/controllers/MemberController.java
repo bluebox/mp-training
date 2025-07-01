@@ -16,20 +16,25 @@ import jakarta.validation.Valid;
 
 @Controller
 public class MemberController {
-	@Autowired
+
 	Implementation impl;
+
+	@Autowired
+	public MemberController(Implementation impl) {
+		this.impl = impl;
+	}
 
 	@GetMapping("/AddMember")
 	public String showMemberForm(Model model) {
 		model.addAttribute("member", new Member());
-		return "AddMember";
+		return "Member/AddMember";
 	}
 
 	@PostMapping("/SaveMember")
-	public String addMember(@Valid @ModelAttribute Member member,Errors errors, Model model) {
-		if(errors.hasErrors()) {
-			model.addAttribute("member",member);
-			return "AddMember";
+	public String addMember(@Valid @ModelAttribute Member member, Errors errors, Model model) {
+		if (errors.hasErrors()) {
+			model.addAttribute("member", member);
+			return "Member/AddMember";
 		}
 		boolean flag = impl.addMemberService(member);
 		if (flag == true) {
@@ -48,7 +53,7 @@ public class MemberController {
 
 	@GetMapping("/UpdateMember")
 	public String showEmptyUpdateForm(Model model) {
-		return "SearchMember";
+		return "Member/SearchMember";
 	}
 
 	@GetMapping("/UpdateMemberPopulate")
@@ -56,7 +61,7 @@ public class MemberController {
 		Member member = impl.getMemberById(id);
 		if (member != null) {
 			model.addAttribute("member", member);
-			return "UpdateMember";
+			return "Member/UpdateMember";
 		} else {
 			model.addAttribute("message", "Member not found!");
 			model.addAttribute("targetUrl", "/UpdateMember");
@@ -66,10 +71,10 @@ public class MemberController {
 	}
 
 	@PostMapping("/UpdateSaveMember")
-	public String updateBook(@Valid @ModelAttribute("member") Member member,Errors errors, Model model) {
-		if(errors.hasErrors()) {
+	public String updateBook(@Valid @ModelAttribute("member") Member member, Errors errors, Model model) {
+		if (errors.hasErrors()) {
 			model.addAttribute("member", member);
-			return "UpdateMember";
+			return "Member/UpdateMember";
 		}
 		boolean flag = impl.updateMemberService(member);
 		if (flag == true) {
@@ -88,6 +93,6 @@ public class MemberController {
 	@GetMapping("/ViewAllMembers")
 	public String showAllBooks(Model model) {
 		model.addAttribute("members", impl.getAllMembersService());
-		return "ViewAllMembers";
+		return "Member/ViewAllMembers";
 	}
 }

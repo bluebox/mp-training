@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>The Error Occured </h3>
+<ul>
+<li th:text="${error}"></li>
+</ul>
+
+<a th:href="@{/home}">Go Back to Home Page</a>
+
+</body>
+</html>

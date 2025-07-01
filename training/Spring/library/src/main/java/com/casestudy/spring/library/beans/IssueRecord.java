@@ -9,9 +9,9 @@ import lombok.Data;
 public class IssueRecord {
 
 	private int issueId;
-	@Positive(message = "it should be a Positive numbe")
+	@Positive(message = "BookId should be a Positive numbe")
 	private int bookId;
-	@Positive(message = "it should be a Positive numbe")
+	@Positive(message = "MemberId should be a Positive numbe")
 	private int memberId;
 	private RecordStatus status; // 'I' or 'R'
 	private LocalDate issueDate;

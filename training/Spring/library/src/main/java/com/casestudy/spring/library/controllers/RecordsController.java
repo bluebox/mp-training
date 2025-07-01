@@ -14,8 +14,12 @@ import com.casestudy.spring.library.impl.Implementation;
 @Controller
 public class RecordsController {
 
-	@Autowired
 	Implementation impl;
+
+	@Autowired
+	public RecordsController(Implementation impl) {
+		this.impl = impl;
+	}
 
 	@GetMapping("/OverDueBooks")
 	public String overDueBooks(Model model) {
@@ -37,7 +41,7 @@ public class RecordsController {
 	public String booksPerCategory(Model model) {
 		Map<String, Long> booksPerCategory = impl.getBooksCountPerCategory();
 		model.addAttribute("categoryCount", booksPerCategory);
-		return "CountOfBooksPerCategory";
+		return "Records/CountOfBooksPerCategory";
 	}
 
 }

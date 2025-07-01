@@ -1,6 +1,5 @@
 package com.casestudy.spring.library.dao;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,8 +14,9 @@ import com.casestudy.spring.library.beans.Book;
 import com.casestudy.spring.library.beans.Status;
 import com.casestudy.spring.library.dao.models.BooksDaoModel;
 import com.casestudy.spring.library.util.DBUtil;
+
 @Repository
-public class BooksDao implements BooksDaoModel{
+public class BooksDao implements BooksDaoModel {
 	private Connection conn;
 	private PreparedStatement ps;
 
@@ -37,8 +37,9 @@ public class BooksDao implements BooksDaoModel{
 
 		} finally {
 			try {
-				if (ps != null)
+				if (ps != null) {
 					ps.close();
+				}
 			} catch (SQLException ignored) {
 			}
 			try {
@@ -252,17 +253,16 @@ public class BooksDao implements BooksDaoModel{
 
 		return false;
 	}
-	
+
 	public Book searchBook(int tempId) {
 		ResultSet rs = null;
-		Book book = null ;
+		Book book = null;
 		try {
 			conn = DBUtil.getConnection();
 			String query = "SELECT bookId, title, author, category, status, availability FROM Books where bookId = ?";
 			ps = conn.prepareStatement(query);
 			ps.setInt(1, tempId);
 			rs = ps.executeQuery();
-			
 
 			if (rs.next()) {
 				int bookId = rs.getInt("bookId");
@@ -283,7 +283,7 @@ public class BooksDao implements BooksDaoModel{
 				if (rs != null)
 					rs.close();
 			} catch (SQLException ignored) {
-				
+
 			}
 			try {
 				if (ps != null)
@@ -299,5 +299,21 @@ public class BooksDao implements BooksDaoModel{
 
 		return book;
 	}
-}
 
+	public boolean findBook(int tempId) {
+		String query = "SELECT 1 FROM Books WHERE bookId = ?";
+
+		try (Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+
+			ps.setInt(1, tempId);
+			ResultSet rs = ps.executeQuery();
+
+			return rs.next();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+}

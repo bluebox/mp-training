@@ -18,27 +18,42 @@ import jakarta.validation.Valid;
 
 @Controller
 public class IssueBookController {
-	@Autowired
+
 	Implementation impl;
+
+	@Autowired
+	public IssueBookController(Implementation impl) {
+		this.impl = impl;
+	}
 
 	@GetMapping("/IssueBook")
 	public String issueBookForm(Model model) {
 		model.addAttribute("issueRecord", new IssueRecord());
-		return "IssueBook";
+		return "Issue/IssueBook";
 	}
 
 	@PostMapping("/SaveIssueRecord")
-	public String issueBook(@Valid @ModelAttribute IssueRecord issueRecord,Errors errors, Model model) {
-		if(errors.hasErrors()) {
+	public String issueBook(@Valid @ModelAttribute IssueRecord issueRecord, Errors errors, Model model) {
+		if (errors.hasErrors()) {
 			model.addAttribute("issueRecord", issueRecord);
-			return "IssueBook";
+			return "Issue/IssueBook";
 		}
 		issueRecord.setIssueDate(LocalDate.now());
-		boolean flag = impl.issueBookService(issueRecord);
-		if (flag == true) {
+		String flag = impl.issueBookService(issueRecord);
+		if ("Book Issued".equals(flag)) {
 			model.addAttribute("message", "Book Issued successfully!");
 			model.addAttribute("targetUrl", "/IssueBook");
 			model.addAttribute("buttonLabel", "Go to IssueRecord");
+			return "Response";
+		} else if ("Invalid details".equalsIgnoreCase(flag)) {
+			model.addAttribute("message", "Enter Valid Details");
+			model.addAttribute("targetUrl", "/IssueBook");
+			model.addAttribute("buttonLabel", "Go to IssueBook");
+			return "Response";
+		} else if ("Book Cannot be Issued Now !!!".equalsIgnoreCase(flag)) {
+			model.addAttribute("message", "Book Cannot be Issued Now !!!");
+			model.addAttribute("targetUrl", "/MainMenu");
+			model.addAttribute("buttonLabel", "Go to Main Menu");
 			return "Response";
 		} else {
 			model.addAttribute("message", "Cannot Issue Book!");
@@ -48,18 +63,18 @@ public class IssueBookController {
 		}
 
 	}
-	
+
 	@GetMapping("/ReturnBook")
 	public String returnBookForm(Model model) {
 		model.addAttribute("issueRecord", new IssueRecord());
-		return "ReturnBook";
+		return "Issue/ReturnBook";
 	}
 
 	@PostMapping("/SaveRetrunBook")
-	public String returnBook(@Valid @ModelAttribute IssueRecord issueRecord,Errors errors, Model model) {
-		if(errors.hasErrors()) {
-			model.addAttribute("issueRecord",issueRecord);
-			return "ReturnBook";
+	public String returnBook(@Valid @ModelAttribute IssueRecord issueRecord, Errors errors, Model model) {
+		if (errors.hasErrors()) {
+			model.addAttribute("issueRecord", issueRecord);
+			return "Issue/ReturnBook";
 		}
 		issueRecord.setReturnDate(LocalDate.now());
 		boolean flag = impl.returnBookService(issueRecord);
@@ -76,12 +91,12 @@ public class IssueBookController {
 		}
 
 	}
-	
-	 @GetMapping("/ViewAllRecords")
-	    public String viewAllIssueRecords(Model model) {
-	        List<IssueRecord> issueRecords = impl.getAllIssuedRecordsService();
-	        model.addAttribute("issueRecords", issueRecords);
-	        model.addAttribute("heading", "All Issued Books");
-	        return "IssueRecords"; 
-	    }
+
+	@GetMapping("/ViewAllRecords")
+	public String viewAllIssueRecords(Model model) {
+		List<IssueRecord> issueRecords = impl.getAllIssuedRecordsService();
+		model.addAttribute("issueRecords", issueRecords);
+		model.addAttribute("heading", "All Issued Books");
+		return "IssueRecords";
+	}
 }
