@@ -19,3 +19,4 @@ class BankAccount:
 
 sbi = BankAccount(123, 10000)
 sbi.withdrawal(100000)
+# print(BankAccount.__balance)
