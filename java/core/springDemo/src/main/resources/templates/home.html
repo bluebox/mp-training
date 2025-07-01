@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+	 <h1 th:text="'Welcome to Spring boot Demo App!'"></h1>
+	 
+	 <a th:href="@{/addMember}">
+        <button>Register Member</button>
+      </a><br><br>
+	
+      <a th:href="@{/updateMember}">
+        <button>Update Member Details</button>
+      </a><br><br>
+  
+      <a th:href="@{/members}">
+        <button>View All Members</button>
+      </a>
+      <a th:href="@{/addBook}">
+        <button>Add book</button>
+      </a></body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+	<h1>Add Book</h1>
+	<ul>
+		<li class="alert alert-danger" role="alert"
+			th:each="error : ${#fields.errors('book.*')}" th:text="${error}" />
+	</ul>
+<form th:action="@{/saveBook}" method="post" th:object="${book}">
+		Title : <input type="text" name="title" th:field="*{title}"/><br><br>
+		Author : <input type="text" name="author" th:field="*{author}"/><br><br>
+		Price : <input type="text" name="price" th:field="*{price}"/><br><br>
+		<input type="submit"/><br><br>
+	</form>
+		 <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+</html>

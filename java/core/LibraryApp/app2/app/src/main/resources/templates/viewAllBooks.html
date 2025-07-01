@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+    <h1>Get The All Books Here</h1>
+    
+    <p th:if="${success}" th:text="${success}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <form th:action="@{/books}" method="get">       
+        <input type="submit" value="Get Books"/><br><br>
+    </form>
+
+   <table border="1" th:if="${books}">
+    <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Availability</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.bookId}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.category}"></td>
+            <td th:text="${book.status}"></td>
+            <td th:text="${book.availability}"></td>
+        </tr>
+    </tbody>
+</table>
+   
+
+    <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+</html>

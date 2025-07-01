@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Issued Records</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <h1>Issued Records</h1>
+    
+    <p th:if="${success}" th:text="${success}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <form th:action="@{/issuedRecords}" method="get">       
+        <input type="submit" value="Get Issued Records"/><br><br>
+    </form>
+
+  <table th:if="${issuedRecords}">
+    <thead>
+        <tr>
+            <th>Issue ID</th>
+            <th>Book ID</th>
+            <th>Member ID</th>
+            <th>Status</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="record : ${issuedRecords}">
+            <td th:text="${record.issueId}"></td>
+            <td th:text="${record.bookId}"></td>
+            <td th:text="${record.memberId}"></td>
+            <td th:text="${record.status == 'I' ? 'Issued' : 'Returned'}"></td>
+            <td th:text="${record.issueDate}"></td>
+            <td th:text="${record.returnDate}"></td>
+        </tr>
+    </tbody>
+</table>
+  
+
+    <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+</html>

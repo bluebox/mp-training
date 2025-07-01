@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+	<h1>Add Member</h1>
+	<form th:action="@{/saveMsg}" method="post">
+		Name : <input type="text" name="name"	required/><br><br>
+		Email : <input type="email" name="email"	required/><br><br>
+		Mobile Number : <input type="text" name="mobile"	required/><br><br>
+		<input type="submit"/><br><br>
+	</form>
+		 <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+</html>
