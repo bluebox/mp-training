@@ -24,9 +24,10 @@ Output: A function (counter_func) that when called increments and returns the co
 
 
 def create_counter(initial_count=0):
+  count_int=initial_count
   def counter_func():
-    nonlocal initial_count 
-    count_int=initial_count+1
+    nonlocal count_int
+    count_int+=1
     def reset_counter():
       nonlocal count_int 
       nonlocal initial_count 
@@ -38,7 +39,12 @@ def create_counter(initial_count=0):
 
 # a=create_counter(10)
 # print(a())
+# print(a())
+# print(a())
+# print(a())
 # print(a.reset())
+# print(a())
+# print(a())
 
 
 
@@ -48,6 +54,7 @@ Task -2
 '''
 
 '''
+
 Problem Statement:
  Create a Python function dynamic_calculator(operation, *numbers, **options) that acts as a flexible calculator.
 operation: A string ("add", "subtract", "multiply", "divide").
@@ -77,7 +84,6 @@ def dynamic_calculator(operation, *numbers, **options):
         return "Invalid operation"
 
     result = initial
-
     if operation == "add":
         for num in numbers:
             result += num
@@ -92,11 +98,8 @@ def dynamic_calculator(operation, *numbers, **options):
 
     elif operation == "divide":
         for num in numbers:
-            if num == 0:
-                if safe_division:
-                    return "All the numbers must be non-zero for this operation"
-                else:
-                    result /= num  
+            if num == 0 and safe_division:
+                return "Error: Division by zero" 
             else:
                 result /= num
 
@@ -106,7 +109,14 @@ def dynamic_calculator(operation, *numbers, **options):
     return result
 
 
-# print(dynamic_calculator('subtract',1,2,3,4,initial_value=5,round_result=True))
+# print(dynamic_calculator('subtract',1,2,3,4,initial_value=5,round_result=False))
+# print(dynamic_calculator('add',1,2,3,4,initial_value=5,round_result=True))
+# print(dynamic_calculator('divide',1,2,3,4,initial_value=5,round_result=False))
+# print(dynamic_calculator('multiply',1,2,3,4,initial_value=5,round_result=False))
+# print(dynamic_calculator('divide',1,2,0,4,initial_value=5,round_result=False))
+# print(dynamic_calculator('divide',1,0,3,4,initial_value=5,round_result=False,safe_division=False))
+
+
      
 
 '''
@@ -136,6 +146,9 @@ Output: A string representing the status message.
 def get_status_message(value, is_active,limit):
   return "High Alert" if is_active and value>limit else "Moderate" if is_active and value<=limit else "Inactive" if not is_active and value<0 else "Idle"
 # print(get_status_message(-1,False,2))
+# print(get_status_message(3,True,2))
+# print(get_status_message(-1,True,2))
+# print(get_status_message(1,False,2))
 
 '''
 Task -4 
@@ -166,7 +179,7 @@ def process_matrix(matrix):
 # def process_matrix(matrix):
 #   return sum([ele if ele<10 and ele%2!=0 else break if ele>10 for new_line in matrix for ele in new_line])
 
-# print(process_matrix( [ [1, 2, 3],
+# print(process_matrix( [ [11, 2, 3],
 #                         [4, 5, 6],  
 #                         [7, 8, 9] ]))
 
@@ -198,14 +211,14 @@ print(check_mixed_input("hello", [], True))
 '''
 
 def check_mixed_input(data1,data2,data3):
-   if bool(data1)==True:
-      if bool(data2)==False:
-         return "Stage 1A: Data1 True, Data2 False, Data3 True" if bool(data3) else "Stage 1B: Data1 True, Data2 False, Data3 False"
+   if data1:
+      if not data2:
+         return "Stage 1A: Data1 True, Data2 False, Data3 True" if data3 else "Stage 1B: Data1 True, Data2 False, Data3 False"
       else:
          return  "Stage 1C: Data1 True, Data2 True"
    else:
-      if bool(data3)==False:
-         return "Stage 2A: Data1 False, Data3 False, Data2 True" if bool(data2) else "Stage 2B: Data1 False, Data3 False, Data2 False"
+      if not data3:
+         return "Stage 2A: Data1 False, Data3 False, Data2 True" if data2 else "Stage 2B: Data1 False, Data3 False, Data2 False"
       else:
          return  "Stage 2C: Data1 False, Data3 True"
       
@@ -238,6 +251,8 @@ Output: A generator that yields (index, item) tuples.
 
 def my_func(num):
   return num>0
+def my_func_2(num):
+   return num%2==0 and num>0
 def custom_enumerate_filter(iter,start,step,predicate=None):
   for index in range(start,len(iter),step):
     if predicate!=None:
@@ -246,7 +261,10 @@ def custom_enumerate_filter(iter,start,step,predicate=None):
     else:
       yield (index,iter[index])
 
-# for index,value in custom_enumerate_filter([7,5,3,1,10,99,-10,-44,-23,76],1,2,my_func):
+# for index,value in custom_enumerate_filter([-7,5,3,1,10,99,-10,-44,-23,76],0,1,my_func):
+#   print(index,value)
+# print(" 1st finished")
+# for index,value in custom_enumerate_filter([-7,5,3,1,10,99,-10,-44,-23,76],0,1,my_func_2):
 #   print(index,value)
 
 
@@ -304,9 +322,12 @@ def maze_runner(maze, start_pos, end_pos):
                     break  
 
         if stuck:
-            return None  
+            return None,path
+            
         
-# print(maze_runner([[' ','#',' '],[' ',' ','#'],['#',' ','E']],(0,0),(2,2)))
+# print(maze_runner([[' ','#',' '],[' ',' ','#'],['#',' ','E']],(1,1),(2,2)))
+# print(maze_runner([[' ',' ',' '],[' ','#','#'],[' ','#','E']],(0,0),(2,2)))
+
 
 
 '''
@@ -331,12 +352,19 @@ class BankAccount:
     self.__balance=balance
   def deposit(self, amount):
     self.__balance+=amount 
+    print("Money is deposited")
   def withdraw(self,amount):
-    self.__balance=self.__balance-amount if amount<=self.__balance else self.__balance
+    if amount<=self.__balance:
+      self.__balance=self.__balance-amount 
+      print("Amount withdrawn successfully")
+    else:      
+      print("Insufficient balance please try again with different amount")
+    
   def getbalance(self):
     return self.__balance
   
 # user=BankAccount(23454321,55)
+# print(user.getbalance())
 # user.deposit(500)
 # print(user.getbalance())
 # user.withdraw(100)
@@ -345,6 +373,9 @@ class BankAccount:
 # print(user.getbalance())
 # user.__balance=100
 # print(user.getbalance())
+'''
+I've applied the concept of encapsulation by handling the balance attribute as private variable 
+'''
 
 
 '''
@@ -413,37 +444,59 @@ class SmartDevice:
   def __init__(self,is_on):
     self._is_on=is_on
   def turn_on(self):
-    self._is_on=True
-    print("The device has been turned on")
+    if not self.is_on:
+      print("The device has been turned on")
+      self._is_on=True
+    else:
+       print("The device is already turned on")
   def turn_off(self):
-    self._is_on=False
-    print("The device has been turned off")
+    if not self.is_on:
+      print("The device is already turned off")
+    else:
+      print("The device has been turned off")
+      self._is_on=True
+
 
 class SmartLight(SmartDevice):
   def __init__(self,brightness):
     super().__init__(True)
-    self.__brightness=brightness
+    if 0<brightness<100:
+      self.__brightness=brightness
+    else:
+       print("brightness must be between 0 and 100 (exclusive)")
   @property
   def get_level(self):
      return self.__brightness
   @get_level.setter
   def set_level(self,value):
-    self.__brightness=value if 0<value<100 and self._is_on else self.__brightness
+    if 0<value<100:
+      self.__brightness=value
+    else:
+       print("Value must be between 0 and 100 (exclusive)")
 
 class SmartThermostat(SmartDevice):
   def __init__(self,temperature):
     super().__init__(True)
-    self.__temperature=temperature
+    if 18<temperature<30:
+      self.__temperature=temperature
+    else:
+       print("temperature must be between 18 and 30 (exclusive)")
   @property
   def get_temperature(self):
      return self.__temperature
   @get_temperature.setter
   def set_temperature(self,value):
-    self.__temperature=value if 18<value<30 and self._is_on else self.__temperature
+    if 18<value<30:
+      self.__temperature=value
+    else:
+       print("temperature must be between 18 and 30 (exclusive)")
 
 # light_1=SmartLight(56)
 # print(light_1.get_level)
 # light_1.set_level=90
+# print(light_1.get_level)
+
+# light_1.set_level=101
 # print(light_1.get_level)
 # print(SmartThermostat.mro())
 # thermo_1=SmartThermostat(22)
@@ -451,6 +504,12 @@ class SmartThermostat(SmartDevice):
 # thermo_1.set_temperature=29
 # print(thermo_1.get_temperature)
 
+# thermo_1.set_temperature=35
+# print(thermo_1.get_temperature)
+
+
+# light_2=SmartLight(101)
+# thermo_2=SmartThermostat(30)
 
 
 
