@@ -9,9 +9,6 @@
 	<div th:if="${error!=null}">
         <p th:text="${error}"></p>
     </div>
-    <ul th:if="${#fields.hasErrors('*')}">
-    	<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
-    </ul>
     <form th:action="@{/addData}" method="post" th:object="${books}">
         <label for="bookId">Book ID : </label>
          <input type="number" name="bookId" th:field="*{bookId}" min="0"/><br>

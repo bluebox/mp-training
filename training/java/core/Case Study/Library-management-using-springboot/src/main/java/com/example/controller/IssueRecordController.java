@@ -16,7 +16,7 @@ public class IssueRecordController {
 	@Autowired
 	private IssueBookService ibs;
 	Logger log=LoggerFactory.getLogger(IssueRecordController.class.getName());
-	@RequestMapping("/showIssue")
+	@RequestMapping("@{/showIssue}")
 	private String showIssues(Model m) {
 		m.addAttribute("l", ibs.showIssues());
 		return "issueBook.html";

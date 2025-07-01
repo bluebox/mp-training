@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import java.sql.SQLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +39,7 @@ public class ShowBookController {
 	    	return "addData.html";
 	    }
 		String s = bs.add(new Books(bookId, title, author, category));
-	    if (s.equals("inserted")) {
+	    if ("Insertion is done".equals(s)) {
 	        return show(m);
 	    } else {
 	        m.addAttribute("error", s);
@@ -57,6 +55,7 @@ public class ShowBookController {
 	public String updateData(Model m,@RequestParam(required = false) Long bookId,@RequestParam(required = false) String title,@RequestParam(required = false) String author,@RequestParam(required = false) String category,@RequestParam(required = false) char status,@RequestParam(required = false) char availability) {
 		String s=bs.update(bookId, title, author, category, status, availability);
 		if(s.equals("updated")) {
+			System.out.println("updated");
 			return show(m);
 		}
 		m.addAttribute("error", s);
