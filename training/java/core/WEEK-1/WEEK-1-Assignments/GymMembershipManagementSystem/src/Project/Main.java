@@ -55,8 +55,8 @@ public class Main {
                         String input = scanner.nextLine();
                         try {
                             age = Integer.parseInt(input);
-                            if (age > 0) break;
-                            else System.out.println("Age must be positive.");
+                            if (age > 0 && age<=100) break;
+                            else System.out.println("Age must be positive and must below 100...");
                         } catch (NumberFormatException e) {
                             System.out.println("Invalid input. Please enter a valid age.");
                         }
