@@ -32,17 +32,17 @@ class FileManager:
             self.file.close()
         except:
             print("Unable to close the file")
-# with FileManager("example.txt","w") as f:
-#     f.write("hello guys blah blah")
+with FileManager("example.txt","w") as f:
+    f.write("hello guys blah blah")
     
     
 
 
 
-with open("example.txt","r") as f:
-    content=f.readlines()
-    content_2=f.readline()
+# with open("example.txt","r") as f:
+#     content=f.readlines()
+#     content_2=f.readline()
 
-print(content)
-print('-------------------------------')
-print(content_2)
+# print(content)
+# print('-------------------------------')
+# print(content_2)
