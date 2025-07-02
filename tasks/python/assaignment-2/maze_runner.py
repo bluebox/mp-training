@@ -13,7 +13,7 @@ def maze_runer(maze, start_pos, end_pos):
             path.reverse()
             return path 
         else:
-            if(maze[pos[0]][pos[1]] == '#'):
+            if maze[pos[0]][pos[1]] == '#':
                 continue
             maze[pos[0]][pos[1]] = '#'
             if(pos[1]+1 <len(maze[pos[0]])):
