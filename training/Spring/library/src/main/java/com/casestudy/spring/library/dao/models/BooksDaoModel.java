@@ -7,16 +7,18 @@ import com.casestudy.spring.library.beans.Book;
 
 public interface BooksDaoModel {
 	
-	public abstract void createBook(Book book) throws SQLException;
-	
-	public abstract void updateBookAvailability(int bookId);
-	
-	public abstract boolean updateBook(Book book);
-	
-	public abstract List<Book> viewAllBooks();
-	
-	public abstract boolean CanBeIssued(int bookId) ;
-	
-	public abstract Book searchBook(int bookId);
+    void createBook(Book book) throws SQLException;
+
+    void updateBookAvailability(int bookId);
+
+    boolean updateBook(Book book);
+
+    List<Book> viewAllBooks();
+
+    boolean CanBeIssued(int bookId);
+
+    Book searchBook(int tempId);
+
+    boolean findBook(int tempId);
 	
 }

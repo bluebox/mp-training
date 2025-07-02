@@ -12,18 +12,27 @@ import com.casestudy.spring.library.beans.Book;
 import com.casestudy.spring.library.beans.IssueRecord;
 import com.casestudy.spring.library.beans.Member;
 import com.casestudy.spring.library.dao.BooksDao;
+import com.casestudy.spring.library.dao.BooksDaoUsingJdbcTemplate;
 import com.casestudy.spring.library.dao.IssueRecordDao;
 import com.casestudy.spring.library.dao.MembersDao;
 
 @Service
 public class Implementation {
 
-	@Autowired
 	private BooksDao bookDao;
-	@Autowired
 	private MembersDao membersDao;
-	@Autowired
 	private IssueRecordDao issueRecordDao;
+	/*
+	 * @Autowired BooksDaoUsingJdbcTemplate bookDaoUsingJdbcTemplate;
+	 */
+
+	@Autowired
+	public Implementation(BooksDao bookDao, MembersDao membersDao, IssueRecordDao issueRecordDao) {
+		super();
+		this.bookDao = bookDao;
+		this.membersDao = membersDao;
+		this.issueRecordDao = issueRecordDao;
+	}
 
 	// books
 	public boolean addBook(Book book) {
@@ -55,6 +64,11 @@ public class Implementation {
 		List<Book> result = bookDao.viewAllBooks();
 		return result;
 	}
+	
+//	public List<Book> viewAllBooksService() {
+//		List<Book> result = bookDaoUsingJdbcTemplate.viewAllBooks();
+//		return result;
+//	}
 
 	public Book getBookById(int bookId) {
 		return bookDao.searchBook(bookId);
