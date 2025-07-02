@@ -1,0 +1,4 @@
+[MESSAGES CONTROL]
+
+disable=missing-function-docstring, missing-function-docstring, useless-super-delegation,
+missing-module-docstring, missing-class-docstring, missing-class-docstring
