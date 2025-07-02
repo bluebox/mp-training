@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<div th:if="${error!=null}">
+        <p th:text="${error}"></p>
+    </div>
+    <form th:action="@{/issueBook}" method="post" th:object="${issue}">
+        <label for="issueId">Issue ID : </label>
+        <input type="number" name="issueId" min="0"/><br>
+        <label for="bookId">Book ID : </label>
+        <input type="number" name="bookId" min="0"/><br>
+        <label for="memberId">Member ID : </label>
+        <input type="number" name="memberId" min="0"/><br>
+        <input type="text" name="statusrec" value='I' style="visibility:hidden"/>
+        <input type="submit" value="submit">
+    </form>
+    <a th:href="@{/main}">Main Page</a>
+    <a th:href="@{/logout}">log Out</a>
+</body>
+</html>

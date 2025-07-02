@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.model.Books;
 import com.example.service.BookService;
 
-import jakarta.validation.Valid;
-
 @Controller
 public class ShowBookController {
 	@Autowired
 	private BookService bs;
-	@RequestMapping("/main")
+	@RequestMapping(value={"","/","/main"})
 	public String mainpage() {
 		return "main.html";
 	}

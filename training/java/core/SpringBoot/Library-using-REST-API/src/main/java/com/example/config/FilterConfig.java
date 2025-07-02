@@ -10,22 +10,25 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @Configuration
 public class FilterConfig {
 	@Bean
 	SecurityFilterChain FilterChain(HttpSecurity http) throws Exception{
-		http.authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue").permitAll()
+//		http.authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/","/issueBook/*").hasAnyRole("user","admin")
+		http.csrf().disable().
+		authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/").hasAnyRole("user","admin")
+		.antMatchers("/issueBook/*").permitAll()
 		.anyRequest().hasRole("admin")
 		.and().formLogin()
-		.and().httpBasic();
 //		.loginPage("/login")
-//		.defaultSuccessUrl("/main")
+//		.defaultSuccessUrl("/main",true)
 //		.failureUrl("/error")
 //		.permitAll()
 //		.and().logout().logoutSuccessUrl("/logout")
-//		.invalidateHttpSession(true);
+//		.invalidateHttpSession(true)
+//		.permitAll()
+		.and().httpBasic();
 		
 		return http.build();
 	}

@@ -1,10 +1,13 @@
 package com.example.model;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import com.library.enums.Availability;
 import com.library.enums.Status;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,9 +20,9 @@ import lombok.ToString;
 public class Books {
 	@NotNull(message="Book ID is required")
 	private long bookId;
-	@NotBlank(message = "Book title is required")
+	@NotNull(message="Book title is required")
     private String title;
-	@NotBlank(message = "Book author is required")
+	@NotNull(message="Book Author is required")
     private String author;
 	@NotNull(message="Book category is required")
     private String category;

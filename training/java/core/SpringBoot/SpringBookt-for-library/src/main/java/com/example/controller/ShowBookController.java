@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 public class ShowBookController {
 	@Autowired
 	private BookService bs;
-	@RequestMapping("/main")
+	@RequestMapping(value={"","/","/main"})
 	public String mainpage() {
 		return "main.html";
 	}

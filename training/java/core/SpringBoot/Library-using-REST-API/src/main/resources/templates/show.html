@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<div th:if="${error!=null}">
+        <p th:text="${error}"></p>
+    </div>
+    <table>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Availability</th>
+        </tr>
+        <tr th:each="i:${l}">
+            <td th:text="${i.getBookId()}"></td>
+            <td th:text="${i.getTitle()}"></td>
+            <td th:text="${i.getAuthor()}"></td>
+            <td th:text="${i.getCategory()}"></td>
+            <td th:text="${i.getStatus()}"></td>
+            <td th:text="${i.getAvailability()}"></td>
+            <td><a th:href="@{/delete(bookId=${i.bookId})}" sec:authorize="hasRole('admin')"><button>Delete Book</button></a></td>
+			<td><a th:href="@{/updateStatus(bookId=${i.bookId})}" sec:authorize="hasRole('admin')"><button>Update Status</button></a></td>
+			<td><a th:href="@{/update(bookId=${i.bookId})}" sec:authorize="hasRole('admin')"><button>Update Book</button></a></td>
+        </tr>
+    </table>
+    <td><a th:href="@{/add}" sec:authorize="hasRole('admin')"><button>Add Book</button></a></td>
+    <a th:href="@{/main}">Main Page</a>
+    <a th:href="@{/logout}">log Out</a>
+</body>
+</html>

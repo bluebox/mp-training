@@ -8,6 +8,6 @@
 	<a th:href="@{/show}"><button>Show Books</button></a>
     <a th:href="@{/showMember}"><button>Show Member</button></a>
     <a th:href="@{/showIssue}" sec:authorize="hasRole('admin')"><button>Show Issue</button></a>
-    <a th:href="@{/logout}" sec:authorize="hasRole('admin')">log Out</a>
+    <a th:href="@{/logout}">log Out</a>
 </body>
 </html>
