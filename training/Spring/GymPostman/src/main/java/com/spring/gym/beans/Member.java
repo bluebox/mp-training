@@ -41,9 +41,6 @@ public class Member {
     private Date joinDate;
 
     private Date expireDate;
-
-    @NotNull(message = "status cannot be null")
-    @Pattern(regexp = "ACTIVE|INACTIVE", message = "status must be ACTIVE, INACTIVE")
     private String status;
     
 }
