@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+
+</head>
+<body>
+    <h1 th:text="'Update Member'"></h1>
+
+    <p th:if="${success}" th:text="${success}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <form th:action="@{/member/updateMember}" method="post" th:object="${member}">
+        Member ID: <input type="text" th:field="*{memberId}" required/><br><br>
+        Name: <input type="text" th:field="*{name}" required/><br><br>
+        Email : <input type="text" th:field="*{email}" required/><br><br>
+        Mobile: <input type="text" th:field="*{mobile}" required/><br><br>
+        
+        Gender:<br>
+        <input type="radio" name="gender" value="MALE" th:field="*{gender}" required/> Male<br>
+        <input type="radio" name="gender" value="FEMALE" th:field="*{gender}"/> Female<br><br>
+ 
+        Address: <input type="text" th:field="*{address}" required/><br><br>
+       
+        <input type="submit" value="Update Member"/><br><br>
+    </form>
+
+    <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+
+</html>

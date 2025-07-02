@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Return Book</title>
+        <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+    <h1>Return the Book</h1>
+
+    <p th:if="${success}" th:text="${success}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <form th:action="@{/issue/returnBook}" method="post" th:object="${issueRecord}">
+        <label>Issue ID:</label>
+        <input type="text" th:field="*{issueId}" required/><br><br>
+
+        <input type="submit" value="Return Book"/><br><br>
+    </form>
+
+    <a th:href="@{/home}">
+        <button type="button">Go to main menu</button>
+    </a>
+</body>
+</html>

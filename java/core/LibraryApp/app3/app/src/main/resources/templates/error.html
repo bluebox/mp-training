@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+	 <h1 th:text="'Opps!'"></h1>
+	 <p th:if="${error}" th:text="${'Error occured due to : '+errormsg }" style="color: red;"></p>
+	 
+	
+	 <a th:href="@{/home}">
+        <button>Go to main menu</button>
+     </a>
+	 
+
+</body>
+</html>
