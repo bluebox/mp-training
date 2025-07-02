@@ -104,7 +104,7 @@ class SmartThermostat(SmartDevice):
         else:
             print("Invalid action")
 
-class Programmable:
+class Programmable(ABC):
     def schedule_task(self):
         print("Alarm system task scheduled.")
 

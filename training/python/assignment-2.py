@@ -37,14 +37,14 @@ def create_counter(initial_count=0):
     return count_int
   return counter_func
 
-# a=create_counter(10)
-# print(a())
-# print(a())
-# print(a())
-# print(a())
-# print(a.reset())
-# print(a())
-# print(a())
+a=create_counter(10)
+print(a())
+print(a())
+print(a())
+print(a())
+print(a.reset())
+print(a())
+print(a())
 
 
 

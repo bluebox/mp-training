@@ -16,3 +16,29 @@ import pdb
 #     pdb.set_trace()
 #     print(i*2)
 
+class FileManager:
+    def __init__(self,name,mode):
+        self.name=name
+        self.file=None
+        self.mode=mode
+    def __enter__(self):
+        try:
+            self.file=open(self.name,self.mode)
+        except FileNotFoundError as err:
+            print("The requested file is not found in the given path")
+    def __exit__(self,exc_type, exc_value, exc_traceback):
+        try:
+            self.file.close()
+        except:
+            print("Unable to close the file")
+with FileManager("example.txt","r") as f:
+    content=f.read()
+print(content)
+
+
+
+# with open("example.txt","r") as f:
+#     content=f.read()
+# print(content)
+
+
