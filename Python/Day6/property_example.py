@@ -21,3 +21,4 @@ a.set_name="abhi"
 print(a.get_name)
 
 # to use the same name as variable as the attributes we should use _attribute_name to avoid recursion
+
