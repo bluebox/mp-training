@@ -37,14 +37,14 @@ def create_counter(initial_count=0):
     return count_int
   return counter_func
 
-a=create_counter(10)
-print(a())
-print(a())
-print(a())
-print(a())
-print(a.reset())
-print(a())
-print(a())
+# a=create_counter(10)
+# print(a())
+# print(a())
+# print(a())
+# print(a())
+# print(a.reset())
+# print(a())
+# print(a())
 
 
 
@@ -176,8 +176,7 @@ def process_matrix(matrix):
         running_total+=ele
   return running_total
 
-# def process_matrix(matrix):
-#   return sum([ele if ele<10 and ele%2!=0 else break if ele>10 for new_line in matrix for ele in new_line])
+
 
 # print(process_matrix( [ [11, 2, 3],
 #                         [4, 5, 6],  
@@ -466,7 +465,7 @@ class SmartLight(SmartDevice):
        print("brightness must be between 0 and 100 (exclusive)")
   @property
   def get_level(self):
-     return self.__brightness
+     print(self.__brightness)
   @get_level.setter
   def set_level(self,value):
     if 0<value<100:
@@ -483,7 +482,7 @@ class SmartThermostat(SmartDevice):
        print("temperature must be between 18 and 30 (exclusive)")
   @property
   def get_temperature(self):
-     return self.__temperature
+     print(self.__temperature)
   @get_temperature.setter
   def set_temperature(self,value):
     if 18<value<30:
