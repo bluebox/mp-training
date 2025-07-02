@@ -17,8 +17,8 @@ public class FilterConfig {
 	SecurityFilterChain FilterChain(HttpSecurity http) throws Exception{
 //		http.authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/","/issueBook/*").hasAnyRole("user","admin")
 		http.csrf().disable().
-		authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/").hasAnyRole("user","admin")
-		.antMatchers("/issueBook/*").permitAll()
+		authorizeRequests().requestMatchers("/main","/show","/showMember","/showIssue","/logout","/").hasAnyRole("user","admin")
+		.requestMatchers("/issueBook/*").permitAll()
 		.anyRequest().hasRole("admin")
 		.and().formLogin()
 //		.loginPage("/login")

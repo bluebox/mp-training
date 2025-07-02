@@ -2,7 +2,6 @@ package com.example.restcontroller;
 
 import java.util.ArrayList;
 
-import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,42 +24,16 @@ import com.example.service.IssueBookService;
 public class IssueRecordRestController {
 	@Autowired
 	private IssueBookService ibs;
-	Logger log=LoggerFactory.getLogger(IssueRecordRestController.class.getName());
 	@GetMapping("/showIssue")
-	private ArrayList<IssueRecord> showIssues(Model m) {
+	public ArrayList<IssueRecord> showIssues(Model m) {
 		return ibs.showIssues();
 	}
-	@RequestMapping("/issue")
-	public String issue(Model m) {
-		m.addAttribute("issue", new IssueRecord());
-		return "issue.html";
-	}
-//	@RequestMapping("/issueBook")
-//	public String issueBook(Model m,@RequestParam int issueId,@RequestParam long bookId,@RequestParam int memberId,@RequestParam char statusrec){
-//		String s=ibs.issueBook(new IssueRecord(issueId, bookId, memberId, statusrec));
-//		if(s.equals("Book issued")) {
-//			return "issueBook.html";
-//		}
-//		else {
-//			m.addAttribute("error", s);
-//			log.error(s);
-//			return issue(m);
-//		}
-//	}
-	@PostMapping("/issueBooks")
-	public String issueBook(@RequestBody IssueRecord i){
+	@PostMapping("/add")
+	public String issueBook(@RequestBody IssueRecord i) {
 		return ibs.issueBook(i);
 	}
-//	@RequestMapping("/returnIssues")
-//	public String returnIssues(Model m,@RequestParam int issueId) {
-//		String s=ibs.returnBook(issueId);
-//		if(s.equals("Book returned")) {
-//			m.addAttribute("l", ibs.showIssues());
-//		    return showIssues(m);
-//		}
-//		else {
-//			m.addAttribute("error", s);
-//			return showIssues(m); 
-//		}
-//	}
+	@PutMapping("/return")
+	public String returnBook(@RequestParam int issueId) {
+		return ibs.returnBook(issueId);
+	}
 }

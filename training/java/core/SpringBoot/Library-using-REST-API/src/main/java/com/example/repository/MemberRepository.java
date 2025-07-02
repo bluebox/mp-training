@@ -23,7 +23,7 @@ public class MemberRepository {
 		return jdbcTemplate.queryForList("select * from members");
 	}
 	public int update(int memberId,String name,String email,Long mobile,char gender,String address) {
-		return jdbcTemplate.update("update members set Name=?,Email=?,Mobile=?,Gender=?,Address=? where MemberId=?",name,email,mobile,String.valueOf(gender),address);
+		return jdbcTemplate.update("update members set Name=?,Email=?,Mobile=?,Gender=?,Address=? where MemberId=?",name,email,mobile,String.valueOf(gender),address,memberId);
 	}
 	public int delete(int memberId) {
 		return jdbcTemplate.update("delete from members where MemberId=?",memberId);

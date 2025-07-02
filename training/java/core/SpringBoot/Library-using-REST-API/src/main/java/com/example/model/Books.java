@@ -5,8 +5,8 @@ import org.springframework.format.annotation.NumberFormat;
 import com.library.enums.Availability;
 import com.library.enums.Status;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
