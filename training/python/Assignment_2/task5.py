@@ -1,0 +1,27 @@
+def check_mixed_input(data1,data2,data3):
+    # falsy_values = [ [] , (), {}, set(), "", 0, 0.0, 0j, None, False ]
+
+    if data1:
+        if not data2:
+            if data3:
+                return "Stage 1A: Data1 True, Data2 False, Data3 True"
+            else:
+                return  "Stage 1B: Data1 True, Data2 False, Data3 False"
+        elif data2:
+            return  "Stage 1C: Data1 True, Data2 True"
+    elif not data1:
+        if not data3:
+            if data2:
+                return "Stage 2A: Data1 False, Data3 False, Data2 True"
+            else:
+                return  "Stage 2B: Data1 False, Data3 False, Data2 False"
+        elif data3:
+            return  "Stage 2C: Data1 False, Data3 True"
+
+print(check_mixed_input("hello", [], True))
+print(check_mixed_input([1], None, False))
+print(check_mixed_input(1, "world", []))
+print(check_mixed_input(0, "active", 1))
+print(check_mixed_input(None, "", 0)) 
+print(check_mixed_input(False, [1, 2], None))
+          
