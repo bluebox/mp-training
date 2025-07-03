@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+	 <h1 th:text="'Library Management App'"></h1>
+	 <h2 th:text="${'user : '+username}"></h2>
+	 <h2 th:text="${'user roles : '+roles}"></h2>
+	  <a th:href="@{/logout}">
+        <button>Logout</button>
+      </a><br><br>
+	 <a th:href="@{/member/addMember}">
+        <button>Register Member</button>
+      </a>
+	  <a th:href="@{/book/addBook}">
+        <button>Add Book</button>
+      </a><br><br>
+      <a th:href="@{/book/updateBook}">
+        <button>Update Book Details</button>
+      </a>
+      <a th:href="@{/member/updateMember}">
+        <button>Update Member Details</button>
+      </a><br><br>
+      <a th:href="@{/issue/issueBook}">
+        <button>Issue Book</button>
+      </a>
+      <a th:href="@{/issue/returnBook}">
+        <button>Return Book</button>
+      </a><br><br>  
+      <a th:href="@{/book/books}">
+        <button>View All Books</button>
+      </a>
+      <a th:href="@{/issue/issuedRecords}">
+        <button>View All Issued Records</button>
+      </a>
+      <a th:href="@{/member/members}">
+        <button>View All Members</button>
+      </a>
+
+</body>
+</html>

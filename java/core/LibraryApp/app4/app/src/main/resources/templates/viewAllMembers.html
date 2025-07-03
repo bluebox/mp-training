@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View All Members</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+
+</head>
+<body>
+    <h1>Get All Members Here</h1>
+
+    <p th:if="${success}" th:text="${success}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <form th:action="@{/member/members}" method="get">
+        <input type="submit" value="Get Members" /><br><br>
+    </form>
+
+    <table border="1" th:if="${members}">
+        <thead>
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Gender</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.memberId}"></td>
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.email}"></td>
+                <td th:text="${member.mobile}"></td>
+                <td th:text="${member.gender}"></td>
+                <td th:text="${member.address}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/home}">
+        <button type="button">Go to main menu</button>
+    </a>
+</body>
+</html>

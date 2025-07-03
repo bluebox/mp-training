@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+
+</head>
+<body>
+	    <h1 th:text="'Update Book'"></h1>
+
+    <p th:if="${success}" th:text="${success}" style="color: green;"></p>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <form th:action="@{/api/book/updateBook}" method="post" th:object="${book}">
+        Book ID: <input type="text" th:field="*{bookId}" required/><br><br>
+        Book Title: <input type="text" th:field="*{title}" required/><br><br>
+        Book Author: <input type="text" th:field="*{author}" required/><br><br>
+        Book Category: <input type="text" th:field="*{category}" required/><br><br>
+
+        Book Status:<br>
+        <input type="radio" name="status" value="ACTIVE" th:field="*{status}" required/> Active<br>
+        <input type="radio" name="status" value="INACTIVE" th:field="*{status}"/> Inactive<br><br>
+
+        Book Availability:<br>
+        <input type="radio" name="availability" value="AVAILABLE" th:field="*{availability}" required/> Available<br>
+        <input type="radio" name="availability" value="ISSUED" th:field="*{availability}"/> Issued<br><br>
+
+        <input type="submit" value="Update Book"/><br><br>
+    </form>
+    
+    <a th:href="@{/book/books}">
+        <button>View All Books</button>
+      </a>
+
+    <a th:href="@{/home}">
+        <button>Go to main menu</button>
+    </a>
+</body>
+</html>
