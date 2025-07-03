@@ -32,15 +32,20 @@ public class Member extends Person{
 		this.plan = plan;
 	}
 	
-	public void assignPlan(MembershipPlan plan) { 
-		this.plan = plan; 
-	}
 	
 	@Override
 	public void showDetails() {
-        System.out.print("ID: " + memberId + ", Name: " + getName() + ", Age: " + getAge() + ",");
-        if (plan != null) System.out.println(" " + plan.toString());
-        else System.out.println(" No Membership Plan Assigned");
+		System.out.println("--------------------------------------------------");
+	    System.out.println("Member ID   : " + memberId);
+	    System.out.println("Name        : " + getName());
+	    System.out.println("Age         : " + getAge());
+
+	    if (plan != null) {
+	        System.out.println("Plan Details: " + plan.toString());
+	    } else {
+	        System.out.println("Plan Details: No Membership Plan Assigned");
+	    }
+	    System.out.println("--------------------------------------------------");
 	}
 
 }

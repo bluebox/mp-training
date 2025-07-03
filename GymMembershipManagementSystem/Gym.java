@@ -16,14 +16,14 @@ public class Gym {
 
     public void addMember(int memberId, String name, int age) {
         members.add(new Member(name, age, memberId));
-        System.out.println("Member added successfully!");
+        System.out.println("\nMember added successfully!");
     }
 
     public void assignPlanToMember(int memberId, int planIndex) {
         try {
             Member member = findMemberById(memberId);
             if (member != null && planIndex >= 0 && planIndex < plans.size()) {
-                member.assignPlan(plans.get(planIndex));
+                member.setPlan(plans.get(planIndex));
                 System.out.println("Plan assigned successfully!");
             } else {
                 System.out.println("Invalid member ID or plan index.");
@@ -49,7 +49,7 @@ public class Gym {
         }
     }
 
-    private Member findMemberById(int id) {
+    public Member findMemberById(int id) {
         for (Member m : members) {
             if (m.getMemberId() == id) return m;
         }

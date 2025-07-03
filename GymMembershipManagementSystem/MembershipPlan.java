@@ -38,7 +38,8 @@ public class MembershipPlan {
     
 	@Override
 	public String toString() {
-		return "MembershipPlan [planName=" + planName + ", durationMonths=" + durationMonths + ", fee=" + fee + "]";
+		//return "MembershipPlan [planName=" + planName + ", durationMonths=" + durationMonths + ", fee=" + fee + "]";
+		return planName + " Plan - Duration: " + durationMonths + " month(s), Fee: ₹" + fee;
 	}
 	
 }
