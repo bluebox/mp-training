@@ -1,5 +1,7 @@
 package com.spring.gym.dao;
 
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -24,20 +26,24 @@ public class MemberDao {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
-	public boolean addMember(Member member) {
+	public boolean addMember(Member member, int amount, String days) {
 		try {
-			String sql = "INSERT INTO member (name, age, memberships, joinDate, expiryDate, status) "
-					+ "VALUES (:name, :age, :memberships, :joinDate, :expiryDate, :status)";
+			String sql = "INSERT INTO member (name, age, memberships, joinDate, expiryDate, status,amount,period,refund) "
+					+ "VALUES (:name, :age, :memberships, :joinDate, :expiryDate, :status,:amount,:period,:refund)";
 
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(member.getJoinDate());
 			calendar.add(Calendar.MONTH, 1);
+			if (days.equals("year")) {
+				calendar.add(Calendar.MONTH, 11);
+			}
 			Date expiryDate = calendar.getTime();
 
 			MapSqlParameterSource params = new MapSqlParameterSource().addValue("name", member.getName())
 					.addValue("age", member.getAge()).addValue("memberships", String.join(",", member.getMemberships()))
 					.addValue("joinDate", member.getJoinDate()).addValue("expiryDate", expiryDate)
-					.addValue("status", "ACTIVE");
+					.addValue("status", "ACTIVE").addValue("amount", amount).addValue("period", days)
+					.addValue("refund", "ACTIVE");
 
 			return namedParameterJdbcTemplate.update(sql, params) > 0;
 
@@ -46,10 +52,10 @@ public class MemberDao {
 		}
 	}
 
-	public boolean findMember(Member member) {
+	public boolean findMember(int id) {
 		try {
 			String sql = "SELECT 1 FROM member WHERE id = :id";
-			MapSqlParameterSource params = new MapSqlParameterSource().addValue("id", member.getId());
+			MapSqlParameterSource params = new MapSqlParameterSource().addValue("id", id);
 
 			Integer result = namedParameterJdbcTemplate.queryForObject(sql, params, Integer.class);
 			return result == 1;
@@ -59,17 +65,38 @@ public class MemberDao {
 		}
 	}
 
-	public boolean updateMember(Member member) {
+	public boolean updateMember(int id, String days) {
 		try {
 			String sql = "select expiryDate from member where id = :id";
 			MapSqlParameterSource params = new MapSqlParameterSource();
-			params.addValue("id", member.getId());
-
+			params.addValue("id", id);
 			Date expiryDate = namedParameterJdbcTemplate.queryForObject(sql, params, Date.class);
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(expiryDate);
-			calendar.add(Calendar.MONTH, 1);
-			expiryDate = calendar.getTime();
+			Date today = Date.from(Instant.now());
+			if (expiryDate.before(today)) {
+				if (days.equals("month")) {
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(today);
+					calendar.add(Calendar.MONTH, 1);
+					expiryDate = calendar.getTime();
+				} else {
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(today);
+					calendar.add(Calendar.MONTH, 12);
+					expiryDate = calendar.getTime();
+				}
+			} else {
+				if (days.equals("month")) {
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(expiryDate);
+					calendar.add(Calendar.MONTH, 1);
+					expiryDate = calendar.getTime();
+				} else {
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(expiryDate);
+					calendar.add(Calendar.MONTH, 12);
+					expiryDate = calendar.getTime();
+				}
+			}
 
 			sql = "update member set expiryDate = :expiryDate where id = :id";
 			params.addValue("expiryDate", expiryDate);
@@ -161,11 +188,55 @@ public class MemberDao {
 	public List<Member> findByMembership(String membership) {
 		try {
 			String sql = "SELECT id,name, age, memberships, joinDate, expiryDate, status from member where memberships LIKE  :membership ";
-			MapSqlParameterSource params = new MapSqlParameterSource().addValue("membership", "%"+membership+"%");
+			MapSqlParameterSource params = new MapSqlParameterSource().addValue("membership", "%" + membership + "%");
 			return namedParameterJdbcTemplate.query(sql, params, new MemberRowMapper());
 		} catch (Exception e) {
 			return Collections.emptyList();
 		}
 	}
 
+	public List<Member> viewAllMembersByRefund() {
+		try {
+			String sql = "SELECT id,name, age, memberships, joinDate, expiryDate, status FROM member where refund = 'ACTIVE'";
+
+			return namedParameterJdbcTemplate.query(sql, new MemberRowMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
+	}
+
+	public void updateMemberByRefund(Member member) {
+		try {
+			String sql = "update member set refund = 'INACTIVE' where id = :id";
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("id", member.getId());
+			namedParameterJdbcTemplate.update(sql, params);
+		} catch (Exception e) {
+
+		}
+	}
+	public void cancel(int id) {
+		String sql = "update member set refund = 'INACTIVE',expiryDate = :expiryDate where id = :id";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", id);
+		params.addValue("expiryDate", Date.from(Instant.now()));
+		namedParameterJdbcTemplate.update(sql, params);
+	}
+	
+	public List<String> amountAndRefund(int id){
+		List<String> val = new ArrayList<>();
+		String sql = "SELECT refund from member where id = :id";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", id);
+		val.add(namedParameterJdbcTemplate.queryForObject(sql, params,String.class));
+		sql = "SELECT amount from member where id = :id";
+		val.add(namedParameterJdbcTemplate.queryForObject(sql, params,String.class));
+		sql = "SELECT period from member where id = :id";
+		val.add(namedParameterJdbcTemplate.queryForObject(sql, params,String.class));
+		sql = "SELECT joinDate from member where id = :id";
+		val.add(namedParameterJdbcTemplate.queryForObject(sql, params,String.class));
+		return val;
+
+	}
 }

@@ -35,7 +35,7 @@ public class MemberConfig {
 	}
 
 	@PostMapping(value = { "/add" })
-	public ResponseEntity<?> addMember(@Valid @RequestBody Member member, Errors errors) {
+	public ResponseEntity<?> addMember(@Valid @RequestBody Member member,@RequestParam String days, Errors errors) {
 		if (errors.hasErrors()) {
 			Map<String, Object> errorsbody = new HashMap<>();
 			errorsbody.put("Status", "Error");
@@ -45,7 +45,7 @@ public class MemberConfig {
 			return ResponseEntity.badRequest().body(errorsbody);
 		}
 		try {
-			String str = impl.addMember(member);
+			String str = impl.addMember(member,days);
 			if ("success".equals(str)) {
 				Map<String, String> successResponse = new HashMap<>();
 				successResponse.put("status", "success");
@@ -60,6 +60,11 @@ public class MemberConfig {
 				Map<String, String> errorResponse = new HashMap<>();
 				errorResponse.put("status", "error");
 				errorResponse.put("message", "An activity is allowed only once");
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+			}else if ("Error days".equals(str)) {
+				Map<String, String> errorResponse = new HashMap<>();
+				errorResponse.put("status", "error");
+				errorResponse.put("message", "Enters days month or year");
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
 			}else {
 				Map<String, String> errorResponse = new HashMap<>();
@@ -76,11 +81,10 @@ public class MemberConfig {
 
 	}
 
-	@PostMapping("/update")
-	public ResponseEntity<?> update(@RequestBody Member member) {
+	@GetMapping("/update")
+	public ResponseEntity<?> update(@RequestParam int id,@RequestParam String days) {
 		try {
-			String result = impl.updateMember(member);
-
+			String result = impl.updateMember(id,days);
 			Map<String, String> response = new HashMap<>();
 
 			if ("Success".equals(result)) {
@@ -95,6 +99,11 @@ public class MemberConfig {
 				Map<String, String> errorResponse = new HashMap<>();
 				errorResponse.put("status", "error");
 				errorResponse.put("message", "Enter id");
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+			}else if ("Error days".equals(result)) {
+				Map<String, String> errorResponse = new HashMap<>();
+				errorResponse.put("status", "error");
+				errorResponse.put("message", "Enters days month or year");
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
 			} else {
 				response.put("status", "error");
@@ -235,6 +244,29 @@ public class MemberConfig {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 			}
 			return ResponseEntity.ok(members);
+		}catch(Exception e) {
+			Map<String,String> error = new HashMap<>();
+			error.put("status", "error");
+			error.put("message", "error Occured");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+		}
+		
+	}
+	
+	@GetMapping("/cancel")
+	public ResponseEntity<?> cancel(@RequestParam("id") int id){
+		try {
+			List<String> sol = impl.cancel(id);
+			if(sol.get(0).equals("success")) {
+				Map<String,String> response = new HashMap<>();
+				response.put("status", "membership canceled");
+				response.put("amount refunded", ""+sol.get(1));
+				return ResponseEntity.ok(response);
+			}else {
+				Map<String,String> response = new HashMap<>();
+				response.put("status", "membership cannot be canceled");
+				return ResponseEntity.ok(response);
+			}
 		}catch(Exception e) {
 			Map<String,String> error = new HashMap<>();
 			error.put("status", "error");
