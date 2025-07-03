@@ -75,7 +75,6 @@ public class Main {
                 	MembershipPlan newMp = gym.getPlans().get(newMpChoice - 1);
                     if(currentMp.getPlanName()==newMp.getPlanName()) {
                     	System.out.println("You already have the same plan...");
-                    	continue;
                     }
                     else {
                     	existingMember.setMembershipPlan(newMp);
@@ -83,8 +82,8 @@ public class Main {
                     }
                 	break;
                 }
-                System.out.println("Given member id does not exist, Give an existing id to assign plan...");
-                continue;
+                System.out.println("Given member id does not exist, Please add the member first...");
+                break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid ID. Please enter a valid integer.");
             }
