@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.casestudy.spring.library.beans.Book;
@@ -12,31 +14,66 @@ import com.casestudy.spring.library.dao.models.BooksDaoModel;
 import com.casestudy.spring.library.rowmapper.BookRowMapper;
 
 @Repository
-public class BooksDaoUsingJdbcTemplate implements BooksDaoModel{
-	
+public class BooksDaoUsingJdbcTemplate implements BooksDaoModel {
+
 	private JdbcTemplate jdbcTemplate;
-	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
 	@Autowired
-	public BooksDaoUsingJdbcTemplate(JdbcTemplate jdbcTemplate) {
+	public BooksDaoUsingJdbcTemplate(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
 	@Override
 	public void createBook(Book book) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into Books(title,author,category,status,availability) values (:title,:author,:category,:status,:availability);";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("title", book.getTitle());
+		params.addValue("author", book.getAuthor());
+		params.addValue("category", book.getCategory());
+		params.addValue("status", book.getStatus().getCode());
+		params.addValue("availability", book.getAvailable().getCode());
+		namedParameterJdbcTemplate.update(sql, params);
 	}
 
 	@Override
 	public void updateBookAvailability(int bookId) {
-		// TODO Auto-generated method stub
-		
+		String sql = "Select availability from Books where bookId = :bookId";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("bookId", bookId);
+		String available = namedParameterJdbcTemplate.queryForObject(sql, params, String.class);
+		params.addValue("availability", available.equals("A") ? "I" : "A");
+		sql = "update Books set availability= :availability where bookId = bookId";
+		namedParameterJdbcTemplate.update(sql, params);
 	}
 
 	@Override
 	public boolean updateBook(Book book) {
-		// TODO Auto-generated method stub
-		return false;
+		String query = "SELECT bookId, title, author, category, status, availability FROM Books WHERE bookId = :bookId";
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("bookId", book.getBookId());
+		Book tempBook = namedParameterJdbcTemplate.queryForObject(query, param, new BookRowMapper());
+
+		query = "insert into LogBooks(bookId, title, author, category, status, availability) values(:bookId,:title,:author,:category,:status,:availability)";
+		MapSqlParameterSource tempParam = new MapSqlParameterSource();
+		tempParam.addValue("title", tempBook.getTitle());
+		tempParam.addValue("author", tempBook.getAuthor());
+		tempParam.addValue("category", tempBook.getCategory());
+		tempParam.addValue("status", tempBook.getStatus().getCode());
+		tempParam.addValue("availability", tempBook.getAvailable().getCode());
+		tempParam.addValue("bookId", tempBook.getBookId());
+		namedParameterJdbcTemplate.update(query, tempParam);
+
+		String sql = "update Books set title = :title,author = :author,category = :category,status = :status,availability = :availability where bookId = :bookId";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("title", book.getTitle());
+		params.addValue("author", book.getAuthor());
+		params.addValue("category", book.getCategory());
+		params.addValue("status", book.getStatus().getCode());
+		params.addValue("availability", book.getAvailable().getCode());
+		params.addValue("bookId", book.getBookId());
+		return namedParameterJdbcTemplate.update(sql, params) > 0;
 	}
 
 	@Override
@@ -48,20 +85,32 @@ public class BooksDaoUsingJdbcTemplate implements BooksDaoModel{
 
 	@Override
 	public boolean CanBeIssued(int bookId) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "SELECT 1 FROM Books where bookId = :id and status = 'A' and availability = 'A'";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", bookId);
+		try {
+			return namedParameterJdbcTemplate.queryForObject(sql, params, Integer.class) == 1;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public Book searchBook(int tempId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT bookId,title,author,category,status,availability from Books where bookId = :id";
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("id", tempId);
+		return namedParameterJdbcTemplate.queryForObject(sql, param, new BookRowMapper());
 	}
 
 	@Override
 	public boolean findBook(int tempId) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "SELECT 1 from Books where bookId = ?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] { tempId }, Integer.class) == 1;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

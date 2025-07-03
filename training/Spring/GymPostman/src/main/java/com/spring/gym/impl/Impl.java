@@ -82,12 +82,16 @@ public class Impl {
 	public Member findMemberById(int id) {
 	    return memberDao.findMemberById(id);
 	}
+	
 	public List<Member> viewAllMembers() {
 	    return memberDao.viewAllMembers();
 	}
+	
 	public List<Member> findMembersByStatus(String status) {
+		deactivateExpiredMembers();
 	    return memberDao.findMembersByStatus(status);
 	}
+	
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void deactivateExpiredMembers() {
 	    List<Member> allMembers = memberDao.viewAllMembers();
@@ -106,6 +110,10 @@ public class Impl {
 	        }
 	    }
 
+	}
+	
+	public List<Member> findByMembership(String membership){
+		return memberDao.findByMembership(membership);
 	}
 
 

@@ -223,6 +223,26 @@ public class MemberConfig {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
 	    }
 	}
+	
+	@GetMapping("/findByMembership")
+	public ResponseEntity<?> findByMembership(@RequestParam("membership") String membership){
+		try {
+			List<Member> members = impl.findByMembership(membership);
+			if(members.isEmpty()) {
+				Map<String,String> response = new HashMap<>();
+				response.put("status", "not found");
+				response.put("message", "No members found with membership"+membership);
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+			}
+			return ResponseEntity.ok(members);
+		}catch(Exception e) {
+			Map<String,String> error = new HashMap<>();
+			error.put("status", "error");
+			error.put("message", "error Occured");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+		}
+		
+	}
 
 
 }

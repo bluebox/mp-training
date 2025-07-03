@@ -11,23 +11,25 @@ import org.springframework.stereotype.Service;
 import com.casestudy.spring.library.beans.Book;
 import com.casestudy.spring.library.beans.IssueRecord;
 import com.casestudy.spring.library.beans.Member;
-import com.casestudy.spring.library.dao.BooksDao;
 import com.casestudy.spring.library.dao.BooksDaoUsingJdbcTemplate;
 import com.casestudy.spring.library.dao.IssueRecordDao;
+import com.casestudy.spring.library.dao.IssueRecordDaoUsingJdbcTemplate;
 import com.casestudy.spring.library.dao.MembersDao;
 
 @Service
 public class Implementation {
 
-	private BooksDao bookDao;
+	//private BooksDao bookDao;
 	private MembersDao membersDao;
 	private IssueRecordDao issueRecordDao;
 	/*
 	 * @Autowired BooksDaoUsingJdbcTemplate bookDaoUsingJdbcTemplate;
 	 */
+	private BooksDaoUsingJdbcTemplate bookDao;
+	//private IssueRecordDaoUsingJdbcTemplate issueRecordDao;
 
 	@Autowired
-	public Implementation(BooksDao bookDao, MembersDao membersDao, IssueRecordDao issueRecordDao) {
+	public Implementation(BooksDaoUsingJdbcTemplate bookDao, MembersDao membersDao, IssueRecordDao issueRecordDao) {
 		super();
 		this.bookDao = bookDao;
 		this.membersDao = membersDao;
@@ -101,10 +103,8 @@ public class Implementation {
 
 	// issuebooks
 	public String issueBookService(IssueRecord issueRecord) {
-		MembersDao membersDao = new MembersDao();
 		if (bookDao.findBook(issueRecord.getBookId()) && membersDao.findMember(issueRecord.getMemberId())) {
 			if (bookDao.CanBeIssued(issueRecord.getBookId())) {
-				IssueRecordDao issueRecordDao = new IssueRecordDao();
 				try {
 					System.out.println("issuing");
 					issueRecordDao.issueBook(issueRecord);
@@ -124,8 +124,11 @@ public class Implementation {
 	}
 
 	public boolean returnBookService(IssueRecord issueRecord) {
+		System.out.println(1);
 		if (issueRecordDao.alreadyIssued(issueRecord)) {
+			System.out.println(2);
 			try {
+				System.out.println(3);
 				issueRecordDao.returnBook(issueRecord);
 				bookDao.updateBookAvailability(issueRecord.getBookId());
 				return true;

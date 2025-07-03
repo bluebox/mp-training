@@ -92,7 +92,7 @@ public class MemberDao {
 
 	public List<Member> findMembersByJoinDateBetween(Date startDate, Date endDate) {
 		try {
-			String sql = "SELECT * FROM member WHERE joinDate BETWEEN :start AND :end";
+			String sql = "SELECT id,name, age, memberships, joinDate, expiryDate, status FROM member WHERE joinDate BETWEEN :start AND :end";
 
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("start", startDate);
@@ -108,7 +108,7 @@ public class MemberDao {
 
 	public Member findMemberById(int id) {
 		try {
-			String sql = "SELECT * FROM member WHERE id = :id";
+			String sql = "SELECT id,name, age, memberships, joinDate, expiryDate, status FROM member WHERE id = :id";
 			MapSqlParameterSource params = new MapSqlParameterSource().addValue("id", id);
 
 			return namedParameterJdbcTemplate.queryForObject(sql, params, new MemberRowMapper());
@@ -123,7 +123,7 @@ public class MemberDao {
 
 	public List<Member> viewAllMembers() {
 		try {
-			String sql = "SELECT * FROM member";
+			String sql = "SELECT id,name, age, memberships, joinDate, expiryDate, status FROM member";
 
 			return namedParameterJdbcTemplate.query(sql, new MemberRowMapper());
 		} catch (Exception e) {
@@ -131,33 +131,41 @@ public class MemberDao {
 			return Collections.emptyList();
 		}
 	}
+
 	public List<Member> findMembersByStatus(String status) {
-	    try {
-	        String sql = "SELECT * FROM member WHERE status = :status";
+		try {
+			String sql = "SELECT id,name, age, memberships, joinDate, expiryDate, status FROM member WHERE status = :status";
 
-	        MapSqlParameterSource params = new MapSqlParameterSource()
-	            .addValue("status", status);
+			MapSqlParameterSource params = new MapSqlParameterSource().addValue("status", status);
 
-	        return namedParameterJdbcTemplate.query(sql, params, new MemberRowMapper());
+			return namedParameterJdbcTemplate.query(sql, params, new MemberRowMapper());
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return Collections.emptyList();
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
 	}
+
 	public boolean updateMemberStatus(int id, String status) {
-	    try {
-	        String sql = "UPDATE member SET status = :status WHERE id = :id";
-	        MapSqlParameterSource params = new MapSqlParameterSource()
-	            .addValue("status", status)
-	            .addValue("id", id);
+		try {
+			String sql = "UPDATE member SET status = :status WHERE id = :id";
+			MapSqlParameterSource params = new MapSqlParameterSource().addValue("status", status).addValue("id", id);
 
-	        return namedParameterJdbcTemplate.update(sql, params) > 0;
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return false;
-	    }
+			return namedParameterJdbcTemplate.update(sql, params) > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
+	public List<Member> findByMembership(String membership) {
+		try {
+			String sql = "SELECT id,name, age, memberships, joinDate, expiryDate, status from member where memberships LIKE  :membership ";
+			MapSqlParameterSource params = new MapSqlParameterSource().addValue("membership", "%"+membership+"%");
+			return namedParameterJdbcTemplate.query(sql, params, new MemberRowMapper());
+		} catch (Exception e) {
+			return Collections.emptyList();
+		}
+	}
 
 }

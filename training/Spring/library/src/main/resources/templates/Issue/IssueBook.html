@@ -85,12 +85,11 @@ button:hover {
 
 	<form th:action="@{/SaveIssueRecord}" th:object="${issueRecord}"
 		method="post">
-		<div th:if="(${#fields.hasErrors('*')})">
+		<div th:if="${#fields.hasErrors('*')}">
 			<b>Correct These fields</b>
 			<ul>
-				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">
+				<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 			</ul>
-
 		</div>
 		<table>
 			<tr>
