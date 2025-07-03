@@ -50,7 +50,8 @@ public class Gym {
         }
     }
 	
-	private Member findMemberById(String memberId) {
+	public Member findMemberById(String memberId) {
+		
         for (Member m : members) {
             if (m.getMemberId().equals(memberId)) {
                 return m;
@@ -58,4 +59,5 @@ public class Gym {
         }
         return null;
     }
+	
 }
