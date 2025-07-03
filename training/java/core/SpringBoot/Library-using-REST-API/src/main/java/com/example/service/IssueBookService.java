@@ -62,13 +62,8 @@ public class IssueBookService {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "practice", "Vbhanu@123")) {
                 conn.setAutoCommit(false);
-                PreparedStatement ps = conn.prepareStatement("SELECT bookId FROM issue_records WHERE issueId = ?");
-                ps.setInt(1, issueId);
-                ResultSet rs = ps.executeQuery();
-                long bookId;
-                if (rs.next()) {
-                    bookId = rs.getLong("bookId");
-                } else {
+                long bookId=repo.findBook(issueId);
+                if (bookId==-1) {
                     return "Issue record not found";
                 }
                 PreparedStatement ps2 = conn.prepareStatement("UPDATE issue_records SET status = 'R' WHERE issueId = ?");

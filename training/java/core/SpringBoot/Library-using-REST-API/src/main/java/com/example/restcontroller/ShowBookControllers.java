@@ -3,6 +3,7 @@ package com.example.restcontroller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ import com.example.model.Books;
 import com.example.service.BookService;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping(path="/books", produces=MediaType.APPLICATION_XML_VALUE)
 public class ShowBookControllers {
 	@Autowired
 	private BookService bs;
@@ -30,7 +31,13 @@ public class ShowBookControllers {
 	}
 	@PutMapping("/update")
 	public String updateBook(@RequestBody Books b) {
-		return bs.update(b.getBookId(),b.getTitle(),b.getAuthor(),b.getCategory(),b.getStatus(),b.getAvailability());
+//		Response res=new Response();
+//		res.setStatus(200,bs.update(b.getBookId(),b.getTitle(),b.getAuthor(),b.getCategory(),b.getStatus(),b.getAvailability()));
+//		return ResponseEntity
+//				.status(HttpStatus.CREATED)
+//				.header("isMsgSaved", "true")
+//				.body(res);
+		return  bs.update(b.getBookId(),b.getTitle(),b.getAuthor(),b.getCategory(),b.getStatus(),b.getAvailability());
 	}
 	@DeleteMapping("/delete")
 	public String deleteBook(@RequestParam(name="bookId") long b) { //or use PathVariable since it takes from position

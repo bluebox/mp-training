@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.model.Books;
 import com.example.model.IssueRecord;
 
 @Repository
@@ -36,4 +37,13 @@ public class IssueRepository {
 	public int updateAvaillability(long bookId) {
 		return jdbcTemplate.update("UPDATE books SET availability = 'I' WHERE bookId = ?",bookId);
 	}
+	public Long findBook(int issueId) {
+		try{
+			return jdbcTemplate.queryForObject("SELECT bookId FROM issue_records WHERE issueId = ?",Long.class,issueId);
+		}
+		catch(NullPointerException e) {
+			return -1l;
+		}
+	}
+	
 }

@@ -17,7 +17,7 @@ public class BookRepository{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	public String insert(Books b) {
-		int x=jdbcTemplate.update("insert into books values(?,?,?,?,?,?)",b.getBookId(),b.getTitle(),b.getAuthor(),b.getCategory(),Character.toString(b.getStatus()),Character.toString(b.getAvailability()));
+		int x=jdbcTemplate.update("insert into books values(?,?,?,?,'A','A')",b.getBookId(),b.getTitle(),b.getAuthor(),b.getCategory());
 		if(x>0) {
 			return "inserted";
 		}
@@ -30,7 +30,7 @@ public class BookRepository{
 	}
 
 	public String updateById(long bookId,String title,String author,String category,char status,char availability) {
-		int x=jdbcTemplate.update("update books set title=?, author=?, category=?, status=?, availability=? where bookId=?",title,author,category,String.valueOf(status),String.valueOf(availability),bookId);
+		int x=jdbcTemplate.update("update books set title=?, author=?, category=?, status=?, availability=? where bookId=?",title,author,category,"A","A",bookId);
 		if(x>0) {
 			return "updated";
 		}

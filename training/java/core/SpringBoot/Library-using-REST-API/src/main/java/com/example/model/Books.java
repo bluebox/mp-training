@@ -1,13 +1,11 @@
 package com.example.model;
 
-import org.springframework.format.annotation.NumberFormat;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.library.enums.Availability;
 import com.library.enums.Status;
 
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,12 +19,13 @@ public class Books {
 	@NotNull(message="Book ID is required")
 	private long bookId;
 	@NotNull(message="Book title is required")
+	@JsonProperty("name")
     private String title;
 	@NotNull(message="Book Author is required")
     private String author;
 	@NotNull(message="Book category is required")
     private String category;
-    private char status;
+	private char status;
     private char availability;
     public Books(Long bookId2, String title, String author, String category) {
         this.bookId = bookId2;

@@ -30,7 +30,7 @@
 			<td><a th:href="@{/update(bookId=${i.bookId})}" sec:authorize="hasRole('admin')"><button>Update Book</button></a></td>
         </tr>
     </table>
-    <td><a th:href="@{/add}" sec:authorize="hasRole('admin')"><button>Add Book</button></a></td>
+    <a th:href="@{/add}" sec:authorize="hasRole('admin')"><button>Add Book</button></a>
     <a th:href="@{/main}">Main Page</a>
     <a th:href="@{/logout}">log Out</a>
 </body>
