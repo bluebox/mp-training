@@ -1,0 +1,144 @@
+.table {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    overflow-x: auto;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.75em;
+    margin-top: 4px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+form .form-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    margin-bottom: 20px;
+    background-color: #eef3f7;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form select {
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+form input[type="radio"],
+form input[type="checkbox"] {
+    vertical-align: middle;
+    margin: 0;
+}
+
+.btns,
+.check {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btns label,
+.check label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.submit-buttons {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #2f80ed;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.submit-buttons:hover {
+    background-color: #155ab6;
+}
+
+.table table {
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 800px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px 10px;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.table th {
+    background-color: rgb(120, 155, 231);
+    font-weight: bold;
+}
+
+.table td {
+    background-color: rgb(201, 220, 236);
+}
+
+input.invalid,
+select.invalid {
+    border-color: red;
+    background-color: #ffe5e5;
+}
+
+.action-btn {
+    margin: 2px;
+    padding: 5px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4d90fe;
+    color: white;
+}
+
+.action-btn:hover {
+    background-color: #2b6cd4;
+}
+
+.search {
+    width: 90%;
+    padding: 5px;
+    font-size: 13px;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    border-radius: 4px;
+}
