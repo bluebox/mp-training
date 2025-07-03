@@ -33,11 +33,9 @@ import time
 # asyncio.run(fn())
 
 
-
-
-
 '''
-Here i'm trying to perform asynchronus and synchronous summation of an iterable to compare the performance and find the optimal split for my pc 
+Here i'm trying to perform asynchronus and synchronous summation
+ of an iterable to compare the performance and find the optimal split for my pc 
 '''
 #SYNCHRONUS WAY
 
@@ -66,7 +64,6 @@ n_val=1000
 for i in range(n_val):
     sum_time+=sync_data_processing(input_sync,n)
 print(sum_time//n_val)
-
 
 
 #ASYNCHRONUS WAY 
@@ -105,4 +102,14 @@ for i in range(n_val):
 print(sum_time//n_val)
 
 
+# import timeit,psutil,pyjokes
 
+# %%timeit
+# for i in range(1000):
+#     pass
+
+# print(psutil.cpu_count(logical=False))
+
+# print(psutil.sensors_temperatures())
+
+# print((psutil.sensors_battery().secsleft)/(60*60))

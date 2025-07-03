@@ -60,3 +60,16 @@
 
 #     print("I'm the best!!!")
 # print("hello world")
+
+
+# x = [1,2,3]
+# y = x
+# if id(x) == id(y):
+#     print("x and y refer to the same object")
+# y[0]=10
+# print(x,y)
+
+# 
+a=[2,3,5,7,8,9,4]
+for i in range(0,-1):
+    print(a[i])
