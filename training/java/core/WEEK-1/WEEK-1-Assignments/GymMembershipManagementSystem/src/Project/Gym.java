@@ -28,4 +28,9 @@ public class Gym {
         }
         return null;
     }
+    
+    public void assignMembershipPlan(int id, MembershipPlan mp) {
+    	Member existingMember=this.getMemberById(id);
+    	existingMember.setMembershipPlan(mp);
+    }
 }
