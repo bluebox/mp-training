@@ -1,12 +1,15 @@
+import asyncio
 import random
 from abc import ABC,abstractmethod
 from datetime import datetime
 from utils import helpers
+from utils.decorators import log_device_state_change
+
 
 class SmartDevice(ABC):
     _device_count = 0
     _devices = set()
-
+    ref = None
     def __init__(self, device_id):
         if device_id in SmartDevice._devices:
             print(f"Device with id: {device_id} already exist")
@@ -15,24 +18,40 @@ class SmartDevice(ABC):
         self.__is_on = False
         SmartDevice._device_count += 1
         SmartDevice._devices.add(device_id)
-
-    def turn_on(self):
+        ref = self
+    @log_device_state_change
+    async def turn_on(self):
         if not self.__is_on:
             self.__is_on = True
+            await asyncio.sleep(1)
             print(f"Device {self._device_id} turned on.")
         else:
             print(f"Device {self._device_id} is already on.")
-
-    def turn_off(self):
+            await asyncio.sleep(1)
+    @log_device_state_change
+    async def turn_off(self):
         if self.__is_on:
             self.__is_on = False
+            await asyncio.sleep(1)
             print(f"Device {self._device_id} turned off.")
         else:
             print(f"Device {self._device_id} is already off.")
-
+            await asyncio.sleep(1)
     @property
     def is_on(self):
         return self.__is_on
+
+    @property
+    def device_id(self):
+        return self._device_id
+
+    @device_id.setter
+    def device_id(self,device_id):
+        if device_id in self._devices:
+            print("device already exist")#error
+        else:
+            self._devices.add(device_id)
+            self._device_count +=1
 
     @classmethod
     def get_device_count(cls):
@@ -40,10 +59,14 @@ class SmartDevice(ABC):
 
     @staticmethod
     def get_system_time():
-        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return datetime.now()
 
     @abstractmethod
     def get_status_report(self):
+        pass
+
+    @abstractmethod
+    def load_state(self,state):
         pass
 
     @abstractmethod
@@ -52,6 +75,10 @@ class SmartDevice(ABC):
 
     @abstractmethod
     def get_supported_actions(self):
+        pass
+
+    @abstractmethod
+    def to_dict(self):
         pass
 
 class SmartLight(SmartDevice):
@@ -80,14 +107,24 @@ class SmartLight(SmartDevice):
         actions = ["set_brightness"]
         for i in actions:
             yield i
+    def to_dict(self):
+        return {"is_on": self.is_on, "brightness": self.brightness, "type":self.__class__.__name__}
 
-    def perform_action(self, action_type, value=None):
-        if self.is_on:
-            self.turn_off()
+    async def perform_action(self, action_type, value=None):
+        if not self.is_on:
+            await asyncio.sleep(1)
+            await self.turn_on()
         if action_type.lower() == "set_brightness":
+            await asyncio.sleep(1)
             self.brightness = value
         else:
             print(f"Unknown action '{action_type}' for SmartLight.")
+    async def load_state(self,state):
+        if state["is_on"]:
+            await self.turn_on()
+        else:
+            await self.turn_off()
+        self.__brightness = state["brightness"]
 
 
 class SmartThermostat(SmartDevice):
@@ -109,6 +146,9 @@ class SmartThermostat(SmartDevice):
         else:
             print("Temperature must be between 18.0C and 30.0C.")
 
+    def to_dict(self):
+        return {"is_on": self.is_on, "temperature": self.temperature}
+
     def get_status_report(self):
         return f"[SmartThermostat] ID: {self._device_id}, ON: {self.is_on}, Temperature: {self.__temperature}C"
 
@@ -117,13 +157,22 @@ class SmartThermostat(SmartDevice):
         for i in actions:
             yield i
 
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         if not self.is_on:
-            self.turn_on()
+            await self.turn_on()
         if action_type.lower() == "set_temperature":
+            await asyncio.sleep(1)
             self.temperature = value
         else:
             print(f"Unknown action '{action_type}' for SmartThermostat.")
+            await asyncio.sleep(1)
+
+    async def load_state(self,state):
+        if state["is_on"]:
+            await self.turn_on()
+        else:
+            await self.turn_off()
+        self.temperature = state["temperature"]
 
 
 class SmartCamera(SmartDevice):
@@ -157,19 +206,33 @@ class SmartCamera(SmartDevice):
         for i in actions:
             yield i
 
-    def perform_action(self, action_type, value=None):
+    def to_dict(self):
+        return {"is_on": self.is_on, "recording": self.recording, "resolution": next(k for k,v in self.resolution_levels.items() if v == tuple(self.resolution)), "type":self.__class__.__name__}
+    async def perform_action(self, action_type, value=None):
         if action_type.lower() == "start_recording":
             if self.is_on:
+                await asyncio.sleep(1)
                 self.__recording = True
             else:
-                self.turn_on()
+                await self.turn_on()
                 self.__recording = True
         elif action_type.lower() == "stop_recording":
+            await asyncio.sleep(1)
             self.__recording = False
         elif action_type.lower() == "set_resolution":
+            await asyncio.sleep(1)
             self.__resolution = self.resolution_levels[value]
         else:
+            await asyncio.sleep(1)
             print(f"Unknown action '{action_type}' for SmartCamera.")
+
+    async def load_state(self,state):
+        if state["is_on"]:
+            await self.turn_on()
+        else:
+            await self.turn_off()
+        self.recording = state["recording"]
+        self.resolution = state["resolution"]
 
 class SmartSpeaker(SmartDevice):
     songs = [i for i in range(1,11)]
@@ -204,6 +267,9 @@ class SmartSpeaker(SmartDevice):
         else:
             self.__volume = volume
 
+    def to_dict(self):
+        return {"is_on": self.is_on, "playing": self.playing, "volume": self.volume, "track_id": self.__track_id,"type":self.__class__.__name__}
+
     @property
     def track_id(self):
         return self.__track_id
@@ -232,6 +298,14 @@ class SmartSpeaker(SmartDevice):
             self.__track_id = SmartSpeaker.songs[value]
         elif action_type.lower() == "shuffle":
             self.__track_id = random.choice(SmartSpeaker.songs)
+    def load_state(self,state):
+        if state["is_on"]:
+            self.turn_on()
+        else:
+            self.turn_off()
+        self.playing = state["playing"]
+        self.volume = state["volume"]
+        self.track_id = state["track_id"]
 
 class SmartDoor(SmartDevice):
     def __init__(self, device_id,passcode=None):
@@ -251,7 +325,7 @@ class SmartDoor(SmartDevice):
         return self.__passcode
     @passcode.setter
     def passcode(self, passcode):
-        if core_utils.is_strong(passcode):
+        if helpers.is_strong(passcode):
             self.__passcode = passcode
 
     def get_status_report(self):
@@ -260,6 +334,10 @@ class SmartDoor(SmartDevice):
         actions = ["lock", "unlock","change_passcode"]
         for i in actions:
             yield i
+
+    def to_dict(self):
+        return {"is_on":self.is_on, "lock":self.lock, "passcode":self.passcode, "type":self.__class__.__name__}
+
     def perform_action(self, action_type, value=None):
         if action_type.lower() == "lock":
             if self.__passcode == value:
@@ -273,3 +351,16 @@ class SmartDoor(SmartDevice):
                 pass #raise error
         else:
             print(f"Unknown action '{action_type}' for SmartDoor.")#error raise
+
+    def load_state(self,state):
+        if state["is_on"]:
+            self.turn_on()
+        else:
+            self.turn_on()
+        self.lock = state["lock"]
+        self.passcode = state["passcode"]
+
+if __name__ == "__main__":
+    smart = SmartCamera("sd001")
+    asyncio.run(smart.turn_on())
+    print("end")

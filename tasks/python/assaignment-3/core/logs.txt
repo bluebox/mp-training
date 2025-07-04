@@ -1,0 +1,1 @@
+[SmartCamera] ID: sd001, ON:True, Recording:False ,Resolution: (1280, 720)]

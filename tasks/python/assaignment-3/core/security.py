@@ -34,6 +34,7 @@ class SecuritySensor(SmartDevice):
         self.__is_armed = False
         super().turn_off()
 
+
     def perform_action(self, action_type, value=None):
         if action_type.lower() == "arm":
             self.__is_armed = True
@@ -44,14 +45,27 @@ class SecuritySensor(SmartDevice):
         else:
             print(f"Unknown action '{action_type}' for SecuritySensor.")
 
+    def to_dict(self):
+        return {"is_on":self.is_on,"arm":self.is_armed}
+
+    def load_state(self,state):
+        if state['is_on']:
+            self.turn_on()
+        else:
+            self.turn_off()
+        if state["is_armed"]:
+            self.arm_sensor()
+        else:
+            self.disarm_sensor()
+
 
 class SmartAlarmSystem(SmartDevice, Programmable):
     __sensors = list()
-    device_id = ""
+    # device_id = ""
 
     def __init__(self, device_id):
         super().__init__(device_id)
-        self.device_id = device_id
+        # self.device_id = device_id
         self.__sound_volume = 0
         self.__sensors.append(
             SecuritySensor(device_id=device_id + "." + str(len(self.__sensors) + 1)))  # has a relation(loose coupling)
@@ -93,18 +107,38 @@ class SmartAlarmSystem(SmartDevice, Programmable):
 
     def schedule_task(self):
         print(f"Alarm system {self._device_id} task scheduled.")
-        time = SmartAlarmSystem.get_schedule_time()
+        time = SmartDevice.get_system_time()
         arm_schedule_time = time.replace(hour=18, minute=0, second=0, microsecond=0)
         disarm_schedule_time = time.replace(hour=7, minute=0, second=0, microsecond=0)
-        if(time >= arm_schedule_time):
+        if time >= arm_schedule_time:
             self.perform_action("arm")
-        elif(time >= disarm_schedule_time):
+        elif time >= disarm_schedule_time:
             self.perform_action("disarm")
 
     def turn_off(self):
         for sensor in self.__sensors:
             sensor.turn_off()
         super().turn_off()
+
+    def to_dict(self):
+        dict_rep = {"ON":self.is_on}
+        devices = {}
+        for sensor in self.__sensors:
+            devices[sensor.device_id] = sensor.to_dict()
+        dict_rep["sensors"] = devices
+        return dict_rep
+
+    def load_state(self,state):
+        if state['ON']:
+            self.turn_on()
+        else:
+            self.turn_off()
+        devices = dict()
+        for i in self.__sensors:
+            devices[i.device_id] = i
+        for sensor in state["sensors"]:
+            if sensor in devices:
+                devices[sensor].load_state(state["sensors"][sensor])
 
 
 

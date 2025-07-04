@@ -1,0 +1,2 @@
+[SmartCamera] ID: D001, ON:True, Recording:False ,Resolution: (1280, 720)]
+[SmartCamera] ID: D001, ON:True, Recording:False ,Resolution: (1280, 720)]

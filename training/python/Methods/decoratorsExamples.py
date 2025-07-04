@@ -30,6 +30,8 @@ def outerfunc1(args):
 @outerfunc1(2)
 def func1(a):
     print(a)
+
+
 func1("hello")
 
 class Wrappers:

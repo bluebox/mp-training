@@ -1,18 +1,1 @@
-{
-    "_devices": [
-        {
-            "_device_id": "home",
-            "_SmartDevice__is_on": false,
-            "_SmartLight__brightness": 0
-        },
-        {
-            "_device_id": "home2",
-            "_SmartDevice__is_on": false,
-            "_SmartCamera__recording": false,
-            "_SmartCamera__resolution": [
-                1280,
-                720
-            ]
-        }
-    ]
-}
+{"home": {"is_on": false, "brightness": 0, "type": "SmartLight"}, "home2": {"is_on": false, "recording": false, "resolution": "HD", "type": "SmartCamera"}}
