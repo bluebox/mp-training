@@ -1,37 +1,46 @@
-
-# Include a protected _device_id attribute that must be validated using a regular expression (e.g., L001, T015). Invalid IDs should raise an InvalidParameterError.
-
-# Concrete Device Implementations: Implement at least five (5) distinct smart device types inheriting from SmartDevice. Each device must have:
-# Unique, private attributes representing its specific state (e.g., brightness for a light, temperature for a thermostat).
-# Properties (@property and @setter) for controlled access to these attributes, with appropriate validation (e.g., brightness 0-100, temperature within a realistic range).
-# Device-specific implementations for get_status_report(), perform_action(), and get_supported_actions().
-# Asynchronous methods where appropriate (e.g., turn_on(), turn_off(), perform_action() should use asyncio.sleep() to simulate delays).
-
-# Examples of devices (minimum 5 required):
-# SmartLight: Controls on/off state and brightness.
-# SmartThermostat: Controls on/off state and temperature settings.
-# SmartDoorLock: Controls lock/unlock state using a passcode; can also set/change the passcode. Passcode changes must validate the new passcode for strength (e.g., minimum length, uppercase, lowercase, digit, special character).
-# SmartCamera: Controls on/off state, recording, and resolution settings.
-# SmartSpeaker: Controls on/off state, volume, and playing specific tracks.
+import asyncio
 from datetime import datetime
 from abc import ABC,abstractmethod
 import re
+from smart_home_system.core.exceptions import InvalidParameterError, PermissionDeniedError
+from smart_home_system.utils.helpers import validate_id
+
+# class DeviceRegistrarMeta(type):
+#     def __new__(cls, *args, **kwargs):
+#         super().__new__(cls,SmartDevice)
+#         pass ,metaclass=DeviceRegistrarMeta
 
 class SmartDevice(ABC):
     _total_devices_created = 0
+    device_ids = []
+
+    # def __init_subclass__(cls, **kwargs):
+    #     super().__init_subclass__(**kwargs)
+    #     cls.subclasses.append(cls)
 
     def __init__(self, device_id):
+        if not validate_id(device_id):
+            raise InvalidParameterError()
         self._device_id = device_id
         self.__is_on = False
+        SmartDevice.device_ids.append(self._device_id)
         SmartDevice._total_devices_created += 1
 
-    def turn_on(self):
-        self.__is_on = True
-        print(f"Device {self._device_id} turned ON.")
+    async def turn_on(self):
+        if self.__is_on:
+            print(f"Device {self._device_id} already ON.")
+        else:
+            self.__is_on = True
+            await asyncio.sleep(1)
+            print(f"Device {self._device_id} turned ON.")
 
-    def turn_off(self):
-        self.__is_on = False
-        print(f"Device {self._device_id} turned OFF.")
+    async def turn_off(self):
+        if not self.__is_on:
+            print(f"Device {self._device_id} already OFF.")
+        else:
+            self.__is_on = False
+            await asyncio.sleep(1)
+            print(f"Device {self._device_id} turned OFF.")
 
     @property
     def is_on(self):
@@ -46,7 +55,7 @@ class SmartDevice(ABC):
         pass
 
     @abstractmethod
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         pass
 
     @abstractmethod
@@ -65,13 +74,13 @@ class SmartLight(SmartDevice):
 
     def set_brightness(self, level):
         if not self.is_on:
-            print("Light must be on to set brightness.")
+            print("Light must be on to set brightness.") #custom exception DeviceOfflineError
             return
         if 0 <= level <= 100:
             self.__brightness = level
             print(f"Brightness set to {level}%.")
         else:
-            print("Invalid brightness level. Must be 0-100.")
+            print("Invalid brightness level. Must be 0-100.") #InvalidParameterError
 
     @property
     def brightness(self):
@@ -84,19 +93,20 @@ class SmartLight(SmartDevice):
     def get_status_report(self):
         return f"Light {self._device_id} , ON: {self.is_on} , Brightness: {self.__brightness}"
 
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         if action_type == "set_brightness":
             self.set_brightness(value)
         elif action_type == "get_brightness":
             print(f"The brightness is at {self.brightness}")
         elif action_type == "turn_on":
-            self.turn_on()
+            await self.turn_on()
         elif action_type == "turn_off":
-            self.turn_off()
+            await self.turn_off()
         elif action_type == "get_status_report":
             print(self.get_status_report())
         else:
-            print("Unsupported action for SmartLight.")
+            print("Unsupported action for SmartLight.") #ActionNotSupportedError
+        await asyncio.sleep(3)
 
     def get_supported_actions(self):
         print("Supported actions for SmartLight: ","set_brightness, get_brightness, turn_on, turn_off, get_status_report")
@@ -128,19 +138,20 @@ class SmartThermostat(SmartDevice):
     def get_status_report(self):
         return f"Thermostat {self._device_id} , ON: {self.is_on} , Temp: {self.__temperature} °C"
 
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         if action_type == "set_temperature":
             self.set_temperature(value)
         elif action_type == "get_temperature":
             print(f"The temperature is at {self.__temperature} °C")
         elif action_type == "turn_on":
-            self.turn_on()
+            await self.turn_on()
         elif action_type == "turn_off":
-            self.turn_off()
+            await self.turn_off()
         elif action_type == "get_status_report":
             print(self.get_status_report())
         else:
             print("Unsupported action for SmartThermostat.")
+        await asyncio.sleep(3)
 
     def get_supported_actions(self):
         print("Supported actions for SmartThermostat: ","set_temperature, get_temperature, turn_on, turn_off, get_status_report")
@@ -149,50 +160,71 @@ class SmartDoorLock(SmartDevice):
 
     def __init__(self, device_id):
         super().__init__(device_id)
-        self.__passcode = "Medplus@123"
+        self.__passcode = "Abcdef@123"
+        self.__lock = True
 
-    def set_passcode(self, passcode):
+    def set_passcode(self, passcode): #PermissionDeniedError
         if not self.is_on:
             print("SmartDoor must be ON to change passcode.")
             return
-        elif passcode:
-            #([A-Z]+[a-z]+[_@#$\.]+){10,}
+        elif self.validate_passcode(passcode):
             self.__passcode = passcode
         else:
             print("Invalid passcode")
 
-    @property
-    def passcode(self):
-        return self.__passcode
+    # @property
+    # def passcode(self):
+    #     return self.__passcode
+    #
+    # @passcode.setter
+    # def passcode(self, passcode):
+    #     self.set_passcode(passcode)
 
-    @passcode.setter
-    def passcode(self, passcode):
-        self.set_passcode(passcode)
+    def open_door(self,passcode):
+        if not self.is_on:
+            print("SmartDoorLock is in off state, we can open the door")
+        else:
+            if self.__passcode == passcode:
+                print("unlocked, you can open the door")
+            else:
+                print("error, incorrect passcode")
 
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         if action_type == "set_passcode":
             self.set_passcode(value)
         elif action_type == "turn_on":
-            self.turn_on()
+            await self.turn_on()
         elif action_type == "turn_off":
-            self.turn_off()
+            await self.turn_off()
         elif action_type == "get_status_report":
             print(self.get_status_report())
         else:
             print("Unsupported action for SmartDoor.")
+        await asyncio.sleep(3)
 
     def get_status_report(self):
-        return f"SmartDoor {self._device_id} , ON: {self.is_on}"
+        return f"SmartDoorLock {self._device_id} , ON: {self.is_on}"
 
     def get_supported_actions(self):
         print("Supported actions for SmartDoor: ","set_brightness, turn_on, turn_off, get_status_report")
+
+    async def validate_passcode(self, passcode):
+        old = input("Enter your old passcode: ")
+        if old == self.__passcode:
+            if re.match(r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[_@.$])[A-Za-z\d_@.$]{10,}$",passcode):
+                return True
+            print("The passcode should have at least one uppercase,at least one lowercase,\nat least one Special character,at least one digit and must have length at least 10")
+            return False
+        print("passcode mismatch")
+        await asyncio.sleep(2)
+        return False
 
 class SmartCamera(SmartDevice):
 
     def __init__(self, device_id):
         super().__init__(device_id)
         self.__is_recording = False
-        self.resolution = "720p"
+        self.__resolution = "720p"
 
     def set_recording(self, value):
         if not self.is_on:
@@ -218,8 +250,8 @@ class SmartCamera(SmartDevice):
         if not self.is_on:
             print("SmartCamera must be ON to set resolution")
         elif value in ("720p","1080p",'2k','4k'):
-            self.resolution = value
-            print(f"SmartCamera resolution is set to {self.resolution}")
+            self.__resolution = value
+            print(f"SmartCamera resolution is set to {self.__resolution}")
         else:
             print("Invalid resolution for this SmartCamera")
 
@@ -232,21 +264,22 @@ class SmartCamera(SmartDevice):
         self.set_recording(value)
 
     def get_status_report(self):
-        return f"SmartCamera {self._device_id} , ON: {self.is_on} , Resolution: {self.resolution} , Is in recording: {self.__is_recording}"
+        return f"SmartCamera {self._device_id} , ON: {self.is_on} , Resolution: {self.__resolution} , Is in recording: {self.__is_recording}"
 
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         if action_type == "set_resolution":
             self.set_resolution(value)
         elif action_type == "turn_on":
-            self.turn_on()
+            await self.turn_on()
         elif action_type == "turn_off":
-            self.turn_off()
+            await self.turn_off()
         elif action_type == "get_status_report":
             print(self.get_status_report())
         elif action_type == "set_recording":
             self.set_resolution(value)
         else:
             print("Unsupported action for SmartCamera.")
+        await asyncio.sleep(3)
 
     def get_supported_actions(self):
         print("set_resolution, turn_on, turn_off, get_status_report, set_recording")
@@ -263,7 +296,10 @@ class SmartSpeaker(SmartDevice):
 
     @volume.setter
     def volume(self, value):
-        if 0 <= value <= 100:
+        if not self.is_on:
+            print("Speaker must be ON to set volume.")
+            return
+        elif 0 <= value <= 100:
             self.__volume = value
             print(f"Volume set to {value}%.")
         else:
@@ -279,20 +315,20 @@ class SmartSpeaker(SmartDevice):
     def get_status_report(self):
         return f"SmartSpeaker {self._device_id}, ON: {self.is_on}, Volume: {self.__volume}, Now Playing: {self.__track or 'Nothing'}"
 
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         if action_type == "set_volume":
             self.volume = value
         elif action_type == "play_track":
             self.play_track(value)
         elif action_type == "turn_on":
-            self.turn_on()
+            await self.turn_on()
         elif action_type == "turn_off":
-            self.turn_off()
+            await self.turn_off()
         elif action_type == "get_status_report":
             print(self.get_status_report())
         else:
             print("Unsupported action for SmartSpeaker.")
+        await asyncio.sleep(3)
 
     def get_supported_actions(self):
         print("Supported actions for SmartSpeaker: set_volume, play_track, turn_on, turn_off, get_status_report")
-
