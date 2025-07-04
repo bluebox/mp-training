@@ -45,10 +45,10 @@ public class FilterConfig {
 		return http.build();
 	}
 	private HashMap<String, String> m1;
-	@Autowired
-	public void myMap(LoginDetails l) {
-		this.m1=l.getData();
-	}
+//	@Autowired
+//	public void myMap(LoginDetails l) {
+//		this.m1=l.getData();
+//	}
 	@Bean
 	public InMemoryUserDetailsManager userDetails() {
 //		if(!l.getL().isEmpty()) {
