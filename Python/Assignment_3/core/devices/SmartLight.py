@@ -1,3 +1,5 @@
+import asyncio
+
 from core.devices.SmartDevice import SmartDevice
 from core.exceptions import ActionNotSupportedError, DeviceOfflineError
 
@@ -28,7 +30,7 @@ class SmartLight(SmartDevice):
     def get_status_report(self):
         return f"SmartLight {self._device_id}: ON={self.is_on()}, Brightness={self._brightness}"
 
-    def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None):
         try:
             if action_type == "set_brightness":
                 self.brightness = value
@@ -40,11 +42,13 @@ class SmartLight(SmartDevice):
     def get_supported_actions(self):
         return "set_brightness"
 
-
-if __name__ == '__main__':
+async def main():
     a = SmartLight('L001')
     print(a.get_supported_actions())
     print(a.get_system_time())
     print(a.get_status_report())
+    await a.turn_on()
     a.perform_action('set_brightness', 20)
     print(a.get_status_report())
+if __name__ == '__main__':
+    asyncio.run(main())
