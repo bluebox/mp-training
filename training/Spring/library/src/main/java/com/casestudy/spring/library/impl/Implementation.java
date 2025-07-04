@@ -12,24 +12,24 @@ import com.casestudy.spring.library.beans.Book;
 import com.casestudy.spring.library.beans.IssueRecord;
 import com.casestudy.spring.library.beans.Member;
 import com.casestudy.spring.library.dao.BooksDaoUsingJdbcTemplate;
-import com.casestudy.spring.library.dao.IssueRecordDao;
 import com.casestudy.spring.library.dao.IssueRecordDaoUsingJdbcTemplate;
-import com.casestudy.spring.library.dao.MembersDao;
+import com.casestudy.spring.library.dao.MembersDaoUsingJdbcTemplate;
 
 @Service
 public class Implementation {
 
 	//private BooksDao bookDao;
-	private MembersDao membersDao;
-	private IssueRecordDao issueRecordDao;
+	//private MembersDao membersDao;
+	//private IssueRecordDao issueRecordDao;
 	/*
 	 * @Autowired BooksDaoUsingJdbcTemplate bookDaoUsingJdbcTemplate;
 	 */
 	private BooksDaoUsingJdbcTemplate bookDao;
-	//private IssueRecordDaoUsingJdbcTemplate issueRecordDao;
+	private IssueRecordDaoUsingJdbcTemplate issueRecordDao;
+	private MembersDaoUsingJdbcTemplate membersDao;
 
 	@Autowired
-	public Implementation(BooksDaoUsingJdbcTemplate bookDao, MembersDao membersDao, IssueRecordDao issueRecordDao) {
+	public Implementation(BooksDaoUsingJdbcTemplate bookDao, MembersDaoUsingJdbcTemplate membersDao, IssueRecordDaoUsingJdbcTemplate issueRecordDao) {
 		super();
 		this.bookDao = bookDao;
 		this.membersDao = membersDao;
@@ -74,6 +74,10 @@ public class Implementation {
 
 	public Book getBookById(int bookId) {
 		return bookDao.searchBook(bookId);
+	}
+	
+	public boolean findBookById(Book book) {
+		return bookDao.findBook(book.getBookId());
 	}
 
 	// Member

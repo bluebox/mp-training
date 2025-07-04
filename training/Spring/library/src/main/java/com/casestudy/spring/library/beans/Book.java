@@ -24,7 +24,7 @@ public class Book {
 	@Pattern(regexp = "^(?!.*  )[A-Za-z ]+$",message = "Author Name Must contain only letters and spaces, and no consecutive spaces")
 	private String author;
 	@NotBlank
-    @Size(min = 3, max = 20, message = "The name should be between 3 and 20 chars")
+    @Size(min = 3, max = 20, message = "The category should be between 3 and 20 chars")
 	@Pattern(regexp = "^(?!.*  )[A-Za-z ]+$",
     message = "Category Must contain only letters and spaces, and no consecutive spaces")
 	private String category;

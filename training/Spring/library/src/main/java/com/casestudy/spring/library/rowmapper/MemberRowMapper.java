@@ -1,0 +1,24 @@
+package com.casestudy.spring.library.rowmapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.casestudy.spring.library.beans.Gender;
+import com.casestudy.spring.library.beans.Member;
+
+public class MemberRowMapper implements RowMapper<Member> {
+
+	@Override
+	public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Member member = new Member();
+		member.setMemberId(rs.getInt("memberId"));
+		member.setName(rs.getString("name"));
+		member.setEmail(rs.getString("email"));
+		member.setGender(Gender.fromCode(rs.getString("gender")));
+		member.setMobile(rs.getLong("mobile"));
+		member.setAddress(rs.getString("address"));
+		return member;
+	}
+}

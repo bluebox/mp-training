@@ -1,18 +1,23 @@
 package com.casestudy.spring.library.dao;
 
-import com.casestudy.spring.library.beans.Gender;
-import com.casestudy.spring.library.beans.Member;
-import com.casestudy.spring.library.util.DBUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.casestudy.spring.library.beans.Gender;
+import com.casestudy.spring.library.beans.Member;
+import com.casestudy.spring.library.dao.models.MembersDaoModel;
+import com.casestudy.spring.library.util.DBUtil;
 
 @Repository
-public class MembersDao {
+public class MembersDao implements MembersDaoModel{
     private static final Logger logger = LoggerFactory.getLogger(MembersDao.class);
 
     public void addMember(Member member) {

@@ -54,29 +54,33 @@ public class BooksDaoUsingJdbcTemplate implements BooksDaoModel {
 	@Override
 	@Transactional
 	public boolean updateBook(Book book) {
-		String query = "SELECT bookId, title, author, category, status, availability FROM Books WHERE bookId = :bookId";
-		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("bookId", book.getBookId());
-		Book tempBook = namedParameterJdbcTemplate.queryForObject(query, param, new BookRowMapper());
+		try {
+			String query = "SELECT bookId, title, author, category, status, availability FROM Books WHERE bookId = :bookId";
+			MapSqlParameterSource param = new MapSqlParameterSource();
+			param.addValue("bookId", book.getBookId());
+			Book tempBook = namedParameterJdbcTemplate.queryForObject(query, param, new BookRowMapper());
 
-		query = "insert into LogBooks(bookId, title, author, category, status,availability) values(:bookId,:title,:author,:category,:status,:availability)";
-		MapSqlParameterSource tempParam = new MapSqlParameterSource();
-		tempParam.addValue("title", tempBook.getTitle());
-		tempParam.addValue("author", tempBook.getAuthor());
-		tempParam.addValue("category", tempBook.getCategory());
-		tempParam.addValue("status", tempBook.getStatus().getCode());
-		tempParam.addValue("availability", book.getAvailable().getCode());
-		tempParam.addValue("bookId", tempBook.getBookId());
-		namedParameterJdbcTemplate.update(query, tempParam);
+			query = "insert into LogBooks(bookId, title, author, category, status,availability) values(:bookId,:title,:author,:category,:status,:availability)";
+			MapSqlParameterSource tempParam = new MapSqlParameterSource();
+			tempParam.addValue("title", tempBook.getTitle());
+			tempParam.addValue("author", tempBook.getAuthor());
+			tempParam.addValue("category", tempBook.getCategory());
+			tempParam.addValue("status", tempBook.getStatus().getCode());
+			tempParam.addValue("availability", book.getAvailable().getCode());
+			tempParam.addValue("bookId", tempBook.getBookId());
+			namedParameterJdbcTemplate.update(query, tempParam);
 
-		String sql = "update Books set title = :title,author = :author,category = :category,status = :status where bookId = :bookId";
-		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("title", book.getTitle());
-		params.addValue("author", book.getAuthor());
-		params.addValue("category", book.getCategory());
-		params.addValue("status", book.getStatus().getCode());
-		params.addValue("bookId", book.getBookId());
-		return namedParameterJdbcTemplate.update(sql, params) > 0;
+			String sql = "update Books set title = :title,author = :author,category = :category,status = :status where bookId = :bookId";
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("title", book.getTitle());
+			params.addValue("author", book.getAuthor());
+			params.addValue("category", book.getCategory());
+			params.addValue("status", book.getStatus().getCode());
+			params.addValue("bookId", book.getBookId());
+			return namedParameterJdbcTemplate.update(sql, params) > 0;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
@@ -88,12 +92,19 @@ public class BooksDaoUsingJdbcTemplate implements BooksDaoModel {
 
 	@Override
 	public boolean CanBeIssued(int bookId) {
-		String sql = "SELECT 1 FROM Books where bookId = :id and status = 'A' and availability = 'A'";
+		System.out.println("1");
+		String sql = "SELECT 1 FROM Books where bookId = :bookId and status = 'A' and availability = 'A'";
 		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("id", bookId);
+		params.addValue("bookId", bookId);
+		System.out.println("2");
 		try {
-			return namedParameterJdbcTemplate.queryForObject(sql, params, Integer.class) == 1;
+			System.out.println("3");
+			int val = namedParameterJdbcTemplate.queryForObject(sql, params, Integer.class);
+			System.out.println("4");
+			System.out.println(val);
+			return val == 1;
 		} catch (Exception e) {
+			System.out.println(e.toString());
 			return false;
 		}
 	}
@@ -104,9 +115,9 @@ public class BooksDaoUsingJdbcTemplate implements BooksDaoModel {
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("id", tempId);
 		try {
-		    return namedParameterJdbcTemplate.queryForObject(sql, param, new BookRowMapper());
+			return namedParameterJdbcTemplate.queryForObject(sql, param, new BookRowMapper());
 		} catch (DataAccessException e) {
-		    return null;
+			return null;
 		}
 	}
 
@@ -114,7 +125,12 @@ public class BooksDaoUsingJdbcTemplate implements BooksDaoModel {
 	public boolean findBook(int tempId) {
 		String sql = "SELECT 1 from Books where bookId = ?";
 		try {
-			return jdbcTemplate.queryForObject(sql, new Object[] { tempId }, Integer.class) == 1;
+			int val = jdbcTemplate.queryForObject(sql, new Object[] { tempId }, Integer.class);
+			if (val == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			return false;
 		}

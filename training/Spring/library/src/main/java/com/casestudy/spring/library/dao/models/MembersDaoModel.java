@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.casestudy.spring.library.beans.Member;
 
-public interface MembresDaoModel {
+public interface MembersDaoModel {
 	
 	public abstract void addMember(Member member);
 	
