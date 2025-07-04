@@ -79,6 +79,9 @@ public class Main {
 		{
 			System.out.println("InValid ID Number!");
 			memberIdCheck();
+		}else if(gym.findMemberById(memberId) != null) {
+			System.out.println("Id already Exists! Please Chose another Id!");
+			memberIdCheck();
 		}
 		else {
 			memberNameCheck(memberId);
