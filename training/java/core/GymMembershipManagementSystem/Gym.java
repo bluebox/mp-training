@@ -54,6 +54,15 @@ public class Gym {
 			 plans.get(i).showPlanDetails();
 		 }
 	 }
+	 public boolean isMemberPresent(String id)
+	 {
+		 for(Member m:members)
+		 {
+			 if(m.getMemberId().equals(id))
+				 return true;
+		 }
+		 return false;
+	 }
 	
 
 }
