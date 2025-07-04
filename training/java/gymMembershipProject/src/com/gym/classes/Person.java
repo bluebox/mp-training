@@ -13,8 +13,6 @@ public abstract class Person {
 		this(name,age,0,0);
 	}
 	
-	
-	
 	public Person(String name, int age, int height, int weight) {
 		this.name = name;
 		this.age = age;

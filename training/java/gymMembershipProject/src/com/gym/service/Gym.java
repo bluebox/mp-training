@@ -1,19 +1,28 @@
 package com.gym.service;
 
-import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import com.gym.classes.Member;
 import com.gym.classes.MembershipPlan;
+import com.gym.dao.MemberDao;
+import com.gym.dao.MemberFileDao;
 
+
+//add plans in file and fetch
+//add object validation in service
+//change auto id to customer constructor
+//file handling exception handling in main (throw error from dao handle in service)
+//send only one member to save not the entire list
 
 public class Gym {
     private ArrayList<Member> members;
     private static ArrayList<MembershipPlan> plans = new ArrayList<>();
+    private MemberDao memberDao = new MemberFileDao();
     private int lastId = 0;
     
-    private static final String FILE_NAME = "members.txt";
+    //private static final String FILE_NAME = "members.txt";
 
     static {
         plans.add(new MembershipPlan("Basic", 3, 5000));
@@ -27,43 +36,74 @@ public class Gym {
     }
 
     public void addNewMember(String name, int age, int height, int weight) {
+    	loadDataFromFile();
         lastId += 1;
         Member mem = new Member(lastId, name, age, height, weight);
         members.add(mem);
+        memberDao.saveToFile(members);
         System.out.println("User registered!\n");
-        saveDataToFile();
     }
 
-    public void showAllMembers() {
-        System.out.println("\n======================= Current Members =========================");
-        for (Member x : members) {
-        	x.showDetails();
-        }
-        System.out.println("=================================================================\n");
+    public ArrayList<Member> showAllMembers() {
+    	loadDataFromFile();
+    	return members;
     }
-
-    public void assignPlanToMember(int memberId) {
-        boolean memberFound = false;
-        System.out.println("Enter the plan id you want to assign:");
-        for (int i = 0; i < plans.size(); i++) {
+    
+    public void displayPlans() {
+    	for (int i = 0; i < plans.size(); i++) {
             System.out.printf("%d. %s\n", i + 1, plans.get(i).planName);
         }
-
-        Scanner sc = new Scanner(System.in);
-        int planId = sc.nextInt() - 1;
-
+    }
+    
+    public void assignPlanToMember(int memberId, int planId,String date) throws InvalidDateException {
+    	members = memberDao.loadFromFile();
         for (Member x : members) {
             if (x.getMemberId() == memberId) {
-                x.setMemPlan(plans.get(planId));
-                memberFound = true;
+            	MembershipPlan targetPlan = plans.get(planId-1);
+            	MembershipPlan currentPlan = x.getMembershipPlan();
+            	
+            	if(currentPlan != null) {
+            	if(currentPlan.getFee() > targetPlan.getFee()) {
+            			System.out.println("Cannot downgrade your plan!\n");
+            			return;
+            		}
+            		if(currentPlan.getFee() == targetPlan.getFee()) {
+            			System.out.println("You already have that plan assigned!\n");
+            			return;
+            		}
+            		//calculate the perDay for the current plan 
+            		//calculate the remaining days from user's registered day
+            		double perDay = currentPlan.getFee()/(currentPlan.getDurationMonths()*30.00d);
+
+            		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            		            		
+                    LocalDate currDate = LocalDate.parse(date, formatter);
+                    LocalDate prevDate = LocalDate.parse(x.getJoinDate(), formatter);
+                                     
+                    if(prevDate.isAfter(currDate)) {
+                    	System.out.println("Cannot enter date earlier than the previous date\n");
+                    	throw new InvalidDateException("The date you entered is invalid");
+                    	
+                    }
+                    
+                    long daysBetween = ChronoUnit.DAYS.between(prevDate,currDate);
+                    long daysRemaining = currentPlan.getDurationMonths()*30 - daysBetween;
+                    
+                    if(daysRemaining > 0) {
+                    	double payable = targetPlan.getFee() - (daysRemaining*perDay);
+                        System.out.printf("Member only had to pay %.2f\n",payable);
+                    }
+            	}
+                x.setMemPlan(targetPlan);
+                x.setJoinDate(date);
                 System.out.println("Successfully assigned plan to user!\n");
-                saveDataToFile();
+                memberDao.saveToFile(members);
+                return ;
             }
         }
 
-        if (!memberFound) {
-            System.out.println("Member not found. Please enter a valid id.\n");
-        }
+                System.out.println("Member not found. Please enter a valid id.\n");
+
     }
 
     public static ArrayList<MembershipPlan> getPlans() {
@@ -71,71 +111,40 @@ public class Gym {
     }
 
     public ArrayList<Member> getMembers() {
-        return members;
+        return memberDao.loadFromFile();
     }
 
-    //File handling
-    private void saveDataToFile() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_NAME))) {
-            for (Member m : members) {
-                pw.println(
-                        m.getMemberId() + "," + m.getMemberName() + "," + m.getMemberAge() + "," + m.getMemberHeight() + "," + m.getMemberWeight() + "," +
-                                (m.getMembershipPlan() != null ? m.getMembershipPlan().planName : "NoPlan")
-                );
-            }
-        } catch (IOException e) {
-            System.out.println("Error saving data: " + e.getMessage());
-        }
-    }
+    public Member getMemberById(int id) {
+    	for(Member member : members) {
+    		if(member.getMemberId() == id) {
+    			return member;
+    		}
+    	}
 
+    	return null;
+    }
     
     private void loadDataFromFile() {
-        File file = new File(FILE_NAME);
-        if (!file.exists()) return;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 6) {
-                    int id = Integer.parseInt(parts[0]);
-                    String name = parts[1];
-                    int age = Integer.parseInt(parts[2]);
-                    int height = Integer.parseInt(parts[3]);
-                    int weight = Integer.parseInt(parts[4]);
-                    String planName = parts[5];
-
-                    Member m = new Member(id, name, age, height, weight);
-                    if (!planName.equals("NoPlan")) {
-                        for (MembershipPlan p : plans) {
-                            if (p.planName.equalsIgnoreCase(planName)) {
-                                m.setMemPlan(p);
-                                break;
-                            }
-                        }
-                    }
-                    members.add(m);
-                    if (id > lastId) lastId = id; // Update lastId to avoid duplicate IDs
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading data: " + e.getMessage());
-        }
+    	members = memberDao.loadFromFile();
+    	//get back the max id
+    	int maxId = lastId;
+    	for(Member member : members) {
+    		if(member.getMemberId() > maxId) {
+    			maxId = member.getMemberId();
+    		}
+    	}
+    	lastId = maxId;
     }
-    public void deleteMember() {
+    
+    public void deleteMember(int idToDelete) {
+    	
+    	loadDataFromFile();
         if (members.isEmpty()) {
             System.out.println("No members to delete.\n");
             return;
         }
 
-        // Show all members
-        showAllMembers();
-
-        // Ask for member ID
-        System.out.println("Enter the ID of the member you want to delete:");
-        Scanner sc = new Scanner(System.in);
-
-        int idToDelete = sc.nextInt();
+       
         boolean found = false;
 
         for (int i = 0; i < members.size(); i++) {
@@ -143,13 +152,26 @@ public class Gym {
                 members.remove(i);
                 found = true;
                 System.out.println("Member deleted successfully!\n");
-                saveDataToFile(); // Save after deleting
+                memberDao.saveToFile(members); //Save after deleting
                 break;
             }
         }
-
+        
         if (!found) {
             System.out.println("Member with ID " + idToDelete + " not found.\n");
         }
     }
 }
+
+
+class InvalidDateException extends Exception{
+	private static final long serialVersionUID = 1L;
+
+	public InvalidDateException(String message) {
+		super(message);
+	}
+}
+
+
+
+

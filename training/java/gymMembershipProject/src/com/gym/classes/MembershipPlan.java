@@ -16,7 +16,12 @@ public class MembershipPlan {
 		return "Membership Plan=" + planName + ", Duration=" + durationMonths + " Months "+ ", fee=" + fee;
 	}
 	
+	public int getFee() {
+		return fee;
+	}
 	
-
+	public int getDurationMonths() {
+		return durationMonths;
+	}
 	
 }

@@ -1,3 +1,3 @@
-2,Tulasidhar,12,120,20,Basic
-3,saketh,21,120,60,Gold
-5,praveen,27,180,60,Gold
+5,Tulasidhar,20,180,72,Gold,10-12-2027
+6,pavan,25,190,70,Basic,10-02-2025
+7,Dasu,20,200,70,NoPlan,NA
