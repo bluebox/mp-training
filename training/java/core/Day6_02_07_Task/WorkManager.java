@@ -6,9 +6,9 @@ import java.util.HashSet;
 
 public class WorkManager {
 
-    private HashSet<WorkItem> itemSet;
+    private HashSet<Task> itemSet;
 
-    public WorkManager(HashSet<WorkItem> itemSet) {
+    public WorkManager(HashSet<Task> itemSet) {
         this.itemSet = itemSet;
     }
 
@@ -23,9 +23,9 @@ public class WorkManager {
     }
 
     public void displaySorted() {
-        ArrayList<WorkItem> sorted = new ArrayList<>(itemSet);
-        sorted.sort(Comparator.comparing(WorkItem::getProjectName)
-                              .thenComparing(WorkItem::getTaskDetails));
+        ArrayList<Task> sorted = new ArrayList<>(itemSet);
+        sorted.sort(Comparator.comparing(Task::getProjectName)
+                              .thenComparing(Task::getTaskDetails));
         sorted.forEach(System.out::println);
     }
 }
