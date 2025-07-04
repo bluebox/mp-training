@@ -38,8 +38,8 @@ class SmartDoorLock(SmartDevice):
         return f"SmartDoorLock {self._device_id}: ON={self.is_on()}, LOCKED={self.lock}"
 
     async def perform_action(self, action_type, current_passcode=None, new_passcode=None):
-        if new_passcode==None:
-            new_passcode=current_passcode
+        if new_passcode == None:
+            new_passcode = current_passcode
         try:
             if action_type == 'change_passcode':
                 if current_passcode == self.passcode:
@@ -62,7 +62,6 @@ class SmartDoorLock(SmartDevice):
         return ['change_passcode', 'change_lock']
 
 
-# Example Usage
 if __name__ == '__main__':
     a = SmartDoorLock('l001', '12345@Aa')
     print(a.get_supported_actions())

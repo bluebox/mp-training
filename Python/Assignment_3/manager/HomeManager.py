@@ -138,7 +138,7 @@ async def main():
     # await  a.save_config()
     # await a.load_config()
     await a.control_device('admin', 'l002', 'set_temperature', 25)
-    await a.control_device('admin','l001','change_lock','Aanand@123')
+    await a.control_device('admin', 'l001', 'change_lock', 'Aanand@123')
     print(b.lock)
     ans = all_id_of_online(a)
     for i in generator_id_online(ans):
@@ -146,8 +146,10 @@ async def main():
     print(avg_temperature_thermostat(a))
     print(get_properties(a))
     # print(a._devices)
-    scene=SceneManager()
-    scene.add_scene('good_morning',[('l001','change_lock','Aanand@123')])
-    await scene.activate_scene(a,'good_morning','admin')
+    scene = SceneManager()
+    scene.add_scene('good_morning', [('l001', 'change_lock', 'Aanand@123')])
+    await scene.activate_scene(a, 'good_morning', 'admin')
+
+
 if __name__ == '__main__':
     asyncio.run(main())

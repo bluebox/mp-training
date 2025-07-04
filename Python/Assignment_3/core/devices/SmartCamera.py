@@ -3,11 +3,13 @@ from core.exceptions import ActionNotSupportedError, DeviceOfflineError
 from utils.decorators import require_device_on
 import asyncio
 
+
 class SmartCamera(SmartDevice):
     def __init__(self, device_id):
         super().__init__(device_id)
         self._is_recording = False
         self._resolution = "1080p"
+
     @require_device_on
     def start_recording(self):
         if self._is_recording:
@@ -52,14 +54,13 @@ class SmartCamera(SmartDevice):
         return ["start_recording", "stop_recording", "set_resolution"]
 
 
-# Test
 if __name__ == '__main__':
     a = SmartCamera('l001')
     print(a.get_status_report())
     a.perform_action('set_resolution', '2048p')
     a.turn_on()
     a.perform_action("start_recording")
-    a.perform_action("start_recording")  # already recording
+    a.perform_action("start_recording")
     a.perform_action("stop_recording")
     a.perform_action('set_resolution', '2048p')
     print(a.get_status_report())
