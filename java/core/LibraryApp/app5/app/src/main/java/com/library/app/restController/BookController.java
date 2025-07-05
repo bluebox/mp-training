@@ -32,9 +32,11 @@ import com.library.app.service.LibraryService;
 @Slf4j
 @RestController
 @RequestMapping("/api/book")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:3000/")
+//@CrossOrigin(origins="*")
+
 public class BookController {
-//	Logger log=LoggerFactory.getLogger(BookController.class.getName());
+	
 	private LibraryService libraryService;
 	@Autowired
 	public BookController(LibraryService libraryService) {
@@ -42,24 +44,29 @@ public class BookController {
 	}
 	
 	
-//	@RequestMapping(value="/addBook",method=RequestMethod.POST)
 	@PostMapping(value="/addBook")
 	public ResponseEntity<Response> addBookPage(@RequestHeader("invocationFrom") String invocationFrom,@RequestBody Book book) {
 	    
+			Response response = new Response();
 	        log.info(String.format("Header invocationFrom = %s", invocationFrom));
 	        try {
 				libraryService.addBook(book);
-			} catch (Exception e) {
+				response.setStatusCode("200");
+				response.setStatusMsg("Book added successfully!");
+				return ResponseEntity
+						.status(HttpStatus.CREATED)
+						.header("isBookAdded", "true")
+						.body(response);
+			} 
+	        catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        Response response = new Response();
-	        response.setStatusCode("200");
-	        response.setStatusMsg("Book added successfully!");
-	        return ResponseEntity
-	                .status(HttpStatus.CREATED)
-	                .header("isBookAdded", "true")
-	                .body(response);
+	        response.setStatusCode("400");
+            response.setStatusMsg("Book not added!");
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(response);
 	}
 	
 	@PutMapping(value="/updateBook")
@@ -70,34 +77,28 @@ public class BookController {
 	        try {
 	        	Book isPresentBook = libraryService.getBookById(book.getBookId());
 	        	log.info("The BOOK ID is"+isPresentBook.getBookId());
-	        	if(isPresentBook.getBookId() == book.getBookId()) {
+	        	if(isPresentBook !=null && isPresentBook.getBookId() == book.getBookId()) {
 				libraryService.updateBook(book);
+				response.setStatusCode("200");
+				response.setStatusMsg("Book updated successfully!");
+				return ResponseEntity
+						.status(HttpStatus.CREATED)
+						.header("isBookUpdated", "true")
+						.body(response);
 	        	}
-	        	else {
-	        		response.setStatusCode("400");
-		            response.setStatusMsg("No book found this Book ID!");
-		            return ResponseEntity
-		                    .status(HttpStatus.BAD_REQUEST)
-		                    .body(response);
-	        	}
-			} catch (Exception e) {
+			} 
+	        catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.setStatusCode("200");
-			response.setStatusMsg("Book updated successfully!");
-			return ResponseEntity
-					.status(HttpStatus.CREATED)
-					.header("isBookUpdateded", "true")
-					.body(response);
+	        response.setStatusCode("400");
+            response.setStatusMsg("No book found on this Book ID!");
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(response);
+		
 	}
 	
-
-
-	
-
-
-//	@RequestMapping(value="/books", method=RequestMethod.GET)
 	@GetMapping(value="/books")
 	public List<Book> viewAllBooksPage() throws Exception {
 	        List<Book> books = libraryService.viewAllBooks();
