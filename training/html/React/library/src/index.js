@@ -1,23 +1,18 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { useState } from 'react';
-
-const [Books,setBooks]=useState(
-  bookId=0,
-  title="",
-  author="",
-  category="",
-  bookStatus="",
-  availability=""
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
-class Book extends React.Component{
-  constructor(){
-    bookId=this.bookId;
-    title=this.title;
-    author=this.author;
-    category=this.category;
-    bookStatus=this.bookStatus;
-    availability=this.availability;
-  }
-}
-const root=ReactDOM.createRoot(document.getElementById("root"));
-root.render();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+

@@ -1,7 +1,9 @@
-import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom/client';
 
-const books=[{bookId:1,title:"Monster",author:"Mdfdv",category:"Physicological",status:"A",availability:"A"},{bookId:2,title:"Mob 100",author:"One",category:"Comedy,Fantasy,Mystery",status:"A",availability:"A"}];
-function Book(props){
+// const books=[{bookId:1,title:"Monster",author:"Mdfdv",category:"Physicological",status:"A",availability:"A"},{bookId:2,title:"Mob 100",author:"One",category:"Comedy,Fantasy,Mystery",status:"A",availability:"A"}];
+const books=[];
+books
+function ShowBook(props){
     return (
     <tr>
         <td>{props.sample.bookId}</td>
@@ -26,10 +28,10 @@ function ShowBooks(){
                     <th>Status</th>
                     <th>Availability</th>
                 </tr>
-                {books.map((book)=> <Book sample={book}/>)}
+                {localStorage.map((book)=> <Book sample={book}/>)}
             </table>
         </div>
     );
 }
-const root=ReactDOM.createRoot(document.getElementById("root"));
-root.render(<ShowBooks/>);
+
+export default ShowBooks;
