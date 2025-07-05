@@ -1,8 +1,8 @@
+import asyncio
 from core.devices.SmartDevice import SmartDevice, DeviceRegistrarMeta
 from utils.decorators import require_device_on
 from utils.helper import passcode_validate
-from core.exceptions import InvalidPasscodeError, ActionNotSupportedError, DeviceOfflineError
-import asyncio
+from core.exceptions import InvalidPasscodeError,ActionNotSupportedError,DeviceOfflineError,AuthenticationError
 
 
 class SmartDoorLock(SmartDevice):
@@ -38,40 +38,56 @@ class SmartDoorLock(SmartDevice):
         return f"SmartDoorLock {self._device_id}: ON={self.is_on()}, LOCKED={self.lock}"
 
     async def perform_action(self, action_type, current_passcode=None, new_passcode=None):
-        if new_passcode == None:
+        if new_passcode is None:
             new_passcode = current_passcode
-        try:
-            if action_type == 'change_passcode':
-                if current_passcode == self.passcode:
-                    self.passcode = new_passcode
-                    print(f'passcode of {self._device_id} is change to {new_passcode}')
-                else:
-                    print("Enter correct passcode to change the passcode")
-            elif action_type == 'change_lock':
-                if current_passcode == self.passcode:
-                    self.lock = not self.lock
-                    print(f'the device with id {self._device_id} is changed')
-                else:
-                    print('Enter correct passcode to change the lock')
+
+        if action_type == 'change_passcode':
+            if current_passcode == self.passcode:
+                self.passcode = new_passcode
+                print(f'Passcode of {self._device_id} changed to {new_passcode}')
             else:
-                raise ActionNotSupportedError()
-        except ActionNotSupportedError as e:
-            print('ERROR:', e)
+                raise AuthenticationError(f"Incorrect passcode for changing passcode on {self._device_id}")
+
+        elif action_type == 'change_lock':
+            if current_passcode == self.passcode:
+                self.lock = not self.lock
+                print(f'Lock status of device {self._device_id} toggled.')
+            else:
+                raise AuthenticationError(f"Incorrect passcode for changing lock on {self._device_id}")
+
+        else:
+            raise ActionNotSupportedError(f"Action '{action_type}' is not supported for SmartDoorLock")
 
     def get_supported_actions(self):
         return ['change_passcode', 'change_lock']
 
 
-if __name__ == '__main__':
+async def main():
     a = SmartDoorLock('l001', '12345@Aa')
     print(a.get_supported_actions())
-    a.turn_on()
+    await a.turn_on()
     a.lock = False
-    a.perform_action('change_passcode', 'sfsdfsf')
-    a.perform_action('change_lock', '12345@Aa')
+
+    try:
+        await a.perform_action('change_passcode', 'sfsdfsf')
+    except AuthenticationError as e:
+        print("ERROR:", e)
+
+    await a.perform_action('change_lock', '12345@Aa')
     print(a.get_status_report())
-    a.perform_action('change_lock', '12345@Aa')
+
+    await a.perform_action('change_lock', '12345@Aa')
     print(a.get_status_report())
-    a.turn_off()
-    a.perform_action('change_lock', '12345@Aa')
+
+    await a.turn_off()
+
+    try:
+        await a.perform_action('change_lock', '12345@Aa')
+    except DeviceOfflineError as e:
+        print("ERROR:", e)
+
     print(a.get_status_report())
+
+
+if __name__ == '__main__':
+    asyncio.run(main())

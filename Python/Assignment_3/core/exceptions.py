@@ -18,3 +18,12 @@ class ActionNotSupportedError(Exception):
 class DeviceOfflineError(Exception):
     def __init__(self, message="Firstly Turn On the Device to perform Action"):
         super().__init__(message)
+
+
+class SmartDeviceException(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+class AuthenticationError(Exception):
+    def __init__(self,message):
+        super().__init__(message)

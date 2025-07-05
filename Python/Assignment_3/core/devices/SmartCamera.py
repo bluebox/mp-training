@@ -1,7 +1,6 @@
 from core.devices.SmartDevice import SmartDevice
 from core.exceptions import ActionNotSupportedError, DeviceOfflineError
 from utils.decorators import require_device_on
-import asyncio
 
 
 class SmartCamera(SmartDevice):
