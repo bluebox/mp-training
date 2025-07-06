@@ -7,14 +7,12 @@ import com.library.enums.Availability;
 import com.library.enums.Status;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Setter
 @Getter
 @ToString
-@NoArgsConstructor
 public class Books {
 	@NotNull(message="Book ID is required")
 	private long bookId;
@@ -27,7 +25,8 @@ public class Books {
     private String category;
 	private char status;
     private char availability;
-    public Books(Long bookId2, String title, String author, String category) {
+    
+    public Books(long bookId2, String title, String author, String category) {
         this.bookId = bookId2;
         this.title = title;
         this.author = author;
@@ -35,6 +34,9 @@ public class Books {
         this.status = Status.Active.getStatus();
         this.availability = Availability.Available.getAvailability();
     }
+
+	public Books() {
+	}
 //    public Books(Long bookId2, String title, String author, String category,char status,char availability) {
 //        this.bookId = bookId2;
 //        this.title = title;

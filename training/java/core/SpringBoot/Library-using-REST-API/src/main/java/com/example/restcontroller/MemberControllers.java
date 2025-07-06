@@ -3,6 +3,7 @@ package com.example.restcontroller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.example.service.MemberService;
 
 @RestController
 @RequestMapping("/member")
+@CrossOrigin(origins="http://localhost:3000")
 public class MemberControllers {
 	@Autowired
 	private MemberService mem;
@@ -29,8 +31,8 @@ public class MemberControllers {
 		return mem.addMember(m);
 	}
 	@PutMapping("/update")
-	public String update(@RequestParam int memberId,@RequestParam String name,@RequestParam String email,@RequestParam long mobile,@RequestParam char gender,@RequestParam String address) {
-		return mem.update(memberId, name, email, mobile, gender, address);
+	public String update(@RequestBody Member m) {
+		return mem.update(m.getMemberId(), m.getName(), m.getEmail(), m.getMobile(), m.getGender(), m.getAddress());
 	}
 	@DeleteMapping("/delete")
 	public String delete(@RequestParam int memberId) {

@@ -1,9 +1,7 @@
 // import ReactDOM from 'react-dom/client';
 
-// const books=[{bookId:1,title:"Monster",author:"Mdfdv",category:"Physicological",status:"A",availability:"A"},{bookId:2,title:"Mob 100",author:"One",category:"Comedy,Fantasy,Mystery",status:"A",availability:"A"}];
-const books=[];
-books
-function ShowBook(props){
+// const books=[{bookId:1,title:"Monster",author:"Mdfdv",category:"Physicological",status:"A",availability:"A"},{bookId:2,title:"Mob 100",author:"One",category:"Comedy,Fantasy,Mystery",status:"A",availability:"A"}];s
+function Book(props){
     return (
     <tr>
         <td>{props.sample.bookId}</td>
@@ -28,7 +26,9 @@ function ShowBooks(){
                     <th>Status</th>
                     <th>Availability</th>
                 </tr>
-                {localStorage.map((book)=> <Book sample={book}/>)}
+                for(let i=0;i &lt localStorage.length;i++){
+                    <Book sample={localStorage.getItem(localStorage.key(i))}/>
+                }
             </table>
         </div>
     );

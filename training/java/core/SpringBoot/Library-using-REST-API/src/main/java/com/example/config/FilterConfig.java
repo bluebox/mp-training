@@ -3,19 +3,16 @@ package com.example.config;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.example.model.LoginDetails;
+import org.springframework.web.reactive.config.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,9 +26,10 @@ public class FilterConfig {
 	SecurityFilterChain FilterChain(HttpSecurity http) throws Exception{
 //		http.authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/","/issueBook/*").hasAnyRole("user","admin")
 		http.csrf().disable().
-		authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/").hasAnyRole("user","admin")
+		cors().and().
+		authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/").permitAll()
 		.antMatchers("/issueBook/*").permitAll()
-		.anyRequest().hasRole("admin")
+		.anyRequest().permitAll()
 		.and().formLogin()
 //		.loginPage("/login")
 //		.defaultSuccessUrl("/main",true)
@@ -74,5 +72,16 @@ public class FilterConfig {
 		}
 		return new InMemoryUserDetailsManager(u);
 	}
-	
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**") // Apply to all endpoints
+                        .allowedOrigins("http://localhost:3000") // Allow React app
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
+            }
+        };
+    }
 }

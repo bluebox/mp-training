@@ -17,7 +17,7 @@ import com.example.model.IssueRecord;
 import com.example.service.IssueBookService;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:3000")
 @RequestMapping("/issueBook")
 public class IssueRecordRestController {
 	@Autowired
