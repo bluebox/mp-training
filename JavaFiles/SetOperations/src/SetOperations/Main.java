@@ -37,11 +37,13 @@ public class Main {
 			String description = task.getDescription();
 	        String assignee = task.getAssignee();
 
-	        if (!taskdata.containsKey(description)) {
-	            taskdata.put(description, new HashSet<>());
-	        }
+//	        if (!taskdata.containsKey(description)) {
+//	            taskdata.put(description, new HashSet<>());
+//	        }
+	        taskdata.computeIfAbsent(description, k -> new HashSet<>()).add(assignee);
 
-	        taskdata.get(description).add(assignee);
+
+//	        taskdata.get(description).add(assignee);
 		}
 	
 	        taskdata.forEach((descriptions, assignees) -> {
@@ -50,9 +52,40 @@ public class Main {
 	            }
 	        });
 
-		System.out.println(taskdata);
+//		System.out.println(taskdata);
 }
 
+	//which assignes and there jobs
+	
+	public static void AssignesAndJobs(Set<Task> tasks) {
+		HashMap<String,Set<String>> taskdata =new HashMap<>();
+		
+		for(Task task:tasks) {
+			String description = task.getDescription();
+			String Project =task.getProject();
+	        String assignee = task.getAssignee();
+	        
+//	        taskdata.getOrDefault(description,0);
+	        taskdata.computeIfAbsent(assignee, k -> new HashSet<>()).add(Project+" -> "+description);
+
+
+//	        if (!taskdata.containsKey(description)) {
+//	            taskdata.put(description, new HashSet<>());
+//	        }
+//
+//	        taskdata.get(description).add(assignee);
+		}
+	
+	        taskdata.forEach((Assign, ProAndDes) -> {
+	            if (ProAndDes.size() > 1) {
+	                System.out.println("Person: " + Assign + " assigned with " + ProAndDes);
+	            }
+	        });
+
+//		System.out.println(taskdata);
+}
+	
+	
 	public static void main(String[] args) {
 		TaskData taskdata=new TaskData();
 		
@@ -87,6 +120,11 @@ public class Main {
 		System.out.println();
 
 		taskinfo(taskdata.getTasks("all"));
+		
+		System.out.println();
+
+		
+		AssignesAndJobs(taskdata.getTasks("all"));
 		
 	}
 
