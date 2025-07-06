@@ -17,15 +17,15 @@ public class MemberRepository {
 		this.jdbcTemplate=jdbcTemplate;
 	}
 	public int add(Member m) {
-		return jdbcTemplate.update("insert into member values(?,?,?,?,?,?)",m.getMemberId(),m.getName(),m.getEmail(),m.getMobile(),String.valueOf(m.getGender()),m.getAddress());
+		return jdbcTemplate.update("insert into members values(?,?,?,?,?,?)",m.getMemberId(),m.getName(),m.getEmail(),m.getMobile(),String.valueOf(m.getGender()),m.getAddress());
 	}
 	public List<Map<String, Object>> showAll() {
-		return jdbcTemplate.queryForList("select * from member");
+		return jdbcTemplate.queryForList("select * from members");
 	}
 	public int update(int memberId,String name,String email,Long mobile,char gender,String address) {
-		return jdbcTemplate.update("update member set Name=?,Email=?,Mobile=?,Gender=?,Address=? where MemberId=?",name,email,mobile,String.valueOf(gender),address,memberId);
+		return jdbcTemplate.update("update members set Name=?,Email=?,Mobile=?,Gender=?,Address=? where MemberId=?",name,email,mobile,String.valueOf(gender),address,memberId);
 	}
 	public int delete(int memberId) {
-		return jdbcTemplate.update("delete from member where MemberId=?",memberId);
+		return jdbcTemplate.update("delete from members where MemberId=?",memberId);
 	}
 }
