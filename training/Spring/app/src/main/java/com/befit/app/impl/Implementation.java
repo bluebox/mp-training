@@ -14,16 +14,15 @@ import com.befit.app.repositories.MemberShipRepo;
 
 @Service
 public class Implementation {
-	@Autowired
+
 	private MemberRepo memberRepo;
-	@Autowired
 	private MemberShipRepo memberShipRepo;
 	
-//	@Autowired
-//	public Implementation(MemberRepo memberRepo,MemberShipRepo memberShipRepo) {
-//		this.memberRepo = memberRepo;
-//		this.memberShipRepo = memberShipRepo;
-//	}
+	@Autowired
+	public Implementation(MemberRepo memberRepo,MemberShipRepo memberShipRepo) {
+		this.memberRepo = memberRepo;
+		this.memberShipRepo = memberShipRepo;
+	}
 	
 	public boolean addMember(Member member) {
 		return memberRepo.addMember(member);
