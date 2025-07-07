@@ -1,8 +1,8 @@
 import unittest
 import asyncio
-from core.devices.SmartLight import SmartLight
-from core.devices.SmartThermostat import SmartThermostat
-from manager.HomeManager import HomeManager
+from core.devices import SmartLight
+from core.devices import SmartThermoStat
+from manager.home_manager import HomeManager
 from core.exceptions import AuthenticationError
 
 
@@ -21,7 +21,7 @@ class TestHomeManager(unittest.TestCase):
     def test_permission_denied(self):
         async def inner():
             manager = HomeManager("admin")
-            thermo = SmartThermostat("thermo01")
+            thermo = SmartThermoStat("thermo01")
             await thermo.turn_on()
             manager.add_device(thermo)
             await manager.control_device("user", "thermo01", "set_temperature", 25)

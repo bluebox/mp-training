@@ -2,11 +2,11 @@ import unittest
 import asyncio
 from datetime import datetime, timedelta
 
-from core.devices.SmartLight import SmartLight
-from core.devices.SmartDoorLock import SmartDoorLock
-from core.devices.SmartThermostat import SmartThermostat
-from manager.HomeManager import HomeManager
-from manager.SceneManager import SceneManager
+from core.devices import SmartLight
+from core.devices import SmartDoorLock
+from core.devices import SmartThermoStat
+from manager.home_manager import HomeManager
+from manager.scene_manager import SceneManager
 from manager.Scheduler import Scheduler
 from manager.HomeManager import all_id_of_online, avg_temperature_thermostat, get_properties
 
@@ -16,11 +16,11 @@ class TestIntegration(unittest.TestCase):
     def test_scene_activation_and_permission(self):
         async def inner():
             manager = HomeManager("admin")
-            light = SmartLight("light01")
-            lock = SmartDoorLock("door01", "Valid@123")  # ✅ Fixed valid passcode
+            light = SmartLight("SL10689")
+            lock = SmartDoorLock("SDL47993")  # ✅ Fixed valid passcode
 
             await light.turn_on()
-            await lock.turn_on()
+            await lock.turn_on('Admin')
 
             manager.add_device(light)
             manager.add_device(lock)

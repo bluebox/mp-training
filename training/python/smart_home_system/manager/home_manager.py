@@ -33,7 +33,6 @@ async def smart_device_from_dict(data):
         await device.turn_on()
     else:
         await device.turn_off()
-
     return device
 
 
@@ -97,7 +96,15 @@ class HomeManager:
             print(f"Unexpected Error: {e}")
 
     async def execute_action(self, device_id, action_type, value, user_role):
-        await self.control_device(user_role, device_id, action_type, value)
+        device = self._devices.get(device_id)
+        if not device:
+            print(f"No device found with ID {device_id}")
+            return
+
+        if isinstance(device, SmartDoorLock):
+            await self.control_device(user_role, device_id, action_type, passcode_val=value)
+        else:
+            await self.control_device(user_role, device_id, action_type, value)
 
     async def save_config(self):
         all_devices = []
@@ -152,15 +159,15 @@ def generator_id_online(ans):
         yield i
 
 
-def get_properties(home_manager):
-    devices = home_manager.get_devices()
-    properties = {}
-
-    for device_id, device in devices.items():
-        actions = device.get_supported_actions()
-        properties[device_id] = actions
-
-    return properties
+# def get_properties(home_manager):
+#     devices = home_manager.get_devices()
+#     properties = {}
+#
+#     for device_id, device in devices.items():
+#         actions = device.get_supported_actions()
+#         properties[device_id] = actions
+#
+#     return properties
 
 
 async def main():
@@ -175,7 +182,7 @@ async def main():
     # await  a.save_config()
     # await a.load_config()
     await a.control_device('admin', 'ST32478', 'set_temperature', 27)
-    await a.control_device('admin', 'SDL3748', 'lock' ,passcode_val='Admin')
+    await a.control_device('admin', 'SDL3748', 'lock',passcode_val='Admin')
     # print(b.lock())
     ans = all_id_of_online(a)
     for i in generator_id_online(ans):
@@ -184,11 +191,13 @@ async def main():
     print(get_properties(a))
     # print(a._devices)
     scene = SceneManager()
-    scene.add_scene('good_morning', [('SDL3748', 'unlock', 'Admin')])
-    await scene.activate_scene(a, 'good_morning', 'admin')
+    scene.add_scene('open it', [('SDL3748', 'unlock', 'Admin')])
+    scene.add_scene('close it',[('SDL3748','lock','Admin')])
+    await scene.activate_scene(a, 'open it', 'admin')
+    await scene.activate_scene(a,'close it','admin')
     scheduler = Scheduler()
     next_time = (datetime.now() + timedelta(minutes=1)).strftime("%H:%M")
-    scheduler.add_scheduled_task(next_time, 'SDL3748', 'change_lock', 'Kanishka123#', 'admin')
+    scheduler.add_scheduled_task(next_time, 'SDL3748', 'unlock', 'Admin', 'admin')
     scheduler.add_scheduled_task(next_time, 'ST32478', 'set_temperature', 22, 'admin')
 
     print(f"Waiting for scheduled tasks at: {next_time}")
