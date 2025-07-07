@@ -1,10 +1,10 @@
 import unittest
 import asyncio
-from core.devices.SmartLight import SmartLight
-from core.devices.SmartThermostat import SmartThermostat
-from core.devices.SmartSpeaker import SmartSpeaker
-from core.devices.SmartDoorLock import SmartDoorLock
-from core.devices.SmartCamera import SmartCamera
+from core.devices import SmartLight
+from core.devices import SmartThermoStat
+from core.devices import SmartSpeaker
+from core.devices import SmartDoorLock
+from core.devices import SmartCamera
 from core.exceptions import AuthenticationError, DeviceOfflineError
 
 

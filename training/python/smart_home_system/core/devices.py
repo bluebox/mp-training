@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from utils.helpers import pattern_match
+from utils.helpers import pattern_match,passcode_validate
 from exceptions import InvalidParameterError,WrongPasscodeError,ActionNotSupportedError,DeviceOfflineError
 import time
 from utils.decorators import log_status_change,require_device_on
@@ -27,17 +27,18 @@ class SmartDevice(ABC):
         else:
             self._is_on = True
             print("The device has been turned on")
+
     @log_status_change
     async def turn_off(self):
         print("Turning off the device")
         await asyncio.sleep(1)
         if self._is_on:
             self._is_on = False
-            print(" The device has beeen turned off")
+            print(" The device has been turned off")
         else:
             print("The device is already turned off")
 
-    async def perform_action(self):
+    async def perform_action(self,action_type,value=None,passcode=None):
         pass
 
     @abstractmethod
@@ -85,7 +86,7 @@ class SmartLight(SmartDevice):
             raise ActionNotSupportedError(f"Action '{action_type}' is not supported for SmartLight",367)
 
     def get_status_report(self):
-        return f"SmartLight {self._device_id}: ON={self._is_on()}, Brightness={self._brightness}"
+        return f"SmartLight {self._device_id}: ON={self._is_on}, Brightness={self._brightness}"
 
     def get_supported_actions(self):
         return SmartLight.supported_actions
@@ -107,7 +108,7 @@ class SmartSpeaker(SmartDevice):
     @volume.setter
     @require_device_on
     def volume(self, value):
-        if value >= 0 and value <= 100:
+        if 0<= value <= 100:
             self.__volume = value
             print(f"Volume of {self._device_id} set to {value}")
         else:
@@ -120,7 +121,7 @@ class SmartSpeaker(SmartDevice):
     @track.setter
     @require_device_on
     def track(self, track):
-        self.track = track
+        self.__track = track
 
     async def perform_action(self,action_type,value=None):
         try:
@@ -134,7 +135,7 @@ class SmartSpeaker(SmartDevice):
             print("ERROR", e)
 
     def get_status_report(self):
-        return f"SmartSpeaker {self._device_id}: ON={self._is_on()}, Volume={self.__volume}"
+        return f"SmartSpeaker {self._device_id}: ON={self._is_on}, Volume={self.__volume}"
 
     def get_supported_actions(self):
         return SmartSpeaker.supported_actions
@@ -151,10 +152,9 @@ class SmartDoorLock(SmartDevice):
         self._is_lock = SmartDoorLock._is_lock
         self.__passcode = SmartDoorLock.__passcode
 
-    async def perform_action(self, action_type, passcode=None):
+    async def perform_action(self, action_type, value=None,passcode=None):
         if self._is_on:
             if passcode==self.__passcode:
-
                 if action_type=='lock':
                         if self._is_lock:
                             print("The device is already locked")
@@ -174,7 +174,7 @@ class SmartDoorLock(SmartDevice):
         else:
             print("The device is not turned on")
 
-
+    @log_status_change
     async def turn_on(self,passcode=None):
         print("Turning on the device")
         await asyncio.sleep(1)
@@ -186,9 +186,9 @@ class SmartDoorLock(SmartDevice):
                 print("The device has been turned on")
         else:
             raise WrongPasscodeError("Please enter a correct passcode",333)
-
+    @log_status_change
     async def turn_off(self,passcode=None):
-        print("Turning on the device")
+        print("Turning off the device")
         await asyncio.sleep(1)
         if passcode==self.__passcode:
             if not self._is_on:
@@ -202,10 +202,14 @@ class SmartDoorLock(SmartDevice):
     def set_passcode(self,new_passcode,old_passcode=None):
         if self._is_on:
             if self.__passcode==old_passcode:
-                self.__passcode=new_passcode
-                print("The password has been changed")
+                if passcode_validate(new_passcode):
+                    self.__passcode=new_passcode
+                    print("The password has been changed")
+                else:
+                    raise WrongPasscodeError("This is not a valid new passcode",333)
             else:
-                raise WrongPasscodeError("Please enter a correct passcode",333)
+                raise WrongPasscodeError("wrong old passcode", 333)
+
         else:
             print("Please turn on the device first")
 
@@ -217,7 +221,7 @@ class SmartDoorLock(SmartDevice):
 
 
 class SmartThermoStat(SmartDevice):
-    __pattern_sc = '^SC'
+    __pattern_sc = '^ST'
 
 
     def __init__(self, device_id):
@@ -238,7 +242,7 @@ class SmartThermoStat(SmartDevice):
             print("Error: Temperature must be between 18 and 30 Celsius.")
 
     def get_status_report(self):
-        return f"SmartThermostat {self._device_id}: ON={self._is_on()}, Temperature={self.__temperature}"
+        return f"SmartThermostat {self._device_id}: ON={self._is_on}, Temperature={self.__temperature}"
 
     async def perform_action(self, action_type, value=None):
         try:
@@ -257,20 +261,32 @@ class SmartThermoStat(SmartDevice):
 
 if __name__ == "__main__":
 
-    # device_1 = SmartAC('SAC1601')
-    # device_2 = SmartPrinter('SPR1601')
-
     device_3= SmartDoorLock('SDL1601')
-    # device_3.turn_on('Admin')
-    device_3.set_passcode('Kanishka123#','Admin')
-    device_3.turn_on('Admin')
+    asyncio.run(device_3.turn_on('Admin'))
     device_3.set_passcode('Kanishka123#','Admin')
     asyncio.run(device_3.turn_off('Kanishka123#'))
-    device_3.perform_action('lock','Kanishka123#')
-    device_3.perform_action('unlock','Kanishka123#')
+    asyncio.run(device_3.perform_action('lock','Kanishka123#'))
+    asyncio.run(device_3.perform_action('unlock','Kanishka123#'))
+    asyncio.run(device_3.turn_off('Kanishka123#'))
+
     device_3.get_status_report()
     print(device_3.get_supported_actions())
+    print(device_3._SmartDoorLock__passcode)
 
+
+    # device_3= SmartSpeaker('SS1601')
+    # asyncio.run(device_3.turn_on())
+    # print(device_3.volume)
+    # # asyncio.run(device_3.perform_action('set_temperature',25))
+    # print(device_3.track)
+    # device_3.volume=70
+    # device_3.track=100
+    # print(device_3.volume)
+    # print(device_3.track)
+    #
+    # asyncio.run(device_3.turn_off())
+    # print(device_3.get_status_report())
+    # print(device_3.get_supported_actions())
 
     # print(SmartDevice.get_system_time())
 

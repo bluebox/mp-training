@@ -7,7 +7,6 @@ class SceneManager:
 
     def add_scene(self, scene_name, actions):
         self._scenes[scene_name] = actions
-        # actions (device_id, action_type, value).
 
     async def activate_scene(self, home_manager, scene_name, user_role):
         if scene_name not in self._scenes:

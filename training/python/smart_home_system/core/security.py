@@ -1,18 +1,19 @@
-from devices import SmartDevice
+from core.devices import SmartDevice
 from core.exceptions import ActionNotSupportedError
-
+from datetime import datetime
+from abc import ABC, abstractmethod
 
 class SecuritySensor(SmartDevice):
     __pattern='^SS'
     __is_arm=False
-    __supported_actions=['arm','disarm']
+    supported_actions=['arm','disarm']
 
     def __init__(self,device_id):
         super().__init__(device_id,False,SecuritySensor.__pattern)
         self.__is_arm=False
 
     def get_supported_actions(self):
-        print(f"{SecuritySensor.__supported_actions}")
+        print(f"{SecuritySensor.supported_actions}")
 
     def perform_action(self,action_type=None):
         if action_type=='arm':
@@ -33,9 +34,6 @@ class SecuritySensor(SmartDevice):
     def get_status_report(self):
         print(f"device_id: {self._device_id} turned on: {self._is_on}  armed: {self.__is_arm}")
 
-from datetime import datetime
-from core.devices.SmartDevice import SmartDevice
-from abc import ABC, abstractmethod
 
 
 class Programmable(ABC):
@@ -49,6 +47,7 @@ class Programmable(ABC):
 
 
 class SmartAlarmSystem(SmartDevice, Programmable):
+    supported_actions=['arm','disarm',"set volume"]
     def __init__(self, device_id, volume=5):
         super().__init__(device_id)
         self._armed = False
@@ -65,10 +64,10 @@ class SmartAlarmSystem(SmartDevice, Programmable):
             self._volume = value
             print(f"{self._device_id} volume set to {value}.")
         else:
-            print(f"Invalid action: {action}")
+            raise ActionNotSupportedError("This action is invalid",367)
 
     def get_supported_actions(self):
-        return ["arm", "disarm", "set_volume"]
+        return SmartAlarmSystem.supported_actions
 
     def add_schedule(self, time_str, action, value=None):
         self._schedule.append({
