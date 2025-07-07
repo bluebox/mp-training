@@ -37,3 +37,13 @@ Device SDL1601 turned on.
 Device SDL1601 turned off.
 Device SDL1601 turned on.
 Device SDL1601 turned off.
+Device SDL1601 turned on.
+Device SDL1601 turned off.
+Device SDL1601 turned on.
+Device SDL1601 turned off.
+Device SDL1601 turned on.
+Device SDL1601 turned off.
+Device SDL1601 turned on.
+Device SDL1601 turned off.
+Device SDL1601 turned on.
+Device SDL1601 turned off.

@@ -1,4 +1,4 @@
-# from core.devices.SmartCamera import SmartCamera
+# from core.devices import SmartCamera
 from core.devices import SmartDevice, DeviceRegistrarMeta
 from core.devices import SmartDoorLock
 from core.devices import SmartLight
@@ -70,7 +70,7 @@ class HomeManager:
             self._devices[device._device_id] = device
             print(f'devices with id {device._device_id} is added')
 
-    async def control_device(self, user_role, device_id, action_type, value=None):
+    async def control_device(self, user_role, device_id, action_type, value=None,passcode_val=None):
         if user_role != self.__user_role:
             print(f"{user_role} doesn't have permission to control {device_id}")
             return
@@ -81,7 +81,9 @@ class HomeManager:
             return
 
         try:
-            if isinstance(value, dict):
+            if isinstance(device,SmartDoorLock):
+                await device.perform_action(action_type,passcode=passcode_val)
+            elif isinstance(value, dict):
                 await device.perform_action(action_type, **value)
             else:
                 await device.perform_action(action_type, value)
@@ -125,7 +127,7 @@ class HomeManager:
 
 def all_id_of_online(home_manager):
     mp = home_manager.get_devices()
-    ans = list(filter(lambda key: mp[key].is_on(), mp))
+    ans = list(filter(lambda key: mp[key]._is_on, mp))
     return ans
 
 
@@ -164,17 +166,17 @@ def get_properties(home_manager):
 async def main():
     a = HomeManager('admin')
     # # await a.load_config()
-    b = SmartDoorLock('l001','Kanishka123#')
-    c = SmartThermoStat('l002')
+    b = SmartDoorLock('SDL3748')
+    c = SmartThermoStat('ST32478')
     await c.turn_on()
     a.add_device(c)
-    await b.turn_on()
+    await b.turn_on('Admin')
     a.add_device(b)
     # await  a.save_config()
     # await a.load_config()
-    await a.control_device('admin', 'l002', 'set_temperature', 25)
-    await a.control_device('admin', 'l001', 'change_lock', 'Kanishka@123')
-    print(b.lock)
+    await a.control_device('admin', 'ST32478', 'set_temperature', 27)
+    await a.control_device('admin', 'SDL3748', 'lock' ,passcode_val='Admin')
+    # print(b.lock())
     ans = all_id_of_online(a)
     for i in generator_id_online(ans):
         print(i)
@@ -182,12 +184,12 @@ async def main():
     print(get_properties(a))
     # print(a._devices)
     scene = SceneManager()
-    scene.add_scene('good_morning', [('l001', 'change_lock', 'Kanishka@123')])
+    scene.add_scene('good_morning', [('SDL3748', 'unlock', 'Admin')])
     await scene.activate_scene(a, 'good_morning', 'admin')
     scheduler = Scheduler()
     next_time = (datetime.now() + timedelta(minutes=1)).strftime("%H:%M")
-    scheduler.add_scheduled_task(next_time, 'l001', 'change_lock', 'Kanishka123#', 'admin')
-    scheduler.add_scheduled_task(next_time, 'l00100', 'set_temperature', 22, 'admin')
+    scheduler.add_scheduled_task(next_time, 'SDL3748', 'change_lock', 'Kanishka123#', 'admin')
+    scheduler.add_scheduled_task(next_time, 'ST32478', 'set_temperature', 22, 'admin')
 
     print(f"Waiting for scheduled tasks at: {next_time}")
     while scheduler.tasks:

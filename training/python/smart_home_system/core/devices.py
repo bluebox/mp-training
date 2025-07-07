@@ -1,13 +1,23 @@
 from abc import ABC, abstractmethod
 from utils.helpers import pattern_match,passcode_validate
-from exceptions import InvalidParameterError,WrongPasscodeError,ActionNotSupportedError,DeviceOfflineError
+from core import exceptions
 import time
 from utils.decorators import log_status_change,require_device_on
 import asyncio
+from abc import ABCMeta
+
+class DeviceRegistrarMeta(ABCMeta):
+    registry = {}
+
+    def __new__(mcs, name, bases, class_dict):
+        cls = super().__new__(mcs, name, bases, class_dict)
+        if not class_dict.get('__abstract__', False):
+            DeviceRegistrarMeta.registry[name] = cls
+        return cls
 
 # def pattern_match(a,b):
 #     return  False
-class SmartDevice(ABC):
+class SmartDevice(ABC,metaclass=DeviceRegistrarMeta):
     _total_devices_created = 0
 
     def __init__(self, device_id, is_on, device_pattern):
@@ -16,7 +26,7 @@ class SmartDevice(ABC):
             self._device_id = device_id
             SmartDevice._total_devices_created += 1
         else:
-            raise InvalidParameterError(f"The ID you entered is invalid", 304)
+            raise exceptions.InvalidParameterError(f"The ID you entered is invalid", 304)
         self._is_on = is_on
     @log_status_change
     async def turn_on(self):
@@ -72,7 +82,7 @@ class SmartLight(SmartDevice):
     @brightness.setter
     def brightness(self, level):
         if not self._is_on():
-            raise DeviceOfflineError("Device is offline",226)
+            raise exceptions.DeviceOfflineError("Device is offline", 226)
         if 0 <= level <= 100:
             self._brightness = level
             print(f"Brightness of {self._device_id} set to {level}")
@@ -83,7 +93,7 @@ class SmartLight(SmartDevice):
         if action_type == "set_brightness":
             self.brightness = value
         else:
-            raise ActionNotSupportedError(f"Action '{action_type}' is not supported for SmartLight",367)
+            raise exceptions.ActionNotSupportedError(f"Action '{action_type}' is not supported for SmartLight", 367)
 
     def get_status_report(self):
         return f"SmartLight {self._device_id}: ON={self._is_on}, Brightness={self._brightness}"
@@ -130,8 +140,8 @@ class SmartSpeaker(SmartDevice):
             elif action_type == 'set_volume':
                 self.volume = value
             else:
-                raise ActionNotSupportedError("This action is not supported",367)
-        except ActionNotSupportedError as e:
+                raise exceptions.ActionNotSupportedError("This action is not supported", 367)
+        except exceptions.ActionNotSupportedError as e:
             print("ERROR", e)
 
     def get_status_report(self):
@@ -168,9 +178,9 @@ class SmartDoorLock(SmartDevice):
                         else:
                             print("The device is already unlocked")
                 else:
-                    raise ActionNotSupportedError("This action is invalid",367)
+                    raise exceptions.ActionNotSupportedError("This action is invalid", 367)
             else:
-                raise WrongPasscodeError("Please enter a correct passcode",333)
+                raise exceptions.WrongPasscodeError("Please enter a correct passcode", 333)
         else:
             print("The device is not turned on")
 
@@ -185,7 +195,7 @@ class SmartDoorLock(SmartDevice):
                 self._is_on = True
                 print("The device has been turned on")
         else:
-            raise WrongPasscodeError("Please enter a correct passcode",333)
+            raise exceptions.WrongPasscodeError("Please enter a correct passcode", 333)
     @log_status_change
     async def turn_off(self,passcode=None):
         print("Turning off the device")
@@ -197,7 +207,7 @@ class SmartDoorLock(SmartDevice):
                 self._is_on = False
                 print("The device has been turned off")
         else:
-            raise WrongPasscodeError("Please enter a correct passcode",333)
+            raise exceptions.WrongPasscodeError("Please enter a correct passcode", 333)
     @require_device_on
     def set_passcode(self,new_passcode,old_passcode=None):
         if self._is_on:
@@ -206,9 +216,9 @@ class SmartDoorLock(SmartDevice):
                     self.__passcode=new_passcode
                     print("The password has been changed")
                 else:
-                    raise WrongPasscodeError("This is not a valid new passcode",333)
+                    raise exceptions.WrongPasscodeError("This is not a valid new passcode", 333)
             else:
-                raise WrongPasscodeError("wrong old passcode", 333)
+                raise exceptions.WrongPasscodeError("wrong old passcode", 333)
 
         else:
             print("Please turn on the device first")
@@ -249,8 +259,8 @@ class SmartThermoStat(SmartDevice):
             if action_type == "set_temperature":
                 self.temperature = value
             else:
-                raise ActionNotSupportedError("This action is not supported",367)
-        except ActionNotSupportedError as e:
+                raise exceptions.ActionNotSupportedError("This action is not supported", 367)
+        except exceptions.ActionNotSupportedError as e:
             print("ERROR", e)
 
     def get_supported_actions(self):
@@ -260,6 +270,7 @@ class SmartThermoStat(SmartDevice):
 
 
 if __name__ == "__main__":
+    print(DeviceRegistrarMeta.registry)
 
     device_3= SmartDoorLock('SDL1601')
     asyncio.run(device_3.turn_on('Admin'))
