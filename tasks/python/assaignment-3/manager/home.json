@@ -1,1 +1,1 @@
-{"home": {"is_on": false, "brightness": 0, "type": "SmartLight"}, "home2": {"is_on": false, "recording": false, "resolution": "HD", "type": "SmartCamera"}}
+{"L001": {"is_on": true, "brightness": 70, "type": "SmartLight"}, "C001": {"is_on": false, "recording": false, "resolution": "HD", "type": "SmartCamera"}}

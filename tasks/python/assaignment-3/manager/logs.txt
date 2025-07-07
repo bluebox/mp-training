@@ -1,1 +1,131 @@
-[SmartLight] ID: Light1, ON: False, Brightness: 0
+[SmartAlarmSystem] ID:A001, ON:False, Sensors:1
+[SecuritySensor] ID:A001.1, ON:False, Armed:False
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartThermostat] ID: T001, ON: True, Temperature: 20.0C
+[SmartLight] ID: L001, ON: True, Brightness: 75
+[SmartThermostat] ID: T001, ON: True, Temperature: 22.5C
+[SmartCamera] ID: C001, ON:True, Recording:False ,Resolution: (1280, 720)]
+[SmartCamera] ID: C001, ON:True, Recording:True ,Resolution: (1280, 720)]
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:6
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:60, Track:6
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SecuritySensor] ID:A001.1, ON:True, Armed:False
+[SecuritySensor] ID:A001.1, ON:True, Armed:True
+[SmartAlarmSystem] ID:A001, ON:False, Sensors:1
+[SecuritySensor] ID:A001.1, ON:True, Armed:True
+[SecuritySensor] ID:A001.1, ON:True, Armed:False
+[SecuritySensor] ID:A001.1, ON:False, Armed:False
+[SecuritySensor] ID:A001.1, ON:False, Armed:False
+[SmartAlarmSystem] ID:A001, ON:False, Sensors:1
+[SecuritySensor] ID:A001.1, ON:False, Armed:False
+[SmartLight] ID: L001, ON: True, Brightness: 10
+[SmartCamera] ID: C001, ON:True, Recording:False ,Resolution: (1280, 720)]
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:60, Track:6
+[SmartLight] ID: L001, ON: True, Brightness: 10
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:60, Track:6
+[SmartLight] ID: L001, ON: True, Brightness: 10
+[SmartThermostat] ID: T001, ON: True, Temperature: 22.5C
+[SmartCamera] ID: C001, ON:True, Recording:False ,Resolution: (1280, 720)]
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:60, Track:6
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartLight] ID: L010, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:2
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:2
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:8
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:8
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:6
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:6
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:8
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:8
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartLight] ID: L001, ON: True, Brightness: 70
+[SmartLight] ID: L001, ON: True, Brightness: 70
+[SmartCamera] ID: C001, ON:False, Recording:False ,Resolution: (1280, 720)]
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:6
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:6
+[SmartLight] ID: L010, ON: True, Brightness: 0
+[SmartLight] ID: L010, ON: True, Brightness: 40
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartLight] ID: L010, ON: True, Brightness: 0
+[SmartLight] ID: L010, ON: True, Brightness: 40
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartLight] ID: L001, ON: True, Brightness: 60
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:7
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:7
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartLight] ID: L010, ON: True, Brightness: 0
+[SmartLight] ID: L010, ON: True, Brightness: 40
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartLight] ID: L001, ON: True, Brightness: 60
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:2
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:2
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartLight] ID: L010, ON: True, Brightness: 0
+[SmartLight] ID: L010, ON: True, Brightness: 40
+[SmartLight] ID: L020, ON: True, Brightness: 0
+[SmartLight] ID: L020, ON: True, Brightness: 25
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartDoor] ID: D001, ON: True, Locked: True
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartDoor] ID: D001, ON: True, Locked: False
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartLight] ID: L001, ON: True, Brightness: 0
+[SmartLight] ID: L001, ON: True, Brightness: 60
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:20, Track:3
+[SmartSpeaker] ID:S001, ON:True, Playing:True, Volume:45, Track:3
+[SmartSpeaker] ID:S001, ON:True, Playing:False, Volume:20, Track:None

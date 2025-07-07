@@ -1,13 +1,15 @@
 import asyncio
 import json
 from collections import defaultdict
+import re
 def is_strong(pwd):
     if pwd is None:
         pass#none value exception raise
     elif not isinstance(pwd, str):
         pass#not a string exception raise
     else:
-        return True
+        pat = fr'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{{{10},}}$'
+        return bool(re.fullmatch(pat, pwd))
 def convert_to_json(devices,file_name):
     device_status = dict()
     for device in devices:
@@ -19,7 +21,7 @@ def convert_to_json(devices,file_name):
 
 #load class first checks whether the device_id's in the json data are present in the provided devices list. If not present, the following is done
 # 1) check if the same class type object present and not written in the device list. If present it overrides the data in that object
-# 2) If the above case has failed, It throws a custom exception XXXXXXXXXXXXXXXXXX
+# 2) If the above case has failed, It creates the device and populates the details into it.
 
 async def load_class(devices,file_name):#needs clarity
     written_devices = list()

@@ -1,24 +1,37 @@
 import asyncio
 import random
-from abc import ABC,abstractmethod
+from abc import ABC,abstractmethod,ABCMeta
 from datetime import datetime
 from utils import helpers
 from utils.decorators import log_device_state_change
+from core.meta_class import DeviceRegisterMeta
+import re
+from core.exceptions import *
 
+# class DeviceRegisterMeta(ABCMeta):
+#     device_register = set()
+#     def __new__(cls, name, bases, dct):
+#         new_cls = super().__new__(cls, name, bases, dct)
+#         cls.device_register.add(name)
+#         return new_cls
 
-class SmartDevice(ABC):
+class SmartDevice(ABC,metaclass=DeviceRegisterMeta):
     _device_count = 0
     _devices = set()
+    _device_id_pattern = re.compile(r"^[A-Z]\d{3}(?:\.\d+)?$")
     ref = None
     def __init__(self, device_id):
+        if not isinstance(device_id, str) or not SmartDevice._device_id_pattern.match(device_id):
+            raise InvalidParameterError(
+                f"Invalid device ID '{device_id}'. Must match pattern: [A-Z]<3-digit number> (e.g., L001, T123)"
+            )
         if device_id in SmartDevice._devices:
-            print(f"Device with id: {device_id} already exist")
-            return
+            raise DuplicateDeviceError(f"Device ID '{device_id}' already exists.")
         self._device_id = device_id
         self.__is_on = False
         SmartDevice._device_count += 1
         SmartDevice._devices.add(device_id)
-        ref = self
+        SmartDevice.ref = self
     @log_device_state_change
     async def turn_on(self):
         if not self.__is_on:
@@ -48,7 +61,7 @@ class SmartDevice(ABC):
     @device_id.setter
     def device_id(self,device_id):
         if device_id in self._devices:
-            print("device already exist")#error
+            raise DuplicateDeviceError(f"Device ID '{device_id}' already exists.")
         else:
             self._devices.add(device_id)
             self._device_count +=1
@@ -93,12 +106,12 @@ class SmartLight(SmartDevice):
     @brightness.setter
     def brightness(self, level):
         if not self.is_on:
-            print("light is not on. Brightness level cannot be changed")
+            raise DeviceStateError("Cannot change brightness while the light is OFF.")
         elif 0 <= level <= 100:
             self.__brightness = level
             print(f"Brightness set to {level}.")
         else:
-            print("Brightness level must be between 0 and 100.")
+            raise InvalidParameterError("Brightness must be 0‑100.")
 
     def get_status_report(self):
         return f"[SmartLight] ID: {self._device_id}, ON: {self.is_on}, Brightness: {self.__brightness}"
@@ -110,6 +123,7 @@ class SmartLight(SmartDevice):
     def to_dict(self):
         return {"is_on": self.is_on, "brightness": self.brightness, "type":self.__class__.__name__}
 
+    @log_device_state_change
     async def perform_action(self, action_type, value=None):
         if not self.is_on:
             await asyncio.sleep(1)
@@ -118,7 +132,7 @@ class SmartLight(SmartDevice):
             await asyncio.sleep(1)
             self.brightness = value
         else:
-            print(f"Unknown action '{action_type}' for SmartLight.")
+            raise UnsupportedActionError(f"{action_type} not supported by SmartThermostat")
     async def load_state(self,state):
         if state["is_on"]:
             await self.turn_on()
@@ -139,15 +153,15 @@ class SmartThermostat(SmartDevice):
     @temperature.setter
     def temperature(self, temp):
         if not self.is_on:
-            print("Thermostat is not on. Temperature cannot be changed.")
+            raise DeviceStateError("Thermostat is OFF.")
         elif 18.0 <= temp <= 30.0:
             self.__temperature = temp
             print(f"Temperature set to {temp}C.")
         else:
-            print("Temperature must be between 18.0C and 30.0C.")
+            raise InvalidParameterError("Temperature must be 18–30C.")
 
     def to_dict(self):
-        return {"is_on": self.is_on, "temperature": self.temperature}
+        return {"is_on": self.is_on, "temperature": self.temperature,"type":self.__class__.__name__}
 
     def get_status_report(self):
         return f"[SmartThermostat] ID: {self._device_id}, ON: {self.is_on}, Temperature: {self.__temperature}C"
@@ -157,6 +171,7 @@ class SmartThermostat(SmartDevice):
         for i in actions:
             yield i
 
+    @log_device_state_change
     async def perform_action(self, action_type, value=None):
         if not self.is_on:
             await self.turn_on()
@@ -164,7 +179,7 @@ class SmartThermostat(SmartDevice):
             await asyncio.sleep(1)
             self.temperature = value
         else:
-            print(f"Unknown action '{action_type}' for SmartThermostat.")
+            raise UnsupportedActionError(f"{action_type} not supported by SmartThermostat")
             await asyncio.sleep(1)
 
     async def load_state(self,state):
@@ -199,6 +214,8 @@ class SmartCamera(SmartDevice):
 
     @resolution.setter
     def resolution(self, resolution):
+        if resolution not in self.resolution_levels:
+            raise InvalidParameterError("Unknown resolution key.")
         self.__resolution = self.resolution_levels[resolution]
 
     def get_supported_actions(self):
@@ -208,6 +225,7 @@ class SmartCamera(SmartDevice):
 
     def to_dict(self):
         return {"is_on": self.is_on, "recording": self.recording, "resolution": next(k for k,v in self.resolution_levels.items() if v == tuple(self.resolution)), "type":self.__class__.__name__}
+    @log_device_state_change
     async def perform_action(self, action_type, value=None):
         if action_type.lower() == "start_recording":
             if self.is_on:
@@ -224,7 +242,7 @@ class SmartCamera(SmartDevice):
             self.__resolution = self.resolution_levels[value]
         else:
             await asyncio.sleep(1)
-            print(f"Unknown action '{action_type}' for SmartCamera.")
+            raise UnsupportedActionError("Unknown action for SmartCamera")
 
     async def load_state(self,state):
         if state["is_on"]:
@@ -235,7 +253,8 @@ class SmartCamera(SmartDevice):
         self.resolution = state["resolution"]
 
 class SmartSpeaker(SmartDevice):
-    songs = [i for i in range(1,11)]
+    songs = list(range(1, 11))
+
     def __init__(self, device_id):
         super().__init__(device_id)
         self.__playing = False
@@ -243,120 +262,169 @@ class SmartSpeaker(SmartDevice):
         self.__track_id = None
 
     def get_status_report(self):
-        return f"[SmartSpeaker] ID: {self._device_id}, ON:{self.is_on}, Playing: {self.__playing}, Volume: {self.__volume}, Track ID: {self.__track_id}]"
+        return f"[SmartSpeaker] ID:{self._device_id}, ON:{self.is_on}, Playing:{self.__playing}, Volume:{self.__volume}, Track:{self.__track_id}"
 
     @property
     def playing(self):
         return self.__playing
-    @playing.setter#can add a real player flac
-    def playing(self, playing):
-        if playing:
-            if self.__track_id is None:
-                self.__track_id = random.choice(SmartSpeaker.songs)
-                self.__playing = True
-        else:
-            self.__playing = False
+
+    @playing.setter
+    def playing(self, state):
+        self.__playing = bool(state)
+        if self.__playing and self.__track_id is None:
+            self.__track_id = random.choice(self.songs)
 
     @property
     def volume(self):
         return self.__volume
-    @volume.setter
-    def volume(self, volume):
-        if volume < 0 or volume > 100:
-            print("Volume must be between 0 and 100.")#exception custom
-        else:
-            self.__volume = volume
 
-    def to_dict(self):
-        return {"is_on": self.is_on, "playing": self.playing, "volume": self.volume, "track_id": self.__track_id,"type":self.__class__.__name__}
+    @volume.setter
+    def volume(self, value):
+        if not 0 <= value <= 100:
+            raise InvalidParameterError("Volume must be 0‑100.")
+        self.__volume = value
 
     @property
     def track_id(self):
         return self.__track_id
+
     @track_id.setter
-    def track_id(self, track_id):
-        if track_id in SmartSpeaker.songs:
-            self.__track_id = track_id
-        else:
-            print(f"Unknown track ID '{track_id}' for SmartSpeaker.")#exception custom
+    def track_id(self, tid):
+        if tid not in self.songs:
+            raise InvalidParameterError(f"Track {tid} not found.")
+        self.__track_id = tid
 
     def get_supported_actions(self):
-        actions = ["play", "stop","set_volume","shift_track","shuffle"]
-        for i in actions:
-            yield i
+        return ["play", "stop", "set_volume", "shift_track", "shuffle", "next", "previous"]
 
-    def perform_action(self, action_type, value=None):
-        if(not self.is_on):
-            self.turn_on()
-        if action_type.lower() == "play":
-            self.__playing = True
-        elif action_type.lower() == "stop":
-            self.__playing = False
-        elif action_type.lower() == "set_volume":
-            self.__volume = value
-        elif action_type.lower() == "shift_track":
-            self.__track_id = SmartSpeaker.songs[value]
-        elif action_type.lower() == "shuffle":
-            self.__track_id = random.choice(SmartSpeaker.songs)
-    def load_state(self,state):
-        if state["is_on"]:
-            self.turn_on()
+    def to_dict(self):
+        return {"is_on": self.is_on, "playing": self.playing, "volume": self.volume,
+                "track_id": self.__track_id, "type": self.__class__.__name__}
+
+    @log_device_state_change
+    async def perform_action(self, action_type, value=None):
+        if not self.is_on:
+            await self.turn_on()
+
+        action = action_type.lower()
+        if action == "play":
+            self.playing = True
+            print(f"Playing track {self.__track_id}")
+            await asyncio.sleep(4)
+        elif action == "stop":
+            self.playing = False
+            print("Playback stopped")
+        elif action == "set_volume":
+            self.volume = value
+            print(f"Volume set to {self.__volume}")
+        elif action == "shift_track":
+            self.track_id = value
+            print(f"Playing track {self.__track_id}")
+            self.playing = True
+            await asyncio.sleep(4)
+        elif action == "shuffle":
+            self.track_id = random.choice(self.songs)
+            print(f"Playing track {self.__track_id}")
+            self.playing = True
+            await asyncio.sleep(4)
+        elif action == "next":
+            idx = (self.songs.index(self.__track_id) + 1) % len(self.songs)
+            self.track_id = self.songs[idx]
+            print(f"Playing track {self.__track_id}")
+            self.playing = True
+            await asyncio.sleep(4)
+        elif action == "previous":
+            idx = (self.songs.index(self.__track_id) - 1) % len(self.songs)
+            self.track_id = self.songs[idx]
+            print(f"Playing track {self.__track_id}")
+            self.playing = True
+            await asyncio.sleep(4)
         else:
-            self.turn_off()
+            raise UnsupportedActionError("Unsupported action for SmartSpeaker")
+
+    async def load_state(self, state):
+        if state["is_on"]:
+            await self.turn_on()
+        else:
+            await self.turn_off()
         self.playing = state["playing"]
         self.volume = state["volume"]
         self.track_id = state["track_id"]
 
+import asyncio
+from core.devices import SmartDevice
+from core.exceptions import InvalidParameterError, DeviceStateError, PermissionDeniedError, UnsupportedActionError
+from utils import helpers
+from utils.decorators import log_device_state_change
+
 class SmartDoor(SmartDevice):
-    def __init__(self, device_id,passcode=None):
+    def __init__(self, device_id, passcode=None):
         super().__init__(device_id)
         self.__passcode = passcode
         self.__lock = False
+
     @property
     def lock(self):
         return self.__lock
+
     @lock.setter
     def lock(self, lock):
-        if lock:
-            self.__lock = lock
-        #alreadylocked exception
+        self.__lock = lock
+
     @property
     def passcode(self):
         return self.__passcode
+
     @passcode.setter
     def passcode(self, passcode):
-        if helpers.is_strong(passcode):
-            self.__passcode = passcode
+        if not helpers.is_strong(passcode):
+            raise InvalidParameterError("Passcode does not meet strength policy.")
+        self.__passcode = passcode
 
     def get_status_report(self):
-        return f"[SmartDoot] ID: {self._device_id}, ON: {self.is_on}, Lock: {self.__lock}"
+        return f"[SmartDoor] ID: {self._device_id}, ON: {self.is_on}, Locked: {self.__lock}"
+
     def get_supported_actions(self):
-        actions = ["lock", "unlock","change_passcode"]
-        for i in actions:
-            yield i
+        return iter(["lock", "unlock", "password_reset"])
 
     def to_dict(self):
-        return {"is_on":self.is_on, "lock":self.lock, "passcode":self.passcode, "type":self.__class__.__name__}
+        return {
+            "is_on": self.is_on,
+            "lock": self.lock,
+            "passcode": self.passcode,
+            "type": self.__class__.__name__
+        }
 
-    def perform_action(self, action_type, value=None):
+    @log_device_state_change
+    async def perform_action(self, action_type, value=None):
+        await self.turn_on()
+        await asyncio.sleep(1)
+
         if action_type.lower() == "lock":
-            if self.__passcode == value:
-                self.__lock = True
-            else:
-                pass #raise error
+            if self.__lock:
+                raise DeviceStateError("Door already locked.")
+            if value != self.__passcode:
+                raise PermissionDeniedError("Incorrect passcode.")
+            self.__lock = True
+            print("Door locked.")
         elif action_type.lower() == "unlock":
-            if self.__passcode == value:
-                self.__lock = False
-            else:
-                pass #raise error
+            if not self.__lock:
+                raise DeviceStateError("Door already unlocked.")
+            if value != self.__passcode:
+                raise PermissionDeniedError("Incorrect passcode.")
+            self.__lock = False
+            print("Door unlocked.")
+        elif action_type.lower() == "password_reset":
+            self.passcode = value
+            print("Passcode updated.")
         else:
-            print(f"Unknown action '{action_type}' for SmartDoor.")#error raise
+            raise UnsupportedActionError("Unknown action for SmartDoor")
 
-    def load_state(self,state):
+    async def load_state(self, state):
         if state["is_on"]:
-            self.turn_on()
+            await self.turn_on()
         else:
-            self.turn_on()
+            await self.turn_off()
         self.lock = state["lock"]
         self.passcode = state["passcode"]
 
