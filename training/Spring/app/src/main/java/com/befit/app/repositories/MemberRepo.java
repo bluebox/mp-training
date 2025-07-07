@@ -34,7 +34,7 @@ public class MemberRepo {
 		params.addValue("weight", member.getWeight());
 		params.addValue("height", member.getHeight());
 		params.addValue("address", member.getAddress());
-		params.addValue("memberShip", member.getMemberShip()); // Fixed parameter name
+		params.addValue("memberShip", member.getMemberShip()); 
 		params.addValue("joinDate", new java.sql.Date(member.getJoinDate().getTime()));
 		params.addValue("expiryDate", new java.sql.Date(member.getExpiryDate().getTime()));
 		params.addValue("status", member.getStatus());
@@ -101,14 +101,16 @@ public class MemberRepo {
 	}
 
 	public Member viewMember(Member member) {
-		String sql = "select id,name,mobile,age,weight,height,address,memberShip,joinDate,expiryDate,status from member where id = :id)";
+		String sql = "SELECT id, name, mobile, age, weight, height, address, memberShip, joinDate, expiryDate, status FROM member where id = :id";
 		MapSqlParameterSource params = new MapSqlParameterSource();
+		System.out.println(member.getId());
 		params.addValue("id", member.getId());
 		try {
 			Member returnMember = namedParameterJdbcTemplate.queryForObject(sql, params, new MemberRowMapper());
+			System.out.println(returnMember);
 			return returnMember;
 		} catch (Exception e) {
-			System.out.println(e.getStackTrace());
+			System.out.println(e.getMessage());
 			return null;
 		}
 	}

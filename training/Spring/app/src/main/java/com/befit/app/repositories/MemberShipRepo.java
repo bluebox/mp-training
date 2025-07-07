@@ -38,10 +38,10 @@ public class MemberShipRepo {
             int val = namedParameterJdbcTemplate.queryForObject("SELECT MAX(id) FROM memberShip",
                     new MapSqlParameterSource(), Integer.class);
             String activitiesSql = "INSERT INTO activities (id, activity) VALUES (:id, :activity)";
-            for (String activity : memberShip.getActivities()) {
+            for (int i=0;i < memberShip.getActivities().size();i++) {
                 MapSqlParameterSource tempParams = new MapSqlParameterSource();
                 tempParams.addValue("id", val);
-                tempParams.addValue("activity", activity);
+                tempParams.addValue("activity", memberShip.getActivities().get(i));
                 namedParameterJdbcTemplate.update(activitiesSql, tempParams);
             }
             return true;
@@ -57,11 +57,11 @@ public class MemberShipRepo {
         try {
             List<MemberShip> memberShips = namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(), new MemberShipRowMapper());
             String activitiesSql = "SELECT activity FROM activities WHERE id = :id";
-            for (MemberShip memberShip : memberShips) {
+            for (int i=0;i < memberShips.size();i++) {
                 MapSqlParameterSource params = new MapSqlParameterSource();
-                params.addValue("id", memberShip.getId());
+                params.addValue("id", memberShips.get(i).getId());
                 List<String> activities = namedParameterJdbcTemplate.queryForList(activitiesSql, params, String.class);
-                memberShip.setActivities(activities);
+                memberShips.get(i).setActivities(activities);
             }
             return memberShips;
         } catch (Exception e) {
@@ -80,11 +80,11 @@ public class MemberShipRepo {
             params.addValue("end", endDate);
             List<MemberShip> memberShips = namedParameterJdbcTemplate.query(sql, params, new MemberShipRowMapper());
             String activitiesSql = "SELECT activity FROM activities WHERE id = :id";
-            for (MemberShip memberShip : memberShips) {
+            for (int i =0;i < memberShips.size();i++) {
                 MapSqlParameterSource tempParams = new MapSqlParameterSource();
-                tempParams.addValue("id", memberShip.getId());
+                tempParams.addValue("id", memberShips.get(i).getId());
                 List<String> activities = namedParameterJdbcTemplate.queryForList(activitiesSql, tempParams, String.class);
-                memberShip.setActivities(activities);
+                memberShips.get(i).setActivities(activities);
             }
             return memberShips;
         } catch (Exception e) {

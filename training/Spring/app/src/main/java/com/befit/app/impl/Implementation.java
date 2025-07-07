@@ -34,6 +34,7 @@ public class Implementation {
 	
 	public String renew(Member member,String days) {
 		Member tempMember = memberRepo.viewMember(member);
+		System.out.println(tempMember);
 		if  (tempMember != null) {
 			Date expiryDate = member.getExpiryDate();
 			Calendar calendar = Calendar.getInstance();
