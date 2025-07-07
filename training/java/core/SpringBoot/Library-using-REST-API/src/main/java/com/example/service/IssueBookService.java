@@ -45,7 +45,7 @@ public class IssueBookService {
         ArrayList<IssueRecord> list = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "Practice", "Vbhanu@2003");
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bhanu", "practice", "Vbhanu@123");
                  Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery("SELECT * FROM issue_records")) {
                 while (rs.next()) {
@@ -66,7 +66,7 @@ public class IssueBookService {
                 if (bookId==-1) {
                     return "Issue record not found";
                 }
-                PreparedStatement ps2 = conn.prepareStatement("UPDATE issue_records SET statusrec = 'R' WHERE issueId = ?");
+                PreparedStatement ps2 = conn.prepareStatement("UPDATE issue_records SET status = 'R' WHERE issueId = ?");
                 ps2.setInt(1, issueId);
                 int updatedStatus = ps2.executeUpdate();
                 PreparedStatement ps3 = conn.prepareStatement("UPDATE books SET availability = 'A' WHERE bookId = ?");

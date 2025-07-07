@@ -40,7 +40,7 @@ public class BookRepository{
 		return jdbcTemplate.update("delete from books where bookId=?",bookId);
 	}
 	public int changeStatus(long bookId) {
-		Map<String, Object> l = jdbcTemplate.queryForMap("select status,availabilty from books where bookId=?",bookId);
+		Map<String, Object> l = jdbcTemplate.queryForMap("select status,availability from books where bookId=?",bookId);
 		return jdbcTemplate.update("update books set status=?,availability=? where bookId=?",(String.valueOf(l.get("Status")).charAt(0)=='A'?"I":"A"),(String.valueOf(l.get("Status")).charAt(0)=='A'?"I":"A"),bookId);
 	}
 }

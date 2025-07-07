@@ -21,16 +21,16 @@ public class IssueRepository {
 		return (jdbcTemplate.queryForObject("SELECT availability FROM books WHERE BookId = ?",Character.class , bookId).equals('A'));
 	}
 	public boolean checkMember(int memberId) {
-		return (jdbcTemplate.queryForList("SELECT * FROM member WHERE memberId = ?" , memberId)).size()>0;
+		return (jdbcTemplate.queryForList("SELECT * FROM members WHERE memberId = ?" , memberId)).size()>0;
 	}
 	public boolean bookIssued(long bookId) {
-		return (jdbcTemplate.queryForList("SELECT * FROM issue_records WHERE bookId = ? AND statusrec = 'I'",bookId).size()>0);
+		return (jdbcTemplate.queryForList("SELECT * FROM issue_records WHERE bookId = ? AND status = 'I'",bookId).size()>0);
 	}
 	public boolean issueIdPresent(int issueId) {
 		return (jdbcTemplate.queryForList("select * from issue_records where issueId=?",issueId).size()>0);
 	}
 	public int insertIssue(IssueRecord i) {
-		return jdbcTemplate.update("INSERT INTO issuer_ecords VALUES (?, ?, ?, ?, ?, ?)",i.getIssueId(),i.getBookId(),i.getMemberId(),Character.toString(i.getStatusrec()),Date.valueOf(i.getIssueDate()),Date.valueOf(i.getReturnDate()));
+		return jdbcTemplate.update("INSERT INTO issue_records(IssueId,BookId,MemberId,Status,IssueDate,ReturnDate) VALUES (?, ?, ?, ?, ?, ?)",i.getIssueId(),i.getBookId(),i.getMemberId(),Character.toString(i.getStatusrec()),Date.valueOf(i.getIssueDate()),Date.valueOf(i.getReturnDate()));
 	}
 	public int updateAvaillability(long bookId) {
 		return jdbcTemplate.update("UPDATE books SET availability = 'I' WHERE bookId = ?",bookId);

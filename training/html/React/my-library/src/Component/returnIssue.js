@@ -13,8 +13,8 @@ function ReturnIssue(){
             if (!response.ok) throw new Error("Failed to fetch data");
             return response.text();
         })
-        .then(() => {
-            alert("Issue returned successfully!");
+        .then((data) => {
+            alert({data});
             nav("/showIssue");
         })
         .catch((error) => {

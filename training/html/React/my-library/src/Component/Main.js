@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Main(){
+  const nav=useNavigate();
+ 
+    nav("/login");
+  
   return(
     <div>
       <Link to="/showBooks"><button>Show Books</button></Link>

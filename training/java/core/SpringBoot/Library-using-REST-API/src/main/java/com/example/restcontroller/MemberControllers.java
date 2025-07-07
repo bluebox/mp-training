@@ -24,6 +24,7 @@ public class MemberControllers {
 	private MemberService mem;
 	@GetMapping("/show")
 	public ArrayList<Member> getAllMembers() {
+		System.out.println("Data is fetching");
 		return mem.showMembers();
 	}
 	@PostMapping("/add")

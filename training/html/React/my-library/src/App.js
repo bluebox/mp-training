@@ -10,6 +10,7 @@ import UpdateAvailability from "./Component/UpdateAvailability";
 import ShowIssues from "./Component/ShowIssue";
 import AddIssue from "./Component/addIssue";
 import ReturnIssue from "./Component/returnIssue";
+import Login from "./Component/Login";
 export default function App(){
     return(
         <BrowserRouter>
@@ -27,6 +28,7 @@ export default function App(){
                 <Route path="/showIssue" element={<ShowIssues/>}></Route>
                 <Route path="/addIssue" element={<AddIssue/>}></Route>
                 <Route path="/returnIssue/:issueId" element={<ReturnIssue/>}></Route>
+                <Route path="/login" element={<Login/>}></Route>
             </Routes>
         </BrowserRouter>
     );

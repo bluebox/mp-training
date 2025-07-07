@@ -28,7 +28,9 @@ public class IssueRecordRestController {
 	}
 	@PostMapping("/add")
 	public String issueBook(@RequestBody IssueRecord i) {
-		return ibs.issueBook(i);
+		String s= ibs.issueBook(i);
+		System.out.println(s);
+		return s;
 	}
 	@PutMapping("/return")
 	public String returnBook(@RequestParam int issueId) {

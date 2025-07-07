@@ -16,14 +16,12 @@ function AddBooks(){
   })
   .then((response) => {
     if (!response.ok) throw new Error("Failed to add book");
-    return response.text();
   })
-  .then((data) => {
-    alert("Book added successfully!");
+  .then(() => {
     navigate("/showBooks")
   })
   .catch((error) => {
-    console.error("Error:", error);
+    alert("Error occured",error);
   });
   }
   

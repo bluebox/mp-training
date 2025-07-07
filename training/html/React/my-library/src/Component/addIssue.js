@@ -18,15 +18,19 @@ function AddIssue(){
     if (!response.ok) throw new Error("Failed to add book");
     return response.text();
   })
-  .then((data) => {
-    alert("Issue added successfully!");
+  .then(() => {
+    alert("Issue added succesfully");
     navigate("/showIssue")
   })
   .catch((error) => {
     console.error("Error:", error);
   });
   }
-  
+  let date = new Date();
+  let today = date.toISOString().split("T")[0];
+  let returnDate = new Date(date);
+  returnDate.setDate(date.getDate() + 7);
+  let returnDateStr = returnDate.toISOString().split("T")[0];
   return (
     <form onSubmit={IssueData}>
       <label htmlFor='issueId'>Issue ID : </label>
@@ -35,7 +39,9 @@ function AddIssue(){
       <input type='number' id='bookId' name='bookId'/><br></br>
       <label htmlFor='memberId'>Member ID : </label>
       <input type='number' id='memberId' name='memberId'/><br></br>
-      <input type='hidden' id='statusRec' name='statusRec' defaultValue={"I"}/><br></br>
+      <input type='text' id='statusrec' name='statusrec' value={'I'}/><br></br>
+      <input type='text' id='issueDate' name='issueDate' value={today} hidden/><br></br>
+      <input type='text' id='returnDate' name='returnDate' value={returnDateStr} hidden/><br></br>
       <input type='submit'/>
     </form>
     

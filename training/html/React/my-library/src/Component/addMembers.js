@@ -30,17 +30,22 @@ function AddMembers(){
   return (
     <form onSubmit={MemberData}>
       <label htmlFor='memberId'>Member ID : </label>
-      <input type='number' id='memberId' name='memberId'/>
+      <input type='number' id='memberId' name='memberId'/><br></br>
       <label htmlFor='name'>Name  : </label>
-      <input type='text' id='name' name='name'/>
+      <input type='text' id='name' name='name'/><br></br>
       <label htmlFor='email'>Email : </label>
-      <input type='text' id='email' name='email'/>
+      <input type='text' id='email' name='email'/><br></br>
       <label htmlFor='mobile'>Phone no : </label>
-      <input type='text' id='mobile'name='mobile'/>
+      <input type='text' id='mobile'name='mobile'/><br></br>
       <label htmlFor='gender'>Gender : </label>
-      <input type='text' name='gender' id='gender'/>
+      <select name='gender' id='gender'>
+        <option hidden>Select your gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>  
+      <br></br>
       <label htmlFor='address'>Address : </label>
-      <input type='text' name='address' id='address'/>
+      <input type='text' name='address' id='address'/><br></br>
       <input type='submit'/>
     </form>
   );

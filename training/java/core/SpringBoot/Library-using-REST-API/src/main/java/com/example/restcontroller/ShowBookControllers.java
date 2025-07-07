@@ -2,7 +2,10 @@ package com.example.restcontroller;
 
 import java.util.ArrayList;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +31,7 @@ public class ShowBookControllers {
 	}
 	@PostMapping("/add")
 	public String addBook(@RequestBody Books books) {
-	    System.out.println("Received book: " + books);
-		return bs.add(books);
+	    return bs.add(books);
 	}
 	@PutMapping("/update")
 	public String updateBook(@RequestBody Books b) {

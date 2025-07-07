@@ -18,6 +18,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.example.model.Books;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -56,4 +57,19 @@ public class RestConsuming {
 				.retrieve()
 				.bodyToMono(String.class);
 	}
+//	@PostMapping("/addBooks")
+//	public Mono<String> addBook(@RequestBody Books b) {
+//		return web.post().uri("http://10.129.242.209:8080/book/books")
+//				.header("invocationform", "WebClient")
+//				.body(Mono.just(b),Books.class)
+//				.retrieve()
+//				.bodyToMono(String.class);
+//	}
+//	@GetMapping("/showBooks")
+//	public Flux<Books> showBooks() {
+//		return web.post().uri("http://10.129.242.209:8080/book/books")
+//				.header("invocationform", "WebClient")
+//				.retrieve()
+//				.bodyToFlux(Books.class);
+//	}
 }

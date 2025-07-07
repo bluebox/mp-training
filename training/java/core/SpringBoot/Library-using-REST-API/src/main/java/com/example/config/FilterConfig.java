@@ -28,8 +28,8 @@ public class FilterConfig {
 		http.csrf().disable().
 		cors().and().
 		authorizeRequests().antMatchers("/main","/show","/showMember","/showIssue","/logout","/").permitAll()
-		.antMatchers("/issueBook/*").permitAll()
 		.anyRequest().permitAll()
+//		.anyRequest().permitAll()
 		.and().formLogin()
 //		.loginPage("/login")
 //		.defaultSuccessUrl("/main",true)
@@ -76,8 +76,8 @@ public class FilterConfig {
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Apply to all endpoints
-                        .allowedOrigins("http://localhost:3000") // Allow React app
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:3000") 
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
