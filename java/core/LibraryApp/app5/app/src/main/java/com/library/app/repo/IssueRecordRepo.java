@@ -38,7 +38,6 @@ public class IssueRecordRepo {
 		String returnLogSql = "insert into issue_records_log (IssueId, Status, ReturnDate) values (?, 'R', ?)";
 		jdbcTemplate.update(returnSql, java.sql.Date.valueOf(LocalDate.now()), issueId);
 		return jdbcTemplate.update(returnLogSql, issueId, java.sql.Date.valueOf(LocalDate.now()));
-
 	}
 
 	public IssueRecord getIssueById(int issueId) throws Exception{

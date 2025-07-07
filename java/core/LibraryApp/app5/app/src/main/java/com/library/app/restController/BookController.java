@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import com.library.app.model.Book;
 import com.library.app.model.Response;
@@ -43,6 +46,9 @@ public class BookController {
 		this.libraryService=libraryService;
 	}
 	
+	@Autowired
+	WebClient webClient;
+
 	
 	@PostMapping(value="/addBook")
 	public ResponseEntity<Response> addBookPage(@RequestHeader("invocationFrom") String invocationFrom,@RequestBody Book book) {
@@ -104,6 +110,18 @@ public class BookController {
 	        List<Book> books = libraryService.viewAllBooks();
 		    return books;            
 	}
+	
+//	Rest Consuming
+
+	@GetMapping("/getAllBooks")
+    public Flux<Book> getBook(){
+        String uri = "http://10.129.242.2:8080/api/book/getAllBooks";        
+        return webClient.get().uri(uri)
+                .header("invocationFrom","WebClient")
+                .retrieve()
+                .bodyToFlux(Book.class);
+    }
+	
 	
 }
 

@@ -40,6 +40,7 @@ public class BookRepo {
 		
 		jdbcTemplate.update(bookLogUpdateSql, book.getBookId(), book.getTitle(), book.getAuthor(), 
 				book.getCategory(),book.getStatus().getval(), book.getAvailability().getval(), "Update");
+		
 		if (rowsChanged == 0) {
 		    throw new Exception("No book found with this BookId : " + book.getBookId());
 		}

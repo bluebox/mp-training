@@ -69,7 +69,7 @@ public class LibraryService {
 	public boolean updateBookAvailability(int bookId, char availability) throws Exception {
 		boolean isUpdated = false;
 		if (availability != 'A' && availability != 'I') {
-			throw new Exception("Invalid availability status");
+			throw new Exception("Invalid availability status for the book!");
 		}
 		int res = bookRepo.updateAvailability(bookId, availability);
 		return isUpdated = res > 0 ? true:false;
@@ -78,7 +78,7 @@ public class LibraryService {
 	public List<Book> viewAllBooks() throws Exception {
 		List<Book> books = bookRepo.getAllBooks();
 		if (books.isEmpty())
-			throw new Exception("No books found");
+			throw new Exception("No books found!");
 		return books;
 	}
 
