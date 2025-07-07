@@ -1,3 +1,5 @@
+import asyncio
+
 from core.devices.SmartDevice import SmartDevice
 from core.exceptions import ActionNotSupportedError, DeviceOfflineError
 from utils.decorators import require_device_on
@@ -52,14 +54,15 @@ class SmartCamera(SmartDevice):
     def get_supported_actions(self):
         return ["start_recording", "stop_recording", "set_resolution"]
 
-
-if __name__ == '__main__':
+async def main():
     a = SmartCamera('l001')
     print(a.get_status_report())
-    a.perform_action('set_resolution', '2048p')
-    a.turn_on()
-    a.perform_action("start_recording")
-    a.perform_action("start_recording")
-    a.perform_action("stop_recording")
-    a.perform_action('set_resolution', '2048p')
+    await a.perform_action('set_resolution', '2048p')
+    await a.turn_on()
+    await a.perform_action("start_recording")
+    await a.perform_action("start_recording")
+    await a.perform_action("stop_recording")
+    await a.perform_action('set_resolution', '2048p')
     print(a.get_status_report())
+if __name__ == '__main__':
+    asyncio.run(main())

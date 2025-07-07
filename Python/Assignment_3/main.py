@@ -1,5 +1,7 @@
 import asyncio
 from datetime import datetime, timedelta
+
+from core.securityDevices.SecuritySensor import SecuritySensor
 from manager.Scheduler import Scheduler
 from core.devices.SmartDoorLock import SmartDoorLock
 from core.devices.SmartThermostat import SmartThermostat
@@ -23,6 +25,7 @@ async def main():
     door_lock = SmartDoorLock("door01", "Secure@123")
     camera = SmartCamera("cam01")
     alarm = SmartAlarmSystem("alarm01")
+    security_sensor=SecuritySensor('sensor001')
 
     await light.turn_on()
     await thermostat.turn_on()
@@ -30,8 +33,9 @@ async def main():
     await door_lock.turn_on()
     await camera.turn_on()
     await alarm.turn_on()
+    await security_sensor.turn_on()
 
-    for device in [light, thermostat, speaker, door_lock, camera, alarm]:
+    for device in [light, thermostat, speaker, door_lock, camera, alarm,security_sensor]:
         admin_home.add_device(device)
 
     print("\nControlling Device Parameters...")

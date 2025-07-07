@@ -37,11 +37,12 @@ class SmartThermostat(SmartDevice):
     def get_supported_actions(self):
         return "set_temperature"
 
-
-if __name__ == '__main__':
+async def main():
     a = SmartThermostat('l001')
     print(a.get_supported_actions())
     print(a.get_system_time())
     print(a.get_status_report())
-    a.turn_on()
-    a.perform_action('set_temperature', 20)
+    await a.turn_on()
+    await a.perform_action('set_temperature', 20)
+if __name__ == '__main__':
+    asyncio.run(main())

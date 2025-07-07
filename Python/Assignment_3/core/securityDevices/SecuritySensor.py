@@ -17,6 +17,8 @@ class SecuritySensor(SmartDevice):
 
     def is_armed(self):
         return self._armed
+    def get_status_report(self):
+        print(f'the status of device with deviced_id {self._device_id} is {self.is_armed()}')
 
     def get_supported_actions(self):
         return ["arm", "disarm"]

@@ -8,7 +8,7 @@ from .serializers import BlogSerializer, CommentSerializer
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
     def enforce_csrf(self, request):
-        return  # This disables CSRF check
+        return
 
 class Blog_api(generics.ListCreateAPIView):
     queryset = Blog.objects.all()

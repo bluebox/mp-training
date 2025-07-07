@@ -2,10 +2,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
 
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework import generics
 from .models import Student, Example, Employee
-from .serializers import StudentSerializer, ExampleSerializer, EmployeeSerializer
+from .serializers import StudentSerializer, ExampleSerializer, EmployeeSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -125,3 +127,12 @@ def dashboard_view(request):
 def logout_view(request):
     logout(request)
     return JsonResponse({'message': 'Logged out'})
+
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+    def enforce_csrf(self, request):
+        return
+class User_data(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class =UserSerializer
+    authentication_classes = [CsrfExemptSessionAuthentication]
+    permission_classes = [AllowAny]

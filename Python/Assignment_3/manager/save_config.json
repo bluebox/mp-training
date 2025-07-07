@@ -29,5 +29,10 @@
     "__device_type__": "SmartAlarmSystem",
     "device_id": "alarm01",
     "is_on": true
+  },
+  {
+    "__device_type__": "SecuritySensor",
+    "device_id": "sensor001",
+    "is_on": true
   }
 ]

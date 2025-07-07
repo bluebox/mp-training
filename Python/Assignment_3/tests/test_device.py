@@ -17,6 +17,7 @@ class TestBasicDevices(unittest.TestCase):
             await light.perform_action("set_brightness", 80)
             self.assertTrue(light.is_on())
             self.assertEqual(light.brightness, 80)
+
         asyncio.run(inner())
 
     def test_thermostat(self):
@@ -25,6 +26,7 @@ class TestBasicDevices(unittest.TestCase):
             await thermo.turn_on()
             await thermo.perform_action("set_temperature", 21)
             self.assertEqual(thermo.temperature, 21)
+
         asyncio.run(inner())
 
     def test_speaker(self):
@@ -33,6 +35,7 @@ class TestBasicDevices(unittest.TestCase):
             await speaker.turn_on()
             await speaker.perform_action("set_volume", 5)
             self.assertEqual(speaker.volume, 5)
+
         asyncio.run(inner())
 
     def test_camera(self):
@@ -41,6 +44,7 @@ class TestBasicDevices(unittest.TestCase):
             await cam.turn_on()
             await cam.perform_action("set_resolution", "1080p")
             self.assertEqual(cam.resolution, "1080p")
+
         asyncio.run(inner())
 
     def test_doorlock_correct_and_wrong_passcode(self):
@@ -48,13 +52,12 @@ class TestBasicDevices(unittest.TestCase):
             door = SmartDoorLock("door01", "Secure@123")
             await door.turn_on()
 
-            # Correct passcode
             await door.perform_action("change_lock", "Secure@123")
             self.assertTrue(door.lock)
 
-            # Wrong passcode should raise
             with self.assertRaises(AuthenticationError):
                 await door.perform_action("change_lock", "Wrong@123")
+
         asyncio.run(inner())
 
     def test_action_on_offline_device(self):
@@ -62,6 +65,7 @@ class TestBasicDevices(unittest.TestCase):
             light = SmartLight("light02")
             with self.assertRaises(DeviceOfflineError):
                 await light.perform_action("set_brightness", 50)
+
         asyncio.run(inner())
 
 
