@@ -43,5 +43,3 @@ class Seat implements Comparable<Seat> {
 
 
 }
-
-

@@ -1,8 +1,11 @@
 package Streams;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamExample {
@@ -44,6 +47,10 @@ public class StreamExample {
 		.map(e -> e.getKey() + " has range: "+e.getValue()[0]+" - "+
 			e.getValue()[e.getValue().length-1])
 		.forEach(System.out::println);
+		
+		
+	var arr = IntStream.iterate(1, i-> i<=20,i->i+1).summaryStatistics();;
+	System.out.println(arr);
 		
 		
 	}
