@@ -3,36 +3,5 @@
     "__device_type__": "SmartLight",
     "device_id": "light01",
     "is_on": true
-  },
-  {
-    "__device_type__": "SmartThermostat",
-    "device_id": "thermo01",
-    "is_on": true
-  },
-  {
-    "__device_type__": "SmartSpeaker",
-    "device_id": "speaker01",
-    "is_on": true
-  },
-  {
-    "__device_type__": "SmartDoorLock",
-    "device_id": "door01",
-    "is_on": true,
-    "passcode": "Secure@123"
-  },
-  {
-    "__device_type__": "SmartCamera",
-    "device_id": "cam01",
-    "is_on": true
-  },
-  {
-    "__device_type__": "SmartAlarmSystem",
-    "device_id": "alarm01",
-    "is_on": true
-  },
-  {
-    "__device_type__": "SecuritySensor",
-    "device_id": "sensor001",
-    "is_on": true
   }
 ]

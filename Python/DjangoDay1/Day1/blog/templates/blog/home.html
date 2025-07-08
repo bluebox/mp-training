@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/home.css' %}">
+{% endblock %}
+
+{% block body %}
+    {% for blog in blog_posts %}
+        <div class="blog-entry">
+            <a href="{% url 'single' blog.blog_id %}">
+                <h1>{{ blog.blog_title }}</h1>
+            </a>
+            <p>{{ blog.blog_data }}</p>
+        </div>
+    {% empty %}
+        <p>No blog posts available.</p>
+    {% endfor %}
+{% endblock %}

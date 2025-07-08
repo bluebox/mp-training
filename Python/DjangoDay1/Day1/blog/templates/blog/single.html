@@ -1,0 +1,17 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title%}
+<title>{{fact.blog_id}}</title>
+{%endblock%}
+
+print({{name}}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'blog/home.css' %}">
+{% endblock %}
+
+
+{%block body%}
+    <p>Hello - {{name}}</p>
+    <h1>{{fact.blog_title}}</h1>
+    <p>{{fact.blog_data}}</p>
+{%endblock%}
