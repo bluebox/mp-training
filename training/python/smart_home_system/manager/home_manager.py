@@ -25,14 +25,18 @@ async def smart_device_from_dict(data):
 
     if device_type == "SmartDoorLock":
         passcode = data.get("passcode", "default_pass")
-        device = cls(device_id, passcode)
+        device = cls(device_id)
+        if is_on:
+            await device.turn_on("Admin")
+        else:
+            await device.turn_off("Admin")
     else:
         device = cls(device_id)
+        if is_on:
+            await device.turn_on()
+        else:
+            await device.turn_off()
 
-    if is_on:
-        await device.turn_on()
-    else:
-        await device.turn_off()
     return device
 
 
@@ -148,10 +152,10 @@ def avg_temperature_thermostat(home_manager):
     return add / cnt
 
 
-def get_properties(home_manager):
-    mp = home_manager.get_devices()
-    ans = list(map(lambda key: mp[key].get_supported_actions(), mp))
-    return ans
+# def get_properties(home_manager):
+#     mp = home_manager.get_devices()
+#     ans = list(map(lambda key: mp[key].get_supported_actions(), mp))
+#     return ans
 
 
 def generator_id_online(ans):
@@ -159,15 +163,15 @@ def generator_id_online(ans):
         yield i
 
 
-# def get_properties(home_manager):
-#     devices = home_manager.get_devices()
-#     properties = {}
-#
-#     for device_id, device in devices.items():
-#         actions = device.get_supported_actions()
-#         properties[device_id] = actions
-#
-#     return properties
+def get_properties(home_manager):
+    devices = home_manager.get_devices()
+    properties = {}
+
+    for device_id, device in devices.items():
+        actions = device.get_supported_actions()
+        properties[device_id] = actions
+
+    return properties
 
 
 async def main():
@@ -179,8 +183,8 @@ async def main():
     a.add_device(c)
     await b.turn_on('Admin')
     a.add_device(b)
-    # await  a.save_config()
-    # await a.load_config()
+    await  a.save_config()
+    await a.load_config()
     await a.control_device('admin', 'ST32478', 'set_temperature', 27)
     await a.control_device('admin', 'SDL3748', 'lock',passcode_val='Admin')
     # print(b.lock())

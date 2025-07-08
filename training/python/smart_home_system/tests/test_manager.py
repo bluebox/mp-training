@@ -11,27 +11,27 @@ class TestHomeManager(unittest.TestCase):
     def test_add_and_control_device(self):
         async def inner():
             manager = HomeManager("admin")
-            light = SmartLight("light01")
+            light = SmartLight("SL3746")
             await light.turn_on()
             manager.add_device(light)
-            await manager.control_device("admin", "light01", "set_brightness", 70)
+            await manager.control_device("admin", "SL3746", "set_brightness", 70)
             self.assertEqual(light.brightness, 70)
         asyncio.run(inner())
 
     def test_permission_denied(self):
         async def inner():
             manager = HomeManager("admin")
-            thermo = SmartThermoStat("thermo01")
+            thermo = SmartThermoStat("STS4567")
             await thermo.turn_on()
             manager.add_device(thermo)
-            await manager.control_device("user", "thermo01", "set_temperature", 25)
+            await manager.control_device("user", "STS4567", "set_temperature", 25)
             print(thermo.temperature)
             self.assertNotEqual(thermo.temperature, 25)
         asyncio.run(inner())
 
     def test_duplicate_device_addition(self):
         manager = HomeManager("admin")
-        light = SmartLight("light01")
+        light = SmartLight("SL3746")
         manager.add_device(light)
         manager.add_device(light)
         self.assertEqual(len(manager.get_devices()), 1)
@@ -39,7 +39,7 @@ class TestHomeManager(unittest.TestCase):
     def test_save_and_load_config(self):
         async def inner():
             manager = HomeManager("admin")
-            light = SmartLight("light01")
+            light = SmartLight("SL3746")
             await light.turn_on()
             manager.add_device(light)
             await manager.save_config()
@@ -47,8 +47,8 @@ class TestHomeManager(unittest.TestCase):
             new_manager = HomeManager("admin")
             await new_manager.load_config()
             devices = new_manager.get_devices()
-            self.assertIn("light01", devices)
-            self.assertTrue(devices["light01"].is_on())
+            self.assertIn("SL3746", devices)
+            self.assertTrue(devices["SL3746"]._is_on)
         asyncio.run(inner())
 
 

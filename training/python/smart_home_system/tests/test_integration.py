@@ -7,8 +7,8 @@ from core.devices import SmartDoorLock
 from core.devices import SmartThermoStat
 from manager.home_manager import HomeManager
 from manager.scene_manager import SceneManager
-from manager.Scheduler import Scheduler
-from manager.HomeManager import all_id_of_online, avg_temperature_thermostat, get_properties
+from manager.scheduler import Scheduler
+from manager.home_manager import all_id_of_online, avg_temperature_thermostat, get_properties
 
 
 class TestIntegration(unittest.TestCase):
@@ -27,13 +27,13 @@ class TestIntegration(unittest.TestCase):
 
             scene_mgr = SceneManager()
             scene_mgr.add_scene("lock_down", [
-                ("light01", "set_brightness", 30),
-                ("door01", "change_lock", "Valid@123")
+                ("SL10689", "set_brightness", 30),
+                ("SDL47993", "lock", "Admin")
             ])
 
             await scene_mgr.activate_scene(manager, "lock_down", "admin")
             self.assertEqual(light.brightness, 30)
-            self.assertTrue(lock.lock)
+            self.assertTrue(lock._is_lock)
 
 
             await scene_mgr.activate_scene(manager, "lock_down", "guest")
@@ -42,13 +42,13 @@ class TestIntegration(unittest.TestCase):
     def test_scheduler_execution(self):
         async def inner():
             manager = HomeManager("admin")
-            thermo = SmartThermostat("thermo01")
+            thermo = SmartThermoStat("STS3678")
             await thermo.turn_on()
             manager.add_device(thermo)
 
             scheduler = Scheduler()
             time_str = (datetime.now() + timedelta(seconds=3)).strftime("%H:%M")
-            scheduler.add_scheduled_task(time_str, "thermo01", "set_temperature", 19, "admin")
+            scheduler.add_scheduled_task(time_str, "STS3678", "set_temperature", 19, "admin")
 
             while scheduler.tasks:
                 await scheduler.run_pending_tasks(manager)
@@ -60,9 +60,9 @@ class TestIntegration(unittest.TestCase):
     def test_functional_utils(self):
         async def inner():
             manager = HomeManager("admin")
-            light = SmartLight("light01")
-            thermo1 = SmartThermostat("thermo01")
-            thermo2 = SmartThermostat("thermo02")
+            light = SmartLight("SL10689")
+            thermo1 = SmartThermoStat("STS3678")
+            thermo2 = SmartThermoStat("STS3679")
 
             await light.turn_on()
             await thermo1.turn_on()
@@ -76,8 +76,8 @@ class TestIntegration(unittest.TestCase):
             manager.add_device(thermo2)
 
             online_ids = all_id_of_online(manager)
-            self.assertIn("light01", online_ids)
-            self.assertIn("thermo01", online_ids)
+            self.assertIn("SL10689", online_ids)
+            self.assertIn("STS3678", online_ids)
 
             avg_temp = avg_temperature_thermostat(manager)
             self.assertEqual(avg_temp, 23.0)

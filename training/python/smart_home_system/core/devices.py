@@ -81,7 +81,7 @@ class SmartLight(SmartDevice):
 
     @brightness.setter
     def brightness(self, level):
-        if not self._is_on():
+        if not self._is_on:
             raise exceptions.DeviceOfflineError("Device is offline", 226)
         if 0 <= level <= 100:
             self._brightness = level
@@ -89,7 +89,8 @@ class SmartLight(SmartDevice):
         else:
             raise ValueError("Enter a valid brightness value (0-100)",226)
 
-    def perform_action(self,action_type,value=None):
+    async def perform_action(self,action_type,value=None):
+        await asyncio.sleep(1)
         if action_type == "set_brightness":
             self.brightness = value
         else:
@@ -171,12 +172,14 @@ class SmartDoorLock(SmartDevice):
                         else:
                             self._is_lock = True
                             print("The device has been locked")
+                        return True
                 elif action_type=='unlock':
                         if self._is_lock:
                             self._is_lock=False
                             print("The device is unlocked")
                         else:
                             print("The device is already unlocked")
+                        return True
                 else:
                     raise exceptions.ActionNotSupportedError("This action is invalid", 367)
             else:
