@@ -1,10 +1,10 @@
-package Day6;
+package day7;
 
 import java.util.Comparator;
 import java.util.Objects;
 
 public class SetChallenge {
-	private String assignee;
+	//private String assignee;
 	private String projectName;
 	private String description;
 	private Status status;
@@ -18,8 +18,8 @@ public class SetChallenge {
 		HIGH,LOW,MEDIUM
 	}
 	
-	public SetChallenge(String assignee, String projectName, String description, Status status, Priority priority) {
-		this.assignee = assignee;
+	public SetChallenge(String projectName, String description, Status status, Priority priority) {
+		//this.assignee = assignee;
 		this.projectName = projectName;
 		this.description = description;
 		this.status = status;
@@ -42,18 +42,18 @@ public class SetChallenge {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Assignee : "+assignee+" name of project : "+projectName+" \ndescription : "+description+" and the status : "+status+" priority :  "+priority;
+		return String.format("%s (%s, %s, %s)\n", projectName, description, priority, status);
 	}
 	
 	
 	
-	public String getAssignee() {
-		return assignee;
-	}
-
-	public void setAssignee(String assignee) {
-		this.assignee = assignee;
-	}
+//	public String getAssignee() {
+//		return assignee;
+//	}
+//
+//	public void setAssignee(String assignee) {
+//		this.assignee = assignee;
+//	}
 
 	public String getProjectName() {
 		return projectName;

@@ -15,5 +15,8 @@ public class Main {
 				tasks.add(new SetChallenge("Suri","Earth" ,"generating electricity throug Earth temp", Status.ASSIGNED, Priority.LOW));
 		Collections.sort(tasks , SetChallenge.checker);
 		tasks.forEach(s->System.out.println(s));
+		
+		System.out.println();
 	}
 }
+
