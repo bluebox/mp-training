@@ -35,10 +35,10 @@ A Java-based **Gym Membership Management System** designed to demonstrate core *
 - ✅ **Data Persistence**  
    → Member data and membership plans are saved in a file (`members.txt`) and automatically loaded when the program starts.
   
-- ✅ **Upgrade membership with discount** (Suggested feature by Mentor) 
+- ✅ **Upgrade membership with discount (Suggested feature by Mentor)**
    → If the user wants to upgrade his plan and he still has remaining days those days will be converted into a discount after calculation.
 
-- ✅ **Fail safe for downgrading** (Suggested feature by Mentor) 
+- ✅ **Fail safe for downgrading (Suggested feature by Mentor)**
    → The user cannot downgrade to a lower Membership plan.
 
 ## 🌟 **Additional Features**
