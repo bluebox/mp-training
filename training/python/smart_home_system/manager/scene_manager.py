@@ -15,11 +15,6 @@ class SceneManager:
         actions = self._scenes[scene_name]
         tasks = []
         print(actions)
-        # for device_id, action_type, value in actions:
-        #     task = home_manager.control_device(user_role, device_id, action_type, value)
-        #     tasks.append(task)
-        #
-        # await asyncio.gather(*tasks)
         devices = home_manager.get_devices()
 
         for device_id, action_type, value in actions:
