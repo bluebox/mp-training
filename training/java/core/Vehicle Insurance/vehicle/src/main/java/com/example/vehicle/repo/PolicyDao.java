@@ -17,8 +17,8 @@ public class PolicyDao {
 	public PolicyDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate=jdbcTemplate;
 	}
-	public String addPolicy(Policy p) {
-		int rowsEffected=jdbcTemplate.update("insert into policy values(?,?,?,?,?,?,?,?,?)",p.getPolicyTerm(),p.getPolicyType(),p.getPremiumAmount(),p.getPolicyAmount(),p.getStartDate(),p.getEndDate(),p.getPolicyStatus(),p.getVehicleId(),p.getApprovedBy());
+	public String addPolicy(int policyTerm, PolicyType policyType, LocalDateTime startDate,LocalDateTime endDate, int vehicleId, String approvedBy) {
+		int rowsEffected=jdbcTemplate.update("insert into policy values(?,?,?,?,?,?,?,?,?)",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),startDate,endDate,'R',vehicleId,approvedBy);
 		if(rowsEffected>0) {
 			return "Inserted";
 		}
@@ -45,6 +45,44 @@ public class PolicyDao {
 		else {
 			return "Failed to update status";
 		}
+	}
+	public List<Policy> getPoliciesRequested() {
+		return jdbcTemplate.queryForList("select * from policy where policy_status='R'",Policy.class);
+	}
+	public String updateStatus(int policyid,char policyStatus) {
+		int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",policyStatus,policyid);
+		if(rowsEffected>0) {
+			if(policyStatus=='A'){
+				return "Policy is accepted";
+			}
+			else {
+				return "Policy is rejected";
+			}
+		}
+		else {
+			return "Failed to update status";
+		}
+//		char prevPolicyStatus=jdbcTemplate.queryForObject("select policy_status from policy where policy_id=?", Character.class,policyid);
+//		if(prevPolicyStatus=='R') {
+//			int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",policyStatus,policyid);
+//			if(rowsEffected>0) {
+//				if(policyStatus=='A'){
+//					return "Policy is accepted";
+//				}
+//				else {
+//					return "Policy is rejected";
+//				}
+//			}
+//			else {
+//				return "Failed to update status";
+//			}
+//		}
+//		else if(prevPolicyStatus=='A'){
+//			return "Policy is already accepted";
+//		}
+//		else {
+//			return "Policy is already rejected";
+//		}
 	}
 	public String renewPolicy(int policyId,int policyTerm,PolicyType policyType, int vehicleId, String approvedBy) {
 		int rowsEffected=jdbcTemplate.update("update policy set policy_term=?,policy_type=?,premium_amount=?,policy_amount=?,start_date=?,end_date=?,policy_status=?,vehicle_id=?,approved_by=? where policy_id=?",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),'A',vehicleId,approvedBy,policyId);
