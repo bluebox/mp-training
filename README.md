@@ -35,10 +35,10 @@ A Java-based **Gym Membership Management System** designed to demonstrate core *
 - ✅ **Data Persistence**  
    → Member data and membership plans are saved in a file (`members.txt`) and automatically loaded when the program starts.
   
-- ✅ **Upgrade membership with discount (Suggested feature by Mentor)**
+- ✅ **Upgrade membership with discount (Suggested feature by Mentor)**  
    → If the user wants to upgrade his plan and he still has remaining days those days will be converted into a discount after calculation.
 
-- ✅ **Fail safe for downgrading (Suggested feature by Mentor)**
+- ✅ **Fail safe for downgrading (Suggested feature by Mentor)**  
    → The user cannot downgrade to a lower Membership plan.
 
 ## 🌟 **Additional Features**
@@ -49,25 +49,3 @@ A Java-based **Gym Membership Management System** designed to demonstrate core *
 - 🔥 **Persistent Data Storage**  
    → Data remains intact between different runs of the application due to the implementation of **file-based storage**.
 
-## 🚀 **How to Run**
-
-1. Clone the repository:  
-   ```
-   git clone <your-repository-url>
-   ```
-2. Open in **Eclipse** or any Java IDE.
-
-3. Run the `Main` class for the console app.
-
-4. Data will be saved in `members.txt` in the project directory.
-
-## 📂 **File Structure Example**
-```
-/src
- └── com.gym.classes
- └── com.gym.driver
-members.txt  <-- Auto-generated for storing member data
-```
-
-## 👨‍💻 **Developed For**
-Case Study 1 - Object Oriented Programming Concepts Practice.
