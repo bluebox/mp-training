@@ -25,7 +25,7 @@ create table users(
 	password varchar(255) not null,
     password_updated_on datetime not null,
     password_updated_by varchar(255) not null,
-	customer_id int not null,foreign key(customer_id) references customers(customer_id)
+	customer_id int unique not null,foreign key(customer_id) references customers(customer_id)
 );
 create table vehicles(
 	vehicle_id int primary key auto_increment,
@@ -60,8 +60,12 @@ create table claim(
 	claim_status char check(claim_status in ('A','I','R')),/*Approved,Rejected,Initiated*/
 	claim_date datetime,
 	policy_id int not null,foreign key(policy_id) references policy(policy_id)
+	approved_by varchar(255) not null,
+    foreign key(approved_by) references admin(username)
 );
 
 drop table claim;
 drop table policy;
-drop table vehicles
+drop table vehicles;
+drop table customers;
+drop table users;

@@ -1,0 +1,70 @@
+package com.example.vehicle.service;
+
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.vehicle.repo.VehicleDao;
+import com.example.vehicle.model.Vehicle;
+
+@Service
+@Transactional
+public class VehicleService {
+	@Autowired
+	VehicleDao vehicleDao;
+
+	public String addVehicle(Vehicle vehicle) throws Exception {
+		String result;
+		try {
+			result = vehicleDao.addVehicle(vehicle);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return result;
+	}
+
+//	public String updateVehicle(Vehicle vehicle) throws Exception {
+//		String result;
+//		try {
+//			result=vehicleDao.updateVehicle(vehicle);
+//		}
+//		catch(Exception e) {
+//			throw new Exception(e.getMessage());
+//		}
+//		return result;
+//	}
+	public String updateVehicleNumber(int regNum, String updatedBy, LocalDateTime updatedOn, int vehicleId)
+			throws Exception {
+		String result;
+		try {
+			result = vehicleDao.updateVehicleNumber(regNum, updatedBy, updatedOn, vehicleId);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return result;
+	}
+
+	public Vehicle getVehicleById(int vehicleId) throws Exception {
+		Vehicle vehicle = vehicleDao.getVehicleById(vehicleId);
+		return vehicle;
+	}
+
+	public String deleteVehicleById(int vehicleId) throws Exception {
+		String result;
+		try {
+			result = vehicleDao.deleteVehicleById(vehicleId);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return result;
+	}
+	
+	public List<Vehicle> getAllVehicles() throws SQLException{
+		return vehicleDao.getAllVehicles();
+	}
+
+}

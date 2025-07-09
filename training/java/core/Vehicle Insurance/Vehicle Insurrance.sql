@@ -33,6 +33,7 @@ create table vehicles(
 	reg_num varchar(255) unique not null,
 	vehicle_model varchar(255) not null,
 	purchase_date datetime not null,
+    status char not null,
     vehicle_updated_on datetime not null,
     vehicle_updated_by varchar(255) not null,
 	customer_id int not null,foreign key(customer_id) references customers(customer_id),
@@ -61,4 +62,9 @@ create table claim(
 	policy_id int not null,foreign key(policy_id) references policy(policy_id)
 );
 
+insert into vehicles values(2343,"dfw434","wer","18-06-12 10:34:09 AM","18-06-12 10:34:09 AM","Bhanu",1);
+select * from vehicles; 
 
+drop table claim;
+drop table policy;
+drop table vehicles;
