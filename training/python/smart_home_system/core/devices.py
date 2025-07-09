@@ -19,15 +19,22 @@ class DeviceRegistrarMeta(ABCMeta):
 #     return  False
 class SmartDevice(ABC,metaclass=DeviceRegistrarMeta):
     _total_devices_created = 0
+    _devices={}
+
 
     def __init__(self, device_id, is_on, device_pattern):
         self.__pattern = device_pattern
-        if pattern_match(self.__pattern, device_id):
-            self._device_id = device_id
-            SmartDevice._total_devices_created += 1
+        if device_id not in self._devices:
+            if pattern_match(self.__pattern, device_id):
+                self._device_id = device_id
+                SmartDevice._devices[device_id] = self
+                SmartDevice._total_devices_created += 1
+            else:
+                raise exceptions.InvalidParameterError(f"The ID you entered is invalid", 304)
+            self._is_on = is_on
         else:
-            raise exceptions.InvalidParameterError(f"The ID you entered is invalid", 304)
-        self._is_on = is_on
+            raise exceptions.DuplicateDeviceError("Sorry! This device cannot be added",3335)
+
     @log_status_change
     async def turn_on(self):
         print("Turning on the device")
@@ -83,7 +90,7 @@ class SmartLight(SmartDevice):
     def brightness(self, level):
         if not self._is_on:
             raise exceptions.DeviceOfflineError("Device is offline", 226)
-        if 0 <= level <= 100:
+        elif 0 <= level <= 100:
             self._brightness = level
             print(f"Brightness of {self._device_id} set to {level}")
         else:
