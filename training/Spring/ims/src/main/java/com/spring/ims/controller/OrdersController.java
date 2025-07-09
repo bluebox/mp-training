@@ -22,7 +22,7 @@ public class OrdersController {
 	private OrdersService ordersService;
 	
 	@Autowired
-	public OrdersController(OrdersService impl) {
+	public OrdersController(OrdersService ordersService) {
 		this.ordersService = ordersService;
 	}
 
@@ -31,6 +31,7 @@ public class OrdersController {
 		try {
 			return ResponseEntity.ok(ordersService.pendingOrders());
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");
 			errorResponse.put("message", "Something Went Wrong!!!");

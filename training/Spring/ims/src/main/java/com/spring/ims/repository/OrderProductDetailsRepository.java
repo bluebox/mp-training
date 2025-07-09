@@ -93,9 +93,9 @@ public class OrderProductDetailsRepository implements OrderProductDetailsReposit
 	
 
 	/*
-	 * create table orderProductDetails( orderDetailsId int primary key
-	 * auto_increment, orderId int, supplier varchar(100), product varchar(100),
-	 * productQuantity int, productCost float,status varchar(10));
+	  create table orderProductDetails( orderDetailsId int primary key
+	  auto_increment, orderId int, supplier varchar(100), product varchar(100),
+	  productQuantity int, productCost float,status varchar(10));
 	 */
 
 }

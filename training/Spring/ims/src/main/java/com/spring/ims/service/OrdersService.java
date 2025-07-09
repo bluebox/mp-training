@@ -108,7 +108,12 @@ public class OrdersService implements OrdersServiceInterface{
 
 	// WithDraw of Order
 	public boolean withDrawOfOrder(Orders order) {
-		return ordersRepository.withDrawOfOrder(order);
+		if (ordersRepository.checkStatus(order)) {
+			return ordersRepository.withDrawOfOrder(order);
+		}else {
+			return false;
+		}
+		
 	}
 
 }
