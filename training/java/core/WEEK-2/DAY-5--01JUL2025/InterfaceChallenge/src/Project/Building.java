@@ -26,6 +26,7 @@ public class Building implements Mappable {
                 color = Color.GREEN;
                 marker = PointMarkers.DIAMOND;
             }
+            default -> throw new IllegalArgumentException("Unexpected value: " + usage);
         }
     }
 

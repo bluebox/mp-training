@@ -83,7 +83,7 @@ public class Main {
                 	break;
                 }
                 System.out.println("Given member id does not exist, Please add the member first...");
-                break;
+                return;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid ID. Please enter a valid integer.");
             }
@@ -94,9 +94,9 @@ public class Main {
         Gym gym = new Gym();
 
         // Predefined plans
-        gym.addPlan(new MembershipPlan("Basic", 1, 999));
-        gym.addPlan(new MembershipPlan("Premium", 3, 2499));
-        gym.addPlan(new MembershipPlan("Gold", 6, 4499));
+        gym.addPlan(new MembershipPlan("Basic", 6, 999));
+        gym.addPlan(new MembershipPlan("Premium", 12, 2499));
+        gym.addPlan(new MembershipPlan("Gold", 18, 4499));
 
         Scanner scanner = new Scanner(System.in);
 

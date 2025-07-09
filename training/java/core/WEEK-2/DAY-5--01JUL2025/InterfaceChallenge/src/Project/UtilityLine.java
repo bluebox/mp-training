@@ -22,6 +22,7 @@ public class UtilityLine implements Mappable {
                 color = Color.GREEN;
                 marker = LineMarkers.DOTTED;
             }
+            default -> throw new IllegalArgumentException("Unexpected value: " + utility);
         }
     }
 
