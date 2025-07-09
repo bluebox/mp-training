@@ -1,0 +1,14 @@
+package challenges_8th_july;
+
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class miniChallenge1 {
+	public static void main(String[] args) {
+		Pattern p = Pattern.compile("Hello, World!");
+		String str="Hello, World!";
+		Matcher m=p.matcher(str);
+		System.out.println(m.find());
+	}
+}
