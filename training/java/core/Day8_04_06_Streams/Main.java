@@ -5,10 +5,11 @@ import java.util.stream.Stream;
 
 public class Main {
     static int count=0;
-    public static void main(String[] args) {
+    public static void main(String[] args){
         int seed=1;
         var bStream = Stream.iterate(seed,i->i<=15,i->i+1).map(i->"B"+i);
         seed+=15;
+        System.out.println(bStream.getClass().getPackageName());
         var iStream=Stream.iterate(seed,i->i+1).limit(15).map(i->"I"+i);
         seed+=15;
         int nSeed=seed;

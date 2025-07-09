@@ -11,21 +11,18 @@ public class WorkManager {
     public WorkManager(HashSet<Task> itemSet) {
         this.itemSet = itemSet;
     }
-
     public void displayAll() {
         itemSet.forEach(System.out::println);
     }
-
+ 
     public void displayByAssignee(String name) {
         itemSet.stream()
                .filter(item -> item.getAssignedTo().equals(name))
                .forEach(System.out::println);
     }
-
     public void displaySorted() {
         ArrayList<Task> sorted = new ArrayList<>(itemSet);
-        sorted.sort(Comparator.comparing(Task::getProjectName)
-                              .thenComparing(Task::getTaskDetails));
+        sorted.sort(Comparator.comparing(Task::getProjectName).thenComparing(Task::getTaskDetails));
         sorted.forEach(System.out::println);
     }
 }

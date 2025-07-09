@@ -5,13 +5,10 @@ import java.util.Scanner;
 
 public class SydneyDist {
 	public LinkedList<Place> lis=new LinkedList<>();
-
 	public LinkedList<Place> getLis() {
 		return lis;
 	}
-
     private static void printMenu() {
-
         System.out.println("""
                 Available actions (select word or letter):
                 (F)orward
@@ -26,14 +23,12 @@ public class SydneyDist {
 	            System.out.println("Found duplicate: " + p);
 	            return;
 	        }
-
 	        for (Place pl : lis) {
 	            if (pl.name.equalsIgnoreCase(p.name)) {
 	                System.out.println("Found duplicate: " + p);
 	                return;
 	            }
 	        }
-
 	        int matchedIndex = 0;
 	        for (var listPlace : lis) {
 	            if (p.distance < listPlace.distance) {

@@ -1,9 +1,7 @@
 package Day5_01_07.Linkedlist_challange;
 
 public class MyLinkedList implements NodeList {
-
     private ListItem root = null;
-
     public MyLinkedList(ListItem root) {
         this.root = root;
     }

@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.*;
 public class Gym {
+	 private static final String FILE_NAME = "members.txt";
 	 private ArrayList<Member> members = new ArrayList<>();
 	 private ArrayList<MembershiPlan> plans = new ArrayList<>();
-	 private static final String FILE_NAME = "members.txt";
+	 GymDAO dao=new GymDAO(members);
 	 public Gym() {
-		 loadMembersFromFile();
+		 
+		 dao.loadMembersFromFile(members);
 	     plans.add(new MembershiPlan("Basic", 3, 100));
 	     plans.add(new MembershiPlan("Premium", 6, 180));
 	     plans.add(new MembershiPlan("Gold", 12, 300));
 	 }
 	    public void addMember(Member member) {
 	        members.add(member);
-	        saveMembersToFile();
+	        dao.saveMembersToFile(members);
 	        System.out.println("Member added successfully.");
 	    }
 	    public void saveMembersToFile() {

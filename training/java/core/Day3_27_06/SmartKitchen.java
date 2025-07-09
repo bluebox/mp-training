@@ -26,7 +26,6 @@ public class SmartKitchen {
 		if(fridge) {
 			iceBox.orderFood();
 		}
-
 	}
 	public static void main(String args[]) {
 		SmartKitchen sk=new SmartKitchen();

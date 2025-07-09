@@ -13,7 +13,6 @@ public class Hamburger {
     private static class Addition {
         String name;
         double price;
-
         Addition(String name, double price) {
             this.name = name;
             this.price = price;

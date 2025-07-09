@@ -43,10 +43,17 @@ public class Theatre {
     				gotStartSeat=true;
     			}
     			if(gotStartSeat && count<=numOfSeats) {
-    				if(s.isReserved()) {return false;}
+    				if(s.isReserved()) {
+    					count++;
+    					return false;}
     			}
+    			
+    		}
+    		if(count<numOfSeats) {
+    			return false;
     		}
     		gotStartSeat=false;
+    		count=0;
     		for(Seat s:seats) {
     			//boolean gotSeat=false;
     			//if(s.getSeatId().equals(startSeatId)) {got}
@@ -72,7 +79,7 @@ public class Theatre {
                 System.out.print(lastRow + ": ");
             }
             if (s.isReserved()) {
-                System.out.print("[XX] ");
+                System.out.print("[XXXX] ");
             } else {
                 System.out.print("[" + s.getSeatId() + "] ");
             }
@@ -93,7 +100,7 @@ public class Theatre {
         }
         
         System.out.println("\nTrying to reserve 5 seats from A006...");
-        if (t.reserveMultipleSeats("A006",5)) {
+        if (t.reserveMultipleSeats("E010",25)) {
             System.out.println("Reserved 5 seats from A006");
         } else {
             System.out.println("Oops, can't reserve 5 seats from A006");

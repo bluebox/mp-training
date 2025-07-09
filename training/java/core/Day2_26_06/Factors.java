@@ -2,7 +2,7 @@ package Day2_26_06;
 
 public class Factors {
     public static void main(String args[]) {
-        printFactors(25);
+        printFactors(100);
     }
 
     public static void printFactors(int number) {

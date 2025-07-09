@@ -15,7 +15,6 @@ public class Task {
     private String taskDetails;
     private Status status;
     private Priority priority;
-
     public Task(String assignedTo, String projectName, String taskDetails, Status status, Priority priority) {
         this.assignedTo = assignedTo;
         this.projectName = projectName;
@@ -23,19 +22,15 @@ public class Task {
         this.status = status;
         this.priority = priority;
     }
-
     public Task(String assignedTo, String projectName, String taskDetails) {
         this(assignedTo, projectName, taskDetails, Status.UNKNOWN, Priority.UNKNOWN);
     }
-
     public Task() {
         this("N/A", "N/A", "N/A", Status.UNKNOWN, Priority.UNKNOWN);
     }
-
     public String getAssignedTo() {
         return assignedTo;
     }
-
     public String getProjectName() {
         return projectName;
     }

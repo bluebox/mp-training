@@ -16,12 +16,24 @@ public class CourseEngagement {
         this.engagementType=engagementType;
     }
 
-    public String getCourseCode(){return course.courseCode();}
-    public int getEnrollmentYear(){return enrollmentDate.getYear();}
-    public String getEngagementType(){return engagementType;}
-    public int getLastLecture(){return lastLecture;}
-    public int getLastActivityYear(){return lastActivityDate.getYear();}
-    public String getLastActivityMonth(){return "%tb".formatted(lastActivityDate);}
+    public String getCourseCode(){
+    		return course.courseCode();
+    	}
+    public int getEnrollmentYear(){
+    		return enrollmentDate.getYear();
+    		}
+    public String getEngagementType(){
+    	return engagementType;
+    	}
+    public int getLastLecture(){
+    	return lastLecture;
+    	}
+    public int getLastActivityYear(){
+    		return lastActivityDate.getYear();
+    	}
+    public String getLastActivityMonth(){
+    		return "%tb".formatted(lastActivityDate);
+    	}
 
     public double getPercentComplete(){
         return lastLecture*100.0/course.lectureCount();

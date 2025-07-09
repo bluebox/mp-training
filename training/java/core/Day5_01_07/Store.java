@@ -17,10 +17,10 @@ public class Store {
 	}
 	public static void main(String args[]) {
 		Store st=new Store();
-		st.addItemsToOrder(new ProductA("A",50.0,"This is type a"));
-		st.addItemsToOrder(new ProductB("B",60.0,"This is type b"));
-		st.addItemsToOrder(new ProductC("C",70.0,"This is type c"));
-		st.addItemsToOrder(new ProductC("C",80.0,"This is type c"));
+		st.addItemsToOrder(new ProductA(50.0,"This is type a"));
+		st.addItemsToOrder(new ProductB(60.0,"This is type b"));
+		st.addItemsToOrder(new ProductC(70.0,"This is type c"));
+		st.addItemsToOrder(new ProductC(80.0,"This is type c"));
 		st.printOrder();
 	}
 }

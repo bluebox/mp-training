@@ -3,8 +3,8 @@ package Day5_01_07;
 
 public class ProductB extends ProductForSale{
 
-	public ProductB(String type, double price, String description) {
-		super(type, price, description);
+	public ProductB(double price, String description) {
+		super("B", price, description);
 	}
 
 	@Override

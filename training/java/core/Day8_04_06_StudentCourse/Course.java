@@ -1,6 +1,5 @@
 package Day8_04_06_StudentCourse;
 
-
 public record Course(String courseCode, String title, int lectureCount) {
     public Course {
         if (lectureCount <= 0) {
