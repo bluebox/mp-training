@@ -50,7 +50,7 @@ public class EmployeeProductsRepository {
 	
 	//Adding New Product
 	public boolean insertProduct(EmployeeProducts product) {
-		String sql = "INSERT INTO employeeProducts(procuctName,productId,supplier,quantity,minQuan,maxQuan) VALUES (:procuctName,:procuctName,:supplier,:quantity,10,100)";
+		String sql = "INSERT INTO employeeProducts(productName,productId,supplier,quantity,minQuan,maxQuan) VALUES (:procuctName,:procuctId,:supplier,:quantity,10,100)";
 		try {
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("procuctName", product.getProductName());
@@ -66,7 +66,7 @@ public class EmployeeProductsRepository {
 	
 	//Low Stock
 	public List<EmployeeProducts> lowStock(){
-		String sql = "SELECT stockId,procuctName,procuctId,supplier,quantity,minQuan,maxQuan WHERE quantity < minQuan";
+		String sql = "SELECT stockId,productName,productId,supplier,quantity,minQuan,maxQuan FROM employeeProducts WHERE quantity < minQuan";
 		try {
 			return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(),new EmployeeProductsRowMapper());
 		}catch(Exception e) {
@@ -90,14 +90,15 @@ public class EmployeeProductsRepository {
 	
 	
 	/*
-	 create table employeeProducts(
+	create table employeeProducts(
 	stockId int primary key auto_increment,
-	procuctName varchar(100),
-	procuctId int unique,
+	productName varchar(100),
+	productId int unique,
 	supplier varchar(100),
 	quantity int,
 	minQuan int,
-	maxQuan int);
+	maxQuan int
+);
 	 */
 	
 	

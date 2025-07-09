@@ -1,5 +1,6 @@
 package com.spring.ims.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,8 +45,9 @@ public class Implementation {
 	}
 
 	// list of products
-	public List<String> listOfProducts(OrderProductDetails orderProductDetails, String search) {
-		String supplier = orderProductDetails.getSupplier();
+	public List<String> listOfProducts(List<String> searchCriteria) {
+		String supplier = searchCriteria.get(0);
+		String search = searchCriteria.get(1);
 		String[] supplierDetails = supplier.split(" - ");
 		int supplerId = Integer.parseInt(supplierDetails[1]);
 		if (search.length() >= 3) {
@@ -71,8 +73,14 @@ public class Implementation {
 		for (int i = 0; i < listOfProducts.size(); i++) {
 			orderCost = orderCost
 					+ (listOfProducts.get(i).getProductQuantity() * this.costOfProduct(listOfProducts.get(i)));
+			String[] product = listOfProducts.get(i).getProduct().split(" - ");
+			if (listOfProducts.get(i).getSupplier() == null) {
+				listOfProducts.get(i).setSupplier(supplierRepository
+						.supplierName(productRepository.supplierOfProduct(Integer.parseInt(product[1]))));
+			}
+			listOfProducts.get(i).setProductCost(productRepository.costOfProduct(Integer.parseInt(product[1])));
 		}
-		float afterDiscount = ((100 - order.getOrderDiscout()) / 100.0f);
+		float afterDiscount = ((100 - order.getOrderDiscount()) / 100.0f);
 		float finalCost = orderCost * afterDiscount;
 		order.setOrderCost(finalCost);
 		order.setOrderStatus("PENDING");
@@ -86,9 +94,13 @@ public class Implementation {
 
 	// Admin Approve And Reject
 	@Transactional
-	public boolean approval(Orders order) {
+	public boolean updateStatus(Orders order) {
 		try {
-			ordersRepository.approval(order);
+			if (ordersRepository.checkStatus(order)) {
+				ordersRepository.approval(order);
+			} else {
+				return false;
+			}
 			List<OrderProductDetails> products = orderProductDetailsRepository.ProductsOfOrder(order);
 			for (int i = 0; i < products.size(); i++) {
 				String[] forId = products.get(i).getProduct().split(" - ");
@@ -96,18 +108,19 @@ public class Implementation {
 					int quantity = employeeProductsRepository.retrivingByID(Integer.parseInt(forId[1]));
 					quantity = quantity + products.get(i).getProductQuantity();
 					employeeProductsRepository.updateQuantity(Integer.parseInt(forId[1]), quantity);
-				}else {
+				} else {
 					EmployeeProducts product = new EmployeeProducts();
 					product.setProductId(Integer.parseInt(forId[1]));
 					product.setProductName(forId[0]);
 					product.setQuantity(products.get(i).getProductQuantity());
 					product.setSupplier(products.get(i).getSupplier());
 					employeeProductsRepository.insertProduct(product);
-					
+
 				}
 			}
 			return true;
 		} catch (Exception e) {
+			System.out.println("Error in updateStatus in Implementation : " + e.getMessage());
 			return false;
 		}
 	}
@@ -139,40 +152,50 @@ public class Implementation {
 	@Transactional
 	public boolean editingOfOrder(FullOrder fullOrder) {
 		Orders order = fullOrder.getOrders();
-		List<OrderProductDetails> listOfProducts = fullOrder.getOrderProductDetails();
-		List<OrderProductDetails> excistingProducts = fullOrder.getOrderProductDetails();
-		List<OrderProductDetails> newProducts = fullOrder.getOrderProductDetails();
-		if (orderProductDetailsRepository.makingInactive(order.getOrderId())) {
-			float orderCost = 0.0f;
-			for (int i = 0; i < listOfProducts.size(); i++) {
-				orderCost = orderCost
-						+ (listOfProducts.get(i).getProductQuantity() * this.costOfProduct(listOfProducts.get(i)));
-				if (listOfProducts.get(i).getOrderDetailsId() != 0) {
-					excistingProducts.add(listOfProducts.get(i));
-				} else {
-					newProducts.add(listOfProducts.get(i));
-				}
+		if (ordersRepository.checkStatus(order)) {
+			List<OrderProductDetails> listOfProducts = fullOrder.getOrderProductDetails();
+			List<OrderProductDetails> excistingProducts = new ArrayList<>();
+			List<OrderProductDetails> newProducts = new ArrayList<>();
+			if (orderProductDetailsRepository.makingInactive(order.getOrderId())) {
+				float orderCost = 0.0f;
+				for (int i = 0; i < listOfProducts.size(); i++) {
+					orderCost = orderCost
+							+ (listOfProducts.get(i).getProductQuantity() * this.costOfProduct(listOfProducts.get(i)));
 
-			}
-			float afterDiscount = ((100 - order.getOrderDiscout()) / 100.0f);
-			float finalCost = orderCost * afterDiscount;
-			order.setOrderCost(finalCost);
-			order.setOrderStatus("PENDING");
-			order.setOrderDate(new Date());
-			if (ordersRepository.updateOrder(order)) {
+					if (listOfProducts.get(i).getOrderDetailsId() != 0) {
+						excistingProducts.add(listOfProducts.get(i));
+					} else {
+						newProducts.add(listOfProducts.get(i));
+					}
+
+				}
+				float afterDiscount = ((100 - order.getOrderDiscount()) / 100.0f);
+				float finalCost = orderCost * afterDiscount;
+				order.setOrderCost(finalCost);
+				order.setOrderStatus("PENDING");
+				order.setOrderDate(new Date());
+				if (ordersRepository.updateOrder(order)) {
+					System.out.println(newProducts.toString());
+					System.out.println(excistingProducts.toString());
+					orderProductDetailsRepository.addProducts(newProducts, order.getOrderId());
+					orderProductDetailsRepository.editProducts(excistingProducts, order.getOrderId());
+					return true;
+				} else {
+					return false;
+				}
+			} else {
 				return false;
 			}
-			orderProductDetailsRepository.addProducts(newProducts, order.getOrderId());
-			orderProductDetailsRepository.editProducts(excistingProducts, order.getOrderId());
-			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	//Low Stock
-	public List<EmployeeProducts> lowStock(){
+
+	// Low Stock
+	public List<EmployeeProducts> lowStock() {
 		return employeeProductsRepository.lowStock();
 	}
+	
+
 
 }

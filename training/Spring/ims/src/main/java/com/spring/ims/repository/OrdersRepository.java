@@ -29,7 +29,7 @@ public class OrdersRepository {
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("orderDate", order.getOrderDate());
 		params.addValue("orderCost", order.getOrderCost());
-		params.addValue("orderDiscount", order.getOrderDiscout());
+		params.addValue("orderDiscount", order.getOrderDiscount());
 		params.addValue("orderStatus", order.getOrderStatus());
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		try {
@@ -39,7 +39,6 @@ public class OrdersRepository {
 			System.out.println("Error in addOrders of OrdersRepository : "+e.getMessage());
 			return 0;
 		}
-		
 	}
 
 	//Approval or Reject
@@ -94,12 +93,12 @@ public class OrdersRepository {
 	
 	//Updating Order
 	public boolean updateOrder(Orders order) {
-			String sql = "INSERT INTO orders orderDate=:orderDate,orderCost=:orderCost,orderDiscount=:orderDiscount,orderStatus=:orderStatus WHERE orderId=:orderId";
+			String sql = "UPDATE orders SET orderDate=:orderDate,orderCost=:orderCost,orderDiscount=:orderDiscount,orderStatus=:orderStatus WHERE orderId=:orderId";
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("orderId", order.getOrderId());
 			params.addValue("orderDate", order.getOrderDate());
 			params.addValue("orderCost", order.getOrderCost());
-			params.addValue("orderDiscount", order.getOrderDiscout());
+			params.addValue("orderDiscount", order.getOrderDiscount());
 			params.addValue("orderStatus", order.getOrderStatus());
 			try {
 				return namedParameterJdbcTemplate.update(sql, params) >0;
@@ -109,6 +108,18 @@ public class OrdersRepository {
 			}
 			
 		}
+
+	public boolean checkStatus(Orders order) {
+		String sql = "SELECT 1 FROM orders WHERE orderId = :orderId AND orderStatus = 'PENDING'";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderId", order.getOrderId());
+			return namedParameterJdbcTemplate.queryForObject(sql,params,Integer.class) ==1;
+		}catch(Exception e) {
+			System.out.println("Error in checkStatus in OrdersRepository : "+e.getMessage());
+			return false;
+		}
+	}
 
 	
 	/*

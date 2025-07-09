@@ -18,6 +18,7 @@ public class ProductRepository {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
+	//List Of Products
 	public List<String> listOfProducts(int supplierId, String search) {
 		String sql = "SELECT CONCAT_WS(' - ',productName,productId) from products where (supplierId = :supplierId) AND (productName like :search OR CAST(productId as CHAR) like :search)";
 		MapSqlParameterSource params = new MapSqlParameterSource();
@@ -30,7 +31,8 @@ public class ProductRepository {
 			return Collections.EMPTY_LIST;
 		}
 	}
-
+	
+	//Cost Of Products
 	public float costOfProduct(int productId) {
 		String sql = "SELECT productCost from products where productId = :productId";
 		MapSqlParameterSource params = new MapSqlParameterSource();
@@ -41,7 +43,19 @@ public class ProductRepository {
 			System.out.println("Error at costOfProduct in ProductRepository : "+e.getMessage());
 			return 0;
 		}
-		
+	}
+	
+	//Supplier Of Product
+	public int supplierOfProduct(int productId) {
+		String sql = "SELECT supplierId from products where productId = :productId";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("productId", productId);
+		try {
+			return namedParameterJdbcTemplate.queryForObject(sql, params,Integer.class);
+		}catch(Exception e) {
+			System.out.println("Error at supplierOfProduct in ProductRepository : "+e.getMessage());
+			return 0;
+		}
 	}
 
 	

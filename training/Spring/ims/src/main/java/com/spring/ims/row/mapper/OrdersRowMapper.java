@@ -15,7 +15,7 @@ public class OrdersRowMapper implements RowMapper{
 		order.setOrderId(rs.getInt("orderId"));
 		order.setOrderCost(rs.getFloat("orderCost"));
 		order.setOrderDate(rs.getDate("orderDate"));
-		order.setOrderDiscout(rs.getInt("orderDiscount"));
+		order.setOrderDiscount(rs.getInt("orderDiscount"));
 		order.setOrderStatus(rs.getString("orderStatus"));
 		return order;
 	}

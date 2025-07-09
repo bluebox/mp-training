@@ -17,14 +17,27 @@ public class SupplierRepository {
 	public SupplierRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
-
+	
+	//List Of Suppliers
 	public List<String> listOfSuppliers() {
 		String sql = "select CONCAT_WS(' - ',supplierName,supplierId) as supplier from suppliers";
 		try {
 			return namedParameterJdbcTemplate.queryForList(sql, new MapSqlParameterSource(),String.class);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("Error in list Of suppliers in SupplierRepository : "+e.getMessage());
 			return Collections.EMPTY_LIST;
+		}
+	}
+	
+	public String supplierName(int supplierId) {
+		String sql = "select CONCAT_WS(' - ',supplierName,supplierId) as supplier from suppliers WHERE supplierId=:supplierId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("supplierId", supplierId);
+			return namedParameterJdbcTemplate.queryForObject(sql,params,String.class);
+		}catch(Exception e) {
+			System.out.println("Error in list Of suppliers in SupplierRepository : "+e.getMessage());
+			return null;
 		}
 	}
 	
