@@ -1,0 +1,95 @@
+package com.spring.ims.service;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.spring.ims.domain.FullOrder;
+import com.spring.ims.domain.OrderProductDetails;
+import com.spring.ims.domain.Orders;
+import com.spring.ims.interfaces.service.PurchaseCreationServiceInterface;
+import com.spring.ims.repository.EmployeeProductsRepository;
+import com.spring.ims.repository.OrderProductDetailsRepository;
+import com.spring.ims.repository.OrdersRepository;
+import com.spring.ims.repository.ProductRepository;
+import com.spring.ims.repository.SupplierRepository;
+
+@Service
+public class PurchaseCreationService implements PurchaseCreationServiceInterface {
+	
+	private EmployeeProductsRepository employeeProductsRepository;
+	private OrderProductDetailsRepository orderProductDetailsRepository;
+	private OrdersRepository ordersRepository;
+	private ProductRepository productRepository;
+	private SupplierRepository supplierRepository;
+
+	@Autowired
+	public PurchaseCreationService(EmployeeProductsRepository employeeProductsRepository,
+			OrderProductDetailsRepository orderProductDetailsRepository, OrdersRepository ordersRepository,
+			ProductRepository productRepository, SupplierRepository supplierRepository) {
+		this.employeeProductsRepository = employeeProductsRepository;
+		this.orderProductDetailsRepository = orderProductDetailsRepository;
+		this.ordersRepository = ordersRepository;
+		this.productRepository = productRepository;
+		this.supplierRepository = supplierRepository;
+	}
+
+	// List of Suppliers
+	public List<String> listOfSuppliers() {
+		return supplierRepository.listOfSuppliers();
+	}
+
+	// list of products
+	public List<String> listOfProducts(List<String> searchCriteria) {
+		String supplier = searchCriteria.get(0);
+		String search = searchCriteria.get(1);
+		String[] supplierDetails = supplier.split(" - ");
+		int supplerId = Integer.parseInt(supplierDetails[1]);
+		if (search.length() >= 3) {
+			return productRepository.listOfProducts(supplerId, search);
+		} else {
+			return productRepository.listOfProducts(supplerId, "");
+		}
+	}
+
+	// cost of product
+	public float costOfProduct(OrderProductDetails orderProductDetails) {
+		String product = orderProductDetails.getProduct();
+		String[] productCost = product.split(" - ");
+		return productRepository.costOfProduct(Integer.parseInt(productCost[1]));
+	}
+
+	// Creation Of Order
+	@Transactional
+	public boolean creationOfOrder(FullOrder fullOrder) {
+		Orders order = fullOrder.getOrders();
+		List<OrderProductDetails> listOfProducts = fullOrder.getOrderProductDetails();
+		float orderCost = 0.0f;
+		for (int i = 0; i < listOfProducts.size(); i++) {
+			orderCost = orderCost
+					+ (listOfProducts.get(i).getProductQuantity() * this.costOfProduct(listOfProducts.get(i)));
+			String[] product = listOfProducts.get(i).getProduct().split(" - ");
+			if (listOfProducts.get(i).getSupplier() == null) {
+				listOfProducts.get(i).setSupplier(supplierRepository
+						.supplierName(productRepository.supplierOfProduct(Integer.parseInt(product[1]))));
+			}
+			listOfProducts.get(i).setProductCost(productRepository.costOfProduct(Integer.parseInt(product[1])));
+		}
+		float afterDiscount = ((100 - order.getOrderDiscount()) / 100.0f);
+		float finalCost = orderCost * afterDiscount;
+		order.setOrderCost(finalCost);
+		order.setOrderStatus("PENDING");
+		order.setOrderDate(new Date());
+		int orderId = ordersRepository.addOrder(order);
+		if (orderId == 0) {
+			return false;
+		}
+		return orderProductDetailsRepository.addProducts(listOfProducts, orderId);
+	}
+	
+	
+
+}

@@ -9,10 +9,11 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.spring.ims.domain.EmployeeProducts;
+import com.spring.ims.interfaces.repository.EmployeeProductsRepositoryInterface;
 import com.spring.ims.row.mapper.EmployeeProductsRowMapper;
 
 @Repository
-public class EmployeeProductsRepository {
+public class EmployeeProductsRepository implements EmployeeProductsRepositoryInterface {
 	
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

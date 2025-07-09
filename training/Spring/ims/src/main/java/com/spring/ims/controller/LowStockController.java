@@ -8,21 +8,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.spring.ims.service.Implementation;
+import com.spring.ims.service.LowStockService;
 
 @Controller
 public class LowStockController {
 
-	private Implementation impl;
+	private LowStockService lowStockService;
 
-	public LowStockController(Implementation impl) {
-		this.impl = impl;
+	public LowStockController(LowStockService lowStockService) {
+		this.lowStockService = lowStockService;
 	}
 
 	@PostMapping("/low-stock")
 	public ResponseEntity<?> allOrders() {
 		try {
-			return ResponseEntity.ok(impl.lowStock());
+			return ResponseEntity.ok(lowStockService.lowStock());
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");

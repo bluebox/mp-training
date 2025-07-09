@@ -10,10 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.ims.domain.OrderProductDetails;
 import com.spring.ims.domain.Orders;
+import com.spring.ims.interfaces.repository.OrderProductDetailsRepositoryInterface;
 import com.spring.ims.row.mapper.OrderProductDetailsRowMapper;
 
 @Repository
-public class OrderProductDetailsRepository {
+public class OrderProductDetailsRepository implements OrderProductDetailsRepositoryInterface {
 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

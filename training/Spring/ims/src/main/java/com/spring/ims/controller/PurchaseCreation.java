@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ims.domain.FullOrder;
 import com.spring.ims.domain.OrderProductDetails;
-import com.spring.ims.service.Implementation;
+import com.spring.ims.service.PurchaseCreationService;
 
 @Controller
 @RequestMapping("/creation")
 public class PurchaseCreation {
 
-	private Implementation impl;
+	private PurchaseCreationService purchaseCreationService;
 
-	public PurchaseCreation(Implementation impl) {
-		this.impl = impl;
+	public PurchaseCreation(PurchaseCreationService purchaseCreationService) {
+		this.purchaseCreationService = purchaseCreationService;
 	}
 
 	@PostMapping("/suppliers")
 	public ResponseEntity<?> getSuppliers() {
-		return ResponseEntity.ok(impl.listOfSuppliers());
+		return ResponseEntity.ok(purchaseCreationService.listOfSuppliers());
 	}
 
 	@PostMapping("/suppliers-products")
 	public ResponseEntity<?> sendProducts(@RequestBody List<String> searchCriteria) {
 		try {
-			return ResponseEntity.ok(impl.listOfProducts(searchCriteria));
+			return ResponseEntity.ok(purchaseCreationService.listOfProducts(searchCriteria));
 		} catch (Exception e) {
 			System.out.println("Error at sendProducts in PurchaseCreation : " + e.getMessage());
 			Map<String, String> errorResponse = new HashMap<>();
@@ -46,7 +46,7 @@ public class PurchaseCreation {
 	@PostMapping("/suppliers-products-cost")
 	public ResponseEntity<?> costOfProducts(@RequestBody OrderProductDetails orderProductDetails) {
 		try {
-			return ResponseEntity.ok(impl.costOfProduct(orderProductDetails));
+			return ResponseEntity.ok(purchaseCreationService.costOfProduct(orderProductDetails));
 		} catch (Exception e) {
 			System.out.println("Error at sendProducts in PurchaseCreation : " + e.getMessage());
 			Map<String, String> errorResponse = new HashMap<>();
@@ -59,7 +59,7 @@ public class PurchaseCreation {
 	@PostMapping("/purchase-created")
 	public ResponseEntity<?> purcahseCreation(@RequestBody FullOrder fullOrder) {
 		try {
-			if (impl.creationOfOrder(fullOrder)) {
+			if (purchaseCreationService.creationOfOrder(fullOrder)) {
 				Map<String, String> successResponse = new HashMap<>();
 				successResponse.put("status", "success");
 				successResponse.put("message", "Purchase Crated");

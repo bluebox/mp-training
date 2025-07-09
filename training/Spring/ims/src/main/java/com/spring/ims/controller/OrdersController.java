@@ -3,6 +3,7 @@ package com.spring.ims.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,22 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ims.domain.FullOrder;
 import com.spring.ims.domain.Orders;
-import com.spring.ims.service.Implementation;
+import com.spring.ims.service.OrdersService;
 
 @Controller
 @RequestMapping("/orders")
 public class OrdersController {
 
-	private Implementation impl;
-
-	public OrdersController(Implementation impl) {
-		this.impl = impl;
+	private OrdersService ordersService;
+	
+	@Autowired
+	public OrdersController(OrdersService impl) {
+		this.ordersService = ordersService;
 	}
 
 	@PostMapping("/pending-orders")
 	public ResponseEntity<?> getPendingOrders() {
 		try {
-			return ResponseEntity.ok(impl.pendingOrders());
+			return ResponseEntity.ok(ordersService.pendingOrders());
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");
@@ -40,7 +42,7 @@ public class OrdersController {
 	@PostMapping("/get-orders")
 	public ResponseEntity<?> getOrders() {
 		try {
-			return ResponseEntity.ok(impl.allOrders());
+			return ResponseEntity.ok(ordersService.allOrders());
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");
@@ -53,7 +55,7 @@ public class OrdersController {
 	@PostMapping("/view-order")
 	public ResponseEntity<?> viewOrder(@RequestBody Orders order) {
 		try {
-			return ResponseEntity.ok(impl.productsOfOrder(order));
+			return ResponseEntity.ok(ordersService.productsOfOrder(order));
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");
@@ -66,7 +68,7 @@ public class OrdersController {
 	@PostMapping("/edit-purchase")
 	public ResponseEntity<?> editPurchase(@RequestBody FullOrder fullOrder) {
 		try {
-			if (impl.editingOfOrder(fullOrder)) {
+			if (ordersService.editingOfOrder(fullOrder)) {
 				Map<String, String> successResponse = new HashMap<>();
 				successResponse.put("status", "success");
 				successResponse.put("message", "Purchase Edited");
@@ -90,7 +92,7 @@ public class OrdersController {
 	@PostMapping("/withdraw-order")
 	public ResponseEntity<?> withdrawOrder(@RequestBody Orders order) {
 		try {
-			return ResponseEntity.ok(impl.withDrawOfOrder(order));
+			return ResponseEntity.ok(ordersService.withDrawOfOrder(order));
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");

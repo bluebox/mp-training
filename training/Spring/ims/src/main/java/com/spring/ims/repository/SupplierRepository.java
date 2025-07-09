@@ -8,8 +8,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.spring.ims.interfaces.repository.SupplierRepositoryInterface;
+
 @Repository
-public class SupplierRepository {
+public class SupplierRepository implements SupplierRepositoryInterface{
 	
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

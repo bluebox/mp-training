@@ -11,10 +11,11 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.spring.ims.domain.Orders;
+import com.spring.ims.interfaces.repository.OrdersRepositoryInterface;
 import com.spring.ims.row.mapper.OrdersRowMapper;
 
 @Repository
-public class OrdersRepository {
+public class OrdersRepository implements OrdersRepositoryInterface{
 	
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -118,6 +119,17 @@ public class OrdersRepository {
 		}catch(Exception e) {
 			System.out.println("Error in checkStatus in OrdersRepository : "+e.getMessage());
 			return false;
+		}
+	}
+	
+	//Non withdraw Orders
+	public List<Orders> adminAllOrders() {
+		String sql = "SELECT orderId,orderDate,orderCost,orderDiscount,orderStatus FROM orders WHERE orderStatus <> 'WITHDRAWN'";
+		try {
+			return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(),new OrdersRowMapper());
+		}catch(Exception e) {
+			System.out.println("Error in allOrders in OrdersRepository : "+e.getMessage());
+			return Collections.EMPTY_LIST;
 		}
 	}
 

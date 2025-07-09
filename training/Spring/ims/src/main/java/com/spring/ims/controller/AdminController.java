@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ims.domain.Orders;
-import com.spring.ims.service.Implementation;
+import com.spring.ims.service.AdminService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-	private Implementation impl;
+	private AdminService adminService;
 
-	public AdminController(Implementation impl) {
-		this.impl = impl;
+	public AdminController(AdminService adminService) {
+		this.adminService = adminService;
 	}
 
 	@PostMapping("/update-order-status")
 	public ResponseEntity<?> updatePurchaseStatus(@RequestBody Orders order) {
 		try {
-			if (impl.updateStatus(order)) {
+			if (adminService.updateStatus(order)) {
 				Map<String, String> successResponse = new HashMap<>();
 				successResponse.put("status", "success");
 				successResponse.put("message", "Approved/Rejected Done");
@@ -50,7 +50,7 @@ public class AdminController {
 	@PostMapping("/pending-orders")
 	public ResponseEntity<?> getPendingOrders() {
 		try {
-			return ResponseEntity.ok(impl.pendingOrders());
+			return ResponseEntity.ok(adminService.pendingOrders());
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");
@@ -63,7 +63,7 @@ public class AdminController {
 	@PostMapping("/get-orders")
 	public ResponseEntity<?> getOrders() {
 		try {
-			return ResponseEntity.ok(impl.allOrders());
+			return ResponseEntity.ok(adminService.allOrders());
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");
@@ -76,7 +76,7 @@ public class AdminController {
 	@PostMapping("/get-orders-details")
 	public ResponseEntity<?> viewOrder(@RequestBody Orders order) {
 		try {
-			return ResponseEntity.ok(impl.productsOfOrder(order));
+			return ResponseEntity.ok(adminService.productsOfOrder(order));
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
 			errorResponse.put("status", "error");
