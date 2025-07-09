@@ -57,3 +57,9 @@ public class ClaimController {
 		return service.approveClaims(claimId, claimAmount, status, approvedBy);
 	}
 }
+//{
+//    "reqAmount":10000,
+//    "damageType":"accident",
+//    "policyId":1,
+//    "approvedBy":"Bhanu"
+//}

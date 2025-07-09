@@ -34,3 +34,12 @@ public class PolicyController {
 		return policyService.getAllPolicies();
 	}
 }
+//{
+//    "policyTerm": 10,
+//    "policyType": "Gold",
+//    "startDate": "2025-07-10T01:25:48",
+//    "endDate": "2026-07-10T01:25:48",
+//    "policyStatus": "R",
+//    "vehicleId": 1,
+//    "approvedBy": "Bhanu"
+//}
