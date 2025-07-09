@@ -28,8 +28,8 @@ public class CustomerController {
 		return service.addCustomer(c);
 	}
 	@PutMapping("/update")
-	public String updateCustomer(@RequestBody Customer c) throws Exception {
-		return service.updateCustomer(c);
+	public String updateCustomer(@RequestBody Customer c,@RequestParam int customerId) throws Exception {
+		return service.updateCustomer(c,customerId);
 	}
 	@PutMapping("/updateStatus")
 	public String updateCustomerStatus(@RequestParam int customerId,@RequestParam char status) throws Exception {
@@ -49,3 +49,16 @@ public class CustomerController {
 		return service.getAllCustomers();
 	}
 }
+//{
+//    "name":"Manish",
+//    "email":"cgu@ef",
+//    "contact":"9876543210",
+//    "gender":"MALE",
+//    "age":20,
+//    "occupation":"Employee",
+//    "income":50000,
+//    "address":"gfdg gfty",
+//    "Gender":"A",
+//    "customerUpdatedBy":"Bhanu",
+//    "createdBy":"Bhanu"
+//}

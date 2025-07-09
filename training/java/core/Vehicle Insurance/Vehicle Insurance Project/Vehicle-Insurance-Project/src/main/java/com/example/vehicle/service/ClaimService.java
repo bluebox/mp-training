@@ -13,9 +13,9 @@ import com.example.vehicle.repo.ClaimDao;
 public class ClaimService {
 	@Autowired
 	private ClaimDao repo;
-	public String claimInsurance(double reqAmount,String damageType,int policyId) throws Exception {
+	public String claimInsurance(double reqAmount,String damageType,int policyId,String approvedBy) throws Exception {
 		if(repo.isEligible(policyId)) {
-			return repo.claimInsurance(reqAmount, damageType, policyId);
+			return repo.claimInsurance(reqAmount, damageType, policyId,approvedBy);
 		}
 		else {
 			return "You are not eligible to get this policy";
@@ -33,7 +33,7 @@ public class ClaimService {
 	public Claim getClaimById(int claimId) throws Exception {
 		return repo.getClaimById(claimId);
 	}
-	public Claim getClaimByUser(String username) throws Exception {
+	public List<Claim> getClaimByUser(String username) throws Exception {
 		return repo.getClaimByUser(username);
 	}
 	public ArrayList<Object> getClaimReport(int claimId) throws Exception {

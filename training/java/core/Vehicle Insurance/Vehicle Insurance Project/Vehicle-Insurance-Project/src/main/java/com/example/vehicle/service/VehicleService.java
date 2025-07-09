@@ -37,7 +37,7 @@ public class VehicleService {
 //		}
 //		return result;
 //	}
-	public String updateVehicleNumber(int regNum, String updatedBy, LocalDateTime updatedOn, int vehicleId)
+	public String updateVehicleNumber(String regNum, String updatedBy, LocalDateTime updatedOn, int vehicleId)
 			throws Exception {
 		String result;
 		try {

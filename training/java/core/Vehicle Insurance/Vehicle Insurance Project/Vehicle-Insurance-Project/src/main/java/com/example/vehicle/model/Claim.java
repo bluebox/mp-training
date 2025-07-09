@@ -7,27 +7,19 @@ import javax.validation.constraints.NotNull;
 
 import com.example.vehicle.enums.ClaimStatus;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class Claim {
 	private int claimId;
 	@NotNull(message = "Please tell us howmuch amount you want to claim")
 	private double reqAmount;
 	@NotBlank(message="Please mention the type of damage taken place")
 	private String damageType;
-	private char claimStatus;
+	private ClaimStatus claimStatus;
 	private LocalDateTime claimDate;
 	@NotNull(message = "Policy ID is required")
 	private int policyId;
 	private String approvedBy;
-	public Claim(double reqAmount,String damageType,ClaimStatus claimStatus,int policyId,String approvedBy) {
-		this.reqAmount=reqAmount;
-		this.damageType=damageType;
-		this.claimStatus=claimStatus.getStatus();
-		this.policyId=policyId;
-		this.approvedBy=approvedBy;
-	}
+	
 }

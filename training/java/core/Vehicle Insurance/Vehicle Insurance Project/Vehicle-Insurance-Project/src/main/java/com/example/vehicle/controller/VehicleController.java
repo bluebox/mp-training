@@ -32,7 +32,7 @@ public class VehicleController {
 		return vehicleService.addVehicle(v);
 	}
 	@PutMapping("/update")
-	public String updateVehicle(@RequestParam int regNum,@RequestParam String updatedBy,@RequestParam int vehicleId) throws Exception {
+	public String updateVehicle(@RequestParam int vehicleId,@RequestParam String regNum,@RequestParam String updatedBy) throws Exception {
 		return vehicleService.updateVehicleNumber(regNum, updatedBy, LocalDateTime.now(), vehicleId);
 	}
 	@PutMapping("/delete")
@@ -48,3 +48,14 @@ public class VehicleController {
 		return vehicleService.getAllVehicles();
 	}
 }
+//{
+//    "chasisNum":2875,
+//    "regNum":"fghiuthg8",
+//    "vehicleModel":"fgfhgj",
+//    "purchaseDate":"2025-07-09T23:24:44",
+//    "vehicleUpdatedOn":"2025-07-09T23:24:44",
+//    "vehicleUpdatedBy":"Bhanu",
+//    "status":"A",
+//    "customerId":1,
+//    "createdBy":"Bhanu"
+//}

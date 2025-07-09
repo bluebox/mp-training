@@ -26,7 +26,8 @@ public class PolicyController {
 	}
 	@PostMapping("/add")
 	public String addPolicy(@RequestBody Policy p) throws Exception {
-		return policyService.addPolicy(p.getPolicyTerm(), PolicyType.Gold, LocalDateTime.now(), LocalDateTime.now(), 1, "Bhanu");
+		System.out.println(p.getApprovedBy());
+		return policyService.addPolicy(p.getPolicyTerm(), (p.getPolicyType().equals("gold"))?PolicyType.Gold: (p.getPolicyType().equals("silver"))?PolicyType.Silver:PolicyType.Platinum, LocalDateTime.now(), LocalDateTime.now().plusYears(1),p.getVehicleId(),p.getApprovedBy());
 	}
 	@GetMapping("/showAll")
 	public List<Policy> getAllPolicies() throws Exception {

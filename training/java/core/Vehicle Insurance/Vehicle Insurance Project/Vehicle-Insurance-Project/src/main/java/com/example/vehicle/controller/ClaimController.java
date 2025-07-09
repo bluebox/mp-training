@@ -27,14 +27,14 @@ public class ClaimController {
 	}
 	@PostMapping("/add")
 	public String requestClaim(@RequestBody Claim c) throws Exception {
-		return service.claimInsurance(c.getReqAmount(), c.getDamageType(), c.getPolicyId());
+		return service.claimInsurance(c.getReqAmount(), c.getDamageType(), c.getPolicyId(),c.getApprovedBy());
 	}
 	@GetMapping("/claimById")
 	public Claim getClaimsById(@RequestParam int claimId) throws Exception {
 		return service.getClaimById(claimId);
 	}
 	@GetMapping("/claimByUser")
-	public Claim getClaimByUser(@RequestParam String username) throws Exception {
+	public List<Claim> getClaimByUser(@RequestParam String username) throws Exception {
 		return service.getClaimByUser(username);
 	}
 	@GetMapping("/claimReports")

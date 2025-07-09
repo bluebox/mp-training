@@ -25,9 +25,9 @@ public class CustomerService {
 		return "Customer Added Successfully";
 	}
 
-	public String updateCustomer(Customer customer) throws Exception {
+	public String updateCustomer(Customer customer,int customerId) throws Exception {
 		try {
-			customerDao.updateCustomer(customer);
+			customerDao.updateCustomer(customer,customerId);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

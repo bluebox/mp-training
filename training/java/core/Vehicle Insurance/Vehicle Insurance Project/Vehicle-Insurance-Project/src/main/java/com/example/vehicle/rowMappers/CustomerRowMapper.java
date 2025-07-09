@@ -14,7 +14,7 @@ public class CustomerRowMapper implements RowMapper<Customer> {
 	        Customer customer = new Customer();
 	        customer.setCustomerId(rs.getInt("customer_id"));
 	        customer.setName(rs.getString("name"));
-	        customer.setAge(rs.getInt("age"));
+	        customer.setEmail(rs.getString("email"));
 	        customer.setContact(rs.getString("contact"));
 	        String genderChar=rs.getString("gender");
 	        if("M".equalsIgnoreCase(genderChar)) {
@@ -23,15 +23,14 @@ public class CustomerRowMapper implements RowMapper<Customer> {
 	        else {
 	        	customer.setGender(Gender.FEMALE);
 	        }
+	        customer.setAge(rs.getInt("age"));
 	        customer.setStatus(rs.getString("status").charAt(0));
 	        customer.setAddress(rs.getString("address"));
-	        customer.setEmail(rs.getString("email"));
 	        customer.setOccupation(rs.getString("occupation"));
 	        customer.setIncome(rs.getDouble("income"));
 	        customer.setCreatedBy(rs.getString("created_by"));
 	        customer.setCustomerUpdatedOn(rs.getTimestamp("customer_updated_on").toLocalDateTime());
-	        customer.setCustomerUpdatedBy(rs.getString("customer_updated_by")); 
-	        
+	        customer.setCustomerUpdatedBy(rs.getString("customer_updated_by")); 	        
 	        return customer;
 	    }
 }

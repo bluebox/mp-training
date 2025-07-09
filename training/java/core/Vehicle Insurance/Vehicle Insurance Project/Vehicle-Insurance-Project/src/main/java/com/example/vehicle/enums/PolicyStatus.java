@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum PolicyStatus {
-	Requested('R'),Active('A'),InActive('I');
-	char c;
+	Requested("R"),Active("A"),InActive("I");
+	String c;
 }

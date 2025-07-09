@@ -1,6 +1,5 @@
 package com.example.vehicle.repo;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,9 @@ import com.example.vehicle.enums.PolicyType;
 import com.example.vehicle.model.Customer;
 import com.example.vehicle.model.Policy;
 import com.example.vehicle.model.Vehicle;
+import com.example.vehicle.rowMappers.CustomerRowMapper;
+import com.example.vehicle.rowMappers.PolicyRowMapper;
+import com.example.vehicle.rowMappers.VehicleRowMapper;
 
 @Repository
 public class PolicyDao {
@@ -21,7 +23,7 @@ public class PolicyDao {
 	public PolicyDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate=jdbcTemplate;
 	}
-	public String addPolicy(int policyTerm, PolicyType policyType, LocalDateTime startDate,LocalDateTime endDate, int vehicleId, String approvedBy) throws SQLException {
+	public String addPolicy(int policyTerm, PolicyType policyType, LocalDateTime startDate,LocalDateTime endDate, int vehicleId, String approvedBy) {
 		int rowsEffected=jdbcTemplate.update("insert into policy values(?,?,?,?,?,?,?,?,?)",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),startDate,endDate,'R',vehicleId,approvedBy);
 		if(rowsEffected>0) {
 			return "Inserted";
@@ -30,10 +32,10 @@ public class PolicyDao {
 			return "Falied to insert";
 		}
 	}
-	public Policy getPolicyById(int policyId) throws SQLException {
-		return jdbcTemplate.queryForObject("select * from policy where policy_id=?", Policy.class, policyId);
+	public Policy getPolicyById(int policyId) {
+		return jdbcTemplate.queryForObject("select * from policy where policy_id=?", new PolicyRowMapper(), policyId);
 	}
-	public String updateEndDate(int policyId) throws SQLException {
+	public String updateEndDate(int policyId) {
 		Policy p=getPolicyById(policyId);
 		if(p.getStartDate().plusYears(p.getPolicyTerm()).isBefore(LocalDateTime.now())) {
 			LocalDateTime endDate=jdbcTemplate.queryForObject("select end_date from policy where policy_id=?", LocalDateTime.class,policyId);
@@ -49,7 +51,7 @@ public class PolicyDao {
 			return "The policy is expired. Please renew the policy";
 		}
 	}
-	public String updateStatus(int policyid) throws SQLException {
+	public String updateStatus(int policyid) {
 		char policyStatus=jdbcTemplate.queryForObject("select policy_status from policy where policy_id=?", Character.class,policyid);
 		int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",(policyStatus=='A')?'I':'A',policyid);
 		if(rowsEffected>0) {
@@ -59,10 +61,10 @@ public class PolicyDao {
 			return "Failed to update status";
 		}
 	}
-	public List<Policy> getPoliciesRequested() throws SQLException {
-		return jdbcTemplate.queryForList("select * from policy where policy_status='R'",Policy.class);
+	public List<Policy> getPoliciesRequested() {
+		return jdbcTemplate.query("select * from policy where policy_status='R'",new PolicyRowMapper());
 	}
-	public String updateStatus(int policyid,char policyStatus) throws SQLException {
+	public String updateStatus(int policyid,char policyStatus) {
 		int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",policyStatus,policyid);
 		if(rowsEffected>0) {
 			if(policyStatus=='A'){
@@ -97,7 +99,7 @@ public class PolicyDao {
 //			return "Policy is already rejected";
 //		}
 	}
-	public String updatePolicy(int policyId,int policyTerm,PolicyType policyType, int vehicleId, String approvedBy) throws SQLException {
+	public String updatePolicy(int policyId,int policyTerm,PolicyType policyType, int vehicleId, String approvedBy) {
 		int rowsEffected=jdbcTemplate.update("update policy set policy_term=?,policy_type=?,premium_amount=?,policy_amount=?,start_date=?,end_date=?,policy_status=?,vehicle_id=?,approved_by=? where policy_id=?",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),'A',vehicleId,approvedBy,policyId);
 		if(rowsEffected>0) {
 			return "Policy is updated";
@@ -106,26 +108,27 @@ public class PolicyDao {
 			return "Failed to update policy";
 		}
 	}
-	public List<Policy> getAllPolicies() throws SQLException {
-		return jdbcTemplate.queryForList("select * from policy",Policy.class);
+	public List<Policy> getAllPolicies() {
+		return jdbcTemplate.query("select * from policy",new PolicyRowMapper());
 	}
-	public List<Policy> getPolicyByVehicleId(int vehicleId) throws SQLException {
-		return jdbcTemplate.queryForList("select p from policy p,vehicles v where p.vehicle_id=v.vehicle_id and v.vehicle_id=? and v.status='A'",Policy.class,vehicleId);
+	public List<Policy> getPolicyByVehicleId(int vehicleId) {
+		return jdbcTemplate.query("select p.* from policy p,vehicles v where p.vehicle_id=v.vehicle_id and v.vehicle_id=? and v.status='A'",new PolicyRowMapper(),vehicleId);
 	}
-	public Policy getPolicyByVehicle(String regNum) throws SQLException {
-		return jdbcTemplate.queryForObject("select p from policy p,vehicles v where p.vehicle_id=v.vehicle_id and v.reg_num=? and v.status='A'",Policy.class,regNum);
+	public Policy getPolicyByVehicle(String regNum){
+		return jdbcTemplate.queryForObject("select p.* from policy p,vehicles v where p.vehicle_id=v.vehicle_id and v.reg_num=? and v.status='A'",new PolicyRowMapper(),regNum);
 	}
-	public List<Policy> getPolicyByUser(String username) throws SQLException {
-		return jdbcTemplate.queryForList("select p from policy p,vehicles v,user u,customers c where p.vehicle_id=v.vehicle_id and v.customer_id=c.customer_id and c.customer_id=u.customer_id and u.username=? and v.status='A'",Policy.class,username);
+	public List<Policy> getPolicyByUser(String username){
+		return jdbcTemplate.query("select p.* from policy p,vehicles v,user u,customers c where p.vehicle_id=v.vehicle_id and v.customer_id=c.customer_id and c.customer_id=u.customer_id and u.username=? and v.status='A'",new PolicyRowMapper(),username);
 	}
-	public ArrayList<Object> getPolicyReport(int policyId) throws SQLException {
+	public ArrayList<Object> getPolicyReport(int policyId) {
 		ArrayList<Object> policyDetails=new ArrayList<Object>();
-		Customer c=jdbcTemplate.queryForObject("select c from policy p,vehicle v,customer c where p.vehicle_id=v.vehicle_id and v.customer_id=c.customer_id and p.policy_id=?", Customer.class,policyId);
-		Vehicle v=jdbcTemplate.queryForObject("select v from policy p,vehicle v where p.policy_id=v.policy_id and p.policy_id=?", Vehicle.class,policyId);
+		Customer c=jdbcTemplate.queryForObject("select c.* from policy p,vehicles v,customers c where p.vehicle_id=v.vehicle_id and v.customer_id=c.customer_id and p.policy_id=?", new CustomerRowMapper(),policyId);
+		Vehicle v=jdbcTemplate.queryForObject("select v.* from policy p,vehicles v where p.vehicle_id=v.vehicle_id and p.policy_id=?", new VehicleRowMapper(),policyId);
 		Policy p=getPolicyById(policyId);
 		policyDetails.add(c);
 		policyDetails.add(v);
 		policyDetails.add(p);
-		return policyDetails;		
+		return policyDetails;
+		
 	}
 }

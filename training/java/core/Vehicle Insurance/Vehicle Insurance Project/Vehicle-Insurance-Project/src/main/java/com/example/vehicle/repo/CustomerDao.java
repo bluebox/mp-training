@@ -1,6 +1,7 @@
 package com.example.vehicle.repo;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CustomerDao {
 		System.out.println(customer.getGender().getVal().charAt(0));
 		int rowsAffected = jdbcTemplate.update(custAddSql, customer.getName(), customer.getAge(), customer.getContact(),
 				customer.getGender().getVal(), customer.getAge(), customer.getOccupation(), customer.getIncome(),
-				customer.getAddress(), "A", customer.getCustomerUpdatedOn(), customer.getCustomerUpdatedBy(),
+				customer.getAddress(), "A", LocalDateTime.now(), customer.getCustomerUpdatedBy(),
 				customer.getCreatedBy());
 
 		if (rowsAffected == 0) {
@@ -35,13 +36,14 @@ public class CustomerDao {
 		}
 	}
 	
-	public String updateCustomer(Customer customer) throws SQLException {
+	public String updateCustomer(Customer customer,int customerId) throws SQLException {
+		System.out.println(Character.toString(customer.getStatus()));
 		String custUpdateSql = "Update customers set name=?,email=?,contact=?,gender=?,age=?,occupation=?,income=?,address=?,status=?,"
 				+ "customer_updated_on=?,customer_updated_by=?,created_by=? where customer_id=?";
-		int rowsAffected = jdbcTemplate.update(custUpdateSql, customer.getName(), customer.getAge(), customer.getContact(),
+		int rowsAffected = jdbcTemplate.update(custUpdateSql, customer.getName(), customer.getEmail(), customer.getContact(),
 				customer.getGender().getVal(), customer.getAge(), customer.getOccupation(), customer.getIncome(),
-				customer.getAddress(),customer.getStatus(), customer.getCustomerUpdatedOn(), customer.getCustomerUpdatedBy(),
-				customer.getCreatedBy(),customer.getCustomerId());
+				customer.getAddress(),Character.toString(customer.getStatus()), customer.getCustomerUpdatedOn(), customer.getCustomerUpdatedBy(),
+				customer.getCreatedBy(),customerId);
 
 		if (rowsAffected == 0) {
 			return "Customer not Updated";
@@ -52,7 +54,7 @@ public class CustomerDao {
 	
 	public String updateCustomerStatus(int customerId,char status) throws SQLException {
 		String sql="Update customers set status=? where customer_id=?";
-		int rowsAffected=jdbcTemplate.update(sql,status,customerId);
+		int rowsAffected=jdbcTemplate.update(sql,Character.toString(status),customerId);
 		if(rowsAffected==0) {
 			return "Status not Updated,Check Your Customer Id";
 		}
