@@ -24,16 +24,28 @@ class SmartDevice(ABC,metaclass=DeviceRegistrarMeta):
 
     def __init__(self, device_id, is_on, device_pattern):
         self.__pattern = device_pattern
-        if device_id not in self._devices:
+        if device_id not in SmartDevice._devices:
             if pattern_match(self.__pattern, device_id):
                 self._device_id = device_id
                 SmartDevice._devices[device_id] = self
                 SmartDevice._total_devices_created += 1
             else:
                 raise exceptions.InvalidParameterError(f"The ID you entered is invalid", 304)
-            self._is_on = is_on
+            self.__is_on = is_on
         else:
             raise exceptions.DuplicateDeviceError("Sorry! This device cannot be added",3335)
+
+    @property
+    def _is_on(self):
+        return self.__is_on
+    @_is_on.setter
+    def _is_on(self, value):
+        if type(value) is bool:
+            self.__is_on = value
+        else:
+            raise exceptions.InvalidParameterError(f"The value you entered is incompatible", 304)
+
+
 
     @log_status_change
     async def turn_on(self):
@@ -96,7 +108,7 @@ class SmartLight(SmartDevice):
         else:
             raise ValueError("Enter a valid brightness value (0-100)",226)
 
-    async def perform_action(self,action_type,value=None):
+    async def perform_action(self,action_type,value=None,passcode=None):
         await asyncio.sleep(1)
         if action_type == "set_brightness":
             self.brightness = value
@@ -141,7 +153,8 @@ class SmartSpeaker(SmartDevice):
     def track(self, track):
         self.__track = track
 
-    async def perform_action(self,action_type,value=None):
+    async def perform_action(self,action_type,value=None,passcode=None):
+        print(f"Performing {action_type} on device {self._device_id}")
         try:
             if action_type == 'change_track':
                 self.track = value
@@ -169,10 +182,12 @@ class SmartDoorLock(SmartDevice):
         super().__init__(device_id, False, SmartDoorLock.__pattern_dl)
         self._is_lock = SmartDoorLock._is_lock
         self.__passcode = SmartDoorLock.__passcode
-
+    # @require_device_on
     async def perform_action(self, action_type, value=None,passcode=None):
         if self._is_on:
             if passcode==self.__passcode:
+                print(f"Performing {action_type} on {self._device_id}")
+                await asyncio.sleep(1)
                 if action_type=='lock':
                         if self._is_lock:
                             print("The device is already locked")
@@ -190,9 +205,10 @@ class SmartDoorLock(SmartDevice):
                 else:
                     raise exceptions.ActionNotSupportedError("This action is invalid", 367)
             else:
-                raise exceptions.WrongPasscodeError("Please enter a correct passcode", 333)
+                raise exceptions.AuthenticationError("Please enter a correct passcode", 333)
         else:
-            print("The device is not turned on")
+            raise exceptions.DeviceOfflineError("This device is offline", 226)
+
 
     @log_status_change
     async def turn_on(self,passcode=None):
@@ -205,7 +221,7 @@ class SmartDoorLock(SmartDevice):
                 self._is_on = True
                 print("The device has been turned on")
         else:
-            raise exceptions.WrongPasscodeError("Please enter a correct passcode", 333)
+            raise exceptions.AuthenticationError("Please enter a correct passcode", 333)
     @log_status_change
     async def turn_off(self,passcode=None):
         print("Turning off the device")
@@ -217,21 +233,17 @@ class SmartDoorLock(SmartDevice):
                 self._is_on = False
                 print("The device has been turned off")
         else:
-            raise exceptions.WrongPasscodeError("Please enter a correct passcode", 333)
+            raise exceptions.AuthenticationError("Please enter a correct passcode", 333)
     @require_device_on
     def set_passcode(self,new_passcode,old_passcode=None):
-        if self._is_on:
             if self.__passcode==old_passcode:
                 if passcode_validate(new_passcode):
                     self.__passcode=new_passcode
                     print("The password has been changed")
                 else:
-                    raise exceptions.WrongPasscodeError("This is not a valid new passcode", 333)
+                    raise exceptions.AuthenticationError("This is not a valid new passcode", 333)
             else:
-                raise exceptions.WrongPasscodeError("wrong old passcode", 333)
-
-        else:
-            print("Please turn on the device first")
+                raise exceptions.AuthenticationError("wrong old passcode", 333)
 
     def get_supported_actions(self):
         return SmartDoorLock.supported_actions
@@ -264,7 +276,9 @@ class SmartThermoStat(SmartDevice):
     def get_status_report(self):
         return f"SmartThermostat {self._device_id}: ON={self._is_on}, Temperature={self.__temperature}"
 
-    async def perform_action(self, action_type, value=None):
+    async def perform_action(self, action_type, value=None,passcode=None):
+        print(f"performing {action_type} on {self._device_id}")
+        await asyncio.sleep(1)
         try:
             if action_type == "set_temperature":
                 self.temperature = value
@@ -285,14 +299,16 @@ if __name__ == "__main__":
     device_3= SmartDoorLock('SDL1601')
     asyncio.run(device_3.turn_on('Admin'))
     device_3.set_passcode('Kanishka123#','Admin')
-    asyncio.run(device_3.turn_off('Kanishka123#'))
-    asyncio.run(device_3.perform_action('lock','Kanishka123#'))
-    asyncio.run(device_3.perform_action('unlock','Kanishka123#'))
+    # asyncio.run(device_3.turn_off('Kanishka123#'))
+    asyncio.run(device_3.perform_action('lock',passcode='Kanishka123#'))
+    asyncio.run(device_3.perform_action('unlock',passcode='Kanishka123#'))
     asyncio.run(device_3.turn_off('Kanishka123#'))
 
     device_3.get_status_report()
     print(device_3.get_supported_actions())
     print(device_3._SmartDoorLock__passcode)
+
+    # device_32=SmartDoorLock('SDL1601')
 
 
     # device_3= SmartSpeaker('SS1601')

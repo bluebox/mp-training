@@ -16,8 +16,8 @@ class TestIntegration(unittest.TestCase):
     def test_scene_activation_and_permission(self):
         async def inner():
             manager = HomeManager("admin")
-            light = SmartLight("SL10689")
-            lock = SmartDoorLock("SDL47993")  # ✅ Fixed valid passcode
+            light = SmartLight("SL10687")
+            lock = SmartDoorLock("SDL47994")
 
             await light.turn_on()
             await lock.turn_on('Admin')
@@ -42,13 +42,13 @@ class TestIntegration(unittest.TestCase):
     def test_scheduler_execution(self):
         async def inner():
             manager = HomeManager("admin")
-            thermo = SmartThermoStat("STS3678")
+            thermo = SmartThermoStat("STS367499")
             await thermo.turn_on()
             manager.add_device(thermo)
 
             scheduler = Scheduler()
             time_str = (datetime.now() + timedelta(seconds=3)).strftime("%H:%M")
-            scheduler.add_scheduled_task(time_str, "STS3678", "set_temperature", 19, "admin")
+            scheduler.add_scheduled_task(time_str, "STS367499", "set_temperature", 19, "admin")
 
             while scheduler.tasks:
                 await scheduler.run_pending_tasks(manager)

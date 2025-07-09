@@ -1,5 +1,4 @@
 from datetime import datetime
-import asyncio
 
 
 class Scheduler:

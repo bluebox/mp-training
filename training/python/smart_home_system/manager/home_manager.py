@@ -11,12 +11,13 @@ from datetime import datetime, timedelta
 from manager.scene_manager import SceneManager
 from manager.scheduler import Scheduler
 from core.exceptions import AuthenticationError,DeviceOfflineError,ActionNotSupportedError
+from functools import reduce
 
 # function programming
 async def smart_device_from_dict(data):
     device_type = data.get("__device_type__")
     device_id = data.get("device_id")
-    is_on = data.get("is_on", False)
+    _is_on = data.get("is_on", False)
 
     cls = DeviceRegistrarMeta.registry.get(device_type)
     if not cls:
@@ -24,15 +25,15 @@ async def smart_device_from_dict(data):
         return None
 
     if device_type == "SmartDoorLock":
-        passcode = data.get("passcode", "default_pass")
+        passcode = data.get("passcode", "Admin")
         device = cls(device_id)
-        if is_on:
-            await device.turn_on("Admin")
+        if _is_on:
+            await device.turn_on(passcode)
         else:
-            await device.turn_off("Admin")
+            await device.turn_off(passcode)
     else:
         device = cls(device_id)
-        if is_on:
+        if _is_on:
             await device.turn_on()
         else:
             await device.turn_off()
@@ -86,8 +87,8 @@ class HomeManager:
         try:
             if isinstance(device,SmartDoorLock):
                 await device.perform_action(action_type,passcode=passcode_val)
-            elif isinstance(value, dict):
-                await device.perform_action(action_type, **value)
+            # elif isinstance(value, dict):
+            #     await device.perform_action(action_type, **value)
             else:
                 await device.perform_action(action_type, value)
         except AuthenticationError as e:
@@ -119,6 +120,7 @@ class HomeManager:
         async with aiofiles.open('/home/developer/Kanishka/training/python/smart_home_system/save_config.json',
                                  'w') as f:
             await f.write(json.dumps(all_devices, indent=2))
+        SmartDevice._devices.clear()
 
     async def load_config(self):
         async with aiofiles.open('/home/developer/Kanishka/training/python/smart_home_system/save_config.json',
@@ -144,12 +146,11 @@ def all_id_of_online(home_manager):
 
 def avg_temperature_thermostat(home_manager):
     mp = home_manager.get_devices()
-    add, cnt = 0, 0
-    for key, value in mp.items():
-        if isinstance(value, SmartThermoStat):
-            add += value.temperature
-            cnt += 1
-    return add / cnt
+    thermostats = [device for device in mp.values() if isinstance(device, SmartThermoStat)]
+    if not thermostats:
+        return 0
+    total_temp = reduce(lambda acc, t: acc + t.temperature, thermostats, 0)
+    return total_temp / len(thermostats)
 
 
 # def get_properties(home_manager):
@@ -179,13 +180,19 @@ async def main():
     # # await a.load_config()
     b = SmartDoorLock('SDL3748')
     c = SmartThermoStat('ST32478')
+    d = SmartThermoStat('ST32479')
+
     await c.turn_on()
     a.add_device(c)
     await b.turn_on('Admin')
     a.add_device(b)
+    await d.turn_on()
+    a.add_device(d)
     await  a.save_config()
     await a.load_config()
     await a.control_device('admin', 'ST32478', 'set_temperature', 27)
+    await a.control_device('admin', 'ST32479', 'set_temperature', 20)
+
     await a.control_device('admin', 'SDL3748', 'lock',passcode_val='Admin')
     # print(b.lock())
     ans = all_id_of_online(a)

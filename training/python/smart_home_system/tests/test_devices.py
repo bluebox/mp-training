@@ -5,7 +5,8 @@ from core.devices import SmartThermoStat
 from core.devices import SmartSpeaker
 from core.devices import SmartDoorLock
 # from core.devices import SmartCamera
-from core.exceptions import AuthenticationError, DeviceOfflineError, WrongPasscodeError
+from core.exceptions import AuthenticationError,  AuthenticationError
+from core.exceptions import DeviceOfflineError
 
 
 class TestBasicDevices(unittest.TestCase):
@@ -53,7 +54,7 @@ class TestBasicDevices(unittest.TestCase):
             self.assertTrue(await door.perform_action('unlock',passcode='Admin'))
 
             # Wrong passcode should raise
-            with self.assertRaises(WrongPasscodeError):
+            with self.assertRaises(AuthenticationError):
                 await door.perform_action("unlock", passcode='admin')
         asyncio.run(inner())
 
