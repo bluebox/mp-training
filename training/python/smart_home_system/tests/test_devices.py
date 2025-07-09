@@ -1,6 +1,6 @@
 import unittest
 import asyncio
-from core.devices import SmartLight
+from core.devices import SmartLight, SmartCamera
 from core.devices import SmartThermoStat
 from core.devices import SmartSpeaker
 from core.devices import SmartDoorLock
@@ -36,13 +36,13 @@ class TestBasicDevices(unittest.TestCase):
             self.assertEqual(speaker.volume, 5)
         asyncio.run(inner())
 
-    # def test_camera(self):
-    #     async def inner():
-    #         cam = SmartCamera("cam01")
-    #         await cam.turn_on()
-    #         await cam.perform_action("set_resolution", "1080p")
-    #         self.assertEqual(cam.resolution, "1080p")
-    #     asyncio.run(inner())
+    def test_camera(self):
+        async def inner():
+            cam = SmartCamera("SC2738")
+            await cam.turn_on()
+            await cam.perform_action("set_resolution", "720p")
+            self.assertEqual(cam.resolution, "720p")
+        asyncio.run(inner())
 
     def test_doorlock_correct_and_wrong_passcode(self):
         async def inner():

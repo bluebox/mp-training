@@ -1,7 +1,18 @@
 [
   {
-    "__device_type__": "SmartLight",
-    "device_id": "SL374645",
+    "__device_type__": "SmartThermoStat",
+    "device_id": "ST32478",
+    "is_on": true
+  },
+  {
+    "__device_type__": "SmartDoorLock",
+    "device_id": "SDL3748",
+    "is_on": true,
+    "passcode": "Admin"
+  },
+  {
+    "__device_type__": "SmartThermoStat",
+    "device_id": "ST32479",
     "is_on": true
   }
 ]

@@ -29,9 +29,9 @@ class SmartDevice(ABC,metaclass=DeviceRegistrarMeta):
                 self._device_id = device_id
                 SmartDevice._devices[device_id] = self
                 SmartDevice._total_devices_created += 1
+                self.__is_on = is_on
             else:
                 raise exceptions.InvalidParameterError(f"The ID you entered is invalid", 304)
-            self.__is_on = is_on
         else:
             raise exceptions.DuplicateDeviceError("Sorry! This device cannot be added",3335)
 
@@ -86,6 +86,9 @@ class SmartDevice(ABC,metaclass=DeviceRegistrarMeta):
     def get_device_count(cls):
         return cls._total_devices_created
 
+
+
+
 class SmartLight(SmartDevice):
     __pattern_l = '^SL'
     supported_actions=["set_brightness"]
@@ -121,10 +124,65 @@ class SmartLight(SmartDevice):
     def get_supported_actions(self):
         return SmartLight.supported_actions
 
+class SmartCamera(SmartDevice):
+    __pattern_sc='^SC'
+    supported_actions=("start_recording","stop_recording","set_resolution")
+    def __init__(self, device_id):
+        super().__init__(device_id,False,SmartCamera.__pattern_sc)
+        self._is_recording = False
+        self._resolution = "1080p"
+
+    @require_device_on
+    def start_recording(self):
+        if self._is_recording:
+            print("Error: SmartCamera is already recording")
+        else:
+            self._is_recording = True
+            print("SmartCamera recording is On")
+
+    def stop_recording(self):
+        if not self._is_on:
+            raise exceptions.DeviceOfflineError("This device is offline",364)
+        self._is_recording = False
+        print("SmartCamera recording is Off")
+
+    @property
+    def resolution(self):
+        return self._resolution
+
+    @resolution.setter
+    @require_device_on
+    def resolution(self, res):
+        self._resolution = res
+        print(f'resolution of {self._device_id} is set to {res}')
+
+    def get_status_report(self):
+        return f"SmartCamera {self._device_id}: ON={self._is_on}, RECORDING={self._is_recording}, RESOLUTION={self._resolution}"
+
+    async def perform_action(self, action_type, value=None,passcode=None):
+        if self._is_on:
+            try:
+                if action_type == "start_recording":
+                    self.start_recording()
+                elif action_type == "stop_recording":
+                    self.stop_recording()
+                elif action_type == "set_resolution":
+                    self.resolution = value
+                else:
+                    raise exceptions.ActionNotSupportedError("This action is invalid")
+            except exceptions.ActionNotSupportedError as e:
+                print("ERROR:", e)
+        else:
+            raise exceptions.DeviceOfflineError("This device is offline",364)
+
+    def get_supported_actions(self):
+        return SmartCamera.supported_actions
+
 
 class SmartSpeaker(SmartDevice):
     __pattern_fr = '^SS'
-    supported_actions=['set_volume', 'change_track']
+    supported_actions=('set_volume', 'change_track')
+    _available_tracks={'track_1','track_2','track_3'}
 
     def __init__(self, device_id):
         super().__init__(device_id, False, SmartSpeaker.__pattern_fr)
@@ -132,6 +190,7 @@ class SmartSpeaker(SmartDevice):
         self.__track = None
 
     @property
+    # @require_device_on
     def volume(self):
         return self.__volume
 
@@ -151,7 +210,11 @@ class SmartSpeaker(SmartDevice):
     @track.setter
     @require_device_on
     def track(self, track):
-        self.__track = track
+        if track in SmartSpeaker._available_tracks:
+            self.__track = track
+            print("The track has been set")
+        else:
+            print("Sorry the track is not available")
 
     async def perform_action(self,action_type,value=None,passcode=None):
         print(f"Performing {action_type} on device {self._device_id}")
@@ -176,7 +239,7 @@ class SmartDoorLock(SmartDevice):
     __pattern_dl = '^SDL'
     _is_lock = True
     __passcode = 'Admin'
-    supported_actions=['unlock','lock']
+    supported_actions=('unlock','lock')
 
     def __init__(self, device_id):
         super().__init__(device_id, False, SmartDoorLock.__pattern_dl)
@@ -307,13 +370,23 @@ if __name__ == "__main__":
     device_3.get_status_report()
     print(device_3.get_supported_actions())
     print(device_3._SmartDoorLock__passcode)
+    device_2=SmartSpeaker('SSe6w63')
+    asyncio.run(device_2.turn_on())
+    device_2.track='Track'
+    device_2.track='track_1'
 
     # device_32=SmartDoorLock('SDL1601')
 
 
-    # device_3= SmartSpeaker('SS1601')
-    # asyncio.run(device_3.turn_on())
-    # print(device_3.volume)
+    device_3= SmartSpeaker('SS1601')
+    asyncio.run(device_3.turn_on())
+    print(device_3.volume)
+    asyncio.run(device_3.perform_action('set_volume', 5))
+    print(device_3.volume)
+
+    device_4=SmartCamera('SC782367')
+    asyncio.run(device_4.turn_on())
+    asyncio.run(device_4.perform_action('start_recording'))
     # # asyncio.run(device_3.perform_action('set_temperature',25))
     # print(device_3.track)
     # device_3.volume=70

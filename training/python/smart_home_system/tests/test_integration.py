@@ -16,8 +16,8 @@ class TestIntegration(unittest.TestCase):
     def test_scene_activation_and_permission(self):
         async def inner():
             manager = HomeManager("admin")
-            light = SmartLight("SL10687")
-            lock = SmartDoorLock("SDL47994")
+            light = SmartLight("SL106899")
+            lock = SmartDoorLock("SDL479933")
 
             await light.turn_on()
             await lock.turn_on('Admin')
@@ -27,8 +27,8 @@ class TestIntegration(unittest.TestCase):
 
             scene_mgr = SceneManager()
             scene_mgr.add_scene("lock_down", [
-                ("SL10689", "set_brightness", 30),
-                ("SDL47993", "lock", "Admin")
+                ("SL106899", "set_brightness", 30),
+                ("SDL479933", "lock", "Admin")
             ])
 
             await scene_mgr.activate_scene(manager, "lock_down", "admin")
