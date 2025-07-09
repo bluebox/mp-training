@@ -24,7 +24,7 @@ public class OrderProductDetailsRepository {
 
 	// Adding List Of Products
 	public boolean addProducts(List<OrderProductDetails> listOfProducts, int orderId) {
-		String sql = "INSERT INTO orderProductDetails(orderId,supplier,product,productQuantity,productCost) VALUES(:orderId,:supplier,:product,:productQuantity,:productCost)";
+		String sql = "INSERT INTO orderProductDetails(orderId,supplier,product,productQuantity,productCost,status) VALUES(:orderId,:supplier,:product,:productQuantity,:productCost,'ACTIVE')";
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		try {
 			for(int i=0;i<listOfProducts.size();i++) {
@@ -44,7 +44,7 @@ public class OrderProductDetailsRepository {
 	
 	//List Of OrderProductDetails for a Order
 	public List<OrderProductDetails> ProductsOfOrder(Orders order) {
-		String sql = "SELECT orderDetailsId,orderId,supplier,product,productQuantity,productCost FROM orderProductDetails WHERE orderId = :orderId";
+		String sql = "SELECT orderDetailsId,orderId,supplier,product,productQuantity,productCost FROM orderProductDetails WHERE orderId = :orderId AND status='ACTIVE'";
 		try {
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("orderId",order.getOrderId());
@@ -54,11 +54,47 @@ public class OrderProductDetailsRepository {
 			return Collections.EMPTY_LIST;
 		}
 	}
+	
+	//editing Products
+	public boolean editProducts(List<OrderProductDetails> listOfProducts, int orderId) {
+		String sql = "UPDATE orderProductDetails SET orderId=:orderId,supplier=:supplier,product=:product,productQuantity=:productQuantity,productCost=:productCost,status='ACTIVE' WHERE orderDetailsId = :orderDetailsId";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		try {
+			for(int i=0;i<listOfProducts.size();i++) {
+				params.addValue("orderDetailsId", listOfProducts.get(i).getOrderDetailsId());
+				params.addValue("orderId", orderId);
+				params.addValue("supplier",listOfProducts.get(i).getSupplier());
+				params.addValue("product", listOfProducts.get(i).getProduct());
+				params.addValue("productQuantity", listOfProducts.get(i).getProductQuantity());
+				params.addValue("productCost", listOfProducts.get(i).getProductCost()*listOfProducts.get(i).getProductQuantity());
+				namedParameterJdbcTemplate.update(sql, params);
+			}
+			return true;
+		}catch(Exception e) {
+			System.out.println("Error at addProducts in OrderPrdoductRepository : "+e.getMessage());
+			return false;
+		}		
+	}
+	
+	//Making INACTIVE
+	public boolean makingInactive(int orderId) {
+		String sql = "UPDATE orderProductDetails SET status='INACTIVE' WHERE orderId = :orderId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderId", orderId);
+			return namedParameterJdbcTemplate.update(sql, params) >0;
+		}catch(Exception e) {
+			System.out.println("Error at makingInactive in OrderPrdoductRepository : "+e.getMessage());
+			return false;
+		}
+	}
+	
+	
 
 	/*
 	 * create table orderProductDetails( orderDetailsId int primary key
 	 * auto_increment, orderId int, supplier varchar(100), product varchar(100),
-	 * productQuantity int, productCost float);
+	 * productQuantity int, productCost float,status varchar(10));
 	 */
 
 }

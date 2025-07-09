@@ -92,6 +92,25 @@ public class OrdersRepository {
 		}
 	}
 	
+	//Updating Order
+	public boolean updateOrder(Orders order) {
+			String sql = "INSERT INTO orders orderDate=:orderDate,orderCost=:orderCost,orderDiscount=:orderDiscount,orderStatus=:orderStatus WHERE orderId=:orderId";
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderId", order.getOrderId());
+			params.addValue("orderDate", order.getOrderDate());
+			params.addValue("orderCost", order.getOrderCost());
+			params.addValue("orderDiscount", order.getOrderDiscout());
+			params.addValue("orderStatus", order.getOrderStatus());
+			try {
+				return namedParameterJdbcTemplate.update(sql, params) >0;
+			}catch(Exception e){
+				System.out.println("Error in updateOrder of OrdersRepository : "+e.getMessage());
+				return false;
+			}
+			
+		}
+
+	
 	/*
 	create table orders(
 	orderId int primary key auto_increment,
