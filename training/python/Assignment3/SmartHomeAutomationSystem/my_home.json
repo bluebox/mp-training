@@ -1,0 +1,54 @@
+[
+  {
+    "type": "SmartLight",
+    "id": "L001",
+    "on": true,
+    "brightness": 80,
+    "_class": "SmartLight"
+  },
+  {
+    "type": "SmartThermostat",
+    "id": "T001",
+    "on": true,
+    "temperature": 20,
+    "_class": "SmartThermostat"
+  },
+  {
+    "type": "SmartDoorLock",
+    "id": "D001",
+    "on": true,
+    "locked": true,
+    "_class": "SmartDoorLock"
+  },
+  {
+    "type": "SmartCamera",
+    "id": "C001",
+    "on": true,
+    "recording": false,
+    "resolution": "1080p",
+    "_class": "SmartCamera"
+  },
+  {
+    "type": "SmartSpeaker",
+    "id": "S001",
+    "on": true,
+    "volume": 50,
+    "track": "Song.mp3",
+    "_class": "SmartSpeaker"
+  },
+  {
+    "type": "SecuritySensor",
+    "id": "X001",
+    "on": true,
+    "armed": true,
+    "_class": "SecuritySensor"
+  },
+  {
+    "type": "SmartAlarmSystem",
+    "id": "A001",
+    "on": true,
+    "armed": true,
+    "siren_volume": 80,
+    "_class": "SmartAlarmSystem"
+  }
+]
