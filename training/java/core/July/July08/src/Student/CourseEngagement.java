@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class CourseEngagement {
-
 	private Course course;
 	private LocalDate enrollmentDate;
 	private String engagementType;
@@ -49,8 +48,7 @@ public class CourseEngagement {
 	}
 
 	public double getPercentComplete() {
-
-		return (lastLecture /course.getLectureCount() ) * 100;
+		return (Double.valueOf(lastLecture)  /Double.valueOf( course.getLectureCount()) ) * 100;
 	}
 
 	public void watchLecture(int lecture,LocalDate date) {
@@ -83,7 +81,6 @@ public class CourseEngagement {
 		return "CourseEngagement [course=" + course + ", enrollmentDate=" + enrollmentDate + ", engagementType="
 				+ engagementType + ", lastLecture=" + lastLecture + ", lastActivityDate=" + lastActivityDate + "]";
 	}
-
 
 
 }

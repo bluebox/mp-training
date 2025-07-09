@@ -2,11 +2,11 @@ package Student;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 public class Student {
-
 	private static int id = 1000;
 	private int studentId;
 	private String countryCode;
@@ -58,7 +58,7 @@ public class Student {
 	}
 
 	public void addCourse(Course course) {
-		var enrollDate = LocalDate.now();
+		var enrollDate = LocalDate.of(new Random().nextInt(2020,2026),new Random().nextInt(1,13),1);
 		addCourse(course,enrollDate);
 	}
 
@@ -85,8 +85,16 @@ public class Student {
 	}
 
 	public double getPercentComplete(String courseCode) {
-
 		return engagementMap.get(courseCode).getPercentComplete();
+	}
+	
+	public double getPercentComplete() {
+		double sum=0;
+		for(var courseEng : engagementMap.values()) {
+			
+			sum+=getPercentComplete(courseEng.getCourseCode());
+		}
+		return sum == 0 ? 0: sum/engagementMap.size();
 	}
 
 	public int getMonthsSinceActive() {
@@ -120,12 +128,12 @@ public class Student {
 				+ programmingExperience + ", engagementMap=" + engagementMap + "]";
 	}
 
-	public static Student getRandomStudent(Course...courses) {
+	public static Student getRandomStudent(List<Course> courses) {
 		Random random = new Random();
-		Student student= new Student(id++ , ("+".concat(random.nextInt(50,500)+"") ),random.nextInt(1970,2020),random.nextInt(1,80),random.nextBoolean() ? "Male": "Female",random.nextBoolean());
+		Student student= new Student(id++ , ("+".concat(random.nextInt(50,500)+"") ),random.nextInt(2020,2026),random.nextInt(1,80),random.nextBoolean() ? "Male": "Female",random.nextBoolean());
 		for(Course course : courses) {
 			student.addCourse(course);
-			student.watchLecture(course.getCourseCode(), random.nextInt(5,course.getLectureCount()),random.nextInt(1970,1980), random.nextInt(1,12));
+			student.watchLecture(course.getCourseCode(), random.nextInt(5,course.getLectureCount()),random.nextInt(2020,2030), random.nextInt(1,12));
 		}
 		return student;
 	}
