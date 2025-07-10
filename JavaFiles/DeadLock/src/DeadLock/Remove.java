@@ -5,14 +5,12 @@ import java.util.List;
 
 public class Remove extends Thread {
 	
-	public int remove() throws InterruptedException {
+	public int remove(List<Integer> buffer) throws InterruptedException {
 		Numbers num= new Numbers();
-		
-		List<Integer> buffer = new ArrayList<>(num.getBuffer());
-		
+				
         synchronized (buffer) {
             while (buffer.isEmpty()) {
-                System.out.println("Producer waiting: Buffer is Empty.");
+                System.out.println("Remover Waiting: Buffer is Empty.");
                 buffer.notify();
                 buffer.wait(5000);
             }

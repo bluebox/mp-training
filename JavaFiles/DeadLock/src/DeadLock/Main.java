@@ -21,7 +21,7 @@ public class Main extends Thread {
 		Thread remove = new Thread(() -> {
 			try {
                 for (int i = 1; i < 25; i++) {
-                    rnum.remove();
+                    rnum.remove(num.getBuffer());
                     Thread.sleep(100); 
                 }}catch (InterruptedException e) {
             	e.setStackTrace(null);
