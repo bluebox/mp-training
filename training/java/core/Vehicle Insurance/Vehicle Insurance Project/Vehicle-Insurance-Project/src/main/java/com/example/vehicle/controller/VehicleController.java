@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ public class VehicleController {
 	public VehicleController(VehicleService vehicleService) {
 		this.vehicleService=vehicleService;
 	}
+	@PreAuthorize(value = "hasRole('admin')")
 	@PostMapping("/add")
 	public String addVehicle(@RequestBody Vehicle v) throws Exception {
 		return vehicleService.addVehicle(v);
@@ -42,6 +44,7 @@ public class VehicleController {
 	public Vehicle showVehicleById(@RequestParam int vehicleId) throws Exception {
 		return vehicleService.getVehicleById(vehicleId);
 	}
+	@PreAuthorize(value = "hasRole('admin')")
 	@GetMapping("/showAll")
 	public List<Vehicle> showAllVehicles() throws SQLException {
 		return vehicleService.getAllVehicles();

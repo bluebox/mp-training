@@ -50,3 +50,10 @@ public class UserController {
 		return userService.deleteUser(username);
 	}
 }
+//{
+//   "username":"Maneesh",
+//   "password":"Maneesh@123",
+//   "passwordUpdatedBy":"Bhanu",
+//   "customerId":1
+//}
+

@@ -15,8 +15,8 @@ public class JdbcSecurityConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/bhanu");
-		dataSource.setUsername("practice");
-		dataSource.setPassword("Vbhanu@123");
+		dataSource.setUsername("Practice");
+		dataSource.setPassword("Vbhanu@2003");
 		return dataSource;
 	}
 }

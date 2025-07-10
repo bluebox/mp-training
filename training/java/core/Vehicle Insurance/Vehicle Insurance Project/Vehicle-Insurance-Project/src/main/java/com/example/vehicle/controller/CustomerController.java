@@ -43,7 +43,7 @@ public class CustomerController {
 	public Customer getCustomerDetails(@RequestParam int customerId) throws Exception {
 		return service.getCustomerById(customerId);
 	}
-//	@PreAuthorize(value = "hasRole('admin')")
+//	@PreAuthorize(value = "hasRole('USER')")
 	@GetMapping("/showAll")
 	public List<Customer> getAllCustomers() throws SQLException {
 		return service.getAllCustomers();
