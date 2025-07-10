@@ -83,7 +83,7 @@ public class AdminService implements AdminServiceInterface{
 		// Products Of Order
 		public FullOrder productsOfOrder(Orders order) {
 			FullOrder fullOrder = new FullOrder();
-			fullOrder.setOrders(order);
+			fullOrder.setOrders(ordersRepository.getOrderDetails(order));
 			fullOrder.setOrderProductDetails(orderProductDetailsRepository.ProductsOfOrder(order));
 			return fullOrder;
 		}

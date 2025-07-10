@@ -1,12 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import PurchaseCreation from './Components/PurchaseCreation';
-
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import UpdateStatus from "./Components/UpdateStatus";
+import FullOrderApproval from "./Components/FullOrderApproval";
 function App() {
   return (
-    <div >
-      <PurchaseCreation />
-    </div>
+    <Routes>
+      <Route path="/" element={<UpdateStatus />} />
+      <Route path="/order/:orderId" element={<FullOrderApproval />} />
+    </Routes>
   );
 }
 

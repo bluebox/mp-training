@@ -7,10 +7,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.spring.ims.domain.Orders;
 
-public class OrdersRowMapper implements RowMapper{
+public class OrdersRowMapper implements RowMapper<Orders>{
 
 	@Override
-	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public Orders mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Orders order = new Orders();
 		order.setOrderId(rs.getInt("orderId"));
 		order.setOrderCost(rs.getFloat("orderCost"));

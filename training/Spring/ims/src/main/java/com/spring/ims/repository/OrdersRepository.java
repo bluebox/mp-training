@@ -133,6 +133,18 @@ public class OrdersRepository implements OrdersRepositoryInterface{
 		}
 	}
 
+	public Orders getOrderDetails(Orders order) {
+		String sql = "SELECT orderId,orderDate,orderCost,orderDiscount,orderStatus FROM orders WHERE orderId=:orderId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderId", order.getOrderId());
+			return namedParameterJdbcTemplate.queryForObject(sql, params,new OrdersRowMapper());
+		}catch(Exception e) {
+			System.out.println("Error in allOrders in OrdersRepository : "+e.getMessage());
+			return null;
+		}
+	}
+
 	
 	/*
 	create table orders(

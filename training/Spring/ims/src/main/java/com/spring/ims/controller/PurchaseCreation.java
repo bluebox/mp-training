@@ -50,6 +50,7 @@ public class PurchaseCreation {
 	@PostMapping("/suppliers-products-cost")
 	public ResponseEntity<?> costOfProducts(@RequestBody OrderProductDetails orderProductDetails) {
 		try {
+			System.out.println(orderProductDetails.toString());
 			return ResponseEntity.ok(purchaseCreationService.costOfProduct(orderProductDetails));
 		} catch (Exception e) {
 			System.out.println("Error at sendProducts in PurchaseCreation : " + e.getMessage());
