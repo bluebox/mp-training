@@ -70,6 +70,9 @@
 # print(x,y)
 
 # 
-a=[2,3,5,7,8,9,4]
-for i in range(0,-1):
-    print(a[i])
+# a=[2,3,5,7,8,9,4]
+# for i in range(0,-1):
+#     print(a[i])
+
+# print(dir(object))
+# help(object)
