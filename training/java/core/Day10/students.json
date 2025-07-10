@@ -1,0 +1,192 @@
+[
+  {
+    "studentId": 1,
+    "countryCode": "CA",
+    "yearEnrolled": 2020,
+    "ageEnrolled": 46,
+    "gender": "U",
+    "programmingExperience": false,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 22.50
+      },
+      "PYMC": {
+        "percentComplete": 92.50
+      },
+      "FSH": {
+        "percentComplete": 22.50
+      }
+    }
+  },
+  {
+    "studentId": 2,
+    "countryCode": "IN",
+    "yearEnrolled": 2015,
+    "ageEnrolled": 18,
+    "gender": "U",
+    "programmingExperience": true,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 67.50
+      },
+      "PYMC": {
+        "percentComplete": 62.50
+      },
+      "FSH": {
+        "percentComplete": 5.00
+      }
+    }
+  },
+  {
+    "studentId": 3,
+    "countryCode": "IN",
+    "yearEnrolled": 2018,
+    "ageEnrolled": 29,
+    "gender": "F",
+    "programmingExperience": false,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 42.50
+      },
+      "PYMC": {
+        "percentComplete": 42.50
+      },
+      "FSH": {
+        "percentComplete": 15.00
+      }
+    }
+  },
+  {
+    "studentId": 4,
+    "countryCode": "US",
+    "yearEnrolled": 2021,
+    "ageEnrolled": 39,
+    "gender": "M",
+    "programmingExperience": true,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 85.00
+      },
+      "PYMC": {
+        "percentComplete": 70.00
+      },
+      "FSH": {
+        "percentComplete": 60.00
+      }
+    }
+  },
+  {
+    "studentId": 5,
+    "countryCode": "US",
+    "yearEnrolled": 2023,
+    "ageEnrolled": 28,
+    "gender": "U",
+    "programmingExperience": false,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 40.00
+      },
+      "PYMC": {
+        "percentComplete": 32.50
+      },
+      "FSH": {
+        "percentComplete": 57.50
+      }
+    }
+  },
+  {
+    "studentId": 6,
+    "countryCode": "US",
+    "yearEnrolled": 2017,
+    "ageEnrolled": 41,
+    "gender": "F",
+    "programmingExperience": true,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 55.00
+      },
+      "PYMC": {
+        "percentComplete": 80.00
+      },
+      "FSH": {
+        "percentComplete": 70.00
+      }
+    }
+  },
+  {
+    "studentId": 7,
+    "countryCode": "AU",
+    "yearEnrolled": 2015,
+    "ageEnrolled": 41,
+    "gender": "F",
+    "programmingExperience": true,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 57.50
+      },
+      "PYMC": {
+        "percentComplete": 27.50
+      },
+      "FSH": {
+        "percentComplete": 85.00
+      }
+    }
+  },
+  {
+    "studentId": 8,
+    "countryCode": "CA",
+    "yearEnrolled": 2024,
+    "ageEnrolled": 26,
+    "gender": "F",
+    "programmingExperience": false,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 60.00
+      },
+      "PYMC": {
+        "percentComplete": 50.00
+      },
+      "FSH": {
+        "percentComplete": 85.00
+      }
+    }
+  },
+  {
+    "studentId": 9,
+    "countryCode": "AU",
+    "yearEnrolled": 2016,
+    "ageEnrolled": 27,
+    "gender": "M",
+    "programmingExperience": false,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 90.00
+      },
+      "PYMC": {
+        "percentComplete": 72.50
+      },
+      "FSH": {
+        "percentComplete": 42.50
+      }
+    }
+  },
+  {
+    "studentId": 10,
+    "countryCode": "AU",
+    "yearEnrolled": 2015,
+    "ageEnrolled": 19,
+    "gender": "M",
+    "programmingExperience": false,
+    "engagements": {
+      "JMC": {
+        "percentComplete": 5.00
+      },
+      "PYMC": {
+        "percentComplete": 17.50
+      },
+      "FSH": {
+        "percentComplete": 17.50
+      }
+    }
+  }
+]
