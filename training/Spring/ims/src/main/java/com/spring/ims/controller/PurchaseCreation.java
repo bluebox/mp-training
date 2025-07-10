@@ -1,5 +1,6 @@
 package com.spring.ims.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,9 @@ public class PurchaseCreation {
 	@PostMapping("/suppliers-products")
 	public ResponseEntity<?> sendProducts(@RequestBody List<String> searchCriteria) {
 		try {
+			if(searchCriteria.get(0).length()==0) {
+				return ResponseEntity.ok(Collections.EMPTY_LIST);
+			}
 			return ResponseEntity.ok(purchaseCreationService.listOfProducts(searchCriteria));
 		} catch (Exception e) {
 			System.out.println("Error at sendProducts in PurchaseCreation : " + e.getMessage());
