@@ -175,50 +175,5 @@ def get_properties(home_manager):
     return properties
 
 
-async def main():
-    a = HomeManager('admin')
-    # # await a.load_config()
-    b = SmartDoorLock('SDL3748')
-    c = SmartThermoStat('ST32478')
-    d = SmartThermoStat('ST32479')
 
-    await c.turn_on()
-    a.add_device(c)
-    await b.turn_on('Admin')
-    a.add_device(b)
-    await d.turn_on()
-    a.add_device(d)
-    await  a.save_config()
-    await a.load_config()
-    await a.control_device('admin', 'ST32478', 'set_temperature', 27)
-    await a.control_device('admin', 'ST32479', 'set_temperature', 20)
-
-    await a.control_device('admin', 'SDL3748', 'lock',passcode_val='Admin')
-    # print(b.lock())
-    ans = all_id_of_online(a)
-    for i in generator_id_online(ans):
-        print(i)
-    print(avg_temperature_thermostat(a))
-    print(get_properties(a))
-    # print(a._devices)
-    scene = SceneManager()
-    scene.add_scene('open it', [('SDL3748', 'unlock', 'Admin')])
-    scene.add_scene('close it',[('SDL3748','lock','Admin')])
-    await scene.activate_scene(a, 'open it', 'admin')
-    await scene.activate_scene(a,'close it','admin')
-    scheduler = Scheduler()
-    next_time = (datetime.now() + timedelta(minutes=1)).strftime("%H:%M")
-    scheduler.add_scheduled_task(next_time, 'SDL3748', 'unlock', 'Admin', 'admin')
-    scheduler.add_scheduled_task(next_time, 'ST32478', 'set_temperature', 22, 'admin')
-
-    print(f"Waiting for scheduled tasks at: {next_time}")
-    while scheduler.tasks:
-        await scheduler.run_pending_tasks(a)
-        await asyncio.sleep(10)
-
-    print("All scheduled tasks executed.")
-
-
-if __name__ == '__main__':
-    asyncio.run(main())
 
