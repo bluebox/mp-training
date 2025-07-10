@@ -14,7 +14,7 @@ function UpdateStatus() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      },credentials: "include",
     })
       .then(async (res) => {
         if (!res.ok) {
@@ -47,7 +47,7 @@ function UpdateStatus() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      },credentials: "include",
       body: JSON.stringify(updateData),
     })
       .then(async (res) => {

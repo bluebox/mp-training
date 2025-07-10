@@ -10,7 +10,7 @@ function AllOrders() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
+      },credentials: "include",
     })
       .then(async (res) => {
         if (!res.ok) {

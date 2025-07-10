@@ -3,181 +3,282 @@ import axios from 'axios';
 
 const PurchaseCreation = () => {
   const [suppliers, setSuppliers] = useState([]);
-  const [selectedSupplier, setSelectedSupplier] = useState('');
   const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState('');
-  const [quantity, setQuantity] = useState(0);
-  const [productCost, setProductCost] = useState(0);
-  const [orderDetails, setOrderDetails] = useState(null);
+  const [orderItems, setOrderItems] = useState([]);
+  const [orderDiscount, setOrderDiscount] = useState(0);
+  const [editIndex, setEditIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
   const [error, setError] = useState(null);
 
-  // Fetch all suppliers
+  const [currentItemSupplier, setCurrentItemSupplier] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [unitCost, setUnitCost] = useState(0);
+  const [productCost, setProductCost] = useState(0);
+
   useEffect(() => {
-    setLoading(true);
-    axios
-      .post('http://localhost:8080/creation/suppliers', {})
-      .then((res) => {
-        setSuppliers(Array.isArray(res.data) ? res.data : []);
-        setLoading(false);
-      })
-      .catch((err) => {
+    axios.post('http://localhost:8080/creation/suppliers', {})
+      .then(res => setSuppliers(Array.isArray(res.data) ? res.data : []))
+      .catch(err => {
         console.error('Error fetching suppliers:', err);
         setError('Failed to fetch suppliers');
-        setLoading(false);
       });
   }, []);
 
-  // Fetch products for selected supplier
-  const fetchProducts = (selectedSupplier) => {
-    setLoading(true);
-    axios
-      .post('http://localhost:8080/creation/suppliers-products', [
-        selectedSupplier,
-        '',
-      ])
-      .then((res) => {
-        setProducts(Array.isArray(res.data) ? res.data : []);
-        setLoading(false);
-      })
-      .catch((err) => {
+  useEffect(() => {
+    const preload = localStorage.getItem('fromLowStock');
+    if (preload) {
+      const parsed = JSON.parse(preload);
+      parsed.forEach(item => {
+        axios.post('http://localhost:8080/creation/suppliers-products-cost', {
+          supplier: item.supplier,
+          product: item.product
+        }).then(res => {
+          const cost = res.data;
+          const newItem = {
+            ...item,
+            productCost: item.productQuantity * cost
+          };
+          setOrderItems(prev => [...prev, newItem]);
+        });
+      });
+      localStorage.removeItem('fromLowStock');
+    }
+  }, []);
+
+  const fetchProducts = (supplier) => {
+    axios.post('http://localhost:8080/creation/suppliers-products', [supplier, ''])
+      .then(res => setProducts(Array.isArray(res.data) ? res.data : []))
+      .catch(err => {
         console.error('Error fetching products:', err);
         setError('Failed to fetch products');
-        setLoading(false);
       });
   };
 
-  // Fetch product cost
-  const productCostFetching = async (supplier, product) => {
+  const fetchProductCost = async (supplier, product) => {
     try {
-      const response = await fetch(
-        'http://localhost:8080/creation/suppliers-products-cost',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ supplier, product }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("data", data);
-      setProductCost(data);
-      return data;
+      const res = await axios.post('http://localhost:8080/creation/suppliers-products-cost', {
+        supplier, product
+      });
+      return res.data;
     } catch (err) {
-      console.error('Error fetching product cost:', err);
-      setError('Failed to fetch product cost');
+      console.error('Error fetching cost:', err);
+      setError('Cost fetch failed');
       return 0;
     }
   };
 
-  // Update order details
   useEffect(() => {
-    const fetchCostAndSetOrder = async () => {
-      if (selectedProduct && selectedSupplier) {
-        setLoading(true);
-        const infoString = `Selected: ${selectedSupplier} - ${selectedProduct}`;
-        console.log('Info String:', infoString);
-
-        const cost = await productCostFetching(selectedSupplier, selectedProduct);
-        const totalCost = cost * quantity;
-
-        setOrderDetails({
-          supplier: selectedSupplier,
-          product: selectedProduct,
-          productQuantity: quantity,
-          productCost: totalCost,
-        });
-        setLoading(false);
+    const updateCost = async () => {
+      if (currentItemSupplier && selectedProduct && quantity > 0) {
+        const cost = await fetchProductCost(currentItemSupplier, selectedProduct);
+        setUnitCost(cost);
+        setProductCost(cost * quantity);
       }
     };
+    updateCost();
+  }, [currentItemSupplier, selectedProduct, quantity]);
 
-    fetchCostAndSetOrder();
-  }, [selectedProduct, quantity, selectedSupplier]);
+  const resetInputs = () => {
+    setCurrentItemSupplier('');
+    setSelectedProduct('');
+    setQuantity(1);
+    setUnitCost(0);
+    setProductCost(0);
+    setSearchTerm('');
+    setProducts([]);
+    setEditIndex(null);
+  };
 
-  const filteredProducts = products.filter((product) =>
+  const handleAddOrUpdateItem = () => {
+    const item = {
+      orderDetailsId: 0,
+      orderId: 0,
+      supplier: currentItemSupplier,
+      product: selectedProduct,
+      productQuantity: quantity,
+      productCost: productCost
+    };
+
+    if (editIndex !== null) {
+      const updatedItems = [...orderItems];
+      updatedItems[editIndex] = item;
+      setOrderItems(updatedItems);
+    } else {
+      setOrderItems([...orderItems, item]);
+    }
+
+    resetInputs();
+  };
+
+  const handleEdit = (index) => {
+    const item = orderItems[index];
+    setCurrentItemSupplier(item.supplier);
+    setSelectedProduct(item.product);
+    setQuantity(item.productQuantity);
+    setEditIndex(index);
+    fetchProducts(item.supplier);
+  };
+
+  const handleDelete = (index) => {
+    const updatedItems = orderItems.filter((_, i) => i !== index);
+    setOrderItems(updatedItems);
+    if (editIndex === index) resetInputs();
+  };
+
+  const subtotal = orderItems.reduce((acc, item) => acc + item.productCost, 0);
+  const totalAfterDiscount = subtotal * (1 - orderDiscount / 100);
+
+  const handleSubmitOrder = () => {
+    if (!orderItems.length) {
+      setError('Add at least one product to submit');
+      return;
+    }
+
+    const fullOrder = {
+      orders: {
+        orderId: 0,
+        orderDate: new Date(),
+        orderCost: totalAfterDiscount,
+        orderDiscount: orderDiscount,
+        orderStatus: 'CREATED'
+      },
+      orderProductDetails: orderItems
+    };
+
+    axios.post('http://localhost:8080/creation/purchase-created', fullOrder)
+      .then(res => {
+        setMessage(res.data.message || 'Order Created Successfully!');
+        setOrderItems([]);
+        setOrderDiscount(0);
+        resetInputs();
+      })
+      .catch(err => {
+        console.error('Error submitting order:', err);
+        setError('Order creation failed');
+      });
+  };
+
+  const filteredProducts = products.filter(product =>
     product.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <>
-      {loading && <p>Loading...</p>}
+    <div style={{ padding: '20px' }}>
+      <h2>Purchase Creation</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {message && <p style={{ color: 'green' }}>{message}</p>}
 
-      <label>Select Supplier: </label>
+      <label>Supplier:</label>
       <select
-        value={selectedSupplier}
+        value={currentItemSupplier}
         onChange={(e) => {
-          const supplierName = e.target.value;
-          setSelectedSupplier(supplierName);
+          const supplier = e.target.value;
+          setCurrentItemSupplier(supplier);
+          fetchProducts(supplier);
           setSelectedProduct('');
-          setQuantity(0);
-          setOrderDetails(null);
-          setSearchTerm('');
-          setError(null);
-          if (supplierName) fetchProducts(supplierName);
         }}
       >
-        <option value="">--Select--</option>
-        {Array.isArray(suppliers) &&
-          suppliers.map((s, index) => {
-            const [name, id] = s.split(' - ');
-            return (
-              <option key={id || index} value={s}>
-                {s}
-              </option>
-            );
-          })}
-      </select>
-
-      <label>Search and Select Product: </label>
-      <input
-        type="text"
-        placeholder="Search product..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-
-      <select
-        value={selectedProduct}
-        onChange={(e) => {
-          const product = e.target.value;
-          setSelectedProduct(product);
-          setQuantity(1);
-          setError(null);
-        }}
-      >
-        <option value="">--Select Product--</option>
-        {filteredProducts.map((product, index) => (
-          <option key={index} value={product}>
-            {product}
-          </option>
+        <option value="">--Select Supplier--</option>
+        {suppliers.map((s, i) => (
+          <option key={i} value={s}>{s}</option>
         ))}
       </select>
 
-      <label>Quantity: </label>
+      <label>Search Product:</label>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <select
+        value={selectedProduct}
+        onChange={(e) => setSelectedProduct(e.target.value)}
+      >
+        <option value="">--Select Product--</option>
+        {filteredProducts.map((p, i) => (
+          <option key={i} value={p}>{p}</option>
+        ))}
+      </select>
+
+      <label>Quantity:</label>
       <input
         type="number"
+        min="1"
         value={quantity}
-        onChange={(e) => {
-          const value = Number(e.target.value);
-          setQuantity(value >= 0 ? value : 0);
-        }}
+        onChange={(e) => setQuantity(Number(e.target.value))}
       />
 
-      <label>Total Cost: </label>
-      <input
-        type="number"
-        value={orderDetails?.productCost || 0}
-        readOnly
-      />
-    </>
+      <label>Unit Cost:</label>
+      <input type="number" value={unitCost.toFixed(2)} readOnly />
+
+      <label>Total Cost:</label>
+      <input type="number" value={productCost.toFixed(2)} readOnly />
+
+      <button
+        disabled={!currentItemSupplier || !selectedProduct || !quantity}
+        onClick={handleAddOrUpdateItem}
+      >
+        {editIndex !== null ? 'Update Item' : 'Add Item'}
+      </button>
+
+      <h3>Order Items</h3>
+      {orderItems.length > 0 && (
+        <table border="1" cellPadding="8">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Supplier</th>
+              <th>Quantity</th>
+              <th>Cost</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orderItems.map((item, i) => (
+              <tr key={i}>
+                <td>{item.product}</td>
+                <td>{item.supplier}</td>
+                <td>{item.productQuantity}</td>
+                <td>{item.productCost.toFixed(2)}</td>
+                <td>
+                  <button onClick={() => handleEdit(i)}>Edit</button>
+                  <button onClick={() => handleDelete(i)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="3" align="right">Subtotal:</td>
+              <td colSpan="2">{subtotal.toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td colSpan="3" align="right">Order Discount (%):</td>
+              <td colSpan="2">
+                <input
+                  type="number"
+                  min="0"
+                  value={orderDiscount}
+                  onChange={(e) => setOrderDiscount(Number(e.target.value))}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="3" align="right">Total After Discount:</td>
+              <td colSpan="2"><strong>{totalAfterDiscount.toFixed(2)}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      )}
+
+      <br />
+      <button onClick={handleSubmitOrder} disabled={!orderItems.length}>
+        Submit Order
+      </button>
+    </div>
   );
 };
 

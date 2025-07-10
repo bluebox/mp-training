@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.spring.ims.domain.EmployeeProducts;
 import com.spring.ims.service.LowStockService;
 
 @Controller
@@ -30,5 +32,17 @@ public class LowStockController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
 		}
 	}
+	
+//	@PostMapping("/fetch-product-by-name")
+//	public ResponseEntity<?> fetchProduct(@RequestBody EmployeeProducts employeeProsucts) {
+//		try {
+//			return ResponseEntity.ok(lowStockService.fetchProduct(employeeProsucts));
+//		} catch (Exception e) {
+//			Map<String, String> errorResponse = new HashMap<>();
+//			errorResponse.put("status", "error");
+//			errorResponse.put("message", "Something Went Wrong!!!");
+//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+//		}
+//	}
 
 }

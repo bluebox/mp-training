@@ -14,4 +14,5 @@ public interface OrderProductDetailsRepositoryInterface {
     boolean editProducts(List<OrderProductDetails> listOfProducts, int orderId);
 
     boolean makingInactive(int orderId);
+    
 }

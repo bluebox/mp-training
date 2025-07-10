@@ -56,6 +56,8 @@ public class OrdersController {
 	@PostMapping("/view-order")
 	public ResponseEntity<?> viewOrder(@RequestBody Orders order) {
 		try {
+			System.out.println(order.toString());
+			System.out.println(ordersService.productsOfOrder(order));
 			return ResponseEntity.ok(ordersService.productsOfOrder(order));
 		} catch (Exception e) {
 			Map<String, String> errorResponse = new HashMap<>();
