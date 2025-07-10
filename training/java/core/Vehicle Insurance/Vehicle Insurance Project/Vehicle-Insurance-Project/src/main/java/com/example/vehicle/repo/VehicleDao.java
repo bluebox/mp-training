@@ -21,10 +21,10 @@ public class VehicleDao {
 	}
 	public String addVehicle(Vehicle vehicle) throws SQLException {
 		String vehicleAddSql="Insert into vehicles(chasis_no,reg_num,vehicle_model,purchase_date,vehicle_updated_on,vehicle_updated_by,customer_id,created_by,status)"
-				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?, 'A')";
 		System.out.println(vehicle.getStatus());
 		int rowsAffected=jdbcTemplate.update(vehicleAddSql,vehicle.getChasisNum(),vehicle.getRegNum(),vehicle.getVehicleModel(),
-				LocalDateTime.now(),LocalDateTime.now(),vehicle.getVehicleUpdatedBy(),vehicle.getCustomerId(),vehicle.getCreatedBy(),Character.toString(vehicle.getStatus()));
+				LocalDateTime.now(),LocalDateTime.now(),vehicle.getVehicleUpdatedBy(),vehicle.getCustomerId(),vehicle.getCreatedBy());
 		if(rowsAffected==0) {
 			return "Vehicle Not Added";
 		}
@@ -71,15 +71,17 @@ public class VehicleDao {
 	}
 	
 	public String deleteVehicleById(int vehicleId) throws Exception {
-		String sql="Update vehicles set status='I' WHERE vehicle_id=?";
-		int rowsAffected=jdbcTemplate.update(sql,vehicleId);
-		if(rowsAffected==0) {
+		String sql = "Update vehicles set status='I' where vehicle_id=?";
+		String policySql = "Update policy set policy_status='I' where vehicle_id=?";
+
+		int rowsAffected = jdbcTemplate.update(sql, vehicleId);
+		int rowsAffected2 = jdbcTemplate.update(policySql, vehicleId);
+		if (rowsAffected == 0) {
 			return "Vehicle Not Deleted ,error occurred";
-		}
-		else {
+		} else {
 			return "Vehicle Deleted Successfully";
 		}
-		
+
 	}
 	
 	public List<Vehicle> getAllVehicles() throws SQLException {

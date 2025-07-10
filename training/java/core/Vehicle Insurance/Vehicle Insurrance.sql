@@ -29,7 +29,7 @@ create table users(
 );
 create table vehicles(
 	vehicle_id int primary key auto_increment,
-    chasis_no int unique not null,
+    chasis_no varchar(255) unique not null,
 	reg_num varchar(255) unique not null,
 	vehicle_model varchar(255) not null,
 	purchase_date datetime not null,
@@ -61,9 +61,9 @@ create table claim(
 	claim_date datetime,
 	policy_id int not null,foreign key(policy_id) references policy(policy_id)
 );
-
+show tables;
 insert into vehicles values(2343,"dfw434","wer","18-06-12 10:34:09 AM","18-06-12 10:34:09 AM","Bhanu",1);
-select * from vehicles; 
+select * from policy; 
 
 drop table claim;
 drop table policy;

@@ -25,14 +25,8 @@ public class CustomerService {
 		return "Customer Added Successfully";
 	}
 
-	public String updateCustomer(Customer customer,int customerId) throws Exception {
-		try {
-			customerDao.updateCustomer(customer,customerId);
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
-		return "Customer Updated Successfully";
-
+	public String updateCustomer(Customer customer) throws Exception {
+		return customerDao.updateCustomer(customer);
 	}
 
 	public String updateCustomerStatus(int customerId, char status) throws Exception {

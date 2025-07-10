@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vehicle.enums.PolicyType;
 import com.example.vehicle.model.Policy;
+import com.example.vehicle.model.Vehicle;
 import com.example.vehicle.repo.PolicyDao;
 
 @Service
@@ -18,8 +19,8 @@ public class PolicyService {
 	@Autowired
 	private PolicyDao repo;
 	public String addPolicy(int policyTerm, PolicyType policyType, LocalDateTime startDate,LocalDateTime endDate, int vehicleId, String approvedBy) throws Exception {
-		if(repo.getPolicyByVehicleId(vehicleId).size()>0) {
-			return "There is a policy already for this vehicle number";
+		if(repo.getPolicyByVehicleIdCount(vehicleId)>0) {
+			return "There is a policy already for this vehicle";
 		}
 		return repo.addPolicy(policyTerm, policyType, startDate, endDate, vehicleId, approvedBy);
 	}
@@ -56,7 +57,7 @@ public class PolicyService {
 		return repo.getAllPolicies();
 	}
 	public Policy getPolicyByVehicles(int vehicleId) throws Exception {
-		return repo.getPolicyByVehicleId(vehicleId).get(0);
+		return repo.getPolicyByVehicleId(vehicleId);
 	}
 	public Policy getPolicyByRegNum(String regnum) throws Exception {
 		return repo.getPolicyByVehicle(regnum);
@@ -64,7 +65,7 @@ public class PolicyService {
 	public List<Policy> getPolicyByUser(String username) throws Exception {
 		return repo.getPolicyByUser(username);
 	}
-	public List<Object> getPolcyReport(int policyId) throws Exception {
+	public List<Object> getPolicyReport(int policyId) throws Exception {
 		return repo.getPolicyReport(policyId);
 	}
 }

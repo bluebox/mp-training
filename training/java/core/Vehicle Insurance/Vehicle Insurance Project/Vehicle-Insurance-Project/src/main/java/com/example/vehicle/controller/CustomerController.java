@@ -28,8 +28,8 @@ public class CustomerController {
 		return service.addCustomer(c);
 	}
 	@PutMapping("/update")
-	public String updateCustomer(@RequestBody Customer c,@RequestParam int customerId) throws Exception {
-		return service.updateCustomer(c,customerId);
+	public String updateCustomer(@RequestBody Customer c) throws Exception {
+		return service.updateCustomer(c);
 	}
 	@PutMapping("/updateStatus")
 	public String updateCustomerStatus(@RequestParam int customerId,@RequestParam char status) throws Exception {

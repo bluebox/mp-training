@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class User {
 	@NotBlank(message = "Username must not be Null")
-	private String userName;
+	private String username;
 	@NotBlank(message = "password must not be Null")
 	private String password;
 	private String passwordUpdatedBy;

@@ -42,9 +42,13 @@ public class ClaimDao {
 	}
 
 	public String updateStatus(int claimId, double amount, char status, String approvedBy) {
+		double premiumAmount=jdbcTemplate.queryForObject("select p.premium_amount from policy p,claim c where p.policy_id=c.policy_id and c.claimId=?", Double.class,claimId);
+		if(premiumAmount<amount) {
+			amount=premiumAmount;
+		}
 		int rowsAffected = jdbcTemplate.update(
 				"update claim set req_amount=? ,claim_status=?,claim_date=?,approved_by=? where claim_id=?", amount,
-				status, LocalDateTime.now(), approvedBy, claimId);
+				Character.toString(status), LocalDateTime.now(), approvedBy, claimId);
 		if (rowsAffected > 0) {
 			if (status == 'A') {
 				return "Accepted";
@@ -63,7 +67,12 @@ public class ClaimDao {
 	public Claim getClaimById(int claimId) {
 		return jdbcTemplate.queryForObject("select * from claim where claim_id=?", new ClaimRowMapper() , claimId);
 	}
-
+	public List<Claim> getClaimByPolicyId(int policyId){
+		return jdbcTemplate.query("select c.* from claim c,policy p where c.policy_id=p.policy_id and p.policy_id=? and p.policy_status=?", new ClaimRowMapper(),policyId);
+	}
+	public List<Claim> getClaimByVehicleId(int vehiceId){
+		return jdbcTemplate.query("select c.* from claim c,policy p where c.policy_id=p.policy_id and p.vehicle_id=? and p.policy_status=?", new ClaimRowMapper(),vehiceId);
+	}
 	public List<Claim> getClaimByUser(String username) {
 		return jdbcTemplate.query(
 				"select c.* from claim c,policy p,vehicles v,customers cu,users u where c.policy_id=p.policy_id and p.vehicle_id=v.vehicle_id and v.customer_id=cu.customer_id and cu.customer_id=u.customer_id and u.username=?",
@@ -73,8 +82,14 @@ public class ClaimDao {
 		return jdbcTemplate.queryForList("select * from claim where claim_status='I'",Claim.class);
 	}
 	public ArrayList<Object> getClaimReport(int claimId) throws SQLException {
+		if(jdbcTemplate.queryForObject("select count(*) from claim where claim_id=?", Integer.class,claimId)<=0) {
+			return new ArrayList<>();
+		}
 		int policyId=jdbcTemplate.queryForObject("select policy_id from claim c where claim_id=?", Integer.class,claimId);
 		ArrayList<Object> claimReport = repo.getPolicyReport(policyId);
+		if(claimReport.equals(new ArrayList<>())) {
+			return claimReport;
+		}
 		claimReport.add(jdbcTemplate.queryForObject("select * from claim where claim_id=?", new ClaimRowMapper(),claimId));
 		return claimReport;
 	}

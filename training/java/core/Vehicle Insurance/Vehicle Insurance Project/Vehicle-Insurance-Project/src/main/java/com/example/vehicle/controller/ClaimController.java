@@ -33,6 +33,14 @@ public class ClaimController {
 	public Claim getClaimsById(@RequestParam int claimId) throws Exception {
 		return service.getClaimById(claimId);
 	}
+	@GetMapping("/claimByPolicyId")
+	public List<Claim> getClaimByPolicyId(@RequestParam int policyId) throws Exception {
+		return service.getClaimByPolicyId(policyId);
+	}
+	@GetMapping("/claimByVehicleId")
+	public List<Claim> getClaimByVehicleId(@RequestParam int vehicleId) throws Exception {
+		return service.getClaimByVehicleId(vehicleId);
+	}
 	@GetMapping("/claimByUser")
 	public List<Claim> getClaimByUser(@RequestParam String username) throws Exception {
 		return service.getClaimByUser(username);

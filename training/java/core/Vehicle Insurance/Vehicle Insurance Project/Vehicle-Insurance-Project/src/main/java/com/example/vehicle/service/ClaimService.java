@@ -33,6 +33,12 @@ public class ClaimService {
 	public Claim getClaimById(int claimId) throws Exception {
 		return repo.getClaimById(claimId);
 	}
+	public List<Claim> getClaimByVehicleId(int vehicleId) {
+		return repo.getClaimByVehicleId(vehicleId);
+	}
+	public List<Claim> getClaimByPolicyId(int policyId) {
+		return repo.getClaimByPolicyId(policyId);
+	}
 	public List<Claim> getClaimByUser(String username) throws Exception {
 		return repo.getClaimByUser(username);
 	}

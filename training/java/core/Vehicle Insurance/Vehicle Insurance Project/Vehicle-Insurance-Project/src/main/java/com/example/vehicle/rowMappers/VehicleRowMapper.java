@@ -17,6 +17,7 @@ public class VehicleRowMapper implements RowMapper<Vehicle> {
 		vehicle.setVehicleModel(rs.getString("vehicle_model"));
 		vehicle.setPurchaseDate(rs.getTimestamp("purchase_date").toLocalDateTime());
 		vehicle.setVehicleUpdatedOn(rs.getTimestamp("vehicle_updated_on").toLocalDateTime());
+		vehicle.setStatus(rs.getString("status").charAt(0));
 		vehicle.setVehicleUpdatedBy(rs.getString("vehicle_updated_by"));
 		vehicle.setCreatedBy(rs.getString("created_by"));
 		vehicle.setCustomerId(rs.getInt("customer_id"));
