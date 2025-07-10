@@ -1,0 +1,16 @@
+[2025-07-07 09:44:26.006128] turn_on called on device ID: L001
+[2025-07-07 09:45:54.533009] turn_on called on device ID: L001
+[2025-07-07 09:47:23.825974] turn_on called on device ID: L001
+[2025-07-07 09:52:47.506299] turn_on called on device ID: L001
+[2025-07-07 09:54:08.794051] turn_on called on device ID: L001
+[2025-07-07 09:54:11.298315] turn_off called on device ID: L001
+[2025-07-07 09:59:30.562248] turn_on called on device ID: L001
+[2025-07-07 10:00:03.093659] turn_off called on device ID: L001
+[2025-07-07 10:06:48.943461] turn_on called on device ID: L001
+[2025-07-07 10:07:03.460365] turn_on called on device ID: L001
+[2025-07-07 10:07:04.962365] turn_off called on device ID: L001
+[2025-07-07 14:52:35.781503] turn_on called on device ID: L001
+[2025-07-07 14:53:36.110043] turn_on called on device ID: L001
+[2025-07-07 14:54:21.368982] turn_on called on device ID: L001
+[2025-07-07 14:54:23.874950] turn_on called on device ID: L001
+[2025-07-07 14:54:25.377872] turn_off called on device ID: L001

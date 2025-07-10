@@ -1,0 +1,1 @@
+{"L001": {"class_name": "SmartLight", "is_on": true}, "T001": {"class_name": "SmartThermostat", "is_on": true}, "D001": {"class_name": "SmartDoorLock", "is_on": true}, "C001": {"class_name": "SmartCamera", "is_on": true}, "S001": {"class_name": "SmartSpeaker", "is_on": true}}

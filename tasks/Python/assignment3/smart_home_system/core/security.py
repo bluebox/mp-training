@@ -1,100 +1,122 @@
 from abc import ABC, abstractmethod
+import asyncio
+from smart_home_system.core.devices  import SmartDevice
+from smart_home_system.core.exceptions import InvalidParameterError, DeviceOfflineError, ActionNotSupportedError
+from datetime import datetime
 
-from smart_home_system.core.devices import SmartDevice
 
 class Programmable(ABC):
-    def schedule_task(self):
+    @abstractmethod
+    def schedule_task(self, time_str: str):
         pass
 
-class SecuritySensor(SmartDevice):
 
+class SecuritySensor(SmartDevice):
     def __init__(self, device_id):
         super().__init__(device_id)
         self.__is_armed = False
 
-    def arm_sensor(self,value):
-        if self.is_on:
-           print("Security Sensor must be on to arm_sensor")
-           return
-        elif self.__is_armed:
-            if value:
-                print(f"Sensor {self._device_id} is already armed.")
-                return
-            self.__is_armed = value
-            print(f"Sensor {self._device_id} is now disarmed.")
-        else:
-            if value:
-                self.__is_armed = value
-                print(f"Sensor {self._device_id} is now armed.")
-                return
-            print(f"Sensor {self._device_id} is already disarmed.")
+    def arm_sensor(self, value: bool):
+        if not self.is_on:
+            raise DeviceOfflineError(f"Device {self._device_id} must be ON to change arm status.")
+        if not isinstance(value, bool):
+            raise InvalidParameterError("Arm value must be a boolean.")
 
+        if self.__is_armed == value:
+            status = "armed" if value else "disarmed"
+            print(f"Sensor {self._device_id} is already {status}.")
+        else:
+            self.__is_armed = value
+            status = "armed" if value else "disarmed"
+            print(f"Sensor {self._device_id} is now {status}.")
 
     @property
-    def is_arm(self):
+    def is_armed(self):
         return self.__is_armed
 
-    @is_arm.setter
-    def is_arm(self,value):
+    @is_armed.setter
+    def is_armed(self, value: bool):
         self.arm_sensor(value)
 
     def get_status_report(self):
-        return f"Sensor {self._device_id} , ON: {self.is_on} , Armed: {self.__is_armed}"
-
-    def perform_action(self, action_type, value=None):
-        if action_type == "arm_sensor":
+        if self.is_on:
+            return f"SecuritySensor {self._device_id} ON: {self.is_on} Armed: {self.__is_armed}"
+        return f"SecuritySensor {self._device_id} ON: {self.is_on} "
+    async def perform_action(self, action_type, value=None):
+        await asyncio.sleep(1)
+        if action_type == "arm":
             self.arm_sensor(True)
-        elif action_type == "disarm_sensor":
+        elif action_type == "disarm":
             self.arm_sensor(False)
         elif action_type == "get_status_report":
             print(self.get_status_report())
         elif action_type == "turn_on":
-            self.turn_on()
+            await self.turn_on()
         elif action_type == "turn_off":
-            self.turn_off()
+            await self.turn_off()
         else:
-            print("Unsupported action for SecuritySensor.")
+            raise ActionNotSupportedError(f"{action_type} not supported by SecuritySensor.")
 
     def get_supported_actions(self):
-        print("Supported actions for Security Sensor are: arm_sensor, disarm_sensor, get_status_report, turn_on, turn_off")
+        print("Supported actions: arm, disarm, turn_on, turn_off, get_status_report")
+
 
 class SmartAlarmSystem(SmartDevice, Programmable):
-
     def __init__(self, device_id):
         super().__init__(device_id)
         self.__armed = False
-
-    def get_status_report(self):
-        return f"Alarm {self._device_id} , ON: {self.is_on} , Armed: {self.__armed}"
+        self.__siren_volume = 5
 
     @property
-    def arm(self):
+    def armed(self):
         return self.__armed
 
-    #write for property arm to set arm/disarm
+    @armed.setter
+    def armed(self, value: bool):
+        if not isinstance(value, bool):
+            raise InvalidParameterError("Armed value must be boolean.")
+        self.__armed = value
+        print(f"Alarm system {self._device_id} {'armed' if value else 'disarmed'}.")
 
-    def perform_action(self, action_type, value=None):
+    def get_status_report(self):
+        if self.is_on:
+            return f"SmartAlarmSystem {self._device_id} ON: {self.is_on} Armed: {self.__armed} Volume: {self.__siren_volume}"
+        return f"SmartAlarmSystem {self._device_id} ON: {self.is_on}"
+
+    async def perform_action(self, action_type, value=None):
+        await asyncio.sleep(1)
         if action_type == "arm":
-            self.__armed = True
-            print("Alarm armed.")
+            self.armed = True
         elif action_type == "disarm":
-            self.__armed = False
-            print("Alarm disarmed.")
+            self.armed = False
         elif action_type == "turn_on":
-            self.turn_on()
+            await self.turn_on()
         elif action_type == "turn_off":
-            self.turn_off()
+            await self.turn_off()
+        elif action_type == "set_volume":
+            self.set_volume(value)
         elif action_type == "get_status_report":
             print(self.get_status_report())
         else:
-            print("Unsupported action for SmartAlarmSystem.")
-
-    def schedule_task(self):
-        print("Alarm system task scheduled.")
-        #use time module for schedule alarm
-        #take scheduled time as param
+            raise ActionNotSupportedError(f"{action_type} not supported by SmartAlarmSystem.")
 
     def get_supported_actions(self):
+        print("Supported actions: arm, disarm, set_volume, turn_on, turn_off, get_status_report")
 
-        print("Supported actions for Smart Alarm System are: arm_alarm, disarm_alarm, turn_on, turn_off, get_status_report ")
+    def schedule_task(self, time_str: str):
+        try:
+            schedule_time = datetime.strptime(time_str, "%H:%M")
+            print(f"Alarm system {self._device_id} scheduled for {schedule_time.strftime('%H:%M')}.")
+        except ValueError:
+            raise InvalidParameterError("Time format must be HH:MM")
+
+    def set_volume(self,vol):
+        if not self.is_on:
+            raise DeviceOfflineError(f"Device {self._device_id} must be ON to set volume.")
+        if isinstance(vol, int) and 1 <= vol <= 10:
+            self.__siren_volume = vol
+            print(f"Siren volume set to {vol}.")
+        else:
+            raise InvalidParameterError("Volume must be an integer between 1 and 10.")
+
 

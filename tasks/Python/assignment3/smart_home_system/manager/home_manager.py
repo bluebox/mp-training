@@ -1,103 +1,72 @@
 import asyncio
-
-from smart_home_system.core.exceptions import InvalidParameterError, DeviceOfflineError, ActionNotSupportedError, \
-    AuthenticationError, PermissionDeniedError, SmartHomeError
-#from smart_home_system.core.security import SmartAlarmSystem
+from smart_home_system.core.exceptions import (
+    InvalidParameterError, DeviceOfflineError, ActionNotSupportedError,
+    AuthenticationError,
+    PermissionDeniedError,
+    SmartHomeError,
+)
 from smart_home_system.utils.helpers import smart_device_from_dict, smart_home_json_encoder
-#from smart_home_system.core.devices import SmartLight, SmartThermostat, SmartDoorLock, SmartCamera, SmartSpeaker, SmartDevice
+
+
+ROLE_PERMISSIONS = {
+    "admin": {"turn_on", "turn_off", "get_status_report", "set_brightness", "get_brightness", "set_temperature", "get_temperature",  "set_resolution", "set_recording", "play_track", "set_volume", "arm_sensor", "disarm_sensor", "arm", "disarm", "unlock"},
+    "user": {"turn_on", "turn_off", "get_status_report", "set_brightness", "set_temperature", "play_track", "set_volume", "set_resolution"},
+    "guest": {"turn_on", "turn_off", "get_status_report"},
+}
+
 
 class HomeManager:
     def __init__(self):
         self.devices = []
-        self.devices_map_reports = {}
-    def add_device(self,device):
-        if device._device_id in self.devices:
-            print(f"Device with {device._device_id} is already added")
+
+    def add_device(self, device):
+        if any(d.device_id == device.device_id for d in self.devices):
+            print(f"Device '{device.device_id}' is already added.")
             return
         self.devices.append(device)
-        print(f"Device {device._device_id} added to HomeManager.")
-        self.devices_map_reports[device._device_id] = device.get_status_report()
+        print(f"Device '{device.device_id}' was added successfully.")
 
-    async def control_device(self,device_id, action_type, value=None, user_role = None):
+    async def control_device(self, device_id, action_type, value=None, user_role="guest"):
         try:
+            if action_type not in ROLE_PERMISSIONS.get(user_role, set()):
+                raise PermissionDeniedError(f"Sorry! '{user_role}' is not allowed to do '{action_type}'.")
+
             for device in self.devices:
-                if device._device_id == device_id:
+                if device.device_id == device_id:
                     await device.perform_action(action_type, value)
                     return
-        except InvalidParameterError as e:
-            print(e.message)
 
-        except DeviceOfflineError as e:
-            print(e.message)
+            raise InvalidParameterError(f"No device found with ID '{device_id}'.")
 
-        except ActionNotSupportedError as e:
-            print(e.message)
-
-        except AuthenticationError as e:
-            print(e.message)
-
-        except PermissionDeniedError as e:
-            print(e.message)
-
-        except SmartHomeError as e:
-            print(e.message)
-        print("Device not found.")
+        except (InvalidParameterError, DeviceOfflineError, ActionNotSupportedError,
+                AuthenticationError, PermissionDeniedError, SmartHomeError) as e:
+            print(f"Oops! Something went wrong: {e}")
 
     def get_all_device_statuses(self):
-        print("Device Status Reports")
-        for status in self.devices_map_reports.values():
-            print(status)
-
-    async def save_config(self,file_name):
-        states = {}
+        print("The status reports of all devices:")
         for device in self.devices:
-            states[device._device_id] = device.is_on
-        await asyncio.sleep(2)
-        smart_home_json_encoder(states,file_name)
+            print(device.get_status_report())
 
-    async def load_config(self,file_name):
-        states = smart_device_from_dict(file_name)
-        print("After serialization ",states)
-        await asyncio.sleep(3)
+    async def save_config(self, file_name):
+        state_dict = {}
+
         for device in self.devices:
-            if states[device._device_id] == "is_on":
-                device.turn_on()
+            state_dict[device.device_id] = {
+                "class_name": type(device).__name__,
+                "is_on": device.is_on
+            }
 
-# if __name__ == "__main__":
-#     manager = HomeManager()
-#
-#     light = SmartLight("L001")
-#     thermo = SmartThermostat("T001")
-#     door = SmartDoorLock("D001")
-#     camera = SmartCamera("C001")
-#     speaker = SmartSpeaker("S001")
-#
-    # manager.add_device(light)
-#     manager.add_device(thermo)
-#     manager.add_device(door)
-#     manager.add_device(camera)
-#     manager.add_device(speaker)
-#
-#
-    # asyncio.run(light.turn_on())
-#     asyncio.run(thermo.turn_on())
-#     asyncio.run(door.turn_on())
-#     asyncio.run(camera.turn_on())
-#     asyncio.run(speaker.turn_on())
-#
-#     asyncio.run(light.turn_off())
-#     asyncio.run(thermo.turn_off())
-#     asyncio.run(door.turn_off())
-#     asyncio.run(camera.turn_off())
-#     asyncio.run(speaker.turn_off())
-#
-#
-#     light.brightness = 75print(f"Device {self._device_id} already ON.")
-#     thermo.temperature = 23.5
-#     light.brightness = 150
-#
-#     manager.get_all_device_statuses()
-#
-#     asyncio.run(light.turn_off())
+        await asyncio.sleep(1)  # Simulating time delay for saving
+        smart_home_json_encoder(state_dict, file_name)
+        print(f"Device states saved successfully to '{file_name}'.")
 
-    # asyncio.run(manager.save_config("abc.json"))
+    async def load_config(self, file_name):
+        try:
+            devices = smart_device_from_dict(file_name)
+            for device in devices:
+                if getattr(device, "_restore_on_state", False):
+                    await device.turn_on()
+                self.add_device(device)
+            print("Device settings loaded successfully!")
+        except InvalidParameterError as e:
+            print(e.message)

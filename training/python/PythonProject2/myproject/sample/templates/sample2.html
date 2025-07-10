@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for id,item in data.items %}
+        <div class="item">
+           <a href="/app/sample/{{ id }}"><h3>{{ item.title }}</h3></a>
+            <p>{{ item.context | truncatewords:3 }}</p>
+        </div>
+{% empty %}
+    <p>No items available.</p>
+{% endfor %}
+{% endblock content %}

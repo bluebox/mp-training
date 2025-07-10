@@ -1,0 +1,4 @@
+[2025-07-07 12:40:34.736219] turn_on called on device ID: S001
+[2025-07-07 12:40:48.469910] turn_on called on device ID: S001
+[2025-07-07 12:41:39.598249] turn_on called on device ID: S001
+[2025-07-07 12:47:42.670333] turn_on called on device ID: S001
