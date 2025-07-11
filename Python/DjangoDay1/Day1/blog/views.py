@@ -1,8 +1,13 @@
+import json
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+
 #function based views
 blog_posts = [
     {
@@ -55,12 +60,16 @@ def blog_detail(request,id):
        raise Http404()
    return render(request,'blog/single.html',{'fact':fact})
 
-
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
+        val=make_password(password)
+        print(val)
+        # data=json.loads(request.body)
+        # username=data.get('username')
+        # password=data.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
