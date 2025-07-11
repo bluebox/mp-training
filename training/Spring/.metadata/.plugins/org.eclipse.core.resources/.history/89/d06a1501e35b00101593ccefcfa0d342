@@ -1,0 +1,30 @@
+package com.spring.ims;
+
+import java.sql.Date;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.spring.ims.service.Implementation;
+
+@SpringBootApplication
+public class ImsApplication {
+
+	public static void main(String[] args) {
+		ApplicationContext context = SpringApplication.run(ImsApplication.class, args);
+		Implementation impl = context.getBean(Implementation.class);
+		
+		System.out.println("All Supliers : " + impl.listOfSuppliers().toString());
+		
+		System.out.println("Search Product by nothing : "+impl.listOfProducts("Arabindho - 1","ab"));
+		System.out.println("Search Product by name : "+impl.listOfProducts("Arabindho - 1","para"));
+		System.out.println("Search Product by id : "+impl.listOfProducts("Arabindho - 1","1"));
+		
+		System.out.println("Cost of Product Paracetamol - 1 : "+impl.costOfProduct("Paracetamol - 1"));
+		
+		Date today = new Date();
+		System.out.println(today);
+	}
+
+}

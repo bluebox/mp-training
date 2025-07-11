@@ -1,0 +1,47 @@
+package com.spring.ims.repository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+import com.spring.ims.domain.Orders;
+
+@Repository
+public class OrdersRepository {
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public OrdersRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+	
+	//Adding Order
+	public int addOrder(Orders order) {
+		String sql = "INSERT INTO orders(orderDate,orderCost,orderDiscount,orderStatus) VALUES (:orderDate,:orderCost,:orderDiscount,:orderStatus)";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("orderDate", order.getOrderDate());
+		params.addValue("orderCost", order.getOrderCost());
+		params.addValue("orderDiscount", order.getOrderDiscout());
+		params.addValue("orderStatus", order.getOrderStatus());
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		try {
+			namedParameterJdbcTemplate.update(sql, params,keyHolder,new String[] {"orderId"});
+			return keyHolder.getKey().intValue();
+		}
+		return 0;
+	}
+	
+	/*
+	create table orders(
+	orderId int primary key auto_increment,
+	orderDate date,
+	orderCost float,
+	orderDiscount int,
+	orderStatus varchar(10));
+	 */
+
+}

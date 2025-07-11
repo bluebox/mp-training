@@ -1,0 +1,34 @@
+package com.spring.ims.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+
+import com.spring.ims.service.Implementation;
+
+@Controller
+public class LowStockController {
+
+	private Implementation impl;
+
+	public LowStockController(Implementation impl) {
+		this.impl = impl;
+	}
+
+	@PostMapping("/lowStock")
+	public ResponseEntity<?> allOrders() {
+		try {
+			return ResponseEntity.ok(impl.allOrders());
+		} catch (Exception e) {
+			System.out.println("Error at sendProducts in PurchaseCreation : " + e.getMessage());
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("status", "error");
+			errorResponse.put("message", "Something Went Wrong!!!");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
+	}
+
+}

@@ -1,0 +1,51 @@
+package com.casestudy.spring.library.dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+import com.casestudy.spring.library.beans.Member;
+import com.casestudy.spring.library.dao.models.MembersDaoModel;
+
+public class MembersDaoUsingJdbcTemplate implements MembersDaoModel{
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	@Autowired
+	public MembersDaoUsingJdbcTemplate(NamedParameterJdcTemplate namedParameterUsingJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+
+	@Override
+	public void addMember(Member member) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean updateMember(Member member) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Member> getAllMembers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Member getMemberById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean findMember(int memberId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+
+}

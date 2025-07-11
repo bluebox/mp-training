@@ -1,0 +1,19 @@
+package com.spring.ims.repository;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class SupplierRepository {
+	
+	/*
+create table suppliers(
+supplierId int primary key auto_increment,
+supplierName varchar(100),
+supplierContact bigint,
+supplierAddress varchar(100));
+	 
+	 */
+	
+	
+
+}

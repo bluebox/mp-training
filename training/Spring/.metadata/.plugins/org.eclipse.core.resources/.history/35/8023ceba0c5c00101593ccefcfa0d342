@@ -1,0 +1,73 @@
+package com.spring.ims;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.spring.ims.domain.FullOrder;
+import com.spring.ims.domain.OrderProductDetails;
+import com.spring.ims.domain.Orders;
+import com.spring.ims.service.Implementation;
+
+@SpringBootApplication
+public class ImsApplication {
+
+	public static void main(String[] args) {
+		ApplicationContext context = SpringApplication.run(ImsApplication.class, args);
+		Implementation impl = context.getBean(Implementation.class);
+		
+		System.out.println("All Supliers : " + impl.listOfSuppliers().toString());
+		
+//		System.out.println("Search Product by nothing : "+impl.listOfProducts("Arabindho - 1","ab"));
+//		System.out.println("Search Product by name : "+impl.listOfProducts("Arabindho - 1","para"));
+//		System.out.println("Search Product by id : "+impl.listOfProducts("Arabindho - 1","1"));
+//		
+//		System.out.println("Cost of Product Paracetamol - 1 : "+impl.costOfProduct("Paracetamol - 1"));
+		
+		List<OrderProductDetails> ord = new ArrayList<>();
+		OrderProductDetails o1 = new OrderProductDetails();
+		OrderProductDetails o2 = new OrderProductDetails();
+		OrderProductDetails o3 = new OrderProductDetails();
+		o1.setSupplier("Arabindho - 1");
+		o2.setSupplier("Arabindho - 1");
+		o3.setSupplier("Arabindho - 1");
+		o1.setProduct("Paracetamol - 1");
+		o2.setProduct("Ibuprofen - 4");
+		o3.setProduct("Omeprazole - 15");
+//		o1.setProductCost(impl.costOfProduct("Paracetamol - 1"));
+//		o2.setProductCost(impl.costOfProduct("Ibuprofen - 4"));
+//		o3.setProductCost(impl.costOfProduct("Omeprazole - 15"));
+		o1.setProductQuantity(5);
+		o2.setProductQuantity(10);
+		o3.setProductQuantity(15);
+		ord.add(o3);
+		ord.add(o2);
+		ord.add(o1);
+		Orders order = new Orders();
+		order.setOrderDiscout(19);
+		FullOrder fullorder = new FullOrder();
+		fullorder.setOrderProductDetails(ord);
+		fullorder.setOrders(order);
+		System.out.println(impl.creationOfOrder(fullorder));
+		Orders ord1 = new Orders();
+		Orders ord2 = new Orders();
+		ord1.setOrderId(1);
+		ord2.setOrderId(2);
+		ord1.setOrderStatus("APPROVED");
+		ord2.setOrderStatus("REJECTED");
+		System.out.println(impl.approval(ord1));
+		System.out.println(impl.approval(ord2));
+		System.out.println("Pending Orders : "+impl.pendingOrders().toString());
+		System.out.println("All Orders : "+impl.allOrders().toString());
+		Orders ord3 = new Orders();
+		ord3.setOrderId(4);
+		System.out.println(impl.productsOfOrder(ord3).toString());
+		
+	}
+
+}

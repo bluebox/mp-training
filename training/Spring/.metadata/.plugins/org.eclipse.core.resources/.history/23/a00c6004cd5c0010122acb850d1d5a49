@@ -1,0 +1,86 @@
+package com.spring.ims.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.ims.domain.Orders;
+import com.spring.ims.service.Implementation;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+
+	private Implementation impl;
+
+	public AdminController(Implementation impl) {
+		this.impl = impl;
+	}
+
+	@PostMapping("/update-order-status")
+	public ResponseEntity<?> updatePurchaseStatus(@RequestBody Orders order) {
+		try {
+			if (impl.updateStatus(order)) {
+				Map<String, String> successResponse = new HashMap<>();
+				successResponse.put("status", "success");
+				successResponse.put("message", "Approved/Rejected Done");
+				return ResponseEntity.ok(successResponse);
+			} else {
+				Map<String, String> errorResponse = new HashMap<>();
+				errorResponse.put("status", "error");
+				errorResponse.put("message", "Somethig WentWrong");
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+			}
+		} catch (Exception e) {
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("status", "error");
+			errorResponse.put("message", "Something Went Wrong!!!");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
+	}
+
+	// PendingOrders
+	@PostMapping("/pending-orders")
+	public ResponseEntity<?> getPendingOrders() {
+		try {
+			return ResponseEntity.ok(impl.pendingOrders());
+		} catch (Exception e) {
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("status", "error");
+			errorResponse.put("message", "Something Went Wrong!!!");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
+	}
+
+	// AllOrders
+	@PostMapping("/get-orders")
+	public ResponseEntity<?> getOrders() {
+		try {
+			return ResponseEntity.ok(impl.allOrders());
+		} catch (Exception e) {
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("status", "error");
+			errorResponse.put("message", "Something Went Wrong!!!");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
+	}
+
+	// view Order
+	public ResponseEntity<?> viewOrder(@RequestBody Orders order) {
+		try {
+			return ResponseEntity.ok(impl.productsOfOrder(order));
+		} catch (Exception e) {
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("status", "error");
+			errorResponse.put("message", "Something Went Wrong!!!");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
+	}
+
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/GymPostman"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/library"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_21"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/demo"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_16"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_17"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_10"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/example2"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/spring_example1"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/assignment"/>
+		</list>
+		<section name="SmartImportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="355"/>
+			<item key="DIALOG_Y_ORIGIN" value="58"/>
+			<item key="DIALOG_WIDTH" value="905"/>
+			<item key="DIALOG_HEIGHT" value="674"/>
+			<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+		</section>
+	</section>
+	<section name="CleanDialogSettings">
+		<item key="TOGGLE_SELECTED" value="false"/>
+		<item key="DIALOG_WIDTH" value="569"/>
+		<item key="DIALOG_HEIGHT" value="389"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+	</section>
+</section>

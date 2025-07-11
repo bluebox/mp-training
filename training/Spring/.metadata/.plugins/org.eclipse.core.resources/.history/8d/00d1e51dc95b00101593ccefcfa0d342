@@ -1,0 +1,18 @@
+package com.spring.ims.repository;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class ProductRepository {
+	
+	/*	
+	create table products(
+	productId int primary key auto_increment,
+	supplierId int not null,
+	productName varchar(100),
+	productCost float);
+	 */
+	
+	
+
+}

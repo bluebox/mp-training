@@ -1,0 +1,87 @@
+package com.casestudy.spring.library.api.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.casestudy.spring.library.beans.Book;
+import com.casestudy.spring.library.impl.Implementation;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/api/books")
+public class BookControllerApi {
+	Implementation impl;
+
+	@Autowired
+	public BookControllerApi(Implementation impl) {
+		this.impl = impl;
+	}
+
+	@PostMapping("/addBook")
+	public ResponseEntity<?> AddBookToDb(@Valid @RequestBody Book book) {
+		boolean flag = impl.addBook(book);
+		Map<String, String> entity = new HashMap<>();
+		if (flag == true) {
+			entity.put("status", "Success");
+			entity.put("message", "Book Added Succesfully");
+			return ResponseEntity.ok(entity);
+		} else {
+			entity.put("status", "Error");
+			entity.put("message", "Something Went Wrong");
+			return ResponseEntity.internalServerError().body(entity);
+		}
+
+	}
+
+	@PostMapping("/updateBook")
+	public ResponseEntity<?> updateBook(@Valid @RequestBody Book book) {
+		Map<String, String> entity = new HashMap<>();
+		System.out.println(1);
+		if (impl.findBookById(book)) {
+			System.out.println(2);
+			entity.put("status", "Error");
+			entity.put("message", "Book Not Found");
+			return ResponseEntity.badRequest().body(entity);
+		}
+		System.out.println(3);
+		boolean flag = impl.updateBookService(book);
+		System.out.println(4);
+		if (flag == true) {
+			System.out.println(5);
+			entity.put("status", "Success");
+			entity.put("message", "Book Updated Succesfully");
+			return ResponseEntity.ok(entity);
+		} else {
+			entity.put("status", "Error");
+			entity.put("message", "Something Went Wrong");
+			return ResponseEntity.internalServerError().body(entity);
+		}
+	}
+
+	@GetMapping("/ViewAllBooks")
+	public ResponseEntity<?> showAllBooks() {
+		Map<String, String> entity = new HashMap<>();
+		List<Book> books = impl.viewAllBooksService();
+		if (books.size() > 0) {
+			entity.put("status", "Success");
+			entity.put("message", "Books : " + books);
+			return ResponseEntity.ok(entity);
+		} else {
+			entity.put("status", "Not FOund");
+			entity.put("message", "No Books Are Available");
+			return ResponseEntity.ok(entity);
+		}
+
+	}
+
+}

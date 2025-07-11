@@ -15,20 +15,23 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 @EnableWebSecurity
 public class projectConfig {
 
-    // Spring Security filter chain
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .cors().and()
-            .csrf(csrf -> csrf.disable()) // disable CSRF for React POSTs
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login").permitAll()
+                .requestMatchers("/admin/*").hasRole("ADMIN")
+                .requestMatchers("/user-stock*").hasRole("USER")
+                .requestMatchers("/orders/*").hasRole("USER")
+                .requestMatchers("/creation/*").hasRole("USER")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
-                .loginProcessingUrl("/login") // Spring Security default login processor
+                .loginProcessingUrl("/login") 
                 .successHandler((request, response, authentication) -> {
-                    response.setStatus(200); // Axios will treat this as success
+                    response.setStatus(200); 
                 })
                 .failureHandler((request, response, exception) -> {
                     response.setStatus(401);
@@ -36,12 +39,11 @@ public class projectConfig {
                 })
                 .permitAll()
             )
-            .httpBasic(); // allows optional use of basic auth
+            .httpBasic();
 
         return http.build();
     }
 
-    // In-memory users
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails user1 = User.withDefaultPasswordEncoder()
@@ -59,7 +61,6 @@ public class projectConfig {
         return new InMemoryUserDetailsManager(user1, user2);
     }
 
-    // CORS configuration for frontend on port 3000
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

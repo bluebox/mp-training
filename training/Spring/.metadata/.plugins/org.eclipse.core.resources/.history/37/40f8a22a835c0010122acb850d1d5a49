@@ -1,0 +1,28 @@
+package com.spring.ims.controller;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.ims.service.Implementation;
+
+@Controller
+@RequestMapping("/Creation")
+public class PurchaseCreation {
+	
+	private Implementation impl ;
+	
+	public PurchaseCreation(Implementation impl) {
+		this.impl = impl;
+	}
+	
+	
+	@PostMapping("/suppliers")
+	public ResponseEntity<?> sendSuppliers(){
+		return ResponseEntity.ok(impl.listOfSuppliers());
+	}
+
+}

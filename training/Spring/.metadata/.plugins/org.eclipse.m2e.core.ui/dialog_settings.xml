@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="internal"/>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+			<item value="com.spring.asp"/>
+		</list>
+		<list key="groupId">
+			<item value="com.spring"/>
+		</list>
+		<list key="artifactId">
+			<item value="asp"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/ims"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/app"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_34"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_33"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/security"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_32"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_31"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_29"/>
+			<item value="/home/purnima/Desktop/mp-training/training/Spring/library"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_27"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_28"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_26"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_21"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_20"/>
+			<item value="/home/purnima/Desktop/spring-3.4.2/example_19"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+</section>

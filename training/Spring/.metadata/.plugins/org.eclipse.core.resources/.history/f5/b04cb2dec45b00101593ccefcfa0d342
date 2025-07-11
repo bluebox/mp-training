@@ -1,0 +1,16 @@
+package com.spring.ims.repository;
+
+public class EmployeeProducts {
+	
+	/*
+	 create table employeeProducts(
+	stockId int ,
+	procuctName varchar(100),
+	productId int,
+	supplier varchar(100),
+	quantity int,
+	minQuan int,
+	maxQuan int);
+	 */
+
+}

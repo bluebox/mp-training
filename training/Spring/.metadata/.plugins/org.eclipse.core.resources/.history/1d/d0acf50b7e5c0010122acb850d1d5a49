@@ -1,0 +1,105 @@
+package com.spring.ims.repository;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.spring.ims.domain.EmployeeProducts;
+import com.spring.ims.row.mapper.EmployeeProductsRowMapper;
+
+@Repository
+public class EmployeeProductsRepository {
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public EmployeeProductsRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+	
+	//retriving by id
+	public int retrivingByID(int productId) {
+		String sql = "SELECT quantity FROM employeeProducts WHERE productId = :productId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("productId",productId );
+			return namedParameterJdbcTemplate.queryForObject(sql, params,Integer.class);
+		}catch(Exception e) {
+			System.out.println("Error in retrivingByID in EmployeeProductsRepository : "+e.getMessage());
+			return -1;
+		}
+	}
+	
+	//Updating Quantity
+	public boolean updateQuantity(int productId,int quantity) {
+		String sql = "UPDATE employeeProducts SET quantity=:quantity WHERE productId = :productId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("productId",productId );
+			params.addValue("quantity",quantity );
+			return namedParameterJdbcTemplate.update(sql, params) >0;
+		}catch(Exception e) {
+			System.out.println("Error in retrivingByID in EmployeeProductsRepository : "+e.getMessage());
+			return false;
+		}
+	}
+	
+	//Adding New Product
+	public boolean insertProduct(EmployeeProducts product) {
+		String sql = "INSERT INTO employeeProducts(procuctName,productId,supplier,quantity,minQuan,maxQuan) VALUES (:procuctName,:procuctId,:supplier,:quantity,10,100)";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("procuctName", product.getProductName());
+			params.addValue("procuctId", product.getProductId());
+			params.addValue("supplier", product.getSupplier());
+			params.addValue("quantity", product.getQuantity());
+			return namedParameterJdbcTemplate.update(sql, params) >0;
+		}catch(Exception e) {
+			System.out.println("ERROR at insertProduct in EmployeeProductsRepository : "+e.getMessage());
+			return false;
+		}
+	}
+	
+	//Low Stock
+	public List<EmployeeProducts> lowStock(){
+		String sql = "SELECT stockId,procuctName,procuctId,supplier,quantity,minQuan,maxQuan FROM employeeProducts WHERE quantity < minQuan";
+		try {
+			return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(),new EmployeeProductsRowMapper());
+		}catch(Exception e) {
+			System.out.println("ERROR in lowStock in EmployeeProductsRepository : "+e.getMessage());
+			return Collections.EMPTY_LIST;
+		}
+	}
+
+	public boolean isPresent(int productId) {
+		String sql = "SELECT 1 FROM employeeProducts WHERE productId = :productId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("productId",productId );
+			return namedParameterJdbcTemplate.queryForObject(sql, params,Integer.class) ==1;
+		}catch(Exception e) {
+			System.out.println("Error in isPresent in EmployeeProductsRepository : "+e.getMessage());
+			return false;
+		}
+	}
+	
+	
+	
+	/*
+	 create table employeeProducts(
+	stockId int primary key auto_increment,
+	procuctName varchar(100),
+	procuctId int unique,
+	supplier varchar(100),
+	quantity int,
+	minQuan int,
+	maxQuan int);
+	 */
+	
+	
+
+}

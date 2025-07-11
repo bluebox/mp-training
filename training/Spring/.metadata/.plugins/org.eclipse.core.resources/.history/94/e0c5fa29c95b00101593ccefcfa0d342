@@ -1,0 +1,42 @@
+package com.spring.ims.repository;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class SupplierRepository {
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	@Autowired
+	public SupplierRepository(NamedParameterJdbcTemplate namedPatameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+
+	public List<String> listOfSuppliers() {
+		String sql = "select CONCAT_WS(' - ',supplierName,supplierId) as supplier from suppliers";
+		try {
+			return namedParameterJdbcTemplate.queryForList(sql, new MapSqlParameterSource(),String.class);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return Collections.EMPTY_LIST;
+		}
+	}
+	
+	/*
+	create table suppliers(
+	supplierId int primary key auto_increment,
+	supplierName varchar(100),
+	supplierContact bigint,
+	supplierAddress varchar(100));
+	 
+	 */
+	
+	
+
+}

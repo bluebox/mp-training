@@ -1,0 +1,4 @@
+spring.application.name=IMS
+spring.datasource.usrename = root
+spring.datasource.password=Medplus@321
+spring.datasource.url=jdbc:mysql://localhost:3306/ims

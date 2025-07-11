@@ -1,0 +1,5 @@
+package com.befit.app.exceptionHandler;
+
+public class GlobalException {
+
+}

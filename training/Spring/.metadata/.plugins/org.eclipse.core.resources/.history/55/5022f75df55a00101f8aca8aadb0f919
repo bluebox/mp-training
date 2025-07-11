@@ -1,0 +1,144 @@
+package com.befit.app.repositories;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.befit.app.beans.Member;
+import com.befit.app.rowmappers.MemberRowMapper;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Repository
+@Slf4j
+public class MemberRepo {
+
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public MemberRepo(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+
+	public boolean addMember(Member member) {
+		String sql = "INSERT INTO member (name, mobile, age, weight, height, address, memberShip, joinDate, expiryDate, status) VALUES (:name, :mobile, :age, :weight, :height, :address, :memberShip, :joinDate, :expiryDate, :status)";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("name", member.getName());
+		params.addValue("mobile", member.getMobile());
+		params.addValue("age", member.getAge());
+		params.addValue("weight", member.getWeight());
+		params.addValue("height", member.getHeight());
+		params.addValue("address", member.getAddress());
+		params.addValue("memberShip", member.getMemberShip()); 
+		params.addValue("joinDate", new java.sql.Date(member.getJoinDate().getTime()));
+		params.addValue("expiryDate", new java.sql.Date(member.getExpiryDate().getTime()));
+		params.addValue("status", member.getStatus());
+
+		try {
+			namedParameterJdbcTemplate.update(sql, params);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean updateMember(Member member) {
+		String sql = "UPDATE member SET name = :name, mobile = :mobile, age = :age, weight = :weight, height = :height, address = :address, memberShip = :memberShip, joinDate = :joinDate, expiryDate = :expiryDate, status = :status WHERE id = :id";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", member.getId());
+		params.addValue("name", member.getName());
+		params.addValue("mobile", member.getMobile());
+		params.addValue("age", member.getAge());
+		params.addValue("weight", member.getWeight());
+		params.addValue("height", member.getHeight());
+		params.addValue("address", member.getAddress());
+		params.addValue("memberShip", member.getMemberShip()); // Fixed parameter name
+		params.addValue("joinDate", new java.sql.Date(member.getJoinDate().getTime()));
+		params.addValue("expiryDate", new java.sql.Date(member.getExpiryDate().getTime()));
+		params.addValue("status", member.getStatus());
+
+		try {
+			int rowsAffected = namedParameterJdbcTemplate.update(sql, params);
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+//	public Date expiry(Member member) {
+//		MapSqlParameterSource params = new MapSqlParameterSource();
+//		params.addValue("id", member.getId());
+//		try {
+//			Date expiryDate =namedParamterJdbcTemplate.queryForObject("select expiryDate from member where id = :id)",params,Date.class);
+//			return expiryDate;
+//		}catch(Exception e) {
+//			System.out.println(e.getStackTrace());
+//			return null;
+//		}
+//	}
+
+	public boolean renew(Member member, Date expiryDate) {
+
+		String sql = "update  member set expiryDate = :expiryDate,status='ACTIVE' where id = :id";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", member.getId());
+		params.addValue("expiryDate", expiryDate);
+
+		try {
+			namedParameterJdbcTemplate.update(sql, params);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getStackTrace());
+			return false;
+		}
+	}
+
+	public Member viewMember(Member member) {
+		String sql = "select id,name,mobile,age,weight,height,address,memberShip,joinDate,expiryDate,status from member where id = :id)";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("id", member.getId());
+		try {
+			Member returnMember = namedParameterJdbcTemplate.queryForObject(sql, params, new MemberRowMapper());
+			return returnMember;
+		} catch (Exception e) {
+			System.out.println(e.getStackTrace());
+			return null;
+		}
+	}
+
+	public List<Member> viewAllMember() {
+		String sql = "SELECT id, name, mobile, age, weight, height, address, memberShip, joinDate, expiryDate, status FROM member";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		try {
+			List<Member> members = namedParameterJdbcTemplate.query(sql, params, new MemberRowMapper());
+			return members != null ? members : new ArrayList<>();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<>();
+		}
+	}
+
+	public List<Member> findMembersByJoinDateBetween(Date startDate, Date endDate) {
+		try {
+			String sql = "SELECT id,name,mobile,age,weight,height,address,memberShip,joinDate,expiryDate,status FROM member WHERE joinDate BETWEEN :start AND :end";
+
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("start", startDate);
+			params.addValue("end", endDate);
+
+			return namedParameterJdbcTemplate.query(sql, params, new MemberRowMapper());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+}

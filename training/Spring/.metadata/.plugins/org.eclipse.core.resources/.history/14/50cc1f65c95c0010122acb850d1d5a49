@@ -1,0 +1,135 @@
+package com.spring.ims.repository;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+import com.spring.ims.domain.Orders;
+import com.spring.ims.row.mapper.OrdersRowMapper;
+
+@Repository
+public class OrdersRepository {
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public OrdersRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+	
+	//Adding Order
+	public int addOrder(Orders order) {
+		String sql = "INSERT INTO orders(orderDate,orderCost,orderDiscount,orderStatus) VALUES (:orderDate,:orderCost,:orderDiscount,:orderStatus)";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("orderDate", order.getOrderDate());
+		params.addValue("orderCost", order.getOrderCost());
+		params.addValue("orderDiscount", order.getOrderDiscount());
+		params.addValue("orderStatus", order.getOrderStatus());
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		try {
+			namedParameterJdbcTemplate.update(sql, params,keyHolder,new String[] {"orderId"});
+			return keyHolder.getKey().intValue();
+		}catch(Exception e){
+			System.out.println("Error in addOrders of OrdersRepository : "+e.getMessage());
+			return 0;
+		}
+		
+	}
+
+	//Approval or Reject
+	public boolean approval(Orders order) {
+		String sql = "UPDATE orders SET orderStatus = :orderStatus where orderId=:orderId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderStatus", order.getOrderStatus());
+			params.addValue("orderId", order.getOrderId());
+			return namedParameterJdbcTemplate.update(sql, params) > 0;
+		}catch(Exception e) {
+			System.out.println("Error in approval in OrdersRepository : "+e.getMessage());
+			return false;
+		}
+	}
+	
+	//Pending Orders
+	public List<Orders> pendingOrders() {
+		String sql = "SELECT orderId,orderDate,orderCost,orderDiscount,orderStatus FROM orders WHERE orderStatus='PENDING'";
+		try {
+			return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(),new OrdersRowMapper());
+		}catch(Exception e) {
+			System.out.println("Error in pendingOrders in OrdersRepository : "+e.getMessage());
+			return Collections.EMPTY_LIST;
+		}
+	}
+	
+	//All Orders
+	public List<Orders> allOrders() {
+		String sql = "SELECT orderId,orderDate,orderCost,orderDiscount,orderStatus FROM orders";
+		try {
+			return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(),new OrdersRowMapper());
+		}catch(Exception e) {
+			System.out.println("Error in allOrders in OrdersRepository : "+e.getMessage());
+			return Collections.EMPTY_LIST;
+		}
+	}
+	
+	//Order WithDraw
+	public boolean withDrawOfOrder(Orders order) {
+		String sql = "UPDATE orders SET orderStatus = 'WITHDRAWN' where orderId=:orderId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderId", order.getOrderId());
+			System.out.println(namedParameterJdbcTemplate.update(sql, params));
+			return namedParameterJdbcTemplate.update(sql, params) > 0;
+		}catch(Exception e) {
+			System.out.println("Error in approval in OrdersRepository : "+e.getMessage());
+			return false;
+		}
+	}
+	
+	//Updating Order
+	public boolean updateOrder(Orders order) {
+			String sql = "INSERT INTO orders orderDate=:orderDate,orderCost=:orderCost,orderDiscount=:orderDiscount,orderStatus=:orderStatus WHERE orderId=:orderId";
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderId", order.getOrderId());
+			params.addValue("orderDate", order.getOrderDate());
+			params.addValue("orderCost", order.getOrderCost());
+			params.addValue("orderDiscount", order.getOrderDiscount());
+			params.addValue("orderStatus", order.getOrderStatus());
+			try {
+				return namedParameterJdbcTemplate.update(sql, params) >0;
+			}catch(Exception e){
+				System.out.println("Error in updateOrder of OrdersRepository : "+e.getMessage());
+				return false;
+			}
+			
+		}
+
+	public boolean checkStatus(Orders order) {
+		String sql = "SELECT 1 FROM orders WHERE orderId = :orderId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("orderId", order.getOrderId());
+			return namedParameterJdbcTemplate.queryForObject(sql,params,Integer.class)>1;
+		}catch(Exception e) {
+			System.out.println("Error in allOrders in OrdersRepository : "+e.getMessage());
+			return false;
+		}
+	}
+
+	
+	/*
+	create table orders(
+	orderId int primary key auto_increment,
+	orderDate date,
+	orderCost float,
+	orderDiscount int,
+	orderStatus varchar(10));
+	 */
+
+}

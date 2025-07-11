@@ -1,0 +1,21 @@
+package com.spring.ims.repository;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class EmployeeProductsRepository {
+	
+	/*
+	 create table employeeProducts(
+	stockId int ,
+	procuctName varchar(100),
+	productId int,
+	supplier varchar(100),
+	quantity int,
+	minQuan int,
+	maxQuan int);
+	 */
+	
+	
+
+}

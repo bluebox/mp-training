@@ -1,0 +1,49 @@
+package com.spring.ims.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.ims.domain.Orders;
+import com.spring.ims.service.Implementation;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+	
+private Implementation impl ;
+	
+	public AdminController(Implementation impl) {
+		this.impl = impl;
+	}
+	
+	@PostMapping("/approvalstatus")
+	public ResponseEntity<?> purcahseCreation(@RequestBody Orders order){
+		try {
+			if(impl.approval(order)) {
+				Map<String, String> successResponse = new HashMap<>();
+				successResponse.put("status", "success");
+				successResponse.put("message", "Approved/Rejected Done");
+				return ResponseEntity.ok(successResponse);
+			}else {
+				Map<String, String> errorResponse = new HashMap<>();
+				errorResponse.put("status", "error");
+				errorResponse.put("message", "Somethig WentWrong");
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+			}
+		}catch(Exception e) {
+			System.out.println("Error at sendProducts in PurchaseCreation : "+e.getMessage());
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("status", "error");
+			errorResponse.put("message", "Something Went Wrong!!!");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
+	}
+
+}

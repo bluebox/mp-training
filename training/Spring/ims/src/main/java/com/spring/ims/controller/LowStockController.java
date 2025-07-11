@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ims.domain.EmployeeProducts;
 import com.spring.ims.service.LowStockService;
 
 @Controller
+@RequestMapping("user-stock")
 public class LowStockController {
 
 	private LowStockService lowStockService;
@@ -33,16 +35,16 @@ public class LowStockController {
 		}
 	}
 	
-//	@PostMapping("/fetch-product-by-name")
-//	public ResponseEntity<?> fetchProduct(@RequestBody EmployeeProducts employeeProsucts) {
-//		try {
-//			return ResponseEntity.ok(lowStockService.fetchProduct(employeeProsucts));
-//		} catch (Exception e) {
-//			Map<String, String> errorResponse = new HashMap<>();
-//			errorResponse.put("status", "error");
-//			errorResponse.put("message", "Something Went Wrong!!!");
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-//		}
-//	}
+	@PostMapping("/fetch-product-by-name")
+	public ResponseEntity<?> fetchProduct(@RequestBody EmployeeProducts employeeProducts) {
+		try {
+			return ResponseEntity.ok(lowStockService.fetchProduct(employeeProducts));
+		} catch (Exception e) {
+			Map<String, String> errorResponse = new HashMap<>();
+			errorResponse.put("status", "error");
+			errorResponse.put("message", "Something Went Wrong!!!");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
+	}
 
 }

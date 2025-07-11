@@ -1,0 +1,41 @@
+package com.befit.app.controllers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.befit.app.beans.Member;
+import com.befit.app.impl.Implementation;
+
+@Controller
+public class MemberContoller {
+	
+	private Implementation impl;
+	
+	@Autowired
+	public MemberContoller(Implementation impl) {
+		this.impl = impl;
+	}
+	
+	@PostMapping("/addMember")
+	public ResponseEntity<?> addingMember(@RequestBody Member member){
+		boolean flag = impl.addMember(member);
+		if(flag ) {
+			Map<String,String> success = new HashMap<>();
+			success.put("Status", "Success");
+			success.put("Message", "Member Added Successfully !!!");
+			return ResponseEntity.ok(success);
+		}else {
+			Map<String,String> failure = new HashMap<>();
+			failure.put("Status", "Failure");
+			failure.put("Message", "Member Not Added ");
+			return ResponseEntity.internalServerError().body(failure);
+		}
+	}
+
+}

@@ -1,0 +1,15 @@
+package com.spring.ims.repository;
+
+public class OrderDetailsRepository {
+	
+	/*
+	 create table orderDetails(
+	orderDetailsId int primary key auto_increment,
+	orderId int,
+	supplier varchar(100),
+	product varchar(100),
+	productQuantity int,
+	productCost float);
+	 */
+
+}

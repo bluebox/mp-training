@@ -1,0 +1,92 @@
+package com.casestudy.spring.library.api.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.casestudy.spring.library.beans.Book;
+import com.casestudy.spring.library.impl.Implementation;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestParam("/api/Books")
+public class BookController {
+	Implementation impl;
+
+	@Autowired
+	public BookController(Implementation impl) {
+		this.impl = impl;
+	}
+
+	@PostMapping("/AddBook")
+	public ResponseEntity<?>  AddBookToDb(@Valid @ModelAttribute Book book, Errors errors, Model model) {
+		boolean flag = impl.addBook(book);
+		Map<String,String> entity = new HashMap<>();
+		if (flag == true) {
+			entity.put("status","Success");
+			entity.put("message", "Book Added Succesfully");
+			return ResponseEntity.ok(entity);
+		} else {
+			entity.put("status","Error");
+			entity.put("message", "Something Went Wrong");
+			return ResponseEntity.internalServerError(entity);
+		}
+
+	}
+
+	@GetMapping("/UpdateBook")
+	public String showEmptyUpdateForm(Model model) {
+		return "Books/SearchBook";
+	}
+
+	@GetMapping("/UpdateBookPopulate")
+	public String showUpdateForm(@RequestParam("id") int id, Model model) {
+		Book book = impl.getBookById(id);
+		if (book != null) {
+			model.addAttribute("book", book);
+			return "Books/UpdateBook";
+		} else {
+			model.addAttribute("message", "Book not found!");
+			model.addAttribute("targetUrl", "/UpdateBook");
+			model.addAttribute("buttonLabel", "Try Again");
+			return "Response";
+		}
+	}
+
+	@PostMapping("/UpdateSaveBook")
+	public String updateBook(@Valid @ModelAttribute("book") Book book, Errors errors, Model model) {
+		if (errors.hasErrors()) {
+			model.addAttribute("book", book);
+			return "Books/UpdateBook";
+		}
+		boolean flag = impl.updateBookService(book);
+		if (flag == true) {
+			model.addAttribute("message", "Book Updated successfully!");
+			model.addAttribute("targetUrl", "/Books");
+			model.addAttribute("buttonLabel", "Go to Books");
+			return "Response";
+		} else {
+			model.addAttribute("message", "Error Occured!");
+			model.addAttribute("targetUrl", "/MainMenu");
+			model.addAttribute("buttonLabel", "Go to Main Menu");
+			return "Response";
+		}
+	}
+
+	@GetMapping("/ViewAllBooks")
+	public String showAllBooks(Model model) {
+		model.addAttribute("books", impl.viewAllBooksService());
+		return "Books/ShowAllBooks";
+	}
+
+}

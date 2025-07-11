@@ -1,0 +1,75 @@
+package com.spring.ims.security.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+
+@Configuration
+@EnableWebSecurity
+public class projectConfig {
+
+    // Spring Security filter chain
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .cors().and()
+            .csrf(csrf -> csrf.disable()) // disable CSRF for React POSTs
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/login").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginProcessingUrl("/login") // Spring Security default login processor
+                .successHandler((request, response, authentication) -> {
+                    response.setStatus(200); // Axios will treat this as success
+                })
+                .failureHandler((request, response, exception) -> {
+                    response.setStatus(401);
+                    response.getWriter().write("Login failed");
+                })
+                .permitAll()
+            )
+            .httpBasic(); // allows optional use of basic auth
+
+        return http.build();
+    }
+
+    // In-memory users
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        UserDetails user1 = User.withDefaultPasswordEncoder()
+            .username("saketh")
+            .password("saketh")
+            .roles("USER")
+            .build();
+
+        UserDetails user2 = User.withDefaultPasswordEncoder()
+            .username("sai")
+            .password("sai")
+            .roles("ADMIN")
+            .build();
+
+        return new InMemoryUserDetailsManager(user1, user2);
+    }
+
+    // CORS configuration for frontend on port 3000
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                    .allowedOrigins("http://localhost:3000")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowCredentials(true);
+            }
+        };
+    }
+}

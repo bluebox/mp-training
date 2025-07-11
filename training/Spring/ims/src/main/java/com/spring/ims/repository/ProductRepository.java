@@ -63,17 +63,17 @@ public class ProductRepository implements ProductRepositoryInterface{
 		}
 	}
 
-	@Override
-	public Product fetchProduct(String productName,int productId) {
-		String sql = "SELECT supplierId from products where productName = :productName AND productId=:productId";
+
+
+	public float fetchProductCost(int productId) {
+		String sql = "SELECT productCost from products where productId=:productId";
 		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("productName", productName);
 		params.addValue("productId", productId);
 		try {
-			return namedParameterJdbcTemplate.queryForObject(sql, params,new BeanPropertyRowMapper<Product>());
+			return namedParameterJdbcTemplate.queryForObject(sql, params,float.class);
 		}catch(Exception e) {
 			System.out.println("Error at supplierOfProduct in ProductRepository : "+e.getMessage());
-			return null;
+			return 0.0f;
 		}
 	}
 

@@ -1,0 +1,16 @@
+package com.spring.ims.domain;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class Order {
+	
+	private int orderId;
+	private Date orderDate;
+	private float cost;
+	private int discout;
+	
+
+}

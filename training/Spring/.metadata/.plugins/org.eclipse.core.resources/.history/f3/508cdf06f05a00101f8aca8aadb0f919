@@ -1,0 +1,96 @@
+package com.befit.app.controllers;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.befit.app.beans.Member;
+import com.befit.app.impl.Implementation;
+
+import jakarta.validation.Valid;
+
+@Controller
+@Validated
+public class MemberContoller {
+
+    private final Implementation impl;
+
+    @Autowired
+    public MemberContoller(Implementation impl) {
+        this.impl = impl;
+    }
+
+    @PostMapping("/addMember")
+    public ResponseEntity<Map<String, String>> addMember(@Valid @RequestBody Member member) {
+        boolean success = impl.addMember(member);
+        Map<String, String> response = new HashMap<>();
+        if (success) {
+            response.put("status", "success");
+            response.put("message", "Member added successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } else {
+            response.put("status", "error");
+            response.put("message", "Failed to add member");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
+    @PutMapping("/updateMember")
+    public ResponseEntity<Map<String, String>> updateMember(@Valid @RequestBody Member member) {
+        boolean success = impl.updateMember(member);
+        Map<String, String> response = new HashMap<>();
+        if (success) {
+            response.put("status", "success");
+            response.put("message", "Member updated successfully");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("status", "error");
+            response.put("message", "Failed to update member");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
+    @PostMapping("/renew")
+    public ResponseEntity<Map<String, String>> renew(@Valid @RequestBody Map<String, Object> request) {
+        Member member = new ObjectMapper().convertValue(request.get("member"), Member.class);
+        String days = (String) request.get("days");
+        String result = impl.renew(member, days);
+        Map<String, String> response = new HashMap<>();
+        if ("Success".equals(result)) {
+            response.put("status", "success");
+            response.put("message", "Membership renewed successfully");
+            return ResponseEntity.ok(response);
+        } else if ("Member Not Found".equals(result)) {
+            response.put("status", "error");
+            response.put("message", "Member not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        } else {
+            response.put("status", "error");
+            response.put("message", "Failed to renew membership");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    @GetMapping("/viewAllMembers")
+    public ResponseEntity<?> viewAllMembers() {
+        List<Member> members = impl.viewAllMembers();
+        if (members != null && !members.isEmpty()) {
+            return ResponseEntity.ok(members);
+        } else {
+            Map<String, String> response = new HashMap<>();
+            response.put("status", "error");
+            response.put("message", "No members found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
+}

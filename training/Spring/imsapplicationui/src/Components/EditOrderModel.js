@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function EditOrderModel() {
   const { orderId } = useParams();
+  const { data } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const showStock = new URLSearchParams(location.search).get('showStock') !== 'false';
@@ -19,7 +20,8 @@ function EditOrderModel() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.post('http://localhost:8080/orders/view-order', { orderId: parseInt(orderId) })
+    if(orderId!=0){
+      axios.post('http://localhost:8080/orders/view-order', { orderId: parseInt(orderId) })
       .then(res => {
         if (res.data.orders && Array.isArray(res.data.orderProductDetails)) {
           setFormData(res.data);
@@ -27,6 +29,11 @@ function EditOrderModel() {
         }
       })
       .catch(() => setError('Failed to load order'));
+    }else{
+      setFormData(data);
+      setOrderDiscount(0);
+    }
+    
 
     axios.post('http://localhost:8080/creation/suppliers', {})
       .then(res => setSuppliers(Array.isArray(res.data) ? res.data : []));

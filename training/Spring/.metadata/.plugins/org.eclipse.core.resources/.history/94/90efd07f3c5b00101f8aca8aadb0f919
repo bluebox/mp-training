@@ -1,0 +1,48 @@
+package com.befit.app.controllers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.befit.app.beans.MemberShip;
+import com.befit.app.impl.Implementation;
+
+import jakarta.validation.Valid;
+
+@Controller
+@Validated
+@CrossOrigin("http://localhost:3000")
+public class MemberShipController {
+
+	private Implementation impl;
+
+	@Autowired
+	public MemberShipController(Implementation impl) {
+		this.impl = impl;
+	}
+
+	@PostMapping("/addMemberShip")
+	public ResponseEntity<?> addingMember(@Valid @RequestBody MemberShip membership) {
+		System.out.println(membership.toString());
+		boolean flag = impl.addMemberShip(membership);
+		System.out.println(flag);
+		if (flag) {
+			Map<String, String> success = new HashMap<>();
+			success.put("Status", "Success");
+			success.put("Message", "MemberShip Added Successfully !!!");
+			return ResponseEntity.ok(success);
+		} else {
+			Map<String, String> failure = new HashMap<>();
+			failure.put("Status", "Failure");
+			failure.put("Message", "MemberShip Not Added ");
+			return ResponseEntity.internalServerError().body(failure);
+		}
+	}
+}

@@ -1,14 +1,16 @@
 package com.spring.ims.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ims.domain.EmployeeProducts;
-import com.spring.ims.domain.Product;
+import com.spring.ims.domain.FullOrder;
+import com.spring.ims.domain.OrderProductDetails;
+import com.spring.ims.interfaces.repository.EmployeeProductsRepositoryInterface;
 import com.spring.ims.interfaces.service.LowStockServiceInterface;
-import com.spring.ims.repository.EmployeeProductsRepository;
 import com.spring.ims.repository.OrderProductDetailsRepository;
 import com.spring.ims.repository.OrdersRepository;
 import com.spring.ims.repository.ProductRepository;
@@ -17,14 +19,14 @@ import com.spring.ims.repository.SupplierRepository;
 @Service
 public class LowStockService implements LowStockServiceInterface {
 	
-	private EmployeeProductsRepository employeeProductsRepository;
+	private EmployeeProductsRepositoryInterface employeeProductsRepository;
 	private OrderProductDetailsRepository orderProductDetailsRepository;
 	private OrdersRepository ordersRepository;
 	private ProductRepository productRepository;
 	private SupplierRepository supplierRepository;
 
 	@Autowired
-	public LowStockService(EmployeeProductsRepository employeeProductsRepository,
+	public LowStockService(EmployeeProductsRepositoryInterface employeeProductsRepository,
 			OrderProductDetailsRepository orderProductDetailsRepository, OrdersRepository ordersRepository,
 			ProductRepository productRepository, SupplierRepository supplierRepository) {
 		this.employeeProductsRepository = employeeProductsRepository;
@@ -39,8 +41,23 @@ public class LowStockService implements LowStockServiceInterface {
 		return employeeProductsRepository.lowStock();
 	}
 
-	public Product fetchProduct(EmployeeProducts employeeProsucts) {
-		return productRepository.fetchProduct(employeeProsucts);
+	public  FullOrder fetchProduct(EmployeeProducts employeeProducts) {
+		FullOrder fullOrder = new FullOrder();
+		System.out.println("input product : "+employeeProducts.toString());
+		OrderProductDetails orderProductDetails = new OrderProductDetails();
+		orderProductDetails.setSupplier(employeeProducts.getSupplier());
+		orderProductDetails.setProduct(employeeProducts.getProductName()+" - "+employeeProducts.getProductId());
+		orderProductDetails.setProductQuantity(employeeProducts.getMaxQuantity());
+		orderProductDetails.setProductCost(productRepository.fetchProductCost(employeeProducts.getProductId()));
+		List<OrderProductDetails> orderProductDetailsList = new ArrayList<>();
+		System.out.println("details "+orderProductDetails.toString());
+		orderProductDetailsList.add(orderProductDetails);
+		System.out.println("Order Details List"+orderProductDetailsList.toString());
+		fullOrder.setOrderProductDetails(orderProductDetailsList);
+		System.out.println(fullOrder.toString());
+		
+		return fullOrder;
 	}
+
 
 }

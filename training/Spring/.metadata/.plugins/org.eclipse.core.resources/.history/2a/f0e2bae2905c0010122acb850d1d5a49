@@ -1,0 +1,55 @@
+package com.spring.ims.repository;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class SupplierRepository {
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public SupplierRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+	
+	//List Of Suppliers
+	public List<String> listOfSuppliers() {
+		String sql = "select CONCAT_WS(' - ',supplierName,supplierId) as supplier from suppliers";
+		try {
+			return namedParameterJdbcTemplate.queryForList(sql, new MapSqlParameterSource(),String.class);
+		}catch(Exception e) {
+			System.out.println("Error in list Of suppliers in SupplierRepository : "+e.getMessage());
+			return Collections.EMPTY_LIST;
+		}
+	}
+	
+	public List<String> supplierName(int supplierId) {
+		String sql = "select CONCAT_WS(' - ',supplierName,supplierId) as supplier from suppliers WHERE supplierId=:supplierId";
+		try {
+			MapSqlParameterSource params = new MapSqlParameterSource();
+			params.addValue("supplierId", supplierId);
+			return namedParameterJdbcTemplate.queryForList(sql,params,String.class);
+		}catch(Exception e) {
+			System.out.println("Error in list Of suppliers in SupplierRepository : "+e.getMessage());
+			return null;
+		}
+	}
+	
+	/*
+	create table suppliers(
+	supplierId int primary key auto_increment,
+	supplierName varchar(100),
+	supplierContact bigint,
+	supplierAddress varchar(100));
+	 
+	 */
+	
+	
+
+}

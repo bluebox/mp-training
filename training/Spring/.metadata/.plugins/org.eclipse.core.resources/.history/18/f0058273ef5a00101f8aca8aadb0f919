@@ -1,0 +1,84 @@
+package com.befit.app.controllers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.befit.app.beans.Member;
+import com.befit.app.impl.Implementation;
+
+import jakarta.validation.Valid;
+
+@Controller
+public class MemberContoller {
+	
+	private Implementation impl;
+	
+	@Autowired
+	public MemberContoller(Implementation impl) {
+		this.impl = impl;
+	}
+	
+	@PostMapping("/addMember")
+	public ResponseEntity<?> addingMember(@Valid @RequestBody Member member){
+		boolean flag = impl.addMember(member);
+		if(flag ) {
+			Map<String,String> success = new HashMap<>();
+			success.put("Status", "Success");
+			success.put("Message", "Member Added Successfully !!!");
+			return ResponseEntity.ok(success);
+		}else {
+			Map<String,String> failure = new HashMap<>();
+			failure.put("Status", "Failure");
+			failure.put("Message", "Member Not Added ");
+			return ResponseEntity.internalServerError().body(failure);
+		}
+	}
+	
+	@PostMapping("/updateMember")
+	public ResponseEntity<?> updatingMember(@Valid @RequestBody Member member){
+		boolean flag = impl.updateMember(member);
+		if(flag ) {
+			Map<String,String> success = new HashMap<>();
+			success.put("Status", "Success");
+			success.put("Message", "Member Updated Successfully !!!");
+			return ResponseEntity.ok(success);
+		}else {
+			Map<String,String> failure = new HashMap<>();
+			failure.put("Status", "Failure");
+			failure.put("Message", "Member Not Updated ");
+			return ResponseEntity.internalServerError().body(failure);
+		}
+	}
+	
+	@PostMapping("/renew")
+	public ResponseEntity<?> renew(@Valid @RequestBody Member member,@RequestBody String days){
+		String flag = impl.renew(member,days);
+		if("Success".equals(flag) ) {
+			Map<String,String> success = new HashMap<>();
+			success.put("Status", "Success");
+			success.put("Message", "MemberShipRenewed Successfully !!!");
+			return ResponseEntity.ok(success);
+		}else if ("Member Not Found".equals(flag)){
+			Map<String,String> failure = new HashMap<>();
+			failure.put("Status", "Failure");
+			failure.put("Message", "Member Not Found");
+			return ResponseEntity.internalServerError().body(failure);
+		}else {
+			Map<String,String> failure = new HashMap<>();
+			failure.put("Status", "Failure");
+			failure.put("Message", "Something Went Wrong");
+			return ResponseEntity.internalServerError().body(failure);
+		}
+	}
+	
+	
+	
+	
+
+}

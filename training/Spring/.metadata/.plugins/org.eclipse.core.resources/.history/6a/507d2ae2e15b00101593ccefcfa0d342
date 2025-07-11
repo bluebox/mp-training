@@ -1,0 +1,69 @@
+package com.spring.ims.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.spring.ims.domain.OrderProductDetails;
+import com.spring.ims.domain.Orders;
+import com.spring.ims.repository.EmployeeProductsRepository;
+import com.spring.ims.repository.OrderProductDetailsRepository;
+import com.spring.ims.repository.OrdersRepository;
+import com.spring.ims.repository.ProductRepository;
+import com.spring.ims.repository.SupplierRepository;
+
+@Service
+public class Implementation {
+	
+	private EmployeeProductsRepository employeeProductsRepository;
+	private OrderProductDetailsRepository orderProductDetailsRepository;
+	private OrdersRepository ordersRepository;
+	private ProductRepository productRepository;
+	private SupplierRepository supplierRepository;
+	
+	@Autowired
+	public Implementation(EmployeeProductsRepository employeeProductsRepository,
+			OrderProductDetailsRepository orderProductDetailsRepository, OrdersRepository ordersRepository,
+			ProductRepository productRepository, SupplierRepository supplierRepository) {
+		this.employeeProductsRepository = employeeProductsRepository;
+		this.orderProductDetailsRepository = orderProductDetailsRepository;
+		this.ordersRepository = ordersRepository;
+		this.productRepository = productRepository;
+		this.supplierRepository = supplierRepository;
+	}
+
+	//Orders Creation
+	//List of Suppliers
+	public List<String> listOfSuppliers(){
+		return supplierRepository.listOfSuppliers();
+	}
+	
+	//list of products
+	public List<String> listOfProducts(String supplier,String search){
+		String[] supplierDetails = supplier.split(" - ");
+		int supplerId = Integer.parseInt(supplierDetails[1]);
+		if(search.length()>=3) {
+			return productRepository.listOfProducts(supplerId,search);
+		}else {
+			return productRepository.listOfProducts(supplerId,"");
+		}
+	}
+	
+	//cost of product
+	public float costOfProduct(String product) {
+		String[] productCost = product.split(" - ");
+		return productRepository.costOfProduct(Integer.parseInt(productCost[1]));
+	}
+	
+	//Creation Of Order
+	@Transactional
+	public boolean creationOfOrder(List<OrderProductDetails> listOfProducts,Orders order) {
+		float orderCost = listOfProducts.stream()
+				.map(n -> ((n.getProductQuantity()) * (n.getProductCost())))
+				.reduce(0,(a,b) -> a+b);
+		return false;
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.spring.ims.domain;
+
+import lombok.Data;
+
+@Data
+public class OrderDetails {
+	
+	private int orderDetailsId;
+	private int orderId;
+	private String supplier;
+	private String product;
+	private float cost;
+
+}

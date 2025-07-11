@@ -1,0 +1,5 @@
+package com.befit.app.controllers;
+
+public class MemberShipController {
+
+}

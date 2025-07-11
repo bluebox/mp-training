@@ -1,0 +1,16 @@
+package com.spring.ims.domain;
+
+import lombok.Data;
+
+@Data
+public class Product {
+	
+	private int productId;
+	private int supplierId;
+	private String productName;
+	private int productMinQuan;
+	private int productMaxQuan;
+	private float productCost;
+	
+
+}

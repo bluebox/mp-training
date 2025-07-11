@@ -1,0 +1,5 @@
+package com.spring.ims.controller;
+
+public class AdminController {
+
+}

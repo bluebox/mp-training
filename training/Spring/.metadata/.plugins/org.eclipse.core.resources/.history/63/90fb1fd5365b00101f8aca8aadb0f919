@@ -1,0 +1,40 @@
+package com.befit.app.controllers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.befit.app.beans.MemberShip;
+import com.befit.app.impl.Implementation;
+
+import jakarta.validation.Valid;
+
+public class MemberShipController {
+
+	private Implementation impl;
+
+	@Autowired
+	public MemberShipController(Implementation impl) {
+		this.impl = impl;
+	}
+
+	@PostMapping("/addMemberShip")
+	public ResponseEntity<?> addingMember(@Valid @RequestBody MemberShip membership) {
+		boolean flag = impl.addMemberShip(membership);
+		if (flag) {
+			Map<String, String> success = new HashMap<>();
+			success.put("Status", "Success");
+			success.put("Message", "MemberShip Added Successfully !!!");
+			return ResponseEntity.ok(success);
+		} else {
+			Map<String, String> failure = new HashMap<>();
+			failure.put("Status", "Failure");
+			failure.put("Message", "MemberShip Not Added ");
+			return ResponseEntity.internalServerError().body(failure);
+		}
+	}
+}

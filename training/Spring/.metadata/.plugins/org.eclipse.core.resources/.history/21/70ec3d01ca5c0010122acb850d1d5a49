@@ -1,0 +1,16 @@
+package com.spring.ims.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.spring.ims.service.Implementation;
+
+@Controller
+public class OrdersStatusController {
+	
+	private Implementation impl;
+
+	public OrdersStatusController(Implementation impl) {
+		this.impl = impl;
+	}
+
+}

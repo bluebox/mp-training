@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dirs>
+    <entry loc="/usr/lib/jvm/jdk1.8.0_202" stamp="1544907196000"/>
+    <entry loc="/home/purnima/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.7.v20250502-0916/jre" stamp="1751272745371"/>
+    <entry loc="/usr/lib/jvm/java-8-openjdk-amd64" stamp="1749819695954"/>
+    <entry loc="/usr/lib/jvm/java-11-openjdk-amd64" stamp="1750134970801"/>
+    <entry loc="/home/purnima/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.7.v20250502-0916" stamp="1748010050642"/>
+    <entry loc="/usr/lib/jvm/openlogic-openjdk-8-hotspot-amd64" stamp="1750048887734"/>
+</dirs>
