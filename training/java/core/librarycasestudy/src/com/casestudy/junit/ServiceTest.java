@@ -16,7 +16,7 @@ import com.casestudy.domain.Gender;
 import com.casestudy.domain.IssueRecord;
 import com.casestudy.domain.Member;
 import com.casestudy.domain.Status;
-import com.casestudy.serviceimpl.Service;
+import com.casestudy.serviceimplimentation.Service;
 
 public class ServiceTest {
 

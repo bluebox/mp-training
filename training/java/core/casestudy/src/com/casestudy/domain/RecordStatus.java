@@ -1,4 +1,4 @@
-package com.casestudy.domain;
+package com.casestudy;
 
 public enum RecordStatus {
 	ISSUED("I"), RETURNED("R");

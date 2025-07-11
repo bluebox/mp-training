@@ -3,7 +3,7 @@ package com.casestudy.fx;
 import com.casestudy.domain.Availability;
 import com.casestudy.domain.Book;
 import com.casestudy.domain.Status;
-import com.casestudy.serviceimpl.Service;
+import com.casestudy.serviceimplimentation.Service;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;

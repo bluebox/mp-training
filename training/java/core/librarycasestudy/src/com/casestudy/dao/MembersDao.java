@@ -157,37 +157,39 @@ public class MembersDao {
 
 		return memberList;
 	}
-
+	
 	public Member getMemberById(int id) {
-		Member member = null;
-		String query = "SELECT memberId, name, email, mobile, gender,address FROM Member WHERE memberId = ?";
-		try {
-			conn = DBUtil.getConnection();
-			temp = conn.prepareStatement(query);
+        Member member = null;
+        String query = "SELECT memberId, name, email, mobile, gender,address FROM Member WHERE memberId = ?";
+        try {
+        	conn = DBUtil.getConnection();
+            temp = conn.prepareStatement(query); 
 
-			temp.setInt(1, id);
-			try (ResultSet rs = temp.executeQuery()) {
-				if (rs.next()) {
-					String name = rs.getString("name");
-					String email = rs.getString("email");
-					long mobile = rs.getLong("mobile");
-					String genderCode = rs.getString("gender");
-					String address = rs.getString("address");
+            temp.setInt(1, id);
+            try (ResultSet rs = temp.executeQuery()) {
+                if (rs.next()) {
+                    String name = rs.getString("name");
+                    String email = rs.getString("email");
+                    long mobile = rs.getLong("mobile");
+                    String genderCode = rs.getString("gender");
+                    String address = rs.getString("address");
 
-					Gender gender = Gender.fromCode(genderCode);
+                    Gender gender = Gender.fromCode(genderCode);
 
-					member = new Member(id, name, email, mobile, gender, address);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+                    member = new Member(id, name, email, mobile, gender, address);
+                }
+            }
+             catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }  
 
-		return member;
-	}
-
+        return member;
+    }
+	
 	public boolean findMember(int memberId) {
 		String query = "SELECT 1 FROM Member WHERE memberId = ?";
 

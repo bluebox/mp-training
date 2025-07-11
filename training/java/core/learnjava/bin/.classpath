@@ -6,7 +6,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="/learnjava/src/jars/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="jars/junit-4.13.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/saket/Downloads/jakarta.servlet-api-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/saket/Downloads/mysql-connector-j-9.3.0 (1)/mysql-connector-j-9.3.0/mysql-connector-j-9.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/saket/Downloads/junit-4.13.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/saket/Downloads/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

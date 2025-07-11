@@ -1,6 +1,6 @@
 package com.casestudy.fx;
 import com.casestudy.domain.IssueRecord;
-import com.casestudy.serviceimpl.Service;
+import com.casestudy.serviceimplimentation.Service;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;

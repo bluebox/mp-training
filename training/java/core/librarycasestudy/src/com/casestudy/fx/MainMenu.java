@@ -7,7 +7,7 @@ import java.util.Map;
 import com.casestudy.domain.Book;
 import com.casestudy.domain.IssueRecord;
 import com.casestudy.domain.Member;
-import com.casestudy.serviceimpl.Service;
+import com.casestudy.serviceimplimentation.Service;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

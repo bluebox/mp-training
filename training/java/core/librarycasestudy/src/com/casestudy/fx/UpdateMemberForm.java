@@ -2,7 +2,7 @@ package com.casestudy.fx;
 
 import com.casestudy.domain.Gender;
 import com.casestudy.domain.Member;
-import com.casestudy.serviceimpl.Service;
+import com.casestudy.serviceimplimentation.Service;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -29,8 +29,6 @@ public class UpdateMemberForm extends VBox {
         ComboBox<String> genderBox = new ComboBox<>();
         TextField addressField = new TextField();
         Button updateButton = new Button("Update Member");
-        Button resetButton = new Button("Reset");
-        
 
         // Initial disabling
         nameField.setDisable(true);
@@ -39,7 +37,6 @@ public class UpdateMemberForm extends VBox {
         genderBox.setDisable(true);
         addressField.setDisable(true);
         updateButton.setDisable(true);
-        resetButton.setDisable(true);
 
         genderBox.getItems().addAll("M - Male", "F - Female");
 
@@ -69,34 +66,18 @@ public class UpdateMemberForm extends VBox {
                     addressField.setText(member.getAddress());
 
                     // Enable fields
-                    memberIdField.setDisable(true);
                     nameField.setDisable(false);
                     emailField.setDisable(false);
                     mobileField.setDisable(false);
                     genderBox.setDisable(false);
                     addressField.setDisable(false);
                     updateButton.setDisable(false);
-                    resetButton.setDisable(false);
                 } else {
                     UtilMethods.showAlert(Alert.AlertType.ERROR, "Not Found", "Member ID not found.");
                 }
             } catch (NumberFormatException ex) {
                 UtilMethods.showAlert(Alert.AlertType.ERROR, "Input Error", "Invalid Member ID format.");
             }
-        });
-        
-        resetButton.setOnAction(e->{
-        	clearFields(memberIdField, nameField, emailField, mobileField, genderBox, addressField);
-
-            // Disable fields again
-        	memberIdField.setDisable(false);
-            nameField.setDisable(true);
-            emailField.setDisable(true);
-            mobileField.setDisable(true);
-            genderBox.setDisable(true);
-            addressField.setDisable(true);
-            updateButton.setDisable(true);
-            resetButton.setDisable(true);
         });
 
         updateButton.setOnAction(e -> {
@@ -127,14 +108,12 @@ public class UpdateMemberForm extends VBox {
                     clearFields(memberIdField, nameField, emailField, mobileField, genderBox, addressField);
 
                     // Disable fields again
-                    memberIdField.setDisable(false);
                     nameField.setDisable(true);
                     emailField.setDisable(true);
                     mobileField.setDisable(true);
                     genderBox.setDisable(true);
                     addressField.setDisable(true);
                     updateButton.setDisable(true);
-                    resetButton.setDisable(true);
                 } else {
                     UtilMethods.showAlert(Alert.AlertType.ERROR, "Failure", "Failed to update member.");
                 }
@@ -161,7 +140,6 @@ public class UpdateMemberForm extends VBox {
         grid.add(new Label("Address:"), 0, 5);
         grid.add(addressField, 1, 5);
         grid.add(updateButton, 1, 6);
-        grid.add(resetButton, 2, 6);
 
         this.getChildren().add(grid);
     }

@@ -2,7 +2,7 @@ package com.casestudy.fx;
 
 import com.casestudy.domain.Gender;
 import com.casestudy.domain.Member;
-import com.casestudy.serviceimpl.Service;
+import com.casestudy.serviceimplimentation.Service;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;

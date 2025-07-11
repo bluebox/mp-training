@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.casestudy.domain.IssueRecord;
-import com.casestudy.serviceimpl.Service;
+import com.casestudy.serviceimplimentation.Service;
 import com.casestudy.util.DBUtil;
 
 import javafx.animation.PauseTransition;
@@ -57,29 +57,19 @@ public class SearchAndIssueBookForm extends VBox {
                 String memberIdStr = memberIdField.getText().trim();
 
                 try {
-                	Service service = new Service();
                     int memberId = Integer.parseInt(memberIdStr);
-                    if (service.getMemberById(memberId)!=null) {
+                    if (isValidMember(memberId)) {
+                        Service service = new Service();
                         IssueRecord issueBook = new IssueRecord(bookId, memberId);
-                        if(service.issueBookService(issueBook)) {
-                        	UtilMethods.showAlert(Alert.AlertType.INFORMATION, "Success", "Book issued successfully!");
-                            searchField.clear();
-                            bookToggleGroup.selectToggle(null);
-                            resultsBox.getChildren().clear();
-                            memberIdField.clear();
-                            memberIdField.setVisible(false);
-                            confirmButton.setVisible(false);
-                        }
-                        else {
-                        	UtilMethods.showAlert(Alert.AlertType.ERROR, "Sorry !!!", "Book Cannot be issued");
-                            searchField.clear();
-                            bookToggleGroup.selectToggle(null);
-                            resultsBox.getChildren().clear();
-                            memberIdField.clear();
-                            memberIdField.setVisible(false);
-                            confirmButton.setVisible(false);
-                        }
-                        
+                        service.issueBookService(issueBook);
+
+                        UtilMethods.showAlert(Alert.AlertType.INFORMATION, "Success", "Book issued successfully!");
+                        searchField.clear();
+                        bookToggleGroup.selectToggle(null);
+                        resultsBox.getChildren().clear();
+                        memberIdField.clear();
+                        memberIdField.setVisible(false);
+                        confirmButton.setVisible(false);
                     } else {
                         UtilMethods.showAlert(Alert.AlertType.ERROR, "Error", "Invalid member ID.");
                     }
@@ -102,7 +92,6 @@ public class SearchAndIssueBookForm extends VBox {
             return;
         }
 
-        
         try (Connection conn = DBUtil.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Books WHERE title LIKE ?");
             stmt.setString(1, "%" + title + "%");
@@ -133,17 +122,17 @@ public class SearchAndIssueBookForm extends VBox {
         }
     }
 
-//    private boolean isValidMember(int memberId) {
-//        try (Connection conn = DBUtil.getConnection()) {
-//            PreparedStatement stmt = conn.prepareStatement("SELECT memberId FROM Member WHERE memberId = ?");
-//            stmt.setInt(1, memberId);
-//            ResultSet rs = stmt.executeQuery();
-//            return rs.next();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
+    private boolean isValidMember(int memberId) {
+        try (Connection conn = DBUtil.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("SELECT memberId FROM Member WHERE memberId = ?");
+            stmt.setInt(1, memberId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     private void addLiveLimiter(TextField field, int maxLength) {
         field.textProperty().addListener((obs, oldVal, newVal) -> {

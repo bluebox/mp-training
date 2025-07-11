@@ -1,6 +1,5 @@
 package com.casestudy.domain;
 
-
 public enum RecordStatus {
 	ISSUED("I"), RETURNED("R");
 
