@@ -24,11 +24,18 @@ public class CustomerController {
 	private CustomerService service;
 //	@PreAuthorize(value = "hasRole('admin')")
 	@PostMapping("/add")
-	public String createCustomer(@RequestBody Customer c) throws Exception {
+	public Integer createCustomer(@RequestBody Customer c) throws Exception {
 		return service.addCustomer(c);
 	}
+	@GetMapping("/getByEmail")
+	public Integer getCustomersByEmail(@RequestParam String email) throws SQLException {
+		return service.getCustomersByEmail(email);
+	}
 	@PutMapping("/update")
-	public String updateCustomer(@RequestBody Customer c) throws Exception {
+	public String updateCustomer(@RequestParam int customerId, @RequestBody Customer c ) throws Exception {
+		
+		c.setCustomerId(customerId);
+		System.out.println("In controller");
 		return service.updateCustomer(c);
 	}
 	@PutMapping("/updateStatus")

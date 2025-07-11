@@ -59,7 +59,9 @@ create table claim(
 	damage_type varchar(255) not null,
 	claim_status char check(claim_status in ('A','I','R')),/*Approved,Rejected,Initiated*/
 	claim_date datetime,
-	policy_id int not null,foreign key(policy_id) references policy(policy_id)
+	policy_id int not null,foreign key(policy_id) references policy(policy_id),
+	approved_by varchar(255) not null,
+	foreign key(approved_by) references admin(username)
 );
 show tables;
 insert into vehicles values(2343,"dfw434","wer","18-06-12 10:34:09 AM","18-06-12 10:34:09 AM","Bhanu",1);

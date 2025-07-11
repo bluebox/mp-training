@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vehicle.enums.PolicyType;
 import com.example.vehicle.model.Policy;
-import com.example.vehicle.model.Vehicle;
 import com.example.vehicle.repo.PolicyDao;
 
 @Service

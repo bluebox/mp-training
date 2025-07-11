@@ -16,15 +16,17 @@ public class CustomerService {
 	@Autowired
 	CustomerDao customerDao;
 
-	public String addCustomer(Customer customer) throws Exception {
+	public Integer addCustomer(Customer customer) throws Exception {
 		try {
-			customerDao.addCustomer(customer);
+			return customerDao.addCustomer(customer);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
-		return "Customer Added Successfully";
+//		return "Customer Added Successfully";
 	}
-
+	public int getCustomersByEmail(String email) throws SQLException {
+		return customerDao.getCustomersByEmail(email);
+	}
 	public String updateCustomer(Customer customer) throws Exception {
 		return customerDao.updateCustomer(customer);
 	}

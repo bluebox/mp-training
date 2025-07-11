@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,8 +25,10 @@ public class ProjectSecurityConfig {
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
-		.authorizeRequests().antMatchers("/customer/add","/customer/showAll","/vehicle/add","/vehicle/showAll","/policy/showAll","/policy/dueDate","/policy/allRequestedPolicies","/policy/updatePolicyRequested","/claim/allClaims","/claim/allIntiatedClaims","/claim/approveClaim","/user/add","/user/showAll").hasRole("ADMIN").and()
-		.authorizeRequests().anyRequest().hasRole("USER")
+		.cors(Customizer.withDefaults())
+//		.authorizeRequests().antMatchers("/customer/add","/customer/showAll","/vehicle/add","/vehicle/showAll","/policy/showAll","/policy/dueDate","/policy/allRequestedPolicies","/policy/updatePolicyRequested","/claim/allClaims","/claim/allIntiatedClaims","/claim/approveClaim","/user/add","/user/showAll").hasRole("ADMIN").and()
+//		.authorizeRequests().anyRequest().hasRole("USER")
+		.authorizeRequests().anyRequest().permitAll()
 		.and().formLogin()
 		.and().httpBasic();
 //		http.csrf((csrf) -> csrf.ignoringAntMatchers("/api/**"))
@@ -50,13 +53,13 @@ public class ProjectSecurityConfig {
 	InMemoryUserDetailsManager userDetailsManager() {
 		ArrayList<UserDetails> details=new ArrayList<UserDetails>();
 		for(com.example.vehicle.model.User user:userService.getAllUsers()) {
-			details.add(User.withUsername(user.getUsername()).password(user.getPassword()).roles("USER").build());
+			details.add(User.withUsername(user.getUsername()).password(passwordEncoder.encode(user.getPassword())).roles("USER").build());
 		}
 		details.add(User.withUsername("srinu").password(passwordEncoder.encode("43434")).roles("ADMIN").build());
 		return new InMemoryUserDetailsManager(details);
 	}
 	
-//	@Beanhttp://localhost:3000/
+//	@Bean
 //	 public WebMvcConfigurer corsConfigurer() {
 //	  return new WebMvcConfigurer() {
 //	            public void addCorsMappings(CorsRegistry registry) {

@@ -7,11 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vehicle.model.Vehicle;
 import com.example.vehicle.rowMappers.VehicleRowMapper;
 
 @Repository
+@Transactional
 public class VehicleDao {
 	private final JdbcTemplate jdbcTemplate;
 
@@ -24,7 +26,7 @@ public class VehicleDao {
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, 'A')";
 		System.out.println(vehicle.getStatus());
 		int rowsAffected=jdbcTemplate.update(vehicleAddSql,vehicle.getChasisNum(),vehicle.getRegNum(),vehicle.getVehicleModel(),
-				LocalDateTime.now(),LocalDateTime.now(),vehicle.getVehicleUpdatedBy(),vehicle.getCustomerId(),vehicle.getCreatedBy());
+				LocalDateTime.now(),LocalDateTime.now(),vehicle.getCreatedBy(),vehicle.getCustomerId(),vehicle.getCreatedBy());
 		if(rowsAffected==0) {
 			return "Vehicle Not Added";
 		}
@@ -75,17 +77,23 @@ public class VehicleDao {
 		String policySql = "Update policy set policy_status='I' where vehicle_id=?";
 
 		int rowsAffected = jdbcTemplate.update(sql, vehicleId);
-		int rowsAffected2 = jdbcTemplate.update(policySql, vehicleId);
 		if (rowsAffected == 0) {
 			return "Vehicle Not Deleted ,error occurred";
 		} else {
-			return "Vehicle Deleted Successfully";
+			int rowsAffected2 = jdbcTemplate.update(policySql, vehicleId);
+			if (rowsAffected2 == 0) {
+				return "Policy Not Deleted ,error occurred";
+			} else {
+				return "Vehicle Deleted Successfully";
+			}
 		}
-
 	}
 	
 	public List<Vehicle> getAllVehicles() throws SQLException {
 		String sql="Select * from vehicles";
 		return jdbcTemplate.query(sql,new VehicleRowMapper());	
+	}
+	public List<Vehicle> getAllVehiclesByCustomer(int customerId) {
+		return jdbcTemplate.query("select * from vehicles where customer_id=?", new VehicleRowMapper(),customerId);
 	}
 }
