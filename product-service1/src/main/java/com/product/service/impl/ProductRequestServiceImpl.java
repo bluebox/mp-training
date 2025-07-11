@@ -1,0 +1,84 @@
+package com.product.service.impl;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import com.product.Exceptions.DatabaseOperationException;
+import com.product.Exceptions.InvalidProductRequestException;
+import com.product.Exceptions.RequestNotFoundException;
+import com.product.dao.ProductRequestDAO;
+import com.product.domain.ProductRequest;
+import com.product.domain.SearchProductRequestCriteria;
+import com.product.service.ProductRequestService;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class ProductRequestServiceImpl implements ProductRequestService {
+
+	private final ProductRequestDAO productRequestDAO;
+
+	@Override
+	public ProductRequest generateProductRequest(ProductRequest request) {
+		validateRequestFields(request);
+		try {
+			return productRequestDAO.createProductRequest(request);
+		} catch (DataAccessException e) {
+			throw new DatabaseOperationException("Error while creating product request.", e);
+		}
+	}
+
+	@Override
+	public List<ProductRequest> getRequestsByCriteria(SearchProductRequestCriteria criteria) {
+		try {
+			List<ProductRequest> requests = productRequestDAO.fetchByCriteria(criteria);
+			if (requests == null || requests.isEmpty()) {
+				throw new RequestNotFoundException("No product requests found for the given criteria.");
+			}
+			return requests;
+		} catch (DataAccessException e) {
+			throw new DatabaseOperationException("Error while fetching product requests.", e);
+		}
+	}
+
+	@Override
+	public void updatePendingProductRequest(ProductRequest updatedRequest) {
+		if (updatedRequest.getProductRequestId() == null || updatedRequest.getProductRequestId() <= 0) {
+			throw new InvalidProductRequestException("Request ID must be a valid positive number.");
+		}
+		validateRequestFields(updatedRequest);
+
+		try {
+			productRequestDAO.updatePendingRequest(updatedRequest);
+		} catch (DataAccessException e) {
+			throw new DatabaseOperationException("Error while updating pending product request.", e);
+		}
+	}
+
+	private void validateRequestFields(ProductRequest request) {
+		if (request.getProductName() == null || request.getProductName().trim().length() < 3
+				|| request.getProductName().length() > 150) {
+			throw new InvalidProductRequestException("Product name must be between 3 and 150 characters.");
+		}
+
+		if (request.getDescription() == null || request.getDescription().trim().length() < 10) {
+			throw new InvalidProductRequestException("Product description must be at least 10 characters.");
+		}
+
+		if (request.getPrice() == null || request.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
+			throw new InvalidProductRequestException("Product price must be a positive value.");
+		}
+
+		if (request.getQuantity() <= 0) {
+			throw new InvalidProductRequestException("Quantity must be greater than zero.");
+		}
+
+		if (request.getRequestedBy() == null || request.getRequestedBy() <= 0) {
+			throw new InvalidProductRequestException("RequestedBy (user ID) must be provided and positive.");
+		}
+	}
+}
