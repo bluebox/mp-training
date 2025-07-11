@@ -10,6 +10,7 @@ import UpdateStatus from './Components/UpdateStatus';
 import AllOrders from './Components/AllOrders';
 import FullOrderApproval from './Components/FullOrderApproval';
 import axios from 'axios';
+import CreatingNewOrder from './Components/CreatingNewOrder';
 
 axios.defaults.withCredentials = true;
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<PendingOrders />} />
         <Route path="/all-orders" element={<AllOrdersByUser />} />
         <Route path="/create-order" element={<PurchaseCreation />} />
+        <Route path="/creating-new-order/:orderId" element={<CreatingNewOrder />} />
         <Route path="/edit-order/:orderId" element={<EditOrderModel />} />
         <Route path="/low-stock" element={<LowStockPage />} />
         <Route path="/UpdateStatusByAdmin" element={<UpdateStatus />} />

@@ -19,7 +19,7 @@ import com.spring.ims.interfaces.service.PurchaseCreationServiceInterface;
 
 @Service
 public class PurchaseCreationService implements PurchaseCreationServiceInterface {
-
+	
 	private EmployeeProductsRepositoryInterface employeeProductsRepository;
 	private OrderProductDetailsRepositoryInterface orderProductDetailsRepository;
 	private OrdersRepositoryInterface ordersRepository;
@@ -28,9 +28,8 @@ public class PurchaseCreationService implements PurchaseCreationServiceInterface
 
 	@Autowired
 	public PurchaseCreationService(EmployeeProductsRepositoryInterface employeeProductsRepository,
-			OrderProductDetailsRepositoryInterface orderProductDetailsRepository,
-			OrdersRepositoryInterface ordersRepository, ProductRepositoryInterface productRepository,
-			SupplierRepositoryInterface supplierRepository) {
+			OrderProductDetailsRepositoryInterface orderProductDetailsRepository, OrdersRepositoryInterface ordersRepository,
+			ProductRepositoryInterface productRepository, SupplierRepositoryInterface supplierRepository) {
 		this.employeeProductsRepository = employeeProductsRepository;
 		this.orderProductDetailsRepository = orderProductDetailsRepository;
 		this.ordersRepository = ordersRepository;
@@ -90,5 +89,7 @@ public class PurchaseCreationService implements PurchaseCreationServiceInterface
 		}
 		return orderProductDetailsRepository.addProducts(listOfProducts, orderId);
 	}
+	
+	
 
 }

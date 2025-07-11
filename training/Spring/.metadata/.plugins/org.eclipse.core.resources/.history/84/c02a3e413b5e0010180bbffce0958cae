@@ -7,10 +7,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.spring.ims.domain.EmployeeProducts;
 
-public class EmployeeProductsRowMapper implements RowMapper<EmployeeProducts>{
+public class EmployeeProductsRowMapper implements RowMapper{
 
 	@Override
-	public EmployeeProducts mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 		EmployeeProducts product = new EmployeeProducts();
 		product.setMaxQuantity(rs.getInt("maxQuan"));
 		product.setMinQuantity(rs.getInt("minQuan"));

@@ -87,19 +87,6 @@ public class EmployeeProductsRepository implements EmployeeProductsRepositoryInt
 			return false;
 		}
 	}
-
-	@Override
-	public EmployeeProducts fetchProduct(EmployeeProducts employeeProducts) {
-		String sql = "SELECT stockId,productName,productId,supplier,quantity,minQuan,maxQuan FROM employeeProducts WHERE stockId = :stockId";
-		try {
-			 MapSqlParameterSource params =new MapSqlParameterSource();
-			 params.addValue("stockId", employeeProducts.getStockId());
-			return namedParameterJdbcTemplate.queryForObject(sql, params,new EmployeeProductsRowMapper());
-		}catch(Exception e) {
-			System.out.println("ERROR in fetchProduct in EmployeeProductsRepository : "+e.getMessage());
-			return null;
-		}
-	}
 	
 	
 	

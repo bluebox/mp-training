@@ -35,6 +35,7 @@ function LowStock({ onAddItem }) {
   const handleFull = (item) => {
     console.log(item);
     onAddItem({
+      stockId:item.stockId,
       supplier: item.supplier,
       productName: item.productName,
       productId: item.productId,

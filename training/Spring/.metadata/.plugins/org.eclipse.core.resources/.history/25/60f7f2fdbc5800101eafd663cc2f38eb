@@ -1,5 +1,0 @@
-package com.casestudy.spring.library.rowmapper;
-
-public class MemberRowMapper {
-
-}

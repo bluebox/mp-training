@@ -10,7 +10,6 @@ const PurchaseCreation = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState(null);
-
   const [currentItemSupplier, setCurrentItemSupplier] = useState('');
   const [selectedProduct, setSelectedProduct] = useState('');
   const [quantity, setQuantity] = useState(1);

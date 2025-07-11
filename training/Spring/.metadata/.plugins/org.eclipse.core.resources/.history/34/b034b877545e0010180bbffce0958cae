@@ -21,7 +21,5 @@ public interface OrdersRepositoryInterface {
     boolean checkStatus(Orders order);
 
     List<Orders> adminAllOrders();
-
-	Orders getOrderDetails(Orders order);
 }
 

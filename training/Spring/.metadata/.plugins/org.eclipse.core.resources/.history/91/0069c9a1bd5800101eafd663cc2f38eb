@@ -1,9 +1,0 @@
-package com.casestudy.spring.library.rowmapper;
-
-import org.springframework.jdbc.core.RowMapper;
-
-import com.casestudy.spring.library.beans.Member;
-
-public class MemberRowMapper implements RowMapper<Member> {
-
-}

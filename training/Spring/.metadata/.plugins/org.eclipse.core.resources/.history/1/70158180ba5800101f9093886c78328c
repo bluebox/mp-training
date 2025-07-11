@@ -1,8 +1,0 @@
-package com.casestudy.spring.library.dao;
-
-import com.casestudy.spring.library.dao.models.MembersDaoModel;
-
-public class MembersDaoUsingJdbcTemplate implements MembersDaoModel{
-	
-
-}

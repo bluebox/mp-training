@@ -1,5 +1,0 @@
-package com.casestudy.spring.library.api.controller;
-
-public class BookController {
-
-}

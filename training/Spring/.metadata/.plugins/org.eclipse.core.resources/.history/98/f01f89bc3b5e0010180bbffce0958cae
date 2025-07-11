@@ -96,7 +96,7 @@ public class EmployeeProductsRepository implements EmployeeProductsRepositoryInt
 			 params.addValue("stockId", employeeProducts.getStockId());
 			return namedParameterJdbcTemplate.queryForObject(sql, params,new EmployeeProductsRowMapper());
 		}catch(Exception e) {
-			System.out.println("ERROR in fetchProduct in EmployeeProductsRepository : "+e.getMessage());
+			System.out.println("ERROR in lowStock in EmployeeProductsRepository : "+e.getMessage());
 			return null;
 		}
 	}

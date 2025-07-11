@@ -26,7 +26,7 @@ public class LowStockService implements LowStockServiceInterface {
 	private SupplierRepositoryInterface supplierRepository;
 
 	@Autowired
-	public LowStockService(EmployeeProductsRepositoryInterface employeeProductsRepository,
+	public LowStockServiceInterface(EmployeeProductsRepositoryInterface employeeProductsRepository,
 			OrderProductDetailsRepositoryInterface orderProductDetailsRepository, OrdersRepositoryInterface ordersRepository,
 			ProductRepositoryInterface productRepository, SupplierRepositoryInterface supplierRepository) {
 		this.employeeProductsRepository = employeeProductsRepository;

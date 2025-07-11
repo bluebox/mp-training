@@ -10,26 +10,26 @@ import com.spring.ims.domain.EmployeeProducts;
 import com.spring.ims.domain.FullOrder;
 import com.spring.ims.domain.OrderProductDetails;
 import com.spring.ims.domain.Orders;
-import com.spring.ims.interfaces.repository.EmployeeProductsRepositoryInterface;
-import com.spring.ims.interfaces.repository.OrderProductDetailsRepositoryInterface;
-import com.spring.ims.interfaces.repository.OrdersRepositoryInterface;
-import com.spring.ims.interfaces.repository.ProductRepositoryInterface;
-import com.spring.ims.interfaces.repository.SupplierRepositoryInterface;
 import com.spring.ims.interfaces.service.AdminServiceInterface;
+import com.spring.ims.repository.EmployeeProductsRepository;
+import com.spring.ims.repository.OrderProductDetailsRepository;
+import com.spring.ims.repository.OrdersRepository;
+import com.spring.ims.repository.ProductRepository;
+import com.spring.ims.repository.SupplierRepository;
 
 @Service
 public class AdminService implements AdminServiceInterface{
 	
-	private EmployeeProductsRepositoryInterface employeeProductsRepository;
-	private OrderProductDetailsRepositoryInterface orderProductDetailsRepository;
-	private OrdersRepositoryInterface ordersRepository;
-	private ProductRepositoryInterface productRepository;
-	private SupplierRepositoryInterface supplierRepository;
+	private EmployeeProductsRepository employeeProductsRepository;
+	private OrderProductDetailsRepository orderProductDetailsRepository;
+	private OrdersRepository ordersRepository;
+	private ProductRepository productRepository;
+	private SupplierRepository supplierRepository;
 
 	@Autowired
-	public AdminService(EmployeeProductsRepositoryInterface employeeProductsRepository,
-			OrderProductDetailsRepositoryInterface orderProductDetailsRepository, OrdersRepositoryInterface ordersRepository,
-			ProductRepositoryInterface productRepository, SupplierRepositoryInterface supplierRepository) {
+	public AdminService(EmployeeProductsRepository employeeProductsRepository,
+			OrderProductDetailsRepository orderProductDetailsRepository, OrdersRepository ordersRepository,
+			ProductRepository productRepository, SupplierRepository supplierRepository) {
 		this.employeeProductsRepository = employeeProductsRepository;
 		this.orderProductDetailsRepository = orderProductDetailsRepository;
 		this.ordersRepository = ordersRepository;

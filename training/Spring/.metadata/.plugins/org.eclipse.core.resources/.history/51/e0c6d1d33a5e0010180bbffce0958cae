@@ -15,7 +15,5 @@ public interface EmployeeProductsRepositoryInterface {
     List<EmployeeProducts> lowStock();
 
     boolean isPresent(int productId);
-
-	EmployeeProducts fetchProduct(EmployeeProducts employeeProducts);
 }
 
