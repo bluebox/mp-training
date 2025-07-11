@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllerr.BookCategoryCountController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+      
+    <Label text="📚 Book Count Per Category"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    
+    <TableView fx:id="categoryTable" prefWidth="400">
+        <columns>
+            <TableColumn fx:id="categoryCol" text="Category" prefWidth="200" />
+            <TableColumn fx:id="countCol" text="Count" prefWidth="200" />
+        </columns>
+    </TableView>
+</VBox>
