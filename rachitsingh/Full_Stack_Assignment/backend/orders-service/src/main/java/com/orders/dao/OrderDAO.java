@@ -11,7 +11,7 @@ public interface OrderDAO {
 
 	List<Order> fetchCustomerOrders(SearchOrderCriteria criteria) throws OrderDatabaseOperationException;
 
-//	void updateMyOrder(Long orderId, Long customerId);
+	void updateMyOrder(SearchOrderCriteria criteria) throws OrderDatabaseOperationException;
 
 	Order fetchCustomerOrderWithItems(Long orderId, Long customerId);
 }

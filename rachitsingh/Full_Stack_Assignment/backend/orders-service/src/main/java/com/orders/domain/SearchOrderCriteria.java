@@ -15,6 +15,7 @@ public class SearchOrderCriteria {
 	@NonNull
 	private Long customerId;
 	private List<String> orderStatuses;
+	private String Address;
 	private LocalDateTime fromDate;
 	private LocalDateTime toDate;
 	private List<Long> orderIds;

@@ -113,13 +113,12 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public List<Order> fetchCustomerOrders(SearchOrderCriteria criteria) throws OrderDatabaseOperationException {
-		StringBuilder sql = new StringBuilder(
-				"SELECT OrderId, UserId, Address, TotalAmount, Status, PlacedAtDate, UpdatedAtDate "
-						+ "FROM orders WHERE 1=1 " + "AND (:orderIdsFlag = 0 OR OrderId IN (:orderIds)) "
-						+ "AND (:orderStatusFlag = 0 OR Status IN (:orderStatuses)) "
-						+ "AND (:fromDateFlag = 0 OR PlacedAtDate >= :fromDate) "
-						+ "AND (:toDateFlag = 0 OR PlacedAtDate <= :toDate) " + "AND UserId = :customerId "
-						+ "ORDER BY PlacedAtDate DESC " + "LIMIT :limit OFFSET :offset");
+		String sql = "SELECT OrderId, UserId, Address, TotalAmount, Status, PlacedAtDate, UpdatedAtDate "
+				+ "FROM orders WHERE 1=1 " + "AND (:orderIdsFlag = 0 OR OrderId IN (:orderIds)) "
+				+ "AND (:orderStatusFlag = 0 OR Status IN (:orderStatuses)) "
+				+ "AND (:fromDateFlag = 0 OR PlacedAtDate >= :fromDate) "
+				+ "AND (:toDateFlag = 0 OR PlacedAtDate <= :toDate) " + "AND UserId = :customerId "
+				+ "ORDER BY PlacedAtDate DESC " + "LIMIT :limit OFFSET :offset";
 
 		Map<String, Object> params = new HashMap<>();
 
@@ -149,7 +148,28 @@ public class OrderDAOImpl implements OrderDAO {
 		params.put("offset", offset);
 
 		try {
-			return namedParameterJdbcTemplate.query(sql.toString(), params, new OrderMapper());
+			return namedParameterJdbcTemplate.query(sql, params, new OrderMapper());
+		} catch (DataAccessException e) {
+			throw new OrderDatabaseOperationException("Failed to fetch orders from the database", e);
+		}
+	}
+
+	@Override
+	public void updateMyOrder(SearchOrderCriteria criteria) throws OrderDatabaseOperationException {
+		String sql = "UPDATE orders SET " + "Status = CASE "
+				+ "WHEN (UserId = :userId AND OrderId IN (:orderIds) AND Status = 'P') THEN 'C' " + "ELSE Status END, "
+				+ "Address = CASE "
+				+ "WHEN (:addressFlag = 1 AND UserId = :userId AND OrderId IN (:orderIds)) THEN :address "
+				+ "ELSE Address END";
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("addressFlag", criteria.getAddress() != null && !criteria.getAddress().trim().isEmpty() ? 1 : 0);
+		params.put("userId", criteria.getCustomerId());
+		params.put("orderIds", criteria.getOrderIds());
+		params.put("address", criteria.getAddress());
+
+		try {
+			namedParameterJdbcTemplate.update(sql, params);
 		} catch (DataAccessException e) {
 			throw new OrderDatabaseOperationException("Failed to fetch orders from the database", e);
 		}
