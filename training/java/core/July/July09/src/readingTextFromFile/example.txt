@@ -1,0 +1,17 @@
+Modifier and Type	Method	Description
+void	accept(int value)	
+Records a new value into the summary information
+void	combine(IntSummaryStatistics other)	
+Combines the state of another IntSummaryStatistics into this one.
+double	getAverage()	
+Returns the arithmetic mean of values recorded, or zero if no values have been recorded.
+long	getCount()	
+Returns the count of values recorded.
+int	getMax()	
+Returns the maximum value recorded, or Integer.MIN_VALUE if no values have been recorded.
+int	getMin()	
+Returns the minimum value recorded, or Integer.MAX_VALUE if no values have been recorded.
+long	getSum()	
+Returns the sum of values recorded, or zero if no values have been recorded.
+String	toString()	
+Returns a string representation of the object.
