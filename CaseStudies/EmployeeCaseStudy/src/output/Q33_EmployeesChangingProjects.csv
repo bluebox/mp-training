@@ -1,0 +1,306 @@
+EmployeeID,Name,Department,ProjectID,Date,TaskCategory,HoursWorked,Remarks
+E030,Vikram Pai,UI/UX,P108,2025-03-29,Documentation,11.0,Data analysis  v5
+E030,Vikram Pai,UI/UX,P110,2025-03-30,Design,0.0,Dashboard prototype  v4
+E030,Vikram Pai,QA,P107,2025-03-31,Design,11.0,Wireframe design  v5
+E031,Arun Kumar,QA,P104,2025-04-01,Design,1.5,User guide update  v4
+E031,Arun Kumar,UI/UX,P106,2025-04-02,Design,5.5,Payment module test #meeting v3
+E031,Arun Kumar,UI/UX,P108,2025-04-03,Design,8.0,API integration  v6
+E032,Vikram Naidu,UI/UX,P109,2025-04-04,Documentation,1.0,Wireframe design  v7
+E032,Vikram Naidu,UI/UX,P108,2025-04-05,Documentation,7.5,Data analysis  v5
+E032,Vikram Naidu,QA,P101,2025-04-06,Development,8.0,User guide update  v4
+E033,Vikram Reddy,UI/UX,P110,2025-04-07,Development,10.0,Experiment analysis #urgent v1
+E033,Vikram Reddy,UI/UX,P101,2025-04-08,Documentation,5.0,API integration #meeting v3
+E033,Vikram Reddy,Devops,P103,2025-04-09,Development,10.0,Database optimization  v8
+E034,Lakshmi Rao,Research & Development,P107,2025-04-10,Research,3.0,Login bug fix  v4
+E034,Lakshmi Rao,Devops,P105,2025-04-11,Design,5.0,Payment module test  v9
+E034,Lakshmi Rao,QA,P110,2025-04-12,Design,10.5,Data analysis  v10
+E035,Arun Kamath,QA,P108,2025-04-13,Design,5.5,Data analysis  v9
+E035,Arun Kamath,QA,P104,2025-04-14,Design,5.0,Wireframe design  v10
+E035,Arun Kamath,Research & Development,P101,2025-04-15,Development,9.0,Dashboard prototype  v6
+E036,Arun Shetty,UI/UX,P107,2025-04-16,Research,3.0,Data analysis  v9
+E036,Arun Shetty,QA,P103,2025-04-17,Research,2.0,API integration  v10
+E036,Arun Shetty,UI/UX,P106,2025-04-18,Research,11.0,Feature deployment  v4
+E037,Lakshmi Kumar,UI/UX,P102,2025-04-19,Documentation,5.0,Payment module test  v6
+E037,Lakshmi Kumar,Research & Development,P108,2025-04-20,Documentation,9.5,Login bug fix  v4
+E037,Lakshmi Kumar,UI/UX,P101,2025-04-21,Documentation,11.0,Feature deployment  v5
+E038,Arun Rao,UI/UX,P103,2025-04-22,Development,4.5,Data analysis  v10
+E038,Arun Rao,QA,P104,2025-04-23,Research,6.0,Experiment analysis  v4
+E038,Arun Rao,QA,P107,2025-04-24,Bug Fixing,11.0,Wireframe design  v5
+E039,Priya Shetty,QA,P101,2025-04-25,Design,2.5,Payment module test #meeting v3
+E039,Priya Shetty,Research & Development,P107,2025-04-26,Design,10.0,Login bug fix  v4
+E039,Priya Shetty,UI/UX,P106,2025-04-27,Design,9.0,Payment module test #meeting v3
+E020,Priya Bhat,QA,P103,2025-02-20,Bug Fixing,5.4,Dashboard prototype  v8
+E020,Priya Bhat,Research & Development,P110,2025-02-27,Bug Fixing,1.5,Wireframe design #meeting v3
+E020,Priya Bhat,QA,P104,2025-02-28,Design,4.0,Login bug fix #meeting v3
+E021,Suresh Verma,QA,P104,2025-03-02,Development,6.0,Database optimization #critical v2
+E021,Suresh Verma,Devops,P108,2025-03-03,Bug Fixing,3.5,Experiment analysis  v4
+E021,Suresh Verma,Research & Development,P101,2025-03-04,Research,9.5,Login bug fix #urgent v1
+E022,Arun Iyer,QA,P110,2025-03-05,Documentation,6.5,Data analysis  v6
+E022,Arun Iyer,QA,P102,2025-03-06,Bug Fixing,11.0,Feature deployment  v6
+E022,Arun Iyer,Research & Development,P101,2025-03-07,Documentation,10.5,User guide update  v9
+E023,Priya Naidu,QA,P109,2025-03-08,Development,10.5,Feature deployment  v8
+E023,Priya Naidu,Research & Development,P103,2025-03-09,Design,9.0,Payment module test  v4
+E023,Priya Naidu,Devops,P110,2025-03-10,Development,8.0,Login bug fix  v8
+E024,Vikram Varma,QA,P101,2025-03-11,Design,9.5,User guide update  v9
+E024,Vikram Varma,QA,P106,2025-03-12,Design,6.0,Payment module test  v6
+E024,Vikram Varma,Research & Development,P105,2025-03-13,Documentation,9.0,Data analysis #critical v2
+E025,Arun Nair,Research & Development,P108,2025-03-14,Documentation,2.0,Wireframe design  v7
+E025,Arun Nair,QA,P110,2025-03-15,Bug Fixing,5.0,Experiment analysis  v5
+E025,Arun Nair,Devops,P106,2025-03-16,Documentation,8.0,Wireframe design  v5
+E026,Vikram Kumar,UI/UX,P107,2025-03-17,Documentation,1.0,Data analysis  v4
+E026,Vikram Kumar,Research & Development,P102,2025-03-18,Research,0.5,Experiment analysis #urgent v1
+E026,Vikram Kumar,UI/UX,P108,2025-03-19,Research,9.5,Wireframe design  v4
+E027,Suresh Pillai,QA,P102,2025-03-20,Documentation,10.0,Feature deployment  v10
+E027,Suresh Pillai,UI/UX,P110,2025-03-21,Development,5.5,Payment module test  v7
+E027,Suresh Pillai,UI/UX,P107,2025-03-22,Development,9.0,Login bug fix  v10
+E028,Vikram Kamath,Research & Development,P101,2025-03-23,Bug Fixing,2.0,User guide update  v5
+E028,Vikram Kamath,Devops,P108,2025-03-24,Design,1.0,User guide update #meeting v3
+E028,Vikram Kamath,Devops,P109,2025-03-25,Research,11.0,Database optimization  v7
+E029,Arun Varma,Research & Development,P110,2025-03-26,Bug Fixing,3.5,Payment module test  v8
+E029,Arun Varma,QA,P103,2025-03-27,Documentation,4.5,Wireframe design  v7
+E029,Arun Varma,Devops,P105,2025-03-28,Documentation,8.5,Wireframe design  v8
+E050,Arun Krishnan,UI/UX,P108,2025-05-28,Research,2.0,Experiment analysis  v7
+E050,Arun Krishnan,QA,P110,2025-05-29,Documentation,10.5,API integration  v5
+E050,Arun Krishnan,UI/UX,P107,2025-05-30,Research,10.5,Payment module test #critical v2
+E051,Suresh Kumar,Research & Development,P109,2025-06-01,Design,6.5,Login bug fix #critical v2
+E051,Suresh Kumar,UI/UX,P101,2025-06-02,Documentation,8.0,Feature deployment  v8
+E052,Lakshmi Gowda,UI/UX,P102,2025-06-03,Bug Fixing,8.0,Experiment analysis  v5
+E052,Lakshmi Gowda,Research & Development,P106,2025-06-04,Research,2.5,Data analysis  v4
+E052,Lakshmi Gowda,UI/UX,P103,2025-06-05,Bug Fixing,9.5,Login bug fix  v5
+E053,Suresh Menon,QA,P103,2025-06-06,Design,4.0,API integration  v6
+E053,Suresh Menon,Devops,P105,2025-06-07,Bug Fixing,2.5,Feature deployment  v10
+E053,Suresh Menon,Research & Development,P109,2025-06-08,Bug Fixing,9.5,Experiment analysis  v6
+E054,Suresh Naidu,Devops,P104,2025-06-09,Design,5.5,API integration  v5
+E054,Suresh Naidu,UI/UX,P103,2025-06-10,Documentation,2.0,Database optimization  v4
+E054,Suresh Naidu,Research & Development,P106,2025-06-11,Design,8.5,Database optimization #critical v2
+E055,Arun Bhat,UI/UX,P105,2025-06-12,Research,4.5,Experiment analysis  v6
+E055,Arun Bhat,UI/UX,P110,2025-06-13,Research,8.0,Database optimization  v5
+E055,Arun Bhat,UI/UX,P103,2025-06-14,Research,10.5,Login bug fix  v7
+E056,Lakshmi Hegde,Devops,P101,2025-06-15,Bug Fixing,6.5,Database optimization  v10
+E056,Lakshmi Hegde,QA,P103,2025-06-16,Design,6.0,Wireframe design  v8
+E056,Lakshmi Hegde,Research & Development,P102,2025-06-17,Design,8.0,Feature deployment  v7
+E057,Vikram Nair,QA,P101,2025-06-18,Bug Fixing,7.0,Feature deployment  v5
+E057,Vikram Nair,UI/UX,P110,2025-06-19,Bug Fixing,0.5,API integration  v4
+E057,Vikram Nair,Research & Development,P102,2025-06-20,Development,11.0,Database optimization #urgent v1
+E058,Priya Balakrishnan,Research & Development,P105,2025-06-21,Documentation,9.0,Experiment analysis  v4
+E058,Priya Balakrishnan,UI/UX,P107,2025-06-22,Development,1.0,Wireframe design  v7
+E058,Priya Balakrishnan,QA,P109,2025-06-23,Research,8.0,Payment module test #critical v2
+E059,Lakshmi Menon,Research & Development,P104,2025-06-24,Research,2.0,Payment module test #meeting v3
+E059,Lakshmi Menon,Devops,P105,2025-06-25,Documentation,11.0,API integration  v5
+E059,Lakshmi Menon,Devops,P107,2025-06-26,Research,11.0,Experiment analysis #urgent v1
+E040,Priya Verma,UI/UX,P102,2025-04-28,Design,9.0,Database optimization  v7
+E040,Priya Verma,Research & Development,P104,2025-04-29,Design,6.0,Wireframe design  v10
+E040,Priya Verma,Devops,P110,2025-04-30,Design,10.5,Feature deployment  v6
+E041,Arun Verma,Devops,P110,2025-05-01,Design,11.0,User guide update  v10
+E041,Arun Verma,Research & Development,P109,2025-05-02,Bug Fixing,8.0,Wireframe design #meeting v3
+E041,Arun Verma,UI/UX,P105,2025-05-03,Bug Fixing,9.0,Wireframe design #meeting v3
+E042,Arun Hegde,QA,P107,2025-05-04,Documentation,7.5,Experiment analysis  v4
+E042,Arun Hegde,QA,P108,2025-05-05,Documentation,0.5,User guide update  v8
+E042,Arun Hegde,QA,P105,2025-05-06,Design,11.0,Login bug fix  v7
+E043,Arun Shenoy,Research & Development,P103,2025-05-07,Documentation,3.0,Payment module test  v7
+E043,Arun Shenoy,Research & Development,P101,2025-05-08,Research,3.0,User guide update  v5
+E043,Arun Shenoy,QA,P102,2025-05-09,Research,9.0,API integration  v8
+E044,Suresh Nair,QA,P102,2025-05-10,Bug Fixing,6.0,Feature deployment  v5
+E044,Suresh Nair,QA,P110,2025-05-11,Documentation,5.5,Login bug fix  v10
+E044,Suresh Nair,Devops,P106,2025-05-12,Documentation,8.5,Dashboard prototype #meeting v3
+E045,Arun Menon,QA,P102,2025-05-13,Development,1.0,Data analysis  v9
+E045,Arun Menon,QA,P104,2025-05-14,Research,3.5,User guide update  v9
+E045,Arun Menon,Research & Development,P103,2025-05-15,Research,8.5,Data analysis  v4
+E046,Priya Nair,UI/UX,P106,2025-05-16,Development,10.0,Data analysis  v5
+E046,Priya Nair,Research & Development,P101,2025-05-17,Research,2.0,Payment module test  v4
+E046,Priya Nair,UI/UX,P110,2025-05-18,Documentation,10.5,Feature deployment  v10
+E047,Priya Kumar,Research & Development,P101,2025-05-19,Research,8.5,Login bug fix  v6
+E047,Priya Kumar,Devops,P110,2025-05-20,Development,8.0,Database optimization #meeting v3
+E047,Priya Kumar,UI/UX,P104,2025-05-21,Documentation,8.5,Wireframe design  v5
+E048,Vikram Shenoy,UI/UX,P105,2025-05-22,Research,2.5,Data analysis  v6
+E048,Vikram Shenoy,UI/UX,P109,2025-05-23,Research,0.5,Database optimization  v7
+E048,Vikram Shenoy,UI/UX,P102,2025-05-24,Design,10.5,User guide update  v4
+E049,Vikram Krishnan,UI/UX,P109,2025-05-25,Documentation,3.0,Payment module test  v6
+E049,Vikram Krishnan,QA,P106,2025-05-26,Documentation,10.5,Experiment analysis #critical v2
+E049,Vikram Krishnan,Devops,P107,2025-05-27,Documentation,10.5,Login bug fix  v10
+E070,Arun Nambiar,Devops,P102,2025-07-27,Development,1.5,Payment module test  v5
+E070,Arun Nambiar,QA,P101,2025-07-28,Development,5.5,Dashboard prototype  v9
+E070,Arun Nambiar,QA,P104,2025-07-29,Development,8.0,Login bug fix  v10
+E071,Arun Pillai,UI/UX,P108,2025-07-30,Development,9.0,Experiment analysis  v4
+E071,Arun Pillai,Research & Development,P103,2025-07-31,Bug Fixing,9.5,User guide update  v5
+E072,Suresh Gowda,QA,P110,2025-08-02,Development,1.0,Dashboard prototype #urgent v1
+E072,Suresh Gowda,QA,P105,2025-08-03,Bug Fixing,11.0,Database optimization  v7
+E072,Suresh Gowda,Research & Development,P101,2025-08-04,Bug Fixing,8.0,Dashboard prototype  v5
+E073,Priya Rao,UI/UX,P101,2025-08-05,Documentation,2.0,API integration  v10
+E073,Priya Rao,QA,P104,2025-08-06,Design,1.5,Login bug fix #critical v2
+E073,Priya Rao,UI/UX,P110,2025-08-07,Research,11.0,Experiment analysis  v6
+E074,Priya Varma,UI/UX,P106,2025-08-08,Documentation,5.0,Data analysis  v9
+E074,Priya Varma,Research & Development,P103,2025-08-09,Documentation,1.5,Feature deployment  v4
+E074,Priya Varma,Research & Development,P109,2025-08-10,Documentation,9.0,Database optimization  v9
+E075,Lakshmi Pai,Devops,P102,2025-08-11,Documentation,2.5,Login bug fix  v10
+E075,Lakshmi Pai,QA,P101,2025-08-12,Bug Fixing,10.0,API integration  v10
+E075,Lakshmi Pai,UI/UX,P104,2025-08-13,Documentation,8.0,Login bug fix #urgent v1
+E076,Lakshmi Krishnan,Devops,P104,2025-08-14,Design,5.5,Experiment analysis  v10
+E076,Lakshmi Krishnan,QA,P103,2025-08-15,Research,9.5,Database optimization  v5
+E076,Lakshmi Krishnan,UI/UX,P108,2025-08-16,Documentation,9.0,Experiment analysis  v7
+E077,Arun Balakrishnan,Devops,P104,2025-08-17,Documentation,10.0,Login bug fix #urgent v1
+E077,Arun Balakrishnan,UI/UX,P108,2025-08-18,Documentation,0.5,API integration  v10
+E077,Arun Balakrishnan,UI/UX,P105,2025-08-19,Development,11.0,Login bug fix #critical v2
+E078,Lakshmi Nambiar,UI/UX,P110,2025-08-20,Development,5.0,Database optimization  v6
+E078,Lakshmi Nambiar,QA,P109,2025-08-21,Development,6.5,User guide update  v8
+E078,Lakshmi Nambiar,Research & Development,P104,2025-08-22,Development,8.0,API integration  v6
+E079,Priya Reddy,Devops,P107,2025-08-23,Research,5.5,Dashboard prototype #meeting v3
+E079,Priya Reddy,Devops,P108,2025-08-24,Bug Fixing,6.0,Dashboard prototype  v8
+E079,Priya Reddy,Devops,P106,2025-08-25,Bug Fixing,11.0,Wireframe design  v6
+E060,Suresh Shetty,QA,P106,2025-06-27,Documentation,11.0,API integration #meeting v3
+E060,Suresh Shetty,Research & Development,P108,2025-06-28,Development,0.5,Data analysis #critical v2
+E060,Suresh Shetty,Devops,P104,2025-06-29,Documentation,10.5,Database optimization #critical v2
+E061,Suresh Shenoy,Research & Development,P109,2025-07-01,Documentation,0.0,Feature deployment  v4
+E061,Suresh Shenoy,Devops,P102,2025-07-02,Documentation,8.0,Data analysis  v8
+E062,Lakshmi Reddy,QA,P102,2025-07-03,Design,4.0,API integration #meeting v3
+E062,Lakshmi Reddy,UI/UX,P109,2025-07-04,Bug Fixing,9.0,Dashboard prototype #urgent v1
+E062,Lakshmi Reddy,Devops,P108,2025-07-05,Bug Fixing,11.0,Payment module test  v4
+E063,Lakshmi Bhat,Devops,P105,2025-07-06,Documentation,0.0,Wireframe design  v10
+E063,Lakshmi Bhat,Research & Development,P108,2025-07-07,Bug Fixing,9.5,User guide update  v8
+E063,Lakshmi Bhat,Research & Development,P101,2025-07-08,Documentation,10.0,Feature deployment #meeting v3
+E064,Arun Naidu,UI/UX,P104,2025-07-09,Documentation,8.0,Dashboard prototype  v4
+E064,Arun Naidu,QA,P103,2025-07-10,Research,5.5,Data analysis  v10
+E064,Arun Naidu,UI/UX,P102,2025-07-11,Research,10.5,Experiment analysis  v9
+E065,Priya Iyer,Research & Development,P106,2025-07-12,Bug Fixing,1.0,Login bug fix  v4
+E065,Priya Iyer,QA,P110,2025-07-13,Design,5.5,User guide update  v7
+E065,Priya Iyer,QA,P101,2025-07-14,Bug Fixing,8.5,API integration #urgent v1
+E066,Priya Pai,UI/UX,P103,2025-07-15,Development,1.0,Data analysis  v4
+E066,Priya Pai,Devops,P102,2025-07-16,Development,3.0,API integration #critical v2
+E066,Priya Pai,UI/UX,P101,2025-07-17,Research,8.0,Wireframe design #critical v2
+E100,Priya Krishnan,QA,P105,2025-10-25,Development,11.0,Data analysis  v5
+E100,Priya Krishnan,QA,P102,2025-10-26,Documentation,4.5,User guide update  v7
+E100,Priya Krishnan,Devops,P109,2025-10-27,Bug Fixing,9.0,Login bug fix  v10
+E067,Suresh Reddy,QA,P107,2025-07-18,Documentation,2.0,Data analysis #urgent v1
+E067,Suresh Reddy,Devops,P105,2025-07-19,Development,6.0,Feature deployment #urgent v1
+E067,Suresh Reddy,Research & Development,P102,2025-07-20,Design,11.0,Feature deployment #meeting v3
+E068,Vikram Nambiar,Devops,P110,2025-07-21,Bug Fixing,7.5,Wireframe design  v8
+E068,Vikram Nambiar,Research & Development,P105,2025-07-22,Design,4.0,Data analysis  v10
+E068,Vikram Nambiar,Research & Development,P109,2025-07-23,Documentation,10.5,Payment module test  v10
+E069,Lakshmi Naidu,UI/UX,P105,2025-07-24,Development,3.5,Database optimization #urgent v1
+E069,Lakshmi Naidu,Research & Development,P106,2025-07-25,Development,2.0,Wireframe design #critical v2
+E069,Lakshmi Naidu,UI/UX,P103,2025-07-26,Development,9.0,Database optimization  v8
+E090,Lakshmi Shenoy,QA,P108,2025-09-25,Bug Fixing,10.5,API integration  v10
+E090,Lakshmi Shenoy,Devops,P106,2025-09-26,Design,8.5,Login bug fix  v7
+E090,Lakshmi Shenoy,Devops,P102,2025-09-27,Bug Fixing,10.5,Dashboard prototype  v6
+E091,Arun Gowda,Research & Development,P104,2025-09-28,Design,4.0,Login bug fix  v5
+E091,Arun Gowda,QA,P108,2025-09-29,Development,2.5,Feature deployment  v5
+E091,Arun Gowda,Research & Development,P102,2025-09-30,Research,9.0,Dashboard prototype  v4
+E092,Lakshmi Pillai,QA,P103,2025-10-01,Documentation,3.0,Experiment analysis  v10
+E092,Lakshmi Pillai,QA,P107,2025-10-02,Design,9.5,Data analysis  v6
+E092,Lakshmi Pillai,Devops,P105,2025-10-03,Research,8.5,Dashboard prototype  v8
+E093,Lakshmi Shetty,UI/UX,P102,2025-10-04,Documentation,6.5,Login bug fix #meeting v3
+E093,Lakshmi Shetty,Devops,P109,2025-10-05,Research,3.5,Database optimization  v9
+E093,Lakshmi Shetty,QA,P106,2025-10-06,Development,10.0,Experiment analysis  v6
+E094,Vikram Gowda,Research & Development,P109,2025-10-07,Documentation,8.5,Dashboard prototype #urgent v1
+E094,Vikram Gowda,UI/UX,P108,2025-10-08,Documentation,11.0,Database optimization #urgent v1
+E094,Vikram Gowda,Devops,P107,2025-10-09,Bug Fixing,8.0,Experiment analysis  v10
+E095,Priya Nambiar,UI/UX,P109,2025-10-10,Research,2.5,Data analysis #meeting v3
+E095,Priya Nambiar,Devops,P107,2025-10-11,Development,8.0,Feature deployment  v8
+E095,Priya Nambiar,UI/UX,P105,2025-10-12,Development,10.5,Login bug fix  v4
+E096,Vikram Shetty,Research & Development,P103,2025-10-13,Design,8.5,User guide update #critical v2
+E096,Vikram Shetty,Devops,P106,2025-10-14,Design,8.0,Data analysis #urgent v1
+E096,Vikram Shetty,Devops,P105,2025-10-15,Bug Fixing,10.0,Data analysis  v4
+E097,Suresh Rao,Research & Development,P101,2025-10-16,Documentation,2.0,Login bug fix  v8
+E097,Suresh Rao,Devops,P105,2025-10-17,Documentation,3.0,Dashboard prototype #critical v2
+E097,Suresh Rao,QA,P109,2025-10-18,Documentation,10.0,Wireframe design #urgent v1
+E098,Priya Kamath,QA,P108,2025-10-19,Research,6.5,Login bug fix  v10
+E098,Priya Kamath,Devops,P110,2025-10-20,Research,8.5,Payment module test  v8
+E098,Priya Kamath,Devops,P101,2025-10-21,Research,10.5,Database optimization #urgent v1
+E010,Suresh Balakrishnan,UI/UX,P105,2025-01-28,Documentation,2.0,Login bug fix #critical v2
+E010,Suresh Balakrishnan,QA,P103,2025-01-29,Development,10.5,Database optimization  v8
+E010,Suresh Balakrishnan,QA,P102,2025-01-30,Development,10.0,User guide update  v7
+E099,Vikram Balakrishnan,QA,P105,2025-10-22,Research,1.5,Login bug fix #critical v2
+E099,Vikram Balakrishnan,Research & Development,P110,2025-10-23,Design,11.0,Feature deployment #meeting v3
+E099,Vikram Balakrishnan,UI/UX,P104,2025-10-24,Bug Fixing,10.5,API integration #meeting v3
+E011,Priya Menon,QA,P106,2025-02-01,Research,5.0,Database optimization  v10
+E011,Priya Menon,Research & Development,P110,2025-02-02,Bug Fixing,10.0,Payment module test  v6
+E011,Priya Menon,QA,P106,2025-02-11,Development,4.8,API integration  v10
+E012,Lakshmi Verma,Research & Development,P109,2025-02-03,Research,3.0,Database optimization  v5
+E012,Lakshmi Verma,Research & Development,P103,2025-02-04,Bug Fixing,0.5,Database optimization #urgent v1
+E012,Lakshmi Verma,QA,P102,2025-02-05,Development,8.0,Database optimization  v6
+E012,Lakshmi Verma,QA,P103,2025-02-12,Development,5.4,Dashboard prototype  v9
+E013,Vikram Verma,Devops,P104,2025-02-06,Development,0.5,Data analysis  v7
+E013,Vikram Verma,UI/UX,P103,2025-02-07,Development,0.0,Database optimization #critical v2
+E013,Vikram Verma,Devops,P102,2025-02-08,Development,8.0,User guide update  v6
+E013,Vikram Verma,QA,P109,2025-02-13,Development,5.7,Experiment analysis #critical v2
+E014,Suresh Iyer,UI/UX,P102,2025-02-09,Development,5.5,Wireframe design  v6
+E014,Suresh Iyer,Devops,P109,2025-02-10,Research,9.0,User guide update  v4
+E014,Suresh Iyer,QA,P108,2025-02-11,Bug Fixing,9.0,API integration  v5
+E014,Suresh Iyer,Devops,P109,2025-02-14,Research,5.4,Dashboard prototype  v7
+E015,Vikram Pillai,QA,P105,2025-02-12,Design,8.0,Payment module test  v10
+E015,Vikram Pillai,QA,P101,2025-02-13,Development,0.5,Login bug fix #meeting v3
+E015,Vikram Pillai,Devops,P103,2025-02-14,Development,10.5,User guide update  v10
+E015,Vikram Pillai,QA,P101,2025-02-15,Research,5.4,Wireframe design  v6
+E016,Suresh Kamath,Devops,P107,2025-02-15,Design,4.5,Database optimization #urgent v1
+E016,Suresh Kamath,Devops,P110,2025-02-16,Design,7.5,Data analysis  v4
+E016,Suresh Kamath,QA,P110,2025-02-16,Bug Fixing,5.1,Data analysis #critical v2
+E016,Suresh Kamath,Devops,P108,2025-02-17,Design,8.0,Experiment analysis #meeting v3
+E017,Vikram Bhat,UI/UX,P108,2025-02-17,Documentation,6.0,Dashboard prototype  v8
+E017,Vikram Bhat,UI/UX,P110,2025-02-18,Documentation,0.5,User guide update  v5
+E017,Vikram Bhat,Research & Development,P104,2025-02-19,Development,0.0,Data analysis #urgent v1
+E017,Vikram Bhat,Devops,P105,2025-02-20,Bug Fixing,8.0,API integration  v9
+E018,Vikram Iyer,Devops,P104,2025-02-18,Research,4.8,Experiment analysis  v10
+E018,Vikram Iyer,Devops,P108,2025-02-21,Documentation,4.0,Wireframe design  v10
+E018,Vikram Iyer,UI/UX,P103,2025-02-22,Documentation,4.5,Payment module test  v5
+E018,Vikram Iyer,Devops,P105,2025-02-23,Documentation,11.0,Database optimization  v4
+E019,Vikram Hegde,Research & Development,P102,2025-02-19,Design,5.1,Payment module test  v4
+E019,Vikram Hegde,Research & Development,P102,2025-02-24,Research,0.0,Login bug fix  v10
+E019,Vikram Hegde,Devops,P105,2025-02-25,Research,7.0,Experiment analysis #critical v2
+E019,Vikram Hegde,UI/UX,P109,2025-02-26,Documentation,11.0,Login bug fix  v5
+E080,Suresh Krishnan,QA,P101,2025-08-26,Design,5.0,Payment module test  v10
+E080,Suresh Krishnan,Devops,P103,2025-08-27,Design,2.5,Experiment analysis  v7
+E080,Suresh Krishnan,Research & Development,P102,2025-08-28,Bug Fixing,8.5,User guide update  v7
+E081,Vikram Rao,QA,P108,2025-08-29,Design,6.5,API integration  v10
+E081,Vikram Rao,QA,P103,2025-08-30,Design,8.5,Wireframe design #urgent v1
+E081,Vikram Rao,Devops,P106,2025-08-31,Development,10.0,Payment module test  v4
+E082,Priya Shenoy,Research & Development,P102,2025-09-01,Development,7.0,API integration  v4
+E082,Priya Shenoy,Research & Development,P104,2025-09-02,Development,7.5,Data analysis #meeting v3
+E082,Priya Shenoy,QA,P107,2025-09-03,Research,8.0,Login bug fix #urgent v1
+E083,Vikram Menon,Research & Development,P104,2025-09-04,Development,1.0,Database optimization  v10
+E083,Vikram Menon,UI/UX,P101,2025-09-05,Documentation,4.5,API integration #urgent v1
+E083,Vikram Menon,UI/UX,P105,2025-09-06,Development,8.0,Feature deployment  v7
+E084,Lakshmi Varma,Research & Development,P103,2025-09-07,Development,4.0,Database optimization #critical v2
+E084,Lakshmi Varma,QA,P102,2025-09-08,Bug Fixing,7.0,Payment module test  v4
+E084,Lakshmi Varma,Research & Development,P101,2025-09-09,Documentation,10.0,Experiment analysis #critical v2
+E085,Priya Pillai,QA,P107,2025-09-10,Bug Fixing,3.5,Login bug fix  v8
+E085,Priya Pillai,Devops,P102,2025-09-11,Research,10.0,Feature deployment  v9
+E085,Priya Pillai,QA,P101,2025-09-12,Bug Fixing,9.5,Wireframe design  v5
+E086,Lakshmi Balakrishnan,Devops,P101,2025-09-13,Development,11.0,Wireframe design  v4
+E086,Lakshmi Balakrishnan,UI/UX,P106,2025-09-14,Research,8.5,Database optimization  v8
+E086,Lakshmi Balakrishnan,Research & Development,P107,2025-09-15,Development,9.0,Wireframe design  v10
+E087,Suresh Bhat,Research & Development,P101,2025-09-16,Documentation,6.0,Database optimization #urgent v1
+E087,Suresh Bhat,Research & Development,P108,2025-09-17,Bug Fixing,4.0,Database optimization  v6
+E087,Suresh Bhat,UI/UX,P105,2025-09-18,Bug Fixing,10.0,Database optimization  v5
+E088,Priya Hegde,UI/UX,P103,2025-09-19,Development,6.5,Wireframe design  v8
+E088,Priya Hegde,QA,P102,2025-09-20,Bug Fixing,8.5,Wireframe design  v10
+E088,Priya Hegde,Devops,P109,2025-09-21,Research,10.0,API integration  v6
+E089,Arun Pai,QA,P105,2025-09-22,Development,1.0,Database optimization  v5
+E089,Arun Pai,QA,P109,2025-09-23,Design,6.5,User guide update  v7
+E089,Arun Pai,Devops,P103,2025-09-24,Design,9.0,Database optimization  v7
+E001,Lakshmi Kamath,Research & Development,P101,2025-01-01,Bug Fixing,10.0,Payment module test  v9
+E001,Lakshmi Kamath,UI/UX,P109,2025-01-02,Design,5.5,Data analysis  v4
+E001,Lakshmi Kamath,Devops,P103,2025-01-03,Design,8.0,Wireframe design  v9
+E002,Arun Reddy,UI/UX,P108,2025-01-04,Design,6.5,API integration #urgent v1
+E002,Arun Reddy,QA,P102,2025-01-05,Development,8.5,User guide update #urgent v1
+E002,Arun Reddy,UI/UX,P105,2025-01-06,Development,11.0,Dashboard prototype #urgent v1
+E003,Priya Gowda,Research & Development,P107,2025-01-07,Documentation,0.5,Dashboard prototype  v9
+E003,Priya Gowda,UI/UX,P102,2025-01-08,Research,4.0,Dashboard prototype #critical v2
+E003,Priya Gowda,UI/UX,P105,2025-01-09,Research,9.5,Data analysis  v8
+E004,Suresh Hegde,Research & Development,P110,2025-01-10,Documentation,7.5,Database optimization #critical v2
+E004,Suresh Hegde,UI/UX,P105,2025-01-11,Documentation,1.5,Feature deployment  v4
+E004,Suresh Hegde,Devops,P101,2025-01-12,Documentation,8.5,Wireframe design  v7
+E005,Lakshmi Iyer,QA,P103,2025-01-13,Design,4.0,API integration  v7
+E005,Lakshmi Iyer,Devops,P107,2025-01-14,Bug Fixing,4.5,User guide update #critical v2
+E005,Lakshmi Iyer,QA,P102,2025-01-15,Design,8.5,User guide update  v5
+E006,Suresh Varma,QA,P108,2025-01-16,Development,9.5,Login bug fix  v5
+E006,Suresh Varma,Research & Development,P109,2025-01-17,Development,5.5,API integration #meeting v3
+E006,Suresh Varma,Research & Development,P101,2025-01-18,Development,10.5,Database optimization  v6
+E007,Suresh Nambiar,Research & Development,P108,2025-01-19,Documentation,8.0,Feature deployment #critical v2
+E007,Suresh Nambiar,QA,P101,2025-01-20,Documentation,2.5,API integration #meeting v3
+E007,Suresh Nambiar,QA,P105,2025-01-21,Bug Fixing,10.5,User guide update  v4
+E008,Lakshmi Nair,Research & Development,P104,2025-01-22,Documentation,3.5,Payment module test  v6
+E008,Lakshmi Nair,Research & Development,P103,2025-01-23,Design,3.0,API integration #critical v2
+E008,Lakshmi Nair,QA,P107,2025-01-24,Documentation,8.0,Payment module test  v10
+E009,Suresh Pai,Devops,P107,2025-01-25,Research,11.0,User guide update #critical v2
+E009,Suresh Pai,QA,P101,2025-01-26,Development,0.0,Data analysis #urgent v1
+E009,Suresh Pai,Research & Development,P109,2025-01-27,Design,8.0,API integration #urgent v1

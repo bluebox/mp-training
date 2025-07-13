@@ -1,0 +1,9 @@
+EmployeeID,Name,Department,ProjectID,Date,TaskCategory,HoursWorked,Remarks
+E009,Suresh Pai,Devops,P107,2025-01-25,Research,11.0,User guide update #critical v2
+E018,Vikram Iyer,Devops,P105,2025-02-23,Documentation,11.0,Database optimization  v4
+E022,Arun Iyer,QA,P102,2025-03-06,Bug Fixing,11.0,Feature deployment  v6
+E030,Vikram Pai,QA,P107,2025-03-31,Design,11.0,Wireframe design  v5
+E057,Vikram Nair,Research & Development,P102,2025-06-20,Development,11.0,Database optimization #urgent v1
+E067,Suresh Reddy,Research & Development,P102,2025-07-20,Design,11.0,Feature deployment #meeting v3
+E002,Arun Reddy,UI/UX,P105,2025-01-06,Development,11.0,Dashboard prototype #urgent v1
+E019,Vikram Hegde,UI/UX,P109,2025-02-26,Documentation,11.0,Login bug fix  v5

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Numbers extends Thread {
 	
-	private List<Integer> buffer = new ArrayList<>();
+	private List<Integer> buffer = new ArrayList<>(10);
     private  int capacity = 5;
     
     
