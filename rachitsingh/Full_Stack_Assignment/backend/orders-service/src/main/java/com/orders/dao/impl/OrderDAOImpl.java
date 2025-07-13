@@ -13,14 +13,17 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.orders.Exceptions.OrderDatabaseOperationException;
 import com.orders.dao.OrderDAO;
 import com.orders.domain.Order;
-import com.orders.domain.OrderItem;
+import com.orders.item.dao.OrderItemDAO;
+import com.orders.item.domain.OrderItem;
 import com.orders.domain.SearchOrderCriteria;
 import com.orders.enums.OrderStatus;
+import com.orders.exceptions.OrderDatabaseOperationException;
+import com.orders.exceptions.OrderNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderDAOImpl implements OrderDAO {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	private OrderItemDAO orderItemDAO;
 
 	private static class OrderItemMapper implements RowMapper<OrderItem> {
 		@Override
@@ -71,14 +76,13 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public Order fetchCustomerOrderWithItems(Long orderId, Long customerId) {
+	public Order fetchCustomerOrderWithItems(Long orderId, Long customerId)
+			throws OrderNotFoundException, OrderDatabaseOperationException {
 		String orderSql = "SELECT OrderId, UserId, Address, TotalAmount, Status, PlacedAtDate, UpdatedAtDate FROM orders WHERE UserId = :customerId AND OrderId = :orderId";
 		MapSqlParameterSource params = new MapSqlParameterSource("orderId", orderId);
 		Order order = namedParameterJdbcTemplate.queryForObject(orderSql, params, new OrderMapper());
 
-		String itemsSql = "SELECT OrderItemId, OrderId, ProductId, Quantity, Price, CreatedAt User FROM order_items WHERE OrderId = :orderId";
-		List<OrderItem> items = namedParameterJdbcTemplate.query(itemsSql, params, new OrderItemMapper());
-
+		List<OrderItem> items = orderItemDAO.fetchOrderItemsByOrderId(orderId);
 		order.setOrderItems(items);
 		return order;
 	}
@@ -96,9 +100,15 @@ public class OrderDAOImpl implements OrderDAO {
 		params.addValue("status", orderObj.getStatus());
 		params.addValue("placedAtDate", now);
 
+		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+
 		try {
-			int recordInserted = namedParameterJdbcTemplate.update(sql, params);
+			int recordInserted = namedParameterJdbcTemplate.update(sql, params, keyHolder, new String[] { "OrderId" });
 			if (recordInserted > 0) {
+				Number generatedOrderId = keyHolder.getKey();
+				if (generatedOrderId != null) {
+					orderObj.setOrderId(generatedOrderId.longValue());
+				}
 				orderObj.setStatus(OrderStatus.PROCESSING);
 				orderObj.setPlacedAtDate(now.toLocalDateTime());
 				return orderObj;

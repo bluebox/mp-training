@@ -1,4 +1,4 @@
-package com.orders.Exceptions;
+package com.orders.exceptions;
 
 public class OrderNotFoundException extends Exception {
 

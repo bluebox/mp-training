@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.orders.Exceptions.InvalidOrderException;
-import com.orders.Exceptions.OrderDatabaseOperationException;
-import com.orders.Exceptions.OrderNotFoundException;
 import com.orders.dao.OrderDAO;
 import com.orders.domain.Order;
 import com.orders.domain.SearchOrderCriteria;
+import com.orders.exceptions.InvalidOrderException;
+import com.orders.exceptions.OrderDatabaseOperationException;
+import com.orders.exceptions.OrderNotFoundException;
+import com.orders.item.service.OrderItemService;
 import com.orders.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,16 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderServiceImpl implements OrderService {
 
 	private final OrderDAO orderDAO;
+	private final OrderItemService orderItemService;
 
 	@Override
 	public Order placeNewOrder(Order order) throws OrderDatabaseOperationException, InvalidOrderException {
 		validateOrderFields(order);
 		try {
-			return orderDAO.createOrder(order);
+			Order savedOrder = orderDAO.createOrder(order);
+			order.getOrderItems().forEach(item -> item.setOrderId(savedOrder.getOrderId()));
+			orderItemService.saveOrderItems(order.getOrderItems());
+			return savedOrder;
 		} catch (DataAccessException e) {
 			log.error("Error while creating the order.", e);
 			throw new OrderDatabaseOperationException("Error while creating the order record", e);

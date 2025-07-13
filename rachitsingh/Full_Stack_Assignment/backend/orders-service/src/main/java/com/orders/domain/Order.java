@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.orders.enums.OrderStatus;
+import com.orders.item.domain.OrderItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

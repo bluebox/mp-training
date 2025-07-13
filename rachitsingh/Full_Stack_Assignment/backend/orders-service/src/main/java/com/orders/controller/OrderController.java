@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orders.Exceptions.InvalidOrderException;
-import com.orders.Exceptions.OrderDatabaseOperationException;
-import com.orders.Exceptions.OrderNotFoundException;
 import com.orders.domain.Order;
 import com.orders.domain.SearchOrderCriteria;
+import com.orders.exceptions.InvalidOrderException;
+import com.orders.exceptions.OrderDatabaseOperationException;
+import com.orders.exceptions.OrderNotFoundException;
 import com.orders.service.OrderService;
 
 import lombok.RequiredArgsConstructor;

@@ -2,9 +2,10 @@ package com.orders.dao;
 
 import java.util.List;
 
-import com.orders.Exceptions.OrderDatabaseOperationException;
 import com.orders.domain.Order;
 import com.orders.domain.SearchOrderCriteria;
+import com.orders.exceptions.OrderDatabaseOperationException;
+import com.orders.exceptions.OrderNotFoundException;
 
 public interface OrderDAO {
 	Order createOrder(Order order) throws OrderDatabaseOperationException;
@@ -13,5 +14,6 @@ public interface OrderDAO {
 
 	void updateMyOrder(SearchOrderCriteria criteria) throws OrderDatabaseOperationException;
 
-	Order fetchCustomerOrderWithItems(Long orderId, Long customerId);
+	Order fetchCustomerOrderWithItems(Long orderId, Long customerId)
+			throws OrderNotFoundException, OrderDatabaseOperationException;
 }

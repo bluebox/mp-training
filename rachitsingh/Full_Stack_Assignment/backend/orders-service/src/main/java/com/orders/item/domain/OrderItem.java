@@ -1,4 +1,4 @@
-package com.orders.domain;
+package com.orders.item.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,7 +14,8 @@ public class OrderItem {
 	private Long orderItemId;
 	private Long orderId;
 	private Long productId;
-	private int quantity;
+	private String productName;
+	private Integer quantity;
 	private BigDecimal price;
 	private LocalDateTime createdAt;
 }

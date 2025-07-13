@@ -1,4 +1,4 @@
-package com.orders.Exceptions;
+package com.orders.exceptions;
 
 public class OrderDatabaseOperationException extends Exception {
 	private static final long serialVersionUID = -3513194069519689778L;
