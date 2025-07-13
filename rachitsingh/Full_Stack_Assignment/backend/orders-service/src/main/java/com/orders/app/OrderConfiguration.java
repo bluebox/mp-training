@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @ComponentScan(basePackages = "com.orders")
-@PropertySource("classpath:orders-service.properties")
+@PropertySource("classpath:order-service.properties")
 public class OrderConfiguration {
 
 	@Value("${orders.datasource.url}")

@@ -2,11 +2,14 @@ package com.product.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.product.dao.impl.ProductApprovalDAOImpl;
 import com.product.domain.ProductRequest;
 import com.product.enums.RequestStatus;
 import com.product.service.ProductApprovalService;
 
+@Service
 public class ProductApprovalServiceImpl implements ProductApprovalService{
 
 	ProductApprovalDAOImpl productApprovalDAOImpl = new ProductApprovalDAOImpl();

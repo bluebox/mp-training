@@ -23,7 +23,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<Product> getProducts(String productName, Integer flagName){
+	public List<Product> getProducts(String productName){
+		Integer flagName = 0;
 		if (productName != null || productName.length() != 0) {
 			flagName = 1;
 		}

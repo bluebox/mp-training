@@ -7,5 +7,5 @@ import com.product.domain.ProductRequest;
 
 public interface ProductService {
 	public void insertProduct(ProductRequest productRequest);
-	public List<Product> getProducts(String productName,Integer flagName);
+	public List<Product> getProducts(String productName);
 }
