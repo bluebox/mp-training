@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class EmployeesLoggingMoreThan10Hours {
 
 	public static void Q7(List<Employee> employee, List<String> headers) {
+		
 //		//Group by employee ID
 //		Map<String, List<Employee>> groupedByemployees = employee.stream()
 //				.filter(e->e.getHoursWorked()>10.0)
@@ -55,14 +56,12 @@ public class EmployeesLoggingMoreThan10Hours {
         try {
 			Files.createDirectories(path.getParent());
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
         try {
 			Files.write(path, lines, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
