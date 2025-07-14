@@ -1,0 +1,6 @@
+EmployeeId,Name,Department,ProjectId,Date,TaskCategory,HoursWorked,Remarks
+E001,Alice Smith,UI/UX,PRJ101,2025-07-05,Development,6.5,Initial UI wireframe #urgent
+E002,Bob Johnson,QA,PRJ102,2025-07-06,Bug Fixing,7.0,Critical crash fix #critical
+E003,Clara Zhou,Devops,PRJ103,2025-07-13,Documentation,5.5,Updated docs #urgent
+E004,David White,Devops,PRJ104,2025-07-22,Bug Fixing,7.0,System bug patch #critical
+E005,Eva Lopez,UI/UX,PRJ105,2025-07-06,Development,6.0,Weekend sprint #urgent
