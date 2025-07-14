@@ -69,7 +69,7 @@ class Magazine(LibraryItem):
     def check_availability(self):
         print("Magazines available",self.name)
 try:
-    book1 = Book( "Modern Physics","dr.Verma",2011 )
+    book1 = Book( "Modern Physics","dr.Verma",21 )
     book2 = Book( "Calculus","sharma",2015 )
     book3 = Book( "Algorithms","Cormenn",2012 )
 
