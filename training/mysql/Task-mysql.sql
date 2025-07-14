@@ -7,7 +7,7 @@ use sys;
 
 create table Departments(
 dept_id int unsigned primary key,
-Manager_Id int unsigned unique,
+Manager_Id int unsigned,
 dept_name varchar(20)
 -- foreign key (Manager_Id) references Managers(Manager_Id)
 );
@@ -19,7 +19,7 @@ Manager_Id int unsigned primary key,
 dept_id int unsigned unique,
 Manager_Since Date,
 foreign key (dept_id) references Departments(dept_id) on delete cascade,
-check(999<Emp_Id<10000)
+check(Emp_Id>999 and Emp_Id<10000)
 );
 
 
@@ -29,11 +29,11 @@ Employee_Name varchar(20) not null,
 age int not null,
 Date_Joined DateTime,
 Manager_Id int unsigned not null,
-dept_id int unsigned unique,
+dept_id int unsigned,
 Foreign key (Manager_Id) references Managers(Manager_Id),
 Foreign key (dept_id) references Departments(dept_id),
 check(age>0),
-check(999<Emp_Id<10000)
+check(Emp_Id>999 and Emp_Id<10000)
 );
 
 
@@ -108,4 +108,13 @@ select designation from PayScale;
 
 desc Departments;
 
+explain select * from  Employees where Manager_Id = 3;
+
+create index indexing_manager_id on Employees(Manager_Id);
+
+explain select * from Employees where Manager_Id=3;
+
+insert into Employees(Emp_Id,Employee_Name,age,Date_Joined,Manager_Id,dept_id) values(978,"bhanu",22,'2023-09-03',3,1);
+
+insert into Employees(Emp_Id,Employee_Name,age,Date_Joined,Manager_Id,dept_id) values(9768,"bhanu",-1,'2023-09-03',3,1);
 
