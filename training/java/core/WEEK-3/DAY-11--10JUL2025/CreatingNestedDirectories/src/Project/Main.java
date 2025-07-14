@@ -43,11 +43,20 @@ public class Main {
 	
  public static void main(String [] args) {
 	 // creating file with nested directories using a loop.
-	 String filename="files/myFiles/secureFiles/test.csv";
+	 String filename="";
 	 Path path=Path.of(filename);
-	 usingLoop(path);
-	 extraInfo(path);
-	 path=Path.of("");
-	 System.out.println(path.toAbsolutePath());
+//	 usingLoop(path);
+//	 extraInfo(path);
+	 try {
+		Files.walk(path, 5).forEach(System.out::println);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	 System.out.println("+================================+");
+	 try(var dirs=Files.newDirectoryStream(path);) {
+		dirs.forEach(d -> System.out.println(d.getFileName()));
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
  }
 }

@@ -2,15 +2,12 @@ package Project;
 
 public class ThreadChallenge {
     public static void main(String[] args) {
-        // Thread by extending Thread class
         EvenNumberThread evenThread = new EvenNumberThread();
-
-        // Thread using Runnable
         Runnable oddRunnable = () -> {
             for (int i = 1; i <= 10; i += 2) {
                 System.out.println("Odd: " + i);
                 try {
-                    Thread.sleep(500); // Sleep to simulate processing
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     System.out.println("Odd thread interrupted!");
                     break;
@@ -19,11 +16,8 @@ public class ThreadChallenge {
         };
         Thread oddThread = new Thread(oddRunnable);
 
-        // Start both threads asynchronously
         evenThread.start();
         oddThread.start();
-
-        // Let threads run for a few seconds then interrupt one
         try {
             Thread.sleep(3000);
             System.out.println("Interrupting even thread...");
@@ -34,14 +28,13 @@ public class ThreadChallenge {
     }
 }
 
-// Thread class that prints even numbers
 class EvenNumberThread extends Thread {
     @Override
     public void run() {
         for (int i = 0; i <= 8; i += 2) {
             System.out.println("Even: " + i);
             try {
-                Thread.sleep(500); // Sleep to simulate processing
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 System.out.println("Even thread interrupted!");
                 break;
