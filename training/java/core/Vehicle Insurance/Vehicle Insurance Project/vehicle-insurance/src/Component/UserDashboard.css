@@ -1,0 +1,122 @@
+.dashboard-container {
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+}
+
+.dashboard-header button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #4a90e2;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dashboard-header button:hover {
+  background-color: #357ab8;
+}
+
+.profile-section, .dashboard-card, .dashboard-section {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.dashboard-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.dashboard-card, .profile-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard-table input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #357ab8;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: #ffffff;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+ul li button {
+  margin-left: 10px;
+  background-color: #50c878;
+}
+
+ul li button:hover {
+  background-color: #3aa960;
+}
+table{
+  border: 5px solid;
+  width: 500px;
+  height: 30px;
+  overflow: scroll;
+}
+tr,td,th{
+  text-align: center;
+  margin: 10px;
+}

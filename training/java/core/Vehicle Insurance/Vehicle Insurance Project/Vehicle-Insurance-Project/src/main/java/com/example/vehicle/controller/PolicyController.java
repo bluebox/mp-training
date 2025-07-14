@@ -43,23 +43,27 @@ public class PolicyController {
 	public String payDueAmount(@RequestParam int policyId) throws SQLException {
 		return policyService.payPolicyAmount(policyId);
 	}
+	@PutMapping("/delete")
+	public String deletePolicy(@RequestParam int policyId) throws Exception {
+		return policyService.updateStatus(policyId);
+	}
 	@GetMapping("/allRequestedPolicies")
 	public List<Policy> getAllRequestedPolicies() throws Exception {
 		return policyService.showAllRequestedPolicies();
 	}
 	@PutMapping("/updatePolicyRequested")
-	public String updatedRequestedPolicy(@RequestParam int policyId,@RequestParam char status) throws Exception {
-		return policyService.updatePolicyStatus(policyId, status);
+	public String updatedRequestedPolicy(@RequestParam int policyId,@RequestParam char status,@RequestParam String approvedBy) throws Exception {
+		return policyService.updatePolicyStatus(policyId, status,approvedBy);
 	}
 	@PutMapping("/renew")
 	public String renewPolicy(@RequestParam int policyId,@RequestParam int policyTerm,@RequestParam String approvedBy) throws Exception {
 		return policyService.renewPolicy(policyId, policyTerm, approvedBy);
 	}
-	@PostMapping("/update")
+	@PutMapping("/update")
 	public String updatePolicy(@RequestBody Policy p) throws Exception {
 		return policyService.updatePolicy(p.getPolicyId(), p.getPolicyTerm(), (p.getPolicyType().equals("gold"))?PolicyType.Gold: (p.getPolicyType().equals("silver"))?PolicyType.Silver:PolicyType.Platinum, p.getApprovedBy());
 	}
-	@GetMapping("/showById")
+	@GetMapping("/show")
 	public Policy getPolicyById(@RequestParam int policyId) throws Exception {
 		return policyService.getPolicyById(policyId);
 	}

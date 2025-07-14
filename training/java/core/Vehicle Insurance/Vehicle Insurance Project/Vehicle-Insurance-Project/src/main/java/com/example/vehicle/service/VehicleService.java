@@ -66,5 +66,8 @@ public class VehicleService {
 	public List<Vehicle> getAllVehicles() throws SQLException{
 		return vehicleDao.getAllVehicles();
 	}
+	public List<Vehicle> getVehiclesByCustomerId(int customerId) throws SQLException {
+		return vehicleDao.getAllVehiclesByCustomer(customerId);
+	}
 
 }

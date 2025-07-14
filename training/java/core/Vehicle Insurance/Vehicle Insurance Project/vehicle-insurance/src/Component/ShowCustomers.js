@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 function Customer(props){
     return (
     <tr>
@@ -17,8 +16,7 @@ function Customer(props){
         <td>{props.sample.customerUpdatedOn}</td>
         <td>{props.sample.customerUpdatedBy}</td>
         <td>{props.sample.createdBy}</td>
-        <td><Link to={`/updateBooks/${props.sample.bookId}`}><button>Update</button></Link></td>
-        <td><Link  to={`/updateAvailability/${props.sample.bookId}`}><button>Change Status</button></Link></td>
+        <td><Link to={`/customer/update/${props.sample.customerId}`}><button>Update</button></Link></td>
         <td><button onClick={() => props.onDelete(props.sample.customerId)}>Delete</button></td>
     </tr>
     );
@@ -27,7 +25,8 @@ function ShowCustomers(){
     const[customer,setCustomer]=useState([]);
     useEffect(()=>{
         fetch("http://localhost:8000/customer/showAll", {
-            method: "GET"
+            method: "GET",
+            credentials:"include"
         })
         .then((res)=>{
             if(!res.ok) {
@@ -55,12 +54,18 @@ function ShowCustomers(){
     // }
     function DeleteCustomer(customerId){
         fetch(`http://localhost:8000/customer/delete?customerId=${customerId}`,{
-        method:"PUT",
+            method:"PUT",
+            credentials:"include"
         })
-        .then(res => res.text())
-        .then(msg => {
-        alert(msg);
-        window.location.reload();
+        .then((res)=>{
+            return res.text();
+        })
+        .then((data)=>{
+            alert(data);
+            window.location.reload();
+        })
+        .catch((err)=>{
+            alert("Error occured",err);
         });
     }
     return(
@@ -87,7 +92,7 @@ function ShowCustomers(){
                         {customer.map((x)=>(<Customer sample={x} onDelete={DeleteCustomer}/>))}
                     </tbody>
             </table>
-            <Link to="/addBooks"><button>Add Book</button></Link>
+            <Link to="/user/personal"><button>Add Customer</button></Link>
         </div>
     );
 }

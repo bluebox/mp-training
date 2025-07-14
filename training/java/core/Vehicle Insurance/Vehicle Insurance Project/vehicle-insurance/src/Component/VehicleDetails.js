@@ -15,27 +15,59 @@ function VehicleDetails(){
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify(formObj)
+            body:JSON.stringify(formObj),
+            credentials:"include"
         })
         .then((res)=>{
-            if(!res.ok) {
+            if(!res.ok){
                 throw new Error("Failed to fetch data");
             }
             else{
-                return res;
+                console.log(res.data);
+                return res.text();
             }
         })
-        .then(()=>{
-            alert("Vehicle data added successfully");
-            console.log("Vehicle data added successfully");
+        .then((data)=>{
+            console.log(data);
+            localStorage.setItem("vehicleId",data);
             nav("/user/userDetails");
         })
         .catch(()=>{
-            alert("Error occured");
-            console.log("Error occured");
+            alert("Exception occured");
         })
     }
-    
+    if(localStorage.getItem("customerId")!==null){
+        return(
+        <form onSubmit={sendData}>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label htmlFor="chasisNum">Chasis Number : </label></td>
+                        <td><input type="text" id="chasisNum" name="chasisNum"/></td>
+                    </tr>
+                    <tr>
+                        <td><label htmlFor="regNum">Registration Number</label></td>
+                        <td><input type="text" id="regNum" name="regNum"/></td>
+                    </tr>
+                    <tr>
+                        <td><label htmlFor="vehicleModel">Model name : </label></td>
+                        <td><input type="text" id="vehicleModel" name="vehicleModel"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="customerId1" name="customerId" value={localStorage.getItem("customerId")} style={{visibility:"hidden"}}/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="createdBy1" name="createdBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}><input type="submit"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        )
+    }
+    else{
     return(
         <form onSubmit={sendData}>
             <table>
@@ -53,12 +85,11 @@ function VehicleDetails(){
                         <td><input type="text" id="vehicleModel" name="vehicleModel"/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="customerId">Customer ID : </label></td>
-                        <td><input type="text" id="customerId" name="customerId"/></td>
+                        <td><label htmlFor="customerId1">Customer ID : </label></td>
+                        <td><input type="text" id="customerId1" name="customerId"/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="createdBy">Created By : </label></td>
-                        <td><input type="text" id="createdBy" name="createdBy"/></td>
+                        <td><input type="text" id="createdBy1" name="createdBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
                         <td colSpan={2}><input type="submit"/></td>
@@ -67,5 +98,6 @@ function VehicleDetails(){
             </table>
         </form>
     )
+    }
 }
 export default VehicleDetails;

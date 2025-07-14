@@ -83,6 +83,9 @@ public class CustomerDao {
 	}
 	
 	public String deleteCustomerById(int customerId) throws Exception {
+		if((jdbcTemplate.queryForObject("select count(*) from customers where customer_id=? and status='I'", Integer.class,customerId))>0) {
+			return "Customer is already deleted";
+		}
 		String sql="Update customers set status='I' WHERE customer_id=?";
 		
 		List<Vehicle> vehicles=vehicleDao.getAllVehiclesByCustomer(customerId);

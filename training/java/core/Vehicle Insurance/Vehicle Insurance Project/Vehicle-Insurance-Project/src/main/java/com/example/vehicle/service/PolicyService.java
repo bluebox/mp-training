@@ -19,12 +19,13 @@ public class PolicyService {
 	private PolicyDao repo;
 	public String addPolicy(int policyTerm, PolicyType policyType, LocalDateTime startDate,LocalDateTime endDate, int vehicleId, String approvedBy) throws Exception {
 		if(repo.getPolicyByVehicleIdCount(vehicleId)>0) {
+			System.out.println("Policy already existed for this Vehicle");
 			return "There is a policy already for this vehicle";
 		}
 		return repo.addPolicy(policyTerm, policyType, startDate, endDate, vehicleId, approvedBy);
 	}
 	public String dueDate(int policyId) throws Exception {
-		return repo.updateStatus(policyId);
+		return repo.dueDate(policyId);
 	}
 	public String payPolicyAmount(int policyId) throws SQLException {
 		if(!repo.getPolicyById(policyId).getEndDate().isBefore(LocalDateTime.now())) {
@@ -35,11 +36,14 @@ public class PolicyService {
 			return "There is no due bill on this policy";
 		}
 	}
+	public String updateStatus(int policyId) throws Exception {
+		return repo.updateStatus(policyId);
+	}
 	public List<Policy> showAllRequestedPolicies() throws Exception {
 		return repo.getPoliciesRequested();
 	}
-	public String updatePolicyStatus(int policyId,char policyStatus) throws Exception {
-		return repo.updateStatus(policyId, policyStatus);
+	public String updatePolicyStatus(int policyId,char policyStatus,String approvedBy) throws Exception {
+		return repo.updateStatus(policyId, policyStatus,approvedBy);
 	}
 	public String renewPolicy(int policyId,int policyTerm, String approvedBy) throws Exception {
 		Policy p=repo.getPolicyById(policyId);

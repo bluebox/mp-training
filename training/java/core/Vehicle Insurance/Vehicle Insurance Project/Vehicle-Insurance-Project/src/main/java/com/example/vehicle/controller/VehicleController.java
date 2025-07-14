@@ -49,6 +49,10 @@ public class VehicleController {
 	public List<Vehicle> showAllVehicles() throws SQLException {
 		return vehicleService.getAllVehicles();
 	}
+	@GetMapping("/showByCustomerId")
+	public List<Vehicle> showByCustomerId(int customerId) throws SQLException {
+		return vehicleService.getVehiclesByCustomerId(customerId);
+	}
 }
 //{
 //    "chasisNum":2875,

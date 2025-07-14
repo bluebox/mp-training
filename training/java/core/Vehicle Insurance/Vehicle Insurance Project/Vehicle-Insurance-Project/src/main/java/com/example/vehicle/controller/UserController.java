@@ -30,17 +30,26 @@ public class UserController {
 		return userService.addUser(u);
 	}
 	@PutMapping("/updatePassword")
-	public String updatePassword(@RequestParam String username,@RequestParam String password,@RequestParam String updatedBy) throws Exception {
+	public String updatePassword(@RequestParam String username,@RequestParam String oldPassword,@RequestParam String password,@RequestParam String updatedBy) throws Exception {
+		if(userService.getUserByUsername(username).getPassword()!=oldPassword) {
+			return "Please enter correct password";
+		}
 		return userService.updatePassword(username, password, updatedBy);
 	}
 	@GetMapping("/show")
 	public User getUserById(@RequestParam String username) throws Exception {
 		return userService.getUserByUsername(username);
 	}
-//	@GetMapping("/check")
-//	public String check(@RequestParam String username,@RequestParam String password) throws Exception {
-//		return userService.checkCredentials(username, password);
-//	}
+	@GetMapping("/check")
+	public String check(@RequestParam String username,@RequestParam String password) throws Exception {
+		User u=userService.getUserByUsername(username);
+		if(u.getPassword()==password) {
+			return "Login is sucessful";
+		}
+		else {
+			return "login failed";
+		}
+	}
 	@GetMapping("/showAll")
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();

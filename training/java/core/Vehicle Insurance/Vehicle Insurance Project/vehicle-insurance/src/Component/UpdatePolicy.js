@@ -1,7 +1,28 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Policy(){
+function UpdatePolicy(){
+    const [policy,setPolicy]=useState([]);
     const nav=useNavigate();
+    const { policyId }=useParams();
+    useEffect(()=>{
+        fetch(`http://localhost:8000/policy/show?policyId=${policyId}`,{
+            method: "GET",
+            credentials:"include"
+        })
+        .then((res)=>{
+            if(!res.ok) {
+                alert("Failed to retrieve data");
+            }
+            return res.json();
+        })
+        .then((data)=>{
+            setPolicy(data);
+        })
+        .catch((err)=>{
+            alert("Error occured",err);
+        });
+    },[policyId]);
     function setData(event){
         event.preventDefault();
         const form=event.target;
@@ -9,8 +30,9 @@ function Policy(){
         const formObj=Object.fromEntries(formData.entries());
         alert(JSON.stringify(formObj));
         console.log(JSON.stringify(formObj));
-        return fetch("http://localhost:8000/policy/add",{
-            method:"POST",
+        formObj.policyId=policyId;
+        fetch("http://localhost:8000/policy/update",{
+            method:"PUT",
             headers:{
                 "Content-Type":"application/json"
             },
@@ -27,8 +49,7 @@ function Policy(){
         })
         .then((data)=>{
             alert(data);
-            console.log("Policy is requested successfully"+data);
-            nav("/policy/show");
+            nav("/policy/show")
         })
         .catch(()=>{
             alert("Error occured");
@@ -37,19 +58,21 @@ function Policy(){
     }
     return(
         <form onSubmit={setData}>
+            <h1>Update Policy</h1>
             <table>
-                <thead>
-                    <h1>Policy Details</h1>
-                </thead>
                 <tbody>
                     <tr>
+                        <td><label htmlFor="policyId" hidden>Policy ID : </label></td>
+                        <td><input type="number" id="policyId" name="policyId" style={{visibility:"hidden"}} defaultValue={policyId}/></td>
+                    </tr>
+                    <tr>
                         <td><label htmlFor="policyTerm">Policy Term : </label></td>
-                        <td><input type="number" id="policyTerm" name="policyTerm"/></td>
+                        <td><input type="number" id="policyTerm" name="policyTerm" defaultValue={policy.policyTerm}/></td>
                     </tr>
                     <tr>
                         <td><label htmlFor="policyType">Policy Type</label></td>
                         <td>
-                            <select id="policyType" name="policyType">
+                            <select id="policyType" name="policyType" defaultValue={policy.policyType}>
                                 <option value={"silver"}>Silver</option>
                                 <option value={"gold"}>Gold</option>
                                 <option value={"platinum"}>Platinum</option>
@@ -57,11 +80,7 @@ function Policy(){
                         </td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="vehicleId">Vehicle ID : </label></td>
-                        <td><input type="number" id="vehicleId" name="vehicleId"/></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" id="approvedBy" name="approvedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
+                        <td><input type="text" id="approvedBy" name="approvedBy" defaultValue={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
                         <td colSpan={2}><input type="submit" value="Submit"/></td>
@@ -71,4 +90,4 @@ function Policy(){
         </form>
     )
 }
-export default Policy;
+export default UpdatePolicy;

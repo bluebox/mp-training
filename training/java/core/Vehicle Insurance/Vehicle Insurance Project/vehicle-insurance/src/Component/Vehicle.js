@@ -14,8 +14,7 @@ function Vehicle(props){
         <td>{props.sample.status}</td>
         <td>{props.sample.customerId}</td>
         <td>{props.sample.createdBy}</td>
-        <td><Link to={`/updateBooks/${props.sample.bookId}`}><button>Update</button></Link></td>
-        <td><Link  to={`/updateAvailability/${props.sample.bookId}`}><button>Change Status</button></Link></td>
+        <td><Link to={`/vehicle/update/${props.sample.vehicleId}`}><button>Update</button></Link></td>
         <td><button onClick={() => props.onDelete(props.sample.vehicleId)}>Delete</button></td>
     </tr>
     );
@@ -24,7 +23,8 @@ function ShowVehicle(){
     const[vehicle,setVehicle]=useState([]);
     useEffect(()=>{
         fetch("http://localhost:8000/vehicle/showAll", {
-            method: "GET"
+            method: "GET",
+            credentials:"include"
         })
         .then((res)=>{
             if(!res.ok) {
@@ -53,6 +53,7 @@ function ShowVehicle(){
     function DeleteVehicle(vehicleId){
         fetch(`http://localhost:8000/customer/delete?customerId=${vehicleId}`,{
         method:"PUT",
+        credentials:"include"
         })
         .then(res => res.text())
         .then(msg => {
@@ -81,20 +82,9 @@ function ShowVehicle(){
                         {vehicle.map((x)=>(<Vehicle sample={x} onDelete={DeleteVehicle}/>))}
                     </tbody>
             </table>
-            <Link to="/addBooks"><button>Add Book</button></Link>
+            <Link to="/user/vehicle"><button onClick={localStorage.removeItem("customerId")}>Add Vehicle</button></Link>
         </div>
     );
 }
 export default ShowVehicle;
 
-//{
-//    "chasisNum":2875,
-//    "regNum":"fghiuthg8",
-//    "vehicleModel":"fgfhgj",
-//    "purchaseDate":"2025-07-09T23:24:44",
-//    "vehicleUpdatedOn":"2025-07-09T23:24:44",
-//    "vehicleUpdatedBy":"Bhanu",
-//    "status":"A",
-//    "customerId":1,
-//    "createdBy":"Bhanu"
-//}

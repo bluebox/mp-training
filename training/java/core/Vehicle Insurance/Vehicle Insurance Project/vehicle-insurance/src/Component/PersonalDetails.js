@@ -4,18 +4,6 @@
 import {useNavigate} from "react-router-dom";
 function UserRegistration(){
     const nav=useNavigate();
-    // const [formDetails,setFormDetails]=useState({
-    //     "name":"",
-    //     "email":"",
-    //     "contact":"5000000000",
-    //     "gender":"MALE",
-    //     "age":18,
-    //     "occupation":"",
-    //     "income":0,
-    //     "address":"",
-    //     "createdBy":""
-    // });
-    // const email=formDetails.contact;
     // const [customerId,setCustomerId]=useState(0);
     // useEffect(()=>{
     //     fetch("http://localhost:8000/customer/getByEmail?email="+{email}, {
@@ -54,7 +42,8 @@ function UserRegistration(){
         fetch("http://localhost:8000/customer/add",{
             method:"POST",
             headers:headers,
-            body:formDetails
+            body:formDetails,
+            credentials:"include"
         })
         .then((res)=>{
             if(!res.ok){
@@ -62,11 +51,11 @@ function UserRegistration(){
             }
             else{
                 console.log(JSON.stringify(res));
-                return res;
+                return res.json();
             }
         })
         .then((data)=>{
-            alert("Book added successfully");
+            localStorage.setItem("customerId",data);
             nav("/user/vehicle");
         })
         .catch(()=>{
@@ -76,6 +65,9 @@ function UserRegistration(){
     return(
         <form onSubmit={setData}>
             <table>
+                <thead>
+                    <h1>Personal Details</h1>
+                </thead>
                 <tbody>
                     <tr>
                         <td><label htmlFor="name">Customer name : </label></td>
@@ -116,8 +108,7 @@ function UserRegistration(){
                         <td><input type="text" id="address" name="address"/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="createdBy">Created By : </label></td>
-                        <td><input type="text" id="createdBy" name="createdBy"/></td>
+                        <td><input type="text" id="createdBy" name="createdBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
                         <td colSpan={2}><input type="submit"/></td>

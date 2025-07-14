@@ -1,7 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Claim(){
+function UpdateClaim(){
     const nav=useNavigate();
+    const { claimId }=useParams();
+    const [claim,setClaim]=useState([]);
+    useEffect(()=>{
+        fetch(`http://localhost:8000/claim/claimById?claimId=${claimId}`,{
+            method: "GET",
+            credentials:"include"
+        })
+        .then((res)=>{
+            if(!res.ok) {
+                alert("Failed to retrieve data");
+            }
+            return res.json();
+        })
+        .then((data)=>{
+            setClaim(data);
+            alert(data);
+        })
+        .catch((err)=>{
+            alert("Error occured",err);
+        });
+    },[claimId]);
     function setData(event){
         event.preventDefault();
         const form=event.target;
@@ -9,8 +31,8 @@ function Claim(){
         const formObj=Object.fromEntries(formData.entries());
         alert(JSON.stringify(formObj));
         console.log(JSON.stringify(formObj));
-        return fetch("http://localhost:8000/claim/add",{
-            method:"POST",
+        return fetch(`http://localhost:8000/claim/approveClaim?claimId=${claimId}&claimAmount=${formObj.reqAmount}&status=${formObj.status}&approvedBy=${formObj.approvedBy}`,{
+            method:"PUT",
             headers:{
                 "Content-Type":"application/json"
             },
@@ -36,23 +58,18 @@ function Claim(){
     }
     return(
         <form onSubmit={setData}>
-            <h1>Claim Page</h1>
             <table>
                 <tbody>
                     <tr>
                         <td><label htmlFor="reqAmount">Requested Amount : </label></td>
-                        <td><input type="number" id="reqAmount" name="reqAmount"/></td>
+                        <td><input type="number" id="reqAmount" name="reqAmount" value={claim.reqAmount}/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="damageType">Type of damage</label></td>
-                        <td><input type="text" id="damageType" name="damageType"/></td>
+                        <td><label htmlFor="status" defaultValue={claim.status}>Status : </label></td>
+                        <input type="radio" id="status" name="status" value="A"/>Accept
+                        <input type="radio" id="status" name="status" value="R"/>Reject
                     </tr>
                     <tr>
-                        <td><label htmlFor="policyId">Policy ID : </label></td>
-                        <td><input type="number" id="policyId" name="policyId"/></td>
-                    </tr>
-                    <tr>
-                        <td><label htmlFor="approvedBy" hidden>Approved By : </label></td>
                         <td><input type="text" id="approvedBy" name="approvedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
@@ -63,4 +80,4 @@ function Claim(){
         </form>
     )
 }
-export default Claim;
+export default UpdateClaim;

@@ -25,6 +25,12 @@ public class PolicyDao {
 		this.jdbcTemplate=jdbcTemplate;
 	}
 	public String addPolicy(int policyTerm, PolicyType policyType, LocalDateTime startDate,LocalDateTime endDate, int vehicleId, String approvedBy) {
+		if(jdbcTemplate.queryForObject("select count(*) from vehicles where vehicle_id=?", Integer.class,vehicleId)==0) {
+			return "There is no vehicle with the vehicleId "+vehicleId;
+		}
+		if(jdbcTemplate.queryForObject("select status from vehicles where vehicle_id=?", Character.class,vehicleId)=='I') {
+			return "There is no vehicle";
+		}
 		int rowsEffected=jdbcTemplate.update("insert into policy(policy_term,policy_type,premium_amount,policy_amount,start_date,end_date,policy_status,vehicle_id,approved_by) values(?,?,?,?,?,?,?,?,?)",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),startDate,endDate,"R",vehicleId,approvedBy);
 		if(rowsEffected>0) {
 			return "Inserted";
@@ -62,11 +68,24 @@ public class PolicyDao {
 			return "Failed to update status";
 		}
 	}
+	public String dueDate(int policyId) {
+		if(jdbcTemplate.queryForObject("select policy_status from policy where policy_id=?", Character.class,policyId)==0) {
+			return "Policy not found";
+		}
+		char policyStatus=jdbcTemplate.queryForObject("select policy_status from policy where policy_id=?", Character.class,policyId);
+		int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",(policyStatus=='R')?"R":"I",policyId);
+		if(rowsEffected>0) {
+			return "Status is updated";
+		}
+		else {
+			return "Failed to update status";
+		}
+	}
 	public List<Policy> getPoliciesRequested() {
 		return jdbcTemplate.query("select * from policy where policy_status='R'",new PolicyRowMapper());
 	}
-	public String updateStatus(int policyid,char policyStatus) {
-		int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",Character.toString(policyStatus),policyid);
+	public String updateStatus(int policyid,char policyStatus,String approvedBy) {
+		int rowsEffected=jdbcTemplate.update("update policy set policy_status=?,approved_by=? where policy_id=?",Character.toString(policyStatus),approvedBy,policyid);
 		if(rowsEffected>0) {
 			if(policyStatus=='A'){
 				return "Policy is accepted";
@@ -101,7 +120,7 @@ public class PolicyDao {
 //		}
 	}
 	public String updatePolicy(int policyId,int policyTerm,PolicyType policyType, int vehicleId, String approvedBy) {
-		int rowsEffected=jdbcTemplate.update("update policy set policy_term=?,policy_type=?,premium_amount=?,policy_amount=?,start_date=?,end_date=?,policy_status=?,vehicle_id=?,approved_by=? where policy_id=?",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),'A',vehicleId,approvedBy,policyId);
+		int rowsEffected=jdbcTemplate.update("update policy set policy_term=?,policy_type=?,premium_amount=?,policy_amount=?,start_date=?,end_date=?,policy_status=?,vehicle_id=?,approved_by=? where policy_id=?",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),LocalDateTime.now(),LocalDateTime.now().plusYears(1),"R",vehicleId,approvedBy,policyId);
 		if(rowsEffected>0) {
 			return "Policy is updated";
 		}

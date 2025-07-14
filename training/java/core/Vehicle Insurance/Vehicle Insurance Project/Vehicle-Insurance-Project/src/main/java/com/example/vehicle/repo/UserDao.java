@@ -19,6 +19,9 @@ public class UserDao {
 		this.jdbcTemplate=jdbcTemplate;
 	}
 	public String addUser(User u) throws SQLException {
+		if(jdbcTemplate.queryForObject("select count(*) from users where customer_id=?", Integer.class,u.getCustomerId())>0) {
+			return "User credentials are already existed for the Customer ID "+u.getCustomerId();
+		}
 		int rowEffected=jdbcTemplate.update("insert into users(username,password,password_updated_on,password_updated_by,customer_id) values(?,?,?,?,?)",u.getUsername(),u.getPassword(),LocalDateTime.now(),u.getPasswordUpdatedBy(),u.getCustomerId());
 		if(rowEffected>0) {
 			return "User inserted successfully";

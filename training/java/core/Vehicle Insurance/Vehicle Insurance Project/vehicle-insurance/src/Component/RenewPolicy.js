@@ -1,20 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Claim(){
+function RenewPolicy(){
     const nav=useNavigate();
+    const { policyId }=useParams();
     function setData(event){
         event.preventDefault();
         const form=event.target;
         const formData=new FormData(form);
         const formObj=Object.fromEntries(formData.entries());
-        alert(JSON.stringify(formObj));
-        console.log(JSON.stringify(formObj));
-        return fetch("http://localhost:8000/claim/add",{
-            method:"POST",
+        return fetch(`http://localhost:8000/policy/renew?policyId=${policyId}&policyTerm=${formObj.policyTerm}&approvedBy=${formObj.approvedBy}`,{
+            method:"PUT",
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify(formObj),
             credentials:"include"
         })
         .then((res)=>{
@@ -27,7 +25,8 @@ function Claim(){
         })
         .then((data)=>{
             alert(data);
-            nav("/claim/show");
+            console.log("Policy is renewed successfully");
+            nav("/policy/show");
         })
         .catch(()=>{
             alert("Error occured");
@@ -36,23 +35,20 @@ function Claim(){
     }
     return(
         <form onSubmit={setData}>
-            <h1>Claim Page</h1>
             <table>
+                <thead>
+                    <h1>Renew Policy</h1>
+                </thead>
                 <tbody>
                     <tr>
-                        <td><label htmlFor="reqAmount">Requested Amount : </label></td>
-                        <td><input type="number" id="reqAmount" name="reqAmount"/></td>
+                        <td><label htmlFor="policyId" hidden>Policy ID : </label></td>
+                        <td><input type="number" id="policyId" name="policyId" value={policyId}/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="damageType">Type of damage</label></td>
-                        <td><input type="text" id="damageType" name="damageType"/></td>
+                        <td><label htmlFor="policyTerm">Policy Term : </label></td>
+                        <td><input type="number" id="policyTerm" name="policyTerm"/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="policyId">Policy ID : </label></td>
-                        <td><input type="number" id="policyId" name="policyId"/></td>
-                    </tr>
-                    <tr>
-                        <td><label htmlFor="approvedBy" hidden>Approved By : </label></td>
                         <td><input type="text" id="approvedBy" name="approvedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
@@ -63,4 +59,4 @@ function Claim(){
         </form>
     )
 }
-export default Claim;
+export default RenewPolicy;

@@ -79,7 +79,7 @@ public class ClaimDao {
 				new ClaimRowMapper(), username);
 	}
 	public List<Claim> getAllIntiatedClaims() throws SQLException {
-		return jdbcTemplate.queryForList("select * from claim where claim_status='I'",Claim.class);
+		return jdbcTemplate.query("select * from claim where claim_status='I'",new ClaimRowMapper());
 	}
 	public ArrayList<Object> getClaimReport(int claimId) throws SQLException {
 		if(jdbcTemplate.queryForObject("select count(*) from claim where claim_id=?", Integer.class,claimId)<=0) {

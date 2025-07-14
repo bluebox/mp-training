@@ -1,9 +1,13 @@
+import { data, useNavigate } from "react-router-dom";
+
 function User(){
+    const nav=useNavigate();
     function setData(event){
         event.preventDefault();
         const form=event.target;
         const formData=new FormData(form);
         const formObj=Object.fromEntries(formData.entries());
+        const formDetails=JSON.stringify(formObj);
         alert(JSON.stringify(formObj));
         console.log(JSON.stringify(formObj));
         return fetch("http://localhost:8000/user/add",{
@@ -11,32 +15,54 @@ function User(){
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify(formObj)
+            body:formDetails,
+            credentials:"include"
         })
         .then((res)=>{
             if(!res.ok) {
                 throw new Error("Failed to fetch data");
             }
             else{
-                return res;
+                return res.text();
             }
         })
-        .then(()=>{
-            alert("User data added successfully");
-            console.log("User data added successfully");
+        .then((data)=>{
+                alert(data);
+                nav("/admin");
         })
         .catch(()=>{
             alert("Error occured");
             console.log("Error occured");
         })
     }
-    //{
-//   "username":"Maneesh",
-//   "password":"Maneesh@123",
-//   "passwordUpdatedBy":"Bhanu",
-//   "customerId":1
-//}
-
+    if(localStorage.getItem("customerId")===null){
+        return(
+            <form onSubmit={setData}>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label htmlFor="username">User name : </label></td>
+                            <td><input type="text" id="username" name="username"/></td>
+                        </tr>
+                        <tr>
+                            <td><label htmlFor="password">Password : </label></td>
+                            <td><input type="text" id="password" name="password"/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" id="passwordUpdatedBy" name="passwordUpdatedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
+                        </tr>
+                        <tr>
+                            <td><label htmlFor="customerId2">Customer ID : </label></td>
+                            <td><input type="number" id="customerId2" name="customerId"/></td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}><input type="submit"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        )
+    }
     return(
         <form onSubmit={setData}>
             <table>
@@ -50,12 +76,10 @@ function User(){
                         <td><input type="text" id="password" name="password"/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="passwordUpdatedBy">Password Updated By : </label></td>
-                        <td><input type="text" id="passwordUpdatedBy" name="passwordUpdatedBy"/></td>
+                        <td><input type="text" id="passwordUpdatedBy" name="passwordUpdatedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="customerId">Customer ID : </label></td>
-                        <td><input type="number" id="customerId" name="customerId"/></td>
+                        <td><input type="number" id="customerId2" name="customerId" value={localStorage.getItem("customerId")}  style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
                         <td colSpan={2}><input type="submit"/></td>

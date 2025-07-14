@@ -49,7 +49,6 @@ public class UserService {
 		newUser.setPasswordUpdatedBy(user.getPasswordUpdatedBy());
 		newUser.setPasswordUpdatedOn(newUser.getPasswordUpdatedOn());
 		newUser.setCustomerId(user.getCustomerId());
-
 		return userDao.addUser(newUser);
 	}
 
@@ -57,7 +56,6 @@ public class UserService {
 		password = passwordEncoder.encode(password);
 		return userDao.updatePassword(username, password, passwordUpdatedBy);
 	}
-
 	public List<User> getAllUsers() {
 		return userDao.getAllUsers();
 	}
