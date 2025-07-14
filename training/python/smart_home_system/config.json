@@ -1,0 +1,55 @@
+[
+    {
+        "__device_type__": "SmartLight",
+        "_device_id": "SD1",
+        "state": true,
+        "attributes": {
+            "_device_id": "SD1",
+            "_SmartLight__brightness": 75,
+            "_SmartDevice__is_on": true
+        }
+    },
+    {
+        "__device_type__": "SmartSpeaker",
+        "_device_id": "SD2",
+        "state": true,
+        "attributes": {
+            "_device_id": "SD2",
+            "_SmartDevice__is_on": true,
+            "_SmartSpeaker__volume": 60,
+            "_SmartSpeaker__track": null
+        }
+    },
+    {
+        "__device_type__": "SmartCamera",
+        "_device_id": "SD3",
+        "state": true,
+        "attributes": {
+            "_device_id": "SD3",
+            "_SmartCamera__resolution": "4K",
+            "_SmartCamera__recording": false,
+            "_SmartDevice__is_on": true
+        }
+    },
+    {
+        "__device_type__": "SmartThermostat",
+        "_device_id": "SD4",
+        "state": true,
+        "attributes": {
+            "_device_id": "SD4",
+            "_SmartThermostat__temperature": 22,
+            "_SmartDevice__is_on": true
+        }
+    },
+    {
+        "__device_type__": "SmartDoorLock",
+        "_device_id": "SD5",
+        "state": true,
+        "attributes": {
+            "_device_id": "SD5",
+            "_SmartDoorLock__password": "Abc",
+            "_SmartDoorLock__locked": true,
+            "_SmartDevice__is_on": true
+        }
+    }
+]

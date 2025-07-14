@@ -1,0 +1,521 @@
+SmartLight,SD1,set_brightness,2025-07-04 18:38:59
+SmartLight,SD1,set_brightness,2025-07-04 18:40:45
+SmartLight,SD1,set_brightness,2025-07-04 18:43:17
+SmartLight,SD2,set_brightness,2025-07-04 18:43:17
+SmartLight,SD1,set_brightness,2025-07-04 18:43:20
+SmartLight,SD2,set_brightness,2025-07-04 18:43:20
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:07:07
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:07:07
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:10:43
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:10:43
+SmartSpeaker,SD3,Play Track: song1,2025-07-06 11:10:43
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:12:17
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:12:17
+SmartSpeaker,SD3,Play Track: song1,2025-07-06 11:12:17
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:12:40
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:12:40
+SmartSpeaker,SD3,Play Track: song1,2025-07-06 11:12:40
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:12:57
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:12:57
+SmartSpeaker,SD3,Play Track: song1,2025-07-06 11:12:57
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:13:21
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:13:21
+SmartSpeaker,SD3,Play Track: song1,2025-07-06 11:13:21
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:13:34
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:13:34
+SmartSpeaker,SD3,Play Track: song1,2025-07-06 11:13:34
+SmartSpeaker,SD3,Set Volume: 70,2025-07-06 11:15:03
+SmartSpeaker,SD3,Set Volume: 50,2025-07-06 11:15:03
+SmartSpeaker,SD3,Play Track: song1,2025-07-06 11:15:03
+SmartCamera,SD4,Start Recording,2025-07-06 11:15:50
+SmartCamera,SD4,Start Recording,2025-07-06 11:24:28
+SmartCamera,SD4,Set Resolution: 4K,2025-07-06 11:24:28
+SmartCamera,SD4,Start Recording,2025-07-06 11:24:41
+SmartLight,SD1,set_brightness,2025-07-06 12:22:52
+SmartLight,SD1,set_brightness,2025-07-06 12:23:23
+SmartLight,SD1,set_brightness,2025-07-06 12:59:25
+SmartLight,SD1,set_brightness,2025-07-06 12:59:25
+SmartLight,SD2,set_brightness,2025-07-06 12:59:26
+SmartLight,SD2,set_brightness,2025-07-06 12:59:26
+SmartDoorLock,SD3,UnLock,2025-07-06 13:00:32
+SmartDoorLock,SD3,UnLock,2025-07-06 13:05:58
+SmartDoorLock,SD3,Locked,2025-07-06 13:05:58
+SmartThermostat,SD4,Set Temperature: 24,2025-07-06 13:11:03
+SmartThermostat,SD4,set_temperature,2025-07-06 13:11:03
+SmartThermostat,SD4,set_temperature,2025-07-06 13:11:03
+SmartLight,SD1,set_brightness,2025-07-06 15:15:46
+SmartLight,SD1,set_brightness,2025-07-06 15:15:46
+SmartLight,SD1,set_brightness,2025-07-06 15:24:09
+SmartLight,SD1,set_brightness,2025-07-06 15:24:09
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 15:24:10
+SmartSpeaker,SD2,set_volume,2025-07-06 15:24:10
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 15:24:10
+SmartCamera,SD3,set_resolution,2025-07-06 15:24:10
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 15:24:11
+SmartThermostat,SD4,set_temperature,2025-07-06 15:24:11
+SmartLight,SD1,set_brightness,2025-07-06 15:26:51
+SmartLight,SD1,set_brightness,2025-07-06 15:26:51
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 15:26:51
+SmartSpeaker,SD2,set_volume,2025-07-06 15:26:51
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 15:26:52
+SmartCamera,SD3,set_resolution,2025-07-06 15:26:52
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 15:26:53
+SmartThermostat,SD4,set_temperature,2025-07-06 15:26:53
+SmartLight,SD1,set_brightness,2025-07-06 15:33:49
+SmartLight,SD1,set_brightness,2025-07-06 15:33:49
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 15:33:50
+SmartSpeaker,SD2,set_volume,2025-07-06 15:33:50
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 15:33:50
+SmartCamera,SD3,set_resolution,2025-07-06 15:33:50
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 15:33:51
+SmartThermostat,SD4,set_temperature,2025-07-06 15:33:51
+SmartLight,SD1,set_brightness,2025-07-06 15:44:45
+SmartLight,SD1,set_brightness,2025-07-06 15:44:45
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 15:44:46
+SmartSpeaker,SD2,set_volume,2025-07-06 15:44:46
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 15:44:46
+SmartCamera,SD3,set_resolution,2025-07-06 15:44:46
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 15:44:47
+SmartThermostat,SD4,set_temperature,2025-07-06 15:44:47
+SmartLight,SD1,set_brightness,2025-07-06 15:45:31
+SmartLight,SD1,set_brightness,2025-07-06 15:45:31
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 15:45:32
+SmartSpeaker,SD2,set_volume,2025-07-06 15:45:32
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 15:45:32
+SmartCamera,SD3,set_resolution,2025-07-06 15:45:32
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 15:45:33
+SmartThermostat,SD4,set_temperature,2025-07-06 15:45:33
+SmartLight,SD1,set_brightness,2025-07-06 16:06:59
+SmartLight,SD1,set_brightness,2025-07-06 16:06:59
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:06:59
+SmartSpeaker,SD2,set_volume,2025-07-06 16:06:59
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:07:00
+SmartCamera,SD3,set_resolution,2025-07-06 16:07:00
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:07:00
+SmartThermostat,SD4,set_temperature,2025-07-06 16:07:00
+SmartLight,SD1,set_brightness,2025-07-06 16:12:21
+SmartLight,SD1,set_brightness,2025-07-06 16:12:21
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:12:21
+SmartSpeaker,SD2,set_volume,2025-07-06 16:12:21
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:12:22
+SmartCamera,SD3,set_resolution,2025-07-06 16:12:22
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:12:22
+SmartThermostat,SD4,set_temperature,2025-07-06 16:12:22
+SmartLight,SD1,set_brightness,2025-07-06 16:20:15
+SmartLight,SD1,set_brightness,2025-07-06 16:20:15
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:20:16
+SmartSpeaker,SD2,set_volume,2025-07-06 16:20:16
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:20:16
+SmartCamera,SD3,set_resolution,2025-07-06 16:20:16
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:20:17
+SmartThermostat,SD4,set_temperature,2025-07-06 16:20:17
+SmartLight,SD1,set_brightness,2025-07-06 16:21:17
+SmartLight,SD1,set_brightness,2025-07-06 16:21:17
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:21:18
+SmartSpeaker,SD2,set_volume,2025-07-06 16:21:18
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:21:18
+SmartCamera,SD3,set_resolution,2025-07-06 16:21:18
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:21:19
+SmartThermostat,SD4,set_temperature,2025-07-06 16:21:19
+SmartLight,SD1,set_brightness,2025-07-06 16:21:56
+SmartLight,SD1,set_brightness,2025-07-06 16:21:56
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:21:57
+SmartSpeaker,SD2,set_volume,2025-07-06 16:21:57
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:21:57
+SmartCamera,SD3,set_resolution,2025-07-06 16:21:57
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:21:58
+SmartThermostat,SD4,set_temperature,2025-07-06 16:21:58
+SmartLight,SD1,set_brightness,2025-07-06 16:44:15
+SmartLight,SD1,set_brightness,2025-07-06 16:44:15
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:44:15
+SmartSpeaker,SD2,set_volume,2025-07-06 16:44:15
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:44:16
+SmartCamera,SD3,set_resolution,2025-07-06 16:44:16
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:44:16
+SmartThermostat,SD4,set_temperature,2025-07-06 16:44:16
+SmartLight,SD1,set_brightness,2025-07-06 16:45:37
+SmartLight,SD1,set_brightness,2025-07-06 16:45:37
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:45:38
+SmartSpeaker,SD2,set_volume,2025-07-06 16:45:38
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:45:38
+SmartCamera,SD3,set_resolution,2025-07-06 16:45:38
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:45:39
+SmartThermostat,SD4,set_temperature,2025-07-06 16:45:39
+SmartLight,SD1,set_brightness,2025-07-06 16:46:09
+SmartLight,SD1,set_brightness,2025-07-06 16:46:09
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:46:09
+SmartSpeaker,SD2,set_volume,2025-07-06 16:46:09
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:46:10
+SmartCamera,SD3,set_resolution,2025-07-06 16:46:10
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:46:10
+SmartThermostat,SD4,set_temperature,2025-07-06 16:46:10
+SmartLight,SD1,set_brightness,2025-07-06 16:48:07
+SmartLight,SD1,set_brightness,2025-07-06 16:48:07
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:48:08
+SmartSpeaker,SD2,set_volume,2025-07-06 16:48:08
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:48:08
+SmartCamera,SD3,set_resolution,2025-07-06 16:48:08
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:48:09
+SmartThermostat,SD4,set_temperature,2025-07-06 16:48:09
+SmartLight,SD1,set_brightness,2025-07-06 16:49:07
+SmartLight,SD1,set_brightness,2025-07-06 16:49:07
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:49:07
+SmartSpeaker,SD2,set_volume,2025-07-06 16:49:07
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:49:08
+SmartCamera,SD3,set_resolution,2025-07-06 16:49:08
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:49:08
+SmartThermostat,SD4,set_temperature,2025-07-06 16:49:08
+SmartLight,SD1,set_brightness,2025-07-06 16:55:27
+SmartLight,SD1,set_brightness,2025-07-06 16:55:27
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:55:27
+SmartSpeaker,SD2,set_volume,2025-07-06 16:55:27
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:55:28
+SmartCamera,SD3,set_resolution,2025-07-06 16:55:28
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:55:28
+SmartThermostat,SD4,set_temperature,2025-07-06 16:55:28
+SmartLight,SD1,set_brightness,2025-07-06 16:57:30
+SmartLight,SD1,set_brightness,2025-07-06 16:57:30
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 16:57:31
+SmartSpeaker,SD2,set_volume,2025-07-06 16:57:31
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 16:57:31
+SmartCamera,SD3,set_resolution,2025-07-06 16:57:31
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 16:57:32
+SmartThermostat,SD4,set_temperature,2025-07-06 16:57:32
+SmartLight,SD1,set_brightness,2025-07-06 17:00:34
+SmartLight,SD1,set_brightness,2025-07-06 17:00:34
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 17:00:35
+SmartSpeaker,SD2,set_volume,2025-07-06 17:00:35
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 17:00:35
+SmartCamera,SD3,set_resolution,2025-07-06 17:00:35
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 17:00:36
+SmartThermostat,SD4,set_temperature,2025-07-06 17:00:36
+SmartLight,SD1,set_brightness,2025-07-06 17:00:37
+SmartLight,SD1,set_brightness,2025-07-06 17:00:37
+SmartThermostat,SD4,Set Temperature: 24,2025-07-06 17:00:37
+SmartThermostat,SD4,set_temperature,2025-07-06 17:00:37
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-06 17:00:37
+SmartSpeaker,SD2,play_track,2025-07-06 17:00:37
+SmartDoorLock,SD5,unlock,2025-07-06 17:00:37
+SmartLight,SD1,set_brightness,2025-07-06 17:00:37
+SmartLight,SD1,set_brightness,2025-07-06 17:00:37
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-06 17:00:37
+SmartSpeaker,SD2,play_track,2025-07-06 17:00:37
+SmartThermostat,SD4,Set Temperature: 24,2025-07-06 17:00:37
+SmartThermostat,SD4,set_temperature,2025-07-06 17:00:37
+SmartLight,SD1,set_brightness,2025-07-06 17:02:23
+SmartLight,SD1,set_brightness,2025-07-06 17:02:23
+SmartSpeaker,SD2,Set Volume: 60,2025-07-06 17:02:24
+SmartSpeaker,SD2,set_volume,2025-07-06 17:02:24
+SmartCamera,SD3,Set Resolution: 4K,2025-07-06 17:02:24
+SmartCamera,SD3,set_resolution,2025-07-06 17:02:24
+SmartThermostat,SD4,Set Temperature: 22,2025-07-06 17:02:25
+SmartThermostat,SD4,set_temperature,2025-07-06 17:02:25
+SmartLight,SD1,set_brightness,2025-07-06 17:02:25
+SmartLight,SD1,set_brightness,2025-07-06 17:02:25
+SmartThermostat,SD4,Set Temperature: 24,2025-07-06 17:02:25
+SmartThermostat,SD4,set_temperature,2025-07-06 17:02:26
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-06 17:02:26
+SmartSpeaker,SD2,play_track,2025-07-06 17:02:26
+SmartDoorLock,SD5,UnLock,2025-07-06 17:02:30
+SmartDoorLock,SD5,unlock,2025-07-06 17:02:30
+SmartLight,SD1,set_brightness,2025-07-06 17:02:30
+SmartLight,SD1,set_brightness,2025-07-06 17:02:30
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-06 17:02:30
+SmartSpeaker,SD2,play_track,2025-07-06 17:02:30
+SmartThermostat,SD4,Set Temperature: 24,2025-07-06 17:02:30
+SmartThermostat,SD4,set_temperature,2025-07-06 17:02:30
+SmartLight,SD1,set_brightness,2025-07-06 17:48:03
+SmartLight,SD1,set_brightness,2025-07-06 17:48:03
+SmartLight,SD1,set_brightness,2025-07-06 17:51:10
+SmartLight,SD1,set_brightness,2025-07-06 17:51:10
+SmartLight,SD1,set_brightness,2025-07-06 18:10:09
+SmartLight,SD1,set_brightness,2025-07-06 18:10:09
+SmartLight,SD1,set_brightness,2025-07-06 18:15:08
+SmartLight,SD1,set_brightness,2025-07-06 18:15:08
+SmartAlarmSystem,SD7,Armed,2025-07-06 19:05:36
+SmartAlarmSystem,SD7,Armed,2025-07-06 19:09:10
+SmartAlarmSystem,SD7,Armed,2025-07-06 19:10:02
+SmartAlarmSystem,SD7,Armed,2025-07-06 19:13:04
+SmartAlarmSystem,SD7,Armed,2025-07-06 19:17:14
+SmartAlarmSystem,SD7,Armed,2025-07-06 19:29:25
+SmartAlarmSystem,SD7,Armed,2025-07-06 19:30:11
+SmartLight,SD1,set_brightness,2025-07-07 11:14:31
+SmartLight,SD1,set_brightness,2025-07-07 11:14:31
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 11:14:32
+SmartSpeaker,SD2,set_volume,2025-07-07 11:14:32
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 11:14:32
+SmartCamera,SD3,set_resolution,2025-07-07 11:14:32
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 11:14:33
+SmartThermostat,SD4,set_temperature,2025-07-07 11:14:33
+SmartLight,SD1,set_brightness,2025-07-07 11:16:30
+SmartLight,SD1,set_brightness,2025-07-07 11:16:30
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 11:16:30
+SmartSpeaker,SD2,set_volume,2025-07-07 11:16:30
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 11:16:31
+SmartCamera,SD3,set_resolution,2025-07-07 11:16:31
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 11:16:31
+SmartThermostat,SD4,set_temperature,2025-07-07 11:16:31
+SmartLight,SD1,set_brightness,2025-07-07 11:17:31
+SmartLight,SD1,set_brightness,2025-07-07 11:17:31
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 11:17:32
+SmartSpeaker,SD2,set_volume,2025-07-07 11:17:32
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 11:17:32
+SmartCamera,SD3,set_resolution,2025-07-07 11:17:32
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 11:17:33
+SmartThermostat,SD4,set_temperature,2025-07-07 11:17:33
+SmartLight,SD1,set_brightness,2025-07-07 11:18:54
+SmartLight,SD1,set_brightness,2025-07-07 11:18:54
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 11:18:54
+SmartSpeaker,SD2,set_volume,2025-07-07 11:18:54
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 11:18:55
+SmartCamera,SD3,set_resolution,2025-07-07 11:18:55
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 11:18:55
+SmartThermostat,SD4,set_temperature,2025-07-07 11:18:55
+SmartLight,SD1,set_brightness,2025-07-07 11:18:56
+SmartLight,SD1,set_brightness,2025-07-07 11:18:56
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 11:18:56
+SmartSpeaker,SD2,play_track,2025-07-07 11:18:56
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 11:18:56
+SmartThermostat,SD4,set_temperature,2025-07-07 11:18:56
+SmartDoorLock,SD5,UnLock,2025-07-07 11:19:02
+SmartDoorLock,SD5,unlock,2025-07-07 11:19:02
+SmartLight,SD1,set_brightness,2025-07-07 11:19:02
+SmartLight,SD1,set_brightness,2025-07-07 11:19:02
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 11:19:02
+SmartSpeaker,SD2,play_track,2025-07-07 11:19:02
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 11:19:02
+SmartThermostat,SD4,set_temperature,2025-07-07 11:19:02
+SmartAlarmSystem,SD7,Armed,2025-07-07 11:19:43
+SmartAlarmSystem,SD7,Armed,2025-07-07 11:20:03
+SmartLight,SD1,set_brightness,2025-07-07 15:54:52
+SmartLight,SD1,set_brightness,2025-07-07 15:54:52
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 15:54:52
+SmartSpeaker,SD2,set_volume,2025-07-07 15:54:52
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 15:54:53
+SmartCamera,SD3,set_resolution,2025-07-07 15:54:53
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 15:54:53
+SmartThermostat,SD4,set_temperature,2025-07-07 15:54:53
+SmartLight,SD1,set_brightness,2025-07-07 15:54:54
+SmartLight,SD1,set_brightness,2025-07-07 15:54:54
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 15:54:54
+SmartSpeaker,SD2,play_track,2025-07-07 15:54:54
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 15:54:54
+SmartThermostat,SD4,set_temperature,2025-07-07 15:54:54
+SmartDoorLock,SD5,UnLock,2025-07-07 15:55:02
+SmartDoorLock,SD5,unlock,2025-07-07 15:55:02
+SmartLight,SD1,set_brightness,2025-07-07 15:55:03
+SmartLight,SD1,set_brightness,2025-07-07 15:55:03
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 15:55:03
+SmartSpeaker,SD2,play_track,2025-07-07 15:55:03
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 15:55:03
+SmartThermostat,SD4,set_temperature,2025-07-07 15:55:03
+SmartDoorLock,SD5,unlock,2025-07-07 15:55:09
+SmartAlarmSystem,SD7,Armed,2025-07-07 15:55:50
+SmartAlarmSystem,SD7,Armed,2025-07-07 15:56:03
+SmartLight,SD1,set_brightness,2025-07-07 16:19:25
+SmartLight,SD1,set_brightness,2025-07-07 16:19:25
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 16:19:25
+SmartSpeaker,SD2,set_volume,2025-07-07 16:19:25
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 16:19:26
+SmartCamera,SD3,set_resolution,2025-07-07 16:19:26
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 16:19:26
+SmartThermostat,SD4,set_temperature,2025-07-07 16:19:26
+SmartLight,SD1,set_brightness,2025-07-07 18:56:07
+SmartLight,SD1,set_brightness,2025-07-07 18:56:07
+SmartSpeaker,SD1,Set Volume: 60,2025-07-07 18:56:08
+SmartSpeaker,SD1,set_volume,2025-07-07 18:56:08
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 18:56:08
+SmartCamera,SD3,set_resolution,2025-07-07 18:56:08
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 18:56:09
+SmartThermostat,SD4,set_temperature,2025-07-07 18:56:09
+SmartLight,SD1,set_brightness,2025-07-07 18:58:10
+SmartLight,SD1,set_brightness,2025-07-07 18:58:10
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 18:58:11
+SmartSpeaker,SD2,set_volume,2025-07-07 18:58:11
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 18:58:11
+SmartCamera,SD3,set_resolution,2025-07-07 18:58:11
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 18:58:12
+SmartThermostat,SD4,set_temperature,2025-07-07 18:58:12
+SmartLight,SD1,set_brightness,2025-07-07 18:58:12
+SmartLight,SD1,set_brightness,2025-07-07 18:58:12
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 18:58:12
+SmartSpeaker,SD2,play_track,2025-07-07 18:58:12
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 18:58:12
+SmartThermostat,SD4,set_temperature,2025-07-07 18:58:12
+SmartDoorLock,SD5,UnLock,2025-07-07 18:58:19
+SmartDoorLock,SD5,unlock,2025-07-07 18:58:19
+SmartLight,SD1,set_brightness,2025-07-07 18:58:19
+SmartLight,SD1,set_brightness,2025-07-07 18:58:19
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 18:58:19
+SmartSpeaker,SD2,play_track,2025-07-07 18:58:19
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 18:58:19
+SmartThermostat,SD4,set_temperature,2025-07-07 18:58:19
+SmartDoorLock,SD5,unlock,2025-07-07 18:58:24
+SmartAlarmSystem,SD7,Armed,2025-07-07 18:59:05
+SmartAlarmSystem,SD7,Armed,2025-07-07 18:59:13
+SmartLight,SD1,set_brightness,2025-07-07 19:01:58
+SmartLight,SD1,set_brightness,2025-07-07 19:01:58
+SmartSpeaker,SD1,Set Volume: 60,2025-07-07 19:01:58
+SmartSpeaker,SD1,set_volume,2025-07-07 19:01:58
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 19:01:59
+SmartCamera,SD3,set_resolution,2025-07-07 19:01:59
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 19:01:59
+SmartThermostat,SD4,set_temperature,2025-07-07 19:01:59
+SmartLight,SD1,set_brightness,2025-07-07 19:02:00
+SmartLight,SD1,set_brightness,2025-07-07 19:02:00
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 19:02:00
+SmartThermostat,SD4,set_temperature,2025-07-07 19:02:00
+SmartDoorLock,SD5,UnLock,2025-07-07 19:02:06
+SmartDoorLock,SD5,unlock,2025-07-07 19:02:06
+SmartLight,SD1,set_brightness,2025-07-07 19:02:07
+SmartLight,SD1,set_brightness,2025-07-07 19:02:07
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 19:02:07
+SmartThermostat,SD4,set_temperature,2025-07-07 19:02:07
+SmartDoorLock,SD5,unlock,2025-07-07 19:02:12
+SmartAlarmSystem,SD7,Armed,2025-07-07 19:02:53
+SmartAlarmSystem,SD7,Armed,2025-07-07 19:03:02
+SmartLight,SD1,set_brightness,2025-07-07 19:23:11
+SmartLight,SD1,set_brightness,2025-07-07 19:23:11
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 19:23:11
+SmartSpeaker,SD2,set_volume,2025-07-07 19:23:11
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 19:23:12
+SmartCamera,SD3,set_resolution,2025-07-07 19:23:12
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 19:23:12
+SmartThermostat,SD4,set_temperature,2025-07-07 19:23:12
+SmartLight,SD1,set_brightness,2025-07-07 19:30:47
+SmartLight,SD1,set_brightness,2025-07-07 19:30:47
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 19:30:48
+SmartSpeaker,SD2,set_volume,2025-07-07 19:30:48
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 19:30:48
+SmartCamera,SD3,set_resolution,2025-07-07 19:30:48
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 19:30:49
+SmartThermostat,SD4,set_temperature,2025-07-07 19:30:49
+SmartLight,SD1,set_brightness,2025-07-07 19:33:53
+SmartLight,SD1,set_brightness,2025-07-07 19:33:53
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 19:33:54
+SmartSpeaker,SD2,set_volume,2025-07-07 19:33:54
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 19:33:54
+SmartCamera,SD3,set_resolution,2025-07-07 19:33:54
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 19:33:55
+SmartThermostat,SD4,set_temperature,2025-07-07 19:33:55
+SmartLight,SD1,set_brightness,2025-07-07 19:33:55
+SmartLight,SD1,set_brightness,2025-07-07 19:33:55
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 19:33:55
+SmartSpeaker,SD2,play_track,2025-07-07 19:33:55
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 19:33:55
+SmartThermostat,SD4,set_temperature,2025-07-07 19:33:55
+SmartDoorLock,SD5,UnLock,2025-07-07 19:34:01
+SmartDoorLock,SD5,unlock,2025-07-07 19:34:01
+SmartLight,SD1,set_brightness,2025-07-07 19:34:02
+SmartLight,SD1,set_brightness,2025-07-07 19:34:02
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 19:34:02
+SmartSpeaker,SD2,play_track,2025-07-07 19:34:02
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 19:34:02
+SmartThermostat,SD4,set_temperature,2025-07-07 19:34:02
+SmartDoorLock,SD5,unlock,2025-07-07 19:34:05
+SmartLight,SD1,set_brightness,2025-07-07 20:02:47
+SmartLight,SD1,set_brightness,2025-07-07 20:02:47
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 20:02:48
+SmartSpeaker,SD2,set_volume,2025-07-07 20:02:48
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 20:02:48
+SmartCamera,SD3,set_resolution,2025-07-07 20:02:48
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 20:02:49
+SmartThermostat,SD4,set_temperature,2025-07-07 20:02:49
+SmartLight,SD1,set_brightness,2025-07-07 20:03:22
+SmartLight,SD1,set_brightness,2025-07-07 20:03:22
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 20:03:22
+SmartSpeaker,SD2,set_volume,2025-07-07 20:03:22
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 20:03:23
+SmartCamera,SD3,set_resolution,2025-07-07 20:03:23
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 20:03:23
+SmartThermostat,SD4,set_temperature,2025-07-07 20:03:23
+SmartLight,SD1,set_brightness,2025-07-07 20:14:47
+SmartLight,SD1,set_brightness,2025-07-07 20:14:47
+SmartSpeaker,SD2,Set Volume: 60,2025-07-07 20:14:48
+SmartSpeaker,SD2,set_volume,2025-07-07 20:14:48
+SmartCamera,SD3,Set Resolution: 4K,2025-07-07 20:14:48
+SmartCamera,SD3,set_resolution,2025-07-07 20:14:48
+SmartThermostat,SD4,Set Temperature: 22,2025-07-07 20:14:49
+SmartThermostat,SD4,set_temperature,2025-07-07 20:14:49
+SmartLight,SD1,set_brightness,2025-07-07 20:14:49
+SmartLight,SD1,set_brightness,2025-07-07 20:14:49
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 20:14:49
+SmartSpeaker,SD2,play_track,2025-07-07 20:14:49
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 20:14:49
+SmartThermostat,SD4,set_temperature,2025-07-07 20:14:49
+SmartDoorLock,SD5,UnLock,2025-07-07 20:14:58
+SmartDoorLock,SD5,unlock,2025-07-07 20:14:58
+SmartLight,SD1,set_brightness,2025-07-07 20:14:59
+SmartLight,SD1,set_brightness,2025-07-07 20:14:59
+SmartSpeaker,SD2,Play Track: Wake Up,2025-07-07 20:14:59
+SmartSpeaker,SD2,play_track,2025-07-07 20:14:59
+SmartThermostat,SD4,Set Temperature: 24,2025-07-07 20:14:59
+SmartThermostat,SD4,set_temperature,2025-07-07 20:14:59
+SmartDoorLock,SD5,unlock,2025-07-07 20:15:01
+SmartAlarmSystem,SD12,Armed,2025-07-07 20:15:49
+SmartLight,SD1,set_brightness,2025-07-08 18:57:06
+SmartLight,SD1,set_brightness,2025-07-08 18:57:06
+SmartSpeaker,SD2,Set Volume: 60,2025-07-08 18:57:06
+SmartSpeaker,SD2,set_volume,2025-07-08 18:57:06
+SmartCamera,SD3,Set Resolution: 4K,2025-07-08 18:57:07
+SmartCamera,SD3,set_resolution,2025-07-08 18:57:07
+SmartThermostat,SD4,Set Temperature: 22,2025-07-08 18:57:07
+SmartThermostat,SD4,set_temperature,2025-07-08 18:57:07
+SmartLight,SD1,set_brightness,2025-07-08 18:57:08
+SmartLight,SD1,set_brightness,2025-07-08 18:57:08
+SmartThermostat,SD4,Set Temperature: 24,2025-07-08 18:57:08
+SmartThermostat,SD4,set_temperature,2025-07-08 18:57:08
+SmartDoorLock,SD5,UnLock,2025-07-08 18:57:16
+SmartDoorLock,SD5,unlock,2025-07-08 18:57:16
+SmartLight,SD1,set_brightness,2025-07-08 18:57:16
+SmartLight,SD1,set_brightness,2025-07-08 18:57:16
+SmartThermostat,SD4,Set Temperature: 24,2025-07-08 18:57:16
+SmartThermostat,SD4,set_temperature,2025-07-08 18:57:16
+SmartLight,SD1,set_brightness,2025-07-08 19:01:30
+SmartLight,SD1,set_brightness,2025-07-08 19:01:30
+SmartSpeaker,SD2,Set Volume: 60,2025-07-08 19:01:31
+SmartSpeaker,SD2,set_volume,2025-07-08 19:01:31
+SmartCamera,SD3,Set Resolution: 4K,2025-07-08 19:01:31
+SmartCamera,SD3,set_resolution,2025-07-08 19:01:31
+SmartThermostat,SD4,Set Temperature: 22,2025-07-08 19:01:32
+SmartThermostat,SD4,set_temperature,2025-07-08 19:01:32
+SmartLight,SD1,set_brightness,2025-07-08 19:01:32
+SmartLight,SD1,set_brightness,2025-07-08 19:01:32
+SmartThermostat,SD4,Set Temperature: 24,2025-07-08 19:01:32
+SmartThermostat,SD4,set_temperature,2025-07-08 19:01:32
+SmartDoorLock,SD5,unlock,2025-07-08 19:01:37
+SmartLight,SD1,set_brightness,2025-07-08 19:01:37
+SmartLight,SD1,set_brightness,2025-07-08 19:01:37
+SmartThermostat,SD4,Set Temperature: 24,2025-07-08 19:01:37
+SmartThermostat,SD4,set_temperature,2025-07-08 19:01:37
+SmartDoorLock,SD5,UnLock,2025-07-08 19:01:44
+SmartDoorLock,SD5,unlock,2025-07-08 19:01:44
+SmartLight,SD1,set_brightness,2025-07-09 10:21:06
+SmartLight,SD1,set_brightness,2025-07-09 10:21:06
+SmartSpeaker,SD2,Set Volume: 60,2025-07-09 10:21:07
+SmartSpeaker,SD2,set_volume,2025-07-09 10:21:07
+SmartCamera,SD3,Set Resolution: 4K,2025-07-09 10:21:07
+SmartCamera,SD3,set_resolution,2025-07-09 10:21:07
+SmartThermostat,SD4,Set Temperature: 22,2025-07-09 10:21:08
+SmartThermostat,SD4,set_temperature,2025-07-09 10:21:08
+SmartLight,SD1,set_brightness,2025-07-09 10:24:10
+SmartLight,SD1,set_brightness,2025-07-09 10:24:10
+SmartSpeaker,SD2,Set Volume: 60,2025-07-09 10:24:10
+SmartSpeaker,SD2,set_volume,2025-07-09 10:24:10
+SmartCamera,SD3,Set Resolution: 4K,2025-07-09 10:24:11
+SmartCamera,SD3,set_resolution,2025-07-09 10:24:11
+SmartThermostat,SD4,Set Temperature: 22,2025-07-09 10:24:11
+SmartThermostat,SD4,set_temperature,2025-07-09 10:24:11
+SmartLight,SD1,set_brightness,2025-07-11 09:41:38
+SmartLight,SD1,set_brightness,2025-07-11 09:41:38
+SmartLight,SD1,set_brightness,2025-07-11 09:43:26
+SmartSpeaker,SD2,Set Volume: 60,2025-07-11 09:44:35
+SmartSpeaker,SD2,set_volume,2025-07-11 09:44:35
+SmartSpeaker,SD2,Set Volume: 60,2025-07-11 09:44:47
+SmartSpeaker,SD2,set_volume,2025-07-11 09:44:47
+SmartSpeaker,SD2,set_volume,2025-07-11 09:44:48
+SmartCamera,SD3,Set Resolution: 4K,2025-07-11 09:45:09
+SmartCamera,SD3,set_resolution,2025-07-11 09:45:09
+SmartCamera,SD3,Set Resolution: 4K,2025-07-11 09:45:32
+SmartCamera,SD3,set_resolution,2025-07-11 09:45:32
+SmartThermostat,SD4,set_temperature,2025-07-11 09:45:32

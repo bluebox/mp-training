@@ -1,0 +1,12 @@
+[
+    {
+        "__device_type__": "SmartLight",
+        "_device_id": "SD1",
+        "state": true,
+        "attributes": {
+            "_device_id": "SD1",
+            "_SmartDevice__is_on": true,
+            "_SmartLight__brightness": 0
+        }
+    }
+]
