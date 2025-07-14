@@ -1,0 +1,79 @@
+Department,Project ID,Total Hours
+QA,PRJ115,24.91
+QA,PRJ116,24.01
+QA,PRJ101,22.14
+QA,PRJ109,21.22
+QA,PRJ108,16.42
+QA,PRJ119,15.17
+QA,PRJ113,14.87
+QA,PRJ118,14.40
+QA,PRJ117,13.56
+QA,PRJ111,13.41
+QA,PRJ110,13.36
+QA,PRJ106,9.59
+QA,PRJ104,8.94
+QA,PRJ105,8.78
+QA,PRJ103,7.17
+QA,PRJ120,5.28
+UI/UX,PRJ113,47.25
+UI/UX,PRJ103,31.10
+UI/UX,PRJ102,15.72
+UI/UX,PRJ101,15.03
+UI/UX,PRJ104,14.98
+UI/UX,PRJ117,13.07
+UI/UX,PRJ106,11.29
+UI/UX,PRJ112,11.19
+UI/UX,PRJ111,9.87
+UI/UX,PRJ110,8.57
+UI/UX,PRJ109,7.33
+UI/UX,PRJ107,6.15
+UI/UX,PRJ114,5.61
+Engineering,PRJ103,84.00
+Engineering,PRJ113,69.12
+Engineering,PRJ114,64.13
+Engineering,PRJ116,50.20
+Engineering,PRJ107,35.61
+Engineering,PRJ106,34.37
+Engineering,PRJ101,28.49
+Engineering,PRJ115,27.00
+Engineering,PRJ110,24.60
+Engineering,PRJ105,23.14
+Engineering,PRJ112,22.75
+Engineering,PRJ104,20.00
+Engineering,PRJ109,18.95
+Engineering,PRJ117,15.71
+Engineering,PRJ111,13.58
+Engineering,PRJ118,11.54
+Engineering,PRJ108,9.54
+Engineering,PRJ120,5.35
+Research & Development,PRJ112,25.47
+Research & Development,PRJ114,20.61
+Research & Development,PRJ101,20.39
+Research & Development,PRJ106,17.36
+Research & Development,PRJ107,15.84
+Research & Development,PRJ109,15.41
+Research & Development,PRJ116,13.40
+Research & Development,PRJ108,9.85
+Research & Development,PRJ119,9.49
+Research & Development,PRJ113,9.13
+Research & Development,PRJ110,8.75
+Research & Development,PRJ120,8.50
+Research & Development,PRJ103,8.42
+Research & Development,PRJ104,7.77
+Research & Development,PRJ117,7.62
+Research & Development,PRJ115,7.35
+Research & Development,PRJ111,5.49
+Devops,PRJ113,45.70
+Devops,PRJ116,32.45
+Devops,PRJ117,31.29
+Devops,PRJ106,29.32
+Devops,PRJ114,27.50
+Devops,PRJ108,26.72
+Devops,PRJ115,19.64
+Devops,PRJ105,14.14
+Devops,PRJ107,13.05
+Devops,PRJ112,12.56
+Devops,PRJ109,9.34
+Devops,PRJ110,8.78
+Devops,PRJ120,7.70
+Devops,PRJ101,7.40
