@@ -1,0 +1,67 @@
+package com.app.controller;
+
+import com.app.model.Credentials;
+import com.app.model.Response;
+import com.app.security.CredPrincipal;
+import com.app.repository.CredentialsRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin("*")
+public class CredentialsController {
+
+    @Autowired
+    private CredentialsRepository repo;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @PostMapping("/register")
+    public ResponseEntity<Response> register(@RequestBody Credentials c) {
+        c.setPassword(encoder.encode(c.getPassword()));
+        repo.addCredentials(c);
+
+        Response res = new Response();
+        res.setStatusCode("200");
+        res.setStatusMsg("User registered successfully");
+        return ResponseEntity.ok(res);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Response> login(@RequestBody Credentials c) {
+        Response res = new Response();
+        System.out.println(c.getUserName()+"  "+c.getPassword());
+        try {
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(c.getUserName(), c.getPassword())
+            );
+
+            if (auth.isAuthenticated()) {
+                CredPrincipal user = (CredPrincipal) auth.getPrincipal();
+                String role = user.getAuthorities().iterator().next().getAuthority();
+                res.setStatusCode("200");
+                res.setStatusMsg("Login successful as " + role+" "+"user_id :"+c.getUser_id());
+                return ResponseEntity.ok(res);
+            }
+        } catch (Exception e) {
+            res.setStatusCode("401");
+            res.setStatusMsg("Invalid username or password");
+            return ResponseEntity.status(401).body(res);
+        }
+
+        res.setStatusCode("401");
+        res.setStatusMsg("Authentication failed");
+        return ResponseEntity.status(401).body(res);
+    }
+}
