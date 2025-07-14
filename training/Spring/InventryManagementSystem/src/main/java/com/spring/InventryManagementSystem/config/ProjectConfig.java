@@ -22,11 +22,11 @@ public class ProjectConfig {
             .cors().and()
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/admin/*").hasRole("ADMIN")
-                .requestMatchers("/user-stock*").hasRole("USER")
-                .requestMatchers("/orders/*").hasRole("USER")
-                .requestMatchers("/creation/*").hasRole("USER")
+//                .requestMatchers("/login").permitAll()
+//                .requestMatchers("/admin/*").hasRole("ADMIN")
+//                .requestMatchers("/user-stock*").hasRole("USER")
+//                .requestMatchers("/orders/*").hasRole("USER")
+//                .requestMatchers("/creation/*").hasRole("USER")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.InventryManagementSystem.domain.OrderDetails;
+import com.spring.InventryManagementSystem.domain.Product;
 import com.spring.InventryManagementSystem.interfaces.service.InfoServiceInterface;
 
 @RestController
@@ -32,6 +33,11 @@ public class InfoController {
 	@PostMapping("all-orders")
 	public List<OrderDetails> allOrders() throws Exception{
 		return infoService.allOrders();
+	}
+	
+	@PostMapping("low-stock")
+	public List<Product> lowStock() throws Exception{
+		return infoService.lowStock();
 	}
 
 }

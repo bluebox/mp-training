@@ -44,7 +44,7 @@ public class OrderDetailsRepository implements OrderDetailsRepositoryInterface {
 
 	@Override
 	public List<OrderDetails> allOrdersAdmin() throws SQLException {
-		String sql = "SELECT * FROM OrderDetails WHERE status <> 'WITHDRAWN'";
+		String sql = "SELECT * FROM OrderDetails WHERE orderStatus <> 'WITHDRAWN'";
 		return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(), new OrderDetailsRowMapper());
 	}
 
@@ -56,10 +56,32 @@ public class OrderDetailsRepository implements OrderDetailsRepositoryInterface {
 
 	@Override
 	public boolean withdrawOrder(Integer orderId) throws SQLException {
-		String sql = "UPDATE OrderDetails SET status = 'WITHDRAWN' WHERE status='PENDING' AND orderId = :orderId";
+		String sql = "UPDATE OrderDetails SET orderStatus = 'WITHDRAWN' WHERE orderStatus='PENDING' AND orderId = :orderId";
 		MapSqlParameterSource params= new MapSqlParameterSource();
 		params.addValue("orderId", orderId);
 		return namedParameterJdbcTemplate.update(sql, params) ==1;
+	}
+
+	@Override
+	public void editOrder(OrderDetails orderDetails) {
+		String sql = "UPDATE OrderDetails SET orderDate=:orderDate,orderCost=:orderCost,orderDiscount=:orderDiscount,orderStatus=:orderStatus,orderSupplier=:orderSupplier WHERE orderId=:orderId";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("orderDate", orderDetails.getOrderDate());
+		params.addValue("orderCost", orderDetails.getOrderCost());
+		params.addValue("orderDiscount", orderDetails.getOrderDiscount());
+		params.addValue("orderStatus", orderDetails.getOrderStatus());
+		params.addValue("orderSupplier", orderDetails.getOrderSupplier());
+		params.addValue("orderId", orderDetails.getOrderId());
+		namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	@Override
+	public boolean orderStatusUpdate(Integer orderId, String orderStatus) {
+		String sql = "UPDATE OrderDetails SET orderStatus=:orderStatus WHERE orderId=:orderId and orderStatus='PENDING'";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("orderStatus", orderStatus);
+		params.addValue("orderId", orderId);
+		return namedParameterJdbcTemplate.update(sql, params)==1;
 	}
 
 }

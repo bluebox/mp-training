@@ -48,5 +48,19 @@ public class OrderController {
 			return ResponseEntity.internalServerError().body("This Action Cannot Be Done");
 		}
 	}
+	
+	@PostMapping("order-status-update")
+	public ResponseEntity<?> orderStatusUpdate(@RequestBody OrderDetails orderDetails) throws Exception {
+		if(orderService.orderStatusUpdate(orderDetails)) {
+			return ResponseEntity.ok("Success");
+		}else {
+			return ResponseEntity.internalServerError().body("This Action Cannot Be Done");
+		}
+	}
+	
+	@PostMapping("view-order")
+	public ResponseEntity<?> getAllProducts(@RequestBody OrderDetails orderDetails) throws Exception {
+		return ResponseEntity.ok(orderService.viewOrder(orderDetails));
+	}
 
 }

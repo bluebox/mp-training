@@ -17,4 +17,8 @@ public interface OrderDetailsRepositoryInterface {
 
 	boolean withdrawOrder(Integer orderId) throws SQLException;
 
+	void editOrder(OrderDetails orderDetails);
+
+	boolean orderStatusUpdate(Integer orderId, String orderStatus);
+
 }

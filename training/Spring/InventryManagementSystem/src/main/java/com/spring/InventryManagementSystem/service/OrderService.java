@@ -40,8 +40,7 @@ public class OrderService implements OrderServiceInterface {
 	@Override
 	public List<String> getAllSuppliers() throws SQLException {
 		List<Supplier> suppliers = supplierRepository.getAllSuppliers();
-		List<String> supplierNames = suppliers.stream()
-				.map(n -> n.getSupplierName()+" - "+n.getSupplierId())
+		List<String> supplierNames = suppliers.stream().map(n -> n.getSupplierName() + " - " + n.getSupplierId())
 				.collect(Collectors.toList());
 		return supplierNames;
 	}
@@ -58,9 +57,24 @@ public class OrderService implements OrderServiceInterface {
 			orderDetails.setOrderStatus("PENDING");
 			orderDetails.setOrderDate(new Date());
 			int orderId = orderDetailsRepository.insertOrderDetails(orderDetails);
-			orderDetails.getItem().stream()
-		    .map(n -> { n.setOrderId(orderId); return n; })
-		    .forEach(n -> itemRepository.insertItems(n));
+			orderDetails.getItem().stream().map(n -> {
+				n.setOrderId(orderId);
+				return n;
+			}).forEach(n -> itemRepository.insertItems(n));
+			return true;
+		} else if (orderDetails.getOrderStatus().equals("PENDING")) {
+			List<Item> items = itemRepository.getAllItemsOfOrderWithoutStatus(orderDetails.getOrderId());
+			itemRepository.setStatusInactive(orderDetails.getOrderId());
+			orderDetails.setOrderStatus("PENDING");
+			orderDetails.setOrderDate(new Date());
+			orderDetailsRepository.editOrder(orderDetails);
+			int orderId = orderDetails.getOrderId();
+			orderDetails.getItem().stream().filter(n -> n.getOrderId() == null).map(n -> {
+				n.setOrderId(orderId);
+				return n;
+			}).forEach(n -> itemRepository.insertItems(n));
+			orderDetails.getItem().stream().filter(n -> n.getOrderId() != null)
+					.forEach(n -> itemRepository.updateItem(n));
 			return true;
 		}
 		return false;
@@ -69,5 +83,19 @@ public class OrderService implements OrderServiceInterface {
 	@Override
 	public boolean withdrawOrder(Integer orderId) throws Exception {
 		return orderDetailsRepository.withdrawOrder(orderId);
+	}
+
+	@Override
+	public boolean orderStatusUpdate(OrderDetails orderDetails) {
+		if (orderDetails.getOrderStatus().equals("APPROVED") || orderDetails.getOrderStatus().equals("REJECTED")) {
+			return orderDetailsRepository.orderStatusUpdate(orderDetails.getOrderId(), orderDetails.getOrderStatus());
+		}
+		return false;
+	}
+
+	@Override
+	public OrderDetails viewOrder(OrderDetails orderDetails) {
+		orderDetails.setItem(itemRepository.getAllItemsOfOrder(orderDetails.getOrderId()));
+		return orderDetails;
 	}
 }

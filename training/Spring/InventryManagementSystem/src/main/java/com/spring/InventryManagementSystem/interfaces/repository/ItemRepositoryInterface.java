@@ -8,4 +8,12 @@ public interface ItemRepositoryInterface {
 
 	void insertItems(Item item);
 
+	void setStatusInactive(Integer orderId) ;
+
+	List<Item> getAllItemsOfOrder(Integer orderId);
+
+	List<Item> getAllItemsOfOrderWithoutStatus(Integer orderId);
+
+	void updateItem(Item item);
+
 }

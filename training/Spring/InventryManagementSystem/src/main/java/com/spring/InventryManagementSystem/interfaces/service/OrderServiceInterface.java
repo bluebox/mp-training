@@ -15,4 +15,8 @@ public interface OrderServiceInterface {
 
 	boolean withdrawOrder(Integer orderId) throws Exception;
 
+	boolean orderStatusUpdate(OrderDetails orderDetails);
+
+	OrderDetails viewOrder(OrderDetails orderDetails);
+
 }

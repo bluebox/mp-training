@@ -27,5 +27,11 @@ public class ProductRepository implements ProductRepositoryInterface {
 		return namedParameterJdbcTemplate.query(sql,params ,new BeanPropertyRowMapper<>(Product.class));
 	}
 
+	@Override
+	public List<Product> lowStock() {
+		String sql = "SELECT * FROM product WHERE quantity < minQuantity";
+		return namedParameterJdbcTemplate.query(sql,new MapSqlParameterSource() ,new BeanPropertyRowMapper<>(Product.class));
+	}
+
 
 }

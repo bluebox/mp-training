@@ -8,4 +8,6 @@ public interface ProductRepositoryInterface {
 
 	List<Product> getAllProducts(String supplier);
 
+	List<Product> lowStock();
+
 }
