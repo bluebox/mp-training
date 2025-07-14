@@ -68,6 +68,10 @@ public class VehicleService {
 		return result;
 	}
 	
+	public List<Vehicle> getAllVehiclesByCustomer(int customerId) {
+		return vehicleDao.getAllVehiclesByCustomer(customerId);
+	}
+	
 	public List<Vehicle> getAllVehicles(){
 		return vehicleDao.getAllVehicles();
 	}

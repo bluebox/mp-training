@@ -23,6 +23,11 @@ public class ClaimDao {
 	}
 
 	public String claimInsurance(double reqAmount, String damageType, int policyId,String approvedBy) {
+		
+		if(validate(approvedBy)) {
+			return "No approvedBy reference in Admin or Users";
+		}
+		
 		int rowsEffected = jdbcTemplate.update("insert into claim(req_amount,damage_type,claim_status,claim_date,policy_id,approved_by) values(?,?,?,?,?,?)", reqAmount, damageType, "I", LocalDateTime.now(), policyId,approvedBy);
 		if (rowsEffected > 0) {
 			return "Wait for insurance to claim";
@@ -42,7 +47,12 @@ public class ClaimDao {
 	}
 
 	public String updateStatus(int claimId, double amount, char status, String approvedBy) {
-		double premiumAmount=jdbcTemplate.queryForObject("select p.premium_amount from policy p,claim c where p.policy_id=c.policy_id and c.claimId=?", Double.class,claimId);
+		
+		if(validate(approvedBy)) {
+			return "No approvedBy reference in Admin or Users";
+		}
+		
+		double premiumAmount=jdbcTemplate.queryForObject("select p.premium_amount from policy p,claim c where p.policy_id=c.policy_id and c.claim_id=?", Double.class,claimId);
 		if(premiumAmount<amount) {
 			amount=premiumAmount;
 		}
@@ -60,6 +70,15 @@ public class ClaimDao {
 		}
 	}
 
+	public Boolean validate(String approvedBy) {
+		List<String> adminUsernames=jdbcTemplate.queryForList("select username from admin",String.class);
+		List<String> userUsernames=jdbcTemplate.queryForList("select username from users",String.class);
+		boolean adminBool=adminUsernames.contains(approvedBy);
+		boolean userBool=userUsernames.contains(approvedBy);
+		
+		return adminBool||userBool;
+	}
+	
 	public List<Claim> getAllClaims() {
 		return jdbcTemplate.query("select * from claim", new ClaimRowMapper());
 	}
@@ -79,7 +98,7 @@ public class ClaimDao {
 				new ClaimRowMapper(), username);
 	}
 	public List<Claim> getAllIntiatedClaims() throws SQLException {
-		return jdbcTemplate.queryForList("select * from claim where claim_status='I'",Claim.class);
+		return jdbcTemplate.query("select * from claim where claim_status='I'",new ClaimRowMapper());
 	}
 	public ArrayList<Object> getClaimReport(int claimId) throws SQLException {
 		if(jdbcTemplate.queryForObject("select count(*) from claim where claim_id=?", Integer.class,claimId)<=0) {

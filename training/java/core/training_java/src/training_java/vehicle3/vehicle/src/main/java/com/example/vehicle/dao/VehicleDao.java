@@ -25,8 +25,8 @@ public class VehicleDao {
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		int rowsAffected = jdbcTemplate.update(vehicleAddSql, vehicle.getChasisNum(), vehicle.getRegNum(),
-				vehicle.getVehicleModel(), vehicle.getPurchaseDate(),LocalDateTime.now(),
-				vehicle.getVehicleUpdatedBy(), vehicle.getCustomerId(), vehicle.getCreatedBy(), "A");
+				vehicle.getVehicleModel(),LocalDateTime.now(),LocalDateTime.now(),
+				vehicle.getCreatedBy(), vehicle.getCustomerId(), vehicle.getCreatedBy(), "A");
 		if (rowsAffected == 0) {
 			return "Vehicle Not Added";
 		} else {

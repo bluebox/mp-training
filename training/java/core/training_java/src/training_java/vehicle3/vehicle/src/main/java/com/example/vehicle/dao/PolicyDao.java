@@ -25,6 +25,16 @@ public class PolicyDao {
 		this.jdbcTemplate=jdbcTemplate;
 	}
 	public String addPolicy(int policyTerm, PolicyType policyType, LocalDateTime startDate,LocalDateTime endDate, int vehicleId, String approvedBy) {
+		
+		if(jdbcTemplate.queryForObject("select status from vehicles where vehicle_id=?", Character.class,vehicleId).equals('I')) {
+			return "There is no vehicle";
+
+		}
+		
+		if(validate(approvedBy)) {
+			return "No approvedBy reference in Admin or Users";
+		}
+		
 		int rowsEffected=jdbcTemplate.update("insert into policy(policy_term,policy_type,premium_amount,policy_amount,start_date,end_date,policy_status,vehicle_id,approved_by) values(?,?,?,?,?,?,?,?,?)",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),startDate,endDate,"R",vehicleId,approvedBy);
 		if(rowsEffected>0) {
 			return "Inserted";
@@ -54,7 +64,7 @@ public class PolicyDao {
 	}
 	public String updateStatus(int policyid) {
 		char policyStatus=jdbcTemplate.queryForObject("select policy_status from policy where policy_id=?", Character.class,policyid);
-		int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",(policyStatus=='A')?"I":(policyStatus=='I')?"A":"R",policyid);
+		int rowsEffected=jdbcTemplate.update("update policy set policy_status=? where policy_id=?",(policyStatus=='A')?"I":(policyStatus=='I')?"A":"R");
 		if(rowsEffected>0) {
 			return "Status is updated";
 		}
@@ -62,6 +72,31 @@ public class PolicyDao {
 			return "Failed to update status";
 		}
 	}
+	
+	public Boolean validate(String approvedBy) {
+		List<String> adminUsernames=jdbcTemplate.queryForList("select username from admin",String.class);
+		List<String> userUsernames=jdbcTemplate.queryForList("select username from users",String.class);
+		boolean adminBool=adminUsernames.contains(approvedBy);
+		boolean userBool=userUsernames.contains(approvedBy);
+		
+		return adminBool||userBool;
+	}
+	
+	public String updateStatus(int policyid,char policyStatus,String approvedBy) {
+		
+		if(validate(approvedBy)) {
+			return "No approvedBy reference in Admin or Users";
+		}
+		
+		int rowsEffected=jdbcTemplate.update("update policy set policy_status=?,approved_by=? where policy_id=?",String.valueOf(policyStatus),approvedBy,policyid);
+		if(rowsEffected>0) {
+			return "Status is updated";
+		}
+		else {
+			return "Failed to update status";
+		}
+	}
+	
 	public List<Policy> getPoliciesRequested() {
 		return jdbcTemplate.query("select * from policy where policy_status='R'",new PolicyRowMapper());
 	}
@@ -101,6 +136,11 @@ public class PolicyDao {
 //		}
 	}
 	public String updatePolicy(int policyId,int policyTerm,PolicyType policyType, int vehicleId, String approvedBy) {
+		
+		if(validate(approvedBy)) {
+			return "No approvedBy reference in Admin or Users";
+		}
+		
 		int rowsEffected=jdbcTemplate.update("update policy set policy_term=?,policy_type=?,premium_amount=?,policy_amount=?,start_date=?,end_date=?,policy_status=?,vehicle_id=?,approved_by=? where policy_id=?",policyTerm,policyType.getPtype(),policyType.getPremiumAmount(),policyType.getPolicyAmount(),'A',vehicleId,approvedBy,policyId);
 		if(rowsEffected>0) {
 			return "Policy is updated";

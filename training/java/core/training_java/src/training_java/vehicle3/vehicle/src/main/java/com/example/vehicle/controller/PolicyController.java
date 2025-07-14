@@ -29,7 +29,7 @@ public class PolicyController {
 	}
 	@PostMapping("/add")
 	public String addPolicy(@RequestBody Policy p) throws Exception {
-		return policyService.addPolicy(p.getPolicyTerm(), (p.getPolicyType().equals("gold"))?PolicyType.Gold: (p.getPolicyType().equals("silver"))?PolicyType.Silver:PolicyType.Platinum, LocalDateTime.now(), LocalDateTime.now().plusYears(1),p.getVehicleId(),p.getApprovedBy());
+		return policyService.addPolicy(p.getPolicyTerm(), (p.getPolicyType().equals("Gold"))?PolicyType.Gold: (p.getPolicyType().equals("Silver"))?PolicyType.Silver:PolicyType.Platinum, LocalDateTime.now(), LocalDateTime.now().plusYears(1),p.getVehicleId(),p.getApprovedBy());
 	}
 	@GetMapping("/showAll")
 	public List<Policy> getAllPolicies() throws Exception {
@@ -48,8 +48,8 @@ public class PolicyController {
 		return policyService.showAllRequestedPolicies();
 	}
 	@PutMapping("/updatePolicyRequested")
-	public String updatedRequestedPolicy(@RequestParam int policyId,@RequestParam char status) throws Exception {
-		return policyService.updatePolicyStatus(policyId, status);
+	public String updatedRequestedPolicy(@RequestParam int policyId,@RequestParam char status,@RequestParam String approvedBy) throws Exception {
+		return policyService.updatePolicyStatus(policyId, status,approvedBy);
 	}
 	@PutMapping("/renew")
 	public String renewPolicy(@RequestParam int policyId,@RequestParam int policyTerm,@RequestParam String approvedBy) throws Exception {
@@ -57,7 +57,7 @@ public class PolicyController {
 	}
 	@PostMapping("/update")
 	public String updatePolicy(@RequestBody Policy p) throws Exception {
-		return policyService.updatePolicy(p.getPolicyId(), p.getPolicyTerm(), (p.getPolicyType().equals("gold"))?PolicyType.Gold: (p.getPolicyType().equals("silver"))?PolicyType.Silver:PolicyType.Platinum, p.getApprovedBy());
+		return policyService.updatePolicy(p.getPolicyId(), p.getPolicyTerm(), (p.getPolicyType().equals("Gold"))?PolicyType.Gold: (p.getPolicyType().equals("Silver"))?PolicyType.Silver:PolicyType.Platinum, p.getApprovedBy());
 	}
 	@GetMapping("/showById")
 	public Policy getPolicyById(@RequestParam int policyId) throws Exception {

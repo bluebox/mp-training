@@ -51,6 +51,11 @@ public class VehicleController {
 	public List<Vehicle> showAllVehicles() throws SQLException {
 		return vehicleService.getAllVehicles();
 	}
+	
+	@GetMapping("/showByCustomerId")
+	public List<Vehicle> getAllVehiclesByCustomer(int customerId) {
+		return vehicleService.getAllVehiclesByCustomer(customerId);
+	}
 }
 
 //{

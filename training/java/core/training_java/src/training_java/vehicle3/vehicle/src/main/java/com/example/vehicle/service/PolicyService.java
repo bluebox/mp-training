@@ -27,7 +27,7 @@ public class PolicyService {
 		return repo.updateStatus(policyId);
 	}
 	public String payPolicyAmount(int policyId) {
-		if(!repo.getPolicyById(policyId).getEndDate().isBefore(LocalDateTime.now())) {
+		if(!repo.getPolicyById(policyId).getEndDate().isAfter(LocalDateTime.now())) {
 			repo.updateStatus(policyId);
 			return repo.updateEndDate(policyId);
 		}
@@ -38,8 +38,8 @@ public class PolicyService {
 	public List<Policy> showAllRequestedPolicies(){
 		return repo.getPoliciesRequested();
 	}
-	public String updatePolicyStatus(int policyId,char policyStatus) {
-		return repo.updateStatus(policyId, policyStatus);
+	public String updatePolicyStatus(int policyId,char policyStatus,String approvedBy) {
+		return repo.updateStatus(policyId,policyStatus,approvedBy);
 	}
 	public String renewPolicy(int policyId,int policyTerm, String approvedBy) {
 		Policy p=repo.getPolicyById(policyId);

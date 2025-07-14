@@ -28,7 +28,7 @@ public class CustomerDao {
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int rowsAffected = jdbcTemplate.update(custAddSql, customer.getName(), customer.getEmail(), customer.getContact(),
 				customer.getGender().getVal(), customer.getAge(), customer.getOccupation(), customer.getIncome(),
-				customer.getAddress(), "A",LocalDateTime.now(), customer.getCustomerUpdatedBy(),
+				customer.getAddress(), "A",LocalDateTime.now(), customer.getCreatedBy(),
 				customer.getCreatedBy());
 
 		if (rowsAffected == 0) {
