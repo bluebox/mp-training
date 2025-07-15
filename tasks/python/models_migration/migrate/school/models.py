@@ -52,3 +52,8 @@ class StudentProfile(models.Model):
     address = models.CharField(max_length=100,null=False)
     class Meta:
         db_table = 'student_profile'
+
+qs = Student.objects.select_related('Class','Class__teacher').all()
+Results.objects.values('Class').annotate(avg_percentage=Avg('percentage'))
+Results.objects.values('Class').annotate(avg_percentage = Avg('percentage')).filter(avg_percentage__gt=80)
+Student.objects.all().order_by('attendance')
