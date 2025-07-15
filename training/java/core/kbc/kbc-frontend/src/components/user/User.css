@@ -1,0 +1,291 @@
+/* Register Page CSS */
+.registerdiv {
+  width: 320px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+  font-family: Arial, sans-serif;
+}
+
+
+.register-title {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.register-login-link {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.register-login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-login-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.registerform {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-field {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn-submit {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+
+/* UserHome CSS */
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  width:45vw;
+  margin:auto;
+  padding: 10px 20px;
+  background-color: #e8f0fe;
+  border-bottom: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  justify-content: space-between  ;
+  align-items: center;
+
+}
+
+.title {
+  font-size: 20px;
+  color: #333;
+}
+
+.user-menu-container {
+  position: relative;
+
+
+}
+
+.user-icon {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 8px;
+  width: 120px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.menu-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.menu-item:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-start-game {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 25px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+}
+
+.btn-start-game:hover {
+  background-color: #1e7e34;
+}
+
+.game-history-title {
+  margin-left: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.loading-text {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.error-text {
+  margin: 20px;
+  color: red;
+  font-family: Arial, sans-serif;
+}
+
+.history {
+  width: 90%;
+  max-width: 700px;
+  margin: 10px auto 30px auto;
+  font-family: Arial, sans-serif;
+  display:flex;
+  flex-direction: row;
+}
+
+.games-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.games-table th, .games-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.games-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.game-stats p {
+  margin: 5px 0;
+  font-size: 20px;
+  color: #303e1d;
+  font-weight:bold;
+}
+
+
+/* UserDetails CSS */
+
+.user-details-container {
+  width: 350px;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+.user-details-title {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.user-details-icon {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.input-edit {
+  width: 100%;
+  padding: 6px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.select-edit {
+  width: 100%;
+  padding: 6px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* button {
+  padding: 8px 14px;
+  margin-right: 8px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+} */
+
+.btn-save {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-save:hover {
+  background-color: #1e7e34;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #a71d2a;
+}
+
+.btn-back {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-back:hover {
+  background-color: #565e64;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #0056b3;
+}
