@@ -1,0 +1,8 @@
+"Category","Day of Week","Employee ID","Project ID","Hours"
+"Bug Fix","FRIDAY","E002","ProjectB","7.0"
+"Bug Fix","FRIDAY","E004","ProjectB","7.0"
+"Bug Fix","WEDNESDAY","E002","ProjectA","8.0"
+"Bug Fix","TUESDAY","E001","ProjectB","5.0"
+"Bug Fix","SATURDAY","E004","ProjectA","6.0"
+"Bug Fix","SATURDAY","E004","ProjectA","5.0"
+"Bug Fix","SUNDAY","E001","ProjectA","100.0"
