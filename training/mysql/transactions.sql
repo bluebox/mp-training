@@ -21,29 +21,29 @@ BEGIN
   SAVEPOINT sp_before_department;
   
   SELECT "Department executing";
-  INSERT INTO Departments(dept_id, Manager_Id, dept_name) 
-  VALUES (10, 5, 'AI_Research');
+  INSERT INTO Departments(dept_id,dept_name) 
+  VALUES (10,'AI_Research');
 
   SAVEPOINT sp_before_manager;
   SELECT "Managers executing";
 
-  INSERT INTO Managers(Emp_Id, Manager_Id, dept_id, Manager_Since) 
-  VALUES (3001, 11, 10, '2024-01-01');
+  INSERT INTO DepartmentHeads(Emp_Id,dept_head_id,dept_id,dept_head_since) 
+  VALUES (2978, 7, 10, '2025-01-01');
 
   SAVEPOINT sp_before_employees;
   SELECT "Employees executing";
 
   IF EXISTS (SELECT 1 FROM Employees WHERE Emp_Id=2998) THEN
-  SELECT "successfully rollbacked to sp_before_employees";
   ROLLBACK TO sp_before_employees;
+  SELECT "successfully rollbacked to sp_before_employees";
   ELSE
-  INSERT INTO Employees(Emp_Id, Employee_Name, age, Date_Joined, Manager_Id, dept_id) 
-  VALUES (2998, 'Rohit', 25, '2024-01-10', 11, 10);
+  INSERT INTO Employees(Emp_Id, Employee_Name, dob, Date_Joined, dept_id) 
+  VALUES (2998, 'Rohit', '2000-02-03', '2024-01-10', 3);
   END IF;
   
   SELECT "Employees executing";
-  INSERT INTO Employees(Emp_Id, Employee_Name, age, Date_Joined, Manager_Id, dept_id) 
-  VALUES (3003, 'Vijay', 35, '2024-01-15', 11, 10);  
+  INSERT INTO Employees(Emp_Id, Employee_Name, dob, Date_Joined, dept_id) 
+  VALUES (3003, 'Vijay', '2000-09-06', '2024-01-15', 5);  
 
   COMMIT;
   SELECT 'Transaction completed successfully.' AS status;
