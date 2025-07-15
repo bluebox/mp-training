@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom';
 export default function LogoutPage() {
     const nav=useNavigate();
   useEffect(() => {
-    fetch("http://localhost:8000/login?logout", {
-        method: "POST",
-        credentials: "include"
+    fetch("http://localhost:8000/logout", {
+        // credentials: "include"
     })
     .then((res)=>{
         if(!res.ok){
             throw new Error("Failed to fetch the data");
         }
-        return res.json();
+        return res;
     })
     .then(()=>{
         localStorage.clear();
@@ -20,7 +19,7 @@ export default function LogoutPage() {
         nav("/");
     })
     .catch((err)=>{
-        console.log("Error occured"+err.getMessage);
+        console.log("Error occured"+err);
     })
   },[nav]);
   return (

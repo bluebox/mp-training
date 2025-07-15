@@ -58,7 +58,7 @@ function ShowUser(){
         });
     }
     return(
-        <div>
+        <div style={{textAlign:"center",marginLeft:"350px",marginRight:"300px"}}>
             <h1>All Users</h1>
             <table>
                 <thead>
@@ -75,6 +75,11 @@ function ShowUser(){
                     </tbody>
             </table>
             <Link to="/user/userDetails"><button onClick={localStorage.removeItem("customerId")}>Add User</button></Link>
+            <div style={{textAlign:"center"}} colSpan={2}>
+                <h1></h1>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
+                <h1></h1>
+            </div>
         </div>
     );
 }

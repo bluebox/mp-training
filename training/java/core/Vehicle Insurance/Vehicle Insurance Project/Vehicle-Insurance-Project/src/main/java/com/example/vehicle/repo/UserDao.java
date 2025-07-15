@@ -33,6 +33,7 @@ public class UserDao {
 	public String updatePassword(String username,String password,String passwordUpdatedBy) throws SQLException{
 		int rowEffected=jdbcTemplate.update("update users set password=?,password_updated_on=?,password_updated_by=? where username=?",password,LocalDateTime.now(),passwordUpdatedBy,username);
 		if(rowEffected>0) {
+			System.out.println("Success");
 			return "Password updated successfully";
 		}
 		else {

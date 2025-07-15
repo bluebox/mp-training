@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import './UserDashboard.css';
+import { Link } from 'react-router-dom';
 
 export default function UserDashboard() {
   const [customer, setCustomer] = useState({});
-  const [customerId, setCustomerId] = useState(null);
+  const [customerId, setCustomerId] = useState(0);
 
   const [vehicles, setVehicles] = useState([]);
   const [selectedVehicleId, setSelectedVehicleId] = useState(null);
-
   const [policies, setPolicies] = useState([]);
   const [claims, setClaims] = useState([]);
 
@@ -18,7 +18,9 @@ export default function UserDashboard() {
   const [claimForm, setClaimForm] = useState({ reqAmount: '', damageType: '', policyId: '' });
 
   const [customerForm, setCustomerForm] = useState({});
+  const [oldPassword,setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword,setConfirmPassword]=useState("");
   const [showProfile, setShowProfile] = useState(false);
 
   const username = localStorage.getItem("username");
@@ -29,41 +31,103 @@ export default function UserDashboard() {
     fetchClaimsByUser();
   }, []);
 
-  const fetchCustomerId = () => {
-    axios.get(`http://localhost:8000/user/show?username=${username}`,{}, { withCredentials: true })
-      .then(res => {
-        setCustomerId(res.data.customerId);
-        fetchCustomerDetails(res.data.customerId);
-        fetchVehicles(res.data.customerId);
+  const fetchCustomerId=()=>{
+    fetch(`http://localhost:8000/user/show?username=${username}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials:"include"
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch data");
+        return response.json();
       })
-      .catch(err => console.error(err));
-  };
-
-  const fetchCustomerDetails = (id) => {
-    axios.get(`http://localhost:8000/customer/show?customerId=${id}`,{}, { withCredentials: true })
-      .then(res => {
-        setCustomer(res.data);
-        setCustomerForm(res.data);
+      .then((data) => {
+        console.log(data);
+        setCustomerId(data.customerId);
+        fetchCustomerDetails(data.customerId);
+        fetchVehicles(data.customerId);
+        console.log(data.customerId);
       })
-      .catch(err => console.error(err));
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
-  const fetchVehicles = (id) => {
-    axios.get(`http://localhost:8000/vehicle/showByCustomerId?customerId=${id}`,{}, { withCredentials: true })
-      .then(res => setVehicles(res.data))
-      .catch(err => console.error(err));
+  const fetchCustomerDetails=(id)=>{
+    fetch(`http://localhost:8000/customer/show?customerId=${id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials:"include"
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch data");
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setCustomer(data);
+        setCustomerForm(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
-  const fetchPoliciesByUser = () => {
-    axios.get(`http://localhost:8000/policy/showByUser?username=${username}`,{}, { withCredentials: true })
-      .then(res => setPolicies(res.data))
-      .catch(err => console.error(err));
+  const fetchVehicles=(id)=>{
+    fetch(`http://localhost:8000/vehicle/showByCustomerId?customerId=${id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials:"include"
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch data");
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setVehicles(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
-  const fetchClaimsByUser = () => {
-    axios.get(`http://localhost:8000/claim/claimByUser?username=${username}`,{}, { withCredentials: true })
-      .then(res => setClaims(res.data))
-      .catch(err => console.error(err));
+  const fetchPoliciesByUser=()=>{
+    fetch(`http://localhost:8000/policy/showByUser?username=${username}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials:"include"
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch data");
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setPolicies(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const fetchClaimsByUser=()=>{
+    fetch(`http://localhost:8000/claim/claimByUser?username=${username}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials:"include"
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch data");
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setClaims(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const updateVehicleReg = () => {
@@ -80,13 +144,15 @@ export default function UserDashboard() {
       vehicleId: policyForm.vehicleId,
       policyTerm: policyForm.policyTerm,
       policyType: policyForm.policyType,
-      approvedBy: username
+      approvedBy: localusername
     }, { withCredentials: true })
       .then((response) => {
         alert(response.data);
         fetchPoliciesByUser();
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err)
+      });
   };
 
   const submitClaimRequest = () => {
@@ -111,23 +177,45 @@ export default function UserDashboard() {
       })
       .catch(err => console.error(err));
   };
-
+  const custupdate=customerForm;
+  custupdate.customerUpdatedBy=username;
   const updateCustomerDetails = () => {
-    axios.put(`http://localhost:8000/customer/update`, { ...customerForm, customerUpdatedBy: username }, { withCredentials: true })
-      .then((response) => {
-        alert(response.data);
-        fetchCustomerDetails(customerId);
+      fetch(`http://localhost:8000/customer/update?customerId=${customerId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(custupdate),
+        credentials:"include"
       })
-      .catch(err => console.error(err));
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch data");
+        console.log(JSON.stringify(custupdate));
+        return response.text();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
+  
 
   const updatePassword = () => {
-    axios.put(`http://localhost:8000/user/updatePassword?username=${username}&password=${newPassword}`, {}, { withCredentials: true })
-      .then((response) => {
-        alert(response.data);
-        setNewPassword('');
-      })
-      .catch(err => console.error(err));
+    if((newPassword!==confirmPassword) || (newPassword==="")){
+      const err=document.getElementById("errors");
+      err.innerHTML="";
+      const errVal=document.createElement("h1");
+      errVal.textContent="Wrong Credentials";
+      err.appendChild(errVal);
+    }
+    else{
+      axios.put(`http://localhost:8000/user/updatePassword?username=${username}&oldPassword=${oldPassword}&password=${newPassword}&updatedBy=${username}`, {}, { withCredentials: true })
+        .then((response) => {
+          alert(response.data);
+          setNewPassword('');
+        })
+        .catch(err => console.error(err));
+    }
   };
 
   const generatePolicyReport = (policyId) => {
@@ -150,7 +238,7 @@ export default function UserDashboard() {
       doc.text("Vehicle Details:", 10, 90);
       doc.setFontSize(12);
       doc.text(`Reg Number: ${vehicle.regNum}`, 10, 100);
-      doc.text(`Type: ${vehicle.vehicleType}`, 10, 110);
+      doc.text(`Type: ${vehicle.vehicleModel}`, 10, 110);
 
       doc.setFontSize(14);
       doc.text("Policy Details:", 10, 130);
@@ -188,7 +276,7 @@ const generateClaimReport = (claimId) => {
       doc.text("Vehicle Details:", 10, 90);
       doc.setFontSize(12);
       doc.text(`Reg Number: ${vehicle.regNum}`, 10, 100);
-      doc.text(`Type: ${vehicle.vehicleType}`, 10, 110);
+      doc.text(`Type: ${vehicle.vehicleModel}`, 10, 110);
 
       doc.setFontSize(14);
       doc.text("Policy Details:", 10, 130);
@@ -212,9 +300,7 @@ const generateClaimReport = (claimId) => {
       console.error(err);
       alert("Failed to fetch claim report");
     });
-};
-
-
+  };
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
@@ -237,14 +323,20 @@ const generateClaimReport = (claimId) => {
               <tr><td>Phone</td><td><input value={customerForm.contact || ''} onChange={e => setCustomerForm({ ...customerForm, contact: e.target.value })} /></td></tr>
               <tr><td>Email</td><td><input value={customerForm.email || ''} onChange={e => setCustomerForm({ ...customerForm, email: e.target.value })} /></td></tr>
               <tr><td>Address</td><td><input value={customerForm.address || ''} onChange={e => setCustomerForm({ ...customerForm, address: e.target.value })} /></td></tr>
-              <tr><td>Occupation</td><td>{customerForm.occupation}</td></tr>
+              <tr><td>Occupation</td><td><input value={customerForm.occupation} onChange={e=>setCustomerForm({ ...customerForm, occupation: e.target.value })}></input></td></tr>
             </tbody>
           </table>
           <button onClick={updateCustomerDetails}>Update Customer Info</button>
-
+Brave
           <div style={{ marginTop: '15px' }}>
             <h4>Update Password</h4>
-            <input type="password" placeholder="New Password" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
+            <div id="errors"></div>
+            <label htmlFor=" oldPassword">Old Password : </label>
+            <input type="text" id="oldPassword" name="oldPassword" onChange={(event)=>setOldPassword(event.target.value)}/>
+            <label htmlFor="newPassword">New Password : </label>
+            <input type="text" id="newPassword" name="newPassword" onChange={(event)=>setNewPassword(event.target.value)}/>
+            <label htmlFor="confirmPassword">Confirm Password : </label>
+            <input type="text" id="confirmPassword" name="confirmPassword" onChange={(event)=>setConfirmPassword(event.target.value)}/>
             <button onClick={updatePassword}>Update Password</button>
           </div>
         </div>
@@ -322,6 +414,7 @@ const generateClaimReport = (claimId) => {
           ))}
         </ul>
       </div>
+      <Link to="/logout"><button>Logout</button></Link>
     </div>
   );
 }

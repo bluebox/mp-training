@@ -49,7 +49,7 @@ public class ProjectSecurityConfig {
 	        .antMatchers("/customer/update", "/customer/delete", "/customer/show", "/vehicle/update", "/vehicle/showById",
 	                "/policy/add", "/policy/showById", "/policy/report", "/policy/renew", "/policy/update",
 	                "/policy/payDue", "/policy/dueDate", "/claim/add", "/claim/claimById", "/claim/claimByUser",
-	                "/claim/claimReports", "/user/updatePassword", "/user/show")
+	                "/claim/claimReports", "/user/updatePassword", "/user/show","/vehicle/showByCustomerId","/policy/showByUser")
 	        .hasAnyRole("ADMIN", "USER")
 	        .antMatchers("/customer/**", "/user/**", "/vehicle/**", "/policy/**", "/claim/**")
 	        .hasRole("ADMIN")
@@ -63,6 +63,8 @@ public class ProjectSecurityConfig {
 	                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication Failed");
 	            })
 	            .permitAll())
+	        .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")               
+	        		.invalidateHttpSession(true).permitAll())
 	        .httpBasic();
 
 	    return http.build();

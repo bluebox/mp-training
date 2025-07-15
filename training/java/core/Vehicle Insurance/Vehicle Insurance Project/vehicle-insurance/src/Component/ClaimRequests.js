@@ -47,7 +47,7 @@ function ShowRequestedClaim(){
     //     }
     // }
     return(
-        <div>
+        <div style={{textAlign:"center",marginLeft:"650px",marginRight:"650px"}}>
             <h1>All Requested Claims</h1>
             <table style={{border:"2px solid"}}>
                 <thead>
@@ -68,6 +68,10 @@ function ShowRequestedClaim(){
                     </tbody>
             </table>
             <Link to="/user/claim"><button>Add Claim</button></Link>
+            <div style={{textAlign:"center"}} colSpan={2}>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
+                <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
+            </div>
         </div>
     );
 }

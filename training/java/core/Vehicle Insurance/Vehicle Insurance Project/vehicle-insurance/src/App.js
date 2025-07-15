@@ -29,7 +29,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/login" element={<LoginPage />} />
+                <Route path="/" element={<LoginPage />} />
                 <Route path="/not-authorized" element={<NotAuthorized />} />
 
                 <Route path="/admin"

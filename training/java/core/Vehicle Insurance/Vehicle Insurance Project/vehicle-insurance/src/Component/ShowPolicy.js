@@ -82,7 +82,7 @@ function ShowPolicy(){
         });
     }
     return(
-        <div>
+        <div style={{marginLeft:"470px",marginRight:"400px",textAlign:"center"}}>
             <h1>All Policies</h1>
             <table>
                 <thead>
@@ -104,6 +104,10 @@ function ShowPolicy(){
                     </tbody>
             </table>
             <Link to="/user/policy"><button>Add Policy</button></Link>
+            <div colSpan={2}>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
+                <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
+            </div>
         </div>
     );
 }

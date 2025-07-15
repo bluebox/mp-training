@@ -22,7 +22,7 @@ function UpdateUser() {
         return response.text();
       })
       .then((data) => {
-        console.log(data.text());
+        console.log(data);
         nav("/users/show");
       })
       .catch((error) => {

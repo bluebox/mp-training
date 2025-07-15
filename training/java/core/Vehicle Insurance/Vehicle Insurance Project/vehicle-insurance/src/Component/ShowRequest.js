@@ -52,7 +52,7 @@ function ShowRequestedPolicy(){
         });
     }
     return(
-        <div>
+        <div style={{textAlign:"center",marginLeft:"650px",marginRight:"650px"}}>
             <h1>All Policy Requests to be Approved</h1>
             <table>
                 <thead>
@@ -74,6 +74,10 @@ function ShowRequestedPolicy(){
                     </tbody>
             </table>
             <Link to="/user/policy"><button>Add Policy</button></Link>
+            <div colSpan={2}>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
+                <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
+            </div>
         </div>
     );
 }

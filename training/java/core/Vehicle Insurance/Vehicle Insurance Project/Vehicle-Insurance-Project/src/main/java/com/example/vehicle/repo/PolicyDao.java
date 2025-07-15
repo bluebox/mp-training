@@ -28,6 +28,9 @@ public class PolicyDao {
 		if(jdbcTemplate.queryForObject("select count(*) from vehicles where vehicle_id=?", Integer.class,vehicleId)==0) {
 			return "There is no vehicle with the vehicleId "+vehicleId;
 		}
+		if(jdbcTemplate.queryForObject("select count(*) from policy where vehicle_id=? and policy_status='R'", Integer.class,vehicleId)>0) {
+			return "policy already existed";
+		}
 		if(jdbcTemplate.queryForObject("select status from vehicles where vehicle_id=?", Character.class,vehicleId)=='I') {
 			return "There is no vehicle";
 		}
@@ -85,6 +88,9 @@ public class PolicyDao {
 		return jdbcTemplate.query("select * from policy where policy_status='R'",new PolicyRowMapper());
 	}
 	public String updateStatus(int policyid,char policyStatus,String approvedBy) {
+		if(jdbcTemplate.queryForObject("select count(*) from policy where vehicle_id=(select vehicle_id from policy where policy_id=? and policy_status='A')", Integer.class,policyid)>0) {
+			return "Policy already existed for this vehicle";
+		}
 		int rowsEffected=jdbcTemplate.update("update policy set policy_status=?,approved_by=? where policy_id=?",Character.toString(policyStatus),approvedBy,policyid);
 		if(rowsEffected>0) {
 			if(policyStatus=='A'){
@@ -147,6 +153,9 @@ public class PolicyDao {
 		return jdbcTemplate.queryForObject("select count(*) from policy where vehicle_id=? and policy_status='A'",Integer.class,vehicleId);
 	}
 	public List<Policy> getPolicyByUser(String username){
+//		if(jdbcTemplate.queryForObject("select count(*) from policy p,vehicles v,users u,customers c where p.vehicle_id=v.vehicle_id and v.customer_id=c.customer_id and c.customer_id=u.customer_id and u.username=? and v.status='A'",Integer.class,username)==0) {
+//			return List.of(new Policy());
+//		}
 		return jdbcTemplate.query("select p.* from policy p,vehicles v,users u,customers c where p.vehicle_id=v.vehicle_id and v.customer_id=c.customer_id and c.customer_id=u.customer_id and u.username=? and v.status='A'",new PolicyRowMapper(),username);
 	}
 	public ArrayList<Object> getPolicyReport(int policyId) {

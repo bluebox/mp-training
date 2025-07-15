@@ -18,7 +18,7 @@ public class ClaimService {
 			return repo.claimInsurance(reqAmount, damageType, policyId,approvedBy);
 		}
 		else {
-			return "You are not eligible to get this policy";
+			return "You are not eligible to get this claim";
 		}
 	}
 	public List<Claim> getAllIntiatedClaims() throws Exception {

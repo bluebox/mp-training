@@ -23,6 +23,9 @@ public class ClaimDao {
 	}
 
 	public String claimInsurance(double reqAmount, String damageType, int policyId,String approvedBy) {
+		if(jdbcTemplate.queryForObject("select count(*) from policy where policy_id=? and policy_status='A'", Integer.class,policyId)==0) {
+			return "There is no policy with the ID "+policyId;
+		}
 		int rowsEffected = jdbcTemplate.update("insert into claim(req_amount,damage_type,claim_status,claim_date,policy_id,approved_by) values(?,?,?,?,?,?)", reqAmount, damageType, "I", LocalDateTime.now(), policyId,approvedBy);
 		if (rowsEffected > 0) {
 			return "Wait for insurance to claim";
@@ -33,16 +36,16 @@ public class ClaimDao {
 
 	public boolean isEligible(int policyId) {
 		LocalDateTime lastClaimDate = jdbcTemplate.queryForObject(
-				"select Max(c.claim_date) from claim c,policy p where c.policy_id=p.policy_id and c.policy_id=? and p.policy_status='A' and c.claim_status='A'",
+				"select Max(c.claim_date) from claim c,policy p where c.policy_id=p.policy_id and c.policy_id=? and p.policy_status='A' and (c.claim_status='A' or c.claim_status='I')",
 				LocalDateTime.class, policyId);
 		if(lastClaimDate==null) {
 			return true;
 		}
-		return (lastClaimDate.plusMonths(6)).isBefore(LocalDateTime.now());
+		return ((lastClaimDate.plusMonths(6)).isBefore(LocalDateTime.now()));
 	}
 
 	public String updateStatus(int claimId, double amount, char status, String approvedBy) {
-		double premiumAmount=jdbcTemplate.queryForObject("select p.premium_amount from policy p,claim c where p.policy_id=c.policy_id and c.claimId=?", Double.class,claimId);
+		double premiumAmount=jdbcTemplate.queryForObject("select p.premium_amount from policy p,claim c where p.policy_id=c.policy_id and c.claim_id=?", Double.class,claimId);
 		if(premiumAmount<amount) {
 			amount=premiumAmount;
 		}
@@ -68,6 +71,7 @@ public class ClaimDao {
 		return jdbcTemplate.queryForObject("select * from claim where claim_id=?", new ClaimRowMapper() , claimId);
 	}
 	public List<Claim> getClaimByPolicyId(int policyId){
+		
 		return jdbcTemplate.query("select c.* from claim c,policy p where c.policy_id=p.policy_id and p.policy_id=? and p.policy_status=?", new ClaimRowMapper(),policyId);
 	}
 	public List<Claim> getClaimByVehicleId(int vehiceId){

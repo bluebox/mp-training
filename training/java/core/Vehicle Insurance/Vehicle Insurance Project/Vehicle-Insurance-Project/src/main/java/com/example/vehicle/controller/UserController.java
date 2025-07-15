@@ -3,6 +3,7 @@ package com.example.vehicle.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,11 @@ import com.example.vehicle.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 	private final UserService userService;
+	private PasswordEncoder passwordEncoder;
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService,PasswordEncoder passwordEncoder) {
 		this.userService=userService;
+		this.passwordEncoder=passwordEncoder;
 	}
 	@PostMapping("/add")
 	public String addUser(@RequestBody User u) throws Exception {
@@ -31,7 +34,8 @@ public class UserController {
 	}
 	@PutMapping("/updatePassword")
 	public String updatePassword(@RequestParam String username,@RequestParam String oldPassword,@RequestParam String password,@RequestParam String updatedBy) throws Exception {
-		if(userService.getUserByUsername(username).getPassword()!=oldPassword) {
+		if(userService.getUserByUsername(username).getPassword().matches(oldPassword)) {
+			System.out.println(userService.getUserByUsername(username).getPassword()+" "+oldPassword);
 			return "Please enter correct password";
 		}
 		return userService.updatePassword(username, password, updatedBy);

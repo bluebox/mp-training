@@ -65,7 +65,7 @@ function UpdateClaim(){
                         <td><input type="number" id="reqAmount" name="reqAmount" value={claim.reqAmount}/></td>
                     </tr>
                     <tr>
-                        <td><label htmlFor="status" defaultValue={claim.status}>Status : </label></td>
+                        <td><label htmlFor="status">Status : </label></td>
                         <input type="radio" id="status" name="status" value="A"/>Accept
                         <input type="radio" id="status" name="status" value="R"/>Reject
                     </tr>

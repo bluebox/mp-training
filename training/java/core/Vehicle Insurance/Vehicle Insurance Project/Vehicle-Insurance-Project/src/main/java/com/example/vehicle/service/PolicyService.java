@@ -28,7 +28,7 @@ public class PolicyService {
 		return repo.dueDate(policyId);
 	}
 	public String payPolicyAmount(int policyId) throws SQLException {
-		if(!repo.getPolicyById(policyId).getEndDate().isBefore(LocalDateTime.now())) {
+		if(!repo.getPolicyById(policyId).getEndDate().isAfter(LocalDateTime.now())) {
 			repo.updateStatus(policyId);
 			return repo.updateEndDate(policyId);
 		}

@@ -28,7 +28,7 @@ const AdminDashboard = () => {
         {activeTab === 'claim' && <ManageClaim />}
         {activeTab === 'users' && <ShowUser />}
       </div>
-      <Link to="/logout">Logout</Link>
+      <Link to="/logout"><button>Logout</button></Link>
     </div>
   );
 };

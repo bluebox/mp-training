@@ -5,6 +5,7 @@ function UpdateCustomer() {
     const nav=useNavigate();
     const { customerId } = useParams();
     const [customer,setCustomer]=useState([]);
+    const [gender,setGender]=useState([]);
     useEffect(()=>{
         fetch(`http://localhost:8000/customer/show?customerId=${customerId}`,{
             method: "GET",
@@ -18,6 +19,7 @@ function UpdateCustomer() {
         })
         .then((data)=>{
             setCustomer(data);
+            setGender(data.gender);
             alert(JSON.stringify(data));
         })
         .catch((err)=>{
@@ -43,7 +45,7 @@ function UpdateCustomer() {
         return response.text();
       })
       .then((data) => {
-        console.log(data.text());
+        console.log(data);
         nav("/customer/show");
       })
       .catch((error) => {
@@ -73,7 +75,7 @@ function UpdateCustomer() {
                 <tr>
                     <td><label htmlFor="gender">Gender : </label></td>
                     <td>
-                        <select id="gender" name="gender" value={customer.gender} onChange={value=>value}>
+                        <select id="gender" name="gender" value={gender} onChange={(event)=>setGender(event.target.value)}>
                             <option hidden>Enter your gender</option>
                             <option defaultChecked="true" value="MALE">Male</option>
                             <option value="FEMALE">Female</option>
