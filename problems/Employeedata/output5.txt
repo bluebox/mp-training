@@ -1,3 +1,0 @@
-EmployeeId,NumberofDays
-EMP001,3days
-EMP004,2days
