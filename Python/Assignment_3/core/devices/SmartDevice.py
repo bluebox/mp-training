@@ -51,6 +51,7 @@ class SmartDevice(ABC,metaclass=DeviceRegistrarMeta):
     @abstractmethod
     async def perform_action(self, action_type, value=None):
         pass
+
     @abstractmethod
     def get_supported_actions(self):
         pass
