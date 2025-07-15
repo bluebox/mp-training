@@ -1,0 +1,30 @@
+QA,P001,2024-02-14,E001,David,Bug Fixing,2.8
+QA,P001,2024-02-16,E001,David,Meeting,10.1
+QA,P001,2024-05-15,E003,Stacey,Development,8.4
+QA,P002,2024-03-17,E006,Catherine,Documentation,5.4
+QA,P003,2024-02-26,E001,David,Bug Fixing,8.5
+QA,P003,2024-03-08,E003,Stacey,Documentation,7.7
+QA,P003,2024-04-22,E003,Stacey,Bug Fixing,9.2
+QA,P003,2024-05-16,E006,Catherine,Bug Fixing,5.8
+QA,P004,2024-02-20,E003,Stacey,Bug Fixing,1.5
+QA,P004,2024-04-29,E001,David,Development,1.8
+QA,P005,2024-02-15,E003,Stacey,Development,10.2
+QA,P005,2024-02-20,E001,David,Development,9.2
+QA,P005,2024-05-16,E006,Catherine,Meeting,11.7
+Research & Developement,P001,2024-04-18,E002,Donna,Meeting,9.0
+Research & Developement,P002,2024-02-16,E002,Donna,Documentation,2.3
+Research & Developement,P002,2024-04-06,E002,Donna,Bug Fixing,3.1
+Research & Developement,P002,2024-05-18,E005,Allison,Documentation,10.7
+Research & Developement,P003,2024-03-17,E004,Frederick,Meeting,3.8
+Research & Developement,P004,2024-02-12,E005,Allison,Documentation,11.2
+Research & Developement,P004,2024-03-16,E002,Donna,Development,1.6
+Research & Developement,P004,2024-04-24,E009,Karina,Bug Fixing,3.1
+Research & Developement,P004,2024-05-21,E004,Frederick,Development,2.8
+Research & Developement,P004,2024-05-22,E005,Allison,Documentation,5.7
+Research & Developement,P005,2024-02-15,E002,Donna,Bug Fixing,7.4
+Research & Developement,P005,2024-05-24,E005,Allison,Development,8.3
+UI/UX,P002,2024-03-14,E007,Tamara,Documentation,6.1
+UI/UX,P004,2024-04-01,E007,Tamara,Meeting,10.5
+UI/UX,P005,2024-02-12,E008,Sarah,Bug Fixing,1.6
+UI/UX,P005,2024-03-23,E007,Tamara,Development,2.2
+UI/UX,P005,2024-04-27,E007,Tamara,Documentation,11.3
