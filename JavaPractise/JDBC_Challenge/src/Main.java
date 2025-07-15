@@ -1,0 +1,38 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class Main {
+	public static void main(String[] args) throws Exception{
+		String url = "jdbc:mysql://localhost:3306/db";
+        String user = "root";
+        String password = "Akash@123";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the database!");
+            PreparedStatement ps=connection.prepareStatement("insert into orders (id,name,price) values (1,'apple',25),(2,'banana',23);");
+            int i=ps.executeUpdate();
+            if(i>0) {
+            		System.out.println("Successfully added");
+            }
+            else {
+            		System.out.println("Adding Failed");
+            }
+            PreparedStatement ps2=connection.prepareStatement("Delete from orders where id=2;");
+            int j=ps2.executeUpdate();
+            if(j>0) {
+            		System.out.println("Successfully deleted");
+            }
+            else {
+            		System.out.println("Adding Failed");
+            }
+            ps.close();
+            ps2.close();
+            connection.close();
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+}
