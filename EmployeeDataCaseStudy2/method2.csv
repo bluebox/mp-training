@@ -1,0 +1,9 @@
+day,EmpId,Name,Dept,ProjectID,Date,taskcategory,workhours,remarks 
+THURSDAY,E106,Shruti,QA,PJT002,2025-07-03,Bug Fixing,3.50,Bug Fixing work for PJT002 
+FRIDAY,E103,Sumanth,DevOps,PJT004,2025-07-04,Bug Fixing,6.70,#critical deployment issue 
+WEDNESDAY,E102,Tarun,DevOps,PJT001,2025-07-02,Bug Fixing,5.00,Bug Fixing work for PJT001 
+WEDNESDAY,E105,Anil,DevOps,PJT002,2025-07-02,Bug Fixing,5.30,Bug Fixing work for PJT002 
+TUESDAY,E102,Tarun,DevOps,PJT003,2025-07-01,Bug Fixing,4.10,Bug Fixing work for PJT003 
+TUESDAY,E103,Sumanth,DevOps,PJT002,2025-07-01,Bug Fixing,6.30,Bug Fixing work for PJT002 
+TUESDAY,E107,Kiran,QA,PJT004,2025-07-01,Bug Fixing,5.60,Bug Fixing work for PJT004 
+TUESDAY,E105,Anil,QA,PJT002,2025-07-15,Bug Fixing,5.00,Switched from DevOps to QA 
