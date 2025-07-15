@@ -1,7 +1,5 @@
 package com.app.controller;
 
-import com.app.enums.Gender;
-import com.app.enums.Status;
 import com.app.model.Feedback;
 import com.app.model.User;
 import com.app.service.EventRegistrationService;
@@ -28,10 +26,10 @@ public class PdfController {
     @Autowired EventRegistrationService eventService;
 
     @GetMapping("/feedback")
-    public String generateFeedbackPdf(@RequestParam int event_id) throws Exception {
-        List<Feedback> feedbacks = feedbackService.getAllFeedbackofEvent(event_id);
+    public String generateFeedbackPdf(@RequestParam int eventId) throws Exception {
+        List<Feedback> feedbacks = feedbackService.getAllFeedbackofEvent(eventId);
 
-        String filePath = "/home/developer/Downloads/feedback_event_" + event_id + ".pdf";
+        String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(filePath));
@@ -39,7 +37,7 @@ public class PdfController {
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         font.setSize(18);
-        Paragraph title = new Paragraph("Event Feedback Report - Event ID: " + event_id, font);
+        Paragraph title = new Paragraph("Event Feedback Report - Event ID: " + eventId, font);
         title.setAlignment(Element.ALIGN_CENTER);
         document.add(title);
         document.add(Chunk.NEWLINE);
@@ -56,7 +54,7 @@ public class PdfController {
         table.addCell(h3);
 
         for (Feedback f : feedbacks) {
-            table.addCell(String.valueOf(f.getUser_id()));
+            table.addCell(String.valueOf(f.getUserId()));
             table.addCell(f.getFeedback());
             table.addCell(String.valueOf(f.getRating()));
         }
@@ -68,10 +66,10 @@ public class PdfController {
     }
     
     @GetMapping("/attended")
-    public String generateAttendancePdf(@RequestParam int event_id) throws FileNotFoundException, DocumentException
+    public String generateAttendancePdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
     {
-    	 String filePath = "/home/developer/Downloads/feedback_event_" + event_id + ".pdf";
-         List<User> users = eventService.eventAttendents(event_id);
+    	 String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
+         List<User> users = eventService.eventAttendents(eventId);
 
 
          Document document = new Document();
@@ -80,7 +78,7 @@ public class PdfController {
 
          Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
          font.setSize(18);
-         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + event_id, font);
+         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
          title.setAlignment(Element.ALIGN_CENTER);
          document.add(title);
          document.add(Chunk.NEWLINE);
@@ -106,9 +104,9 @@ public class PdfController {
          
 
          for (User u : users) {
-             table.addCell(String.valueOf(u.getUser_id()));
+             table.addCell(String.valueOf(u.getUserId()));
              table.addCell(u.getName());
-             table.addCell(u.getPhn_number());
+             table.addCell(u.getPhnNumber());
 
              table.addCell(u.getEmail());
              table.addCell(u.getRole());
@@ -126,10 +124,10 @@ public class PdfController {
     }
     
     @GetMapping("/absenties")
-    public String generateAbsentiesPdf(@RequestParam int event_id) throws FileNotFoundException, DocumentException
+    public String generateAbsentiesPdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
     {
-        String filePath = "/home/developer/Downloads/feedback_event_" + event_id + ".pdf";
-        List<User> users = eventService.eventAbsenties(event_id);
+        String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
+        List<User> users = eventService.eventAbsenties(eventId);
 
 
         Document document = new Document();
@@ -138,7 +136,7 @@ public class PdfController {
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         font.setSize(18);
-        Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + event_id, font);
+        Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
         title.setAlignment(Element.ALIGN_CENTER);
         document.add(title);
         document.add(Chunk.NEWLINE);
@@ -164,9 +162,9 @@ public class PdfController {
         
 
         for (User u : users) {
-            table.addCell(String.valueOf(u.getUser_id()));
+            table.addCell(String.valueOf(u.getUserId()));
             table.addCell(u.getName());
-            table.addCell(u.getPhn_number());
+            table.addCell(u.getPhnNumber());
 
             table.addCell(u.getEmail());
             table.addCell(u.getRole());
@@ -184,11 +182,11 @@ public class PdfController {
     }
     
     @GetMapping("/cancelled")
-    public String generateCancelledPdf(@RequestParam int event_id) throws FileNotFoundException, DocumentException
+    public String generateCancelledPdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
     {
 
-    	 String filePath = "/home/developer/Downloads/feedback_event_" + event_id + ".pdf";
-         List<User> users = eventService.noOfUsersCancelledEventRegistration(event_id);
+    	 String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
+         List<User> users = eventService.noOfUsersCancelledEventRegistration(eventId);
 
 
          Document document = new Document();
@@ -197,7 +195,7 @@ public class PdfController {
 
          Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
          font.setSize(18);
-         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + event_id, font);
+         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
          title.setAlignment(Element.ALIGN_CENTER);
          document.add(title);
          document.add(Chunk.NEWLINE);
@@ -223,9 +221,9 @@ public class PdfController {
          
 
          for (User u : users) {
-             table.addCell(String.valueOf(u.getUser_id()));
+             table.addCell(String.valueOf(u.getUserId()));
              table.addCell(u.getName());
-             table.addCell(u.getPhn_number());
+             table.addCell(u.getPhnNumber());
 
              table.addCell(u.getEmail());
              table.addCell(u.getRole());

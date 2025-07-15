@@ -12,8 +12,8 @@ public class FeedbackMapper implements RowMapper<Feedback> {
     @Override
     public Feedback mapRow(ResultSet rs, int rowNum) throws SQLException {
         Feedback fb = new Feedback();
-        fb.setUser_id(rs.getInt("user_id"));
-        fb.setEvent_id(rs.getInt("event_id"));
+        fb.setUserId(rs.getInt("userId"));
+        fb.setEventId(rs.getInt("eventId"));
         fb.setRating(rs.getInt("rating"));
         fb.setFeedback(rs.getString("feedback"));
         return fb;

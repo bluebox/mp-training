@@ -14,20 +14,20 @@ public class EventRegistrationMapper implements RowMapper<EventRegistration> {
     public EventRegistration mapRow(ResultSet rs, int rowNum) throws SQLException {
         EventRegistration er = new EventRegistration();
 
-        er.setUser_id(rs.getInt("user_id"));
-        er.setEvent_id(rs.getInt("event_id"));
+        er.setUserId(rs.getInt("user_id"));
+        er.setEventId(rs.getInt("event_id"));
 
         String statusCode = rs.getString("registration_status");
         er.setStatus(statusCode != null ? RegistrationStatus.fromCode(statusCode) : null);
 
-        er.setRegistered_by(rs.getInt("registered_by"));
-        er.setRegistered_at(rs.getTimestamp("registered_at").toLocalDateTime());
+        er.setRegisteredBy(rs.getInt("registered_by"));
+        er.setRegisteredAt(rs.getTimestamp("registered_at").toLocalDateTime());
 
         int updatedBy = rs.getInt("updated_by");
-        er.setUpdated_by(!rs.wasNull() ? updatedBy : null);
+        er.setUpdatedBy(!rs.wasNull() ? updatedBy : null);
 
         Timestamp updated = rs.getTimestamp("updated_at");
-        er.setUpdated_at(updated != null ? updated.toLocalDateTime() : null);
+        er.setUpdatedAt(updated != null ? updated.toLocalDateTime() : null);
 
         return er;
     }

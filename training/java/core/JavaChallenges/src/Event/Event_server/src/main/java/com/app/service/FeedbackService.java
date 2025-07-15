@@ -22,27 +22,27 @@ public class FeedbackService {
     private EventCreationRepository eventRepo;
 
     public boolean addFeedback(Feedback feedback) throws Exception {
-        EventCreation event = eventRepo.getEventById(feedback.getEvent_id());
-        validateFeedbackWindow(event.getEnd_date());
+        EventCreation event = eventRepo.getEventById(feedback.getEventId());
+        validateFeedbackWindow(event.getEndDate());
         return feedbackRepo.addFeedback(feedback);
     }
 
     public boolean updateFeedbak(Feedback feedback) throws Exception {
-        EventCreation event = eventRepo.getEventById(feedback.getEvent_id());
-        validateFeedbackWindow(event.getEnd_date());
+        EventCreation event = eventRepo.getEventById(feedback.getEventId());
+        validateFeedbackWindow(event.getEndDate());
         return feedbackRepo.updateFeedback(feedback);
     }
 
-    public boolean deleteFeedback(int user_id, int event_id) {
-        return feedbackRepo.deleteFeedback(user_id, event_id);
+    public boolean deleteFeedback(int userId, int eventId) {
+        return feedbackRepo.deleteFeedback(userId, eventId);
     }
 
-    public List<Feedback> getAllFeedbackofEvent(int event_id) {
-        return feedbackRepo.getAllFeedbackOfEvent(event_id);
+    public List<Feedback> getAllFeedbackofEvent(int eventId) {
+        return feedbackRepo.getAllFeedbackOfEvent(eventId);
     }
 
-    public List<Feedback> feedbackOfUser(int user_id) {
-        return feedbackRepo.feedbackOfUser(user_id);
+    public List<Feedback> feedbackOfUser(int userId) {
+        return feedbackRepo.feedbackOfUser(userId);
     }
 
     private void validateFeedbackWindow(LocalDateTime endDateTime) throws Exception {

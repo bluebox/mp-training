@@ -14,24 +14,24 @@ public class EventCreationMapper implements RowMapper<EventCreation> {
     public EventCreation mapRow(ResultSet rs, int rowNum) throws SQLException {
         EventCreation event = new EventCreation();
 
-        event.setEvent_id(rs.getInt("event_id"));
+        event.setEventId(rs.getInt("event_id"));
         event.setName(rs.getString("name"));
-        event.setStart_date(rs.getTimestamp("start_date").toLocalDateTime());
-        event.setEnd_date(rs.getTimestamp("end_date").toLocalDateTime());
+        event.setStartDate(rs.getTimestamp("start_date").toLocalDateTime());
+        event.setEndDate(rs.getTimestamp("end_date").toLocalDateTime());
         event.setVenue(rs.getString("venue"));
-        event.setEvent_organization(rs.getString("event_organization"));
-        event.setEvent_capacity(rs.getInt("event_capacity"));
-        event.setParticipant_count(rs.getInt("participant_count"));
+        event.setEventOrganization(rs.getString("event_organization"));
+        event.setEventCapacity(rs.getInt("event_capacity"));
+        event.setParticipantCount(rs.getInt("participant_count"));
 
         String statusCode = rs.getString("event_status");
         event.setStatus(EventStatus.fromCode(statusCode));
 
-        event.setCreated_by(rs.getInt("created_by"));
-        event.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+        event.setCreatedBy(rs.getInt("created_by"));
+        event.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
 
         Timestamp updated = rs.getTimestamp("updated_at");
-        event.setUpdated_by(rs.getInt("updated_by"));
-        event.setUpdated_at(updated != null ? updated.toLocalDateTime() : null);
+        event.setUpdatedBy(rs.getInt("updated_by"));
+        event.setUpdatedAt(updated != null ? updated.toLocalDateTime() : null);
 
         return event;
     }

@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 public class User {
-    private int user_id;
+    private int userId;
     private String name;
-    private String phn_number;
+    private String phnNumber;
     private String email;
     private String role;
-    private Gender gender;   // Enum: MALE, FEMALE, OTHER
-    private Status status;   // Enum: ACTIVE, INACTIVE
+    private Gender gender;   
+    private Status status;  
     private String dept;
 	
 }

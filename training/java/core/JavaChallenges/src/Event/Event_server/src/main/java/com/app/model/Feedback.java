@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Feedback {
-    private int user_id;
-    private int event_id;
+    private int userId;
+    private int eventId;
     private int rating;        
     private String feedback;
 	

@@ -15,41 +15,18 @@ public class UserMapper implements RowMapper<User> {
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
 
-        user.setUser_id(rs.getInt("user_id"));
+        user.setUserId(rs.getInt("userId"));
         user.setName(rs.getString("name"));
-        user.setPhn_number(rs.getString("phn_number"));
+        user.setPhnNumber(rs.getString("phnNumber"));
         user.setEmail(rs.getString("email"));
         user.setRole(rs.getString("role"));
-
-        // Gender conversion using switch-case
         String genderCode = rs.getString("gender");
-        switch (genderCode.toUpperCase()) {
-            case "M":
-                user.setGender(Gender.MALE);
-                break;
-            case "F":
-                user.setGender(Gender.FEMALE);
-                break;
-            case "O":
-                user.setGender(Gender.OTHER);
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown gender code: " + genderCode);
-        }
+        user.setGender(genderCode != null ?Gender.fromCode(genderCode) : null);
 
-        // Status conversion using switch-case
-        String statusCode = rs.getString("status");
-        switch (statusCode.toUpperCase()) {
-            case "A":
-                user.setStatus(Status.ACTIVE);
-                break;
-            case "I":
-                user.setStatus(Status.INACTIVE);
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown status code: " + statusCode);
-        }
+        String statusCode=rs.getString("status");
+        user.setStatus(statusCode!=null?Status.fromCode(statusCode):null);
 
+        
         user.setDept(rs.getString("dept"));
         return user;
     }

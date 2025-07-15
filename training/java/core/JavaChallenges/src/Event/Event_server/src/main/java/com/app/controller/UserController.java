@@ -37,7 +37,7 @@ public class UserController {
         Response response = new Response();
         if (added) {
            
-            emailService.sendRegistrationEmail(user.getEmail(), String.valueOf(user.getUser_id()));
+            emailService.sendRegistrationEmail(user.getEmail(), String.valueOf(user.getUserId()));
             response.setStatusCode("200");
             response.setStatusMsg("User added successfully & email sent");
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -53,6 +53,8 @@ public class UserController {
         boolean updated = userService.updateUser(user);
         Response response = new Response();
         if (updated) {
+
+            emailService.sendUpdationEmail(user.getEmail(), String.valueOf(user.getUserId()));
             response.setStatusCode("200");
             response.setStatusMsg("User updated successfully");
             return ResponseEntity.status(HttpStatus.OK).body(response);

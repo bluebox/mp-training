@@ -8,14 +8,14 @@ import lombok.Data;
 
 @Data
 public class EventRegistration {
-    private int user_id;
-    private int event_id;
+    private int userId;
+    private int eventId;
 
     @JsonProperty("registration_status")
     private RegistrationStatus status;
 
-    private int registered_by;
-    private LocalDateTime registered_at;
-    private Integer updated_by;
-    private LocalDateTime updated_at;
+    private int registeredBy;
+    private LocalDateTime registeredAt;
+    private Integer updatedBy;
+    private LocalDateTime updatedAt;
 }
