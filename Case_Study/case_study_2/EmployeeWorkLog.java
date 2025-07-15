@@ -136,7 +136,7 @@ public class EmployeeWorkLog {
 	}
 
 	public static void main(String[] args) {
-		System.out.print(0+"hello hi");
+		
 		String csvpath="C://Users//Santhosh//Downloads//employee_work_log.csv.xlsx"; 
  
 		List<List<String>> records=new ArrayList<>();
@@ -176,7 +176,7 @@ public class EmployeeWorkLog {
 			System.out.println(employee);
 		}
 		 
-		//challenge 1 
+		//challenge 1  (Top 5 employees with highest hours in last 60 days.)
 		Map<Integer,Double> map=new HashMap<>();
 		XSSFWorkbook workbookchallenges=new XSSFWorkbook();
 		XSSFSheet sheetchallenge1=workbookchallenges.createSheet("new_Employee_log_Highesht_hours_past_60days");
@@ -208,7 +208,7 @@ public class EmployeeWorkLog {
 		}
 		
 		
-		//challenge 2
+		//challenge 2 (Sort by task category and hours descending; top 3 most time-consuming tasks per department.)
 		Map<String,List<EmployeeWorkLog>> department_map=Log.stream().collect(groupingBy(EmployeeWorkLog::getDepartment));
 		
 		
@@ -248,7 +248,7 @@ public class EmployeeWorkLog {
 		
 		 
 		 
-		//challenge 3
+		//challenge 3 (Daily average hours trend in last 30 working days per employee.)
 		 Map<Integer,Double> mapforaveragetrend=new HashMap<>();
 
 			XSSFSheet sheetchallenge3=workbookchallenges.createSheet("new_Employee_log_daily_avg_trend");
@@ -286,7 +286,7 @@ public class EmployeeWorkLog {
 					
 		
 		
-			//challenge 4
+			//challenge 4  (Combine 2 Excel sheets; compute hour differences.)
 			
 			
 			
@@ -384,16 +384,7 @@ public class EmployeeWorkLog {
 			
 			
 			
-			//challenge 5
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			//challenge 5  (. Time period-based grouping (morning, afternoon, evening).)
 			
 			
 			XSSFSheet sheetchallenge5=workbookchallenges.createSheet("new_Employee_log_time_period_based");
