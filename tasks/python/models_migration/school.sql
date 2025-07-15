@@ -8,13 +8,13 @@ CREATE TABLE teacher (
     experience INT NOT NULL
 );
 
-CREATE TABLE classes (
-    Class_id INT NOT NULL,
-    Section CHAR(3) NOT NULL,
-    teacher_id INT NOT NULL,
-    PRIMARY KEY (Class_id),
-    UNIQUE (Class_id, Section),
-    FOREIGN KEY (teacher_id) REFERENCES teacher(id) ON DELETE CASCADE
+create table classes (
+    Class_id int NOT NULL,
+    Section char(3) NOT NULL,
+    teacher_id int NOT NULL,
+    primary key (Class_id),
+    unique (Class_id, Section),
+    foreign key  (teacher_id) references teacher(id) on delete cascade
 );
 
 CREATE TABLE student (
@@ -28,14 +28,12 @@ CREATE TABLE student (
     FOREIGN KEY (Class_id) REFERENCES classes(Class_id) ON DELETE CASCADE
 );
 
-CREATE TABLE subject (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Class_id INT NOT NULL,
-    Teacher_id INT NOT NULL,
-    FOREIGN KEY (Class_id) REFERENCES classes(Class_id) ON DELETE CASCADE,
-    FOREIGN KEY (Teacher_id) REFERENCES teacher(id) ON DELETE CASCADE
-);
+create table subject (id int auto_increment primary key,
+    Name varchar(100) NOT NULL,
+    Class_id int NOT NULL,
+    Teacher_id int NOT NULL,
+    foreign key (Class_id) references classes(Class_id) on delete cascade,
+    foreign key (Teacher_id) references teacher(id) on delete cascade);
 
 CREATE TABLE results (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -50,7 +48,7 @@ CREATE TABLE results (
 );
 
 
-INSERT INTO teacher (Name, level, experience) VALUES
+insert into teacher (Name, level, experience) VALUES
 ('Alice Johnson', 'p', 5),
 ('Bob Smith', 'h', 12),
 ('Charlie Lee', 'l', 3),
@@ -59,7 +57,7 @@ INSERT INTO teacher (Name, level, experience) VALUES
 ('Sophie Turner', 'l', 4),
 ('George Baker', 'p', 10);
 
-INSERT INTO classes (Class_id, Section, teacher_id) VALUES
+insert into classes (Class_id, Section, teacher_id) VALUES
 (101, 'A', 1),
 (102, 'B', 2),
 (103, 'C', 3),
@@ -68,7 +66,7 @@ INSERT INTO classes (Class_id, Section, teacher_id) VALUES
 (106, 'F', 6),
 (107, 'G', 7);
 
-INSERT INTO student (Name, Age, Class_id, Section, attendance) VALUES
+insert into student (Name, Age, Class_id, Section, attendance) VALUES
 ('John Doe', 12, 101, 'A', 95),
 ('Jane Roe', 13, 101, 'A', 90),
 ('Max Payne', 12, 102, 'B', 85),
@@ -81,7 +79,7 @@ INSERT INTO student (Name, Age, Class_id, Section, attendance) VALUES
 ('Diana Prince', 12, 104, 'D', 89),
 ('Barry Allen', 13, 104, 'D', 92);
 
-INSERT INTO subject (Name, Class_id, Teacher_id) VALUES
+insert into subject (Name, Class_id, Teacher_id) VALUES
 ('Mathematics', 101, 1),
 ('Science', 102, 2),
 ('English', 103, 3),
@@ -94,7 +92,7 @@ INSERT INTO subject (Name, Class_id, Teacher_id) VALUES
 ('Social Studies', 107, 7),
 ('Art', 104, 4);
 
-INSERT INTO results (Class_id, student_id, subject_id, grade, percentage) VALUES
+insert into results (Class_id, student_id, subject_id, grade, percentage) VALUES
 (101, 1, 1, 9, 89.5),
 (101, 2, 1, 8, 82.0),
 (102, 3, 2, 7, 78.0),
@@ -114,6 +112,11 @@ INSERT INTO results (Class_id, student_id, subject_id, grade, percentage) VALUES
 (107, 11, 10, 8, 81.0),
 (104, 6, 11, 10, 93.0);
 
+insert into student_profile values(1,"Truman Doe","Alis Doe",45,42,"Abids, Hyderabad",1);
+insert into student_profile values(2,"larry Potter","jane Potter",53,53,"Wadala, Mumbai",4),
+(3,"Stark Wayne","Penny Wayne",47,48,"Hauz khaas, Delhi",8),
+(4,"Phyllip duke","Samantha duke",45,37,"Anna nagar, Chennai",10),
+(5,"Jake Wilson","Rose Wilson",40,38,"James Street, Hyderabad",5);
 
 -- INNER JOIN – Students with Class and Teacher
 select s.Name as student_name, s.Age, c.Class_id, c.Section, t.Name as teacher_name
@@ -180,4 +183,11 @@ select c.Class_id, c.section,s.Name as student_name from classes c join student 
 -- many to many Teachers and subjects
 select t.Name as teacher_name, s.Name as subject_name from teacher t join subject s on s.teacher_id = t.id;
 
-	
+-- select * from student;
+
+
+
+-- one to one student to studentprofile 
+
+select * from student s join student_profile sp on 
+s.id = sp.student_id;
