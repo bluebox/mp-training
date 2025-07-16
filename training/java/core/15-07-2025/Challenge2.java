@@ -47,10 +47,6 @@ public class Challenge2 {
 
         try (Connection conn = dataSource.getConnection()) {
 
-//            String alterString =
-//                    "ALTER TABLE storefront.order_details ADD COLUMN quantity INT";
-//            Statement statement = conn.createStatement();
-//            statement.execute(alterString);
 
             addOrders(conn, orders);
         } catch (SQLException e) {
