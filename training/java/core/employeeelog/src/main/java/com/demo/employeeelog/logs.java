@@ -17,7 +17,7 @@ package com.demo.employeeelog;
 	        Sheet sheet = workbook.getSheetAt(0);
 
 	        for (Row row : sheet) {
-	            if (row.getRowNum() == 0) continue; // skip header row
+	            if (row.getRowNum() == 0) continue; 
 
 	            String employeeId = row.getCell(0).getStringCellValue();
 	            String name = row.getCell(1).getStringCellValue();
