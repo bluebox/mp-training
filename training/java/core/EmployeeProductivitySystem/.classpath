@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/xmlbeans-5.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/poi-ooxml-full-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/poi-ooxml-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/poi-5.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/curvesapi-1.07.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/commons-compress-1.21.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/log4j-core-2.17.2.jar"/>
+	<classpathentry kind="lib" path="/home/vardhan/Downloads/poi-bin-5.2.3-20220909/poi-bin-5.2.3/Lib/log4j-api-2.17.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
