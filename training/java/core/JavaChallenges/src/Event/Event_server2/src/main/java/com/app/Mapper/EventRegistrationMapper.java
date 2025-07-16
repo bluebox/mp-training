@@ -1,0 +1,35 @@
+package com.app.Mapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.app.enums.RegistrationStatus;
+import com.app.model.EventRegistration;
+
+public class EventRegistrationMapper implements RowMapper<EventRegistration> {
+    @Override
+    public EventRegistration mapRow(ResultSet rs, int rowNum) throws SQLException {
+        EventRegistration er = new EventRegistration();
+
+        er.setUserId(rs.getInt("user_id"));
+        er.setEventId(rs.getInt("event_id"));
+
+        String statusCode = rs.getString("registration_status");
+        er.setStatus(statusCode != null ? RegistrationStatus.fromCode(statusCode) : null);
+
+        er.setRegisteredBy(rs.getInt("registered_by"));
+        er.setRegisteredAt(rs.getTimestamp("registered_at").toLocalDateTime());
+
+        int updatedBy = rs.getInt("updated_by");
+        er.setUpdatedBy(!rs.wasNull() ? updatedBy : null);
+
+        Timestamp updated = rs.getTimestamp("updated_at");
+        er.setUpdatedAt(updated != null ? updated.toLocalDateTime() : null);
+
+        return er;
+    }
+    
+}

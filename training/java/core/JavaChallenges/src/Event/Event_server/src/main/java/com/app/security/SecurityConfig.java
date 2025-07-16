@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .antMatchers("/api/register", "/api/login").permitAll()
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/faculty/**").hasRole("FACULTY")
-                .antMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/api/user/**").permitAll()
                 .anyRequest().authenticated()
             )
             .httpBasic(); 

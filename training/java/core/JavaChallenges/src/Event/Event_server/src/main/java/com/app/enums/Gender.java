@@ -21,16 +21,11 @@ public enum Gender {
 
     @JsonCreator
     public static Gender fromCode(String code) {
-        if (code == null) return null;
-        switch (code.toUpperCase()) {
-            case "M":
-                return MALE;
-            case "F":
-                return FEMALE;
-            case "O":
-                return OTHER;
-            default:
-                throw new IllegalArgumentException("Invalid gender code: " + code);
+        for (Gender gender: values()) {
+            if (gender.code.equalsIgnoreCase(code)) {
+                return gender;
+            }
         }
+        throw new IllegalArgumentException("Unknown Gender: " + code);
     }
 }

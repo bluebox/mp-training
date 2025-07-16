@@ -1,7 +1,6 @@
 package com.app.controller;
 
 import com.app.model.Feedback;
-import com.app.model.User;
 import com.app.service.EventRegistrationService;
 import com.app.service.FeedbackService;
 import com.itextpdf.text.*;
@@ -11,7 +10,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
 
@@ -65,178 +63,178 @@ public class PdfController {
         return "PDF saved successfully at: " + filePath;
     }
     
-    @GetMapping("/attended")
-    public String generateAttendancePdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
-    {
-    	 String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
-         List<User> users = eventService.eventAttendents(eventId);
-
-
-         Document document = new Document();
-         PdfWriter.getInstance(document, new FileOutputStream(filePath));
-         document.open();
-
-         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-         font.setSize(18);
-         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
-         title.setAlignment(Element.ALIGN_CENTER);
-         document.add(title);
-         document.add(Chunk.NEWLINE);
-
-         PdfPTable table = new PdfPTable(3);
-         table.setWidthPercentage(100);
-         table.setWidths(new int[]{1, 5,3,3,3,3,3});
-
-         PdfPCell h1 = new PdfPCell(new Phrase("User ID"));
-         PdfPCell h2 = new PdfPCell(new Phrase("Name"));
-         PdfPCell h3 = new PdfPCell(new Phrase("Mobile Number"));
-         PdfPCell h4 = new PdfPCell(new Phrase("Email"));
-         PdfPCell h5 = new PdfPCell(new Phrase("Role"));
-         PdfPCell h6 = new PdfPCell(new Phrase("Gender"));
-         PdfPCell h7 = new PdfPCell(new Phrase("Department"));
-         table.addCell(h1);
-         table.addCell(h2);
-         table.addCell(h3);
-         table.addCell(h4);
-         table.addCell(h5);
-         table.addCell(h6);
-         table.addCell(h7);
-         
-
-         for (User u : users) {
-             table.addCell(String.valueOf(u.getUserId()));
-             table.addCell(u.getName());
-             table.addCell(u.getPhnNumber());
-
-             table.addCell(u.getEmail());
-             table.addCell(u.getRole());
-             table.addCell(String.valueOf(u.getGender()));
-             table.addCell(u.getDept());
-             
-             
-         }
-
-         document.add(table);
-         document.close();
-
-         return "PDF saved successfully at: " + filePath;
-         
-    }
+//    @GetMapping("/attended")
+//    public String generateAttendancePdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
+//    {
+//    	 String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
+//         List<User> users = eventService.eventAttendents(eventId);
+//
+//
+//         Document document = new Document();
+//         PdfWriter.getInstance(document, new FileOutputStream(filePath));
+//         document.open();
+//
+//         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+//         font.setSize(18);
+//         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
+//         title.setAlignment(Element.ALIGN_CENTER);
+//         document.add(title);
+//         document.add(Chunk.NEWLINE);
+//
+//         PdfPTable table = new PdfPTable(3);
+//         table.setWidthPercentage(100);
+//         table.setWidths(new int[]{1, 5,3,3,3,3,3});
+//
+//         PdfPCell h1 = new PdfPCell(new Phrase("User ID"));
+//         PdfPCell h2 = new PdfPCell(new Phrase("Name"));
+//         PdfPCell h3 = new PdfPCell(new Phrase("Mobile Number"));
+//         PdfPCell h4 = new PdfPCell(new Phrase("Email"));
+//         PdfPCell h5 = new PdfPCell(new Phrase("Role"));
+//         PdfPCell h6 = new PdfPCell(new Phrase("Gender"));
+//         PdfPCell h7 = new PdfPCell(new Phrase("Department"));
+//         table.addCell(h1);
+//         table.addCell(h2);
+//         table.addCell(h3);
+//         table.addCell(h4);
+//         table.addCell(h5);
+//         table.addCell(h6);
+//         table.addCell(h7);
+//         
+//
+//         for (User u : users) {
+//             table.addCell(String.valueOf(u.getUserId()));
+//             table.addCell(u.getName());
+//             table.addCell(u.getPhnNumber());
+//
+//             table.addCell(u.getEmail());
+//             table.addCell(u.getRole());
+//             table.addCell(String.valueOf(u.getGender()));
+//             table.addCell(u.getDept());
+//             
+//             
+//         }
+//
+//         document.add(table);
+//         document.close();
+//
+//         return "PDF saved successfully at: " + filePath;
+//         
+//    }
     
-    @GetMapping("/absenties")
-    public String generateAbsentiesPdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
-    {
-        String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
-        List<User> users = eventService.eventAbsenties(eventId);
-
-
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(filePath));
-        document.open();
-
-        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-        font.setSize(18);
-        Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
-        title.setAlignment(Element.ALIGN_CENTER);
-        document.add(title);
-        document.add(Chunk.NEWLINE);
-
-        PdfPTable table = new PdfPTable(3);
-        table.setWidthPercentage(100);
-        table.setWidths(new int[]{1, 5,3,3,3,3,3});
-
-        PdfPCell h1 = new PdfPCell(new Phrase("User ID"));
-        PdfPCell h2 = new PdfPCell(new Phrase("Name"));
-        PdfPCell h3 = new PdfPCell(new Phrase("Mobile Number"));
-        PdfPCell h4 = new PdfPCell(new Phrase("Email"));
-        PdfPCell h5 = new PdfPCell(new Phrase("Role"));
-        PdfPCell h6 = new PdfPCell(new Phrase("Gender"));
-        PdfPCell h7 = new PdfPCell(new Phrase("Department"));
-        table.addCell(h1);
-        table.addCell(h2);
-        table.addCell(h3);
-        table.addCell(h4);
-        table.addCell(h5);
-        table.addCell(h6);
-        table.addCell(h7);
-        
-
-        for (User u : users) {
-            table.addCell(String.valueOf(u.getUserId()));
-            table.addCell(u.getName());
-            table.addCell(u.getPhnNumber());
-
-            table.addCell(u.getEmail());
-            table.addCell(u.getRole());
-            table.addCell(String.valueOf(u.getGender()));
-            table.addCell(u.getDept());
-            
-            
-        }
-
-        document.add(table);
-        document.close();
-
-        return "PDF saved successfully at: " + filePath;
-        
-    }
-    
-    @GetMapping("/cancelled")
-    public String generateCancelledPdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
-    {
-
-    	 String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
-         List<User> users = eventService.noOfUsersCancelledEventRegistration(eventId);
-
-
-         Document document = new Document();
-         PdfWriter.getInstance(document, new FileOutputStream(filePath));
-         document.open();
-
-         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-         font.setSize(18);
-         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
-         title.setAlignment(Element.ALIGN_CENTER);
-         document.add(title);
-         document.add(Chunk.NEWLINE);
-
-         PdfPTable table = new PdfPTable(3);
-         table.setWidthPercentage(100);
-         table.setWidths(new int[]{1, 5,3,3,3,3,3});
-
-         PdfPCell h1 = new PdfPCell(new Phrase("User ID"));
-         PdfPCell h2 = new PdfPCell(new Phrase("Name"));
-         PdfPCell h3 = new PdfPCell(new Phrase("Mobile Number"));
-         PdfPCell h4 = new PdfPCell(new Phrase("Email"));
-         PdfPCell h5 = new PdfPCell(new Phrase("Role"));
-         PdfPCell h6 = new PdfPCell(new Phrase("Gender"));
-         PdfPCell h7 = new PdfPCell(new Phrase("Department"));
-         table.addCell(h1);
-         table.addCell(h2);
-         table.addCell(h3);
-         table.addCell(h4);
-         table.addCell(h5);
-         table.addCell(h6);
-         table.addCell(h7);
-         
-
-         for (User u : users) {
-             table.addCell(String.valueOf(u.getUserId()));
-             table.addCell(u.getName());
-             table.addCell(u.getPhnNumber());
-
-             table.addCell(u.getEmail());
-             table.addCell(u.getRole());
-             table.addCell(String.valueOf(u.getGender()));
-             table.addCell(u.getDept());
-             
-             
-         }
-
-         document.add(table);
-         document.close();
-
-         return "PDF saved successfully at: " + filePath;
-         
-    }
+//    @GetMapping("/absenties")
+//    public String generateAbsentiesPdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
+//    {
+//        String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
+//        List<User> users = eventService.eventAbsenties(eventId);
+//
+//
+//        Document document = new Document();
+//        PdfWriter.getInstance(document, new FileOutputStream(filePath));
+//        document.open();
+//
+//        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+//        font.setSize(18);
+//        Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
+//        title.setAlignment(Element.ALIGN_CENTER);
+//        document.add(title);
+//        document.add(Chunk.NEWLINE);
+//
+//        PdfPTable table = new PdfPTable(3);
+//        table.setWidthPercentage(100);
+//        table.setWidths(new int[]{1, 5,3,3,3,3,3});
+//
+//        PdfPCell h1 = new PdfPCell(new Phrase("User ID"));
+//        PdfPCell h2 = new PdfPCell(new Phrase("Name"));
+//        PdfPCell h3 = new PdfPCell(new Phrase("Mobile Number"));
+//        PdfPCell h4 = new PdfPCell(new Phrase("Email"));
+//        PdfPCell h5 = new PdfPCell(new Phrase("Role"));
+//        PdfPCell h6 = new PdfPCell(new Phrase("Gender"));
+//        PdfPCell h7 = new PdfPCell(new Phrase("Department"));
+//        table.addCell(h1);
+//        table.addCell(h2);
+//        table.addCell(h3);
+//        table.addCell(h4);
+//        table.addCell(h5);
+//        table.addCell(h6);
+//        table.addCell(h7);
+//        
+//
+//        for (User u : users) {
+//            table.addCell(String.valueOf(u.getUserId()));
+//            table.addCell(u.getName());
+//            table.addCell(u.getPhnNumber());
+//
+//            table.addCell(u.getEmail());
+//            table.addCell(u.getRole());
+//            table.addCell(String.valueOf(u.getGender()));
+//            table.addCell(u.getDept());
+//            
+//            
+//        }
+//
+//        document.add(table);
+//        document.close();
+//
+//        return "PDF saved successfully at: " + filePath;
+//        
+//    }
+//    
+//    @GetMapping("/cancelled")
+//    public String generateCancelledPdf(@RequestParam int eventId) throws FileNotFoundException, DocumentException
+//    {
+//
+//    	 String filePath = "/home/developer/Downloads/feedback_event_" + eventId + ".pdf";
+//         List<User> users = eventService.noOfUsersCancelledEventRegistration(eventId);
+//
+//
+//         Document document = new Document();
+//         PdfWriter.getInstance(document, new FileOutputStream(filePath));
+//         document.open();
+//
+//         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+//         font.setSize(18);
+//         Paragraph title = new Paragraph("Event Absenties Report - Event ID: " + eventId, font);
+//         title.setAlignment(Element.ALIGN_CENTER);
+//         document.add(title);
+//         document.add(Chunk.NEWLINE);
+//
+//         PdfPTable table = new PdfPTable(3);
+//         table.setWidthPercentage(100);
+//         table.setWidths(new int[]{1, 5,3,3,3,3,3});
+//
+//         PdfPCell h1 = new PdfPCell(new Phrase("User ID"));
+//         PdfPCell h2 = new PdfPCell(new Phrase("Name"));
+//         PdfPCell h3 = new PdfPCell(new Phrase("Mobile Number"));
+//         PdfPCell h4 = new PdfPCell(new Phrase("Email"));
+//         PdfPCell h5 = new PdfPCell(new Phrase("Role"));
+//         PdfPCell h6 = new PdfPCell(new Phrase("Gender"));
+//         PdfPCell h7 = new PdfPCell(new Phrase("Department"));
+//         table.addCell(h1);
+//         table.addCell(h2);
+//         table.addCell(h3);
+//         table.addCell(h4);
+//         table.addCell(h5);
+//         table.addCell(h6);
+//         table.addCell(h7);
+//         
+//
+//         for (User u : users) {
+//             table.addCell(String.valueOf(u.getUserId()));
+//             table.addCell(u.getName());
+//             table.addCell(u.getPhnNumber());
+//
+//             table.addCell(u.getEmail());
+//             table.addCell(u.getRole());
+//             table.addCell(String.valueOf(u.getGender()));
+//             table.addCell(u.getDept());
+//             
+//             
+//         }
+//
+//         document.add(table);
+//         document.close();
+//
+//         return "PDF saved successfully at: " + filePath;
+//         
+//    }
 }

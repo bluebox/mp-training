@@ -22,71 +22,104 @@ import com.app.service.UserService;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin("*")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @Autowired
-    private EmailService emailService;
+	@Autowired
+	private EmailService emailService;
 
-    @PostMapping("/add")
-    public ResponseEntity<Response> addUser(@RequestBody User user) throws Exception {
-        boolean added = userService.addUser(user);
-        Response response = new Response();
-        if (added) {
-           
-            emailService.sendRegistrationEmail(user.getEmail(), String.valueOf(user.getUserId()));
-            response.setStatusCode("200");
-            response.setStatusMsg("User added successfully & email sent");
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        } else {
-            response.setStatusCode("400");
-            response.setStatusMsg("Failed to add user");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-        }
-    }
+	@PostMapping("/add")
+	public ResponseEntity<Response> addUser(@RequestBody User user) {
 
-    @PutMapping("/update")
-    public ResponseEntity<Response> updateUser(@RequestBody User user) throws Exception {
-        boolean updated = userService.updateUser(user);
-        Response response = new Response();
-        if (updated) {
+		Response response = new Response();
+		try {
+			if (userService.addUser(user)) {
 
-            emailService.sendUpdationEmail(user.getEmail(), String.valueOf(user.getUserId()));
-            response.setStatusCode("200");
-            response.setStatusMsg("User updated successfully");
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        } else {
-            response.setStatusCode("400");
-            response.setStatusMsg("Failed to update user");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-        }
-    }
+				emailService.sendRegistrationEmail(user.getEmail(), String.valueOf(user.getUserId()));
+				response.setStatusCode("200");
+				response.setStatusMsg("User added successfully & email sent");
+				return ResponseEntity.status(HttpStatus.CREATED).body(response);
+			} else {
+				response.setStatusCode("400");
+				response.setStatusMsg("Failed to add user");
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			}
+		} catch (Exception e) {
+			response.setStatusCode("400");
+			response.setStatusMsg("Failed to add user");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Response> deleteUser(@RequestParam int user_id) throws Exception {
-        boolean deleted = userService.deleteUser(user_id);
-        Response response = new Response();
-        if (deleted) {
-            response.setStatusCode("200");
-            response.setStatusMsg("User deleted successfully");
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        } else {
-            response.setStatusCode("400");
-            response.setStatusMsg("Failed to delete user");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-        }
-    }
+	}
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers() throws Exception {
-        return ResponseEntity.ok(userService.getAllUsers());
-    }
+	@PutMapping("/update")
+	public ResponseEntity<Response> updateUser(@RequestBody User user) {
+		Response response = new Response();
+		try {
 
-    @GetMapping("/userById")
-    public ResponseEntity<User> getUserById(@RequestParam int user_id) throws Exception {
-        return ResponseEntity.ok(userService.getUserbyId(user_id));
-    }
+			if (userService.updateUser(user)) {
+
+				emailService.sendUpdationEmail(user.getEmail(), String.valueOf(user.getUserId()));
+				response.setStatusCode("200");
+				response.setStatusMsg("User updated successfully");
+				return ResponseEntity.status(HttpStatus.OK).body(response);
+			} else {
+				response.setStatusCode("400");
+				response.setStatusMsg("Failed to update user");
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			}
+		} catch (Exception e) {
+			response.setStatusCode("400");
+			response.setStatusMsg("Failed to update user");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+	}
+
+	@DeleteMapping("/delete")
+	public ResponseEntity<Response> deleteUser(@RequestParam int userId) {
+
+		Response response = new Response();
+		try {
+			if (userService.deleteUser(userId)) {
+				response.setStatusCode("200");
+				response.setStatusMsg("User deleted successfully");
+				return ResponseEntity.status(HttpStatus.OK).body(response);
+			} else {
+				response.setStatusCode("400");
+				response.setStatusMsg("Failed to delete user");
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			}
+		} catch (Exception e) {
+			response.setStatusCode("400");
+			response.setStatusMsg("Failed to delete user");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+
+		}
+	}
+
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getAllUsers() {
+
+		try {
+			return ResponseEntity.ok(userService.getAllUsers());
+		} catch (Exception e) {
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+		}
+		
+	}
+
+	@GetMapping("/userById")
+	public ResponseEntity<User> getUserById(@RequestParam int userId) {
+		try {
+			return ResponseEntity.ok(userService.getUserbyId(userId));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
+
+		
+	}
 }

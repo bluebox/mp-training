@@ -80,8 +80,5 @@ public class EventCreationService {
 			throw new Exception("Action not allowed within 1 day before the event start date");
 		}
 	}
-//    public List<EventCreation> getEventsForUser(int userId) {
-//        return repo.findAllEventsAttendedByUser(userId);
-//    }
 
 }

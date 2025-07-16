@@ -1,6 +1,5 @@
 package com.app.repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,61 +10,94 @@ import com.app.Mapper.UserMapper;
 import com.app.model.EventRegistration;
 import com.app.model.User;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class EventRegistrationRepository {
 
     @Autowired
     private JdbcTemplate jdbc;
 
-    public boolean registerEvent(EventRegistration er) {
+    public int registerEvent(EventRegistration er) throws Exception{
         String sql = "INSERT INTO eventRegistration(user_id, event_id, registration_status, registered_by, registered_at, updated_by, updated_at) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        return jdbc.update(sql,
+        int rowsAffected=jdbc.update(sql,
                 er.getUserId(),
                 er.getEventId(),
                 er.getStatus() != null ? er.getStatus().getCode() : null,
                 er.getRegisteredBy(),
                 er.getRegisteredAt(),
                 er.getUpdatedBy(),
-                er.getUpdatedAt()) == 1;
+                er.getUpdatedAt());
+        if(rowsAffected>0)
+        {
+        	log.info("Registration for Event Successful");
+        }
+        else
+        {
+        	throw new Exception("Error in Registration");
+        }
+
+        return rowsAffected;
     }
 
-    public boolean updateRegistration(EventRegistration er) {
+    public int updateRegistration(EventRegistration er) throws Exception {
         String sql = "UPDATE eventRegistration SET registration_status = ?, updated_by = ?, updated_at = ? WHERE user_id = ? AND event_id = ?";
-
-        return jdbc.update(sql,
+        int rowsAffected=jdbc.update(sql,
                 er.getStatus() != null ? er.getStatus().getCode() : null,
                 er.getUpdatedBy(),
                 er.getUpdatedAt(),
                 er.getUserId(),
-                er.getEventId()) == 1;
+                er.getEventId());
+        if(rowsAffected>0)
+        {
+        	log.info("Updation Successfull");
+        }
+        else
+        {
+        	throw new Exception("Error in Updation");
+        }
+
+        return rowsAffected;
     }
     
-    public boolean updateAttendanceOfUser(String status,int event_id,int user_id,int updated_by)
-    {
-        String sql = "UPDATE eventRegistration SET registration_status = ?, updated_by = ?, updated_at = ? WHERE user_id = ? AND event_id = ?";
-        return jdbc.update(sql,status,updated_by,LocalDateTime.now(),user_id,event_id)==1;
+//    public boolean updateAttendanceOfUser(String status,int event_id,int user_id,int updated_by)
+//    {
+//        String sql = "UPDATE eventRegistration SET registration_status = ?, updated_by = ?, updated_at = ? WHERE user_id = ? AND event_id = ?";
+//        return jdbc.update(sql,status,updated_by,LocalDateTime.now(),user_id,event_id)==1;
+//
+//    }
 
+    public List<User> getUsersByRegistrationStatus(int eventId,String status) throws Exception{
+    	List<User> users=null;
+    	
+    	try
+    	{
+            String sql = "SELECT u.user_id,u.name,u.phn_number,u.email,u.role,u.gender,u.status FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status=?";
+            users=jdbc.query(sql, new UserMapper(), eventId,status);
+    	}
+    	catch(Exception e)
+    	{
+    		log.info(e.getMessage());
+    		throw new Exception("No Users");
+    		
+    	}
+        return users;
     }
 
-    public List<User> getAttendants(int event_id) {
-        String sql = "SELECT u.* FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status='A'";
-        return jdbc.query(sql, new UserMapper(), event_id);
-    }
-
-    public List<User> getAbsenties(int event_id) {
-        String sql = "SELECT u.* FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status='N'";
-        return jdbc.query(sql, new UserMapper(), event_id);
-    }
-
-    public List<User> getCancelledRegistrations(int event_id) {
-        String sql = "SELECT u.* FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status='C'";
-        return jdbc.query(sql, new UserMapper(), event_id);
-    }
-    
-    public List<User> getEventRegistredUsers(int event_id) {
-        String sql = "SELECT u.* FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status='R'";
-        return jdbc.query(sql, new UserMapper(), event_id);
-    }
+//    public List<User> getAbsenties(int event_id) {
+//        String sql = "SELECT u.* FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status='N'";
+//        return jdbc.query(sql, new UserMapper(), event_id);
+//    }
+//
+//    public List<User> getCancelledRegistrations(int event_id) {
+//        String sql = "SELECT u.* FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status='C'";
+//        return jdbc.query(sql, new UserMapper(), event_id);
+//    }
+//    
+//    public List<User> getEventRegistredUsers(int event_id) {
+//        String sql = "SELECT u.* FROM users u JOIN eventRegistration e ON u.user_id = e.user_id WHERE e.event_id=? AND e.registration_status='R'";
+//        return jdbc.query(sql, new UserMapper(), event_id);
+//    }
 }

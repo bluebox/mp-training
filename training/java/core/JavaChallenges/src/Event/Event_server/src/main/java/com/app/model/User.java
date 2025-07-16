@@ -1,6 +1,6 @@
 package com.app.model;
 import com.app.enums.Gender;
-import com.app.enums.Status;
+import com.app.enums.UserStatus;
 import lombok.Data;
 
 @Data
@@ -11,7 +11,7 @@ public class User {
     private String email;
     private String role;
     private Gender gender;   
-    private Status status;  
+    private UserStatus status;  
     private String dept;
 	
 }

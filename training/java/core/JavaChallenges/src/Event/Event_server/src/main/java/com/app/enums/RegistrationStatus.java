@@ -27,6 +27,6 @@ public enum RegistrationStatus {
                 return r;
             }
         }
-        throw new IllegalArgumentException("Unknown registration_status: " + code);
+        throw new IllegalArgumentException("Unknown RegistrationStatus: " + code);
     }
 }

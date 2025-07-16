@@ -21,19 +21,11 @@ public enum EventStatus {
 
     @JsonCreator
     public static EventStatus fromCode(String code) {
-        if (code == null) return null;
-        switch (code.toUpperCase()) {
-            case "A":
-            case "ACTIVE":
-                return ACTIVE;
-            case "F":
-            case "FINISHED":
-                return FINISHED;
-            case "C":
-            case "CANCELLED":
-                return CANCELLED;
-            default:
-                throw new IllegalArgumentException("Invalid event status: " + code);
+        for (EventStatus status: values()) {
+            if (status.code.equalsIgnoreCase(code)) {
+                return status;
+            }
         }
+        throw new IllegalArgumentException("Unknown EventStatus: " + code);
     }
 }

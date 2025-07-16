@@ -23,45 +23,39 @@ public class EventRegistrationService {
 
 	public boolean registrationForEvent(EventRegistration er) throws Exception {
 		EventCreation event = eventRepo.getEventById(er.getEventId());
-		validateOneDayBefore(event.getStartDate());
-		boolean p = eventRepo.increaseParticipantsCount(er.getEventId(), event.getEventCapacity(),
+		validateOneDayBefore(eventRepo.getEventById(er.getEventId()).getStartDate());
+		boolean participantsUpdated = eventRepo.increaseParticipantsCount(er.getEventId(), event.getEventCapacity(),
 				event.getParticipantCount());
-		boolean r = p ? repo.registerEvent(er) : false;
-		return r;
+		int rowsAffected=0;
+		if(participantsUpdated)
+		{
+			rowsAffected=repo.registerEvent(er);
+		}
+		return rowsAffected>0;
 	}
 
 	public boolean updateEventRegistration(EventRegistration er) throws Exception {
-		EventCreation event = eventRepo.getEventById(er.getEventId());
-		validateOneDayBefore(event.getStartDate());
-		return repo.updateRegistration(er);
+
+		validateOneDayBefore(eventRepo.getEventById(er.getEventId()).getStartDate());
+		return repo.updateRegistration(er)>0;
 	}
 
-	public boolean updateAttendanceOfUser(String status, int event_id, int user_id, int updated_by) throws Exception {
+	public boolean updateAttendanceOfUser(EventRegistration er) throws Exception {
 
-		return repo.updateAttendanceOfUser(status, event_id, user_id, updated_by);
+		return repo.updateRegistration(er)>0;
 	}
 
-	public boolean cancelRegistration(int event_id) throws Exception {
-		EventCreation event = eventRepo.getEventById(event_id);
-		validateOneDayBefore(event.getStartDate());
-		return eventRepo.decreaseParticipantsCount(event_id, event.getParticipantCount());
+//	public boolean cancelRegistration(int event_id) throws Exception {
+//		EventCreation event = eventRepo.getEventById(event_id);
+//		validateOneDayBefore(event.getStartDate());
+//		return eventRepo.decreaseParticipantsCount(event_id, event.getParticipantCount());
+//	}
+
+	public List<User> getUsersByRegistrationStatus(int eventId,String status) throws Exception {
+		return repo.getUsersByRegistrationStatus(eventId,status);
 	}
 
-	public List<User> eventAttendents(int event_id) {
-		return repo.getAttendants(event_id);
-	}
 
-	public List<User> eventAbsenties(int event_id) {
-		return repo.getAbsenties(event_id);
-	}
-
-	public List<User> noOfUsersCancelledEventRegistration(int event_id) {
-		return repo.getCancelledRegistrations(event_id);
-	}
-
-	public List<User> getEventRegistredUsers(int event_id) {
-		return repo.getEventRegistredUsers(event_id);
-	}
 
 	private void validateOneDayBefore(LocalDateTime localDateTime) throws Exception {
 		LocalDate startDate = localDateTime.toLocalDate();
