@@ -11,7 +11,7 @@ def home(request):
 
 def CustomClassMiddleware(request):
     if request.method=='GET':
-        # a=1/0 this if for the process_exception example
+        # a=1/0 this is for the process_exception example
         print('in the view of CustomClassMiddleware')
         return HttpResponse('CustomClassMiddleware')
     return HttpResponse('request not allowed')
