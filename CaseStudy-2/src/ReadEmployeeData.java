@@ -1,64 +1,86 @@
 package com.employee.dao;
 
-import com.employee.model.EmployeeWorkLog;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.employee.model.EmployeeInfo;
+
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ReadEmployeeData {
-    public List<EmployeeWorkLog> readEmployeeData(String filePath) {
-        List<EmployeeWorkLog> workLogs = new ArrayList<>();
-
-        try (FileInputStream fis = new FileInputStream(filePath);
-             Workbook workbook = new XSSFWorkbook(fis)) {
-
+	
+    public List<EmployeeInfo> readEmployeeData(String filePath) {
+    	
+        List<EmployeeInfo> logs = new ArrayList<>();
+        
+        try (InputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis)) 
+        {
             Sheet sheet = workbook.getSheetAt(0);
-            for (Row row : sheet) {
-                if (row.getRowNum() == 0 || row == null) continue;
-
-                try {
-                    String employeeId = getCellValue(row.getCell(0));
-                    String name = getCellValue(row.getCell(1));
-                    String department = getCellValue(row.getCell(2));
-                    String projectId = getCellValue(row.getCell(3));
-                    LocalDate date = getDate(row.getCell(4));
-                    String taskCategory = getCellValue(row.getCell(5));
-                    double hoursWorked = row.getCell(6).getNumericCellValue();
-                    String remarks = getCellValue(row.getCell(7));
-                    LocalTime time = row.getCell(8) != null ? LocalTime.parse(getCellValue(row.getCell(8))) : null;
-
-                    workLogs.add(new EmployeeWorkLog(employeeId, name, department, projectId, date,
-                            taskCategory, hoursWorked, remarks, time));
-                } catch (Exception e) {
-                    System.err.println("Skipping row " + row.getRowNum() + ": " + e.getMessage());
+            for (Row row : sheet)
+                {
+                if (row.getRowNum() == 0) 
+                    continue; 
+                String empId = getStringCell(row.getCell(0));
+                String name = getStringCell(row.getCell(1));
+                String dept = getStringCell(row.getCell(2));
+                String projectId = getStringCell(row.getCell(3));
+                LocalDate date = null;
+                Cell dateCell = row.getCell(4);
+                if (dateCell != null) 
+                {
+                    if (dateCell.getCellType() == CellType.NUMERIC) 
+                    {
+                        date = dateCell.getDateCellValue().toInstant()
+                                .atZone(ZoneId.systemDefault()).toLocalDate();
+                    } 
+                    else if (dateCell.getCellType() == CellType.STRING) 
+                    {
+                        try {
+                            date = LocalDate.parse(dateCell.getStringCellValue(),
+                                    DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                        } 
+                        catch (Exception ex) {
+                            System.out.println("Bad date format in row " + row.getRowNum());
+                        }    
+                    }   
                 }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+                String category = getStringCell(row.getCell(5));
+                double hours = 0.0;
+                Cell hoursCell = row.getCell(6);
+                if (hoursCell != null) {
+                    if (hoursCell.getCellType() == CellType.NUMERIC) {
+                        hours = hoursCell.getNumericCellValue();
+                    } 
+                    else if (hoursCell.getCellType() == CellType.STRING) 
+                    {
+                        try {
+                           hours = Double.parseDouble(hoursCell.getStringCellValue());
+                  } 
+                        catch (Exception ex) {
+                            System.out.println("Bad hours format in row " + row.getRowNum());
+                        }   
+                    }  
+                }
+                String remarks = getStringCell(row.getCell(7));
+                logs.add(new EmployeeInfo(empId, name, dept, projectId, date, category, hours, remarks));
+          }
+        } catch (Exception e) {
+            e.printStackTrace();     
         }
-
-        return workLogs;
-    }
-
-    private String getCellValue(Cell cell) {
+   return logs;
+   }
+    private static String getStringCell(Cell cell) {
         if (cell == null) return "";
-        cell.setCellType(CellType.STRING);
-        return cell.getStringCellValue().trim();
-    }
-
-    private LocalDate getDate(Cell cell) {
-        if (cell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(cell)) {
-            Date date = cell.getDateCellValue();
-            return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        }
-        return LocalDate.parse(getCellValue(cell));
-    }
+        if (cell.getCellType() == CellType.STRING) return cell.getStringCellValue();
+        if (cell.getCellType() == CellType.NUMERIC) return String.valueOf(cell.getNumericCellValue());
+        return "";
+   }
 }
