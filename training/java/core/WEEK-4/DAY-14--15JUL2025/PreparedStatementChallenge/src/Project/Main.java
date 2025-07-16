@@ -26,12 +26,9 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 public class Main {
 	
 	public static void selectAllRows(Connection connection, Statement statement, String databaseName) {
-		boolean flag;
 		try {
 			String query1="select * from %s".formatted(databaseName);
 			String query2="select * from shop.order_details";
-			flag=statement.execute(query1);
-			flag=statement.execute(query2);
 			ResultSet resultSet1=statement.getResultSet();
 			ResultSet resultSet2=statement.getResultSet();
 			System.out.printf("%7s %-10s %n","ORDERID", "ORDERDATE");
@@ -55,7 +52,6 @@ public class Main {
 		}catch(SQLException e) {
 			System.err.println(e.getErrorCode());
 			System.err.println(e.getMessage());
-			flag=false;
 			
 		}
 	}
@@ -67,9 +63,17 @@ public class Main {
 			sc.tokens()
 				.map(String::strip)
 				.map(s -> Arrays.asList(s.split(",")))
-				.forEach(l -> {
-					OrderDetails orderDetails=new OrderDetails(l.get(1), Integer.parseInt(l.get(2)));
-					Order order=new Order(LocalDate.parse(l.get(0),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),orderDetails);
+				.collect(Collectors.groupingBy(s -> s.get(0), Collectors.mapping(l -> l, Collectors.toList())))
+				.forEach((k,v) -> {
+//					OrderDetails orderDetails=new OrderDetails(l.get(1), Double.parseDouble(l.get(2)), Integer.parseInt(l.get(3)));
+//					Order order=new Order(LocalDate.parse(l.get(0),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),orderDetails);
+//					orderList.add(order);
+					List<OrderDetails> orderDetails=new ArrayList<>();
+					for(var orderDetail:v) {
+						OrderDetails orderDetailObj=new OrderDetails(orderDetail.get(1), Integer.parseInt(orderDetail.get(2)));
+						orderDetails.add(orderDetailObj);
+					}
+					Order order=new Order(LocalDate.parse(k,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),orderDetails);
 					orderList.add(order);
 				});
 		}catch(IOException e) {
@@ -78,21 +82,53 @@ public class Main {
 		return orderList;
 	}
 	
-	public static int insertOrders(Connection conn, Statement statement, List<Order> orderList) {
+	public static void insertOrders(Connection conn, Statement statement, List<Order> orderList) throws SQLException {
 		String inOrder="insert into shop.order(orderdate) values(?)";
-		String inDetails="insert into shop.order_details(orderid,productname,productprice,productdescription) values(?,?,?,?)";
+		String inDetails="insert into shop.order_details(orderid,productname,productquantity) values(?,?,?)";
 		try(PreparedStatement ps1=conn.prepareStatement(inOrder,Statement.RETURN_GENERATED_KEYS);
 			PreparedStatement ps2=conn.prepareStatement(inDetails)){
+			conn.setAutoCommit(false);
 			for(Order order:orderList) {
 				ps1.setDate(1, Date.valueOf(order.getDate()));
 				ps1.addBatch();
 			}
 			int [] countArr=ps1.executeBatch();
 			ResultSet keys=ps1.getGeneratedKeys();
-			
-			int totalOrdersInserted=Arrays.stream(countArr).reduce(0,(a,b) -> a+b);
+			int orderIndex=0;
+			while(keys.next()) {
+				int key=keys.getInt(1);
+				List<OrderDetails> orderDetailsList=orderList.get(orderIndex).getOrderDetails();
+				for(int i=0; i<orderDetailsList.size(); i++) {
+					ps2.setInt(1, key);
+					ps2.setString(2, orderDetailsList.get(i).getProductName());
+					ps2.setInt(3, orderDetailsList.get(i).getQuantity());
+					ps2.addBatch();
+				}
+				countArr=ps2.executeBatch();
+			}
+			conn.commit();
+//			int totalOrdersInserted=Arrays.stream(countArr).reduce(0,(a,b) -> a+b);
 		}catch(SQLException e) {
 			e.printStackTrace();
+			conn.rollback();
+		}
+		
+	}
+	
+	public static void printRecords(Connection conn, Statement statement) throws SQLException {
+		String query1="select * from shop.order";
+		String query2="select * from shop.order_details";
+		System.out.println("Orders :");
+		ResultSet rs1=statement.executeQuery(query1);
+		System.out.println("ORDERID			ORDERDATE");
+		while(rs1.next()) {
+			System.out.println(rs1.getInt(1)+"			"+rs1.getDate(2));
+		}
+		
+		ResultSet rs2=statement.executeQuery(query2);
+		System.out.println("ORDERID			PRODUCTNAME		PRODUCTQUANTITY");
+		while(rs2.next()) {
+			System.out.println(rs2.getInt(1)+"			"+rs2.getString(2)+"			"+rs2.getInt(3));
 		}
 	}
 	
@@ -104,8 +140,8 @@ public class Main {
 		dataSource.setPassword(System.getenv("USER_PASSWORD"));
 		try(Connection conn=dataSource.getConnection();
 			Statement statement=conn.createStatement()){
-			conn.setAutoCommit(false);
-			int totalOrdersInserted=insertOrders(conn,statement,orderList);
+			insertOrders(conn,statement,orderList);
+			printRecords(conn,statement);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

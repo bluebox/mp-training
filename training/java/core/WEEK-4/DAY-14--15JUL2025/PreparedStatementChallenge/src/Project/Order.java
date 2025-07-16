@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Order {
 	private LocalDate date;
-	private OrderDetails orderDetails;
+	private List<OrderDetails> orderDetails;
 	
-	public Order(LocalDate date, OrderDetails orderDetails) {
+	public Order(LocalDate date, List<OrderDetails> orderDetails) {
 		this.date = date;
 		this.orderDetails = orderDetails;
 	}
@@ -16,7 +16,7 @@ public class Order {
 		return date;
 	}
 
-	public OrderDetails getOrderDetails() {
+	public List<OrderDetails> getOrderDetails() {
 		return orderDetails;
 	}
 	
