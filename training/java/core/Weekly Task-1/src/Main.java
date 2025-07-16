@@ -22,7 +22,7 @@ public class Main {
             try {
                 n = Integer.parseInt(s);
             } catch (NumberFormatException nfe) {
-                System.out.println("Invalid input");
+            	System.out.println("Invalid input");
                 continue;  
             }
 
@@ -34,6 +34,7 @@ public class Main {
                     break;
                 case 1:
                     System.out.println();
+                    try {
                     System.out.println("Enter the member id: ");
                     String id = sc.nextLine();
                     if(g1.MemberExist(id)) {
@@ -46,6 +47,10 @@ public class Main {
                     int age = sc.nextInt();
                     sc.nextLine();  
                     g1.addMember(id, name, age);
+                    }
+                    catch(IllegalArgumentException ee) {
+                    	System.out.println("id cant be empty");
+                    }
                     break;
                 case 2:
                     System.out.println();

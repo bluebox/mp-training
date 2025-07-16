@@ -1,0 +1,161 @@
+﻿Employee ID,Name,Department,Project ID,Date,Task Category,Hours Worked,Remarks
+E1010,Suman,UI/UX,P206,02-01-2025,Development,6.8,critical
+E1006,Neha,Research & Development,P200,02-04-2025,Documentation,0,meeting
+E1018,Anil,QA,P202,21-05-2025,Development,6.2,normal task
+E1020,Sunita,UI/UX,P208,21-02-2025,Testing,5.3,urgent
+E1007,Kiran,QA,P204,09-01-2025,Development,0,meeting
+E1002,Amit,Devops,P207,08-12-2024,Testing,9.4,normal task
+E1020,Deepak,QA,P205,27-12-2024,Bug Fixing,2.2,critical
+E1022,Deepak,QA,P209,04-04-2025,Development,0,critical
+E1017,Neha,UI/UX,P203,11-12-2024,Development,3.2,meeting
+E1008,Kiran,Devops,P208,15-04-2025,Documentation,3.2,critical
+E1020,Deepak,QA,P205,27-12-2024,Bug Fixing,2.2,critical
+E1010,Kiran,QA,P206,09-12-2024,Documentation,2.9,meeting
+E1005,Priya,Research & Development,P201,11-01-2025,Testing,5.5,critical
+E1009,Suman,QA,P205,10-04-2025,Bug Fixing,5.3,normal task
+E1020,Kiran,UI/UX,P207,28-02-2025,Testing,4,urgent
+E1019,Kiran,Devops,P206,28-02-2025,Development,7.2,urgent
+E1021,Raj,Devops,P208,23-02-2025,Documentation,1,normal task
+E1016,Suman,QA,P208,11-03-2025,Testing,0,meeting
+E1006,Suman,Research & Development,P206,06-03-2025,Documentation,4.9,critical
+E1025,Neha,QA,P203,02-04-2025,Bug Fixing,0,urgent
+E1016,Neha,Devops,P209,14-01-2025,Testing,0,urgent
+E1024,Sunita,Research & Development,P203,01-05-2025,Documentation,1.3,meeting
+E1019,Sunita,Devops,P203,04-12-2024,Bug Fixing,7.3,normal task
+E1024,Neha,UI/UX,P206,02-12-2024,Development,0,meeting
+E1029,Deepak,UI/UX,P203,03-05-2025,Development,0,urgent
+E1021,Kiran,Devops,P206,12-05-2025,Bug Fixing,0,urgent
+E1003,Suman,UI/UX,P208,16-04-2025,Bug Fixing,9.6,meeting
+E1017,Anil,Research & Development,P208,15-05-2025,Development,0,meeting
+E1026,Deepak,Devops,P208,11-03-2025,Development,8.4,meeting
+E1007,Anil,Devops,P206,19-01-2025,Bug Fixing,2.6,urgent
+E1001,Suman,UI/UX,P206,06-01-2025,Testing,6.7,normal task
+E1013,Vikas,Research & Development,P205,25-03-2025,Bug Fixing,6,critical
+E1023,Anil,UI/UX,P201,07-05-2025,Bug Fixing,7.3,urgent
+E1018,Suman,Research & Development,P209,17-04-2025,Development,7,meeting
+E1001,Priya,QA,P203,28-01-2025,Documentation,9.5,critical
+E1009,Kiran,Devops,P205,06-04-2025,Bug Fixing,0,urgent
+E1020,Deepak,QA,P205,27-12-2024,Bug Fixing,2.2,critical
+E1024,Suman,Research & Development,P200,12-05-2025,Development,3.9,urgent
+E1000,Sunita,QA,P207,02-05-2025,Bug Fixing,6,meeting
+E1017,Amit,UI/UX,P208,01-12-2024,Development,9.8,urgent
+E1015,Suman,Devops,P206,12-05-2025,Development,0,normal task
+E1003,Suman,QA,P200,27-02-2025,Development,0,critical
+E1023,Raj,Devops,P200,27-12-2024,Development,0,critical
+E1002,Priya,Devops,P202,21-01-2025,Testing,0,meeting
+E1026,Vikas,QA,P205,26-02-2025,Testing,8.6,normal task
+E1018,Neha,UI/UX,P201,17-12-2024,Documentation,2,urgent
+E1011,Raj,Research & Development,P203,02-04-2025,Development,9.7,critical
+E1008,Priya,QA,P207,03-05-2025,Development,0,urgent
+E1022,Vikas,UI/UX,P203,01-05-2025,Development,1.2,urgent
+E1017,Anil,Devops,P201,15-02-2025,Documentation,0,urgent
+E1010,Neha,UI/UX,P207,15-03-2025,Testing,0,urgent
+E1005,Kiran,Devops,P204,27-05-2025,Testing,5,critical
+E1022,Deepak,QA,P207,07-12-2024,Testing,0,meeting
+E1017,Sunita,UI/UX,P202,17-05-2025,Development,0,urgent
+E1009,Raj,QA,P201,13-01-2025,Bug Fixing,4,urgent
+E1017,Neha,Devops,P201,26-03-2025,Development,0,normal task
+E1015,Deepak,UI/UX,P204,13-03-2025,Testing,0,urgent
+E1017,Suman,Devops,P203,28-02-2025,Documentation,5.5,urgent
+E1023,Vikas,QA,P206,26-04-2025,Documentation,5.6,critical
+E1003,Amit,Research & Development,P206,17-01-2025,Bug Fixing,0,normal task
+E1009,Priya,QA,P201,18-12-2024,Bug Fixing,5.6,meeting
+E1017,Suman,UI/UX,P205,19-03-2025,Testing,0,critical
+E1015,Priya,Research & Development,P203,05-01-2025,Documentation,4,critical
+E1015,Deepak,UI/UX,P203,22-04-2025,Bug Fixing,2.5,urgent
+E1012,Sunita,Devops,P201,08-04-2025,Testing,0,urgent
+E1022,Amit,UI/UX,P209,28-02-2025,Development,0,normal task
+E1019,Priya,Devops,P201,26-05-2025,Development,2.8,normal task
+E1011,Sunita,QA,P205,03-01-2025,Documentation,0,meeting
+E1007,Sunita,Devops,P203,07-04-2025,Bug Fixing,0,urgent
+E1015,Kiran,QA,P207,23-05-2025,Documentation,5.2,critical
+E1013,Anil,Devops,P202,16-01-2025,Bug Fixing,0,critical
+E1016,Kiran,Research & Development,P203,02-04-2025,Testing,8.9,meeting
+E1010,Vikas,QA,P200,19-05-2025,Bug Fixing,8.8,critical
+E1008,Amit,QA,P202,24-12-2024,Bug Fixing,9.2,meeting
+E1018,Neha,Devops,P201,27-03-2025,Development,0,normal task
+E1025,Priya,Devops,P200,25-03-2025,Bug Fixing,0,meeting
+E1014,Neha,Research & Development,P206,13-03-2025,Testing,0,critical
+E1027,Vikas,UI/UX,P200,16-12-2024,Documentation,0,urgent
+E1006,Deepak,Devops,P208,13-01-2025,Bug Fixing,0,urgent
+E1013,Neha,UI/UX,P205,26-03-2025,Documentation,4.2,normal task
+E1009,Suman,QA,P205,10-04-2025,Bug Fixing,5.3,normal task
+E1027,Raj,UI/UX,P201,26-03-2025,Development,0,normal task
+E1021,Priya,Research & Development,P206,26-05-2025,Bug Fixing,9.8,normal task
+E1005,Sunita,Devops,P205,20-02-2025,Testing,0,meeting
+E1025,Sunita,UI/UX,P208,10-02-2025,Development,0,urgent
+E1004,Raj,QA,P209,30-01-2025,Development,5.3,meeting
+E1010,Vikas,Devops,P209,23-02-2025,Documentation,0,critical
+E1001,Vikas,Devops,P206,01-04-2025,Bug Fixing,8.5,meeting
+E1008,Priya,QA,P207,03-05-2025,Development,0,urgent
+E1000,Kiran,Devops,P208,04-04-2025,Documentation,5,urgent
+E1023,Priya,Research & Development,P203,08-12-2024,Documentation,0,meeting
+E1008,Vikas,Devops,P201,09-05-2025,Testing,6.6,meeting
+E1020,Suman,Research & Development,P208,18-04-2025,Development,0,normal task
+E1025,Neha,Devops,P203,30-01-2025,Documentation,6.1,critical
+E1004,Kiran,Research & Development,P204,27-01-2025,Documentation,0,urgent
+E1015,Deepak,UI/UX,P203,22-04-2025,Bug Fixing,2.5,urgent
+E1012,Anil,QA,P203,14-01-2025,Development,8,normal task
+E1003,Deepak,Research & Development,P207,10-05-2025,Bug Fixing,3.3,normal task
+E1006,Amit,Research & Development,P204,22-05-2025,Development,0,normal task
+E1002,Priya,Devops,P202,31-01-2025,Testing,1.9,urgent
+E1013,Suman,UI/UX,P200,07-03-2025,Development,0,urgent
+E1005,Deepak,UI/UX,P205,27-04-2025,Development,0,critical
+E1025,Deepak,Research & Development,P209,04-02-2025,Development,8.9,meeting
+E1003,Suman,QA,P200,27-02-2025,Development,0,critical
+E1021,Priya,QA,P204,25-01-2025,Bug Fixing,2.2,normal task
+E1007,Anil,Devops,P205,07-02-2025,Testing,7.4,urgent
+E1017,Deepak,Devops,P201,01-05-2025,Development,2.7,critical
+E1004,Sunita,Research & Development,P209,28-05-2025,Development,3.9,normal task
+E1005,Priya,QA,P208,25-01-2025,Bug Fixing,0,critical
+E1027,Anil,Devops,P208,17-05-2025,Bug Fixing,0,critical
+E1027,Suman,QA,P204,18-05-2025,Testing,0,meeting
+E1022,Kiran,Research & Development,P202,09-12-2024,Documentation,7.6,normal task
+E1002,Deepak,Research & Development,P205,11-01-2025,Testing,0,normal task
+E1013,Amit,Research & Development,P203,30-01-2025,Testing,0,normal task
+E1002,Priya,Devops,P202,31-01-2025,Testing,1.9,urgent
+E1013,Raj,Devops,P205,04-05-2025,Testing,0,urgent
+E1011,Vikas,UI/UX,P207,07-04-2025,Bug Fixing,9.7,meeting
+E1013,Anil,UI/UX,P205,07-04-2025,Testing,0,critical
+E1020,Vikas,Research & Development,P202,05-12-2024,Development,0,urgent
+E1027,Anil,UI/UX,P202,08-02-2025,Documentation,5,normal task
+E1021,Deepak,UI/UX,P200,03-03-2025,Bug Fixing,4.3,meeting
+E1022,Anil,UI/UX,P205,29-04-2025,Bug Fixing,0,meeting
+E1013,Kiran,Research & Development,P201,31-12-2024,Documentation,0,urgent
+E1023,Suman,Research & Development,P208,15-01-2025,Bug Fixing,0,normal task
+E1016,Raj,QA,P200,20-04-2025,Documentation,0,normal task
+E1009,Priya,QA,P201,18-12-2024,Bug Fixing,5.6,meeting
+E1008,Deepak,Devops,P205,04-12-2024,Bug Fixing,0,urgent
+E1017,Priya,Research & Development,P206,23-04-2025,Development,6.6,critical
+E1024,Anil,UI/UX,P206,05-12-2024,Testing,9.9,normal task
+E1017,Neha,Devops,P207,11-03-2025,Testing,0,meeting
+E1018,Deepak,QA,P205,03-01-2025,Testing,2.8,urgent
+E1022,Anil,UI/UX,P205,28-12-2024,Bug Fixing,0,normal task
+E1028,Sunita,Research & Development,P205,14-05-2025,Development,3.9,urgent
+E1010,Sunita,Research & Development,P205,12-03-2025,Testing,3,normal task
+E1018,Anil,UI/UX,P201,12-02-2025,Bug Fixing,0,meeting
+E1009,Anil,Research & Development,P208,03-01-2025,Documentation,2.3,meeting
+E1003,Priya,UI/UX,P206,20-04-2025,Documentation,1.3,normal task
+E1000,Priya,UI/UX,P201,12-12-2024,Documentation,2.9,urgent
+E1006,Amit,Devops,P202,05-03-2025,Testing,7.2,normal task
+E1007,Raj,QA,P206,21-12-2024,Development,1.2,meeting
+E1017,Kiran,Research & Development,P202,13-02-2025,Testing,8.8,urgent
+E1009,Priya,QA,P200,18-04-2025,Bug Fixing,0,meeting
+E1014,Amit,QA,P207,20-03-2025,Testing,2.3,normal task
+E1009,Amit,Devops,P205,18-05-2025,Testing,0,normal task
+E1019,Sunita,Devops,P203,04-12-2024,Bug Fixing,7.3,normal task
+E1003,Kiran,Devops,P204,24-01-2025,Bug Fixing,9.3,meeting
+E1005,Neha,QA,P204,14-04-2025,Testing,8.5,normal task
+E1010,Raj,Research & Development,P209,18-04-2025,Bug Fixing,5.5,normal task
+E1026,Raj,Research & Development,P204,28-12-2024,Development,4.1,critical
+E1006,Priya,Research & Development,P203,04-12-2024,Testing,5.4,normal task
+E1024,Priya,QA,P206,14-04-2025,Bug Fixing,9.8,urgent
+E1008,Deepak,Devops,P209,05-05-2025,Bug Fixing,0,urgent
+E1027,Vikas,QA,P200,08-02-2025,Testing,2.8,urgent
+E1016,Deepak,QA,P205,12-03-2025,Development,0,urgent
+E1025,Anil,Devops,P203,05-05-2025,Documentation,0,meeting
+E1020,Raj,QA,P204,04-04-2025,Testing,5.8,critical
+E1007,Vikas,Devops,P208,01-05-2025,Development,0,critical
+E1001,Raj,Research & Development,P204,22-12-2024,Documentation,9.3,urgent
+E1025,Amit,QA,P207,05-05-2025,Documentation,0,meeting
+E1028,Sunita,Research & Development,P200,23-05-2025,Testing,1.8,urgent

@@ -40,14 +40,16 @@ public class Gameplay {
 					1 get valuables
 					2 get score
 					3 attack bandit
-					4 exit
+					4 health
+					5 exit
 					""");
 			int s=sc.nextInt();
 			if(s==1) {
 				if(value.get(level1.getResources())>0) {
 				System.out.println("you got lucky with : "+level1.getResources());
 				score+=value.get(level1.getResources());
-				value.put(level1.getResources(), 0);}
+				value.put(level1.getResources(), 0);
+				}
 				else {
 					System.out.println("Resources are obtained");
 				}
@@ -68,7 +70,7 @@ public class Gameplay {
 					value.put("diamonds", 200);
 					value.put("sword", 50);
 					value.put("magic wand",75);
-					level1.setHealth(500);
+					level1.setHealth(level1.getHealth()+300);
 					
 					System.out.println("score : "+score);
 					c++;
@@ -83,10 +85,10 @@ public class Gameplay {
 				}
 				else if(level1.getHealth()<=0){
 					System.out.println("you died \n Game over \n final score : "+score);
-					value.put("wild wolf", 200);
-					value.put("dragon", 300);
+					value.put("wild wolf", 150);
+					value.put("dragon", 200);
 					value.put("fire breather", 100);
-					value.put("hound", 250);
+					value.put("hound", 100);
 					value.put("gold", 150);
 					value.put("silver", 100);
 					value.put("diamonds", 200);
@@ -114,7 +116,11 @@ public class Gameplay {
 											}	
 					
 			}
+			
 			if(s==4) {
+				System.out.println("players health : "+level1.getHealth());
+			}
+			if(s==5) {
 				value.put("wild wolf", 200);
 				value.put("dragon", 300);
 				value.put("fire breather", 100);
@@ -125,6 +131,7 @@ public class Gameplay {
 				value.put("sword", 50);
 				value.put("magic wand",75);
 				level1.setHealth(500);
+				System.out.println("final Score : "+score+"\nExititng the game");
 				break;
 			}
 		}

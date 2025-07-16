@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Student {
@@ -7,18 +11,20 @@ public class Student {
 	private Integer age;
 	private Boolean isActive;
 	private Integer year;
-	private String course;
+	private List<String> course= new ArrayList<>();
+	private Integer percentage;
 	
 	static Random r=new Random();
 	
-	public Student(String name, String gender, String countryCode, Integer age, Boolean isActive, Integer year ,String course) {
+	public Student(String name, String gender, String countryCode, Integer age, Boolean isActive, Integer year ,List<String> course,Integer percentage) {
 		this.name = name;
 		this.gender = gender;
 		this.countryCode = countryCode;
 		this.age = age;
 		this.isActive = isActive;
 		this.year = year;
-		this.course=course;
+		this.course= new ArrayList<>(course);
+		this.percentage=percentage;
 	}
 	
 	public static Student generate() {
@@ -31,17 +37,31 @@ public class Student {
 		Integer age=18+r.nextInt(55);
 		Boolean isactive=r.nextBoolean();
 		Integer year=2010+r.nextInt(15);
-		String[] courses=new String[] {"Python","Java","C++"};
-		String course=courses[r.nextInt(courses.length)];
+		List<String> courses=Arrays.asList("Python","Java","C++");
+		Collections.shuffle(courses);
+		int i=0;
+		List<String> course=new ArrayList<>();
+		while(i<=r.nextInt(0,courses.size())) {
+			course.add(i, courses.get(i));
+			i++;
+		}
 		
-		return new Student(name,gender,countrycode,age,isactive,year,course);
+		return new Student(name,gender,countrycode,age,isactive,year,course,r.nextInt(30,100));
+	}
+
+	public Integer getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(Integer percentage) {
+		this.percentage = percentage;
 	}
 
 	@Override
 	public String toString() {
 		
 		return "Name : "+name+" , Gender : "+gender+" , Country code : "+countryCode+
-				" , age : "+age+" , active Status : "+isActive+" , year : "+year+" , course : "+course;
+				" , age : "+age+" , active Status : "+isActive+" , year : "+year+" , course : "+course+" percentage completed : "+percentage;
 	}
 
 	public String getName() {
@@ -68,7 +88,7 @@ public class Student {
 		return year;
 	}
 
-	public String getCourse() {
+	public List<String> getCourse() {
 		return course;
 	}
 	

@@ -11,7 +11,7 @@ public class StreamTerminal {
 				.limit(5000)
 				.collect(Collectors.toList());
 		
-//		students.forEach(System.out::println);
+		//students.forEach(System.out::println);
 		
 		
 		//Random r=new Random();
@@ -43,6 +43,22 @@ public class StreamTerminal {
 			System.out.println(expStu.get(i));
 		}
 		
+		
+		System.out.println("-".repeat(30));
+		Long one=students.stream().filter(s->s.getCourse().size()==1).count();
+		Long two=students.stream().filter(s->s.getCourse().size()==2).count();
+		Long three=students.stream().filter(s->s.getCourse().size()==3).count();
 				
+		System.out.println("no of students opted 1 course : "+one+" 2 courses : "+two+" 3 courses : "+three);
+		
+		long java=students.stream().filter(s->s.getCourse().contains("Java")).count();
+		long python=students.stream().filter(s->s.getCourse().contains("Python")).count();
+		long c=students.stream().filter(s->s.getCourse().contains("C++")).count();
+		
+		DoubleSummaryStatistics Perc=students.stream().mapToDouble(s->s.getPercentage()).summaryStatistics();
+		System.out.println("Average course completion percentage : "+Perc.getAverage());
+		
+		System.out.println("no of students opted java course : "+java+" python course : "+python+" c++ course : "+c);
+
 	}
 }
