@@ -69,7 +69,7 @@ function ShowCustomers(){
         });
     }
     return(
-        <div style={{marginLeft:"200px",marginRight:"200px"}}>
+        <div style={{marginLeft:"200px",marginRight:"200px",textAlign:"center"}}>
             <h1 style={{textAlign:"center"}}>Customer Details</h1>
             <table>
                 <thead>
@@ -93,11 +93,8 @@ function ShowCustomers(){
                         {customer.map((x)=>(<Customer sample={x} onDelete={DeleteCustomer}/>))}
                     </tbody>
             </table>
+            <br/>
             <Link to="/user/personal"><button>Add Customer</button></Link>
-            <div style={{textAlign:"center"}} colSpan={2}>
-                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
-                <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
-            </div>
         </div>
     );
 }

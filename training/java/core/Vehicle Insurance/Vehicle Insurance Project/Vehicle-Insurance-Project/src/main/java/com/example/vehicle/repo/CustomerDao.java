@@ -7,48 +7,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vehicle.model.Customer;
 import com.example.vehicle.model.Vehicle;
 import com.example.vehicle.rowMappers.CustomerRowMapper;
 
 @Repository
-@Transactional
 public class CustomerDao {
 	private final JdbcTemplate jdbcTemplate;
-	private final VehicleDao vehicleDao;
 	@Autowired
-	public CustomerDao(JdbcTemplate jdbcTemplate,VehicleDao vehicleDao) {
+	VehicleDao vehicleDao;
+
+	@Autowired
+	public CustomerDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
-		this.vehicleDao=vehicleDao;
 	}
 
-	public Integer addCustomer(Customer customer) throws SQLException {
+	public String addCustomer(Customer customer) throws SQLException {
 		String custAddSql = "Insert into customers(name,email,contact,gender,age,occupation,income,address,status,customer_updated_on,customer_updated_by,created_by)"
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		System.out.println(customer.getGender().getVal().charAt(0));
 		int rowsAffected = jdbcTemplate.update(custAddSql, customer.getName(), customer.getEmail(), customer.getContact(),
 				customer.getGender().getVal(), customer.getAge(), customer.getOccupation(), customer.getIncome(),
-				customer.getAddress(), "A", LocalDateTime.now(), customer.getCreatedBy(),
+				customer.getAddress(), "A",LocalDateTime.now(), customer.getCreatedBy(),
 				customer.getCreatedBy());
 
 		if (rowsAffected == 0) {
-			return -1;
+			return "Customer not added";
 		} else {
-			return jdbcTemplate.queryForObject("select customer_id from customers where email=?", Integer.class,customer.getEmail());
+			return "Customer Added Successfully";
 		}
 	}
-	public int getCustomersByEmail(String contact) throws SQLException {
-		return jdbcTemplate.queryForObject("select customer_id from customers where contact=?", Integer.class,contact); 
-	}
 	
-	public String updateCustomer(Customer customer) throws SQLException {
-		System.out.println(customer);
-		String custUpdateSql = "Update customers set name=?,email=?,contact=?,gender=?,age=?,occupation=?,income=?,address=?,status='A',customer_updated_on=?,customer_updated_by=? where customer_id=?";
+	public String updateCustomer(Customer customer) throws SQLException{
+		String custUpdateSql = "Update customers set name=?,email=?,contact=?,gender=?,age=?,occupation=?,income=?,address=?,status=?,"
+				+ "customer_updated_on=?,customer_updated_by=? where customer_id=?";
 		int rowsAffected = jdbcTemplate.update(custUpdateSql, customer.getName(), customer.getEmail(), customer.getContact(),
 				customer.getGender().getVal(), customer.getAge(), customer.getOccupation(), customer.getIncome(),
-				customer.getAddress(),LocalDateTime.now(), customer.getCustomerUpdatedBy(),
+				customer.getAddress(),"A", LocalDateTime.now(), customer.getCustomerUpdatedBy(),
 				customer.getCustomerId());
 
 		if (rowsAffected == 0) {
@@ -58,9 +53,9 @@ public class CustomerDao {
 		}
 	}
 	
-	public String updateCustomerStatus(int customerId,char status) throws SQLException {
+	public String updateCustomerStatus(int customerId,char status) throws SQLException{
 		String sql="Update customers set status=? where customer_id=?";
-		int rowsAffected=jdbcTemplate.update(sql,Character.toString(status),customerId);
+		int rowsAffected=jdbcTemplate.update(sql,String.valueOf(status),customerId);
 		if(rowsAffected==0) {
 			return "Status not Updated,Check Your Customer Id";
 		}
@@ -71,7 +66,7 @@ public class CustomerDao {
 	}
 	
 	public Customer getCustomerById(int customerId) throws Exception {
-		String sql="SELECT * FROM customers WHERE customer_id=?";
+		String sql="SELECT customer_id,name,email,contact,gender,age,occupation,income,address,status,customer_updated_on,customer_updated_by,created_by FROM customers WHERE customer_id=?";
 		Customer customer=null;
 		try {
 		customer=jdbcTemplate.queryForObject(sql, new CustomerRowMapper(), customerId);
@@ -83,9 +78,6 @@ public class CustomerDao {
 	}
 	
 	public String deleteCustomerById(int customerId) throws Exception {
-		if((jdbcTemplate.queryForObject("select count(*) from customers where customer_id=? and status='I'", Integer.class,customerId))>0) {
-			return "Customer is already deleted";
-		}
 		String sql="Update customers set status='I' WHERE customer_id=?";
 		
 		List<Vehicle> vehicles=vehicleDao.getAllVehiclesByCustomer(customerId);
@@ -100,9 +92,13 @@ public class CustomerDao {
 			return "Customer Deleted Successfully";
 		}
 		
-	}	
-	public  List<Customer> getAllCustomers() throws SQLException {
-		String sql="SELECT * FROM customers";
-		return jdbcTemplate.query(sql,new CustomerRowMapper());	
+	}
+	
+	
+	
+	public  List<Customer> getAllCustomers(){
+		String sql="SELECT customer_id,name,email,contact,gender,age,occupation,income,address,status,customer_updated_on,customer_updated_by,created_by FROM customers";
+		return jdbcTemplate.query(sql,new CustomerRowMapper());
+		
 	}	
 }

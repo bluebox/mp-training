@@ -38,8 +38,11 @@ function VehicleDetails(){
     }
     if(localStorage.getItem("customerId")!==null){
         return(
-        <form onSubmit={sendData}>
+        <form onSubmit={sendData}  style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
             <table>
+                <thead>
+                    <tr><td colSpan={2}><h1>Vehicle Details</h1></td></tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td><label htmlFor="chasisNum">Chasis Number : </label></td>
@@ -69,9 +72,10 @@ function VehicleDetails(){
     }
     else{
     return(
-        <form onSubmit={sendData}>
+        <form style={{margin:"50px",marginLeft:"600px",marginRight:"600px"}}>
             <table>
                 <tbody>
+                    <tr><td colSpan={2}><h1>Vehicle Details</h1></td></tr>
                     <tr>
                         <td><label htmlFor="chasisNum">Chasis Number : </label></td>
                         <td><input type="text" id="chasisNum" name="chasisNum"/></td>
@@ -93,6 +97,7 @@ function VehicleDetails(){
                     </tr>
                     <tr>
                         <td colSpan={2}><input type="submit"/></td>
+                        
                     </tr>
                 </tbody>
             </table>

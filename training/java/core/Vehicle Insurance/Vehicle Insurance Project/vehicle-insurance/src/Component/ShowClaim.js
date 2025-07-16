@@ -46,7 +46,7 @@ function ShowClaim(){
     //     }
     // }
     return(
-        <div style={{marginLeft:"550px", marginRight:"550px"}}>
+        <div style={{marginLeft:"650px", marginRight:"650px",textAlign:"center"}}>
             <h1 style={{textAlign:"center"}}>Claim Details</h1>
             <table style={{border:"2px solid"}}>
                 <thead>
@@ -64,10 +64,11 @@ function ShowClaim(){
                         {claim.map((x)=>(<Claim sample={x}/>))}
                     </tbody>
             </table>
+            <br/>
             <Link to="/user/claim"><button>Add Claim</button></Link>
-            
             <div style={{textAlign:"center"}} colSpan={2}>
-                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
+                <br/>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>&nbsp;&nbsp;
                 <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
             </div>
         </div>

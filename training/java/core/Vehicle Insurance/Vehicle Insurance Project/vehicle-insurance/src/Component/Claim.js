@@ -35,10 +35,12 @@ function Claim(){
         })
     }
     return(
-        <form onSubmit={setData}>
-            <h1>Claim Page</h1>
+        <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
             <table>
                 <tbody>
+                    <tr>
+                        <td colSpan={2} style={{textAlign:"center"}}><h1>Claim Details</h1></td>
+                    </tr>
                     <tr>
                         <td><label htmlFor="reqAmount">Requested Amount : </label></td>
                         <td><input type="number" id="reqAmount" name="reqAmount"/></td>
@@ -56,7 +58,7 @@ function Claim(){
                         <td><input type="text" id="approvedBy" name="approvedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
-                        <td colSpan={2}><input type="submit" value="Submit"/></td>
+                        <td colSpan={2}><input type="submit"/></td>
                     </tr>
                 </tbody>
             </table>

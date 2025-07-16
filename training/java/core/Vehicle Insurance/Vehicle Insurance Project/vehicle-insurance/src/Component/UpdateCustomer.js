@@ -54,8 +54,11 @@ function UpdateCustomer() {
   };
 
   return (
-    <form onSubmit={CustomerData}>
+    <form onSubmit={CustomerData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
       <table>
+            <thead>
+                <tr><td colSpan={2}><h1>Update Personal Data</h1></td></tr>
+            </thead>
             <tbody>
                 <tr>
                     <td><input type="hidden" name="customerId" value={customerId}/></td>

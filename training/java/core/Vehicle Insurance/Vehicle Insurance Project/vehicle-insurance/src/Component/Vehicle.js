@@ -84,11 +84,6 @@ function ShowVehicle(){
             </table>
             <p></p>
             <Link to="/user/vehicle"><button onClick={localStorage.removeItem("customerId")}>Add Vehicle</button></Link>
-            <div style={{textAlign:"center"}} colSpan={2}>
-                <p></p>
-                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
-                <p></p>
-            </div>
         </div>
     );
 }

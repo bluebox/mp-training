@@ -14,13 +14,14 @@ import com.example.vehicle.rowMappers.UserRowMapper;
 @Repository
 public class UserDao {
 	public JdbcTemplate jdbcTemplate; 
+	
 	@Autowired
 	public UserDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate=jdbcTemplate;
 	}
 	public String addUser(User u) throws SQLException {
-		if(jdbcTemplate.queryForObject("select count(*) from users where customer_id=?", Integer.class,u.getCustomerId())>0) {
-			return "User credentials are already existed for the Customer ID "+u.getCustomerId();
+		if(jdbcTemplate.queryForObject("select count(username) from users where customer_id=?", Integer.class,u.getCustomerId())>0) {
+			return "User is already existed";
 		}
 		int rowEffected=jdbcTemplate.update("insert into users(username,password,password_updated_on,password_updated_by,customer_id) values(?,?,?,?,?)",u.getUsername(),u.getPassword(),LocalDateTime.now(),u.getPasswordUpdatedBy(),u.getCustomerId());
 		if(rowEffected>0) {
@@ -30,10 +31,10 @@ public class UserDao {
 			return "Failed to register user";
 		}
 	}
+	
 	public String updatePassword(String username,String password,String passwordUpdatedBy) throws SQLException{
 		int rowEffected=jdbcTemplate.update("update users set password=?,password_updated_on=?,password_updated_by=? where username=?",password,LocalDateTime.now(),passwordUpdatedBy,username);
 		if(rowEffected>0) {
-			System.out.println("Success");
 			return "Password updated successfully";
 		}
 		else {
@@ -43,20 +44,24 @@ public class UserDao {
 	
 	public User getUserByUsername(String username) throws SQLException {
 	  User user;
-	  String sql="Select * from users where username=?";
+	  String sql="Select username,password,password_updated_on,password_updated_by,customer_id from users where username=?";
 	  user=jdbcTemplate.queryForObject(sql,new UserRowMapper(),username);
 	  return user;
 	}
+	public String getPasswordByUsername(String username) throws SQLException {
+		  String sql="Select password from users where username=?";
+		  return jdbcTemplate.queryForObject(sql,String.class,username);
+	}
 	
 	public List<User> getAllUsers(){
-		String sql="Select * from users";
+		String sql="Select username,password,password_updated_on,password_updated_by,customer_id from users";
 		return jdbcTemplate.query(sql,new UserRowMapper());
 	}
 	
 	public String deleteUser(String username) {
 		String sql="Delete from users where username=?";
 		int rowsAffected=jdbcTemplate.update(sql,username);
-		if(rowsAffected==0) {
+		if(rowsAffected>0) {
 			return "Deleted User Successfully";
 		}
 		else {

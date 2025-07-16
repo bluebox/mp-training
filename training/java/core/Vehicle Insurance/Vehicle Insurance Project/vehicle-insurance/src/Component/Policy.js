@@ -36,10 +36,10 @@ function Policy(){
         })
     }
     return(
-        <form onSubmit={setData}>
+        <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
             <table>
                 <thead>
-                    <h1>Policy Details</h1>
+                    <tr><td colSpan={2}><h1 style={{textAlign:"center"}}>Policy Details</h1></td></tr>
                 </thead>
                 <tbody>
                     <tr>
@@ -64,7 +64,7 @@ function Policy(){
                         <td><input type="text" id="approvedBy" name="approvedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
-                        <td colSpan={2}><input type="submit" value="Submit"/></td>
+                        <td colSpan={2}><input type="submit"/></td>
                     </tr>
                 </tbody>
             </table>

@@ -17,7 +17,6 @@ import com.example.vehicle.model.Claim;
 import com.example.vehicle.service.ClaimService;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/claim")
 public class ClaimController {
 	private final ClaimService service;

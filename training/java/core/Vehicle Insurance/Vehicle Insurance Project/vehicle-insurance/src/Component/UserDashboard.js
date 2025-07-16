@@ -12,7 +12,6 @@ export default function UserDashboard() {
   const [selectedVehicleId, setSelectedVehicleId] = useState(null);
   const [policies, setPolicies] = useState([]);
   const [claims, setClaims] = useState([]);
-
   const [newRegNum, setNewRegNum] = useState('');
   const [policyForm, setPolicyForm] = useState({ policyTerm: '', policyType: 'Silver', vehicleId: '', approvedBy: '' });
   const [claimForm, setClaimForm] = useState({ reqAmount: '', damageType: '', policyId: '' });
@@ -22,7 +21,6 @@ export default function UserDashboard() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword,setConfirmPassword]=useState("");
   const [showProfile, setShowProfile] = useState(false);
-
   const username = localStorage.getItem("username");
 
   useEffect(() => {
@@ -144,7 +142,7 @@ export default function UserDashboard() {
       vehicleId: policyForm.vehicleId,
       policyTerm: policyForm.policyTerm,
       policyType: policyForm.policyType,
-      approvedBy: localusername
+      approvedBy: username
     }, { withCredentials: true })
       .then((response) => {
         alert(response.data);
@@ -327,7 +325,7 @@ const generateClaimReport = (claimId) => {
             </tbody>
           </table>
           <button onClick={updateCustomerDetails}>Update Customer Info</button>
-Brave
+          
           <div style={{ marginTop: '15px' }}>
             <h4>Update Password</h4>
             <div id="errors"></div>

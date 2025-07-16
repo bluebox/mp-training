@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,7 +18,6 @@ import com.example.vehicle.model.Policy;
 import com.example.vehicle.service.PolicyService;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/policy")
 public class PolicyController {
 	private final PolicyService policyService;
@@ -63,7 +61,7 @@ public class PolicyController {
 	public String updatePolicy(@RequestBody Policy p) throws Exception {
 		return policyService.updatePolicy(p.getPolicyId(), p.getPolicyTerm(), (p.getPolicyType().equals("gold"))?PolicyType.Gold: (p.getPolicyType().equals("silver"))?PolicyType.Silver:PolicyType.Platinum, p.getApprovedBy());
 	}
-	@GetMapping("/show")
+	@GetMapping("/showById")
 	public Policy getPolicyById(@RequestParam int policyId) throws Exception {
 		return policyService.getPolicyById(policyId);
 	}

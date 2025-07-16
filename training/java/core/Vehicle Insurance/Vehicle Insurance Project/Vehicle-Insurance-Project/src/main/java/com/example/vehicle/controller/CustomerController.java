@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,19 +16,14 @@ import com.example.vehicle.model.Customer;
 import com.example.vehicle.service.CustomerService;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
 	private CustomerService service;
 //	@PreAuthorize(value = "hasRole('admin')")
 	@PostMapping("/add")
-	public Integer createCustomer(@RequestBody Customer c) throws Exception {
+	public String createCustomer(@RequestBody Customer c) throws Exception {
 		return service.addCustomer(c);
-	}
-	@GetMapping("/getByEmail")
-	public Integer getCustomersByEmail(@RequestParam String email) throws SQLException {
-		return service.getCustomersByEmail(email);
 	}
 	@PutMapping("/update")
 	public String updateCustomer(@RequestParam int customerId, @RequestBody Customer c ) throws Exception {

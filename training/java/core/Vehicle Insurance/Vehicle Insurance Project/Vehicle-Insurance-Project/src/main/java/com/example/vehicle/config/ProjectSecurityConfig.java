@@ -3,9 +3,11 @@ package com.example.vehicle.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -32,7 +34,7 @@ public class ProjectSecurityConfig {
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 	    
 	    CorsConfiguration corsConfig = new CorsConfiguration();
-	    corsConfig.setAllowedOriginPatterns(List.of("http://localhost:3000")); 
+	    corsConfig.setAllowedOriginPatterns(List.of("*")); 
 	    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 	    corsConfig.setAllowedHeaders(List.of("*"));
 	    corsConfig.setExposedHeaders(List.of("role"));
@@ -45,14 +47,14 @@ public class ProjectSecurityConfig {
 	        .and()
 	        .csrf().disable()
 	        .authorizeRequests()
-	        .antMatchers("/login","/").permitAll()
+	        .antMatchers("/customer/**", "/user/**", "/vehicle/**", "/policy/**", "/claim/**")
+	        .hasRole("ADMIN")
 	        .antMatchers("/customer/update", "/customer/delete", "/customer/show", "/vehicle/update", "/vehicle/showById",
 	                "/policy/add", "/policy/showById", "/policy/report", "/policy/renew", "/policy/update",
 	                "/policy/payDue", "/policy/dueDate", "/claim/add", "/claim/claimById", "/claim/claimByUser",
-	                "/claim/claimReports", "/user/updatePassword", "/user/show","/vehicle/showByCustomerId","/policy/showByUser")
-	        .hasAnyRole("ADMIN", "USER")
-	        .antMatchers("/customer/**", "/user/**", "/vehicle/**", "/policy/**", "/claim/**")
-	        .hasRole("ADMIN")
+	                "/claim/claimReports", "/user/updatePassword", "/vehicle/showByCustomerId","/policy/showByUser","/user/show")
+	        .hasRole("USER")
+//	        .anyRequest().permitAll()
 	        .and()
 	        .formLogin(form -> form.loginProcessingUrl("/login")
 	            .successHandler((request, response, authentication) -> {
@@ -63,8 +65,6 @@ public class ProjectSecurityConfig {
 	                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication Failed");
 	            })
 	            .permitAll())
-	        .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")               
-	        		.invalidateHttpSession(true).permitAll())
 	        .httpBasic();
 
 	    return http.build();
@@ -78,9 +78,7 @@ public class ProjectSecurityConfig {
 		for (com.example.vehicle.model.User user : userService.getAllUsers()) {
 			details.add(User.withUsername(user.getUsername()).password(user.getPassword()).roles("USER").build());
 		}
-		details.add(User.withUsername("Eren").password(passwordEncoder.encode("Attack")).roles("ADMIN").build());
+		details.add(User.withUsername("Eren").password(passwordEncoder.encode("Attack")).roles("ADMIN").build());//For Admin Giving static
 		return new InMemoryUserDetailsManager(details);
 	}
-
-
 }

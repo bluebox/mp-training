@@ -14,8 +14,8 @@ function RequestedPolicy(props){
         <td>{props.sample.policyStatus}</td>
         <td>{props.sample.vehicleId}</td>
         <td>{props.sample.approvedBy}</td>
-        <td><button onClick={() => props.onUpdate(props.sample.policyId,"A",props.sample.approvedBy)}>Accept</button></td>
-        <td><button onClick={() => props.onUpdate(props.sample.policyId,"I",props.sample.approvedBy)}>Reject</button></td>
+        <td><button onClick={() => props.onUpdate(props.sample.policyId,"A",localStorage.getItem("username"))}>Accept</button></td>
+        <td><button onClick={() => props.onUpdate(props.sample.policyId,"I",localStorage.getItem("username"))}>Reject</button></td>
     </tr>
     );
 }
@@ -73,9 +73,11 @@ function ShowRequestedPolicy(){
                         {policy.map((x)=>(<RequestedPolicy sample={x} onUpdate={UpdatePolicy}/>))}
                     </tbody>
             </table>
+            <br/>
             <Link to="/user/policy"><button>Add Policy</button></Link>
             <div colSpan={2}>
-                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
+                <br/>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>&nbsp;&nbsp;
                 <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
             </div>
         </div>

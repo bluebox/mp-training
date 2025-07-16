@@ -47,7 +47,7 @@ function ShowRequestedClaim(){
     //     }
     // }
     return(
-        <div style={{textAlign:"center",marginLeft:"650px",marginRight:"650px"}}>
+        <div style={{textAlign:"center",marginLeft:"620px",marginRight:"620px"}}>
             <h1>All Requested Claims</h1>
             <table style={{border:"2px solid"}}>
                 <thead>
@@ -67,9 +67,11 @@ function ShowRequestedClaim(){
                         {/* {claim.map((x) => (<RequestedClaim key={x.claimId} sample={x}/>))} */}
                     </tbody>
             </table>
-            <Link to="/user/claim"><button>Add Claim</button></Link>
+            <br/>
+            <Link to="/user/claim" style={{marginLeft:"20px"}}><button>Add Claim</button></Link>
             <div style={{textAlign:"center"}} colSpan={2}>
-                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
+                <br/>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>&nbsp;&nbsp;
                 <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
             </div>
         </div>

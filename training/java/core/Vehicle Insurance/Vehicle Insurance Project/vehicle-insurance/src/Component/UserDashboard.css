@@ -120,3 +120,12 @@ tr,td,th{
   text-align: center;
   margin: 10px;
 }
+input[type="submit"]{
+  padding: 10px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}

@@ -63,7 +63,7 @@ function UserRegistration(){
         })
     }
     return(
-        <form onSubmit={setData}>
+        <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
             <table>
                 <thead>
                     <h1>Personal Details</h1>

@@ -19,7 +19,6 @@ import ShowUser from "./Component/ShowUser";
 import UpdateUser from "./Component/UpdateUser";
 import ShowRequestedPolicy from "./Component/ShowRequest";
 import ManagePolicy from "./Component/ManagePolicy";
-import RenewPolicy from "./Component/RenewPolicy";
 import UpdatePolicy from "./Component/UpdatePolicy";
 import ManageClaim from "./Component/ManageClaim";
 import ShowRequestedClaim from "./Component/ClaimRequests";
@@ -65,7 +64,6 @@ export default function App() {
                 <Route path="/user/update/:username" element={<UpdateUser/>}></Route>
                 <Route path="/policy/showRequests" element={<ShowRequestedPolicy />}></Route>
                 <Route path="/policy/manage" element={<ManagePolicy/>}></Route>
-                <Route path="/policy/renew/:policyId" element={<RenewPolicy/>}></Route>
                 <Route path="/policy/update/:policyId" element={<UpdatePolicy/>}></Route>
                 <Route path="/claim/manage" element={<ManageClaim/>}></Route>
                 <Route path="/claim/request" element={<ShowRequestedClaim/>}></Route>

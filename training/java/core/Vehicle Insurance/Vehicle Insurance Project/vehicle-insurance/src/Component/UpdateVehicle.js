@@ -21,7 +21,7 @@ function UpdateVehicle() {
         return response.text();
       })
       .then((data) => {
-        console.log(data.text());
+        alert(data);
         nav("/vehicle/show");
       })
       .catch((error) => {
@@ -30,23 +30,26 @@ function UpdateVehicle() {
   };
 
   return(
-        <form onSubmit={VehicleData}>
-            <table>
-                <tbody>
-                    <tr>
-                        <td><label htmlFor="regNum">Registration Number</label></td>
-                        <td><input type="text" id="regNum" name="regNum"/></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" id="updatedBy" name="updatedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
-                    </tr>
-                    <tr>
-                        <td colSpan={2}><input type="submit"/></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    )
+    <form onSubmit={VehicleData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
+        <table>
+            <thead>
+                <tr><td colSpan={2}><h1>Update Vehicle Data</h1></td></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><label htmlFor="regNum">Registration Number</label></td>
+                    <td><input type="text" id="regNum" name="regNum"/></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="updatedBy" name="updatedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
+                </tr>
+                <tr>
+                    <td colSpan={2}><input type="submit"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+  )
 }
 
 export default UpdateVehicle;

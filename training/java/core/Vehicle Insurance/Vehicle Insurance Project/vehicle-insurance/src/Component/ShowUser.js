@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 
 function User(props){
     return (
@@ -51,14 +51,22 @@ function ShowUser(){
             method:"DELETE",
             credentials:"include"
         })
-        .then(res => res.text())
-        .then(msg => {
-        alert(msg);
-        nav("/user/show");
-        });
+        .then((res)=>{
+            if(!res){
+                throw new Error("Failed to fetch data");
+            }
+            return res.text();
+        })
+        .then((data)=>{
+            alert(data);
+            nav("/users/show");
+        })
+        .catch((e)=>{
+            alert("error occured : "+e.message());
+        })
     }
     return(
-        <div style={{textAlign:"center",marginLeft:"350px",marginRight:"300px"}}>
+        <div style={{textAlign:"center",marginLeft:"400px",marginRight:"400px"}}>
             <h1>All Users</h1>
             <table>
                 <thead>
@@ -74,12 +82,8 @@ function ShowUser(){
                         {user.map((x)=>(<User sample={x} onDelete={DeleteUser}/>))}
                     </tbody>
             </table>
+            <br/>
             <Link to="/user/userDetails"><button onClick={localStorage.removeItem("customerId")}>Add User</button></Link>
-            <div style={{textAlign:"center"}} colSpan={2}>
-                <h1></h1>
-                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>
-                <h1></h1>
-            </div>
         </div>
     );
 }

@@ -27,6 +27,13 @@ public class UserService {
 		}
 		return user;
 	}
+	public String getPasswordByUsername(String username) throws Exception {
+		String user= userDao.getPasswordByUsername(username);
+		if (user == null) {
+			throw new Exception("Invalid username or password.");
+		}
+		return user;
+	}
 
 	public static String hash(String input, String algorithm) {
 		try {
@@ -44,6 +51,7 @@ public class UserService {
 
 	public String addUser(User user) throws Exception {
 		User newUser = new User();
+		System.out.println(user.getUsername()+" "+user.getPassword());
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		newUser.setPasswordUpdatedBy(user.getPasswordUpdatedBy());

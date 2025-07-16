@@ -32,8 +32,11 @@ function UpdateUser() {
   };
 
   return (
-    <form onSubmit={userData}>
+    <form onSubmit={userData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
         <table>
+            <thead>
+                <tr><td colSpan={2}><h1>Update User Credentials</h1></td></tr>
+            </thead>
             <tbody>
                 <tr>
                     <td><input type="text" id="username" name="username" value={username} style={{visibility:"hidden"}}/></td>
@@ -54,7 +57,7 @@ function UpdateUser() {
                     <td><input type="text" id="passwordUpdatedBy" name="passwordUpdatedBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                 </tr>
                 <tr>
-                    <td colSpan={2}><input type="submit" value={"submit"}/></td>
+                    <td colSpan={2}><input type="submit"/></td>
                 </tr>
             </tbody>
         </table>

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +17,10 @@ import com.example.vehicle.model.User;
 import com.example.vehicle.service.UserService;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/user")
 public class UserController {
 	private final UserService userService;
-	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 	@Autowired
 	public UserController(UserService userService,PasswordEncoder passwordEncoder) {
 		this.userService=userService;
@@ -34,11 +32,12 @@ public class UserController {
 	}
 	@PutMapping("/updatePassword")
 	public String updatePassword(@RequestParam String username,@RequestParam String oldPassword,@RequestParam String password,@RequestParam String updatedBy) throws Exception {
-		if(userService.getUserByUsername(username).getPassword().matches(oldPassword)) {
-			System.out.println(userService.getUserByUsername(username).getPassword()+" "+oldPassword);
-			return "Please enter correct password";
+		if(passwordEncoder.matches(oldPassword,userService.getPasswordByUsername(username))) {
+			return userService.updatePassword(username, password, updatedBy);
 		}
-		return userService.updatePassword(username, password, updatedBy);
+		System.out.println(oldPassword);
+		System.out.println(userService.getUserByUsername(username).getPassword()+" "+oldPassword);
+		return "Please enter correct password";
 	}
 	@GetMapping("/show")
 	public User getUserById(@RequestParam String username) throws Exception {
@@ -47,7 +46,7 @@ public class UserController {
 	@GetMapping("/check")
 	public String check(@RequestParam String username,@RequestParam String password) throws Exception {
 		User u=userService.getUserByUsername(username);
-		if(u.getPassword()==password) {
+		if(u.getPassword().matches(password)) {
 			return "Login is sucessful";
 		}
 		else {

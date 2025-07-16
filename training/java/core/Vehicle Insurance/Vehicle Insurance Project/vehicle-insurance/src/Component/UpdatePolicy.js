@@ -6,7 +6,7 @@ function UpdatePolicy(){
     const nav=useNavigate();
     const { policyId }=useParams();
     useEffect(()=>{
-        fetch(`http://localhost:8000/policy/show?policyId=${policyId}`,{
+        fetch(`http://localhost:8000/policy/showById?policyId=${policyId}`,{
             method: "GET",
             credentials:"include"
         })
@@ -57,7 +57,7 @@ function UpdatePolicy(){
         })
     }
     return(
-        <form onSubmit={setData}>
+    <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
             <h1>Update Policy</h1>
             <table>
                 <tbody>
@@ -83,7 +83,7 @@ function UpdatePolicy(){
                         <td><input type="text" id="approvedBy" name="approvedBy" defaultValue={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
                     </tr>
                     <tr>
-                        <td colSpan={2}><input type="submit" value="Submit"/></td>
+                        <td colSpan={2}><input type="submit"/></td>
                     </tr>
                 </tbody>
             </table>

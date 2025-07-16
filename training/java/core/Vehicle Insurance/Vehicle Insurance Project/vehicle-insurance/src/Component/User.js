@@ -1,4 +1,4 @@
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function User(){
     const nav=useNavigate();
@@ -39,6 +39,9 @@ function User(){
         return(
             <form onSubmit={setData}>
                 <table>
+                    <thead>
+                        <tr><td colSpan={2}><h1>User Details</h1></td></tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <td><label htmlFor="username">User name : </label></td>
