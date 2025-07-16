@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
-            // Load employee logs from Excel (implement ExcelReader accordingly)
+            // Load employee logs from Excel
             String filePath = "C:\\Users\\ASUS\\OneDrive\\Desktop\\minchallenges\\employee\\employee_logs.xlsx";
             List<EmployeeWorkLog> logs = ExcelReader.readExcel(filePath);
 
