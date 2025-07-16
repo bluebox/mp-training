@@ -64,14 +64,14 @@ private static boolean checkSchema(Connection conn) throws SQLException {
 
         String createSchema = "CREATE SCHEMA storefront";
 
-        String createOrder = """
+        String createOrder = "
                 CREATE TABLE storefront.order (
                 order_id int NOT NULL AUTO_INCREMENT,
 order_date DATETIME NOT NULL,
                 PRIMARY KEY (order_id)
-                )""";
+                )";
 
-        String createOrderDetails = """
+        String createOrderDetails = "
                 CREATE TABLE storefront.order_details (
                 order_detail_id int NOT NULL AUTO_INCREMENT,
                 item_description text,
@@ -80,7 +80,7 @@ order_date DATETIME NOT NULL,
                 KEY FK_ORDERID (order_id),
                 CONSTRAINT FK_ORDERID FOREIGN KEY (order_id)
                 REFERENCES storefront.order (order_id) ON DELETE CASCADE
-                ) """;
+                ) ";
 
         try (Statement statement = conn.createStatement()) {
 
@@ -111,12 +111,12 @@ order_date DATETIME NOT NULL,
 
 String orderDateTime = LocalDateTime.now().format(dtf);
         System.out.println(orderDateTime);
-        String formattedString = insertOrder.formatted(orderDateTime);
+        String formattedString = insertOrder.(java.sql.Date.valueOf(orderDateTime));
         System.out.println(formattedString);
 
         String insertOrderAlternative = "INSERT INTO storefront.order (order_date) " +
                 "VALUES ('%1$tF %1$tT')";
-        System.out.println(insertOrderAlternative.formatted(LocalDateTime.now()));
+        System.out.println(insertOrderAlternative.formatter(LocalDateTime.now()));
 
         try (Statement statement = conn.createStatement()) {
 
@@ -133,7 +133,7 @@ String orderDateTime = LocalDateTime.now().format(dtf);
 
             int count = 0;
             for (var item : items) {
-                formattedString = insertDetail.formatted(orderId,
+                formattedString = insertDetail.format(orderId,
                         statement.enquoteLiteral(item));
                 inserts = statement.executeUpdate(formattedString);
                 count += inserts;
@@ -159,8 +159,8 @@ String orderDateTime = LocalDateTime.now().format(dtf);
     private static void deleteOrder(Connection conn, int orderId) throws SQLException {
 
         String deleteOrder = "DELETE FROM %s where order_id=%d";
-        String parentQuery = deleteOrder.formatted("storefront.order", orderId);
-        String childQuery = deleteOrder.formatted("storefront.order_details",
+        String parentQuery = deleteOrder.format("storefront.order", orderId);
+        String childQuery = deleteOrder.format("storefront.order_details",
                 orderId);
 
         try (Statement statement = conn.createStatement()) {
