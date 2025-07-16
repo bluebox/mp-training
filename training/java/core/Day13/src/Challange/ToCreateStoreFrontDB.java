@@ -18,7 +18,7 @@ public class ToCreateStoreFrontDB {
         try{
         	Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/firstdb", "devuser", "Vardhan@123");
+                "jdbc:mysql://localhost:3306/", "devuser", "Vardhan@123");
             System.out.println("Connection established.");
             DatabaseMetaData metaData = conn.getMetaData();
             System.out.println(metaData.getSQLStateType());

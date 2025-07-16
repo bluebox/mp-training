@@ -1,20 +1,32 @@
+
 package Challange;
+
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 record OrderDetails(int detailid, String description, int qty) {
     OrderDetails(String description, int qty) {
         this(-1, description, qty);
+    }
+    public String toJSON() {
+        return new StringJoiner(", ", "{", "}")
+                .add("\"itemDescription\":\"" + description + "\"")
+                .add("\"qty\":" + qty)
+                .toString();
     }
 }
 
@@ -25,6 +37,12 @@ record Order(int orderid, String date, List<OrderDetails> list) {
 
     public void addDetail(String itemDescription, int qty) {
         list.add(new OrderDetails(itemDescription, qty));
+    }
+    
+    public String getDetailsJson() {
+        StringJoiner jsonString = new StringJoiner(",", "[", "]");
+        list.forEach((d) -> jsonString.add(d.toJSON()));
+        return jsonString.toString();
     }
 }
 
@@ -38,15 +56,39 @@ public class Main {
         try {
         	Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/firstdb", "devuser", "Vardhan@123");
+                "jdbc:mysql://localhost:3306/", "devuser", "Vardhan@123");
             System.out.println("Connection established.");
+        	CallableStatement cs = conn.prepareCall(
+                    "{ CALL storefront.addOrder(?, ?, ?, ?) }");
 
-            addOrders(conn, orders);
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("G yyyy-MM-dd HH:mm:ss")
+                                    .withResolverStyle(ResolverStyle.STRICT);
+
+            orders.forEach((o) -> {
+                try {
+                    LocalDateTime localDateTime =
+                            LocalDateTime.parse("AD " + o.date(), formatter);
+                    Timestamp timestamp = Timestamp.valueOf(localDateTime);
+                    cs.setTimestamp(1, timestamp);
+                    cs.setString(2, o.getDetailsJson());
+                    cs.registerOutParameter(3, Types.INTEGER);
+                    cs.registerOutParameter(4, Types.INTEGER);
+                    cs.execute();
+                    System.out.printf("%d records inserted for %d (%s)%n",
+                            cs.getInt(4),
+                            cs.getInt(3),
+                            o.date());
+                } catch (Exception e) {
+                    System.out.printf("Problem with %s : %s%n", o.date(),
+                            e.getMessage());
+                }
+            });
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
     }
 
@@ -76,62 +118,4 @@ public class Main {
 
         return orderList;
     }
-
-    private static void addOrder(Connection conn, PreparedStatement psOrder, PreparedStatement psDetail, Order order)
-            throws SQLException {
-        conn.setAutoCommit(false);
-        int orderId = -1;
-        try {
-            psOrder.setString(1, order.date());
-
-            if (psOrder.executeUpdate() == 1) {
-                var rs = psOrder.getGeneratedKeys();
-                if (rs.next()) {
-                    orderId = rs.getInt(1);
-                    System.out.println("orderId = " + orderId);
-                    if (orderId > -1) {
-                        psDetail.setInt(1, orderId);
-                        for (OrderDetails od : order.list()) {
-                            psDetail.setString(2, od.description());
-                            psDetail.setInt(3, od.qty());
-                            psDetail.addBatch();
-                        }
-                        int[] results = psDetail.executeBatch();
-                        int inserted = Arrays.stream(results).sum();
-                        if (inserted != order.list().size()) {
-                            throw new SQLException("Inserted rows count mismatch.");
-                        }
-                    }
-                }
-            }
-
-            conn.commit();
-        } catch (SQLException e) {
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
-        }
     }
-
-    private static void addOrders(Connection conn, List<Order> orders) {
-        String insertOrderSQL = "INSERT INTO storefront.order (order_date) VALUES (?)";
-        String insertDetailSQL = "INSERT INTO storefront.order_details (order_id, item_description, quantity) VALUES (?, ?, ?)";
-
-        try (PreparedStatement psOrder = conn.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement psDetail = conn.prepareStatement(insertDetailSQL, Statement.RETURN_GENERATED_KEYS)) {
-
-            for (Order order : orders) {
-                try {
-                    addOrder(conn, psOrder, psDetail, order);
-                } catch (SQLException e) {
-                    System.err.printf("%d (%s): %s%n", e.getErrorCode(), e.getSQLState(), e.getMessage());
-                    System.err.println("Skipping order due to error: " + order);
-                }
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-}

@@ -15,7 +15,7 @@ public class ToCreateOrderIDTable {
         try {
         	Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/firstdb", "devuser", "Vardhan@123");
+                "jdbc:mysql://localhost:3306/", "devuser", "Vardhan@123");
             System.out.println("Connection established.");
             if (!checkSchema(conn)) {
                 System.out.println("storefront schema does not exist");
