@@ -5,16 +5,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringJoiner;
@@ -89,7 +86,7 @@ public class Challenge2 {
                             e.getMessage());
                 }
             });
-            addOrders(conn, orders);
+            //addOrders(conn, orders);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -120,64 +117,6 @@ public class Challenge2 {
         }
 
         return orderList;
-    }
-
-    private static void addOrder(Connection conn, PreparedStatement psOrder, PreparedStatement psDetail, Order order)
-            throws SQLException {
-        conn.setAutoCommit(false);
-        int orderId = -1;
-        try {
-            psOrder.setString(1, order.date());
-
-            if (psOrder.executeUpdate() == 1) {
-                var rs = psOrder.getGeneratedKeys();
-                if (rs.next()) {
-                    orderId = rs.getInt(1);
-                    System.out.println("orderId = " + orderId);
-                    if (orderId > -1) {
-                        psDetail.setInt(1, orderId);
-                        for (OrderDetails od : order.list()) {
-                            psDetail.setString(2, od.description());
-                            psDetail.setInt(3, od.qty());
-                            psDetail.addBatch();
-                        }
-                        int[] results = psDetail.executeBatch();
-                        int inserted = Arrays.stream(results).sum();
-                        if (inserted != order.list().size()) {
-                            throw new SQLException("Inserted rows count mismatch.");
-                        }
-                    }
-                }
-            }
-
-            conn.commit();
-        } catch (SQLException e) {
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
-        }
-    }
-
-    private static void addOrders(Connection conn, List<Order> orders) {
-        String insertOrderSQL = "INSERT INTO storefront.order (order_date) VALUES (?)";
-        String insertDetailSQL = "INSERT INTO storefront.order_details (order_id, item_description, qty) VALUES (?, ?, ?)";
-
-        try (PreparedStatement psOrder = conn.prepareStatement(insertOrderSQL, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement psDetail = conn.prepareStatement(insertDetailSQL, Statement.RETURN_GENERATED_KEYS)) {
-
-            for (Order order : orders) {
-                try {
-                    addOrder(conn, psOrder, psDetail, order);
-                } catch (SQLException e) {
-                    System.err.printf("%d (%s): %s%n", e.getErrorCode(), e.getSQLState(), e.getMessage());
-                    System.err.println("Skipping order due to error: " + order);
-                }
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
 
