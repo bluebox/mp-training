@@ -1,0 +1,32 @@
+ProjectId,Category,Percentage
+P202,Bug Fixing,18.55
+P202,Documentation,6.92
+P202,Development,25.47
+P202,Code Review,5.35
+P202,Testing,43.71
+P205,Documentation,21.45
+P205,Development,22.03
+P205,Code Review,39.71
+P205,Testing,16.81
+P204,Bug Fixing,100.00
+P201,Bug Fixing,10.00
+P201,Development,24.21
+P201,Code Review,41.05
+P201,Testing,24.74
+P200,Bug Fixing,24.17
+P200,Development,11.48
+P200,Code Review,64.35
+P207,Bug Fixing,14.71
+P207,Documentation,29.43
+P207,Development,21.92
+P207,Code Review,33.93
+P206,Bug Fixing,43.31
+P206,Testing,56.69
+P209,Bug Fixing,24.85
+P209,Documentation,18.34
+P209,Code Review,14.79
+P209,Testing,42.01
+P208,Documentation,23.27
+P208,Development,28.93
+P208,Code Review,37.74
+P208,Testing,10.06
