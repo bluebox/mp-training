@@ -5,7 +5,7 @@ public class OrderDetails {
 	private String description;
 	private int quantity;
 
-	public OrderDetails(String description, int quantity) {
+	public OrderDetails(int quantity, String description) {
 
 		this.description = description;
 		this.quantity = quantity;

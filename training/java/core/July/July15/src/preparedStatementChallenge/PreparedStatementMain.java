@@ -1,13 +1,18 @@
 package preparedStatementChallenge;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -35,9 +40,7 @@ public class PreparedStatementMain {
 			String orderDetailsQuery = "INSERT INTO storefront.order_details (item_description,order_id,quantity) VALUES(?,?,?)";
 			PreparedStatement preparedOrderDetils = connection.prepareStatement(orderDetailsQuery,
 					Statement.RETURN_GENERATED_KEYS);
-			addOrder(connection, LocalDate.now().atTime(12, 40),
-					List.of(new OrderDetails("paper", 4), new OrderDetails("cable", 6)), preparedOrder,
-					preparedOrderDetils);
+			addOrder(connection, preparedOrder, preparedOrderDetils);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,39 +48,60 @@ public class PreparedStatementMain {
 
 	}
 
-	private static void addOrder(Connection conn, LocalDateTime order, List<OrderDetails> orderDetails,
-			PreparedStatement preparedOrder, PreparedStatement preparedOrderDetils) throws SQLException {
+	private static void addOrder(Connection conn, PreparedStatement preparedOrder,
+			PreparedStatement preparedOrderDetils) throws SQLException {
 
-		conn.setAutoCommit(false);
+		Map<LocalDateTime, List<OrderDetails>> Orders = new HashMap<>();
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		String orderDateTime = order.format(dtf);
-		try {
-			preparedOrder.setString(1, orderDateTime);
+		try (BufferedReader readFile = new BufferedReader(new FileReader("orders.csv"))) {
+			String line;
+			LocalDateTime order = null;
+			while ((line = readFile.readLine()) != null) {
 
-			preparedOrder.execute();
-			var orderId = preparedOrder.getGeneratedKeys();
-			orderId.next();
-			var orderIdf = orderId.getInt(1);
+				if (line.toLowerCase().startsWith("order")) {
+					order = null;
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+					order = LocalDateTime.parse(line.split(",")[1], formatter);
 
-			preparedOrderDetils.setInt(2, orderIdf);
-			for (OrderDetails order1 : orderDetails) {
-				preparedOrderDetils.setString(1, order1.getDescription());
-				preparedOrderDetils.setInt(3, order1.getQuantity());
-				preparedOrderDetils.addBatch();
+					Orders.put(order, new ArrayList<OrderDetails>());
+				} else if (order != null && line.toLowerCase().startsWith("item")) {
+					String[] data = line.split(",");
+					int qty = Integer.parseInt(data[1]);
+					String disp = data[2];
+					Orders.get(order).add(new OrderDetails(qty, disp));
+				}
 			}
 
-			if (preparedOrderDetils.executeBatch().length < 1) {
-				conn.rollback();
-			} else {
-				conn.commit();
-				conn.setAutoCommit(true);
-			}
+			int orderId = -1;
+			conn.setAutoCommit(false);
+			for (var orderKey : Orders.keySet()) {
+				try {
+					System.out.println(orderKey);
+					String formatted = orderKey.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-		} catch (SQLException e) {
+					preparedOrder.setString(1, formatted);
+					preparedOrder.execute();
+					var orderKeys = preparedOrder.getGeneratedKeys();
+					orderKeys.next();
+					orderId = orderKeys.getInt(1);
+					preparedOrderDetils.setInt(2, orderId);
+					for (var orderValue : Orders.get(orderKey)) {
+						preparedOrderDetils.setString(1, orderValue.getDescription());
+						preparedOrderDetils.setInt(3, orderValue.getQuantity());
+						preparedOrderDetils.addBatch();
+					}
+					preparedOrderDetils.executeBatch();
+					conn.commit();
+				} catch (SQLException e) {
+					System.out.println("Error while ordering " + orderKey + e.getMessage());
+					conn.rollback();
+				}
+
+			}
+			conn.setAutoCommit(true);
+
+		} catch (IOException e) {
 			e.printStackTrace();
-			conn.rollback();
-			return;
 		}
 
 	}
