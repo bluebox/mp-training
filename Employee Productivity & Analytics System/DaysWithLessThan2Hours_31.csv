@@ -1,0 +1,10 @@
+EmployeeId,Name,Department,ProjectId,Date,TaskCategory,HoursWorked,Remarks
+E1017,Rachel,Backend,P208,2025-02-15,Development,1.10,Completed
+E1016,Quinn,UI/UX,P201,2025-06-08,Bug Fixing,1.90,In Progress
+E1009,Judy,Backend,P207,2025-01-28,Code Review,1.40,Blocked
+E1012,Mallory,QA,P207,2025-05-12,Bug Fixing,1.20,In Progress
+E1017,Rachel,UI/UX,P208,2025-01-04,Testing,1.60,In Progress
+E1000,Alice,Backend,P201,2025-05-13,Testing,1.00,Pending Review
+E1000,Alice,QA,P206,2025-01-19,Testing,1.50,Blocked
+E1017,Rachel,Research & Development,P202,2025-04-21,Code Review,1.70,Completed
+E1017,Rachel,Backend,P209,2025-05-23,Bug Fixing,1.30,Pending Review
