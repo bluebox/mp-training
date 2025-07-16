@@ -10,7 +10,6 @@ public class tasks {
 
     private static void writeLinesToCSV(List<String[]> lines, String filename) {
         try (FileWriter writer = new FileWriter(filename)) {
-            System.out.println("Saving to CSV: " + filename + "");
 
             for (String[] line : lines) {
                 String csvLine = String.join(",", line);
@@ -18,14 +17,14 @@ public class tasks {
                 System.out.println(csvLine);  
             }
 
-            System.out.println(" File saved: " + filename + "\n");
+            System.out.println(" File saved " + filename );
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void task1_UrgentOrCriticalLogs(List<EmployeeLog> logs) {
-        System.out.println("\n Urgent or Critical Logs (Sorted by Name)");
+        System.out.println(" Urgent or Critical Logs Sorted by Name");
 
         List<EmployeeLog> filtered = logs.stream()
                 .filter(log -> log.getRemarks().toLowerCase().contains("#urgent") || log.getRemarks().toLowerCase().contains("#critical"))
@@ -52,31 +51,29 @@ public class tasks {
     }
 
     public static void task2_WeeklyEffortPerProject(List<EmployeeLog> logs) {
-        System.out.println("\n Weekly Effort Per Project");
+        System.out.println(" Weekly Effort Per Project");
 
-        Map<String, Map<Integer, Double>> projectWeekEfforts = logs.stream()
+        Map<String, Double> projectWeekEfforts = logs.stream()
                 .collect(Collectors.groupingBy(
                         EmployeeLog::getProjectId,
-                        Collectors.groupingBy(
-                                log -> log.getDate().get(java.time.temporal.IsoFields.WEEK_OF_WEEK_BASED_YEAR),
+                        
                                 Collectors.summingDouble(EmployeeLog::getHoursWorked)
-                        )
+                        
                 ));
 
         List<String[]> lines = new ArrayList<>();
-        lines.add(new String[]{"ProjectId", "WeekOfYear", "TotalHours"});
+        lines.add(new String[]{"ProjectId", "TotalHours"});
 
-        projectWeekEfforts.forEach((project, weekMap) -> {
-            weekMap.forEach((week, hours) -> {
-                lines.add(new String[]{project, String.valueOf(week), String.valueOf(hours)});
-            });
+       projectWeekEfforts.forEach((project,hours) -> {
+               lines.add(new String[]{project, String.valueOf(hours)});
+           
         });
 
         writeLinesToCSV(lines, "weekly_effort.csv");
     }
 
     public static void task3_TrackDepartmentSwitches(List<EmployeeLog> logs) {
-        System.out.println("\n Department Switches Mid-Month");
+        System.out.println(" Department Switches Mid-Month");
 
         Map<String, Map<String, Set<String>>> empMonthDepartments = logs.stream()
                 .collect(Collectors.groupingBy(
@@ -102,7 +99,7 @@ public class tasks {
     }
 
     public static void task4_SummarizeWeekendHours(List<EmployeeLog> logs) {
-        System.out.println("\n Weekend Hours Summary");
+        System.out.println(" Weekend Hours Summary");
 
         Map<String, Double> weekendHours = logs.stream()
                 .filter(log -> {
@@ -120,7 +117,7 @@ public class tasks {
     }
 
     public static void task5_ExtractTagsAndCount(List<EmployeeLog> logs) {
-        System.out.println("\n Tag Counts");
+        System.out.println("Tag Counts");
 
         Map<String, Long> tagCounts = logs.stream()
                 .flatMap(log -> Arrays.stream(log.getRemarks().split("\\s+")))
