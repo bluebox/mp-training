@@ -1,0 +1,31 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class Joins {
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://localhost:3306/db";
+        String user = "root";
+        String password = "Akash@123";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the database!");
+            String sql = " SELECT e.name, d.dept_name FROM employees e JOIN departments d ON e.dept_id = d.dept_id";
+            PreparedStatement ps=connection.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {
+                String employeeName = rs.getString("name");
+                String departmentName = rs.getString("dept_name");
+
+                System.out.println("Employee: " + employeeName + ", Department: " + departmentName);
+            }
+            ps.close(); 
+            connection.close();
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+}
