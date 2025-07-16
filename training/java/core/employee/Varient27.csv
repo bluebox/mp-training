@@ -1,0 +1,52 @@
+Afternoon
+E1001,Employee_1,Frontend,P201,2025-07-08,Bug Fixing,6.46,Pending Review
+E1002,Employee_2,Backend,P202,2025-07-06,Testing,7.85,Blocked
+E1005,Employee_5,UI/UX,P200,2025-07-09,Documentation,5.21,On Hold
+E1006,Employee_6,Devops,P201,2025-07-02,Bug Fixing,5.04,In Progress
+E1007,Employee_7,QA,P202,2025-07-09,Development,5.76,In Progress
+E1008,Employee_8,Backend,P203,2025-07-07,Development,5.31,In Progress
+E1010,Employee_10,Backend,P200,2025-07-03,Testing,7.69,Pending Review
+E1018,Employee_18,UI/UX,P203,2025-07-09,Documentation,7.9,Completed
+E1021,Employee_21,Devops,P201,2025-07-09,Documentation,6.1,On Hold
+E1023,Employee_23,QA,P203,2025-07-06,Documentation,6.7,Pending Review
+E1024,Employee_24,QA,P204,2025-07-02,Code Review,7.54,In Progress
+E1025,Employee_25,QA,P200,2025-07-05,Testing,6.28,Pending Review
+E1026,Employee_26,UI/UX,P201,2025-07-04,Development,5.05,Completed
+E1030,Employee_30,QA,P200,2025-07-05,Code Review,5.2,Completed
+E1033,Employee_33,Research & Development,P203,2025-07-10,Documentation,5.58,Blocked
+E1034,Employee_34,QA,P204,2025-07-04,Code Review,7.67,On Hold
+E1036,Employee_36,Backend,P201,2025-07-01,Development,5.75,Blocked
+E1038,Employee_38,Research & Development,P203,2025-07-01,Bug Fixing,7.75,In Progress
+E1039,Employee_39,Research & Development,P204,2025-07-08,Testing,7.77,Blocked
+E1043,Employee_43,Devops,P203,2025-07-05,Testing,5.2,Blocked
+E1045,Employee_45,QA,P200,2025-07-10,Testing,5.74,Blocked
+E1050,Employee_50,Devops,P200,2025-07-03,Development,5.96,In Progress
+Morning
+E1003,Employee_3,Frontend,P203,2025-07-06,Code Review,2.61,In Progress
+E1004,Employee_4,QA,P204,2025-07-10,Documentation,3.21,Pending Review
+E1009,Employee_9,Backend,P204,2025-07-06,Code Review,4.4,Completed
+E1011,Employee_11,Research & Development,P201,2025-07-04,Documentation,2.27,Completed
+E1012,Employee_12,Devops,P202,2025-07-06,Documentation,2.03,On Hold
+E1013,Employee_13,QA,P203,2025-07-07,Documentation,3.77,Completed
+E1014,Employee_14,Frontend,P204,2025-07-10,Documentation,2.01,Blocked
+E1015,Employee_15,UI/UX,P200,2025-07-04,Testing,4.58,Blocked
+E1016,Employee_16,Frontend,P201,2025-07-06,Code Review,3.24,In Progress
+E1017,Employee_17,Backend,P202,2025-07-07,Documentation,2.13,Completed
+E1019,Employee_19,Frontend,P204,2025-07-04,Development,2.43,Blocked
+E1020,Employee_20,QA,P200,2025-07-01,Documentation,4.52,In Progress
+E1022,Employee_22,QA,P202,2025-07-09,Development,3.02,Pending Review
+E1027,Employee_27,Backend,P202,2025-07-03,Bug Fixing,3.79,Blocked
+E1028,Employee_28,UI/UX,P203,2025-07-01,Testing,1.42,Completed
+E1029,Employee_29,Frontend,P204,2025-07-08,Code Review,1.21,Pending Review
+E1031,Employee_31,QA,P201,2025-07-05,Documentation,3.44,Pending Review
+E1032,Employee_32,UI/UX,P202,2025-07-07,Development,2.3,Blocked
+E1035,Employee_35,QA,P200,2025-07-05,Testing,1.33,Completed
+E1037,Employee_37,Backend,P202,2025-07-04,Documentation,4.19,Blocked
+E1040,Employee_40,Backend,P200,2025-07-02,Documentation,2.96,Blocked
+E1041,Employee_41,Backend,P201,2025-07-07,Bug Fixing,1.07,On Hold
+E1042,Employee_42,Frontend,P202,2025-07-08,Bug Fixing,1.12,On Hold
+E1044,Employee_44,Devops,P204,2025-07-06,Bug Fixing,3.4,Blocked
+E1046,Employee_46,Devops,P201,2025-07-08,Development,2.86,On Hold
+E1047,Employee_47,Devops,P202,2025-07-10,Bug Fixing,2.11,Completed
+E1048,Employee_48,Frontend,P203,2025-07-01,Bug Fixing,1.59,On Hold
+E1049,Employee_49,QA,P204,2025-07-02,Documentation,3.0,On Hold
