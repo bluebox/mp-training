@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Customer {
-    // Fields of the Customer class
+   
     private String name;
     private double creditLimit;
     private String emailAddress;
@@ -24,12 +24,12 @@ public class Customer {
 
    
     public Customer(String name, String emailAddress) {
-        // Calls the three-field constructor, setting a default credit limit
+      
         this(name, 500.00, emailAddress);
         System.out.println("Customer created using name and email constructor.");
     }
 
-    // Getter methods for each field (no setters are required as per challenge)
+    
     public String getName() {
         return name;
     }
@@ -42,7 +42,7 @@ public class Customer {
         return emailAddress;
     }
 
-    // Helper method to display customer information
+   
     public void printCustomerInfo() {
         System.out.println("\n--- Customer Information ---");
         System.out.println("Name: " + getName());
@@ -52,13 +52,13 @@ public class Customer {
     }
 
 
-    // Main method to demonstrate the Customer class and its constructors with user input
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("--- Demonstrating Customer Class Constructors ---");
 
-        // --- Test Constructor 1: All three fields ---
+       
         System.out.println("\n1. Creating a Customer using ALL THREE FIELDS (name, credit limit, email):");
         System.out.print("Enter Customer Name: ");
         String name1 = scanner.nextLine();
