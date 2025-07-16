@@ -1,0 +1,31 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class ReadTable {
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://localhost:3306/db";
+        String user = "root";
+        String password = "Akash@123";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the database!");
+            PreparedStatement ps=connection.prepareStatement("select * from orders;");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()) {
+            	   System.out.println("id :"+rs.getInt(1));
+            	   System.out.println("Name :"+ rs.getString(2));
+            	   System.out.println("Price:"+rs.getBigDecimal(3));
+            	   System.out.println("Quantity:"+rs.getInt(4));
+            	   System.out.println("***************");
+            }
+            ps.close(); 
+            connection.close();
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+}
