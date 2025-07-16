@@ -10,7 +10,7 @@ class Departments(models.Model):
 class Employees(models.Model):
 	emp_id=models.PositiveIntegerField(validators=[MinValueValidator(1000),MaxValueValidator(9999)],primary_key=True)
 	emp_name=models.CharField(max_length=20,blank=False)
-	dob=models.DateField(blank=False)
+	dob=models.DateField(blank=False,null=True)
 	date_joined=models.DateField(blank=False,default=datetime.today)
 	dept_id=models.ForeignKey(Departments,on_delete=models.CASCADE)
 	# class Meta:
@@ -30,12 +30,8 @@ class PayScale(models.Model):
 	dept_id=models.ForeignKey(Departments,on_delete=models.CASCADE,blank=False)
 	designation=models.ForeignKey(Designations,on_delete=models.CASCADE,blank=False)
 	salary=models.DecimalField(max_digits=10,decimal_places=2,default=0.00,blank=False)
-	pk=models.CompositePrimaryKey('dept_id','designation')
-
-
-
-
-
+	class Meta:
+		unique_together=('dept_id','designation')
 
 
 

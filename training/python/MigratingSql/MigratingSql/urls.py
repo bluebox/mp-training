@@ -20,5 +20,5 @@ from Employee.views import ExecuteThis
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',ExecuteThis)
+    path('create/',ExecuteThis)
 ]
