@@ -1,0 +1,27 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class BatchProcessing {
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://localhost:3306/db";
+        String user = "root";
+        String password = "Akash@123";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the database!");
+            Statement ps=connection.createStatement();
+            ps.addBatch("insert into orders (id,name,price,quantity) values (1,'apple',25,25),(2,'banana',23,4),(3,'Java',30,2);");
+            ps.addBatch("Delete from orders where id=2;");
+            ps.executeBatch();
+            System.out.println("Done Successfully");
+            connection.close();
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+	}
+
+}
