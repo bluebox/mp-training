@@ -14,17 +14,19 @@ public class SimpleServerChannel {
 			while(true) {
 				SocketChannel clientChannel=serverChannel.accept();
 				System.out.println("Server connected to client "+clientChannel.socket().getRemoteSocketAddress());
-				ByteBuffer buffer=ByteBuffer.allocate(1024);
-				int readBytes=clientChannel.read(buffer);
-				System.out.println("From cient "+buffer.toString());
-				if(readBytes>0) {
-					buffer.flip();
-					clientChannel.write(ByteBuffer.wrap("This is server Response...".getBytes()));
-					while(buffer.hasRemaining()) {
-						clientChannel.write(buffer);
+				while(true) {
+					ByteBuffer buffer=ByteBuffer.allocate(1024);
+					int readBytes=clientChannel.read(buffer);
+					System.out.println("From cient "+buffer.toString());
+					if(readBytes>0) {
+						buffer.flip();
+						clientChannel.write(ByteBuffer.wrap("This is server Response...".getBytes()));
+						while(buffer.hasRemaining()) {
+							clientChannel.write(buffer);
+						}
 					}
+					buffer.clear();
 				}
-				buffer.clear();
 			}
 			
 		}catch(IOException e) {
