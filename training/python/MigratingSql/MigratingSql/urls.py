@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Employee.views import ExecuteThis
+from Employee.views import Populate,ExecuteRead,UpdateData,DeleteData
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create/',ExecuteThis)
+    path('create/',Populate, name="create_path"),
+    path('read/',ExecuteRead, name="read_path"),
+    path('update/', UpdateData, name="update_path"),
+    path('delete/', DeleteData, name="delete_path")
 ]

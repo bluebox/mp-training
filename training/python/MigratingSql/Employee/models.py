@@ -3,14 +3,26 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from django.db.models import Q,F
 from datetime import datetime 
 # Create your models here.
+
+
 class Departments(models.Model):
-	dept_id=models.PositiveIntegerField(validators=[MinValueValidator(1)],primary_key=True)
+	dept_id=models.BigAutoField(validators=[MinValueValidator(1)],primary_key=True)
 	dept_name=models.CharField(max_length=20,blank=False)
 
+class Designations(models.Model):
+	# designation_choices={"ASE":"Associate Software Engineer","JSE":"Junior Software Engineer","SSE":"Senior Software Engineer"}
+	designation=models.CharField(max_length=20,primary_key=True)
+
+
 class Employees(models.Model):
+	# class DesignationChoices(models.TextChoices):
+	# 	ASE="associate software engineer"
+	# 	JSE="junior software engineer"
+	# 	SSE="senior software engineer"
 	emp_id=models.PositiveIntegerField(validators=[MinValueValidator(1000),MaxValueValidator(9999)],primary_key=True)
 	emp_name=models.CharField(max_length=20,blank=False)
 	dob=models.DateField(blank=False,null=True)
+	designation=models.ForeignKey(Designations, on_delete=models.CASCADE)#This is exactly a foreign key can do as well but it can avoid circular dependency
 	date_joined=models.DateField(blank=False,default=datetime.today)
 	dept_id=models.ForeignKey(Departments,on_delete=models.CASCADE)
 	# class Meta:
@@ -21,9 +33,6 @@ class DepartmentHeads(models.Model):
 	dept_head_id=models.PositiveIntegerField(validators=[MinValueValidator(1)],primary_key=True)
 	dept_id=models.ForeignKey(Departments,on_delete= models.CASCADE,unique=True,blank=False)
 	dept_head_since=models.DateField(blank=False)
-
-class Designations(models.Model):
-	designation=models.CharField(max_length=20,primary_key=True)
 
 
 class PayScale(models.Model):
@@ -37,3 +46,4 @@ class PayScale(models.Model):
 
 
 
+#controller.py,manage.py
