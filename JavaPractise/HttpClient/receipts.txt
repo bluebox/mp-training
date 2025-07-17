@@ -1,0 +1,60 @@
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "id": "003", 
+    "item": "Oranges"
+  }, 
+  "headers": {
+    "Content-Length": "19", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Java-http-client/21.0.7", 
+    "X-Amzn-Trace-Id": "Root=1-6878e6a5-643efc607186a9f22020605b"
+  }, 
+  "json": null, 
+  "origin": "183.82.110.198", 
+  "url": "https://httpbin.org/post"
+}
+
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "id": "001", 
+    "item": "Apples"
+  }, 
+  "headers": {
+    "Content-Length": "18", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Java-http-client/21.0.7", 
+    "X-Amzn-Trace-Id": "Root=1-6878e6a5-514cff333b504f2e4e8ad1b2"
+  }, 
+  "json": null, 
+  "origin": "183.82.110.198", 
+  "url": "https://httpbin.org/post"
+}
+
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "id": "002", 
+    "item": "Bananas"
+  }, 
+  "headers": {
+    "Content-Length": "19", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Java-http-client/21.0.7", 
+    "X-Amzn-Trace-Id": "Root=1-6878e6a5-3daba0a5514cb9c85fe32b28"
+  }, 
+  "json": null, 
+  "origin": "183.82.110.198", 
+  "url": "https://httpbin.org/post"
+}
+
