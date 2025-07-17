@@ -65,9 +65,6 @@ public class Main {
 				.map(s -> Arrays.asList(s.split(",")))
 				.collect(Collectors.groupingBy(s -> s.get(0), Collectors.mapping(l -> l, Collectors.toList())))
 				.forEach((k,v) -> {
-//					OrderDetails orderDetails=new OrderDetails(l.get(1), Double.parseDouble(l.get(2)), Integer.parseInt(l.get(3)));
-//					Order order=new Order(LocalDate.parse(l.get(0),DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),orderDetails);
-//					orderList.add(order);
 					List<OrderDetails> orderDetails=new ArrayList<>();
 					for(var orderDetail:v) {
 						OrderDetails orderDetailObj=new OrderDetails(orderDetail.get(1), Integer.parseInt(orderDetail.get(2)));
