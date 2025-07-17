@@ -23,7 +23,7 @@ public class CustomerDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	public String addCustomer(Customer customer) throws SQLException {
+	public int addCustomer(Customer customer) throws SQLException {
 		String custAddSql = "Insert into customers(name,email,contact,gender,age,occupation,income,address,status,customer_updated_on,customer_updated_by,created_by)"
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int rowsAffected = jdbcTemplate.update(custAddSql, customer.getName(), customer.getEmail(), customer.getContact(),
@@ -32,9 +32,9 @@ public class CustomerDao {
 				customer.getCreatedBy());
 
 		if (rowsAffected == 0) {
-			return "Customer not added";
+			return -1;
 		} else {
-			return "Customer Added Successfully";
+			return jdbcTemplate.queryForObject("select customer_id from customers where email=?", Integer.class,customer.getEmail());
 		}
 	}
 	

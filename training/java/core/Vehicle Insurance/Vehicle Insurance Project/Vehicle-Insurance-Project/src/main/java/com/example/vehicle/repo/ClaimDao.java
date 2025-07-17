@@ -12,7 +12,10 @@ import org.springframework.stereotype.Repository;
 import com.example.vehicle.model.Claim;
 import com.example.vehicle.rowMappers.ClaimRowMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class ClaimDao {
 	private final JdbcTemplate jdbcTemplate;
 	private final PolicyDao repo;
@@ -23,6 +26,10 @@ public class ClaimDao {
 	}
 
 	public String claimInsurance(double reqAmount, String damageType, int policyId,String approvedBy) {
+		double premiumAmount=jdbcTemplate.queryForObject("select premium_amount from policy where policy_id=?", Double.class,policyId);
+		if(premiumAmount<reqAmount) {
+			return "Your policy can't provide that much amount";
+		}
 		if(!validate(approvedBy)) {
 			return "No approvedBy reference in Admin or Users";
 		}
@@ -89,14 +96,14 @@ public class ClaimDao {
 		return jdbcTemplate.queryForObject("select claim_id,req_amount,damage_type,claim_date,policy_id,claim_status,approved_by from claim where claim_id=?", new ClaimRowMapper() , claimId);
 	}
 	public List<Claim> getClaimByPolicyId(int policyId){
-		return jdbcTemplate.query("select c.claim_id,c.req_amount,c.damage_type,c.claim_date,c.claim_status,c.policy_id,c.approved_by from claim c,policy p where c.policy_id=p.policy_id and p.policy_id=? and p.policy_status=?", new ClaimRowMapper(),policyId);
+		return jdbcTemplate.query("select c.claim_id,c.req_amount,c.damage_type,c.claim_date,c.claim_status,c.policy_id,c.approved_by from claim c,policy p where c.policy_id=p.policy_id and p.policy_id=? and p.policy_status=? ", new ClaimRowMapper(),policyId);
 	}
 	public List<Claim> getClaimByVehicleId(int vehiceId){
 		return jdbcTemplate.query("select c.claim_id,c.req_amount,c.damage_type,c.claim_date,c.claim_status,c.policy_id,c.approved_by from claim c,policy p where c.policy_id=p.policy_id and p.vehicle_id=? and p.policy_status=?", new ClaimRowMapper(),vehiceId);
 	}
 	public List<Claim> getClaimByUser(String username) {
 		return jdbcTemplate.query(
-				"select c.claim_id,c.req_amount,c.damage_type,c.claim_date,c.policy_id,c.claim_status,c.approved_by from claim c,policy p,vehicles v,customers cu,users u where c.policy_id=p.policy_id and p.vehicle_id=v.vehicle_id and v.customer_id=cu.customer_id and cu.customer_id=u.customer_id and u.username=?",
+				"select c.claim_id,c.req_amount,c.damage_type,c.claim_date,c.policy_id,c.claim_status,c.approved_by from claim c,policy p,vehicles v,customers cu,users u where c.policy_id=p.policy_id and p.vehicle_id=v.vehicle_id and v.customer_id=cu.customer_id and cu.customer_id=u.customer_id and u.username=? and c.claim_status='A'",
 				new ClaimRowMapper(), username);
 	}
 	public List<Claim> getAllIntiatedClaims() throws SQLException {
@@ -109,6 +116,11 @@ public class ClaimDao {
 		int policyId=jdbcTemplate.queryForObject("select policy_id from claim c where claim_id=?", Integer.class,claimId);
 		ArrayList<Object> claimReport = repo.getPolicyReport(policyId);
 		if(claimReport.equals(new ArrayList<>())) {
+			return claimReport;
+		}
+		int x=jdbcTemplate.queryForObject("select count(claim_id) from claim where claim_id=? and claim_status='A'" , Integer.class,claimId);
+		log.info("The count is : "+x);
+		if(x==0) {
 			return claimReport;
 		}
 		claimReport.add(jdbcTemplate.queryForObject("select claim_id,req_amount,damage_type,claim_date,policy_id,claim_status,approved_by from claim where claim_id=?", new ClaimRowMapper(),claimId));

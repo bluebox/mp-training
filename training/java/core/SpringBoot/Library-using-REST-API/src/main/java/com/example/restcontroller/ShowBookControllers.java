@@ -2,6 +2,8 @@ package com.example.restcontroller;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +32,7 @@ public class ShowBookControllers {
 		return bs.showBooks();
 	}
 	@PostMapping("/add")
-	public String addBook(@RequestBody Books books) {
+	public String addBook(@Valid() @RequestBody Books books) {
 	    return bs.add(books);
 	}
 	@PutMapping("/update")

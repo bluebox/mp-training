@@ -50,12 +50,16 @@ function UserRegistration(){
                 throw new Error("Failed to fetch data");
             }
             else{
-                console.log(JSON.stringify(res));
                 return res.json();
             }
         })
         .then((data)=>{
-            localStorage.setItem("customerId",data);
+            if(data>0){
+                localStorage.setItem("customerId",data);
+            }
+            else{
+                alert("Failed to insert data");
+            }
             nav("/user/vehicle");
         })
         .catch(()=>{
@@ -108,7 +112,7 @@ function UserRegistration(){
                         <td><input type="text" id="address" name="address"/></td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="createdBy" name="createdBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
+                        <td><input type="text" id="createdBy" name="createdBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}} readOnly/></td>
                     </tr>
                     <tr>
                         <td colSpan={2}><input type="submit"/></td>

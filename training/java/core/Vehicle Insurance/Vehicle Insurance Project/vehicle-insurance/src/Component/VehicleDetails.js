@@ -19,17 +19,16 @@ function VehicleDetails(){
             credentials:"include"
         })
         .then((res)=>{
+            console.log(JSON.stringify(formObj));
             if(!res.ok){
                 throw new Error("Failed to fetch data");
             }
             else{
-                console.log(res.data);
                 return res.text();
             }
         })
         .then((data)=>{
             console.log(data);
-            localStorage.setItem("vehicleId",data);
             nav("/user/userDetails");
         })
         .catch(()=>{
@@ -72,7 +71,7 @@ function VehicleDetails(){
     }
     else{
     return(
-        <form style={{margin:"50px",marginLeft:"600px",marginRight:"600px"}}>
+        <form style={{margin:"50px",marginLeft:"600px",marginRight:"600px"}} onSubmit={sendData}>
             <table>
                 <tbody>
                     <tr><td colSpan={2}><h1>Vehicle Details</h1></td></tr>
@@ -93,7 +92,7 @@ function VehicleDetails(){
                         <td><input type="text" id="customerId1" name="customerId"/></td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="createdBy1" name="createdBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}}/></td>
+                        <td><input type="text" id="createdBy1" name="createdBy" value={localStorage.getItem("username")} style={{visibility:"hidden"}} readOnly/></td>
                     </tr>
                     <tr>
                         <td colSpan={2}><input type="submit"/></td>

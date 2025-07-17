@@ -296,7 +296,7 @@ const generateClaimReport = (claimId) => {
     })
     .catch(err => {
       console.error(err);
-      alert("Failed to fetch claim report");
+      alert("Failed to fetch claim report"+err);
     });
   };
   return (
@@ -336,6 +336,9 @@ const generateClaimReport = (claimId) => {
             <label htmlFor="confirmPassword">Confirm Password : </label>
             <input type="text" id="confirmPassword" name="confirmPassword" onChange={(event)=>setConfirmPassword(event.target.value)}/>
             <button onClick={updatePassword}>Update Password</button>
+          </div>
+          <div style={{textAlign:"center"}}>
+            <Link to="/logout"><button>Logout</button></Link>
           </div>
         </div>
       )}
@@ -412,7 +415,6 @@ const generateClaimReport = (claimId) => {
           ))}
         </ul>
       </div>
-      <Link to="/logout"><button>Logout</button></Link>
     </div>
   );
 }

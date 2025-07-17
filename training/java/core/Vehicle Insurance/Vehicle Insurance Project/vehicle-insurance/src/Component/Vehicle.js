@@ -51,7 +51,7 @@ function ShowVehicle(){
     //     }
     // }
     function DeleteVehicle(vehicleId){
-        fetch(`http://localhost:8000/customer/delete?customerId=${vehicleId}`,{
+        fetch(`http://localhost:8000/vehicle/delete?vehicleId=${vehicleId}`,{
         method:"PUT",
         credentials:"include"
         })

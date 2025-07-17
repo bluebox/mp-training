@@ -16,7 +16,7 @@ public class CustomerService {
 	@Autowired
 	CustomerDao customerDao;
 
-	public String addCustomer(Customer customer) throws Exception {
+	public int addCustomer(Customer customer) throws Exception {
 		try {
 			return customerDao.addCustomer(customer);
 		} catch (Exception e) {
