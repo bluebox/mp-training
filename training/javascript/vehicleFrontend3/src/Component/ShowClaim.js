@@ -1,0 +1,77 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+function Claim(props){
+    return (
+    <tr>
+        <td>{props.sample.claimId}</td>
+        <td>{props.sample.reqAmount}</td>
+        <td>{props.sample.damageType}</td>
+        <td>{props.sample.claimStatus}</td>
+        <td>{props.sample.claimDate}</td>
+        <td>{props.sample.policyId}</td>
+        <td>{props.sample.approvedBy}</td>
+    </tr>
+    );
+}
+function ShowClaim(){
+    const[claim,setClaim]=useState([]);
+    useEffect(()=>{
+        fetch("http://localhost:8000/claim/allClaims", {
+            method: "GET",
+            credentials:"include"
+        })
+        .then((res)=>{
+            if(!res.ok) {
+                alert("Failed to retrieve data");
+            }
+            return res.json();
+        })
+        .then((data)=>{
+            setClaim(data);
+        })
+        .catch((err)=>{
+            alert("Error occured",err);
+        });
+    },[]);
+    // for (let i = 0; i < localStorage.length; i++) {
+    //     const key = localStorage.key(i);
+    //     try {
+    //         const item = JSON.parse(localStorage.getItem(key));
+    //         if (item && item.bookId !== undefined) {
+    //             books.push(item);
+    //         }
+    //     } catch (e) {
+    //         console.warn(`Invalid JSON at key "${key}":`, e);
+    //     }
+    // }
+    return(
+        <div style={{marginLeft:"650px", marginRight:"650px",textAlign:"center"}}>
+            <h1 style={{textAlign:"center"}}>Claim Details</h1>
+            <table style={{border:"2px solid"}}>
+                <thead>
+                    <tr>
+                        <th>Claim ID</th>
+                        <th>Requested Amount</th>
+                        <th>Damage Type</th>
+                        <th>Claim Status</th>
+                        <th>Claim Date</th>
+                        <th>Policy ID</th>
+                        <th>Approved By</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        {claim.map((x)=>(<Claim sample={x}/>))}
+                    </tbody>
+            </table>
+            <br/>
+            <Link to="/user/claim"><button>Add Claim</button></Link>
+            <div style={{textAlign:"center"}} colSpan={2}>
+                <br/>
+                <Link to="/admin" style={{padding:"20px"}}><button>Go to Home Page</button></Link>&nbsp;&nbsp;
+                <Link to="/logout" style={{padding:"20px"}}><button>Logout</button></Link>
+            </div>
+        </div>
+    );
+}
+export default ShowClaim;

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<title>Library Management</title>
+<style>
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: #f4f7f8;
+	color: #333;
+	text-align: center;
+	padding: 50px 20px;
+}
+
+h1 {
+	color: #2c3e50;
+	margin-bottom: 40px;
+	font-weight: 700;
+}
+
+button {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	padding: 15px 30px;
+	margin: 10px 0;
+	font-size: 18px;
+	border-radius: 6px;
+	cursor: pointer;
+	width: 220px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+button:hover {
+	background-color: #2980b9;
+	transform: translateY(-2px);
+}
+
+button:active {
+	background-color: #1c5980;
+	transform: translateY(0);
+}
+
+.button-link {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	background-color: #007bff;
+	color: white;
+	text-decoration: none;
+	border-radius: 4px;
+	border: none;
+	font-size: 1rem;
+	cursor: pointer;
+	margin: 0.5rem; /* spacing between buttons */
+}
+
+.button-link:hover {
+	background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+	<h1 th:text="${'Welcome - ' + username}"></h1>
+	<h2 th:text="${'You logged in as - ' + roles}"></h2>
+	<br>
+	<h1>Welcome to Library Management System</h1>
+
+	<a th:href="@{/book/add}" class="button-link">Add Book</a>
+	<br>
+	<a th:href="@{/member/add}" class="button-link">Add Member</a>
+	<br>
+	<a th:href="@{/issue/book}" class="button-link"
+		sec:authorize="hasRole('ROLE_ADMIN')">Issue Book</a>
+	<br>
+	<a th:href="@{/book/return}" class="button-link">Return Book</a>
+	<br>
+	<a th:href="@{/book/update}" class="button-link">Update Book</a>
+	<br>
+	<a th:href="@{/member/update}" class="button-link">Update Member</a>
+	<br>
+	<a th:href="@{/book/all}" class="button-link">View Books</a>
+	<br>
+	<a th:href="@{/member/all}" class="button-link">View Members</a>
+	<br>
+	<a th:href="@{/issue/all}" class="button-link"
+		sec:authorize="hasRole('ROLE_ADMIN')">View Issue Records</a>
+	<br>
+	<a th:href="@{/logout}" class="button-link">Log Out</a>
+	<br>
+
+
+
+
+</body>
+</html>
