@@ -1,4 +1,4 @@
-package com.gym.classes;
+package com.gym.models;
 
 public class MembershipPlan {
 	public String planName;

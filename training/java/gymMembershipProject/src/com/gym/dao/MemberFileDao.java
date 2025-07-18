@@ -7,18 +7,31 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
-import com.gym.classes.Member;
-import com.gym.classes.MembershipPlan;
+import com.gym.models.Member;
+import com.gym.models.MembershipPlan;
 
 public class MemberFileDao implements MemberDao{
 	private static ArrayList<MembershipPlan> plans = new ArrayList<>();
 	
 	private int lastId;
-
+	
+	public boolean saveNewMember(Member member) {
+		List<Member> members = loadFromFile();
+		member.setMemberId(++lastId);
+		members.add(member);
+		//tryFileWriter fw = new FileWriter("members.txt",true);
+		
+		
+		if(!saveToFile((ArrayList<Member>) members)) {
+			return false;
+		};
+		return true;
+	}
+	
 	@Override
-	public boolean saveToFile(ArrayList<Member> members) {
-		//loadFromFile();
+	public boolean saveToFile(List<Member> members) {
 		try (PrintWriter pw = new PrintWriter(new FileWriter("members.txt"))) {
             for (Member m : members) {
                 pw.println(

@@ -1,4 +1,4 @@
-package com.gym.classes;
+package com.gym.models;
 
 public class Member extends Person{
 	private int memberId;
@@ -15,6 +15,10 @@ public class Member extends Person{
 
 	public int getMemberId() {
 		return memberId;
+	}
+	
+	public void setMemberId(int id) {
+		this.memberId = id;
 	}
 	
 	public int getMemberHeight() {
@@ -38,6 +42,10 @@ public class Member extends Person{
 	public void setMemPlan(MembershipPlan memPlan) {
 		this.membershipPlan = memPlan;
 	}
+	
+	public Member(String name, int age,int height, int weight) {
+		this(0,name,age,height,weight,null,"NA");
+	}
 
 	public Member(int memberId, String name, int age,int height, int weight) {
 		this(memberId,name,age,height,weight,null,"NA");
@@ -57,20 +65,23 @@ public class Member extends Person{
 	}
 
 
-	//Polymorphism
 	@Override
 	public void showDetails() {
-		// TODO Auto-generated method stub
-        System.out.printf(
-                    "ID:%d | Name: %s | Age: %d | Plan: %s "
-                    + (this.joinDate.equals("NA") ? "\n": "| Joining Date: %s\n"),
-                    this.getMemberId(),
-                    this.name,
-                    this.age,
-                    (this.getMembershipPlan() == null ? "No Plan Assigned" : this.getMembershipPlan().planName),
-                    this.joinDate.equals("NA") ? "" : joinDate
-            );
+	    String planName = (getMembershipPlan() == null) ? "No Plan Assigned" : getMembershipPlan().planName;
+	    String joinInfo = joinDate.equals("NA") ? "" : joinDate;
+	    
+	    System.out.printf(
+	        "%-6d %-20s %-4d %-6d %-7d %-20s %-15s%n",
+	        getMemberId(),
+	        getMemberName(),
+	        getMemberAge(),
+	        getMemberHeight(),
+	        getMemberWeight(),
+	        planName,
+	        joinInfo
+	    );
 	}
+
 	
 	
 	

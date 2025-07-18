@@ -4,59 +4,88 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import com.gym.classes.Member;
-import com.gym.classes.MembershipPlan;
+import java.util.List;
+
 import com.gym.dao.MemberDao;
 import com.gym.dao.MemberFileDao;
+import com.gym.models.Member;
+import com.gym.models.MembershipPlan;
 
-
-//add plans in file and fetch
 //add object validation in service
-//change auto id to customer constructor
 //file handling exception handling in main (throw error from dao handle in service)
-//send only one member to save not the entire list
+
+
+//TODO : make a gym service interface and implement on top of it
 
 public class Gym {
-    private ArrayList<Member> members;
-    private static ArrayList<MembershipPlan> plans = new ArrayList<>();
-    private MemberDao memberDao = new MemberFileDao();
-    private int lastId = 0;
     
-    //private static final String FILE_NAME = "members.txt";
-
+    private static ArrayList<MembershipPlan> plans ;
+    private MemberDao memberDao;
+    
     static {
+    	plans = new ArrayList<>();
         plans.add(new MembershipPlan("Basic", 3, 5000));
         plans.add(new MembershipPlan("Premium", 6, 8000));
         plans.add(new MembershipPlan("Gold", 12, 12000));
     }
 
     public Gym() {
-        members = new ArrayList<>();
-        loadDataFromFile();
+    	memberDao = new MemberFileDao();
     }
 
-    public void addNewMember(String name, int age, int height, int weight) {
-    	loadDataFromFile();
-        lastId += 1;
-        Member mem = new Member(lastId, name, age, height, weight);
-        members.add(mem);
-        memberDao.saveToFile(members);
-        System.out.println("User registered!\n");
+    public void addNewMember(Member newMember) {
+    	//if addNewMember is being accessed externally ,from anywhere other than our main this is the failsafe check
+    	if(!validateNewMember(newMember)) {
+    		System.out.println("Member data is not valid!\n");
+    		return ;
+    	}
+    	
+        if(memberDao.saveNewMember(newMember))
+        	System.out.println("User registered!\n");
+        else
+        	System.out.println("Couldn't Register user :( \n");
     }
 
-    public ArrayList<Member> showAllMembers() {
-    	loadDataFromFile();
-    	return members;
+    private boolean validateNewMember(Member newMember) {
+		if(newMember.getAge() < 12 || newMember.getAge() > 120) {
+			return false;
+		}
+		if(newMember.getWeight() < 20 || newMember.getAge() > 200) {
+			return false;
+		}
+		if(newMember.getHeight() < 100 || newMember.getHeight() > 250) {
+			return false;
+		}
+		return true;
+	}
+    
+	public void showAllMembers() {
+    	List<Member> members = memberDao.loadFromFile();
+    	if(members.isEmpty()) {
+    		System.out.println("\nno members exist in the database\n");
+    		return;
+    	}
+    	
+        System.out.println("\n=========================== Current Members =============================");
+        System.out.printf(
+    	        "%-6s %-20s %-4s %-6s %-7s %-20s %-15s%n",
+    	        "ID", "Name", "Age", "Height", "Weight", "Plan", "Joining Date"
+    	    );
+        for (Member member : members) {
+        	member.showDetails();
+        }
+        System.out.println("=========================================================================\n");
     }
     
     public void displayPlans() {
     	for (int i = 0; i < plans.size(); i++) {
-            System.out.printf("%d. %s\n", i + 1, plans.get(i).planName);
+    		MembershipPlan currPlan = plans.get(i);
+            System.out.printf("%d. %s - %d Months - %d Rupees\n", i + 1, currPlan.planName,currPlan.getDurationMonths(),currPlan.getFee());
         }
     }
     
     public void assignPlanToMember(int memberId, int planId,String date) throws InvalidDateException {
-    	members = memberDao.loadFromFile();
+    	List<Member> members = memberDao.loadFromFile();
         for (Member x : members) {
             if (x.getMemberId() == memberId) {
             	MembershipPlan targetPlan = plans.get(planId-1);
@@ -71,9 +100,10 @@ public class Gym {
             			System.out.println("You already have that plan assigned!\n");
             			return;
             		}
+            		
             		//calculate the perDay for the current plan 
             		//calculate the remaining days from user's registered day
-            		double perDay = currentPlan.getFee()/(currentPlan.getDurationMonths()*30.00d);
+            		double perMonth = currentPlan.getFee()/(currentPlan.getDurationMonths());
 
             		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             		            		
@@ -83,25 +113,27 @@ public class Gym {
                     if(prevDate.isAfter(currDate)) {
                     	System.out.println("Cannot enter date earlier than the previous date\n");
                     	throw new InvalidDateException("The date you entered is invalid");
-                    	
                     }
                     
-                    long daysBetween = ChronoUnit.DAYS.between(prevDate,currDate);
-                    long daysRemaining = currentPlan.getDurationMonths()*30 - daysBetween;
+                    long MonthsSinceJoining = ChronoUnit.MONTHS.between(prevDate,currDate);
+                    long MonthsRemaining = currentPlan.getDurationMonths()-MonthsSinceJoining;
                     
-                    if(daysRemaining > 0) {
-                    	double payable = targetPlan.getFee() - (daysRemaining*perDay);
+                    if(MonthsRemaining >= 0) {
+                    	double payable = targetPlan.getFee() - (MonthsRemaining*perMonth);
                         System.out.printf("Member only had to pay %.2f\n",payable);
+                    }
+                    else {
+                    	System.out.println("Your current membership ends sooner than your selected date for next plan!\n");
+                    	return;
                     }
             	}
                 x.setMemPlan(targetPlan);
                 x.setJoinDate(date);
                 System.out.println("Successfully assigned plan to user!\n");
-                memberDao.saveToFile(members);
+                memberDao.saveToFile((ArrayList<Member>) members);
                 return ;
             }
         }
-
                 System.out.println("Member not found. Please enter a valid id.\n");
 
     }
@@ -115,6 +147,7 @@ public class Gym {
     }
 
     public Member getMemberById(int id) {
+    	List<Member> members = memberDao.loadFromFile();
     	for(Member member : members) {
     		if(member.getMemberId() == id) {
     			return member;
@@ -124,21 +157,11 @@ public class Gym {
     	return null;
     }
     
-    private void loadDataFromFile() {
-    	members = memberDao.loadFromFile();
-    	//get back the max id
-    	int maxId = lastId;
-    	for(Member member : members) {
-    		if(member.getMemberId() > maxId) {
-    			maxId = member.getMemberId();
-    		}
-    	}
-    	lastId = maxId;
-    }
+    
     
     public void deleteMember(int idToDelete) {
+    	List<Member> members = memberDao.loadFromFile();
     	
-    	loadDataFromFile();
         if (members.isEmpty()) {
             System.out.println("No members to delete.\n");
             return;
@@ -171,7 +194,3 @@ class InvalidDateException extends Exception{
 		super(message);
 	}
 }
-
-
-
-
