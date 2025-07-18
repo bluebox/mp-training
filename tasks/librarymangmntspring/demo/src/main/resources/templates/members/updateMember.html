@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Member</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f4f6; padding: 50px; }
+        .container { max-width: 400px; margin: auto; padding: 24px; background: #fff; border-radius: 10px; box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); }
+        h2 { text-align: center; margin-bottom: 18px; }
+        label, select, input, textarea { display: block; width: 100%; margin-bottom: 14px; }
+        input, select, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 5px; }
+        button { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        .success { color: green; text-align: center; margin-bottom: 14px; font-weight: bold; }
+        .error { color: red; text-align: center; margin-bottom: 14px; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Update Member</h2>
+    <div th:if="${success}" class="success" th:text="${success}"></div>
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+    <form th:action="@{/members/update}" th:object="${member}" method="post">
+        <label for="memberId">Member ID</label>
+        <input type="text" th:field="*{memberId}" id="memberId" placeholder="Enter Member ID" required pattern="\d+" />
+
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Enter Name" required />
+
+        <label for="email">Email</label>
+        <input type="email" th:field="*{email}" id="email" placeholder="Enter Email" required />
+
+        <label for="mobile">Mobile</label>
+        <input type="text" th:field="*{mobile}" id="mobile" placeholder="Enter Mobile Number" required pattern="\d+" />
+
+        <label for="gender">Gender</label>
+        <select th:field="*{gender}" id="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+
+        <label for="address">Address</label>
+        <textarea th:field="*{address}" id="address" placeholder="Enter Address" required></textarea>
+
+        <button type="submit">Update Member</button>
+    </form>
+</div>
+</body>
+</html> 

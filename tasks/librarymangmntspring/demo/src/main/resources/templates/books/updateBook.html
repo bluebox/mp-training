@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book Availability</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            padding: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        label, select, input {
+            display: block;
+            width: 100%;
+            margin-bottom: 14px;
+        }
+        input, select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .message {
+            text-align: center;
+            margin-top: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Update Book Availability</h2>
+    <div th:if="${success}" class="success" style="color:green;text-align:center;margin-bottom:14px;font-weight:bold;" th:text="${success}"></div>
+    <div th:if="${error}" class="error" style="color:red;text-align:center;margin-bottom:14px;font-weight:bold;" th:text="${error}"></div>
+    <form th:action="@{/books/update}" th:object="${book}" method="post">
+        <label for="bookId">Book ID</label>
+        <input type="text" th:field="*{bookId}" id="bookId" placeholder="Enter Book ID" required pattern="\d+" />
+
+        <label for="availability">Availability</label>
+        <select th:field="*{availability}" id="availability" required>
+            <option value="" disabled selected>Select Availability</option>
+            <option value="A">Available</option>
+            <option value="I">Issued</option>
+        </select>
+
+        <button type="submit">Update Availability</button>
+    </form>
+</div>
+
+</body>
+</html> 

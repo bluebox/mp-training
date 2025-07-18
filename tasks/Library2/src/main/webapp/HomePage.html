@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Library Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+  	body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f7f9fc;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.dashboard {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 40px;
+}
+
+.category {
+  margin-bottom: 30px;
+}
+
+.category h2 {
+  color: #34495e;
+  margin-bottom: 10px;
+  border-left: 4px solid #3498db;
+  padding-left: 10px;
+}
+
+.nav-button {
+  display: inline-block;
+  margin: 8px 6px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.nav-button:hover {
+  background-color: #2980b9;
+}
+  	
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Library Dashboard</h1>
+
+    <div class="category">
+      <h2>Book Management</h2>
+      <a class="nav-button" href="/Library2/addbook">Add Book</a>
+      <a class="nav-button" href="/Library2/viewbooks">View All Books</a>
+      <a class="nav-button" href="/Library2/updatebook">Update Book Availability</a>
+      <a class="nav-button" href="/Library2/bookcntcategory">Books Category Count</a>
+    </div>
+
+    <div class="category">
+      <h2>Member Management</h2>
+      <a class="nav-button" href="/Library2/addmember">Add Member</a>
+      <a class="nav-button" href="/Library2/updatemember">Update Member</a>
+      <a class="nav-button" href="/Library2/viewmembers">View All Members</a>
+    </div>
+
+    <div class="category">
+      <h2>Issue Management</h2>
+      <a class="nav-button" href="/Library2/issuebook">Issue Book</a>
+      <a class="nav-button" href="/Library2/returnbook">Return a Book</a>
+      <a class="nav-button" href="/Library2/issuedrecords">Show All Issued Records</a>
+      <a class="nav-button" href="/Library2/overduerecords">View Overdue Records</a>
+      <a class="nav-button" href="/Library2/memberswithbooks">Members Having Books</a>
+    </div>
+  </div>
+</body>
+</html>

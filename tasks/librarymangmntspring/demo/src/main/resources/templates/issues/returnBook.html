@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Book</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; background: #f9fafb; }
+        h2 { margin-bottom: 20px; }
+        form { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.08); max-width: 400px; margin-bottom: 24px; }
+        label { display: block; margin-bottom: 8px; }
+        input[type="text"], input[type="date"] { width: 100%; padding: 8px; margin-bottom: 16px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 10px 20px; background: #2563eb; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+        .success { color: green; margin-bottom: 20px; }
+        .error { color: red; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<h2>Return Book</h2>
+<div th:if="${success}" class="success" th:text="${success}"></div>
+<div th:if="${error}" class="error" th:text="${error}"></div>
+<form th:action="@{/issues/return}" method="post">
+    <label for="issueId">Issue ID:</label>
+    <input type="text" id="issueId" name="issueId" required />
+    <label for="bookId">Book ID:</label>
+    <input type="text" id="bookId" name="bookId" required />
+    <label for="returnDate">Return Date:</label>
+    <input type="date" id="returnDate" name="returnDate" required />
+    <button type="submit">Return Book</button>
+</form>
+</body>
+</html> 

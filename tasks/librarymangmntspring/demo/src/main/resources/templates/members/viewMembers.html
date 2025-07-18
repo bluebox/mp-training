@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Members</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f9fafb;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+        }
+        th, td {
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>All Members</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Member ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Gender</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.memberId}"></td>
+        <td th:text="${member.name}"></td>
+        <td th:text="${member.email}"></td>
+        <td th:text="${member.mobile}"></td>
+        <td th:text="${#strings.equalsIgnoreCase(member.gender, 'M') ? 'Male' : (#strings.equalsIgnoreCase(member.gender, 'F') ? 'Female' : 'Other')}"></td>
+        <td th:text="${member.address}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html> 
