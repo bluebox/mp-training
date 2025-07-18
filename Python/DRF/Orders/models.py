@@ -1,5 +1,7 @@
 from django.db import models
 
+from Orders.CustomManager import CustomCustomerManager
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -9,6 +11,8 @@ class Product(models.Model):
     class Meta:
         db_table = "Product"
 
+    def __str__(self):
+        return self.name
 
 
 class Customer(models.Model):
@@ -21,9 +25,12 @@ class Customer(models.Model):
     state = models.CharField(max_length=100, blank=True, null=True)
     zip_code = models.CharField(max_length=10, blank=True, null=True)
     registration_date = models.DateTimeField(auto_now_add=True)
-
+    objects = CustomCustomerManager()
     class Meta:
         db_table = 'Customer'
+
+    def __str__(self):
+        return f'{self.first_name} - {self.last_name}'
 
 
 class Order(models.Model):
@@ -34,6 +41,9 @@ class Order(models.Model):
     class Meta:
         db_table = "Orders"
 
+    def __str__(self):
+        return self.customer.first_name
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
@@ -43,3 +53,6 @@ class OrderItem(models.Model):
 
     class Meta:
         db_table = "OrderItem"
+
+    def __str__(self):
+        return f'{self.product.name} x {self.quantity}'
