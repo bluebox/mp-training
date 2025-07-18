@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function LogoutPage() {
     const nav=useNavigate();
   useEffect(() => {
-    fetch("http://localhost:8000/logout", {
+    fetch("http://10.129.241.187:8000/logout", {
         // credentials: "include"
     })
     .then((res)=>{

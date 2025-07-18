@@ -42,7 +42,7 @@ function Policy(props){
 function ShowPolicy(){
     const[policy,setPolicy]=useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8000/policy/showAll", {
+        fetch("http://10.129.241.187:8000/policy/showAll", {
             method: "GET",
             credentials:"include"
         })
@@ -71,7 +71,7 @@ function ShowPolicy(){
     //     }
     // }
     function DeletePolicy(policyId){
-        fetch(`http://localhost:8000/policy/delete?policyId=${policyId}`,{
+        fetch(`http://10.129.241.187:8000/policy/delete?policyId=${policyId}`,{
         method:"PUT",
         credentials:"include"
         })

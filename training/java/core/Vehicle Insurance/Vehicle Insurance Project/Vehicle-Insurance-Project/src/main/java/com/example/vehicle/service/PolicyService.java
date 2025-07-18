@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,5 +71,9 @@ public class PolicyService {
 	}
 	public List<Object> getPolicyReport(int policyId) throws Exception {
 		return repo.getPolicyReport(policyId);
+	}
+	@Scheduled(cron = "0 0 12 * * ?")
+	public void dueDate() {
+		System.out.println(repo.dueDate());
 	}
 }

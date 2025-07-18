@@ -7,12 +7,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.vehicle.model.Customer;
 import com.example.vehicle.model.Vehicle;
 import com.example.vehicle.rowMappers.CustomerRowMapper;
 
 @Repository
+@Transactional
 public class CustomerDao {
 	private final JdbcTemplate jdbcTemplate;
 	@Autowired
@@ -39,6 +41,9 @@ public class CustomerDao {
 	}
 	
 	public String updateCustomer(Customer customer) throws SQLException{
+		if(jdbcTemplate.queryForObject("select status from customers where customer_id=?", Character.class,customer.getCustomerId())=='I') {
+			return "There is no Active customer with this customer_id";
+		}
 		String custUpdateSql = "Update customers set name=?,email=?,contact=?,gender=?,age=?,occupation=?,income=?,address=?,status=?,"
 				+ "customer_updated_on=?,customer_updated_by=? where customer_id=?";
 		int rowsAffected = jdbcTemplate.update(custUpdateSql, customer.getName(), customer.getEmail(), customer.getContact(),
@@ -54,7 +59,7 @@ public class CustomerDao {
 	}
 	
 	public String updateCustomerStatus(int customerId,char status) throws SQLException{
-		String sql="Update customers set status=? where customer_id=?";
+		String sql="Update customers set status=? where customer_id=? and status='A'";
 		int rowsAffected=jdbcTemplate.update(sql,String.valueOf(status),customerId);
 		if(rowsAffected==0) {
 			return "Status not Updated,Check Your Customer Id";
@@ -78,15 +83,15 @@ public class CustomerDao {
 	}
 	
 	public String deleteCustomerById(int customerId) throws Exception {
-		String sql="Update customers set status='I' WHERE customer_id=?";
-		
+		String sql="Update customers set status='I' WHERE customer_id=? and status='A'";
+		jdbcTemplate.update("delete from users where customer_id=?",customerId);
 		List<Vehicle> vehicles=vehicleDao.getAllVehiclesByCustomer(customerId);
 		for(Vehicle vehicle:vehicles) {
 			vehicleDao.deleteVehicleById(vehicle.getVehicleId());
 		}
 		int rowsAffected=jdbcTemplate.update(sql,customerId);
 		if(rowsAffected==0) {
-			return "Customer Not Deleted ,Check customerId";
+			return "Customer not found";
 		}
 		else {
 			return "Customer Deleted Successfully";

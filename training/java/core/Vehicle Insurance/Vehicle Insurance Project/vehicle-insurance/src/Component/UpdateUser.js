@@ -12,7 +12,7 @@ function UpdateUser() {
       alert("Passwords doesn't match");
     }
     else{
-      fetch(`http://localhost:8000/user/updatePassword?username=${username}&oldPassword=${formobj.oldPassword}&password=${formobj.newpassword}&updatedBy=${formobj.passwordUpdatedBy}`, {
+      fetch(`http://10.129.241.187:8000/user/updatePassword?username=${username}&oldPassword=${formobj.oldPassword}&password=${formobj.newpassword}&updatedBy=${formobj.passwordUpdatedBy}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials:"include"

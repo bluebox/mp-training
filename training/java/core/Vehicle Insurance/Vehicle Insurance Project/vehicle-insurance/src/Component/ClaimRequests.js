@@ -18,7 +18,7 @@ function RequestedClaim(props){
 function ShowRequestedClaim(){
     const[claim,setClaim]=useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8000/claim/allIntiatedClaims", {
+        fetch("http://10.129.241.187:8000/claim/allIntiatedClaims", {
             method: "GET",
             credentials:"include"
         })

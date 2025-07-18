@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { data, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateClaim(){
     const nav=useNavigate();
@@ -7,7 +7,7 @@ function UpdateClaim(){
     const [claim,setClaim]=useState([]);
     const [prevAmount,setPrevAmount]=useState(0);
     useEffect(()=>{
-        fetch(`http://localhost:8000/claim/claimById?claimId=${claimId}`,{
+        fetch(`http://10.129.241.187:8000/claim/claimById?claimId=${claimId}`,{
             method: "GET",
             credentials:"include"
         })
@@ -34,7 +34,7 @@ function UpdateClaim(){
             alert("The amount issued is more than asked");
         }
         else{
-            return fetch(`http://localhost:8000/claim/approveClaim?claimId=${claimId}&claimAmount=${formObj.reqAmount}&status=${formObj.status}&approvedBy=${formObj.approvedBy}`,{
+            return fetch(`http://10.129.241.187:8000/claim/approveClaim?claimId=${claimId}&claimAmount=${formObj.reqAmount}&status=${formObj.status}&approvedBy=${formObj.approvedBy}`,{
                 method:"PUT",
                 headers:{
                     "Content-Type":"application/json"

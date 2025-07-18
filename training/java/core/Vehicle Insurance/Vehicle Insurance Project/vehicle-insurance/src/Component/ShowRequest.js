@@ -22,7 +22,7 @@ function RequestedPolicy(props){
 function ShowRequestedPolicy(){
     const[policy,setPolicy]=useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8000/policy/allRequestedPolicies", {
+        fetch("http://10.129.241.187:8000/policy/allRequestedPolicies", {
             method: "GET",
             credentials:"include"
         })
@@ -41,7 +41,7 @@ function ShowRequestedPolicy(){
     },[]);
 
     function UpdatePolicy(policyId,status,approvedBy){
-        fetch(`http://localhost:8000/policy/updatePolicyRequested?policyId=${policyId}&status=${status}&approvedBy=${approvedBy}`,{
+        fetch(`http://10.129.241.187:8000/policy/updatePolicyRequested?policyId=${policyId}&status=${status}&approvedBy=${approvedBy}`,{
         method:"PUT",
         credentials:"include"
         })

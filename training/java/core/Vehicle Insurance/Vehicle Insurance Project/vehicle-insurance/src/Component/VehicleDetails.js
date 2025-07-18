@@ -10,7 +10,7 @@ function VehicleDetails(){
         const formDetails=JSON.stringify(formObj);
         alert(formDetails);
         console.log("Vehicle added successfully",formDetails);
-        fetch("http://localhost:8000/vehicle/add",{
+        fetch("http://10.129.241.187:8000/vehicle/add",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

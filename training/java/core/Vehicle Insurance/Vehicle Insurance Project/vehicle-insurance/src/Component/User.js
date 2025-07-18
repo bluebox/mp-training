@@ -10,7 +10,7 @@ function User(){
         const formDetails=JSON.stringify(formObj);
         alert(JSON.stringify(formObj));
         console.log(JSON.stringify(formObj));
-        return fetch("http://localhost:8000/user/add",{
+        return fetch("http://10.129.241.187:8000/user/add",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

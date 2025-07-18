@@ -7,7 +7,7 @@ function UpdateCustomer() {
     const [customer,setCustomer]=useState([]);
     const [gender,setGender]=useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:8000/customer/show?customerId=${customerId}`,{
+        fetch(`http://10.129.241.187:8000/customer/show?customerId=${customerId}`,{
             method: "GET",
             credentials:"include"
         })
@@ -33,7 +33,7 @@ function UpdateCustomer() {
     const formobj = Object.fromEntries(formData.entries());
     formobj.customerId=Number(customerId);
     console.log(customerId);
-    fetch(`http://localhost:8000/customer/update?customerId=${customerId}`, {
+    fetch(`http://10.129.241.187:8000/customer/update?customerId=${customerId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formobj),

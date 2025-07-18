@@ -30,7 +30,7 @@ export default function UserDashboard() {
   }, []);
 
   const fetchCustomerId=()=>{
-    fetch(`http://localhost:8000/user/show?username=${username}`, {
+    fetch(`http://10.129.241.187:8000/user/show?username=${username}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials:"include"
@@ -52,7 +52,7 @@ export default function UserDashboard() {
   };
 
   const fetchCustomerDetails=(id)=>{
-    fetch(`http://localhost:8000/customer/show?customerId=${id}`, {
+    fetch(`http://10.129.241.187:8000/customer/show?customerId=${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials:"include"
@@ -72,7 +72,7 @@ export default function UserDashboard() {
   };
 
   const fetchVehicles=(id)=>{
-    fetch(`http://localhost:8000/vehicle/showByCustomerId?customerId=${id}`, {
+    fetch(`http://10.129.241.187:8000/vehicle/showByCustomerId?customerId=${id}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials:"include"
@@ -91,7 +91,7 @@ export default function UserDashboard() {
   };
 
   const fetchPoliciesByUser=()=>{
-    fetch(`http://localhost:8000/policy/showByUser?username=${username}`, {
+    fetch(`http://10.129.241.187:8000/policy/showByUser?username=${username}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials:"include"
@@ -110,7 +110,7 @@ export default function UserDashboard() {
   };
 
   const fetchClaimsByUser=()=>{
-    fetch(`http://localhost:8000/claim/claimByUser?username=${username}`, {
+    fetch(`http://10.129.241.187:8000/claim/claimByUser?username=${username}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials:"include"
@@ -129,7 +129,7 @@ export default function UserDashboard() {
   };
 
   const updateVehicleReg = () => {
-    axios.put(`http://localhost:8000/vehicle/update?vehicleId=${selectedVehicleId}&regNum=${newRegNum}&updatedBy=${username}`, {},{ withCredentials: true })
+    axios.put(`http://10.129.241.187:8000/vehicle/update?vehicleId=${selectedVehicleId}&regNum=${newRegNum}&updatedBy=${username}`, {},{ withCredentials: true })
       .then((response) => {
         alert(response.data);
         fetchVehicles(customerId);
@@ -138,7 +138,7 @@ export default function UserDashboard() {
   };
 
   const submitPolicyRequest = () => {
-    axios.post(`http://localhost:8000/policy/add`, {
+    axios.post(`http://10.129.241.187:8000/policy/add`, {
       vehicleId: policyForm.vehicleId,
       policyTerm: policyForm.policyTerm,
       policyType: policyForm.policyType,
@@ -154,7 +154,7 @@ export default function UserDashboard() {
   };
 
   const submitClaimRequest = () => {
-    axios.post(`http://localhost:8000/claim/add`, {
+    axios.post(`http://10.129.241.187:8000/claim/add`, {
       policyId: claimForm.policyId,
       reqAmount: claimForm.reqAmount,
       damageType: claimForm.damageType,
@@ -168,7 +168,7 @@ export default function UserDashboard() {
   };
 
   const payPolicyDue = (policyId) => {
-    axios.put(`http://localhost:8000/policy/payDue?policyId=${policyId}`, {}, { withCredentials: true })
+    axios.put(`http://10.129.241.187:8000/policy/payDue?policyId=${policyId}`, {}, { withCredentials: true })
       .then((response) => {
         alert(response.data);
         fetchPoliciesByUser();
@@ -178,7 +178,7 @@ export default function UserDashboard() {
   const custupdate=customerForm;
   custupdate.customerUpdatedBy=username;
   const updateCustomerDetails = () => {
-      fetch(`http://localhost:8000/customer/update?customerId=${customerId}`, {
+      fetch(`http://10.129.241.187:8000/customer/update?customerId=${customerId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(custupdate),
@@ -207,7 +207,7 @@ export default function UserDashboard() {
       err.appendChild(errVal);
     }
     else{
-      axios.put(`http://localhost:8000/user/updatePassword?username=${username}&oldPassword=${oldPassword}&password=${newPassword}&updatedBy=${username}`, {}, { withCredentials: true })
+      axios.put(`http://10.129.241.187:8000/user/updatePassword?username=${username}&oldPassword=${oldPassword}&password=${newPassword}&updatedBy=${username}`, {}, { withCredentials: true })
         .then((response) => {
           alert(response.data);
           setNewPassword('');
@@ -217,7 +217,7 @@ export default function UserDashboard() {
   };
 
   const generatePolicyReport = (policyId) => {
-  axios.get(`http://localhost:8000/policy/report?policyId=${policyId}`, { withCredentials: true })
+  axios.get(`http://10.129.241.187:8000/policy/report?policyId=${policyId}`, { withCredentials: true })
     .then(res => {
       const doc = new jsPDF();
       const [customer, vehicle, policy] = res.data;
@@ -255,7 +255,7 @@ export default function UserDashboard() {
 };
 
 const generateClaimReport = (claimId) => {
-  axios.get(`http://localhost:8000/claim/claimReports?claimId=${claimId}`, { withCredentials: true })
+  axios.get(`http://10.129.241.187:8000/claim/claimReports?claimId=${claimId}`, { withCredentials: true })
     .then(res => {
       const doc = new jsPDF();
       const [customer, vehicle, policy, claim] = res.data;

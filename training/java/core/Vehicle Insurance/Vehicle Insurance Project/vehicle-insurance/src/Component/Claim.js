@@ -9,7 +9,7 @@ function Claim(){
         const formObj=Object.fromEntries(formData.entries());
         alert(JSON.stringify(formObj));
         console.log(JSON.stringify(formObj));
-        return fetch("http://localhost:8000/claim/add",{
+        return fetch("http://10.129.241.187:8000/claim/add",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

@@ -6,7 +6,7 @@ function UpdatePolicy(){
     const nav=useNavigate();
     const { policyId }=useParams();
     useEffect(()=>{
-        fetch(`http://localhost:8000/policy/showById?policyId=${policyId}`,{
+        fetch(`http://10.129.241.187:8000/policy/showById?policyId=${policyId}`,{
             method: "GET",
             credentials:"include"
         })
@@ -31,7 +31,7 @@ function UpdatePolicy(){
         alert(JSON.stringify(formObj));
         console.log(JSON.stringify(formObj));
         formObj.policyId=policyId;
-        fetch("http://localhost:8000/policy/update",{
+        fetch("http://10.129.241.187:8000/policy/update",{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"

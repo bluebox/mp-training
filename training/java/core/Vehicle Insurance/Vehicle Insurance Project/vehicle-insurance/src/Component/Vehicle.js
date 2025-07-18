@@ -22,7 +22,7 @@ function Vehicle(props){
 function ShowVehicle(){
     const[vehicle,setVehicle]=useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8000/vehicle/showAll", {
+        fetch("http://10.129.241.187:8000/vehicle/showAll", {
             method: "GET",
             credentials:"include"
         })
@@ -51,7 +51,7 @@ function ShowVehicle(){
     //     }
     // }
     function DeleteVehicle(vehicleId){
-        fetch(`http://localhost:8000/vehicle/delete?vehicleId=${vehicleId}`,{
+        fetch(`http://10.129.241.187:8000/vehicle/delete?vehicleId=${vehicleId}`,{
         method:"PUT",
         credentials:"include"
         })

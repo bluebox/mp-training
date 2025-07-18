@@ -19,7 +19,7 @@ import com.example.vehicle.rowMappers.VehicleRowMapper;
 
 @Repository
 public class PolicyDao {
-	public JdbcTemplate jdbcTemplate;
+	public final JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	public PolicyDao(JdbcTemplate jdbcTemplate) {
@@ -70,6 +70,15 @@ public class PolicyDao {
 		}
 		else {
 			return "Failed to update status";
+		}
+	}
+	public String dueDate() {
+		int x=jdbcTemplate.update("update policy set policy_status='I' where policy_status='A' and end_date>?",LocalDateTime.now());
+		if(x>0) {
+			return "There are "+x+" policies that became InActive";
+		}
+		else {
+			return "There is no policy that is achieved due date";
 		}
 	}
 	public Policy getPolicyById(int policyId) {

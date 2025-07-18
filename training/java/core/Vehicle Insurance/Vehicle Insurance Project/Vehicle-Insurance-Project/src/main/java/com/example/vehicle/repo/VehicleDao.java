@@ -21,6 +21,9 @@ public class VehicleDao {
 	}
 
 	public String addVehicle(Vehicle vehicle) throws SQLException {
+		if(jdbcTemplate.queryForObject("select status from customers where customer_id=?", Character.class,vehicle.getCustomerId())=='I') {
+			return "There is no Active customer with this customer_id";
+		}
 		String vehicleAddSql = "Insert into vehicles(chasis_no,reg_num,vehicle_model,purchase_date,vehicle_updated_on,vehicle_updated_by,customer_id,created_by,status)"
 				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -49,7 +52,7 @@ public class VehicleDao {
 //	}
 //	
 	public String updateVehicleNumber(String regNum, String updatedBy, LocalDateTime updatedOn, int vehicleId) throws SQLException{
-		String sql = "Update vehicles set reg_num=?,vehicle_updated_on=?,vehicle_updated_by=? where reg_num like 'temp%' and vehicle_id=?";
+		String sql = "Update vehicles set reg_num=?,vehicle_updated_on=?,vehicle_updated_by=? where reg_num like 'temp%' and vehicle_id=? and staus='A'";
 		int rowsAffected = jdbcTemplate.update(sql, regNum, LocalDateTime.now(), updatedBy, vehicleId);
 		if (rowsAffected == 0) {
 			return "Can't Update Vehicle Registration Number";
@@ -82,7 +85,7 @@ public class VehicleDao {
 	}
 
 	public String deleteVehicleById(int vehicleId) throws Exception {
-		String sql = "Update vehicles set status='I' where vehicle_id=?";
+		String sql = "Update vehicles set status='I' where vehicle_id=? and status='A'";
 //		String policySql = "Update policy set policy_status='I' where vehicle_id=?";
 
 		int rowsAffected = jdbcTemplate.update(sql, vehicleId);

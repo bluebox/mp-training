@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Customer(props){
     return (
     <tr>
@@ -22,9 +22,10 @@ function Customer(props){
     );
 }
 function ShowCustomers(){
+    const nav=useNavigate();
     const[customer,setCustomer]=useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8000/customer/showAll", {
+        fetch("http://10.129.241.187:8000/customer/showAll", {
             method: "GET",
             credentials:"include"
         })
@@ -53,7 +54,7 @@ function ShowCustomers(){
     //     }
     // }
     function DeleteCustomer(customerId){
-        fetch(`http://localhost:8000/customer/delete?customerId=${customerId}`,{
+        fetch(`http://10.129.241.187:8000/customer/delete?customerId=${customerId}`,{
             method:"PUT",
             credentials:"include"
         })

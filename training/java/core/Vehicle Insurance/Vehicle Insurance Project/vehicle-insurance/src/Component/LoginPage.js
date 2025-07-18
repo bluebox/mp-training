@@ -10,7 +10,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/login", new URLSearchParams({
+      await axios.post("http://10.129.241.187:8000/login", new URLSearchParams({
         username,
         password
       }), {

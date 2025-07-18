@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { data, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function User(props){
     return (
@@ -18,7 +18,7 @@ function ShowUser(){
     const nav=useNavigate();
     const[user,setUser]=useState([]);
     useEffect(()=>{
-        fetch("http://localhost:8000/user/showAll", {
+        fetch("http://10.129.241.187:8000/user/showAll", {
             method: "GET",
             credentials:"include"
         })
@@ -47,7 +47,7 @@ function ShowUser(){
     //     }
     // }
     function DeleteUser(username){
-        fetch(`http://localhost:8000/user/delete?username=${username}`,{
+        fetch(`http://10.129.241.187:8000/user/delete?username=${username}`,{
             method:"DELETE",
             credentials:"include"
         })

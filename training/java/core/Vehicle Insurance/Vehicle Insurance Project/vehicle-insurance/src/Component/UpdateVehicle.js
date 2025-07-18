@@ -10,7 +10,7 @@ function UpdateVehicle() {
     const formobj = Object.fromEntries(formData.entries());
     const formDetails=JSON.stringify(formobj);
     console.log(JSON.stringify(formobj),formobj.regNum);
-    fetch(`http://localhost:8000/vehicle/update?vehicleId=${vehicleId}&regNum=${formobj.regNum}&updatedBy=${formobj.updatedBy}`, {
+    fetch(`http://10.129.241.187:8000/vehicle/update?vehicleId=${vehicleId}&regNum=${formobj.regNum}&updatedBy=${formobj.updatedBy}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: formDetails,
