@@ -15,14 +15,14 @@ class Designations(models.Model):
 
 
 class Employees(models.Model):
-	# class DesignationChoices(models.TextChoices):
-	# 	ASE="associate software engineer"
-	# 	JSE="junior software engineer"
-	# 	SSE="senior software engineer"
+	class DesignationChoices(models.TextChoices):
+		ASE="associate software engineer"
+		JSE="junior software engineer"
+		SSE="senior software engineer"
 	emp_id=models.PositiveIntegerField(validators=[MinValueValidator(1000),MaxValueValidator(9999)],primary_key=True)
 	emp_name=models.CharField(max_length=20,blank=False)
 	dob=models.DateField(blank=False,null=True)
-	designation=models.ForeignKey(Designations, on_delete=models.CASCADE)#This is exactly a foreign key can do as well but it can avoid circular dependency
+	designation=models.ForeignKey(Designations, on_delete=models.CASCADE)
 	date_joined=models.DateField(blank=False,default=datetime.today)
 	dept_id=models.ForeignKey(Departments,on_delete=models.CASCADE)
 	# class Meta:
