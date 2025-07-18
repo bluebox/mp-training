@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="application.SampleControllerrid"
+          hgap="10" vgap="10" alignment="center">
+
+    <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Button text="Submit" onAction="#handleButtonClick"
+            GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+</GridPane>
