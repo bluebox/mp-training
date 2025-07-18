@@ -1,0 +1,102 @@
+.admin-dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.tabs button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #de8e49;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tabs button:hover {
+  background-color: #d86d08;
+}
+
+.form-section, .table-section {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-section label, .form-section input, .form-section select {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-section input, .form-section select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-section button {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-section button:hover {
+  background-color: #218838;
+}
+
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table-section th, .table-section td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.table-section th {
+  background-color: #e9ecef;
+}
+
+.table-section button {
+  margin-right: 5px;
+  padding: 4px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.table-section button:first-of-type {
+  background-color: #17a2b8;
+}
+
+.table-section button:last-of-type {
+  background-color: #dc3545;
+}
+
+.table-section button:hover {
+  opacity: 0.85;
+}
+
+button.active-button {
+  background-color: #4CAF50; 
+  color: rgb(18, 17, 17);
+  cursor: pointer;
+}
+
+button.disabled-button {
+  background-color: #D3D3D3; 
+  color: #7a7777;  
+  cursor: not-allowed;
+}

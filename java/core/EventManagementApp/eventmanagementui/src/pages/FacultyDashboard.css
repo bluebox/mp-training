@@ -1,0 +1,89 @@
+/* FacultyDashboard.css */
+
+.faculty-dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.faculty-dashboard h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.faculty-dashboard .section-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.faculty-dashboard .section-buttons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #e5933c;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.faculty-dashboard .section-buttons button:hover {
+  background-color: #bf6505;
+}
+
+.faculty-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.faculty-dashboard th, .faculty-dashboard td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.faculty-dashboard th {
+  background-color: #f2f2f2;
+}
+
+.faculty-dashboard input[type="number"] {
+  padding: 8px;
+  margin-right: 10px;
+  width: 200px;
+}
+
+.faculty-dashboard .action-buttons {
+  margin-top: 10px;
+}
+
+.faculty-dashboard .action-buttons button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.faculty-dashboard .action-buttons button:hover {
+  background-color: #1e7e34;
+}
+
+.faculty-dashboard .print-button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.faculty-dashboard .print-button:hover {
+  background-color: #5a6268;
+}
