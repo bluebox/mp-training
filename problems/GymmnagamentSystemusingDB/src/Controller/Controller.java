@@ -23,6 +23,8 @@ public class Controller {
     			 String name=sc.nextLine();
     			 System.out.println("Enter age of the person:");
     			 int age=Integer.parseInt(sc.nextLine());
+				 if(age<0){  throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+     }
     			 ServiceLayer.addMemeber(name,age);
 			 }catch(Exception e){
 		       System.out.println("Enter valid credentials");
