@@ -30,7 +30,7 @@ public class DataBaseConnector {
 
     private static final String username = "root";
     private static final String password = "root";
-    private static final String url = "jdbc:mysql://127.0.0.1:3306/GYM?user=root&password=root"; 
+    private static final String url = "jdbc:mysql://127.0.0.1:3306/GYM"; 
 
     public static Connection createConnection() throws ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
