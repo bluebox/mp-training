@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?> 
+<?import javafx.scene.control.Button?>
+
+<GridPane fx:controller="application.MainController"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx"  alignment="center" hgap="10" vgap="10"
+	 gridLinesVisible="true">
+	 
+	<!-- <Label text="Welcome to JavaFX!" textFill="green">
+		<font>
+			<Font name="Times New Roman bold" size="70"/>
+		</font>
+	</Label> -->
+	
+	<Button text="Button one" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+	<Button text="Button Two" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+	<Button text="Button Three" GridPane.rowIndex="1" GridPane.columnIndex="0"/>	
+	<Button text="Button Four" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+	<Button text="Button Five" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+	
+	
+	
+	
+	
+	
+</GridPane>
