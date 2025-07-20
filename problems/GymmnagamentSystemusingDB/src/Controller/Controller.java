@@ -13,7 +13,7 @@ public class Controller {
     	 System.out.println("welcome to Gym management System please enter your Gym name:");   	
     	 while(true) {
     		 System.out.println("Pass values based on menu provided below:");
-    		 System.out.println("enter 1 to add Member: \n enter 2 to create plan :\n enter 3 to assign plan to existing person: \n enter 4 to exit: \n enter q to remove memeber:"
+    		 System.out.println("enter 1 to add Member: \n enter 2 to create plan :\n enter 3 to assign or change plan to existing person: \n enter 4 to exit: \n enter q to remove memeber:"
     		 		);
     		 String input=sc.nextLine();
     		 switch(input) {
