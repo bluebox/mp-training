@@ -71,7 +71,7 @@ public class Member extends Person{
 	    String joinInfo = joinDate.equals("NA") ? "" : joinDate;
 	    
 	    System.out.printf(
-	        "%-6d %-20s %-4d %-6d %-7d %-20s %-15s%n",
+	        "%-6d %-20s %-4d %-6d %-7d %-10s %-15s%n",
 	        getMemberId(),
 	        getMemberName(),
 	        getMemberAge(),

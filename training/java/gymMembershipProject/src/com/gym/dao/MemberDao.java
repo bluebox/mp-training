@@ -7,9 +7,11 @@ import com.gym.models.Member;
 
 public interface MemberDao {
 	
-	boolean saveToFile(List<Member> members);
+	boolean saveMembers(List<Member> members);
 	boolean saveNewMember(Member member);
-	ArrayList<Member> loadFromFile();
+	boolean updateMember(Member member);
+	boolean deleteMember(int memberId);
+	ArrayList<Member> loadMembers();
 	
 }
 

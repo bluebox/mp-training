@@ -3,15 +3,15 @@ package com.gym.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.gym.service.Gym;
+import com.gym.service.GymServiceImpl;
 
 public class Utils {
 	
 	static Scanner sc;
-	static Gym gym;
+	static GymServiceImpl gym;
 	
 	static {
-		gym = new Gym();
+		gym = new GymServiceImpl();
 		 sc = new Scanner(System.in);
 	}
 

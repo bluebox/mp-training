@@ -1,8 +1,1 @@
-6,pavan,25,190,70,Gold,01-03-2026
-7,Dasu,20,200,70,Premium,01-01-2026
-8,Darsh,30,120,60,Premium,01-02-2004
-9,poe,20,170,60,Premium,01-02-2025
-10,daw,32,100,40,NoPlan,NA
-11,dasu,20,120,30,Gold,20-08-2025
-12,greeshma,27,190,80,Basic,01-02-2025
-13,sss,12,165,20,NoPlan,NA
+1,dasu,120,200,200,NoPlan,NA

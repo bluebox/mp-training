@@ -6,21 +6,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gym.dao.MemberDao;
-import com.gym.dao.MemberFileDao;
+import com.gym.dao.MemberSqlDaoImpl;
+import com.gym.exceptions.InvalidDateException;
 import com.gym.models.Member;
 import com.gym.models.MembershipPlan;
 
-//add object validation in service
-//file handling exception handling in main (throw error from dao handle in service)
 
-
-//TODO : make a gym service interface and implement on top of it
-
-public class Gym {
+public class GymServiceImpl implements GymService {
     
     private static ArrayList<MembershipPlan> plans ;
-    private MemberDao memberDao;
+    private MemberSqlDaoImpl memberDao;
     
     static {
     	plans = new ArrayList<>();
@@ -28,11 +23,12 @@ public class Gym {
         plans.add(new MembershipPlan("Premium", 6, 8000));
         plans.add(new MembershipPlan("Gold", 12, 12000));
     }
-
-    public Gym() {
-    	memberDao = new MemberFileDao();
+    
+    public GymServiceImpl() {
+    	memberDao = new MemberSqlDaoImpl();
     }
 
+    @Override
     public void addNewMember(Member newMember) {
     	//if addNewMember is being accessed externally ,from anywhere other than our main this is the failsafe check
     	if(!validateNewMember(newMember)) {
@@ -45,8 +41,9 @@ public class Gym {
         else
         	System.out.println("Couldn't Register user :( \n");
     }
-
-    private boolean validateNewMember(Member newMember) {
+    
+    @Override
+    public boolean validateNewMember(Member newMember) {
 		if(newMember.getAge() < 12 || newMember.getAge() > 120) {
 			return false;
 		}
@@ -59,8 +56,9 @@ public class Gym {
 		return true;
 	}
     
+    @Override
 	public void showAllMembers() {
-    	List<Member> members = memberDao.loadFromFile();
+    	List<Member> members = memberDao.loadMembers() ;
     	if(members.isEmpty()) {
     		System.out.println("\nno members exist in the database\n");
     		return;
@@ -68,7 +66,7 @@ public class Gym {
     	
         System.out.println("\n=========================== Current Members =============================");
         System.out.printf(
-    	        "%-6s %-20s %-4s %-6s %-7s %-20s %-15s%n",
+    	        "%-6s %-20s %-4s %-6s %-7s %-10s %-15s%n",
     	        "ID", "Name", "Age", "Height", "Weight", "Plan", "Joining Date"
     	    );
         for (Member member : members) {
@@ -84,12 +82,13 @@ public class Gym {
         }
     }
     
+    @Override
     public void assignPlanToMember(int memberId, int planId,String date) throws InvalidDateException {
-    	List<Member> members = memberDao.loadFromFile();
-        for (Member x : members) {
-            if (x.getMemberId() == memberId) {
+    	List<Member> members = memberDao.loadMembers();
+        for (Member member : members) {
+            if (member.getMemberId() == memberId) {
             	MembershipPlan targetPlan = plans.get(planId-1);
-            	MembershipPlan currentPlan = x.getMembershipPlan();
+            	MembershipPlan currentPlan = member.getMembershipPlan();
             	
             	if(currentPlan != null) {
             	if(currentPlan.getFee() > targetPlan.getFee()) {
@@ -108,10 +107,9 @@ public class Gym {
             		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             		            		
                     LocalDate currDate = LocalDate.parse(date, formatter);
-                    LocalDate prevDate = LocalDate.parse(x.getJoinDate(), formatter);
+                    LocalDate prevDate = LocalDate.parse(member.getJoinDate(), formatter);
                                      
                     if(prevDate.isAfter(currDate)) {
-                    	System.out.println("Cannot enter date earlier than the previous date\n");
                     	throw new InvalidDateException("The date you entered is invalid");
                     }
                     
@@ -127,10 +125,10 @@ public class Gym {
                     	return;
                     }
             	}
-                x.setMemPlan(targetPlan);
-                x.setJoinDate(date);
+                member.setMemPlan(targetPlan);
+                member.setJoinDate(date);
                 System.out.println("Successfully assigned plan to user!\n");
-                memberDao.saveToFile((ArrayList<Member>) members);
+                memberDao.updateMember(member);
                 return ;
             }
         }
@@ -143,11 +141,11 @@ public class Gym {
     }
 
     public ArrayList<Member> getMembers() {
-        return memberDao.loadFromFile();
+        return memberDao.loadMembers();
     }
 
     public Member getMemberById(int id) {
-    	List<Member> members = memberDao.loadFromFile();
+    	List<Member> members = memberDao.loadMembers();
     	for(Member member : members) {
     		if(member.getMemberId() == id) {
     			return member;
@@ -157,40 +155,10 @@ public class Gym {
     	return null;
     }
     
-    
-    
-    public void deleteMember(int idToDelete) {
-    	List<Member> members = memberDao.loadFromFile();
-    	
-        if (members.isEmpty()) {
-            System.out.println("No members to delete.\n");
-            return;
-        }
-
-       
-        boolean found = false;
-
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getMemberId() == idToDelete) {
-                members.remove(i);
-                found = true;
-                System.out.println("Member deleted successfully!\n");
-                memberDao.saveToFile(members); //Save after deleting
-                break;
-            }
-        }
-        
-        if (!found) {
-            System.out.println("Member with ID " + idToDelete + " not found.\n");
-        }
+    @Override
+    public boolean deleteMember(int idToDelete) {
+    	return memberDao.deleteMember(idToDelete);
     }
 }
 
 
-class InvalidDateException extends Exception{
-	private static final long serialVersionUID = 1L;
-
-	public InvalidDateException(String message) {
-		super(message);
-	}
-}

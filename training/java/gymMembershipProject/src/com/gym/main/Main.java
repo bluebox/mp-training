@@ -2,12 +2,14 @@ package com.gym.main;
 
 import java.util.Scanner;
 
+import com.gym.exceptions.InvalidDateException;
 import com.gym.models.Member;
-import com.gym.service.Gym;
+import com.gym.service.GymServiceImpl;
 
 public class Main {
 	public static void main(String[] args) {
-		Gym gym = new Gym();
+		GymServiceImpl gym = new GymServiceImpl();
+		
 		Scanner sc = new Scanner(System.in);
 		boolean quit = false;
 
@@ -49,9 +51,8 @@ public class Main {
 				
 				try {
 					gym.assignPlanToMember(memId, planId, date);
-				} catch (Exception e) {
-					//TODO : handle exception better
-					System.out.println("Invalid date exception");
+				} catch (InvalidDateException e) {
+					System.out.println("Cannot enter date earlier than the previous date\n");
 				}
 				
 				break;
@@ -59,8 +60,13 @@ public class Main {
 			// Remove member
 			case "4":
 				int memberId = Utils.takeMemberIdForDeleteInput();
-				gym.deleteMember(memberId);
-				
+				boolean isDeleted = gym.deleteMember(memberId);
+				if(isDeleted) {
+					System.out.println("Successfully deleted member\n");
+				}else {
+					System.out.println("Cannot delete the user\n");
+				}
+				break;
 			case "q":
 				quit = true;
 				break;
