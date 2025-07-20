@@ -18,14 +18,20 @@ public class Controller {
     		 String input=sc.nextLine();
     		 switch(input) {
     		 case "1":{
+			 try{
     			 System.out.println("Enter name of the person:");
     			 String name=sc.nextLine();
     			 System.out.println("Enter age of the person:");
     			 int age=Integer.parseInt(sc.nextLine());
     			 ServiceLayer.addMemeber(name,age);
+			 }catch(Exception e){
+		       System.out.println("Enter valid credentials");
+			break;
+			 }
     			 break;
     		 }
     		 case "2":{
+			 try{
     			 System.out.println("Enter name of the Plan:");
     			 String name=sc.nextLine();
     			 System.out.println("Enter fee details of the Plan:");
@@ -33,6 +39,10 @@ public class Controller {
     			 System.out.println("Enter Duration details of the Plan in months:");
     			 int durationInMonths=Integer.parseInt(sc.nextLine());
     			 ServiceLayer.addPlan(name,fee,durationInMonths);
+			 }catch(Exception e){
+		       System.out.println("Enter valid credentials");
+			break;
+			 }
     			 break;
     		 }
     		 case "3":{
