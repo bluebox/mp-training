@@ -29,7 +29,7 @@ public class GymController {
             choice=options[option];
             
             switch (choice) {
-            	case IMPORT_MEMBERS: gymService.loadMembersFromFileProcedure();
+            	case IMPORT_MEMBERS: gymService.addNewMembershipPlan();
                 	break;
                 case ENROLL_MEMBER:
                 	gymService.enrollNewMemberProcedure();
@@ -58,7 +58,7 @@ public class GymController {
 
     private void displayMainMenu() {
         System.out.println("--- Main Menu ---");
-        System.out.println("0. Import Members From a File");
+        System.out.println("0. Add a New Plan");
         System.out.println("1. Enroll a New Member");
         System.out.println("2. Cancel Membership");
         System.out.println("3. View All Registered Members");

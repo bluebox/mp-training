@@ -3,18 +3,16 @@ package gym.membership_Management.model;
 public class Member extends Person{
 	private int membershipId;
 	private MembershipPlan plan;
-	private static int id=1;
 	private MemberStatus status;
     private String removalReason;
-	
-	public Member(String name,int age,MembershipPlan subscribedPlan) {
-		super(name,age);
-		this.membershipId=id++;
-		this.plan=subscribedPlan;
-		this.status = MemberStatus.ACTIVE;
+   
+	public Member(String name, int age, MembershipPlan subscribedPlan) {
+        super(name, age);
+        this.plan = subscribedPlan;
+        this.status = MemberStatus.ACTIVE;
         this.removalReason = null;
-	}
-	
+    }
+    
 	public Member(int membershipId, String name, int age, MembershipPlan subscribedPlan, MemberStatus status,String removalReason) {
         super(name, age);
         this.membershipId = membershipId;
@@ -22,7 +20,11 @@ public class Member extends Person{
         this.status = status;
         this.removalReason = removalReason;
     }
-	
+	 
+    public void setMembershipId(int membershipId) {
+		this.membershipId = membershipId;
+	}
+    
 	public int getMembershipId() {
 		return membershipId;
 	}

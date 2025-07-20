@@ -281,23 +281,33 @@ public class GymService {
         }
     }
     
-    public void loadMembersFromFileProcedure() {
-        System.out.println("--- Importing Members from External File ---");
-        //System.out.print("Enter the path to the member data file");
-        String filePath = "D:/membersData";
-
-        try {
-            int importedCount = importMembersFromFile(filePath);
-            if (importedCount > 0) {
-                System.out.println("Successfully imported " + importedCount + " members from " + filePath + ".");
-            } else {
-                System.out.println("No members were imported from " + filePath + ". Check file content or path.");
-            }
-        } catch (IOException e) {
-            System.err.println("Error importing members from file: " + e.getMessage());
-            System.out.println("Please ensure the file path is correct and the file is accessible.");
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred during import: " + e.getMessage());
-        }
+    public void addNewMembershipPlan() {
+    	System.out.println("Enter The Name Of Your New Plan: ");
+    	String name=sc.next();
+    	System.out.println("Enter The Validity Of The Plan(In Days)");
+    	int duration=sc.nextInt();
+    	System.out.println("Enter Price Of The New Plan");
+    	double price=sc.nextDouble();
+    	MembershipPlan plan=new MembershipPlan(name,duration,price);
+    	planDao.addPlan(plan);
     }
+    
+	/*
+	 * public void loadMembersFromFileProcedure() {
+	 * System.out.println("--- Importing Members from External File ---");
+	 * //System.out.print("Enter the path to the member data file"); String filePath
+	 * = "D:/membersData";
+	 * 
+	 * try { int importedCount = importMembersFromFile(filePath); if (importedCount
+	 * > 0) { System.out.println("Successfully imported " + importedCount +
+	 * " members from " + filePath + "."); } else {
+	 * System.out.println("No members were imported from " + filePath +
+	 * ". Check file content or path."); } } catch (IOException e) {
+	 * System.err.println("Error importing members from file: " + e.getMessage());
+	 * System.out.
+	 * println("Please ensure the file path is correct and the file is accessible."
+	 * ); } catch (Exception e) {
+	 * System.err.println("An unexpected error occurred during import: " +
+	 * e.getMessage()); } }
+	 */
 }
