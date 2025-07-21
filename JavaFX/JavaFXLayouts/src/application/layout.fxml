@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.layout.VBox ?>
+<?import javafx.scene.layout.BorderPane ?>
+<?import javafx.scene.layout.FlowPane ?>
+<?import javafx.scene.layout.TilePane ?>
+
+
+
+<?import javafx.geometry.Insets	 ?>
+
+<?import javafx.scene.control.Button?>
+
+
+<!-- <GridPane fx:controller="application.controller"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx"  alignment="center" hgap="10" vgap="10"
+	gridLinesVisible="true">
+	
+	<Button text="Button one" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+	<Button text="Button Two" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+	<Button text="Button Three" GridPane.rowIndex="1" GridPane.columnIndex="0"/>	
+	<Button text="Button Four" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+	<Button text="Button Five" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+
+</GridPane> -->
+
+<!-- <HBox fx:controller="application.controller"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx"  alignment="center" spacing="10">
+	
+	<Button text="Button one" />
+	<Button text="Button Two" />
+	<Button text="Button Three" />	
+	<Button text="Button Four" />
+	<Button text="Button Five"/>
+
+</HBox> -->
+
+<!-- <VBox fx:controller="application.controller"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx"  alignment="center" spacing="10">
+	
+	<Button text="Button one" />
+	<Button text="Button Two" />
+	<Button text="Button Three" />	
+	<Button text="Button Four" />
+	<Button text="Button Five"/>
+
+</VBox> -->
+
+<!-- <BorderPane fx:controller="application.controller"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx">
+	
+	<padding>
+        <Insets top="50" right="50" bottom="50" left="50"/>
+    </padding>
+	
+	
+	<bottom>
+	<Button text="Button one" />	
+	</bottom>
+	
+	<center>
+	<Button text="Button Two" />
+	</center>
+
+	<left>
+	<Button text="Button Three" />	
+	</left>	
+	
+	<right>
+	<Button text="Button Four" />
+	</right>
+	
+	<top>
+	<Button text="Button Five"/>
+	</top>
+
+</BorderPane> -->
+
+<!-- <FlowPane fx:controller="application.controller"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx"  alignment="center">
+	
+	<Button text="Button one" />
+	<Button text="Button Two" />
+	<Button text="Button Three" />	
+	<Button text="Button Four" />
+	<Button text="Button Five"/>
+
+</FlowPane> -->
+
+<TilePane fx:controller="application.controller"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx"  alignment="center">
+	
+	<Button text="Button one" />
+	<Button text="Button Two" />
+	<Button text="Button Three" />	
+	<Button text="Button Four" />
+	<Button text="Button Five"/>
+
+</TilePane>
