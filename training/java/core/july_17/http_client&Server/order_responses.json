@@ -1,0 +1,23 @@
+[
+{
+  "received": {
+    "product": "apple",
+    "orderId": "101"
+  },
+  "message": "Order received"
+},
+{
+  "received": {
+    "product": "banana",
+    "orderId": "102"
+  },
+  "message": "Order received"
+},
+{
+  "received": {
+    "product": "cherry",
+    "orderId": "103"
+  },
+  "message": "Order received"
+}
+]
