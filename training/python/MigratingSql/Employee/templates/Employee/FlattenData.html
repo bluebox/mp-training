@@ -1,0 +1,30 @@
+from django.forms.models import model_to_dict
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ViewData</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Optional: CSS links or styles -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+    </style>
+</head>
+<body>
+
+<ul>
+{% for record in table_contents%}
+<li>
+{% for key in model_to_dict(record)%}
+<p>record.get(key)</p>
+{%endfor%}
+</li>
+{%endfor%}
+</ul>
+
+</body>
+</html>
+
+
+
+

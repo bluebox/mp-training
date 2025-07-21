@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Employee.views import Populate,ExecuteRead,UpdateData,DeleteData
+from Employee.views import Populate,ExecuteRead,UpdateData,DeleteData,LoginPage,ExecuteReadSpecific
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create/',Populate, name="create_path"),
-    path('read/',ExecuteRead, name="read_path"),
-    path('update/', UpdateData, name="update_path"),
-    path('delete/', DeleteData, name="delete_path")
+    path('create/',Populate.as_view(), name="create_path"),
+    path('read/<str:Table>/',ExecuteRead.as_view(), name="read_path"),
+    path('read/<str:Table>/<int:id>/',ExecuteReadSpecific.as_view(), name="read_specific_path"),
+    path('update/<str:Table>/<int:id>/', UpdateData.as_view(), name="update_path"),
+    path('delete/<str:Table>/<int:id>', DeleteData.as_view(), name="delete_path"),
+    path('<str:Name>/',LoginPage.as_view(),name="login_path")
 ]
