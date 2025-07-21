@@ -26,18 +26,6 @@ public class MemberDAO {
 	    }
 	    return null;
 	}
-
-	public void addMember(Member member) {
-		String sql = "INSERT INTO members (name, age) VALUES (?, ?)";
-	    try (Connection conn = DBConnection.getConnection();
-	         PreparedStatement stmt = conn.prepareStatement(sql)) {
-	        stmt.setString(1, member.getName());
-	        stmt.setInt(2, member.getAge());
-	        stmt.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	}
 	
 	public List<Member> getAllMembers() {
 		List<Member> list = new ArrayList<>();
@@ -54,7 +42,17 @@ public class MemberDAO {
 		return list;
 	}
 
-	
+	public void addMember(Member member) {
+		String sql = "INSERT INTO members (name, age) VALUES (?, ?)";
+	    try (Connection conn = DBConnection.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql)) {
+	        stmt.setString(1, member.getName());
+	        stmt.setInt(2, member.getAge());
+	        stmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}	
 
 	public void deleteMember(int id) {
 		String sql = "DELETE FROM members WHERE member_id = ?";

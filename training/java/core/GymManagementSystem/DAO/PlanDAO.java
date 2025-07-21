@@ -27,21 +27,6 @@ public class PlanDAO {
 	    }
 	    return null;
 	}
-
-	public boolean addPlan(MembershipPlan plan) {
-		String sql = "INSERT INTO membership_plans (plan_name, duration_months, fee) VALUES (?, ?, ?)";
-		try (Connection conn = DBConnection.getConnection(); 
-				PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, plan.getPlanName());
-			stmt.setInt(2, plan.getDurationMonths());
-			stmt.setDouble(3, plan.getFee());
-			int rowsInserted = stmt.executeUpdate();
-			return rowsInserted > 0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
 	
 	public List<MembershipPlan> getAllPlans() {
 		List<MembershipPlan> plans = new ArrayList<>();
@@ -59,5 +44,56 @@ public class PlanDAO {
 		return plans;
 	}
 
-	
+	public boolean addPlan(MembershipPlan plan) {
+		String sql = "INSERT INTO membership_plans (plan_name, duration_months, fee) VALUES (?, ?, ?)";
+		try (Connection conn = DBConnection.getConnection(); 
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, plan.getPlanName());
+			stmt.setInt(2, plan.getDurationMonths());
+			stmt.setDouble(3, plan.getFee());
+			int rowsInserted = stmt.executeUpdate();
+			return rowsInserted > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public void deletePlan(int id) {
+		String sql = "DELETE FROM membership_plans WHERE plan_id = ?";
+		try (Connection conn = DBConnection.getConnection(); 
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+//			stmt.executeUpdate();
+			int rowsAffected = stmt.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Plan deleted successfully.");
+	        } else {
+	            System.out.println("No plan found with ID: " + id);
+	        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updatePlan(MembershipPlan plan) {
+		String sql = "UPDATE membership_plans SET plan_name = ?, duration_months = ?, fee = ? WHERE plan_id = ?";
+		try (Connection conn = DBConnection.getConnection(); 
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, plan.getPlanName());
+			stmt.setInt(2, plan.getDurationMonths());
+			stmt.setDouble(3, plan.getFee());
+			stmt.setInt(4, plan.getPlanId());
+//			stmt.executeUpdate();
+			int rowsAffected = stmt.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Plan updated successfully.");
+	        } else {
+	            System.out.println("No plan found with ID: " + plan.getPlanId());
+	        }
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

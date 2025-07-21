@@ -2,7 +2,6 @@ package GymManagementSystem.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 import GymManagementSystem.DAO.MemberDAO;
 import GymManagementSystem.DAO.MemberPlanDAO;
@@ -15,14 +14,12 @@ public class GymService {
 	private MemberDAO memberDAO;
 	private PlanDAO planDAO;
 	private MemberPlanDAO memberPlanDAO;
-	private Scanner scanner;
 	private InputValidation val;
 
 	public GymService() {
 		memberDAO = new MemberDAO();
 		planDAO = new PlanDAO();
 		memberPlanDAO = new MemberPlanDAO();
-		scanner = new Scanner(System.in);
 		val = new InputValidation();
 	}
 	
@@ -32,6 +29,10 @@ public class GymService {
 	
 	private boolean isValidPlanId(int planId) {
 	    return planDAO.getPlanById(planId) != null;
+	}
+	
+	private boolean isValidMemberPlanId(int memberId) {
+	    return memberPlanDAO.getMemberPlanById(memberId) != null;
 	}
 
 	public void addMember() {
@@ -78,19 +79,7 @@ public class GymService {
 	        System.out.println("Plan ID not found. Please enter a valid ID.");
 	        return;
 	    }
-		System.out.print("Enter start date (yyyy-mm-dd): ");
-		String dateStr = scanner.next();
-	    LocalDate startDate;
-	    try {
-	        startDate = LocalDate.parse(dateStr); // Validates format
-	        if (startDate.isAfter(LocalDate.now())) {
-	            System.out.println("Start date cannot be in the future.");
-	            return;
-	        }
-	    } catch (Exception e) {
-	        System.out.println("Invalid date format. Please enter date as yyyy-mm-dd.");
-	        return;
-	    }
+	    LocalDate startDate = val.getDateInput("Enter start date (yyyy-mm-dd): ");
 	    MemberPlan mapping = new MemberPlan(memberId, planId, startDate);
 	    memberPlanDAO.assignPlan(mapping);
 	}
@@ -135,7 +124,7 @@ public class GymService {
 		int duration = val.getIntInput("Enter new duration: ");
 		double fee = val.getDoubleInput("Enter new fee: ");
 		MembershipPlan plan = new MembershipPlan(planId, name, duration, fee);
-		memberPlanDAO.updatePlan(plan);
+		planDAO.updatePlan(plan);
 	}
 
 	public void deletePlan() {
@@ -144,10 +133,31 @@ public class GymService {
 			System.out.println("Plan ID not found. Please enter a valid ID.");
 			return;
 		}
-		memberPlanDAO.deletePlan(memberId);
+		planDAO.deletePlan(memberId);
 	}
 	
 	public void getReport() {
 		memberPlanDAO.viewFullReport();
+	}
+	
+	public void updateMembership() {
+		int memberId = val.getIntInput("Enter member ID to update: ");
+		if (!isValidMemberPlanId(memberId)) {
+			System.out.println("Member ID not found. Please enter a valid ID.");
+			return;
+		}
+		int planId = val.getIntInput("Enter new plan Id: ");
+		LocalDate date = val.getDateInput("Enter new date: ");
+		MemberPlan plan = new MemberPlan(memberId, planId, date);
+		memberPlanDAO.updateMembership(plan);
+	}
+
+	public void deleteMembership() {
+		int memberId = val.getIntInput("Enter member ID to delete: ");
+		if (!isValidMemberPlanId(memberId)) {
+			System.out.println("Member ID not found. Please enter a valid ID.");
+			return;
+		}
+		memberPlanDAO.deleteMembership(memberId);
 	}
 }
