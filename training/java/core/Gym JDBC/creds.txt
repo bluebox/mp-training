@@ -1,0 +1,4 @@
+jdbc:mysql://localhost:3306/gym_db
+devuser
+Vardhan@123
+
