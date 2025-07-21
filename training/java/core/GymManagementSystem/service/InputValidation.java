@@ -3,8 +3,15 @@ package GymManagementSystem.service;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import GymManagementSystem.DAO.MemberDAO;
+import GymManagementSystem.DAO.MemberPlanDAO;
+import GymManagementSystem.DAO.PlanDAO;
+
 public class InputValidation {
 	private static Scanner scanner = new Scanner(System.in);
+	private MemberPlanDAO memberPlanDAO = new MemberPlanDAO();
+	private MemberDAO memberDAO = new MemberDAO();
+	private PlanDAO planDAO = new PlanDAO();
 
 	public int getIntInput(String prompt) {
 		while (true) {
@@ -73,5 +80,17 @@ public class InputValidation {
 				// return;
 			}
 		}
+	}
+	
+	public boolean isValidMemberPlanId(int memberId) {
+	    return memberPlanDAO.getMemberPlanById(memberId) != null;
+	}
+	
+	public boolean isValidMemberId(int memberId) {
+	    return memberDAO.getMemberById(memberId) != null;
+	}
+	
+	public boolean isValidPlanId(int planId) {
+	    return planDAO.getPlanById(planId) != null;
 	}
 }

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import GymManagementSystem.service.CSVExport;
 import GymManagementSystem.models.Member;
 import GymManagementSystem.models.MemberPlan;
 
@@ -149,13 +150,13 @@ public class MemberPlanDAO {
 		try (Connection conn = DBConnection.getConnection();
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				ResultSet rs = stmt.executeQuery()) {
-
+			List<String[]> output = new ArrayList<>();
+			output.add(new String[]{"memberId", "name", "age", "planId", "planName", "duration", "price", "startDate"});
 			System.out.println("\n===== Member - Plan Report =====");
 			while (rs.next()) {
 				int memberId = rs.getInt("member_id");
 				String name = rs.getString("name");
 				int age = rs.getInt("age");
-
 				int planId = rs.getInt("plan_id");
 				String planName = rs.getString("plan_name");
 				int duration = rs.getInt("duration_months");
@@ -174,6 +175,42 @@ public class MemberPlanDAO {
 						-----------------------------
 						""", memberId, name, age, planId, planName, duration, price, startDate);
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void ExportFullReport() {
+		String sql = """
+				    SELECT m.member_id, m.name, m.age,
+				           p.plan_id, p.plan_name, p.duration_months, p.fee,
+				           mp.start_date
+				    FROM member_plan_mapping mp
+				    JOIN members m ON mp.member_id = m.member_id
+				    JOIN membership_plans p ON mp.plan_id = p.plan_id
+				    ORDER BY m.member_id
+				""";
+
+		try (Connection conn = DBConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+			List<String[]> output = new ArrayList<>();
+			output.add(new String[]{"memberId", "name", "age", "planId", "planName", "duration", "price", "startDate"});
+			while (rs.next()) {
+				int memberId = rs.getInt("member_id");
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				int planId = rs.getInt("plan_id");
+				String planName = rs.getString("plan_name");
+				int duration = rs.getInt("duration_months");
+				double price = rs.getDouble("fee");
+				LocalDate startDate = rs.getDate("start_date").toLocalDate();				
+				output.add(new String[]{
+						String.valueOf(memberId), name, String.valueOf(age), String.valueOf(planId), planName, String.valueOf(duration), String.valueOf(price), startDate.toString()
+	                });
+			}
+		    CSVExport.exportToCSV("C:\\Users\\DELL\\OneDrive\\Desktop\\Medplus\\Java\\Assignment\\src\\GymManagementSystem\\gym_report.csv", output);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
