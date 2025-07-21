@@ -1,0 +1,28 @@
+package model;
+public class Member {
+    private String id;
+    private String name;
+    private int age;
+    private int planId;
+    public Member(String id, String name, int age, int planId) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.planId = planId;
+    }
+    public String getId() { 
+    	return id; 
+    }
+    public String getName() { 
+    	return name; 
+    }
+    public int getAge() {
+    	return age; 
+    }
+    public int getPlanId() {
+    	return planId; 
+    }
+    public String toString() {
+        return "ID: " + id + ", Name: " + name + ", Age: " + age + ", Plan ID: " + planId;
+    }
+}
