@@ -1,6 +1,7 @@
 package com.Main;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import com.Service.Gym;
 import com.Class.Gym_Member;
@@ -38,8 +39,11 @@ public class Gym_Main {
                         String gender = sc.nextLine();
                         System.out.print("Email: ");
                         String email = sc.nextLine();
-                        System.out.print("Joining Date (YYYY-MM-DD): ");
-                        LocalDate joiningDate = LocalDate.parse(sc.nextLine());
+                        System.out.print("Joining Date (DD-MM-YYYY): ");
+                        String dateStr = sc.nextLine();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                        LocalDate joiningDate = LocalDate.parse(dateStr, formatter);
+
 
                         Gym_Member member = new Gym_Member(id, name, age, gender, email, "No Plan", joiningDate);
                         gymService.addMember(member);

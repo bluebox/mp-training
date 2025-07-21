@@ -23,6 +23,5 @@ public abstract class Gym_Person {
     public void setGender(String gender) { this.gender = gender; }
     public void setEmail(String email) { this.email = email; }
 
-    // Abstract method to be implemented by subclasses
     public abstract void showDetails();
 }

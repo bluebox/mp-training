@@ -1,6 +1,7 @@
 package com.Class;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Gym_Member extends Gym_Person {
     private String id;
@@ -10,14 +11,13 @@ public class Gym_Member extends Gym_Person {
 
     public Gym_Member(String id, String name, int age, String gender, String email,
                       String membershipPlan, LocalDate joiningDate, LocalDate updatedDate) {
-        super(name, age, gender, email);  // call Gym_Person constructor
+        super(name, age, gender, email);
         this.id = id;
         this.membershipPlan = membershipPlan;
         this.joiningDate = joiningDate;
         this.updatedDate = updatedDate;
     }
 
-    // Overloaded constructor: updatedDate = joiningDate
     public Gym_Member(String id, String name, int age, String gender, String email,
                       String membershipPlan, LocalDate joiningDate) {
         this(id, name, age, gender, email, membershipPlan, joiningDate, joiningDate);
@@ -43,13 +43,15 @@ public class Gym_Member extends Gym_Person {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         return "ID: " + id + "\n"
              + "Name: " + getName() + "\n"
              + "Age: " + getAge() + "\n"
              + "Gender: " + getGender() + "\n"
              + "Email: " + getEmail() + "\n"
              + "Plan: " + membershipPlan + "\n"
-             + "Joined: " + joiningDate + "\n"
-             + "Last Updated: " + updatedDate;
+             + "Joined: " + joiningDate.format(formatter) + "\n"
+             + "Last Updated: " + updatedDate.format(formatter);
     }
-}
+
+    }
