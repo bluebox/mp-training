@@ -12,32 +12,27 @@ import java.sql.Statement;
 //import com.mysql.cj.xdevapi.Statement;
 
 public class GymManagementMain {
-	
-	
-
-
 	    public static void main(String[] args) throws SQLException {
 	        String url = "jdbc:mysql://localhost:3306/practice";
 	        String user = "root";
 	        String password = "Gopi@2507";
 
 	        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-
 	            Statement stmt = conn.createStatement();
-
 	            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS MEMBERS (" +
 	                    "id INTEGER AUTO_INCREMENT NOT NULL, " +
 	                    "name VARCHAR(255), " +
 	                    "age INTEGER, " +
 	                    "plan_id INTEGER, " +
 	                    "PRIMARY KEY (id))");
-
+	      //      stmt.executeUpdate("DROP TABLE MEMBERS");
 	            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS MEMBERSHIP_PLAN (" +
 	                    "Membership_id INTEGER AUTO_INCREMENT NOT NULL, " +
 	                    "plan_name VARCHAR(255), " +
 	                    "duration_months INTEGER, " +
 	                    "FEE DECIMAL, " +
 	                    "PRIMARY KEY (Membership_id))");
+	       //     stmt.executeUpdate("DROP TABLE MEMBERSHIP_PLAN");
 
 	            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS MEMBER_PLAN_HISTORY (" +
 	                    "history_id INT AUTO_INCREMENT PRIMARY KEY, " +
@@ -46,35 +41,31 @@ public class GymManagementMain {
 	                    "assigned_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
 	                    "FOREIGN KEY (member_id) REFERENCES MEMBERS(id), " +
 	                    "FOREIGN KEY (plan_id) REFERENCES MEMBERSHIP_PLAN(Membership_id))");
+	            //     stmt.executeUpdate("DROP TABLE MEMBERSHIP_PLAN_HISTORY");
 
 	            ResultSet planCheck = stmt.executeQuery("SELECT COUNT(*) FROM MEMBERSHIP_PLAN");
-	            if (planCheck.next() && planCheck.getInt(1) == 0) {
+            if (planCheck.next() && planCheck.getInt(1) == 0) {
 	                String insertPlan = "INSERT INTO MEMBERSHIP_PLAN(plan_name, duration_months, FEE) VALUES (?, ?, ?)";
 	                PreparedStatement ps = conn.prepareStatement(insertPlan);
-
 	                ps.setString(1, "Basic");
 	                ps.setInt(2, 2);
 	                ps.setDouble(3, 3000);
 	                ps.executeUpdate();
-
+	//            --------------------------------------------------                
 	                ps.setString(1, "Premium");
 	                ps.setInt(2, 6);
 	                ps.setDouble(3, 6000);
 	                ps.executeUpdate();
-
+	//            ----------------------------------------------------                
 	                ps.setString(1, "Gold");
 	                ps.setInt(2, 12);
 	                ps.setDouble(3, 10000);
 	                ps.executeUpdate();
-	            }
-
+            }
 	            Scanner sc = new Scanner(System.in);
 	            int select;
-
 	            System.out.println("Welcome to the Gym Management System");
-
 	            do {
-	                System.out.println("\n===== Menu =====");
 	                System.out.println("1. Add New Member");
 	                System.out.println("2. Assign Membership Plan");
 	                System.out.println("3. View Members");
@@ -82,19 +73,18 @@ public class GymManagementMain {
 	                System.out.println("5. View Member Plan History");
 	                System.out.println("6. Exit");
 	                System.out.print("Choose option: ");
-
 	                try {
 	                    select = Integer.parseInt(sc.nextLine().trim());
-
+	                   // System.out.println("\n");
 	                    switch (select) {
+//----------------------------------------------------------------------------------------------------------------------------------------	                    
 	                        case 1 -> {
 	                            System.out.print("Enter member name: ");
 	                            String name = sc.nextLine().trim();
 	                            if (!name.matches("[a-zA-Z ]+")) {
-	                                System.out.println("Invalid name. Only alphabets allowed.");
+	                                System.out.println("Invalid name or u didn't entered any thing . Only alphabets allowed.");
 	                                break;
 	                            }
-
 	                            System.out.print("Enter member age: ");
 	                            int age;
 	                            try {
@@ -105,18 +95,18 @@ public class GymManagementMain {
 	                                }
 	                            } catch (NumberFormatException e) {
 	                                System.out.println("Invalid age.");
+	                               // System.out.println("\n");
 	                                break;
 	                            }
-
 	                            String insertMember = "INSERT INTO MEMBERS(name, age) VALUES (?, ?)";
-	                            PreparedStatement ps = conn.prepareStatement(insertMember);
-	                            ps.setString(1, name);
-	                            ps.setInt(2, age);
-	                            ps.executeUpdate();
+	                            PreparedStatement ps1 = conn.prepareStatement(insertMember);
+	                            ps1.setString(1, name);
+	                            ps1.setInt(2, age);
+	                            ps1.executeUpdate();
 
-	                            System.out.println("Member added successfully.");
+	                            System.out.println(" Member added successfully.");
 	                        }
-
+//-------------------------------------------------------------------------------------------------------------------------
 	                        case 2 -> {
 	                            System.out.print("Enter Member ID: ");
 	                            int memberId;
@@ -126,7 +116,6 @@ public class GymManagementMain {
 	                                System.out.println("Invalid ID.");
 	                                break;
 	                            }
-
 	                            PreparedStatement checkMember = conn.prepareStatement("SELECT * FROM MEMBERS WHERE id = ?");
 	                            checkMember.setInt(1, memberId);
 	                            ResultSet rs = checkMember.executeQuery();
@@ -134,7 +123,6 @@ public class GymManagementMain {
 	                                System.out.println("Member not found.");
 	                                break;
 	                            }
-
 	                            System.out.print("Enter Plan Name (Basic/Premium/Gold): ");
 	                            String planName = sc.nextLine().trim();
 
@@ -146,9 +134,7 @@ public class GymManagementMain {
 	                                System.out.println("Plan not found.");
 	                                break;
 	                            }
-
 	                            int planId = planRs.getInt("Membership_id");
-
 	                            PreparedStatement assignPlan = conn.prepareStatement("UPDATE MEMBERS SET plan_id = ? WHERE id = ?");
 	                            assignPlan.setInt(1, planId);
 	                            assignPlan.setInt(2, memberId);
@@ -162,8 +148,9 @@ public class GymManagementMain {
 
 	                            System.out.println("Plan assigned successfully.");
 	                        }
-
-	                        case 3 -> {
+//--------------------------------------------------------------------------------------------------------------------------------------------	                        
+	                        case 3 -> 
+	                        {
 	                            ResultSet rs = stmt.executeQuery(
 	                                    "SELECT m.id, m.name, m.age, p.plan_name FROM MEMBERS m " +
 	                                            "LEFT JOIN MEMBERSHIP_PLAN p ON m.plan_id = p.Membership_id");
@@ -181,7 +168,7 @@ public class GymManagementMain {
 
 	                            if (!found) System.out.println("No members registered.");
 	                        }
-
+///---------------------------------------------------------------------------------------------------------------------------------------
 	                        case 4 -> {
 	                            ResultSet rs = stmt.executeQuery("SELECT * FROM MEMBERSHIP_PLAN");
 
@@ -196,15 +183,20 @@ public class GymManagementMain {
 	                                        rs.getDouble("fee"));
 	                            }
 
-	                            if (!hasPlan) System.out.println("No plans found.");
+	                            if (!hasPlan)
+	                            	{
+	                            	System.out.println("No plans found.");
+	                            	
+	                            	}
 	                        }
-
+//-------------------------------------------------------------------------------------------------
 	                        case 5 -> {
 	                            System.out.print("Enter Member ID to view history: ");
 	                            int mid;
 	                            try {
 	                                mid = Integer.parseInt(sc.nextLine());
-	                            } catch (NumberFormatException e) {
+	                            } catch (NumberFormatException e)
+	                            {
 	                                System.out.println("Invalid Member ID.");
 	                                break;
 	                            }
@@ -225,18 +217,21 @@ public class GymManagementMain {
 	                                        historyRs.getString("plan_name"));
 	                            }
 
-	                            if (!hasHistory) System.out.println("No plan history for this member.");
-	                        }
-
+	                            if (!hasHistory) 
+	                            	{System.out.println("No plan history for this member.");
+	                            	}
+	                            	}
+	     
 	                        case 6 -> System.out.println("Exiting. Thank you!");
 
 	                        default -> System.out.println("Invalid choice. Choose between 1 to 6.");
 	                    }
 
 	                } catch (Exception e) {
-	                    System.out.println("Error: not entered anything " + e.getMessage());
+	                    System.out.println(" Not entered anything  or entered other than numbers " + e.getMessage());
 	                    select = 0;
 	                }
+	                System.out.println("\n");
 
 	            } while (select != 6);
 
