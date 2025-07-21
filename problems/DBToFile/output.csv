@@ -1,0 +1,265 @@
+employee_id,name,department,project_id,date,task_category,hours_worked,remarks
+EMP001,John Doe,Devops,PROJ1001,2025-05-01,Bug Fixing,4.80,Updated documentation
+EMP001,John Doe,Devops,PROJ1003,2025-05-02,Development,5.50,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1002,2025-05-05,Development,5.50,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1004,2025-05-06,Development,1.70,Attended sprint planning
+EMP001,John Doe,Devops,PROJ1002,2025-05-07,Documentation,7.80,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1004,2025-05-08,Bug Fixing,5.60,Refactored module code
+EMP001,John Doe,Devops,PROJ1004,2025-05-09,Development,4.10,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1004,2025-05-12,Bug Fixing,4.70,Updated documentation
+EMP001,John Doe,Devops,PROJ1003,2025-05-13,Bug Fixing,6.70,Attended sprint planning
+EMP001,John Doe,Devops,PROJ1002,2025-05-14,Bug Fixing,5.20,Refactored module code
+EMP001,John Doe,Devops,PROJ1002,2025-05-15,Documentation,5.00,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1003,2025-05-16,Bug Fixing,7.70,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1002,2025-05-19,Bug Fixing,3.50,Refactored module code
+EMP001,John Doe,Devops,PROJ1004,2025-05-20,Development,3.90,Refactored module code
+EMP001,John Doe,Devops,PROJ1004,2025-05-21,Bug Fixing,5.70,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1003,2025-05-22,Development,7.70,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1003,2025-05-23,Documentation,5.80,Updated documentation
+EMP001,John Doe,Devops,PROJ1003,2025-05-26,Bug Fixing,3.70,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1001,2025-05-27,Documentation,4.10,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1002,2025-05-28,Development,7.80,Updated documentation
+EMP001,John Doe,Devops,PROJ1004,2025-05-29,Documentation,3.20,Refactored module code
+EMP001,John Doe,Devops,PROJ1004,2025-05-30,Documentation,5.90,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1001,2025-06-02,Bug Fixing,5.30,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1002,2025-06-03,Development,6.70,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1001,2025-06-04,Bug Fixing,3.10,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1004,2025-06-05,Documentation,4.50,Attended sprint planning
+EMP001,John Doe,Devops,PROJ1003,2025-06-06,Bug Fixing,4.80,Updated documentation
+EMP001,John Doe,Devops,PROJ1004,2025-06-09,Bug Fixing,4.40,Attended sprint planning
+EMP001,John Doe,Devops,PROJ1003,2025-06-10,Development,6.70,Updated documentation
+EMP001,John Doe,Devops,PROJ1004,2025-06-11,Bug Fixing,4.30,Attended sprint planning
+EMP001,John Doe,Devops,PROJ1002,2025-06-12,Documentation,7.30,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1003,2025-06-13,Bug Fixing,5.30,Refactored module code
+EMP001,John Doe,Devops,PROJ1004,2025-06-16,Development,4.80,Updated documentation
+EMP001,John Doe,Devops,PROJ1001,2025-06-17,Bug Fixing,4.80,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1002,2025-06-18,Development,3.60,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1004,2025-06-19,Documentation,3.70,Updated documentation
+EMP001,John Doe,Devops,PROJ1003,2025-06-20,Bug Fixing,3.50,Refactored module code
+EMP001,John Doe,Devops,PROJ1002,2025-06-23,Bug Fixing,6.20,Updated documentation
+EMP001,John Doe,Devops,PROJ1003,2025-06-24,Bug Fixing,3.30,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1002,2025-06-25,Documentation,6.00,Updated documentation
+EMP001,John Doe,Devops,PROJ1003,2025-06-26,Bug Fixing,6.50,Updated documentation
+EMP001,John Doe,Devops,PROJ1002,2025-06-27,Bug Fixing,1.70,Refactored module code
+EMP001,John Doe,Devops,PROJ1003,2025-06-30,Development,4.90,Updated documentation
+EMP001,John Doe,Devops,PROJ1003,2025-07-01,Documentation,6.00,Refactored module code
+EMP001,John Doe,Devops,PROJ1002,2025-07-02,Bug Fixing,1.70,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1002,2025-07-03,Documentation,6.30,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1004,2025-07-04,Documentation,7.00,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1001,2025-07-07,Documentation,5.10,Refactored module code
+EMP001,John Doe,Devops,PROJ1003,2025-07-08,Bug Fixing,3.10,Attended sprint planning
+EMP001,John Doe,Devops,PROJ1002,2025-07-09,Bug Fixing,3.10,Updated documentation
+EMP001,John Doe,Devops,PROJ1002,2025-07-10,Bug Fixing,4.00,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1003,2025-07-11,Development,4.80,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1002,2025-07-14,Bug Fixing,6.30,Refactored module code
+EMP001,John Doe,Devops,PROJ1002,2025-07-15,Bug Fixing,6.20,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1004,2025-07-16,Bug Fixing,7.40,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1003,2025-07-17,Bug Fixing,3.90,Refactored module code
+EMP001,John Doe,Devops,PROJ1002,2025-07-18,Development,7.70,Refactored module code
+EMP001,John Doe,Devops,PROJ1004,2025-07-21,Bug Fixing,7.20,Refactored module code
+EMP001,John Doe,Devops,PROJ1003,2025-07-22,Documentation,3.70,Refactored module code
+EMP001,John Doe,Devops,PROJ1003,2025-07-23,Development,4.30,Refactored module code
+EMP001,John Doe,Devops,PROJ1004,2025-07-24,Development,3.80,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1003,2025-07-25,Development,4.80,Resolved critical bugs
+EMP001,John Doe,Devops,PROJ1001,2025-07-28,Documentation,3.30,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1003,2025-07-29,Development,6.40,Worked on feature enhancement
+EMP001,John Doe,Devops,PROJ1001,2025-07-30,Documentation,7.30,Attended sprint planning
+EMP001,John Doe,Devops,PROJ1002,2025-07-31,Documentation,3.80,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-05-01,Bug Fixing,3.20,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-05-02,Bug Fixing,6.00,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-05-05,Development,5.00,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-05-06,Documentation,7.20,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-05-07,Documentation,6.00,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-05-08,Bug Fixing,4.00,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-05-09,Development,4.10,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-05-12,Bug Fixing,6.50,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-05-13,Documentation,5.60,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-05-14,Bug Fixing,7.90,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-05-15,Development,7.40,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-05-16,Bug Fixing,7.90,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-05-19,Development,5.40,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-05-20,Documentation,6.30,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-05-21,Documentation,4.30,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-05-22,Development,6.30,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-05-23,Development,3.80,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-05-26,Development,7.10,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-05-27,Documentation,3.80,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-05-28,Development,5.40,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-05-29,Bug Fixing,5.60,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-05-30,Documentation,6.70,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-06-02,Bug Fixing,5.50,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-06-03,Bug Fixing,3.80,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-06-04,Development,5.40,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-05,Documentation,6.00,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-06-06,Development,7.90,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-06-09,Development,4.30,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-06-10,Documentation,3.10,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-11,Development,8.00,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-06-12,Development,5.20,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-13,Documentation,3.20,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-06-16,Documentation,5.40,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-17,Bug Fixing,7.80,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-18,Documentation,4.70,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-06-19,Bug Fixing,4.50,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-20,Bug Fixing,7.10,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-06-23,Development,3.80,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-24,Documentation,4.40,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-25,Bug Fixing,6.40,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-06-26,Development,3.90,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-06-27,Bug Fixing,7.90,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-06-30,Development,5.20,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-07-01,Development,3.70,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-07-02,Development,6.70,Attended sprint planning
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-07-03,Documentation,6.40,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-07-04,Documentation,4.70,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-07-07,Documentation,6.80,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-07-08,Documentation,6.30,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-07-09,Bug Fixing,6.70,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-07-10,Bug Fixing,7.80,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-07-11,Development,5.30,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-07-14,Bug Fixing,7.30,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-07-15,Documentation,4.60,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-07-16,Development,7.60,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-07-17,Bug Fixing,5.30,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-07-18,Development,7.90,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-07-21,Documentation,7.50,Refactored module code
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-07-22,Documentation,4.40,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-07-23,Bug Fixing,3.60,Updated documentation
+EMP002,Jane Smith,UI/UX,PROJ1003,2025-07-24,Documentation,3.30,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-07-25,Bug Fixing,4.50,Worked on feature enhancement
+EMP002,Jane Smith,UI/UX,PROJ1004,2025-07-28,Bug Fixing,7.00,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-07-29,Bug Fixing,7.00,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1002,2025-07-30,Development,7.00,Resolved critical bugs
+EMP002,Jane Smith,UI/UX,PROJ1001,2025-07-31,Development,4.00,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-01,Documentation,3.10,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1004,2025-05-02,Bug Fixing,5.40,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1002,2025-05-05,Documentation,6.50,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-06,Documentation,3.40,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1004,2025-05-07,Documentation,5.90,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1002,2025-05-08,Development,6.00,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1004,2025-05-09,Documentation,4.20,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1002,2025-05-12,Bug Fixing,5.10,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1004,2025-05-13,Bug Fixing,5.30,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1002,2025-05-14,Development,4.20,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-15,Documentation,6.80,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1004,2025-05-16,Documentation,5.60,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-19,Documentation,3.00,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1002,2025-05-20,Bug Fixing,3.00,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-21,Development,6.20,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1004,2025-05-22,Development,4.30,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1003,2025-05-23,Bug Fixing,7.90,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-26,Documentation,5.80,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-27,Development,3.40,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1003,2025-05-28,Documentation,7.00,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1001,2025-05-29,Documentation,5.10,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1004,2025-05-30,Documentation,6.30,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1004,2025-06-02,Bug Fixing,6.80,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1001,2025-06-03,Development,6.50,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1002,2025-06-04,Development,6.70,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-05,Development,3.50,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1004,2025-06-06,Documentation,6.60,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1004,2025-06-09,Documentation,7.40,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-10,Documentation,6.00,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-11,Documentation,3.20,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-12,Development,3.20,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-13,Documentation,6.60,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-16,Bug Fixing,6.50,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1002,2025-06-17,Development,5.60,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1001,2025-06-18,Development,4.50,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1002,2025-06-19,Bug Fixing,7.90,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-20,Documentation,6.10,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1004,2025-06-23,Development,6.00,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1004,2025-06-24,Bug Fixing,4.10,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-25,Documentation,7.20,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1004,2025-06-26,Bug Fixing,6.90,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1003,2025-06-27,Documentation,7.30,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1002,2025-06-30,Documentation,3.30,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1002,2025-07-01,Development,6.10,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1002,2025-07-02,Documentation,3.50,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1003,2025-07-03,Development,3.60,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1003,2025-07-04,Development,5.60,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1001,2025-07-07,Development,4.40,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1001,2025-07-08,Documentation,3.30,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1003,2025-07-09,Documentation,6.80,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1004,2025-07-10,Documentation,7.20,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1002,2025-07-11,Bug Fixing,4.30,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1001,2025-07-14,Development,4.10,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1003,2025-07-15,Documentation,6.90,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1001,2025-07-16,Bug Fixing,3.80,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1003,2025-07-17,Bug Fixing,4.20,Resolved critical bugs
+EMP003,Raj Kumar,QA,PROJ1004,2025-07-18,Development,6.70,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1002,2025-07-21,Documentation,6.50,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1002,2025-07-22,Development,7.90,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1004,2025-07-23,Documentation,6.70,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1003,2025-07-24,Documentation,6.40,Worked on feature enhancement
+EMP003,Raj Kumar,QA,PROJ1003,2025-07-25,Bug Fixing,3.80,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1002,2025-07-28,Development,4.50,Updated documentation
+EMP003,Raj Kumar,QA,PROJ1002,2025-07-29,Development,4.00,Attended sprint planning
+EMP003,Raj Kumar,QA,PROJ1001,2025-07-30,Documentation,3.00,Refactored module code
+EMP003,Raj Kumar,QA,PROJ1004,2025-07-31,Documentation,3.40,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-05-01,Bug Fixing,5.40,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-05-02,Development,7.40,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-05-05,Documentation,6.60,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-05-06,Bug Fixing,3.10,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-07,Development,3.60,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-08,Documentation,5.40,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-09,Documentation,3.80,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-12,Development,5.90,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-13,Documentation,7.40,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-05-14,Documentation,4.60,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-15,Bug Fixing,6.70,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-05-16,Bug Fixing,3.20,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-05-19,Documentation,1.70,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-05-20,Documentation,4.30,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-21,Documentation,7.10,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-05-22,Development,3.70,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-05-23,Development,3.50,Resolved critical bugs
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-05-26,Documentation,3.10,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-05-27,Bug Fixing,3.60,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-05-28,Documentation,6.50,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-05-29,Bug Fixing,7.50,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-05-30,Documentation,7.70,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-06-02,Bug Fixing,6.30,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-06-03,Documentation,1.70,Resolved critical bugs
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-06-04,Development,6.10,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-06-05,Development,4.60,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-06,Bug Fixing,7.60,Resolved critical bugs
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-06-09,Development,6.80,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-10,Documentation,5.40,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-11,Bug Fixing,5.70,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-06-12,Development,3.90,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-13,Development,7.50,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-16,Bug Fixing,3.70,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-17,Documentation,4.10,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-06-18,Bug Fixing,5.10,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-06-19,Documentation,5.60,Resolved critical bugs
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-06-20,Documentation,6.80,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-23,Development,7.00,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-06-24,Development,6.00,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-06-25,Bug Fixing,6.80,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-06-26,Development,3.70,Resolved critical bugs
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-06-27,Documentation,7.70,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-06-30,Documentation,4.10,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-01,Development,6.00,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-07-02,Documentation,5.00,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-07-03,Documentation,7.30,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-04,Development,5.40,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-07,Development,4.00,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-08,Development,7.50,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-09,Documentation,5.30,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-07-10,Bug Fixing,5.40,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-11,Documentation,3.60,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-07-14,Documentation,4.20,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-07-15,Bug Fixing,4.30,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-07-16,Bug Fixing,4.40,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-07-17,Bug Fixing,6.00,Refactored module code
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-07-18,Bug Fixing,4.80,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-21,Development,6.20,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-07-22,Development,7.90,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-07-23,Bug Fixing,6.50,Updated documentation
+EMP004,Priya Nair,Research & Development,PROJ1004,2025-07-24,Development,6.20,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-07-25,Development,5.90,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1002,2025-07-28,Development,3.40,Attended sprint planning
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-29,Development,6.70,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1001,2025-07-30,Development,3.70,Worked on feature enhancement
+EMP004,Priya Nair,Research & Development,PROJ1003,2025-07-31,Bug Fixing,5.30,Refactored module code
