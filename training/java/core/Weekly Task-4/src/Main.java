@@ -1,4 +1,3 @@
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -21,17 +20,23 @@ public class Main {
 					3 - View all members
 					4 - Update member details
 					5 - Delete a member
-					6 - Update membership plan
-					7 - Exit
+					6- Exit
 					""");
-			System.out.println("Enter an input : ");
-			int input=sc.nextInt();
+			
+			int input;
+				System.out.println("Enter an input : ");
+				try {
+				String temp=sc.nextLine();
+				input=Integer.parseInt(temp);
+				}catch(NumberFormatException e) {
+					System.out.println("Invalid input type");
+					continue;
+				}
+			
 			switch(input) {
-			
-			
 			case 1:{
 				//Add a new member
-				sc.nextLine(); 
+				//sc.nextLine(); 
                 String name;
                 do {
                     System.out.print("Enter name: ");
@@ -72,7 +77,6 @@ public class Main {
 			case 2:{
 				//Add a new membership plan
 				System.out.println("-".repeat(35)+"\n");
-				sc.nextLine(); 
 			    int memberId;
 			    while (true) {
 			        System.out.print("Enter Member ID: ");
@@ -90,7 +94,7 @@ public class Main {
 			        break;
 			    }
 			    if (member.getMembershipPlan() != null) {
-			        System.out.println(" Member already has a plan: " + member.getMembershipPlan().getPlanName());
+			        System.out.println("Member already has a plan : " + member.getMembershipPlan().getPlanName());
 			    } else {
 			    	gymService.showPlans();
 			        System.out.print("Enter Plan ID to assign: ");
@@ -143,8 +147,7 @@ public class Main {
 				
 			case 4:{
 				//Update member details
-				System.out.println("-".repeat(35)+"\n");
-				sc.nextLine(); 
+				System.out.println("-".repeat(35)+"\n"); 
 			    int memberId;
 			    while (true) {
 			        System.out.print("Enter Member ID: ");
@@ -235,7 +238,6 @@ public class Main {
 			case 5:{
 //				Delete a member
 				System.out.println("-".repeat(35)+"\n");
-				sc.nextLine(); 
 			    int memberId;
 			    while (true) {
 			        System.out.print("Enter Member ID: ");
@@ -256,82 +258,17 @@ public class Main {
 				break;
 			}
 			
-			
-			case 6:{
-				//Update membership plan
-				System.out.println("-".repeat(35)+"\n");
-				sc.nextLine(); 
-			    int memberId;
-			    while (true) {
-			        System.out.print("Enter Member ID: ");
-			        String idInput = sc.nextLine();
-			        try {
-			            memberId = Integer.parseInt(idInput);
-			            break;
-			        } catch (NumberFormatException e) {
-			            System.out.println("Invalid Member ID. Please enter a valid number.");
-			        }
-			    }
-			    Member member = gymService.getMemberById(memberId);
-			    if (member == null) {
-			        System.out.println("No member found with ID: " + memberId);
-			        break;
-			    }
-			    MembershipPlan currentPlan = member.getMembershipPlan();
-			    List<MembershipPlan> allPlans = gymService.getAllPlans();
-
-			    if (currentPlan == null) {
-			        System.out.println("Member has no assigned plan.");
-			        System.out.println("Get a membership first!!");
-			        break; 
-			    }
-
-			    int currentPlanId = currentPlan.getPlanId();
-			    List<MembershipPlan> upgrades = allPlans.stream()
-			        .filter(plan -> plan.getPlanId() > currentPlanId)
-			        .sorted(Comparator.comparingInt(MembershipPlan::getPlanId))
-			        .toList();
-
-			    if (upgrades.isEmpty()) {
-			        System.out.println("Member already has the highest available plan: " + currentPlan.getPlanName());
-			        break;
-			    }
-
-			    System.out.println("Available Upgrades in the plans :");
-			    for (MembershipPlan plan : upgrades) {
-			        System.out.printf("ID : %d   Name : %s  Cost : %.2f Duration : %s  \n",
-			            plan.getPlanId(), plan.getPlanName(), plan.getFee(), plan.getDuration());
-			    }
-
-			    System.out.print("Enter Plan ID to upgrade: ");
-			    int planId = -1;
-		        while (true) {
-		            System.out.print("Enter Plan ID: ");
-		            String input1 = sc.nextLine();
-
-		            try {
-		                planId = Integer.parseInt(input1);
-		                if (planId > 0) {
-		                    break; 
-		                } else {
-		                    System.out.println("Plan ID must be a positive number.");
-		                }
-		            } catch (NumberFormatException e) {
-		                System.out.println("Invalid input. Please enter a numeric Plan ID.");
-		            }
-		        }
-
-			    gymService.assignPlanToMember(memberId, planId);
-			    break;
-
-			}
-				
-			
-			case 7:
+			case 6:
 				System.out.println("Exiting... Bye!");
 				flag=false;
 				break;
-			}	
+				
+			default : {
+				System.out.println("Invalid input");
+			}
+			}
+		
+				
 		}
 	}
 		
@@ -361,3 +298,85 @@ public class Main {
 	    }
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//6 - Upgrade membership plan
+
+//
+//case 6:{
+//	//Update membership plan
+//	System.out.println("-".repeat(35)+"\n");
+//	sc.nextLine(); 
+//    int memberId;
+//    while (true) {
+//        System.out.print("Enter Member ID: ");
+//        String idInput = sc.nextLine();
+//        try {
+//            memberId = Integer.parseInt(idInput);
+//            break;
+//        } catch (NumberFormatException e) {
+//            System.out.println("Invalid Member ID. Please enter a valid number.");
+//        }
+//    }
+//    Member member = gymService.getMemberById(memberId);
+//    if (member == null) {
+//        System.out.println("No member found with ID: " + memberId);
+//        break;
+//    }
+//    MembershipPlan currentPlan = member.getMembershipPlan();
+//    List<MembershipPlan> allPlans = gymService.getAllPlans();
+//
+//    if (currentPlan == null) {
+//        System.out.println("Member has no assigned plan.");
+//        System.out.println("Get a membership first!!");
+//        break; 
+//    }
+//
+//    int currentPlanId = currentPlan.getPlanId();
+//    List<MembershipPlan> upgrades = allPlans.stream()
+//        .filter(plan -> plan.getPlanId() > currentPlanId)
+//        .toList();
+//
+//    if (upgrades.isEmpty()) {
+//        System.out.println("Member already has the highest available plan: " + currentPlan.getPlanName());
+//        break;
+//    }
+//
+//    System.out.println("Available Upgrades in the plans :");
+//    for (MembershipPlan plan : upgrades) {
+//        System.out.printf("ID : %d   Name : %s  Cost : %.2f Duration : %s  \n",
+//            plan.getPlanId(), plan.getPlanName(), plan.getFee(), plan.getDuration());
+//    }
+//
+//    System.out.print("Enter Plan ID to upgrade: ");
+//    int planId = -1;
+//    while (true) {
+//        System.out.print("Enter Plan ID: ");
+//        String input1 = sc.nextLine();
+//
+//        try {
+//            planId = Integer.parseInt(input1);
+//            if (planId > 0 && planId>currentPlanId) {
+//                break; 
+//            } else {
+//                System.out.println("Plan ID must be a positive number. Can't assign lower plan");
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println("Invalid input. Please enter a numeric Plan ID.");
+//        }
+//    }
+//
+//    gymService.assignPlanToMember(memberId, planId);
+//    break;
+//
+//}

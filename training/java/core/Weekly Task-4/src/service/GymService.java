@@ -175,19 +175,38 @@ public class GymService {
 	    }
 	}
 
-	public List<MembershipPlan> getAllPlans() {
-		
-		List<MembershipPlan> membershipPlans=new ArrayList<>();
-		try(Connection connect=DatabaseConnection.getConnection()){
-			PreparedStatement plansStatement=connect.prepareStatement("SELECT * FROM membership_plans");
-			ResultSet plans=plansStatement.executeQuery();
-			while(plans.next()) {
-				membershipPlans.add(new MembershipPlan(plans.getInt("plan_id"), plans.getString("plan_name"), plans.getString("duration"), plans.getDouble("cost")));
-			}
-		} catch (SQLException | IOException e) {
-			e.printStackTrace();
-		}
-		return membershipPlans;
-	}
 }
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//public List<MembershipPlan> getAllPlans() {
+//	
+//	List<MembershipPlan> membershipPlans=new ArrayList<>();
+//	try(Connection connect=DatabaseConnection.getConnection()){
+//		PreparedStatement plansStatement=connect.prepareStatement("SELECT * FROM membership_plans");
+//		ResultSet plans=plansStatement.executeQuery();
+//		while(plans.next()) {
+//			membershipPlans.add(new MembershipPlan(plans.getInt("plan_id"), plans.getString("plan_name"), plans.getString("duration"), plans.getDouble("cost")));
+//		}
+//	} catch (SQLException | IOException e) {
+//		e.printStackTrace();
+//	}
+//	return membershipPlans;
+//}
