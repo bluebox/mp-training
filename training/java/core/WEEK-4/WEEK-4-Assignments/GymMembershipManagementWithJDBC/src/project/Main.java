@@ -6,7 +6,7 @@ import data.MemberDBOpearations;
 import data.MembershipPlanDBOperations;
 import models.Gym;
 import models.MembershipPlan;
-import validators.InputValidators;
+import utilities.InputUtilities;
 
 public class Main {
 	
@@ -25,7 +25,10 @@ public class Main {
         MemberDBOpearations.selectAllAndStoreLocally(gym);
 
         Scanner scanner = new Scanner(System.in);
-        InputValidators.inputMain(scanner,gym);
+        InputUtilities.inputMain(scanner,gym);
+        
+        DatabaseConnection.closeStatement();
+        DatabaseConnection.closeStatement();
         
     }
 }

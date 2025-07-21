@@ -26,6 +26,22 @@ public class DatabaseConnection {
 		return DatabaseConnection.statement;
 	}
 	
+	public static void closeStatement() {
+		try {
+			DatabaseConnection.getStatement().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void closeConn() {
+		try {
+			DatabaseConnection.getConn().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void connectToDB(String connectionString) {
 		MysqlDataSource dataSource=new MysqlDataSource();
 		dataSource.setUser(System.getenv("DATABASE_USER"));
