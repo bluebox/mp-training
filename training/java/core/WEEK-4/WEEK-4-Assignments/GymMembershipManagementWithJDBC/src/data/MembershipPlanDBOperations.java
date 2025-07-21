@@ -5,22 +5,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import models.Gym;
 import models.MembershipPlan;
 
 public class MembershipPlanDBOperations {
-	public static void addAllPlans(ArrayList<MembershipPlan> plans) {
+	public static void addAllPlans(List<MembershipPlan> list) {
 		Connection conn=DatabaseConnection.getConn();
 		String insertMembershipPlans="insert into gym.membershipplan(id,name,duration,fee) values(?,?,?,?)";
 		try(PreparedStatement psInsert=conn.prepareStatement(insertMembershipPlans)) {
 			conn.setAutoCommit(false);
-			for(int i=0; i<plans.size(); i++) {
-				psInsert.setInt(1, plans.get(i).getId());
-				psInsert.setString(2, plans.get(i).getName());
-				psInsert.setInt(3, plans.get(i).getDuration());
-				psInsert.setDouble(4, plans.get(i).getFee());
+			for(int i=0; i<list.size(); i++) {
+				psInsert.setInt(1, list.get(i).getId());
+				psInsert.setString(2, list.get(i).getName());
+				psInsert.setInt(3, list.get(i).getDuration());
+				psInsert.setDouble(4, list.get(i).getFee());
 				psInsert.addBatch();
 			}
 			psInsert.executeBatch();

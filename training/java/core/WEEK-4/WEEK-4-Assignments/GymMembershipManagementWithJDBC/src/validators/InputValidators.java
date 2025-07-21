@@ -34,25 +34,25 @@ public class InputValidators {
         return planChoice;
 	}
 	
-	public static int inputMemberId(Gym gym, Scanner scanner) {
-		int id;
-        while (true) {
-            System.out.print("Enter Member ID: ");
-            String input = scanner.nextLine();
-            try {
-                id = Integer.parseInt(input);
-                Member existingMember=gym.getMemberById(id);
-                if(existingMember!=null) {
-                	System.out.println("Given member id already exists, Enter unique id...");
-                	continue;
-                }
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid ID. Please enter a valid integer.");
-            }
-        }
-        return id;
-	}
+//	public static int inputMemberId(Gym gym, Scanner scanner) {
+//		int id;
+//        while (true) {
+//            System.out.print("Enter Member ID: ");
+//            String input = scanner.nextLine();
+//            try {
+//                id = Integer.parseInt(input);
+//                Member existingMember=gym.getMemberById(id);
+//                if(existingMember!=null) {
+//                	System.out.println("Given member id already exists, Enter unique id...");
+//                	continue;
+//                }
+//                break;
+//            } catch (NumberFormatException e) {
+//                System.out.println("Invalid ID. Please enter a valid integer.");
+//            }
+//        }
+//        return id;
+//	}
 	
 	public static int inputAge(Scanner scanner) {
 		int age;
@@ -100,27 +100,23 @@ public class InputValidators {
             	System.out.println("Phone number should contain only digits...");
             	continue;
             }
-            try {
-                Member existingMember=gym.getMemberByPhone(phone);
-                if(existingMember!=null) {
-                	MembershipPlan currentMp=existingMember.getMembershipPlan();
-                	int newMpChoice=InputValidators.inputMembershipPlan(gym, scanner);
-                	MembershipPlan newMp = gym.getPlans().get(newMpChoice - 1);
-                    if(currentMp.getName()==newMp.getName()) {
-                    	System.out.println("You already have the same plan...");
-                    }
-                    else {
-                    	existingMember.setMembershipPlan(newMp);
-                    	MemberDBOpearations.updateMembershipPlan(existingMember.getMemberId(),newMp.getId());
-                    	System.out.println("Plan updated succesfully...");
-                    }
-                	break;
+            Member existingMember=gym.getMemberByPhone(phone);
+            if(existingMember!=null) {
+            	MembershipPlan currentMp=existingMember.getMembershipPlan();
+            	int newMpChoice=InputValidators.inputMembershipPlan(gym, scanner);
+            	MembershipPlan newMp = gym.getPlans().get(newMpChoice - 1);
+                if(currentMp.getName()==newMp.getName()) {
+                	System.out.println("You already have the same plan...");
                 }
-                System.out.println("Given member id does not exist, Please add the member first...");
-                return;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid ID. Please enter a valid integer.");
+                else {
+                	existingMember.setMembershipPlan(newMp);
+                	MemberDBOpearations.updateMembershipPlan(existingMember.getMemberId(),newMp.getId());
+                	System.out.println("Plan updated succesfully...");
+                }
+            	break;
             }
+            System.out.println("Given phone number does not exist, Please add the member first...");
+            return;
         }
 	}
 	
@@ -131,7 +127,9 @@ public class InputValidators {
             System.out.println("2. View All Members");
             System.out.println("3. Switch Membership Plan");
             System.out.println("4. Generate Report");
-            System.out.println("5. Exit");
+            System.out.println("5. Update User Details");
+            System.out.println("6. Delete User");
+            System.out.println("7. Exit");
 
             int choice = -1;
             while (true) {
@@ -139,8 +137,8 @@ public class InputValidators {
                 String input = scanner.nextLine();
                 try {
                     choice = Integer.parseInt(input);
-                    if (choice >= 1 && choice <= 5) break;
-                    else System.out.println("Please enter a number between 1 and 5.");
+                    if (choice >= 1 && choice <= 7) break;
+                    else System.out.println("Please enter a number between 1 and 7.");
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid input. Please enter a valid number.");
                 }
@@ -183,9 +181,43 @@ public class InputValidators {
                 	gym.generateReport();
                 	break;
                 case 5:
-                	gym.editUserDetails();
-                	break;
+                	System.out.print("Enter existing member phone number to edit details : ");
+                    String existingPhone = scanner.nextLine();
+                    if(existingPhone.length()!=10) {
+                    	System.out.println("Phone number must be of 10 digits only...");
+                    	continue;
+                    }
+                    if(!existingPhone.matches("^[0-9]{10}$")) {
+                    	System.out.println("Phone number should contain only digits...");
+                    	continue;
+                    }
+                    Member existing=gym.getMemberByPhone(existingPhone);
+                    if(existing==null) {
+                    	System.out.println("Given phone number does not exist, Please add the member first...");
+                    	continue;
+                    }
+                    gym.editUserDetails(existing,scanner);
+                    break;
                 case 6:
+                	System.out.print("Enter existing member phone number to edit details : ");
+                    existingPhone = scanner.nextLine();
+                    if(existingPhone.length()!=10) {
+                    	System.out.println("Phone number must be of 10 digits only...");
+                    	continue;
+                    }
+                    if(!existingPhone.matches("^[0-9]{10}$")) {
+                    	System.out.println("Phone number should contain only digits...");
+                    	continue;
+                    }
+                    Member existingUser=gym.getMemberByPhone(existingPhone);
+                    if(existingUser==null) {
+                    	System.out.println("Given phone number does not exist, Please add the member first...");
+                    	continue;
+                    }
+                    gym.deleteMemberByPhone(existingPhone);
+                    
+                    break;
+                case 7:
                 	System.out.println("Exiting system...");
                     scanner.close();
                     return;

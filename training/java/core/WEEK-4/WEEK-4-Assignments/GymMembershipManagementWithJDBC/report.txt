@@ -2,19 +2,25 @@
 
 ============Basic Plan Members (Total Count -> 1)============
 
-Member ID: 3
-Name: Rohit
-Phone: 1111111111
-Age: 20
+Member ID: 7
+Name: hari
+Phone: 9999999999
+Age: 35
 Plan: BASIC Plan (6 months, ₹999.0)
-Date: 2025-07-20 18:00:52.0
+Date: 2025-07-21 15:17:04
 -------------------------------
 
-============Premium Plan Members (Total Count -> 0)============
+============Premium Plan Members (Total Count -> 1)============
 
-No Premium Plan Members Available
+Member ID: 6
+Name: Varma
+Phone: 1111111111
+Age: 23
+Plan: PREMIUM Plan (12 months, ₹2499.0)
+Date: 2025-07-21 15:16:42
+-------------------------------
 
-============Gold Plan Members (Total Count -> 2)============
+============Gold Plan Members (Total Count -> 1)============
 
 Member ID: 4
 Name: Varma
@@ -22,13 +28,5 @@ Phone: 6301619814
 Age: 34
 Plan: GOLD Plan (18 months, ₹4499.0)
 Date: 2025-07-20 18:22:29.0
--------------------------------
-
-Member ID: 5
-Name: Visaal
-Phone: 3333333333
-Age: 43
-Plan: GOLD Plan (18 months, ₹4499.0)
-Date: 2025-07-20 18:32:51.0
 -------------------------------
 

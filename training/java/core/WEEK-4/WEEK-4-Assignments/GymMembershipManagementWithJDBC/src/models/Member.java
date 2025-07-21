@@ -38,7 +38,7 @@ public class Member extends Person {
     public void showDetails() {
         System.out.println("Member ID: " + memberId);
         System.out.println("Name     : " + getName());
-        System.out.println("Name     : " + getPhone());
+        System.out.println("Phone    : " + getPhone());
         System.out.println("Age      : " + getAge());
         if (membershipPlan != null) {
             System.out.println("Plan     : " + membershipPlan);
