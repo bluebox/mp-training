@@ -6,7 +6,9 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import com.mysql.cj.jdbc.MysqlDataSource;
@@ -84,14 +86,14 @@ public class OrderUpdate {
 //			}
 			
 			
-//			try {
-//				Statement statement=conn.createStatement();
-//				String update="alter table order_details add quantity int";
-//				statement.executeUpdate(update);
-//			}catch(SQLException e) {
-//				e.printStackTrace();
-//			}
-			
+			try {
+				Statement statement=conn.createStatement();
+				String update="alter table order_details add quantity int";
+				statement.executeUpdate(update);
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		
 			PreparedStatement insorders=conn.prepareStatement("insert into orders (orderId, orderdate,quant ) values(?,?,?)");
 			PreparedStatement insorder_details=conn.prepareStatement("insert into order_details(orderId,name,descri,quantity) values(?,?,?,?)");
 			conn.setAutoCommit(false);
@@ -99,8 +101,8 @@ public class OrderUpdate {
 		try(BufferedReader reader=Files.newBufferedReader(Paths.get("C:\\Users\\vejas\\OneDrive\\Desktop\\medplus\\mp-training\\training\\java\\core\\Day13\\src\\dataBases\\Orders (1).csv"))){
 				String line;
 	            boolean isHeader = true;
-	            int count=105;
-	            while ((line = reader.readLine()) != null) {
+            int count=105;
+            while ((line = reader.readLine()) != null) {
 	                if (isHeader) {
 	                    isHeader = false;
 	                    continue; 
@@ -112,7 +114,7 @@ public class OrderUpdate {
 	                insorder_details.setInt(1, count);
 	                insorder_details.setString(2, tokens[1]);
 	                insorder_details.setString(3, tokens[3]);
-	                insorder_details.setInt(4, Integer.parseInt(tokens[2]));
+                insorder_details.setInt(4, Integer.parseInt(tokens[2]));
 	                insorder_details.addBatch();
 	                insorders.addBatch();
 	                count++;
@@ -129,8 +131,6 @@ public class OrderUpdate {
 	            	conn.rollback();
 	            	e.printStackTrace();
 	            }
-		
-		
 		conn.setAutoCommit(true);
 	}catch (SQLException e) {
 		// TODO Auto-generated catch block

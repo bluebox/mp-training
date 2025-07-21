@@ -1,13 +1,11 @@
 Employee ID,Name,Department,Project ID,Date,Task Category,Hours Worked,Remarks
-E1002,Amit,Devops,P207,2024-12-08,Testing,9.4,normal task
-E1024,Anil,UI/UX,P206,2024-12-05,Testing,9.9,normal task
-E1024,Priya,QA,P206,2025-04-14,Bug Fixing,9.8,urgent
-E1021,Priya,Research & Development,P206,2025-05-26,Bug Fixing,9.8,normal task
-E1011,Vikas,UI/UX,P207,2025-04-07,Bug Fixing,9.7,meeting
-E1001,Raj,Research & Development,P204,2024-12-22,Documentation,9.3,urgent
-E1008,Amit,QA,P202,2024-12-24,Bug Fixing,9.2,meeting
-E1017,Amit,UI/UX,P208,2024-12-01,Development,9.8,urgent
-E1001,Priya,QA,P203,2025-01-28,Documentation,9.5,critical
-E1011,Raj,Research & Development,P203,2025-04-02,Development,9.7,critical
-E1003,Suman,UI/UX,P208,2025-04-16,Bug Fixing,9.6,meeting
-E1003,Kiran,Devops,P204,2025-01-24,Bug Fixing,9.3,meeting
+E5595,Bradley,UI/UX,P206,2025-05-16,Documentation,7.3,critical
+E7042,Tammy,Devops,P205,2025-05-31,Development,7.7,critical
+E7242,Garrett,UI/UX,P206,2025-05-18,Documentation,7.1,meeting
+E6255,Diane,Devops,P200,2025-07-13,Documentation,7.2,meeting
+E9621,Amber,Devops,P204,2025-07-12,Development,7.7,critical
+E5718,Shelly,Devops,P207,2025-04-20,Testing,7.8,urgent
+E1036,Robin,QA,P206,2025-06-14,Documentation,7.9,critical
+E2268,Crystal,QA,P200,2025-05-10,Development,7.8,critical
+E6795,Shawn,Devops,P207,2025-04-27,Documentation,7.5,meeting
+E8899,Maria,UI/UX,P200,2025-06-10,Bug Fixing,7.7,critical

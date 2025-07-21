@@ -1,0 +1,104 @@
+Employee ID,Name,Department,Project ID,Date,Task Category,Hours Worked,Remarks
+E3320,Tamara,Devops,P202,18-06-2025,Testing,6.9,normal task
+E3527,Andrew,Research & Development,P206,09-05-2025,Documentation,6.3,urgent
+E2852,Gina,Research & Development,P204,13-05-2025,Bug Fixing,4.4,normal task
+E6073,Michaela,Research & Development,P202,20-04-2025,Development,1.9,urgent
+E6990,Laura,Devops,P202,13-07-2025,Bug Fixing,2.8,normal task
+E3024,Michael,Devops,P204,23-06-2025,Documentation,2.9,urgent
+E1774,Ryan,Research & Development,P204,22-04-2025,Testing,4.4,meeting
+E3733,Natalie,Devops,P207,07-05-2025,Bug Fixing,2.4,meeting
+E9789,Colleen,QA,P209,18-04-2025,Development,0,critical
+E1689,Linda,Research & Development,P200,04-06-2025,Development,5.2,critical
+E9165,Joshua,QA,P207,08-05-2025,Bug Fixing,1.3,normal task
+E4994,Matthew,Research & Development,P205,27-04-2025,Development,5.4,normal task
+E7324,Jason,Devops,P209,12-05-2025,Documentation,3.8,meeting
+E1773,Kyle,QA,P201,18-06-2025,Testing,5.5,normal task
+E6985,Marcus,Devops,P209,14-07-2025,Testing,0.5,normal task
+E8210,Daniel,QA,P201,07-07-2025,Development,5.8,meeting
+E9789,Colleen,QA,P209,18-04-2025,Development,0,critical
+E6413,Sheri,UI/UX,P209,12-05-2025,Bug Fixing,5.9,urgent
+E3781,John,Devops,P201,15-05-2025,Testing,4.7,meeting
+E6255,Diane,Devops,P200,13-07-2025,Documentation,7.2,meeting
+E6442,Raymond,Devops,P209,23-06-2025,Documentation,0,meeting
+E7972,Jonathan,QA,P209,13-07-2025,Documentation,1.1,normal task
+E8902,Alyssa,Research & Development,P202,04-06-2025,Documentation,0.5,critical
+E9632,Timothy,UI/UX,P209,16-05-2025,Development,2.6,normal task
+E6789,Tiffany,QA,P201,02-05-2025,Bug Fixing,2.2,urgent
+E5602,Elizabeth,QA,P201,05-07-2025,Bug Fixing,0,normal task
+E9771,Mark,Research & Development,P209,11-07-2025,Documentation,1.9,urgent
+E8899,Maria,UI/UX,P200,10-06-2025,Bug Fixing,7.7,critical
+E6219,Eugene,UI/UX,P207,04-06-2025,Documentation,5.8,normal task
+E3546,Melissa,QA,P200,27-05-2025,Development,5.6,normal task
+E7042,Tammy,Devops,P205,31-05-2025,Development,7.7,critical
+E8275,Kathy,Devops,P207,14-07-2025,Development,6.1,urgent
+E8418,Vanessa,UI/UX,P202,18-06-2025,Documentation,3.6,critical
+E4718,Steven,UI/UX,P207,27-05-2025,Testing,5.6,urgent
+E9843,Jennifer,Devops,P206,30-06-2025,Testing,3.4,normal task
+E8842,Annette,UI/UX,P208,28-05-2025,Development,4.6,meeting
+E9589,Roger,Research & Development,P205,13-07-2025,Bug Fixing,3.5,normal task
+E5692,William,Research & Development,P201,16-04-2025,Bug Fixing,2.6,meeting
+E7967,Sabrina,QA,P207,19-04-2025,Documentation,4.8,urgent
+E5167,Charles,UI/UX,P209,03-07-2025,Testing,4.3,meeting
+E5719,Catherine,UI/UX,P209,30-06-2025,Testing,4.3,critical
+E5595,Bradley,UI/UX,P206,16-05-2025,Documentation,7.3,critical
+E8814,Jesse,UI/UX,P204,29-05-2025,Documentation,3.3,urgent
+E8183,Nathaniel,Devops,P204,16-04-2025,Development,1.9,normal task
+E2268,Crystal,QA,P200,10-05-2025,Development,7.8,critical
+E9267,Mary,Research & Development,P208,27-05-2025,Development,3.8,meeting
+E8616,Scott,Devops,P205,23-04-2025,Documentation,4.2,critical
+E1036,Robin,QA,P206,14-06-2025,Documentation,7.9,critical
+E9180,Mario,Devops,P200,08-05-2025,Testing,4.4,urgent
+E2734,Brian,Research & Development,P209,26-06-2025,Development,2.5,urgent
+E7579,Paul,UI/UX,P201,05-06-2025,Documentation,2.8,urgent
+E5270,Lisa,Devops,P204,07-06-2025,Development,0.6,critical
+E7866,Jerry,UI/UX,P203,04-07-2025,Documentation,6.4,normal task
+E3741,Brandon,UI/UX,P205,07-07-2025,Testing,5,critical
+E3330,Christopher,UI/UX,P208,03-05-2025,Testing,3.7,critical
+E7242,Garrett,UI/UX,P206,18-05-2025,Documentation,7.1,meeting
+E3910,Kim,Devops,P207,03-07-2025,Development,6.9,critical
+E4747,Danny,QA,P203,28-05-2025,Development,1.3,urgent
+E2175,Cassandra,Research & Development,P201,23-06-2025,Development,2.5,meeting
+E3209,Sandra,Devops,P207,14-07-2025,Documentation,3.8,normal task
+E3958,Ashley,UI/UX,P200,02-06-2025,Bug Fixing,4.4,critical
+E1689,Linda,Research & Development,P200,04-06-2025,Development,5.2,critical
+E9354,Barbara,Research & Development,P207,30-05-2025,Documentation,4.9,critical
+E4019,Suzanne,UI/UX,P203,03-07-2025,Testing,3.6,critical
+E5718,Shelly,Devops,P207,20-04-2025,Testing,7.8,urgent
+E5138,Jeffery,Research & Development,P207,23-04-2025,Documentation,5.1,urgent
+E4039,Caitlin,Devops,P208,17-06-2025,Testing,0.2,meeting
+E2519,Kimberly,Devops,P200,02-05-2025,Testing,1.4,urgent
+E1284,Joseph,Devops,P206,30-05-2025,Development,2.3,urgent
+E4818,Anthony,Devops,P209,30-06-2025,Development,1.7,urgent
+E2155,David,QA,P206,17-04-2025,Documentation,0.3,meeting
+E6090,Kenneth,Research & Development,P205,01-05-2025,Testing,6.6,normal task
+E9408,Gary,Research & Development,P207,03-06-2025,Documentation,2.6,critical
+E2033,Lindsey,Devops,P204,08-05-2025,Bug Fixing,6.6,meeting
+E8702,Sherri,Devops,P203,05-07-2025,Documentation,6.7,meeting
+E8167,Benjamin,UI/UX,P201,26-05-2025,Documentation,1,urgent
+E1583,Sharon,Research & Development,P208,04-07-2025,Testing,2,urgent
+E8799,Jeffrey,UI/UX,P200,26-05-2025,Development,3.7,critical
+E1120,Jacqueline,QA,P203,10-05-2025,Development,2.8,critical
+E3447,Leah,UI/UX,P209,06-07-2025,Documentation,1,critical
+E1745,Renee,Devops,P203,24-06-2025,Documentation,2.5,normal task
+E2279,Danielle,UI/UX,P204,16-07-2025,Development,3.7,critical
+E5832,Aaron,QA,P200,16-06-2025,Development,2.9,urgent
+E9835,Karina,Devops,P208,08-05-2025,Development,0,critical
+E6795,Shawn,Devops,P207,27-04-2025,Documentation,7.5,meeting
+E9410,Cynthia,QA,P208,10-05-2025,Bug Fixing,2,urgent
+E9601,Jessica,UI/UX,P205,18-06-2025,Bug Fixing,0.3,critical
+E6873,Travis,Research & Development,P208,09-05-2025,Testing,2.5,urgent
+E6337,Johnathan,UI/UX,P201,06-07-2025,Documentation,7,critical
+E1574,Bryan,UI/UX,P209,29-06-2025,Testing,3.3,meeting
+E1745,Renee,Devops,P203,24-06-2025,Documentation,2.5,normal task
+E9740,Jerome,UI/UX,P201,26-06-2025,Development,1.5,normal task
+E9621,Amber,Devops,P204,12-07-2025,Development,7.7,critical
+E7300,Todd,Devops,P209,18-04-2025,Development,3.4,normal task
+E7743,Sheena,UI/UX,P201,05-07-2025,Testing,1.2,meeting
+E9556,Reginald,Devops,P207,17-04-2025,Testing,6,meeting
+E6213,Tyler,Devops,P201,10-06-2025,Documentation,1,meeting
+E6644,Alexis,QA,P204,14-07-2025,Development,4.7,normal task
+E8291,Kristen,Research & Development,P207,10-07-2025,Documentation,5.5,urgent
+E2952,Janet,Devops,P200,10-07-2025,Documentation,0,meeting
+E3320,Tamara,Devops,P200,18-06-2025,Testing,0,normal task
+E3320,Tamara,Devops,P200,18-06-2025,Documentation,0,normal task
+E3320,Tamara,Devops,P201,18-06-2025,Documentation,0,normal task

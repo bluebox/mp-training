@@ -20,15 +20,14 @@ import java.util.stream.Collectors;
 
 public class EmployeeTask {
 	
-	
 	public static void main(String[] args) {
 		
-		List<EmployeeWorkLog> EmployeeWorkLogs=excelReader("C:\\Users\\vejas\\OneDrive\\Desktop\\medplus\\mp-training\\training\\java\\core\\Weekly Task-3\\src\\weeklytask\\employee_logs.csv");
+		List<EmployeeWorkLog> EmployeeWorkLogs=excelReader("C:\\Users\\vejas\\OneDrive\\Desktop\\medplus\\mp-training\\training\\java\\core\\Weekly Task-3\\src\\weeklytask\\New_Employee_logs.csv");
 		if(EmployeeWorkLogs.size()==0) {
 			return;
 		}
 		
-		EmployeesBasedOnWorkHours(EmployeeWorkLogs); //task - 1 (15) Detect >9 hrs/day logs; group by employee and date.
+		EmployeesBasedOnWorkHours(EmployeeWorkLogs); //task - 1 (15) Detect >7 hrs/day logs; group by employee and date.
 		
 		RemoveDuplicates(EmployeeWorkLogs); //task - 2 (23) Detect and remove duplicate logs.
 		
@@ -43,7 +42,7 @@ public class EmployeeTask {
 	
 	private static void EmployeesBasedOnWorkHours(List<EmployeeWorkLog> EmployeeWorkLogs) {
 		Map<String, List<EmployeeWorkLog>> Employees=EmployeeWorkLogs.stream()
-				.filter(s->s.getHoursWorked()>9)
+				.filter(s->s.getHoursWorked()>7)
 				.collect(Collectors.groupingBy(s->s.getEmployeeId()+"|"+s.getDate()));
 		List<EmployeeWorkLog> EmployeesWithWorkHours = Employees.values().stream().flatMap(List::stream).collect(Collectors.toList());
 		
@@ -216,12 +215,6 @@ public class EmployeeTask {
                     continue; 
                 }
                 String[] tokens = line.split(",", -1);
-                List<String> Tokens=Arrays.asList(tokens);
-                if(Tokens.contains("")|| Tokens.contains(null)) {
-                	System.out.println("Values can't be empty");
-                	EmployeeWorkLogs.clear();
-                	break;
-                }else {
                 	
                 String employeeId ="";
                 if(!isValidId(tokens[0].trim())) {
@@ -260,7 +253,7 @@ public class EmployeeTask {
                 
                 String taskCategory = "";
                 if(!isValid(tokens[5].trim())) {
-                	System.out.println("invalid task name at "+count+" row");
+                	System.out.println("invalid task category name at "+count+" row");
                 	EmployeeWorkLogs.clear();
                 	break;
                 }
@@ -280,7 +273,7 @@ public class EmployeeTask {
             }
                 }
 
-        } catch (Exception e) {
+         catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -289,25 +282,33 @@ public class EmployeeTask {
 	
 	private static boolean isValidDept(String trim) {
 		// TODO Auto-generated method stub
+		if (trim == null || trim.isEmpty()) {
+	        return false;
+	    }
 		Pattern pattern = Pattern.compile(new String ("^[a-zA-Z/]"),Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(trim);
-	    return matcher.find();
+	    return (matcher.find());
 	}
 
 
 	private static boolean isValidId(String trim) {
 		// TODO Auto-generated method stub
+		if (trim == null || trim.isEmpty()) {
+	        return false;
+	    }
 		Pattern pattern = Pattern.compile(new String ("^[a-zA-Z0-9]"),Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(trim);
-	    return matcher.find();
+	    return (matcher.find());
 	}
 
 
 	private static boolean isValid(String trim) {
-		
+		if (trim == null || trim.isEmpty()) {
+	        return false;
+	    }
 	    Pattern pattern = Pattern.compile(new String ("^[a-zA-Z\\s]*$"),Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(trim);
-	    return matcher.find();
+	    return (matcher.find());
 		
 	}
 }
@@ -338,7 +339,7 @@ public class EmployeeTask {
 //		    logs.add(log);
 //		}
 //	}
-//	
+//	&& !trim.equals("null")
 //} catch (IOException e) {
 //	e.printStackTrace();
 //}
