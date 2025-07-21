@@ -1,0 +1,501 @@
+Employee ID,Name,Department,Project ID,Date,Task Category,Hours Worked,Remarks
+E008,Helen,Engineering,P105,2025-07-01,Research,5.3,Completed task
+E018,Rachel,HR,P220,2025-07-26,Research,5.4,Pending deployment
+E014,Nina,Sales,P203,2025-07-06,Documentation,4.0,Needs review
+E007,George,Engineering,P108,2025-07-10,CustomerSupport,8.5,On hold
+E018,Rachel,Engineering,P117,2025-07-08,ClientMeeting,8.2,Pending deployment
+E006,Fiona,Engineering,P108,2025-07-10,Research,3.5,On hold
+E004,Diana,Sales,P204,2025-07-27,Documentation,4.5,Client feedback
+E005,Ethan,Support,P204,2025-07-22,ClientMeeting,4.1,Needs review
+E014,Nina,Engineering,P116,2025-07-25,ClientMeeting,6.7,Needs review
+E011,Kevin,Engineering,P102,2025-07-12,Testing,6.9,Client feedback
+E009,Ian,Engineering,P116,2025-07-26,CustomerSupport,3.1,Work in progress
+E004,Diana,Engineering,P106,2025-07-14,CustomerSupport,4.1,On hold
+E003,Charlie,Support,P211,2025-07-24,Campaign,6.2,Needs review
+E008,Helen,Engineering,P113,2025-07-02,Documentation,3.8,Pending deployment
+E014,Nina,Support,P206,2025-07-09,Training,7.3,Completed task
+E012,Laura,Engineering,P107,2025-07-27,Testing,5.9,Client feedback
+E012,Laura,HR,P201,2025-07-05,Design,8.2,Client feedback
+E008,Helen,Sales,P203,2025-07-27,Research,7.9,Client feedback
+E001,Alice,HR,P208,2025-07-06,Training,8.4,Client feedback
+E015,Oscar,Marketing,P217,2025-07-18,Testing,4.6,On hold
+E002,Bob,Engineering,P115,2025-07-25,CustomerSupport,5.1,On hold
+E006,Fiona,Support,P213,2025-07-30,CustomerSupport,3.1,Completed task
+E003,Charlie,Engineering,P104,2025-07-28,Documentation,4.6,Pending deployment
+E007,George,Marketing,P206,2025-07-13,ClientMeeting,3.7,Needs review
+E013,Martin,Marketing,P206,2025-07-21,Documentation,7.7,Client feedback
+E019,Steve,Support,P205,2025-07-08,Training,8.0,Pending deployment
+E013,Martin,Engineering,P114,2025-07-02,Development,4.4,Pending deployment
+E005,Ethan,Engineering,P109,2025-07-07,Design,5.5,Completed task
+E014,Nina,Engineering,P118,2025-07-18,ClientMeeting,3.4,Needs review
+E018,Rachel,Engineering,P113,2025-07-24,ClientMeeting,8.3,Needs review
+E017,Quinn,Engineering,P106,2025-07-09,ClientMeeting,6.3,On hold
+E018,Rachel,Sales,P205,2025-07-19,Design,7.7,Needs review
+E013,Martin,Engineering,P107,2025-07-01,Design,3.9,On hold
+E001,Alice,Engineering,P107,2025-07-29,Documentation,6.4,Completed task
+E002,Bob,Engineering,P116,2025-07-11,ClientMeeting,7.1,Completed task
+E017,Quinn,Marketing,P201,2025-07-27,Design,4.9,Completed task
+E013,Martin,Engineering,P106,2025-07-27,Documentation,3.5,Needs review
+E015,Oscar,Sales,P218,2025-07-15,ClientMeeting,5.4,Needs review
+E017,Quinn,HR,P208,2025-07-06,ClientMeeting,6.1,Pending deployment
+E011,Kevin,Support,P210,2025-07-20,Campaign,7.7,On hold
+E003,Charlie,HR,P203,2025-07-30,ClientMeeting,6.9,On hold
+E011,Kevin,Engineering,P115,2025-07-05,CustomerSupport,4.4,Pending deployment
+E004,Diana,Support,P219,2025-07-08,ClientMeeting,4.5,Completed task
+E005,Ethan,Engineering,P110,2025-07-12,Testing,8.2,Completed task
+E002,Bob,Support,P208,2025-07-19,Development,3.7,Completed task
+E019,Steve,Support,P203,2025-07-18,ClientMeeting,8.4,Work in progress
+E016,Priya,Marketing,P209,2025-07-29,Training,7.4,Work in progress
+E018,Rachel,Support,P202,2025-07-06,CustomerSupport,7.8,Client feedback
+E006,Fiona,Support,P216,2025-07-21,ClientMeeting,5.0,On hold
+E003,Charlie,Engineering,P110,2025-07-19,ClientMeeting,5.4,Work in progress
+E018,Rachel,Engineering,P109,2025-07-12,CustomerSupport,7.5,Completed task
+E009,Ian,Engineering,P105,2025-07-11,Testing,7.4,Pending deployment
+E003,Charlie,Marketing,P216,2025-07-30,CustomerSupport,8.7,Needs review
+E012,Laura,Support,P209,2025-07-20,Development,5.0,Work in progress
+E016,Priya,Engineering,P118,2025-07-09,Development,5.5,Pending deployment
+E015,Oscar,Engineering,P102,2025-07-20,Design,3.8,On hold
+E005,Ethan,Engineering,P115,2025-07-19,ClientMeeting,7.8,Work in progress
+E015,Oscar,Engineering,P114,2025-07-13,ClientMeeting,7.7,On hold
+E016,Priya,Sales,P219,2025-07-30,Testing,3.5,Work in progress
+E016,Priya,Engineering,P105,2025-07-08,Testing,6.3,Needs review
+E007,George,Engineering,P111,2025-07-04,Development,5.0,Work in progress
+E017,Quinn,Sales,P219,2025-07-27,Design,5.9,Needs review
+E016,Priya,Engineering,P118,2025-07-27,Campaign,5.3,Needs review
+E016,Priya,Engineering,P117,2025-07-09,CustomerSupport,8.2,On hold
+E012,Laura,Engineering,P106,2025-07-18,Testing,6.1,Pending deployment
+E008,Helen,Sales,P220,2025-07-20,Documentation,8.0,Completed task
+E005,Ethan,HR,P218,2025-07-23,Design,5.5,Client feedback
+E005,Ethan,Marketing,P220,2025-07-10,Testing,3.3,On hold
+E002,Bob,Engineering,P117,2025-07-18,Training,6.0,Client feedback
+E012,Laura,Sales,P212,2025-07-15,Design,7.3,Completed task
+E017,Quinn,Engineering,P117,2025-07-16,Documentation,3.3,On hold
+E013,Martin,Support,P202,2025-07-09,Research,6.2,On hold
+E019,Steve,Support,P212,2025-07-17,ClientMeeting,6.5,Completed task
+E010,Julia,Sales,P216,2025-07-29,Design,4.5,Completed task
+E019,Steve,Engineering,P102,2025-07-09,Testing,8.6,Client feedback
+E009,Ian,Engineering,P109,2025-07-27,CustomerSupport,6.1,Pending deployment
+E020,Tina,Support,P213,2025-07-08,Development,6.4,Work in progress
+E004,Diana,Engineering,P118,2025-07-15,Research,7.7,Work in progress
+E016,Priya,Support,P204,2025-07-07,CustomerSupport,4.8,Client feedback
+E015,Oscar,Sales,P211,2025-07-27,Research,7.3,Needs review
+E020,Tina,Marketing,P219,2025-07-20,Development,4.2,Client feedback
+E019,Steve,Marketing,P204,2025-07-04,Documentation,3.9,Needs review
+E008,Helen,Support,P201,2025-07-03,CustomerSupport,7.5,Completed task
+E007,George,Engineering,P105,2025-07-05,ClientMeeting,8.5,Pending deployment
+E006,Fiona,Engineering,P106,2025-07-28,Testing,7.1,Work in progress
+E019,Steve,Engineering,P117,2025-07-16,CustomerSupport,4.6,Completed task
+E008,Helen,Engineering,P106,2025-07-14,Research,4.6,Work in progress
+E002,Bob,Engineering,P105,2025-07-10,Training,8.4,Pending deployment
+E006,Fiona,HR,P219,2025-07-16,CustomerSupport,7.5,Pending deployment
+E008,Helen,Sales,P205,2025-07-14,Documentation,8.4,Client feedback
+E015,Oscar,Marketing,P201,2025-07-23,CustomerSupport,3.6,Needs review
+E008,Helen,Marketing,P202,2025-07-01,ClientMeeting,4.3,Work in progress
+E010,Julia,HR,P213,2025-07-14,ClientMeeting,4.2,Client feedback
+E004,Diana,Engineering,P116,2025-07-02,Development,7.6,Needs review
+E005,Ethan,HR,P207,2025-07-06,Research,7.7,On hold
+E003,Charlie,Support,P215,2025-07-20,Campaign,5.6,Needs review
+E007,George,Support,P213,2025-07-26,Documentation,4.2,Pending deployment
+E020,Tina,Engineering,P109,2025-07-10,Design,8.6,On hold
+E018,Rachel,Support,P218,2025-07-21,Design,4.1,Client feedback
+E014,Nina,HR,P214,2025-07-14,CustomerSupport,7.3,Needs review
+E012,Laura,Engineering,P119,2025-07-24,Documentation,3.4,Pending deployment
+E017,Quinn,Marketing,P206,2025-07-03,Design,5.5,Completed task
+E017,Quinn,Engineering,P109,2025-07-03,Design,7.9,Pending deployment
+E003,Charlie,Engineering,P119,2025-07-19,Design,3.3,Completed task
+E001,Alice,Engineering,P103,2025-07-08,Design,6.6,Work in progress
+E014,Nina,Marketing,P213,2025-07-07,ClientMeeting,6.1,On hold
+E020,Tina,Support,P211,2025-07-15,Campaign,4.0,Needs review
+E015,Oscar,Engineering,P101,2025-07-17,Campaign,4.9,Pending deployment
+E007,George,Support,P218,2025-07-14,CustomerSupport,5.5,Work in progress
+E003,Charlie,Marketing,P217,2025-07-19,Design,6.2,Client feedback
+E004,Diana,Engineering,P113,2025-07-24,CustomerSupport,4.3,Client feedback
+E011,Kevin,Marketing,P207,2025-07-14,Training,8.1,On hold
+E017,Quinn,Sales,P220,2025-07-10,Testing,3.2,On hold
+E004,Diana,Support,P214,2025-07-01,Campaign,3.4,Work in progress
+E006,Fiona,Engineering,P113,2025-07-11,Testing,5.0,On hold
+E020,Tina,Engineering,P110,2025-07-16,CustomerSupport,6.8,Client feedback
+E003,Charlie,HR,P202,2025-07-01,Training,6.1,Work in progress
+E007,George,Support,P203,2025-07-02,ClientMeeting,8.8,Work in progress
+E009,Ian,Support,P212,2025-07-03,Design,3.8,Pending deployment
+E013,Martin,Marketing,P203,2025-07-29,Testing,8.5,Completed task
+E006,Fiona,HR,P215,2025-07-24,Campaign,8.7,On hold
+E010,Julia,Engineering,P111,2025-07-30,Design,6.6,Client feedback
+E018,Rachel,Sales,P204,2025-07-28,Training,5.1,Needs review
+E018,Rachel,Engineering,P101,2025-07-26,Development,3.2,On hold
+E006,Fiona,Engineering,P118,2025-07-08,ClientMeeting,6.5,Needs review
+E010,Julia,Sales,P216,2025-07-21,Development,6.4,On hold
+E002,Bob,Engineering,P108,2025-07-22,Campaign,3.2,Work in progress
+E008,Helen,Support,P202,2025-07-20,ClientMeeting,7.5,Completed task
+E005,Ethan,Marketing,P208,2025-07-19,ClientMeeting,5.8,Completed task
+E001,Alice,Support,P211,2025-07-04,CustomerSupport,3.3,Work in progress
+E017,Quinn,Sales,P212,2025-07-09,Training,8.1,Completed task
+E012,Laura,Marketing,P201,2025-07-10,CustomerSupport,5.1,Needs review
+E018,Rachel,Engineering,P101,2025-07-22,CustomerSupport,6.5,On hold
+E018,Rachel,HR,P217,2025-07-11,Testing,8.9,Completed task
+E011,Kevin,Support,P214,2025-07-23,Testing,9.0,Completed task
+E013,Martin,Engineering,P110,2025-07-16,Training,7.7,On hold
+E005,Ethan,Marketing,P208,2025-07-16,CustomerSupport,7.8,Completed task
+E009,Ian,Support,P211,2025-07-10,Documentation,5.4,Client feedback
+E019,Steve,Engineering,P119,2025-07-09,Campaign,3.9,Completed task
+E013,Martin,Engineering,P106,2025-07-21,Testing,6.3,Work in progress
+E014,Nina,Support,P211,2025-07-24,Documentation,7.6,Pending deployment
+E009,Ian,Support,P205,2025-07-12,Development,5.0,Completed task
+E011,Kevin,Engineering,P114,2025-07-21,Development,7.9,Completed task
+E010,Julia,Support,P209,2025-07-14,ClientMeeting,4.1,On hold
+E013,Martin,Engineering,P108,2025-07-15,Training,7.6,Needs review
+E017,Quinn,Engineering,P104,2025-07-13,Design,5.8,Needs review
+E013,Martin,Engineering,P118,2025-07-29,Documentation,5.6,Work in progress
+E010,Julia,Sales,P201,2025-07-13,Research,4.9,On hold
+E008,Helen,Engineering,P105,2025-07-15,Documentation,6.3,Pending deployment
+E015,Oscar,Engineering,P104,2025-07-23,CustomerSupport,5.2,Work in progress
+E013,Martin,Marketing,P209,2025-07-16,Research,6.9,Pending deployment
+E002,Bob,Engineering,P119,2025-07-18,Research,8.5,On hold
+E012,Laura,Engineering,P111,2025-07-27,Campaign,3.7,Client feedback
+E014,Nina,Support,P210,2025-07-14,Documentation,5.6,Work in progress
+E010,Julia,Engineering,P101,2025-07-18,Campaign,3.4,Completed task
+E011,Kevin,Marketing,P201,2025-07-06,Design,5.0,Client feedback
+E019,Steve,Engineering,P115,2025-07-28,Testing,8.1,Needs review
+E003,Charlie,Engineering,P113,2025-07-02,Research,3.5,Pending deployment
+E009,Ian,Engineering,P101,2025-07-08,Design,4.4,Work in progress
+E001,Alice,Support,P207,2025-07-16,Design,3.2,On hold
+E018,Rachel,Engineering,P110,2025-07-06,Campaign,3.3,On hold
+E005,Ethan,Engineering,P105,2025-07-19,Testing,3.8,Client feedback
+E016,Priya,Engineering,P117,2025-07-14,ClientMeeting,7.0,Client feedback
+E011,Kevin,Engineering,P106,2025-07-16,ClientMeeting,5.4,Needs review
+E013,Martin,Engineering,P106,2025-07-06,Campaign,8.1,Needs review
+E012,Laura,HR,P208,2025-07-01,Documentation,8.0,Pending deployment
+E007,George,Support,P204,2025-07-02,Training,8.1,Work in progress
+E006,Fiona,Engineering,P109,2025-07-11,Campaign,8.6,Pending deployment
+E008,Helen,Engineering,P104,2025-07-19,Development,5.8,Client feedback
+E015,Oscar,Engineering,P103,2025-07-25,Testing,4.2,Needs review
+E013,Martin,Engineering,P112,2025-07-11,Documentation,5.6,Pending deployment
+E004,Diana,Marketing,P216,2025-07-10,Testing,5.9,Needs review
+E010,Julia,Support,P206,2025-07-01,Research,5.9,Client feedback
+E007,George,Marketing,P206,2025-07-04,CustomerSupport,8.0,Pending deployment
+E002,Bob,Sales,P218,2025-07-13,Development,7.8,Client feedback
+E010,Julia,Marketing,P214,2025-07-01,Development,3.9,Needs review
+E017,Quinn,Marketing,P201,2025-07-16,ClientMeeting,6.8,Pending deployment
+E008,Helen,HR,P218,2025-07-05,Development,6.8,Work in progress
+E020,Tina,Engineering,P112,2025-07-12,Campaign,7.3,Needs review
+E010,Julia,Engineering,P113,2025-07-04,ClientMeeting,6.4,Pending deployment
+E001,Alice,Marketing,P209,2025-07-05,Documentation,8.9,Pending deployment
+E017,Quinn,Engineering,P113,2025-07-01,Campaign,3.6,On hold
+E020,Tina,Engineering,P101,2025-07-23,Documentation,7.8,Pending deployment
+E012,Laura,Engineering,P109,2025-07-14,Campaign,6.7,Client feedback
+E008,Helen,Engineering,P116,2025-07-09,Research,6.2,Needs review
+E005,Ethan,Engineering,P119,2025-07-12,ClientMeeting,7.9,Pending deployment
+E004,Diana,Marketing,P203,2025-07-28,ClientMeeting,4.6,Completed task
+E019,Steve,Engineering,P113,2025-07-07,Research,6.8,Needs review
+E018,Rachel,Engineering,P106,2025-07-27,Campaign,7.8,On hold
+E011,Kevin,Engineering,P119,2025-07-28,Campaign,3.2,Pending deployment
+E016,Priya,Sales,P219,2025-07-30,ClientMeeting,5.8,Completed task
+E006,Fiona,HR,P202,2025-07-28,Research,8.2,Needs review
+E016,Priya,Engineering,P104,2025-07-27,CustomerSupport,6.0,Needs review
+E006,Fiona,Engineering,P115,2025-07-28,Documentation,8.1,Client feedback
+E007,George,Support,P207,2025-07-18,Research,7.9,Completed task
+E020,Tina,Support,P218,2025-07-02,CustomerSupport,6.1,Client feedback
+E001,Alice,Sales,P207,2025-07-25,Training,6.1,Pending deployment
+E008,Helen,Engineering,P104,2025-07-19,Campaign,6.6,Needs review
+E003,Charlie,Engineering,P103,2025-07-21,Research,8.3,Work in progress
+E005,Ethan,Engineering,P115,2025-07-06,Design,4.3,Needs review
+E016,Priya,Engineering,P119,2025-07-26,Documentation,5.6,On hold
+E012,Laura,Support,P218,2025-07-05,Design,5.1,Work in progress
+E012,Laura,HR,P205,2025-07-19,Testing,5.2,Client feedback
+E008,Helen,Support,P216,2025-07-20,CustomerSupport,7.7,Work in progress
+E002,Bob,Engineering,P119,2025-07-08,Design,3.2,On hold
+E014,Nina,Engineering,P105,2025-07-10,Documentation,5.2,Work in progress
+E013,Martin,Engineering,P116,2025-07-30,ClientMeeting,8.8,Pending deployment
+E013,Martin,Engineering,P118,2025-07-10,Campaign,7.6,Completed task
+E005,Ethan,Engineering,P113,2025-07-02,CustomerSupport,3.7,Pending deployment
+E011,Kevin,Engineering,P111,2025-07-26,Documentation,8.3,Needs review
+E013,Martin,Engineering,P104,2025-07-16,Documentation,3.6,Completed task
+E008,Helen,Engineering,P116,2025-07-14,Training,3.7,Pending deployment
+E019,Steve,Sales,P218,2025-07-10,CustomerSupport,8.3,On hold
+E009,Ian,HR,P216,2025-07-27,Testing,4.2,Completed task
+E016,Priya,Engineering,P112,2025-07-17,Research,8.3,Work in progress
+E009,Ian,Engineering,P111,2025-07-11,Documentation,5.9,Client feedback
+E011,Kevin,Support,P209,2025-07-18,Training,8.7,Work in progress
+E018,Rachel,Engineering,P102,2025-07-16,Research,5.5,Needs review
+E019,Steve,Sales,P210,2025-07-28,Development,4.1,Pending deployment
+E001,Alice,HR,P220,2025-07-27,CustomerSupport,5.4,On hold
+E008,Helen,Engineering,P118,2025-07-14,Documentation,8.5,Needs review
+E003,Charlie,Engineering,P105,2025-07-05,Design,3.8,Work in progress
+E004,Diana,Engineering,P112,2025-07-16,Documentation,7.1,Completed task
+E012,Laura,Marketing,P204,2025-07-10,Documentation,5.1,On hold
+E015,Oscar,Engineering,P108,2025-07-18,Development,4.6,Needs review
+E005,Ethan,Engineering,P112,2025-07-24,Testing,6.6,Pending deployment
+E007,George,Engineering,P105,2025-07-24,Testing,3.6,Pending deployment
+E019,Steve,Engineering,P119,2025-07-18,ClientMeeting,5.4,Needs review
+E011,Kevin,Sales,P201,2025-07-02,ClientMeeting,7.3,On hold
+E002,Bob,Marketing,P216,2025-07-13,Documentation,6.2,On hold
+E008,Helen,Sales,P219,2025-07-04,Design,5.0,Completed task
+E004,Diana,Support,P203,2025-07-10,ClientMeeting,3.5,Completed task
+E020,Tina,HR,P206,2025-07-14,Development,8.5,Client feedback
+E002,Bob,Engineering,P114,2025-07-02,Research,7.7,Client feedback
+E007,George,Support,P207,2025-07-13,Development,3.1,Completed task
+E017,Quinn,HR,P218,2025-07-12,Campaign,4.0,Completed task
+E004,Diana,Engineering,P112,2025-07-05,Development,3.8,Pending deployment
+E016,Priya,Sales,P201,2025-07-01,Design,7.4,On hold
+E013,Martin,Engineering,P106,2025-07-07,Training,7.2,Work in progress
+E006,Fiona,Engineering,P119,2025-07-27,Research,4.7,Pending deployment
+E009,Ian,Support,P213,2025-07-26,Documentation,6.7,Completed task
+E014,Nina,Support,P214,2025-07-12,CustomerSupport,5.2,Client feedback
+E007,George,HR,P214,2025-07-14,CustomerSupport,6.0,Client feedback
+E007,George,Engineering,P109,2025-07-05,Development,8.5,Needs review
+E014,Nina,Engineering,P112,2025-07-04,Development,6.1,Client feedback
+E020,Tina,Support,P209,2025-07-09,Design,8.1,Client feedback
+E006,Fiona,Support,P208,2025-07-16,Development,5.3,Client feedback
+E011,Kevin,Engineering,P118,2025-07-05,ClientMeeting,5.3,On hold
+E008,Helen,Support,P209,2025-07-23,Design,4.7,Pending deployment
+E003,Charlie,Engineering,P111,2025-07-02,Campaign,5.8,Pending deployment
+E020,Tina,Engineering,P119,2025-07-21,Documentation,6.8,On hold
+E006,Fiona,Engineering,P111,2025-07-29,Research,8.3,Needs review
+E002,Bob,Engineering,P102,2025-07-19,ClientMeeting,5.6,Client feedback
+E001,Alice,Engineering,P103,2025-07-25,Research,4.4,Needs review
+E013,Martin,Engineering,P106,2025-07-14,Research,7.5,Pending deployment
+E017,Quinn,Engineering,P113,2025-07-24,ClientMeeting,4.1,Completed task
+E005,Ethan,Engineering,P103,2025-07-27,Training,4.9,Needs review
+E018,Rachel,Sales,P209,2025-07-19,Campaign,7.6,Client feedback
+E014,Nina,Sales,P216,2025-07-22,Training,5.8,Pending deployment
+E020,Tina,Engineering,P114,2025-07-16,Documentation,3.7,Completed task
+E005,Ethan,Sales,P219,2025-07-18,CustomerSupport,4.1,Pending deployment
+E012,Laura,Engineering,P102,2025-07-11,Development,7.7,Pending deployment
+E004,Diana,Engineering,P103,2025-07-14,ClientMeeting,7.4,Needs review
+E001,Alice,Engineering,P104,2025-07-07,Training,6.8,Needs review
+E009,Ian,Sales,P212,2025-07-16,Research,4.0,Needs review
+E003,Charlie,Support,P219,2025-07-03,Campaign,5.9,Work in progress
+E009,Ian,Support,P218,2025-07-11,Research,7.9,Completed task
+E007,George,Engineering,P111,2025-07-01,CustomerSupport,3.7,Client feedback
+E010,Julia,Marketing,P215,2025-07-08,Training,5.2,On hold
+E017,Quinn,Sales,P217,2025-07-29,Training,5.1,Needs review
+E005,Ethan,Marketing,P205,2025-07-22,CustomerSupport,5.0,Client feedback
+E009,Ian,Engineering,P105,2025-07-01,Campaign,4.6,Pending deployment
+E017,Quinn,Support,P203,2025-07-27,CustomerSupport,4.1,Needs review
+E014,Nina,Engineering,P106,2025-07-05,ClientMeeting,4.7,Completed task
+E010,Julia,Engineering,P118,2025-07-07,Training,8.0,Needs review
+E017,Quinn,HR,P207,2025-07-21,Training,8.8,Client feedback
+E019,Steve,Marketing,P210,2025-07-17,Training,8.0,Completed task
+E017,Quinn,Engineering,P101,2025-07-18,Development,7.6,Needs review
+E016,Priya,Support,P202,2025-07-11,Campaign,7.6,Work in progress
+E018,Rachel,Marketing,P212,2025-07-08,CustomerSupport,8.7,Client feedback
+E012,Laura,Engineering,P113,2025-07-16,Testing,4.0,Completed task
+E009,Ian,HR,P210,2025-07-11,Documentation,6.7,On hold
+E011,Kevin,Engineering,P117,2025-07-27,Training,4.5,Needs review
+E018,Rachel,Engineering,P115,2025-07-20,Research,7.5,Completed task
+E001,Alice,Engineering,P107,2025-07-07,Research,9.0,Client feedback
+E009,Ian,Engineering,P116,2025-07-08,CustomerSupport,3.8,Needs review
+E004,Diana,Engineering,P113,2025-07-05,Documentation,4.4,Work in progress
+E001,Alice,Sales,P212,2025-07-13,Design,6.3,On hold
+E009,Ian,Marketing,P208,2025-07-19,Testing,5.1,Completed task
+E010,Julia,Support,P216,2025-07-18,CustomerSupport,5.7,Needs review
+E006,Fiona,Support,P219,2025-07-01,ClientMeeting,4.9,Needs review
+E011,Kevin,Engineering,P115,2025-07-24,Research,4.1,Needs review
+E012,Laura,Engineering,P111,2025-07-01,Research,7.4,Needs review
+E019,Steve,Marketing,P208,2025-07-28,Development,5.8,Client feedback
+E008,Helen,Support,P210,2025-07-13,ClientMeeting,6.0,Needs review
+E007,George,HR,P202,2025-07-23,Development,5.1,On hold
+E016,Priya,HR,P201,2025-07-14,ClientMeeting,4.9,Client feedback
+E015,Oscar,Sales,P208,2025-07-27,ClientMeeting,5.7,Completed task
+E012,Laura,Engineering,P109,2025-07-19,ClientMeeting,8.2,Completed task
+E017,Quinn,Support,P211,2025-07-11,Research,8.0,On hold
+E007,George,Engineering,P115,2025-07-25,CustomerSupport,8.4,Work in progress
+E003,Charlie,Support,P205,2025-07-30,Research,8.4,Pending deployment
+E012,Laura,Engineering,P101,2025-07-06,ClientMeeting,4.7,On hold
+E018,Rachel,Marketing,P208,2025-07-18,CustomerSupport,7.0,Completed task
+E013,Martin,Support,P218,2025-07-05,Research,4.7,Needs review
+E017,Quinn,Engineering,P107,2025-07-02,Testing,3.1,Work in progress
+E013,Martin,Engineering,P119,2025-07-04,Design,4.8,Work in progress
+E018,Rachel,Engineering,P113,2025-07-23,CustomerSupport,3.2,Work in progress
+E019,Steve,HR,P206,2025-07-17,Development,8.5,Needs review
+E014,Nina,Marketing,P217,2025-07-08,ClientMeeting,6.1,On hold
+E017,Quinn,Marketing,P204,2025-07-18,CustomerSupport,3.8,Completed task
+E015,Oscar,Engineering,P108,2025-07-28,CustomerSupport,3.4,Completed task
+E001,Alice,Sales,P209,2025-07-11,Campaign,6.2,Client feedback
+E012,Laura,Engineering,P107,2025-07-09,Training,6.8,Needs review
+E004,Diana,Engineering,P102,2025-07-04,Research,6.7,Needs review
+E010,Julia,Sales,P206,2025-07-26,CustomerSupport,6.8,Pending deployment
+E008,Helen,Marketing,P203,2025-07-03,Design,5.1,Needs review
+E002,Bob,Support,P209,2025-07-14,ClientMeeting,4.5,Completed task
+E012,Laura,Support,P220,2025-07-10,Design,7.2,Pending deployment
+E019,Steve,Support,P204,2025-07-25,ClientMeeting,8.6,Completed task
+E009,Ian,HR,P214,2025-07-17,ClientMeeting,7.9,Needs review
+E005,Ethan,Engineering,P112,2025-07-18,Documentation,3.2,Client feedback
+E006,Fiona,Engineering,P106,2025-07-29,ClientMeeting,7.6,Needs review
+E008,Helen,Support,P204,2025-07-27,Development,4.1,Client feedback
+E018,Rachel,Engineering,P107,2025-07-04,Development,6.9,On hold
+E016,Priya,Engineering,P109,2025-07-11,Research,8.9,Needs review
+E014,Nina,Engineering,P108,2025-07-22,Testing,4.2,Needs review
+E002,Bob,Marketing,P209,2025-07-25,Development,5.2,Needs review
+E013,Martin,Marketing,P211,2025-07-02,Documentation,8.6,Needs review
+E010,Julia,Support,P212,2025-07-22,ClientMeeting,4.8,On hold
+E007,George,Engineering,P118,2025-07-18,Documentation,7.5,Work in progress
+E014,Nina,Support,P201,2025-07-13,Research,7.5,Pending deployment
+E017,Quinn,Marketing,P208,2025-07-27,Testing,8.2,Work in progress
+E015,Oscar,Engineering,P117,2025-07-23,Campaign,5.8,Work in progress
+E006,Fiona,Engineering,P119,2025-07-30,Testing,7.0,Pending deployment
+E017,Quinn,Engineering,P103,2025-07-08,Campaign,8.5,Needs review
+E005,Ethan,Marketing,P204,2025-07-22,Documentation,4.4,Needs review
+E010,Julia,Support,P209,2025-07-26,Research,7.6,On hold
+E007,George,Marketing,P206,2025-07-13,Research,4.0,Completed task
+E003,Charlie,HR,P208,2025-07-27,Campaign,8.0,Completed task
+E012,Laura,Support,P207,2025-07-01,Campaign,5.6,On hold
+E020,Tina,Engineering,P115,2025-07-10,Training,6.5,On hold
+E008,Helen,Engineering,P104,2025-07-22,Campaign,5.5,On hold
+E004,Diana,Engineering,P114,2025-07-22,Training,3.4,Work in progress
+E013,Martin,Engineering,P119,2025-07-02,Design,3.2,On hold
+E015,Oscar,Support,P216,2025-07-25,Research,4.2,Client feedback
+E019,Steve,Sales,P210,2025-07-20,Training,7.4,Client feedback
+E015,Oscar,Support,P209,2025-07-13,Campaign,5.5,On hold
+E009,Ian,HR,P203,2025-07-02,CustomerSupport,4.7,Needs review
+E006,Fiona,Support,P210,2025-07-08,Research,8.1,Pending deployment
+E012,Laura,Sales,P220,2025-07-12,Documentation,4.8,On hold
+E020,Tina,Engineering,P101,2025-07-16,Testing,8.2,Work in progress
+E001,Alice,Support,P218,2025-07-22,Documentation,7.7,On hold
+E017,Quinn,Engineering,P110,2025-07-15,CustomerSupport,4.4,Pending deployment
+E019,Steve,Marketing,P206,2025-07-08,Campaign,7.5,Work in progress
+E020,Tina,Support,P207,2025-07-30,Development,7.8,Needs review
+E016,Priya,Engineering,P106,2025-07-16,Design,6.3,Needs review
+E008,Helen,Support,P210,2025-07-08,Training,6.0,Pending deployment
+E006,Fiona,HR,P204,2025-07-20,Development,4.1,Client feedback
+E012,Laura,Marketing,P203,2025-07-27,Campaign,5.0,Work in progress
+E016,Priya,Marketing,P214,2025-07-13,Documentation,8.7,Client feedback
+E019,Steve,Engineering,P104,2025-07-08,Research,6.3,On hold
+E009,Ian,Support,P204,2025-07-03,Campaign,5.0,Client feedback
+E010,Julia,Marketing,P220,2025-07-06,Research,7.9,Work in progress
+E007,George,Engineering,P117,2025-07-04,Design,4.5,Client feedback
+E004,Diana,Engineering,P118,2025-07-20,CustomerSupport,7.4,On hold
+E013,Martin,Support,P205,2025-07-23,Campaign,4.0,Completed task
+E007,George,Engineering,P119,2025-07-30,Development,3.7,Needs review
+E015,Oscar,Engineering,P109,2025-07-10,Design,6.6,Pending deployment
+E013,Martin,Engineering,P114,2025-07-21,ClientMeeting,8.1,Work in progress
+E015,Oscar,Sales,P211,2025-07-26,Development,5.4,Needs review
+E015,Oscar,Engineering,P118,2025-07-20,Campaign,7.2,Pending deployment
+E013,Martin,Marketing,P209,2025-07-22,ClientMeeting,8.5,Work in progress
+E016,Priya,HR,P203,2025-07-06,Development,7.0,Work in progress
+E013,Martin,Engineering,P112,2025-07-12,ClientMeeting,4.3,Client feedback
+E006,Fiona,Marketing,P203,2025-07-27,Documentation,6.9,On hold
+E006,Fiona,Engineering,P106,2025-07-21,Documentation,7.6,Completed task
+E012,Laura,Engineering,P115,2025-07-30,ClientMeeting,5.6,Work in progress
+E005,Ethan,Support,P216,2025-07-26,Training,3.3,Client feedback
+E019,Steve,Engineering,P103,2025-07-13,Design,5.0,Client feedback
+E001,Alice,Engineering,P103,2025-07-18,Design,7.9,On hold
+E001,Alice,Engineering,P117,2025-07-19,Design,6.2,Needs review
+E009,Ian,Engineering,P102,2025-07-04,ClientMeeting,5.6,On hold
+E018,Rachel,Engineering,P103,2025-07-15,Documentation,6.2,On hold
+E019,Steve,Marketing,P212,2025-07-14,ClientMeeting,5.4,Needs review
+E010,Julia,Engineering,P102,2025-07-21,CustomerSupport,3.9,Client feedback
+E018,Rachel,Engineering,P119,2025-07-08,CustomerSupport,4.1,Needs review
+E007,George,Engineering,P110,2025-07-27,Testing,6.9,Needs review
+E009,Ian,Engineering,P104,2025-07-21,Testing,4.2,Needs review
+E002,Bob,Support,P214,2025-07-15,Research,7.9,Work in progress
+E020,Tina,Marketing,P206,2025-07-19,Development,3.5,Needs review
+E003,Charlie,Support,P217,2025-07-12,Training,7.5,Work in progress
+E020,Tina,Engineering,P115,2025-07-09,CustomerSupport,5.3,Needs review
+E005,Ethan,Support,P219,2025-07-20,Research,7.4,Pending deployment
+E013,Martin,Support,P219,2025-07-28,Campaign,7.5,Completed task
+E005,Ethan,Engineering,P105,2025-07-04,Campaign,7.3,Pending deployment
+E005,Ethan,Engineering,P102,2025-07-13,Research,3.1,Work in progress
+E005,Ethan,HR,P203,2025-07-27,Development,3.3,Needs review
+E008,Helen,Support,P203,2025-07-18,Campaign,8.9,Client feedback
+E008,Helen,Support,P204,2025-07-02,Development,3.8,Work in progress
+E014,Nina,Marketing,P213,2025-07-15,Documentation,6.9,On hold
+E006,Fiona,Engineering,P119,2025-07-23,Training,6.1,Needs review
+E007,George,Support,P214,2025-07-14,Campaign,4.2,Client feedback
+E012,Laura,HR,P217,2025-07-25,Testing,6.3,Work in progress
+E005,Ethan,Support,P207,2025-07-17,Development,5.1,Work in progress
+E015,Oscar,HR,P202,2025-07-05,Documentation,8.5,On hold
+E016,Priya,Engineering,P115,2025-07-02,Design,6.9,On hold
+E004,Diana,Support,P207,2025-07-18,Development,8.7,Completed task
+E004,Diana,Support,P203,2025-07-13,Training,7.9,Pending deployment
+E012,Laura,Marketing,P210,2025-07-21,Training,8.8,Client feedback
+E003,Charlie,Support,P215,2025-07-23,Testing,5.2,Pending deployment
+E002,Bob,Engineering,P116,2025-07-12,Training,7.7,Work in progress
+E013,Martin,Engineering,P116,2025-07-28,Development,7.9,Completed task
+E006,Fiona,Engineering,P104,2025-07-20,Design,4.0,Pending deployment
+E016,Priya,Engineering,P114,2025-07-05,Campaign,3.9,Completed task
+E015,Oscar,Engineering,P112,2025-07-10,CustomerSupport,4.1,Completed task
+E004,Diana,Engineering,P101,2025-07-01,Training,6.3,Client feedback
+E012,Laura,Support,P203,2025-07-17,Documentation,5.9,On hold
+E008,Helen,Engineering,P106,2025-07-03,Training,4.5,On hold
+E008,Helen,Marketing,P203,2025-07-17,Documentation,7.1,Needs review
+E011,Kevin,Support,P218,2025-07-15,Development,3.5,Work in progress
+E005,Ethan,Support,P210,2025-07-04,Campaign,8.8,Pending deployment
+E009,Ian,Engineering,P104,2025-07-16,Development,6.6,Pending deployment
+E010,Julia,Engineering,P118,2025-07-22,Research,7.9,Pending deployment
+E002,Bob,Marketing,P215,2025-07-06,Training,7.7,On hold
+E016,Priya,Support,P201,2025-07-30,Research,7.3,Pending deployment
+E013,Martin,HR,P219,2025-07-01,Training,4.9,Completed task
+E020,Tina,Engineering,P109,2025-07-30,Design,5.4,On hold
+E017,Quinn,Support,P202,2025-07-19,Development,4.2,On hold
+E013,Martin,Sales,P211,2025-07-11,Training,7.2,On hold
+E014,Nina,Engineering,P102,2025-07-23,Design,8.0,On hold
+E013,Martin,Support,P201,2025-07-16,CustomerSupport,4.0,Needs review
+E007,George,Engineering,P105,2025-07-17,CustomerSupport,7.8,Needs review
+E012,Laura,Sales,P209,2025-07-07,Design,5.7,Needs review
+E004,Diana,Engineering,P108,2025-07-21,Campaign,5.2,On hold
+E019,Steve,Engineering,P105,2025-07-11,Testing,4.7,Client feedback
+E010,Julia,Engineering,P110,2025-07-03,Documentation,8.0,On hold
+E020,Tina,Support,P215,2025-07-16,CustomerSupport,7.5,Pending deployment
+E015,Oscar,HR,P202,2025-07-12,Testing,7.8,Work in progress
+E015,Oscar,Engineering,P118,2025-07-15,Campaign,5.2,On hold
+E007,George,Engineering,P111,2025-07-27,ClientMeeting,3.3,Needs review
+E014,Nina,Engineering,P116,2025-07-05,Training,3.5,Client feedback
+E018,Rachel,Sales,P216,2025-07-02,Training,6.2,Needs review
+E003,Charlie,Sales,P220,2025-07-16,Testing,4.7,Pending deployment
+E005,Ethan,Engineering,P118,2025-07-19,Campaign,3.4,Pending deployment
+E004,Diana,Engineering,P113,2025-07-12,Testing,5.6,On hold
+E002,Bob,Sales,P209,2025-07-06,ClientMeeting,3.1,Work in progress
+E002,Bob,Sales,P214,2025-07-15,Documentation,4.9,Work in progress
+E015,Oscar,Support,P218,2025-07-13,Development,3.9,Work in progress
+E008,Helen,Engineering,P109,2025-07-14,CustomerSupport,3.9,Pending deployment
+E014,Nina,Sales,P205,2025-07-15,Documentation,8.7,Needs review
+E014,Nina,Support,P217,2025-07-22,Development,4.6,Work in progress
+E013,Martin,Sales,P205,2025-07-20,Training,3.2,Client feedback
+E014,Nina,Engineering,P102,2025-07-03,Documentation,5.8,Client feedback
+E002,Bob,Engineering,P109,2025-07-11,Training,8.6,Needs review
+E007,George,Support,P204,2025-07-12,Testing,5.1,Pending deployment
+E003,Charlie,Engineering,P104,2025-07-29,Documentation,4.7,Work in progress
+E001,Alice,Engineering,P119,2025-07-27,Campaign,4.8,Client feedback
+E002,Bob,Support,P205,2025-07-30,Design,6.6,Completed task
+E017,Quinn,Engineering,P116,2025-07-18,Campaign,7.4,Pending deployment
+E010,Julia,HR,P216,2025-07-26,Design,3.3,Client feedback
+E013,Martin,Engineering,P118,2025-07-21,Testing,6.5,Needs review
+E015,Oscar,Marketing,P209,2025-07-18,Training,3.7,On hold
+E003,Charlie,HR,P204,2025-07-07,Training,5.2,Client feedback
+E003,Charlie,Engineering,P109,2025-07-16,CustomerSupport,3.9,On hold
+E008,Helen,Engineering,P102,2025-07-21,CustomerSupport,6.4,Client feedback
+E010,Julia,Engineering,P106,2025-07-28,Research,7.7,Needs review
+E008,Helen,Engineering,P119,2025-07-06,CustomerSupport,3.8,Needs review
+E007,George,Engineering,P106,2025-07-12,Testing,4.0,On hold
+E010,Julia,Engineering,P119,2025-07-13,Development,5.0,Needs review
+E019,Steve,Support,P215,2025-07-27,Documentation,4.9,Work in progress
+E020,Tina,Engineering,P110,2025-07-30,Testing,5.1,On hold
+E013,Martin,Marketing,P214,2025-07-17,Development,6.6,Work in progress
+E020,Tina,Engineering,P114,2025-07-26,Research,8.0,Work in progress
+E011,Kevin,HR,P214,2025-07-21,Documentation,7.9,On hold
+E013,Martin,Support,P209,2025-07-03,ClientMeeting,6.1,Needs review
+E008,Helen,Engineering,P108,2025-07-22,Campaign,6.4,Needs review
+E007,George,Marketing,P208,2025-07-18,Campaign,5.3,Client feedback
+E008,Helen,Marketing,P203,2025-07-27,Testing,7.2,On hold
+E007,George,Engineering,P116,2025-07-18,Campaign,3.7,On hold
+E012,Laura,Support,P212,2025-07-06,Development,6.0,Client feedback
+E016,Priya,Engineering,P112,2025-07-22,CustomerSupport,7.0,Needs review
+E004,Diana,Support,P209,2025-07-22,Research,6.1,Pending deployment
+E007,George,Marketing,P211,2025-07-07,Development,3.5,On hold
+E004,Diana,Marketing,P203,2025-07-10,Design,7.5,Completed task
+E013,Martin,Marketing,P207,2025-07-14,Design,6.9,Client feedback
+E013,Martin,Engineering,P111,2025-07-01,Design,4.7,Needs review
+E009,Ian,Engineering,P108,2025-07-29,ClientMeeting,3.5,On hold
+E004,Diana,Engineering,P105,2025-07-19,Testing,8.2,Needs review
+E005,Ethan,Marketing,P219,2025-07-03,Testing,3.4,Pending deployment
+E010,Julia,Engineering,P113,2025-07-16,Campaign,3.6,Work in progress
+E004,Diana,HR,P207,2025-07-28,Development,6.5,Completed task
+E010,Julia,Marketing,P214,2025-07-22,Testing,6.0,Completed task
+E007,George,Engineering,P114,2025-07-08,Campaign,8.0,Client feedback
+E017,Quinn,Engineering,P107,2025-07-09,Documentation,6.8,Work in progress
+E007,George,Engineering,P101,2025-07-16,Research,5.5,On hold
+E006,Fiona,Engineering,P113,2025-07-03,Development,7.4,Work in progress
+E011,Kevin,Engineering,P110,2025-07-24,Testing,6.5,Work in progress
+E014,Nina,Support,P206,2025-07-22,Documentation,7.3,Pending deployment
+E013,Martin,Engineering,P104,2025-07-13,CustomerSupport,4.2,Completed task
