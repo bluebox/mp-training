@@ -1,0 +1,7 @@
+memberId,name,age,email,gender,membershipType,joinedDate,endDate
+101,Arjun,28,arjun@gmail.com,male,BASIC,2024-05-01,2024-06-01
+102,Diya,25,diya@gmail.com,female,PREMIUM,2024-06-10,2024-07-05
+103,Raj,31,raj@example.com,male,BASIC,2024-05-15,2024-06-20
+104,Meena,27,meena123@mail.com,female,PREMIUM,2024-06-01,2024-07-01
+105,Karthik,22,karthik.k@gmail.com,male,BASIC,2024-05-20,2024-06-25
+106,Neha,30,neha@domain.com,female,PREMIUM,2024-06-05,2024-07-10
