@@ -1,0 +1,63 @@
+public class MemberRepository {
+    public void addMember(Member m) throws SQLException {
+        String sql = "INSERT INTO Members_Table VALUES (?, ?, ?, ?)";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, m.getId());
+            ps.setString(2, m.getName());
+            ps.setInt(3, m.getAge());
+            ps.setInt(4, m.getPlanId());
+            ps.executeUpdate();
+        }
+    }
+
+    public Member getMemberById(int id) throws SQLException {
+        String sql = "SELECT * FROM Members_Table WHERE mem_id = ?";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Member(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+            }
+        }
+        return null;
+    }
+
+    public void updateMember(Member m) throws SQLException {
+        String sql = "UPDATE Members_Table SET name = ?, age = ? WHERE mem_id = ?";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, m.getName());
+            ps.setInt(2, m.getAge());
+            ps.setInt(3, m.getId());
+            ps.executeUpdate();
+        }
+    }
+
+    public void updateMemberPlan(int memId, int newPlanId) throws SQLException {
+        String sql = "UPDATE Members_Table SET plan_id = ? WHERE mem_id = ?";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, newPlanId);
+            ps.setInt(2, memId);
+            ps.executeUpdate();
+        }
+    }
+
+    public List<Member> getAllMembers() throws SQLException {
+        List<Member> members = new ArrayList<>();
+        String sql = "SELECT * FROM Members_Table";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                members.add(new Member(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+            }
+        }
+        return members;
+    }
+
+    public void deleteMember(int id) throws SQLException {
+        String sql = "DELETE FROM Members_Table WHERE mem_id = ?";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
+    }
+}

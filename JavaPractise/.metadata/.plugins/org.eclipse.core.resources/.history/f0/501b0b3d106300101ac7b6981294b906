@@ -1,0 +1,33 @@
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class SimpleHttpPost {
+    public static void main(String[] args) {
+        // 1. Create an HttpClient instance
+        HttpClient client = HttpClient.newHttpClient();
+
+        // 2. Define the request body (e.g., JSON)
+        String requestBody = "{\"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}";
+
+        // 3. Build an HttpRequest for a POST request
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://jsonplaceholder.typicode.com/posts")) // Target URL
+                .header("Content-Type", "application/json") // Set Content-Type header
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody)) // Specify POST method and body
+                .build();
+
+        try {
+            // 4. Send the request and get the response synchronously
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            // 5. Process the response
+            System.out.println("Response Status Code: " + response.statusCode());
+            System.out.println("Response Body:\n" + response.body());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

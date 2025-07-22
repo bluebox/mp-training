@@ -1,0 +1,59 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
+public class ConcurrentPoster {
+
+    private static final String OUTPUT_FILE_PATH = "receipts.txt";
+
+    public static void sendPosts(HttpClient client, String baseUri, String paramFormat, Map<String, String> orders) {
+        List<CompletableFuture<String>> futures = new ArrayList<>();
+
+        for (Map.Entry<String, String> order : orders.entrySet()) {
+            String params = String.format(paramFormat, order.getKey(), order.getValue());
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(baseUri))
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .POST(BodyPublishers.ofString(params))
+                    .build();
+
+            CompletableFuture<String> future = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenApply(HttpResponse::body);
+
+            futures.add(future);
+        }
+
+        CompletableFuture<Void> allDone = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+        allDone.join();
+        try (FileWriter writer = new FileWriter(OUTPUT_FILE_PATH)) {
+            for (CompletableFuture<String> future : futures) {
+                writer.write(future.join() + "\n");
+            }
+            System.out.println("Responses written to " + OUTPUT_FILE_PATH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        HttpClient client = HttpClient.newHttpClient();
+        String baseUri = "https://httpbin.org/post";
+        String paramFormat = "id=%s&item=%s";
+        Map<String, String> orders = Map.of(
+                "001", "Apples",
+                "002", "Bananas",
+                "003", "Oranges"
+        );
+
+        sendPosts(client, baseUri, paramFormat, orders);
+    }
+}

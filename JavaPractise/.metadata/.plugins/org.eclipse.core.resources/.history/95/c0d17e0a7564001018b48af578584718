@@ -1,0 +1,44 @@
+public class GymService {
+    private MemberRepository memberRepo = new MemberRepository();
+    private PlanRepository planRepo = new PlanRepository();
+
+    public void addMember(int id, String name, int age, int planId) throws SQLException {
+        memberRepo.addMember(new Member(id, name, age, planId));
+    }
+
+    public void updateMember(int id, String name, int age) throws SQLException {
+        memberRepo.updateMember(new Member(id, name, age, 0));
+    }
+
+    public void updateMemberPlan(int id, int planId) throws SQLException {
+        memberRepo.updateMemberPlan(id, planId);
+    }
+
+    public void deleteMember(int id) throws SQLException {
+        memberRepo.deleteMember(id);
+    }
+
+    public void viewAllMembers() throws SQLException {
+        for (Member m : memberRepo.getAllMembers()) {
+            System.out.println(m.getId() + " " + m.getName() + " " + m.getAge() + " " + m.getPlanId());
+        }
+    }
+
+    public void viewMemberById(int id) throws SQLException {
+        Member m = memberRepo.getMemberById(id);
+        if (m != null)
+            System.out.println(m.getId() + " " + m.getName() + " " + m.getAge() + " " + m.getPlanId());
+        else
+            System.out.println("Member not found.");
+    }
+
+    public void viewPlans() throws SQLException {
+        for (MembershipPlan p : planRepo.getAllPlans()) {
+            System.out.println(p.getId() + " " + p.getPlanName() + " " + p.getDurationMonths() + " months ₹" + p.getFee());
+        }
+    }
+
+    public void addPlan(String name, int duration, double fee) throws SQLException {
+        planRepo.addPlan(new MembershipPlan(0, name, duration, fee));
+    }
+}

@@ -1,0 +1,7 @@
+public class MembershipPlan {
+    private int id;
+    private String planName;
+    private int durationMonths;
+    private double fee;
+    // constructors, getters, setters
+}

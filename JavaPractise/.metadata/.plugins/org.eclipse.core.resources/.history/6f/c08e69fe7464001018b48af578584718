@@ -1,0 +1,35 @@
+public class PlanRepository {
+    public List<MembershipPlan> getAllPlans() throws SQLException {
+        List<MembershipPlan> plans = new ArrayList<>();
+        String sql = "SELECT * FROM membership_plan";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                plans.add(new MembershipPlan(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4)));
+            }
+        }
+        return plans;
+    }
+
+    public MembershipPlan getPlanById(int id) throws SQLException {
+        String sql = "SELECT * FROM membership_plan WHERE id = ?";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new MembershipPlan(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4));
+            }
+        }
+        return null;
+    }
+
+    public void addPlan(MembershipPlan plan) throws SQLException {
+        String sql = "INSERT INTO membership_plan (plan_name, duration_months, fee) VALUES (?, ?, ?)";
+        try (Connection con = DBUtil.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, plan.getPlanName());
+            ps.setInt(2, plan.getDurationMonths());
+            ps.setDouble(3, plan.getFee());
+            ps.executeUpdate();
+        }
+    }
+}

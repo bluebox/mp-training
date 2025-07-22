@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;util&apos; to &apos;database&apos;&#x0D;&#x0A;- Original project: &apos;Gym_Management_JDBC&apos;&#x0D;&#x0A;- Original element: &apos;Gym_Management_JDBC/src/util&apos;&#x0D;&#x0A;- Renamed element: &apos;Gym_Management_JDBC/src/database&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;util&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;util" name="database" qualified="false" references="true" stamp="1753085533342" textual="false" version="1.0"/>
+</session>

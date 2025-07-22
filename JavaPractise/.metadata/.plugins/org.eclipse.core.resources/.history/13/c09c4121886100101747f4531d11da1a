@@ -1,0 +1,27 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class CallableStatement1 {
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://localhost:3306/db";
+        String user = "root";
+        String password = "Akash@123";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the database!");
+            String sql = "{CALL insert_order(?, ?, ?,?)}";
+            java.sql.CallableStatement cs = connection.prepareCall(sql);
+            cs.setInt(1, 5);
+            cs.setString(2, "Kiwi");
+            cs.setInt(3, 50);
+            cs.setInt(4,4)
+            cs.execute();
+            System.out.println("Order inserted successfully!");
+            connection.close();
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+}

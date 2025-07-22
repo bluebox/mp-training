@@ -1,0 +1,17 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class CalciTest {
+
+	@Test
+	void test() {
+		Calci cal=new Calci();
+		assertEquals(5,cal.add(2,3));
+		
+	}
+	void 2multiply3Equals6() {
+		assertEquals(6,cal.mul(2,3));
+	}
+
+}

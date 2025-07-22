@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.core.classpathVariable.ECLIPSE_HOME=C\:/Users/ADMIN/eclipse/java-2025-06/eclipse/
+org.eclipse.jdt.core.classpathVariable.JRE_LIB=C\:/Program Files/Java/jdk-21/lib/jrt-fs.jar
+org.eclipse.jdt.core.classpathVariable.JRE_SRC=C\:/Program Files/Java/jdk-21/lib/src.zip
+org.eclipse.jdt.core.classpathVariable.JRE_SRCROOT=
+org.eclipse.jdt.core.classpathVariable.JUNIT_HOME=C\:/Users/ADMIN/.p2/pool/plugins/org.junit_4.13.2.v20240929-1000.jar
+org.eclipse.jdt.core.classpathVariable.M2_REPO=C\:/Users/ADMIN/.m2/repository
+org.eclipse.jdt.core.codeComplete.visibilityCheck=enabled
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=21
+org.eclipse.jdt.core.compiler.compliance=21
+org.eclipse.jdt.core.compiler.problem.enablePreviewFeatures=disabled
+org.eclipse.jdt.core.compiler.problem.reportPreviewFeatures=warning
+org.eclipse.jdt.core.compiler.release=enabled
+org.eclipse.jdt.core.compiler.source=21
+org.eclipse.jdt.core.userLibrary.JavaFx=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<userlibrary systemlibrary\="false" version\="2">\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx.base.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx.controls.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx.fxml.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx.graphics.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx.media.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx.swing.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx.web.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/javafx-swt.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/jdk.jsobject.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/jfx.incubator.input.jar"/>\r\n\t<archive path\="C\:/Users/ADMIN/Downloads/lib/jfx.incubator.richtext.jar"/>\r\n</userlibrary>\r\n

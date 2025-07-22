@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.TilePane ?>
+<?import javafx.scene.control.Button?>
+
+
+<TilePane fx:controller="application.controller"
+	xmlns:fx="http://javafx.com/fxml"
+	xmlns="http://javafx.com/javafx"  alignment="center">
+	
+	<Button text="Button one" />
+	<Button text="Button Two" />
+	<Button text="Button Three" />	
+	<Button text="Button Four" />
+	<Button text="Button Five"/>
+
+</TilePane>

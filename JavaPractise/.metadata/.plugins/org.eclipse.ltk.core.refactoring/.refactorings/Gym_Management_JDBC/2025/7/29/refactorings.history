@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;model.MembershpPlan.java&apos; to &apos;MembershipPlan.java&apos;&#x0D;&#x0A;- Original project: &apos;Gym_Management_JDBC&apos;&#x0D;&#x0A;- Original element: &apos;model.MembershpPlan.java&apos;&#x0D;&#x0A;- Renamed element: &apos;model.MembershipPlan.java&apos;" description="Rename compilation unit &apos;MembershpPlan.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;model{MembershpPlan.java" name="MembershipPlan.java" references="false" stamp="1752908986027" version="1.0"/>
+</session>

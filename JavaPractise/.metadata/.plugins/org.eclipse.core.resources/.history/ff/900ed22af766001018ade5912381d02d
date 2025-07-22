@@ -1,0 +1,21 @@
+package application;
+
+import javafx.event.ActionEvent;
+
+import javafx.fxml.FXML;
+
+public class SampleController {
+	@FXML
+	public void up(ActionEvent e) {
+		System.out.println("Up");
+	}
+	public void down(ActionEvent e) {
+		System.out.println("down");
+	}
+	public void right(ActionEvent e) {
+		System.out.println("right");
+	}
+	public void left(ActionEvent e) {
+		System.out.println("left");
+	}
+}

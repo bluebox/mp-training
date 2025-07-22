@@ -1,0 +1,54 @@
+package application;
+	
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+
+
+public class Main extends Application {
+	@Override
+	public void start(Stage stage) {
+		try {
+			Group root=new Group();
+			Scene scene = new Scene(root,600,600,Color.BISQUE);
+			stage.setTitle("DEMO");
+			
+			Text text=new Text();
+			text.setText("Hi This is demo program");
+			text.setX(50);
+			text.setY(50);
+			root.getChildren().add(text);
+			
+			Line line=new Line();
+			line.setStartX(60);
+			line.setStartY(60);
+			line.setEndX(80);
+			line.setEndY(80);
+			root.getChildren().add(line);
+			
+			
+			Rectangle rec=new Rectangle();
+			rec.setX(100);
+			rec.setY(100);
+			rec.setWidth(20);
+			rec.setHeight(20);
+			rec.setFill(Color.IVORY);
+			root.getChildren().add(rec);
+			
+			
+			stage.setScene(scene);
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+}

@@ -1,0 +1,6 @@
+#Mon Jul 21 14:30:19 IST 2025
+__DEFAULT__=false
+expression=Properties for JavaFX SDK
+org.eclipse.help.ui.localSearch.master=true
+org.eclipse.sdk.Eclipse.master=true
+org.eclipse.sdk.Google.master=true

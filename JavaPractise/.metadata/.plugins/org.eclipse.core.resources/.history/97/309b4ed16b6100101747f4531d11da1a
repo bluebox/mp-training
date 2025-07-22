@@ -1,0 +1,107 @@
+import java.io.PrintWriter;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class AnalyticsProcessor {
+
+	
+	//Task 7
+    public static Map<String, List<EmployeeWorkLog>> logsOver10Hours(List<EmployeeWorkLog> employeeList) {
+        return employeeList.stream()
+                .filter(log -> log.getHoursWorked() > 10)
+                .collect(Collectors.groupingBy(e->e.getEmployeeId()));
+    }
+
+    
+    
+    //Task 12
+    public static Map<String, Map<String, DoubleSummaryStatistics>> projectProductivity(List<EmployeeWorkLog> employeeList) {
+        return employeeList.stream()
+            .collect(Collectors.groupingBy(EmployeeWorkLog::getProjectId,
+                Collectors.groupingBy(EmployeeWorkLog::getEmployeeId,
+                    Collectors.summarizingDouble(EmployeeWorkLog::getHoursWorked)
+                )
+            ));
+    }
+    
+    //Task 20
+    public static List<String> detectDrop(List<EmployeeWorkLog> logs) {
+	    Map<String, Map<Month, Double>> monthlyHours = logs.stream()
+	            .collect(Collectors.groupingBy(EmployeeWorkLog::getEmployeeId,
+	                    Collectors.groupingBy(log -> log.getDate().getMonth(),
+	                            Collectors.summingDouble(EmployeeWorkLog::getHoursWorked))));
+	
+	    List<String> drops = new ArrayList<>();
+	    for (Map.Entry<String, Map<Month, Double>> entry : monthlyHours.entrySet()) {
+	        String empId = entry.getKey();
+	        List<Month> months = entry.getValue().keySet().stream().sorted().toList();
+	        for (int i = 1; i < months.size(); i++) {
+	            double prev = entry.getValue().get(months.get(i - 1));
+	            double curr = entry.getValue().get(months.get(i));
+	            if (prev > 0 && ((prev - curr) / prev) > 0.4) {
+	                drops.add(empId + " dropped >40% from " + months.get(i - 1) + " to " + months.get(i));
+	            }
+	        }
+	    }
+	    return drops;
+    }
+
+    
+    
+    //Task 24
+    public static Map<String, List<String>> top2ByDepartment(List<EmployeeWorkLog> employeeList) {
+        Map<String, Map<String, Double>> hoursByDeptAndEmp = employeeList.stream()
+            .collect(Collectors.groupingBy(EmployeeWorkLog::getDepartment,
+                Collectors.groupingBy(EmployeeWorkLog::getEmployeeId,
+                    Collectors.summingDouble(EmployeeWorkLog::getHoursWorked)
+                )
+            ));
+        Map<String, List<String>> top2ByDept = new HashMap<>();
+        for (Map.Entry<String, Map<String, Double>> deptEntry : hoursByDeptAndEmp.entrySet()) {
+            String department = deptEntry.getKey();
+            Map<String, Double> empHours = deptEntry.getValue();
+            List<String> topEmployees = empHours.entrySet().stream()
+                .sorted((e1, e2) -> Double.compare(e2.getValue(), e1.getValue()))
+                .limit(2)
+                .map(Map.Entry::getKey)
+                .toList();
+
+            top2ByDept.put(department, topEmployees);
+        }
+        return top2ByDept;
+    }
+
+
+    
+    
+    //Task 25
+    public static List<EmployeeWorkLog> sortLogs(List<EmployeeWorkLog> employeesList) {
+        return employeesList.stream()
+                .sorted(Comparator.comparing((EmployeeWorkLog e) -> e.getDepartment())
+                        .thenComparing(e -> e.getProjectId())
+                        .thenComparing(e -> e.getDate()))
+                .toList();
+    }
+
+
+    
+    
+    //Calling this method from main to save this into the specified filename
+    public static void exportToCSV(String fileName, List<String> lines) {
+    		for(String str : lines) {
+    			System.out.println(str);
+    		}
+        try (PrintWriter pw = new PrintWriter(fileName)) {
+            lines.forEach(pw::println);
+        } 
+        catch (Exception e) {
+            System.out.println("error occured while writing to csv file");
+        }
+    }
+}

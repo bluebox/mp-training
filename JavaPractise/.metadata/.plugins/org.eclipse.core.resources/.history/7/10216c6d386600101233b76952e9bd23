@@ -1,0 +1,39 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class SimpleTodoList extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Simple To-Do List");
+
+        // Task list
+        ObservableList<String> tasks = FXCollections.observableArrayList(
+            "Do Homework", "Buy Groceries", "Clean Room"
+        );
+        ListView<String> taskListView = new ListView<>(tasks);
+
+        // Event handler: when task is clicked
+        taskListView.setOnMouseClicked(event -> {
+            String selected = taskListView.getSelectionModel().getSelectedItem();
+            if (selected != null) {
+                System.out.println("Doing: " + selected);
+            }
+        });
+
+        // Layout
+        VBox layout = new VBox(taskListView);
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}

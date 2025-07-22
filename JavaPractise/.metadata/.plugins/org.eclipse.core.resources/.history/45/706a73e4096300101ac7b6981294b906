@@ -1,0 +1,18 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapSorting {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Map<String,Integer> mp=new HashMap<>();
+		mp.put("apple",3);
+		mp.put("xyz", 10);
+		mp.put("banana", 2);
+		mp.put("dog", 8);
+		mp.entrySet().stream().forEach(e-> e.getKey()+": "+e.getValue());
+		
+
+	}
+
+}

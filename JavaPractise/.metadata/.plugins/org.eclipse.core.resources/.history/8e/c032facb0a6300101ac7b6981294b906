@@ -1,0 +1,21 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
+public class MapSorting {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Map<String,Integer> mp=new HashMap<>();
+		mp.put("apple",3);
+		mp.put("xyz", 10);
+		mp.put("banana", 2);
+		mp.put("dog", 8);
+		List<Entry<String, Integer>> li=mp.entrySet().stream().sorted((e1,e2)->e1.getValue().compareTo(e2.getValue())).collect(Collectors.toList());
+		
+
+	}
+
+}

@@ -1,0 +1,93 @@
+package repository;
+
+import model.Member;
+import util.DBUtil;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MemberRepository {
+
+    public void addMember(Member member) {
+        String sql = "insert into members values (?, ?, ?, ?)";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, member.getId());
+            ps.setString(2, member.getName());
+            ps.setInt(3, member.getAge());
+            ps.setInt(4, member.getPlanId());
+            ps.executeUpdate();
+            System.out.println("Member added.");
+        } catch (Exception e) {
+            System.out.println("Error adding member ");
+        }
+    }
+
+    public List<Member> getAllMembers() {
+        List<Member> list = new ArrayList<>();
+        String sql = "select * FROM members";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                list.add(new Member(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching members");
+        }
+        return list;
+    }
+
+    public void updateMemberDetails(String id, String name, int age) {
+        String sql = "update members SET name=?, age=? WHERE mem_id=?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ps.setInt(2, age);
+            ps.setString(3, id);
+            ps.executeUpdate();
+            System.out.println("Member updated.");
+        } catch (Exception e) {
+            System.out.println("Error updating member");
+        }
+    }
+
+    public void updateMemberPlan(String id, int planId) {
+        String sql = "update members set plan_id=? where mem_id=?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, planId);
+            ps.setString(2, id);
+            ps.executeUpdate();
+            System.out.println("Plan updated.");
+        } catch (Exception e) {
+            System.out.println("Error updating plan");
+        }
+    }
+
+    public void deleteMember(String id) {
+        String sql = "DELETE FROM members WHERE mem_id=?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, id);
+            ps.executeUpdate();
+            System.out.println("Member deleted.");
+        } catch (Exception e) {
+            System.out.println("Error deleting member: " + e.getMessage());
+        }
+    }
+
+    public Member getMemberById(String id) {
+        String sql = "SELECT * FROM members WHERE mem_id=?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return new Member(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+        } catch (Exception e) {
+            System.out.println("Error fetching member: " + e.getMessage());
+        }
+        return null;
+    }
+}

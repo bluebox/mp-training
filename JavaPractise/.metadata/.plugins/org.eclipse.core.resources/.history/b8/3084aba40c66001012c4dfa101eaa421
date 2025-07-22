@@ -1,0 +1,87 @@
+package controller;
+import service.GymService;
+import java.util.Scanner;
+public class GymController {
+    public  GymService service;
+    public   Scanner sc;
+    public GymController() {
+        this.service = new GymService();
+        this.sc = new Scanner(System.in);
+    }
+
+    public void start() {
+        boolean running = true;
+        while (running) {
+            System.out.println("\n--- Gym Membership System ---");
+            System.out.println("1. Add New Member");
+            System.out.println("2. Assign Membership Plan");
+            System.out.println("3. View All Members");
+            System.out.println("4. Update Member");
+            System.out.println("5. Delete Member");
+            System.out.println("6. Update Membership Plan Only");
+            System.out.println("7. Display Member Details");
+            System.out.println("8. View All Plans");
+            System.out.println("9. Exit");
+            System.out.print("Choose option: ");
+
+            try {
+                int choice = Integer.parseInt(sc.nextLine());
+                switch (choice) {
+                    case 1 -> {
+                        System.out.print("Enter Member ID: ");
+                        String id = sc.nextLine();
+                        System.out.print("Enter Name: ");
+                        String name = sc.nextLine();
+                        System.out.print("Enter Age: ");
+                        int age = Integer.parseInt(sc.nextLine());
+                        System.out.print("Enter Plan ID: ");
+                        int planId = Integer.parseInt(sc.nextLine());
+                        service.addMember(id, name, age, planId);
+                    }
+                    case 2 -> {
+                        System.out.print("Enter Member ID: ");
+                        String id = sc.nextLine();
+                        System.out.print("Enter Plan ID: ");
+                        int planId = Integer.parseInt(sc.nextLine());
+                        service.updateMemberPlan(id, planId);
+                    }
+                    case 3 -> service.viewAllMembers();
+                    case 4 -> {
+                        System.out.print("Enter Member ID to update: ");
+                        String id = sc.nextLine();
+                        System.out.print("Enter New Name: ");
+                        String newName = sc.nextLine();
+                        System.out.print("Enter New Age: ");
+                        int newAge = Integer.parseInt(sc.nextLine());
+                        service.updateMemberDetails(id, newName, newAge);
+                    }
+                    case 5 -> {
+                        System.out.print("Enter Member ID to delete: ");
+                        String id = sc.nextLine();
+                        service.deleteMember(id);
+                    }
+                    case 6 -> {
+                        System.out.print("Enter Member ID to update plan: ");
+                        String id = sc.nextLine();
+                        System.out.print("Enter New Plan ID: ");
+                        int newPlanId = Integer.parseInt(sc.nextLine());
+                        service.updateMemberPlan(id, newPlanId);
+                    }
+                    case 7 -> {
+                        System.out.print("Enter Member ID to display: ");
+                        String id = sc.nextLine();
+                        service.displayMemberDetails(id);
+                    }
+                    case 8 -> service.viewAllPlans();
+                    case 9 -> {
+                        System.out.println("Exiting...");
+                        running = false;
+                    }
+                    default -> System.out.println("Invalid option.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    }
+}
