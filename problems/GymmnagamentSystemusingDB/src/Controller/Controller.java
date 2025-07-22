@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 import Services.ServiceLayer;
 public class Controller {
-
+         
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		 Scanner sc=new Scanner(System.in);
+		ServiceLayer service=new ServiceLayer();
     	 boolean exit=false;
     	 
     	 System.out.println("welcome to Gym management System please enter your Gym name:");   	
@@ -25,7 +26,7 @@ public class Controller {
     			 int age=Integer.parseInt(sc.nextLine());
 				 if(age<0){  throw new ArithmeticException("Access denied - You must be at least 18 years old.");
      }
-    			 ServiceLayer.addMemeber(name,age);
+    			 service.addMemeber(name,age);
 			 }catch(Exception e){
 		       System.out.println("Enter valid credentials");
 			break;
@@ -40,7 +41,7 @@ public class Controller {
     			 Double fee=Double.parseDouble(sc.nextLine());
     			 System.out.println("Enter Duration details of the Plan in months:");
     			 int durationInMonths=Integer.parseInt(sc.nextLine());
-    			 ServiceLayer.addPlan(name,fee,durationInMonths);
+    			 service.addPlan(name,fee,durationInMonths);
 			 }catch(Exception e){
 		       System.out.println("Enter valid credentials");
 			break;
@@ -54,12 +55,12 @@ public class Controller {
     			 int memeberShipId=Integer.parseInt(sc.nextLine());
     			 try {
     				 int memeberId=0;
-    				 memeberId= ServiceLayer.findmember(name,memeberShipId);
+    				 memeberId= service.findmember(name,memeberShipId);
     				if(memeberId != 0) {
-    					ServiceLayer.getPlans();
+    					service.getPlans();
     					System.out.println("Enter 0 for Basic \n Enter 1 for Premium \n Enter 2 for Gold");
     				    int planId=Integer.parseInt(sc.nextLine());
-    					ServiceLayer.setPlan(memeberShipId,planId);
+    					service.setPlan(memeberShipId,planId);
     					System.out.println("Operation completed");
     					break;
     				}
@@ -79,9 +80,9 @@ public class Controller {
     			 System.out.println("Eneter name of the person:");
     			 String name=sc.nextLine();
     			 try {
-    				int memeberId= ServiceLayer.findmember(name,memeberShipId);
+    				int memeberId= service.findmember(name,memeberShipId);
     			 if(memeberId!=0) {
-					ServiceLayer.removeMemberPlan(memeberShipId);
+					service.removeMemberPlan(memeberShipId);
 				}
     			 }catch(Exception e) {
     				 System.out.println("Enter the valid memeber ship id");
