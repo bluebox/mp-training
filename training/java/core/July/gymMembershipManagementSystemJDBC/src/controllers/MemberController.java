@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 import models.Member;
 import services.MemberService;
+import services.implimentations.MemberServiceImpl;
 import utils.Validations;
 
 public class MemberController {
 
-	private final MemberService memberService;
+	private final MemberService memberService = new MemberServiceImpl();
 	private final Scanner sc;
 
-	public MemberController(MemberService memberService, Scanner sc) {
-		this.memberService = memberService;
+	public MemberController(Scanner sc) {
 		this.sc = sc;
 	}
 

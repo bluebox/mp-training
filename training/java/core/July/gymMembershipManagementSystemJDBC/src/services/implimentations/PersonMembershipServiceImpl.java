@@ -3,15 +3,14 @@ package services.implimentations;
 import java.util.List;
 
 import dao.PersonMembershipDao;
+import dao.implimentions.PersonMembershipDaoImpl;
 import models.PersonMembership;
 import services.PersonMembershipService;
+import utils.CSVExporter;
 
 public class PersonMembershipServiceImpl implements PersonMembershipService {
-	private final PersonMembershipDao membershipDao;
 
-	public PersonMembershipServiceImpl(PersonMembershipDao membershipDao) {
-		this.membershipDao = membershipDao;
-	}
+	private final PersonMembershipDao membershipDao = new PersonMembershipDaoImpl();
 
 	@Override
 	public void addMembership(PersonMembership membership) {

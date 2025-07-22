@@ -4,8 +4,7 @@ public class Member extends Person {
 	private int id;
 
 	public Member(String name, int age, String contactDetails) {
-		super(name, age);
-		this.setContactDetails(contactDetails);
+		super(name, age, contactDetails);
 	}
 
 	public Member(String name, int age) {

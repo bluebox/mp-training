@@ -3,16 +3,14 @@ package services.implimentations;
 import java.util.List;
 
 import dao.MemberDao;
+import dao.implimentions.MemberDaoImpl;
 import models.Member;
 import services.MemberService;
+import utils.CSVExporter;
 
 public class MemberServiceImpl implements MemberService {
 
-	private final MemberDao memberDao;
-
-	public MemberServiceImpl(MemberDao memberDao) {
-		this.memberDao = memberDao;
-	}
+	private final MemberDao memberDao = new MemberDaoImpl();
 
 	@Override
 	public void addMember(Member member) {
@@ -39,6 +37,7 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.deleteMember(id);
 	}
 
+	@Override
 	public void exportMembers() {
 
 		List<Member> members = memberDao.getAllMembers();

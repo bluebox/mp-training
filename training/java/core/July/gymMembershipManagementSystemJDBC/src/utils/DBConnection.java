@@ -1,31 +1,47 @@
 package utils;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class DBConnection {
 
+	private DBConnection() {
+
+	}
+
 	private static Connection connection;
 
-	public static void initializeConnection() {
+	private static void initializeConnection() {
+
 		if (connection != null) {
 			return;
 		}
 
-		MysqlDataSource dataSource = new MysqlDataSource();
-
-		dataSource.setPort(Integer.parseInt(System.getenv("port")));
-		dataSource.setServerName(System.getenv("server"));
-		dataSource.setUser(System.getenv("user"));
-		dataSource.setPassword(System.getenv("Password"));
-		dataSource.setDatabaseName(System.getenv("database"));
-
 		try {
+			MysqlDataSource dataSource = new MysqlDataSource();
+
+			Properties properties = new Properties();
+			InputStream inputStream = new FileInputStream("config.properties");
+			properties.load(inputStream);
+
+			dataSource.setPort(Integer.parseInt(properties.getProperty("port")));
+			dataSource.setServerName(properties.getProperty("server"));
+			dataSource.setUser(properties.getProperty("user"));
+			dataSource.setPassword(properties.getProperty("password"));
+			dataSource.setDatabaseName(properties.getProperty("database"));
+
 			connection = dataSource.getConnection();
 			System.out.println("Connected successfully");
-		} catch (SQLException e) {
+
+			inputStream.close();
+
+		} catch (SQLException | IOException e) {
 			System.out.println("Connection failed: " + e.getMessage());
 			connection = null;
 		}

@@ -6,9 +6,14 @@ public abstract class Person {
 	private int age;
 	private String contactDetails;
 
-	public Person(String name, int age) {
+	public Person(String name, int age, String contactDetails) {
 		this.name = name;
 		this.age = age;
+		this.contactDetails = contactDetails;
+	}
+
+	public Person(String name, int age) {
+		this(name, age, null);
 	}
 
 	public Person() {

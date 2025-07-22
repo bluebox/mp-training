@@ -1,19 +1,14 @@
 package controllers;
 
 import java.util.List;
-import java.util.Scanner;
 
 import models.MembershipPlan;
 import services.MembershipPlanService;
+import services.implimentations.MembershipPlanServiceImpl;
 
 public class MembershipPlanController {
-	private final MembershipPlanService planService;
-//	private final Scanner sc;
 
-	public MembershipPlanController(MembershipPlanService planService, Scanner sc) {
-		this.planService = planService;
-//		this.sc = sc;
-	}
+	private final MembershipPlanService planService = new MembershipPlanServiceImpl();
 
 	public void getAllMembers() {
 

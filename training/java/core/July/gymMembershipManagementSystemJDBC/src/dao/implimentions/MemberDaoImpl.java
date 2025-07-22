@@ -36,7 +36,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public Member getMemberById(int id) {
+
 		Member member = null;
+
 		try {
 			PreparedStatement stmt = PreparedStatementManager.getPreparedStatement(SQLQueries.SELECT_PERSON_BY_ID);
 			stmt.setInt(1, id);
@@ -44,6 +46,7 @@ public class MemberDaoImpl implements MemberDao {
 
 			if (rs.next()) {
 				member = new Member();
+
 				member.setId(rs.getInt("id"));
 				member.setName(rs.getString("name"));
 				member.setAge(rs.getInt("age"));
@@ -53,6 +56,7 @@ public class MemberDaoImpl implements MemberDao {
 		} catch (SQLException e) {
 			System.out.println("Error adding member: " + e.getMessage());
 		}
+
 		return member;
 	}
 

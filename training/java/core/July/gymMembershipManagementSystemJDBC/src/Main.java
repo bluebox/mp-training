@@ -3,9 +3,6 @@ import java.util.Scanner;
 import controllers.MemberController;
 import controllers.MembershipController;
 import controllers.MembershipPlanController;
-import dao.implimentions.MemberDaoImpl;
-import dao.implimentions.MembershipPlanDaoImpl;
-import dao.implimentions.PersonMembershipDaoImpl;
 import services.MemberService;
 import services.MembershipPlanService;
 import services.PersonMembershipService;
@@ -16,88 +13,88 @@ import utils.DBConnection;
 import utils.PreparedStatementManager;
 
 public class Main {
+
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			PreparedStatementManager.closeAllStatements();
 			DBConnection.closeConnection();
+			PreparedStatementManager.closeAllStatements();
+			sc.close();
 		}));
 
-		MemberService memberService = new MemberServiceImpl(new MemberDaoImpl());
-		MembershipPlanService planService = new MembershipPlanServiceImpl(new MembershipPlanDaoImpl());
-		PersonMembershipService membershipService = new PersonMembershipServiceImpl(new PersonMembershipDaoImpl());
+		MemberService memberService = new MemberServiceImpl();
+		MembershipPlanService planService = new MembershipPlanServiceImpl();
+		PersonMembershipService membershipService = new PersonMembershipServiceImpl();
 
-		MemberController memberController = new MemberController(memberService, sc);
-		MembershipPlanController membershipPlanController = new MembershipPlanController(planService, sc);
-		MembershipController membershipController = new MembershipController(membershipService, planService,
-				memberService, sc);
+		MemberController memberController = new MemberController(sc);
+		MembershipPlanController membershipPlanController = new MembershipPlanController();
+		MembershipController membershipController = new MembershipController(sc);
 
 		boolean exit = false;
 
 		while (!exit) {
+
 			printOptions();
+			int choice = -1;
 
 			try {
-				int choice = Integer.parseInt(sc.nextLine());
-
-				switch (choice) {
-				case 1:
-					memberController.addMember();
-					break;
-				case 2:
-					memberController.updateMember();
-					System.out.println("Member updated successfully!");
-					break;
-				case 3:
-					memberController.deleteMember();
-					break;
-				case 4:
-					memberController.getMemberById();
-					break;
-				case 5:
-					memberController.getAllMembers();
-					break;
-				case 6:
-					membershipPlanController.getAllMembers();
-					break;
-				case 7:
-					membershipController.assignPlan();
-					break;
-				case 8:
-					membershipController.getAllMemberships();
-					break;
-				case 9:
-					membershipController.getActiveMemberships();
-					break;
-				case 10:
-					membershipController.deleteMembership();
-					break;
-				case 11:
-					memberService.exportMembers();
-					break;
-				case 12:
-					planService.exportPlans();
-					break;
-				case 13:
-					membershipService.exportMembershipDetails();
-					break;
-				case 14:
-					membershipService.exportActiveMembershipDetails();
-					break;
-				case 0:
-					exit = true;
-					System.out.println("Exited Successfully");
-					break;
-				default:
-					System.out.println("Invalid choice. Try again.");
-				}
-
+				choice = Integer.parseInt(sc.nextLine());
 			} catch (NumberFormatException e) {
 				System.out.println("Please enter numbers Choice.");
-			} catch (Exception e) {
-				System.out.println("An unexpected error occurred: " + e.getMessage());
+			}
+
+			switch (choice) {
+			case 1:
+				memberController.addMember();
+				break;
+			case 2:
+				memberController.updateMember();
+				System.out.println("Member updated successfully!");
+				break;
+			case 3:
+				memberController.deleteMember();
+				break;
+			case 4:
+				memberController.getMemberById();
+				break;
+			case 5:
+				memberController.getAllMembers();
+				break;
+			case 6:
+				membershipPlanController.getAllMembers();
+				break;
+			case 7:
+				membershipController.assignPlan();
+				break;
+			case 8:
+				membershipController.getAllMemberships();
+				break;
+			case 9:
+				membershipController.getActiveMemberships();
+				break;
+			case 10:
+				membershipController.deleteMembership();
+				break;
+			case 11:
+				memberService.exportMembers();
+				break;
+			case 12:
+				planService.exportPlans();
+				break;
+			case 13:
+				membershipService.exportMembershipDetails();
+				break;
+			case 14:
+				membershipService.exportActiveMembershipDetails();
+				break;
+			case 0:
+				exit = true;
+				System.out.println("Exited Successfully");
+				break;
+			default:
+				System.out.println("Invalid choice. Try again.");
 			}
 
 		}

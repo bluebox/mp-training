@@ -2,7 +2,10 @@ package utils;
 
 public class SQLQueries {
 
-	// ---------- MembershipPlan Queries ----------
+	private SQLQueries() {
+
+	}
+
 	public static final String INSERT_MEMBERSHIP_PLAN = "INSERT INTO membership_plan (plan_name, duration_months, fee) VALUES (?, ?, ?)";
 
 	public static final String SELECT_MEMBERSHIP_PLAN_BY_ID = "SELECT * FROM membership_plan WHERE id = ?";
@@ -13,7 +16,6 @@ public class SQLQueries {
 
 	public static final String DELETE_MEMBERSHIP_PLAN = "DELETE FROM membership_plan WHERE id = ?";
 
-	// ---------- Person Queries ----------
 	public static final String INSERT_PERSON = "INSERT INTO person (name, age, contact_details) VALUES (?, ?, ?)";
 
 	public static final String SELECT_PERSON_BY_ID = "SELECT * FROM person WHERE id = ?";
@@ -24,7 +26,6 @@ public class SQLQueries {
 
 	public static final String DELETE_PERSON = "DELETE FROM person WHERE id = ?";
 
-	// ---------- PersonMembership Queries ----------
 	public static final String INSERT_PERSON_MEMBERSHIP = "INSERT INTO personmembership (person_id, plan_id, joining_date, plan_start_date, plan_end_date) VALUES (?, ?, ?, ?, ?)";
 
 	public static final String SELECT_PERSON_MEMBERSHIP_BY_ID = "SELECT * FROM personmembership WHERE id = ?";
