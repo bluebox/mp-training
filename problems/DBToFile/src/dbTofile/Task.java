@@ -61,6 +61,7 @@ public class Task {
 		}
 		try {
 			c = DriverManager.getConnection(url, username, password);
+			 c.setAutoCommit(false);
 			System.out.println("connection established with db");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,35 +91,39 @@ public class Task {
 	            preparestatement.setString(6, record.get(5));
 	            preparestatement.setDouble(7, Double.parseDouble(record.get(6)));
 	            preparestatement.setString(8, record.get(7));
-
-	            preparestatement.executeUpdate();
+                    preparestatement.addBatch();  
+	           
 	        }
-			
+		 preparestatement.executeBatch();
+		  c.commit();		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			c.rollback();
 			e.printStackTrace();
+		}finally{
+			c.close();
 		}
 		
 	}
 	public static void dbtocsv(Connection c) {
 		
-		  String csvOutputPath = "output.csv";
+		  String csvOutput = "output.csv";
 		
-		 try (Statement stmt = c.createStatement();
-                 ResultSet rs = stmt.executeQuery("SELECT * FROM employeedata.employeeTask");
-                 FileWriter csvWriter = new FileWriter(csvOutputPath)) {
+		 try {
+	        Statement stmt = c.createStatement();
+                 ResultSet rs = stmt.executeQuery("SELECT employee_id, name, department, project_id, date, task_category, hours_worked, remarks  FROM employeedata.employeeTask");
+                 FileWriter csvWriter = new FileWriter(csvOutput);
 
                 ResultSetMetaData meta = rs.getMetaData();
                 int columnCount = meta.getColumnCount();
 
-                // Write header
+                // Write header of the csv file
                 for (int i = 1; i <= columnCount; i++) {
                     csvWriter.append(meta.getColumnName(i));
                     if (i < columnCount) csvWriter.append(",");
                 }
                 csvWriter.append("\n");
 
-                // Write rows
+                // Write rows from db
                 while (rs.next()) {
                     for (int i = 1; i <= columnCount; i++) {
                         csvWriter.append(rs.getString(i));
@@ -131,8 +136,9 @@ public class Task {
 
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
-            }
-			
+            }finally{
+			 c.close();
+		 }
 		
 	}
 }
