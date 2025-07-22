@@ -9,16 +9,31 @@ class BaseUser(AbstractUser):
         TEACHER = 'teacher','Teacher'
         STUDENT = 'student','Student'
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.ADMIN)
-class Student(BaseUser):
+class Student(models.Model):
+
+
     class StatusChoices(models.TextChoices):
         STUDYING = 'S'
         DROPPED = 'D'
+
+    class StudentManager(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(status = Student.StatusChoices.STUDYING)
+        def dropped(self):
+            return super().get_queryset().filter(status = Student.StatusChoices.DROPPED)
+
+    objects = StudentManager()
+
+    is_class_representative = models.BooleanField(default=False)
+
     Name = models.CharField(max_length=100,null=False,db_index=True)
+
+    user = models.OneToOneField(BaseUser,primary_key=True,on_delete=models.CASCADE,limit_choices_to={'role':BaseUser.Role.STUDENT})
 
     Class = models.ForeignKey('Classes', on_delete=models.CASCADE, null=False)
     # Section = models.CharField(max_length=3,null=False)
     attendance = models.IntegerField(null=False)
-    status = models.CharField(max_length=1,null=False,choices = StatusChoices,default=StatusChoices.STUDYING)
+    status = models.CharField(max_length=1,null=False,choices = StatusChoices.choices,default=StatusChoices.STUDYING)
     class Meta:
         db_table = 'student'
 
@@ -31,7 +46,8 @@ class Classes(models.Model):
         db_table = 'classes'
         unique_together = ('Section', 'Class_id')
 
-class Teacher(BaseUser):
+class Teacher(models.Model):
+    user = models.OneToOneField(BaseUser,primary_key=True,on_delete=models.CASCADE,limit_choices_to={"role":BaseUser.Role.TEACHER})
     Name = models.CharField(max_length=100,null=False,db_index=True)
     level = models.CharField(max_length=2,null=False,choices=(('p','primary'),('h','high school'),('l','low school')))
     joining_date = models.DateField(auto_now_add=True,null=False)

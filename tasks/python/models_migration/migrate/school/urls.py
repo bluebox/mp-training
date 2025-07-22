@@ -11,6 +11,6 @@ router.register('results', ResultsViewSet, basename='results')
 urlpatterns = [
     path('Student/',StudentsView.as_view()),
     path('',include(router.urls)),
-    path('Dashboard/',StudentResultsDashBoad.as_view()),
+    path('Dashboard/',StudentResultsDashBoard.as_view()),
     path('StudentDetails/',StudentDetails.as_view()),
 ]

@@ -12,6 +12,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .model_serializers import StudentSerializer, TeacherSerializer, SubjectSerializer, ClassesSerializer, \
     ResultsSerializer, StudentResultsDashboard, StudentDetailsSerializer
 from .models import *
+from .templates.permissions.StudentPermissions import IsStudent
+from .templates.permissions.TeacherPermissions import IsTeacher
 
 
 class TeacherViewSet(ModelViewSet):
@@ -23,6 +25,7 @@ class TeacherViewSet(ModelViewSet):
     pagination_class = rest_framework.pagination.PageNumberPagination
 
 class StudentDetails(APIView):
+    permission_classes = [IsTeacher]
     def get(self,request):
         params = request.query_params
         if len(params) == 0:
@@ -34,7 +37,7 @@ class StudentDetails(APIView):
 
 
 class StudentsView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsTeacher]
     authentication_classes = [JWTAuthentication]
     def get(self,request):
         params = request.query_params
@@ -139,7 +142,8 @@ class ResultsViewSet(ModelViewSet):
 
 
 
-class StudentResultsDashBoad(APIView):
+class StudentResultsDashBoard(APIView):
+    permission_classes = [IsStudent]
     def get(self,request):
         params = request.query_params
         if 'id' in params:

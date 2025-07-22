@@ -11,7 +11,7 @@ from ..models import *
 from django.db.models import *
 import random
 
-from ...migrate import settings
+# from ...migrate import settings
 
 
 def func():
@@ -50,13 +50,18 @@ def populate():
     #==== 1. Create 10 Teachers (multi‑table → save individually) ====
     teacher_objs = []
     for i in range(1, 11):
-        t = Teacher(
+        user = BaseUser.objects.create_user(
             username=f"teacher{i}",
-            Name=f"Teacher {i}",
-            level=choice(['p', 'h', 'l']),
-            experience=randint(1, 20),
+            role=BaseUser.Role.TEACHER,
+            password = "password123",
         )
-        t.password = make_password("password123")
+        t = Teacher(
+            level=choice(['p', 'h', 'l']),
+            Name = f"Teacher{i}",
+            experience=randint(1, 20),
+            user = user
+        )
+        user.save()
         t.save()                 # one at a time
         teacher_objs.append(t)
 
@@ -88,14 +93,20 @@ def populate():
     # ==== 5. Create 10 Students (multi‑table → save individually) ====
     student_objs = []
     for i in range(1, 11):
-        s = Student(
+        user = BaseUser(
             username=f"student{i}",
+            password="password123",
+            role = BaseUser.Role.STUDENT
+        )
+        s = Student(
             Name=f"Student {i}",
             Class=choice(classes),
             attendance=randint(70, 100),
             status=choice(['S', 'D']),
+            user = user,
+            is_class_representative = random.choice([True,False]),
         )
-        s.password = make_password("password123")
+        user.save()
         s.save()                # one at a time
         student_objs.append(s)
 
@@ -115,7 +126,7 @@ def populate():
     ]
     StudentProfile.objects.bulk_create(profiles)
 
-    ==== 7. Create 20+ Results (single table → bulk) ====
+    # ==== 7. Create 20+ Results (single table → bulk) ====
 
     student_objs = list(Student.objects.all())
     subjects = list(Subject.objects.all())
@@ -125,7 +136,7 @@ def populate():
         # pick 2 distinct subjects for this student
         chosen_subjects = random.sample(subjects, 2)
         for subject in chosen_subjects:
-            pair = (student.id, subject.id)
+            pair = (student.user.id, subject.id)
             if pair in seen_pairs:
                 continue
             seen_pairs.add(pair)
@@ -141,13 +152,36 @@ def populate():
     Results.objects.bulk_create(results)
     print("Data population complete.")
 
+def correct_results():
+    qs = Results.objects.all()
+    for i in qs:
+        if i.percentage > 90:
+            i.grade = 10
+        elif i.percentage >80:
+            i.grade = 9
+        elif i.percentage >70:
+            i.grade = 8
+        elif i.percentage >60:
+            i.grade = 7
+        elif i.percentage >50:
+            i.grade = 6
+        elif i.percentage>45:
+            i.grade = 6
+        else:
+            i.grade = 0
+        i.save()
+
 
 def run():
-    try:
-        JWT_URL = "127.0.0.1:8000/api/token"
-        data = {
-            "username": "teacher1",
-            "password": "password123"
-        }
-        response = requests.post(JWT_URL, json=data)
+#     try:
+#         JWT_URL = "127.0.0.1:8000/api/token"
+#         data = {
+#             "username": "teacher1",
+#             "password": "password123"
+#         }
+#         response = requests.post(JWT_URL, json=data)
+#     except Expression:
+#     populate()
+    correct_results()
+
 
