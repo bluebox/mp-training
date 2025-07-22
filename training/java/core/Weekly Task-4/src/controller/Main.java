@@ -1,3 +1,5 @@
+package controller;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -20,7 +22,9 @@ public class Main {
 					3 - View all members
 					4 - Update member details
 					5 - Delete a member
-					6- Exit
+					6 - Recently Deleted
+					7 - Recent updates
+					8 - Exit
 					""");
 			
 			int input;
@@ -184,9 +188,17 @@ public class Main {
 			                    if (!isValidName(newName)) {
 			                        System.out.println("Invalid name");
 			                    }
+			                    if(newName.equals(member.getName())) {
+			                    	System.out.println("name can't be same");
+			                    }
 			                } while (!isValidName(newName));
+			                String oldName=member.getName();
 			                member.setName(newName);
 			                gymService.updateMember(member);
+			                
+			                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			                String dateTime = timestamp.toLocalDateTime().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));			               
+			                gymService.recentUpdate(memberId,"name",oldName,newName,dateTime);
 			                System.out.println("Name updated successfully.");
 			                break;
 			            }
@@ -198,9 +210,18 @@ public class Main {
 			                    if (!isValidGender(newGender)) {
 			                        System.out.println("Invalid gender. Enter 'M' or 'F'.");
 			                    }
+			                    if(newGender.equals(member.getGender())) {
+			                    	System.out.println("Gender can't be same");
+			                    }
 			                } while (!isValidGender(newGender));
+			                String oldGender=member.getGender();
 			                member.setGender(newGender);
 			                gymService.updateMember(member);
+			                
+			                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			                String dateTime = timestamp.toLocalDateTime().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));			               
+			                gymService.recentUpdate(memberId,"gender",oldGender,newGender,dateTime);
+			                
 			                System.out.println("Gender updated successfully.");
 			                break;
 			            }
@@ -213,12 +234,23 @@ public class Main {
 			                    if (!isValidAge(ageInput)) {
 			                        System.out.println("Invalid age");
 			                        newAge = -1;
-			                    } else {
+			                    } 
+			                    else {
 			                        newAge = Integer.parseInt(ageInput);
+			                        if(newAge==member.getAge()) {
+			                        	System.out.println("Age can't be same");
+				                    	newAge=-1;
+				                    }
 			                    }
 			                } while (newAge == -1);
+			                String oldAge=String.valueOf(member.getAge());
 			                member.setAge(newAge);
 			                gymService.updateMember(member);
+			                
+			                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			                String dateTime = timestamp.toLocalDateTime().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));			               
+			                gymService.recentUpdate(memberId,"Age",oldAge,String.valueOf(newAge),dateTime);
+			                
 			                System.out.println("Age updated successfully.");
 			                break;
 			            }
@@ -254,11 +286,44 @@ public class Main {
 			        System.out.println("No member found with ID: " + memberId);
 			        break;
 			    }
+			    gymService.recentlyDeleted(member);
 			    gymService.deleteMember(member);
 				break;
 			}
 			
-			case 6:
+			case 6:{
+				System.out.println("-".repeat(35));
+				List<Member> members = gymService.getAllRecentDeletedMembers();
+				if (members.isEmpty()) {
+			        System.out.println("No members found.");
+			    } else {
+			        System.out.println("\nRecently Deleted Members:\n");
+			        for (Member member : members) {
+			            System.out.println("ID      : " + member.getMemberId());
+			            System.out.println("Name    : " + member.getName());
+			            System.out.println("Gender  : " + member.getGender());
+			            System.out.println("Age     : " + member.getAge());
+			            if (member.getMembershipPlan() != null) {
+			                System.out.println("Plan    : " + member.getMembershipPlan().getPlanName());
+			                System.out.println("Cost   : " + member.getMembershipPlan().getFee());
+			                System.out.println("Duration: " + member.getMembershipPlan().getDuration());
+			            } else {
+			                System.out.println("Plan    : Not Assigned");
+			            }
+						System.out.println("-".repeat(35)+"\n");
+			        }
+			    }
+				
+				break;
+			}
+				
+			case 7 :
+			{
+				gymService.showRecentUpdates();
+				break;
+			}
+			
+			case 8:
 				System.out.println("Exiting... Bye!");
 				flag=false;
 				break;

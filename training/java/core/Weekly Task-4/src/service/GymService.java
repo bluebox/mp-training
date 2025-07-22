@@ -109,7 +109,7 @@ public class GymService {
 	    List<Member> members = new ArrayList<>();
 	    String query = "SELECT m.memberId, m.name, m.gender, m.age, " +
 	                   "p.plan_id, p.plan_name, p.duration, p.cost " +
-	                   "FROM members m LEFT JOIN membership_plans p ON m.plan_ids = p.plan_id";
+	                   "FROM members m LEFT JOIN membership_plans p ON m.plan_ids = p.plan_id ORDER BY m.name ASC";
 
 	    try (Connection connect = DatabaseConnection.getConnection();
 	         PreparedStatement selectStatement = connect.prepareStatement(query);
@@ -175,7 +175,111 @@ public class GymService {
 	    }
 	}
 
+	public void recentlyDeleted(Member member) {
+		
+		String query = "INSERT INTO recently_deleted(Id,name,age,gender) values(?,?,?,?) ";
+		try (Connection connect = DatabaseConnection.getConnection();
+		        PreparedStatement recentStatement = connect.prepareStatement(query)) {
+				recentStatement.setInt(1, member.getMemberId());
+				recentStatement.setString(2, member.getName());
+				recentStatement.setInt(3, member.getAge());
+				recentStatement.setString(4, member.getGender());
+				
+				recentStatement.executeUpdate();
+				if(member.getMembershipPlan()!=null) {
+					PreparedStatement updateStatement = connect.prepareStatement("update recently_deleted set planu_Id=?");
+					updateStatement.setInt(1, member.getMembershipPlan().getPlanId());
+					updateStatement.executeUpdate();
+				}
+			
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public List<Member> getAllRecentDeletedMembers() {
+		
+		List<Member> members = new ArrayList<>();
+	    String query = "SELECT m.Id, m.name, m.gender, m.age, " +
+	                   "p.plan_id, p.plan_name, p.duration, p.cost " +
+	                   "FROM recently_deleted m LEFT JOIN membership_plans p ON m.planu_Id = p.plan_id";
+
+	    try (Connection connect = DatabaseConnection.getConnection();
+	         PreparedStatement selectStatement = connect.prepareStatement(query);
+	         ResultSet resultSet = selectStatement.executeQuery()) {
+	    	
+	    	if(resultSet==null) {
+	    		System.out.println("No deletions found");
+	    	}
+	        while (resultSet.next()) {
+	            int memberId = resultSet.getInt("Id");
+	            String name = resultSet.getString("name");
+	            String gender = resultSet.getString("gender");
+	            int age = resultSet.getInt("age");
+
+	            MembershipPlan plan = null;
+	            if (resultSet.getInt("plan_id") > 0) {
+	                plan = new MembershipPlan(resultSet.getInt("plan_id"),resultSet.getString("plan_name"),resultSet.getString("duration"),resultSet.getDouble("cost"));
+	            }
+
+	            Member member = new Member(name, gender, age);
+	            member.setMemberId(memberId);
+	            member.setMembershipPlan(plan);
+	            members.add(member);
+	        }
+	    } catch (SQLException | IOException e) {
+	        System.err.println("Error fetching members: " + e.getMessage());
+	    }
+
+	    return members;
+	}
+
+
+	public void recentUpdate(int memberId, String Field, String oldField, String newField, String dateTime) {
+		String query="insert into recent_updates(Id,field,old_field,new_field,time) values (?,?,?,?,?)";
+		try(Connection connect=DatabaseConnection.getConnection()){
+			PreparedStatement updateStatement=connect.prepareStatement(query);
+			updateStatement.setInt(1, memberId);
+			updateStatement.setString(2, Field);
+			updateStatement.setString(3, oldField);
+			updateStatement.setString(4, newField);
+			updateStatement.setString(5, dateTime);
+			updateStatement.executeUpdate();
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void showRecentUpdates() {
+		
+		String query="select * from recent_updates";
+		try(Connection connect=DatabaseConnection.getConnection()){
+			PreparedStatement updateStatement=connect.prepareStatement(query);
+			ResultSet results =updateStatement.executeQuery();
+			if(results==null) {
+				System.out.println("There are no updates");
+			}
+			System.out.println("-".repeat(35));
+			while(results.next()) {
+				System.out.print(results.getInt("Id")+" field Updated : "+results.getString("field")
+				+" , old field : "+results.getString("old_field")+" , new field : "+results.getString("new_field")+" , Updated at : "+results.getString("time")+"\n");
+				System.out.println();
+			}
+			System.out.println("-".repeat(35));
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
+
+
+
+
+
+
+
 
 
 

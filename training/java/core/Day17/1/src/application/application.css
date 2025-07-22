@@ -1,0 +1,21 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.root{
+	-fx-background-color: BEIGE;
+}
+
+.label{
+	-fx-font: normal bold 15px 'serif';
+}
+
+.text{
+	-fx-font: normal bold 20px 'serif';
+}
+
+.button{
+	-fx-background-color: darkslateblue; -fx-text-fill: white;
+}
+
+.button:hover{
+	-fx-background-color: slateblue;
+}
