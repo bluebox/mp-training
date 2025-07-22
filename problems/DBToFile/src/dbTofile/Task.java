@@ -23,7 +23,7 @@ public class Task {
 	public static void main(String[] args) {
 		Connection c=connectionestablish();
 		String csvpath="C:\\Users\\DELL\\Downloads\\Employee_Timesheet_May_to_July_2025_FormattedDate.xlsx";
-		List<List<String>> records=new ArrayList<>();
+		List<List<String>> Employeelogrecords=new ArrayList<>();
 		try(XSSFWorkbook wb =new XSSFWorkbook(new FileInputStream(csvpath))){
 			XSSFSheet sh=wb.getSheetAt(0);
 			int rowcount=sh.getPhysicalNumberOfRows();
@@ -35,21 +35,16 @@ public class Task {
 					eachrowlist.add(sh.getRow(i).getCell(j).toString());
 					
 				}
-				records.add(eachrowlist);
+				Employeelogrecords.add(eachrowlist);
 			}
 			
 		}catch(IOException e) {
 			System.out.println("can not read file"+e);
 		}
 		
-		records=records.subList(1,records.size());
-		addrecordstodb(c,records);
+		Employeelogrecords=Employeelogrecords.subList(1,Employeelogrecords.size());
+		addrecordstodb(c,Employeelogrecords);
 		dbtocsv(c);
-		
-		
-		
-		
-		
 	}
 	public static  Connection connectionestablish() {
 		Connection c=null;
@@ -62,7 +57,6 @@ public class Task {
 		try {
 			c = DriverManager.getConnection(url, username, password);
 			 c.setAutoCommit(false);
-			System.out.println("connection established with db");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,21 +72,17 @@ public class Task {
 		try {
 			PreparedStatement preparestatement=c.prepareStatement(query);
 			for (List<String> record : records) {
-	            
 	            preparestatement.setString(1, record.get(0)); 
 	            preparestatement.setString(2, record.get(1)); 
 	            preparestatement.setString(3, record.get(2)); 
 	            preparestatement.setString(4, record.get(3));
-	            
 	            LocalDate date=LocalDate.parse(""+record.get(4),DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	            Date sqldate = java.sql.Date.valueOf(date);
 	            preparestatement.setDate(5, sqldate);
-
 	            preparestatement.setString(6, record.get(5));
 	            preparestatement.setDouble(7, Double.parseDouble(record.get(6)));
 	            preparestatement.setString(8, record.get(7));
-                    preparestatement.addBatch();  
-	           
+                    preparestatement.addBatch();   
 	        }
 		 preparestatement.executeBatch();
 		  c.commit();		
