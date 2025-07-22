@@ -1,3 +1,5 @@
+package DAO;
+
 public class Plan{
      int id;
      String name;
