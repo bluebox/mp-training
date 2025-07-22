@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.*;
 
 // --------------------------------------------DataBaseTable Creation in mysql---------------------------------
 //use gym;
@@ -89,7 +90,7 @@ public class DataBaseConnector {
     }
 
     // Show plans
-    public void showPlans() throws ClassNotFoundException, SQLException {
+    public List<Plan> showPlans() throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String getPlans = "SELECT * FROM PLAN";
         try (PreparedStatement ps = conn.prepareStatement(getPlans);
@@ -111,21 +112,24 @@ public class DataBaseConnector {
     }
 
     // Show members
-    public void showMembers() throws ClassNotFoundException, SQLException {
+    public List<Member> showMembers() throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String getMembers = "SELECT MEMBER.Id, MEMBER.name, MEMBER.age, PLAN.planName FROM MEMBER " +
                              "JOIN PLAN ON MEMBER.PLANId = PLAN.Id";
         try (PreparedStatement ps = conn.prepareStatement(getMembers);
              ResultSet rs = ps.executeQuery()) {
             StringBuilder result = new StringBuilder();
+            List<Member> list=new ArrayList<>();
             while (rs.next()) {
                 result.append(rs.getInt("Id")).append(" ")
                       .append(rs.getString("name")).append(" ")
                       .append(rs.getInt("age")).append(" ")
                       .append(rs.getString("planName")).append("\n");
+                list.add(new Member(rs.getInt("Id"),rs.getString("name"),rs.getInt("age"),rs.getString("planName")));
+       
             }
             System.out.println(result);
-            return result.toString();
+            return list;
         } catch (SQLException e) {
             conn.rollback();
             e.printStackTrace();
