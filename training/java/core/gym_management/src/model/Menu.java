@@ -1,0 +1,12 @@
+package model;
+
+public enum Menu {
+	IMPORT_MEMBERS,
+    ENROLL_MEMBER,
+    CANCEL_MEMBERSHIP,
+    VIEW_ALL_MEMBERS,
+    VIEW_MEMBERSHIP_PLANS,
+    VIEW_MEMBER_DETAILS,
+    EXIT,
+    INVALID
+}
