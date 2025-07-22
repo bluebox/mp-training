@@ -1,7 +1,9 @@
 package Controller;
 import java.sql.SQLException;
 import java.util.Scanner;
-
+import DAO.Member;
+import DAO.Plan;
+omport java.util.*;
 
 import Services.ServiceLayer;
 public class Controller {
@@ -57,7 +59,8 @@ public class Controller {
     				 int memeberId=0;
     				 memeberId= service.findmember(name,memeberShipId);
     				if(memeberId != 0) {
-    					service.getPlans().forEach(s->System.out.println(""+s.getId()+"  "+s.getName()+"  "));
+    					List<Member> list=service.getPlans();
+					list.forEach(s->System.out.println(""+s.getId()+"  "+s.getName()+"  "));
     					System.out.println("Enter 0 for Basic \n Enter 1 for Premium \n Enter 2 for Gold");
     				    int planId=Integer.parseInt(sc.nextLine());
     					service.setPlan(memeberShipId,planId);
