@@ -7,19 +7,24 @@
     <body>
         <h1>School</h1>
         <div class="gen-form">
-            <form method="post">
-                <label for="name">Name</lable>
-                <input id="name" name="name" type="text">
-                <label for="age">Age</label>
-                <input id="age" name="age" type="number">
-                <label for="class">Class</label>
-                <input id="class" name="class" type="text">
-                <label for="section">Section</label>
-                <input id="section" name="section" type="text">
-                <label for="joining_date">Joining Date</label>
-                <input id="jd" name="joining_date" type="datetime">
-                <label for="attendance">Addendance</label>
-                <input id="att" name="attendance" type="number">
+<!--            <form method="post">-->
+<!--                <label for="name">Name</lable>-->
+<!--                <input id="name" name="name" type="text">-->
+<!--                <label for="age">Age</label>-->
+<!--                <input id="age" name="age" type="number">-->
+<!--                <label for="class">Class</label>-->
+<!--                <input id="class" name="class" type="text">-->
+<!--                <label for="section">Section</label>-->
+<!--                <input id="section" name="section" type="text">-->
+<!--                <label for="joining_date">Joining Date</label>-->
+<!--                <input id="jd" name="joining_date" type="datetime">-->
+<!--                <label for="attendance">Addendance</label>-->
+<!--                <input id="att" name="attendance" type="number">-->
+<!--                <button type="submit">Submit</button>-->
+<!--            </form>-->
+            <form method = 'POST'>
+                {% csrf_token %}
+                {{ form.as_p }}
                 <button type="submit">Submit</button>
             </form>
         </div>
