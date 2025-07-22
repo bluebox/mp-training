@@ -70,21 +70,21 @@ public class Task {
 		 String query = "insert into employeedata.employeeTask (employee_id, name, department, project_id, date, task_category, hours_worked, remarks) values (?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
-			PreparedStatement preparestatement=c.prepareStatement(query);
+			PreparedStatement prepstmt=c.prepareStatement(query);
 			for (List<String> record : records) {
-	            preparestatement.setString(1, record.get(0)); 
-	            preparestatement.setString(2, record.get(1)); 
-	            preparestatement.setString(3, record.get(2)); 
-	            preparestatement.setString(4, record.get(3));
+	            prepstmt.setString(1, record.get(0)); 
+	            prepstmt.setString(2, record.get(1)); 
+	           prepstmt.setString(3, record.get(2)); 
+	            prepstmt.setString(4, record.get(3));
 	            LocalDate date=LocalDate.parse(""+record.get(4),DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	            Date sqldate = java.sql.Date.valueOf(date);
-	            preparestatement.setDate(5, sqldate);
-	            preparestatement.setString(6, record.get(5));
-	            preparestatement.setDouble(7, Double.parseDouble(record.get(6)));
-	            preparestatement.setString(8, record.get(7));
-                    preparestatement.addBatch();   
+	            prepstmt.setDate(5, sqldate);
+	           prepstmt.setString(6, record.get(5));
+	           prepstmt.setDouble(7, Double.parseDouble(record.get(6)));
+	            prepstmt.setString(8, record.get(7));
+                    prepstmt.addBatch();   
 	        }
-		 preparestatement.executeBatch();
+		 prepstmt.executeBatch();
 		  c.commit();		
 		} catch (SQLException e) {
 			c.rollback();
