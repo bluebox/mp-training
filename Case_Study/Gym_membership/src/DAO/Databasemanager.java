@@ -29,9 +29,27 @@ public class Databasemanager {
 	public void addmemberplans(MembershipPlan membership) {
 		
 		Connection c=connectionestablish();
+		try {
+			c.setAutoCommit(false);
+		} catch (SQLException e) {
+			try {
+				c.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int membershipid=getmembershipid(membership.getPlanName(),membership.getDurationMonths(),membership.getFee(),c);
 		if(membershipid!=-1) {
 			System.out.println("plan already exists");
+			try {
+				c.rollback();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			return;
 		}
@@ -43,10 +61,17 @@ public class Databasemanager {
 			preparedstatement.setInt(2,membership.getDurationMonths());
 			preparedstatement.setInt(3,membership.getFee());
 			preparedstatement.execute();
+			c.commit();
 			c.close();
+			
 		}
 		catch (SQLException e) {
-			
+			try {
+				c.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 	}
@@ -110,7 +135,7 @@ public class Databasemanager {
 			return;
 		}
 		
-		
+		String querytofindmembershipid="select * from gym.members where memberid=?";
 		
 		String querytoshowplans="select * from gym.membershipplan";
 		String query="update gym.members  SET membershipplanid=? where memberid=?";
@@ -119,7 +144,16 @@ public class Databasemanager {
 			
 			Statement statement=c.createStatement();
 			PreparedStatement  preparestatement=c.prepareStatement(query);
-			
+			PreparedStatement  preparestatementtofindmembershipid=c.prepareStatement(querytofindmembershipid);
+			preparestatementtofindmembershipid.setInt(1, memberid);
+			ResultSet resformembershipid=preparestatementtofindmembershipid.executeQuery();
+			resformembershipid.next();
+			Integer membershipplanid = (Integer) resformembershipid.getObject("membershipplanid");
+			if(membershipplanid!=null) {
+				c.rollback();
+				System.out.println("membershipplan already exists \n if you want to change please select (4) option to update membershipplan");
+				
+			}
 			if(membershipid==-1) {
 				c.rollback();
 				System.out.println("no membershipplan with given details,please enter the correct details available plans are");
@@ -214,6 +248,11 @@ public class Databasemanager {
 		}
 		boolean ifmemberexistsornot=checkmemberid(memberid,c);
 		if(!ifmemberexistsornot) {
+			try {
+			c.rollback();}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
 			System.out.println("memberid not available");
 			return;
 		}
@@ -296,7 +335,9 @@ public class Databasemanager {
 	public void showmembersdb() {
 		Connection c=connectionestablish();
 		String query="select * from gym.members as member left join gym.membershipplan as memberplan on member.membershipplanid=memberplan.membershipplanid ";
+		
 		try {
+			c.setAutoCommit(false);
 			Statement statement=c.createStatement();
 			ResultSet result=statement.executeQuery(query);
 			while(result.next()) {
@@ -313,11 +354,18 @@ public class Databasemanager {
 					System.out.println("No plan assigned yet");
 				}
 			}
+			c.commit();
 			c.close();
 			
 			
 		}
 		catch(SQLException e) {
+			try {
+				c.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 		
