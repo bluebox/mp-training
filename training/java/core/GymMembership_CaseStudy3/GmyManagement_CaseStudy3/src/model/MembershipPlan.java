@@ -1,16 +1,39 @@
 package model;
 
+import java.util.Date;
+
 public class MembershipPlan {
 
 	public String planId;
 	public String planName;
 	public int duration_in_months;
 	public double fee;
+	public Date dateAssigend;
+	
+	
+	public MembershipPlan() {
+		
+	}
+	
 	public MembershipPlan(String planId, String planName, int duration_in_months, double fee) {
 		this.planId = planId;
 		this.planName = planName;
 		this.duration_in_months = duration_in_months;
 		this.fee = fee;
+		
+	}
+	public MembershipPlan(String planId, String planName, int duration_in_months, double fee,Date dateAssigned) {
+		this.planId = planId;
+		this.planName = planName;
+		this.duration_in_months = duration_in_months;
+		this.fee = fee;
+		this.dateAssigend=dateAssigned;
+	}
+	public Date getDateAssigend() {
+		return dateAssigend;
+	}
+	public void setDateAssigend(Date dateAssigend) {
+		this.dateAssigend = dateAssigend;
 	}
 	public String getPlanId() {
 		return planId;

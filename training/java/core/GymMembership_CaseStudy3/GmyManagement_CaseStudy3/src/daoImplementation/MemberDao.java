@@ -1,4 +1,4 @@
-package dao;
+package daoImplementation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,12 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import daoInterfaces.MemberDaoInterface;
 import dbConnection.DBConnection;
 import model.Member;
 
-public class MemberDao {
+public class MemberDao implements MemberDaoInterface {
 	
-	public void insertMember(Member member) throws SQLException
+	public void insertMember(Member member) throws SQLException 
 	{
 		String query="insert into members values (?,?,?)";
 		Connection con=DBConnection.getConnection();
@@ -43,6 +44,15 @@ public class MemberDao {
 		ps.setString(1,memberId);
 		ResultSet rs=ps.executeQuery();
 		return rs.next();
+	}
+	
+	public void deleteMember(String memberId) throws SQLException
+	{
+		String query="delete from members where member_id=?";
+		Connection con=DBConnection.getConnection();
+		PreparedStatement ps=con.prepareStatement(query);
+		ps.setString(1, memberId);
+		ps.execute();
 	}
 
 }

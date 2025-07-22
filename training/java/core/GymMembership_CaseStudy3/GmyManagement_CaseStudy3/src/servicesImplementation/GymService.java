@@ -1,19 +1,22 @@
-package services;
+package servicesImplementation;
 
 import java.sql.SQLException;
+import daoInterfaces.MemberDaoInterface;
+import daoInterfaces.MemberPlanDaoInterface;
+import daoInterfaces.PlanDaoInterface;
 import java.util.List;
 
-import dao.MemberDao;
-import dao.MemberPlanDao;
-import dao.PlanDao;
+import daoImplementation.MemberDao;
+import daoImplementation.MemberPlanDao;
+import daoImplementation.PlanDao;
 import model.Member;
 import model.MembershipPlan;
+import servicesInterface.GymServiceInterface;
+public class GymService implements GymServiceInterface {
 
-public class GymService {
-
-	MemberDao memberDao=new MemberDao();
-	PlanDao planDao=new PlanDao();
-	MemberPlanDao memberplanDao=new MemberPlanDao();
+	MemberDaoInterface memberDao=new MemberDao();
+	PlanDaoInterface planDao=new PlanDao();
+	MemberPlanDaoInterface memberplanDao=new MemberPlanDao();
 	
 	public void addMember(String id,String name,int age) throws SQLException
 	{
@@ -48,7 +51,7 @@ public class GymService {
 		 }
 		 else
 		 {
-			 System.out.println("please enter correct plan index");
+			 System.out.println("enter correct plan index");
 		 }
 	 }
 	 
@@ -61,17 +64,18 @@ public class GymService {
 		 System.out.println("Memeber ID: "+member.getMemberId());
 		 System.out.println("Memeber name: "+member.getName());
 		 System.out.println("Memeber Age: "+member.getAge());
-	        List<String> plans=memberplanDao.getPlansForMember(member.getMemberId());
+	        List<MembershipPlan> plans=memberplanDao.getPlansForMember(member.getMemberId());
 	        if (plans.isEmpty()) 
 	        {
 	            System.out.println("No Plan Assigned To This Member.");
 	        } else {
 	            System.out.println("Assigned Plan:");
-	            for (String p : plans) {
-	                System.out.println(" - " + p);
+	            for (MembershipPlan p : plans) {
+	                System.out.println(" - " + p.getPlanName()+"- Assigned On - "+p.getDateAssigend());
 	            }
 	        }
-	        System.out.println();
+	        System.out.println("\n");
+	        
 	 }
 
 	 public void updateplan(String memberId,int newplanIndex) throws SQLException
@@ -87,6 +91,21 @@ public class GymService {
 			 System.out.println("Invalid plan index");
 		 }
 		 
+	 }
+	 
+	 public void deleteMember(String memberId) throws SQLException
+	 {
+		if(!memberDao.memberExists(memberId))
+		{
+			System.out.println("No member exists with this id");
+			return;
+		}
+		else
+		{
+			 memberDao.deleteMember(memberId);
+			 System.out.println("Memebr deleted");
+		}
+		
 	 }
 
 

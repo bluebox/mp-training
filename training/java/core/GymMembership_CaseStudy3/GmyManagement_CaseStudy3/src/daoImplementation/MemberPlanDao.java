@@ -1,4 +1,4 @@
-package dao;
+package daoImplementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,29 +7,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import daoInterfaces.MemberPlanDaoInterface;
 import dbConnection.DBConnection;
+import model.MembershipPlan;
 
-public class MemberPlanDao {
+public class MemberPlanDao implements MemberPlanDaoInterface {
 	
 	 public void assignPlan(String memberId, String planId, String planName) throws SQLException {
-	        String query = "insert into member_plans(member_id, plan_id,plan_name) values (?, ?, ?)";
+	        String query = "insert into member_plans(member_id, plan_id,plan_name,Date_of_planAssigned) values (?, ?, ?,?)";
 	            Connection con=DBConnection.getConnection();
 	            PreparedStatement ps = con.prepareStatement(query);
 	            ps.setString(1, memberId);
 	            ps.setString(2, planId);
 	            ps.setString(3, planName);
+	            ps.setDate(4,new java.sql.Date(System.currentTimeMillis()));
 	            ps.executeUpdate();
 	        }
 
-	    public List<String> getPlansForMember(String memberId) throws SQLException {
-	        String query = "select plan_name from member_plans where member_id = ?";
+	    public List<MembershipPlan> getPlansForMember(String memberId) throws SQLException {
+	        String query = "select plan_name,Date_of_planAssigned from member_plans where member_id = ?";
 	             Connection con = DBConnection.getConnection();
 	             PreparedStatement ps = con.prepareStatement(query);
 	            ps.setString(1, memberId);
 	            ResultSet rs = ps.executeQuery();
-	                List<String> plans = new ArrayList<>();
+	                List<MembershipPlan> plans = new ArrayList<>();
 	                while (rs.next()) {
-	                    plans.add(rs.getString("plan_name"));
+	                	MembershipPlan plan=new MembershipPlan();
+	                	plan.setPlanName(rs.getString("plan_name"));
+	                	plan.setDateAssigend(rs.getDate("Date_of_planAssigned"));
+	                	plans.add(plan);
+	                
 	                }
 	                return plans;
 	            }
