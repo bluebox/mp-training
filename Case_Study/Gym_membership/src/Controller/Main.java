@@ -113,6 +113,7 @@ public class Main {
                
                 System.out.println("Enter the fee");
 	                int fee=0;
+	                while(true) {
 	             	try{
 	             		 fee=sc.nextInt();
 	             		sc.nextLine();
@@ -123,6 +124,11 @@ public class Main {
 	                  sc.nextLine();
 	                  continue;
 	              }
+	             	if(fee>=0) {
+	             		break;
+	             	}
+	             	System.out.println("enter valid fee");
+	                }
                 
                 servicehandler.addmembership(memberid, planname, planDuration, fee);
                 
@@ -174,7 +180,7 @@ public class Main {
             	
             	System.out.println("Enter the membershipid fee");
             	int membershipplanfee=0;
-            	 
+            	 while(true) {
 	             	try{
 	             		membershipplanfee=sc.nextInt();
 	              }
@@ -184,6 +190,11 @@ public class Main {
 	                  sc.nextLine();
 	                  continue;
 	              }
+	             	if(membershipplanfee>=0) {
+	             		break;
+	             	}
+	             	System.out.println("enter valid fee");
+	             	}
             	servicehandler.updatemembership(memberid,membershipplanname , membershipplanduration, membershipplanfee);
             	
             }
