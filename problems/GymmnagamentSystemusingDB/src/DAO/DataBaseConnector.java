@@ -92,7 +92,7 @@ public class DataBaseConnector {
     // Show plans
     public List<Plan> showPlans() throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
-        String getPlans = "SELECT * FROM PLAN";
+        String getPlans = "SELECT Id,planName,fee,planDuration FROM PLAN";
         try (PreparedStatement ps = conn.prepareStatement(getPlans);
              ResultSet rs = ps.executeQuery()) {
             StringBuilder result = new StringBuilder();
@@ -139,7 +139,7 @@ public class DataBaseConnector {
     // Find member
     public int findMember(int memberId) throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
-        String findMember = "SELECT * FROM MEMBER WHERE Id = ?";
+        String findMember = "SELECT id,name,age FROM MEMBER WHERE Id = ?";
         try (PreparedStatement ps = conn.prepareStatement(findMember)) {
             ps.setInt(1, memberId);
             ResultSet rs = ps.executeQuery();
