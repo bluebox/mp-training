@@ -1,6 +1,11 @@
 from django.contrib.auth import authenticate
-from rest_framework import viewsets, status
-from rest_framework.permissions import AllowAny
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.edit import DeletionMixin
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, status, generics
+from rest_framework.filters import SearchFilter
+from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -8,8 +13,10 @@ from django.contrib.auth.models import User
 
 from .CustomPagination import CustomPagination
 from .CustomPermission import CustomPermission, CustomPermissionForEmail
-from .models import Product, Customer, Order, OrderItem
-from .serializers import ProductSerializer, CustomerSerializer, OrderSerializer, OrderItemSerializer, UserSerializer
+from .CustomThrottleClass import CustomThrottleClass
+from .models import Product, Customer, Order, OrderItem, Product_review
+from .serializers import ProductSerializer, CustomerSerializer, OrderSerializer, OrderItemSerializer, UserSerializer, \
+    ReviewSerializers
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,17 +29,23 @@ class ProductViewSet(viewsets.ModelViewSet):
     permission_classes = [CustomPermission]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # permission_classes = [AllowAny]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['name', 'price']
+    search_fields = ['name']
+
+    permission_classes = [AllowAny]
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+    throttle_scope = 'view_customer'
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    throttle_classes = [CustomThrottleClass]
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):
@@ -101,3 +114,40 @@ class PaginationViewSets(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     pagination_class = CustomPagination
+
+#
+# @csrf_exempt
+# class Student_view(ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DeletionMixin):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#
+#     def get(self, request, *args, **kwargs):
+#         if 'pk' in kwargs:
+#             return self.retrieve(request, *args, **kwargs)
+#         return self.list(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+#
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+#
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
+
+
+# class Student_view(generics.ListCreateAPIView):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#     permission_classes = [AllowAny]
+#
+# class Student_view_RUD(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+#     permission_classes = [AllowAny]
+#     lookup_field = 'id'
+
+class Add_review(viewsets.ModelViewSet):
+    queryset = Product_review.objects.all()
+    serializer_class = ReviewSerializers
+    permission_classes = [IsAuthenticated]

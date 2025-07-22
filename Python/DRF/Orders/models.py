@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from Orders.CustomManager import CustomCustomerManager
@@ -56,3 +57,25 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.product.name} x {self.quantity}'
+
+
+# class Student(models.Model):
+#     first_name=models.CharField(max_length=255,blank=False)
+#     last_name=models.CharField(max_length=255)
+#     email=models.EmailField(unique=True)
+#     gender=models.CharField(max_length=50,choices=[('male','male'),('female','female'),('other','other')])
+#
+#     class Meta:
+#         db_table='Students'
+#
+#     def __str__(self):
+#         return self.first_name
+
+
+class Product_review(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    rating=models.IntegerField(blank=False)
+    class Meta:
+        db_table='Product_reviews'
+    def __str__(self):
+        return f'{self.user.username} - rating{self.rating}'
