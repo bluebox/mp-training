@@ -1,4 +1,4 @@
-package GymManagementSystem.service;
+package GymManagementSystem.utils;
 
 import java.io.FileWriter;
 import java.io.IOException;

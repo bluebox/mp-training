@@ -1,35 +1,38 @@
 package GymManagementSystem;
 
-import GymManagementSystem.service.InputValidation;
+import GymManagementSystem.controllers.MemberController;
+import GymManagementSystem.controllers.MemberPlanController;
+import GymManagementSystem.controllers.PlanController;
 import GymManagementSystem.service.MemberPlanService;
-import GymManagementSystem.service.MemberService;
-import GymManagementSystem.service.PlanService;
+import GymManagementSystem.service.Impl.MemberPlanServiceImpl;
+import GymManagementSystem.utils.InputValidation;
 
 public class Main {
 	public static void main(String[] args) {
-		MemberPlanService service = new MemberPlanService();
-		MemberService member_service = new MemberService();
-		PlanService plan_service = new PlanService();
+		MemberPlanController controller = new MemberPlanController();
+		MemberController memberController = new MemberController();
+		PlanController planController = new PlanController();
 		InputValidation validation = new InputValidation();
+		MemberPlanService service = new MemberPlanServiceImpl();
 		
 		while (true) {
 			displayMenu();
 			int choice = validation.getIntInput("Enter your choice: ");
 			switch (choice) {
-			case 1 -> member_service.addMember();
-			case 2 -> member_service.updateMember();
-			case 3 -> member_service.deleteMember();
-			case 4 -> member_service.viewMembers();
-			case 5 -> plan_service.addPlan();
-			case 6 -> plan_service.updatePlan();
-			case 7 -> plan_service.deletePlan();
-			case 8 -> plan_service.viewPlans();
-			case 9 -> service.mapMemberToPlan();
-			case 10 -> service.updateMembership();
-			case 11 -> service.deleteMembership();
-			case 12 -> service.viewActiveMembers();
-			case 13 -> service.getReport();
-			case 14 -> service.exportReport();
+			case 1 -> memberController.addMember();
+			case 2 -> memberController.updateMember();
+			case 3 -> memberController.deleteMember();
+			case 4 -> memberController.viewMembers();
+			case 5 -> planController.addPlan();
+			case 6 -> planController.updatePlan();
+			case 7 -> planController.deletePlan();
+			case 8 -> planController.viewPlans();
+			case 9 -> controller.mapMemberToPlan();
+			case 10 -> controller.updateMembership();
+			case 11 -> controller.deleteMembership();
+			case 12 -> controller.viewMembership();
+			case 13 -> controller.viewActiveMembers();
+			case 14 -> service.getReport();
 			case 15 -> {
 				System.out.println("Exiting...");
 				return;
@@ -51,9 +54,9 @@ public class Main {
 		System.out.println("9. Assign Plan to Member");
 		System.out.println("10. Update Membership");
 		System.out.println("11. Delete Membership");
-		System.out.println("12. View Active Members");
-		System.out.println("13. View Gym Member Details");
-		System.out.println("14. Export Gym Member Details");
+		System.out.println("12. View All Members Membership");
+		System.out.println("13. View Active Members");
+		System.out.println("14. View Gym Member Details");
 		System.out.println("15. Exit");
 	}
 }

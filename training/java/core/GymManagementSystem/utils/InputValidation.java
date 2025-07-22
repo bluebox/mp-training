@@ -1,17 +1,17 @@
-package GymManagementSystem.service;
+package GymManagementSystem.utils;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import GymManagementSystem.DAO.MemberDAO;
-import GymManagementSystem.DAO.MemberPlanDAO;
-import GymManagementSystem.DAO.PlanDAO;
+import GymManagementSystem.DAO.Impl.MemberDAOImpl;
+import GymManagementSystem.DAO.Impl.MemberPlanDAOImpl;
+import GymManagementSystem.DAO.Impl.PlanDAOImpl;
 
 public class InputValidation {
 	private static Scanner scanner = new Scanner(System.in);
-	private MemberPlanDAO memberPlanDAO = new MemberPlanDAO();
-	private MemberDAO memberDAO = new MemberDAO();
-	private PlanDAO planDAO = new PlanDAO();
+	private MemberPlanDAOImpl memberPlanDAO = new MemberPlanDAOImpl();
+	private MemberDAOImpl memberDAO = new MemberDAOImpl();
+	private PlanDAOImpl planDAO = new PlanDAOImpl();
 
 	public int getIntInput(String prompt) {
 		while (true) {

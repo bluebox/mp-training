@@ -69,7 +69,5 @@ public class MembershipPlan {
 	               ", Fee: ₹" + fee +
 	               ", Duration: " + durationMonths + " months";
 	}
-	
-	
 
 }

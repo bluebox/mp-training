@@ -36,4 +36,11 @@ public class MemberPlan {
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
+	
+	@Override
+	public String toString() {
+		return "Member ID: " + memberId +
+	               ", Plan ID: " + planId +
+	               ", Start Date: " + startDate;
+	}
 }
