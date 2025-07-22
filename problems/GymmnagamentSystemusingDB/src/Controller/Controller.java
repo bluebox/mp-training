@@ -57,7 +57,7 @@ public class Controller {
     				 int memeberId=0;
     				 memeberId= service.findmember(name,memeberShipId);
     				if(memeberId != 0) {
-    					service.getPlans();
+    					System.out.println(service.getPlans());
     					System.out.println("Enter 0 for Basic \n Enter 1 for Premium \n Enter 2 for Gold");
     				    int planId=Integer.parseInt(sc.nextLine());
     					service.setPlan(memeberShipId,planId);
