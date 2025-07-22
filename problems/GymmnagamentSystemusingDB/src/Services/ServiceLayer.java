@@ -7,36 +7,33 @@ import java.util.List;
 import DAO.DataBaseConnector;
 
 public class ServiceLayer {
-  
-	
-	public static void addMemeber(String name,int age) throws ClassNotFoundException, SQLException {
-		DataBaseConnector.addMember(name, age);
-		return;
+	DataBaseConnector dbconnector=new DataBaseConnector();
+	public void addMemeber(String name,int age) throws ClassNotFoundException, SQLException {
+		dbconnector.addMember(name, age);
 	}
 	
-	public static void addPlan(String name, Double fee, int durationInMonths) throws ClassNotFoundException, SQLException {
-		 DataBaseConnector.addPlan(name,fee,durationInMonths);
-		return;
+	public void addPlan(String name, Double fee, int durationInMonths) throws ClassNotFoundException, SQLException {
+		 dbconnector.addPlan(name,fee,durationInMonths);
 	}
 
-	public static int findmember(String name, int memeberShipId) throws ClassNotFoundException, SQLException {
-		return DataBaseConnector.findMember(memeberShipId);
+	public int findmember(String name, int memeberShipId) throws ClassNotFoundException, SQLException {
+		return dbconnector.findMember(memeberShipId);
 		
 	}
 	
-	public static void removeMemberPlan(int Id) throws ClassNotFoundException, SQLException {
-		DataBaseConnector.removePlan(Id);
-		return;
+	public void removeMemberPlan(int Id) throws ClassNotFoundException, SQLException {
+		dbconnector.removePlan(Id);
+		
 	}
 
-	public static void getPlans() throws ClassNotFoundException, SQLException {
-		DataBaseConnector.showPlans();
-		return ;
+	public void getPlans() throws ClassNotFoundException, SQLException {
+		return dbconnector.showPlans();
+	
 	}
 
-	public static void setPlan(int memeberId,int planId) throws ClassNotFoundException, SQLException {
-	DataBaseConnector.updatePlan(memeberId,planId);
-	return;
+	public void setPlan(int memeberId,int planId) throws ClassNotFoundException, SQLException {
+	dbconnector.updatePlan(memeberId,planId);
+	
 	}
 
 }
