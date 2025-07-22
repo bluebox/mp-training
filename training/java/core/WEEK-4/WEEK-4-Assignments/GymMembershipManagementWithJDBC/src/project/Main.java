@@ -1,31 +1,33 @@
 package project;
 import java.util.Scanner;
 
-import data.DatabaseConnection;
-import data.MemberDBOpearations;
-import data.MembershipPlanDBOperations;
-import models.Gym;
-import models.MembershipPlan;
-import utilities.InputUtilities;
+import controller.GymController;
+import daoImplementation.MemberDAOImplementation;
+import daoImplementation.MembershipPlanDAOImplementation;
+import db.DatabaseConnection;
+import serviceImplementation.GymServiceImplementation;
+import serviceImplementation.MembershipPlanServiceImplementation;
 
 public class Main {
 	
     public static void main(String[] args) {
-        Gym gym = new Gym();
+        GymServiceImplementation gym = new GymServiceImplementation();
         
+//        DatabaseConnection
         DatabaseConnection.connectToDB("jdbc:mysql://localhost:3306/gym");
 
         // Predefined plans
-        boolean flag=MembershipPlanDBOperations.selectAllAndStoreLocally(gym);
+        boolean flag=new MembershipPlanDAOImplementation().selectAllAndStoreLocally(gym);
         if(!flag) {
-        	MembershipPlan.storePredefinedPlansLocally(gym);
-        	MembershipPlanDBOperations.addAllPlans(gym.getPlans());
+        	new MembershipPlanServiceImplementation().storePredefinedPlansLocally(gym);
+        	new MembershipPlanDAOImplementation().addAllPlans(gym.getPlans());
         }
         
-        MemberDBOpearations.selectAllAndStoreLocally(gym);
+        
+        new MemberDAOImplementation().selectAllAndStoreLocally(gym);
 
         Scanner scanner = new Scanner(System.in);
-        InputUtilities.inputMain(scanner,gym);
+        GymController.inputMain(scanner,gym);
         
         DatabaseConnection.closeStatement();
         DatabaseConnection.closeStatement();

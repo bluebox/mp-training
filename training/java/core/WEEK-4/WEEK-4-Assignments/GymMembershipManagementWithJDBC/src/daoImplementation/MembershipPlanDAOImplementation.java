@@ -1,4 +1,4 @@
-package data;
+package daoImplementation;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -7,11 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import models.Gym;
-import models.MembershipPlan;
+import dao.MembershipPlanDAO;
+import db.DatabaseConnection;
+import serviceImplementation.GymServiceImplementation;
+import serviceImplementation.MembershipPlanServiceImplementation;
 
-public class MembershipPlanDBOperations {
-	public static void addAllPlans(List<MembershipPlan> list) {
+public class MembershipPlanDAOImplementation implements MembershipPlanDAO {
+	public void addAllPlans(List<MembershipPlanServiceImplementation> list) {
 		Connection conn=DatabaseConnection.getConn();
 		String insertMembershipPlans="insert into gym.membershipplan(id,name,duration,fee) values(?,?,?,?)";
 		try(PreparedStatement psInsert=conn.prepareStatement(insertMembershipPlans)) {
@@ -37,7 +39,7 @@ public class MembershipPlanDBOperations {
 		}
 	}
 	
-	public static boolean selectAllAndStoreLocally(Gym gym) {
+	public boolean selectAllAndStoreLocally(GymServiceImplementation gym) {
 		ResultSet resultSet=null;
 		String selectQuery="select * from gym.membershipplan";
 		Statement statement;
@@ -51,7 +53,7 @@ public class MembershipPlanDBOperations {
 				String name=resultSet.getString("name");
 				int duration=resultSet.getInt("duration");
 				double fee=resultSet.getDouble("fee");
-				gym.addPlan(new MembershipPlan(id, name, duration, fee));
+				gym.addPlan(new MembershipPlanServiceImplementation(id, name, duration, fee));
 				flag=true;
 			}
 		} catch (SQLException e) {

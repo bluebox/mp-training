@@ -1,26 +1,34 @@
 												Gym Members Report
 
-============Basic Plan Members (Total Count -> 1)============
+============Basic Plan Members (Total Count -> 2)============
+
+Member ID: 6
+Name: Varma
+Phone: 1111111111
+Age: 23
+Plan: BASIC Plan (6 months, ₹999.0)
+Date: 2025-07-21 15:16:42.0
+-------------------------------
 
 Member ID: 7
 Name: hari
 Phone: 9999999999
 Age: 35
 Plan: BASIC Plan (6 months, ₹999.0)
-Date: 2025-07-21 15:17:04
+Date: 2025-07-21 15:17:04.0
 -------------------------------
 
 ============Premium Plan Members (Total Count -> 1)============
 
-Member ID: 6
-Name: Varma
-Phone: 1111111111
-Age: 23
+Member ID: 8
+Name: Rohit Varma
+Phone: 8888888888
+Age: 25
 Plan: PREMIUM Plan (12 months, ₹2499.0)
-Date: 2025-07-21 15:16:42
+Date: 2025-07-21 18:19:35.0
 -------------------------------
 
-============Gold Plan Members (Total Count -> 1)============
+============Gold Plan Members (Total Count -> 2)============
 
 Member ID: 4
 Name: Varma
@@ -28,5 +36,13 @@ Phone: 6301619814
 Age: 34
 Plan: GOLD Plan (18 months, ₹4499.0)
 Date: 2025-07-20 18:22:29.0
+-------------------------------
+
+Member ID: 9
+Name: Gopi
+Phone: 6666666666
+Age: 34
+Plan: GOLD Plan (18 months, ₹4499.0)
+Date: 2025-07-22 14:30:53
 -------------------------------
 

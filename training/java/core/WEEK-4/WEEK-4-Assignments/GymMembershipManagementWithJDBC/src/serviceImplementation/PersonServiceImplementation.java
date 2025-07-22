@@ -1,11 +1,11 @@
-package models;
+package serviceImplementation;
 
-public abstract class Person {
+public abstract class PersonServiceImplementation {
 	private String phone;
     private String name;
     private int age;
 
-    public Person(String phone,String name, int age) {
+    public PersonServiceImplementation(String phone,String name, int age) {
     	
     	// Updating in db
     	

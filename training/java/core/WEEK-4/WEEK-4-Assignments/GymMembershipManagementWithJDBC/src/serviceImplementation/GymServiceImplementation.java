@@ -1,4 +1,4 @@
-package models;
+package serviceImplementation;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,56 +10,58 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import data.PersonDBOperations;
+import daoImplementation.PersonDAOImplementation;
+import service.GymService;
 
-public class Gym {
-    private List<Member> members = new ArrayList<>();
-    private List<MembershipPlan> plans = new ArrayList<>();
+public class GymServiceImplementation implements GymService {
+    private List<MemberServiceImplementation> members = new ArrayList<>();
+    private List<MembershipPlanServiceImplementation> plans = new ArrayList<>();
 
-    public void addNewMember(Member member) {
+    public void addNewMember(MemberServiceImplementation member) {
         members.add(member);
     }
 
-    public List<Member> getMembers() {
+    public List<MemberServiceImplementation> getMembers() {
         return members;
     }
     
-    public void setMembers(List<Member> members) {
+    public void setMembers(List<MemberServiceImplementation> members) {
     	this.members=members;
     }
 
-    public void addPlan(MembershipPlan plan) {
+    public void addPlan(MembershipPlanServiceImplementation plan) {
         plans.add(plan);
     }
 
-    public List<MembershipPlan> getPlans() {
+    public List<MembershipPlanServiceImplementation> getPlans() {
         return plans;
     }
 
-    public Member getMemberById(int id) {
-        for (Member m : members) {
+    public MemberServiceImplementation getMemberById(int id) {
+        for (MemberServiceImplementation m : members) {
             if (m.getMemberId() == id) return m;
         }
         return null;
     }
     
-    public Member getMemberByPhone(String phone) {
-        for (Member m : members) {
+    public MemberServiceImplementation getMemberByPhone(String phone) {
+        for (MemberServiceImplementation m : members) {
             if (m.getPhone().equals(phone)) return m;
         }
         return null;
     }
     
-    public void assignMembershipPlan(int id, MembershipPlan mp) {
-    	Member existingMember=this.getMemberById(id);
+    public void assignMembershipPlan(int id, MembershipPlanServiceImplementation mp) {
+    	MemberServiceImplementation existingMember=this.getMemberById(id);
     	existingMember.setMembershipPlan(mp);
     }
     
-    public MembershipPlan getPlanById(int planId) {
-    	MembershipPlan plan=getPlans().stream().filter(p -> p.getId()==planId).collect(Collectors.toList()).get(0);
+    public MembershipPlanServiceImplementation getPlanById(int planId) {
+    	MembershipPlanServiceImplementation plan=getPlans().stream().filter(p -> p.getId()==planId).collect(Collectors.toList()).get(0);
     	return plan;
     }
     
+//    Function to generate report
     public void generateReport() {
     	Path report=Path.of("report.txt");
     	boolean flag=Files.exists(report);
@@ -87,13 +89,11 @@ public class Gym {
 				try {
 					writer.write(s.toString());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				try {
 					writer.newLine();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -110,13 +110,11 @@ public class Gym {
 				try {
 					writer.write(s.toString());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				try {
 					writer.newLine();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
@@ -133,13 +131,11 @@ public class Gym {
 				try {
 					writer.write(s.toString());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				try {
 					writer.newLine();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+			} catch (IOException e) {
 					e.printStackTrace();
 				}
 			});
@@ -148,7 +144,8 @@ public class Gym {
 		}
     }
     
-    public void editUserDetails(Member existing, Scanner sc) {
+//    Function to edit user details
+    public void editUserDetails(MemberServiceImplementation existing, Scanner sc) {
     	System.out.println("Update Choices...");
     	System.out.println("1. Update User Name");
     	System.out.println("2. Update User Age");
@@ -172,7 +169,7 @@ public class Gym {
     					return;
     				}
     				existing.setName(updatedName);
-    				PersonDBOperations.updateName(existing.getPhone(), updatedName);
+    				new PersonDAOImplementation().updateName(existing.getPhone(), updatedName);
     				System.out.println("Name updated succesfully...");
     				break;
     			}
@@ -186,7 +183,7 @@ public class Gym {
         					return;
         				}
         				existing.setAge(updatedAge);
-        				PersonDBOperations.updateAge(existing.getPhone(), updatedAge);
+        				new PersonDAOImplementation().updateAge(existing.getPhone(), updatedAge);
         				System.out.println("Age updated succesfully...");
     				}catch(NumberFormatException e) {
     					System.out.println("Age must an integer...");
@@ -200,14 +197,15 @@ public class Gym {
     	}
     }
     
+//    Function to delete user by id
     public void deleteMemberByPhone(String phone) {
-        Member existing=this.getMemberByPhone(phone);
+        MemberServiceImplementation existing=this.getMemberByPhone(phone);
         if(existing==null) {
         	System.out.println("Given phone number does not exist, Please add the member first...");
         	return;
         }
         this.setMembers(this.getMembers().stream().filter(m -> !m.getPhone().equals(phone)).collect(Collectors.toList()));
-        PersonDBOperations.deleteUser(phone);
+        new PersonDAOImplementation().deleteUser(phone);
         System.out.println("User deleted succesfully...");
     }
 }

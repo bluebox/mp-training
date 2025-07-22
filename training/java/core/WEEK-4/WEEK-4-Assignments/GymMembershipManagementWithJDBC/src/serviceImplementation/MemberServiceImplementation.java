@@ -1,17 +1,17 @@
-package models;
+package serviceImplementation;
 
-public class Member extends Person {
+public class MemberServiceImplementation extends PersonServiceImplementation {
 	
     private int memberId;
-    private MembershipPlan membershipPlan;
+    private MembershipPlanServiceImplementation membershipPlan;
     private String registerDate;
 
-    public Member(String phone, String name, int age, int memberId) {
+    public MemberServiceImplementation(String phone, String name, int age, int memberId) {
         super(phone, name, age);
         this.memberId = memberId;
     }
     
-    public Member(String phone, String name, int age, int memberId, MembershipPlan membershipPlan, String registerDate) {
+    public MemberServiceImplementation(String phone, String name, int age, int memberId, MembershipPlanServiceImplementation membershipPlan, String registerDate) {
     	super(phone, name, age);
     	this.memberId = memberId;
     	this.membershipPlan=membershipPlan;
@@ -22,11 +22,11 @@ public class Member extends Person {
         return memberId;
     }
 
-    public void setMembershipPlan(MembershipPlan plan) {
+    public void setMembershipPlan(MembershipPlanServiceImplementation plan) {
         this.membershipPlan = plan;
     }
 
-    public MembershipPlan getMembershipPlan() {
+    public MembershipPlanServiceImplementation getMembershipPlan() {
         return membershipPlan;
     }
     
