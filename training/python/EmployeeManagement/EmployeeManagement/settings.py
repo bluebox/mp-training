@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'TaskManagement.apps.TaskmanagementConfig',
     'Onboarding.apps.OnboardingConfig',
     'Exiting.apps.ExitingConfig',
-    'QualityAssessment.apps.QualityassessmentConfig'
+    'QualityAssessment.apps.QualityassessmentConfig',
+    'debug_toolbar',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
 ROOT_URLCONF = 'EmployeeManagement.urls'
@@ -120,6 +123,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
+
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 STATIC_URL = 'static/'
 
