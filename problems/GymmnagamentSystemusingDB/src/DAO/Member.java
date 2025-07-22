@@ -5,13 +5,12 @@ public class Member {
 	int id;
 	int age;
 	String name;
-	String Plan;
+	String plan;
 	public Member(int id, int age, String name, String plan) {
-		super();
 		this.id = id;
-		this.age = age;
 		this.name = name;
-		Plan = plan;
+		this.age = age;
+		this.plan = plan;
 	}
 	public int getId() {
 		return id;
