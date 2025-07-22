@@ -95,14 +95,16 @@ public class DataBaseConnector {
         try (PreparedStatement ps = conn.prepareStatement(getPlans);
              ResultSet rs = ps.executeQuery()) {
             StringBuilder result = new StringBuilder();
+            List<Plan> list=new ArrayList<>();
             while (rs.next()) {
                 result.append(rs.getInt("Id")).append(" ")
                       .append(rs.getString("planName")).append(" ")
-                      .append(rs.getDouble("fee")).append(" ")
-                      .append(rs.getInt("planDuration")).append("\n");
+                      .append(rs.getInt("planDuration")).append(" ")
+                      .append(rs.getDouble("fee")).append("\n");
+                list.add(new Plan(rs.getInt("Id"),rs.getString("planName"),rs.getInt("planDuration"),rs.getDouble("fee")));
             }
             System.out.println(result);
-            return result.toString();
+            return list;
         } catch (SQLException e) {
             e.printStackTrace();
         }
