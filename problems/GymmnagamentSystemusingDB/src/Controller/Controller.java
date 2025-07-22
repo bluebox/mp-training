@@ -60,7 +60,7 @@ public class Controller {
     				 memeberId= service.findmember(name,memeberShipId);
     				if(memeberId != 0) {
     					List<Member> list=service.getPlans();
-					list.forEach(s->System.out.println(""+s.getId()+"  "+s.getName()+"  "));
+					list.forEach(s->System.out.println(""+s.getId()+"  "+s.getName()+"  "+s.getFee()+" "+s.getDuration()));
     					System.out.println("Enter 0 for Basic \n Enter 1 for Premium \n Enter 2 for Gold");
     				    int planId=Integer.parseInt(sc.nextLine());
     					service.setPlan(memeberShipId,planId);
