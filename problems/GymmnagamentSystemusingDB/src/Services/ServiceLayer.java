@@ -26,7 +26,7 @@ public class ServiceLayer {
 		
 	}
 
-	public void getPlans() throws ClassNotFoundException, SQLException {
+	public String getPlans() throws ClassNotFoundException, SQLException {
 		return dbconnector.showPlans();
 	
 	}
