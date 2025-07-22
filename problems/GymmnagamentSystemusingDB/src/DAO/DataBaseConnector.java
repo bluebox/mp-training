@@ -34,9 +34,8 @@ public class DataBaseConnector {
 
     public static Connection createConnection() throws ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        try {
-            Connection con = DriverManager.getConnection(url, username, password);
-            con.setAutoCommit(false);
+        try( Connection con = DriverManager.getConnection(url, username, password);
+            con.setAutoCommit(false);) {
             return con;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,7 +43,7 @@ public class DataBaseConnector {
         return null;
     }
 
-    public static void addMember(String memberName, int memberAge) throws ClassNotFoundException, SQLException {
+    public void addMember(String memberName, int memberAge) throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String insertMember = "INSERT INTO MEMBER (name, age) values (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(insertMember)) {
@@ -58,12 +57,10 @@ public class DataBaseConnector {
         } catch (SQLException e) {
             conn.rollback();
             e.printStackTrace();
-        } finally {
-            conn.close();
-        }
+        } 
     }
 
-    public static void addPlan(String name, Double planFee, int durationInMonths) throws ClassNotFoundException, SQLException {
+    public void addPlan(String name, Double planFee, int durationInMonths) throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String insertPlan = "INSERT INTO PLAN (planName, planDuration, fee) values (?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(insertPlan)) {
@@ -75,12 +72,10 @@ public class DataBaseConnector {
         } catch (SQLException e) {
             conn.rollback();
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
     }
 
-    public static void removePlan(int id) throws ClassNotFoundException, SQLException {
+    public void removePlan(int id) throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String removePlan = "UPDATE MEMBER SET PLANId = 0 WHERE Id = ?";
         try (PreparedStatement ps = conn.prepareStatement(removePlan)) {
@@ -90,13 +85,11 @@ public class DataBaseConnector {
         } catch (SQLException e) {
             conn.rollback();
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
     }
 
     // Show plans
-    public static void showPlans() throws ClassNotFoundException, SQLException {
+    public void showPlans() throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String getPlans = "SELECT * FROM PLAN";
         try (PreparedStatement ps = conn.prepareStatement(getPlans);
@@ -109,17 +102,14 @@ public class DataBaseConnector {
                       .append(rs.getInt("planDuration")).append("\n");
             }
             System.out.println(result);
-            conn.commit();
+            return result.toString();
         } catch (SQLException e) {
-            conn.rollback();
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
     }
 
     // Show members
-    public static void showMembers() throws ClassNotFoundException, SQLException {
+    public void showMembers() throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String getMembers = "SELECT MEMBER.Id, MEMBER.name, MEMBER.age, PLAN.planName FROM MEMBER " +
                              "JOIN PLAN ON MEMBER.PLANId = PLAN.Id";
@@ -133,17 +123,15 @@ public class DataBaseConnector {
                       .append(rs.getString("planName")).append("\n");
             }
             System.out.println(result);
-            conn.commit();
+            return result.toString();
         } catch (SQLException e) {
             conn.rollback();
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
     }
 
     // Find member
-    public static int findMember(int memberId) throws ClassNotFoundException, SQLException {
+    public int findMember(int memberId) throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String findMember = "SELECT * FROM MEMBER WHERE Id = ?";
         try (PreparedStatement ps = conn.prepareStatement(findMember)) {
@@ -154,14 +142,12 @@ public class DataBaseConnector {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.close();
         }
         return 0; // Member not found
     }
 
     // Update plan or add plan to member
-    public static int updatePlan(int memberId, int planId) throws ClassNotFoundException, SQLException {
+    public int updatePlan(int memberId, int planId) throws ClassNotFoundException, SQLException {
         Connection conn = createConnection();
         String updatePlan = "UPDATE MEMBER SET PLANId = ? WHERE Id = ?";
         try (PreparedStatement ps = conn.prepareStatement(updatePlan)) {
@@ -173,9 +159,7 @@ public class DataBaseConnector {
         } catch (SQLException e) {
             conn.rollback();
             e.printStackTrace();
-        } finally {
-            conn.close();
-        }
+        } 
         return 0;
     }
 }
