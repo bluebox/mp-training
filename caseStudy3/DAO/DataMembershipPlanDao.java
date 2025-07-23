@@ -20,7 +20,8 @@ public class DataMembershipPlanDao implements MembershipPlanDao {
 	private static final String password="root";
 	
 	public DataMembershipPlanDao(){ 
-		if (getAllPlans().isEmpty()) {
+		List<MembershipPlan> plan=getAllPlans();
+    	if(plan.size()==0) {
 			addPlan(new MembershipPlan("Basic", 30, 999));
 			addPlan(new MembershipPlan("Gold", 90, 2499));
 			addPlan(new MembershipPlan("Premium", 180, 4999));
@@ -56,6 +57,26 @@ public class DataMembershipPlanDao implements MembershipPlanDao {
         }
         return plan;
     }
+    
+    public void removePlanByName(String name) {
+		String query="DELETE FROM membership_plans WHERE plan_Name = ?";
+		
+		try(Connection connection=DriverManager.getConnection(url,user,password);){
+			PreparedStatement statement=connection.prepareStatement(query);
+			statement.setString(1, name);
+			
+			int rowsEffected=statement.executeUpdate();
+			if(rowsEffected>0) {
+				System.out.println("Deleted "+name+" plan.");
+			}
+			else {
+				System.out.println("Can't delete "+name+" plan");
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
     @Override
     public MembershipPlan getPlanByName(String name) {
@@ -108,3 +129,4 @@ public class DataMembershipPlanDao implements MembershipPlanDao {
     	return plansList;
     }
 }
+
