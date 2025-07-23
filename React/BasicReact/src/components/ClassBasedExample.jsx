@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createContext, useContext,useContext } from 'react'
 
 export default class ClassBasedExample extends Component {
   constructor(props){
@@ -15,11 +15,6 @@ export default class ClassBasedExample extends Component {
       count: prevState.count - 1
     }));
   };
-  
-  // componentDidUpdate()=>{
-  //   console.log('updated the log');
-    
-  // }
   render() {
     return (
       <div>
