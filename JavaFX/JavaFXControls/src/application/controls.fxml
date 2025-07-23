@@ -26,7 +26,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.TitledPane?>
 
 
 <?import javafx.collections.*?>
