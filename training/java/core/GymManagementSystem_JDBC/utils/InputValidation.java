@@ -40,10 +40,10 @@ public class InputValidation {
 			System.out.print(prompt);
 			String name = scanner.nextLine();
 			if (!name.matches(".*\\d.*")) {
-				if(name.length() <= 100)
+				if(name.length() <= 100) 
 					return name;
 				else {
-					System.out.println("Invalid name. Name should not exceed length - 100 characters.");
+					System.out.println("Name should not exceed 100 characters.");
 				}
 			} else {
 				System.out.println("Invalid name. Name should not contain numbers.");
