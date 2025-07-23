@@ -1,8 +1,11 @@
 package Controller;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
-
+import Services.Member;
+import Services.MembershipPlan;
 import Services.ServiceHandler;
 public class Main {	
     public static void main(String[] args) {
@@ -68,11 +71,23 @@ public class Main {
                     continue;
                 }
                
-                servicehandler.addmember(name, age, memberid);
+                try {
+					servicehandler.addmember(name, age, memberid);
+				} catch (SQLIntegrityConstraintViolationException e) {
+					// TODO Auto-generated catch block
+					System.out.println("memberid already exists");
+				}
                 
                 
             }
             else if(choice==2){
+            		servicehandler.showplans();
+            		List<MembershipPlan> list=servicehandler.membershipplans;
+            		System.out.println(list);
+            		if(list.size()>0)
+            		for(MembershipPlan m:list) {
+            			m.planDetails();
+            		}
                 System.out.println("Enter the Memberid");
                 int memberid=0;
             	try{
@@ -86,57 +101,52 @@ public class Main {
                     continue;
                 }
                 
-                System.out.println("Enter the planname");
-                String planname="";
-            	try{
-            		  planname=sc.next();
-              }
-              catch(InputMismatchException i){
-                  
-                  System.out.println("invalid planname enter correct planname");
-                  sc.nextLine();
-                  continue;
-              }
+
                
-                System.out.println("Enter the plan duration in months");
-                int planDuration=0;
+                System.out.println("Enter the membershipplan id");
+                int membershipplanid=0;
              	try{
-             		  planDuration=sc.nextInt();
+             		  membershipplanid=sc.nextInt();
              		 sc.nextLine();
               }
               catch(InputMismatchException i){
                   
-                  System.out.println("invalid plan duration enter correct plan duration in months");
+                  System.out.println("invalid plan id enter correct plan id ");
                   sc.nextLine();
                   continue;
               }
                
-                System.out.println("Enter the fee");
-	                int fee=0;
-	                while(true) {
-	             	try{
-	             		 fee=sc.nextInt();
-	             		sc.nextLine();
-	              }
-	              catch(InputMismatchException i){
-	                  
-	                  System.out.println("invalid plan fee enter correct plan fee in ");
-	                  sc.nextLine();
-	                  continue;
-	              }
-	             	if(fee>=0) {
-	             		break;
-	             	}
-	             	System.out.println("enter valid fee");
-	                }
                 
-                servicehandler.addmembership(memberid, planname, planDuration, fee);
                 
+                
+                boolean res=servicehandler.addmembership(memberid, membershipplanid);
+                if(!res) {
+                	System.out.println(" memberid does not exist or membershipplan already exists");
+                }
                
 
             }
             else if(choice==3){
-            	servicehandler.showallmembers();
+            	
+            List<Member> memberlist;
+			try {
+				memberlist = servicehandler.showallmembers();
+				 for(Member member:memberlist) {
+		            	member.show_details();
+		            	if(member.getMembershipPlan()!=null)
+		            	{
+		            		member.getMembershipPlan().planDetails();
+		            	}
+		            	else {
+		            		System.out.println("no plans assigned yet");
+		            }
+		            }
+			} catch (SQLIntegrityConstraintViolationException e) {
+				// TODO Auto-generated catch block
+				System.out.println("membershipplan id is wrong ");
+			}
+           
+            	
                 
             }
             else if(choice==4) {
@@ -235,7 +245,12 @@ public class Main {
                   sc.nextLine();
                   continue;
               }
-            	servicehandler.addplans(membershipplanname, membershipplanduration, membershipplanfee);
+            	try {
+					servicehandler.addplans(membershipplanname, membershipplanduration, membershipplanfee);
+				} catch (SQLIntegrityConstraintViolationException e) {
+					// TODO Auto-generated catch block
+					System.out.println("plan name already exists");
+				}
             	
             }
             else if(choice==6) {
@@ -251,7 +266,9 @@ public class Main {
                       sc.nextLine();
                       continue;
                   }
-            	servicehandler.deletemembership(memberid);
+            	boolean res=servicehandler.deletemembership(memberid);
+            	
+            	if(res)
             	System.out.println("successfully removed");
             }
             else if(choice==7){
