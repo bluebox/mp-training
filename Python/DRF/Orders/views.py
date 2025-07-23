@@ -1,10 +1,8 @@
 from django.contrib.auth import authenticate
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic.edit import DeletionMixin
+from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, status, generics
 from rest_framework.filters import SearchFilter
-from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -151,3 +149,37 @@ class Add_review(viewsets.ModelViewSet):
     queryset = Product_review.objects.all()
     serializer_class = ReviewSerializers
     permission_classes = [IsAuthenticated]
+
+
+class Order_select_related(APIView):
+    permission_classes = [AllowAny]
+    def get(self,request):
+        order=Order.objects.select_related('customer')
+        serializer=OrderSerializer(order,many=True)
+        return Response(serializer.data)
+
+class Customer_prefetch_related(APIView):
+    permission_classes = [AllowAny]
+    def get(self,request):
+        customer=Customer.objects.prefetch_related('orders')
+        for cust in customer:
+           for i in cust.orders.all():
+               print(i.order_date)
+        serializer=CustomerSerializer(customer,many=True)
+        return Response(serializer.data)
+
+
+class Annotate_example(APIView):
+    def get(self, request):
+        customers = Customer.objects.annotate(order_count=Count('orders'))
+
+        data = []
+        for customer in customers:
+            print(customer.first_name, customer.order_count)
+            data.append({
+                'first_name': customer.first_name,
+                'id':customer.id,
+                'order_count': customer.order_count
+            })
+
+        return Response({'msg': 'success', 'customers': data})

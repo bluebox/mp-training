@@ -2,7 +2,8 @@ from django.urls import  path,include
 from rest_framework.routers import DefaultRouter
 
 from .views import ProductViewSet, CustomerViewSet, OrderViewSet, OrderItemViewSet, QueryParmsExample, \
-    Join_example_to_get_customer_and_hisOrder, request_user, LoginView, UserViewSet, PaginationViewSets, Add_review
+    Join_example_to_get_customer_and_hisOrder, request_user, LoginView, UserViewSet, PaginationViewSets, Add_review, \
+    Order_select_related, Customer_prefetch_related, Annotate_example
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -27,4 +28,7 @@ urlpatterns=[
     path('api/request/',request_user.as_view(),name='request_user'),
     # path('api/Student/',Student_view.as_view(),name='Student_view'),
     # path('api/Student/<int:id>/',Student_view_RUD.as_view(),name='RUD'),
+    path('api/Order_select_related/',Order_select_related.as_view(),name='Order_select_related'),
+    path('api/Customer_prefetch_related/',Customer_prefetch_related.as_view(),name='Customer_prefetch_related'),
+    path('api/Annotate/',Annotate_example.as_view(),name='Annotate_example')
 ]
