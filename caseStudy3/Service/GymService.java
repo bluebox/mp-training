@@ -17,7 +17,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class GymService {
-    private MemberDao memberDao;
+	private MemberDao memberDao;
     private MembershipPlanDao planDao;
 
     public GymService(MemberDao memberDao, MembershipPlanDao planDao) {
@@ -27,6 +27,10 @@ public class GymService {
     Scanner sc=new Scanner(System.in);
 
     public Member enrollNewMember(String name, int age, String planName) {
+    	if(name.equals("null")||name.isEmpty()) {
+    		System.err.println("enter valid name cause it is invalid value");
+    		return null;
+    	}
         MembershipPlan plan = planDao.getPlanByName(planName);
         if (plan == null) {
         	System.out.println("Please enter a valid plan");
@@ -132,8 +136,9 @@ public class GymService {
     		System.out.print("Enter member's full name: ");
         
         	 String name = sc.nextLine();
-        	 if(name.trim().isEmpty() || name.equals("null")) {
+        	 if(name.trim().isEmpty() || name.trim().equals("null")||name.trim().equals("Null")) {
         		 throw new InvalidNameException("Name Not Found");
+        		 
         	 }
         	 else if(name.length() > 50) {
         		 throw new InvalidNameException("Entered Name is too long");
@@ -176,7 +181,6 @@ public class GymService {
         		throw new Exception();
         	}
         	if (cancelMemberMembership(memberId, reason)) {
-        		
                 System.out.println("Membership for Member ID " + memberId + " has been successfully marked as 'REMOVED'.");
             } else {
                 System.out.println("Cancellation failed. Member with ID " + memberId + " not found.");
@@ -266,40 +270,44 @@ public class GymService {
     }
     
     public void displayMemberDetails(Member member) {
-        System.out.print("  Member ID: " + member.getMembershipId());
-        System.out.print("  Name: " + member.getName());
-        System.out.print("  Age: " + member.getAge());
+        System.out.println("  Member ID: " + member.getMembershipId());
+        System.out.println("  Name: " + member.getName());
+        System.out.println("  Age: " + member.getAge());
         if (member.getPlan() != null) {
-            System.out.print("  Membership Plan: " + member.getPlan().getNameOfPlan() +
+            System.out.println("  Membership Plan: " + member.getPlan().getNameOfPlan() +
                                " (Duration: " + member.getPlan().getDurationInDays() + " days, " +
                                "Fee: $" + member.getPlan().getFee() + ")");
         } else {
             System.out.println("  Membership Plan: Not assigned");
         }
-        System.out.print("  Status: " + member.getStatus());
+        System.out.println("  Status: " + member.getStatus());
         if (member.getStatus() == MemberStatus.REMOVED && member.getRemovalReason() != null && !member.getRemovalReason().isEmpty()) {
             System.out.println("  Removal Reason: " + member.getRemovalReason());
         }
-        System.out.println();
     }
     
-    public void loadMembersFromFileProcedure() {
-        System.out.println("--- Importing Members from External File ---");
-        //System.out.print("Enter the path to the member data file");
-        String filePath = "C:\\Users\\setty\\eclipse-workspace\\caseStudy3\\src\\data\\membersData";
-
-        try {
-            int importedCount = importMembersFromFile(filePath);
-            if (importedCount > 0) {
-                System.out.println("Successfully imported " + importedCount + " members from " + filePath + ".");
-            } else {
-                System.out.println("No members were imported from " + filePath + ". Check file content or path.");
-            }
-        } catch (IOException e) {
-            System.err.println("Error importing members from file: " + e.getMessage());
-            System.out.println("Please ensure the file path is correct and the file is accessible.");
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred during import: " + e.getMessage());
-        }
+    public void addNewMembershipPlan() {
+    	System.out.println("Enter The Name Of Your New Plan: ");
+    	String name=sc.next();
+    	System.out.println("Enter The Validity Of The Plan(In Days)");
+    	int duration=sc.nextInt();
+    	System.out.println("Enter Price Of The New Plan");
+    	double price=sc.nextDouble();
+    	MembershipPlan plan=new MembershipPlan(name,duration,price);
+    	planDao.addPlan(plan);
     }
-}
+    
+    public void removeMembershipPlan() {
+    	System.out.println("Enter The Plan Name To Remove");
+    	String planName=sc.nextLine();
+    	MembershipPlan plan=null;
+    	if((!planName.trim().isEmpty()) && planName!=null) {
+    		plan=planDao.getPlanByName(planName.trim());
+    		if(plan!=null) {
+    			planDao.removePlanByName(plan.getNameOfPlan());
+    		}
+    	}
+    	else {
+    		System.out.println("Invalid Data For Plan Name");
+    	}
+    }
