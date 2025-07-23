@@ -1,0 +1,17 @@
+
+.navbar {
+  height: 30px;
+  background-color: black;
+  padding: 30px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 22px;
+  padding: 10px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
