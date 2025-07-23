@@ -4,10 +4,13 @@ import Services.Member;
 import Services.MembershipPlan;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 public class Databasemanager {
 	private final String url="jdbc:mysql://127.0.0.1:3306/gym";
 	private final String username="root";
-	private final String password="Santhosh@123";	
+	private final String password="Santhosh@123";
+	public List<MembershipPlan> membershipplan=new ArrayList<>(); 
 	public Connection connectionestablish() {
 		Connection c=null;
 		try {
@@ -26,33 +29,17 @@ public class Databasemanager {
 		
 
 	}
-	public void addmemberplans(MembershipPlan membership) {
+	public void addmemberplans(MembershipPlan membership) throws SQLIntegrityConstraintViolationException {
 		
 		Connection c=connectionestablish();
 		try {
 			c.setAutoCommit(false);
 		} catch (SQLException e) {
-			try {
-				c.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		int membershipid=getmembershipid(membership.getPlanName(),membership.getDurationMonths(),membership.getFee(),c);
-		if(membershipid!=-1) {
-			System.out.println("plan already exists");
-			try {
-				c.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return;
-		}
+		
 		String query="insert into gym.membershipplan(membershipplanname,membershipplanduration,membershipplanfee) values(?,?,?)";
 		try {
 			PreparedStatement preparedstatement=c.prepareStatement(query);
@@ -62,23 +49,35 @@ public class Databasemanager {
 			preparedstatement.setInt(3,membership.getFee());
 			preparedstatement.execute();
 			c.commit();
-			c.close();
 			
+			
+		}
+		catch(SQLIntegrityConstraintViolationException e) {
+			throw new SQLIntegrityConstraintViolationException();
 		}
 		catch (SQLException e) {
 			try {
 				c.rollback();
+				e.printStackTrace();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			e.printStackTrace();
+		}
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
+	
 	public int getmembershipid(String planname,int duration,int fee,Connection c) {
 		
 		int id=-1;
-		String querytofindmembershipid="select * from gym.membershipplan where membershipplanname=? and membershipplanduration=? and membershipplanfee=?";
+		String querytofindmembershipid="select membershipplanid from gym.membershipplan where membershipplanname=? and membershipplanduration=? and membershipplanfee=?";
 		try {
 			PreparedStatement preparestatementforid=c.prepareStatement(querytofindmembershipid);
 			preparestatementforid.setString(1,planname );
@@ -96,84 +95,64 @@ public class Databasemanager {
 		}
 		return id;
 	}
-	public boolean checkmemberid(int memberid,Connection c) {
-		
-		
-		String querytofindmembershipid="select * from gym.members where memberid=?";
+	public List<MembershipPlan> showplans() {
+		Connection c=connectionestablish();
+		String querytoshowplans="select * from gym.membershipplan";
 		try {
-			PreparedStatement preparestatementforid=c.prepareStatement(querytofindmembershipid);
-			preparestatementforid.setInt(1,memberid);
-			
-			ResultSet res=preparestatementforid.executeQuery(); 
-			if(res.next()) {
-				return true;
+			Statement statement=c.createStatement();
+			ResultSet result=statement.executeQuery(querytoshowplans);
+			while(result.next()) {
+				this.membershipplan.add(new MembershipPlan(result.getString("membershipplanname"),result.getInt("membershipplanduration"),result.getInt("membershipplanfee"),result.getInt("membershipplanid")));			
 			}
-
-		}catch (SQLException e) {
-			
+		}
+		catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return this.membershipplan;
+		
 	}
-	public void addmembership(int memberid,MembershipPlan membership)  {
+	
+	
+	
+	
+	public boolean addmembership(int memberid,int membershipid)  {
 		Connection c=connectionestablish();
+		int res=0;
 		try {
 			c.setAutoCommit(false);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		boolean ifmemberexistsornot=checkmemberid(memberid,c);
-		if(!ifmemberexistsornot) {
-			System.out.println("memberid not available");
-			try {
-				c.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return;
-		}
 		
-		String querytofindmembershipid="select * from gym.members where memberid=?";
 		
-		String querytoshowplans="select * from gym.membershipplan";
+		String querytofindmembershipid="select membershipplanid from gym.members where memberid=?";
+		
+		
 		String query="update gym.members  SET membershipplanid=? where memberid=?";
-		int membershipid=getmembershipid(membership.getPlanName(),membership.getDurationMonths(),membership.getFee(),c);
 		try {
 			
-			Statement statement=c.createStatement();
+			
 			PreparedStatement  preparestatement=c.prepareStatement(query);
 			PreparedStatement  preparestatementtofindmembershipid=c.prepareStatement(querytofindmembershipid);
 			preparestatementtofindmembershipid.setInt(1, memberid);
+			
 			ResultSet resformembershipid=preparestatementtofindmembershipid.executeQuery();
-			resformembershipid.next();
+			if(resformembershipid.next()) {
 			Integer membershipplanid = (Integer) resformembershipid.getObject("membershipplanid");
 			if(membershipplanid!=null) {
-				c.rollback();
+				
 				System.out.println("membershipplan already exists \n if you want to change please select (4) option to update membershipplan");
-				
+				return false;
 			}
-			if(membershipid==-1) {
-				c.rollback();
-				System.out.println("no membershipplan with given details,please enter the correct details available plans are");
-				ResultSet result=statement.executeQuery(querytoshowplans);
-				while(result.next()) {
-					System.out.print("plan name "+result.getString("membershipplanname"));
-					System.out.print(" plan duration "+result.getInt("membershipplanduration"));
-					System.out.println(" plan fee "+result.getInt("membershipplanfee"));
-					
-				}
-				return;
-				
 			}
 			preparestatement.setInt(1, membershipid);
 			preparestatement.setInt(2, memberid);
 			
-			preparestatement.executeUpdate();
+			res=preparestatement.executeUpdate();
 			c.commit();
 			
-			c.close();
+			
 
 		}catch (SQLException e) {
 			try {
@@ -185,25 +164,27 @@ public class Databasemanager {
 			
 			e.printStackTrace();
 		}
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		if(res==1) {
+			return true;
+		}
+		return false;
 	}
-	public boolean addmemberstodatabase(Member m)  {
+	public boolean addmemberstodatabase(Member m) throws SQLIntegrityConstraintViolationException{
 		Connection c=connectionestablish();
 		try {
 			c.setAutoCommit(false);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		boolean ifmemberexistsornot=checkmemberid(m.getMemberid(),c);
-		if(ifmemberexistsornot) {
-			try {
-				c.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("memberid already exists please enter another memberid");
-			return false;
 		}
 		
 		String query="insert into gym.members values(?,?,?,null)";
@@ -224,9 +205,13 @@ public class Databasemanager {
 				System.out.println("not added sucessfylly");
 			}
 			c.commit();
-			c.close();
+			
 		
-		} catch (SQLException e) {
+		} 
+		catch(SQLIntegrityConstraintViolationException e) {
+			throw new SQLIntegrityConstraintViolationException();
+		}
+		catch (SQLException e) {
 			try {
 				c.rollback();
 			} catch (SQLException e1) {
@@ -236,25 +221,24 @@ public class Databasemanager {
 			
 			e.printStackTrace();
 		}
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return true;
 	}
-	public void deletemembershipidfromdatabase(int memberid)  {
+	public boolean deletemembershipidfromdatabase(int memberid)  {
 		Connection c=connectionestablish();
+		boolean res=false;
 		try {
 			c.setAutoCommit(false);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		boolean ifmemberexistsornot=checkmemberid(memberid,c);
-		if(!ifmemberexistsornot) {
-			try {
-			c.rollback();}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			System.out.println("memberid not available");
-			return;
 		}
 		
 		
@@ -263,9 +247,9 @@ public class Databasemanager {
 			
 			PreparedStatement preparestatement=c.prepareStatement(query);
 			preparestatement.setInt(1, memberid);
-			preparestatement.execute();
+			res=preparestatement.execute();
+			
 			c.commit();
-			c.close();
 			
 		} catch (SQLException e) {
 			try {
@@ -274,13 +258,24 @@ public class Databasemanager {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 			e.printStackTrace();
 		}
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return res;
 		
 		
 		
 	}
 	public void updatemembershipplan(int memberid,String planname,int duration,int fee)  {
+		
 		Connection c=connectionestablish();
 		try {
 			c.setAutoCommit(false);
@@ -288,28 +283,12 @@ public class Databasemanager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		boolean ifmemberexistsornot=checkmemberid(memberid,c);
-		if(!ifmemberexistsornot) {
-			
-			System.out.println("memberid not available");
-			try {
-				c.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return;
-		}
+		
 		
 		String query="Update  gym.members SET membershipplanid=? where memberid=?";
 		int membershipplanid=getmembershipid(planname,duration,fee,c);
 		if(membershipplanid==-1) {
-			try {
-				c.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			System.out.println("no such plan exists with given details");
 			return;
 		}
@@ -320,54 +299,75 @@ public class Databasemanager {
 			preparestatement.setInt(1, membershipplanid);
 			preparestatement.setInt(2, memberid);
 			
-			preparestatement.execute();
+			boolean res=preparestatement.execute();
+			if(!res) {
+				System.out.println("memberid not exists");
+			}
 			c.commit();
-			c.close();
+			
 		} catch (SQLException e) {
 			try {
-			c.rollback();}catch(SQLException e1) {
+			c.rollback();
+			}catch(SQLException e1) {
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
-	public void showmembersdb() {
-		Connection c=connectionestablish();
-		String query="select * from gym.members as member left join gym.membershipplan as memberplan on member.membershipplanid=memberplan.membershipplanid ";
+	public List<Member> showmembersdb() throws SQLIntegrityConstraintViolationException {
 		
-		try {
-			c.setAutoCommit(false);
+		String query="select * from gym.members as member left join gym.membershipplan as memberplan on member.membershipplanid=memberplan.membershipplanid ";
+		Connection c=connectionestablish();
+		List<Member>  list=new ArrayList<>();
+		try{
+			
 			Statement statement=c.createStatement();
 			ResultSet result=statement.executeQuery(query);
 			while(result.next()) {
-				System.out.println("Memberid:"+result.getInt("memberid"));
-				System.out.println("Membername:"+result.getString("membername"));
-				System.out.println("Memberage:"+result.getInt("memberage"));
+				Member member=(new Member(result.getString("membername"),result.getInt("memberage"),result.getInt("memberid")));
 				Integer membershipplanid = (Integer) result.getObject("membershipplanid");
-				if(membershipplanid!=null) {
-				System.out.println("planname:"+result.getString("membershipplanname"));
-				System.out.println("planduration:"+result.getInt("membershipplanduration"));
-				System.out.println("planfee:"+result.getInt("membershipplanfee"));
+				if(membershipplanid!=null){
+					member.setMembershipPlan(new MembershipPlan(result.getString("membershipplanname"),result.getInt("membershipplanduration"),result.getInt("membershipplanfee"),result.getInt("membershipplanid")));
+					
 				}
 				else {
-					System.out.println("No plan assigned yet");
+					member.setMembershipPlan(null);
+					
 				}
+				list.add(member);
 			}
-			c.commit();
-			c.close();
+			
+			
+			
 			
 			
 		}
+		catch(SQLIntegrityConstraintViolationException e) {
+			throw new SQLIntegrityConstraintViolationException();
+		}
+		
 		catch(SQLException e) {
-			try {
-				c.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			e.printStackTrace();
 		}
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
 		
 		
 	}
