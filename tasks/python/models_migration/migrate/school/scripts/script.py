@@ -171,6 +171,13 @@ def correct_results():
             i.grade = 0
         i.save()
 
+def correct_passwords():
+    students = Student.objects.dropped()
+    for student in students:
+        print(student.user.set_password("password123"))
+        print(student.user.password)
+        student.user.save()
+
 
 def run():
 #     try:
@@ -182,6 +189,6 @@ def run():
 #         response = requests.post(JWT_URL, json=data)
 #     except Expression:
 #     populate()
-    correct_results()
+    correct_passwords()
 
 

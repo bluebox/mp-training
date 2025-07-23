@@ -148,16 +148,16 @@ class StudentResultsDashBoard(APIView):
         params = request.query_params
         if 'id' in params:
             try:
-                student = Student.objects.get(id=params['id'])
+                student = Student.objects.prefetch_related("results_set")
                 # serializer = CustomSerializer(student)
             except Student.DoesNotExist:
                 return Response({'message': 'Student does not have any result'}, status=404)
 
-            if not student.results_set.exists():
+            if not student:
                 return Response({'message': 'Student does not have any result'}, status=404)
             else:
-                serializer = StudentResultsDashboard(student)
-                return Response(serializer.data)
+                # serializer = StudentResultsDashboard(student)
+                return Response(student.values("user_id","Name","results__subject_id","results__grade","results__subject_id__Name","results__percentage"))
         else:
             return Response({'message':'Please provide an id'},status=400)
 
