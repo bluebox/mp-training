@@ -1,17 +1,19 @@
-export default function Record({record_obj})
-{
-        function obj_to_fielddata(record_obj){
-            let res=[]
-            for(let key in record_obj){
-                res.push(<td key={key}>{record_obj[key]}</td>)
-            }
-            return res
-            }
-    return(
+import React from "react";
+
+const Record = ({ record, onEdit, onDelete }) => {
+  return (
     <tr>
-        {
-            obj_to_fielddata(record_obj)
-        }
+      <td>{record.name}</td>
+      <td>{record.phone}</td>
+      <td>{record.email}</td>
+      <td>{record.department}</td>
+      <td>{record.joinDate}</td>
+      <td>
+        <button onClick={() => onEdit(record.id)}>Edit</button>
+        <button onClick={() => onDelete(record.id)}>Delete</button>
+      </td>
     </tr>
-    );
-}
+  );
+};
+
+export default Record;
