@@ -92,6 +92,15 @@ function Register() {
         const uid = id ? id : localStorage.length + 1;
         localStorage.setItem(uid.toString(), JSON.stringify(formData));
         alert("Form Submitted");
+        setName("");
+        setEmail("");
+        setPhone("");
+        setAge("");
+        setBranch("");
+        setLanguages([]);
+        setSelectedState("");
+        setSelectedCity("");
+
         
     };
 
@@ -144,12 +153,12 @@ function Register() {
                     ))}
                 </div>
 
-                {/* <State
+                <State
                     selectedCity={selectedCity}
                     selectedStatePseudo={selectedState}
                     setSelectedStatePseudo={setSelectedState}
                     setSelectedCity={setSelectedCity}
-                /> */}
+                />
 
                 <>
 
