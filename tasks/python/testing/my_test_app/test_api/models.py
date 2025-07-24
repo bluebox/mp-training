@@ -1,5 +1,6 @@
 from django.db import models
-class User(models.Model):
+
+class ModelUser(models.Model):
     Name = models.CharField(max_length=150)
     Age = models.IntegerField()
     Email = models.CharField(max_length=150)

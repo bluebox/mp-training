@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django-extensions',
+    'rest_framework',
     'test_api',
 ]
 
@@ -76,8 +78,12 @@ WSGI_APPLICATION = 'my_test_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'usermanagement',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'HOST': 'localhost',   # Or the IP address of your DB server
+        'PORT': '3307',
     }
 }
 

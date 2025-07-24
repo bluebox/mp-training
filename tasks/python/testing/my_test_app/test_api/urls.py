@@ -1,10 +1,11 @@
 from django.contrib.sitemaps.views import index
-from django.urls import path
-from .views import hello_api,view_user,user_management
+from django.urls import path,include
+from rest_framework.routers import DefaultRouter
+from .views import Users
 
+router = DefaultRouter()
+router.register('users', Users)
 
 urlpatterns = [
-    path("hello/",hello_api),
-    path('',view_user,name='index'),
-    path('Users/',user_management),
+    path('', include(router.urls)),
 ]
