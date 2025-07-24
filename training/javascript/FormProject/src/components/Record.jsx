@@ -1,4 +1,5 @@
 import React from "react";
+import "./Record.css";
 
 const Record = ({ record, onEdit, onDelete }) => {
   return (

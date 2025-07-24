@@ -4,6 +4,8 @@ import Home from "./components/Home";
 import Create from "./components/Create";
 import Configurations from "./components/Configurations";
 import Record from "./components//Record";
+import "./App.css";
+
 
 function App() {
   const [records, setRecords] = useState([]);

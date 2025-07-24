@@ -1,46 +1,57 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
-from django.db.models import Q,F
+from django.db.models import Q, F, CheckConstraint
 from datetime import datetime 
 # Create your models here.
 
 
 class Departments(models.Model):
-	dept_id=models.BigAutoField(validators=[MinValueValidator(1)],primary_key=True)
-	dept_name=models.CharField(max_length=20,blank=False)
+	class DepartmentChoices(models.TextChoices):
+		RD="R&D","Research and Development"
+		FSD="FSD","Full Stack Developer"
+		BD="BD","Backend Development"
+		PD="PD","Production"
+		TS="TS","Transactions"
+		ND="ND","Not Determined"
+
+
+	dept_name=models.CharField(max_length=3,blank=False,choices=DepartmentChoices.choices,default=DepartmentChoices.ND,unique=True)
 
 class Designations(models.Model):
 	# designation_choices={"ASE":"Associate Software Engineer","JSE":"Junior Software Engineer","SSE":"Senior Software Engineer"}
-	designation=models.CharField(max_length=20,primary_key=True)
+	class DesignationChoices(models.TextChoices):
+		ASE="ASE","associate software engineer"
+		JSE="JSE","junior software engineer"
+		SSE="SSE","senior software engineer"
+		NOD="NOD","Not Assigned"
+	designation=models.CharField(max_length=3,unique=True,default=DesignationChoices.NOD,choices=DesignationChoices.choices)
 
 
 class Employees(models.Model):
-	class DesignationChoices(models.TextChoices):
-		ASE="associate software engineer"
-		JSE="junior software engineer"
-		SSE="senior software engineer"
 	emp_id=models.PositiveIntegerField(validators=[MinValueValidator(1000),MaxValueValidator(9999)],primary_key=True)
 	emp_name=models.CharField(max_length=20,blank=False)
 	dob=models.DateField(blank=False,null=True)
 	designation=models.ForeignKey(Designations, on_delete=models.CASCADE)
 	date_joined=models.DateField(blank=False,default=datetime.today)
-	dept_id=models.ForeignKey(Departments,on_delete=models.CASCADE)
-	# class Meta:
-	# 	constraints=[models.CheckConstraint(condition=models.Q(models.ExpressionWrapper(models.functions.ExtractYear(F('date_joined')-F('dob')),output_field=models.IntegerField())>=18),name="eligibility_constraint"),]
-	
+	dept=models.ForeignKey(Departments,on_delete=models.CASCADE)
+	class Meta:
+		constraints = [
+			CheckConstraint(
+				check=Q(emp_id__gte=1000) & Q(emp_id__lte=9999),
+				name='emp_id'
+			)
+		]
+
+
 class DepartmentHeads(models.Model):
-	emp_id=models.ForeignKey(Employees,on_delete=models.CASCADE,blank=False)
-	dept_head_id=models.PositiveIntegerField(validators=[MinValueValidator(1)],primary_key=True)
-	dept_id=models.ForeignKey(Departments,on_delete= models.CASCADE,unique=True,blank=False)
+	emp=models.ForeignKey(Employees,on_delete=models.CASCADE,blank=False)
 	dept_head_since=models.DateField(blank=False)
 
 
 class PayScale(models.Model):
-	dept_id=models.ForeignKey(Departments,on_delete=models.CASCADE,blank=False)
-	designation=models.ForeignKey(Designations,on_delete=models.CASCADE,blank=False)
-	salary=models.DecimalField(max_digits=10,decimal_places=2,default=0.00,blank=False)
-	class Meta:
-		unique_together=('dept_id','designation')
+	emp=models.ForeignKey(Employees,on_delete=models.CASCADE,blank=False)
+	salary=models.DecimalField(max_digits=10,decimal_places=2,default=0.00,blank=True)
+
 
 
 

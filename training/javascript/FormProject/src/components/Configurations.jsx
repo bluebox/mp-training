@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Configuration.css";
+
 
 const Configurations = ({ config, setConfig }) => {
   const [localConfig, setLocalConfig] = useState(config);

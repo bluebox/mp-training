@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import "./Create.css";
+
 
 const Create = ({ records, setRecords, config }) => {
   const { id } = useParams();
@@ -26,23 +28,32 @@ const Create = ({ records, setRecords, config }) => {
     return true;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validate()) {
-      alert("Please enter valid Name, Phone (10 digits), and Email");
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (!validate()) {
+    alert("Please enter valid Name, Phone (10 digits), and Email");
+    return;
+  }
+
+  if (config.uniquePhone) {
+    const phoneExists = records.some(r =>
+      r.phone === form.phone && (!isEdit || r.id !== form.id)
+    );
+    if (phoneExists) {
+      alert("Phone number must be unique");
       return;
     }
-    if (isEdit) {
-      setRecords(records.map(r => (r.id === id ? form : r)));
-    } else {
-      if (config.uniquePhone && records.some(r => r.phone === form.phone)) {
-        alert("Phone number must be unique");
-        return;
-      }
-      setRecords([...records, { ...form, id: Date.now().toString() }]);
-    }
-    navigate("/");
-  };
+  }
+
+  if (isEdit) {
+    setRecords(records.map(r => (r.id === id ? form : r)));
+  } else {
+    setRecords([...records, { ...form, id: Date.now().toString() }]);
+  }
+
+  navigate("/");
+};
+
 
   return (
     <div>
@@ -58,5 +69,7 @@ const Create = ({ records, setRecords, config }) => {
     </div>
   );
 };
+
+
 
 export default Create;
