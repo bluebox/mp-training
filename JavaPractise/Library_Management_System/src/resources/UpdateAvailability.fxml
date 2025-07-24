@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateBookAvailabilityController">
+   <children>
+      <Label layoutX="187.0" layoutY="54.0" text="Update Book Availability">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="115.0" layoutY="110.0" text="Enter book_id to update ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="151.0" layoutY="149.0" text="Availability">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idField" layoutX="328.0" layoutY="108.0" />
+      <TextField fx:id="availabilityField" layoutX="328.0" layoutY="147.0" />
+      <Button layoutX="197.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleUpdateBook" text="Submit" />
+      <Button layoutX="328.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleBack" text="Go Back" />
+   </children>
+</AnchorPane>
