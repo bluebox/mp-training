@@ -62,8 +62,10 @@ function Display(){
                             <td>{u.state}</td>
                             <td>{u.city}</td>
                             <td>
-                                {/* <button className="alter-btn" onClick={() => handleAlter(u.id)}>Alter</button> */}
-                                <Link to={`/${u.id.toString()}`}>Alter</Link>
+                                {/* <button className="alter-btn" onClick={"/${u.id.toString()}"}>Alter</button> */}
+                                <Link to={`/${u.id.toString()}`}>
+                                    <button className="alter-btn">Alter</button>
+                                </Link>
                                 {/* <Link to="/" state={{"id": u.id.toString()}}>Alter</Link> */}
 
                                 <button className="delete-btn" onClick={() => handleDelete(u.id)}>Delete</button>

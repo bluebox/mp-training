@@ -16,7 +16,7 @@ function State({ selectedCity, selectedStatePseudo, setSelectedStatePseudo, setS
     return(
         <>
             <label htmlFor="state" className="form"><p>State<sup style={{color:"red"}}>*</sup></p></label>
-            <select id="state" name="state" value={selectedState} onChange={(e)=>{
+            <select id="state" name="state" value={selectedStatePseudo} onChange={(e)=>{
                 setSelectedState(e.target.value)
                 Object.keys(states).forEach((state)=>{
                     if(states[state] === e.target.value)
