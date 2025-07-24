@@ -1,12 +1,12 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
-class BaseUser(AbstractUser):
-    class Role(models.TextChoices):
-        ADMIN = 'admin', 'ADMIN'
-        STUDENT = 'student', 'STUDENT'
-        TEACHER = 'teacher', 'TEACHER'
-    role = models.CharField(max_length=10,choices=Role.choices,default=Role.ADMIN)
+from django.db.models.enums import TextChoices
+# class BaseUser(AbstractUser):
+#     class Role(TextChoices):
+#         ADMIN = 'admin', 'ADMIN'
+#         STUDENT = 'student', 'STUDENT'
+#         TEACHER = 'teacher', 'TEACHER'
+#     role = models.CharField(max_length=10,choices=Role.choices,default=Role.ADMIN)
 
 class Department(models.Model):
     dept_id = models.AutoField(primary_key=True)

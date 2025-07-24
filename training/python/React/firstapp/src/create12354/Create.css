@@ -8,16 +8,16 @@
     
 }
 
-.formdata td{
+td {
     padding-right: 30px;
-    padding-top: 10px;
+    padding-top: 20px;
     margin-right: 30px;
     
 }
 
-#name,#age,#phoneNumber,#email{
+/* #name,#age,#phoneNumber,#email{
     width: 20vh;    
-}
+} */
 
 .formdata{
     height: 500px;
@@ -27,7 +27,6 @@
     align-items: center;
     justify-content: center;
 }
-
 
 button{
     margin-bottom: 12px;

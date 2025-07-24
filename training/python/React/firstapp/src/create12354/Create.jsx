@@ -1,41 +1,10 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Create.css";
-import axios from "axios";
 
 function Create() {
-    const [states, setStates] = useState({});
-    const [state, setState] = useState("");
-    const [cities, setCities] = useState({});
-    const [isUpdate, setIsUpdate] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        axios
-            .get("http://192.168.0.73:32114/partner/get-states?countryCode=IN")
-            .then((response) => {
-                setStates(JSON.parse(response.data.response));
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, []);
-
-    useEffect(() => {
-        if(state){
-            const URL="http://192.168.0.73:32114/partner/get-cities-for-state?stateCode="+states[state];
-            axios.get(URL)
-            .then((response)=>{
-                setCities(JSON.parse(response.data.response));
-                console.log(response.data.response);
-            })
-            .catch((err)=>{
-                console.error("Error fetching cities:");
-            })
-        }
-
-    }, [state,states]);
 
     const [formdata, setFormdata] = useState({
         id: "",
@@ -47,19 +16,15 @@ function Create() {
         branch: "",
         language: [],
         state: "",
-        city: "",
     });
 
     useEffect(() => {
         if (location.state && location.state.student) {
-            setIsUpdate(true);
             setFormdata(location.state.student);
-            setState(location.state.student.state);
         }
     }, [location]);
 
     const handleChange = (e) => {
-        e.preventDefault();
         const { name, value, type, checked } = e.target;
 
         if (type === "checkbox" && name === "language") {
@@ -69,12 +34,7 @@ function Create() {
                     : prev.language.filter((lang) => lang !== value);
                 return { ...prev, language: updatedLanguages };
             });
-        }
-        else if (name === 'state'){
-            setFormdata((prev) => ({ ...prev, [name]: value, city: ""}));
-            setState(value);
-        }
-        else {
+        } else {
             setFormdata((prev) => ({ ...prev, [name]: value }));
         }
     };
@@ -116,17 +76,15 @@ function Create() {
             branch: "",
             language: [],
             state: "",
-            city: "",
         });
 
         navigate("/data");
     };
 
-
     return (
         <div className="create-container">
             <form onSubmit={handleSubmit} className="formdata">
-                <table style={{border:"none"}}>
+                <table>
                     <tbody>
                         <tr>
                             <td><label htmlFor="name">Name:</label></td>
@@ -199,28 +157,14 @@ function Create() {
                             <td>
                                 <select id="state" name="state" value={formdata.state} onChange={handleChange} required>
                                     <option value="">Select State</option>
-                                    {Object.keys(states).map(function (state, index){
-                                       return <option key={index} value={state}>{state}</option>
-                                    })}
-                                </select>   
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                </select>
                             </td>
                         </tr>
 
-                        <tr>
-                            <td><label htmlFor="city">City:</label></td>
-                            <td>
-                                <select id="city" name="city" value={formdata.city} onChange={handleChange} disabled={!isUpdate || state === ''} required>
-                                    <option value="">Select City</option>
-                                    {
-                                        Object.keys(cities).map(function (city,index){
-                                        return <option key={index} value={city}>{city}</option>
-                                    })}
-                                    
-                                </select>   
-                            </td>
-                        </tr>
-        
-    
                         <tr>
                             <td colSpan="2">
                                 <button type="submit" style={{ marginRight: "10px" }}>
@@ -236,7 +180,6 @@ function Create() {
                                     branch: "",
                                     language: [],
                                     state: "",
-                                    city: "",
                                 })}>
                                     Reset
                                 </button>
