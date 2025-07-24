@@ -55,11 +55,11 @@ const Create = () => {
     }
   return (
     <div className='flex justify-center items-center min-h-screen'>
-        <form className='bg-gray-300  rounded-md p-5 w-96 md:w-full md:max-w-2xl' onSubmit={handleSubmit}>
-            <h1 className='text-2xl text-center pb-4 font-bold'>Create</h1>
+        <form className='bg-white  rounded-md p-5 w-96 md:w-full md:max-w-2xl border border-gray-200 shadow-2xl' onSubmit={handleSubmit}>
+            <h1 className='text-2xl text-center pb-4 font-bold'>Create User</h1>
             <div className='mb-3'>
                 <label htmlFor="username" className='block font-bold'>Username:</label>
-                <input  className="w-full mt-2 p-2 rounded"id="username" type="text" value={username} onChange={(e)=>{
+                <input  className="w-full mt-2 p-2 rounded-lg border border-gray-300 " border border-gray-200 id="username" type="text" value={username} onChange={(e)=>{
                     setUsername(e.target.value)
                     setUsernameError(false)
                     }} required placeholder='enter your name'/>
@@ -67,7 +67,7 @@ const Create = () => {
             </div>
             <div className='mb-3'>
                 <label htmlFor="email" className='block font-bold '>Email:</label>
-                <input  className="w-full mt-2 p-2 rounded "id="email" type="text" value={email} onChange={(e)=>{
+                <input  className="w-full mt-2 p-2 rounded-lg border border-gray-300  "id="email" type="text" value={email} onChange={(e)=>{
                     setEmail(e.target.value)
                     setEmailError(false)
                     }} required placeholder='enter your email address'/>
@@ -75,14 +75,17 @@ const Create = () => {
             </div>
             <div className='mb-3'>
                 <label htmlFor="phone" className='block font-bold'>PhoneNo:</label>
-                <input  className="w-full mt-2 p-2 rounded"id="phone" type="text" value={phoneNo} onChange={(e)=>{
+                <input  className="w-full mt-2 p-2 rounded-lg border border-gray-300 "id="phone" type="text" value={phoneNo} onChange={(e)=>{
                     setPhoneNo(e.target.value)
                     setPhoneNoError(false)
                     }} required placeholder='enter your phone Number'/>
                 {phoneNoError && (<h1 className='text-red-600 '>enter valid phoneNo</h1>)}
             </div>
             <div className='flex justify-center items-center'>
-                <button className='bg-blue-500 text-black p-3 rounded-md font-bold' type='submit'>Submit</button>
+                <button className='bg-blue-500 text-black px-3 py-2 rounded-md font-bold' type='submit'>Submit</button>
+            </div>
+             <div className='mt-2'>
+                <button className='bg-blue-500 text-black px-3 py-2 rounded-md font-bold'><Link to='/'>View Users</Link></button>
             </div>
         </form>
     </div>

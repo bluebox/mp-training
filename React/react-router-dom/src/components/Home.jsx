@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EditContext } from './EditContext';
-
+import { Link } from 'react-router-dom';
 const Home = () => {
   const {EditData,setEditData}=useContext(EditContext)
   const navigate=useNavigate()
@@ -57,6 +57,9 @@ const Home = () => {
         ) : (
           <p className='text-center text-gray-500'>No users</p>
         )}
+        <div className='mt-3'>
+          <button className='px-3 py-2 bg-blue-400 rounded-lg font-bold'><Link to='/create'>Add User</Link></button>
+        </div>
       </div>
     </div>
   );
