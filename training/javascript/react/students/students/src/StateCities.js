@@ -70,7 +70,7 @@ function Cities({state, selectedCity, setSelectedCity}){
             <select id="city" name="city" disabled={isDisabled} value={selectedCity}  className={`city-dropdown ${isDisabled ? 'disabled' : ''}` } onChange={(e)=>setSelectedCity(e.target.value)}>
                 <option value="">Select City</option>
                 {cities && Object.keys(cities).map((city)=>{
-                    return <option key={city} value={city}>{city}</option>
+                    return <option key={city} value={cities[city]}>{city}</option>
                 })
             }
             </select>

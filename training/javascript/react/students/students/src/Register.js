@@ -125,7 +125,12 @@ function Register() {
             alert("Please fill all required fields");
             return;
         }
-
+        // if(Object.keys(cities).length ===0)
+        // {
+        //     setSelectedCity("none");
+        //     console.log("none");
+        // }
+        // console.log(selectedCity);
         const formData = {
             name,
             email,
@@ -134,9 +139,9 @@ function Register() {
             branch,
             languages,
             state: selectedState,
-            city: selectedCity,
+            city: Object.keys(cities).length ===0?"NONE":selectedCity,
         };
-
+        console.log(formData)
         const uid = id || localStorage.length + 1;
         localStorage.setItem(uid.toString(), JSON.stringify(formData));
         alert("Form Submitted");

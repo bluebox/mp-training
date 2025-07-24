@@ -1,32 +1,50 @@
 import React, { useEffect,useState } from "react";
 import "./display.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import customAXIOS from "./apis";
+import { USERS } from "./urls";
 
-function Display(){
+function Display({setLogin}){
     const [user,setUser] = useState([]);
+    const redirect = useNavigate()
 
+    // useEffect(()=>{
+    //     const localUsers = []
+    //     for(let i = 0;i<localStorage.length;i++)
+    //     {
+    //         const key = localStorage.key(i)
+    //         const data = localStorage.getItem(key)
+    //         try{
+    //             const parsedData = JSON.parse(data)
+    //             parsedData.id = key
+    //             localUsers.push(parsedData)
+    //         }catch(e)
+    //         {
+    //             console.error("Invalid json ",e);
+    //         }
+    //     }
+    //     setUser(localUsers)
+    // },[]
+    // );
     useEffect(()=>{
-        const localUsers = []
-        for(let i = 0;i<localStorage.length;i++)
-        {
-            const key = localStorage.key(i)
-            const data = localStorage.getItem(key)
+        const fetchUsers = async()=>{
             try{
-                const parsedData = JSON.parse(data)
-                parsedData.id = key
-                localUsers.push(parsedData)
-            }catch(e)
-            {
-                console.error("Invalid json ",e);
+                const usrs = await customAXIOS(USERS,null,"get",null,redirect)
+                setUser(usrs);
+            }catch(err){
+                console.log("users fetch failed ",err);
             }
+        };
+        fetchUsers();
+    })
+    const handleDelete = async (id)=>{//need to implement delete method too
+        try{
+            await customAXIOS('${USERS}?{id}/',null,"delete",null,redirect)
+            setUser(user.filter((u)=>u.id !== id));
+        }catch(err)
+        {
+            console.log("Error in deleting",err);
         }
-        setUser(localUsers)
-    },[]
-    );
-
-    const handleDelete = (id)=>{
-        localStorage.removeItem(id);
-        setUser(user.filter((user) => user.id !== id));
     }
 
     // const handleAlter = (id)=>{
