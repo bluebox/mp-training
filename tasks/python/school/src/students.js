@@ -2,15 +2,13 @@ import React, { useEffect,useState } from "react";
 import "./display.css"
 import { data, Link, useNavigate } from "react-router-dom";
 import customAXIOS from "./apis";
-import { USERS } from "./urls";
-import { useDispatch, useSelector } from "react-redux";
-import { delete_user} from "./actions";
+import { STUDENTS, USERS } from "./urls";
 
-function Display({setLogin}){
-    // const [user,setUser] = useState([]);
+
+function Student(){
+    const [user,setUser] = useState([]);
     const redirect = useNavigate()
-    const dispatch = useDispatch()
-    const users = useSelector((state)=>state.users)
+    // const users = useSelector((state)=>state.users)
 //local storage
     // useEffect(()=>{
     //     const localUsers = []
@@ -41,18 +39,24 @@ function Display({setLogin}){
     //         }
     //     })
     // })
-
-    // useEffect(()=>{
-    //     const fetchUsers = async()=>{
-    //         try{
-    //             const usrs = await customAXIOS(USERS,null,"get",null,redirect)
-    //             setUser(usrs);
-    //         }catch(err){
-    //             console.log("users fetch failed ",err);
-    //         }
-    //     };
-    //     fetchUsers();
-    // })
+    const fetchUsers = async()=>{
+            try{
+                const usrs = await customAXIOS(STUDENTS,null,"get",null,redirect)
+                console.log(usrs)
+                setUser(usrs);
+                for(let i in usrs){
+                    localStorage.setItem(i.user,i);
+                }
+            }catch(err){
+                console.log("users fetch failed ",err);
+            }
+    };
+    const refresh = ()=>{
+        fetchUsers();
+    };
+    useEffect(()=>{
+        fetchUsers();
+    },[])
     const handleDelete = async (id)=>{//need to implement delete method too
         // try{
         //     await customAXIOS('${USERS}?{id}/',null,"delete",null,redirect)
@@ -62,54 +66,54 @@ function Display({setLogin}){
         //     console.log("Error in deleting",err);
         // }
         // localStorage.removeItem(id);
-        dispatch(delete_user(id));
-        
+        // dispatch(delete_user(id));
+        console.log("params : id",id);
+        try{
+            await customAXIOS(STUDENTS,{id:id},"delete",null,redirect)
+        }catch(error)
+        {
+            console.log("Error in delete",error)            
+        }
+        refresh()
     }
 
     const handleAlter = (id)=>{
-            <Link to="/" state={{"id": id.toString()}}>Alter</Link>
+            <Link to="/studentRegister" state={{"id": id.toString()}}>Alter</Link>
     }
 
     return (
         <div className="display-container">
-            <h2>Registered Users</h2>
+            <h2>Students</h2>
             <table className="user-table">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Age</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Branch</th>
-                        <th>Languages</th>
-                        <th>State</th>
-                        <th>City</th>
-                        <th>Actions</th>
+                        <th>Class Representative</th>
+                        <th>Attendance</th>
+                        <th>Status</th>
+                        <th>Class</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((u) => (
-                        <tr key={u.id}>
-                            <td>{u.name}</td>
-                            <td>{u.age}</td>
-                            <td>{u.email}</td>
-                            <td>{u.phone}</td>
-                            <td>{u.branch}</td>
-                            <td>{u.languages.join(", ")}</td>
-                            <td>{u.state}</td>
-                            <td>{u.city}</td>
+                    {user.map((u) => (
+                        <tr key={u.user}>
+                            <td>{u.Name}</td>
+                            <td>{u.is_class_representative?"Yes":"No"}</td>
+                            <td>{u.attendance}</td>
+                            <td>{u.status}</td>
+                            <td>{u.Class}</td>
                             <td>
                                 {/* <button className="alter-btn" onClick={"/${u.id.toString()}"}>Alter</button> */}
-                                <Link to={`/${u.id.toString()}`}>
+                                <Link to={"/studentRegister"} state = {{id:u.user}}>
                                     <button className="alter-btn">Alter</button>
                                 </Link>
                                 {/* <Link to="/" state={{"id": u.id.toString()}}>Alter</Link> */}
 
-                                <button className="delete-btn" onClick={() => handleDelete(u.id)}>Delete</button>
+                                <button className="delete-btn" onClick={() => handleDelete(u.user)}>Delete</button>
                             </td>
                         </tr>
                     ))}
-                    {users.length === 0 && (
+                    {user.length === 0 && (
                         <tr>
                             <td colSpan="9" style={{ textAlign: "center" }}>No users found</td>
                         </tr>
@@ -119,4 +123,4 @@ function Display({setLogin}){
         </div>
     );
 }
-export default Display
+export default Student

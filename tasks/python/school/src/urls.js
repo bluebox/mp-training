@@ -1,0 +1,8 @@
+export const BASEURL = "http://localhost:8000"
+export const CLASSES = "/classes/"
+export const STUDENTS = "/Student/"
+export const RESULTS = "/results/"
+export const TEACHERS = "/teacher/"
+export const LOGIN = "api/token/"
+export const REFRESH = "api/token/refresh/"
+export const STUDENTRESULTS = "/dashboard/"

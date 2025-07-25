@@ -51,21 +51,26 @@ class StudentsView(APIView):
             if 'name' in params:
                 qs = Student.objects.all().filter(name=params['name'])
                 serializer = StudentSerializer(qs, many=True)
+                serializer.data["result"] = serializer.data
                 return Response(serializer.data)
             elif 'id' in params:
-                qs = Student.objects.get(id=params['id'])
+                qs = Student.objects.get(user_id=params['id'])
                 serializer = StudentSerializer(qs)
+                serializer.data["result"] = serializer.data
                 return Response(serializer.data)
             else:
                 return Response({'message':'Please provide a name or id'})
             # http://127.0.0.1:8000/Student/?id=2&name='john doe'
     def post(self,request):
-        # print(request.data)
+        print(request.data)
         serializer = StudentSerializer(data=request.data)
+        print("in post ")
         if serializer.is_valid():
+            print("yes")
             serializer.save()
             return Response(serializer.data)
         else:
+            print("no")
             return Response(serializer.errors)
 
     def patch(self,request):
@@ -73,7 +78,7 @@ class StudentsView(APIView):
         if 'id' in params:
             change_id = params['id']
             try:
-                s = Student.objects.get(id=change_id)
+                s = Student.objects.get(user_id=change_id)
             except Exception:
                 return Response({'message':'Student does not exist'})
             serializer = StudentSerializer(s,data=request.data,partial=True)
@@ -90,12 +95,13 @@ class StudentsView(APIView):
         if 'id' in params:
             change_id = params.get('id')
             try:
-                s = Student.objects.get(id=change_id)
+                s = Student.objects.get(user_id=change_id)
             except Exception:
                 return Response({'message':'Student does not exist'})
             serializer = StudentSerializer(s,data=request.data)
             if serializer.is_valid():
                 serializer.save()
+                serializer.data["result"] = serializer.data
                 return Response(serializer.data,status=200)
             else:
                 return Response(serializer.errors)
@@ -105,6 +111,7 @@ class StudentsView(APIView):
 
     def delete(self,request):
         params = request.query_params
+        print(params)
         if(len(params)==0):
             return Response(status=400)
         else:
@@ -148,7 +155,7 @@ class StudentResultsDashBoard(APIView):
         params = request.query_params
         if 'id' in params:
             try:
-                student = Student.objects.prefetch_related("results_set")
+                student = Student.objects.prefetch_related("results_set").filter(user_id=params['id'])
                 # serializer = CustomSerializer(student)
             except Student.DoesNotExist:
                 return Response({'message': 'Student does not have any result'}, status=404)
@@ -161,3 +168,20 @@ class StudentResultsDashBoard(APIView):
         else:
             return Response({'message':'Please provide an id'},status=400)
 
+class StudentSubjectsDashboard(APIView):
+    permission_classes = [IsStudent]
+    def get(self, request):
+        params = request.query_params
+        if "id" in params:
+            try:
+                student = Student.objects.select_related('Class').prefetch_related(Prefetch('Class__subject_teacher_set',
+                                                                                              queryset=subject_teacher.objects.select_related('subject','teacher'),to_attr="subject_teachers" )).get(user_id=request.user.id)
+                subjects = []
+                for i in student.Class.subject_teachers:
+                    subjects.append({
+                        "subject":i.subject.Name,
+                        "teacher":i.teacher.Name,
+                    })
+                return Response({subjects})
+            except Student.DoesNotExist:
+                return Response({"error:Student Not found"},status=404)

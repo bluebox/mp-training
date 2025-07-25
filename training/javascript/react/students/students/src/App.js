@@ -23,7 +23,7 @@ function App() {
           )}
         </nav>
           <Routes>
-            <Route element={<PrivateRoute/>}>
+            <Route element={<PrivateRoute login ={login}/>}>
               <Route path="/" element={<Register/>}/>
               <Route path="/:id" element={<Register/>}/>
               <Route path="/table" element={<Display />}/>

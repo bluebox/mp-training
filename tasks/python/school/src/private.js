@@ -1,5 +1,5 @@
 import React from "react";
-import Register from "./Register";
+// import Register from "./Register";
 import { Outlet, Navigate } from "react-router-dom";
 
 function PrivateRoute({login}){

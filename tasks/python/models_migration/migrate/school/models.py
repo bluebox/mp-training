@@ -10,7 +10,7 @@ class BaseUser(AbstractUser):
         STUDENT = 'student','Student'
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.ADMIN)
 class Student(models.Model):
-
+    # id = models.AutoField(unique=True)
 
     class StatusChoices(models.TextChoices):
         STUDYING = 'S'
@@ -67,7 +67,7 @@ class Subject(models.Model):
 class subject_teacher(models.Model):
     subject = models.ForeignKey('Subject', on_delete=models.CASCADE, null=False)
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=False)
-    rel_class = models.ForeignKey('Classes', on_delete=models.CASCADE, null=False)
+    rel_class = models.ForeignKey('Classes', on_delete=models.CASCADE, null=False, related_name='subject_teacher_set')
     class Meta:
         db_table = 'subject_teacher'
 

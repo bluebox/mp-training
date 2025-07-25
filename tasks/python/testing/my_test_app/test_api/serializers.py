@@ -10,3 +10,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyBaseUser
         fields = '__all__'
+
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Languages

@@ -1,0 +1,41 @@
+
+
+.display-container {
+    padding: 16px;
+    font-family: sans-serif;
+}
+
+.user-table {
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-top: 16px;
+    border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.user-table th {
+    background-color: #eee;
+}
+
+.alter-btn,
+.delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.alter-btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+}

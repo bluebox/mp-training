@@ -1,10 +1,7 @@
 from rest_framework import serializers
 from .models import *
 
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = '__all__'
+
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,6 +23,29 @@ class ClassesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classes
         fields = '__all__'
+
+class StudentSerializer(serializers.ModelSerializer):
+    # Class = ClassesSerializer(read_only=True)
+    # Class_id = serializers.PrimaryKeyRelatedField(
+    #     queryset=Classes.objects.all(), write_only=True, source='Class'
+    # )
+    class Meta:
+        model = Student
+        fields = [
+            'Name', 'Class', 'Class_id', 'attendance',
+            'is_class_representative', 'status', 'user'
+        ]
+        read_only_fields = ['user']
+    def create(self, validated_data):
+
+        user = BaseUser.objects.create_user(
+            username=f"user_{BaseUser.objects.count()+1}",
+            password="password123",
+            role=BaseUser.Role.STUDENT
+        )
+        validated_data['user'] = user
+        return Student.objects.create(**validated_data)
+
 
 class SubjectClassTeacherSerializer(serializers.ModelSerializer):
     class Meta:

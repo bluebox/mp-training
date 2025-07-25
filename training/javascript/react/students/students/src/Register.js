@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { add_user,update_user } from "./actions";
+import { useNavigate } from "react-router-dom";
 function Register() {
     const { id } = useParams();
+    const [edit,setEdit] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -19,6 +22,8 @@ function Register() {
     const [loading, setLoading] = useState(false);
     // const [stateTrigger, setStateTrigger] = useState(false);
     const [alter,setAlter] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("http://192.168.0.73:32114/partner/get-states?countryCode=IN")
@@ -72,33 +77,55 @@ function Register() {
             .finally(() => {setLoading(false); setAlter(false)});
     }, [alter || selectedStatePseudo]);
 
+    const users = useSelector((state)=>state.users)
 
     useEffect(() => {
+        if (!id) {
+            setEdit(false);
+            setName("");
+            setEmail("");
+            setPhone("");
+            setAge("");
+            setBranch("");
+            setLanguages([]);
+            setSelectedState("");
+            setSelectedStatePseudo("");
+            setSelectedCity("");
+            setCities({});
+            setNameError("");
+            setPhoneError("");
+        }
+    }   , [id]);
+
+
+    useEffect(() => {
+        
         if (!id || !Object.keys(states).length){
             return;
         }
 
-        const data = localStorage.getItem(id);
+        const data = users.find(u=>u.id===parseInt(id))
         if (data) {
-            const parsedData = JSON.parse(data);
-            setName(parsedData.name);
-            setEmail(parsedData.email);
-            setPhone(parsedData.phone);
-            setAge(parsedData.age);
-            setBranch(parsedData.branch);
-            setLanguages(parsedData.languages || []);
-            setSelectedState(parsedData.state);
-            console.log(parsedData.state)
+            // const parsedData = JSON.parse(data);
+            setEdit(true);
+            setName(data.name);
+            setEmail(data.email);
+            setPhone(data.phone);
+            setAge(data.age);
+            setBranch(data.branch);
+            setLanguages(data.languages || []);
+            setSelectedState(data.state);
+            console.log(data.state)
             console.log(selectedStatePseudo)
-            setSelectedStatePseudo(parsedData.state); 
-            setSelectedCity(parsedData.city);
+            setSelectedStatePseudo(data.state); 
+            setSelectedCity(data.city);
             console.log(selectedStatePseudo);
-            if (parsedData.name.length < 4) {
-                setNameError("Name must be at least 4 characters");
+            if (data.name.length < 3) {
+                setNameError("Name must be at least 3 characters");
             }
 
         }
-    }, [id, states]); 
+    }, [id, users,states]); 
 
 
     const handleName = (e) => {
@@ -142,8 +169,14 @@ function Register() {
             city: Object.keys(cities).length ===0?"NONE":selectedCity,
         };
         console.log(formData)
-        const uid = id || localStorage.length + 1;
-        localStorage.setItem(uid.toString(), JSON.stringify(formData));
+        // const uid = id || localStorage.length + 1;
+        // localStorage.setItem(uid.toString(), JSON.stringify(formData));
+        if(edit){
+            dispatch(update_user(parseInt(id),formData))
+        }else{
+            dispatch(add_user(formData))
+        }
+        
         alert("Form Submitted");
         setName("");
         setEmail("");
@@ -154,8 +187,11 @@ function Register() {
         setSelectedState("");
         setSelectedStatePseudo("");
         setSelectedCity("");
+        setEdit(false);
         setCities({});
+        navigate("/");
         // setStateTrigger(false);
+        
     };
 
     const handleStateChange = (e) => {
