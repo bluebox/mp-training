@@ -1,0 +1,3 @@
+[submodule "Library_Management_System"]
+	path = Library_Management_System
+	url = https://github.com/OHSPL/mp-training.git
