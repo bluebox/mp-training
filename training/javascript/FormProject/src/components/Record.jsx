@@ -18,3 +18,6 @@ const Record = ({ record, onEdit, onDelete }) => {
 };
 
 export default Record;
+
+
+
