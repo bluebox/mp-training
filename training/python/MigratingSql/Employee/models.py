@@ -31,9 +31,9 @@ class Employees(models.Model):
 	emp_id=models.PositiveIntegerField(validators=[MinValueValidator(1000),MaxValueValidator(9999)],primary_key=True)
 	emp_name=models.CharField(max_length=20,blank=False)
 	dob=models.DateField(blank=False,null=True)
-	designation=models.ForeignKey(Designations, on_delete=models.CASCADE)
+	designation=models.ForeignKey(Designations, on_delete=models.CASCADE,related_name='employees_des')
 	date_joined=models.DateField(blank=False,default=datetime.today)
-	dept=models.ForeignKey(Departments,on_delete=models.CASCADE)
+	dept=models.ForeignKey(Departments,on_delete=models.CASCADE,related_name='employees_dept')
 	class Meta:
 		constraints = [
 			CheckConstraint(
@@ -44,12 +44,12 @@ class Employees(models.Model):
 
 
 class DepartmentHeads(models.Model):
-	emp=models.ForeignKey(Employees,on_delete=models.CASCADE,blank=False)
+	emp=models.ForeignKey(Employees,on_delete=models.CASCADE,blank=False,related_name='departmentheads')
 	dept_head_since=models.DateField(blank=False)
 
 
 class PayScale(models.Model):
-	emp=models.ForeignKey(Employees,on_delete=models.CASCADE,blank=False)
+	emp=models.ForeignKey(Employees,on_delete=models.CASCADE,blank=False, related_name="payscale")
 	salary=models.DecimalField(max_digits=10,decimal_places=2,default=0.00,blank=True)
 
 
