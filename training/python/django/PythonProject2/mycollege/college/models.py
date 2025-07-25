@@ -1,6 +1,6 @@
-from django.contrib.auth.models import AbstractUser
+# from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models.enums import TextChoices
+
 # class BaseUser(AbstractUser):
 #     class Role(TextChoices):
 #         ADMIN = 'admin', 'ADMIN'
@@ -38,7 +38,7 @@ class Student(models.Model):
 
 
 class StudentProfile(models.Model):
-    student = models.OneToOneField(Student, models.CASCADE, primary_key= True)
+    student = models.OneToOneField(Student, models.CASCADE, primary_key= True,related_name='student')
     dob = models.DateField(blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=15)

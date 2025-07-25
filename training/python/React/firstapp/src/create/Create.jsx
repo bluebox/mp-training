@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Create.css";
 import axios from "axios";
+import { useDispatch, useSelector } from 'react-redux';
 
 function Create() {
     const [states, setStates] = useState({});
@@ -28,7 +29,7 @@ function Create() {
             axios.get(URL)
             .then((response)=>{
                 setCities(JSON.parse(response.data.response));
-                console.log(response.data.response);
+                // console.log(response.data.response);
             })
             .catch((err)=>{
                 console.error("Error fetching cities:");
@@ -49,6 +50,25 @@ function Create() {
         state: "",
         city: "",
     });
+
+    const dispatch = useDispatch();
+    const students = useSelector(state=>state.students);
+    function addStudent(){
+        const newStudent = { 
+            ...formdata,
+            id: Date.now(),
+            
+        };
+        dispatch({ type: 'CREATE', payload: newStudent });
+    };
+
+    function updateStudent(){
+        const newStudent = {
+            ...formdata
+        }
+        dispatch({ type: 'UPDATE', payload: newStudent });
+    }
+
 
     useEffect(() => {
         if (location.state && location.state.student) {
@@ -87,22 +107,28 @@ function Create() {
             return;
         }
 
-        const data = JSON.parse(localStorage.getItem("students")) || [];
-        let updatedData;
-
+        // const data = JSON.parse(localStorage.getItem("students")) || [];
+        // let updatedData;
+        
         if (location.state?.student) {
             // Edit existing student
-            updatedData = data.map((s) =>
-                s.id === formdata.id ? formdata : s
-            );
-        } else {
-            const newId =
-                data.length === 0 ? 1 : data[data.length - 1].id + 1;
-            const newStudent = { ...formdata, id: newId };
-            updatedData = [...data, newStudent];
+            // updatedData = data.map((s) =>
+            //     s.id === formdata.id ? formdata : s
+            // );
+            updateStudent();
+            setIsUpdate(false);
+        // } else {
+        //     const newId =
+        //         data.length === 0 ? 1 : data[data.length - 1].id + 1;
+            // const newStudent = { ...formdata};
+            // updatedData = [...data, newStudent];
         }
+        else{
+            addStudent();
+        }
+        console.log(students);
 
-        localStorage.setItem("students", JSON.stringify(updatedData));
+        // localStorage.setItem("students", JSON.stringify(updatedData));
         alert("Form submitted successfully!");
 
 
@@ -122,6 +148,7 @@ function Create() {
         navigate("/data");
     };
 
+    
 
     return (
         <div className="create-container">
@@ -209,7 +236,7 @@ function Create() {
                         <tr>
                             <td><label htmlFor="city">City:</label></td>
                             <td>
-                                <select id="city" name="city" value={formdata.city} onChange={handleChange} disabled={!isUpdate || state === ''} required>
+                                <select id="city" name="city" value={formdata.city} onChange={handleChange} disabled={(isUpdate && state === '') || state === ''} required>
                                     <option value="">Select City</option>
                                     {
                                         Object.keys(cities).map(function (city,index){

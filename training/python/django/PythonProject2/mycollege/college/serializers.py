@@ -32,7 +32,7 @@ class StudentFullProfileSerializer(serializers.ModelSerializer):
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['teacher_id', 'first_name', 'last_name', 'email', 'dept', 'courses']
+        fields = ['teacher_id', 'first_name', 'last_name', 'email', 'dept']
         # fields = '__all__'
 
 

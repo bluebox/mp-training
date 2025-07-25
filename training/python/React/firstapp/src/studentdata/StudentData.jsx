@@ -1,22 +1,26 @@
 import "./StudentData.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
 function TableRow({ index, student }) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleEdit = () => {
         navigate("/create", { state: { student } });
     };
 
-    const handleDelete = (id) => {
-        const data = JSON.parse(localStorage.getItem('students')) || [];
-        const index = data.findIndex(s => s.id === id);
-        if (index !== -1) {
-            data.splice(index, 1);
-            localStorage.setItem('students', JSON.stringify(data));
-            alert("Record was deleted");
-        }
-        window.location.reload(); 
+    const handleDelete = () => {
+        // const data = JSON.parse(localStorage.getItem('students')) || [];
+        // const index = data.findIndex(s => s.id === id);
+        // if (index !== -1) {
+        //     data.splice(index, 1);
+        //     localStorage.setItem('students', JSON.stringify(data));
+        //     alert("Record was deleted");
+        // }
+        // window.location.reload(); 
+        dispatch({ type: 'DELETE', payload: student });
+        navigate("/data");
     };
 
     return (
@@ -32,38 +36,40 @@ function TableRow({ index, student }) {
             <td className="mytable">{student.state}</td>
             <td className="mytable">{student.city}</td>
             <td className="mytable"><button onClick={handleEdit}>Edit</button></td>
-            <td className="mytable"><button onClick={() => handleDelete(student.id)}>Delete</button></td>
+            <td className="mytable"><button onClick={handleDelete}>Delete</button></td>
         </tr>
     );
 }
 
 
 function StudentData(){
+    const students = useSelector(state=>state.students);
 
-    const data = JSON.parse(localStorage.getItem("students")) || [];
-    if(data.length === 0){
+    // const data = JSON.parse(localStorage.getItem("students")) || [];
+    if(students.length === 0){
         alert("No records found")
         return <></>
     }
     return (<>
         <table className="mytable">
             <thead>
-                <th className="mytable">S.No</th>
-                <th className="mytable">Name</th>
-                <th className="mytable">Age</th>
-                <th className="mytable">Email</th>
-                <th className="mytable">Phone Number</th>
-                <th className="mytable">Gender</th>
-                <th className="mytable">Branch</th>
-                <th className="mytable">Languages</th>
-                <th className="mytable">State</th>
-                <th className="mytable">City</th>
-                <th className="mytable" colSpan={2}>Actions</th>
-                
+                <tr>
+                    <th className="mytable">Name</th>
+                    <th className="mytable">S.No</th>
+                    <th className="mytable">Email</th>
+                    <th className="mytable">Age</th>
+                    <th className="mytable">Phone Number</th>
+                    <th className="mytable">Gender</th>
+                    <th className="mytable">Branch</th>
+                    <th className="mytable">Languages</th>
+                    <th className="mytable">State</th>
+                    <th className="mytable">City</th>
+                    <th className="mytable" colSpan={2}>Actions</th>
+                </tr>
             </thead>
             <tbody className="mytable">
                 {
-                data.map(function (value, index){
+                students.map(function (value, index){
                     return <TableRow index = {index+1} student={value}/>
                 })
                 }

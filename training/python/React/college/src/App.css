@@ -1,0 +1,11 @@
+
+.navbar {
+  height: 30px;
+  background-color: black;
+  padding: 30px;
+  color:white;
+}
+
+*{
+  font-family: 'Times New Roman', Times, serif;
+}

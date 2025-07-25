@@ -2,14 +2,16 @@ import './App.css';
 // import MyTable from './mytable/MyTable';
 // import Counter from './counter/Counter';
 import Create from './create/Create';
-
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes ,Link} from 'react-router-dom';
 import Home from './home/Home';
 import StudentData from './studentdata/StudentData';
 import Login from './login/Login';
+import store from './redux_store/store.js';
+import { Provider } from 'react-redux';
 
 function NavBar() {
-  function handleLogout(){
+  const handleLogout =(e) =>{
+    e.preventDefault();
     localStorage.setItem('isLogin',JSON.stringify(false));
     alert('logged out');
     window.location.reload();
@@ -17,10 +19,13 @@ function NavBar() {
   return (
     <nav className='navbar'>
         
-        <a href="/">Home </a>
-        <a href="/create">Create</a>
-        <a href='/data'>Data</a>
-        <a href='/' onClick={handleLogout}>logout</a>
+        <Link to="/" >Home </Link>
+
+        <Link to="/create">Create</Link>
+
+        <Link to='/data'>Data</Link>
+
+        <Link to='/' onClick={handleLogout}>logout</Link>
     </nav>
   );
 }
@@ -36,8 +41,8 @@ function App() {
       <Routes>
        <Route path="/" element={<Home />} />
        <Route path='/login' element={<Login />} />
-       <Route path="/create" element={<Create/>} />
-       <Route path='/data' element={<StudentData />} />
+       <Route path="/create" element={<Provider store={store}><Create/></Provider>} />
+       <Route path='/data' element={<Provider store={store}><StudentData /></Provider>} />
        <Route path="*" element={<h2>404 Not Found</h2>} />
      </Routes>
     
