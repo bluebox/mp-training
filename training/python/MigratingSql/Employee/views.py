@@ -1,4 +1,7 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render,get_object_or_404
+from httpcore import Response
+
 from Employee.models import *
 from django.http import JsonResponse,HttpResponse,HttpResponseBadRequest
 from django.views import View
@@ -20,10 +23,13 @@ from django.db.models.functions import Abs
 class EmployeesByDesignation(View):
     def get(self,request):
         filter_param=request.GET.get('designation')
-        if filter_param:
-            return JsonResponse(list(Employees.objects.filter(designation__designation=filter_param).values()),safe=False)
-        else:
-            return JsonResponse({"Oops!":"Please enter the designation"},safe=False,status=400)
+        try:
+            if filter_param:
+                return JsonResponse(list(Employees.objects.filter(designation__designation=filter_param).values()),safe=False)
+            else:
+                return JsonResponse({"Oops!":"Please enter the designation"},safe=False,status=400)
+        except ObjectDoesNotExist as e:
+            return JsonResponse({"Oops!":"Sorry object not found"},safe=False,status=400)
 
 
 class GetSalaryById(View):

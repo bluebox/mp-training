@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../Saveit/authSlice";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -13,7 +16,7 @@ const Login = ({ setIsLoggedIn }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (form.username === "Kanishka" && form.password === "Kanishka") {
-      setIsLoggedIn(true);
+      dispatch(login());
       navigate("/");
     } else {
       alert("Invalid credentials.");
@@ -33,3 +36,4 @@ const Login = ({ setIsLoggedIn }) => {
 };
 
 export default Login;
+

@@ -1,18 +1,23 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteRecord } from "../Saveit/recordsSlice";
 import Record from "./Record";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
-
-const Home = ({ records, setRecords, config }) => {
+const Home = () => {
+  const records = useSelector(state => state.records);
+  const config = useSelector(state => state.config);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const deleteRecord = (id) => {
-    setRecords(records.filter((rec) => rec.id !== id));
+
+  const handleDelete = (id) => {
+    dispatch(deleteRecord(id));
   };
-  const filtered=records
-  // const filtered = config.uniquePhone
-  //   ? Array.from(new Map(records.map(r => [r.phone, r])).values())
-  //   : records;
+
+  const filtered = config.uniquePhone
+    ? Array.from(new Map(records.map(r => [r.phone, r])).values())
+    : records;
 
   return (
     <div>
@@ -29,7 +34,7 @@ const Home = ({ records, setRecords, config }) => {
               key={record.id}
               record={record}
               onEdit={(id) => navigate(`/edit/${id}`)}
-              onDelete={deleteRecord}
+              onDelete={handleDelete}
             />
           ))}
         </tbody>
@@ -37,5 +42,9 @@ const Home = ({ records, setRecords, config }) => {
     </div>
   );
 };
-
 export default Home;
+
+
+
+
+

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setConfig } from "../Saveit/configSlice";
 import "./Configuration.css";
 
-
-const Configurations = ({ config, setConfig }) => {
-  const [localConfig, setLocalConfig] = useState(config);
+const Configurations = () => {
+  const globalConfig = useSelector(state => state.config);
+  const [localConfig, setLocalConfig] = useState(globalConfig);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -15,11 +18,10 @@ const Configurations = ({ config, setConfig }) => {
     });
   };
 
-const handleSave = () => {
-  setConfig(localConfig);
-  localStorage.setItem("config", JSON.stringify(localConfig)); 
-  navigate("/");
-};
+  const handleSave = () => {
+    dispatch(setConfig(localConfig));
+    navigate("/");
+  };
 
   return (
     <div>
