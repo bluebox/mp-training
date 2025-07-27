@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Data Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Dynamic Data Management Web Page</h2>
+
+  <form id="dataForm" novalidate>
+    <input type="text" id="name" placeholder="Name" />
+    <div class="error" id="nameError"></div>
+
+    <input type="number" id="age" placeholder="Age" />
+    <div class="error" id="ageError"></div>
+
+    <input type="email" id="email" placeholder="Email" />
+    <div class="error" id="emailError"></div>
+
+    <input type="text" id="phone" placeholder="Phone Number" />
+    <div class="error" id="phoneError"></div>
+
+    <label>Branch:</label><br/>
+    <input type="radio" name="branch" value="CSE" />CSE
+    <input type="radio" name="branch" value="ECE" />ECE
+    <input type="radio" name="branch" value="EEE" />EEE
+    <div class="error" id="branchError"></div>
+
+    <br/>
+    <label>Languages Known:</label><br/>
+    <input type="checkbox" name="languages" value="English" />English
+    <input type="checkbox" name="languages" value="Hindi" />Hindi
+    <input type="checkbox" name="languages" value="French" />French
+    <div class="error" id="languageError"></div>
+
+    <br/>
+    <select id="state">
+      <option value="">Select State</option>
+    </select>
+    <div class="error" id="stateError"></div>
+
+    <select id="city">
+      <option value="">Select City</option>
+    </select>
+    <div class="error" id="cityError"></div>
+
+    <br/>
+    <button type="submit" id="addBtn">Add</button>
+  </form>
+
+  <input type="text" id="searchInput" placeholder="Search..." />
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Name</th><th>Age</th><th>Email</th><th>Phone</th><th>Branch</th>
+        <th>Languages</th><th>State</th><th>City</th><th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p id="entryCount"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
