@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.IssueAndReturn.ReturnBookController"
+            prefWidth="600" prefHeight="400">
+
+    <children>
+        <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="30" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30">
+            
+            <!-- ✅ Back to Dashboard Button -->
+            <Button text="← Back to Dashboard"
+                    onAction="#handleBack"
+                    style="-fx-font-size: 14px; -fx-padding: 6;" />
+
+            <Label text="Return Book">
+                <font>
+                    <Font name="System Bold" size="26" />
+                </font>
+            </Label>
+
+            <TextField fx:id="bookIdField" promptText="Enter Book ID" />
+
+            <Label fx:id="statusLabel" textFill="red" />
+
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="Submit" onAction="#handleSubmit" />
+                <Button text="Cancel" onAction="#handleCancel" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

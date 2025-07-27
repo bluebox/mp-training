@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@dashboard.css"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.library.controller.AddBookController">
+
+    <children>
+        <!-- Back Button -->
+        <Button text="← Back to Dashboard"
+                layoutX="10" layoutY="10"
+                onAction="#handleBack" />
+
+        <!-- Title -->
+        <Label layoutX="210.0" layoutY="40.0" text="Add A New Book" textAlignment="CENTER">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+
+        <!-- Book Title Field -->
+        <Label layoutX="67.0" layoutY="100.0" text="Title:" />
+        <TextField fx:id="titleField" layoutX="144.0" layoutY="95.0"
+                   prefHeight="26.0" prefWidth="300.0"
+                   promptText="Enter the Title of the Book" />
+
+        <!-- Author Field -->
+        <Label layoutX="67.0" layoutY="140.0" text="Author:" />
+        <TextField fx:id="authorField" layoutX="144.0" layoutY="135.0"
+                   prefHeight="26.0" prefWidth="300.0"
+                   promptText="Enter the Author Name" />
+
+        <!-- Category Field -->
+        <Label layoutX="67.0" layoutY="180.0" text="Category:" />
+        <TextField fx:id="categoryField" layoutX="144.0" layoutY="175.0"
+                   prefHeight="26.0" prefWidth="300.0"
+                   promptText="Enter the Category" />
+
+        <!-- Status/Error Label (Validation Msg) -->
+        <Label fx:id="statusLabel" layoutX="144.0" layoutY="215.0"
+               prefWidth="300.0"
+               style="-fx-text-fill: red; -fx-font-weight: bold;"
+               text="" />
+
+        <!-- Submit Button -->
+        <Button layoutX="144.0" layoutY="250.0"
+                styleClass="main-button"
+                onAction="#handleSubmit"
+                text="Submit" />
+    </children>
+</AnchorPane>

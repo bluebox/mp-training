@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>  <!-- ✅ This is the missing import -->
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.library.controller.MainController">
+    <children>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+
+            <Button text="View Books" onAction="#loadViewBooks"/>
+            <Button text="Add Book" onAction="#loadAddBook"/>
+            <Button text="View Members" onAction="#loadViewMembers"/>
+            <Button text="Add Member" onAction="#loadAddMember"/>
+        </VBox>
+    </children>
+</AnchorPane>

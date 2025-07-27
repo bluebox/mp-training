@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.AddMemberController"
+            prefWidth="400" prefHeight="500">
+
+    <children>
+        <VBox spacing="12" alignment="CENTER_LEFT" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+        
+       
+        <Button text="← Back to Dashboard"
+        layoutX="10" layoutY="10"
+        onAction="#handleBack" />
+        
+
+            <Label text="Add New Member" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <VBox spacing="4">
+                <Label text="Full Name:" />
+                <TextField fx:id="nameField" promptText="Full Name" />
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Email Address:" />
+                <TextField fx:id="emailField" promptText="Email Address" />
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Mobile Number:" />
+                <TextField fx:id="mobileField" promptText="Mobile Number" />
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Gender:" />
+                <ChoiceBox fx:id="genderChoice" prefWidth="150"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Address:" />
+                <TextArea fx:id="addressArea" promptText="Address" prefHeight="80"/>
+            </VBox>
+
+            <Label fx:id="statusLabel" style="-fx-text-fill: red;" wrapText="true" />
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Add Member" onAction="#handleAddMember"/>
+                <Button text="Close" onAction="#handleCancel"/>
+            </HBox>
+        </VBox>
+    </children>
+
+</AnchorPane>

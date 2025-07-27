@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.UpdateAvailabilityController"
+            prefWidth="400" prefHeight="180">
+    <children>
+        <VBox spacing="12" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <Label text="Update Book Availability" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <HBox spacing="10">
+                <Label text="Availability:" />
+                <ChoiceBox fx:id="availabilityChoice">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="A"/>
+                            <String fx:value="I"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+            </HBox>
+
+            <Label fx:id="statusLabel" style="-fx-text-fill: green;" />
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Update" onAction="#handleUpdate"/>
+                <Button text="Cancel" onAction="#handleCancel"/>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

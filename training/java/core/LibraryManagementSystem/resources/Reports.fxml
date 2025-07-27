@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.ReportsController"
+            prefWidth="900" prefHeight="600"
+            stylesheets="@dashboard.css">
+
+    <!-- Top Section -->
+    <top>
+        <HBox spacing="20">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="← Back to Dashboard" onAction="#handleBack"/>
+        </HBox>
+    </top>
+
+    <!-- Center Section -->
+    <center>
+        <TabPane prefWidth="850" prefHeight="550">
+
+            <!-- Overdue Books Tab -->
+            <Tab text="Overdue Books">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <TextArea fx:id="overdueBooksArea" prefHeight="400" editable="false" wrapText="true"/>
+                </VBox>
+            </Tab>
+
+            <!-- Books Per Category Tab -->
+            <Tab text="Books Per Category">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <TextArea fx:id="categoryCountArea" prefHeight="400" editable="false" wrapText="true"/>
+                </VBox>
+            </Tab>
+
+            <!-- Members With Active Issues Tab -->
+            <Tab text="Members With Active Issues">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <TextArea fx:id="activeMembersArea" prefHeight="400" editable="false" wrapText="true"/>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>

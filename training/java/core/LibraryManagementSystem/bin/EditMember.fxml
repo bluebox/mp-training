@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.EditMemberController"
+            prefWidth="400" prefHeight="350">
+    <children>
+        <VBox spacing="12" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+            <Label text="Edit Member" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <TextField fx:id="nameField" promptText="Name" />
+            <TextField fx:id="emailField" promptText="Email" />
+            <TextField fx:id="mobileField" promptText="Mobile" />
+
+            <HBox spacing="10">
+                <Label text="Gender:" />
+                <ChoiceBox fx:id="genderChoice" />
+            </HBox>
+
+            <TextField fx:id="addressField" promptText="Address" />
+            <Label fx:id="statusLabel" style="-fx-text-fill: green;" />
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Update" onAction="#handleUpdate" />
+                <Button text="Cancel" onAction="#handleCancel" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

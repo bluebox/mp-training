@@ -1,0 +1,57 @@
+/* Root pane */
+.border-pane {
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 20;
+}
+
+/* TableView Styling */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0.0, 0, 1);
+}
+
+/* Table row hover effect */
+
+
+/* Table column headers */
+.table-view .column-header-background {
+    -fx-background-color: #1976d2;
+    -fx-color:black;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 40px;
+}
+
+.table-view .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Table cell styling */
+.table-cell {
+    -fx-font-size: 13px;
+    -fx-padding: 6 10;
+}
+
+/* Optional: Styling for Action buttons inside cells */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4;
+    -fx-padding: 5 10;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* You can add specific styles for different button types using fx:id or style classes */

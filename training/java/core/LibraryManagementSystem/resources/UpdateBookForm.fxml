@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.UpdateBookController"
+            prefWidth="400" prefHeight="300">
+
+    <children>
+        <VBox spacing="12" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <Label text="Update Book Details" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <TextField fx:id="titleField" promptText="Title" />
+            <TextField fx:id="authorField" promptText="Author" />
+            <TextField fx:id="categoryField" promptText="Category" />
+
+            <HBox spacing="10">
+                <Label text="Status:" />
+                <ChoiceBox fx:id="statusChoice">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="A"/>
+                            <String fx:value="I"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+            </HBox>
+
+            <Label fx:id="statusLabel" style="-fx-text-fill: red;" />
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Update" onAction="#handleUpdate"/>
+                <Button text="Cancel" onAction="#handleCancel"/>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
