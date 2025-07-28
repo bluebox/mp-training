@@ -12,6 +12,9 @@ function StudentDetails({userId}){
         .then(res=>{
             setData(res)
             console.log(data);
+        }).catch(err=>{
+            alert("User Account deactivated");
+            console.log("Error",err);
         })
     },[userId]
     )

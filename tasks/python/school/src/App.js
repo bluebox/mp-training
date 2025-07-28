@@ -11,6 +11,10 @@ import StudentResultsDashboard from './studentDashboard';
 import StudentDetails from './studentsDetails';
 import EditDetails from './editDetails';
 import ViewClasses from './viewClasses';
+import TeacherResultsView from './teacherResultsView';
+import Teachers from './Teachers';
+import SubjectTeachers from './SubjectTeachers';
+import CreateClasses from './CreateClasses';
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -26,10 +30,11 @@ function App() {
 
               {access === 'teacher' && (
                 <nav>
-                  <NavLink to="/studentRegister" className={({ isActive }) => (isActive ? 'active' : '')}>
+                  {/* <NavLink to="/studentRegister" className={({ isActive }) => (isActive ? 'active' : '')}>
                     Student Registration
-                  </NavLink>
+                  </NavLink> */}
                   <NavLink to="/students" className={({ isActive }) => (isActive ? 'active' : '')}>Students</NavLink>
+                  <NavLink to="/teacherResults" className={({isActive})=>(isActive ? 'active':'')}>Results</NavLink>
                 </nav>
               )}
               {access === 'student' && (
@@ -37,6 +42,17 @@ function App() {
                   <NavLink to="/results" className={({isActive})=>(isActive?'active':'')}>Results</NavLink>
                   <NavLink to="/studentDetails" className={({isActive})=>(isActive?'active':'')}>Details</NavLink>
                   <NavLink to='/subjects' className={({isActive})=>(isActive?'active':'')}>Subjects</NavLink>
+                </nav>
+              )}
+              {access === 'admin' &&(
+                <nav>
+                  <NavLink to="/studentRegister" className={({ isActive }) => (isActive ? 'active' : '')}>
+                    Student Registration
+                  </NavLink>
+                  <NavLink to="/students" className={({ isActive }) => (isActive ? 'active' : '')}>Students</NavLink>
+                  <NavLink to="/allTeachers" className={({isActive})=>(isActive ? 'active':'')}>Teachers</NavLink>
+                  <NavLink to='/subjectTeachers' className={({isActive})=>(isActive ? 'active':'')}>Subject & Teachers</NavLink>
+                  <NavLink to='/createClass' className={({isActive})=>(isActive ? 'active':'')}>Create Class</NavLink>
                 </nav>
               )}
               <NavLink to="/logout" className={({ isActive }) => (isActive ? 'active' : '')}>
@@ -59,6 +75,10 @@ function App() {
             <Route path='/studentDetails' element={<StudentDetails userId={id}/>}/>
             <Route path='/editDetails' element={<EditDetails userId={id}/>}/>
             <Route path='/subjects' element={<ViewClasses userId={id}/>}/>
+            <Route path='/teacherResults' element={<TeacherResultsView userId={id}/>}></Route>
+            <Route path='/allTeachers' element={<Teachers/>}/>
+            <Route path='/subjectTeachers' element={<SubjectTeachers/>}/>
+            <Route path='/createClass' element={<CreateClasses/>}/>
           </Route>
 
           <Route path="/login" element={

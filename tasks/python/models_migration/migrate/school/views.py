@@ -1,3 +1,5 @@
+import json
+
 import rest_framework
 from django.shortcuts import render
 from django.db.models import *
@@ -12,6 +14,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .model_serializers import StudentSerializer, TeacherSerializer, SubjectSerializer, ClassesSerializer, \
     ResultsSerializer, StudentProfileSerializer
 from .models import *
+from .templates.permissions.AdminPermissions import CustomStudentTablePermissions, IsAdmin
 from .templates.permissions.StudentPermissions import IsStudent
 from .templates.permissions.TeacherPermissions import IsTeacher
 
@@ -23,6 +26,44 @@ class TeacherViewSet(ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     pagination_class = rest_framework.pagination.PageNumberPagination
+
+
+class AllTeachers(APIView):
+    permission_classes = [IsAdmin]
+    def get(self,request):
+        class_teachers = Classes.objects.select_related('teacher').values('teacher__user_id')
+        teachers = Teacher.objects.all().values()
+        class_teachers_set = set()
+        for val in class_teachers:
+            class_teachers_set.add(val['teacher__user_id'])
+        for i in teachers:
+            if i["user_id"] in class_teachers_set:
+                i["Class_teacher"] =True
+            else:
+                i["Class_teacher"] = False
+        print(teachers)
+        return Response(list(teachers),status=200)\
+
+class SubjectTeacher(APIView):
+    permission_classes = [IsAdmin]
+    def get(self,request):
+        subject_teachers = Teacher.objects.prefetch_related('subject_teacher').values('user_id',"Name","subject_teacher__subject__id","subject_teacher__subject__Name")
+        print(subject_teachers)
+        teachers_dict = dict()
+        for teacher in subject_teachers:
+            print(teacher)
+            if teacher['user_id'] in teachers_dict:
+                teachers_dict[teacher['user_id']]['subjects'].append({teacher[ 'subject_teacher__subject__id']:teacher['subject_teacher__subject__Name']})
+            else:
+                teachers_dict[teacher['user_id']] = {}
+                print(teachers_dict)
+                teachers_dict[teacher['user_id']]['Name'] = teacher['Name']
+                teachers_dict[teacher['user_id']]['subjects'] = [{teacher[ 'subject_teacher__subject__id']:teacher['subject_teacher__subject__Name']}]
+        print(teachers_dict)
+        return Response(teachers_dict,status=200)
+
+
+
 
 # class StudentDetails(APIView):
 #     permission_classes = [IsStudent]
@@ -103,7 +144,7 @@ class StudentDetails(APIView):
 
 
 class StudentsView(APIView):
-    permission_classes = [IsTeacher]
+    permission_classes = [CustomStudentTablePermissions]
     authentication_classes = [JWTAuthentication]
     def get(self,request):
         params = request.query_params
@@ -174,7 +215,6 @@ class StudentsView(APIView):
         else:
             return Response({'message':'Please provide an id'})
 
-
     def delete(self,request):
         params = request.query_params
         print(params)
@@ -188,21 +228,32 @@ class StudentsView(APIView):
                 return Response(status=400)
 
 
+class TeacherResultsView(APIView):
+    permission_classes = [IsTeacher]
+    def get(self,request):
+        params = request.query_params
+        if 'id' not in params or 'sub_id' not in params:
+            Response({'message':'Provide both id and sub_id'},status=400)
+        else:
+            qs = Results.objects.select_related('student','subject').prefetch_related('subject__subject_teacher').filter(Q(subject=params['sub_id'])&Q(subject__subject_teacher__teacher = params['id'])).values('id','Class','student__user_id','student__Name','subject__Name','grade','percentage')
+            print(qs)
+            return Response(qs)
+
 class SubjectViewSet(ModelViewSet):
     Permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
     model = Subject
     serializer_class = SubjectSerializer
     queryset = Subject.objects.all()
-    pagination_class = rest_framework.pagination.PageNumberPagination
+    # pagination_class = rest_framework.pagination.PageNumberPagination
 
 class ClassesViewSet(ModelViewSet):
-    Permission_classes = [IsAuthenticated]
+    Permission_classes = [CustomStudentTablePermissions]
     authentication_classes = [JWTAuthentication]
     model = Classes
     serializer_class = ClassesSerializer
     queryset = Classes.objects.all()
-    pagination_class = rest_framework.pagination.PageNumberPagination
+    # pagination_class = rest_framework.pagination.PageNumberPagination
 
 class ResultsViewSet(ModelViewSet):
     Permission_classes = [IsAuthenticated]
@@ -210,9 +261,40 @@ class ResultsViewSet(ModelViewSet):
     model = Results
     serializer_class = ResultsSerializer
     queryset = Results.objects.all()
-    pagination_class = rest_framework.pagination.PageNumberPagination
+    # pagination_class = rest_framework.pagination.PageNumberPagination
+#
+# class TeacherStudentResults(APIView):
+#     permission_classes = [IsTeacher]
+#     def get(self,request):
 
 
+
+class TeacherSubjectsStudents(APIView):
+    permission_classes = [IsTeacher]
+    def get(self,request):
+        params = request.query_params
+        if 'id' in params:
+            qs = Teacher.objects.filter(user_id = params['id']).prefetch_related('subject_teacher_set').values('subject_teacher__subject')
+            qs = list(qs)
+            subject_students = []
+            data = {}
+            for val in qs:
+                student_qs = Student.objects.select_related('Class').prefetch_related(
+                    'Class__subject_teacher_set'
+                ).select_related('Class__subject_teacher_set__subject','Class__subject_teacher_set__teacher').filter(Q(Class__subject_teacher_set__subject=val['subject_teacher__subject']) & Q(Class__subject_teacher_set__teacher = params['id'])).values('user_id','Class')
+                student_list = []
+                class_list = []
+                student_qs = list(student_qs)
+                for i in student_qs:
+                    student_list.append({i['user_id']:i['Class']})
+                    # class_list.append(i['Class'])
+                sub_data = {
+                    val['subject_teacher__subject']:student_list
+                }
+                data.update(sub_data)
+            return Response(data)
+        else:
+            return Response({'message':'please provide id'},status=404)
 
 
 class StudentResultsDashBoard(APIView):

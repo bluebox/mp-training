@@ -19,7 +19,7 @@ class ResultsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ClassesSerializer(serializers.ModelSerializer):
-    teacher = TeacherSerializer(read_only=True)
+    # teacher = TeacherSerializer(read_only=True)
     class Meta:
         model = Classes
         fields = '__all__'

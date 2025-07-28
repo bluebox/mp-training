@@ -46,6 +46,11 @@ class Classes(models.Model):
         db_table = 'classes'
         unique_together = ('Section', 'Class_id')
 
+
+
+
+
+
 class Teacher(models.Model):
     user = models.OneToOneField(BaseUser, primary_key=True, on_delete=models.CASCADE, limit_choices_to={"role":BaseUser.Role.TEACHER})
     Name = models.CharField(max_length=100, null=False, db_index=True)

@@ -12,7 +12,12 @@ function ViewClasses({ userId }) {
             .then(res => {
                 setSubjects(res.subjects);
                 console.log(res.subjects);
-            });
+            }).catch(
+                err =>{
+                    alert("User account deactivated");;
+                    console.log("Error");
+                }
+            );
     }, [userId]);
 
     if (!subjects) return <p>Loading...</p>;

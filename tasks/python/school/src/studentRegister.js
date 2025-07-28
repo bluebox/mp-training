@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 function StudentRegister({ userId }) {
     const loc = useLocation();
     const userid = loc.state?.id
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     Name: "",
@@ -24,7 +24,7 @@ function StudentRegister({ userId }) {
 
   useEffect(() => {
     customAXIOS(CLASSES, null, "get", null, navigate)
-      .then((res) => setClasses(res))
+      .then((res) => setClasses(res||[]))
       .catch((err) => console.error("Error loading classes", err));
   }, []);
 

@@ -19,7 +19,9 @@ function StudentResultsDashboard({ userId }) {
                 setResults(data);
                 console.log("Fetched results:", data);
             })
-            .catch((err) => console.error("Error fetching results:", err));
+            .catch((err) => {
+                alert("user account deactivated");
+                console.error("Error fetching results:", err)});
     }, [userId, navigate]);
 
     return (

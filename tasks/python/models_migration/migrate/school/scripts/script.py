@@ -176,6 +176,15 @@ def correct_passwords():
         print(student.user.password)
         student.user.save()
 
+def createAdmin():
+    user = BaseUser(
+        username="Admin",
+        role=BaseUser.Role.ADMIN,
+        # password="password123",
+    )
+    user.set_password("password123")
+    user.save()
+
 
 def run():
 #     try:
@@ -187,6 +196,7 @@ def run():
 #         response = requests.post(JWT_URL, json=data)
 #     except Expression:
 #     populate()
-    correct_passwords()
+#     correct_passwords()
+    createAdmin()
 
 

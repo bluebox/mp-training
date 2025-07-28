@@ -14,4 +14,8 @@ urlpatterns = [
     path('dashboard/',StudentResultsDashBoard.as_view()),
     path('studentDetails/',StudentDetails.as_view()),
     path('subjectsDashboard/',StudentSubjectsDashboard.as_view()),
+    path('teacherSubjects/',TeacherSubjectsStudents.as_view()),
+    path('teacherResults/',TeacherResultsView.as_view()),
+    path('allTeachers/',AllTeachers.as_view()),
+    path('subjectTeachers/',SubjectTeacher.as_view())
 ]
