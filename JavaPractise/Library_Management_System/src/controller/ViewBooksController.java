@@ -2,6 +2,7 @@ package controller;
 
 import dao.bookDao;
 import domain.Book;
+import exceptions.DatabaseException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,7 +39,12 @@ public class ViewBooksController {
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         availability.setCellValueFactory(new PropertyValueFactory<>("availability"));
 
-        List<Book> books = bookService.getAllBooks();
+        List<Book> books=null;
+		try {
+			books = bookService.getAllBooks();
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+		}
         ObservableList<Book> bookList = FXCollections.observableArrayList(books);
         tableView.setItems(bookList);
     }

@@ -3,16 +3,39 @@ package domain;
 import java.time.LocalDate;
 
 public class IssueRecord {
-    private int issueId;
+	private int issueId;
     private int bookId;
     private int memberId;
     private IssueStatus status;
     private LocalDate issueDate;
     private LocalDate returnDate;
-	public IssueRecord(int issueId, int bookId, int memberId, IssueStatus status, LocalDate issueDate,
-			LocalDate returnDate) {
-		super();
+    
+    
+    private String bookTitle;
+    private String memberName;
+	public String getBookTitle() {
+		return bookTitle;
+	}
+	public int getIssueId() {
+		return issueId;
+	}
+	public void setIssueId(int issueId) {
 		this.issueId = issueId;
+	}
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+
+	public IssueRecord(int issueId , int bookId, int memberId, IssueStatus status, LocalDate issueDate,
+			LocalDate returnDate) {
+		this.issueId=issueId;
 		this.bookId = bookId;
 		this.memberId = memberId;
 		this.status = status;
@@ -23,14 +46,6 @@ public class IssueRecord {
 	
 	public IssueRecord() {
 		super();
-	}
-
-
-	public int getIssueId() {
-		return issueId;
-	}
-	public void setIssueId(int issueId) {
-		this.issueId = issueId;
 	}
 	public int getBookId() {
 		return bookId;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewIssueController">
+    <TableView fx:id="tableView" layoutX="20.0" layoutY="20.0" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+            <TableColumn fx:id="colIssueId" text="Issue ID" prefWidth="100" />
+            <TableColumn fx:id="colBookId" text="Book ID" prefWidth="100" />
+            <TableColumn fx:id="colMemberId" text="Member ID" prefWidth="100" />
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="100" />
+            <TableColumn fx:id="colIssueDate" text="Issue Date" prefWidth="100" />
+            <TableColumn fx:id="colReturnDate" text="Return Date" prefWidth="100" />
+        </columns>
+    </TableView>
+</AnchorPane>

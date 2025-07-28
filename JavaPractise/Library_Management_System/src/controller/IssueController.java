@@ -1,57 +1,86 @@
 package controller;
 
-import domain.IssueRecord;
-import domain.IssueStatus;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.IssueService;
+import util.DBUtil;
 
-import java.time.LocalDate;
+import java.sql.Connection;
 
 public class IssueController {
-
     @FXML private TextField txtBookId;
     @FXML private TextField txtMemberId;
     @FXML private Label lblMessage;
+    @FXML private Button issueButton;
+    @FXML private Button returnButton;
 
-    private final IssueService service = new IssueService();
-
-    @FXML
-    public void handleIssueBook() throws Throwable {
+    private IssueService issueRecordService;
+    public void setConnection(Connection connection) {
+        this.issueRecordService = new IssueService(connection);
+    }    @FXML
+    private void handleIssueBook() {
         try {
-            IssueRecord record = new IssueRecord();
-            record.setBookId(Integer.parseInt(txtBookId.getText()));
-            record.setMemberId(Integer.parseInt(txtMemberId.getText()));
-            record.setStatus(IssueStatus.I);
-            record.setIssueDate(LocalDate.now());
+            int bookId = Integer.parseInt(txtBookId.getText().trim());
+            int memberId = Integer.parseInt(txtMemberId.getText().trim());
 
-            service.issueBook(record);
-            lblMessage.setText("Book issued successfully!");
-        } catch (Exception e) {
-            lblMessage.setText("Issue failed: " + e.getMessage());
+            String result = issueRecordService.issueBookToMember(bookId, memberId);
+            lblMessage.setText(result);
+            lblMessage.setStyle("-fx-text-fill: green;");
+        } catch (NumberFormatException e) {
+            lblMessage.setText("Invalid Book ID or Member ID.");
+            lblMessage.setStyle("-fx-text-fill: red;");
         }
-    }
-
-    @FXML
-    public void handleReturnBook() throws Throwable {
-        try {
-            int bookId = Integer.parseInt(txtBookId.getText());
-            int memberId = Integer.parseInt(txtMemberId.getText());
-
-            service.returnBook(bookId, memberId);
-            lblMessage.setText("Book returned successfully!");
-        } catch (Exception e) {
-            lblMessage.setText("Return failed: " + e.getMessage());
+        if (issueRecordService == null) {
+            lblMessage.setText("Database not initialized.");
+            lblMessage.setStyle("-fx-text-fill: red;");
+            return;
         }
+
     }
     @FXML
-    private void handleBack() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/BookManagement.fxml"));
-        Stage stage = (Stage) txtBookId.getScene().getWindow();
+    private void handleReturnBook() {
+        try {
+            int bookId = Integer.parseInt(txtBookId.getText().trim());
+            int memberId = Integer.parseInt(txtMemberId.getText().trim());
+
+            String result = issueRecordService.returnBookFromMember(bookId, memberId);
+            lblMessage.setText(result);
+            lblMessage.setStyle("-fx-text-fill: green;");
+        } catch (NumberFormatException e) {
+            lblMessage.setText("Invalid Book ID or Member ID.");
+            lblMessage.setStyle("-fx-text-fill: red;");
+        }
+        if (issueRecordService == null) {
+            lblMessage.setText("Database not initialized.");
+            lblMessage.setStyle("-fx-text-fill: red;");
+            return;
+        }
+    }
+    @FXML
+    private void handleViewIssueTable(ActionEvent event) throws Exception {
+    	Connection conn=DBUtil.getConnection();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view_issue.fxml"));
+        Parent root = loader.load();
+        ViewIssueController controller = loader.getController();
+        controller.setConnection(conn); 
+        Stage stage = new Stage();
+        stage.setTitle("Issue Records");
         stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void handleBack(ActionEvent event) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/Main.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.UpdateMemberController"
+      alignment="CENTER" spacing="10"
+      prefWidth="400" prefHeight="400">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Update Member Contact Info" style="-fx-font-size: 20px;" />
+    <TextField fx:id="memberIdField" promptText="Enter Member ID"/>
+    <TextField fx:id="nameField" promptText="Name"/>
+    <TextField fx:id="emailField" promptText="Email Address" />
+    <TextField fx:id="mobileField" promptText="Mobile Number" />
+    <HBox spacing="10" alignment="CENTER_LEFT">
+    <Label text="Gender:" />
+    <RadioButton fx:id="maleRadio" text="Male" toggleGroup="$genderGroup"/>
+    <RadioButton fx:id="femaleRadio" text="Female" toggleGroup="$genderGroup"/>
+    <RadioButton fx:id="otherRadio" text="Other" toggleGroup="$genderGroup"/>
+</HBox>
+    <TextArea fx:id="addressArea" promptText="Address" prefRowCount="3" wrapText="true"/>
+    <HBox spacing="20" alignment="CENTER">
+        <Button fx:id="updateButton" text="Update" onAction="#handleUpdate"/>
+        <Button text="Back" onAction="#handleBack"/>
+    </HBox>
+</VBox>

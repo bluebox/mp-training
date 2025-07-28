@@ -1,8 +1,6 @@
 package controller;
 
 import dao.bookDao;
-import domain.AvailabilityStatus;
-import domain.Book;
 import domain.BookStatus;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,32 +18,59 @@ public class UpdateBookController {
     @FXML private TextField categoryField;
     @FXML private TextField statusField;
     
-
     private final BookService bookService = new BookService(new bookDao());
 
     @FXML
     private void handleUpdateBook() {
         try {
-        	String str_id=idField.getText();
-        	int id =(str_id==null)?0:Integer.parseInt(str_id);
+            String str_id = idField.getText();
             String title = titleField.getText();
             String author = authorField.getText();
             String category = categoryField.getText();
             String stat = statusField.getText();
-            BookStatus status=BookStatus.valueOf(stat); 
-            if (id ==0 || title.isEmpty() || author.isEmpty() || category.isEmpty() || status == null) {
-                showAlert("Error", "Please fill all fields.");
+            
+            if (str_id == null || str_id.trim().isEmpty()) {
+                showAlert("Validation Error", "Book ID is required.");
                 return;
             }
-            bookService.updateBookDetails(id, title, author, category, status);
-            showAlert("Success", "Book Updated successfully.");
+
+            int id;
+            try {
+                id = Integer.parseInt(str_id.trim());
+            } catch (NumberFormatException e) {
+                showAlert("Validation Error", "Book ID must be a valid number.");
+                return;
+            }
+            BookStatus status = null;
+            if (stat != null && !stat.trim().isEmpty()) {
+                try {
+                    status = BookStatus.valueOf(stat.trim().toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    showAlert("Validation Error", "Invalid status. Use:  A for active, I for inactive, etc.");
+                    return;
+                }
+            }
+            if (!bookService.bookExists(id)) {
+                showAlert("Book Not Found", "No book found with ID: " + id);
+                return;
+            }
+            bookService.updateBookDetails(id,
+                    title != null && !title.trim().isEmpty() ? title.trim() : null,
+                    author != null && !author.trim().isEmpty() ? author.trim() : null,
+                    category != null && !category.trim().isEmpty() ? category.trim() : null,
+                    status); 
+
+            showAlert("Success", "Book updated successfully.");
             clearFields();
 
         } catch (Exception e) {
-        	System.out.print(e.getMessage());
-            showAlert("Database Error", e.getMessage());
-        }
+            e.printStackTrace();
+            showAlert("Database Error", "An error occurred while updating: " + e.getMessage());
+        } catch (Throwable e) {
+			e.printStackTrace();
+		}
     }
+
 
     @FXML
     private void handleBack() throws Exception {

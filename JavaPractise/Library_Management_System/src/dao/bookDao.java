@@ -8,13 +8,14 @@ import java.util.List;
 
 import domain.Book;
 import domain.BookStatus;
+import exceptions.DatabaseException;
 import domain.AvailabilityStatus;
 import util.DBUtil;
 
 public class bookDao {
 	
 	
-	 public void addBook(Book book) {
+	 public void addBook(Book book) throws DatabaseException {
 		 String sql = "insert into books(Title,Author,Category,Status,Availability) values (?, ?, ?, ?, ?)";
 	        try (Connection conn = DBUtil.getConnection();
 	             PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -28,52 +29,123 @@ public class bookDao {
 	        } 
 	        catch (Exception e) {
 	            System.out.println("Error adding Book ");
+	            throw new DatabaseException("Error adding book to database", e);
 	        }
 		
 	 }
 
 	
 
-	 public void updateBookDetails(int id, String title, String author, String category, BookStatus status) {
-		// TODO Auto-generated method stub
-		 String sql = "update books set Title=?, Author=?,  Category=? ,Status=? Where bookId=?";
-	        try (Connection conn = DBUtil.getConnection();
-	             PreparedStatement ps = conn.prepareStatement(sql)) {
-	            ps.setString(1,title);
-	            ps.setString(2,author);
-	            ps.setString(3,category);
-	            ps.setString(4, status.name());
-	            ps.setInt(5,id );
-	            ps.executeUpdate();
-	            System.out.println("Book updated.");
-	        } 
-	        catch (Exception e) {
-	            System.out.println("Error updating Book");
-	        }
-		
-	 }
+	 public void updateBookDetails(int id, String title, String author, String category, BookStatus status) throws DatabaseException {
+		    String logSql = "INSERT INTO books_log SELECT * FROM books WHERE BookId=?";
+		    
+		    Connection conn = null;
+		    try {
+		        conn = DBUtil.getConnection();
+		        conn.setAutoCommit(false); 
+		        try (PreparedStatement logPs = conn.prepareStatement(logSql)) {
+		            logPs.setInt(1, id);
+		            logPs.executeUpdate();
+		        }
+		        StringBuilder updateSql = new StringBuilder("UPDATE books SET ");
+		        List<Object> params = new ArrayList<>();
+
+		        if (title != null) {
+		            updateSql.append("Title=?, ");
+		            params.add(title);
+		        }
+		        if (author != null) {
+		            updateSql.append("Author=?, ");
+		            params.add(author);
+		        }
+		        if (category != null) {
+		            updateSql.append("Category=?, ");
+		            params.add(category);
+		        }
+		        if (status != null) {
+		            updateSql.append("Status=?, ");
+		            params.add(status.name());
+		        }
+
+		        if (params.isEmpty()) {
+		            throw new DatabaseException("No fields provided to update.", null);
+		        }
+		        updateSql.setLength(updateSql.length() - 2);
+		        updateSql.append(" WHERE BookId=?");
+		        params.add(id);
+
+		        try (PreparedStatement updatePs = conn.prepareStatement(updateSql.toString())) {
+		            for (int i = 0; i < params.size(); i++) {
+		                updatePs.setObject(i + 1, params.get(i));
+		            }
+		            updatePs.executeUpdate();
+		        }
+		        conn.commit();
+		        System.out.println("Book updated.");
+		    } catch (Exception e) {
+		        if (conn != null) {
+		            try {
+		                conn.rollback();
+		            } catch (Exception rollbackEx) {
+		                System.err.println("Rollback failed: " + rollbackEx.getMessage());
+		            }
+		        }
+		        throw new DatabaseException("Failed to update book", e);
+		    } finally {
+		        if (conn != null) {
+		            try {
+		                conn.setAutoCommit(true);
+		                conn.close();
+		            } catch (Exception closeEx) {
+		                System.err.println("Connection close failed: " + closeEx.getMessage());
+		            }
+		        }
+		    }
+		}
 
 
+	 public void updateBookAvailability(int id, AvailabilityStatus avail) throws DatabaseException {
+		    String logSql = "INSERT INTO books_log SELECT * FROM books WHERE BookId=?";
+		    String updateSql = "UPDATE books SET Availability=? WHERE BookId=?";
 
-	 public void updateBookAvailability(int id, AvailabilityStatus avail) {
-		// TODO Auto-generated method stub
-		 String sql = "update books set Availability=? Where BookId=?";
-	        try (Connection conn = DBUtil.getConnection();
-	             PreparedStatement ps = conn.prepareStatement(sql)) {
-	            ps.setString(1, avail.name());
-	            ps.setInt(2,id );
-	            ps.executeUpdate();
-	            System.out.println("Book updated.");
-	        } 
-	        catch (Exception e) {
-	            System.out.println("Error updating Book");
-	        }
-		
-	 }
+		    Connection conn = null;
+		    try {
+		        conn = DBUtil.getConnection();
+		        conn.setAutoCommit(false); 
+		        try (PreparedStatement logPs = conn.prepareStatement(logSql)) {
+		            logPs.setInt(1, id);
+		            logPs.executeUpdate();
+		        }
+		        try (PreparedStatement updatePs = conn.prepareStatement(updateSql)) {
+		            updatePs.setString(1, avail.name());
+		            updatePs.setInt(2, id);
+		            updatePs.executeUpdate();
+		        }
 
+		        conn.commit();
+		        System.out.println("Book availability updated.");
+		    } catch (Exception e) {
+		        if (conn != null) {
+		            try {
+		                conn.rollback();
+		            } catch (Exception rollbackEx) {
+		                System.err.println("Rollback failed: " + rollbackEx.getMessage());
+		            }
+		        }
+		        throw new DatabaseException("Failed to update availability", e);
+		    } finally {
+		        if (conn != null) {
+		            try {
+		                conn.setAutoCommit(true);
+		                conn.close();
+		            } catch (Exception closeEx) {
+		                System.err.println("Connection close failed: " + closeEx.getMessage());
+		            }
+		        }
+		    }
+		}
 
-
-	 public List<Book> getAllBooks() {
+	 public List<Book> getAllBooks() throws DatabaseException {
 		 List<Book> list = new ArrayList<>();
 	        String sql = "select * from books";
 	        try (Connection conn = DBUtil.getConnection();
@@ -92,10 +164,21 @@ public class bookDao {
 	        } 
 	        catch (Exception e) {
 	            System.out.println("Error fetching members");
+	            throw new DatabaseException("Failed to update availability", e);
 	        }
 	        return list;
 	    }
 	 
-		
-
+	 public boolean bookExists(int id) throws DatabaseException {
+		    String sql = "SELECT * FROM books WHERE BookId = ?";
+		    try (Connection conn = DBUtil.getConnection();
+		         PreparedStatement ps = conn.prepareStatement(sql)) {
+		        ps.setInt(1, id);
+		        try (ResultSet rs = ps.executeQuery()) {
+		            return rs.next();
+		        }
+		    } catch (Exception e) {
+		        throw new DatabaseException("Error checking if book exists", e);
+		    }
+		}
 }

@@ -1,29 +1,51 @@
 package domain;
 
 public class Member {
-    private int memberId;
+	private int memberId;
     private String name;
     private String email;
-    private long mobile;
-    private Gender gender;
+    private String mobile;
+    private Gender gender; 
     private String address;
     
-    
-	public Member(int memberId, String name, String email, long mobile, Gender gender, String address) {
-		super();
-		this.memberId = memberId;
+    public Member()
+    {
+    	
+    }
+    public Member(int memberId,String name,String email,String mobile,Gender gender,String address)
+    {
+    	if (!mobile.matches("\\d{10}")) {
+	        throw new IllegalArgumentException("Mobile number must be exactly 10 digits.");
+	    }
+    	if (!isValidEmail(email)) {
+	        throw new IllegalArgumentException("Invalid email format.");
+	    }
+    	this.memberId=memberId;
+    	this.name=name;
+    	this.email=email;
+    	this.mobile=mobile;
+    	this.gender=gender;
+    	this.address=address;
+    }
+	public Member(String name, String email, String mobile, Gender gender, String address) {
+		if (!mobile.matches("\\d{10}")) {
+	        throw new IllegalArgumentException("Mobile number must be exactly 10 digits.");
+	    }
+		if (!isValidEmail(email)) {
+	        throw new IllegalArgumentException("Invalid email format.");
+	    }
 		this.name = name;
 		this.email = email;
 		this.mobile = mobile;
 		this.gender = gender;
 		this.address = address;
 	}
-	public int getMemberId() {
-		return memberId;
+	private boolean isValidEmail(String email) {
+	    if (email == null || email.trim().isEmpty()) 
+	    	return false;
+	    return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
 	}
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
-	}
+
 	public String getName() {
 		return name;
 	}
@@ -36,10 +58,10 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
-	public void setMobile(long mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 	public Gender getGender() {
@@ -54,6 +76,10 @@ public class Member {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-    
+	public int getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}  
 }
