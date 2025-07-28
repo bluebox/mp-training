@@ -1,4 +1,3 @@
-// src/utils/role.js
 
 export const ROLES = {
   EMPLOYEE: "employee",
@@ -7,7 +6,6 @@ export const ROLES = {
   CEO: "ceo",
 };
 
-// Return true if role matches any allowed role
 export const hasAccess = (userRole, allowedRoles = []) => {
   return allowedRoles.includes(userRole);
 };

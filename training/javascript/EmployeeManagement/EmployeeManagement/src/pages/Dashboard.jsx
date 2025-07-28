@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ROLES } from "../utils/roles";
-import ProfileView from "../features/profile/ProfileView";
+import ProfileView from "../features/feature/profile/ProfileView";
 import ManageEmployees from "./ManageEmployees";
 import ManageSalary from "./ManageSalary";
 import ManageTeams from "./ManageTeams";
@@ -15,10 +15,8 @@ const Dashboard = () => {
     <div className="dashboard">
       <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
 
-      {/* Shared Profile View */}
       <ProfileView />
 
-      {/* Manager and above can update team */}
       {(role === ROLES.MANAGER || role === ROLES.HR || role === ROLES.CEO) && (
         <div className="my-4">
           <h2 className="text-xl font-medium">Manage Teams</h2>
@@ -26,7 +24,6 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* HR and CEO can manage employees and salaries */}
       {(role === ROLES.HR || role === ROLES.CEO) && (
         <>
           <div className="my-4">
@@ -41,7 +38,6 @@ const Dashboard = () => {
         </>
       )}
 
-      {/* CEO access to all models */}
       {role === ROLES.CEO && (
         <>
           <div className="my-4">

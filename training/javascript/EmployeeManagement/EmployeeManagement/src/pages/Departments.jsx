@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../api/axiosInstance";
-import { selectUser } from "../features/auth/authSlice";
+import { selectUser } from "../features/feature/auth/authSlice";
 import { CgTrash } from "react-icons/cg";
 
 const Departments = () => {

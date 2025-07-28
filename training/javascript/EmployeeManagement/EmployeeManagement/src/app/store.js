@@ -1,8 +1,7 @@
-// src/redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './authSlice';
-import locationReducer from './locationSlice';
-import profileReducer from './profileSlice';
+import authReducer from '../features/feature/auth/authSlice';
+import locationReducer from '../features/feature/location/locationSlice';
+import profileReducer from '../features/feature/profile/profileSlice';
 
 const store = configureStore({
   reducer: {

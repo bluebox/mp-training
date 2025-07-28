@@ -1,6 +1,5 @@
-// src/api/endpoints.js
 
-const BASE_URL = "http://localhost:8000"; // Replace with your production URL if needed
+const BASE_URL = "http://localhost:8000";
 
 const API = {
   AUTH: {

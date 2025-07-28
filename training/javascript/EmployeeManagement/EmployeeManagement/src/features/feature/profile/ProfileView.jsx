@@ -1,12 +1,11 @@
-// src/components/profile/ProfileView.jsx
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserProfile,
   updateUserProfile,
   clearProfileMessages,
-} from "../../redux/profileSlice";
-import LocationDropdowns from "../shared/LocationDropdowns";
+} from "./profileSlice";
+import LocationDropdowns from "../location/LocationDropdowns";
 
 const ProfileView = () => {
   const dispatch = useDispatch();

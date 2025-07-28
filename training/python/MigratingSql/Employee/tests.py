@@ -22,7 +22,6 @@ def create_user():
     return make_user
 
 
-# ----------- EMPLOYEE TESTS -----------
 
 @pytest.mark.django_db
 def test_employee_can_view_own_profile(api_client, create_user):
@@ -38,7 +37,6 @@ def test_employee_cannot_create_department(api_client, create_user):
     res = api_client.post(reverse("ceo-create-department"), {"dept_name": "ABC"}, format="json")
     assert res.status_code in [403, 401]
 
-# ----------- MANAGER TESTS -----------
 
 @pytest.mark.django_db
 def test_manager_can_update_team_id(api_client, create_user):
@@ -54,7 +52,6 @@ def test_manager_cannot_create_designation(api_client, create_user):
     res = api_client.post(reverse("hr-create-designation"), {"designation": "NewRole"}, format="json")
     assert res.status_code in [403, 401]
 
-# ----------- HR TESTS -----------
 
 @pytest.mark.django_db
 def test_hr_can_create_employee(api_client, create_user):
@@ -82,7 +79,6 @@ def test_hr_can_crud_designation(api_client, create_user):
     create_res = api_client.post(reverse("hr-create-designation"), {"designation": "Dev"}, format="json")
     assert create_res.status_code in [200, 201]
 
-# ----------- CEO TESTS -----------
 
 @pytest.mark.django_db
 def test_ceo_can_create_department(api_client, create_user):
@@ -120,7 +116,6 @@ def test_ceo_can_crud_designation(api_client, create_user):
     res = api_client.post(reverse("hr-create-designation"), {"designation": "CTO"}, format="json")
     assert res.status_code in [200, 201]
 
-# ----------- INVALID ACCESS TESTS -----------
 
 @pytest.mark.django_db
 def test_employee_cannot_delete_another_employee(api_client, create_user):

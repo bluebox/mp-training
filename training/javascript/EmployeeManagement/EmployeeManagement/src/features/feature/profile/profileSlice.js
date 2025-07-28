@@ -1,8 +1,6 @@
-// src/redux/profileSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../utils/axiosInstance";
+import axios from "axios";
 
-// Thunks
 export const fetchUserProfile = createAsyncThunk("profile/fetch", async (_, thunkAPI) => {
   try {
     const response = await axios.get("/employee/profile/");

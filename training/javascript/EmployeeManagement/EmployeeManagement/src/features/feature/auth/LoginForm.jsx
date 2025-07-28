@@ -1,8 +1,7 @@
-// src/components/auth/LoginForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../redux/authSlice";
+import { loginSuccess } from "./authSlice.js";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -19,11 +18,9 @@ const LoginForm = () => {
     setError(null);
 
     try {
-      // 1. Get access and refresh token
       const res = await axios.post("http://127.0.0.1:8000/api/token/", form);
       const { access, refresh } = res.data;
 
-      // 2. Fetch user profile to get role and username
       const profile = await axios.get("http://127.0.0.1:8000/employee/profile/", {
         headers: { Authorization: `Bearer ${access}` },
       });
@@ -31,7 +28,6 @@ const LoginForm = () => {
       const { emp_id, emp_name } = profile.data.data;
       const role = profile.data.data.user?.role || "employee";
 
-      // 3. Save tokens + user data in redux/localStorage
       dispatch(
         loginSuccess({
           access,
@@ -41,7 +37,6 @@ const LoginForm = () => {
         })
       );
 
-      // 4. Redirect based on role
       if (role === "ceo") navigate("/ceo/dashboard");
       else if (role === "hr") navigate("/hr/dashboard");
       else if (role === "manager") navigate("/manager/dashboard");

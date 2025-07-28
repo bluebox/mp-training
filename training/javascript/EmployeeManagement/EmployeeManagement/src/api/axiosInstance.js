@@ -1,6 +1,6 @@
 import axios from "axios";
-import { store } from "./store";
-import { refreshToken, logout } from "./authSlice";
+import  store  from "../app/store";
+import { refreshToken, logout } from "../features/feature/auth/authSlice";
 
 const baseURL = "http://127.0.0.1:8000";
 

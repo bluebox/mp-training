@@ -61,10 +61,8 @@ class DatabaseOperationManager:
     def assign_or_update_job(emp_id, data):
         emp = Employees.objects.get(emp_id=emp_id)
 
-        # Mark previous job inactive
         EmployeeJobDetails.objects.filter(emp=emp, is_active=True).update(is_active=False)
 
-        # Create new job
         new_job = EmployeeJobDetails.objects.create(
             emp=emp,
             designation=data['designation'],

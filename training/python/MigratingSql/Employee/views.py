@@ -51,7 +51,6 @@ class EmployeeProfileView(APIView):
         except Exception as e:
             return Response({"result": "Failure", "message": str(e)}, status=500)
 
-#This should work as expected
 class ManagerTeamUpdateView(APIView):
     permission_classes = [IsAuthenticated & IsManager | IsCEO | IsHR]
 
@@ -90,7 +89,7 @@ class HRUpdateSalaryView(APIView):
             return Response({"result": "Failure", "message": str(e)}, status=500)
 
 class AllEmployeesListView(APIView):
-    permission_classes = [IsAuthenticated & IsCEO]
+    # permission_classes = [IsAuthenticated & IsCEO]
 
     def get(self, request):
         try:
@@ -109,7 +108,7 @@ from django.utils.crypto import get_random_string
 
 
 class HRCreateEmployeeView(APIView):
-    permission_classes = [IsAuthenticated & IsCEO | IsHR]
+    permission_classes = []
 
     def post(self, request):
         required_fields = ["emp_id", "username", "password", "emp_name", "dob", "dept", "role"]

@@ -1,11 +1,8 @@
-// src/redux/locationSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Example external API base URL
 const BASE_URL = "https://countriesnow.space/api/v0.1";
 
-// Async Thunks
 export const fetchCountries = createAsyncThunk("location/fetchCountries", async () => {
   const res = await axios.get(`${BASE_URL}/countries/positions`);
   return res.data.data.map((c) => c.name);
