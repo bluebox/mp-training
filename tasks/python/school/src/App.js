@@ -8,6 +8,9 @@ import './App.css';
 import logo from './logo.svg'; 
 import Student from './students';
 import StudentResultsDashboard from './studentDashboard';
+import StudentDetails from './studentsDetails';
+import EditDetails from './editDetails';
+import ViewClasses from './viewClasses';
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -26,12 +29,14 @@ function App() {
                   <NavLink to="/studentRegister" className={({ isActive }) => (isActive ? 'active' : '')}>
                     Student Registration
                   </NavLink>
-                  <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Students</NavLink>
+                  <NavLink to="/students" className={({ isActive }) => (isActive ? 'active' : '')}>Students</NavLink>
                 </nav>
               )}
               {access === 'student' && (
                 <nav>
                   <NavLink to="/results" className={({isActive})=>(isActive?'active':'')}>Results</NavLink>
+                  <NavLink to="/studentDetails" className={({isActive})=>(isActive?'active':'')}>Details</NavLink>
+                  <NavLink to='/subjects' className={({isActive})=>(isActive?'active':'')}>Subjects</NavLink>
                 </nav>
               )}
               <NavLink to="/logout" className={({ isActive }) => (isActive ? 'active' : '')}>
@@ -49,8 +54,11 @@ function App() {
         
           <Route element={<PrivateRoute login={login} />}>
             <Route path='/studentRegister' element={<StudentRegister userId={id} />} />
-            <Route path='/' element={<Student/>}/>
+            <Route path='/students' element={<Student/>}/>
             <Route path='/results' element={< StudentResultsDashboard userId={id}/>}/>
+            <Route path='/studentDetails' element={<StudentDetails userId={id}/>}/>
+            <Route path='/editDetails' element={<EditDetails userId={id}/>}/>
+            <Route path='/subjects' element={<ViewClasses userId={id}/>}/>
           </Route>
 
           <Route path="/login" element={

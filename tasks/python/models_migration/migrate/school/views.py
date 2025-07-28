@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .model_serializers import StudentSerializer, TeacherSerializer, SubjectSerializer, ClassesSerializer, \
-    ResultsSerializer, StudentResultsDashboard, StudentDetailsSerializer
+    ResultsSerializer, StudentProfileSerializer
 from .models import *
 from .templates.permissions.StudentPermissions import IsStudent
 from .templates.permissions.TeacherPermissions import IsTeacher
@@ -24,16 +24,82 @@ class TeacherViewSet(ModelViewSet):
     serializer_class = TeacherSerializer
     pagination_class = rest_framework.pagination.PageNumberPagination
 
+# class StudentDetails(APIView):
+#     permission_classes = [IsStudent]
+#     def get(self,request):
+#         params = request.query_params
+#         if len(params) == 0:
+#             return Response(status=status.HTTP_400_BAD_REQUEST)
+#         else:
+#             student = Student.objects.select_related('studentprofile').get(pk=params['id'])
+#             details = student.studentprofile
+#             data = {
+#                 "Name": student.Name,
+#                 "Class": student.Class.Class_id,
+#                 "Section": student.Class.Section,
+#                 "attendance": student.attendance,
+#                 "status": student.status,
+#                 "FatherName": details.FatherName,
+#                 "MotherName": details.MotherName,
+#                 "FatherAge": details.FatherAge,
+#                 "MotherAge": details.MotherAge,
+#                 "Age": details.Age,
+#                 "address": details.address,
+#                 "phoneNo": details.phoneNo
+#             }
+#             return Response(data)
+#     def post(self,request):
+#         params = request.query_params
+#         if len(params) == 0:
+#             return Response(status=status.HTTP_400_BAD_REQUEST)
+#         else:
+#             # print(request.data)
+#             # return Response(status=status.HTTP_400_BAD_REQUEST)
 class StudentDetails(APIView):
-    permission_classes = [IsTeacher]
-    def get(self,request):
+    permission_classes = [IsStudent]
+    authentication_classes = [JWTAuthentication]
+
+    def get(self, request):
         params = request.query_params
-        if len(params) == 0:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        if "id" not in params:
+            return Response({"error": "Missing id param"}, status=400)
+        try:
+            student = Student.objects.select_related("studentprofile", "Class").get(pk=params["id"])
+        except Student.DoesNotExist:
+            return Response({"error": "Student not found"}, status=404)
+
+        details = student.studentprofile
+        data = {
+            "Name": student.Name,
+            "Class": student.Class.Class_id,
+            "Section": student.Class.Section,
+            "attendance": student.attendance,
+            "status": student.status,
+            "FatherName": details.FatherName,
+            "MotherName": details.MotherName,
+            "FatherAge": details.FatherAge,
+            "MotherAge": details.MotherAge,
+            "Age": details.Age,
+            "address": details.address,
+            "phoneNo": details.phoneNo
+        }
+        return Response(data)
+
+    def put(self, request):
+        params = request.query_params
+        if "id" not in params:
+            return Response({"error": "Missing id param"}, status=400)
+        try:
+            student = Student.objects.select_related("studentprofile").get(pk=params["id"])
+        except Student.DoesNotExist:
+            return Response({"error": "Student not found"}, status=404)
+
+        serializer = StudentProfileSerializer(student.studentprofile, data=request.data, partial=False)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Profile updated successfully", "data": serializer.data})
         else:
-            qs = Student.objects.filter(id=params['id'])
-            serializer = StudentDetailsSerializer(qs, many=True)
-            return Response(serializer.data)
+            return Response(serializer.errors, status=400)
 
 
 class StudentsView(APIView):
@@ -170,18 +236,24 @@ class StudentResultsDashBoard(APIView):
 
 class StudentSubjectsDashboard(APIView):
     permission_classes = [IsStudent]
+
     def get(self, request):
-        params = request.query_params
-        if "id" in params:
-            try:
-                student = Student.objects.select_related('Class').prefetch_related(Prefetch('Class__subject_teacher_set',
-                                                                                              queryset=subject_teacher.objects.select_related('subject','teacher'),to_attr="subject_teachers" )).get(user_id=request.user.id)
-                subjects = []
-                for i in student.Class.subject_teachers:
-                    subjects.append({
-                        "subject":i.subject.Name,
-                        "teacher":i.teacher.Name,
-                    })
-                return Response({subjects})
-            except Student.DoesNotExist:
-                return Response({"error:Student Not found"},status=404)
+        try:
+            student = Student.objects.select_related('Class').prefetch_related(
+                Prefetch(
+                    'Class__subject_teacher_set',
+                    queryset=subject_teacher.objects.select_related('subject', 'teacher'),
+                    to_attr="subject_teachers"
+                )
+            ).get(user_id=request.user.id)
+            subjects = [
+                {
+                    "subject": st.subject.Name,
+                    "teacher": st.teacher.Name,
+                }
+                for st in student.Class.subject_teachers
+            ]
+            return Response({"subjects": subjects}, status=status.HTTP_200_OK)
+
+        except Student.DoesNotExist:
+            return Response({"error": "Student not found"}, status=status.HTTP_404_NOT_FOUND)

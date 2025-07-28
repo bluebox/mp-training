@@ -152,7 +152,7 @@ function StudentRegister({ userId }) {
         </label>
         <br />
 
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit-buttons">Submit</button>
       </form>
     </div>
   );

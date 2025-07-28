@@ -2,26 +2,25 @@ import React, { useEffect, useState } from "react";
 import customAXIOS from "./apis";
 import { STUDENTRESULTS } from "./urls";
 import { useNavigate } from "react-router-dom";
-function StudentResultsDashboard({userId}){
-    const navigate = useNavigate()
 
-    const [results,setResults] = useState([])
-    useEffect(()=>{
-        customAXIOS(STUDENTRESULTS,{id:userId},'get',null,navigate).then((res)=>{
-            const data = res.map(item=>({
-                Name: item.Name,
-                SubjectName: item.results__subject_id__Name,
-                Grade: item.results__grade,
-                Percentage: item.results__percentage,
-        }))
-        setResults(data)
-        console.log(results)
-        }).catch((err)=>console.err(err))
-        
-        console.log(results)
-    },[]
-    )
+function StudentResultsDashboard({ userId }) {
+    const navigate = useNavigate();
+    const [results, setResults] = useState([]);
 
+    useEffect(() => {
+        customAXIOS(STUDENTRESULTS, { id: userId }, 'get', null, navigate)
+            .then((res) => {
+                const data = res.map(item => ({
+                    Name: item.Name,
+                    SubjectName: item.results__subject_id__Name,
+                    Grade: item.results__grade,
+                    Percentage: item.results__percentage,
+                }));
+                setResults(data);
+                console.log("Fetched results:", data);
+            })
+            .catch((err) => console.error("Error fetching results:", err));
+    }, [userId, navigate]);
 
     return (
         <div className="display-container">
@@ -32,21 +31,22 @@ function StudentResultsDashboard({userId}){
                         <th>Name</th>
                         <th>Subject</th>
                         <th>Grade</th>
-                        <th>percentage</th>
+                        <th>Percentage</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {results.map((r) => (
-                        <tr key={userId}>
-                            <td>{r.name}</td>
-                            <td>{r.SubjectName}</td>
-                            <td>{r.Grade}</td>
-                            <td>{r.percentage}</td>
-                        </tr>
-                    ))}
-                    {results.length === 0 && (
+                    {results.length > 0 ? (
+                        results.map((r) => (
+                            <tr key={`${userId}-${r.SubjectName}`}>
+                                <td>{r.Name}</td>
+                                <td>{r.SubjectName}</td>
+                                <td>{r.Grade}</td>
+                                <td>{r.Percentage}</td>
+                            </tr>
+                        ))
+                    ) : (
                         <tr>
-                            <td colSpan="9" style={{ textAlign: "center" }}>No results found</td>
+                            <td colSpan="4" style={{ textAlign: "center" }}>No results found</td>
                         </tr>
                     )}
                 </tbody>
@@ -55,4 +55,4 @@ function StudentResultsDashboard({userId}){
     );
 }
 
-export default StudentResultsDashboard
+export default StudentResultsDashboard;

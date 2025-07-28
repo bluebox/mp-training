@@ -12,5 +12,6 @@ urlpatterns = [
     path('Student/',StudentsView.as_view()),
     path('',include(router.urls)),
     path('dashboard/',StudentResultsDashBoard.as_view()),
-    path('StudentDetails/',StudentDetails.as_view()),
+    path('studentDetails/',StudentDetails.as_view()),
+    path('subjectsDashboard/',StudentSubjectsDashboard.as_view()),
 ]

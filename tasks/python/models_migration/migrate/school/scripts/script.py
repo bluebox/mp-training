@@ -1,9 +1,7 @@
-from symtable import Class
 from django.contrib.auth.hashers import make_password
 from django.contrib.sites import requests
 from django.utils import timezone
 from random import randint, choice, uniform
-from datetime import timedelta
 
 from rest_framework.views import APIView
 
@@ -172,7 +170,7 @@ def correct_results():
         i.save()
 
 def correct_passwords():
-    students = Student.objects.dropped()
+    students = Student.objects.all()
     for student in students:
         print(student.user.set_password("password123"))
         print(student.user.password)

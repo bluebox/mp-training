@@ -52,10 +52,10 @@ class SubjectClassTeacherSerializer(serializers.ModelSerializer):
         model = subject_teacher
         fields = '__all__'
 
-class StudentProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StudentProfile
-        fields = '__all__'
+# class StudentProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = StudentProfile
+#         fields = '__all__'
 
 class StudentResultsDashboard(serializers.ModelSerializer):
     results_set = ResultsSerializer(many=True, read_only=True)
@@ -63,11 +63,25 @@ class StudentResultsDashboard(serializers.ModelSerializer):
         model = Student
         fields = '__all__'
 
-class StudentDetailsSerializer(serializers.ModelSerializer):
-    studentprofile = StudentProfileSerializer(read_only=True)
-    Class = ClassesSerializer(read_only=True)
+# class StudentDetailsSerializer(serializers.ModelSerializer):
+#     studentprofile = StudentProfileSerializer(read_only=True)
+#     Class = ClassesSerializer(read_only=True)
+#     class Meta:
+#         model = Student
+#         fields = '__all__'
+
+class StudentProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
-        fields = '__all__'
+        model = StudentProfile
+        fields = [
+            "Age",
+            "FatherName",
+            "MotherName",
+            "FatherAge",
+            "MotherAge",
+            "address",
+            "phoneNo"
+        ]
+
 
 

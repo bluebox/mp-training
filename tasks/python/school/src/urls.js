@@ -6,3 +6,5 @@ export const TEACHERS = "/teacher/"
 export const LOGIN = "api/token/"
 export const REFRESH = "api/token/refresh/"
 export const STUDENTRESULTS = "/dashboard/"
+export const STUDENTDETAILS = '/studentDetails/'
+export const STUDENTSUBJECTS = '/subjectsDashboard/'

@@ -19,8 +19,8 @@ from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
 from rest_framework_simplejwt.views import (TokenRefreshView,TokenVerifyView)
 
+# from migrate.JwtView import CustomAuthView
 from migrate.JwtView import CustomAuthView
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include("school.urls")),
