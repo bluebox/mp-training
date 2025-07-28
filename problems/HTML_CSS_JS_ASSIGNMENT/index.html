@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Data Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <container id="Leftview">
+<h1>Student Registration Form</h1>
+
+<form id="dataForm">
+    <label>Name: <input type="text" id="name"></label>
+    <label>Age: <input type="number" id="age" min="1"></label>
+    <label>Email: <input type="email" id="email"></label>
+    <label>Phone Number: <input type="text" id="phone" maxlength="10"></label>
+
+    <fieldset>
+      <legend>Branch</legend>
+      <label><input type="radio" name="branch" value="CSE"> CSE</label>
+      <label><input type="radio" name="branch" value="ECE"> ECE</label>
+      <label><input type="radio" name="branch" value="EEE"> EEE</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Languages Known</legend>
+      <label><input type="checkbox" name="languages" value="English"> English</label>
+      <label><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+      <label><input type="checkbox" name="languages" value="French"> French</label>
+    </fieldset>
+
+    <label>State:
+      <select id="state">
+        <option value="">Select State</option>
+      </select>
+    </label>
+    
+    <label>City:
+      <select id="city">
+        <option value="">Select City</option>
+      </select>
+    </label>
+
+    <button type="submit" id="addBtn" disabled>Add</button>
+  </form>
+
+</container>
+
+
+<container id="rightview">
+
+  <h1>Student Records Table</h1>
+  <input type="text" id="searchInput" placeholder="Search...">
+  <p id="entryCount"></p>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Name</th><th>Age</th><th>Email</th><th>Phone</th><th>Branch</th><th>Languages</th><th>State</th><th>City</th><th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p id="noResults">No results found.</p>
+
+  </container>
+ 
+
+
+  <script src="script.js"></script>
+</body>
+</html>

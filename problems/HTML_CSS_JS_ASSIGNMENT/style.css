@@ -1,0 +1,51 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f9f9f9;
+  display:flex;
+  flex-direction:row;
+}
+
+container{
+  margin-left: 15px;
+  margin-right: 12px;
+}
+
+form {
+  background:grey;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+label, fieldset {
+  display: block;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#noResults {
+  display: none;
+  color: red;
+  font-style: italic;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
