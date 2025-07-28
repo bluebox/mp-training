@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Student Registration Form</h2>
+    <form id="dataForm">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="number" id="age" placeholder="Age" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="phone" placeholder="Phone Number" required />
+
+      <div class="section">
+        <label>Branch:</label>
+        <label><input type="radio" name="branch" value="CSE" /> CSE</label>
+        <label><input type="radio" name="branch" value="ECE" /> ECE</label>
+        <label><input type="radio" name="branch" value="EEE" /> EEE</label>
+      </div>
+
+      <div class="section">
+        <label>Languages:</label>
+        <label><input type="checkbox" value="English" /> English</label>
+        <label><input type="checkbox" value="Hindi" /> Hindi</label>
+        <label><input type="checkbox" value="French" /> French</label>
+      </div>
+
+      <select id="stateSelect" required>
+        <option value="">Select State</option>
+      </select>
+
+      <select id="citySelect" required>
+        <option value="">Select City</option>
+      </select>
+
+      <button type="submit" id="addBtn" disabled>Add</button>
+    </form>
+
+    <div class="controls">
+      <input type="text" id="searchBox" placeholder="Search..." />
+      <span id="entryCount">Total Entries: 0</span>
+    </div>
+
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Name</th><th>Age</th><th>Email</th><th>Phone</th>
+          <th>Branch</th><th>Languages</th><th>State</th><th>City</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="controls">
+      <button id="clearAllBtn">Clear All</button>
+      <button id="exportBtn">Export to CSV</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
