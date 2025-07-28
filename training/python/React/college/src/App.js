@@ -20,7 +20,6 @@ function NavBar(){
 
         <Link to='/data'>Data   </Link>
 
-        {/* <Link to='/' onClick={handleLogout}>logout</Link> */}
     </nav>
   )
 }

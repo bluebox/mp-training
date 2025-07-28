@@ -1,0 +1,14 @@
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+admin = User.objects.create_user(username="admin1", email="admin1@example.com", password="admin123", role="admin")
+
+lead1 = User.objects.create_user(username="lead1", email="lead1@example.com", password="lead123", role="lead")
+lead2 = User.objects.create_user(username="lead2", email="lead2@example.com", password="lead123", role="lead")
+
+member1 = User.objects.create_user(username="member1", email="member1@example.com", password="member123", role="member")
+member2 = User.objects.create_user(username="member2", email="member2@example.com", password="member123", role="member")
+member3 = User.objects.create_user(username="member3", email="member3@example.com", password="member123", role="member")
+member4 = User.objects.create_user(username="member4", email="member4@example.com", password="member123", role="member")
+member5 = User.objects.create_user(username="member5", email="member5@example.com", password="member123", role="member")
+

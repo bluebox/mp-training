@@ -1,0 +1,13 @@
+.navbar{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 50px;
+  background-color: black;
+  padding-right: 10px;
+}
+*{
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}

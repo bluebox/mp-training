@@ -15,11 +15,12 @@ export default function AddStudent({resources}){
     });
 
   const handleChange = (e) => {
+
     const { name, value } = e.target;
-    setStudent((prevStudent) => ({
-      ...prevStudent,
-      [name]: value,
-    }));
+      setStudent((prevStudent) => ({
+        ...prevStudent,
+        [name]: value,
+      }));
   };
   useEffect(() => {
     if (location.state && location.state.values && location.state.resource) {

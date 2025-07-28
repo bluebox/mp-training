@@ -46,7 +46,7 @@ class CourseSerializer(serializers.ModelSerializer):
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
-        fields = ['student', 'course', 'internal_marks', 'external_marks']
+        fields = ['enrollment_id', 'student', 'course', 'internal_marks', 'external_marks']
         # fields = '__all__'
 
 

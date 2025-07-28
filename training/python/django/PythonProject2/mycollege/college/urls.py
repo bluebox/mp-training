@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.urls import path
 from .views import (
     StudentAPIView, StudentProfileAPIView, DepartmentAPIView,
-    CourseAPIView, TeacherAPIView, EnrollmentAPIView, TeacherCourseAPIView
+    CourseAPIView, TeacherAPIView, EnrollmentAPIView, TeacherCourseAPIView, StudentFullProfileView
 )
 
 urlpatterns = [
@@ -26,6 +26,9 @@ urlpatterns = [
 
     path('teacher-courses/', TeacherCourseAPIView.as_view()),
     path('teacher-courses/<int:id>/', TeacherCourseAPIView.as_view()),
+
+    path('student/',StudentFullProfileView.as_view()),
+    path('student/<int:id>/',StudentFullProfileView.as_view()),
 ]
 
 # from .views import StudentViewSet, DepartmentViewSet, StudentView, DepartmentView, StudentProfileView, \

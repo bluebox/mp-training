@@ -1,0 +1,188 @@
+all_users = User.objects.all()
+for user in all_users:
+     print(user.username, user.role)
+
+admin1 admin
+lead1 lead
+lead2 lead
+member1 member
+member2 member
+member3 member
+member4 member
+member5 member
+
+
+
+
+all_teams = Team.objects.all()
+for team in all_teams:
+    print(team.name, team.description)
+Alpha Team Handles core platform
+Beta Team Handles testing and QA
+
+
+
+team_members = TeamMember.objects.select_related('user', 'team')
+for member in team_members:
+    print(f"{member.user.username} is a {member.role} in {member.team.name}")
+
+lead1 is a Lead in Alpha Team
+member1 is a Developer in Alpha Team
+member2 is a Developer in Alpha Team
+member3 is a Tester in Alpha Team
+lead2 is a Lead in Beta Team
+member4 is a Developer in Beta Team
+member5 is a Tester in Beta Team
+
+
+projects = Project.objects.select_related('team', 'created_by')
+for project in projects:
+    print(f"Project: {project.name}, Team: {project.team.name}, Created by: {project.created_by.username}")
+
+Project: Internal Portal, Team: Alpha Team, Created by: lead1
+Project: QA Dashboard, Team: Beta Team, Created by: lead2
+
+
+tasks = Task.objects.select_related('project', 'created_by')
+for task in tasks:
+    print(f"{task.title} - {task.status} - {task.priority} (Project: {task.project.name}, By: {task.created_by.username})")
+
+Build Auth System - todo - high (Project: Internal Portal, By: lead1)
+Frontend Layout - in_progress - medium (Project: Internal Portal, By: lead1)
+Write Unit Tests - todo - medium (Project: QA Dashboard, By: lead2)
+Bug Review - done - low (Project: QA Dashboard, By: lead2)
+
+
+
+project = Project.objects.get(name="Internal Portal")
+project_tasks = project.task_set.all()
+for task in project_tasks:
+    print(task.title)
+
+Build Auth System
+Frontend Layout
+
+
+
+assignments = TaskAssignment.objects.select_related('task', 'user')
+for assignment in assignments:
+    print(f"{assignment.user.username} is assigned to '{assignment.task.title}' as {assignment.role}")
+
+member1 is assigned to 'Build Auth System' as Developer
+member2 is assigned to 'Frontend Layout' as Developer
+member4 is assigned to 'Write Unit Tests' as Tester
+member5 is assigned to 'Bug Review' as Tester
+
+
+
+task = Task.objects.get(title="Build Auth System")
+comments = TaskComment.objects.filter(task=task)
+for comment in comments:
+    print(f"{comment.user.username}: {comment.comment}")
+
+member1: Started working on backend auth
+
+
+
+user = User.objects.get(username="member1")
+assigned_tasks = Task.objects.filter(taskassignment__user=user).distinct()
+for task in assigned_tasks:
+    print(task.title)
+
+Build Auth System
+
+
+team = Team.objects.get(name="Alpha Team")
+members = team.members.all()
+for user in members:
+    print(user.username, user.role)
+lead1 lead
+member1 member
+member2 member
+member3 member
+>>>
+>>>
+>>>
+
+
+
+from django.contrib.auth import get_user_model
+from core.models import Team, TeamMember, Project, Task, TaskAssignment, TaskComment
+
+User = get_user_model()
+
+# 1. Create Users
+admin = User.objects.create_user(username="admin1", email="admin1@example.com", password="admin123", role="admin")
+
+lead1 = User.objects.create_user(username="lead1", email="lead1@example.com", password="lead123", role="lead")
+lead2 = User.objects.create_user(username="lead2", email="lead2@example.com", password="lead123", role="lead")
+
+member1 = User.objects.create_user(username="member1", email="member1@example.com", password="member123", role="member")
+member2 = User.objects.create_user(username="member2", email="member2@example.com", password="member123", role="member")
+member3 = User.objects.create_user(username="member3", email="member3@example.com", password="member123", role="member")
+member4 = User.objects.create_user(username="member4", email="member4@example.com", password="member123", role="member")
+member5 = User.objects.create_user(username="member5", email="member5@example.com", password="member123", role="member")
+
+# 2. Create Teams
+team_alpha = Team.objects.create(name="Alpha Team", description="Handles core platform")
+team_beta = Team.objects.create(name="Beta Team", description="Handles testing and QA")
+
+# 3. Assign Members to Teams
+TeamMember.objects.create(user=lead1, team=team_alpha, role="Lead")
+TeamMember.objects.create(user=member1, team=team_alpha, role="Developer")
+TeamMember.objects.create(user=member2, team=team_alpha, role="Developer")
+TeamMember.objects.create(user=member3, team=team_alpha, role="Tester")
+
+TeamMember.objects.create(user=lead2, team=team_beta, role="Lead")
+TeamMember.objects.create(user=member4, team=team_beta, role="Developer")
+TeamMember.objects.create(user=member5, team=team_beta, role="Tester")
+
+# 4. Create Projects
+project_internal = Project.objects.create(name="Internal Portal", description="", team=team_alpha, created_by=lead1)
+project_qa = Project.objects.create(name="QA Dashboard", description="", team=team_beta, created_by=lead2)
+
+# 5. Create Tasks
+task_auth = Task.objects.create(
+    title="Build Auth System",
+    description="",
+    status="todo",
+    priority="high",
+    project=project_internal,
+    created_by=lead1
+)
+
+task_frontend = Task.objects.create(
+    title="Frontend Layout",
+    description="",
+    status="in_progress",
+    priority="medium",
+    project=project_internal,
+    created_by=lead1
+)
+
+task_tests = Task.objects.create(
+    title="Write Unit Tests",
+    description="",
+    status="todo",
+    priority="medium",
+    project=project_qa,
+    created_by=lead2
+)
+
+task_bug_review = Task.objects.create(
+    title="Bug Review",
+    description="",
+    status="done",
+    priority="low",
+    project=project_qa,
+    created_by=lead2
+)
+
+# 6. Assign Users to Tasks
+TaskAssignment.objects.create(task=task_auth, user=member1, role="Developer")
+TaskAssignment.objects.create(task=task_frontend, user=member2, role="Developer")
+TaskAssignment.objects.create(task=task_tests, user=member4, role="Tester")
+TaskAssignment.objects.create(task=task_bug_review, user=member5, role="Tester")
+
+# 7. Add Comments
+TaskComment.objects.create(task=task_auth, user=member1, comment="Started working on backend auth")

@@ -11,7 +11,7 @@ from .models import (
 )
 from .serializers import (
     StudentSerializer, StudentProfileSerializer, DepartmentSerializer,
-    CourseSerializer, TeacherSerializer, EnrollmentSerializer, TeacherCourseSerializer
+    CourseSerializer, TeacherSerializer, EnrollmentSerializer, TeacherCourseSerializer, StudentFullProfileSerializer
 )
 
 
@@ -352,8 +352,23 @@ class TeacherCourseAPIView(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response({'error': 'Record not found'}, status=status.HTTP_404_NOT_FOUND)
 
+class StudentFullProfileView(APIView):
+    def get(self, request, id=None):
+    # def get(self, request):
+        if id is not None:
+            queryset = StudentProfile.objects.select_related('student').all().filter(student__student_id__exact = 1)
+            serializer = StudentFullProfileSerializer(queryset, many=True)
+            return Response(serializer.data)
+        queryset = StudentProfile.objects.select_related('student').all()
+        serializer = StudentFullProfileSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-
+    def post(self, request):
+        serializer = StudentFullProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
