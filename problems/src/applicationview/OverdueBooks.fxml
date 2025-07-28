@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.OverdueBooksController"
+      spacing="10" alignment="CENTER" prefWidth="600" prefHeight="400">
+
+    <TableView fx:id="overdueBooksTable" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="idColumn" text="Book ID" prefWidth="80"/>
+            <TableColumn fx:id="titleColumn" text="Title" prefWidth="150"/>
+            <TableColumn fx:id="authorColumn" text="Author" prefWidth="150"/>
+            <TableColumn fx:id="categoryColumn" text="Category" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+</VBox>
