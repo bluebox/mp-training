@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefWidth="1000.0" prefHeight="700.0" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="Controller.BookController">
+   
+   
+
+   <!-- Main form elements -->
+   <children>
+      <Label layoutX="350.0" layoutY="40.0" text="Update Book Details">
+         <font>
+            <Font name="Bookman Old Style Bold" size="24.0"/>
+         </font>
+      </Label>
+
+      <Label layoutX="300.0" layoutY="120.0" text="Book ID:"/>
+      <TextField fx:id="uIDfield" layoutX="400.0" layoutY="115.0"/>
+
+      <Label layoutX="300.0" layoutY="170.0" text="Book Title:"/>
+      <TextField fx:id="utitlefield" layoutX="400.0" layoutY="165.0"/>
+
+      <Label layoutX="300.0" layoutY="220.0" text="Author:"/>
+      <TextField fx:id="uAuthor" layoutX="400.0" layoutY="215.0"/>
+
+      <Label layoutX="300.0" layoutY="270.0" text="Category:"/>
+      <TextField fx:id="ucategory" layoutX="400.0" layoutY="265.0"/>
+
+      <Label layoutX="300.0" layoutY="320.0" text="Status:"/>
+      <RadioButton fx:id="uActive" layoutX="400.0" layoutY="315.0" text="Active" onAction="#handleupdateStatusSelection"/>
+      <RadioButton fx:id="uInactive" layoutX="480.0" layoutY="315.0" text="Inactive" onAction="#handleupdateStatusSelection"/>
+
+      <Button layoutX="420.0" layoutY="380.0" text="Update" onAction="#updatebook" style="-fx-background-color: white;">
+         <font>
+            <Font name="Bookman Old Style Bold" size="16.0"/>
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
