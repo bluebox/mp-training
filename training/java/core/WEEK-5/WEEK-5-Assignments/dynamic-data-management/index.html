@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Data Management</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Student Registration Form</h1>
+    <form id="dataForm">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="number" name="age" placeholder="Age" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="tel" name="phone" placeholder="Phone (10 digits)" maxlength="10" required />
+
+      <div class="branch">
+        <span>Branch:</span>
+        <label><input type="radio" name="branch" value="CSE" /> CSE</label>
+        <label><input type="radio" name="branch" value="ECE" /> ECE</label>
+        <label><input type="radio" name="branch" value="EEE" /> EEE</label>
+      </div>
+
+      <div class="languages">
+        <span>Languages Known:</span>
+        <label><input type="checkbox" name="languages" value="English" /> English</label>
+        <label><input type="checkbox" name="languages" value="Hindi" /> Hindi</label>
+        <label><input type="checkbox" name="languages" value="French" /> French</label>
+      </div>
+
+      <select id="state" required>
+        <option value="">Select State</option>
+      </select>
+      <select id="city" required disabled>
+        <option value="">Select City</option>
+      </select>
+
+      <button type="submit" id="addBtn" disabled>Add</button>
+    </form>
+
+    <h3>Total Search Entries: <span id="entryCount">0</span></h3>
+
+    <div class="table-container">
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Branch</th>
+            <th>Languages</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Actions</th>
+          </tr>
+          <tr class="search-row">
+            <th><input type="text" class="col-search" data-index="0" placeholder="Search Name"></th>
+            <th><input type="text" class="col-search" data-index="1" placeholder="Search Age"></th>
+            <th><input type="text" class="col-search" data-index="2" placeholder="Search Email"></th>
+            <th><input type="text" class="col-search" data-index="3" placeholder="Search Phone"></th>
+            <th><input type="text" class="col-search" data-index="4" placeholder="Search Branch"></th>
+            <th><input type="text" class="col-search" data-index="5" placeholder="Search Languages"></th>
+            <th><input type="text" class="col-search" data-index="6" placeholder="Search State"></th>
+            <th><input type="text" class="col-search" data-index="7" placeholder="Search City"></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
