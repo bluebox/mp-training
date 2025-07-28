@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../../../api/axiosInstance";
 
 export const fetchUserProfile = createAsyncThunk("profile/fetch", async (_, thunkAPI) => {
   try {
-    const response = await axios.get("/employee/profile/");
+    const response = await axiosInstance.get("/employee/profile/");
     return response.data.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -12,7 +12,7 @@ export const fetchUserProfile = createAsyncThunk("profile/fetch", async (_, thun
 
 export const updateUserProfile = createAsyncThunk("profile/update", async (updateData, thunkAPI) => {
   try {
-    const response = await axios.put("/employee/profile/", updateData);
+    const response = await axiosInstance.put("/employee/profile/", updateData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
