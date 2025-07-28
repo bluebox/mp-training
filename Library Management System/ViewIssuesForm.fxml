@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.LibraryManagement.controller.ViewAllIssuesController"
+            prefHeight="500.0" prefWidth="900.0"
+            stylesheets="@../../application/css/viewbook.css">
+
+    <TableView fx:id="issueTable"
+               layoutX="10.0" layoutY="10.0"
+               prefWidth="880.0" prefHeight="480.0"
+               AnchorPane.topAnchor="10.0"
+               AnchorPane.bottomAnchor="10.0"
+               AnchorPane.leftAnchor="10.0"
+               AnchorPane.rightAnchor="10.0">
+
+        <columns>
+            <TableColumn fx:id="issueIdCol" text="Issue ID" prefWidth="100.0"/>
+            <TableColumn fx:id="bookIdCol" text="Book ID" prefWidth="100.0"/>
+            <TableColumn fx:id="memberIdCol" text="Member ID" prefWidth="120.0"/>
+            <TableColumn fx:id="statusCol" text="Status" prefWidth="80.0"/>
+            <TableColumn fx:id="issueDateCol" text="Issue Date" prefWidth="200.0"/>
+            <TableColumn fx:id="returnDateCol" text="Return Date" prefWidth="200.0"/>
+        </columns>
+    </TableView>
+
+</AnchorPane>

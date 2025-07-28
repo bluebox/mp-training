@@ -1,0 +1,45 @@
+.add-book-form {
+    -fx-background-color: beige;
+    -fx-padding: 20;
+    -fx-font-family: "Arial";
+}
+
+.form-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 18px;
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 4;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+        -fx-font-size: 18px;
+    
+}
+
+.combo-box {
+    -fx-font-size: 13px;
+    -fx-pref-width: 183px;
+    -fx-pref-height: 26px;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}

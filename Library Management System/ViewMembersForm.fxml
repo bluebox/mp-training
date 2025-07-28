@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane  xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1"
+stylesheets="@../../application/css/viewmember.css"
+      fx:controller="com.LibraryManagement.controller.MemberController" styleClass="root" >
+
+    <TableView fx:id="membersTable" layoutX="10.0" layoutY="10.0"  AnchorPane.rightAnchor="0.0"  prefWidth="700.0" AnchorPane.topAnchor="0.0">
+        <columns>
+            <TableColumn fx:id="memberIdColumn" text="Member ID"/>
+            <TableColumn fx:id="nameColumn" text="Name"/>
+            <TableColumn fx:id="emailColumn" text="Email"/>
+            <TableColumn fx:id="mobileColumn" text="Mobile"/>
+            <TableColumn fx:id="genderColumn" text="Gender"/>
+            <TableColumn fx:id="addressColumn" text="Address"/>
+            <TableColumn fx:id="actionColumn" text="Action"/>
+        </columns>
+    </TableView>
+</AnchorPane>
