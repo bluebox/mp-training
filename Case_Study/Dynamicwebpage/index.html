@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Data Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Student Registration Form</h1>
+
+  <form id="studentForm">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Name" required>
+    </div>
+    <div>
+      <label for="age">Age</label>
+      <input type="number" id="age" placeholder="Age" min="1" max="120" required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Email" required>
+    </div>
+    <div>
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10" required>
+      <span class="error" id="phoneError"></span>
+    </div>
+    <div>
+      <label>Branch:</label>
+      <label><input type="radio" name="branch" value="CSE"> CSE</label>
+      <label><input type="radio" name="branch" value="ECE"> ECE</label>
+      <label><input type="radio" name="branch" value="EEE"> EEE</label>
+      <span class="error" id="branchError"></span>
+    </div>
+    <div>
+      <label>Languages Known:</label>
+      <label><input type="checkbox" value="English" class="language"> English</label>
+      <label><input type="checkbox" value="Hindi" class="language"> Hindi</label>
+      <label><input type="checkbox" value="French" class="language"> Telugu</label>
+      <span class="error" id="languageError"></span>
+    </div>
+    <div>
+      <label for="state">State</label>
+      <select id="state" required>
+        <option value="">Select State</option>
+      </select>
+    </div>
+    <div>
+      <label for="city">City</label>
+      <select id="city" required>
+        <option value="">Select City</option>
+      </select>
+    </div>
+    <button type="submit" disabled>Add</button>
+  </form>
+
+  <input type="text" id="search" placeholder="Search...">
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Branch</th>
+        <th>Languages</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
