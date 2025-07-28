@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Data Management</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Dynamic Data Management</h1>
+
+    <form id="dataForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" required />
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" id="age" required min="1" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" maxlength="10" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Branch</label>
+        <div class="checkbox-group">
+          <label><input type="radio" name="branch" value="CSE" /> CSE</label>
+          <label><input type="radio" name="branch" value="ECE" /> ECE</label>
+          <label><input type="radio" name="branch" value="EEE" /> EEE</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Languages Known</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="languages" value="English" /> English</label>
+          <label><input type="checkbox" name="languages" value="Hindi" /> Hindi</label>
+          <label><input type="checkbox" name="languages" value="French" /> French</label>
+          <label><input type="checkbox" name="languages" value="Telugu" /> Telugu</label>
+          <label><input type="checkbox" name="languages" value="Spanish" /> Spanish</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="state">State</label>
+          <select id="state" required>
+            <option value="">Select State</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <select id="city" required>
+            <option value="">Select City</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" id="addBtn">Add</button>
+    </form>
+
+    <input type="text" id="search" placeholder="Search" />
+
+    <p id="entryCount"></p>
+
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Name</th><th>Age</th><th>Email</th><th>Phone</th><th>Branch</th><th>Languages</th><th>State</th><th>City</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <p id="noResults" style="display:none;">No results found.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
