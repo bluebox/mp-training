@@ -5,13 +5,22 @@ public class Book {
     private String title;
     private String author;
     private String category;
-    private BookStatus status;               // A / I
-    private AvailabilityStatus availability; // A / I
+    private BookStatus status;              
+    private AvailabilityStatus availability;
     
 	public Book(int bookId, String title, String author, String category, BookStatus status,
 			AvailabilityStatus availability) {
 		super();
 		this.bookId = bookId;
+		this.title = title;
+		this.author = author;
+		this.category = category;
+		this.status = status;
+		this.availability = availability;
+	}
+	public Book(String title, String author, String category, BookStatus status,
+			AvailabilityStatus availability) {
+		super();
 		this.title = title;
 		this.author = author;
 		this.category = category;
@@ -54,9 +63,13 @@ public class Book {
 	public void setAvailability(AvailabilityStatus availability) {
 		this.availability = availability;
 	}
+	@Override
+	public String toString() {
+		return "[bookId=" + bookId + ", title=" + title + ", author=" + author + ", category=" + category
+				+ ", status=" + status + ", availability=" + availability + "]";
+	}
 
     
 
    
 }
-

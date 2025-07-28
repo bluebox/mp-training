@@ -39,7 +39,7 @@ public class ViewIssueController {
 
     public void setConnection(Connection connection) {
         this.issueService = new IssueService(connection);
-        loadIssueRecords(); // Load data after connection is set
+        loadIssueRecords();
     }
 
     private void loadIssueRecords() {

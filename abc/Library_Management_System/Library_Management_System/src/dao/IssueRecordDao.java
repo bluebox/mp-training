@@ -18,7 +18,6 @@ public class IssueRecordDao {
         this.conn = conn;
     }
     public IssueRecordDao() {
-		// TODO Auto-generated constructor stub
 	}
 	public String issueBook(int bookId, int memberId) throws SQLException {
         String checkBookQuery = "SELECT Status, Availability FROM books WHERE BookId = ?";
