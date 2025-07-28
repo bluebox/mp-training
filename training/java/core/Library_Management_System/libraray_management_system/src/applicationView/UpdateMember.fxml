@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.UpdateMembersController"
+            prefHeight="500.0" prefWidth="600.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #f0f8ff, #cce7ff);">
+    <children>
+
+        <Button layoutX="20.0" layoutY="20.0" text="Back"
+                onAction="#goToPreviousScene"
+                style="-fx-background-color: #d32f2f; -fx-text-fill: white; -fx-background-radius: 8;">
+            <font><Font name="Segoe UI Bold" size="12.0" /></font>
+        </Button>
+
+        <Label layoutX="100.0" layoutY="30.0" text="Library Management System - Update Member" textFill="#333">
+            <font><Font name="Segoe UI Bold" size="20.0" /></font>
+        </Label>
+
+        <Label layoutX="130.0" layoutY="90.0" text="Member ID:" textFill="#2e4053">
+            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+        </Label>
+        <TextField fx:id="memberid" layoutX="230.0" layoutY="85.0" prefWidth="220.0" />
+
+        <Label layoutX="130.0" layoutY="140.0" text="Name:" textFill="#2e4053">
+            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+        </Label>
+        <TextField fx:id="nameField" layoutX="230.0" layoutY="135.0" prefWidth="220.0" />
+
+        <Label layoutX="130.0" layoutY="190.0" text="Email:" textFill="#2e4053">
+            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+        </Label>
+        <TextField fx:id="emailField" layoutX="230.0" layoutY="185.0" prefWidth="220.0" />
+
+        <Label layoutX="130.0" layoutY="240.0" text="Mobile:" textFill="#2e4053">
+            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+        </Label>
+        <TextField fx:id="mobileField" layoutX="230.0" layoutY="235.0" prefWidth="220.0" />
+
+        <Label layoutX="130.0" layoutY="290.0" text="Gender:" textFill="#2e4053">
+            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+        </Label>
+        <ComboBox fx:id="genderBox" layoutX="230.0" layoutY="285.0" prefWidth="220.0" promptText="Select Gender" />
+
+        <Label layoutX="130.0" layoutY="340.0" text="Address:" textFill="#2e4053">
+            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+        </Label>
+        <TextField fx:id="addressField" layoutX="230.0" layoutY="335.0" prefWidth="220.0" />
+
+        <Button layoutX="245.0" layoutY="400.0" text="Update Member"
+                onAction="#handleAddMember"
+                style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-background-radius: 8;">
+            <font><Font name="Segoe UI Bold" size="14.0" /></font>
+        </Button>
+    </children>
+</AnchorPane>

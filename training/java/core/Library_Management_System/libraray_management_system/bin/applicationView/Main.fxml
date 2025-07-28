@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="src.Controller.AddBookController" prefHeight="300" prefWidth="400">
+    <children>
+        <VBox spacing="10" layoutX="50" layoutY="30">
+            <TextField fx:id="titleField" promptText="Title"/>
+            <TextField fx:id="authorField" promptText="Author"/>
+            <TextField fx:id="categoryField" promptText="Category"/>
+            <Button text="Add Book" onAction="#handleAddBook"/>
+        </VBox>
+    </children>
+</AnchorPane>
