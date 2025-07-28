@@ -9,7 +9,6 @@ const languageError = document.getElementById('languageError');
 
 let entries = [];
 
-// Fetch states from API
 async function fetchStates() {
   try {
     const response = await fetch('http://192.168.0.73:32114/partner/get-states?countryCode=IN');
@@ -28,7 +27,6 @@ async function fetchStates() {
   }
 }
 
-// Fetch cities based on state code
 async function fetchCities(stateCode) {
   try {
     const response = await fetch(`http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=${stateCode}`);
@@ -47,10 +45,8 @@ async function fetchCities(stateCode) {
   }
 }
 
-// Initialize states on page load
 fetchStates();
 
-// Populate city dropdown based on state selection
 stateDropdown.addEventListener('change', () => {
   const selectedState = stateDropdown.value;
   cityDropdown.innerHTML = '<option value="">Select City</option>';
@@ -60,7 +56,6 @@ stateDropdown.addEventListener('change', () => {
   validateForm();
 });
 
-// Validate on input
 userForm.addEventListener('input', validateForm);
 
 function validateForm() {
@@ -70,14 +65,11 @@ function validateForm() {
   const state = stateDropdown.value;
   const city = cityDropdown.value;
 
-  // Phone validation
   const phoneValid = /^\d{10}$/.test(phone);
   phoneError.textContent = phoneValid || !phone ? '' : 'Enter a valid 10-digit phone number';
 
-  // Branch validation
   branchError.textContent = branch ? '' : 'Select a branch';
 
-  // Language validation
   languageError.textContent = languages.length > 0 ? '' : 'Select at least one language';
 
   const isValid = name && age && email && phoneValid && branch && languages.length > 0 && state && city;
