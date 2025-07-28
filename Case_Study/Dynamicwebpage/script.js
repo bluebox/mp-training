@@ -9,40 +9,83 @@ const languageError = document.getElementById('languageError');
 
 let entries = [];
 
-async function fetchStates() {
-  try {
-    const response = await fetch('http://192.168.0.73:32114/partner/get-states?countryCode=IN');
-    if (!response.ok) throw new Error('Failed to fetch states');
-    const states = await response.json();
-    stateDropdown.innerHTML = '<option value="">Select State</option>';
-    states.forEach(state => {
+ function fetchStates() {
+  
+    const response =  fetch('http://192.168.0.73:32114/partner/get-states?countryCode=IN')
+                        .then(response=>response.json())
+                        .then(states=>{
+                          console.log("hi wow"+states.response);
+                          console.log(typeof(states));
+                          //  states = JSON.stringify(states);
+                          var  stcode=states.response.slice(1,states.response.length-1).split(",");
+                          // states=states.slice(1,-1);
+
+                          // console.log(states);
+                          // var st=states.split(",");
+                          // console.log(st)
+                          stateDropdown.innerHTML = '<option value="">Select State</option>';
+                          // st=st.slice(2,-1);
+    stcode.forEach(state => {
+      console.log(state);
+      state=state.split(":");
       const option = document.createElement('option');
-      option.value = state.stateCode;
-      option.textContent = state.stateName;
+      if(state[0]=="response"){
+        console.log(state[0]+"ijijij")
+        state=state[1].split(",");
+      }
+      option.value = ""+state[1];
+      option.textContent = ""+state[0];
       stateDropdown.appendChild(option);
-    });
-  } catch (error) {
-    console.error('Error fetching states:', error);
-    stateDropdown.innerHTML = '<option value="">Error loading states</option>';
-  }
+    });})
+        .catch(error=>console.log(error+"error loading states"));
+  //   console.log(response);
+  //   console.log("hi hello ");
+  //   if (!response.ok) throw new Error('Failed to fetch states');
+  //   const states = await response.json();
+  //   stateDropdown.innerHTML = '<option value="">Select State</option>';
+  //   states.forEach(state => {
+  //     const option = document.createElement('option');
+  //     option.value = state.stateCode;
+  //     option.textContent = state.stateName;
+  //     stateDropdown.appendChild(option);
+  //   });
+  // } catch (error) {
+  //   console.error('Error fetching states:', error);
+  //   stateDropdown.innerHTML = '<option value="">Error loading states</option>';
+  // }
 }
 
-async function fetchCities(stateCode) {
-  try {
-    const response = await fetch(`http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=${stateCode}`);
-    if (!response.ok) throw new Error('Failed to fetch cities');
-    const cities = await response.json();
-    cityDropdown.innerHTML = '<option value="">Select City</option>';
-    cities.forEach(city => {
+ function fetchCities(stateCode) {
+  stateCode=stateCode.slice(1,-1);
+  stateCode=stateCode.slice(0,stateCode.length)
+    console.log("response"+stateCode);
+    const response =  fetch(`http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=${stateCode}`)
+                        .then(response=>response.json())
+                        .then(cities=>{
+                          console.log("hi hello how are u"+cities.response);
+                        var city=cities.response.slice(1,cities.response.length-1).split(",");
+                          cityDropdown.innerHTML = '<option value="">Select City</option>';
+    city.forEach(city => {
       const option = document.createElement('option');
-      option.value = city.cityCode;
-      option.textContent = city.cityName;
+      city=city.split(":");
+      option.value = ""+city[1];
+      option.textContent = ""+city[0];
       cityDropdown.appendChild(option);
-    });
-  } catch (error) {
-    console.error('Error fetching cities:', error);
-    cityDropdown.innerHTML = '<option value="">Error loading cities</option>';
-  }
+                        })}).catch(error=>console.log("error "+error))
+                        
+  //   if (!response.ok) throw new Error('Failed to fetch cities');
+  //   const cities = await response.json();
+  //   cityDropdown.innerHTML = '<option value="">Select City</option>';
+  //   cities.forEach(city => {
+  //     const option = document.createElement('option');
+  //     option.value = city.cityCode;
+  //     option.textContent = city.cityName;
+  //     cityDropdown.appendChild(option);
+  //   });
+  // } catch (error) {
+  //   console.error('Error fetching cities:', error);
+  //   cityDropdown.innerHTML = '<option value="">Error loading cities</option>';
+  // }
 }
 
 fetchStates();
