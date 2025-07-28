@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ActiveIssuedMembersController"
+      spacing="10" alignment="CENTER" prefWidth="600" prefHeight="400">
+
+    <TableView fx:id="membersTable" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="idColumn" text="Member ID" prefWidth="80"/>
+            <TableColumn fx:id="nameColumn" text="Name" prefWidth="100"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="150"/>
+            <TableColumn fx:id="mobileColumn" text="Mobile" prefWidth="100"/>
+            <TableColumn fx:id="addressColumn" text="Address" prefWidth="150"/>
+        </columns>
+    </TableView>
+</VBox>
