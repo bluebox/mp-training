@@ -1,0 +1,44 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+form {
+  background: rgb(243, 237, 237);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+label, fieldset {
+  display: block;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(14, 11, 37, 0);
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#noResults {
+  display: none;
+  color: red;
+  font-style: italic;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
