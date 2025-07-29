@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="750.0" prefWidth="750.0"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lms.controller.ViewMemberController">
+
+    <children>
+
+        <!-- Page Title -->
+        <Label layoutX="294.0" layoutY="9.0" text="All Members ">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Label>
+
+        <!-- ✅ ScrollPane properly closed with <ScrollPane> ... </ScrollPane> -->
+        <ScrollPane layoutX="0.0" layoutY="52.0" prefWidth="750.0" prefHeight="698.0"
+                    fitToWidth="true" fitToHeight="true"
+                    pannable="true"
+                    hbarPolicy="AS_NEEDED"
+                    vbarPolicy="AS_NEEDED"
+                    style="-fx-background-color:transparent;">
+            <content>
+                <TableView fx:id="memberTable"
+                           prefWidth="740.0"
+                           style="-fx-background-color: #83C5BE;">
+                    <columns>
+                        <TableColumn fx:id="memberIdColumn" prefWidth="81.0" text="Member ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="114.0" text="Name" />
+                        <TableColumn fx:id="genderColumn" prefWidth="68.0" text="Gender" />
+                        <TableColumn fx:id="mobileNumberColumn" prefWidth="124.0" text="Mobile Number" />
+                        <TableColumn fx:id="addressColumn" prefWidth="178.0" text="Address" />
+                        <TableColumn fx:id="mailColumn" prefWidth="300.0" text="Mail ID" />
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+
+    </children>
+</AnchorPane>

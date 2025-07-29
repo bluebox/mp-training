@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lms.controller.ViewBooksController"
+            prefHeight="750.0" prefWidth="800.0">
+
+    <children>
+
+        <!-- Title -->
+        <Label layoutX="280.0" layoutY="10.0" text="View All Books">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+        </Label>
+
+                <ScrollPane layoutX="0.0" layoutY="52.0" prefWidth="750.0" prefHeight="698.0"
+                    fitToWidth="true" fitToHeight="true"
+                    pannable="true"
+                    hbarPolicy="AS_NEEDED"
+                    vbarPolicy="AS_NEEDED"
+                    style="-fx-background-color:transparent;"> 
+        
+            <content>
+                <AnchorPane>
+                    <TableView fx:id="bookTable" layoutX="0" layoutY="0"
+                               prefWidth="1100.0" prefHeight="660.0"
+                               style="-fx-background-color: #83C5BE;">
+                        <columns>
+                            <TableColumn fx:id="bookIdColumn" prefWidth="100.0" text="Book ID"/>
+                            <TableColumn fx:id="titleColumn" prefWidth="250.0" text="Title"/>
+                            <TableColumn fx:id="authorColumn" prefWidth="200.0" text="Author"/>
+                            <TableColumn fx:id="categoryColumn" prefWidth="180.0" text="Category"/>
+                            <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status"/>
+                            <TableColumn fx:id="availabilityColumn" prefWidth="200.0" text="Availability"/>
+                        </columns>
+                    </TableView>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+
+    </children>
+</AnchorPane>

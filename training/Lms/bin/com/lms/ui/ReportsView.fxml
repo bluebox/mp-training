@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lms.controller.ReportsController"
+            prefHeight="750.0" prefWidth="750.0">
+
+    <children>
+        <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+
+            <!-- Report selection -->
+            <HBox spacing="10">
+                <Label text="Select Report:" />
+                <ComboBox fx:id="reportTypeComboBox" prefWidth="200" />
+            </HBox>
+
+            <!-- Scrollable TableView -->
+            <ScrollPane fitToHeight="true" fitToWidth="true"
+                        hbarPolicy="ALWAYS"
+                        vbarPolicy="ALWAYS"
+                        style="-fx-background-color: transparent;">
+                <content>
+                    <AnchorPane minWidth="1000.0">
+                        <children>
+                            <TableView fx:id="reportTable" layoutX="0" layoutY="0" prefWidth="1000.0" prefHeight="650.0" />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </ScrollPane>
+
+        </VBox>
+    </children>
+</AnchorPane>
