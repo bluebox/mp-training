@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Data Management</title>
+    
+    <script type="module" src="js/table.js"></script>
+    <script type="module" src="js/form.js"></script>
+    <script type="module" src="js/filters.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Dynamic Data Management</h1>
+        <form id="data-entry-form">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="number" id="age" placeholder="Age" required min="1">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phone" placeholder="Phone Number" required pattern="\d{10}">
+            <div>
+                <label><input type="radio" name="branch" value="CSE" required>CSE</label>
+                <label><input type="radio" name="branch" value="ECE">ECE</label>
+                <label><input type="radio" name="branch" value="EEE">EEE</label>
+            </div>
+            <div>
+                <label><input type="checkbox" name="languages" value="English">English</label>
+                <label><input type="checkbox" name="languages" value="Hindi">Hindi</label>
+                <label><input type="checkbox" name="languages" value="French">French</label>
+            </div>
+            <select id="state" required>
+                <option value="">Select State</option>
+            </select>
+            <select id="city" required>
+                <option value="">Select City</option>
+            </select>
+            <div id="form-buttons">
+                <button type="submit">Add Entry</button>
+            </div>
+        </form>
+
+        <div class="search-section">
+            <h3>Search Filters</h3>
+            <button id="clear-filters" type="button">Clear All Filters</button>
+        </div>
+        
+        <div id="entry-count">Total entries: 0</div>
+        
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Branch</th>
+                    <th>Languages</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+                
+                <tr class="column-search-row">
+                    <th><input type="text" id="search-name" placeholder="Search Name..." class="column-search" data-column="name"></th>
+                    <th><input type="text" id="search-age" placeholder="Search Age..." class="column-search" data-column="age"></th>
+                    <th><input type="text" id="search-email" placeholder="Search Email..." class="column-search" data-column="email"></th>
+                    <th><input type="text" id="search-phone" placeholder="Search Phone..." class="column-search" data-column="phone"></th>
+                    <th>
+                        <select id="search-branch" class="column-search" data-column="branch">
+                            <option value="">All Branches</option>
+                            <option value="CSE">CSE</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EEE">EEE</option>
+                        </select>
+                    </th>
+                    <th><input type="text" id="search-languages" placeholder="Search Languages..." class="column-search" data-column="languages"></th>
+                    <th><input type="text" id="search-state" placeholder="Search State..." class="column-search" data-column="state"></th>
+                    <th><input type="text" id="search-city" placeholder="Search City..." class="column-search" data-column="city"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
