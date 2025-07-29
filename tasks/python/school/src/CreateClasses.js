@@ -1,47 +1,108 @@
 import React, { useEffect, useState } from "react";
 import customAXIOS from "./apis";
 import { CLASSES, TEACHERS } from "./urls";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function CreateClasses(){
-    const navigator = useNavigate()
-    const [teachers,setTeacher] = useState([])
-    const [classes,setClasses] = useState([])
-    useEffect(()=>{
-        const data = []
-        customAXIOS(TEACHERS,null,'get',null,navigator)
-        .then(res=>{
-            res.map(r=>{
-                const key = r.user
-                const value = r.Name
-                const item = {id:key,Name:value}
-                data.push(item);
-            })
-            console.log(data)
-            setTeacher(data)
+function CreateClasses() {
+  const [teachers, setTeachers] = useState([]);
+  const [data, setData] = useState({
+    Class_id: "",
+    Section: "",
+    teacher: -1,
+  });
+
+  const { state } = useLocation();
+  const Id = state?.Id;
+  const navigator = useNavigate();
+
+  // Fetch teachers + optionally class details (edit mode)
+  useEffect(() => {
+    customAXIOS(TEACHERS, null, "get", null, navigator)
+      .then((res) => setTeachers(res))
+      .catch((err) => alert("Failed to fetch teachers"));
+
+    if (Id !== undefined) {
+      customAXIOS(CLASSES + String(Id) + "/", null, "get", null, navigator)
+        .then((cls) => {
+          setData({
+            Class_id: cls.Class_id,
+            Section: cls.Section,
+            teacher: cls.teacher,
+          });
         })
-        
-        customAXIOS(CLASSES,null,'get',null,navigator)
-        .then(res=>{
-            console.log("classes::",res)
-            setClasses(res)
-        })
-    },[])
+        .catch((err) => alert("Failed to fetch class"));
+    }
+  }, [Id, navigator]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-    return(
-        <div>
-            <form>
-                <label>Teacher: 
-                    <select>
-                        <option value="">Select Teacher</option>
-                        {teachers.map(teacher=>{
-                            <option value={teacher.id}>{teacher.Name}</option>
-                        })}
-                    </select>
-                </label>
-            </form>
-        </div>
-    )
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (Id === undefined) {
+      customAXIOS(CLASSES, null, "post", data)
+        .then(() => alert("Class created successfully"))
+        .catch(() => alert("Error: class creation failed"));
+    } else {
+      customAXIOS(CLASSES + String(Id) + "/", null, "put", data)
+        .then(() => alert("Class updated successfully"))
+        .catch(() => alert("Error: class update failed"));
+    }
+    navigator("/classTeachers");
+  };
+
+  if (teachers.length === 0) return <p>Loading...</p>;
+
+  return (
+    <div>
+      <h1>{Id === undefined ? "Create Class" : "Edit Class"}</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Class Name
+          <input
+            type="number"
+            name="Class_id"
+            value={data.Class_id}
+            onChange={handleChange}
+            readOnly={Id !== undefined}
+          />
+        </label>
+        <label>
+          Section
+          <input
+            type="text"
+            name="Section"
+            value={data.Section}
+            onChange={handleChange}
+            readOnly={Id !== undefined}
+          />
+        </label>
+        <label>
+          Teacher
+          <select
+            name="teacher"
+            value={data.teacher}
+            onChange={handleChange}
+          >
+            <option value="">Select Teacher</option>
+            {teachers.map((teacher) => (
+              <option key={teacher.user} value={teacher.user}>
+                {teacher.Name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button type="submit" className="submit-buttons">
+          {Id === undefined ? "Submit" : "Update"}
+        </button>
+      </form>
+    </div>
+  );
 }
-export default CreateClasses
+
+export default CreateClasses;

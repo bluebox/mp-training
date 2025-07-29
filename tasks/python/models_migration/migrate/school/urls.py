@@ -7,6 +7,7 @@ router.register('teacher', TeacherViewSet, basename='teacher')
 router.register('classes', ClassesViewSet, basename='classes')
 router.register('subjects', SubjectViewSet, basename='subjects')
 router.register('results', ResultsViewSet, basename='results')
+# router.register('subjectTeacherClass',SubjectTeacherRelationView,basename='subjectTeacherClass')
 
 urlpatterns = [
     path('Student/',StudentsView.as_view()),
@@ -17,5 +18,7 @@ urlpatterns = [
     path('teacherSubjects/',TeacherSubjectsStudents.as_view()),
     path('teacherResults/',TeacherResultsView.as_view()),
     path('allTeachers/',AllTeachers.as_view()),
-    path('subjectTeachers/',SubjectTeacher.as_view())
+    path('subjectTeachers/',SubjectTeacher.as_view()),
+    path('classTeachers/',TeacherClass.as_view()),
+    path('subject/classes/',SubjectTeacherRelationView.as_view()),
 ]

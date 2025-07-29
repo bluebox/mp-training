@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .model_serializers import StudentSerializer, TeacherSerializer, SubjectSerializer, ClassesSerializer, \
-    ResultsSerializer, StudentProfileSerializer
+    ResultsSerializer, StudentProfileSerializer, TeacherSubjectSerializer
 from .models import *
 from .templates.permissions.AdminPermissions import CustomStudentTablePermissions, IsAdmin
 from .templates.permissions.StudentPermissions import IsStudent
@@ -20,7 +20,7 @@ from .templates.permissions.TeacherPermissions import IsTeacher
 
 
 class TeacherViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CustomStudentTablePermissions]
     authentication_classes = [JWTAuthentication]
     model = Teacher
     queryset = Teacher.objects.all()
@@ -235,7 +235,7 @@ class TeacherResultsView(APIView):
         if 'id' not in params or 'sub_id' not in params:
             Response({'message':'Provide both id and sub_id'},status=400)
         else:
-            qs = Results.objects.select_related('student','subject').prefetch_related('subject__subject_teacher').filter(Q(subject=params['sub_id'])&Q(subject__subject_teacher__teacher = params['id'])).values('id','Class','student__user_id','student__Name','subject__Name','grade','percentage')
+            qs = Results.objects.select_related('student','subject').prefetch_related('subject__subject_teacher').filter(Q(subject=params['sub_id'])&Q(subject__subject_teacher__teacher = params['id'])).values('id','Class','student__user_id','student__Name','subject__Name','grade','percentage').distinct()
             print(qs)
             return Response(qs)
 
@@ -339,3 +339,67 @@ class StudentSubjectsDashboard(APIView):
 
         except Student.DoesNotExist:
             return Response({"error": "Student not found"}, status=status.HTTP_404_NOT_FOUND)
+
+class TeacherClass(APIView):
+    [IsAdmin,IsTeacher]
+    def get(self,request):
+        try:
+            params = request.query_params
+            if 'id' in params:
+                teachers = Classes.objects.select_related('teacher').filter(id=params['id']).values('teacher__user_id', 'teacher__Name',
+                                                                            'Class_id', 'Section', 'id')
+            else:
+                teachers = Classes.objects.select_related('teacher').values('teacher__user_id','teacher__Name','Class_id','Section','id')
+            print(teachers)
+            # teachers = list(teachers)
+            data =[]
+            for teacher in teachers:
+                data.append(
+                    {
+                        'id':teacher['id'],
+                        'teacher_id':teacher['teacher__user_id'],
+                        'name':teacher['teacher__Name'],
+                        'class':teacher['Class_id'],
+                        'section':teacher['Section']
+                    }
+                )
+            return Response(data,status=200)
+        except Exception as e:
+            print("Error",e)
+
+# class SubjectTeacherRelationView(ModelViewSet):
+#     permission_classes = [CustomStudentTablePermissions]
+#     authentication_classes = [JWTAuthentication]
+#     model = Subject
+#     serializer_class = TeacherSubjectSerializer
+#     queryset = subject_teacher.objects.all()
+
+class SubjectTeacherRelationView(APIView):
+    permission_classes = [CustomStudentTablePermissions]
+    def get(self,request):
+        params = request.query_params
+        if('id' in params):
+            qs = subject_teacher.objects.select_related('subject','teacher','rel_class').filter(teacher__user_id = params['id']).values('subject__id','subject__Name','rel_class__Class_id','rel_class__Section','subject__Name','teacher__user_id','teacher__Name')
+        else:
+            qs = subject_teacher.objects.select_related('subject','teacher','rel_class').values('subject__id','subject__Name','rel_class__Class_id','rel_class__Section','subject__Name','teacher__user_id','teacher__Name')
+        print(qs)
+        data = []
+        for sub in qs:
+            item = {
+            'subject_id':sub['subject__id'],
+            'subject_name':sub['subject__Name'],
+            'class_id':sub['rel_class__Class_id'],
+            'section':sub['rel_class__Section'],
+            'teacher_id':sub['teacher__user_id'],
+            'teacher_name':sub['teacher__Name'],
+            # 'subject_id':qs['subject__id'],
+            }
+            data.append(item)
+        return Response(data,status=200)
+    # def post(self,request):
+
+
+
+
+
+

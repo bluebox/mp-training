@@ -3,41 +3,42 @@ import customAXIOS from "./apis";
 import { RESULTS, TEACHERRESULTSVIEW, TEACHERSUBJECTSTUDENTS } from "./urls";
 import { Link, useNavigate } from "react-router-dom";
 
-function TeacherResultsView({userId})
-{
-    const [results,setResults] = useState([])
-    const [subjects,setSubjects] = useState([])
-    const navigator = useNavigate()
-    useEffect(()=>{
-        const fetchRes = async()=>{    
-            const data = []
-            const subData = await customAXIOS(TEACHERSUBJECTSTUDENTS,{id:userId},'get',null,navigator)
-            const subjectkeys = Object.keys(subData||{})
-            setSubjects(subjectkeys)
+function TeacherResultsView({ userId }) {
+    const [results, setResults] = useState([]);
+    const [subjects, setSubjects] = useState([]);
+    const navigator = useNavigate();
 
-            for (const sub_id of subjectkeys) {
-                const result = await customAXIOS(TEACHERRESULTSVIEW, { id: userId, sub_id }, 'get', null, navigator);
-                data.push(...result);  
-            }
-            setResults(data)
+    // Moved outside to make it callable on delete
+    const fetchRes = async () => {
+        const data = [];
+        const subData = await customAXIOS(TEACHERSUBJECTSTUDENTS, { id: userId }, 'get', null, navigator);
+        const subjectkeys = Object.keys(subData || {});
+        setSubjects(subjectkeys);
+
+        for (const sub_id of subjectkeys) {
+            const result = await customAXIOS(TEACHERRESULTSVIEW, { id: userId, sub_id }, 'get', null, navigator);
+            data.push(...result);
         }
-        fetchRes()
-        console.log("keys:",subjects)
-        console.log("res:",results)
-    },[userId])
 
-    function handleDelete(id){
-        customAXIOS(RESULTS,{id:id},'delete',null,navigator)
-        .then(res=>{
+        setResults(data);
+    };
+
+    useEffect(() => {
+        if (userId) fetchRes();
+    }, [userId]);
+
+    const handleDelete = async (id) => {
+        try {
+            await customAXIOS(RESULTS + String(id) + "/", null, 'delete', null, navigator);
             alert("Successfully deleted");
-            console.log("Deleted");
-        })
-        .catch(err=>{
-            console.log("error occured");
-        })
-    }
+            fetchRes();
+        } catch (err) {
+            console.error("Error occurred during deletion", err);
+            alert("Failed to delete");
+        }
+    };
 
-    return(
+    return (
         <div className="display-container">
             <h2>Students</h2>
             <table className="user-table">
@@ -45,10 +46,11 @@ function TeacherResultsView({userId})
                     <tr>
                         <th>Name</th>
                         <th>ID</th>
-                        <th>Class </th>
+                        <th>Class</th>
                         <th>Subject Name</th>
                         <th>Percentage</th>
                         <th>Grade</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,27 +60,25 @@ function TeacherResultsView({userId})
                             <td>{u.student__user_id}</td>
                             <td>{u.Class}</td>
                             <td>{u.subject__Name}</td>
-                            <td>{u.grade}</td>
                             <td>{u.percentage}</td>
+                            <td>{u.grade}</td>
                             <td>
-                                {/* <button className="alter-btn" onClick={"/${u.id.toString()}"}>Alter</button> */}
-                                <Link to={"/t"} state = {{id:u.id}}>
+                                {/* <Link to="/t" state={{ id: u.id }}>
                                     <button className="alter-btn">Alter</button>
-                                </Link>
-                                {/* <Link to="/" state={{"id": u.id.toString()}}>Alter</Link> */}
-
+                                </Link> */}
                                 <button className="delete-btn" onClick={() => handleDelete(u.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
                     {results.length === 0 && (
                         <tr>
-                            <td colSpan="9" style={{ textAlign: "center" }}>No users found</td>
+                            <td colSpan="7" style={{ textAlign: "center" }}>No users found</td>
                         </tr>
                     )}
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
-export default TeacherResultsView
+
+export default TeacherResultsView;

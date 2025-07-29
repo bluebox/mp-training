@@ -7,6 +7,17 @@ class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = '__all__'
+        read_only_fields = ['user']
+
+    def create(self, validated_data):
+        user = BaseUser.objects.create_user(
+            username=f"user_{BaseUser.objects.count() + 1}",
+            password="password123",
+            role=BaseUser.Role.TEACHER
+        )
+        validated_data['user'] = user
+        return Teacher.objects.create(**validated_data)
+
 
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -83,5 +94,9 @@ class StudentProfileSerializer(serializers.ModelSerializer):
             "phoneNo"
         ]
 
+class TeacherSubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = subject_teacher
+        filter = "__all__"
 
 

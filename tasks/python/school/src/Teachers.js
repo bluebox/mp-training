@@ -17,8 +17,8 @@ function Teachers(){
 
     const handleDelete = async (id) => {
         try {
-            await customAXIOS(TEACHERS, { id: id }, 'delete', null, navigator);
-            setTeacher(prev => prev.filter(t => t.user_id !== id)); // ✅ Remove from local list
+            await customAXIOS(TEACHERS+String(id)+"/",null, 'delete', null, navigator);
+            setTeacher(prev => prev.filter(t => t.user_id !== id)); 
         } catch (err) {
             console.log("Error:", err);
         }
@@ -48,12 +48,13 @@ function Teachers(){
                             <td>{u.Class_teacher?"Yes":"No"}</td>
                             <td>
                                 {/* <button className="alter-btn" onClick={"/${u.id.toString()}"}>Alter</button> */}
-                                <Link to={"/"} state = {{id:u.user_id}}>
+                                <Link to={"/editTeacherDetails"} state={{ userId: u.user_id }}>
+                                {console.log("User::",u)}
                                     <button className="alter-btn">Alter</button>
                                 </Link>
                                 {/* <Link to="/" state={{"id": u.id.toString()}}>Alter</Link> */}
 
-                                <button className="delete-btn" onClick={() => handleDelete(u.user)}>Delete</button>
+                                <button className="delete-btn" onClick={() => handleDelete(u.user_id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

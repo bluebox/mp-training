@@ -170,7 +170,7 @@ def correct_results():
         i.save()
 
 def correct_passwords():
-    students = Student.objects.all()
+    students = Student.objects.dropped()
     for student in students:
         print(student.user.set_password("password123"))
         print(student.user.password)
@@ -197,6 +197,7 @@ def run():
 #     except Expression:
 #     populate()
 #     correct_passwords()
-    createAdmin()
+    # createAdmin()
+    correct_results()
 
 

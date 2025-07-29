@@ -16,8 +16,11 @@ import Teachers from './Teachers';
 import SubjectTeachers from './SubjectTeachers';
 import CreateClasses from './CreateClasses';
 import ResultsUpload from './resultsUpload';
-import TeacherDetails from './AdminTeacherDetails';
-import AdminTeacherDetails from './AdminTeacherDetails';
+import TeacherDetails from './TeacherDetails';
+import EditTeacherDetails from './EditTeacherDetails';
+import ClassTeachers from './ClassTeachers';
+import DisplayTeacherSubjects from './DisplayTeacherSubjects';
+// import AdminTeacherDetails from './AdminTeacherDetails';
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -40,6 +43,7 @@ function App() {
                   <NavLink to="/teacherResults" className={({isActive})=>(isActive ? 'active':'')}>Results</NavLink>
                   <NavLink to='/uploadResults' className={({isActive})=>(isActive ? 'active':'')}>Upload Results</NavLink>
                   <NavLink to='/teacherDetails' className={({isActive})=>(isActive ? 'active':'')}>Details</NavLink>
+                  <NavLink to='/teachers/subjects' className={({isActive})=>(isActive ? 'active':'')}>Subjects</NavLink>
               
                 </nav>
               )}
@@ -59,8 +63,9 @@ function App() {
                   <NavLink to="/allTeachers" className={({isActive})=>(isActive ? 'active':'')}>Teachers</NavLink>
                   <NavLink to='/subjectTeachers' className={({isActive})=>(isActive ? 'active':'')}>Subject & Teachers</NavLink>
                   <NavLink to='/createClass' className={({isActive})=>(isActive ? 'active':'')}>Create Class</NavLink>
-                   <NavLink to='/adminTeacherDetails' className={({isActive})=>(isActive ? 'active':'')}>Details</NavLink>
-                </nav>
+                  <NavLink to='/registerTeacher' className={({isActive})=>(isActive ? 'active':'')}>Teacher Registration</NavLink>
+                  <NavLink to='/teachers/classes' className={({isActive})=>(isActive ? 'active':'')}>Class Teachers</NavLink>
+                  </nav>
               )}
               <NavLink to="/logout" className={({ isActive }) => (isActive ? 'active' : '')}>
                 Logout
@@ -87,7 +92,11 @@ function App() {
             <Route path='/subjectTeachers' element={<SubjectTeachers/>}/>
             <Route path='/createClass' element={<CreateClasses/>}/>
             <Route path='/uploadResults' element={<ResultsUpload userId={id}/>}/>
-            <Route path='/adminTeacherDetails' element={<AdminTeacherDetails userId={id}/>}/>
+            <Route path='/teacherDetails' element={<TeacherDetails userId={id}/>}/>
+            <Route path='/editTeacherDetails' element={<EditTeacherDetails userId={id}/>}/>
+            <Route path='/registerTeacher' element={<EditTeacherDetails/>} access={access}/>
+            <Route path='/teachers/classes' element={<ClassTeachers/>}/>
+            <Route path='/teachers/subjects' element={<DisplayTeacherSubjects userId={id}/>}/>
           </Route>
 
           <Route path="/login" element={

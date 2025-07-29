@@ -8,33 +8,25 @@ function TeacherDetails({userId}) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchTeachers = async () => {
-            try {
-                const res = await customAXIOS(TEACHERS, {user_id:userId}, 'get', null, navigate);
-                if (Array.isArray(res)) {
-                    setTeachers(res);
-                } else {
-                    console.error("Expected array but got:", res);
-                }
-            } catch (err) {
-                alert("Error fetching teachers.");
-                console.error("Error:", err);
-            }
-        };
-
-        fetchTeachers();
+        try{
+            console.log(TEACHERS+String(userId)+"/")
+            customAXIOS(TEACHERS+String(userId)+"/",null,'get',null,navigate)
+            .then(res=>setTeachers(res))
+       }catch(ex)
+       {
+            console.log("Error: ",ex)
+            alert("Error in fetching details")
+       }
     }, []);
 
     if (teachers.length === 0) return <p>Loading or no teachers found...</p>;
-
     return (
         <div className="display-container">
             <h1>Teacher Details</h1>
-            {teachers.map((teacher, index) => (
-                <div key={index} className="teacher-card">
-                    {/* <Link to={`/editTeacherDetails/${teacher.user}`}>
+                <div className="teacher-card">
+                    <Link to={`/editTeacherDetails`} state={{ userId: userId }}>
                         <button className="alter-btn">Edit</button>
-                    </Link> */}
+                    </Link>
                     <table className="user-table">
                         <thead>
                             <tr>
@@ -43,7 +35,7 @@ function TeacherDetails({userId}) {
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.entries(teacher).map(([key, value]) => (
+                            {Object.entries(teachers).map(([key, value]) => (
                                 <tr key={key}>
                                     <td>{key}</td>
                                     <td>{value}</td>
@@ -52,9 +44,8 @@ function TeacherDetails({userId}) {
                         </tbody>
                     </table>
                 </div>
-            ))}
         </div>
     );
 }
 
-export default AdminTeacherDetails;
+export default TeacherDetails;

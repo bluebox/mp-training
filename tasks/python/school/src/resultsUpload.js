@@ -205,30 +205,31 @@ function ResultsUpload({ userId }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const subjectStudentMap = await customAXIOS(
-                    TEACHERSUBJECTSTUDENTS,
-                    { id: userId },
-                    "get",
-                    null,
-                    navigate
-                );
-                setStudentsMap(subjectStudentMap);
+    const fetchData = async () => {
+        try {
+        const res = await customAXIOS(
+            TEACHERSUBJECTSTUDENTS,
+            { id: userId },
+            "get",
+            null,
+            navigate
+        );
+        setStudentsMap(res);
 
-                const allSubjects = await customAXIOS(SUBJECTS, null, "get", null, navigate);
-                const subjectIds = Object.keys(subjectStudentMap);
-                const filteredSubjects = allSubjects.filter((s) =>
-                    subjectIds.includes(String(s.id))
-                );
-                setAvailableSubjects(filteredSubjects);
-            } catch (error) {
-                console.error("Error fetching data", error);
-            }
-        };
+        const allSubjects = await customAXIOS(SUBJECTS, null, "get", null, navigate);
+        const subjectIds = Object.keys(res);
+        const filteredSubjects = allSubjects.filter((s) =>
+            subjectIds.includes(String(s.id))
+        );
+        setAvailableSubjects(filteredSubjects);
+        } catch (error) {
+        console.error("Error fetching data", error);
+        }
+    };
 
-        if (userId) fetchData();
-    }, [userId]);
+    if (userId) fetchData();
+    }, [userId, navigate]);
+
 
     const handleSubjectChange = (e) => {
         const subjectId = e.target.value;
@@ -256,11 +257,17 @@ function ResultsUpload({ userId }) {
             return;
         }
 
+        const matchedEntry = studentsForSubject.find(
+            (entry) => Object.keys(entry)[0] === selectedStudentId
+        );
+        const classId = matchedEntry ? Object.values(matchedEntry)[0] : -1;
+
         const payload = {
             student: selectedStudentId,
             subject: selectedSubjectId,
             grade: Number(grade),
             percentage: Number(percentage),
+            Class: classId,
         };
 
         try {
@@ -272,6 +279,7 @@ function ResultsUpload({ userId }) {
             console.error("Upload failed", err);
         }
     };
+
 
     return (
         <div>
@@ -295,8 +303,9 @@ function ResultsUpload({ userId }) {
                         <select value={selectedStudentId} onChange={handleStudentChange}>
                             <option value="">-- Select a Student --</option>
                             {studentsForSubject.map((student) => (
-                                <option key={student.user_id} value={student.user_id}>
-                                    {student.username || `Student ${student.user_id}`}
+                                <option key={Object.keys(student)[0]} value={Object.keys(student)[0]}>
+                                    {console.log("student:",Object.keys(student)[0])}
+                                    {student.username || `Student ${Object.keys(student)[0]}`}
                                 </option>
                             ))}
                         </select>
@@ -326,7 +335,7 @@ function ResultsUpload({ userId }) {
                             />
                         </label>
                         <br />
-                        <button type="submit">Submit Result</button>
+                        <button type="submit" className="submit-buttons">Submit Result</button>
                     </div>
                 )}
             </form>
