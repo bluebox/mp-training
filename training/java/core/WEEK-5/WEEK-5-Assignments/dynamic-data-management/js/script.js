@@ -130,6 +130,8 @@ form.addEventListener("submit", function (e) {
     `;
   tr.classList.add("fade-in");
   tableBody.appendChild(tr);
+  const emptyMessage= document.querySelector(".empty-message");
+  emptyMessage.classList.toggle("hidden");
 
   form.reset();
   citySelect.disabled = true;
@@ -144,6 +146,7 @@ tableBody.addEventListener("click", function (e) {
       row.remove();
       updateCount();
     }
+    updateEmptyMessage();
   }
 });
 
@@ -166,10 +169,19 @@ tableBody.addEventListener("click", function (e) {
     addBtn.disabled = false;
     row.remove();
     updateCount();
+    updateEmptyMessage();
   }
 });
 
 function updateCount() {
   const count = [...tableBody.querySelectorAll("tr")].filter(row => row.length > 0).length;
   entryCount.textContent = count;
+}
+
+function updateEmptyMessage(){
+  const count = [...tableBody.querySelectorAll("tr")].filter(row => row.length > 0).length;
+  if(count==0){
+    const emptyMessage=document.querySelector(".empty-message");
+    emptyMessage.classList.toggle("hidden");
+  }
 }

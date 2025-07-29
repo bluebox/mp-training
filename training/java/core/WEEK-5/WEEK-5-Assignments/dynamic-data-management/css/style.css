@@ -201,4 +201,19 @@ span{
   font-weight: bold;
 }
 
+.empty-message {
+  text-align: center;
+  font-size: 16px;
+  color: #999;
+  position: absolute;
+  top: 50%;
+  left: 43%;
+}
 
+.table-container{
+  position: relative;
+}
+
+.hidden{
+  display: none;
+}
