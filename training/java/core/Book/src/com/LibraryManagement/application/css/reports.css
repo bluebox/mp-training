@@ -1,0 +1,70 @@
+/* Root container styling */
+.add-book-form {
+    -fx-background-color: beige;
+    -fx-padding: 20;
+    -fx-font-family: "Arial";
+}
+
+/* Title label */
+.form-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+/* General label styling */
+.label {
+    -fx-font-size: 16.0px;
+}
+
+/* Action buttons (blue) */
+.book-button {
+    -fx-font-size: 20.0px;
+    -fx-padding: 12.0px 24.0px;
+    -fx-background-color: #3a86ff;
+    -fx-text-fill: white;
+    -fx-background-radius: 10.0;
+    -fx-border-radius: 10.0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.book-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Back button (red) */
+.book-buttons {
+    -fx-font-size: 12.0px;
+    -fx-padding: 8.0px 16.0px;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-background-radius: 10.0;
+    -fx-border-radius: 10.0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+/* TextArea styling to match input fields */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 4;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 14px;
+}
+
+.book-button {
+    -fx-font-size: 10.0px;
+    -fx-background-color: #3a86ff;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+        -fx-font-weight: bold;
+    
+}
+/* ComboBox styling (if used) */
+.combo-box {
+    -fx-font-size: 13px;
+    -fx-pref-width: 183px;
+    -fx-pref-height: 26px;
+}

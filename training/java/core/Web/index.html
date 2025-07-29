@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Data Management</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Member Registration</h2>
+    <form id="dataForm">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="number" id="age" placeholder="Age" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="phone" placeholder="Phone Number" maxlength="10" required />
+
+      <div class="branch-section">
+        <label>Branch:</label>
+        <label><input type="radio" name="branch" value="CSE" /> CSE</label>
+        <label><input type="radio" name="branch" value="ECE" /> ECE</label>
+        <label><input type="radio" name="branch" value="EEE" /> EEE</label>
+      </div>
+
+      <div class="languages">
+        <label>Languages Known:</label>
+        <label><input type="checkbox" name="languages" value="English" /> English</label>
+        <label><input type="checkbox" name="languages" value="Hindi" /> Hindi</label>
+        <label><input type="checkbox" name="languages" value="French" /> French</label>
+      </div>
+
+      <select id="state" required>
+        <option value="">Select State</option>
+      </select>
+
+      <select id="city" required disabled>
+        <option value="">Select City</option>
+      </select>
+
+      <button type="submit" id="addBtn" disabled>Add</button>
+    </form>
+
+    <input type="text" id="search" placeholder="Search...">
+
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Branch</th>
+          <th>Languages</th>
+          <th>State</th>
+          <th>City</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <p id="entryCount">0 entries</p>
+  </div>
+</body>
+</html>

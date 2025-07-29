@@ -1,0 +1,50 @@
+
+.root {
+    -fx-background-color: beige;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.form-title {
+    -fx-text-fill: #333333;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.status{
+	-fx-font-size: 16px;
+}
+
+
+
+.label-error {
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+}
+
+.return-book {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+        -fx-font-size: 20px;
+    
+}
+
+.book-buttons {
+    -fx-font-size: 16.0px;
+    -fx-padding: 12.0px 24.0px;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-background-radius: 10.0;
+    -fx-border-radius: 10.0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+.return-book:hover {
+    -fx-background-color: #2980b9;
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane fx:id="rootPane"
+	xmlns:fx="http://javafx.com/fxml"
+	stylesheets="@../../application/css/return.css"
+	fx:controller="com.LibraryManagement.controller.ReturnBookController"
+	prefWidth="400" prefHeight="400">
+
+	<children>
+		<VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="0"
+			AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+			AnchorPane.rightAnchor="0">
+
+			<Label text="Return Book">
+				<font>
+					<Font name="System Bold" size="26" />
+				</font>
+			</Label>
+
+			<HBox alignment="CENTER">
+				<Label text="Enter Book ID : ">
+					<font>
+						<Font size="20" />
+					</font>
+				</Label>
+				<TextField fx:id="bookIdField" styleClass="status"
+					promptText="Book ID" prefWidth="150" maxWidth="150" />
+			</HBox>
+
+			<Label fx:id="statusLabel" styleClass="status" textFill="red" />
+
+			<HBox spacing="20" alignment="CENTER">
+				<Button styleClass="return-book" text="Submit"
+					onAction="#handleSubmit" />
+				<Button text="Back" onAction="#Back"
+					styleClass="book-buttons" textFill="RED" />
+			</HBox>
+		</VBox>
+	</children>
+</AnchorPane>

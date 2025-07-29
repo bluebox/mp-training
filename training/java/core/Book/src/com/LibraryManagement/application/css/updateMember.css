@@ -1,0 +1,55 @@
+.root{
+    -fx-background-color: beige;
+    -fx-padding: 20;
+    -fx-font-family: "Arial";
+}
+
+.form-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.book-buttons {
+    -fx-font-size: 12.0px;
+    -fx-padding: 10.0px 18.0px;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-background-radius: 10.0;
+    -fx-border-radius: 10.0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 4;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 14px;
+}
+
+.book-button {
+    -fx-font-size: 12.0px;
+    -fx-padding: 8.0px 12.0px;
+    -fx-background-color: #3a86ff;
+    -fx-text-fill: white;
+    -fx-background-radius: 10.0;
+    -fx-border-radius: 10.0;
+    -fx-cursor: hand;
+        -fx-font-weight: bold;
+    
+}
+.label{
+	    -fx-font-size: 16.0px;
+	
+}
+.combo-box {
+    -fx-font-size: 13px;
+    -fx-pref-width: 183px;
+    -fx-pref-height: 26px;
+}
+
+.book-button:hover {
+    -fx-background-color: #2980b9;
+}
