@@ -46,7 +46,8 @@ function ShowClaim(){
     //     }
     // }
     return(
-        <div style={{marginLeft:"650px", marginRight:"650px",textAlign:"center"}}>
+        <div style={{marginLeft:"650px", marginRight:"650px",textAlign:"center",position:"fixed"}}>
+            <br/><br/>
             <h1 style={{textAlign:"center"}}>Claim Details</h1>
             <table style={{border:"2px solid"}}>
                 <thead>

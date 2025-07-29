@@ -66,7 +66,8 @@ function ShowUser(){
         })
     }
     return(
-        <div style={{textAlign:"center",marginLeft:"400px",marginRight:"400px"}}>
+        <div style={{textAlign:"center",marginLeft:"200px",marginRight:"200px",position:"fixed"}}>
+            <br/><br/>
             <h1>All Users</h1>
             <table>
                 <thead>

@@ -57,7 +57,7 @@ function UpdatePolicy(){
         })
     }
     return(
-    <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
+    <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center",position:"fixed"}}>
             <h1>Update Policy</h1>
             <table>
                 <tbody>

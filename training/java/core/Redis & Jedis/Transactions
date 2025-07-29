@@ -1,0 +1,30 @@
+Transaction:
+
+127.0.0.1:6379> hgetall bank
+1) "ravi"
+2) "5000"
+3) "shiva"
+4) "6000"
+5) "shyam"
+6) "8000"
+127.0.0.1:6379> multi
+OK
+127.0.0.1:6379> hset bank shiva 3000
+QUEUED
+127.0.0.1:6379> hset bank gg
+(error) ERR wrong number of arguments for 'hset' command
+127.0.0.1:6379> hset gopi 6000
+(error) ERR wrong number of arguments for 'hset' command
+127.0.0.1:6379> hset bank gopi 6000
+QUEUED
+127.0.0.1:6379> exec
+(error) EXECABORT Transaction discarded because of previous errors.
+127.0.0.1:6379> hgetall bank
+1) "ravi"
+2) "5000"
+3) "shiva"
+4) "6000"
+5) "shyam"
+6) "8000"
+
+

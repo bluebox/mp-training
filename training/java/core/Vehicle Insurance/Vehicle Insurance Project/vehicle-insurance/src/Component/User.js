@@ -67,7 +67,7 @@ function User(){
         )
     }
     return(
-        <form onSubmit={setData}>
+        <form onSubmit={setData} style={{position:"fixed"}}>
             <table>
                 <tbody>
                     <tr>

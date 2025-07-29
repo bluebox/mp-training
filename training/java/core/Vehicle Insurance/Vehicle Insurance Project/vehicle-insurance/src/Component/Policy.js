@@ -36,7 +36,7 @@ function Policy(){
         })
     }
     return(
-        <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center"}}>
+        <form onSubmit={setData} style={{margin:"50px",marginLeft:"670px",marginRight:"670px",textAlign:"center",position:"fixed"}}>
             <table>
                 <thead>
                     <tr><td colSpan={2}><h1 style={{textAlign:"center"}}>Policy Details</h1></td></tr>

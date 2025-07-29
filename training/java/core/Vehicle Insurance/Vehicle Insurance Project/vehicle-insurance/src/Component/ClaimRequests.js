@@ -47,7 +47,7 @@ function ShowRequestedClaim(){
     //     }
     // }
     return(
-        <div style={{textAlign:"center",marginLeft:"620px",marginRight:"620px"}}>
+        <div style={{textAlign:"center",marginLeft:"620px",marginRight:"620px",position:"fixed"}}>
             <h1>All Requested Claims</h1>
             <table style={{border:"2px solid"}}>
                 <thead>

@@ -52,7 +52,8 @@ function ShowRequestedPolicy(){
         });
     }
     return(
-        <div style={{textAlign:"center",marginLeft:"650px",marginRight:"650px"}}>
+        <div style={{textAlign:"center",marginLeft:"650px",marginRight:"650px",position:"fixed"}}>
+            <br/><br/>
             <h1>All Policy Requests to be Approved</h1>
             <table>
                 <thead>

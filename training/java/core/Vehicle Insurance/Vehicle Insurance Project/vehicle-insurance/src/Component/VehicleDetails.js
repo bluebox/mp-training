@@ -71,7 +71,7 @@ function VehicleDetails(){
     }
     else{
     return(
-        <form style={{margin:"50px",marginLeft:"600px",marginRight:"600px"}} onSubmit={sendData}>
+        <form style={{margin:"50px",marginLeft:"600px",marginRight:"600px",position:"fixed"}} onSubmit={sendData}>
             <table>
                 <tbody>
                     <tr><td colSpan={2}><h1>Vehicle Details</h1></td></tr>

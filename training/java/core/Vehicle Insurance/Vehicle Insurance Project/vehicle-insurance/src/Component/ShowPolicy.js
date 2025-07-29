@@ -82,7 +82,8 @@ function ShowPolicy(){
         });
     }
     return(
-        <div style={{marginLeft:"470px",marginRight:"400px",textAlign:"center"}}>
+        <div style={{marginLeft:"470px",marginRight:"400px",textAlign:"center",position:"fixed"}}>
+            <br/><br/>
             <h1>All Policies</h1>
             <table>
                 <thead>

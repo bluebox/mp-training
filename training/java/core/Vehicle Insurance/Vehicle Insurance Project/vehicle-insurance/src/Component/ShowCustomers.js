@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Customer(props){
     return (
     <tr>
@@ -22,7 +22,6 @@ function Customer(props){
     );
 }
 function ShowCustomers(){
-    const nav=useNavigate();
     const[customer,setCustomer]=useState([]);
     useEffect(()=>{
         fetch("http://10.129.241.187:8000/customer/showAll", {
@@ -70,7 +69,8 @@ function ShowCustomers(){
         });
     }
     return(
-        <div style={{marginLeft:"200px",marginRight:"200px",textAlign:"center"}}>
+        <div style={{marginLeft:"100px",marginRight:"200px",textAlign:"center",position:"fixed"}}>
+            <br/><br/>
             <h1 style={{textAlign:"center"}}>Customer Details</h1>
             <table>
                 <thead>

@@ -39,7 +39,7 @@ export default function LoginPage() {
 
   return (
     <div>
-      <form onSubmit={handleLogin} style={{width:"200px", height:"230px", marginLeft:"500px",textAlign:"center"}}>
+      <form onSubmit={handleLogin} style={{width:"200px", height:"230px", marginLeft:"500px",textAlign:"center",position:"fixed"}}>
         <h2>Login</h2>
         <input type="text" placeholder="Username" value={username}
           onChange={(e) => setUsername(e.target.value)} required /><br/>

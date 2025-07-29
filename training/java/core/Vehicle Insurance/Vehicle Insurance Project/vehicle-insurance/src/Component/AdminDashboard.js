@@ -11,7 +11,7 @@ const AdminDashboard = () => {
   const adminName = localStorage.getItem("username");
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '30px' }}>
+    <div style={{ marginLeft:"200px",marginRight:"200px",textAlign: 'center'}}>
       <h2>Welcome, {adminName} (Admin)</h2>
       <div style={{ margin: '20px', textAlign:'center'}}>
         <button onClick={() => setActiveTab('customer')}>Manage Customers</button>&nbsp;&nbsp;

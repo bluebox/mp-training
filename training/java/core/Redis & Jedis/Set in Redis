@@ -1,0 +1,131 @@
+->Show all elements in the set
+127.0.0.1:6379> smembers s1
+1) "eedd"
+2) "eeddujy"
+
+->Add elements into the set
+127.0.0.1:6379> sadd s1 ddssd fsdfdf
+(integer) 2
+127.0.0.1:6379> smembers s1
+1) "ddssd"
+2) "fsdfdf"
+3) "eedd"
+4) "eeddujy"
+
+->To get the count of the number of elements:
+127.0.0.1:6379> scard s1
+(integer) 4
+
+->Pop the first element of the set 
+127.0.0.1:6379> spop s1
+"eedd"
+127.0.0.1:6379> smembers s1
+1) "ddssd"
+2) "fsdfdf"
+3) "eeddujy"
+127.0.0.1:6379> spop s1 2
+1) "fsdfdf"
+2) "ddssd"
+127.0.0.1:6379> smembers s1
+1) "eeddujy"
+127.0.0.1:6379> sadd s1 ddssd fsdfdf
+(integer) 2
+127.0.0.1:6379> smembers s1
+1) "ddssd"
+2) "fsdfdf"
+3) "eeddujy"
+127.0.0.1:6379> sadd s2 fvds ddssd fsdfdf
+(integer) 3
+127.0.0.1:6379> smembers s2
+1) "fvds"
+2) "ddssd"
+3) "fsdfdf"
+
+->Union of s1 and s2:
+127.0.0.1:6379> sunion s1 s2
+1) "ddssd"
+2) "fsdfdf"
+3) "eeddujy"
+4) "fvds"
+
+->Store the elements after union in a key:
+127.0.0.1:6379> sunionstore s3 s1 s2
+(integer) 4
+127.0.0.1:6379> smembers s3
+1) "ddssd"
+2) "fsdfdf"
+3) "eeddujy"
+4) "fvds"
+127.0.0.1:6379> smembers s1
+1) "ddssd"
+2) "fsdfdf"
+3) "eeddujy"
+
+->Intersection of s1 and s2:
+127.0.0.1:6379> sinter s1 s2
+1) "ddssd"
+2) "fsdfdf"
+
+->Store the values of intersection of s1 and s2:
+127.0.0.1:6379> sinterstore s4 s1 s2
+(integer) 2
+127.0.0.1:6379> smembers s4
+1) "ddssd"
+2) "fsdfdf"
+
+->Difference of two sets
+127.0.0.1:6379> sdiff s1 s2
+1) "eeddujy"
+127.0.0.1:6379> sdiff s2 s1
+1) "fvds"
+
+->Delta of s1 and s2:
+127.0.0.1:6379> sdiffstore s5 s1 s2
+(integer) 1
+127.0.0.1:6379> sdiffstore s6 s2 s1
+(integer) 1
+127.0.0.1:6379> sunion s5 s6
+1) "fvds"
+2) "eeddujy"
+
+->Check if a value is present in the set
+127.0.0.1:6379> sismember s5 "eeddujy"
+(integer) 1
+127.0.0.1:6379> sismember s5 "fdv"
+(integer) 0
+
+->Move an element from one set to another
+127.0.0.1:6379> smove s5 s6 member
+127.0.0.1:6379> smove s5 s6 eeddujy
+(integer) 1
+127.0.0.1:6379> smembers s5
+(empty array)
+127.0.0.1:6379> smembers s6
+1) "fvds"
+2) "eeddujy"
+
+->Pop an element
+127.0.0.1:6379> spop s5
+(nil)
+127.0.0.1:6379> spop s6
+"fvds"
+127.0.0.1:6379> smembers s6
+1) "eeddujy"
+
+->Display a random member
+127.0.0.1:6379> srandmember s1
+"eeddujy"
+127.0.0.1:6379> srandmember s1
+"fsdfdf"
+127.0.0.1:6379> srandmember s1
+"ddssd"
+127.0.0.1:6379> srandmember s1
+"fsdfdf"
+127.0.0.1:6379> srandmember s1
+"eeddujy"
+
+->Remove elements from set
+127.0.0.1:6379> srem s1 ddssd eeddujy
+(integer) 2
+127.0.0.1:6379> srandmember s1
+"fsdfdf"
