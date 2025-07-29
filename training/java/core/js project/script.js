@@ -1,168 +1,125 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('dataForm');
-  const addBtn = document.getElementById('addBtn');
   const stateSelect = document.getElementById('stateSelect');
   const citySelect = document.getElementById('citySelect');
+  const addBtn = document.getElementById('addBtn');
   const tableBody = document.querySelector('#dataTable tbody');
-  const clearAllBtn = document.getElementById('clearAllBtn');
-  const exportBtn = document.getElementById('exportBtn');
   const searchBox = document.getElementById('searchBox');
   const entryCount = document.getElementById('entryCount');
+  const clearAllBtn = document.getElementById('clearAllBtn');
 
-  let editMode = false;
-  let editRow = null;
+  
+  function fetchStates() {
+    fetch('http://192.168.0.73:32114/partner/get-states?countryCode=IN')
+      .then(res => res.json())
+      .then(data => {
+        const cleaned = data.response.slice(1, -1);
+        const entries = cleaned.split(',');
 
-  function validateForm() {
-    const name = document.getElementById('name').value.trim();
-    const age = parseInt(document.getElementById('age').value);
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const branch = document.querySelector('input[name="branch"]:checked');
-    const languages = document.querySelectorAll('input[type="checkbox"]:checked');
-    const state = stateSelect.value;
-    const city = citySelect.value;
+        entries.forEach(pair => {
+          const [name, code] = pair.split(':');
+          const stateName = name.replace(/"/g, '').trim();
+          const stateCode = code.replace(/"/g, '').trim();
 
-    const nameValid = /^[A-Za-z ]+$/.test(name);
-    const ageValid = age >= 10 && age <= 100;
-    const phoneValid = /^\d{10,12}$/.test(phone);
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    const isValid = nameValid && ageValid && phoneValid && emailValid && branch && languages.length > 0 && state && city;
-    addBtn.disabled = !isValid;
-    return isValid;
+          const option = document.createElement('option');
+          option.value = stateCode;
+          option.textContent = stateName;
+          stateSelect.appendChild(option);
+        });
+      })
+      .catch(err => {
+        console.error('Failed to fetch states:', err);
+        alert('Could not load states');
+      });
   }
 
-  form.addEventListener('input', validateForm);
+  function fetchCities(stateCode) {
+    citySelect.innerHTML = '<option value="">Select City</option>';
+    if (!stateCode) return;
 
-  form.addEventListener('submit', (e) => {
+    fetch(`http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=${stateCode}`)
+      .then(res => res.json())
+      .then(data => {
+        const cleaned = data.response.slice(1, -1);
+        const entries = cleaned.split(',');
+
+        entries.forEach(pair => {
+          const [name, code] = pair.split(':');
+          const cityName = name.replace(/"/g, '').trim();
+          const cityCode = code.replace(/"/g, '').trim();
+
+          const option = document.createElement('option');
+          option.value = cityCode;
+          option.textContent = cityName;
+          citySelect.appendChild(option);
+        });
+
+        citySelect.disabled = false;
+      })
+      .catch(err => {
+        console.error('Failed to fetch cities:', err);
+        alert('Could not load cities');
+      });
+  }
+
+  stateSelect.addEventListener('change', () => {
+    fetchCities(stateSelect.value);
+  });
+
+  form.addEventListener('input', () => {
+    addBtn.disabled = !form.checkValidity();
+  });
+
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    if (!validateForm()) return;
 
-    const data = {
-      name: document.getElementById('name').value,
-      age: document.getElementById('age').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      branch: document.querySelector('input[name="branch"]:checked').value,
-      languages: Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value).join(', '),
-      state: stateSelect.options[stateSelect.selectedIndex].text,
-      city: citySelect.value
-    };
+    const name = document.getElementById('name').value.trim();
+    const age = document.getElementById('age').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const branch = form.querySelector('input[name="branch"]:checked')?.value || '';
+    const languages = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value).join(', ');
+    const state = stateSelect.options[stateSelect.selectedIndex].textContent;
+    const city = citySelect.options[citySelect.selectedIndex].textContent;
 
-    if (editMode && editRow) {
-      updateRow(editRow, data);
-      editMode = false;
-      editRow = null;
-    } else {
-      addRow(data);
-    }
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${name}</td><td>${age}</td><td>${email}</td><td>${phone}</td>
+      <td>${branch}</td><td>${languages}</td><td>${state}</td><td>${city}</td>
+      <td><button class="deleteBtn">Delete</button></td>
+    `;
 
+    tableBody.appendChild(row);
     form.reset();
+    citySelect.disabled = true;
     addBtn.disabled = true;
     updateCount();
   });
 
-  function addRow(data) {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${data.name}</td><td>${data.age}</td><td>${data.email}</td><td>${data.phone}</td>
-      <td>${data.branch}</td><td>${data.languages}</td><td>${data.state}</td><td>${data.city}</td>
-      <td>
-        <button class='editBtn'>Edit</button>
-        <button class='deleteBtn'>Delete</button>
-      </td>
-    `;
-    tableBody.appendChild(row);
-  }
-
-  function updateRow(row, data) {
-    row.innerHTML = `
-      <td>${data.name}</td><td>${data.age}</td><td>${data.email}</td><td>${data.phone}</td>
-      <td>${data.branch}</td><td>${data.languages}</td><td>${data.state}</td><td>${data.city}</td>
-      <td>
-        <button class='editBtn'>Edit</button>
-        <button class='deleteBtn'>Delete</button>
-      </td>
-    `;
-  }
-
-  tableBody.addEventListener('click', (e) => {
-    const row = e.target.closest('tr');
+  tableBody.addEventListener('click', e => {
     if (e.target.classList.contains('deleteBtn')) {
-      if (confirm('Delete this entry?')) {
-        row.remove();
-        updateCount();
-      }
-    } else if (e.target.classList.contains('editBtn')) {
-      loadDataToForm(row);
-      editMode = true;
-      editRow = row;
-    }
-  });
-
-  function loadDataToForm(row) {
-    const cells = row.children;
-    document.getElementById('name').value = cells[0].innerText;
-    document.getElementById('age').value = cells[1].innerText;
-    document.getElementById('email').value = cells[2].innerText;
-    document.getElementById('phone').value = cells[3].innerText;
-
-    document.querySelectorAll('input[name="branch"]').forEach(rb => {
-      rb.checked = rb.value === cells[4].innerText;
-    });
-
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-      cb.checked = cells[5].innerText.includes(cb.value);
-    });
-
-    [...stateSelect.options].forEach(opt => {
-      opt.selected = opt.text === cells[6].innerText;
-    });
-
-    citySelect.value = cells[7].innerText;
-    addBtn.disabled = false;
-  }
-
-  clearAllBtn.addEventListener('click', () => {
-    if (confirm('Clear all entries?')) {
-      tableBody.innerHTML = '';
+      e.target.closest('tr').remove();
       updateCount();
     }
   });
 
-  exportBtn.addEventListener('click', () => {
-    const rows = Array.from(tableBody.rows).map(r => Array.from(r.cells).slice(0,8).map(c => c.innerText));
-    let csv = 'Name,Age,Email,Phone,Branch,Languages,State,City\n' + rows.map(r => r.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'entries.csv';
-    link.click();
-  });
-
-  searchBox.addEventListener('input', () => {
-    const term = searchBox.value.toLowerCase();
-    Array.from(tableBody.rows).forEach(row => {
-      row.style.display = row.innerText.toLowerCase().includes(term) ? '' : 'none';
-    });
+  clearAllBtn.addEventListener('click', () => {
+    tableBody.innerHTML = '';
     updateCount();
   });
 
+  searchBox.addEventListener('input', () => {
+    const value = searchBox.value.toLowerCase();
+    Array.from(tableBody.rows).forEach(row => {
+      row.style.display = Array.from(row.cells).some(cell =>
+        cell.textContent.toLowerCase().includes(value)
+      ) ? '' : 'none';
+    });
+  });
+
   function updateCount() {
-    const visible = Array.from(tableBody.rows).filter(r => r.style.display !== 'none');
-    entryCount.textContent = `Total Entries: ${visible.length}`;
+    entryCount.textContent = `Total Entries: ${tableBody.rows.length}`;
   }
 
-  // Add initial demo row
-  addRow({
-    name: 'John Doe',
-    age: 22,
-    email: 'john@example.com',
-    phone: '9876543210',
-    branch: 'CSE',
-    languages: 'English, Hindi',
-    state: 'Karnataka',
-    city: 'Bangalore'
-  });
-  updateCount();
+  fetchStates();
 });
