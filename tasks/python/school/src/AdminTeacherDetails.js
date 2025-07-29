@@ -3,14 +3,14 @@ import customAXIOS from "./apis";
 import { TEACHERS } from "./urls";
 import { Link, useNavigate } from "react-router-dom";
 
-function TeacherDetails({userId}) {
+function AdminTeacherDetails() {
     const [teachers, setTeachers] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchTeachers = async () => {
             try {
-                const res = await customAXIOS(TEACHERS, {user_id:userId}, 'get', null, navigate);
+                const res = await customAXIOS(TEACHERS, null, 'get', null, navigate);
                 if (Array.isArray(res)) {
                     setTeachers(res);
                 } else {
