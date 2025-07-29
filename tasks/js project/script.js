@@ -1,99 +1,79 @@
-// script.js (Final Version Using Provided Local API)
 document.addEventListener('DOMContentLoaded', () => {
-    const stateSelect = document.getElementById('stateSelect');
-    const citySelect = document.getElementById('citySelect');
-    const addBtn = document.getElementById('addBtn');
-    const form = document.getElementById('dataForm');
+    const stateDropdown = document.getElementById('stateSelect');
+    const cityDropdown = document.getElementById('citySelect');
+    const addButton = document.getElementById('addBtn');
+    const formElement = document.getElementById('dataForm');
     const tableBody = document.querySelector('#dataTable tbody');
-    const searchBox = document.getElementById('searchBox');
-    const entryCount = document.getElementById('entryCount');
+    const searchInput = document.getElementById('searchBox');
+    const countDisplay = document.getElementById('entryCount');
 
-    function fetchStates() {
-        fetch("http://192.168.0.73:32114/partner/get-states?countryCode=IN")
-            .then(res => {
-                if (!res.ok) throw new Error("Network response was not ok");
-                return res.json();
-            })
-            .then(states => {
-                console.log("States data:", states);
-                if (!Array.isArray(states)) {
-                    alert("Unexpected response format for states");
-                    return;
-                }
-                states.forEach(state => {
-                    const stateCode = state.stateCode || state.code;
-                    const stateName = state.stateName || state.name;
-                    if (stateCode && stateName) {
-                        const opt = document.createElement('option');
-                        opt.value = stateCode;
-                        opt.textContent = stateName;
-                        stateSelect.appendChild(opt);
-                    }
+    function loadStates() {
+        fetch('http://192.168.0.73:32114/partner/get-states?countryCode=IN')
+            .then(resp => resp.json())
+            .then(data => {
+                const statesArray = data.response.slice(1, -1).split(',');
+                stateDropdown.innerHTML = '<option value="">Select State</option>';
+                statesArray.forEach(item => {
+                    const [name, code] = item.split(':');
+                    const opt = document.createElement('option');
+                    opt.value = code.slice(1, -1);
+                    opt.textContent = name;
+                    stateDropdown.appendChild(opt);
                 });
             })
-            .catch(error => {
-                console.error("Failed to load states:", error);
-                alert("Could not load states. Check your network or API response.");
-            });
+            .catch(err => console.error('Error fetching states:', err));
     }
 
-    function fetchCities(stateCode) {
-        citySelect.innerHTML = '<option value="">Select City</option>';
-        fetch(`http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=${stateCode}`)
-            .then(res => {
-                if (!res.ok) throw new Error("Network response was not ok");
-                return res.json();
-            })
-            .then(cities => {
-                console.log("Cities data:", cities);
-                if (!Array.isArray(cities)) {
-                    alert("Unexpected response format for cities");
-                    return;
-                }
-                cities.forEach(city => {
-                    const cityName = city.cityName || city.name;
-                    if (cityName) {
-                        const opt = document.createElement('option');
-                        opt.value = cityName;
-                        opt.textContent = cityName;
-                        citySelect.appendChild(opt);
-                    }
+    function loadCities(stateCode) {
+        console.log("Fetching for:", stateCode);
+        const url = `http://192.168.0.73:32114/partner/get-cities-for-state?stateCode=${stateCode}`;
+        console.log(url);
+
+        fetch(url)
+            .then(resp => resp.json())
+            .then(data => {
+                const cityList = data.response.slice(1, -1).split(',');
+                cityDropdown.innerHTML = '<option value="">Select City</option>';
+                cityList.forEach(city => {
+                    const parts = city.split(':');
+                    const opt = document.createElement('option');
+                    opt.value = parts[1].slice(1, -1);
+                    opt.textContent = parts[0];
+                    cityDropdown.appendChild(opt);
                 });
             })
-            .catch(error => {
-                console.error("Failed to load cities:", error);
-                alert("Could not load cities. Check your network or API response.");
-            });
+            .catch(err => console.error('Error fetching cities:', err));
     }
 
-    stateSelect.addEventListener('change', () => {
-        const stateCode = stateSelect.value;
-        if (stateCode) fetchCities(stateCode);
+    stateDropdown.addEventListener('change', () => {
+        const code = stateDropdown.value;
+        if (code) loadCities(code);
     });
 
-    function validateForm() {
+    function isFormValid() {
         const name = document.getElementById('name').value.trim();
         const age = parseInt(document.getElementById('age').value);
         const email = document.getElementById('email').value.trim();
         const phone = document.getElementById('phone').value.trim();
-        const branch = document.querySelector('input[name="branch"]:checked');
-        const languages = document.querySelectorAll('input[type="checkbox"]:checked');
-        const state = stateSelect.value;
-        const city = citySelect.value;
+        const selectedBranch = document.querySelector('input[name="branch"]:checked');
+        const selectedLanguages = document.querySelectorAll('input[type="checkbox"]:checked');
+        const selectedState = stateDropdown.value;
+        const selectedCity = cityDropdown.value;
 
-        const isValid = name && age > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && /^\d{10}$/.test(phone) &&
-            branch && languages.length > 0 && state && city;
+        const valid = name && age > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+            && /^\d{10}$/.test(phone) && selectedBranch && selectedLanguages.length > 0
+            && selectedState && selectedCity;
 
-        addBtn.disabled = !isValid;
-        return isValid;
+        addButton.disabled = !valid;
+        return valid;
     }
 
-    form.addEventListener('input', validateForm);
-    form.addEventListener('change', validateForm);
+    formElement.addEventListener('input', isFormValid);
+    formElement.addEventListener('change', isFormValid);
 
-    form.addEventListener('submit', (e) => {
+    formElement.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (!validateForm()) return;
+        if (!isFormValid()) return;
 
         const name = document.getElementById('name').value;
         const age = document.getElementById('age').value;
@@ -101,65 +81,64 @@ document.addEventListener('DOMContentLoaded', () => {
         const phone = document.getElementById('phone').value;
         const branch = document.querySelector('input[name="branch"]:checked').value;
         const languages = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value).join(', ');
-        const state = stateSelect.options[stateSelect.selectedIndex].text;
-        const city = citySelect.value;
+        const stateName = stateDropdown.options[stateDropdown.selectedIndex].text;
+        const cityName = cityDropdown.value;
 
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${name}</td><td>${age}</td><td>${email}</td><td>${phone}</td>
-            <td>${branch}</td><td>${languages}</td><td>${state}</td><td>${city}</td>
+            <td>${branch}</td><td>${languages}</td><td>${stateName}</td><td>${cityName}</td>
             <td><button class='deleteBtn'>Delete</button></td>
         `;
-
         row.style.display = 'none';
         tableBody.appendChild(row);
         setTimeout(() => row.style.display = 'table-row', 100);
 
-        form.reset();
-        addBtn.disabled = true;
-        updateCount();
+        formElement.reset();
+        addButton.disabled = true;
+        updateEntryCount();
     });
 
     tableBody.addEventListener('click', (e) => {
         if (e.target.classList.contains('deleteBtn')) {
-            if (confirm('Are you sure you want to delete this row?')) {
-                const row = e.target.closest('tr');
-                row.style.opacity = '0';
+            if (confirm('Delete this entry?')) {
+                const tr = e.target.closest('tr');
+                tr.style.opacity = '0';
                 setTimeout(() => {
-                    row.remove();
-                    updateCount();
+                    tr.remove();
+                    updateEntryCount();
                 }, 300);
             }
         }
     });
 
-    searchBox.addEventListener('input', () => {
-        const term = searchBox.value.toLowerCase();
-        let found = false;
+    searchInput.addEventListener('input', () => {
+        const keyword = searchInput.value.toLowerCase();
+        let anyMatch = false;
 
         Array.from(tableBody.rows).forEach(row => {
-            const match = row.innerText.toLowerCase().includes(term);
-            row.style.display = match ? '' : 'none';
-            if (match) found = true;
+            const visible = row.innerText.toLowerCase().includes(keyword);
+            row.style.display = visible ? '' : 'none';
+            if (visible) anyMatch = true;
         });
 
-        updateCount();
-
-        if (!found && !document.getElementById('noResult')) {
-            const noResult = document.createElement('tr');
-            noResult.id = 'noResult';
-            noResult.innerHTML = `<td colspan="9">No results found</td>`;
-            tableBody.appendChild(noResult);
-        } else if (found) {
+        if (!anyMatch && !document.getElementById('noResult')) {
+            const tr = document.createElement('tr');
+            tr.id = 'noResult';
+            tr.innerHTML = `<td colspan="9">No results found</td>`;
+            tableBody.appendChild(tr);
+        } else if (anyMatch) {
             const existing = document.getElementById('noResult');
             if (existing) existing.remove();
         }
+
+        updateEntryCount();
     });
 
-    function updateCount() {
-        const visibleRows = Array.from(tableBody.rows).filter(row => row.style.display !== 'none');
-        entryCount.textContent = `Total Entries: ${visibleRows.length}`;
+    function updateEntryCount() {
+        const visible = Array.from(tableBody.rows).filter(row => row.style.display !== 'none' && row.id !== 'noResult');
+        countDisplay.textContent = `Total Entries: ${visible.length}`;
     }
 
-    fetchStates();
+    loadStates();
 });
