@@ -1,3 +1,5 @@
+[# Library Management System (LMS) - Database Schema](https://www.example.com)
+
 # Library Management System (LMS) - Database Schema
 
 This repository contains the SQL scripts to create the database schema for a simple Library Management System (LMS). The schema includes tables for managing members, books, and book issuance records. It also features a comprehensive logging system using triggers to audit all major database operations.
