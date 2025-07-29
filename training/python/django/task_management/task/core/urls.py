@@ -5,7 +5,7 @@ from .views import (
     LeadTaskView, AdminAllTasksView,
     TaskCreateView, TaskDetailView,
     TaskCommentCreateView, AssignTaskView,
-    TeamView, ProjectView
+    TeamView, ProjectView, AllTasksView, IndividualTaskView, AllUserProfiles, TeamMembersView
 )
 
 urlpatterns = [
@@ -14,19 +14,21 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('profile/', UserDetailView.as_view(), name='user-profile'),
-    path('profile/<int:pk>/', UserDetailView.as_view(), name='user-profile'),
-
+    # path('profile/<int:pk>/', UserDetailView.as_view(), name='user-profile'),
+    path('profiles/all/', AllUserProfiles.as_view(), name='user-profiles'),
 
     path('tasks/create/', TaskCreateView.as_view(), name='task-create'),
     path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
     path('tasks/<int:task_id>/comment/', TaskCommentCreateView.as_view(), name='task-comment'),
     path('tasks/assign/', AssignTaskView.as_view(), name='task-assign'),
+    path('assigned/tasks/',IndividualTaskView.as_view(),name='personal-tasks'),
 
 
     path('lead/tasks/', LeadTaskView.as_view(), name='lead-tasks'),
     path('admin/tasks/', AdminAllTasksView.as_view(), name='admin-tasks'),
-
+    path('tasks/', AllTasksView.as_view(), name='all-view-tasks'),
 
     path('teams/', TeamView.as_view(), name='teams'),
     path('projects/', ProjectView.as_view(), name='projects'),
+    path('members/',TeamMembersView.as_view(),name='team-members')
 ]

@@ -14,13 +14,13 @@ const Dashboard = () => {
     try {
         var URL;
         if(user.role === 'member'){
-          URL = "http://localhost:8000/api/tasks/assign/";
+          URL = "http://localhost:8000/api/assigned/tasks/";
         }
         else if(user.role === 'lead'){
           URL = "http://localhost:8000/api/lead/tasks/";
         }
         else{
-          URL = "http://localhost:8000/api/admin/tasks/";
+          URL = "http://localhost:8000/api/tasks/";
         }
 
         axios.get(URL, {
@@ -36,7 +36,7 @@ const Dashboard = () => {
       } finally {
         setLoading(false);
       }
-    
+      // eslint-disable-next-line
   }, []);
   if(user.role === "member"){
     return (

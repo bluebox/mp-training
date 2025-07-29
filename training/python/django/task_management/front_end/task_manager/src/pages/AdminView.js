@@ -26,7 +26,7 @@ const AdminView = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Admin Task View</h2>
+      <h2>Task View</h2>
       {error && <p className="text-danger">{error}</p>}
       {!error && tasks.length === 0 && <p>No tasks found.</p>}
       <div className="row">
@@ -34,11 +34,13 @@ const AdminView = () => {
           <div className="col-md-4 mb-3" key={task.id}>
             <div className="card shadow-sm">
               <div className="card-body">
-                <h3 className="card-title">{task.title}</h3>
-                <p>{task.description}</p>
-                <p>Assigned to: {task.project.team.name}</p>
-                <p>Status: {task.status}</p>
-                <p>Priority: {task.priority}</p>
+                <h3 className="card-title">{task.task.title}</h3>
+                <p>Task Description: {task.task.description}</p>
+                <p>Assigned to: {task.user.username}</p>
+                <p> Email: {task.user.email}</p>
+                <p>Created by: {task.task.created_by.username || "N/A"}</p>
+                <p>Status: {task.task.status}</p>
+                <p>Priority: {task.task.priority}</p>
               </div>
             </div>
           </div>

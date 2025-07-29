@@ -55,6 +55,14 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    project_obj = ProjectSerializer(read_only=True)
+    created_by_obj = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Task
+        fields = '__all__'
+
+class TaskViewSerializer(serializers.ModelSerializer):
     project = ProjectSerializer(read_only=True)
     created_by = UserSerializer(read_only=True)
 
@@ -62,9 +70,8 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = '__all__'
 
-
 class TaskCommentSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user_obj = UserSerializer(read_only=True)
 
     class Meta:
         model = TaskComment
@@ -72,8 +79,17 @@ class TaskCommentSerializer(serializers.ModelSerializer):
 
 
 class TaskAssignmentSerializer(serializers.ModelSerializer):
+    user_obj = UserSerializer(read_only=True)
+    task_obj = TaskSerializer(read_only=True)
+
+    class Meta:
+        model = TaskAssignment
+        fields = '__all__'
+
+
+class TaskAssignmentViewSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    task = TaskSerializer(read_only=True)
+    task = TaskViewSerializer(read_only=True)
 
     class Meta:
         model = TaskAssignment

@@ -2,7 +2,7 @@ from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
-from .models import Task, TaskComment, TaskAssignment, Team, Project
+from .models import Task, TaskComment, TaskAssignment, Team, Project, TeamMember
 from .serializers import (
     RegisterSerializer,
     UserSerializer,
@@ -10,7 +10,7 @@ from .serializers import (
     TaskCommentSerializer,
     TaskAssignmentSerializer,
     TeamSerializer,
-    ProjectSerializer
+    ProjectSerializer, TaskViewSerializer, TaskAssignmentViewSerializer, TeamMemberSerializer
 )
 
 User = get_user_model()
@@ -31,13 +31,18 @@ class UserDetailView(APIView):
         return Response(serializer.data)
 
     def put(self, request):
-        # queryset = User.objects.get(id = pk)
         serializer = UserSerializer(request.user,data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class AllUserProfiles(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, request):
+        queryset = User.objects.exclude(id=request.user.id).order_by("role")
+        serializer = UserSerializer(queryset,many=True)
+        return Response(serializer.data)
 
 # Lead can view tasks of their team
 class LeadTaskView(APIView):
@@ -55,11 +60,17 @@ class AdminAllTasksView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        print(request.user.role)
         if request.user.role != 'admin':
             return Response({"error": "Only admin can access this."}, status=403)
+        tasks = TaskAssignment.objects.all()
+        return Response(TaskAssignmentViewSerializer(tasks, many=True).data)
+
+class AllTasksView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
         tasks = Task.objects.all()
-        return Response(TaskSerializer(tasks, many=True).data)
+        return Response(TaskViewSerializer(tasks, many=True).data)
 
 
 # Create new task (lead or admin)
@@ -71,9 +82,9 @@ class TaskCreateView(APIView):
             return Response({"error": "Only leads or admins can create tasks."}, status=403)
 
         data = request.data.copy()
-        data['created_by'] = request.user.id
+        data['created_by_obj'] = request.user.id
+        data['project_obj'] = Project.objects.get(id =int(data['project']))
         serializer = TaskSerializer(data=data)
-
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
@@ -125,7 +136,7 @@ class TaskCommentCreateView(APIView):
     def post(self, request, task_id):
         data = request.data.copy()
         data['task'] = task_id
-        data['user'] = request.user.id
+        data['user_obj'] = request.user
         serializer = TaskCommentSerializer(data=data)
 
         if serializer.is_valid():
@@ -139,10 +150,13 @@ class AssignTaskView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
+        print(request.user.role)
         if request.user.role not in ['lead', 'admin']:
             return Response({"error": "Only leads or admins can assign tasks."}, status=403)
 
         data = request.data.copy()
+        data['user_obj'] = request.user
+        data['task_obj'] = Task.objects.get(id=int(data['task']))
         serializer = TaskAssignmentSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -150,10 +164,15 @@ class AssignTaskView(APIView):
         return Response(serializer.errors, status=400)
 
     def get(self,request):
-        queryset = TaskAssignment.objects.filter(user=request.user.id)
+        queryset = TaskAssignment.objects.all()
         serializer = TaskAssignmentSerializer(queryset,many=True)
         return Response(serializer.data)
 
+class IndividualTaskView(APIView):
+    def get(self,request):
+        queryset = TaskAssignment.objects.filter(user=request.user.id)
+        serializer = TaskAssignmentViewSerializer(queryset,many=True)
+        return Response(serializer.data)
 
 # Team list/create
 class TeamView(generics.ListCreateAPIView):
@@ -167,3 +186,17 @@ class ProjectView(generics.ListCreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class TeamMembersView(APIView):
+    def get(self, request):
+        teams = Team.objects.filter(members=request.user)
+        if not teams.exists():
+            return Response({'detail': 'User is not in any team.'}, status=404)
+        team = teams.last()
+        team_members = TeamMember.objects.filter(team=team)
+
+        serializer = TeamMemberSerializer(team_members, many=True)
+        return Response({
+            # 'team': team.name,
+            'members': serializer.data
+        })

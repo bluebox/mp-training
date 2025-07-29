@@ -6,9 +6,13 @@ import Login from "./components/Login";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Dashboard from './pages/Dashboard';
+import TaskCreate from './components/TaskForm';
+import TaskList from './components/TaskList';
+import ViewAll from './pages/ViewAll';
+import MyProfile from './pages/MyProfile';
+import MyTeams from './pages/MyTeams';
 
 export default function App(){
-
 
   if(!localStorage.getItem("refresh")){  
     return <Router>
@@ -17,9 +21,6 @@ export default function App(){
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<AdminView />} />
       </Routes>
     </Router>;
   }
@@ -29,10 +30,15 @@ export default function App(){
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin" element={<AdminView />} />
+        <Route path="/create-task" element={<TaskCreate />} />
+        <Route path="/task-list" element={<TaskList />} />
+        <Route path="/view-all" element={<ViewAll />} />
+        <Route path="/my-profile" element={<MyProfile />} />
+        <Route path="/my-team" element={<MyTeams />} />
       </Routes>
     </Router>
   );

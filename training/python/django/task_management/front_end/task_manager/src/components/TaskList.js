@@ -3,19 +3,17 @@ import axios from "axios";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
-  const user = JSON.parse(localStorage.getItem("user"));
-
+  
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/admin/tasks/");
-        setTasks(response.data);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
-      }
-    };
-
-    fetchTasks();
+    const access = localStorage.getItem("access");
+      axios
+      .get("http://localhost:8000/api/tasks/", {
+        headers: {
+          Authorization: 'Bearer '+access,
+        },
+      })
+      .then((res) => setTasks(res.data))
+      .catch(console.log("error in retrieving tasks"));
   }, []);
 
   return (
@@ -25,8 +23,8 @@ const TaskList = () => {
         {tasks.length === 0 ? (
           <p>No tasks available.</p>
         ) : (
-          <table className="table table-bordered table-striped">
-            <thead className="table-light">
+          <table className="table">
+            <thead>
               <tr>
                 <th>Title</th>
                 <th>Status</th>
@@ -34,6 +32,7 @@ const TaskList = () => {
                 <th>Due Date</th>
                 <th>Project</th>
                 <th>Created By</th>
+                <th>Created At</th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +44,7 @@ const TaskList = () => {
                   <td>{task.due_date || "N/A"}</td>
                   <td>{task.project.name}</td>
                   <td>{task.created_by.username}</td>
+                  <td>{task.created_at}</td>
                 </tr>
               ))}
             </tbody>

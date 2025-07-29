@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
+
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -27,7 +28,6 @@ function Login() {
     const access = response.data.access;
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", response.data.refresh);
-
     const profileResponse = await api.get("profile/", {
       headers: {
         Authorization: 'Bearer ' + access,
@@ -38,6 +38,7 @@ function Login() {
     localStorage.setItem('user', JSON.stringify(profileResponse.data));
     setUser(user);
     navigate('/home');
+    window.location.reload();
   } catch (err) {
     console.error("Login error:", err);
     alert("Invalid credentials");

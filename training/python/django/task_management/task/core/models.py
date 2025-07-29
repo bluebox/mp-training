@@ -116,8 +116,8 @@ class TaskComment(models.Model):
         db_table = "task_comment"
 
 class TaskAssignment(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="assign")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="assign")
     role = models.CharField(max_length=50)
     assigned_at = models.DateTimeField(auto_now_add=True)
 
