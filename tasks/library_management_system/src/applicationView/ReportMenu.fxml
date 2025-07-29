@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.ReportMenuController" prefWidth="600" prefHeight="400">
+    <VBox spacing="20" alignment="CENTER" layoutX="100" layoutY="50">
+        <Label text="Reports" style="-fx-font-size: 20px; -fx-text-fill: #2c3e50;" />
+        <Button text="Overdue Books" onAction="#handleOverdue"/>
+        <Button text="Books Per Category" onAction="#handleCategory"/>
+        <Button text="Active Members with Books" onAction="#handleActiveMembers"/>
+        <Button text="Back" onAction="#handleBack"/>
+    </VBox>
+</AnchorPane>
