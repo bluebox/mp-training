@@ -1,7 +1,6 @@
 package Domain;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class IssueRecord {
     private  int IssueRecordId;
@@ -67,5 +66,8 @@ public class IssueRecord {
 		return "IssueRecord [Id=" + IssueRecordId + ", BookId=" + BookId + ", MemberId=" + MemberId + ", status=" + status
 				+ ", issueDate=" + issueDate + ", ReturnDate=" + ReturnDate + "]";
 	  }
-	
+	  
+	  
+	  
+	  
 }

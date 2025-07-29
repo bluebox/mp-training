@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+import java.util.function.UnaryOperator;
 import DAO.BookImplementation;
 import DAO.IssueRecordImplementation;
 import DAO.MemberDAOImpl;
@@ -18,6 +18,7 @@ import Domain.BookStatus;
 import Domain.IssueRecord;
 import Domain.IssueStatus;
 import Domain.Member;
+import javafx.scene.control.TextFormatter;
 
 public class ServiceLayer implements ServiceInterface{
     BookImplementation bookimplementation=new BookImplementation();
@@ -30,6 +31,7 @@ public class ServiceLayer implements ServiceInterface{
 		bookimplementation.AddBook(new Book(1,Title,Author,category,status,availability));
 		
 	}
+
 
 	@Override
 	public Book updateBookDetails(int id,String Title,String Author,String category,BookStatus status,BookAvailability availability) throws SQLException {
@@ -101,7 +103,16 @@ public class ServiceLayer implements ServiceInterface{
 	        if (!member.getEmail().contains("@")) {
 	            throw new Exception("Invalid email format.");
 	        }
-	        memberDAO.addMember(member);
+
+	        String mobile = member.getMobile();
+	        for (int i = 0; i < mobile.length(); i++) {
+	            char c = mobile.charAt(i);
+	            if (!Character.isDigit(c)) {
+	                throw new Exception("Invalid number format. Should contain only decimal digits.");
+	            }
+	        }
+
+	        memberDAO.addMember(member); 
 	    }
 
 	    @Override

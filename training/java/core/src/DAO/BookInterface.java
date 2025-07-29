@@ -10,7 +10,7 @@ import Domain.BookStatus;
 
 public interface BookInterface {
       List<Book> getBooks() throws IOException, SQLException;
-	  void AddBook(Book book) throws SQLException;
+	  int AddBook(Book book) throws SQLException;
 	  Book updateBookDetails(Book book) throws SQLException;
 	  Book getBookbyId(int BookId) throws SQLException;
 	  Book updateAvailability(int id, BookAvailability availability) throws SQLException;

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="708.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="708.0" style="-fx-background-color: #A8F1FF;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookController">
    <children>
        <Label layoutX="223.0" layoutY="14.0" prefHeight="25.0" prefWidth="275.0" text="Library Management System -Books List">
          <font>
@@ -23,15 +23,15 @@
             <TableColumn fx:id="Availability" prefWidth="78.39999389648438" text="Availability" />
         </columns>
       </TableView>
-      <Button layoutX="46.0" layoutY="392.0" mnemonicParsing="false" onAction="#gotoHome" prefHeight="38.0" prefWidth="142.0" text="Back to Home">
+      <Button layoutX="46.0" layoutY="392.0" mnemonicParsing="false" onAction="#gotoHome" prefHeight="38.0" prefWidth="142.0" style="-fx-background-color: #EAC8A6;" text="Back to Home">
          <font>
             <Font name="Bookman Old Style Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="310.0" layoutY="392.0" mnemonicParsing="false" onAction="#gotoAddBook" prefHeight="38.0" prefWidth="88.0" text="Add Book">
+      <Button layoutX="310.0" layoutY="392.0" mnemonicParsing="false" onAction="#gotoAddBook" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: #EAC8A6;" text="Add Book">
          <font>
             <Font name="Bookman Old Style Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="518.0" layoutY="392.0" mnemonicParsing="false" onAction="#gotoUpdateBook" prefHeight="38.0" prefWidth="142.0" text="Update Book">
+      <Button layoutX="518.0" layoutY="392.0" mnemonicParsing="false" onAction="#gotoUpdateBook" prefHeight="38.0" prefWidth="142.0" style="-fx-background-color: #EAC8A6;" text="Update Book">
          <font>
             <Font name="Bookman Old Style Bold" size="13.0" />
          </font>

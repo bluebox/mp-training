@@ -1,10 +1,14 @@
 package controller;
 
+import java.io.IOException;
+
 import Domain.Member;
 import Service.ServiceInterface;
 import Service.ServiceLayer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,7 +16,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class ActiveIssuedMembersController {
-
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
     private ServiceInterface service = new ServiceLayer();
 
     @FXML private TableView<Member> membersTable;
@@ -41,5 +47,15 @@ public class ActiveIssuedMembersController {
             e.printStackTrace();
         }
     }
+    
+    
+    public void gotoHome(ActionEvent event) throws IOException {
+  	   root= FXMLLoader.load(getClass().getResource("/applicationview/HomeView.fxml"));
+  	    stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+  	    stage.setTitle("Library Management System");
+  	    scene=new Scene(root);
+  	    stage.setScene(scene);
+  	    stage.show();
+     }
 
 }

@@ -10,8 +10,8 @@ import Domain.BookStatus;
 public class BookImplementation implements BookInterface {
 	private static final String url="jdbc:mysql://127.0.0.1:3306/librarymanagementsystem";
 	private static  final String username="root";
-	private static final String password="root";
-
+	private static final String password="kavi@2";
+//    BookImplementation book=new BookImplementation();
 	
 	public static  Connection getConnection() {
 		Connection connection=null;
@@ -32,7 +32,7 @@ public class BookImplementation implements BookInterface {
 	}
 	
 	@Override
-	public void AddBook(Book book) throws SQLException {
+	public int AddBook(Book book) throws SQLException {
 		
 		String query="insert into librarymanagementsystem.books (Title,Author,Category,status,Availablity) values(?,?,?,?,?) ";
 		//String logquery="insert into librarymanagementsystem.bookslog (BookId,Title,Author,Category,status,Availability) values(?,?,?,?,?,?) ";
@@ -47,8 +47,9 @@ public class BookImplementation implements BookInterface {
 	            preparestatement.setString(5,""+book.getAvailability().getType());
 			    System.out.println("Added new Book to Book Table ");
 			    int b=preparestatement.executeUpdate();
-	            System.out.println(b);
+	            
 	            connection.commit();
+	            return b;
 		}catch(Exception e) {
 			connection.rollback();
 			System.out.println("Failed to add new Book to Book Table ");
@@ -158,6 +159,12 @@ public class BookImplementation implements BookInterface {
 		}catch(Exception e) {
 			throw new SQLException("the error occured with the message "+e.getMessage());
 		}
+		
+	}
+	public static void main(String[] args) throws SQLException {
+		BookImplementation b=new BookImplementation();
+		System.out.print(b.getBooks());
+		
 		
 	}
 	

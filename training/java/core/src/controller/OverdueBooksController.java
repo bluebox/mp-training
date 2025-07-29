@@ -3,17 +3,27 @@ package controller;
 import Domain.Book;
 import Service.ServiceInterface;
 import Service.ServiceLayer;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class OverdueBooksController {
-
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
+	
+	
     @FXML private TableView<Book> overdueBooksTable;
     @FXML private TableColumn<Book, Integer> idColumn;
     @FXML private TableColumn<Book, String> titleColumn;
@@ -50,6 +60,18 @@ public class OverdueBooksController {
         }
     }
 
+    
+    public void gotoHome(ActionEvent event) throws IOException {
+  	   root= FXMLLoader.load(getClass().getResource("/applicationview/HomeView.fxml"));
+  	    stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+  	    stage.setTitle("Library Management System");
+  	    scene=new Scene(root);
+  	    stage.setScene(scene);
+  	    stage.show();
+     }
+    
+    
+    
     // Utility to show a popup message
     private void showAlert(String title, String message) {
         Alert alert = new Alert(AlertType.INFORMATION);

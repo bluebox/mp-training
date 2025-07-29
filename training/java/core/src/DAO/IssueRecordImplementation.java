@@ -15,7 +15,7 @@ import Domain.IssueStatus;
 public class IssueRecordImplementation implements IssueRecordInterface {
 	private static final String url="jdbc:mysql://127.0.0.1:3306/librarymanagementsystem";
 	private static  final String username="root";
-	private static final String password="root";
+	private static final String password="kavi@2";
 	private BookImplementation book=new BookImplementation();
 	
 	public static  Connection getConnection() {
@@ -36,7 +36,7 @@ public class IssueRecordImplementation implements IssueRecordInterface {
 		return connection;
 	}
 	@Override
-	public void createBookIssue(int BookId,  int MemberId,IssueStatus status, LocalDate issueDate,LocalDate ReturnDate) throws SQLException {
+	public int createBookIssue(int BookId,  int MemberId,IssueStatus status, LocalDate issueDate,LocalDate ReturnDate) throws SQLException {
 		
 		String query="insert into librarymanagementsystem.issue_records (BookId,MemberId,status,issuedate,ReturnDate) values(?,?,?,?,?)";
 		String logquery="insert into librarymanagementsystem.issue_recordslog (BookId,MemberId,status,issuedate,ReturnDate) values(?,?,?,?,?)";
@@ -57,9 +57,11 @@ public class IssueRecordImplementation implements IssueRecordInterface {
             preparestatement_log.setString(3,""+status.getType()); 
             preparestatement_log.setDate(4,java.sql.Date.valueOf(issueDate));
             preparestatement_log.setDate(5,java.sql.Date.valueOf(ReturnDate));
-	            if(preparestatement.executeUpdate()>0) {
+            int b=0;
+	            if((b=preparestatement.executeUpdate())>0) {
 			    connection.commit();
 			    System.out.println("Added new Issue to the Table ");
+			    return b;
 	            }
 		}catch(Exception e) {
 			connection.rollback();
@@ -69,10 +71,11 @@ public class IssueRecordImplementation implements IssueRecordInterface {
 		}else {
 			System.out.println("Issue already exists");
 		}
+		return 0;
 	}
 
 	@Override
-	public void returnBook(int BookId,int MemebrId) throws SQLException {
+	public int returnBook(int BookId,int MemebrId) throws SQLException {
 		System.out.println("Setting  dao status to: R for book " + BookId + " and member " + MemebrId);
 
 		String returnquery="update librarymanagementsystem.issue_records set Status=? where BookId=? and MemberId=? and Status=?";
@@ -107,11 +110,10 @@ public class IssueRecordImplementation implements IssueRecordInterface {
 	            	preparestatement_return_log.setInt(2,BookId);
 	   	            preparestatement_return_log.setInt(3,MemebrId);
 	   	         preparestatement_return_log.setString(4,"I");
-		           if(preparestatement_return_log.executeUpdate()>0) {
-			       
-			       }
+		          int b=preparestatement_return_log.executeUpdate() ;
 		           connection.commit();
 			    System.out.println("updated the Issue in the Table in dao implementation");
+			    return b;
 	            }
 		}catch(Exception e) {
 			connection.rollback();
@@ -121,6 +123,7 @@ public class IssueRecordImplementation implements IssueRecordInterface {
 		}else {
 			System.out.println("Issue not found");
 		}
+		return 0;
 	}
 
 	@Override
@@ -142,7 +145,7 @@ public class IssueRecordImplementation implements IssueRecordInterface {
 		}
 		return false;
 	}
-	
+	@Override
 	public List<IssueRecord> getAllIssueRecords() throws SQLException{
 		String getString ="select IssueId,BookId,MemberId,status,issuedate,ReturnDate from librarymanagementsystem.issue_records";
 	    Connection connection=getConnection();
@@ -159,7 +162,7 @@ public class IssueRecordImplementation implements IssueRecordInterface {
 			 throw new SQLException("Error occured with the message :"+e.getMessage());
 		}
 	}
-	
+	@Override
 	public IssueRecord getIssueRecord(int bookId,int MemberId) throws SQLException {
 		String query="select IssueId,BookId,MemberId,Status,IssueDate,ReturnDate from librarymanagementsystem.issue_records where BookId=? and MemberId=? and Status=?";
 		Connection connection=getConnection();

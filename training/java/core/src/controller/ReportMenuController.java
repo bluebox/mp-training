@@ -58,6 +58,16 @@ public class ReportMenuController {
 	    stage.setScene(scene);
 	    stage.show(); 
     }
+    
+    
+    @FXML 
+    private void gotoHome(ActionEvent event) throws IOException{
+    	root= FXMLLoader.load(getClass().getResource("/applicationview/HomeView.fxml"));
+	    stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+	    scene=new Scene(root);
+	    stage.setScene(scene);
+	    stage.show(); 
+    }
 
 	
 		 
@@ -69,23 +79,7 @@ public class ReportMenuController {
 			
 			return map;
 		}
-		public List<Member> members_with_statusissue() throws Exception {
-			IssueRecord dbmanager=new IssueRecord();
-			ServiceLayer s=new ServiceLayer();
-			
-			List<IssueRecord> list=new ArrayList<>();
-			try {
-				list = i.getAllIssueRecords();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			List<Integer> listmemberid=list.stream().filter(x->x.getStatus().equals(IssueStatus.ISSUED)).mapToInt(Issue_records->(Integer)Issue_records.getMemberId()).boxed().collect(Collectors.toList());
-			List<Member> listMember=new ArrayList<>();
-			for(Integer memberid:listmemberid)
-				listMember.add(s.getMemberById(memberid));
-			return listMember;
-	}
+		
 
   
 }

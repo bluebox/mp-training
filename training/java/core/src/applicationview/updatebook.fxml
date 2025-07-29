@@ -58,5 +58,10 @@
          </font>
       </Label>
       <TextField fx:id="uIDfield" layoutX="213.0" layoutY="101.0" />
+      <Button layoutY="2.0" mnemonicParsing="false" onAction="#gotoHome" text="Home">
+         <font>
+            <Font name="Bookman Old Style Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
    </AnchorPane>

@@ -12,13 +12,14 @@ public class MemberDAOImpl implements MemberInterface {
     private Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/librarymanagementsystem";
         String user = "root";
-        String password = "root";
+        String password = "kavi@2";
         return DriverManager.getConnection(url, user, password);
     }
 
     @Override
-    public void addMember(Member member) throws Exception {
+    public int addMember(Member member) throws Exception {
         String sql = "INSERT INTO members (Name, Email, Mobile, Gender, Address) VALUES (?, ?, ?, ?, ?)";
+     
         try (Connection conn = getConnection();
         		PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, member.getName());
@@ -26,10 +27,14 @@ public class MemberDAOImpl implements MemberInterface {
             stmt.setString(3, member.getMobile());
             stmt.setString(4, ""+member.getGender().getType());
             stmt.setString(5, member.getAddress());
-            stmt.executeUpdate();
+             
+        		int b=stmt.executeUpdate();
+        		System.out.println(b+"returning");
+             return b;
         }catch(Exception e) {
         	throw new Exception(e.getMessage());
         }
+   
     }
 
     @Override

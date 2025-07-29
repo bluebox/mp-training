@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateMembersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #81E7AF;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateMembersController">
    <children>
       <TextField fx:id="memberid" layoutX="226.0" layoutY="71.0" promptText="memberid" />
       <TextField fx:id="nameField" layoutX="226.0" layoutY="125.0" promptText="nameField" />
@@ -25,7 +25,7 @@
       <Label layoutX="58.0" layoutY="226.0" prefHeight="17.0" prefWidth="130.0" text="Member-Label" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" />
       <Label layoutX="58.0" layoutY="269.0" prefHeight="17.0" prefWidth="130.0" text="Gender" />
       <Label layoutX="58.0" layoutY="312.0" prefHeight="17.0" prefWidth="130.0" text="Address" />
-      <Button layoutX="188.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleAddMember" text="Submit" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoHome" text="Back" />
+      <Button layoutX="188.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleAddMember" style="-fx-background-color: #F1BA88;" text="Submit" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoHome" style="-fx-background-color: #F1BA88;" text="Back" />
    </children>
 </AnchorPane>

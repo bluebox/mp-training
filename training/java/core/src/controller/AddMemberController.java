@@ -17,6 +17,7 @@ import Domain.Gender;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 import Service.ServiceLayer;
 
@@ -47,7 +48,12 @@ public class AddMemberController implements Initializable {
     }
     
     public void handleAddMember(ActionEvent event) throws Exception{
-    	service.registerMember(new Member(0,nameField.getText(),emailField.getText(),mobileField.getText(),Gender.getGender(genderBox.getValue().toUpperCase().charAt(0)),addressField.getText()));
+    	
+    	try{
+    		service.registerMember(new Member(0,nameField.getText(),emailField.getText(),mobileField.getText(),Gender.getGender(genderBox.getValue().toUpperCase().charAt(0)),addressField.getText()));}
+    	catch(Exception e) {
+    		showAlert(e.getMessage());
+    	}
     }
     
     
