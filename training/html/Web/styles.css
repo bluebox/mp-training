@@ -1,0 +1,203 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 20px;
+    padding: 20px;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 5px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.container {
+    border-radius: 25px;
+    max-width: 1200px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+#studentForm {
+    margin: 0;
+    display: block;
+    flex: 1;
+    min-width: 400px;
+    max-width: 50%;
+}
+
+.form-row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.form-label {
+    font-weight: bold;
+    width: 120px;
+}
+
+.form-input {
+    flex: 1;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+fieldset{
+    width: 110%;
+    margin: 0;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.div-button{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+button {
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    border: transparent;
+    border-radius: 6px;
+    background: #eee;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #ddd;
+}
+
+.right-section {
+    flex: 1;
+    min-width: 400px;
+    max-width: 50%;
+}
+
+/* Styles for Search Container */
+.search-container {
+    margin-left: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-container .form-label {
+    width: 120px;
+}
+
+.search-container .form-input {
+    flex: 1;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Styles for Table Container */
+.table-container {
+    margin-left: 100px;
+    width: 180%;
+    overflow-x: auto;
+    overflow-y: auto; 
+    max-height: 400px;
+}
+
+#dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+#dataTable th,
+#dataTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    /* white-space: nowrap;  */
+}
+
+#dataTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+}
+
+#dataTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#dataTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Styles for the Actions column buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    align-items: flex-start;
+}
+
+.action-buttons button {
+    width: 80px; 
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+#dataTable .delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#dataTable .delete-button:hover {
+    background-color: #cc0000;
+}
+
+#dataTable .edit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#dataTable .edit-button:hover {
+    background-color: #45a049;
+}
+
+
+#noResultsMessage {
+    text-align: center;
+    color: #888;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.85em;
+    margin-top: 5px;
+}

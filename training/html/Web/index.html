@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Web Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Dynamic Form Data Handling</h1>
+    </header>
+
+    <div class="container">
+        <form id="studentForm" action="">
+            <fieldset>
+                <legend>Student Data</legend>
+
+                <div class="form-row">
+                    <label for="firstname" class="form-label">First Name:</label>
+                    <input type="text" id="firstname" name="firstname" required class="form-input" style="display: inline-block; width: 28%; margin-right: 2%;">
+                    <label for="lastname" class="form-label" style="display: inline-block; width: 10%;">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname" required class="form-input" style="display: inline-block; width: 28%;">
+                </div>
+
+                <div class="form-row">
+                    <label for="age" class="form-label">Age:</label>
+                    <input type="number" id="age" name="age" required class="form-input">
+                </div>
+
+                <div class="form-row">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" name="email" required class="form-input">
+                </div>
+
+                <div class="form-row">
+                    <label for="phonenumber" class="form-label">Phone Number:</label>
+                    <input type="tel" id="phonenumber" name="phonenumber" required class="form-input">
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label">Branch:</label>
+                    <div class="form-input">
+                        <input type="radio" name="branch" id="cse" value="cse" required>
+                        <label for="cse">CSE</label>
+                        <input type="radio" name="branch" id="ece" value="ece">
+                        <label for="ece">ECE</label>
+                        <input type="radio" name="branch" id="eee" value="eee">
+                        <label for="eee">EEE</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label">Language:</label>
+                    <div class="form-input">
+                        <input type="checkbox" name="language" id="english" value="english">
+                        <label for="english">English</label>
+                        <input type="checkbox" name="language" id="hindi" value="hindi">
+                        <label for="hindi">Hindi</label>
+                        <input type="checkbox" name="language" id="telugu" value="telugu">
+                        <label for="telugu">Telugu</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="country" class="form-label">Country:</label>
+                    <select name="country" id="country" class="form-input" required>
+                        <option value="">Select Country</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="state" class="form-label">State:</label>
+                    <select name="state" id="state" class="form-input" required>
+                        <option value="">Select State</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="city" class="form-label">City:</label>
+                    <select name="city" id="city" class="form-input" required>
+                        <option value="">Select City</option>
+                    </select>
+                </div>
+
+                <div class="div-button" style="text-align: center;">
+                    <div id="formMessage" class="error-message" style="display: none; margin-bottom: 10px; text-align: center; margin-left:0px;"></div>
+                    <button type="submit" id="submitButton">Submit</button>
+                </div>
+
+            </fieldset>
+        </form>
+        <div class="right-section">
+            <div class="search-container">
+                <label for="search" class="form-label">Search:</label>
+                <input type="text" id="search" placeholder="Search by any field..." class="form-input">
+            </div>
+
+            <div class="table-container">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Branch</th>
+                            <th>Languages</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+                <p id="noResultsMessage" style="display: none;">No results found.</p>
+            </div>
+        </div>
+        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
