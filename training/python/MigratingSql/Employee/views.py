@@ -51,7 +51,7 @@ class EmployeeProfileView(APIView):
         except Exception as e:
             return Response({"result": "Failure", "message": str(e)}, status=500)
 
-class ManagerTeamUpdateView(APIView):
+class TeamUpdateView(APIView):
     permission_classes = [IsAuthenticated & IsManager | IsCEO | IsHR]
 
     def patch(self, request):
@@ -66,7 +66,7 @@ class ManagerTeamUpdateView(APIView):
         except Exception as e:
             return Response({"result": "Failure", "message": str(e)}, status=500)
 
-class HRUpdateSalaryView(APIView):
+class UpdateSalaryView(APIView):
     permission_classes = [IsAuthenticated & IsHR | IsCEO]
 
     def post(self, request):
@@ -107,7 +107,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.crypto import get_random_string
 
 
-class HRCreateEmployeeView(APIView):
+class CreateEmployeeView(APIView):
     permission_classes = []
 
     def post(self, request):
@@ -188,7 +188,7 @@ class HRCreateEmployeeView(APIView):
             }, status=500)
 
 
-class HRDeleteEmployeeView(APIView):
+class DeleteEmployeeView(APIView):
     permission_classes = [IsAuthenticated & IsHR | IsCEO]
 
     def delete(self, request):

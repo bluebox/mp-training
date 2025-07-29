@@ -24,11 +24,11 @@ from rest_framework_simplejwt.views import (
 
 from Employee.views import (
     EmployeeProfileView,
-    ManagerTeamUpdateView,
-    HRUpdateSalaryView,
+    TeamUpdateView,
+    UpdateSalaryView,
     AllEmployeesListView,
-    HRCreateEmployeeView,
-    HRDeleteEmployeeView,
+    CreateEmployeeView,
+    DeleteEmployeeView,
     DesignationCRUDView,
 )
 
@@ -48,14 +48,14 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('employee/profile/', EmployeeProfileView.as_view(), name='employee-profile'),
-    path('employee/create/', HRCreateEmployeeView.as_view(), name='employee-create'),
-    path('employee/delete/', HRDeleteEmployeeView.as_view(), name='employee-delete'),
+    path('employee/create/', CreateEmployeeView.as_view(), name='employee-create'),
+    path('employee/delete/', DeleteEmployeeView.as_view(), name='employee-delete'),
     path('employee/update-job/', UpdateAnyEmployeeJobView.as_view(), name='employee-update-job'),
-    path('employee/update-salary/', HRUpdateSalaryView.as_view(), name='employee-update-salary'),
+    path('employee/update-salary/', UpdateSalaryView.as_view(), name='employee-update-salary'),
     path('employee/list/', AllEmployeesListView.as_view(), name='employee-list'),
 
     # Team Management
-    path('employee/update-team/', ManagerTeamUpdateView.as_view(), name='employee-update-team'),
+    path('employee/update-team/', TeamUpdateView.as_view(), name='employee-update-team'),
 
     # Master Data
     path('designation/', DesignationCRUDView.as_view(), name='designation-crud'),

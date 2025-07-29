@@ -11,7 +11,7 @@ const Departments = () => {
 
   const fetchDepartments = async () => {
     try {
-      const res = await axiosInstance.get("/departments/add/");
+      const res = await axiosInstance.get("/departments/");
       setDepartments(res.data.data);
     } catch (err) {
       console.error("Error fetching departments", err);
@@ -21,7 +21,7 @@ const Departments = () => {
   const handleAdd = async () => {
     if (!newDept.trim()) return;
     try {
-      const res = await axiosInstance.post("/departments/add/", { dept_name: newDept });
+      const res = await axiosInstance.post("/departments/", { dept_name: newDept });
       fetchDepartments();
       setNewDept("");
     } catch (err) {
@@ -31,7 +31,7 @@ const Departments = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axiosInstance.delete("/departments/add/", { data: { id } });
+      await axiosInstance.delete("/departments/", { data: { id } });
       fetchDepartments();
     } catch (err) {
       alert("Could not delete department");
@@ -44,7 +44,7 @@ const Departments = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Departments</h2>
+      {/* <h2 className="text-xl font-semibold mb-4">Departments</h2> */}
 
       {(user?.role === "ceo") && (
         <div className="mb-4 flex gap-2">
@@ -76,6 +76,7 @@ const Departments = () => {
     </div>
   );
 };
+
 
 export default Departments;
 
