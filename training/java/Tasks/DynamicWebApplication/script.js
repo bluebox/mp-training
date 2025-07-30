@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     const stateDropdown = document.getElementById('stateSelect');
     const cityDropdown = document.getElementById('citySelect');
     const addButton = document.getElementById('addBtn');

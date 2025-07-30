@@ -34,7 +34,8 @@ public class Main {
                     System.out.println("Invalid menu option. Please choose 1–4.");
                     continue;
                 }
-            } catch (NumberFormatException e) {
+            } 
+            catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number (1–4).");
                 continue;
             }
