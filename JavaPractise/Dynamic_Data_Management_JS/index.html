@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dynamic Data Management</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h3>Data Form</h3>
+        <form id="dataForm">
+            <input type="hidden" id="editIndex">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="number" id="age" placeholder="Age" min="1" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="phone" placeholder="Phone (10 digits)" pattern="\d{10}" required>
+
+            <div class="field-group">
+                <label>Branch:</label>
+                <label><input type="radio" name="branch" value="CSE"> CSE</label>
+                <label><input type="radio" name="branch" value="ECE"> ECE</label>
+                <label><input type="radio" name="branch" value="EEE"> EEE</label>
+            </div>
+
+            <div class="field-group">
+                <label>Languages:</label>
+                <label><input type="checkbox" name="languages" value="English"> English</label>
+                <label><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+                <label><input type="checkbox" name="languages" value="French"> French</label>
+            </div>
+
+            <select id="state" required>
+                <option value="">Loading States...</option>
+            </select>
+
+            <select id="city" required>
+                <option value="">Select City</option>
+            </select>
+
+            <button type="submit" id="submitBtn">Add</button>
+        </form>
+    </div>
+
+    <div class="data-container">
+        <h3>Data Table</h3>
+        <input type="text" id="search" class="search-box" placeholder="Search...">
+        <p id="counter">Total Records: 0 | Showing: 0</p>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Name</th><th>Age</th><th>Email</th><th>Phone</th>
+                    <th>Branch</th><th>Languages</th><th>State</th><th>City</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

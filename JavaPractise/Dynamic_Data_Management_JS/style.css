@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.container {
+    display: flex;
+    gap: 20px;
+}
+.form-container {
+    width: 30%;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.field-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+.data-container {
+    width: 70%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+    font-size: 14px;
+}
+th {
+    background: #f5f5f5;
+}
+.search-box {
+    margin-bottom: 10px;
+    width: 50%;
+    padding: 5px;
+}
+.actions button {
+    margin-right: 5px;
+}
