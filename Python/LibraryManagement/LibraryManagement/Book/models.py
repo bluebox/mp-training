@@ -1,7 +1,7 @@
 from django.db import models
 
 class Book(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255,unique=True)
     author = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     status = models.BooleanField(default=True)

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EditBook from '../components/EditBook';
 
 const Books = () => {
   const navigate=useNavigate()
@@ -12,6 +11,9 @@ const Books = () => {
   const [editDialog, setEditDialog] = useState(false);
   const [currentBookId, setCurrentBookId] = useState(null);
   const [editData, setEditData] = useState({
+    title:'',
+    author:'',
+    category:'',
     status: true,
     availablity: true
   });
@@ -61,6 +63,9 @@ const Books = () => {
   const openEditDialog = (book) => {
     setCurrentBookId(book.id);
     setEditData({
+      title:book.title,
+      author:book.author,
+      category:book.category,
       status: book.status,
       availablity: book.availablity
     });
@@ -69,7 +74,11 @@ const Books = () => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+    if(!window.confirm('Do you want to update')){
+      return 
+    }
     try {
+
       await axios.patch(`http://127.0.0.1:8000/api/book/crud/${currentBookId}/`, editData,{
         withCredentials:true,
          headers: {
@@ -77,6 +86,7 @@ const Books = () => {
          }
       });
       fetchBooks();
+      alert('successfully updated')
     } catch (err) {
         const errors = err.response.data;
         const messages = Object.values(errors).flat().join('\n');
@@ -89,8 +99,7 @@ const Books = () => {
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
-    const val = name === 'status' || name === 'availablity' ? value === 'true' : value;
-    setEditData({ ...editData, [name]: val });
+    setEditData({ ...editData, [name]: value });
   };
 
   const OpenDialog = () => {
@@ -104,6 +113,9 @@ const Books = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!window.confirm('Do you want to Add book')){
+      return 
+    }
     try {
       const res = await axios.post('http://127.0.0.1:8000/api/book/crud/', formData,{
         withCredentials:true,
@@ -214,6 +226,18 @@ const Books = () => {
           <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-700">Edit Book</h2>
             <form onSubmit={handleEditSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="title" className='block '>Title</label>
+                <input type="text" className="w-full rounded-lg border py-2 mt-1 p-2"id='title'  name='title'value={editData.title} onChange={handleEditChange}/>
+              </div>
+               <div>
+                <label htmlFor="author" className='block '>Author</label>
+                <input type="text" className="w-full rounded-lg border py-2 mt-1 p-2"id='author' name='author'value={editData.author} onChange={handleEditChange}/>
+              </div>
+               <div>
+                <label htmlFor="category" className='block'>Category</label>
+                <input type="text" className="w-full rounded-lg border py-2 mt-1 p-2"id='category' name='category' value={editData.category} onChange={handleEditChange}/>
+              </div>
               <div>
                 <label className="block mb-1">Status</label>
                 <select name="status" value={editData.status} onChange={handleEditChange} className="w-full border border-gray-300 rounded px-3 py-2">

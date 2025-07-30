@@ -4,12 +4,16 @@ import axios from 'axios';
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
+   if (!user) {
+    return <div>Loading...</div>;
+  }
+  
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    email: user?.email || '',
-    address: user?.address || '',
-    gender: user?.gender || '',
-    mobile: user?.mobile || '',
+    email: user?.email ,
+    address: user?.address,
+    gender: user?.gender,
+    mobile: user?.mobile
   });
   const token =localStorage.getItem('access_token')
   const handleChange = (e) => {
@@ -20,8 +24,24 @@ const Profile = () => {
     }));
   };
 
-  const HandleEdit = async() => {
+  const HandleEdit = async(e) => {
+      e.preventDefault()
+      if(!window.confirm('Do want to Update')){
+        return 
+      }
       try{
+          const val={
+            email: user?.email ,
+            address: user?.address,
+            gender: user?.gender,
+            mobile: user?.mobile
+          }
+          if(JSON.stringify(val)===JSON.stringify(formData)){
+            alert('nothing changed')
+            return 
+          }
+          console.log(val);
+          console.log(formData)
           const res=await axios.patch(`http://127.0.0.1:8000/api/member/crud/${user.id}/`,formData,{
             withCredentials:true,
             headers:{
@@ -40,28 +60,25 @@ const Profile = () => {
           setIsEditing(false);
       }
   };
-
   const closeDialog = () => setIsEditing(false);
-
-  if (!user) {
-    return <div>Loading...</div>;
+  const shortAddress=(s)=>{
+    return s.length>20?s.slice(0,20)+"...":s;
   }
-
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg border">
-      <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-blue-600">Profile</h2>
+      <h2 className="text-center text-2xl font-bold mb-6 border-b pb-2 text-blue-600">Profile</h2>
       
         <div>
           <h3 className="text-xl font-semibold text-blue-600">{user?.email}</h3>
         </div>
 
-      <div className="space-y-6">
+      <div className="space-y-6 mt-2">
         <ul className="text-gray-700 space-y-4">
           <li><strong>ID:</strong> {user.id}</li>
-          <li><strong>Address:</strong> {user.address}</li>
+          <li><strong>Address:</strong> {shortAddress(user.address || '-')}</li>
           <li><strong>Gender:</strong> {user.gender}</li>
           <li><strong>Mobile:</strong> {user.mobile}</li>
-          <li><strong>Admin Status:</strong> {user.is_staff ? 'Admin' : 'User'}</li>
+          <li><strong>Admin Status:</strong> {user.is_admin ? 'Admin' : 'User'}</li>
         </ul>
         
         <div className="flex justify-between items-center">
@@ -76,7 +93,7 @@ const Profile = () => {
 
       {isEditing && (
         <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg w-96 shadow-lg md:w-full md:max-w-2xl">
+          <form className="bg-white p-8 rounded-lg w-96 shadow-lg md:w-full md:max-w-2xl" onSubmit={HandleEdit}>
             <h3 className="text-2xl font-semibold mb-4 text-blue-600">Edit Profile</h3>
             <div className="space-y-4">
               <div>
@@ -109,9 +126,9 @@ const Profile = () => {
                   onChange={handleChange}
                   className="w-full border border-gray-300 p-2 rounded"
                 >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
               <div>
@@ -126,22 +143,22 @@ const Profile = () => {
                 />
               </div>
 
-              <div className="flex justify-between mt-4">
-                <button
-                  onClick={HandleEdit}
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                >
-                  submit
-                </button>
+              <div className="flex justify-end space-x-4 mt-4">
                 <button
                   onClick={closeDialog}
                   className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
                 >
                   Cancel
                 </button>
+                <button   
+                  type='submit'
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  submit
+                </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       )}
     </div>

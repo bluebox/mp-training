@@ -11,7 +11,7 @@ from .serializers import MemberSerializer
 class MemberViewSet(viewsets.ModelViewSet):
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 @api_view(['GET'])
 def fetchParticularUser(request):

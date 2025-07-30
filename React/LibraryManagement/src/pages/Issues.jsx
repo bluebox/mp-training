@@ -39,6 +39,9 @@ const Issues = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!window.confirm('Do you want to issue this book')){
+      return 
+    }
     try {
       await axios.post('http://127.0.0.1:8000/api/issue/issuebook/', formData,{
         withCredentials:true,
@@ -62,6 +65,9 @@ const Issues = () => {
   };
 
   const handleReturn = async (id) => {
+    if(!window.confirm('Do you want to return ')){
+      return 
+    }
     const today = new Date().toISOString().split('T')[0];
     console.log(today);
     try {

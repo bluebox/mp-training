@@ -8,6 +8,10 @@ import Login from './pages/Login';
 import BookInfo from './pages/BookInfo'
 import ProtectedRoute from './components/Protected';
 import Profile from './pages/Profile';
+import IsAdmin from './components/IsAdmin';
+import ViewBooks from './pages/ViewBooks';
+import BorrowedBooks from './pages/BorrowedBooks';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -16,10 +20,13 @@ function App() {
       <div className="p-4">
         <Routes>
           <Route path="/" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
-          <Route path="/books" element={<ProtectedRoute><Books /></ProtectedRoute>} />
-          <Route path="/members" element={<ProtectedRoute><Members /></ProtectedRoute>} />
-          <Route path="/issues" element={<ProtectedRoute><Issues /></ProtectedRoute>} />
-          <Route path='/books/:id' element={<ProtectedRoute><BookInfo/></ProtectedRoute>}/>
+          <Route path="/books" element={<IsAdmin><ProtectedRoute><Books /></ProtectedRoute></IsAdmin>} />
+          <Route path="/members" element={<IsAdmin><ProtectedRoute><Members /></ProtectedRoute></IsAdmin>} />
+          <Route path="/issues" element={<IsAdmin><ProtectedRoute><Issues /></ProtectedRoute></IsAdmin>} />
+          <Route path='/books/:id' element={<IsAdmin><ProtectedRoute><BookInfo/></ProtectedRoute></IsAdmin>}/>
+          <Route path='/viewbooks' element={<ProtectedRoute><ViewBooks/></ProtectedRoute>}/>
+          <Route path='/borrowedbooks' element={<ProtectedRoute><BorrowedBooks/></ProtectedRoute>}/>
+          <Route path='/signup' element={<Signup/>}/>
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>

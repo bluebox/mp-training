@@ -2,7 +2,7 @@ import React, { useState,useContext} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext'
-
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -11,8 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   if(isLoggined){
-    // alert('user is already logined')
-    navigate('/books')
+    navigate('/')
     return 
   }
   const HandleSubmit = async (e) => {
@@ -33,7 +32,7 @@ const Login = () => {
       localStorage.setItem('access_token', access);
       localStorage.setItem('refresh_token', refresh);
       setIsLoggined(true)
-      navigate('/books');
+      navigate('/');
     } catch (error) {
       alert('Login failed. Check credentials.');
       console.error('Login error:', error);
@@ -74,6 +73,9 @@ const Login = () => {
             Login
           </button>
         </form>
+        <p className="text-center text-gray-500 mt-4">
+          Don't have an account? <Link to='/signup' className="text-blue-500 hover:underline">Signup</Link>
+        </p>
       </div>
     </div>
   );
