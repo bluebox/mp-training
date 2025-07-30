@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import { Formik,Form,Field,ErrorMessage } from 'formik';
+import * as Yup from 'yup'
 
 const Members = () => {
   const {user}=useContext(UserContext)
@@ -15,7 +17,7 @@ const Members = () => {
     address: '',
     mobile: '',
     gender: '',
-    password: ''
+    password: 123123
   });
   const token=localStorage.getItem('access_token')
   const fetchMembers = () => {
@@ -61,98 +63,80 @@ const Members = () => {
 
   const openEditDialog = (member) => {
     setCurrentMemberId(member.id);
-    setFormData({
-      email: member.email || '',
-      address: member.address || '',
-      mobile: member.mobile || '',
-      gender: member.gender || '',
-      password: ''
+    setFormData({...formData,
+      email: member.email ,
+      address: member.address ,
+      mobile: member.mobile,
+      gender: member.gender,
     });
     setEditDialog(true);
   };
 
-  const handleEditSubmit = (e) => {
-    e.preventDefault();
+  const handleEditSubmit = async(values,{setSubmitting,resetForm}) => {
     if(!window.confirm('Do you want to continue Edit')){
       return
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!formData.email && !emailRegex.test(formData.email)){
-        alert('enter valid email')
-        return 
-    }
-    const phoneRegex = /^[6-9]\d{9}$/;
-    if (formData.mobile && !phoneRegex.test(formData.mobile)) {
-      alert('Please enter a valid 10-digit mobile number starting with 6-9.');
-      return;
-    }
-    const updatedData = { ...formData };
-    if (!updatedData.password) delete updatedData.password;
-    axios.patch(`http://127.0.0.1:8000/api/member/crud/${currentMemberId}/`, updatedData,{
+    setSubmitting(true)
+    try{
+        if(JSON.stringify(values)===JSON.stringify(formData)){
+          alert('Nothing to update')
+          return
+        }
+        await axios.patch(`http://127.0.0.1:8000/api/member/crud/${currentMemberId}/`, values,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
          }
-      })
-      .then(() => {
+       })
         fetchMembers();
-        setEditDialog(false);
-      })
-      .catch(err => {
+        resetForm()
+        alert('Data updated')
+    }
+    catch(err ) {
        const errors = err.response.data;
         const messages = Object.values(errors).flat().join('\n');
         alert(messages);
-      });
+      }
+      finally{
+        setSubmitting(false)
+        setEditDialog(false);
+      }
   };
 
   const openAddDialog = () => {
-    setFormData({
-      email: '',
-      address: '',
-      mobile: '',
-      gender: '',
-      password: 123123
-    });
     setShowDialog(true);
   };
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async(values,{setSubmitting,resetForm}) => {
     if(!window.confirm('Do you want to Add this user')){
       return
     }
-    const phoneRegex = /^[6-9]\d{9}$/;
-    if (formData.mobile && !phoneRegex.test(formData.mobile)) {
-      alert('Please enter a valid 10-digit mobile number starting with 6-9.');
-      return;
-    }
-    axios.post('http://127.0.0.1:8000/api/member/crud/', formData,{
+    setSubmitting(true)
+    try{
+        const res=await axios.post('http://127.0.0.1:8000/api/member/crud/', values,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
          }
-      })
-      .then(res => {
-        setMembers([...members, res.data]);
-        alert('user added successfully')
-      })
-      .catch(err => {
-        const errors = err.response.data;
-        const messages = Object.values(errors).flat().join('\n');
-        alert(messages);
-      });
+       })
+      setMembers([...members, res.data]);
+      alert('user added successfully')
+      resetForm();
+    }
+    catch(err){
+        const error = err.response.data;
+        const msg = Object.values(error).flat().join('\n');
+        alert(msg);
+    }
+    finally{
       setShowDialog(false);
-
+      setSubmitting(false)
+    }
   };
 
   useEffect(() => {
     fetchMembers();
   }, []);
-  
   const shortAddress=(s)=>{
     return s.length>20?s.slice(0,20)+"...":s
   }
@@ -211,58 +195,63 @@ const Members = () => {
         </table>
       )}
 
-      {showDialog && (
+      {(showDialog || editDialog) && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
           <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-700">Add New Member</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required className="w-full border border-gray-300 rounded px-3 py-2" />
-              <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleInputChange} className="w-full border border-gray-300 rounded px-3 py-2" />
-              <input type="text" name="mobile" placeholder="Mobile" value={formData.mobile} onChange={handleInputChange} maxLength={10} className="w-full border border-gray-300 rounded px-3 py-2" />
-              <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+            <Formik
+               initialValues={{
+                email:editDialog ? formData.email:'',
+                address:editDialog?formData.address:'',
+                mobile:editDialog?formData.mobile:'',
+                gender:editDialog?formData.gender:'',
+                password:123123
+               }}
+               validationSchema={Yup.object({
+                 email:Yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,'Invalid email address').required('Email is required'),
+                 address:Yup.string().required('Address Required'),
+                 mobile:Yup.string().matches(/^[6-9]\d{9}$/,'Enter valid Mobile Number').required('Mobile Number is Required'),
+                 gender:Yup.string().required('Gender required')
+               })}
+               onSubmit={editDialog?handleEditSubmit:handleSubmit}
             >
-              <option value="">Select Gender</option>
-              <option value="male">male</option>
-              <option value="female">female</option>
-              <option value="other">other</option>
-            </select>
-              <div className="flex justify-end gap-2">
-                <button type="button" onClick={() => setShowDialog(false)} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Add</button>
+            <Form className="space-y-4">
+              <div>
+                 <Field type="email" name="email" placeholder="Email" required className="w-full border border-gray-300 rounded px-3 py-2" />
+                 <ErrorMessage name="email" component='div' className='text-red-500'/>
               </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {editDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
-          <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6">
-            <h2 className="text-2xl font-bold mb-4 text-gray-700">Edit Member</h2>
-            <form onSubmit={handleEditSubmit} className="space-y-4">
-              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required className="w-full border border-gray-300 rounded px-3 py-2" />
-              <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleInputChange} className="w-full border border-gray-300 rounded px-3 py-2" />
-              <input type="text" name="mobile" placeholder="Mobile" value={formData.mobile} onChange={handleInputChange} className="w-full border border-gray-300 rounded px-3 py-2" />
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleInputChange}
-                className="w-full border border-gray-300 rounded px-3 py-2"
-              >
-                <option value="">Select Gender</option>
-                <option value="male">male</option>
-                <option value="female">female</option>
-                <option value="other">other</option>
-              </select>
-              <div className="flex justify-end gap-2">
-                <button type="button" onClick={() => setEditDialog(false)} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Update</button>
+              <div>
+                <Field type="text" name="address" placeholder="Address" className="w-full border border-gray-300 rounded px-3 py-2" />
+                 <ErrorMessage name="address" component='div' className='text-red-500'/>
               </div>
-            </form>
+              <div>
+                <Field type="text" name="mobile" placeholder="Mobile"  maxLength={10} className="w-full border border-gray-300 rounded px-3 py-2" />
+                 <ErrorMessage name="mobile" component="div" className="text-red-500" />
+              </div>
+               <div>
+                <Field
+                  name="gender"
+                  as='select'
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                  <option value="other">other</option>
+                </Field>  
+                 <ErrorMessage name="gender" component="div" className="text-red-500" />
+               </div>
+              <div className="flex justify-end gap-2">
+                <button type="button" onClick={()=>{
+                  if(showDialog)
+                    setShowDialog(false)
+                  if(editDialog)
+                    setEditDialog(false)
+                }} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
+                <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">{editDialog?'Edit':'Add'}</button>
+              </div>
+            </Form>
+            </Formik>
           </div>
         </div>
       )}

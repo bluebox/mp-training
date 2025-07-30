@@ -9,7 +9,7 @@ export const AuthProvider=({children})=>{
         if(token){
             setIsLoggined(true)
         }
-     },[isLoggined,setIsLoggined])
+     },[isLoggined])
      return (
         <AuthContext.Provider value={{isLoggined,setIsLoggined}}>
            {children}

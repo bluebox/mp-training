@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import {Formik,Form,Field, ErrorMessage} from 'formik'
+import * as Yup from 'yup';
 const Books = () => {
   const navigate=useNavigate()
   const location=useLocation()
@@ -16,11 +17,6 @@ const Books = () => {
     category:'',
     status: true,
     availablity: true
-  });
-  const [formData, setFormData] = useState({
-    title: '',
-    author: '',
-    category: ''
   });
   const token=localStorage.getItem('access_token')
   const fetchBooks = async () => {
@@ -72,14 +68,17 @@ const Books = () => {
     setEditDialog(true);
   };
 
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
+  const handleEditSubmit = async (values,{setSubmitting,resetForm}) => {
     if(!window.confirm('Do you want to update')){
       return 
     }
+    setSubmitting(true)
     try {
-
-      await axios.patch(`http://127.0.0.1:8000/api/book/crud/${currentBookId}/`, editData,{
+      if(JSON.stringify(values)===JSON.stringify(editData)){
+        alert('Nothing updated')
+        return 
+      }
+      await axios.patch(`http://127.0.0.1:8000/api/book/crud/${currentBookId}/`, values,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -87,6 +86,7 @@ const Books = () => {
       });
       fetchBooks();
       alert('successfully updated')
+      resetForm()
     } catch (err) {
         const errors = err.response.data;
         const messages = Object.values(errors).flat().join('\n');
@@ -94,51 +94,48 @@ const Books = () => {
     }
     finally{
          setEditDialog(false);
+         setSubmitting(false)
     }
-  };
-
-  const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setEditData({ ...editData, [name]: value });
   };
 
   const OpenDialog = () => {
-    setFormData({ title: '', author: '', category: '' });
     setShowDialog(true);
   };
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if(!window.confirm('Do you want to Add book')){
-      return 
-    }
-    try {
-      const res = await axios.post('http://127.0.0.1:8000/api/book/crud/', formData,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
+  const handleSubmit=async (values,{setSubmitting,resetForm})=>{
+      setSubmitting(true)
+      if(!window.confirm('Do you want to add book')){
+        setSubmitting(false)
+        return 
       }
-      );
-      setBooks([...books, res.data]);
-      setShowDialog(false);
-    } catch (err) {
-        const errors = err.response.data;
-        const messages = Object.values(errors).flat().join('\n');
-        alert(messages);
-    }
-  };
+      try{
+           const res = await axios.post('http://127.0.0.1:8000/api/book/crud/', values,{
+            withCredentials:true,
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+          }
+          );
+          setBooks([...books, res.data]);
+          setShowDialog(false);
+          resetForm()
+          alert('Book Added Successfully')
+      }
+      catch(err){
+        const error=err.response.data
+        const msg=Object.values(error).flat().join('\n')
+        alert(msg)
+      }
+      finally{
+        setSubmitting(false)
+      }
+  }
   const handleDetails=(id)=>{
     navigate(`${location.pathname}/${id}`)
   }
   useEffect(() => {
     fetchBooks();
   }, []);
-
+  
   if (loading) return <div className="text-center mt-10 text-gray-600">Loading books...</div>;
 
   return (
@@ -208,15 +205,67 @@ const Books = () => {
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
           <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-700">Add New Book</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleInputChange} required className="w-full border border-gray-300 rounded px-3 py-2" />
-              <input type="text" name="author" placeholder="Author" value={formData.author} onChange={handleInputChange} required className="w-full border border-gray-300 rounded px-3 py-2" />
-              <input type="text" name="category" placeholder="Category" value={formData.category} onChange={handleInputChange} required className="w-full border border-gray-300 rounded px-3 py-2" />
-              <div className="flex justify-end gap-2">
-                <button type="button" onClick={() => setShowDialog(false)} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Add</button>
-              </div>
-            </form>
+           <Formik 
+            initialValues={{
+              title: '',
+              author:'',
+              category:''
+            }}
+            validationSchema={Yup.object({
+              title: Yup.string().required('Enter title'),
+              author: Yup.string().required('Enter author'),
+              category: Yup.string().required('Enter category')
+            })}
+            onSubmit={handleSubmit}
+          >
+            {(formik) => (
+              <form onSubmit={formik.handleSubmit}>
+                <div className='m-2'>
+                    <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    className="w-full border border-gray-300 rounded-lg px-2 py-1"
+                    placeholder='Title'
+                    {...formik.getFieldProps('title')}
+                   />
+                  {formik.touched.title && formik.errors.title ? (
+                    <div className="text-red-600">{formik.errors.title}</div>
+                  ) : null}
+                </div>
+                <div className='m-2'>
+                    <input
+                    type="text"
+                    name="author"
+                    id="author"
+                    className="w-full border border-gray-300 rounded-lg px-2 py-1"
+                    placeholder='Author'
+                    {...formik.getFieldProps('author')}
+                   />
+                  {formik.touched.author && formik.errors.author ? (
+                    <div className="text-red-600">{formik.errors.author}</div>
+                  ) : null}
+                </div>
+                <div className='m-2'>
+                    <input
+                    type="text"
+                    name="category"
+                    id="category"
+                    className="w-full border border-gray-300 rounded-lg px-2 py-1"
+                    placeholder='category'
+                    {...formik.getFieldProps('category')}
+                   />
+                  {formik.touched.category && formik.errors.category ? (
+                    <div className="text-red-600">{formik.errors.category}</div>
+                  ) : null}
+                </div>
+                <div className='flex justify-end space-x-4'>
+                    <button type="button" className="bg-gray-500 px-3 py-2 rounded-lg" onClick={()=>(setShowDialog(false))}>Cancel</button>
+                   <button type="submit" className="bg-blue-500 px-3 py-2 rounded-lg" disabled={formik.isSubmitting}>Add</button>
+                </div>
+              </form>
+            )}
+          </Formik>
           </div>
         </div>
       )}
@@ -225,38 +274,61 @@ const Books = () => {
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
           <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-700">Edit Book</h2>
-            <form onSubmit={handleEditSubmit} className="space-y-4">
+             <Formik
+                initialValues={{
+                  title:editData.title,
+                  author:editData.author,
+                  category:editData.category,
+                  status:editData.status,
+                  availablity:editData.availablity
+                }}
+                validationSchema={Yup.object({
+                   title:Yup.string().required('Title is required'),
+                  author:Yup.string().required('Authro is required'),
+                  category:Yup.string().required('Category is required'),
+                  status:Yup.string().required('Status is required'),
+                  availablity:Yup.string().required('Availability is required'),
+                })}
+                onSubmit={handleEditSubmit}
+             >
+              <Form className="space-y-4">
               <div>
                 <label htmlFor="title" className='block '>Title</label>
-                <input type="text" className="w-full rounded-lg border py-2 mt-1 p-2"id='title'  name='title'value={editData.title} onChange={handleEditChange}/>
+                <Field name='title'type="text"  className="w-full rounded-lg border py-2 mt-1 p-2"/>
+                <ErrorMessage name='title' component='p' className='text-red-500'/>
               </div>
                <div>
                 <label htmlFor="author" className='block '>Author</label>
-                <input type="text" className="w-full rounded-lg border py-2 mt-1 p-2"id='author' name='author'value={editData.author} onChange={handleEditChange}/>
-              </div>
+                <Field type="text" name='author'className="w-full rounded-lg border py-2 mt-1 p-2"id='author' />
+                <ErrorMessage name='author' component='p' className='text-red-500'/>
+                </div>
                <div>
                 <label htmlFor="category" className='block'>Category</label>
-                <input type="text" className="w-full rounded-lg border py-2 mt-1 p-2"id='category' name='category' value={editData.category} onChange={handleEditChange}/>
+                <Field name='category' type="text" className="w-full rounded-lg border py-2 mt-1 p-2"id='category'/>
+                <ErrorMessage name='category' component='p' className='text-red-500'/>
               </div>
               <div>
                 <label className="block mb-1">Status</label>
-                <select name="status" value={editData.status} onChange={handleEditChange} className="w-full border border-gray-300 rounded px-3 py-2">
+                <Field name="status" as='select' className="w-full border border-gray-300 rounded px-3 py-2">
                   <option value={true}>Active</option>
                   <option value={false}>Inactive</option>
-                </select>
+                </Field>
+                <ErrorMessage name='status' component='p' className='text-red-500'/>
               </div>
               <div>
                 <label className="block mb-1">Availability</label>
-                <select name="availablity" value={editData.availablity} onChange={handleEditChange} className="w-full border border-gray-300 rounded px-3 py-2">
+                <Field name="availablity" as='select' className="w-full border border-gray-300 rounded px-3 py-2">
                   <option value={true}>Available</option>
                   <option value={false}>Unavailable</option>
-                </select>
+                </Field>
+                <ErrorMessage name='availablity' component='p' className='text-red-500'/>
               </div>
               <div className="flex justify-end gap-2">
                 <button type="button" onClick={() => setEditDialog(false)} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Update</button>
               </div>
-            </form>
+              </Form> 
+             </Formik>
           </div>
         </div>
       )}

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Formik,Form,Field,ErrorMessage } from 'formik';
+import * as Yup from 'yup'
 
 const Issues = () => {
   const [issues, setIssues] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
-  const [formData, setFormData] = useState({
-    book: '',
-    member: '',
-  });
   const token=localStorage.getItem('access_token')
   const fetchIssues = async () => {
     try {
@@ -30,26 +28,22 @@ const Issues = () => {
     console.log(issues);
   }, []);
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ 
+  const handleSubmit = async (values,{setSubmitting,resetForm}) => {
     if(!window.confirm('Do you want to issue this book')){
       return 
     }
+    setSubmitting(true)
     try {
-      await axios.post('http://127.0.0.1:8000/api/issue/issuebook/', formData,{
+      await axios.post('http://127.0.0.1:8000/api/issue/issuebook/', values,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
          }
       });
       fetchIssues();
+      resetForm()
+      alert('issued Added')
     } catch (err) {
         const errors = err.response.data;
         const messages = Object.values(errors).flat().join('\n');
@@ -57,10 +51,7 @@ const Issues = () => {
     }
     finally{
         setShowDialog(false);
-         setFormData({
-        book:'',
-        member:''
-      })
+        setSubmitting(false)
     }
   };
 
@@ -78,6 +69,7 @@ const Issues = () => {
          }
       });
       fetchIssues();
+      alert('Book returned')
     } catch (err) {
         const errors = err.response.data;
         const messages = Object.values(errors).flat().join('\n');
@@ -141,26 +133,39 @@ const Issues = () => {
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
           <div className="bg-white w-full max-w-xl rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-bold mb-4 text-gray-700">Add Issue Record</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="number"
-                name="book"
-                placeholder="Book ID"
-                value={formData.book}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded px-3 py-2"
-              />
-              <input
-                type="number"
-                name="member"
-                placeholder="Member ID"
-                value={formData.member}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded px-3 py-2"
-              />
-             
+            <Formik
+            initialValues={{
+              book:'',
+              member:''
+            }}
+            validationSchema={Yup.object({
+              book:Yup.string().matches(/^[+]?\d*\.?\d+$/,'Positive Number Only Allowed').required('BookId is required'),
+              member:Yup.string().matches(/^[+]?\d*\.?\d+$/,'Positive Number Only Allowed').required('MemberId is required'),
+            })
+            }
+            onSubmit={handleSubmit}
+            >
+            <Form  className="space-y-4">
+              <div>
+                <Field
+                  type="number"
+                  name="book"
+                  placeholder="Book ID"
+                  required
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                />
+                <ErrorMessage name='book' component='div' className='text-red-500'/>
+              </div>
+              <div>
+                 <Field
+                  type="number"
+                  name="member"
+                  placeholder="Member ID"
+                  required
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                />
+                <ErrorMessage name='member' component='div' className='text-red-500'/>
+              </div>
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
@@ -176,7 +181,8 @@ const Issues = () => {
                   Add
                 </button>
               </div>
-            </form>
+            </Form>
+            </Formik>
           </div>
         </div>
       )}

@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className="space-x-4">
         <NavLink to="/" className={navClass}>
           Profile
-        </NavLink>
+        </NavLink>  
         {isAdmin ? (
           <>
             <NavLink to="/books" className={navClass}>
