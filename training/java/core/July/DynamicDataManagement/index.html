@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Data Management</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios/.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Data Entry Form</h1>
+        <form id="dataForm">
+            <div>
+                <input type="text" id="name" placeholder="Name" required />
+                <input type="number" id="age" placeholder="Age" required min="1" />
+            </div>
+            <div>
+                <input type="email" id="email" placeholder="Email" required />
+                <input type="text" id="phone" placeholder="Phone (10 digits)" required maxlength="10" />
+            </div>
+            <div class="group">
+                <div class="branch">
+                    <label>Branch</label>
+                    <label><input type="radio" name="branch" value="CSE" /> CSE</label>
+                    <label><input type="radio" name="branch" value="ECE" /> ECE</label>
+                    <label><input type="radio" name="branch" value="EEE" /> EEE</label>
+                </div>
+
+                <div class="languages">
+                    <label>Languages</label>
+
+                    <label><input type="checkbox" name="languages" value="English" /> English</label>
+                    <label><input type="checkbox" name="languages" value="Hindi" /> Hindi</label>
+                    <label><input type="checkbox" name="languages" value="French" /> French</label>
+                </div>
+            </div>
+
+            <div>
+                <select id="state" required>
+                    <option value="">Select State</option>
+                </select>
+
+                <select id="city" required>
+                    <option value="">Select City</option>
+                </select>
+            </div>
+
+            <button type="submit" id="addBtn" >Add</button>
+        </form>
+    </div>
+    <div class="container">
+
+        <p id="entryCount">Total Entries: 0</p>
+        <table id="dataTable">
+            <thead>
+                <tr class="search-row">
+                    <th><input type="text" class="col-search" data-index="0" placeholder="Search Name"></th>
+                    <th><input type="text" class="col-search" data-index="1" placeholder="Search Age"></th>
+                    <th><input type="text" class="col-search" data-index="2" placeholder="Search Email"></th>
+                    <th><input type="text" class="col-search" data-index="3" placeholder="Search Phone"></th>
+                    <th><input type="text" class="col-search" data-index="4" placeholder="Search Branch"></th>
+                    <th><input type="text" class="col-search" data-index="5" placeholder="Search Languages"></th>
+                    <th><input type="text" class="col-search" data-index="6" placeholder="Search State"></th>
+                    <th><input type="text" class="col-search" data-index="7" placeholder="Search City"></th>
+
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Branch</th>
+                    <th>Languages</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+            <tbody id="tbody"></tbody>
+
+        </table>
+        <p class="noResults" >No results found.</p>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

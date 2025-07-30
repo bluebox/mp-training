@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 20px;
+}
+.container {
+  background: white;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
+}
+form {
+  display: flex;
+  flex-direction:column;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  align-content: center;
+}
+input, select, button {
+  padding: 8px;
+  font-size: 1rem;
+}
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+.col-search{
+  padding: 4px;
+  width: 98%;
+  font-size: 13px;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  background-color: #ccc;
+}
+.fade {
+  animation: fadeIn 0.5s ease-in-out;
+}
+.branch,.languages,.group{
+    display: flex;
+    gap: 20px;
+}
+.branchOptions,.languagesOptions{
+    display: flex;
+    gap: 10px;
+ 
+    flex-direction: column;
+}
+.hidden{
+  display: none;
+}
+ 
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
