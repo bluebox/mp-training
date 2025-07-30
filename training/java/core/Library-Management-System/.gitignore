@@ -1,0 +1,27 @@
+# Ignore Eclipse/IDE config files
+.classpath
+.project
+.settings/
+bin/
+target/
+
+# Ignore module info if not part of source
+module-info.java
+
+# Ignore generated or environment-specific files
+*.log
+*.properties
+*.iml
+
+# Ignore test files (optional, depending on if you want them)
+test.java*/
+
+# Ignore any compiled classes or temp files
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
