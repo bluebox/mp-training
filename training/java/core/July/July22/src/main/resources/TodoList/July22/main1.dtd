@@ -1,0 +1,5 @@
+<!ELEMENT BorderPane (left)>
+<!ELEMENT left (ListView,center)>
+<!ELEMENT ListView (#PCDATA)>
+<!ELEMENT center (TextArea)>
+<!ELEMENT TextArea (#PCDATA)>
