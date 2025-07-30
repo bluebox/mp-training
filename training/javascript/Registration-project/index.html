@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="formArea">
+            <h1>Student Registration</h1>
+            <form id="regForm" name="regForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age"><br>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="number" id="phoneNumber" name="phoneNumber" pattern="\d{10}" maxlength="10"><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br>
+
+                <label>Select Branch</label><br>
+                <input type="radio" id="cse" name="branch" value="CSE">
+                <label for="cse">CSE</label><br>
+                <input type="radio" id="ece" name="branch" value="ECE">
+                <label for="ece">ECE</label><br>
+                <input type="radio" id="eee" name="branch" value="EEE">
+                <label for="eee">EEE</label><br>
+                <input type="radio" id="mech" name="branch" value="MECH">
+                <label for="mech">MECH</label><br>
+                <input type="radio" id="civil" name="branch" value="CIVIL">
+                <label for="civil">CIVIL</label><br>
+
+                <label>Which languages do you know</label><br>
+                <input type="checkbox" name="languages" id="English" value="English">
+                <label for="English">English</label><br>
+                <input type="checkbox" name="languages" id="Hindi" value="Hindi">
+                <label for="Hindi">Hindi</label><br>
+                <input type="checkbox" name="languages" id="Telugu" value="Telugu">
+                <label for="Telugu">Telugu</label><br>
+
+                <label for="states">Select State:</label><br>
+                <select name="states" id="states"></select><br>
+
+                <label for="cities">Select City:</label><br>
+                <select name="cities" id="cities"></select><br>
+
+                <input type="submit" value="Submit">
+                <input type="reset" value="Clear">
+            </form>
+        </div>
+        <div id="rightPanel">
+            <div id="searchArea">
+                <h3>Search Students</h3>
+                <div class="search-controls">
+                    <label for="searchCriteria">Search by:</label>
+                    <select id="searchCriteria">
+                        <option value="name">Name</option>
+                        <option value="age">Age</option>
+                        <option value="phone">Phone Number</option>
+                        <option value="email">Email</option>
+                        <option value="branch">Branch</option>
+                        <option value="languages">Languages</option>
+                        <option value="state">State</option>
+                        <option value="city">City</option>
+                    </select>
+                    <input type="text" id="searchBox" placeholder="Enter search value">
+                    <button type="button" id="searchBtn">Search</button>
+                    <button type="button" id="clearSearchBtn">Clear</button>
+                </div>
+                <div id="searchTableArea">
+                    <table id="searchTable">
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Branch</th>
+                            <th>Languages</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Actions</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
