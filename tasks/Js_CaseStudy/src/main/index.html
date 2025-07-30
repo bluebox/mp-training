@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Entry Form</title>
+    <link rel="stylesheet" href="Styless.css">
+</head>
+<body>
+
+<div class="Moving-navigation">
+    <h2><img src="plus.webp" alt="Animated GIF" class="new-logo-img"><i> WELCOME TO MEDPLUS</i></h2>
+</div>
+
+<div class="floating-box">
+    <h1>Fill the following details.</h1>
+
+    <form id="registrationForm">
+
+        <div class="grid-container">
+            <!-- Row 1 -->
+            <div class="form-group">
+                <label for="name"><b>Name</b><label class="nessesary"> *</label></label><br>
+                <input type="text" id="name" name="name" required>
+                <div id="name-warning" class="warning-message" style="color:red; font-size:0.9em; display:none;"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="age"><b>Age</b><label class="nessesary"> *</label></label><br>
+                <input type="number" id="age" name="age" required>
+                <div id="age-warning" class="warning-message" style="color:red; font-size:0.9em; display:none;"></div>
+            </div>
+
+            <div class="form-group" >
+                <label for="email"><b>Mail ID</b><label class="nessesary"> *</label></label><br>
+                <input type="text" id="email" name="email" required>
+                <div id="email-warning" class="warning-message" style="color:red; font-size:0.9em; display:none;"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><b>Phone Number</b><label class="nessesary"> *</label></label><br>
+                <input type="number" id="phone" name="phone" pattern="[0-9]{10}" required>
+                <div id="phone-warning" class="warning-message" style="color:red; font-size:0.9em; display:none;"></div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="formGroup">
+                <label><b>Branch :</b><label class="nessesary"> *</label></label><br>
+                <input type="radio" class="radio-position" id="cse" name="branch" value="CSE"><label  for="cse">CSE</label><br>
+                <input type="radio" class="radio-position" id="ece" name="branch" value="ECE"><label for="ece">ECE</label><br>
+                <input type="radio" class="radio-position" id="eee" name="branch" value="EEE"><label for="eee">EEE</label>
+            </div>
+
+            <div class="form-group">
+                <label><b>Languages Known :</b><label class="nessesary"> *</label></label><br>
+                <input type="checkbox" class="radio-position" id="english" name="languages" value="English"><label for="english">English</label><br>
+                <input type="checkbox" class="radio-position" id="hindi" name="languages" value="Hindi"><label for="hindi">Hindi</label><br>
+                <input type="checkbox"  class="radio-position" id="french" name="languages" value="French"><label for="french">French</label>
+            </div>
+
+            <div class="form-group">
+                <label for="state"><b>State</b><label class="nessesary"> *</label></label><br>
+                <select id="state" class="state" name="state" required>
+                    <option value="">--Select State--</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option value="Ladakh">Ladakh</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="city"><b>City</b><label class="nessesary"> *</label></label><br>
+                <select id="city" class="city" name="city" required style="font-size: 32px;">
+                    <option value="">--Select City--</option>
+                </select>
+            </div>
+
+            <!-- Row 3: Submit button spanning all columns -->
+            <div class="submit-container">
+                <button type="submit" class="Submit">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!-- Table to display submitted data -->
+<h2>Submitted Data</h2>
+<button id="filterToggle">🔍 Filter</button>
+
+<div id="filterContainer" style="display:none; margin: 10px 0;">
+    <input type="text" id="filterInput" placeholder="Type to filter table..." />
+</div>
+
+<div class="floating-box1">
+    <div class="scroll-bar">
+        <table id="dataTable" border="1">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Mail ID</th>
+                <th>Phone Number</th>
+                <th>Branch</th>
+                <th>Languages</th>
+                <th>State</th>
+                <th>City</th>
+                <th>ACTION</th>
+            </tr>
+            <tr id="filterRow" style="display:none;">
+                <th><input type="text" class="filter-input" placeholder="Filter Name"></th>
+                <th><input type="text" class="filter-input" placeholder="Filter Age"></th>
+                <th><input type="text" class="filter-input" placeholder="Filter Email"></th>
+                <th><input type="text" class="filter-input" placeholder="Filter Phone"></th>
+                <th><input type="text" class="filter-input" placeholder="Filter Branch"></th>
+                <th><input type="text" class="filter-input" placeholder="Filter Languages"></th>
+                <th><input type="text" class="filter-input" placeholder="Filter State"></th>
+                <th><input type="text" class="filter-input" placeholder="Filter City"></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- rows here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="Js.js"></script>
+
+</body>
+</html>

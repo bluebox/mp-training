@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+   <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to {{ title }}</h1>
+    <img src="{% static 'blog/Butterfly.jpeg' %}" alt="Butterfly">
+<button onclick="alert('This is an example alert!')">click here</button>
+
+</body>
+</html>
+    

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{% static 'static/styles.css' %}">
+</head>
+<body>
+    <h1>Contact Us</h1>
+
+    {% if form.errors %}
+        <p style="color: red;">Please correct the errors below.</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <p>
+            {{ form.name.label_tag }}<br>
+            {{ form.name }}<br>
+            {% for error in form.name.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.email.label_tag }}<br>
+            {{ form.email }}<br>
+            {% for error in form.email.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.message.label_tag }}<br>
+            {{ form.message }}<br>
+            {% for error in form.message.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
+        </p>
+
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

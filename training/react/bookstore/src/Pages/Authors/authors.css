@@ -1,0 +1,17 @@
+.inputs-gap-handleEdit{
+    width: 600px;
+    height: 400px;
+    position: relative;
+    left: 450px;
+    border-radius: 5px;
+    background-color: rgb(135, 135, 155);
+    text-align:center;
+}
+
+.edit-button-handleEdit{
+    position: relative;
+    left: 450px;
+    border-radius: 5px;
+    background-color: rgb(9, 255, 0);
+    text-align:center;
+}

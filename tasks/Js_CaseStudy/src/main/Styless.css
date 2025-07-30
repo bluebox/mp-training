@@ -1,0 +1,292 @@
+.logo{
+ padding-left: 4em;
+ float : left;
+ height:150px;
+width:400px;}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #005d82, #6b1ca3);
+    color: white;
+}
+.main-heading{
+text-align: center;
+font-size:82px;
+//color:white;
+
+}
+
+.nessesary{
+    color: red;
+        font-weight: bold;}
+.logo2{
+position: absolute;
+ top:85px;
+ right:70px;
+width:100px;}
+
+.new-logo-img{
+width:30px;
+}
+h{
+font-size:32px;
+ font-weight: bold;
+  font-style:italic;
+  color :blue;}
+
+.Moving-navigation {
+      position: relative;
+      animation: slide 20s linear infinite; /* animation name, duration, speed, and repeat */
+      white-space: nowrap;
+    }
+    @keyframes slide {
+      0% {
+        left: 100%;
+      }
+      100% {
+        left: -100%;
+      }
+    }
+
+ .floating-box {
+   margin:350px;
+      padding:100px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+   width:1350px;
+    height:420px;
+
+     position: relative;
+     background-color:  	 	#9370DB;
+
+     padding: 15px 20px;
+     border-radius: 12px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+     cursor: pointer;
+     z-index: 1000;
+     font-size:18px;
+     color:black;
+   }
+
+
+
+   .floating-box2{
+   margin:0px;
+   padding:20px;
+    border-radius: 5px;
+   width:1760px;
+   background-color: #7b2fc0;
+   height:35px;
+   font-weight: bold;
+   color:white;
+    font-size:28px;
+   }
+.floating-box3{
+
+   border-radius: 50px;
+    width:100px;
+  background:#FFFFF;
+  position: relative;
+  left:600px;
+  }
+ .Submit{
+ color:white;
+ padding:20px;
+ border-radius: 50px;
+     width:300px;
+     font-size:32px;
+ background:green;}
+.text-fields{
+display:flex;
+gap:100px;}
+
+.Name{
+width:470px;
+font-size:32px;}
+
+.required{
+color: red;
+    font-weight: bold;}
+
+
+  input {
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size:32px;
+      width: 290px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+   .Branch{
+   font-size:32px;
+   }
+
+   .inter-text-fields{
+   ;
+   gap:75px;
+   display:flex;
+   }
+
+   .text-fields2{
+   margin:0px;
+   padding:opx;
+   gap:0px;
+   font-size:24px;}
+
+
+ #registrationForm{
+ display:flex;}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+margin:0px;
+  flex-direction: column;
+}
+.formGroup {
+  display: flex;
+margin-left:10px;
+  flex-direction: column;
+}
+.radio-position{
+color:blue;
+top:20px;
+transform: scale(2);
+position:relative;
+right:70px;}
+
+.submit-container {
+  grid-column: 1 / -1; /* span all 4 columns */
+  display: flex;
+  gap:50px;
+  justify-content: center;
+}
+
+.Submit {
+  padding: 12px 35px;
+  font-size: 16px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+h2{
+font-size:40px;
+text-align:center;
+color:skyblue;}
+
+#dataTable{
+margin:10px;
+width: 100%;
+margin-top: 20px;
+overflow-x:auto;
+margin-bottom: 50px;
+background:green;}
+border-collapse: collapse;}
+
+
+
+
+.city{
+     font-size:32px;}
+
+    .state{
+     font-size:32px;}
+
+ .delete-btn{
+margin-top:10px;
+margin-bottom:10px;
+    float :right;
+    margin-right:20px;
+   background:red;}
+
+ .edit-btn{
+margin-top:10px;
+margin-bottom:10px;
+float :left;
+margin-left:20px;
+  background:green;}
+
+
+#filterRow input.filter-input {
+  width: 90%;
+  margin:50px
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+#filterToggle{
+font-size: 24px;
+  cursor: pointer;
+  position: relative;
+   left:350px;
+  padding: 5px 10px;
+  background-color: transparent;
+border: none;
+  color: white;
+}
+.floating-box1{
+   margin:345px;
+      padding:100px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+   width:1350px;
+    height:220px;
+
+     position: relative;
+     background-color:  	 	#0235DB;
+
+     padding: 15px 20px;
+     border-radius: 12px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+     cursor: pointer;
+     z-index: 1000;
+     font-size:18px;
+     color:black;
+   }
+
+.table-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+}
+
+#dataTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+#dataTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: #444;  /* Same as table header background */
+  color: white;
+  z-index: 1;
+}
+
+.warning-message {
+    margin-top: 4px;
+    color: red;
+    font-size: 0.85em;
+}

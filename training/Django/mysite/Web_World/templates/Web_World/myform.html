@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my form </title>
+    <link rel="stylesheet" href="{% static 'Web_World/styles.css' %}">
+</head>
+<body>
+<h1>Create a New Post</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+</form>
+</body>
+</html>
+
+
+
