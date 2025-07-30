@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controller.IssueBookController">
+   <children>
+      <TextField fx:id="issueTextField" layoutX="109.0" layoutY="123.0" prefHeight="26.0" prefWidth="233.0" promptText="Enter The Member Mobile Number" style="-fx-background-color: EDF6F9;" />
+      <Button fx:id="issueFetchButton" layoutX="473.0" layoutY="124.0" mnemonicParsing="false" style="-fx-background-color: ffba08;" text="Search" />
+      <ComboBox fx:id="issueBookNameComboBox" layoutX="327.0" layoutY="301.0" prefWidth="233.0" promptText="Enter Book Name" style="-fx-background-color: EDF6F9;" />
+      <Button fx:id="issueBookButton" layoutX="218.0" layoutY="569.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #4CAF50;" text="ISSUE BOOK" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="issueBooksLabel" layoutX="237.0" layoutY="168.0" prefHeight="26.0" prefWidth="181.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="159.0" layoutY="305.0" text="Book Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="issueCategoriesComboBox" layoutX="327.0" layoutY="217.0" prefWidth="233.0" promptText="Select Categories" style="-fx-background-color: EDF6F9;" />
+      <Label layoutX="156.0" layoutY="221.0" text="Categories">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="issueDueDatePicker" layoutX="331.0" layoutY="397.0" prefWidth="233.0" promptText="Select Due Date" style="-fx-background-color: EDF6F9;" />
+      <Label layoutX="160.0" layoutY="401.0" text="Due Date">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

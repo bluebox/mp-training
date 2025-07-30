@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>servlets-prac</display-name>
+	<servlet>
+	<servlet-name>addServlet</servlet-name>
+	<servlet-class>dev.saketh.servlets.CreateUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>addServlet</servlet-name>
+	<url-pattern>/add</url-pattern>
+	</servlet-mapping>
+</web-app>
