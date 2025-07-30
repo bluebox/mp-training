@@ -8,7 +8,7 @@ export default function MyTeams(){
     useEffect(()=>{
         const fetch = async () => {
             try{
-                const response = await api.get("members")
+                const response = await api.get("members/")
                 setMembers(response.data.members);
             }
             catch(err){

@@ -10,7 +10,8 @@ from .serializers import (
     TaskCommentSerializer,
     TaskAssignmentSerializer,
     TeamSerializer,
-    ProjectSerializer, TaskViewSerializer, TaskAssignmentViewSerializer, TeamMemberSerializer
+    ProjectSerializer, TaskViewSerializer, TaskAssignmentViewSerializer, TeamMemberSerializer,
+    IndividualTaskViewSerializer, AllTaskViewSerializer, TeamAssignSerializer
 )
 
 User = get_user_model()
@@ -51,7 +52,7 @@ class LeadTaskView(APIView):
     def get(self, request):
         if request.user.role != 'lead':
             return Response({"error": "Only team leads can access this."}, status=403)
-        tasks = Task.objects.filter(project__team__teammember__user=request.user)
+        tasks = Task.objects.select_related("project").filter(project__team__teammember__user=request.user)
         return Response(TaskSerializer(tasks, many=True).data)
 
 
@@ -70,7 +71,7 @@ class AllTasksView(APIView):
 
     def get(self, request):
         tasks = Task.objects.all()
-        return Response(TaskViewSerializer(tasks, many=True).data)
+        return Response(AllTaskViewSerializer(tasks, many=True).data)
 
 
 # Create new task (lead or admin)
@@ -111,8 +112,6 @@ class TaskDetailView(APIView):
         task = self.get_object(pk)
         if not task:
             return Response({"error": "Task not found"}, status=404)
-        if task.created_by != request.user and request.user.role != 'admin':
-            return Response({"error": "You don't have permission."}, status=403)
         serializer = TaskSerializer(task, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -171,14 +170,31 @@ class AssignTaskView(APIView):
 class IndividualTaskView(APIView):
     def get(self,request):
         queryset = TaskAssignment.objects.filter(user=request.user.id)
-        serializer = TaskAssignmentViewSerializer(queryset,many=True)
+        serializer = IndividualTaskViewSerializer(queryset,many=True)
         return Response(serializer.data)
 
 # Team list/create
-class TeamView(generics.ListCreateAPIView):
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
+class TeamView(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    def get(self,request):
+        queryset = Team.objects.all()
+        serializer = TeamSerializer(queryset,many=True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        serializer = TeamSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    def put(self,request,pk):
+        queryset = Team.objects.get(id=pk)
+        serializer = TeamSerializer(queryset,data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 
 # Project list/create
@@ -189,14 +205,39 @@ class ProjectView(generics.ListCreateAPIView):
 
 class TeamMembersView(APIView):
     def get(self, request):
-        teams = Team.objects.filter(members=request.user)
-        if not teams.exists():
-            return Response({'detail': 'User is not in any team.'}, status=404)
-        team = teams.last()
-        team_members = TeamMember.objects.filter(team=team)
+        # Admin: return all users except admins
+        if request.user.role == 'admin':
+            queryset = User.objects.exclude(role='admin')
+            serializer = UserSerializer(queryset, many=True)
+            return Response(serializer.data)
 
+        # Non-admin: return members of the latest team the user joined
+        teams = TeamMember.objects.select_related('team', 'user').filter(user=request.user).order_by('joined_at')
+        if not teams.exists():
+            return Response({'detail': 'User is not in any team.'}, status=status.HTTP_404_NOT_FOUND)
+
+        latest_team = teams.last().team  # You need the team object, not the TeamMember ID
+        team_members = TeamMember.objects.filter(team=latest_team).select_related('user').distinct()
         serializer = TeamMemberSerializer(team_members, many=True)
+
+        # return Response(serializer.data)
+
         return Response({
             # 'team': team.name,
             'members': serializer.data
         })
+
+    def post(self, request):
+        serializer = TeamAssignSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors,status=400)
+
+class UnassignedTasksVIew(APIView):
+    def get(self, request):
+        unassigned_tasks = Task.objects.exclude(id__in=TaskAssignment.objects.values('task_id'))
+        if not unassigned_tasks:
+            return Response({"error": "No unassigned tasks found"}, status=404)
+        serializer = TaskSerializer(unassigned_tasks, many=True)
+        return Response(serializer.data)

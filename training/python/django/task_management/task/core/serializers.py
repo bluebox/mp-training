@@ -44,6 +44,12 @@ class TeamMemberSerializer(serializers.ModelSerializer):
         model = TeamMember
         fields = '__all__'
 
+class TeamAssignSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TeamMember
+        fields = '__all__'
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     team = TeamSerializer(read_only=True)
@@ -93,4 +99,30 @@ class TaskAssignmentViewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskAssignment
+        fields = '__all__'
+
+class TaskIndSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ['id', 'title', 'description', 'status', 'priority', 'due_date']
+
+class IndividualTaskViewSerializer(serializers.ModelSerializer):
+    task = TaskIndSerializer(read_only=True)
+
+    class Meta:
+        model = TaskAssignment
+        fields = '__all__'
+
+class ProjectTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+
+class AllTaskViewSerializer(serializers.ModelSerializer):
+    project = ProjectTaskSerializer(read_only=True)
+    created_by = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Task
         fields = '__all__'

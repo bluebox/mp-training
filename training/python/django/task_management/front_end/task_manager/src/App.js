@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AdminView from "./pages/AdminView";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Home from "./pages/Home";
@@ -11,6 +10,7 @@ import TaskList from './components/TaskList';
 import ViewAll from './pages/ViewAll';
 import MyProfile from './pages/MyProfile';
 import MyTeams from './pages/MyTeams';
+import AssignTask from './components/AssignCreatedTask';
 
 export default function App(){
 
@@ -33,9 +33,9 @@ export default function App(){
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin" element={<AdminView />} />
         <Route path="/create-task" element={<TaskCreate />} />
         <Route path="/task-list" element={<TaskList />} />
+        <Route path="/task-assign" element={<AssignTask />} />
         <Route path="/view-all" element={<ViewAll />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/my-team" element={<MyTeams />} />

@@ -1,44 +1,5 @@
-
-// export default function MyProfile(){
-//     const user = JSON.parse(localStorage.getItem("user"));
-//     function handleEdit(){
-        
-//     }
-//     return (
-//         <div className="MyProfile">
-//             <table>
-//                 <tr>
-//                     <th>username</th>
-//                     <td>{user.username}</td>
-//                 </tr>
-//                 <tr>
-//                     <th>first_name</th>
-//                     <td>{user.first_name}</td>
-//                 </tr>
-//                 <tr>
-//                     <th>last_name</th>
-//                     <td>{user.last_name}</td>
-//                 </tr>
-//                 <tr>
-//                     <th>email</th>
-//                     <td>{user.email}</td>
-//                 </tr>
-//                 <tr>
-//                     <th>role</th>
-//                     <td>{user.role}</td>
-//                 </tr>
-//                 <tr style={{columnSpan:'2'}}>
-//                     <button onClick={handleEdit}>edit</button>
-//                 </tr>
-//             </table>
-//         </div>
-//     )
-// }
-
-
-
 import { useState } from "react";
-import axios from "axios"; // make sure you have axios installed
+import axios from "axios"; 
 
 export default function MyProfile() {
     const storedUser = JSON.parse(localStorage.getItem("user"));
