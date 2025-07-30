@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .model_serializers import StudentSerializer, TeacherSerializer, SubjectSerializer, ClassesSerializer, \
-    ResultsSerializer, StudentProfileSerializer, TeacherSubjectSerializer
+    ResultsSerializer, StudentProfileSerializer, TeacherSubjectSerializer, StudentDetailsSerializer
 from .models import *
 from .templates.permissions.AdminPermissions import CustomStudentTablePermissions, IsAdmin
 from .templates.permissions.StudentPermissions import IsStudent
@@ -106,6 +106,8 @@ class StudentDetails(APIView):
             return Response({"error": "Missing id param"}, status=400)
         try:
             student = Student.objects.select_related("studentprofile", "Class").get(pk=params["id"])
+            # serealizer = StudentDetailsSerializer(student)
+            # return Response(serealizer.data,status=200)
         except Student.DoesNotExist:
             return Response({"error": "Student not found"}, status=404)
 
@@ -274,14 +276,17 @@ class TeacherSubjectsStudents(APIView):
     def get(self,request):
         params = request.query_params
         if 'id' in params:
+            qs = subject_teacher.objects.filter(teacher__user_id=params['id']).select_related('subject').prefetch_related(Prefetch('rel_class__students_class', queryset=Student.objects.filter()))
             qs = Teacher.objects.filter(user_id = params['id']).prefetch_related('subject_teacher_set').values('subject_teacher__subject')
             qs = list(qs)
             subject_students = []
             data = {}
+
             for val in qs:
                 student_qs = Student.objects.select_related('Class').prefetch_related(
                     'Class__subject_teacher_set'
-                ).select_related('Class__subject_teacher_set__subject','Class__subject_teacher_set__teacher').filter(Q(Class__subject_teacher_set__subject=val['subject_teacher__subject']) & Q(Class__subject_teacher_set__teacher = params['id'])).values('user_id','Class')
+                ).select_related('Class__subject_teacher_set__subject','Class__subject_teacher_set__teacher').filter(
+                    Q(Class__subject_teacher_set__subject=val['subject_teacher__subject']) & Q(Class__subject_teacher_set__teacher = params['id'])).values('user_id','Class')
                 student_list = []
                 class_list = []
                 student_qs = list(student_qs)
@@ -374,29 +379,52 @@ class TeacherClass(APIView):
 #     serializer_class = TeacherSubjectSerializer
 #     queryset = subject_teacher.objects.all()
 
+
+
 class SubjectTeacherRelationView(APIView):
     permission_classes = [CustomStudentTablePermissions]
-    def get(self,request):
+
+    def get(self, request):
         params = request.query_params
-        if('id' in params):
-            qs = subject_teacher.objects.select_related('subject','teacher','rel_class').filter(teacher__user_id = params['id']).values('subject__id','subject__Name','rel_class__Class_id','rel_class__Section','subject__Name','teacher__user_id','teacher__Name')
+        if 'id' in params:
+            qs = subject_teacher.objects.select_related('subject', 'teacher', 'rel_class') \
+                .filter(teacher__user_id=params['id']) \
+                .values('id','subject__id', 'subject__Name', 'rel_class__Class_id', 'rel_class__Section',
+                        'teacher__user_id', 'teacher__Name')
         else:
-            qs = subject_teacher.objects.select_related('subject','teacher','rel_class').values('subject__id','subject__Name','rel_class__Class_id','rel_class__Section','subject__Name','teacher__user_id','teacher__Name')
-        print(qs)
-        data = []
-        for sub in qs:
-            item = {
-            'subject_id':sub['subject__id'],
-            'subject_name':sub['subject__Name'],
-            'class_id':sub['rel_class__Class_id'],
-            'section':sub['rel_class__Section'],
-            'teacher_id':sub['teacher__user_id'],
-            'teacher_name':sub['teacher__Name'],
-            # 'subject_id':qs['subject__id'],
-            }
-            data.append(item)
-        return Response(data,status=200)
-    # def post(self,request):
+            qs = subject_teacher.objects.select_related('subject', 'teacher', 'rel_class') \
+                .values('id','subject__id', 'subject__Name', 'rel_class__Class_id', 'rel_class__Section',
+                        'teacher__user_id', 'teacher__Name')
+
+        data = [{
+            'id': sub['id'],
+            'subject_id': sub['subject__id'],
+            'subject_name': sub['subject__Name'],
+            'class_id': sub['rel_class__Class_id'],
+            'section': sub['rel_class__Section'],
+            'teacher_id': sub['teacher__user_id'],
+            'teacher_name': sub['teacher__Name']
+        } for sub in qs]
+
+        return Response(data, status=200)
+
+    def post(self, request):
+        serializer = TeacherSubjectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
+    def delete(self, request):
+        params = request.query_params
+        if 'id' in params:
+            try:
+                subject_teacher.objects.get(id=params['id']).delete()
+                return Response(data={"message":"Record deleted successfully"},status=200)
+            except Expression as e:
+                return Response(data={"message":"Error in deletion"}, status=500)
+        else:
+            return Response(data={"message":"Did not receive id in params"}, status=400)
 
 
 

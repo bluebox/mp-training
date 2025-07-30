@@ -60,6 +60,7 @@ function StudentRegister({ userId }) {
         ...formData,
         //   user: userId,
         };
+
         if(!userid){
             customAXIOS(STUDENTS, null, "post", payload, navigate)
             .then((res) => {
@@ -96,7 +97,7 @@ function StudentRegister({ userId }) {
     };
 
   return (
-    <div>
+    <div >
       <h2>Register Student</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>

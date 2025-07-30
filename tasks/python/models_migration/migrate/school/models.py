@@ -30,7 +30,7 @@ class Student(models.Model):
 
     user = models.OneToOneField(BaseUser, primary_key=True, on_delete=models.CASCADE, limit_choices_to={'role':BaseUser.Role.STUDENT})
 
-    Class = models.ForeignKey('Classes', on_delete=models.CASCADE, null=False)
+    Class = models.ForeignKey('Classes', on_delete=models.CASCADE, null=False, related_name='students_class')
     # Section = models.CharField(max_length=3,null=False)
     attendance = models.IntegerField(null=False)
     status = models.CharField(max_length=1, null=False, choices = StatusChoices.choices, default=StatusChoices.STUDYING)

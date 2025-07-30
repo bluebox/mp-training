@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASEURL, REFRESH } from "./urls";
+import { Link } from "react-router-dom";
 
 async function customAXIOS(url, params, method = 'get', body,navigate) {
     if(method === "login")
@@ -72,12 +73,23 @@ async function customAXIOS(url, params, method = 'get', body,navigate) {
                 } else if (method.toLowerCase() === "post") {
                     const res = await api.post(url, body, config);
                     return res.data;
+                }else if(method.toLowerCase() === 'put'){
+                    const res = await api.put(url, body, config)
+                    return res.data;
+                }else if(method.toLowerCase() === 'delete'){
+                    const res = await api.delete(url,body, config)
+                    return res.data;
                 }
             } catch (refreshError) {
                 console.error("Token refresh failed:", refreshError);
                 navigate("/logout")
             }
-        } else {
+        } else if(error.response && error.response.status === 403){
+            console.log("Unauthorized request")
+            window.location.href = '/unauthorized';
+            
+        }
+        else {
             console.error("API error:", error);
             throw error;
         }

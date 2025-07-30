@@ -178,7 +178,7 @@ def correct_passwords():
 
 def createAdmin():
     user = BaseUser(
-        username="Admin",
+        username="admin1",
         role=BaseUser.Role.ADMIN,
         # password="password123",
     )
@@ -197,7 +197,7 @@ def run():
 #     except Expression:
 #     populate()
 #     correct_passwords()
-    # createAdmin()
-    correct_results()
+    createAdmin()
+    # correct_results()
 
 

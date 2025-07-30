@@ -184,7 +184,7 @@ function Student() {
                 <tbody>
                     {
                     // console.log("user::",user)}
-                    user.map((u) => (
+                    user.length>0 &&(user.map((u) => (
                         <tr key={u.user}>
                             <td>{u.Name}</td>
                             <td>{u.is_class_representative ? "Yes" : "No"}</td>
@@ -198,7 +198,7 @@ function Student() {
                                 <button className="delete-btn" onClick={() => handleDelete(u.user)}>Delete</button>
                             </td>
                         </tr>
-                    ))}
+                    )))}
                     {user.length === 0 && (
                         <tr>
                             <td colSpan="6" style={{ textAlign: "center" }}>No users found</td>

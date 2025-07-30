@@ -37,7 +37,7 @@ function ClassTeachers(){
                     </tr>
                 </thead>
                 <tbody>
-                    {teachers.map(teacher=>(
+                    {teachers.length>0 && teachers.map(teacher=>(
                         <tr>
                             <td>{teacher.teacher_id}</td>
                             <td>{teacher.name}</td>

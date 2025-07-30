@@ -8,7 +8,7 @@ function TeacherResultsView({ userId }) {
     const [subjects, setSubjects] = useState([]);
     const navigator = useNavigate();
 
-    // Moved outside to make it callable on delete
+
     const fetchRes = async () => {
         const data = [];
         const subData = await customAXIOS(TEACHERSUBJECTSTUDENTS, { id: userId }, 'get', null, navigator);
@@ -63,9 +63,6 @@ function TeacherResultsView({ userId }) {
                             <td>{u.percentage}</td>
                             <td>{u.grade}</td>
                             <td>
-                                {/* <Link to="/t" state={{ id: u.id }}>
-                                    <button className="alter-btn">Alter</button>
-                                </Link> */}
                                 <button className="delete-btn" onClick={() => handleDelete(u.id)}>Delete</button>
                             </td>
                         </tr>

@@ -70,6 +70,7 @@ function CreateClasses() {
             value={data.Class_id}
             onChange={handleChange}
             readOnly={Id !== undefined}
+            required
           />
         </label>
         <label>
@@ -80,6 +81,7 @@ function CreateClasses() {
             value={data.Section}
             onChange={handleChange}
             readOnly={Id !== undefined}
+            required
           />
         </label>
         <label>
@@ -90,7 +92,7 @@ function CreateClasses() {
             onChange={handleChange}
           >
             <option value="">Select Teacher</option>
-            {teachers.map((teacher) => (
+            {teachers.length>0 && teachers.map((teacher) => (
               <option key={teacher.user} value={teacher.user}>
                 {teacher.Name}
               </option>

@@ -18,8 +18,11 @@ function Login({setLogin,setId,setAccess})
             const response = await customAXIOS(LOGIN, null, "login", creds, navigate);
             if (response?.access && response?.refresh) {
                 setLogin(true);
+                localStorage.setItem('isLogin','true')
                 setId(response.id)
+                localStorage.setItem('id',response.id)
                 setAccess(response.role)
+                localStorage.setItem('access',response.role)
                 navigate("/");
             } else {
                 alert("Login failed. Please check your credentials.");

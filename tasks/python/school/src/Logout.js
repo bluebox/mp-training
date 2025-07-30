@@ -4,7 +4,10 @@ function Logout({ setLogin }) {
   const navigate = useNavigate();
 
   setLogin(false)
-  localStorage.removeItem('token')
+  localStorage.removeItem('jwtAccessToken')
+  localStorage.removeItem('jwtRefreshToken')
+  localStorage.removeItem('access')
+  localStorage.setItem('isLogin','false')
   navigate('/login');
 }
 export default Logout

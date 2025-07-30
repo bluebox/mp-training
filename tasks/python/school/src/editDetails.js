@@ -48,28 +48,28 @@ function EditDetails({ userId }) {
             <h2>Edit Student Details</h2>
             <form onSubmit={handleSubmit}>
                     <label>Name: </label>
-                    <input type="text" name="name" value={data.Name || ''} onChange={handleChange} />
+                    <input type="text" name="name" value={data.Name || ''} onChange={handleChange} required/>
 
                     <label>Age: </label>
-                    <input type="number" name="age"  value={data.Age || ''} onChange={handleChange} />
+                    <input type="number" name="age"  value={data.Age || ''} onChange={handleChange} required/>
             
                     <label>Father's Name: </label>
-                    <input type="text" name="FatherName" value={data.FatherName || ''} onChange={handleChange} />
+                    <input type="text" name="FatherName" value={data.FatherName || ''} onChange={handleChange} required/>
             
                     <label>Father's Age: </label>
-                    <input type="number" name="FatherAge"  value={data.FatherAge || ''} onChange={handleChange} />
+                    <input type="number" name="FatherAge"  value={data.FatherAge || ''} onChange={handleChange} required/>
             
                     <label>Mother's Name: </label>
-                    <input type="text" name="MotherName" value={data.MotherName || ''} onChange={handleChange} />
+                    <input type="text" name="MotherName" value={data.MotherName || ''} onChange={handleChange} required/>
     
                     <label>Mother's Age: </label>
-                    <input type="number" name="MotherAge"  value={data.MotherAge || ''} onChange={handleChange} />
+                    <input type="number" name="MotherAge"  value={data.MotherAge || ''} onChange={handleChange} required/>
             
                     <label>Address: </label>
-                    <input type="text" name="address" value={data.address || ''} onChange={handleChange} />
+                    <input type="text" name="address" value={data.address || ''} onChange={handleChange} required/>
 
                     <label>Phone No.: </label>
-                    <input type="text" name="phoneNo" value={data.phoneNo || ''} onChange={handleChange} />
+                    <input type="text" name="phoneNo" value={data.phoneNo || ''} onChange={handleChange} required/>
 
                     <button type="submit" className="submit-buttons">Update</button>
             </form>

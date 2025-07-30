@@ -76,20 +76,20 @@ function EditTeacherDetails({access}){
             <form onSubmit={handleSubmit}>
                 {userId !== undefined &&
                     <label>User Id:
-                    <input type="text" name="user" value={data===null?'':data.user||''} readOnly onChange={handleChange}></input></label>
+                    <input type="text" name="user" value={data===null?'':data.user||''} readOnly onChange={handleChange} required></input></label>
                 }
                     <label>Name: </label>
-                    <input type="text" name="Name" value={data ===null?'':data.Name || ''} onChange={handleChange} />
+                    <input type="text" name="Name" value={data ===null?'':data.Name || ''} onChange={handleChange} required/>
 
                     <label>Level: </label>
-                    <input type="text" name="level"  value={data===null?'':data.level || ''} onChange={handleChange} />
+                    <input type="text" name="level"  value={data===null?'':data.level || ''} onChange={handleChange} required/>
                 {userId !== undefined &&
                     <label>Joining Date(YYYY-MM-DD)
-                        <input type="text"  name="joining_date" value={data===null?'':data.joining_date || ''} readOnly onChange={handleChange} />
+                        <input type="text"  name="joining_date" value={data===null?'':data.joining_date || ''} readOnly onChange={handleChange} required/>
                     </label>
                 }
                     <label>Experience in years</label>
-                    <input type="number" name="experience"value={data===null?'':data.experience||''} onChange={handleChange}/>
+                    <input type="number" name="experience"value={data===null?'':data.experience||''} onChange={handleChange} required/>
 
                     <button type="submit" className="submit-buttons">{userId===undefined?'Submit':'Update'}</button>
             </form>
