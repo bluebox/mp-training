@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="880.0"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.ActiveIssued">
+
+    <children>
+
+        <!-- Background Image -->
+         <ImageView fitWidth="1200.0" fitHeight="700.0" preserveRatio="false" pickOnBounds="true">
+      <image>
+         <Image url="@download.jpg" />
+      </image>
+   </ImageView>
+
+        <!-- Title Label -->
+        <Label layoutX="430.0" layoutY="20.0" text="🔖 Members with Active Issued Books" style="-fx-text-fill: white;">
+            <font>
+                <Font name="Georgia Bold" size="24.0"/>
+            </font>
+        </Label>
+
+        <!-- TableView -->
+        <TableView fx:id="membersTable" layoutX="180.0" layoutY="80.0" prefHeight="450.0" prefWidth="920.0" style="-fx-background-radius: 10;">
+            <columns>
+                <TableColumn fx:id="idColumn" text="Member ID" prefWidth="120"/>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="180"/>
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="220"/>
+                <TableColumn fx:id="mobileColumn" text="Mobile" prefWidth="180"/>
+                <TableColumn fx:id="addressColumn" text="Address" prefWidth="200"/>
+            </columns>
+        </TableView>
+
+        <!-- Back Button -->
+        <Button layoutX="550.0" layoutY="650.0" fx:id="backButton" onAction="#handleBack" text="⬅ Back to Home"
+                prefHeight="45.0" prefWidth="180.0"
+                style="-fx-background-color: linear-gradient(to right, #ff7e5f, #feb47b); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20;">
+            <font>
+                <Font name="Segoe UI Bold" size="16.0" />
+            </font>
+        </Button>
+
+    </children>
+</AnchorPane>

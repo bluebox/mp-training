@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="880.0"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.OverdueBooksController">
+
+    <children>
+
+        <!-- Background Image -->
+         <ImageView fitWidth="1200.0" fitHeight="700.0" preserveRatio="false" pickOnBounds="true">
+      <image>
+         <Image url="@download.jpg" />
+      </image>
+   </ImageView>
+
+        <!-- Title Label -->
+        <Label layoutX="440.0" layoutY="20.0" text="📚 Overdue Books List" style="-fx-text-fill: white;">
+            <font>
+                <Font name="Georgia Bold" size="24.0"/>
+            </font>
+        </Label>
+
+        <!-- TableView -->
+        <TableView fx:id="overdueBooksTable" layoutX="180.0" layoutY="80.0" prefHeight="450.0" prefWidth="920.0" style="-fx-background-radius: 10;">
+            <columns>
+                <TableColumn fx:id="idColumn" text="Book ID" prefWidth="100.0"/>
+                <TableColumn fx:id="titleColumn" text="Title" prefWidth="260.0"/>
+                <TableColumn fx:id="authorColumn" text="Author" prefWidth="260.0"/>
+                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="260.0"/>
+            </columns>
+        </TableView>
+
+        <!-- Back Button -->
+        <Button layoutX="550.0" layoutY="650.0" fx:id="backButton" onAction="#handleBack" text="⬅ Back to Home"
+                prefHeight="45.0" prefWidth="180.0"
+                style="-fx-background-color: linear-gradient(to right, #ff7e5f, #feb47b); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20;">
+            <font>
+                <Font name="Segoe UI Bold" size="16.0" />
+            </font>
+        </Button>
+
+    </children>
+</AnchorPane>

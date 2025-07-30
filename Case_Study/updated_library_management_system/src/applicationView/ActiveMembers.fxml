@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.ActiveMembersController" prefWidth="700" prefHeight="500">
+    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="30">
+        <Label text="Active Members with Issued Books" style="-fx-font-size: 20px;"/>
+        <TableView fx:id="tableView" prefWidth="600" prefHeight="400"/>
+        <Button text="Back" onAction="#handleBack"/>
+    </VBox>
+</AnchorPane>
