@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from .models import Employees, EmployeeJobDetails, EmployeeOfficeAddressDetails, PayScale, Departments, Designations
 
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Departments
+        fields = '__all__'
 
 class PayScaleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,11 +25,13 @@ class EmployeeDetailSerializer(serializers.ModelSerializer):
     job_details = EmployeeJobDetailsSerializer(many=True, read_only=True)
     address_details = EmployeeOfficeAddressSerializer(read_only=True)
     pay_scales = PayScaleSerializer(many=True, read_only=True)
-
+    dept = DepartmentSerializer(read_only=True)
+    is_active = serializers.SerializerMethodField()
     class Meta:
         model = Employees
-        fields = ['emp_id', 'emp_name', 'dob', 'date_joined', 'dept', 'is_active',
-                  'job_details', 'address_details', 'pay_scales']
+        fields = '__all__'
+    def get_is_active(self, obj):
+        return 1 if obj.is_active else 0
 
 class EmployeeUpdateSerializer(serializers.ModelSerializer):
     dept = serializers.PrimaryKeyRelatedField(queryset=Departments.objects.all())
@@ -39,10 +45,6 @@ class OfficeAddressUpdateSerializer(serializers.ModelSerializer):
         fields = ['country', 'state', 'city']
 from .models import Departments
 
-class DepartmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Departments
-        fields = ['id', 'dept_name']
 
 class EmployeeJobUpdateSerializer(serializers.ModelSerializer):
     designation = serializers.PrimaryKeyRelatedField(queryset=Designations.objects.all())

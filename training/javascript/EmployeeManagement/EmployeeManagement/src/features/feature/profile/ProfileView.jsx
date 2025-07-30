@@ -157,7 +157,7 @@ const ProfileView = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateUserProfile(form)).then(() => {
-      setIsEditing(false); // Switch back to view mode on save
+      setIsEditing(false); 
     });
   };
 

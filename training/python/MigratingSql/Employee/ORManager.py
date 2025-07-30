@@ -60,7 +60,7 @@ class DatabaseOperationManager:
             job.full_clean()
             job.save()
             return job
-        except Employees.DoesNotExist:
+        except EmployeeJobDetails.DoesNotExist:
             raise ValueError(f"Sorry employee job details are unavailable for {emp_id}")
         except Exception as e:
             raise RuntimeError(f"Couldn't write the changes to database: {e}")

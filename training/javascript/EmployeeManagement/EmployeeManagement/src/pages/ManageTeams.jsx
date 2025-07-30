@@ -14,7 +14,7 @@ const ManageTeams = () => {
 
     try {
       const res = await axios.patch(
-        "http://127.0.0.1:8000/manager/update-team/",
+        "http://127.0.0.1:8000/employee/update-team/",
         {
           emp_id: empId,
           team_id: teamId,

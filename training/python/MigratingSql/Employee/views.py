@@ -1,5 +1,6 @@
 import re
 
+from django.db import transaction
 from django.db.utils import IntegrityError
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -18,7 +19,7 @@ from .models import Employees, EmployeeJobDetails, EmployeeOfficeAddressDetails,
 
 
 class EmployeeProfileView(APIView):
-    permission_classes = [IsAuthenticated & IsEmployee | IsHR | IsCEO]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         try:
@@ -28,11 +29,12 @@ class EmployeeProfileView(APIView):
         except Exception as e:
             return Response({"result": "Failure", "message": str(e)}, status=500)
 
+    @transaction.atomic
     def put(self, request):
         try:
             emp = DatabaseOperationManager.get_employee_full_data(request.user)
 
-            employee_data = {k: v for k, v in request.data.items() if k in ['emp_name', 'dob', 'dept']}
+            employee_data = {k: v for k, v in request.data.items() if k in ['emp_name', 'dob', 'dept','is_active']}
             serializer = EmployeeUpdateSerializer(emp, data=employee_data, partial=True)
 
             if serializer.is_valid():
@@ -106,10 +108,9 @@ from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.crypto import get_random_string
 
-
 class CreateEmployeeView(APIView):
     permission_classes = []
-
+    @transaction.atomic()
     def post(self, request):
         required_fields = ["emp_id", "username", "password", "emp_name", "dob", "dept", "role"]
         missing = [k for k in required_fields if k not in request.data]
@@ -193,11 +194,13 @@ class DeleteEmployeeView(APIView):
 
     def delete(self, request):
         emp_id = request.data.get("emp_id")
+        print(emp_id)
         if not emp_id:
             return Response({"result": "Failure", "message": "emp_id required"}, status=400)
         try:
             emp = Employees.objects.get(emp_id=emp_id)
             emp.delete()
+            request.user.is_active =0
             return Response({"result": "Success", "message": "Employee deleted"})
         except Employees.DoesNotExist:
             return Response({"result": "Failure", "message": "Employee not found"}, status=404)

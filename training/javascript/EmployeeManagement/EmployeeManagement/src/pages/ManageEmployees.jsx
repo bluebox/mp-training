@@ -133,6 +133,7 @@ const ManageEmployees = () => {
     dob: "",
     dept: "",
     role: "",
+    is_active: "",
   });
 
   const handleAdd = async () => {
@@ -185,6 +186,20 @@ const ManageEmployees = () => {
         <option value="ceo">CEO</option>
       </select>
     );
+  }
+  else if(key=="is_active"){
+      return (
+      <select
+        key={key}
+        value={form[key]}
+        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+        className="border p-2 rounded"
+      >
+        <option value="True">Active</option>
+        <option value="False">Inactive</option>
+      </select>
+    );
+
   }
   return (
     <input
