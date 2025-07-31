@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Products</title>
+</head>
+<body>
+<form  action="addProduct" method="post">
+<label for="nameField">Product Name: </label>
+<input id="nameField" type="text" name="nameField" required/><br><br>
+<label for="priceField">Price: </label>
+<input id="priceField" type="text" name="priceField" pattern="^\d+(\.\d{1,2})?$" required/><br><br>
+<input type="submit"/>
+</form>
+</body>
+</html>

@@ -1,7 +1,8 @@
 package gym.membership_Management.model;
 
 public enum Menu {
-	IMPORT_MEMBERS,
+	ADD_MEMBERSHIP_PLAN,
+	REMOVE_MEMBERSHIP_PLAN,
     ENROLL_MEMBER,
     CANCEL_MEMBERSHIP,
     VIEW_ALL_MEMBERS,

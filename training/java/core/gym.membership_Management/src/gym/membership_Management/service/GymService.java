@@ -2,6 +2,7 @@ package gym.membership_Management.service;
 
 import gym.membership_Management.controller.InvalidAgeException;
 import gym.membership_Management.controller.InvalidNameException;
+import gym.membership_Management.controller.PlanExistedException;
 import gym.membership_Management.controller.PlanNotFoundException;
 import gym.membership_Management.dao.MemberDao;
 import gym.membership_Management.dao.MembershipPlanDao;
@@ -12,6 +13,7 @@ import gym.membership_Management.model.MembershipPlan;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -158,7 +160,9 @@ public class GymService {
        		 System.out.println("  Name: " + newMember.getName());
        		 System.out.println("  Age: " + newMember.getAge());
        		 System.out.println("  Plan: " + newMember.getPlan().getNameOfPlan());
-       		 System.out.println("  Status: " + newMember.getStatus());      	 
+       		 System.out.println("  Status: " + newMember.getStatus());     
+       		 System.out.println("  DateOfJoin: "+newMember.getDateOfJoin());
+       		 System.out.println("  LastUpdatedDate: "+newMember.getDateOfJoin());
     	}
         catch (InvalidNameException | InvalidAgeException |PlanNotFoundException e) {
         	System.out.println("Validation Error: " + e.getMessage() + " Please try again.");
@@ -207,6 +211,17 @@ public class GymService {
                 System.out.println("  Status: " + member.getStatus());
                 if (member.getStatus() == MemberStatus.REMOVED && member.getRemovalReason() != null && !member.getRemovalReason().isEmpty()) {
                     System.out.println("  Removal Reason: " + member.getRemovalReason());
+                }
+                if(member.getDateOfJoin()!=null && member.getStatus() != MemberStatus.REMOVED) {
+                	System.out.println("  DateOfJoin: " + member.getDateOfJoin());
+                	System.out.println("  LastUpdatedDate: "+member.getLastUpdatedDate());
+                }
+                else if (member.getDateOfJoin()!=null && member.getStatus() == MemberStatus.REMOVED){
+                	System.out.println("  DateOfJoin: " + member.getDateOfJoin());
+                	System.out.println("  LastDate: "+member.getLastUpdatedDate());
+                }
+                else {
+                	System.out.println("you are here ");
                 }
                 System.out.println("----------------------------------");
             }
@@ -279,19 +294,63 @@ public class GymService {
         if (member.getStatus() == MemberStatus.REMOVED && member.getRemovalReason() != null && !member.getRemovalReason().isEmpty()) {
             System.out.println("  Removal Reason: " + member.getRemovalReason());
         }
+        if(member.getDateOfJoin()!=null && member.getStatus() != MemberStatus.REMOVED) {
+        	System.out.println("  DateOfJoin: " + member.getDateOfJoin());
+        	System.out.println("  LastUpdatedDate: "+member.getLastUpdatedDate());
+        }
+        else if (member.getDateOfJoin()!=null && member.getStatus() == MemberStatus.REMOVED){
+        	System.out.println("  DateOfJoin: " + member.getDateOfJoin());
+        	System.out.println("  LastDate: "+member.getLastUpdatedDate());
+        }
     }
     
     public void addNewMembershipPlan() {
+    try {
     	System.out.println("Enter The Name Of Your New Plan: ");
     	String name=sc.next();
-    	System.out.println("Enter The Validity Of The Plan(In Days)");
-    	int duration=sc.nextInt();
-    	System.out.println("Enter Price Of The New Plan");
-    	double price=sc.nextDouble();
-    	MembershipPlan plan=new MembershipPlan(name,duration,price);
-    	planDao.addPlan(plan);
+    	try {
+    		if(planDao.getPlanByName(name)!=null) {
+        		throw new PlanExistedException("Plan with name "+name+" Already Exists");
+        	}
+    		if(name.trim().isEmpty()) {
+       		 throw new InvalidNameException("Name Not Found");
+       	 	}
+       	 	else if(name.length() > 50) {
+       		 throw new InvalidNameException("Entered Name is too long");
+       	 	}
+    		System.out.println("Enter The Validity Of The Plan(In Days)");
+        	int duration=sc.nextInt();
+        	System.out.println("Enter Price Of The New Plan");
+        	double price=sc.nextDouble();
+        	MembershipPlan plan=new MembershipPlan(name,duration,price);
+        	planDao.addPlan(plan);
+    	}
+    	catch(PlanExistedException | InvalidNameException e) {
+    		System.out.println(e.getMessage());
+    	}
+    	
+    }
+    catch ( InputMismatchException e1) {
+		System.out.println("Entered invalid Type of data");
+	}
+    	
+    	
     }
     
+    public void removeMembershipPlan() {
+    	System.out.println("Enter The Plan Name To Remove");
+    	String planName=sc.nextLine();
+    	MembershipPlan plan=null;
+    	if((!planName.trim().isEmpty()) && planName!=null) {
+    		plan=planDao.getPlanByName(planName.trim());
+    		if(plan!=null) {
+    			planDao.removePlanByName(plan.getNameOfPlan());
+    		}
+    	}
+    	else {
+    		System.out.println("Invalid Data For Plan Name");
+    	}
+    }
 	/*
 	 * public void loadMembersFromFileProcedure() {
 	 * System.out.println("--- Importing Members from External File ---");

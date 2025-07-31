@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>LearningServlets</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.xhtml</welcome-file>
+  </welcome-file-list>
+  <context-param>
+  <param-name>url</param-name>
+  <param-value>"jdbc:mysql://localhost:3306/mydata"</param-value>
+  </context-param>
+   <context-param>
+  <param-name>root</param-name>
+  <param-value>"root"</param-value>
+  </context-param>
+   <context-param>
+  <param-name>password</param-name>
+  <param-value>"Ashok@99122"</param-value>
+  </context-param>
+  <servlet>
+  	<servlet-name>AddServlet</servlet-name>
+  	<servlet-class>com.learning.AddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddServlet</servlet-name>
+  	<url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>SquareServlet</servlet-name>
+  	<servlet-class>com.learning.SquareServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SquareServlet</servlet-name>
+  	<url-pattern>/square</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>HttpSessionAttributeListener</servlet-name>
+  <servlet-class>com.learning.AddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>HttpSessionAttributeListener</servlet-name>
+  <url-pattern>/listen</url-pattern>
+  </servlet-mapping>
+  <listener>
+  <listener-class>com.learning.MyServletSessionListener</listener-class>
+  </listener>
+</web-app>

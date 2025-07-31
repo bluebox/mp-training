@@ -24,13 +24,16 @@ public class GymController {
             int option = gymService.getUserChoice();
             Menu choice = null;
             Menu[] options = Menu.values();
-            if(option<0 || option >=7)
-            	option=7;
+            if(option<0 || option >=8)
+            	option=8;
             choice=options[option];
-            
             switch (choice) {
-            	case IMPORT_MEMBERS: gymService.addNewMembershipPlan();
+            	case ADD_MEMBERSHIP_PLAN:
+            		gymService.addNewMembershipPlan();
                 	break;
+            	case REMOVE_MEMBERSHIP_PLAN:
+            		gymService.removeMembershipPlan();
+            		break;
                 case ENROLL_MEMBER:
                 	gymService.enrollNewMemberProcedure();
                     break;
@@ -59,12 +62,13 @@ public class GymController {
     private void displayMainMenu() {
         System.out.println("--- Main Menu ---");
         System.out.println("0. Add a New Plan");
-        System.out.println("1. Enroll a New Member");
-        System.out.println("2. Cancel Membership");
-        System.out.println("3. View All Registered Members");
-        System.out.println("4. View Available Membership Plans");
-        System.out.println("5. View Individual Member Details");
-        System.out.println("6. Exit Application");
+        System.out.println("1. Remove Plan By Name");
+        System.out.println("2. Enroll a New Member");
+        System.out.println("3. Cancel Membership");
+        System.out.println("4. View All Registered Members");
+        System.out.println("5. View Available Membership Plans");
+        System.out.println("6. View Individual Member Details");
+        System.out.println("7. Exit Application");
         System.out.print("Please enter your choice: ");
     }
 

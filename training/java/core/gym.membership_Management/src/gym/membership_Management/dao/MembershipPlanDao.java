@@ -7,4 +7,6 @@ public interface MembershipPlanDao {
     MembershipPlan addPlan(MembershipPlan plan);
     MembershipPlan getPlanByName(String name);
     List<MembershipPlan> getAllPlans();
+    
+    void removePlanByName(String name);
 }

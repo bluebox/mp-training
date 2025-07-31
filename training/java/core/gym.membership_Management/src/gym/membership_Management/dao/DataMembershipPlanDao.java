@@ -49,6 +49,28 @@ public class DataMembershipPlanDao implements MembershipPlanDao {
         return plan;
     }
 
+	@Override
+	public void removePlanByName(String name) {
+		String query="DELETE FROM membership_plans WHERE plan_Name = ?";
+		
+		try(Connection connection=DriverManager.getConnection(url,user,password);){
+			PreparedStatement statement=connection.prepareStatement(query);
+			statement.setString(1, name);
+			
+			int rowsEffected=statement.executeUpdate();
+			if(rowsEffected>0) {
+				System.out.println("Deleted "+name+" plan.");
+			}
+			else {
+				System.out.println("Can't delete "+name+" plan");
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+    
+
     @Override
     public MembershipPlan getPlanByName(String name) {
         String query="SELECT * FROM membership_plans WHERE plan_Name = ?";
@@ -99,4 +121,5 @@ public class DataMembershipPlanDao implements MembershipPlanDao {
         }
     	return plansList;
     }
+
 }

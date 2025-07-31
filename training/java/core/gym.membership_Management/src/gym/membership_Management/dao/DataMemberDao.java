@@ -10,6 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +23,7 @@ public class DataMemberDao implements MemberDao {
 
     @Override
     public Member addMember(Member member) {
-        String query="INSERT INTO members(member_Name,member_Age,member_Plan_Id,member_status,removal_Reason) VALUES (?,?,?,?,?)";
+        String query="INSERT INTO members(member_Name,member_Age,member_Plan_Id,member_status,removal_Reason,date_Of_Join,last_Updated_Date) VALUES (?,?,?,?,?,?,?)";
         try(Connection connection=DriverManager.getConnection(url,user,password);){
         	PreparedStatement statement=connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
         	statement.setString(1, member.getName());
@@ -28,6 +31,8 @@ public class DataMemberDao implements MemberDao {
         	statement.setInt(3, member.getPlan().getId());
         	statement.setString(4, member.getStatus().name());
         	statement.setString(5,member.getRemovalReason());
+        	statement.setString(6, member.getDateOfJoin());
+        	statement.setString(7, member.getLastUpdatedDate());
         	
         	int rows_Effected=statement.executeUpdate();
         	
@@ -62,10 +67,12 @@ public class DataMemberDao implements MemberDao {
         			double plan_Fee=member.getDouble("plan_Fee");
         			MemberStatus status=MemberStatus.valueOf(member.getString("member_status"));
         			String removal_Reason=member.getString("removal_Reason");
+        			String date_Of_Join=member.getString("date_Of_Join");
+        			String last_Date=member.getString("last_Updated_Date");
         			
         			MembershipPlan plan=new MembershipPlan(plan_Name,duration_In_Days,plan_Fee);
         			
-        			return new Member(id,member_Name,member_Age,plan,status,removal_Reason);
+        			return new Member(id,member_Name,member_Age,plan,status,removal_Reason,date_Of_Join,last_Date);
         		}
         	}
         }
@@ -93,10 +100,12 @@ public class DataMemberDao implements MemberDao {
     			double plan_Fee=members.getDouble("plan_Fee");
     			MemberStatus status=MemberStatus.valueOf(members.getString("member_status"));
     			String removal_Reason=members.getString("removal_Reason");
-    			
+    			String date_Of_Join=members.getString("date_Of_Join");
+    			String last_Date=members.getString("last_Updated_Date");
     			MembershipPlan plan=new MembershipPlan(plan_Name,duration_In_Days,plan_Fee);
     			
-    			Member member=new Member(member_Id,member_Name,member_Age,plan,status,removal_Reason);
+    			Member member=new Member(member_Id,member_Name,member_Age,plan,status,removal_Reason,date_Of_Join,last_Date);
+    			
     			membersList.add(member);
     		}
     	}
@@ -108,13 +117,14 @@ public class DataMemberDao implements MemberDao {
 
     @Override
     public boolean updateMemberStatus(int id, MemberStatus newStatus, String reason) {
-        String query="UPDATE members SET member_status = ?, removal_Reason = ? where member_Id = ?";
+        String query="UPDATE members SET member_status = ?, removal_Reason = ?, last_Updated_Date =? where member_Id = ?";
         
         try(Connection connection=DriverManager.getConnection(url,user,password)){
         	PreparedStatement statement=connection.prepareStatement(query);
     		statement.setString(1,newStatus.name());
     		statement.setString(2,reason);
-    		statement.setInt(3, id);
+    		statement.setString(3, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+    		statement.setInt(4, id);
     		
     		int rows_Effected=statement.executeUpdate();
     		return rows_Effected>0;
