@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Data Management System</title>
+  <link href="style.css" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center py-10">
+  <h1 class="text-4xl font-bold text-white mb-8 text-shadow">Data Entry System</h1>
+  
+  <div class="form-container w-full max-w-lg">
+    <form id="studentForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Name</label>
+        <input type="text" name="name" required class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Age</label>
+        <input type="number" name="age" min="1" max="100" required class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" name="email" required class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Phone</label>
+        <input type="text" name="phone" maxlength="10" pattern="\d{10}" required class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"/>
+      </div>
+      
+      <fieldset>
+        <legend class="text-sm font-medium text-gray-700">Branch</legend>
+        <div class="flex space-x-4 mt-2">
+          <label class="flex items-center"><input type="radio" name="branch" value="CSE" class="mr-2"/> CSE</label>
+          <label class="flex items-center"><input type="radio" name="branch" value="ECE" class="mr-2"/> ECE</label>
+          <label class="flex items-center"><input type="radio" name="branch" value="EEE" class="mr-2"/> EEE</label>
+        </div>
+      </fieldset>
+      
+      <fieldset>
+        <legend class="text-sm font-medium text-gray-700">Languages Known</legend>
+        <div class="flex space-x-4 mt-2">
+          <label class="flex items-center"><input type="checkbox" name="languages" value="English" class="mr-2"/> English</label>
+          <label class="flex items-center"><input type="checkbox" name="languages" value="Hindi" class="mr-2"/> Hindi</label>
+          <label class="flex items-center"><input type="checkbox" name="languages" value="French" class="mr-2"/> French</label>
+        </div>
+      </fieldset>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700">State</label>
+        <select id="stateSelect" required class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"></select>
+        <div class="error" id="cityError"></div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">City</label>
+        <select id="citySelect" required class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"></select>
+        <div class="error" id="cityError"></div>
+      </div>
+      
+      <button type="submit" id="addBtn" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">Add</button>
+    </form>
+  </div>
+  
+  <div class="table-container w-full max-w-4xl mt-8">
+    <input type="text" id="searchInput" placeholder="Search..." class="w-full p-2 mb-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"/>
+    <p id="entryCount" class="text-center text-gray-600 mb-4"></p>
+    <table id="dataTable" class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-3 text-gray-700 font-bold">Name</th>
+          <th class="p-3 text-gray-700 font-bold">Age</th>
+          <th class="p-3 text-gray-700 font-bold">Email</th>
+          <th class="p-3 text-gray-700 font-bold">Phone</th>
+          <th class="p-3 text-gray-700 font-bold">Branch</th>
+          <th class="p-3 text-gray-700 font-bold">Languages</th>
+          <th class="p-3 text-gray-700 font-bold">State</th>
+          <th class="p-3 text-gray-700 font-bold">City</th>
+          <th class="p-3 text-gray-700 font-bold">Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p id="noResultsMsg" class="text-center text-gray-500 italic mt-4 hidden">No results found.</p>
+  </div>
+
+  
+  <script>
+    $(document).ready(function () {
+  let students = [];
+
+  $.ajax({
+    url: "https://countriesnow.space/api/v0.1/countries/states",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({ country: "India" }),
+    success: function (response) {
+      if (response.data && response.data.states) {
+        $("#stateSelect").append(`<option value="">Select State</option>`);
+        response.data.states.forEach(state => {
+          $("#stateSelect").append(`<option value="${state.name}">${state.name}</option>`);
+        });
+      }
+    },
+    error: function () {
+      alert("Failed to load states.");
+    }
+  });
+
+  $("#stateSelect").on("change", function () {
+    const selectedState = $(this).val();
+    $("#citySelect").html('<option value="">Loading...</option>');
+
+    if (selectedState) {
+      $.ajax({
+        url: "https://countriesnow.space/api/v0.1/countries/state/cities",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+          country: "India",
+          state: selectedState
+        }),
+        success: function (response) {
+          $("#citySelect").html('<option value="">Select City</option>');
+          if (response.data) {
+            response.data.forEach(city => {
+              $("#citySelect").append(`<option value="${city}">${city}</option>`);
+            });
+          }
+        },
+        error: function () {
+          alert("Failed to load cities.");
+        }
+      });
+    } else {
+      $("#citySelect").html('<option value="">Select City</option>');
+    }
+  });
+
+  $("#studentForm").on("submit", function (event) {
+    event.preventDefault(); 
+
+    const name = $("input[name='name']").val();
+    const age = $("input[name='age']").val();
+    const email = $("input[name='email']").val();
+    const phone = $("input[name='phone']").val();
+    const branch = $("input[name='branch']:checked").val() || "";
+    const languages = $("input[name='languages']:checked").map(function() {
+      return this.value;
+    }).get().join(", ") || "";
+    const state = $("#stateSelect").val();
+    const city = $("#citySelect").val();
+
+    if (!name || !age || !email || !phone || !branch || !state || !city) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    const student = { name, age, email, phone, branch, languages, state, city };
+    students.push(student);
+
+    updateTable();
+    updateEntryCount();
+    $("#studentForm")[0].reset();
+    $("#citySelect").html('<option value="">Select City</option>');
+  });
+
+  $("#searchInput").on("input", function () {
+    const query = $(this).val().toLowerCase();
+    updateTable(query);
+  });
+
+  function updateTable(searchQuery = "") {
+    const $tbody = $("#dataTable tbody");
+    $tbody.empty();
+
+    const filteredStudents = students.filter(student =>
+      Object.values(student).some(value =>
+        value.toLowerCase().includes(searchQuery)
+      )
+    );
+
+    if (filteredStudents.length === 0 && searchQuery) {
+      $("#noResultsMsg").show();
+    } else {
+      $("#noResultsMsg").hide();
+    }
+
+    filteredStudents.forEach((student, index) => {
+      $tbody.append(`
+        <tr>
+          <td class="p-3">${student.name}</td>
+          <td class="p-3">${student.age}</td>
+          <td class="p-3">${student.email}</td>
+          <td class="p-3">${student.phone}</td>
+          <td class="p-3">${student.branch}</td>
+          <td class="p-3">${student.languages}</td>
+          <td class="p-3">${student.state}</td>
+          <td class="p-3">${student.city}</td>
+          <td class="p-3">
+            <button class="action-btn bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" data-index="${index}">Delete</button>
+          </td>
+        </tr>
+      `);
+    });
+  }
+
+  $("#dataTable").on("click", ".action-btn", function () {
+    const index = $(this).data("index");
+    students.splice(index, 1); 
+    updateTable();
+    updateEntryCount();
+  });
+
+  function updateEntryCount() {
+    $("#entryCount").text(`Total Entries: ${students.length}`);
+  }
+});
+  </script>
+</body>
+</html>
