@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            fx:controller="com.lms.controller.ReportsController"
+            prefHeight="750.0" prefWidth="664.0">
+
+    <children>
+        <ToolBar layoutY="0.0" prefHeight="40.0" prefWidth="664.0">
+            <Button text="Over Dues" onAction="#handleShowOverdue" />
+            <Button text="Books Per Category" onAction="#handleShowBooksPerCategory" />
+            <Button text="Issued Members" onAction="#handleShowIssuedMembers" />
+        </ToolBar>
+        <AnchorPane fx:id="reportTables" layoutY="40.0" prefHeight="650.0" prefWidth="664.0" />
+        <Button text="Print" layoutX="282.0" layoutY="700.0" onAction="#handlePrint" />
+    </children>
+</AnchorPane>

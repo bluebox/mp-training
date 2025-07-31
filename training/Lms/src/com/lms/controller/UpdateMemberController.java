@@ -1,27 +1,47 @@
+
+
 package com.lms.controller;
 
+import com.lms.daoImpl.MemberDao;
 import com.lms.exceptions.InvalidInputException;
 import com.lms.model.Member;
 import com.lms.serviceImpl.MemberService;
 import com.lms.util.Validator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class UpdateMemberController {
 
-    @FXML private TextField memberIdUpdate;
-    @FXML private TextField nameUpdate;
-    @FXML private TextField mailIdUpdate;
-    @FXML private TextField mobileNumberUpdate;
-    @FXML private ComboBox<String> genderUpdate;
-    @FXML private TextArea addressUpdate;
-    @FXML private Button fetchButtonUpdate;
-    @FXML private Button updateButtonUpdate;
-    @FXML private Button revertButtonUpdate;
+    @FXML 
+    private TextField memberIdUpdate;
+    
+    @FXML 
+    private TextField nameUpdate;
+    
+    @FXML 
+    private TextField mailIdUpdate;
+    
+    @FXML 
+    private TextField mobileNumberUpdate;
+    
+    @FXML 
+    private ComboBox<String> genderUpdate;
+    
+    @FXML 
+    private TextArea addressUpdate;
+
+    @FXML 
+    private Button fetchButtonUpdate;
+    
+    @FXML 
+    private Button updateButtonUpdate;
+    
+    @FXML 
+    private Button revertButtonUpdate;
 
     private Member fetchedMember = null;
-    private final MemberService memberService = new MemberService();
-
+    public MemberService memberService = new MemberService();
     @FXML
     public void initialize() {
         genderUpdate.getItems().addAll("Male", "Female", "Other");
@@ -30,7 +50,7 @@ public class UpdateMemberController {
     @FXML
     private void handleFetchMember() {
         try {
-            String mobileno = memberIdUpdate.getText().trim();
+            String mobileno = memberIdUpdate.getText();
             fetchedMember = memberService.getMemberByMobile(mobileno);
 
             if (fetchedMember != null) {
@@ -43,10 +63,10 @@ public class UpdateMemberController {
                 showAlert(Alert.AlertType.WARNING, "No Member Found", "No member found with: " + mobileno);
             }
         } catch (InvalidInputException e) {
-            showAlert(Alert.AlertType.ERROR, "Invalid Member ID", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Invalid Member ID", "Please enter a valid numeric Member ID.");
         }
     }
-
+    
     @FXML
     private void handleUpdateMember() {
         if (fetchedMember == null) {
@@ -59,31 +79,32 @@ public class UpdateMemberController {
         String enteredMobile = mobileNumberUpdate.getText().trim();
         String selectedGender = genderUpdate.getValue();
         String enteredAddress = addressUpdate.getText().trim();
-
+        MemberService memberService = new MemberService();
+        
         try {
-            Validator.validateName(enteredName);
-            Validator.validateEmail(enteredEmail);
-            Validator.validateMobileNumber(enteredMobile);
-            Validator.validateGender(selectedGender);
-            Validator.validateAddress(enteredAddress);
-
-            fetchedMember.setName(enteredName);
-            fetchedMember.setEmail(enteredEmail);
-            fetchedMember.setMobile(enteredMobile);
-            fetchedMember.setGender(selectedGender);
-            fetchedMember.setAddress(enteredAddress);
-
-            boolean updated = memberService.updateMember(fetchedMember);
-
-            showAlert(updated ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR,
-                      updated ? "Success" : "Failed",
-                      updated ? "Member updated successfully!" : "Failed to update member.");
-
+        	Validator.validateName(enteredName);
+        	Validator.validateEmail(enteredEmail);
+        	Validator.validateMobileNumber(enteredMobile);
+        	Validator.validateGender(selectedGender);
+        	Validator.validateAddress(enteredAddress);
+            memberService.validate(enteredName, enteredEmail, enteredMobile, enteredAddress, selectedGender);
         } catch (InvalidInputException e) {
             showAlert(Alert.AlertType.WARNING, "Validation Error", e.getMessage());
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Unexpected Error", "Something went wrong: " + e.getMessage());
+            return;
         }
+
+        
+        fetchedMember.setName(enteredName);
+        fetchedMember.setEmail(enteredEmail);
+        fetchedMember.setMobile(enteredMobile);
+        fetchedMember.setGender(selectedGender);
+        fetchedMember.setAddress(enteredAddress);
+        
+        
+        boolean updated = memberService.updateMember(fetchedMember);
+        showAlert(updated ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR,
+                  updated ? "Success" : "Failed",
+                  updated ? "Member updated successfully!" : "Failed to update member.");
     }
 
     @FXML
@@ -105,3 +126,4 @@ public class UpdateMemberController {
         alert.showAndWait();
     }
 }
+

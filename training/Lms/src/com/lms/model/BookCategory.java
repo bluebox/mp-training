@@ -3,12 +3,12 @@ package com.lms.model;
 
 public enum BookCategory {
     FICTION,
-    NONFICTION,
+    NON_FICTION,
     MYSTERY,
     THRILLER,
     HORROR,
     ROMANCE,
-    SCIENCEFICTION,
+    SCIENCE_FICTION,
     FANTASY,
     BIOGRAPHY,
     HISTORY,
@@ -16,7 +16,7 @@ public enum BookCategory {
     EDUCATIONAL,
     POETRY,
     COMICS,
-    SELFHELP;
+    SELF_HELP;
 
     @Override
     public String toString() {

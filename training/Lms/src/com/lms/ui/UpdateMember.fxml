@@ -12,7 +12,7 @@
    <children>
 
       <!-- Member ID for fetch -->
-      <TextField fx:id="memberIdUpdate" layoutX="132.0" layoutY="121.0" prefHeight="26.0" prefWidth="200.0" promptText="Enter Member Mobile number to Fetch" style="-fx-background-color: #edf6f9;" />
+      <TextField fx:id="memberIdUpdate" layoutX="132.0" layoutY="121.0" prefHeight="26.0" prefWidth="200.0" promptText="Enter Member ID to Fetch" style="-fx-background-color: #edf6f9;" />
       <Button fx:id="fetchButtonUpdate" layoutX="439.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleFetchMember" style="-fx-background-color: ffba08;" text="Fetch" />
 
       <!-- Labels -->
@@ -44,7 +44,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="revertButtonUpdate" layoutX="64.0" layoutY="645.0" onAction="#handleRevert" prefHeight="26.0" prefWidth="233.0" style="-fx-background-color: e63946;" text="Reset" textFill="WHITE">
+      <Button fx:id="revertButtonUpdate" layoutX="64.0" layoutY="645.0" onAction="#handleRevert" prefHeight="26.0" prefWidth="233.0" style="-fx-background-color: e63946;" text="Revert" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Button>

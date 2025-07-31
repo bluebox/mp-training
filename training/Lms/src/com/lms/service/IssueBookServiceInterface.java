@@ -14,5 +14,5 @@ public interface IssueBookServiceInterface {
 
     List<IssueBook> getActiveIssuesByMember(int memberId);
 
-	boolean isBookAlreadyIssued(String bookId);
+    boolean isBookAlreadyIssued(int bookId);
 }

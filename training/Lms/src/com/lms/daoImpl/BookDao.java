@@ -48,23 +48,6 @@ public class BookDao {
         }
         return null;
     }
-    
-    public boolean isTitleExists(String title) {
-        String sql = "SELECT COUNT(*) FROM books WHERE title = ?";
-        try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, title);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
 
     public boolean updateBook(String bookId, String title, String author, BookCategory category, char status, char availability) {
         String query = "UPDATE books SET title = ?, author = ?, category = ?, status = ?, availability = ? WHERE book_id = ?";
@@ -105,7 +88,7 @@ public class BookDao {
     }
 
     public Book getBookById(String bookId) {
-        String query = "SELECT book_id, title, author, category, status, availability FROM books WHERE book_id = ?";
+        String query = "SELECT * FROM books WHERE book_id = ?";
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, bookId);
@@ -125,54 +108,31 @@ public class BookDao {
         return null;
     }
 
-
-   
+    // ✅ NEW METHOD: Get available books by category
     public List<Book> getAvailableBooksByCategory(BookCategory category) {
-        List<Book> books = new ArrayList<>();
-        String query;
+        List<Book> availableBooks = new ArrayList<>();
+        String query = "SELECT book_id, title, author, category, status, availability FROM books WHERE category = ? AND availability = 'A'";
 
-        if (category == null) {
-            query = "SELECT book_id, title, author, category, status, availability FROM books WHERE availability = 'A' AND status = 'A'";
-        } else {
-            query = "SELECT book_id, title, author, category, status, availability FROM books WHERE category = ? AND availability = 'A' AND status = 'A'";
-        }
-
-        try (Connection con = DBUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
-
-            if (category != null) {
-                ps.setString(1, category.name());
-            }
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Book book = new Book();
-                book.setBookId(rs.getString("book_id"));
-                book.setBookTitle(rs.getString("title"));
-                book.setBookAuthor(rs.getString("author"));
-                book.setBookCategory(BookCategory.valueOf(rs.getString("category")));
-                book.setAvailability(rs.getString("availability").charAt(0));
-                book.setStatus(rs.getString("status").charAt(0));
-                books.add(book);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return books;
-    }
-
-    public void updateBookAvailability(String bookId, char availability) {
-        String sql = "UPDATE books SET availability = ? WHERE book_id = ?";
         try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, String.valueOf(availability));
-            stmt.setString(2, bookId);
-            stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, category.name());
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                availableBooks.add(new Book(
+                        rs.getString("book_id"),
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        BookCategory.valueOf(rs.getString("category")),
+                        rs.getString("status").charAt(0),
+                        rs.getString("availability").charAt(0)));
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
+        return availableBooks;
+    }
 }

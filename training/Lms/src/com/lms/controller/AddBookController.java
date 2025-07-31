@@ -1,13 +1,16 @@
 package com.lms.controller;
 
+import com.lms.daoImpl.BookDao;
+import com.lms.exceptions.InvalidInputException;
+import com.lms.model.Book;
 import com.lms.model.BookCategory;
 import com.lms.serviceImpl.BookServiceImpl;
 import com.lms.util.Validator;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
 
 public class AddBookController {
 
@@ -30,13 +33,12 @@ public class AddBookController {
         String title = titleField.getText().trim();
         String author = authorField.getText().trim();
         BookCategory category = categoryField.getValue();
-        Character status = 'A';        
-        Character availability = 'A';  
+        Character status = 'A';        // Default to Active
+        Character availability = 'A';  // Default to Available
         BookServiceImpl bookService = new BookServiceImpl();
         try {
         	Validator.validateBookName(title);
         	Validator.validateAuthorName(author);
-        	Validator.validateBookCategory(category);
         	bookService.addBook(title, author, category, status, availability);
 
         }
@@ -66,6 +68,7 @@ public class AddBookController {
 
     @FXML
     public void handleExit() {
+        //titleField.getScene().getWindow().hide();
     	clearForm();
     }
 }

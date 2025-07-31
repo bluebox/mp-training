@@ -36,7 +36,7 @@ public class HomeController {
 
         issuedBooksHome.setOnAction(e -> setContent("/com/lms/ui/IssueBook.fxml"));
         returnBooksHome.setOnAction(e -> setContent("/com/lms/ui/ReturnBook.fxml"));
-        reportsHome.setOnAction(e -> setContent("/com/lms/ui/ReportsView.fxml"));
+        reportsHome.setOnAction(e -> setContent("/com/lms/ui/Reports.fxml"));
     }
 
     private void setContent(String fxmlPath) {

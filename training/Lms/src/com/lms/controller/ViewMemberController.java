@@ -34,7 +34,7 @@ public class ViewMemberController {
     }
     MemberService memberService = new MemberService();
     private void loadMembers() {
-        List<Member> members = memberService.getAllMembers(); 
+        List<Member> members = memberService.getAllMembers(); // ✅ Service now handles DAO call
         memberTable.setItems(FXCollections.observableArrayList(members));
     }
 }

@@ -1,9 +1,8 @@
 package com.lms.util;
 
-import java.time.LocalDate;
-
+import com.lms.daoImpl.MemberDao;
 import com.lms.exceptions.InvalidInputException;
-import com.lms.model.BookCategory;
+import com.lms.model.Member;
 
 public class Validator {
 
@@ -20,7 +19,7 @@ public class Validator {
     }
 
     public static void validateEmail(String email) throws InvalidInputException {
-        if (email == null || !email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+        if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
             throw new InvalidInputException("Invalid email format.");
         }
     }
@@ -109,30 +108,24 @@ public class Validator {
 	}
 	}
 	public static boolean isEmptyBookId(String bookId) {
+		// TODO Auto-generated method stub
 		if (bookId == null || bookId.trim().isEmpty()) {
 			return true;
 		}
 		return false;
 	}
- 	 public static void isEmptyMobile(String mobile) throws InvalidInputException{
-
-			if (mobile == null || mobile.trim().isEmpty()) {
-				throw new InvalidInputException("Please Enter Mobile number.");
-			}
-		}
-
-	 public static boolean isTitleDateEmpty(String selectedBookTitle, LocalDate dueDate) {
-		 if(selectedBookTitle==null || dueDate==null) {
-		 return true;
-		 }
-		 return false;
+ public static void isUniqueMobileNumber(String mobile) throws InvalidInputException {
+	 Member member=MemberDao.getMemberByMobile(mobile);
+	 if (member == null) {
+		throw new InvalidInputException("Mobile number already exists.");
+	 } else {
+		 return;
 	 }
+ }
+	
 
-	 public static void validateBookCategory(BookCategory category) throws InvalidInputException {
-		if (category == null) {
-			throw new InvalidInputException("Please select Book category.");
-		}
-	 }
- 
+
+	
+	
 
 }

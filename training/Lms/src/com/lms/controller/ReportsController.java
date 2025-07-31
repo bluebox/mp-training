@@ -1,111 +1,110 @@
 package com.lms.controller;
 
-import com.lms.model.Book;
-import com.lms.model.Member;
-import com.lms.service.ReportServiceInterface;
-import com.lms.serviceImpl.ReportServiceImpl;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.util.List;
-import java.util.Map;
 
 public class ReportsController {
 
     @FXML
-    private ComboBox<String> reportTypeComboBox;
+    private AnchorPane reportTables;
 
     @FXML
-    private TableView reportTable;
+    private void handleShowOverdue() {
+        TableView<OverdueRecord> table = new TableView<>();
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-    private final ReportServiceInterface reportService = new ReportServiceImpl();
+        TableColumn<OverdueRecord, String> idCol = new TableColumn<>("ID");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setPrefWidth(100);
 
-    @FXML
-    public void initialize() {
-        reportTypeComboBox.getItems().addAll("Overdue Books", "Books by Category", "Active Members");
-        reportTypeComboBox.getSelectionModel().selectFirst();
+        TableColumn<OverdueRecord, String> titleCol = new TableColumn<>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        titleCol.setPrefWidth(300);
 
-        reportTypeComboBox.setOnAction(e -> updateReport());
+        TableColumn<OverdueRecord, String> issueDateCol = new TableColumn<>("Issue Date");
+        issueDateCol.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
+        issueDateCol.setPrefWidth(200);
 
-        reportTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);  // Optional for auto-fit
-        updateReport();
+        table.getColumns().addAll(idCol, titleCol, issueDateCol);
+        showTable(table);
     }
 
-    private void updateReport() {
-        String selected = reportTypeComboBox.getValue();
-        reportTable.getItems().clear();
-        reportTable.getColumns().clear();
+    @FXML
+    private void handleShowBooksPerCategory() {
+        TableView<BookCategorySummary> table = new TableView<>();
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        switch (selected) {
-            case "Overdue Books":
-                loadOverdueBooks();
-                break;
-            case "Books by Category":
-                loadBookCountByCategory();
-                break;
-            case "Active Members":
-                loadMembersWithActiveIssues();
-                break;
+        TableColumn<BookCategorySummary, String> categoryCol = new TableColumn<>("Category");
+        categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+        categoryCol.setPrefWidth(400);
+
+        TableColumn<BookCategorySummary, Integer> countCol = new TableColumn<>("Count");
+        countCol.setCellValueFactory(new PropertyValueFactory<>("count"));
+        countCol.setPrefWidth(200);
+
+        table.getColumns().addAll(categoryCol, countCol);
+        showTable(table);
+    }
+
+    @FXML
+    private void handleShowIssuedMembers() {
+        TableView<IssuedMember> table = new TableView<>();
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        TableColumn<IssuedMember, String> memberName = new TableColumn<>("Name");
+        memberName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        memberName.setPrefWidth(350);
+
+        TableColumn<IssuedMember, Integer> books = new TableColumn<>("Books Issued");
+        books.setCellValueFactory(new PropertyValueFactory<>("booksIssued"));
+        books.setPrefWidth(300);
+
+        table.getColumns().addAll(memberName, books);
+        showTable(table);
+    }
+
+    private void showTable(Node table) {
+        reportTables.getChildren().setAll(table);
+        AnchorPane.setTopAnchor(table, 0.0);
+        AnchorPane.setBottomAnchor(table, 0.0);
+        AnchorPane.setLeftAnchor(table, 0.0);
+        AnchorPane.setRightAnchor(table, 0.0);
+    }
+
+    @FXML
+    private void handlePrint() {
+        System.out.println("Export functionality to be implemented...");
+    }
+    public static class OverdueRecord {
+        private String id, title, issueDate;
+        public OverdueRecord(String id, String title, String issueDate) {
+            this.id = id; this.title = title; this.issueDate = issueDate;
         }
+        public String getId() { return id; }
+        public String getTitle() { return title; }
+        public String getIssueDate() { return issueDate; }
     }
 
-    private void loadOverdueBooks() {
-        TableColumn<Book, String> id = new TableColumn<>("Book ID");
-        id.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-
-        TableColumn<Book, String> title = new TableColumn<>("Title");
-        title.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
-
-        TableColumn<Book, String> author = new TableColumn<>("Author");
-        author.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
-
-        TableColumn<Book, String> category = new TableColumn<>("Category");
-        category.setCellValueFactory(new PropertyValueFactory<>("bookCategory"));
-
-        reportTable.getColumns().addAll(id, title, author, category);
-
-        List<Book> books = reportService.fetchOverdueBooks();
-        reportTable.getItems().setAll(books);
+    public static class BookCategorySummary {
+        private String category;
+        private int count;
+        public BookCategorySummary(String category, int count) {
+            this.category = category; this.count = count;
+        }
+        public String getCategory() { return category; }
+        public int getCount() { return count; }
     }
 
-    private void loadBookCountByCategory() {
-        TableColumn<Map.Entry<String, Long>, String> category = new TableColumn<>("Category");
-        category.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getKey()));
-
-        TableColumn<Map.Entry<String, Long>, Long> count = new TableColumn<>("Count");
-        count.setCellValueFactory(data -> new SimpleLongProperty(data.getValue().getValue()).asObject());
-
-        reportTable.getColumns().addAll(category, count);
-
-        Map<String, Long> data = reportService.fetchBookCountByCategory();
-        reportTable.getItems().setAll(data.entrySet());
-    }
-
-    private void loadMembersWithActiveIssues() {
-        TableColumn<Member, Integer> id = new TableColumn<>("Member ID");
-        id.setCellValueFactory(new PropertyValueFactory<>("memberId"));
-
-        TableColumn<Member, String> name = new TableColumn<>("Name");
-        name.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        TableColumn<Member, String> email = new TableColumn<>("Email");
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-        TableColumn<Member, String> mobile = new TableColumn<>("Mobile");
-        mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
-
-        TableColumn<Member, String> gender = new TableColumn<>("Gender");
-        gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-
-        TableColumn<Member, String> address = new TableColumn<>("Address");
-        address.setCellValueFactory(new PropertyValueFactory<>("address"));
-
-        reportTable.getColumns().addAll(id, name, email, mobile, gender, address);
-
-        List<Member> members = reportService.fetchMembersWithActiveIssues();
-        reportTable.getItems().setAll(members);
+    public static class IssuedMember {
+        private String name;
+        private int booksIssued;
+        public IssuedMember(String name, int booksIssued) {
+            this.name = name; this.booksIssued = booksIssued;
+        }
+        public String getName() { return name; }
+        public int getBooksIssued() { return booksIssued; }
     }
 }

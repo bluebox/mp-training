@@ -14,35 +14,19 @@ public class BookServiceImpl implements BookService {
 
     
 	public void addBook(String title, String author, BookCategory category, Character status, Character availability) throws InvalidInputException {
-	    Validator.serviceValidateBookName(title);
-	    Validator.serviceValidateAuthor(author);
+	
+		
+			Validator.serviceValidateBookName(title);
+			Validator.serviceValidateAuthor(author);
+			
+        Book newBook = BookDao.getInstance().addBook(title, author, category, status, availability);
 
-	    boolean exists = BookDao.getInstance().isTitleExists(title);
-	    if (exists) {
-	        throw new InvalidInputException("Book with this title already exists.");
-	    }
-
-	    BookDao.getInstance().addBook(title, author, category, status, availability);
 	}
 	
 	public Boolean updateBook(String bookId, String title, String author, BookCategory category, Character status, Character availability) throws InvalidInputException {
 		Validator.serviceValidateBookId(bookId);
 		Validator.serviceValidateBookName(title);
 		Validator.serviceValidateAuthor(author);
-		Book updatedBookTitle= getBookById(bookId);
-		if (!updatedBookTitle.getBookTitle().equals(title)) {
-		    boolean exists = BookDao.getInstance().isTitleExists(title);
-		    if (exists) {
-		        throw new InvalidInputException("Book with this title already exists.");
-		    }
-
-		}
-		
-	    //boolean exists = BookDao.getInstance().isTitleExists(title);
-//	    if (exists) {
-//	        throw new InvalidInputException("Book with this title already exists.");
-//	    }
-
 		
 		Boolean updatedBook = BookDao.getInstance().updateBook(bookId, title, author, category, status, availability);
 		return updatedBook;

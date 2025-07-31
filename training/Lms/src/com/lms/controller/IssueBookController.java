@@ -1,12 +1,15 @@
+// --- IssueBookController.java ---
 package com.lms.controller;
 
-import com.lms.exceptions.InvalidInputException;
+import com.lms.daoImpl.BookDao;
+import com.lms.daoImpl.MemberDao;
 import com.lms.model.Book;
 import com.lms.model.BookCategory;
 import com.lms.model.IssueBook;
 import com.lms.model.Member;
+import com.lms.service.IssueBookServiceInterface;
 import com.lms.serviceImpl.IssueBookServiceImpl;
-import com.lms.util.Validator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,98 +32,101 @@ public class IssueBookController {
     private final ObservableList<String> categoryList = FXCollections.observableArrayList();
     private final ObservableList<String> bookList = FXCollections.observableArrayList();
 
-    private final IssueBookServiceImpl issueBookService = new IssueBookServiceImpl();
+    private final IssueBookServiceInterface issueBookService = new IssueBookServiceImpl();
     private Member currentMember;
 
     @FXML
     private void initialize() {
+        loadCategories();
+
         issueCategoriesComboBox.setItems(categoryList);
         issueBookNameComboBox.setItems(bookList);
 
         issueFetchButton.setOnAction(event -> fetchMember());
-        issueCategoriesComboBox.setOnAction(event -> loadBooksForCategory());
+        issueCategoriesComboBox.setOnAction(event -> {
+            if (currentMember != null) {
+                loadBooksForSelectedCategory();
+            } else {
+                showAlert(Alert.AlertType.WARNING, "Please fetch a valid member first.");
+            }
+        });
         issueBookButton.setOnAction(event -> issueBook());
     }
 
+    private void loadCategories() {
+        categoryList.setAll(
+            Arrays.stream(BookCategory.values())
+                  .map(BookCategory::toString)
+                  .collect(Collectors.toList())
+        );
+    }
+
     private void fetchMember() {
-        String mobile = issueTextField.getText().trim();
-        if (mobile.isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Mobile number is required.");
+        String input = issueTextField.getText().trim();
+
+        if (input.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Please enter a Member ID or Name.");
             return;
         }
 
         try {
-            Validator.validateMobileNumber(mobile);
-            currentMember = issueBookService.getMemberByMobile(mobile);
+            int id = Integer.parseInt(input);
+            currentMember = MemberDao.getMemberById(id);
+        } catch (NumberFormatException e) {
+            currentMember = MemberDao.getAllMembers().stream()
+                    .filter(m -> m.getName().equalsIgnoreCase(input))
+                    .findFirst().orElse(null);
+        }
+
+        if (currentMember != null) {
             issueBooksLabel.setText("Member: " + currentMember.getName());
-            loadAvailableCategories(); 
-        } catch (InvalidInputException e) {
-            showAlert(Alert.AlertType.WARNING, e.getMessage());
+        } else {
             issueBooksLabel.setText("Member not found");
-            currentMember = null;
         }
-    
-    
-    issueDueDatePicker.setDayCellFactory(picker -> new DateCell() {
-        @Override
-        public void updateItem(LocalDate date, boolean empty) {
-            super.updateItem(date, empty);
-            if (date.isBefore(LocalDate.now())) {
-                setDisable(true);
-                setStyle("-fx-background-color: #ffc0cb;");
-            }
-        }
-    });
-
-    //issueDueDatePicker.setValue(LocalDate.now().plusDays(1));
     }
 
+    private void loadBooksForSelectedCategory() {
+        String selectedCategoryString = issueCategoriesComboBox.getValue();
+        if (selectedCategoryString == null) return;
 
-    private void loadAvailableCategories() {
-        Set<BookCategory> categories = issueBookService.getAllAvailableBooks(null).stream()
-                .filter(book -> book.getStatus() == 'A' && book.getAvailability() == 'A')
-                .map(Book::getBookCategory)
-                .collect(Collectors.toSet());
+        BookCategory selectedCategory = Arrays.stream(BookCategory.values())
+                .filter(cat -> cat.toString().equals(selectedCategoryString))
+                .findFirst().orElse(null);
 
-        categoryList.setAll(categories.stream().map(Enum::toString).toList());
-    }
-
-    private void loadBooksForCategory() {
-        String selectedCategory = issueCategoriesComboBox.getValue();
         if (selectedCategory == null) return;
 
-        List<Book> availableBooks = issueBookService.getAvailableBooksByCategory(BookCategory.valueOf(selectedCategory.toUpperCase()));
-        List<String> bookTitles = availableBooks.stream()
-                .filter(book -> book.getAvailability() == 'A' && book.getStatus() == 'A')
-                .map(Book::getBookTitle)
-                .collect(Collectors.toList());
+        List<Book> availableBooks = BookDao.getInstance().getAvailableBooksByCategory(selectedCategory);
 
-        bookList.setAll(bookTitles);
+        bookList.clear();
+        bookList.addAll(availableBooks.stream().map(Book::getBookTitle).collect(Collectors.toList()));
     }
 
     private void issueBook() {
         if (currentMember == null) {
-            showAlert(Alert.AlertType.ERROR, "Fetch member first.");
+            showAlert(Alert.AlertType.ERROR, "Please fetch a valid member first.");
             return;
         }
 
         String selectedBookTitle = issueBookNameComboBox.getValue();
-        String selectedCategory = issueCategoriesComboBox.getValue();
-        LocalDate returnDate = issueDueDatePicker.getValue();
+        LocalDate dueDate = issueDueDatePicker.getValue();
 
-        if (selectedBookTitle == null || selectedCategory == null || returnDate == null) {
-            showAlert(Alert.AlertType.WARNING, "Select category, book, and due date.");
+        if (selectedBookTitle == null || dueDate == null) {
+            showAlert(Alert.AlertType.WARNING, "Please select both a book and due date.");
             return;
         }
 
-        
-        List<Book> availableBooks = issueBookService.getAvailableBooksByCategory(BookCategory.valueOf(selectedCategory.toUpperCase()));
-        Book selectedBook = availableBooks.stream()
+        List<Book> allAvailableBooks = BookDao.getInstance().getAvailableBooksByCategory(
+                Arrays.stream(BookCategory.values())
+                        .filter(cat -> cat.toString().equals(issueCategoriesComboBox.getValue()))
+                        .findFirst().orElse(null)
+        );
+
+        Book selectedBook = allAvailableBooks.stream()
                 .filter(book -> book.getBookTitle().equals(selectedBookTitle))
                 .findFirst().orElse(null);
 
         if (selectedBook == null) {
-            showAlert(Alert.AlertType.ERROR, "Selected book not found.");
+            showAlert(Alert.AlertType.ERROR, "Selected book not found or unavailable.");
             return;
         }
 
@@ -128,17 +134,16 @@ public class IssueBookController {
         issue.setMemberId(currentMember.getMemberId());
         issue.setBookId(selectedBook.getBookId());
         issue.setIssueDate(LocalDate.now());
-        issue.setReturnDate(returnDate);
+        issue.setReturnDate(dueDate);
+        issue.setStatus('I');
 
-        boolean success = issueBookService.issueBook(issue);
-        if (success) {
-            
-            selectedBook.setAvailability('U');
-            issueBookService.updateBookAvailability(selectedBook.getBookId(), 'U');
+        boolean result = issueBookService.issueBook(issue);
+
+        if (result) {
             showAlert(Alert.AlertType.INFORMATION, "Book issued successfully.");
             clearForm();
         } else {
-            showAlert(Alert.AlertType.ERROR, "Book issue failed.");
+            showAlert(Alert.AlertType.ERROR, "Failed to issue book.");
         }
     }
 
@@ -151,10 +156,11 @@ public class IssueBookController {
         currentMember = null;
     }
 
-    private void showAlert(Alert.AlertType type, String msg) {
+    private void showAlert(Alert.AlertType type, String message) {
         Alert alert = new Alert(type);
+        alert.setTitle("Library System");
         alert.setHeaderText(null);
-        alert.setContentText(msg);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 }

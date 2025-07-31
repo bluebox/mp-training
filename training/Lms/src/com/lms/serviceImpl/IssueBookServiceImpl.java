@@ -1,21 +1,17 @@
 
 package com.lms.serviceImpl;
 
+import com.lms.dao.BookIssueDaoInterface;
+import com.lms.daoImpl.IssueBookDaoImpl;
+import com.lms.model.IssueBook;
+import com.lms.service.IssueBookServiceInterface;
+
 import java.time.LocalDate;
 import java.util.List;
 
-import com.lms.daoImpl.BookDao;
-import com.lms.daoImpl.IssueBookDaoImpl;
-import com.lms.exceptions.InvalidInputException;
-import com.lms.model.Book;
-import com.lms.model.BookCategory;
-import com.lms.model.IssueBook;
-import com.lms.model.Member;
-import com.lms.service.IssueBookServiceInterface;
-
 public class IssueBookServiceImpl implements IssueBookServiceInterface {
 
-    private final IssueBookDaoImpl issueBookDao;
+    private final BookIssueDaoInterface issueBookDao;
 
     public IssueBookServiceImpl() {
         this.issueBookDao = new IssueBookDaoImpl();
@@ -39,22 +35,7 @@ public class IssueBookServiceImpl implements IssueBookServiceInterface {
     }
 
     @Override
-    public boolean isBookAlreadyIssued(String bookId) {
+    public boolean isBookAlreadyIssued(int bookId) {
         return issueBookDao.isBookAlreadyIssued(bookId);
     }
-    public Member getMemberByMobile(String mobile) throws InvalidInputException {
-    		return issueBookDao.getMemberByMobile(mobile);
-    }
-    public List<Book> getAvailableBooksByCategory(BookCategory selectedCategory){
-    return BookDao.getInstance().getAvailableBooksByCategory(selectedCategory);
-    }
-
-    public List<Book> getAllAvailableBooks(BookCategory category) {
-        return BookDao.getInstance().getAvailableBooksByCategory(category);
-    }
-    public void updateBookAvailability(String bookId, char availability) {
-        BookDao.getInstance().updateBookAvailability(bookId, availability);
-    }
-
-
 }

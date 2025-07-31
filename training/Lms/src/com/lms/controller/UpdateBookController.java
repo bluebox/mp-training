@@ -1,18 +1,17 @@
 package com.lms.controller;
 
 
+import com.lms.daoImpl.BookDao;
 import com.lms.exceptions.InvalidInputException;
 import com.lms.model.Book;
 import com.lms.model.BookCategory;
+import com.lms.service.BookService;
 import com.lms.serviceImpl.BookServiceImpl;
 import com.lms.util.Validator;
 
+import javafx.scene.control.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 
 public class UpdateBookController {
 
@@ -61,7 +60,7 @@ public class UpdateBookController {
             return;
         }
         
-       currentBook=null;
+        Book currentBook=null;
 		try {
 			currentBook = bookService.getBookById(id);
 		} catch (InvalidInputException e) {
@@ -70,17 +69,21 @@ public class UpdateBookController {
 		}
 
 
+   	 
+
+        // Populate fields
         titleField.setText(currentBook.getBookTitle());
         authorField.setText(currentBook.getBookAuthor());
         categoryField.setValue(currentBook.getBookCategory());
 
-        
+        // Status toggle
         if (currentBook.getStatus() == 'A') {
             statusGroup.selectToggle(statusActive);
         } else {
             statusGroup.selectToggle(statusInactive);
         }
 
+        // Availability toggle
         if (currentBook.getAvailability() == 'A') {
             availabilityGroup.selectToggle(availableRadio);
         } else {
@@ -110,12 +113,12 @@ public class UpdateBookController {
         char status = (selectedStatus != null && "Active".equalsIgnoreCase(selectedStatus.getText())) ? 'A' : 'I';
         char availability = (selectedAvailability != null && "Available".equalsIgnoreCase(selectedAvailability.getText())) ? 'A' : 'U';
 
-
+//        boolean updated = BookDao.getInstance().updateBook(currentBook.getBookId(), title, author, category, status, availability);
         Boolean updated;
 		try {
 			updated = bookService.updateBook(currentBook.getBookId(), title, author, category, status, availability);
 		} catch (InvalidInputException e) {
-            showAlert(Alert.AlertType.ERROR, "Update Failed", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Update Failed", "An error occurred while updating.");
             return;
 		}
         
@@ -129,13 +132,7 @@ public class UpdateBookController {
 
     @FXML
     private void handleExit() {
-        bookIdField.clear();
-		titleField.clear();
-		authorField.clear();
-		categoryField.setValue(null);
-		statusGroup.selectToggle(null);
-		availabilityGroup.selectToggle(null);
-		currentBook = null;
+        //Platform.exit(); // You can change this to just clear the form if needed
     }
 
     private void showAlert(Alert.AlertType type, String title, String msg) {

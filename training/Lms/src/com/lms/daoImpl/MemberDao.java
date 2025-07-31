@@ -1,11 +1,11 @@
 package com.lms.daoImpl;
 
-import com.lms.model.Member;
-import com.lms.util.DBUtil;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.lms.model.Member;
+import com.lms.util.DBUtil;
 
 public class MemberDao {
 
@@ -51,7 +51,7 @@ public class MemberDao {
     }
 
     public static Member getMemberById(int id) {
-        String sql = "SELECT member_id, name, email, mobile, gender, address FROM members WHERE member_id = ?";
+        String sql = "SELECT * FROM members WHERE member_id = ?";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -73,13 +73,13 @@ public class MemberDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+ 
         return null;
     }
 
     public static List<Member> getAllMembers() {
         List<Member> members = new ArrayList<>();
-        String sql = "SELECT member_id, name, email, mobile, gender, address FROM members";
+        String sql = "SELECT * FROM members";
 
         try (Connection conn = DBUtil.getConnection();
              Statement stmt = conn.createStatement();
@@ -119,19 +119,18 @@ public class MemberDao {
             e.printStackTrace();
         }
 
-        return 1;
+        return 1; // start from 1
     }
-
     public static Member getMemberByMobile(String mobile) {
-        String sql = "SELECT member_id, name, email, mobile, gender, address FROM members WHERE mobile = ?";
+		String sql = "SELECT * FROM members WHERE mobile = ?";
 
-        try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = DBUtil.getConnection();
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, mobile);
-            ResultSet rs = stmt.executeQuery();
+			stmt.setString(1, mobile);
+			ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+			if (rs.next()) {
                 return new Member(
                         rs.getInt("member_id"),
                         rs.getString("name"),
@@ -145,34 +144,9 @@ public class MemberDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+ 
         return null;
     }
-
-    public static Member getMemberByEmail(String email) {
-        String sql = "SELECT member_id, name, email, mobile, gender, address FROM members WHERE email = ?";
-
-        try (Connection conn = DBUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return new Member(
-                        rs.getInt("member_id"),
-                        rs.getString("name"),
-                        rs.getString("email"),
-                        rs.getString("mobile"),
-                        rs.getString("gender"),
-                        rs.getString("address")
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
+						
 }
+

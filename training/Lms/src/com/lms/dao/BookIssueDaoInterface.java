@@ -16,8 +16,7 @@ public interface BookIssueDaoInterface {
 
     List<IssueBook> getActiveIssuesByMember(int memberId);
 
+    boolean isBookAlreadyIssued(int bookId);
+
     List<Book> getAvailableBooksByCategory(String category);
-
-    boolean isBookAlreadyIssued(String bookId);
-
 }
