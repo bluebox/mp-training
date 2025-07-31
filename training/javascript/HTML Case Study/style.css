@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #f39c12;
+    --primary-hover: #e67e22;
+    --accent: #3498db;
+    --accent-hover: #2980b9;
+    --danger: #e74c3c;
+    --danger-hover: #c0392b;
+    --bg: #f8f9fa;
+    --container-bg: #ffffff;
+    --border: #dee2e6;
+    --heading: #2c3e50;
+    --text: #34495e;
+    --shadow-focus: rgba(52, 152, 219, 0.3);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: var(--container-bg);
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    border: 1px solid var(--border);
+}
+
+h1, h2 {
+    text-align: center;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--heading);
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--primary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    display: block;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--shadow-focus);
+    outline: none;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+}
+
+.input-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#add-btn {
+    display: block;
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background: var(--primary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: 0.2s;
+}
+
+#add-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#add-btn.update-mode {
+    background: var(--accent);
+}
+
+#add-btn.update-mode:hover {
+    background: var(--accent-hover);
+}
+
+.table-wrapper {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.scroll-body {
+    max-height: 250px;
+    overflow-y: auto;
+    display: block;
+}
+
+#data-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--bg);
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    padding: 8px;
+}
+
+thead th div {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--heading);
+    padding: 4px 0;
+}
+
+#data-table th:nth-child(3),
+#data-table th:nth-child(4),
+#data-table td:nth-child(3),
+#data-table td:nth-child(4) {
+    min-width: 160px;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.column-search {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+#data-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+#data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#data-table tbody tr:hover {
+    background-color: #feefde;
+}
+
+td.actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 0.5rem 0.9rem;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-btn {
+    background: var(--accent);
+}
+
+.edit-btn:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background: var(--danger);
+}
+
+.delete-btn:hover {
+    background: var(--danger-hover);
+    transform: scale(1.05);
+}
+
+.error-message {
+    color: var(--danger);
+    font-size: 0.85em;
+    margin-top: 4px;
+    display: block;
+}
+
+.new-row-animation {
+    animation: fadeInRow 0.5s ease-out;
+}
+
+@keyframes fadeInRow {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
