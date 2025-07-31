@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+
+<VBox alignment="CENTER" prefWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.ui.UpdateMemberForm">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label text="Update Member Details" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <GridPane hgap="10" vgap="10" alignment="CENTER">
+        <Label text="Member ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="memberID" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TextField fx:id="name" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+        <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <TextField fx:id="email" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+        <Label text="Phone Number:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <TextField fx:id="phoneNumber" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+        <Label text="Gender:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+        <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <RadioButton fx:id="maleRadioButton" text="Male">
+                <toggleGroup>
+                    <ToggleGroup fx:id="genderToggleGroup" />
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="femaleRadioButton" text="Female" toggleGroup="$genderToggleGroup" />
+            <RadioButton fx:id="otherRadioButton" text="Other" toggleGroup="$genderToggleGroup" />
+        </HBox>
+
+        <Label text="Address:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+        <TextField fx:id="address" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+    </GridPane>
+
+    <HBox alignment="CENTER" spacing="10.0">
+        <Button text="Update" onAction="#handleUpdate" />
+        <Button text="Cancel" onAction="#handleCancel" />
+    </HBox>
+
+    <Label fx:id="updateStatusLabel" textFill="RED" />
+</VBox>
