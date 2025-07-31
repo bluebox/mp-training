@@ -1,20 +1,46 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from '../api/axios';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
+  const [count, setCount] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+
   
   useEffect(() => {
-    const access = localStorage.getItem("access");
-      axios
-      .get("http://localhost:8000/api/tasks/", {
-        headers: {
-          Authorization: 'Bearer '+access,
-        },
-      })
-      .then((res) => setTasks(res.data))
-      .catch(console.log("error in retrieving tasks"));
-  }, []);
+    const fetchTasks = async () => {
+      try{  
+        const response = await api.get("tasks/all/?page="+currentPage);
+        setTasks(response.data.results);
+        if(currentPage===1){
+          if(response.data.results.length){
+            setCount(Math.ceil(response.data.count/response.data.results.length));
+          }
+          else{
+            setCount(1);
+          }
+        }
+      }
+      catch{
+        console.log("error in retrieving tasks")
+      };
+    }
+    fetchTasks();
+    // eslint-disable-next-line
+  }, [currentPage]);
+
+
+  const handleNextPage =() => {
+    if(currentPage <= count){
+      setCurrentPage(prevPage => prevPage + 1);
+    }
+  };
+
+  const handlePrevPage =() => {
+    if(currentPage >= 1){
+      setCurrentPage(prevPage => prevPage - 1);
+    }
+  };
 
   return (
     <div className="card mt-4">
@@ -23,7 +49,7 @@ const TaskList = () => {
         {tasks.length === 0 ? (
           <p>No tasks available.</p>
         ) : (
-          <table className="table">
+          <table className="table" style={{textAlign:"center"}}>
             <thead>
               <tr>
                 <th>Title</th>
@@ -48,8 +74,14 @@ const TaskList = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
-        )}
+          </table>)
+          
+        }
+        <div>
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>Prev</button>
+          <span>Page {currentPage} of {count}</span>
+          <button onClick={handleNextPage} disabled={currentPage === count}>Next</button>
+        </div>
       </div>
     </div>
   );

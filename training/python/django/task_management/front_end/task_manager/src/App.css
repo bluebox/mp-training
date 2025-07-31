@@ -13,14 +13,61 @@
 }
 
 table,th,td,tr{
-  border: 0.2px solid black;
+  border: 1px solid black;
   border-collapse: collapse;
   padding: 20px;
   margin: 10px;
 }
 
-.MyProfile ::after table,th,td,tr{
-  border: 0px;
-  box-shadow: 2px 2px 10px solid black;
-  background-color: white;
+
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+
+form {
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+select,
+input {
+  width: 350px;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
 }

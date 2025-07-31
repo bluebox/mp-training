@@ -1,13 +1,13 @@
 import { useState } from "react";
-import axios from "axios"; 
+import api from '../api/axios';
 
 export default function MyProfile() {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({ ...storedUser });
-    const access = localStorage.getItem("access");
 
-    function handleEdit() {
+    function handleEdit(e) {
+        e.preventDefault();
         setIsEditing(true);
     }
 
@@ -18,11 +18,7 @@ export default function MyProfile() {
 
     async function handleSave() {
         try {
-            const response = await axios.put('http://localhost:8000/api/profile/', formData, {
-                headers: {
-                    Authorization: 'Bearer '+access,
-                }
-            }); 
+            const response = await api.put('profile/', formData); 
             localStorage.setItem("user", JSON.stringify(response.data)); 
             setIsEditing(false);
         } catch (error) {
@@ -33,6 +29,7 @@ export default function MyProfile() {
 
     return (
         <div className="MyProfile">
+            <form>
             <table>
                 <tbody>
                     <tr>
@@ -90,6 +87,7 @@ export default function MyProfile() {
                     </tr>
                 </tbody>
             </table>
+            </form>
         </div>
     );
 }

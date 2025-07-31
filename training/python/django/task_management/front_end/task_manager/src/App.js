@@ -11,6 +11,9 @@ import ViewAll from './pages/ViewAll';
 import MyProfile from './pages/MyProfile';
 import MyTeams from './pages/MyTeams';
 import AssignTask from './components/AssignCreatedTask';
+import AssignToTeam from './pages/AssignToTeam';
+import CreateTeam from './pages/CreateTeam';
+import NewProject from './pages/NewProject';
 
 export default function App(){
 
@@ -37,8 +40,11 @@ export default function App(){
         <Route path="/task-list" element={<TaskList />} />
         <Route path="/task-assign" element={<AssignTask />} />
         <Route path="/view-all" element={<ViewAll />} />
+        <Route path="/team-assign" element={<AssignToTeam />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/my-team" element={<MyTeams />} />
+        <Route path="/new-project" element={<NewProject />} />
+        <Route path="/create-team" element={<CreateTeam />} />
       </Routes>
     </Router>
   );

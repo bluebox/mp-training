@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from .models import Task, TaskComment, TaskAssignment, Team, Project, TeamMember
+from .pagination import CustomPageNumberPagination
 from .serializers import (
     RegisterSerializer,
     UserSerializer,
@@ -10,8 +11,8 @@ from .serializers import (
     TaskCommentSerializer,
     TaskAssignmentSerializer,
     TeamSerializer,
-    ProjectSerializer, TaskViewSerializer, TaskAssignmentViewSerializer, TeamMemberSerializer,
-    IndividualTaskViewSerializer, AllTaskViewSerializer, TeamAssignSerializer
+    ProjectSerializer, TeamMemberSerializer,
+    IndividualTaskViewSerializer, AllTaskViewSerializer, TeamAssignSerializer, ProjectPDSerializer
 )
 
 User = get_user_model()
@@ -52,19 +53,21 @@ class LeadTaskView(APIView):
     def get(self, request):
         if request.user.role != 'lead':
             return Response({"error": "Only team leads can access this."}, status=403)
-        tasks = Task.objects.select_related("project").filter(project__team__teammember__user=request.user)
+
+        team_ids = TeamMember.objects.filter(user=request.user).values('team_id')
+        team_members = User.objects.filter(teams__in=team_ids).distinct()
+        tasks = Task.objects.filter(assign__user__in=team_members).distinct()
         return Response(TaskSerializer(tasks, many=True).data)
 
 
 # Admin can view all tasks
-class AdminAllTasksView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request):
-        if request.user.role != 'admin':
-            return Response({"error": "Only admin can access this."}, status=403)
-        tasks = TaskAssignment.objects.all()
-        return Response(TaskAssignmentViewSerializer(tasks, many=True).data)
+# class AdminAllTasksView(APIView):
+#     permission_classes = [permissions.IsAuthenticated]
+#     def get(self, request):
+#         if request.user.role != 'admin':
+#             return Response({"error": "Only admin can access this."}, status=403)
+#         tasks = TaskAssignment.objects.all()
+#         return Response(TaskAssignmentViewSerializer(tasks, many=True).data)
 
 class AllTasksView(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -198,30 +201,37 @@ class TeamView(APIView):
 
 
 # Project list/create
-class ProjectView(generics.ListCreateAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+class ProjectView(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    def get(self,request):
+        queryset = Project.objects.all()
+        serializer = ProjectSerializer(queryset,many=True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        data = request.data
+        data['created_by'] = request.user.id
+        serializer = ProjectPDSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
 class TeamMembersView(APIView):
     def get(self, request):
-        # Admin: return all users except admins
         if request.user.role == 'admin':
             queryset = User.objects.exclude(role='admin')
             serializer = UserSerializer(queryset, many=True)
             return Response(serializer.data)
 
-        # Non-admin: return members of the latest team the user joined
         teams = TeamMember.objects.select_related('team', 'user').filter(user=request.user).order_by('joined_at')
         if not teams.exists():
             return Response({'detail': 'User is not in any team.'}, status=status.HTTP_404_NOT_FOUND)
 
-        latest_team = teams.last().team  # You need the team object, not the TeamMember ID
-        team_members = TeamMember.objects.filter(team=latest_team).select_related('user').distinct()
+        latest_team = teams.last().team
+        team_members = TeamMember.objects.select_related('user').filter(team=latest_team).exclude(user=request.user)
         serializer = TeamMemberSerializer(team_members, many=True)
-
         # return Response(serializer.data)
-
         return Response({
             # 'team': team.name,
             'members': serializer.data
@@ -241,3 +251,21 @@ class UnassignedTasksVIew(APIView):
             return Response({"error": "No unassigned tasks found"}, status=404)
         serializer = TaskSerializer(unassigned_tasks, many=True)
         return Response(serializer.data)
+
+class CustomAllTasksView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        queryset = Task.objects.all()
+        paginator = CustomPageNumberPagination()
+        paginated_queryset = paginator.paginate_queryset(queryset, request, view=self)
+        return paginator.get_paginated_response(AllTaskViewSerializer(paginated_queryset, many=True).data)
+
+
+class CustomAllUserProfiles(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, request):
+        queryset = User.objects.exclude(id=request.user.id).order_by("role")
+        paginator = CustomPageNumberPagination()
+        paginated_queryset = paginator.paginate_queryset(queryset, request, view=self)
+        return paginator.get_paginated_response(UserSerializer(paginated_queryset, many=True).data)

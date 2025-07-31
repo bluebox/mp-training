@@ -28,11 +28,7 @@ function Login() {
     const access = response.data.access;
     localStorage.setItem("access", access);
     localStorage.setItem("refresh", response.data.refresh);
-    const profileResponse = await api.get("profile/", {
-      headers: {
-        Authorization: 'Bearer ' + access,
-      },
-    });
+    const profileResponse = await api.get("profile/");
 
     setUser(profileResponse.data);
     localStorage.setItem('user', JSON.stringify(profileResponse.data));

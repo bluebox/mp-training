@@ -19,7 +19,7 @@ export default function AssignTask(){
         const response = await api.get("unassigned/tasks/");
         setTasks(response.data);
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error("Error fetching tasks:", error);
       }
     };
     const fetchMembers = async () => {
@@ -57,7 +57,8 @@ export default function AssignTask(){
     });
   };
 
-    return (<div>
+  return (
+    <form>
         <div>
             <label>task</label>
             <select name="task" value={formData.task} onChange={handleChange} required>
@@ -93,6 +94,6 @@ export default function AssignTask(){
             <input name="role" value={formData.role} onChange={handleChange} required/>
         </div>
 
-        <button type="submit" onClick={handleSubmit}>Create Task</button>
-    </div>)
+        <button type="submit" onClick={handleSubmit}>Assign</button>
+    </form>);
 }

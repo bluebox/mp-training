@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import api from "../api/axios";
 
 const Dashboard = () => {
@@ -50,28 +49,29 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    const token = localStorage.getItem("access");
     
     try {
         var URL;
         if(user.role === 'member'){
-          URL = "http://localhost:8000/api/assigned/tasks/";
+          URL = "assigned/tasks/";
         }
         else if(user.role === 'lead'){
-          URL = "http://localhost:8000/api/lead/tasks/";
+          URL = "lead/tasks/";
         }
         else{
-          URL = "http://localhost:8000/api/tasks/";
+          URL = "tasks/";
         }
 
-        axios.get(URL, {
-          headers: {
-            Authorization: ('Bearer '+token),
-          },
-        })
-        .then(res=>{
-          setTasks(res.data);
-        })
+        const fetchTasks = async () => {
+        try{  
+          const response = await api.get(URL)
+          setTasks(response.data);
+        }
+        catch{
+          console.log("error in retrieving tasks")
+        };
+      }
+      fetchTasks();
       } catch (err) {
         setError("Failed to fetch tasks");
       } finally {

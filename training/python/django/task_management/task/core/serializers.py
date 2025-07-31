@@ -4,7 +4,6 @@ from .models import Team, TeamMember, Project, Task, TaskComment, TaskAssignment
 
 User = get_user_model()
 
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -59,6 +58,12 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = '__all__'
 
+class ProjectPDSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Project
+        fields = "__all__"
+
 
 class TaskSerializer(serializers.ModelSerializer):
     project_obj = ProjectSerializer(read_only=True)
@@ -68,13 +73,13 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = '__all__'
 
-class TaskViewSerializer(serializers.ModelSerializer):
-    project = ProjectSerializer(read_only=True)
-    created_by = UserSerializer(read_only=True)
-
-    class Meta:
-        model = Task
-        fields = '__all__'
+# class TaskViewSerializer(serializers.ModelSerializer):
+#     project = ProjectSerializer(read_only=True)
+#     created_by = UserSerializer(read_only=True)
+#
+#     class Meta:
+#         model = Task
+#         fields = '__all__'
 
 class TaskCommentSerializer(serializers.ModelSerializer):
     user_obj = UserSerializer(read_only=True)
@@ -93,13 +98,13 @@ class TaskAssignmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class TaskAssignmentViewSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-    task = TaskViewSerializer(read_only=True)
-
-    class Meta:
-        model = TaskAssignment
-        fields = '__all__'
+# class TaskAssignmentViewSerializer(serializers.ModelSerializer):
+#     user = UserSerializer(read_only=True)
+#     task = TaskViewSerializer(read_only=True)
+#
+#     class Meta:
+#         model = TaskAssignment
+#         fields = '__all__'
 
 class TaskIndSerializer(serializers.ModelSerializer):
     class Meta:

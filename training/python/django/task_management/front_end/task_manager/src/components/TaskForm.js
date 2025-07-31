@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/axios"
-import axios from "axios";
 const TaskCreate = () => {
   const [projects, setProjects] = useState([]);
   const [data, setData] = useState([]);
@@ -14,7 +13,6 @@ const TaskCreate = () => {
   });
 
   const user = JSON.parse(localStorage.getItem("user"));
-  const access = localStorage.getItem("access");
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -43,16 +41,11 @@ const TaskCreate = () => {
       };
 
     try {
-      axios.post("http://localhost:8000/api/tasks/create/",taskPayload, {
-        headers : {
-          Authorization : "Bearer "+ access,
-        },
-      })
-      .then(response=>{
-        setData(response.data);
-        alert("Task created sucessfully");
-      })
-    } catch (err) {
+      const response = await api.post("tasks/create/",taskPayload)
+      setData(response.data);
+      alert("Task created sucessfully");
+    } 
+    catch (err) {
       alert("Error creating failed.");
     }
       
@@ -72,7 +65,6 @@ const TaskCreate = () => {
 
   return (
     <div>
-      <div className="card-header">Create New Task</div>
       <div className="card-body">
         <form onSubmit={handleSubmit}>
           <div>

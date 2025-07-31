@@ -2,10 +2,10 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import (
     RegisterAPIView, UserDetailView,
-    LeadTaskView, AdminAllTasksView,
-    TaskCreateView, TaskDetailView,
+    LeadTaskView, TaskCreateView, TaskDetailView,
     TaskCommentCreateView, AssignTaskView,
-    TeamView, ProjectView, AllTasksView, IndividualTaskView, AllUserProfiles, TeamMembersView, UnassignedTasksVIew
+    TeamView, ProjectView, AllTasksView, IndividualTaskView, AllUserProfiles, TeamMembersView, UnassignedTasksVIew,
+    CustomAllTasksView, CustomAllUserProfiles
 )
 
 urlpatterns = [
@@ -15,6 +15,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('profile/', UserDetailView.as_view(), name='user-profile'),
     path('profiles/all/', AllUserProfiles.as_view(), name='user-profiles'),
+    path('all/profiles/',CustomAllUserProfiles.as_view(),name='custom-all-user-profiles'),
 
     path('tasks/create/', TaskCreateView.as_view(), name='task-create'),
     path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
@@ -24,11 +25,11 @@ urlpatterns = [
     path('unassigned/tasks/', UnassignedTasksVIew.as_view(), name='unassigned-tasks'),
 
     path('lead/tasks/', LeadTaskView.as_view(), name='lead-tasks'),
-    # path('admin/tasks/', AdminAllTasksView.as_view(), name='admin-tasks'),
     path('tasks/', AllTasksView.as_view(), name='all-view-tasks'),
+    path('tasks/all/',CustomAllTasksView.as_view(),name='custom-all-task-view'),
 
     path('teams/', TeamView.as_view(), name='teams'),
     path('teams/<int:pk>/', TeamView.as_view(), name='teams'),
     path('projects/', ProjectView.as_view(), name='projects'),
-    path('members/',TeamMembersView.as_view(),name='team-members')
+    path('members/',TeamMembersView.as_view(),name='team-members'),
 ]
