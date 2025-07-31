@@ -28,16 +28,13 @@ public class AddBookController {
 
     @FXML
     public void handleAddBook() {
-        String title = titleField.getText().trim();
-        String author = authorField.getText().trim();
-        BookCategory category = categoryField.getValue(); 
-        BookServiceImpl bookService = new BookServiceImpl();
+             BookServiceImpl bookService = new BookServiceImpl();
         try {
         
         	Book newBook = new Book();
-        	newBook.setBookTitle(title);
-        	newBook.setBookAuthor(author);
-        	newBook.setBookCategory(category);
+        	newBook.setBookTitle(titleField.getText().trim());
+        	newBook.setBookAuthor(authorField.getText().trim());
+        	newBook.setBookCategory(categoryField.getValue());
         	newBook.setStatus('A');
         	newBook.setAvailability('A');
         	Validator.validateBook(newBook);
@@ -50,7 +47,7 @@ public class AddBookController {
 		}
 		showAlert(Alert.AlertType.INFORMATION, "Book Created", "The book has been created successfully.");
          
-            handleExit();
+            clearForm();
 
     }
     
@@ -68,8 +65,4 @@ public class AddBookController {
         alert.showAndWait();
     }
 
-    @FXML
-    public void handleExit() {
-    	clearForm();
-    }
-}
+   }
