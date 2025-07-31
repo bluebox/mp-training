@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+     
+    <ResourceLink name="jdbc/servletsdb"
+    	global="jdbc/servletsdb"
+    	type="javax.sql.DataSource"
+    />
+     
+</Context>
