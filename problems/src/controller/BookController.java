@@ -182,7 +182,7 @@ public class BookController {
    public void addBook(ActionEvent event) throws IOException{
 	   try{
 		   addBook(titlefield.getText(),Authorfield.getText(),categoryfield.getText(),status,available);
-		   showAlert("Adding Book to the Book table ......");
+		   showAlert("Added Book to the Book table ......");
 	   root= FXMLLoader.load(getClass().getResource("/applicationview/HomeView.fxml"));
 	    stage=(Stage)((Node)event.getSource()).getScene().getWindow();
 	    stage.setTitle("Library Management System");
@@ -198,15 +198,16 @@ public class BookController {
    
    public void updatebook(ActionEvent event)throws IOException {
 	 try {
-		 updateBookDetails(Integer.parseInt(uIDfield.getText()),utitlefield.getText(),uAuthor.getText(),ucategory.getText(),updatestatus);
-		 showAlert("Updating the Book record ......");
+		String book= updateBookDetails(Integer.parseInt(uIDfield.getText()),utitlefield.getText(),uAuthor.getText(),ucategory.getText(),updatestatus);
+		showAlert("Updated the Book record ......");
 		 root= FXMLLoader.load(getClass().getResource("/applicationview/HomeView.fxml"));
 		    stage=(Stage)((Node)event.getSource()).getScene().getWindow();
 		    stage.setTitle("Library Management System");
 		    scene=new Scene(root);
 		    stage.setScene(scene);
 		    stage.show();
-	 }catch(Exception e) {
+		}
+	 catch(Exception e) {
 		 showAlert(e.getMessage());
 	 }
    }
@@ -237,7 +238,6 @@ public class BookController {
 		catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception(e.getMessage());
-			
 		}
 	}
 	

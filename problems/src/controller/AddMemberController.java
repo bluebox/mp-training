@@ -50,7 +50,10 @@ public class AddMemberController implements Initializable {
     public void handleAddMember(ActionEvent event) throws Exception{
     	
     	try{
-    		service.registerMember(new Member(0,nameField.getText(),emailField.getText(),mobileField.getText(),Gender.getGender(genderBox.getValue().toUpperCase().charAt(0)),addressField.getText()));}
+    		
+    		service.registerMember(new Member(0,nameField.getText(),emailField.getText(),mobileField.getText(),Gender.getGender(genderBox.getValue().toUpperCase().charAt(0)),addressField.getText()));
+    	    showAlert("Added Member Successfully");
+    	}
     	catch(Exception e) {
     		showAlert(e.getMessage());
     	}

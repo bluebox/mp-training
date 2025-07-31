@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -97,6 +98,9 @@ public class MemberHome {
 	    	Address.setCellValueFactory(new PropertyValueFactory<Member, String>("Address"));
 	    	TableColumn <Member, Gender> Gender = new TableColumn <Member, Gender>("Gender");
 	    	Gender.setCellValueFactory(new PropertyValueFactory<Member, Gender>("gender"));
+	    	
+	    	
+	    	if(list!=null) {
 	    	table.getColumns().add(Member_name);
 	    	System.out.println(Member_name.toString());
 	    	System.out.println(Email.toString());
@@ -121,5 +125,14 @@ public class MemberHome {
 	    	primaryStage.setScene(scene);
 
 	    	primaryStage.show();
+	    }else {
+	      showAlert("No records availabale yet");
+	    }
+	    }
+	    
+	    private void showAlert(String msg) {
+	        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	        alert.setContentText(msg);
+	        alert.show();
 	    }
 }

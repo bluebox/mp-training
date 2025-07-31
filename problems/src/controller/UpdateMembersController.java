@@ -61,7 +61,7 @@ public class UpdateMembersController implements Initializable {
         } catch (Exception e) {
         	System.out.println("Error: " + nameField.getText());
         	System.out.println("Error: " + emailField.getText());
-        	System.out.println("Error: " +  Integer.parseInt(mobileField.getText()));
+        	System.out.println("Error: " +  (mobileField.getText()));
         	System.out.println("Error: " + addressField.getText());
             showAlert("Error: " + e.getMessage());
             System.out.println(e.getMessage());

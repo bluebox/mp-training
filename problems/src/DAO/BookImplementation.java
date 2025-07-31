@@ -32,23 +32,23 @@ public class BookImplementation implements BookInterface {
 	}
 	
 	@Override
-	public void AddBook(Book book) throws SQLException {
+	public int AddBook(Book book) throws SQLException {
 		
 		String query="insert into librarymanagementsystem.books (Title,Author,Category,status,Availablity) values(?,?,?,?,?) ";
 		//String logquery="insert into librarymanagementsystem.bookslog (BookId,Title,Author,Category,status,Availability) values(?,?,?,?,?,?) ";
 		
 		Connection connection=getConnection();
-		try(
-			PreparedStatement preparestatement=connection.prepareStatement(query);){
+		try(PreparedStatement preparestatement=connection.prepareStatement(query);){
 			    preparestatement.setString(1, book.getTitle()); 
 	            preparestatement.setString(2,book.getAuthor() ); 
 	            preparestatement.setString(3,book.getCategory()); 
 	            preparestatement.setString(4,""+book.getStatus().getType());
 	            preparestatement.setString(5,""+book.getAvailability().getType());
-			    System.out.println("Added new Book to Book Table ");
+			    System.out.println("Added new Book to Book DAO Table ");
 			    int b=preparestatement.executeUpdate();
 	            System.out.println(b);
 	            connection.commit();
+	            return b;
 		}catch(Exception e) {
 			connection.rollback();
 			System.out.println("Failed to add new Book to Book Table ");
@@ -70,8 +70,13 @@ public class BookImplementation implements BookInterface {
 	            preparestatementlog.setString(3,book.getAuthor() ); 
 	            preparestatementlog.setString(4,book.getCategory()); 
 	            preparestatementlog.setString(5,""+book.getStatus().getType());
-	            preparestatementlog.setString(6, ""+getBookbyId(book.getBookId()).getAvailability().getType());
+	            if(book.getStatus().getType()=='I') {
+	            	preparestatementlog.setString(6,null);
+	            }else {
+	            	preparestatementlog.setString(6,""+book.getAvailability().getType());
+	            }
 	            
+	
 	            preparestatement.setString(1,book.getCategory()); 
 	            preparestatement.setString(2,""+book.getStatus().getType());
 	            preparestatement.setInt(3,book.getBookId());

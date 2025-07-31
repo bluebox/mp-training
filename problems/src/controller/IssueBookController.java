@@ -33,6 +33,7 @@ public class IssueBookController {
             int memberId = Integer.parseInt(memberIdField.getText());
              LocalDate returndate=LocalDate.now().plusDays(14);
             issueService.createBookIssue(bookId, memberId,IssueStatus.ISSUED,LocalDate.now(),returndate);
+            showAlert("Issued book successfully");
         } catch (Exception e) {
             showAlert("Error: " + e.getMessage());
         }

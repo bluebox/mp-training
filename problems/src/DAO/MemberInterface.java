@@ -6,7 +6,7 @@ import Domain.Member;
 
 public interface MemberInterface {
 
-	void addMember(Member member) throws Exception;
+	int addMember(Member member) throws Exception;
 
 	Member getMemberById(int id) throws Exception;
 

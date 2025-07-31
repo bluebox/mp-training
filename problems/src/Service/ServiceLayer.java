@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
+
 import DAO.BookImplementation;
 import DAO.IssueRecordImplementation;
 import DAO.MemberDAOImpl;
@@ -27,9 +29,7 @@ public class ServiceLayer implements ServiceInterface{
 	
 	@Override
 	public void addBook(String Title,String Author,String category,BookStatus status,BookAvailability availability) throws SQLException {
-	
-		bookimplementation.AddBook(new Book(1,Title,Author,category,status,availability));
-		
+		bookimplementation.AddBook(new Book(1,Title,Author,category,status,availability));	
 	}
 
 
@@ -103,9 +103,13 @@ public class ServiceLayer implements ServiceInterface{
 	        if (!member.getEmail().contains("@")) {
 	            throw new Exception("Invalid email format.");
 	        }
-	        if(!member.getMobile().matches("\\d")){
-	        	 throw new Exception("Invalid number format. should contain all decimal values");
-	        }
+	        String mobile = member.getMobile();
+	       for(int i=0;i<mobile.length();i++) {
+	    	   if(Character.isDigit(mobile.charAt(i))==false) {
+	    		   throw new Exception("enter the mobile number in digits"); 
+	    	   }
+	       }
+	        
 	        memberDAO.addMember(member);
 	    }
 

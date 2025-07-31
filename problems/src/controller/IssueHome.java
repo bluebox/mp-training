@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -75,7 +76,11 @@ public class IssueHome {
     @FXML
     public Service.ServiceLayer issueService = new Service.ServiceLayer();
     
-
+    private void showAlert(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(msg);
+        alert.show();
+    }
     public void handleissueallmembers() throws SQLException {
     	BorderPane root = new BorderPane();
     	List<IssueRecord> list=issueService.getAllIssueRecords();
@@ -95,7 +100,7 @@ public class IssueHome {
     	
     	TableColumn <IssueRecord, Date> ReturnDate = new TableColumn <>("ReturnDate");
     	ReturnDate.setCellValueFactory(new PropertyValueFactory<IssueRecord,Date>("ReturnDate"));
-    	
+    	if(list!=null) {
     	table.getColumns().add(bookid);
     	//System.out.println(Member_name.toString());
     	//System.out.println(Email.toString());
@@ -125,8 +130,10 @@ public class IssueHome {
     	primaryStage.setScene(scene);
 
     	primaryStage.show();
+    }else {
+    	showAlert("no records to view yet");
     }
-	
+    }
 }
 
 	
