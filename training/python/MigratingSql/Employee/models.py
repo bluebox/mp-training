@@ -43,7 +43,6 @@ class Departments(models.Model):
 
 
 
-
 class Designations(models.Model):
 	class DesignationChoices(models.TextChoices):
 		ASE = "ASE", "Associate Software Engineer"

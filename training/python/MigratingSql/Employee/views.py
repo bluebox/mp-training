@@ -34,7 +34,13 @@ class EmployeeProfileView(APIView):
         try:
             emp = DatabaseOperationManager.get_employee_full_data(request.user)
 
-            employee_data = {k: v for k, v in request.data.items() if k in ['emp_name', 'dob', 'dept','is_active']}
+            # employee_data = {k: v for k, v in request.data.items() if k in ['emp_name', 'dob', 'dept','is_active']}
+            # serializer = EmployeeUpdateSerializer(emp, data=employee_data, partial=True)
+            data = request.data.copy()
+            if isinstance(data.get("dept"), dict):
+                data["dept"] = data["dept"].get("id")
+
+            employee_data = {k: v for k, v in data.items() if k in ['emp_name', 'dob', 'dept', 'is_active']}
             serializer = EmployeeUpdateSerializer(emp, data=employee_data, partial=True)
 
             if serializer.is_valid():
@@ -112,7 +118,7 @@ class CreateEmployeeView(APIView):
     permission_classes = []
     @transaction.atomic()
     def post(self, request):
-        required_fields = ["emp_id", "username", "password", "emp_name", "dob", "dept", "role"]
+        required_fields = ["emp_id", "username", "password", "emp_name", "dob", "dept", "role","is_active"]
         missing = [k for k in required_fields if k not in request.data]
         if missing:
             return Response({
@@ -164,7 +170,8 @@ class CreateEmployeeView(APIView):
                 emp_name=request.data["emp_name"],
                 dob=request.data["dob"],
                 dept=dept,
-                user=user
+                user=user,
+                is_active=request.data["is_active"]
             )
 
             if "address" in request.data:
@@ -200,7 +207,8 @@ class DeleteEmployeeView(APIView):
         try:
             emp = Employees.objects.get(emp_id=emp_id)
             emp.delete()
-            request.user.is_active =0
+            emp.user.is_active =0
+            emp.user.save()
             return Response({"result": "Success", "message": "Employee deleted"})
         except Employees.DoesNotExist:
             return Response({"result": "Failure", "message": "Employee not found"}, status=404)

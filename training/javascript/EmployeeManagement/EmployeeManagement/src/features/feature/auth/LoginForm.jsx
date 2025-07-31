@@ -21,11 +21,11 @@ const LoginForm = () => {
       const res = await axios.post("http://127.0.0.1:8000/api/token/", form);
       const { access, refresh } = res.data;
 
-      const profile = await axios.get("http://127.0.0.1:8000/employee/profile/", {
-        headers: { Authorization: `Bearer ${access}` },
-      });
+      // const profile = await axios.get("http://127.0.0.1:8000/employee/profile/", {
+      //   headers: { Authorization: `Bearer ${access}` },
+      // });
 
-      const { emp_id, emp_name } = profile.data.data;
+      // const { emp_id, emp_name } = profile.data.data;
       const role = profile.data.data.user?.role || "employee";
 
       dispatch(
@@ -46,7 +46,6 @@ const LoginForm = () => {
       setError("Invalid credentials or server error.");
     }
   };
-
   return (
     <div className="max-w-md mx-auto bg-white shadow p-6 rounded-xl mt-10">
       <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>

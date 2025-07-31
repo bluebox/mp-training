@@ -125,7 +125,10 @@ const ProfileView = () => {
   const [form, setForm] = useState({
     emp_name: "",
     dob: "",
-    dept: "",
+    dept: {
+      id:"",
+      dept_name:"",
+    },
     address: {
       country: "",
       state: "",
@@ -144,7 +147,7 @@ const ProfileView = () => {
       setForm({
         emp_name: profile.emp_name || "",
         dob: profile.dob || "",
-        dept: profile.dept || "",
+        dept: {id:profile.dept.id || "",dept_name:profile.dept.dept_name || ""},
         address: {
           country: profile.address_details?.country || "",
           state: profile.address_details?.state || "",
@@ -183,7 +186,11 @@ const ProfileView = () => {
               </tr>
               <tr className="border">
                 <td className="p-2 font-semibold">Department ID</td>
-                <td className="p-2">{form.dept}</td>
+                <td className="p-2">{form.dept.id}</td>
+              </tr>
+              <tr className="border">
+                <td className="p-2 font-semibold">Department Name</td>
+                <td className="p-2">{form.dept.dept_name}</td>
               </tr>
               <tr className="border">
                 <td className="p-2 font-semibold">Country</td>
@@ -229,12 +236,47 @@ const ProfileView = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block">Department ID</label>
             <input
               type="number"
               value={form.dept}
               onChange={(e) => setForm({ ...form, dept: e.target.value })}
+              className="w-full border px-3 py-2 rounded"
+            />
+          </div> */}
+          <div>
+          <label className="block">Department ID</label>
+          <input
+            type="number"
+            value={form.dept.id}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                dept: {
+                  ...form.dept,
+                  id: e.target.value,
+                },
+              })
+            }
+            className="w-full border px-3 py-2 rounded"
+          />
+          </div>
+
+          <div>
+            <label className="block">Department Name</label>
+            <input
+              type="text"
+              value={form.dept.dept_name}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  dept: {
+                    ...form.dept,
+                    dept_name: e.target.value,
+                  },
+                })
+              }
               className="w-full border px-3 py-2 rounded"
             />
           </div>
@@ -273,3 +315,10 @@ const ProfileView = () => {
 };
 
 export default ProfileView;
+
+
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzOTQ3OTk5LCJpYXQiOjE3NTM5NDQzOTksImp0aSI6IjdjYWUzNDY4ZDc5OTQyZjBhOTQ3MmE0MmRkZTYyNDVjIiwidXNlcl9pZCI6IjEifQ.cCIXtannxYg8MAzqUzbZkc0NRpd4HCQLZ4MYJh8Iz1Y
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzOTQ2Nzg3LCJpYXQiOjE3NTM5NDY3MjcsImp0aSI6IjZlZDdlZjg1OTBkNzQzZmRiNjBhMTZlNTg4ZWY5YTAyIiwidXNlcl9pZCI6IjEifQ.tHolsRV-PqeILzIwu1JcH1bGYX3KUxsrnhWTgdRIuAQ
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzOTQ2ODU1LCJpYXQiOjE3NTM5NDY3OTUsImp0aSI6IjUyOTliMGE5YTAwMDQ1YWU4MGQ5Y2Q4YmY1ZmYxNDQ0IiwidXNlcl9pZCI6IjEifQ.RvSv4d3f2LSo1guAai7VoOUzu0l0Vhs61sKgTOkZDPM
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzOTQ2ODU1LCJpYXQiOjE3NTM5NDY3OTUsImp0aSI6IjUyOTliMGE5YTAwMDQ1YWU4MGQ5Y2Q4YmY1ZmYxNDQ0IiwidXNlcl9pZCI6IjEifQ.RvSv4d3f2LSo1guAai7VoOUzu0l0Vhs61sKgTOkZDPM
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUzOTQ2OTY3LCJpYXQiOjE3NTM5NDY5MDcsImp0aSI6IjRjMGE3NDU2YTM2NzRiMWI4MWQ5MmIwMTM2YWNhNzc2IiwidXNlcl9pZCI6IjEifQ.Xi-9PJOgbk_Vm1vdBDGXTlDyc8LSZTE43wk-RjOKNII
