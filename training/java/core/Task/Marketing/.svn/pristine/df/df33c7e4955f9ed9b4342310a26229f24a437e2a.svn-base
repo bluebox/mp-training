@@ -1,0 +1,1056 @@
+package com.medplus.marketing.controller;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.WordUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.medplus.accounts.client.helper.ImageServerHelper;
+import com.medplus.accounts.core.service.RegionService;
+import com.medplus.accounts.service.impl.AccountStoreService;
+import com.medplus.accounts.store.core.domain.StoreDetails;
+import com.medplus.accounts.store.core.domain.StoreSearchCriteria;
+import com.medplus.common.cas.model.UserDetails;
+import com.medplus.common.utility.UtilValidate;
+import com.medplus.discounts.constants.Channel;
+import com.medplus.discounts.constants.PromotionConstants;
+import com.medplus.discounts.domain.MultiItemCampaign;
+import com.medplus.discounts.domain.MultiItemCampaignMaster;
+import com.medplus.imageapi.domain.ImageServer;
+import com.medplus.marketing.LocalDateTimeDeserializer;
+import com.medplus.marketing.constants.CampaignConstants;
+import com.medplus.marketing.constants.CssConstants;
+import com.medplus.marketing.constants.MarketingConstants;
+import com.medplus.marketing.domain.CampaignSearchCriteria;
+import com.medplus.marketing.exception.MarketingException;
+import com.medplus.marketing.helper.MarketingCssHelper;
+import com.medplus.marketing.helper.MarketingDataGridHelper;
+import com.medplus.marketing.helper.PosMasterDataHelper;
+import com.medplus.marketing.helper.ProductStoreHelper;
+import com.medplus.marketing.role.CampaignRoles;
+import com.medplus.marketing.role.ComplimentaryPromotionRoles;
+import com.medplus.marketing.role.MultiItemCampaignRoles;
+import com.medplus.marketing.role.RegularPromotionRoles;
+import com.medplus.marketing.service.MultiItemCampaignService;
+import com.medplus.marketing.service.PathLabTestsService;
+import com.medplus.marketing.util.CampaignUtil;
+import com.medplus.marketing.util.ExcelUtil;
+import com.medplus.marketing.util.UserUtil;
+import com.medplus.partner.exception.PartnerException;
+import com.medplus.pos.constant.PosMasterDataKey;
+import com.medplus.product.service.ProductService;
+import com.medplus.reactcomponents.core.domain.actions.DomManipulation;
+import com.medplus.reactcomponents.core.domain.datagrid.DataGrid;
+import com.medplus.reactcomponents.core.domain.form.ElementGroup;
+import com.medplus.reactcomponents.core.domain.form.Form;
+import com.medplus.reactcomponents.core.domain.form.Option;
+import com.medplus.reactcomponents.core.domain.form.Response;
+import com.medplus.reactcomponents.core.domain.form.Response.StatusCode;
+import com.medplus.reactcomponents.core.domain.htmlelements.ButtonElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.CheckBoxElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.DataListElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.DateRangeElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.InputElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.RadioElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.TextAreaElement;
+import com.medplus.reactcomponents.core.enums.form.DomType;
+import com.medplus.reactcomponents.core.enums.form.ElementPosition;
+import com.medplus.reactcomponents.core.enums.form.InputType;
+import com.medplus.reactcomponents.core.helpers.FormHelper;
+import com.medplus.ums.domain.UserSearchCriteria;
+import com.medplus.ums.exception.UMSException;
+import com.medplus.ums.service.UserService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@Slf4j
+public class MultiItemCampaignController {
+	
+	@Autowired
+	private ImageServerHelper imageServerHepler;
+
+	@Autowired
+	private AccountStoreService accountStoreService;
+	
+	@Autowired
+	private RegionService regionService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private MultiItemCampaignService multiItemCampaignService;
+	
+	@Autowired
+	private PosMasterDataHelper posMasterDataHelper;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private ProductStoreHelper productStoreHelper;
+	
+	@Autowired
+	private PathLabTestsService pathLabTestsService;
+
+	@Value("${com.medplus.multiitem.max.date.limit:185}")
+	private String toDateMaxLimit;
+	
+	@Value("${com.medplus.campaign.max.date.limit:540}")
+	private String toDateMaxLimitForCampaign;
+	
+	@Value("${com.medplus.complimentary.max.date.limit:95}")
+	private String toDateMaxLimitForComplimentary;
+	
+	private static final MultiItemCampaignRoles MIC_ROLES = new MultiItemCampaignRoles();
+	private static final RegularPromotionRoles RP_ROLES = new RegularPromotionRoles();
+	private static final CampaignRoles CAMPAIGN_ROLES = new CampaignRoles();
+	private static final ComplimentaryPromotionRoles COMPLIMENTARY_ROLES = new ComplimentaryPromotionRoles();
+
+	private static final Gson GSON = new GsonBuilder()
+            								.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
+            								.create();
+	private static final String MULTIITEM = "MULTIITEM";
+	
+	private static final String REGULAR = "REGULAR";
+
+	private static final String CAMPAIGN = "CAMPAIGN";
+
+	private static final String COMPLIMENTARY = "COMPLIMENTARY";
+
+	private static final String PHARMACY = "Pharmacy";
+	
+	private static final String PATHLABS = "Pathlabs";
+	
+	private static final String ACTIVE = "ACTIVE";
+	
+	private static final String INACTIVE = "INACTIVE";
+	
+	private static final String SUCCESS = "success";
+	
+	private static final String TEXT_DARK_LABEL_CLASS_NAME = "me-3";
+	
+	private static final String COL_COL_3_CLASS_NAME = "col col-3";
+	
+	private static final String COL_3_CLASS_NAME = "col-3";
+	
+	private static final String COL_4 = "col-4";
+
+	private static final String SMALL_TEXT_SECONDARY = "small text-secondary";
+	
+	private static final String W_100 = "w-100";
+	private static final String CLAIMABLE = "claimable";
+	
+	private static final String PROMOTION = "promotion";
+	
+	private static final String CATEGORY = "category";
+
+	private static final String INVOICE = "invoice";
+	
+	private static final String FAILURE_MESSAGE = "failed to get the data";
+	
+	private static final String SUCCESS_MESSAGE = "successufuly fetched data";
+	
+	private static final String NO_DATA_FOUND = "No Data Found";
+	
+	private static final String NUMBER_REGEX = "^[0-9]+$";
+	
+	private static final String ALPHA_NUMERIC_REGEX = "^[a-zA-Z0-9 _%\\-]+$";
+	
+	private static final String DOUBLE_REGEX = "^\\d+(\\.?(\\d?)+)$";
+	
+	private static final String PLACEHOLDER = "placeholderText";
+	
+	private static final String DATE_RANGE_PLACE_HOLDER_TEXT = "Date Range";
+	
+	private static final String ROW_G3_P12 = "row g-3 p-12";
+	
+	private static final String CUSTOM_FIELD_SET = "custom-fieldset";
+	
+	private static final String SPECIALITY_BASED = "specialtyBased";
+	
+	private static final String UNABLE_TO_UPDATE = "Unable to Update Campaign";
+	
+	private static final String INVALID_TO_DATE = "toDate is not a valid date";
+	
+	private List<Option> getApplicableTypesByRoles(String type) {
+		List<Option> userApplicableTypes = new ArrayList<>();
+		List<Integer> createRole = new ArrayList<>();
+		if(MULTIITEM.equalsIgnoreCase(type)) {
+			createRole = MIC_ROLES.getApplicableTypesByViewRoles();
+		} else if(REGULAR.equalsIgnoreCase(type)) {
+			createRole = RP_ROLES.getApplicableTypesByViewRoles();
+		} else if(CAMPAIGN.equalsIgnoreCase(type)) {
+			createRole = CAMPAIGN_ROLES.getApplicableTypesByViewRoles();
+		} else if(COMPLIMENTARY.equalsIgnoreCase(type)) {
+			createRole = COMPLIMENTARY_ROLES.getApplicableTypesByViewRoles();
+		}		
+		
+		if(createRole.contains(5)) {
+			userApplicableTypes.add(FormHelper.createOption(PHARMACY, PHARMACY, "5", "pharmacy"));
+		}
+		if(createRole.contains(6)) {
+			userApplicableTypes.add(FormHelper.createOption(PATHLABS, PATHLABS, "6", "pathlabs"));
+		}
+		if(createRole.contains(7)) {
+			userApplicableTypes.add(FormHelper.createOption("Lens", "LENS", "7", "lens"));
+		}
+		return userApplicableTypes;
+	}
+	
+	@GetMapping("get-campaign-info-form")
+	public Response campaignInfoForm(@RequestParam(value = "type", required = false) String type, HttpServletRequest request, HttpServletResponse response) {
+		Form campaignInfo = new Form("", "campaignInfo");
+		
+		InputElement campaignName = new InputElement(InputType.TEXT, "Campaign Name", "campaignName");
+		campaignName.setClassName(MarketingCssHelper.createCssClass(Arrays.asList(COL_3_CLASS_NAME)));
+		campaignName.setRegex(ALPHA_NUMERIC_REGEX);
+		if(REGULAR.equals(type) || COMPLIMENTARY.equals(type)) {
+			campaignName.setMaxLength(60);
+		}else {
+			campaignName.setMaxLength(CampaignConstants.MAX_CAMPAIGN_NAME_LEN);
+		}
+		campaignName.setRequired(true);
+		campaignName.setAutofocus(true);
+		
+		RadioElement applicableType = new RadioElement(" ", "applicableType");
+		applicableType.setValues(getApplicableTypesByRoles(type));
+		applicableType.setClassName(MarketingCssHelper.createCssClass(Arrays.asList("col")));
+		applicableType.setRequired(true);
+		
+		RadioElement campaignType = new RadioElement(" ", "campaignType");
+		campaignType.setDefaultValue("null");
+		campaignType.setValues(Arrays.asList());
+		campaignType.setClassName(MarketingCssHelper.createCssClass(Arrays.asList("col d-flex mb-3")));
+		campaignType.setRequired(true);
+		
+		ElementGroup grp5 = FormHelper.createGroup("grp5", Arrays.asList(applicableType));
+		grp5.setLabel("Applicable Type");
+		grp5.setLabelClassName("text-secondary small");
+		grp5.setClassName("radio-arrow");
+		
+		ElementGroup grp7 = FormHelper.createGroup("grp7", Arrays.asList(campaignType));
+		grp7.setLabelClassName(SMALL_TEXT_SECONDARY);
+		grp7.setLabel("Campaign Type");
+		
+		CheckBoxElement channel = new CheckBoxElement("", "channel");
+		channel.setValues(Arrays.asList());
+		channel.setClassName(MarketingCssHelper.createCssClass(Arrays.asList("col d-flex")));
+		channel.setRequired(true);
+		channel.setLabelClassName(TEXT_DARK_LABEL_CLASS_NAME);
+		channel.setHidden(true);
+		
+		ElementGroup grp3 = FormHelper.createGroup("grp3", Arrays.asList(channel));
+		grp3.setLabel("Channel");
+		grp3.setLabelClassName(SMALL_TEXT_SECONDARY);
+		grp3.setClassName("p-2");
+		
+		ElementGroup grp6 = FormHelper.createGroup("grp6",Arrays.asList(grp5));
+		grp6.setGroups(Arrays.asList(grp5));
+		grp6.setClassName("border-bottom p-2");
+		
+		InputElement minInvoiceValue = new InputElement(InputType.TEXT, "Min Invoice Value", "minInvoiceValue");
+		minInvoiceValue.setClassName(MarketingCssHelper.createCssClass(Arrays.asList(COL_3_CLASS_NAME)));
+		minInvoiceValue.setMin("1");
+		minInvoiceValue.setMax("99999");
+		minInvoiceValue.setRegex(DOUBLE_REGEX);
+		minInvoiceValue.setRequired(true);
+		
+		ElementGroup minInvoiceValueGrp = FormHelper.createGroup("minInvoiceValueGrp", Arrays.asList(minInvoiceValue));
+		minInvoiceValueGrp.setClassName("mt-0 col-3 p-1 mb-2");
+		minInvoiceValueGrp.setHidden(true);
+		
+		ElementGroup grp9 = FormHelper.createGroup("grp9", Arrays.asList(grp7, minInvoiceValueGrp));
+		grp9.setGroups(Arrays.asList(grp7, minInvoiceValueGrp));
+		grp9.setClassName(CssConstants.ROW_G_3 + " m-0");
+		
+		ElementGroup grp11 = FormHelper.createGroup("grp11", Arrays.asList(grp3));
+		grp11.setGroups(Arrays.asList(grp3));
+	
+		ElementGroup grp1 = FormHelper.createGroup("grp1", Arrays.asList(campaignName));
+		grp1.setClassName("g-3 row col-3 p-1 flex-nowrap mb-3");
+		
+		RadioElement slabPrice=new RadioElement(" ", "priceConsideredForSlab");
+		Option mrpPrice = FormHelper.createOption("MRP Price", "mrpPrice", "M", "mrpPrice");
+		Option salePrice = FormHelper.createOption("Sale Price", "S", "salePrice", true);
+		slabPrice.setValues(Arrays.asList(salePrice, mrpPrice));
+		slabPrice.setClassName(MarketingCssHelper.createCssClass(Arrays.asList("col-12 d-flex mb-3")));
+		
+		RadioElement status  = new RadioElement("Status: ", "status");
+		Option active = FormHelper.createOption(ACTIVE, ACTIVE, "A", "active");
+		Option inActive = FormHelper.createOption(INACTIVE, INACTIVE, "I", "inActive");
+		status.setValues(Arrays.asList(active, inActive));
+		status.setClassName(MarketingCssHelper.createCssClass(Arrays.asList("col d-flex mb-5")));
+		status.setRequired(true);
+		status.setLabelClassName(TEXT_DARK_LABEL_CLASS_NAME);
+		
+		grp3.setHidden(true);
+		grp7.setHidden(true);
+		
+		InputElement maxDaysLimit = new InputElement(InputType.NUMBER, "maxDaysLimit", "maxDaysLimit");
+		InputElement isToDateMandatory = new InputElement(InputType.NUMBER, "isToDateMandatory", "isToDateMandatory");
+		maxDaysLimit.setHidden(true);
+		isToDateMandatory.setHidden(true);
+		isToDateMandatory.setValue("1");
+		if(MULTIITEM.equalsIgnoreCase(type)) {
+			maxDaysLimit.setValue(toDateMaxLimit);
+		} else if(REGULAR.equalsIgnoreCase(type)) {
+			maxDaysLimit.setValue("");
+			isToDateMandatory.setValue("0");
+		} else if(CAMPAIGN.equalsIgnoreCase(type)) {
+			maxDaysLimit.setValue(toDateMaxLimitForCampaign);
+		} else if(COMPLIMENTARY.equalsIgnoreCase(type)) {
+			maxDaysLimit.setValue(toDateMaxLimitForComplimentary);
+		}
+		CheckBoxElement allCustomers = new CheckBoxElement(" All Customers ", "allCustomers");
+		allCustomers.setSwitchType(true);
+		Option yes = FormHelper.createOption("YES", "Y", "Y", true);
+		allCustomers.setValues(Arrays.asList(yes));
+		
+		ElementGroup grp10 =  FormHelper.createGroup("grp10", Arrays.asList(allCustomers, maxDaysLimit, isToDateMandatory));
+		grp10.setClassName(MarketingCssHelper.createCssClass(Arrays.asList("col-4 mt-2 mb-2")));
+
+		ElementGroup grp4 = FormHelper.createGroup("grp4", Arrays.asList(slabPrice));
+		grp4.setLabel("Price Considered for slab");
+		grp4.setLabelClassName(SMALL_TEXT_SECONDARY);
+		grp4.setClassName("g-3 col-3 flex-nowrap column-gap-3");
+
+		ElementGroup grp8 = FormHelper.createGroup("grp8", Arrays.asList(grp4, grp10));
+		grp8.setGroups(Arrays.asList(grp4,grp10));
+		grp8.setClassName("row g-3 align-items-center m-0");
+		
+		campaignInfo.setHtmlGroups(Arrays.asList(grp1, grp6, grp9, grp11, grp8));
+		DomManipulation domAction = FormHelper.createDomManipulationAction(DomType.FORM, campaignInfo, ElementPosition.UPDATE, "INIT");
+		
+		return new Response(domAction, StatusCode.SUCCESS, SUCCESS);
+	}
+	
+	@GetMapping("get-meta-info-form")
+	public Response metaInfoForm(HttpServletRequest request, HttpServletResponse response) {
+		Form metaInfo = new Form("", "metaInfo");
+		
+		TextAreaElement longDescription=new TextAreaElement("Campaign Description","longDescription");
+		longDescription.setClassName(MarketingCssHelper.createCssClass(Arrays.asList(CssConstants.COL_6)));
+		longDescription.setRows(4);
+		longDescription.setCols(50);
+	    longDescription.setRequired(true);
+	    longDescription.setHelperText("0 / 4000");
+	            
+		CheckBoxElement promotionVisible=new CheckBoxElement("", "promotionVisible");
+		promotionVisible.setClassName("mt-3");
+		Option promotionOpt=FormHelper.createOption("Promotion Visible",PROMOTION, PROMOTION, PROMOTION);
+		promotionVisible.setValues(Arrays.asList(promotionOpt));
+		promotionVisible.setClassName(COL_COL_3_CLASS_NAME);
+		promotionVisible.setHidden(true);
+		
+		CheckBoxElement claimable=new CheckBoxElement("", CLAIMABLE);
+		claimable.setClassName("mt-3");
+		Option claimableOpt=FormHelper.createOption("Claimable",CLAIMABLE, CLAIMABLE, CLAIMABLE);
+		claimable.setValues(Arrays.asList(claimableOpt));
+		claimable.setClassName(COL_COL_3_CLASS_NAME);
+		
+		CheckBoxElement specialityBased=new CheckBoxElement("", SPECIALITY_BASED);
+		specialityBased.setClassName("mt-3");
+		Option specialityOpt=FormHelper.createOption("Speciality Based",SPECIALITY_BASED, SPECIALITY_BASED, SPECIALITY_BASED);
+		specialityBased.setValues(Arrays.asList(specialityOpt));
+		specialityBased.setClassName(COL_COL_3_CLASS_NAME);
+		specialityBased.setHidden(true);
+
+		ElementGroup group2 = FormHelper.createGroup("group2", Arrays.asList(promotionVisible,claimable, specialityBased));
+		group2.setClassName(CssConstants.ROW_G_3 + CssConstants.MB_3 + " mx-0");
+		
+		ElementGroup group1 = FormHelper.createGroup("group1", Arrays.asList( longDescription));
+		group1.setClassName("align-helpertext-right row g-0");
+		metaInfo.setHtmlGroups(Arrays.asList(group1,group2));
+		DomManipulation domAction = FormHelper.createDomManipulationAction(DomType.FORM, metaInfo, ElementPosition.UPDATE, "INIT");
+		
+		return new Response(domAction, StatusCode.SUCCESS, SUCCESS);
+	}
+	
+	@GetMapping("get-loyalty-types")
+	public Response loyaltyTypes(HttpServletRequest request, HttpServletResponse response) {
+		Map<Integer,String> loyaltyTypes = multiItemCampaignService.getLoyaltyTypes();
+		if(UtilValidate.isNotEmpty(loyaltyTypes))
+			return new Response(StatusCode.SUCCESS, SUCCESS, loyaltyTypes);
+		else
+			return new Response(StatusCode.FAILURE, FAILURE_MESSAGE);
+
+	}
+	
+	@GetMapping("/get-image-server-details")
+	public ImageServer getImageServerDetails(HttpServletRequest request, @RequestParam String imageType){
+		return imageServerHepler.getImageServerDetails(request.getSession().getId(), imageType);
+	}
+	
+	@GetMapping("get-regions-form")
+	public Response getRegionsForm(@RequestParam(defaultValue = "false", required = false) boolean isMultipleCampaigns) {
+		Form regionsForm = new Form("", "regionsForm");
+
+		RadioElement regionType = new RadioElement(" ", "regionType");
+		regionType.setClassName(MarketingCssHelper.createCssClass(Arrays.asList("col d-flex border-bottom pb-2")));
+		regionType.setName("region");
+		
+		ElementGroup regionTypeGrp = FormHelper.createGroup("regionTypeGrp", Arrays.asList(regionType));
+		regionTypeGrp.setClassName(COL_4 + " mb-2 radio-arrow");
+		regionTypeGrp.setLabelClassName(SMALL_TEXT_SECONDARY);
+		regionTypeGrp.setLabel("Region Type");
+
+		CheckBoxElement isMultCampaigns=new CheckBoxElement("", "isMultipleCampaigns");
+		ElementGroup isMultipleCampaignsGrp = FormHelper.createGroup("isMultipleCampaignsGrp", Arrays.asList(isMultCampaigns));
+		ElementGroup regionGrp = FormHelper.createGroup("regionGrp", Arrays.asList());
+		if(isMultipleCampaigns) {
+			isMultCampaigns.setClassName("mt-3");
+			Option opt=FormHelper.createOption("Multiple Campaigns","true", "true", "true");
+			isMultCampaigns.setValues(Arrays.asList(opt));
+			isMultCampaigns.setDisabled(true);
+			isMultCampaigns.setHidden(true);
+		
+			isMultipleCampaignsGrp.setClassName(COL_COL_3_CLASS_NAME + " m-2");
+			regionGrp.setGroups(Arrays.asList(regionTypeGrp, isMultipleCampaignsGrp));
+		} else {
+			regionGrp.setGroups(Arrays.asList(regionTypeGrp));
+		}
+		regionGrp.setClassName("row");
+		
+		RadioElement country = new RadioElement("  ", "country");
+		country.setRequired(true);
+		country.setClassName("col");
+		country.setName("country");
+		
+		ElementGroup grp4 = FormHelper.createGroup("grp4", Arrays.asList(country));
+		grp4.setLabelClassName(SMALL_TEXT_SECONDARY);
+		grp4.setLabel("Country");
+		grp4.setHidden(true);
+		
+		DataListElement state = new DataListElement("state");
+		state.setLabel("State");
+		state.setLabelClassName(SMALL_TEXT_SECONDARY+" w-100");
+		state.setRequired(true);
+		state.setHidden(true);
+		state.setDataListClassName(CssConstants.COL_3);
+
+		DataListElement city = new DataListElement("city");
+		city.setLabel("City");
+		city.setDataListClassName(CssConstants.COL_3);
+		city.setRequired(true);
+		city.setLabelClassName(W_100);
+		city.setHidden(true);
+		
+		DataListElement store = new DataListElement("store");
+		store.setLabel("Store");
+		store.setDataListClassName(CssConstants.COL_3);
+		store.setRequired(true);
+		store.setLabelClassName(W_100);
+		store.setHidden(true);
+		
+		InputElement notEligibleRegions = new InputElement(InputType.TEXT, "Not Eligible Regions", "notEligibleRegions");
+		notEligibleRegions.setHidden(true);
+		notEligibleRegions.setMaxLength(6534);
+		notEligibleRegions.setLabelClassName(CssConstants.COL_3);
+		
+		ButtonElement addRegion = new ButtonElement("Add", "addRegion");
+		addRegion.setClassName("btn rounded-2 shadow-sm p-12 btn-success px-5");
+		addRegion.setHidden(true);
+		
+		Map<String, String> attributes = new HashMap<>();
+		attributes.put("height", "50px");
+		addRegion.setAttributes(attributes);
+		
+		ElementGroup grp8 = FormHelper.createGroup("grp8", Arrays.asList(addRegion));
+		grp8.setClassName("col mt-auto");
+		
+
+		ElementGroup grp2 = FormHelper.createGroup("grp2", Arrays.asList(state,city, store,notEligibleRegions));
+		grp2.setClassName(" row flex-wrap g-3 mt-0 mb-3");
+
+		InputElement storeRegions = new InputElement(InputType.TEXT, "Store IDs", "storeIds");
+		storeRegions.setLabelClassName("position-relative col-4 w-100");
+		
+		          
+		ElementGroup grp9 = FormHelper.createGroup("grp9", Arrays.asList(storeRegions));
+		grp9.setLabelClassName(SMALL_TEXT_SECONDARY);
+		grp9.setLabelClassName("mb-1");
+		grp9.setClassName(COL_4);
+		grp9.setHidden(true);
+		
+		ElementGroup grp6 = FormHelper.createGroup("grp6", Arrays.asList());
+		grp6.setGroups(Arrays.asList(regionGrp, grp4, grp2, grp9, grp8));
+		grp6.setLabel("Select Region");
+		grp6.setLabelClassName(CUSTOM_FIELD_SET + " mb-2");
+		grp6.setClassName("row");
+		
+		
+		regionsForm.setHtmlGroups(Arrays.asList(grp6));
+
+		DomManipulation domAction= FormHelper.createDomManipulationAction(DomType.FORM, regionsForm, ElementPosition.UPDATE, "INIT");
+		return new Response(domAction, StatusCode.SUCCESS, SUCCESS);
+	}
+	
+	@GetMapping("get-multiitem-slab-form") 
+	public Response getMultiItemSlabForm() {
+		Form slabForm = new Form("", "multiItemCampaignSlab");
+		slabForm.setClassName(" row align-items-center justify-content-start mb-3 rounded");
+		InputElement numOfUnitsInput = new InputElement(InputType.TEXT, "Number Of Packs", "numberOfPacks");
+		numOfUnitsInput.setClassName("form-control");
+		numOfUnitsInput.setMaxLength(9);
+		numOfUnitsInput.setRegex(NUMBER_REGEX);
+		numOfUnitsInput.setAutofocus(true);
+		numOfUnitsInput.setRequired(true);
+		
+		ElementGroup numOfUnitsGroup = FormHelper.createGroup("numberOfUnitsGroup", Arrays.asList(numOfUnitsInput));
+		numOfUnitsGroup.setClassName("col col-md-4");
+		
+		InputElement priceOrNumOfUnitsForPrice = new InputElement(InputType.TEXT, "Total Price (or) Payable Packs", "sellingPriceOrNumberOfPacks");
+		priceOrNumOfUnitsForPrice.setRegex(DOUBLE_REGEX);
+		priceOrNumOfUnitsForPrice.setClassName("form-control");
+		priceOrNumOfUnitsForPrice.setRequired(true);
+		
+		
+		ElementGroup priceOrNumOfUnitsForPriceGroup = FormHelper.createGroup("priceOrNumOfUnitsForPriceGroup", Arrays.asList(priceOrNumOfUnitsForPrice));
+		priceOrNumOfUnitsForPriceGroup.setClassName("col col-md-4");
+
+		ButtonElement addSlabBtn = new ButtonElement("Add", "addNewSlab");
+		addSlabBtn.setClassName("btn btn-success shadow-sm p-12  rounded col-3");
+
+		ElementGroup addSlabBtnGroup = FormHelper.createGroup("addSlabBtnGroup", Arrays.asList(addSlabBtn));
+		addSlabBtnGroup.setClassName("col col-md-3");
+		
+		
+		ElementGroup grp1 = FormHelper.createGroup("grp1", Arrays.asList());
+		grp1.setGroups(Arrays.asList(numOfUnitsGroup, priceOrNumOfUnitsForPriceGroup, addSlabBtnGroup));
+		grp1.setLabel("Create Slab");
+		grp1.setLabelClassName(CUSTOM_FIELD_SET + " mb-2");
+		grp1.setClassName("row");
+		
+		
+		slabForm.setHtmlGroups(Arrays.asList(grp1));
+		DomManipulation domAction = FormHelper.createDomManipulationAction(DomType.FORM, slabForm, ElementPosition.UPDATE, "INIT");
+		return new Response(domAction, StatusCode.SUCCESS, SUCCESS);
+	}
+
+	@GetMapping("get-countries")
+	public Response getAllCountries() throws PartnerException {
+		
+		Map<String,String> countriesMap=regionService.getAllCountries();
+		log.debug("CountriesMap: {}" , countriesMap);
+		if(UtilValidate.isEmpty(countriesMap)) 
+			return new Response(StatusCode.SUCCESS,NO_DATA_FOUND, Collections.emptyMap());
+		countriesMap = countriesMap.entrySet().stream()
+					        .collect(Collectors.toMap(
+					                entry -> WordUtils.capitalizeFully(entry.getKey()),
+					                Map.Entry::getValue
+					        ));
+
+		return new Response(StatusCode.SUCCESS, SUCCESS_MESSAGE,countriesMap);
+
+	}
+	
+	@GetMapping("get-states")
+	public Response getStatesForCountryCode(@RequestParam("countrycode") String countryCode) throws PartnerException{	
+		
+		Map<String,String> statesMap=regionService.getStates(countryCode);
+		log.debug("States for country: {}, {}", countryCode, statesMap);
+		if(UtilValidate.isEmpty(statesMap)) 
+			return new Response(StatusCode.SUCCESS,NO_DATA_FOUND, Collections.emptyMap());
+		statesMap = statesMap.entrySet().stream()
+		        .collect(Collectors.toMap(
+		                entry -> WordUtils.capitalizeFully(entry.getKey()),
+		                Map.Entry::getValue
+		        ));
+		
+		return new Response(StatusCode.SUCCESS, SUCCESS_MESSAGE,statesMap);
+
+	}
+	
+	@GetMapping("get-cities")
+	public Response getCitiesForState(@RequestParam("statecode") String stateCode) throws PartnerException {
+		
+		Map<String,String> citiesForStateMap=regionService.getCitiesForState(stateCode);
+		log.debug("Cities for State: {}, {}", stateCode, citiesForStateMap);
+		if(UtilValidate.isNotEmpty(citiesForStateMap)) {
+			citiesForStateMap = citiesForStateMap.entrySet().stream()
+					.collect(Collectors.toMap(
+							entry -> WordUtils.capitalizeFully(entry.getKey()),
+							Map.Entry::getValue
+							));
+			return new Response(StatusCode.SUCCESS, SUCCESS_MESSAGE,citiesForStateMap);
+		}
+		return new Response(StatusCode.SUCCESS, NO_DATA_FOUND,Collections.emptyMap());
+
+	}
+
+	@GetMapping("get-stores")
+	public Response getStores(@RequestParam("citycode") String cityCode) {
+		StoreSearchCriteria criteria = new StoreSearchCriteria();
+		criteria.setCityCodeList(Arrays.asList(cityCode));
+		return getActiveStoresInfo(criteria, false);
+	}
+	
+	@GetMapping("get-pathlab-stores")
+	public Response getPathlabStores(@RequestParam("citycode") String cityCode) {
+		StoreSearchCriteria criteria = new StoreSearchCriteria();
+		criteria.setCityCodeList(Arrays.asList(cityCode));
+		return getActiveStoresInfo(criteria, true);
+	}
+
+	@PostMapping("get-store-names")
+	public Response getStoreNames(@RequestBody List<String> storeIds,@RequestParam(value = "applicableType", required = false) Integer applicableType) {
+		StoreSearchCriteria criteria = new StoreSearchCriteria();
+		criteria.setStoreIds(storeIds);
+		return getActiveStoresInfo(criteria, Objects.equals(PromotionConstants.APPLICABLE_TYPE_PATHLABS, applicableType));
+	}
+	
+	private Response getActiveStoresInfo(StoreSearchCriteria criteria, boolean isPathLabs) {
+		try {
+			List<StoreDetails> stores = productStoreHelper.getStoreDetails(criteria, isPathLabs, UserUtil.getUserDetails());
+			if (UtilValidate.isNotEmpty(stores)) {
+				return new Response(StatusCode.SUCCESS, SUCCESS_MESSAGE, ProductStoreHelper.getStoresInfo(stores));
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		return new Response(StatusCode.SUCCESS, NO_DATA_FOUND, Collections.emptyMap());
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_CREATE_RIGHTS)
+	@PostMapping("create-multi-item-campaign")
+	public Response createMultiItemCampaign(@RequestParam("campaignInfo") String multiItemCampaignInfo, @RequestParam(value = "productUpload", required = true) MultipartFile productUpload, @RequestParam(value = "productRemove", required = false) MultipartFile productRemove, @RequestParam(value = "customerUpload", required = false) MultipartFile customerUpload, @RequestParam(value = "customerRemove", required = false) MultipartFile customerRemove) {
+		
+		log.debug("MultiItemCampaign for Creation:{}",multiItemCampaignInfo);
+		
+		MultiItemCampaignMaster campaign = GSON.fromJson(multiItemCampaignInfo, new TypeToken<MultiItemCampaignMaster>() {}.getType());
+		List<Integer> applicableTypesByRole =MIC_ROLES.getApplicableTypesByCreateRoles(); 
+		if(campaign == null) 
+			throw new MarketingException("Campaign data is empty");
+		if(!applicableTypesByRole.contains(campaign.getApplicableType()))
+			throw new MarketingException("User doesn't have the required Applicable Rights to create campaign!");
+		Set<String> productItems=ExcelUtil.readUploadExcel(productUpload, String.class, campaign.getApplicableType(), false);
+		campaign.setItems(productItems);
+		validateProductItems(productItems, campaign.getApplicableType(), true);
+		if(!campaign.isAllCustomers()) {
+			Set<Long> customerIds=ExcelUtil.readUploadExcel(customerUpload, Long.class, campaign.getApplicableType(), true);
+			campaign.setCustomerIds(customerIds);
+		}
+		if(campaign.getUserMetaData() != null) {
+			campaign.getUserMetaData().setCreatedBy(UserUtil.getUserId());
+			campaign.getUserMetaData().setDateCreated(LocalDateTime.now());
+		}else {
+			throw new MarketingException("Meta Info is Empty");
+		}
+		log.debug("MultiItemCampaign before Creation: {}", campaign);
+		MultiItemCampaign createdCampaign=multiItemCampaignService.createMultiItemCampaign(campaign);
+		log.info("MultiItemCampaign Created : {}, Status:{}", createdCampaign.getCampaignId(), createdCampaign.getStatus());
+		return new Response(StatusCode.SUCCESS, SUCCESS, createdCampaign);
+	}
+	
+	private void validateProductItems(Set<String> productItems, int applicableType, boolean isCreate) {
+		if(isCreate && (UtilValidate.isEmpty(productItems) || productItems.size() == 1)) {
+			throw new MarketingException("At least 2 product ids are required to configure a multi-item campaign");
+		}		
+		if(applicableType == PromotionConstants.APPLICABLE_TYPE_PATHLABS) {
+			CampaignUtil.validateIds(productItems, CampaignUtil.getPathLabTestMap(new ArrayList<>(productItems), pathLabTestsService, false, true).keySet(), "Path Lab Tests");
+		} else {
+			CampaignUtil.validateIds(productItems, CampaignUtil.getProductMap(productItems,"items",productService, true).keySet(),"Items");
+		}
+	}
+
+	@PreAuthorize(MarketingConstants.MIC_VIEW_RIGHTS)
+	@PostMapping("get-multiItem-campaign")
+	public Response listMultiItemCampaigns(@RequestParam("campaignSearchCriteria") String campaignInfo) {
+		CampaignSearchCriteria searchCriteria = GSON.fromJson(campaignInfo, new TypeToken<CampaignSearchCriteria>() {}.getType());
+		log.debug("CampaignSearchCriteria: {}",searchCriteria);
+		List<Integer> applicableTypesByRole =MIC_ROLES.getApplicableTypesByViewRoles();
+		Map<String, Object> response = multiItemCampaignService.getMultiItemCampaignList(searchCriteria, applicableTypesByRole);
+		if(UtilValidate.isNotEmpty(response))
+			return new Response(StatusCode.SUCCESS, SUCCESS, response);
+		return new Response(StatusCode.SUCCESS, NO_DATA_FOUND, Collections.emptyMap());
+	}
+	
+	private List<Option> getUsers(String type) {
+		List<String> createRoles = new ArrayList<>();
+		if(MULTIITEM.equalsIgnoreCase(type)) {
+			createRoles = MIC_ROLES.getCreatedByRoles();
+		} else if(REGULAR.equalsIgnoreCase(type)) {
+			createRoles = RP_ROLES.getCreatedByRoles();
+		} else if(CAMPAIGN.equalsIgnoreCase(type)) {
+			createRoles = CAMPAIGN_ROLES.getCreatedByRoles();
+		} else if(COMPLIMENTARY.equalsIgnoreCase(type)) {
+			createRoles = COMPLIMENTARY_ROLES.getCreatedByRoles();
+		}	
+		try {
+			UserSearchCriteria searchCriteria = new UserSearchCriteria();
+			searchCriteria.setTenantId(UserUtil.getTenantId());
+			searchCriteria.setRoleNames(createRoles);
+			searchCriteria.setModuleName(MarketingConstants.MODULE_NAME);
+			List<UserDetails> userDetailsList = userService.getUserDetails(searchCriteria);
+			log.debug("Users with MultiItemCampaign Creation Roles: {} are {}",createRoles, userDetailsList);
+			List<Option> responseData = new ArrayList<>();
+			userDetailsList.forEach(user -> {
+				String displayValue = user.getName()+" ("+user.getUserId()+")";
+				Option option = FormHelper.createOption(displayValue, user.getName(), user.getUserId(), user.getUserId());
+				responseData.add(option);
+			});
+			return responseData;
+		} catch (UMSException e) {
+			log.error("Error fetching users : {}", e);
+			return new ArrayList<>();
+		}
+	}
+	
+	private static List<Option> getPromotionLevels() {
+		List<Option> promotionLevels = new ArrayList<>();
+		promotionLevels.add(FormHelper.createOption("Invoice", INVOICE, "I", INVOICE));
+		promotionLevels.add(FormHelper.createOption("Category", CATEGORY, "C" , CATEGORY));
+		return promotionLevels;
+	}
+	
+	@GetMapping("list-multi-item-campaign-form")
+	public Response listMultiItemCampaignForm(@RequestParam(value = "type", required = false) String type) {
+		Form multiItemCampaignSearchForm = new Form("", "multiItemCampaignSearchForm");
+
+		DateRangeElement dateRange = new DateRangeElement("Form Date - To Date", "searchDateRange");
+		dateRange.setStartDate(new Date());
+		dateRange.setEndDate(new Date());
+		dateRange.setLabelClassName(CssConstants.COL_6);
+		dateRange.setHelperText("30 days is the maximum range");		
+		Map<String, String> attributes = new HashMap<>();
+		attributes.put(PLACEHOLDER,DATE_RANGE_PLACE_HOLDER_TEXT);
+		attributes.put("showTodayButton", "true");
+		attributes.put("showLastWeekButton", "true");
+		attributes.put("showLast15DaysButton", "true");
+		attributes.put("showLast30DaysButton", "true");
+		dateRange.setAttributes(attributes);
+
+		InputElement campaignId = new InputElement(InputType.TEXT, "Campaign ID", "campaignId");
+		campaignId.setRegex(NUMBER_REGEX);
+		campaignId.setMaxLength(9);
+		campaignId.setLabelClassName(CssConstants.COL_6);
+
+		InputElement campaignName = new InputElement(InputType.TEXT, "Campaign Name", "campaignName");
+		campaignName.setClassName(MarketingCssHelper.createCssClass(Arrays.asList(CssConstants.COL_6)));
+		campaignName.setLabelClassName(CssConstants.COL_6);
+
+		RadioElement status = new RadioElement(" ", "status");
+		status.setDefaultValue("null");
+		Option active = FormHelper.createOption("Approved", ACTIVE, "A", "active");
+		Option inActive = FormHelper.createOption("Created", INACTIVE, "I", "inActive");
+		Option closed = FormHelper.createOption("Expired", "Expired", "C", "closed");
+		Option rejected = FormHelper.createOption("Rejected", "Rejected", "R", "rejected");
+		status.setValues(Arrays.asList(active, inActive, rejected, closed));
+		
+		ElementGroup grp5 = FormHelper.createGroup("grp5", Arrays.asList(status));
+		grp5.setLabel("Select Status");
+		grp5.setLabelClassName(SMALL_TEXT_SECONDARY);
+		grp5.setClassName(CssConstants.COL_6);
+
+		DataListElement createdBy = new DataListElement("createdBy");
+		createdBy.setLabel("Created By");
+		createdBy.setDataListClassName(CssConstants.COL_6);
+		createdBy.setLabelClassName(SMALL_TEXT_SECONDARY+" w-100");
+		createdBy.setDefaultValue(null);
+		createdBy.setValues(getUsers(type));
+	
+		DataListElement campaignType = new DataListElement("campaignType");
+		campaignType.setLabel("Campaign Type");
+		campaignType.setDataListClassName(CssConstants.COL_6);
+		campaignType.setLabelClassName(SMALL_TEXT_SECONDARY+" w-100");
+		campaignType.setDefaultValue(null);
+		List<Option> campaignTypeOpts= new ArrayList<>();
+		campaignTypeOpts.add(FormHelper.createOption("Multi Item discount - Fixed SP", PromotionConstants.FIXED_SP_CAMPAIGN, "multi-item-discount-fixed-sp", false));
+		campaignTypeOpts.add(FormHelper.createOption("Multi Item discount - Buy 'X' Pay for 'Y' (Y < X)", PromotionConstants.BUY_X_PAY_FOR_Y_CAMPAIGN, "multi-item-discount-buy-x-pay-for-y", false));
+		campaignTypeOpts.add(FormHelper.createOption("Multi Item discount - Bundle", PromotionConstants.MI_BUNDLE_CAMPAIGN, "multi-item-discount-bundle", false));
+		campaignType.setValues(campaignTypeOpts);
+		campaignType.setHidden(true);
+		
+		InputElement couponCode = new InputElement(InputType.TEXT, "Coupon Code", "couponCode");
+		couponCode.setClassName(MarketingCssHelper.createCssClass(Arrays.asList(CssConstants.COL_6)));
+		couponCode.setLabelClassName(CssConstants.COL_6);
+		
+		RadioElement promoLevel = new RadioElement(" ", "promotionLevel");
+		promoLevel.setValue("null");
+		promoLevel.setValues(getPromotionLevels());
+		promoLevel.setRequired(true);
+		
+		ElementGroup promoLevelGrp = FormHelper.createGroup("promoLevelGrp", Arrays.asList(promoLevel));
+		promoLevelGrp.setLabel("Promotion Level");
+		promoLevelGrp.setLabelClassName(SMALL_TEXT_SECONDARY);
+		promoLevelGrp.setClassName(CssConstants.COL_6+" p-12");
+		promoLevelGrp.setHidden(true);
+
+		RadioElement applicableType = new RadioElement(" ", "applicableType");
+		applicableType.setValue("null");
+		applicableType.setValues(getApplicableTypesByRoles(type));
+		applicableType.setRequired(true);
+		
+		ElementGroup grp4 = FormHelper.createGroup("grp4", Arrays.asList(applicableType));
+		grp4.setLabel("Applicable Type");
+		grp4.setLabelClassName(SMALL_TEXT_SECONDARY);
+		grp4.setClassName(CssConstants.COL_6);
+		
+		CheckBoxElement channels = new CheckBoxElement("", "channel");
+		channels.setDefaultValue("null");
+		channels.setValues(Arrays.asList());
+		
+		ElementGroup grp6 = FormHelper.createGroup("grp6", Arrays.asList(channels));
+		grp6.setLabel("Channel");
+		grp6.setLabelClassName(SMALL_TEXT_SECONDARY);
+
+		ButtonElement reset = new ButtonElement("Clear", "reset");
+		reset.setReset(true);
+		reset.setClassName("btn brand-secondary me-3 px-3");
+
+		ButtonElement search = new ButtonElement("Search", "search");
+		search.setClassName("btn-dark px-4");
+
+		ElementGroup grp1 = FormHelper.createGroup("grp1", Arrays.asList(dateRange));
+		grp1.setLabel("Campaign Date Range");
+		grp1.setClassName("row");
+		grp1.setLabelClassName(CUSTOM_FIELD_SET);
+		grp1.setClassName(ROW_G3_P12);
+		
+		ElementGroup grp2 = FormHelper.createGroup("grp2", Arrays.asList(campaignId, createdBy, campaignName, campaignType, couponCode));
+		grp2.setLabel("Campaign Details");
+		grp2.setLabelClassName(CUSTOM_FIELD_SET);
+		grp2.setClassName(ROW_G3_P12);
+		
+		ElementGroup grp7 = new ElementGroup("grp7");
+		grp7.setClassName(ROW_G3_P12);
+		grp7.setGroups(Arrays.asList(grp4, grp5, grp6));
+		
+		ElementGroup grp3 = FormHelper.createGroup("grp3", Arrays.asList(reset, search));
+		multiItemCampaignSearchForm.setHtmlGroups(Arrays.asList(grp1, grp2, grp7,promoLevelGrp, grp3));
+		grp3.setClassName("text-end p-12 border-top");
+
+		DomManipulation domAction = FormHelper.createDomManipulationAction(DomType.FORM, multiItemCampaignSearchForm, ElementPosition.UPDATE, "INIT");
+		return new Response(domAction, StatusCode.SUCCESS, SUCCESS);
+	}
+
+	@PreAuthorize(MarketingConstants.MIC_VIEW_RIGHTS)
+	@GetMapping("get-multi-item-campaign-by-campaignid")
+	public Response getMultiItemCampaignByCampaignId(@RequestParam("campaignId") Integer campaignId) {
+		if(UtilValidate.isNotEmpty(campaignId)) {
+			MultiItemCampaign campaign = multiItemCampaignService.getMultiItemCampaign(campaignId);
+			log.debug("MultiItemCampaignById: {}", campaign);
+			if(UtilValidate.isNotEmpty(campaign)) {
+				return new Response(StatusCode.SUCCESS, SUCCESS, campaign);
+			}
+			return new Response(StatusCode.SUCCESS, "No records found");
+		}
+		return new Response(StatusCode.FAILURE, "Failed to fetch records");
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_EDIT_RIGHTS)
+	@PostMapping("edit-multi-item-campaign")
+	public Response editMultiItemCampaign(@RequestParam("campaignInfo") String multiItemCampaignInfo, @RequestParam(value = "productUpload", required = false) MultipartFile productUpload, @RequestParam(value = "productRemove", required = false) MultipartFile productRemove, @RequestParam(value = "customerUpload", required = false) MultipartFile customerUpload, @RequestParam(value = "customerRemove", required = false) MultipartFile customerRemove) {
+		log.debug("MultiItemCampaign Edit:{}",multiItemCampaignInfo);
+		MultiItemCampaignMaster campaign = GSON.fromJson(multiItemCampaignInfo, new TypeToken<MultiItemCampaignMaster>() {}.getType());
+		List<Integer> applicableTypesByRole =MIC_ROLES.getApplicableTypesByEditRoles(); 
+		if(campaign == null) 
+			throw new MarketingException("Campaign data is null");
+		if(!applicableTypesByRole.contains(campaign.getApplicableType()))
+			throw new MarketingException("User doesn't have the required Applicable Rights to edit campaign!");
+		if(UtilValidate.isNotEmpty(productUpload)) {
+			campaign.setItems(ExcelUtil.readUploadExcel(productUpload, String.class, campaign.getApplicableType(), false));
+			validateProductItems(campaign.getItems(), campaign.getApplicableType(), false);
+		} else {
+			campaign.setItems(Collections.emptySet());
+		}
+		if(UtilValidate.isNotEmpty(productRemove)) {
+			campaign.setRemovedItems(ExcelUtil.readUploadExcel(productRemove, String.class, campaign.getApplicableType(), false));
+		} else {
+			campaign.setRemovedItems(Collections.emptySet());
+		}
+		if(!campaign.isAllCustomers()) {
+			if(UtilValidate.isNotEmpty(customerUpload)) {
+				campaign.setCustomerIds(ExcelUtil.readUploadExcel(customerUpload, Long.class, campaign.getApplicableType(), true));
+			} else {
+				campaign.setCustomerIds(Collections.emptySet());
+			}
+			if(UtilValidate.isNotEmpty(customerRemove)) {
+				campaign.setRemovedCustomerIds(ExcelUtil.readUploadExcel(customerRemove, Long.class, campaign.getApplicableType(), true));
+			} else {
+				campaign.setRemovedCustomerIds(Collections.emptySet());
+			}
+		}
+		if(UtilValidate.isEmpty(campaign.getUserMetaData())) {
+			throw new MarketingException("MetaInfo is required");
+		}
+		campaign.getUserMetaData().setModifiedBy(UserUtil.getUserId());
+		campaign.getUserMetaData().setDateModified(LocalDateTime.now());
+		log.debug("MultiItemCampaign before Edit: {}", campaign);
+		MultiItemCampaign multiItemCampaign = multiItemCampaignService.updateMultiItemCampaign(campaign);
+		log.info("MultiItemCampaign Updated : {}, Status:{}", multiItemCampaign.getCampaignId(), multiItemCampaign.getStatus());
+		log.debug("Updated MultiItemCampaign: {}", multiItemCampaign);
+		if(UtilValidate.isNotEmpty(multiItemCampaign)) {
+			return new Response(StatusCode.SUCCESS, SUCCESS, multiItemCampaign);
+		}
+		return new Response(StatusCode.FAILURE, UNABLE_TO_UPDATE);
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_APPROVE_RIGHTS)
+	@PostMapping("approve-multi-item-campaign")
+	public Response approveMultiItemCampaign(@RequestParam("campaignId") Integer campaignId, @RequestParam("toDate") String date, @RequestParam(value = "channel", required = false) Integer channel) {
+		log.info("MultiItemCampaign Approve: {}, toDate: {}", campaignId, date);
+		LocalDateTime toDate = null;
+		try {
+			toDate = Instant.ofEpochMilli(Long.parseLong(date)).atZone(ZoneId.systemDefault()).toLocalDateTime();
+		} catch (NumberFormatException e) {
+			throw new MarketingException(INVALID_TO_DATE);
+		}
+		List<Integer> applicableTypesByRole = MIC_ROLES.getApplicableTypesByApproveRoles(); 
+		boolean approved = multiItemCampaignService.approveCampaign(campaignId, toDate, applicableTypesByRole, UserUtil.getUserId());
+		log.info("MultiItemCampaign Approved: {}, Status: {}",campaignId, approved);
+		if(approved) {
+			if(UtilValidate.isNotEmpty(channel) && channel == Channel.POS.getChannel())
+				posMasterDataHelper.pushToMasterDataUpdateInfoQueue(PosMasterDataKey.MULTI_ITEM_PROMOTIONS, campaignId, new Date());
+			return new Response(StatusCode.SUCCESS, SUCCESS, campaignId);
+		}else {
+			return new Response(StatusCode.FAILURE, "Unable to Approve Campaign");
+		}
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_CLOSE_RIGHTS)
+	@PostMapping("update-multi-item-campaign-to-date")
+	public Response updateActiveMultiItemCampaign(@RequestParam("campaignId") Integer campaignId, @RequestParam("toDate") String date, @RequestParam(value = "channel", required = false) Integer channel) {
+		List<Integer> applicableTypesByRole = MIC_ROLES.getApplicableTypesByCloseRoles(); 
+		return updateToDate(date, applicableTypesByRole, PromotionConstants.ACTIVE, campaignId, channel);
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_EDIT_RIGHTS)
+	@PostMapping("update-inactive-multi-item-campaign-to-date")
+	public Response updateInctiveMultiItemCampaign(@RequestParam("campaignId") Integer campaignId, @RequestParam("toDate") String date) {
+		List<Integer> applicableTypesByRole = MIC_ROLES.getApplicableTypesByEditRoles(); 
+		return updateToDate(date, applicableTypesByRole, PromotionConstants.INACTIVE, campaignId, null);
+	}
+	
+	private Response updateToDate(String date, List<Integer> applicableTypesByRole, String status, Integer campaignId, Integer channel) {
+		log.info("MultiItemCampaign ToDate Update: {}, toDate: {}", campaignId, date);
+		LocalDateTime toDate = null;
+		try {
+			toDate = Instant.ofEpochMilli(Long.parseLong(date)).atZone(ZoneId.systemDefault()).toLocalDateTime();
+		} catch (NumberFormatException e) {
+			throw new MarketingException(INVALID_TO_DATE);
+		}
+		boolean updated = multiItemCampaignService.updateActiveCampaignToDate(campaignId, toDate, applicableTypesByRole, UserUtil.getUserId(), status);
+		log.info("MultiItemCampaign Updated: {}, Status: {}",campaignId, updated);
+		if(updated) {
+			if(UtilValidate.isNotEmpty(channel) && channel == Channel.POS.getChannel())
+				posMasterDataHelper.pushToMasterDataUpdateInfoQueue(PosMasterDataKey.MULTI_ITEM_PROMOTIONS, campaignId, new Date());
+			return new Response(StatusCode.SUCCESS, SUCCESS, campaignId);
+		}else {
+			return new Response(StatusCode.FAILURE, UNABLE_TO_UPDATE);
+		}
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_VIEW_RIGHTS)
+	@GetMapping("get-product-excel-download")
+	public ResponseEntity<ByteArrayResource> getProductExcelDownload(@RequestParam("campaignId") Integer campaignId,@RequestParam("applicableType") Integer applicableType) {
+		log.debug("MultiItemCampaign Products Download: {}", campaignId);
+		Set<String> productData = multiItemCampaignService.getCampaignItems(campaignId);
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(new MediaType("application", "force-download"));
+		header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductTemplate.xlsx");
+	    if (productData != null) {
+	    	log.debug("MultiItemCampaign Products Download Size: {}", productData.size());
+			Map<String, String> itemsMap;
+			if(applicableType == PromotionConstants.APPLICABLE_TYPE_PATHLABS) {
+				itemsMap =CampaignUtil.getPathLabTestMap(new ArrayList<>(productData), pathLabTestsService, false, false);
+			} else {
+				itemsMap =CampaignUtil.getProductMap(productData, "Items", productService, false);
+			}
+	    	byte[] excellData = ExcelUtil.writeExcel(productData, "ItemId", itemsMap);
+	    	return new ResponseEntity<>(new ByteArrayResource(excellData),
+                    header, HttpStatus.OK);
+	    }
+		return new ResponseEntity<>(new ByteArrayResource(new byte[0]),
+                header, HttpStatus.OK);
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_VIEW_RIGHTS)
+	@GetMapping("get-customer-excel-download")
+	public ResponseEntity<ByteArrayResource> getCustomerExcelDownload(@RequestParam("campaignId") Integer campaignId) {
+		log.debug("MultiItemCampaign Customers Download: {}", campaignId);
+		Set<Long> customerData = multiItemCampaignService.getCampaignCustomerIds(campaignId);
+		return CampaignUtil.downloadExcel(customerData, "CustomerId", "force-download", "CustomerTemplate.xlsx");	
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_VIEW_RIGHTS)
+	@GetMapping("get-multi-stores-download")
+	public ResponseEntity<ByteArrayResource> getStoresExcelDownload(@RequestParam("campaignId") Integer campaignId) {
+		log.debug("MultiItemCampaign Stores Download: {}", campaignId);
+		List<String> storeIds = multiItemCampaignService.getStores(campaignId);
+		return ProductStoreHelper.downloadStoresExcel(storeIds, accountStoreService);
+	}
+		
+	@GetMapping("get-regions-data-grid")
+	public Response getRegionsDataGrid(@RequestParam("editableFeild") boolean editable,@RequestParam("isStoreLevel") boolean isStoreLevel) {
+		DataGrid grid = MarketingDataGridHelper.prepareRegionsGrid(editable, isStoreLevel);
+		if(UtilValidate.isNotEmpty(grid))
+			return new Response(StatusCode.SUCCESS, SUCCESS, grid);
+		return new Response(StatusCode.FAILURE, "Something Went Worng");
+	}
+	
+	@GetMapping("validate-campaign-name")
+	public Response validateCampaignName(@RequestParam("campaignName") String campaignName) {
+		boolean isValidCampaignName = multiItemCampaignService.isCampaignNameAvailable(campaignName);
+		log.debug("MultiItemCampaign Name: {}, Exists: {}", campaignName, isValidCampaignName);
+
+		return new Response(StatusCode.SUCCESS, SUCCESS, !isValidCampaignName);
+	}
+	
+	@PreAuthorize(MarketingConstants.MIC_APPROVE_RIGHTS)
+	@PostMapping("reject-multi-item-campaign")
+	public Response rejectCampaign(@RequestParam("campaignId") Integer campaignId, @RequestParam("remarks") String remarks) {
+		
+		if(UtilValidate.isNotEmpty(campaignId) && UtilValidate.isNotEmpty(remarks)) {
+			if(remarks.length()>255 || remarks.trim().length()<=0)
+				return new Response(StatusCode.FAILURE, "Remarks length should be between 0 and 255");
+			multiItemCampaignService.rejectMultiItemCampaign(campaignId, UserUtil.getUserId(), remarks, MIC_ROLES.getApplicableTypesByApproveRoles());
+			return new Response(StatusCode.SUCCESS, SUCCESS);
+		}
+		return new Response(StatusCode.FAILURE, "Unable to reject the campaign");
+	}
+	
+	@Scheduled(cron = "0 30 0 * * *")
+	public void autoRejectClosedCampaigns() {
+		try {
+			multiItemCampaignService.autoRejectClosedCampaigns();
+		} catch (Exception e) {
+			log.error("Error occured while running the auto-reject cron : ", e);
+		}
+	}
+
+}

@@ -1,0 +1,78 @@
+
+
+
+export const RejectTextArea =  {
+    "htmlElementType": "FORM",
+    "id": "rejectForm",
+    "label": "",
+    "name": null,
+    "value": null,
+    "className": null,
+    "readOnly": false,
+    "disabled": false,
+    "autofocus": false,
+    "required": false,
+    "style": null,
+    "attributes": null,
+    "message": null,
+    "htmlActions": null,
+    "elementSize": null,
+    "defaultValue": null,
+    "helperText": null,
+    "labelClassName": null,
+    "htmlGroups": [
+      {
+        "htmlElementType": "ELEMENTGROUP",
+        "id": "group1",
+        "label": null,
+        "name": null,
+        "value": null,
+        "className": "align-helpertext-right row g-0",
+        "readOnly": false,
+        "disabled": false,
+        "autofocus": false,
+        "required": false,
+        "style": null,
+        "attributes": null,
+        "message": null,
+        "htmlActions": null,
+        "elementSize": null,
+        "defaultValue": null,
+        "helperText": null,
+        "labelClassName": null,
+        "groups": null,
+        "groupElements": [
+          {
+            "htmlElementType": "TEXTAREA",
+            "id": "remarks",
+            "label": "Remarks",
+            "name": null,
+            "value": null,
+            "className": " col-6",
+            "readOnly": false,
+            "disabled": false,
+            "autofocus": false,
+            "required": true,
+            "style": null,
+            "attributes": null,
+            "message": null,
+            "htmlActions": null,
+            "elementSize": null,
+            "defaultValue": null,
+            "helperText": "0 / 255",
+            "labelClassName": null,
+            "rows": 1,
+            "cols": 50,
+            "hidden": false
+          }
+        ],
+        "cloneable": false,
+        "groupFirst": false,
+        "hidden": false
+      }
+    ],
+    "notes": null,
+    "atleastOneFieldRequired": false,
+    "submitDisabled": false,
+    "hidden": false
+  }

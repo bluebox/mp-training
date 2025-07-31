@@ -1,0 +1,58 @@
+{
+  "name": "marketing-ui",
+  "version": "0.9.2",
+  "private": true,
+  "homepage": "marketing",
+  "dependencies": {
+    "@medplus/react-common-components": "1.38.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.2.3",
+    "cronstrue": "^2.49.0",
+    "dateformat": "^5.0.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
+    "react-datepicker": "^4.20.0",
+    "react-dom": "^18.2.0",
+    "react-js-cron": "^5.0.1",
+    "react-pro-sidebar": "^1.0.0",
+    "react-quill": "^2.0.0",
+    "react-redux": "^7.1.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "5.0.1",
+    "reactstrap": "^9.1.6",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "dev": "vite --host",
+    "preview": "vite preview",
+    "build": "vite build",
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "copy-assets": "cp -R dist/* ../marketing-core/src/main/resources/static/",
+    "build:app": "rm -rf node_modules/ package-lock.json && rm -rf dist/ && rm -rf ../marketing-core/src/main/resources/static/* && npm i --no-audit && npm run build && npm run copy-assets"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@vitejs/plugin-react": "^4.2.1",
+    "terser": "^5.31.6",
+    "vite": "5.2.10"
+  }
+}

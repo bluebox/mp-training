@@ -1,0 +1,9 @@
+spring.main.allow-bean-definition-overriding=true
+spring.mvc.view.prefix=/
+spring.mvc.view.suffix=.html
+
+#server.servlet.context-path=/marketing
+
+spring.servlet.multipart.enabled=true
+server.servlet.session.timeout=10800
+server.servlet.session.tracking-modes=cookie

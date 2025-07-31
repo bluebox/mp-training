@@ -1,0 +1,7 @@
+{
+    "name": "@medplus/react-common-components/DataPicker",
+    "private": true,
+    "module":"../dist/esm/DataPicker.js",
+    "types":"../dist/DataGrid/CommonDatePicker.d.ts"
+  }
+  

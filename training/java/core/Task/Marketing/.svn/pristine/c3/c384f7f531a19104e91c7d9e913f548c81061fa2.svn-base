@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.4.xsd">
+	
+	<http use-expressions="true" entry-point-ref="casEntryPoint">
+		<csrf token-repository-ref="tokenRepository" request-matcher-ref="csrfRequestMatcher"/>
+		<access-denied-handler ref="marketingAccessDeniedHandler" />
+		<intercept-url pattern="/logger/**" access="permitAll"/>
+		<intercept-url pattern="/ui/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/" access="isAuthenticated()" />
+		<intercept-url pattern="/error" access="permitAll"/>
+		<intercept-url pattern="/*" access="isAuthenticated()"/>
+		<!-- <intercept-url pattern = "create-multiitem-campaign" access ="hasAnyRole('ROLE_MRK_CAMPAIGN_CREATOR')" /> -->
+		<custom-filter ref="casFilter" position="CAS_FILTER" />
+		<custom-filter ref="singleLogoutFilter" before="CAS_FILTER" />
+		<custom-filter ref="requestSingleLogoutFilter" before="LOGOUT_FILTER" />
+		<custom-filter ref="userSessionTimeoutFilter" after="EXCEPTION_TRANSLATION_FILTER"/>
+		<custom-filter ref="userAgentValidationCasFilter" before="CSRF_FILTER"/>
+		
+	</http>
+
+	<authentication-manager id="casAuthenticationManager">
+		<authentication-provider ref="casAuthenticationProvider" />
+	</authentication-manager>
+
+</bean:beans>

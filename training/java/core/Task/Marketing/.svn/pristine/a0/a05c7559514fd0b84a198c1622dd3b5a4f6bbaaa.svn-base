@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<bean id="casEntryPoint"
+		class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">
+		<property name="loginUrl" value="https://${com.medplus.cas.server.host}/cas/login" />
+		<property name="serviceProperties" ref="serviceProperties" />
+	</bean>
+	<bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
+		<property name="service"
+			value="${com.medplus.cas.service.protocal}://${com.medplus.cas.service.host}/${com.medplus.cas.service.context}/login/cas" />
+		<property name="sendRenew" value="false" />
+	</bean>
+	<bean id="casFilter"
+		class="org.springframework.security.cas.web.CasAuthenticationFilter">
+		<property name="authenticationManager" ref="casAuthenticationManager" />
+	</bean>
+	<bean id="casAuthenticationProvider"
+		class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+		<property name="authenticationUserDetailsService">
+			<bean
+				class="org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper">
+				<constructor-arg ref="authoritiesPopulator" />
+			</bean>
+		</property>
+		<property name="serviceProperties" ref="serviceProperties" />
+		<property name="ticketValidator">
+			<bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+				<constructor-arg index="0"
+					value="http://${com.medplus.cas.server.host.ip}/cas" />
+			</bean>
+		</property>
+		<property name="key" value="an_id_for_this_auth_provider_only" />
+	</bean>
+
+	<!-- Handles a Single Logout Request from the CAS Server must be in custom-filter 
+		of security.xml -->
+	<bean id="singleLogoutFilter" class="com.medplus.cas.sso.filter.SingleSignOutLBFilter">
+		<constructor-arg>
+			<bean class="com.medplus.cas.sso.domain.BackChanelValidationConfig">
+				<constructor-arg name="url" value="http://${com.medplus.cas.server.host.ip}/cas/validate-sessions"/>
+				<constructor-arg name="initialDelay" value="${com.medplus.backchanel.validation.initial.delay:10}"/>
+				<constructor-arg name="period" value="${com.medplus.backchanel.validation.period:5}"/>  
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<bean id="requestSingleLogoutFilter"
+		class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg
+			value="https://${com.medplus.cas.server.host}/cas/logout?service=${com.medplus.cas.service.protocal}://${com.medplus.cas.service.host}/${com.medplus.cas.service.context}/" />
+		<constructor-arg>
+			<bean
+				class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+		</constructor-arg>
+		<property name="filterProcessesUrl" value="/logout" />
+	</bean>
+		
+	<bean id="authoritiesPopulator" class="com.medplus.ums.service.helper.AuthoritiesPopulator">
+		<property name="module" value="${com.medplus.cas.service.module}"></property>
+	</bean>
+	
+</beans>

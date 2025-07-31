@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd  	
+	http://www.springframework.org/schema/data/mongo https://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+	http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/jms  http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
+    
+	<context:annotation-config />
+	<context:property-placeholder location="file:${catalina.base}/conf/common/marketing/marketing.properties" />
+    
+    <bean id="propertiesFactory" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	    <property name="locations">
+	    	<list>
+		    	<value>file:${catalina.base}/conf/common/marketing/marketing.properties</value>
+	    	</list>
+	    </property>
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<bean id="RedisKing" class="com.medplus.redis.RedisKing" init-method="initRedisKing">
+        <constructor-arg>
+            <util:properties location="file:${catalina.base}/conf/common/marketing/marketing.properties" />
+        </constructor-arg>
+    </bean>
+	<bean id="commonPropertyHelper" class="com.medplus.common.helper.CommonPropertyHelper">
+		<qualifier value="commonPropertyHelper"/>
+	</bean>
+   
+   <bean id="tokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository"/>
+   <bean id="userAgentValidationCasFilter" class="com.medplus.common.filter.UserAgentValidationCasFilter"></bean>
+   
+   <bean id="csrfRequestMatcher" class="org.springframework.security.web.util.matcher.AndRequestMatcher">
+        <constructor-arg name="requestMatchers">
+           <list>
+              <bean class="org.springframework.security.web.csrf.CsrfFilter$DefaultRequiresCsrfMatcher" />
+              <bean class="org.springframework.security.web.util.matcher.NegatedRequestMatcher">
+                 <constructor-arg>
+                    <bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+                       <constructor-arg value="/login/cas"/>
+                    </bean>
+                 </constructor-arg>
+              </bean>
+           </list>
+        </constructor-arg>
+    </bean>
+    
+	<import resource="spring-security.xml" />
+    <import resource="spring-security-cas.xml" />
+    <import resource="cache-applicationContext.xml"/>    
+</beans>

@@ -1,0 +1,8 @@
+{
+    "name": "@medplus/react-common-components/DataGrid",
+    "private": true,
+    "type":"module",
+    "module":"../dist/esm/DataGrid.js",
+    "types":"../dist/DataGrid/index.d.ts"
+  }
+  

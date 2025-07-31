@@ -1,0 +1,419 @@
+
+
+package com.medplus.marketing.controller;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.medplus.accounts.service.impl.AccountStoreService;
+import com.medplus.common.utility.UtilValidate;
+import com.medplus.discounts.PromotionException;
+import com.medplus.discounts.constants.PromotionConstants;
+import com.medplus.discounts.domain.ComplimentaryProduct;
+import com.medplus.discounts.domain.UserMetaData;
+import com.medplus.marketing.LocalDateTimeDeserializer;
+import com.medplus.marketing.constants.CssConstants;
+import com.medplus.marketing.constants.MarketingConstants;
+import com.medplus.marketing.domain.CampaignSearchCriteria;
+import com.medplus.marketing.domain.ComplimentaryPromotion;
+import com.medplus.marketing.exception.MarketingException;
+import com.medplus.marketing.helper.ProductStoreHelper;
+import com.medplus.marketing.role.ComplimentaryPromotionRoles;
+import com.medplus.marketing.service.ComplimentaryPromotionService;
+import com.medplus.marketing.util.CampaignUtil;
+import com.medplus.marketing.util.ExcelUtil;
+import com.medplus.marketing.util.UserUtil;
+import com.medplus.product.domain.CompositionDetail;
+import com.medplus.product.domain.CompositionInfo;
+import com.medplus.product.domain.CompositionSearchCriteria;
+import com.medplus.product.service.CompositionService;
+import com.medplus.product.service.ProductService;
+import com.medplus.reactcomponents.core.domain.actions.DomManipulation;
+import com.medplus.reactcomponents.core.domain.form.ElementGroup;
+import com.medplus.reactcomponents.core.domain.form.Form;
+import com.medplus.reactcomponents.core.domain.form.Option;
+import com.medplus.reactcomponents.core.domain.form.Response;
+import com.medplus.reactcomponents.core.domain.form.Response.StatusCode;
+import com.medplus.reactcomponents.core.domain.htmlelements.ButtonElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.DataListElement;
+import com.medplus.reactcomponents.core.domain.htmlelements.InputElement;
+import com.medplus.reactcomponents.core.enums.form.DomType;
+import com.medplus.reactcomponents.core.enums.form.ElementPosition;
+import com.medplus.reactcomponents.core.enums.form.InputType;
+import com.medplus.reactcomponents.core.helpers.FormHelper;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@Slf4j
+public class ComplimentaryPromotionController {
+
+	@Autowired
+	private ComplimentaryPromotionService complimentaryPromotionService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private CompositionService compositionService;
+	
+	@Autowired
+	private AccountStoreService accountStoreService;
+	
+	private static final String FORCE_DOWNLOAD = "force-download";
+
+	private static final String SUCCESS = "success";
+
+	private static final String CUSTOM_FIELD_SET = "custom-fieldset";
+
+	private static final ComplimentaryPromotionRoles COMPLIMENTARY_ROLES = new ComplimentaryPromotionRoles();
+	
+	private static final String DOUBLE_REGEX = "^\\d+(\\.?(\\d?)+)$";
+
+	private static final String ALPHA_NUMERIC_REGEX = "^[a-zA-Z0-9 _%\\-]+$";
+		
+	private static final Gson GSON = new GsonBuilder()
+			.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
+			.create();
+	
+	private List<Option> getExisitingSlabGroupOptions(){
+		List<Option> existingSlabOpts=new ArrayList<>();
+		Map<String,String> existingSlabs=complimentaryPromotionService.getExisitingSlabs();
+		if (UtilValidate.isNotEmpty(existingSlabs)) {
+			return existingSlabs.entrySet().stream()
+		    	.map(entry -> FormHelper.createOption(entry.getValue(), entry.getKey(), entry.getKey(), entry.getKey()))
+		    	.collect(Collectors.toList());
+		}
+		return existingSlabOpts;
+	}
+
+	@GetMapping("get-complimentary-promotion-slab-form")
+	public Response getComplimentaryPromotionSlabs() {
+		Form slabForm = new Form("", "complimentaryPromotionSlabs");
+		slabForm.setClassName(" row align-items-center justify-content-start mb-3 rounded");
+				
+		InputElement messageDisplayPercentage = new InputElement(InputType.TEXT, "Message Display Percentage", "messageDisplayPercentage");
+		messageDisplayPercentage.setRequired(true);	
+		messageDisplayPercentage.setRegex(DOUBLE_REGEX);
+		
+		ElementGroup messageDisplayPercentageGrp = FormHelper.createGroup("messageDisplayPercentageGrp", Arrays.asList(messageDisplayPercentage));
+		messageDisplayPercentageGrp.setLabelClassName(CUSTOM_FIELD_SET + " mb-1");
+		messageDisplayPercentageGrp.setClassName("col-3 mb-4");
+		
+		DataListElement existingSlabGroups = new DataListElement("existingSlabGroups");
+		existingSlabGroups.setLabel("Invoice Slab Name");
+		existingSlabGroups.setLabelClassName("small text-secondary w-100");
+		existingSlabGroups.setDataListClassName(CssConstants.COL_3);
+		existingSlabGroups.setDefaultValue(null);
+		existingSlabGroups.setValues(getExisitingSlabGroupOptions());	
+		
+		InputElement invoiceBtn = new InputElement(InputType.TEXT, "Min Invoice Amount", "invoiceBtn");
+		invoiceBtn.setLabelClassName("small text-secondary col-3");
+		invoiceBtn.setValue("");
+		invoiceBtn.setDisabled(true);
+		invoiceBtn.setHidden(true);
+		invoiceBtn.setReadOnly(true);		
+		
+		ElementGroup existingSlabGrp = FormHelper.createGroup("existingSlabGrp", Arrays.asList(existingSlabGroups,invoiceBtn));
+		existingSlabGrp.setLabel("Select Min Invoice Slab");
+		existingSlabGrp.setLabelClassName(CUSTOM_FIELD_SET + " mb-2");
+		existingSlabGrp.setClassName("row");
+
+		ButtonElement createNewSlabGrpBtn = new ButtonElement("Create New Invoice Slab", "createNewSlabGrpBtn");
+		createNewSlabGrpBtn.setClassName("btn btn-success shadow-sm p-12  rounded col-3");
+		ElementGroup slabBtnGrp = FormHelper.createGroup("slabBtnGrp", Arrays.asList(createNewSlabGrpBtn));
+
+		InputElement slabGroupName = new InputElement(InputType.TEXT, "Invoice Slab Name", "slabGroupName");
+		slabGroupName.setRegex(ALPHA_NUMERIC_REGEX);
+		slabGroupName.setMinLength(4);
+		slabGroupName.setMaxLength(60);
+		slabGroupName.setRequired(true);
+		ElementGroup slabGroupNameGrp = FormHelper.createGroup("slabGroupNameGrp", Arrays.asList(slabGroupName));
+		slabGroupNameGrp.setLabel("New Invoice Slab");
+		slabGroupNameGrp.setLabelClassName(CUSTOM_FIELD_SET + " mb-1 mt-2");
+		slabGroupNameGrp.setClassName("row-cols-4 mt-3");
+		slabGroupNameGrp.setHidden(true);
+		
+		InputElement invoiceAmount = new InputElement(InputType.TEXT, "Min Invoice Amount", "invoiceAmount");
+		invoiceAmount.setRegex(DOUBLE_REGEX);
+		invoiceAmount.setAutofocus(true);
+		invoiceAmount.setRequired(true);
+		invoiceAmount.setMaxLength(7);
+		
+		ElementGroup invoiceAmountGrp = FormHelper.createGroup("invoiceAmountGrp", Arrays.asList(invoiceAmount));
+		invoiceAmountGrp.setClassName("row-cols-4 mt-2");
+		invoiceAmountGrp.setHidden(true);
+
+		slabForm.setHtmlGroups(Arrays.asList(messageDisplayPercentageGrp,existingSlabGrp,slabBtnGrp,slabGroupNameGrp, invoiceAmountGrp));
+		DomManipulation domAction = FormHelper.createDomManipulationAction(DomType.FORM, slabForm,
+				ElementPosition.UPDATE, "INIT");
+		return new Response(domAction, StatusCode.SUCCESS, SUCCESS);
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_CREATE_RIGHTS)
+	@PostMapping("create-complimentary-gift-promotion")
+	public Response createComplimentaryPromotion(@RequestParam("complimentaryPromotionInfo") String complimentaryPromotionInfo, 
+			@RequestParam(value = "productUpload") MultipartFile productUpload, 
+			@RequestParam(value = "othersUpload", required = false) MultipartFile othersUpload) {
+		
+		log.info("Complimentary for Creation:{}",complimentaryPromotionInfo);
+		ComplimentaryPromotion complimentaryPromotion = GSON.fromJson(complimentaryPromotionInfo, new TypeToken<ComplimentaryPromotion>() {}.getType());
+		List<Integer> applicableTypesByRole =COMPLIMENTARY_ROLES.getApplicableTypesByCreateRoles(); 
+		if(complimentaryPromotion == null) 
+			throw new PromotionException("Complimentary promotion data is empty");
+		if(!applicableTypesByRole.contains(complimentaryPromotion.getApplicableType()))
+			throw new MarketingException("User doesn't have the required Applicable Rights to create complimentary promotion!");
+		complimentaryPromotion.setComplimentaryProducts(ExcelUtil.readComplimentaryProductsExcel(productUpload, false));
+		if(UtilValidate.isNotEmpty(complimentaryPromotion.getComplimentaryProducts())) {
+			validateGiftsUpload(complimentaryPromotion);
+		}
+		if(UtilValidate.isNotEmpty(othersUpload)) {
+			ExcelUtil.readAndSetComplimentaryPromotion(othersUpload, complimentaryPromotion, false);
+			validateOthersUpload(complimentaryPromotion);
+		}
+		UserMetaData userMetaData = new UserMetaData();
+		userMetaData.setCreatedBy(UserUtil.getUserId());
+		userMetaData.setDateCreated(LocalDateTime.now());
+		complimentaryPromotion.setUserMetaData(userMetaData);
+		ComplimentaryPromotion createdComplimentaryPromo = complimentaryPromotionService.createComplimentaryPromotion(complimentaryPromotion);
+		log.info("Complimentary Promotion Created : {}, Status:{}", createdComplimentaryPromo.getComplimentaryId(), createdComplimentaryPromo.getStatus());
+		return new Response(StatusCode.SUCCESS, "SUCCESS", createdComplimentaryPromo);
+	}
+
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_EDIT_RIGHTS)
+	@PostMapping("edit-complimentary-gift-promotion")
+	public Response editComplimentaryPromotion(@RequestParam("complimentaryPromotionInfo") String complimentaryPromotionInfo, 
+			@RequestParam(value = "productUpload", required = false) MultipartFile productUpload,
+			@RequestParam(value = "productRemove", required = false) MultipartFile productRemove, 
+			@RequestParam(value = "othersUpload", required = false) MultipartFile othersUpload) {			
+				
+		ComplimentaryPromotion complimentaryPromotion = GSON.fromJson(complimentaryPromotionInfo, new TypeToken<ComplimentaryPromotion>() {}.getType());
+		List<Integer> applicableTypesByRole = COMPLIMENTARY_ROLES.getApplicableTypesByCreateRoles(); 
+		if(complimentaryPromotion == null) 
+			throw new PromotionException("Complimentary promotion data is empty");
+		if(!applicableTypesByRole.contains(complimentaryPromotion.getApplicableType()))
+			throw new PromotionException("User doesn't have the required Applicable Rights to create campaign!");
+		complimentaryPromotion.setComplimentaryProducts(UtilValidate.isNotEmpty(productUpload) ? 
+				ExcelUtil.readComplimentaryProductsExcel(productUpload, false) : Collections.emptySet());
+		if(UtilValidate.isNotEmpty(complimentaryPromotion.getComplimentaryProducts())) {
+			validateGiftsUpload(complimentaryPromotion);
+		}
+		complimentaryPromotion.setRemoveComplimentaryProducts(readFiles(productRemove, String.class));
+
+		if(UtilValidate.isNotEmpty(othersUpload)) {
+			ExcelUtil.readAndSetComplimentaryPromotion(othersUpload, complimentaryPromotion, true);
+			validateOthersUpload(complimentaryPromotion);
+		}
+		log.info("complimenatry promo {}",complimentaryPromotion);
+		
+		UserMetaData userMetaData = new UserMetaData();
+		userMetaData.setModifiedBy(UserUtil.getUserId());
+		userMetaData.setDateModified(LocalDateTime.now());
+		complimentaryPromotion.setUserMetaData(userMetaData);
+		ComplimentaryPromotion updatedComplimentaryPromo = complimentaryPromotionService.updateComplimentaryPromotion(complimentaryPromotion);
+		log.info("Complimentary promotion Updated : {}, Status:{}", complimentaryPromotion.getComplimentaryId(), complimentaryPromotion.getStatus());
+		if(UtilValidate.isNotEmpty(updatedComplimentaryPromo)) {
+			return new Response(StatusCode.SUCCESS, SUCCESS, updatedComplimentaryPromo);
+		}
+		return new Response(StatusCode.FAILURE, "Unable to update complimentary promotion!");
+	}
+
+	private void validateGiftsUpload(ComplimentaryPromotion complimentaryPromotion) {		
+		Set<String> giftProductIds = complimentaryPromotion.getComplimentaryProducts().stream().map(ComplimentaryProduct::getProductId).collect(Collectors.toSet());
+		CampaignUtil.validateIds(giftProductIds, CampaignUtil.getProductMap(giftProductIds ,"Gift products", productService, true).keySet(), "Gift Products");
+	}
+	
+	private void validateOthersUpload(ComplimentaryPromotion complimentaryPromotion) {
+		Set<String> refProducts = complimentaryPromotion.getReferenceProductIds();
+		CampaignUtil.validateIds(refProducts, CampaignUtil.getProductMap(refProducts ,"Reference products", productService, true).keySet(), "Reference Products");
+		Set<Integer> compositions=complimentaryPromotion.getCompositionIds();
+		CampaignUtil.validateIds(compositions, getCompositionMap(compositions, "compositions").keySet(), "Compositions");
+	}
+	
+	private Map<Integer,String> getCompositionMap(Set<Integer> compositionIds, String type) {
+		if (UtilValidate.isEmpty(compositionIds))
+			return new HashMap<>();
+		CompositionSearchCriteria compositionSearchCriteria = new CompositionSearchCriteria();
+		compositionSearchCriteria.setCompositionIds(new ArrayList<>(compositionIds));
+		compositionSearchCriteria.setRunOnMasterDb(false);
+		try {
+			CompositionInfo compositionInfo = compositionService.getCompositions(compositionSearchCriteria);
+			return UtilValidate.isNotEmpty(compositionInfo)
+					? compositionInfo.getCompositions().stream().collect(Collectors.toMap(
+							detail -> detail.getCompositionId().intValue(), CompositionDetail::getComposition))
+					: new HashMap<>();
+		} catch (Exception e) {
+			log.error("Exception caught while validating the " + type + " from solr {}", e);
+			throw new PromotionException("Unable to validate the " + type + " !");
+		}
+	}
+	
+	private static <T> Set<T> readFiles(MultipartFile upload, Class<T> clazz) {
+	    return UtilValidate.isNotEmpty(upload) ? new HashSet<>(ExcelUtil.readUploadExcel(upload, clazz, PromotionConstants.APPLICABLE_TYPE_PHARMACY, false))
+	            : Collections.emptySet();
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_VIEW_RIGHTS)
+	@PostMapping("get-complimentary-promotion-list")
+	public Response listComplimentaryPromotions(@RequestParam("campaignSearchCriteria") String campaignInfo) {
+		CampaignSearchCriteria searchCriteria = GSON.fromJson(campaignInfo, new TypeToken<CampaignSearchCriteria>() {}.getType());
+		log.info("CampaignSearchCriteria: {}",searchCriteria);
+		Map<String, Object> response = complimentaryPromotionService.getComplimentaryPromotionList(searchCriteria, COMPLIMENTARY_ROLES.getApplicableTypesByViewRoles());
+		if(UtilValidate.isNotEmpty(response))
+			return new Response(StatusCode.SUCCESS, SUCCESS, response);
+		return new Response(StatusCode.SUCCESS, "No Data Found", Collections.emptyMap());
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_VIEW_RIGHTS)
+	@GetMapping("get-complimentary-promotion-by-complimentaryId")
+	public Response getComplimentaryPromotionById(@RequestParam("complimentaryId") Long complimentaryId) {
+		if(UtilValidate.isNotEmpty(complimentaryId)) {
+			ComplimentaryPromotion complimentaryPromotion = complimentaryPromotionService.getComplimentaryPromotionById(complimentaryId);
+			log.debug("ComplimentaryPromotionById: {}", complimentaryPromotion);
+			if(UtilValidate.isNotEmpty(complimentaryPromotion)) {
+				return new Response(StatusCode.SUCCESS, SUCCESS, complimentaryPromotion);
+			}
+			return new Response(StatusCode.SUCCESS, "No records found");
+		}
+		return new Response(StatusCode.FAILURE, "Failed to fetch records");
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_APPROVE_RIGHTS)
+	@PostMapping("approve-complimentary-promotion")
+	public Response approveComplimentaryPromotion(@RequestParam("complimentaryId") Long complimentaryId, @RequestParam("toDate") String date, @RequestParam(value = "channel", required = false) Integer channel) {
+		log.info("ComplimentaryPromotion Approve: {}, toDate: {}", complimentaryId, date);
+		LocalDateTime toDate = CampaignUtil.parseMillisToLocalDateTime(date);
+		boolean approved = complimentaryPromotionService.approveComplimentaryPromotion(complimentaryId, toDate, COMPLIMENTARY_ROLES.getApplicableTypesByApproveRoles(), UserUtil.getUserId());
+		log.info("ComplimentaryPromotion Approved: {}, Status: {}",complimentaryId, approved);
+		if(approved) {
+			return new Response(StatusCode.SUCCESS, SUCCESS, complimentaryId);
+		}else {
+			return new Response(StatusCode.FAILURE, "Unable to Approve Complimentary Promotion");
+		}
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_CLOSE_RIGHTS)
+	@PostMapping("update-complimentary-promotion-to-date")
+	public Response updateActiveComplimentaryPromotion(@RequestParam("complimentaryId") Long complimentaryId, @RequestParam("toDate") String date) {
+		return updateToDate(date, COMPLIMENTARY_ROLES.getApplicableTypesByCloseRoles(), PromotionConstants.ACTIVE, complimentaryId);
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_EDIT_RIGHTS)
+	@PostMapping("update-inactive-complimentary-promotion-to-date")
+	public Response updateInctiveComplimentaryPromotion(@RequestParam("complimentaryId") Long complimentaryId, @RequestParam("toDate") String date) {
+		return updateToDate(date, COMPLIMENTARY_ROLES.getApplicableTypesByEditRoles(), PromotionConstants.INACTIVE, complimentaryId);
+	}
+	
+	private Response updateToDate(String date, List<Integer> applicableTypesByRole, String status, Long complimentaryId) {
+		log.info("ComplimentaryPromotion ToDate Update: {}, toDate: {}", complimentaryId, date);
+		LocalDateTime toDate = CampaignUtil.parseMillisToLocalDateTime(date);
+		boolean updated = complimentaryPromotionService.updateComplimentaryToDate(complimentaryId, toDate, applicableTypesByRole, UserUtil.getUserId(), status);
+		log.info("ComplimentaryPromotion Updated: {}, Status: {}",complimentaryId, updated);
+		if(updated) {
+			return new Response(StatusCode.SUCCESS, SUCCESS, complimentaryId);
+		}else {
+			return new Response(StatusCode.FAILURE, "Unable to Update Complimentary Promotion");
+		}
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_APPROVE_RIGHTS)
+	@PostMapping("reject-complimentary-promotion")
+	public Response rejectCampaign(@RequestParam("campaignId") Long complimentaryId, @RequestParam("remarks") String remarks) {
+		if(UtilValidate.isNotEmpty(complimentaryId) && UtilValidate.isNotEmpty(remarks)) {
+			if(remarks.length()>255 || remarks.trim().length()<=0)
+				return new Response(StatusCode.FAILURE, "Remarks length should be between 0 and 255");
+		    complimentaryPromotionService.rejectComplimentaryPromotion(complimentaryId, UserUtil.getUserId(), remarks, COMPLIMENTARY_ROLES.getApplicableTypesByApproveRoles());
+			return new Response(StatusCode.SUCCESS, SUCCESS);
+		}
+		return new Response(StatusCode.FAILURE, "Unable to reject the complimentary promotion");
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_VIEW_RIGHTS)
+	@GetMapping("get-complimentary-gift-products")
+	public ResponseEntity<ByteArrayResource> getProductExcelDownload(@RequestParam("complimentaryId") Long complimentaryId, @RequestParam("complimentarySlabId") Long complimentarySlabId) {
+		log.info("Complimentary Gift Products Download: {}, {}, {}", complimentaryId, complimentarySlabId);
+		Set<ComplimentaryProduct> giftProducts = complimentaryPromotionService.getComplimentaryProducts(complimentaryId, complimentarySlabId);		
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(new MediaType("application", FORCE_DOWNLOAD));
+		header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductTemplate.xlsx");
+	    if (giftProducts != null) {
+			Set<String> giftProductIDs = giftProducts.stream().map(ComplimentaryProduct::getProductId).collect(Collectors.toSet());
+	    	log.debug("Complimentary Gift Products Size: {}", giftProducts.size()); 	
+	    	byte[] excelData = ExcelUtil.generateExcelSheetForComplimentaryGift(giftProducts, CampaignUtil.getProductMap(giftProductIDs,"Complimentary Gifts",productService, false));
+	    	return new ResponseEntity<>(new ByteArrayResource(excelData),header, HttpStatus.OK);
+	    }
+		return new ResponseEntity<>(new ByteArrayResource(new byte[0]), header, HttpStatus.OK);
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_VIEW_RIGHTS)
+	@GetMapping("get-complimentary-reference-customer-download")
+	public ResponseEntity<ByteArrayResource> getRefProductExcelDownload(@RequestParam("complimentaryId") Long complimentaryId) {
+	  log.info("Complimentary references/ cutomers Download: {}", complimentaryId);
+	  Set<String> refProductsData = complimentaryPromotionService.getComplimentaryReferenceProducts(complimentaryId);
+	  Set<Integer> refCompositionData = complimentaryPromotionService.getComplimentaryRefCompositons(complimentaryId);	  
+	  Set<Long> customerData = complimentaryPromotionService.getComplimentaryPromotionCustomers(complimentaryId);
+      HttpHeaders header = new HttpHeaders();
+      header.setContentType(new MediaType("application", FORCE_DOWNLOAD));
+      header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductTemplate.xlsx");
+      byte[] excelData = ExcelUtil.getExcelForReferences(refProductsData, refCompositionData, customerData, 
+    		  CampaignUtil.getProductMap(refProductsData,"Reference Products",productService, false), 
+    		  getCompositionMap(refCompositionData,"Compositions"));
+  	  return new ResponseEntity<>(new ByteArrayResource(excelData),header, HttpStatus.OK);
+	}
+	
+	@PreAuthorize(MarketingConstants.COMPLIMENTARY_VIEW_RIGHTS)
+	@GetMapping("get-complimentary-stores-download")
+	public ResponseEntity<ByteArrayResource> getStoresExcelDownload(@RequestParam("campaignId") Long complimentaryId) {
+		log.debug("Complimentary Stores Download: {}", complimentaryId);
+		List<String> storeIds = complimentaryPromotionService.getStores(complimentaryId);
+		return ProductStoreHelper.downloadStoresExcel(storeIds, accountStoreService);
+	}
+	
+	@GetMapping("validate-complimentary-promotion-name")
+	public Response validatePromotionName(@RequestParam("promotionName") String promotionName) {
+		boolean isValidCampaignName = complimentaryPromotionService.isPromotionNameAvailable(promotionName);
+		log.info("Complimentary promotion Name: {}, Exists: {}", promotionName, isValidCampaignName);
+		return new Response(StatusCode.SUCCESS, SUCCESS, !isValidCampaignName);
+	}
+	
+	@GetMapping("validate-complimentary-slab-name")
+	public Response validateSlabName(@RequestParam("slabName") String slabName) {
+		boolean isValidSlabName = complimentaryPromotionService.isSlabNameAvailable(slabName);
+		log.info("Complimentary slab name Name: {}, Exists: {}", slabName, isValidSlabName);
+		return new Response(StatusCode.SUCCESS, SUCCESS, !isValidSlabName);
+	}
+	
+	@Scheduled(cron = "0 30 0 * * *")
+	public void autoRejectClosedCampaigns() {
+		try {
+			complimentaryPromotionService.autoRejectClosedComplimentaryPromotions();
+		} catch (Exception e) {
+			log.error("Error occured while running the complimentary promotion auto-reject cron : ", e);
+		}
+	}
+}

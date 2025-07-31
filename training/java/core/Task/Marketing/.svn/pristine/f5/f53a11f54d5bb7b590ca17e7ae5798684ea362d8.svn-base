@@ -1,0 +1,7 @@
+<svg id="notification-icn" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <circle id="Ellipse_1160" data-name="Ellipse 1160" cx="4" cy="4" r="4" transform="translate(5 5)" fill="#ebebeb" opacity="0"/>
+  <g id="noun-clear-2801731-404040" transform="translate(-30 -30)">
+    <path id="Path_47170" data-name="Path 47170" d="M39,30a9,9,0,1,0,9,9A9.008,9.008,0,0,0,39,30Zm0,16.768A7.768,7.768,0,1,1,46.768,39,7.779,7.779,0,0,1,39,46.768Z" fill="#6c757d"/>
+    <path id="Path_47171" data-name="Path 47171" d="M387.422,382.083a.606.606,0,0,0-.872,0l-2.387,2.387-2.406-2.387a.616.616,0,0,0-.872.872l2.406,2.387-2.387,2.406a.606.606,0,0,0,0,.872.642.642,0,0,0,.872,0l2.387-2.406,2.406,2.406a.642.642,0,0,0,.872,0,.606.606,0,0,0,0-.872l-2.406-2.406,2.406-2.406a.6.6,0,0,0-.019-.853Z" transform="translate(-345.163 -346.342)" fill="#6c757d"/>
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+{
+    "name": "@medplus/react-common-components/DynamicForm",
+    "private": true,
+    "module":"../dist/esm/DynamicForm.js",
+    "types":"../dist/DynamicForm/index.d.ts"
+  }
+  

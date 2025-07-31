@@ -1,0 +1,607 @@
+package com.medplus.marketing.controller;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.medplus.accounts.service.impl.AccountStoreService;
+import com.medplus.common.utility.UtilValidate;
+import com.medplus.discounts.PromotionException;
+import com.medplus.discounts.constants.PromotionConstants;
+import com.medplus.marketing.LocalDateTimeDeserializer;
+import com.medplus.marketing.constants.CampaignConstants;
+import com.medplus.marketing.constants.MarketingConstants;
+import com.medplus.marketing.domain.Campaign;
+import com.medplus.marketing.domain.CampaignProduct;
+import com.medplus.marketing.domain.CampaignSearchCriteria;
+import com.medplus.marketing.domain.PromotionCoupon;
+import com.medplus.marketing.excel.ExcelBeanFactory;
+import com.medplus.marketing.excel.ExcelReaderContext;
+import com.medplus.marketing.exception.MarketingException;
+import com.medplus.marketing.helper.ProductStoreHelper;
+import com.medplus.marketing.role.CampaignRoles;
+import com.medplus.marketing.service.CampaignService;
+import com.medplus.marketing.service.PathLabTestsService;
+import com.medplus.marketing.util.CampaignUtil;
+import com.medplus.marketing.util.ExcelUtil;
+import com.medplus.marketing.util.MultipleCampaignsContext;
+import com.medplus.marketing.util.UserUtil;
+import com.medplus.product.service.ProductService;
+import com.medplus.reactcomponents.core.domain.form.Response;
+import com.medplus.reactcomponents.core.domain.form.Response.StatusCode;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@Slf4j
+public class CampaignController {
+
+	private static final String FORCE_DOWNLOAD = "force-download";
+	private static final Gson GSON = new GsonBuilder()
+			.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer()).create();
+	private static final String SUCCESS = "success";
+	private static final CampaignRoles CAMPAIGN_ROLES = new CampaignRoles();
+	private static final String EXCEPTION_OCCURED = "Exception occured : ";
+	private static final String COUPON_CODE_PATTERN = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+	@Autowired
+	private ExcelBeanFactory excelBeanFactory;
+
+	@Autowired
+	private CampaignService campaignService;
+
+	@Autowired
+	PathLabTestsService pathLabTestsService;
+
+	@Autowired
+	ProductService productService;
+
+	@Autowired
+	AccountStoreService accountStoreService;
+
+	@Value("${com.medplus.marketing.campaign.max.date.limit:540}")
+	private int toDateMaxLimit;
+
+	@Value("${com.medplus.marketing.promotions.paybackPercentage.max.allowed:0.0}")
+	private double paybackPercentageMaxAllowed;
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_CREATE_RIGHTS)
+	@PostMapping("create-campaign")
+	public Response createCampaign(@RequestParam("campaignInfo") String campaignInfo,
+			@RequestParam(value = "productUpload", required = false) MultipartFile productUpload,
+			@RequestParam(value = "customerUpload", required = false) MultipartFile customerUpload) {
+		Campaign campaign = prepareCampaign(campaignInfo, productUpload, customerUpload);
+		try {
+			handleCouponBasedLogic(campaign);
+			if (isProductUploadAllowed(campaign)) {
+				ExcelUtil.readProductsUploadExcel(campaign,
+						campaignService.findConditionTypes(campaign.getCampaignType()), paybackPercentageMaxAllowed,
+						productUpload);
+				validateProductsAndTests(campaign.getCampaignProducts(), campaign.getPromotionApplicableType(),
+						campaign.getCampaignType(), campaign.getUserMetaData().isSpecialtyBased());
+			}
+			campaignService.saveCampaign(campaign);
+			return new Response(StatusCode.SUCCESS, SUCCESS, campaign);
+		} catch (PromotionException | MarketingException ex) {
+			log.error(EXCEPTION_OCCURED, ex);
+			return new Response(StatusCode.FAILURE, ex.getMessage());
+		} catch (Exception ex) {
+			log.error(EXCEPTION_OCCURED, ex);
+			return new Response(StatusCode.FAILURE, "Could not create campaign!");
+		}
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_CREATE_RIGHTS)
+	@PostMapping("create-multiple-campaigns")
+	public ResponseEntity<?> createMultipleCampaigns(@RequestParam("campaignInfo") String campaignInfo,
+			@RequestParam(value = "productUpload", required = true) MultipartFile productUpload,
+			@RequestParam(value = "customerUpload", required = false) MultipartFile customerUpload) {
+		HttpHeaders header = new HttpHeaders();
+		try {
+			StringJoiner errorMessage = new StringJoiner(",");
+			Campaign campaign = prepareCampaign(campaignInfo, productUpload, customerUpload);
+			CampaignUtil.validateCampaignInfo(errorMessage, campaign, toDateMaxLimit, false);
+			if (UtilValidate.isNotEmpty(errorMessage.toString()))
+				throw new PromotionException(errorMessage.toString());
+			validateMultipleCampaigns(campaign);
+
+			handleCouponBasedLogic(campaign);
+			CampaignUtil.validateCouponInfo(errorMessage, campaign);
+			if (UtilValidate.isNotEmpty(errorMessage.toString()))
+				throw new PromotionException(errorMessage.toString());
+			boolean isCouponBased = CampaignConstants.COUPON_BASED.equals(campaign.getCouponBased());
+			validateMultipleCouponCode(campaign, isCouponBased);
+			List<Campaign> multipleCampaigns = new ArrayList<>();
+			long startTime = System.currentTimeMillis();
+			ExcelReaderContext readerContext = new ExcelReaderContext(
+					excelBeanFactory.getBeansByType(campaign.getCampaignType()));
+			Map<String, List<CampaignProduct>> groupedData = readerContext.read(campaign, productUpload);
+			if (UtilValidate.isEmpty(groupedData)) {
+				throw new PromotionException("Empty data found while reading product excel file");
+			}
+
+			Set<String> uniqueCouponCodes = generateCouponCodes(campaign, groupedData.keySet().size());
+			log.debug("uniqueCouponCodes : {}", uniqueCouponCodes);
+
+			MultipleCampaignsContext multipleCampaignsContext = new MultipleCampaignsContext(
+					excelBeanFactory.getSplitByBeans(campaign.getSplitBy()));
+			multipleCampaigns = multipleCampaignsContext.generateMultipleCampaigns(campaign, groupedData,
+					uniqueCouponCodes);
+			log.info("multiple campaigns {}", multipleCampaigns);
+			long afterReadTime = System.currentTimeMillis();
+			log.debug("time taken for reading and generating the multiple campaigns : {}", afterReadTime - startTime);
+			campaignService.saveMultipleCampaigns(multipleCampaigns);
+			log.info("time taken for saving the multiple campaigns : {}", System.currentTimeMillis() - afterReadTime);
+			header.setContentType(new MediaType("application", FORCE_DOWNLOAD));
+			header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=MultipleCampaigns.xlsx");
+			byte[] excelData = ExcelUtil.generateExcelForMultipleCampaigns(multipleCampaigns, isCouponBased);
+			return new ResponseEntity<>(excelData, header, HttpStatus.OK);
+		} catch (PromotionException | MarketingException ex) {
+			log.error(EXCEPTION_OCCURED, ex);
+			header.setContentType(MediaType.APPLICATION_JSON);
+			return new ResponseEntity<>(new Response(StatusCode.FAILURE, ex.getMessage()), header, HttpStatus.OK);
+		} catch (Exception ex) {
+			log.error(EXCEPTION_OCCURED, ex);
+			header.setContentType(MediaType.APPLICATION_JSON);
+			return new ResponseEntity<>(new Response(StatusCode.FAILURE, "Could not create multiple campaigns!"),
+					header, HttpStatus.OK);
+		}
+	}
+
+	private void validateMultipleCampaigns(Campaign campaign) {
+		if (PromotionConstants.APPLICABLE_TYPE_LENS == campaign.getPromotionApplicableType()) {
+			throw new PromotionException("Multiple Campaigns creation is not allowed for applicableType lens");
+		}
+		List<Integer> channels = campaign.getChannels();
+		if (PromotionConstants.APPLICABLE_TYPE_PHARMACY == campaign.getPromotionApplicableType()
+				&& (channels.size() > 1 || channels.get(0) != 1)) {
+			throw new PromotionException("Only POS channel for Pharmacy is valid for creating multiple campaigns");
+		}
+		if (UtilValidate.isEmpty(campaign.getSplitBy())) {
+			throw new PromotionException("SplityBy cannot be empty");
+		}
+		if (!(CampaignConstants.SPLIT_BY_STORE.equalsIgnoreCase(campaign.getSplitBy())
+				|| CampaignConstants.SPLIT_BY_PRODUCT.equalsIgnoreCase(campaign.getSplitBy()))) {
+			throw new PromotionException("Value of SplitBy should be either store or product");
+		}
+		validateMultipleCampName(campaign);
+	}
+
+	private void validateMultipleCampName(Campaign campaign) {
+		if (PromotionConstants.APPLICABLE_TYPE_PATHLABS == campaign.getPromotionApplicableType()
+				&& campaign.getUserMetaData().isSpecialtyBased()) {
+			return;
+		}
+		int additionalLength = (PromotionConstants.APPLICABLE_TYPE_PATHLABS == campaign.getPromotionApplicableType())
+				? 8
+				: 9;
+		if (CampaignConstants.SPLIT_BY_STORE.equalsIgnoreCase(campaign.getSplitBy())) {
+			additionalLength = 13;
+		}
+		if (campaign.getCampaignName().length() + additionalLength > CampaignConstants.MAX_CAMPAIGN_NAME_LEN) {
+			throw new PromotionException("Campaign name exceeds (" + CampaignConstants.MAX_CAMPAIGN_NAME_LEN
+					+ ") characters for creating multiple " + campaign.getSplitBy() + " campaigns");
+		}
+	}
+
+	private void validateMultipleCouponCode(Campaign campaign, boolean isCouponBased) {
+		if (isCouponBased
+				&& campaign.getPromotionCoupon().getCouponDiscountType() != PromotionConstants.PRODUCTS_DISC_TYPE) {
+			throw new PromotionException(
+					"Multiple Campaigns can not be created for coupon discountType other than Products/Tests");
+		}
+	}
+
+	private Set<String> generateCouponCodes(Campaign campaign, int noOfCamps) {
+		Set<String> uniqueCouponCodes = new HashSet<>();
+		log.debug("noOfCamps {} ", noOfCamps);
+		if (CampaignConstants.COUPON_BASED.equalsIgnoreCase(campaign.getCouponBased()) && noOfCamps > 1) {
+			String couponCode = campaign.getPromotionCoupon().getCouponCode();
+			int couponCodeMaxLen = CampaignUtil.getCouponCodeMaxLen(campaign.getPromotionApplicableType());
+			int toBefilled = couponCodeMaxLen - couponCode.length();
+			if (toBefilled == 0 || noOfCamps > Math.pow(COUPON_CODE_PATTERN.length(), toBefilled)) {
+				throw new PromotionException("CouponCode length is more than expected. Please reduce the characters");
+			}
+			int count = 0;
+			while (count < 3) {
+				generateCouponCodes(uniqueCouponCodes, noOfCamps, couponCode, toBefilled);
+				if (noOfCamps != uniqueCouponCodes.size()) {
+					throw new PromotionException(
+							"Unable to generate dynamic coupons with the CouponCode prefix. Please reduce the couponCode length");
+				}
+				List<String> existingCouponCodes = getCouponCodes(uniqueCouponCodes);
+				if (UtilValidate.isEmpty(existingCouponCodes)) {
+					return uniqueCouponCodes;
+				}
+				uniqueCouponCodes.removeAll(existingCouponCodes);
+				count++;
+			}
+			if (noOfCamps != uniqueCouponCodes.size()) {
+				throw new PromotionException(
+						"Unable to generate dynamic coupons with the CouponCode prefix. Please reduce the couponCode length");
+			}
+		}
+		return uniqueCouponCodes;
+	}
+
+	private static void generateCouponCodes(Set<String> uniqueCouponCodes, int totalCouponsNum, String prefix,
+			int suffix) {
+		int count = 0;
+		while (count < 5) {
+			int currCouponsSize = uniqueCouponCodes.size();
+			log.debug("iterationsCount {} currCouponsSize {} ", count, currCouponsSize);
+			if (totalCouponsNum == currCouponsSize) {
+				break;
+			}
+			for (int i = 0; i < totalCouponsNum - currCouponsSize; i++) {
+				uniqueCouponCodes.add(prefix + RandomStringUtils.random(suffix, COUPON_CODE_PATTERN));
+			}
+			count++;
+		}
+	}
+
+	private List<String> getCouponCodes(Set<String> uniqueCouponCodes) {
+		return campaignService.getCouponCodes(uniqueCouponCodes);
+	}
+
+	private Campaign prepareCampaign(String campaignInfo, MultipartFile productUpload, MultipartFile customerUpload) {
+		Campaign campaign = GSON.fromJson(campaignInfo, new TypeToken<Campaign>() {
+		}.getType());
+		log.info("campaign : {}", campaign);
+		if (campaign == null)
+			throw new MarketingException("Campaign data is empty");
+		if (!CampaignConstants.ALL_CUSTOMERS.equals(campaign.getAllCustomers())) {
+			if (UtilValidate.isNotEmpty(customerUpload))
+				campaign.setCustomerIds(ExcelUtil.readUploadExcel(customerUpload, Long.class,
+						campaign.getPromotionApplicableType(), true));
+			else
+				throw new MarketingException("Customer File is Empty");
+		}
+		List<Integer> applicableTypesByRole = CAMPAIGN_ROLES.getApplicableTypesByCreateRoles();
+		if (!applicableTypesByRole.contains(campaign.getPromotionApplicableType()))
+			throw new MarketingException("User doesn't have the required Applicable Rights to create campaign!");
+		String userId = UserUtil.getUserId();
+		if (userId == null) {
+			throw new MarketingException("Session Expired!");
+		}
+		log.debug("campaign : {}", campaign);
+		if (campaign.getUserMetaData() != null) {
+			campaign.getUserMetaData().setCreatedBy(UserUtil.getUserId());
+			campaign.getUserMetaData().setDateCreated(LocalDateTime.now());
+		}
+		return campaign;
+	}
+
+	private void handleCouponBasedLogic(Campaign campaign) {
+		if (CampaignConstants.COUPON_BASED.equalsIgnoreCase(campaign.getCouponBased())) {
+			constructPromotionCoupon(campaign, true);
+		} else {
+			campaign.setCouponBased(CampaignConstants.NON_COUPON_BASED);
+			campaign.setPromotionCoupon(null);
+		}
+	}
+
+	public void validateProductsAndTests(List<CampaignProduct> campaignProduct, int applicableType, int campaignType,
+			boolean isSpecialityBased) {
+		if (applicableType == PromotionConstants.APPLICABLE_TYPE_PATHLABS && UtilValidate.isNotEmpty(campaignProduct)) {
+			Set<String> testIds = campaignProduct.stream().map(CampaignProduct::getProductId)
+					.collect(Collectors.toSet());
+			CampaignUtil.validateIds(testIds, CampaignUtil
+					.getPathLabTestMap(new ArrayList<>(testIds), pathLabTestsService, isSpecialityBased, true).keySet(),
+					"Path Lab Tests/Speciality");
+		} else {
+			campaignService.checkCampaignProducts(campaignProduct, campaignType);
+		}
+	}
+
+	private void constructPromotionCoupon(Campaign campaign, boolean isCreate) {
+		PromotionCoupon promotionCoupon = campaign.getPromotionCoupon() == null ? new PromotionCoupon()
+				: campaign.getPromotionCoupon();
+		log.info("campaignType: {}", campaign.getCampaignType());
+		promotionCoupon.setPromotionType(campaign.getCampaignType());
+		promotionCoupon.setApplicableType(campaign.getPromotionApplicableType());
+		promotionCoupon.setAllCustomers("Y".equals(campaign.getAllCustomers()));
+		promotionCoupon.setFromDate(campaign.getFromDate());
+		if (campaign.getToDate() != null) {
+			promotionCoupon.setToDate(campaign.getToDate());
+		}
+		promotionCoupon.setStatus(campaign.getStatus());
+		promotionCoupon.setDateCreated(
+				isCreate ? campaign.getUserMetaData().getDateCreated() : campaign.getUserMetaData().getDateModified());
+		promotionCoupon.setCreatedBy(
+				isCreate ? campaign.getUserMetaData().getCreatedBy() : campaign.getUserMetaData().getModifiedBy());
+		if (promotionCoupon.isAddOnCoupon()) {
+			if (campaign.getCampaignType() == Integer.parseInt(PromotionConstants.SPECIAL_DISCOUNT) && (promotionCoupon
+					.getMaxDiscount() == null
+					|| promotionCoupon.getMaxDiscount() <= 0
+					|| (campaign.getPromotionApplicableType() != PromotionConstants.APPLICABLE_TYPE_PATHLABS
+							&& campaign.getPromotionApplicableType() != PromotionConstants.APPLICABLE_TYPE_LENS
+							&& (promotionCoupon.getMaxPoints() == null || promotionCoupon.getMaxPoints() <= 0)))) {
+				throw new PromotionException("Max Discounts cannot be null or 0 when Addon is Selected");
+			}
+		} else {
+			promotionCoupon.setMaxDiscount(null);
+			promotionCoupon.setMaxPoints(null);
+			promotionCoupon.setMinValue(null);
+		}
+		campaign.setPromotionCoupon(promotionCoupon);
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_EDIT_RIGHTS)
+	@PostMapping("edit-campaign")
+	public Response editCampaign(@RequestParam("campaignInfo") String campaignInfo,
+			@RequestParam(value = "productUpload", required = false) MultipartFile productUpload,
+			@RequestParam(value = "productRemove", required = false) MultipartFile productRemove,
+			@RequestParam(value = "customerUpload", required = false) MultipartFile customerUpload,
+			@RequestParam(value = "customerRemove", required = false) MultipartFile customerRemove) {
+		log.debug("Campaign Edit:{}", campaignInfo);
+		Campaign campaign = GSON.fromJson(campaignInfo, new TypeToken<Campaign>() {
+		}.getType());
+		List<Integer> applicableTypesByRole = CAMPAIGN_ROLES.getApplicableTypesByEditRoles();
+		if (campaign == null)
+			throw new MarketingException("Campaign data is null");
+		if (!applicableTypesByRole.contains(campaign.getPromotionApplicableType()))
+			throw new MarketingException("User doesn't have the required Applicable Rights to edit campaign!");
+		if (UtilValidate.isEmpty(campaign.getUserMetaData())) {
+			throw new MarketingException("MetaInfo is required");
+		}
+		campaign.getUserMetaData().setModifiedBy(UserUtil.getUserId());
+		campaign.getUserMetaData().setDateModified(LocalDateTime.now());
+		if (CampaignConstants.COUPON_BASED.equalsIgnoreCase(campaign.getCouponBased())) {
+			constructPromotionCoupon(campaign, false);
+		} else {
+			campaign.setCouponBased(CampaignConstants.NON_COUPON_BASED);
+			campaign.setPromotionCoupon(null);
+		}
+		boolean isProductsAllowed = isProductUploadAllowed(campaign);
+		if (UtilValidate.isNotEmpty(productUpload) && isProductsAllowed) {
+			try {
+				ExcelUtil.readProductsUploadExcel(campaign,
+						campaignService.findConditionTypes(campaign.getCampaignType()), paybackPercentageMaxAllowed,
+						productUpload);
+				validateProductsAndTests(campaign.getCampaignProducts(), campaign.getPromotionApplicableType(),
+						campaign.getCampaignType(), campaign.getUserMetaData().isSpecialtyBased());
+			} catch (Exception e) {
+				return new Response(StatusCode.FAILURE, "Unable to Update Campaign : " + e.getMessage());
+			}
+		} else {
+			campaign.setCampaignProducts(new ArrayList<>());
+		}
+		if (isProductsAllowed) {
+			Set<String> removedProducts = UtilValidate.isNotEmpty(productRemove)
+					? ExcelUtil.readExcelWithSpeciality(productRemove, String.class,
+							campaign.getPromotionApplicableType(), campaign.getUserMetaData().isSpecialtyBased(), false)
+					: Collections.emptySet();
+			campaign.setRemovedProducts(removedProducts);
+		}
+		try {
+			/**
+			 * campaignService.checkRemoveExcelProducts(campaign);
+			 */
+			if (!CampaignConstants.ALL_CUSTOMERS.equals(campaign.getAllCustomers())) {
+				Set<Long> customersUpload = UtilValidate.isNotEmpty(customerUpload)
+						? ExcelUtil.readUploadExcel(customerUpload, Long.class, campaign.getPromotionApplicableType(),
+								true)
+						: Collections.emptySet();
+				campaign.setCustomerIds(customersUpload);
+				Set<Long> customersRemove = UtilValidate.isNotEmpty(customerRemove)
+						? ExcelUtil.readUploadExcel(customerRemove, Long.class, campaign.getPromotionApplicableType(),
+								true)
+						: Collections.emptySet();
+				campaign.setRemovedCustomerIds(customersRemove);
+			}
+			Campaign updatedCampaign = campaignService.updateCampaign(campaign);
+			log.info("Campaign Updated : {}, Status:{}", updatedCampaign.getCampaignId(), updatedCampaign.getStatus());
+			return new Response(StatusCode.SUCCESS, SUCCESS, updatedCampaign);
+		} catch (PromotionException | MarketingException ex) {
+			log.error(EXCEPTION_OCCURED, ex);
+			return new Response(StatusCode.FAILURE, ex.getMessage());
+		} catch (Exception ex) {
+			log.error(EXCEPTION_OCCURED, ex);
+			return new Response(StatusCode.FAILURE, "Could not update campaign!");
+		}
+	}
+
+	private static boolean isProductUploadAllowed(Campaign campaign) {
+		return !CampaignConstants.COUPON_BASED.equals(campaign.getCouponBased())
+				|| (UtilValidate.isNotEmpty(campaign.getPromotionCoupon())
+						&& PromotionConstants.SERVICE_CHARGES_DISC_TYPE != campaign.getPromotionCoupon()
+								.getCouponDiscountType());
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_LIST_RIGHTS)
+	@GetMapping("get-campaign-by-campaignid")
+	public Response getCampaignByCampaignId(@RequestParam("campaignId") Long campaignId) {
+		if (UtilValidate.isNotEmpty(campaignId)) {
+			Campaign campaign = campaignService.findCampaignForCampaignId(campaignId);
+			log.info("CampaignById: {}", campaign);
+			if (UtilValidate.isNotEmpty(campaign)) {
+				return new Response(StatusCode.SUCCESS, SUCCESS, campaign);
+			}
+			return new Response(StatusCode.SUCCESS, "No records found");
+		}
+		return new Response(StatusCode.FAILURE, "Failed to fetch records");
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_LIST_RIGHTS)
+	@PostMapping("get-campaign-list")
+	public Response listCampaigns(@RequestParam("campaignSearchCriteria") String campaignInfo) {
+		CampaignSearchCriteria searchCriteria = GSON.fromJson(campaignInfo, new TypeToken<CampaignSearchCriteria>() {
+		}.getType());
+		log.debug("CampaignSearchCriteria: {}", searchCriteria);
+		List<Integer> applicableTypesByRole = CAMPAIGN_ROLES.getApplicableTypesByViewRoles();
+		Map<String, Object> response = campaignService.getCampaignList(searchCriteria, applicableTypesByRole);
+		if (UtilValidate.isNotEmpty(response))
+			return new Response(StatusCode.SUCCESS, SUCCESS, response);
+		return new Response(StatusCode.SUCCESS, "No data found", Collections.emptyMap());
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_APPROVE_RIGHTS)
+	@PostMapping("approve-campaign")
+	public Response approveCampaign(@RequestParam("campaignId") Long campaignId, @RequestParam("toDate") String date,
+			@RequestParam(value = "channel", required = false) Integer channel,
+			@RequestParam(value = "couponBased", required = false) Boolean isCouponBased) {
+		log.info("Campaign Approve: {}, toDate: {}", campaignId, date);
+		LocalDateTime toDate = null;
+		try {
+			toDate = Instant.ofEpochMilli(Long.parseLong(date)).atZone(ZoneId.systemDefault()).toLocalDateTime();
+		} catch (NumberFormatException e) {
+			throw new MarketingException("toDate is not a valid date");
+		}
+		List<Integer> applicableTypesByRole = CAMPAIGN_ROLES.getApplicableTypesByApproveRoles();
+		boolean approved = campaignService.approveCampaign(campaignId, toDate, applicableTypesByRole,
+				UserUtil.getUserId());
+		log.info("Campaign Approved: {}, Status: {}", campaignId, approved);
+		if (approved) {
+			return new Response(StatusCode.SUCCESS, SUCCESS, campaignId);
+		} else {
+			return new Response(StatusCode.FAILURE, "Unable to Approve Campaign");
+		}
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_CLOSE_RIGHTS)
+	@PostMapping("update-campaign-to-date")
+	public Response updateActiveCampaign(@RequestParam("campaignId") Long campaignId,
+			@RequestParam("toDate") String date, @RequestParam(value = "channel", required = false) Integer channel,
+			@RequestParam(value = "couponBased", required = false) Boolean isCouponBased) {
+		List<Integer> applicableTypesByRole = CAMPAIGN_ROLES.getApplicableTypesByCloseRoles();
+		return updateToDateForCampaign(campaignId, date, applicableTypesByRole, PromotionConstants.ACTIVE, channel,
+				isCouponBased);
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_EDIT_RIGHTS)
+	@PostMapping("update-inactive-campaign-to-date")
+	public Response updateInactiveCampaignToDate(@RequestParam("campaignId") Long campaignId,
+			@RequestParam("toDate") String date) {
+		List<Integer> applicableTypesByRole = CAMPAIGN_ROLES.getApplicableTypesByEditRoles();
+		return updateToDateForCampaign(campaignId, date, applicableTypesByRole, PromotionConstants.INACTIVE, null,
+				null);
+	}
+
+	private Response updateToDateForCampaign(Long campaignId, String date, List<Integer> applicableTypesByRole,
+			String status, Integer channel, Boolean isCouponBased) {
+		log.info("Campaign ToDate Update: {}, toDate: {}", campaignId, date);
+		LocalDateTime toDate = null;
+		try {
+			toDate = Instant.ofEpochMilli(Long.parseLong(date)).atZone(ZoneId.systemDefault()).toLocalDateTime();
+		} catch (NumberFormatException e) {
+			throw new MarketingException("toDate is not a valid date");
+		}
+		boolean updated = campaignService.updateCampaignToDate(campaignId, toDate, applicableTypesByRole,
+				UserUtil.getUserId(), status);
+		log.info("Campaign Updated: {}, Status: {}", campaignId, updated);
+		if (updated) {
+			return new Response(StatusCode.SUCCESS, SUCCESS, campaignId);
+		} else {
+			return new Response(StatusCode.FAILURE, "Unable to Update Campaign");
+		}
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_APPROVE_RIGHTS)
+	@PostMapping("reject-campaign")
+	public Response rejectCampaign(@RequestParam("campaignId") Long campaignId,
+			@RequestParam("remarks") String remarks) {
+
+		if (UtilValidate.isNotEmpty(campaignId) && UtilValidate.isNotEmpty(remarks)) {
+			if (remarks.length() > 255 || remarks.trim().length() <= 0)
+				return new Response(StatusCode.FAILURE, "Remarks length should be between 0 and 255");
+			campaignService.rejectCampaign(campaignId, UserUtil.getUserId(), remarks,
+					CAMPAIGN_ROLES.getApplicableTypesByApproveRoles());
+			return new Response(StatusCode.SUCCESS, SUCCESS);
+		}
+		return new Response(StatusCode.FAILURE, "Unable to reject the campaign");
+	}
+
+	@GetMapping("is-campaign-name-available")
+	public Response validateCampaignName(@RequestParam("campaignName") String campaignName) {
+		boolean isValidCampaignName = campaignService.checkCampaignNameAvailablity(campaignName) == 0;
+		log.debug("Campaign Name {} " + (!isValidCampaignName ? "exists" : "does not exist"), campaignName);
+		return new Response(StatusCode.SUCCESS, SUCCESS, !isValidCampaignName);
+	}
+
+	@Scheduled(cron = "0 30 0 * * *")
+	public void autoRejectClosedCampaigns() {
+		try {
+			campaignService.autoRejectClosedCampaigns();
+		} catch (Exception e) {
+			log.error("Error occured while running the auto-reject cron : ", e);
+		}
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_LIST_RIGHTS)
+	@GetMapping("get-product-excel-download-for-campaign")
+	public ResponseEntity<ByteArrayResource> getProductExcelDownload(@RequestParam("templateId") Long templateId,
+			@RequestParam("campaignType") Integer campaignType, @RequestParam("applicableType") Integer applicableType,
+			@RequestParam("isSpecialityBased") boolean isSpecialityBased) {
+		log.debug("Campaign Products Download: {}, {}, {}", templateId, campaignType, applicableType);
+		List<Map<String, Object>> campaignProducts = campaignService.findCampaignProductsForTemplateId(templateId,
+				campaignType, applicableType);
+
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(new MediaType("application", FORCE_DOWNLOAD));
+		header.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ProductTemplate.xlsx");
+		if (campaignProducts != null) {
+			log.debug("Campaign Products Download Size: {}", campaignProducts.size());
+			Set<String> itemIds = new HashSet<>();
+			for (Map<String, Object> map : campaignProducts) {
+				String itemId = (String) map.get("ItemId");
+				if (itemId != null) {
+					itemIds.add(itemId);
+				}
+				String toProductId = (String) map.get("ToProductId");
+				if (toProductId != null) {
+					Collections.addAll(itemIds, toProductId.split(","));
+				}
+			}
+			Map<String, String> campaignIdsInfo = CampaignUtil.getCampaignIDsInfo(itemIds, applicableType,
+					isSpecialityBased, pathLabTestsService, productService, false);
+
+			byte[] excelData = ExcelUtil.generateExcelSheet(campaignProducts, campaignIdsInfo);
+			return new ResponseEntity<>(new ByteArrayResource(excelData), header, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new ByteArrayResource(new byte[0]), header, HttpStatus.OK);
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_LIST_RIGHTS)
+	@GetMapping("get-customer-excel-download-for-campaign")
+	public ResponseEntity<ByteArrayResource> getCustomerExcelDownload(@RequestParam("campaignId") Long campaignId) {
+		log.debug("Campaign Customers Download: {}", campaignId);
+		Set<Long> customerData = new HashSet<>(campaignService.getCampaignCustomers(campaignId));
+		return CampaignUtil.downloadExcel(customerData, "CustomerId", FORCE_DOWNLOAD, "CustomerTemplate.xlsx");
+	}
+
+	@PreAuthorize(MarketingConstants.CAMPAIGN_LIST_RIGHTS)
+	@GetMapping("get-campaign-stores-download")
+	public ResponseEntity<ByteArrayResource> getStoresExcelDownload(@RequestParam("campaignId") Long campaignId) {
+		log.debug("Campaign Stores Download: {}", campaignId);
+		List<String> storeIds = campaignService.getStores(campaignId);
+		return ProductStoreHelper.downloadStoresExcel(storeIds, accountStoreService);
+	}
+}

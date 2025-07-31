@@ -1,0 +1,311 @@
+# Solr related properties
+com.medplus.solr.products.url=http://192.168.1.64:81/solr/products
+com.medplus.solr.customers.url=http://192.168.1.64:82/solr/customers
+com.medplus.solr.localities.url=http://192.168.1.64:81/solr/localities
+com.medplus.solr.molecules.url=http://192.168.1.64:81/solr/molecules
+com.medplus.solr.optical_products.url=http://192.168.1.64:81/solr/optical_products
+com.medplus.solr.pathLabStores.url=http://192.168.1.64:81/solr/PathLabStores
+com.medplus.solr.pathlabs_tests.url=http://192.168.1.64:81/solr/pathlabs_tests
+com.medplus.solr.stores.url=http://192.168.1.64:81/solr/stores
+com.medplus.solr.batches.url=http://192.168.1.64:83/solr/batches
+com.medplus.solr.accounts.url=http://192.168.1.64:83/solr/accounts
+com.medplus.solr.cache.url=http://192.168.1.64:83/solr/medpluscache
+com.medplus.solr.doctors.url=http://192.168.1.64:81/solr/doctors
+com.medplus.solr.manufacturers.url=http://192.168.1.64:81/solr/manufacturers
+com.medplus.solr.segment.url=http://192.168.1.64:83/solr/segments
+com.medplus.solr.banks.url=http://192.168.1.64:83/solr/banks
+com.medplus.solr.user=admin
+com.medplus.solr.password=s0lr_cloud
+
+
+#Sentinel Instance Configuration
+com.medplus.redis.sentinel.1.ip=192.168.1.30
+com.medplus.redis.sentinel.1.port=26379
+com.medplus.redis.sentinel.2.ip=192.168.1.31
+com.medplus.redis.sentinel.2.port=26379
+com.medplus.redis.sentinel.3.ip=192.168.1.37
+com.medplus.redis.sentinel.3.port=26379
+
+#Input logical number against redis server and database configuration
+com.medplus.redis.logical.0.master=redis-cluster
+com.medplus.redis.logical.0.database=0
+
+com.medplus.redis.logical.1.master=redis-cluster
+com.medplus.redis.logical.1.database=1
+
+com.medplus.redis.logical.2.master=redis-cluster
+com.medplus.redis.logical.2.database=2
+
+com.medplus.redis.logical.3.master=redis-cluster
+com.medplus.redis.logical.3.database=3
+
+com.medplus.redis.logical.4.master=redis-cluster
+com.medplus.redis.logical.4.database=4
+
+com.medplus.redis.logical.5.master=redis-cluster
+com.medplus.redis.logical.5.database=5
+
+com.medplus.redis.logical.6.master=redis-cluster_3
+com.medplus.redis.logical.6.database=6
+
+com.medplus.redis.logical.7.master=redis-cluster
+com.medplus.redis.logical.7.database=7
+
+com.medplus.redis.logical.8.master=redis-cluster
+com.medplus.redis.logical.8.database=8
+
+com.medplus.redis.logical.9.master=redis-cluster_3
+com.medplus.redis.logical.9.database=0
+
+com.medplus.redis.logical.10.master=redis-cluster
+com.medplus.redis.logical.10.database=10
+
+com.medplus.redis.logical.13.master=redis-cluster_3
+com.medplus.redis.logical.13.database=13
+
+com.medplus.redis.logical.14.master=redis-cluster_3
+com.medplus.redis.logical.14.database=14
+
+#mq db
+com.medplus.redis.mq.db=13
+
+#priority mq db
+com.medplus.redis.mq.priority.db=14
+
+com.medplus.REDIS_DATABASE_IMS=3
+
+
+#Redis Cluster Configuration
+com.medplus.redis.cluster.1.host=192.168.1.38
+com.medplus.redis.cluster.1.port=6379
+com.medplus.redis.cluster.2.host=192.168.1.39
+com.medplus.redis.cluster.2.port=6379
+com.medplus.redis.cluster.3.host=192.168.1.40
+com.medplus.redis.cluster.3.port=6379
+com.medplus.redis.cluster.4.host=
+com.medplus.redis.cluster.4.port=6379
+com.medplus.redis.cluster.5.host=
+com.medplus.redis.cluster.5.port=6379
+com.medplus.redis.cluster.6.host=
+com.medplus.redis.cluster.6.port=6379
+com.medplus.redis.cluster.7.host=
+com.medplus.redis.cluster.7.port=6379
+com.medplus.redis.cluster.8.host=
+com.medplus.redis.cluster.8.port=6379
+com.medplus.redis.cluster.9.host=
+com.medplus.redis.cluster.9.port=6379
+com.medplus.redis.cluster.10.host=
+com.medplus.redis.cluster.10.port=6379
+com.medplus.redis.cluster.11.host=
+com.medplus.redis.cluster.11.port=6379
+
+
+
+#ums ldap properties
+com.medplus.ums.ldap.url=ldap://192.168.1.42:389
+com.medplus.ums.ldap.base.dn=ou=users,dc=medplus,dc=com
+com.medplus.ums.ldap.manager.dn=cn=root,dc=medplus,dc=com
+com.medplus.ums.ldap.manager.password=Ld@p_Cas_L0c#1
+
+#activemq configuration
+active.mq.broker.url=tcp://192.168.1.30:61616
+
+# Mongo replica set
+com.medplus.mongo.replicaSet=192.168.1.66:27017,192.168.1.66:27017,192.168.1.66:27017
+# Mongo mobile DBName
+com.medplus.mongo.mobile.DBName=mobile_push_notifications
+
+#Mongo slot DBname
+com.medplus.mongo.slot.DBName=slot
+
+#GST
+com.medplus.gstDate=2017-07-01
+
+#New transfer enabled inventories
+com.medplus.transfer.serving.inventories=INAPHYD00384,INKABLR00174,INKABLR00255,INMHPNQ00087,INAPHYD02001,INAPHYD00434,INTGHYD00476
+
+#WayBill Enable Inventories
+com.optival.waybill.enable.inventories=INKABLR00174,INKABLRNW001
+
+com.optival.waybill.nontrade.allowed=Y
+com.optival.einvoice.nontrade.allowed=Y
+
+#double shipment process enable
+com.optival.dispatch.dualshipment.enable.inventories=INAPHYD00384
+
+#Stock minimum expiry days
+com.medplus.pharmaSurgical.minExpiryDays=30
+com.medplus.nonPharmaSurgical.minExpiryDays=15
+com.medplus.franchise.pharmaSurgical.minExpiryDays=180
+com.medplus.franchise.nonPharmaSurgical.minExpiryDays=60
+
+#kafka properties
+com.medplus.kafka.bootstrap.address=192.168.1.232:9092,192.168.1.233:9092,192.168.1.234:9092 
+com.medplus.kafka.topic.prefix=marigold-
+
+#Timescale db properties
+com.medplus.store.trends.db.driver.classname=org.postgresql.Driver
+com.medplus.store.trends.db.schema=public
+com.medplus.store.trends.db.url=jdbc:postgresql://192.168.1.239:5432/marigold_store_trends
+com.medplus.store.trends.db.username=developer
+com.medplus.store.trends.db.password=devdev
+
+
+# Mail Configuration
+com.medplus.message.mail.host=smtp.cloudzimail.com
+com.medplus.message.mail.port=587
+com.medplus.message.mail.username=automatedmailer@medplusindia.com
+com.medplus.message.mail.password=Med@1234
+com.medplus.message.mail.smtp.auth=true
+com.medplus.message.mail.smtp.starttls.enable=false
+com.medplus.message.mail.debug=false
+
+# Local Diagnostics Reports 
+com.medplus.local.diagnostics.reportwebservice.url=http://192.168.1.60:9100/diagnostics
+
+#Stock Service base url
+com.medplus.stock.service.base.url=http://192.168.0.73:32107
+
+#MESSAGE SERVICE BASE URL
+com.medplus.message.service.base.url=http://192.168.0.73:32110
+#WAYBILL/EINVOICE SERVICE BASE URLservice url
+com.medplus.waybill.base.url=http://192.168.0.73:32116
+#waybill/irn request timeout limit
+com.medplus.waybill.timeout=120000
+#waybill/irn requestpayload size limit 10MB
+com.medplus.waybill.memorysize=10485760
+
+#POS MASTER SERVICE BASE URL
+com.medplus.pos.master.base.url=http://192.168.0.73:32115
+
+#FILE SERVICE BASE URL
+com.medplus.file.service.base.url=http://192.168.0.73:32123
+
+com.medplus.partner.service.base.url=http://192.168.0.73:32114
+com.medplus.finance.service.base.url=http://192.168.0.73:32113/
+
+# pincode and ifsc code details
+com.medplus.finance.master.pincode.info.url=http://www.postalpincode.in/api/pincode/
+com.medplus.razorPay.ifsccode.info.url=https://ifsc.razorpay.com/
+
+#Transfer Service base url
+com.medplus.transfer.service.base.url=http://192.168.0.73:32117
+
+#Subscription Service base url
+com.medplus.subscription.service.base.url=http://192.168.0.73:32105
+
+#PO-SERVICE BASE SERVICE URL
+com.medplus.po.base.url=http://192.168.0.73:32118
+#po-service request payload size limit - 1 GB
+com.medplus.po.memorysize=1073741824
+#po-service request timeout limit
+com.medplus.po.timeout=300000
+
+#Product-service url
+com.medplus.product.service.url=http://192.168.0.73:32121/product/
+com.medplus.product.service.timeout=300000
+#com.medplus.product.service.max.response.capacity:32
+
+#bom-service base url
+com.medplus.bom.service.base.url=http://192.168.0.73:32126
+
+#url used by account-service
+com.medplus.pathlabs.stores.url=http://192.168.1.60:9100/medpluslims/lab-store/get-lab-stores.pos
+
+#umsWebClient
+com.medplus.rest.clients.umsService.baseUrl = http://192.168.0.73:32125/ums/
+com.medplus.rest.clients.umsService.timeout = 90
+com.medplus.rest.clients.umsService.buffer= 10
+
+#Dispatch WebClient
+com.medplus.rest.clients.dispatchService.baseUrl=http://192.168.0.73:32130
+com.medplus.rest.clients.dispatchService.timeout=180
+com.medplus.rest.clients.dispatchService.buffer=20
+
+#Multi visit parameter details
+com.medplus.fasting.parameter.ids=271,274,348
+com.medplus.postprandial.parameter.ids=272,690,979
+
+#fasting home sample slots 
+com.medplus.fasting.home.sample.slots=10,1,2,15
+
+
+#cas login urls
+#cas login urls
+com.medplus.cas.server.host=marigold.medplusindia.com:6228
+com.medplus.cas.server.host.ip=192.168.1.31:8088
+
+#Application URLS properties
+
+masters=https://marigold.medplusindia.com:6224
+procurement=https://marigold.medplusindia.com:6826
+ums=https://marigold.medplusindia.com:6222
+finance=https://marigold.medplusindia.com:6824/finance
+dispatch=https://marigold.medplusindia.com:6226
+grn=https://marigold.medplusindia.com:6822
+crm=https://marigold.medplusindia.com:6722
+warehouse=https://marigold.medplusindia.com:6626
+marketing=https://marigold.medplusindia.com:6622
+Transfers=https://marigold.medplusindia.com:6624
+accounts=https://marigold.medplusindia.com:6830/accounts
+medpluslims=https://marigold.medplusindia.com:6422/medpluslims
+meditimes=https://meditimes.co.in
+diagnostics=https://marigold.medplusindia.com:6426/diagnostics
+Diagnostics=https://marigold.medplusindia.com:6426/diagnostics
+finance-erp=https://marigold.medplusindia.com:6526/finance-erp
+FinanceERP=https://marigold.medplusindia.com:6526/finance-erp
+optical-warehouse=https://marigold.medplusindia.com:6530/optical-warehouse
+OpticalWarehouse=https://marigold.medplusindia.com:6530/optical-warehouse
+medplus-subscription=https://marigoldmart.medplusindia.com:6122/medplusSubscription
+doctors=https://marigold.medplusindia.com:6924/doctor/
+OHS=https://rollcall.medplusindia.com/login
+pReports=http://10.119.0.91:8081
+dbReportUrl=https://marigold.medplusindia.com:6428
+com.medplus.transfers.url=https://marigold.medplusindia.com:6624/transfers-new
+com.medplus.marketing-new.url=https://marigold.medplusindia.com:6622/marketing-new
+com.medplus.dispatch.url=https://marigold.medplusindia.com:6226/dispatch
+
+optival.procurement=https://marigold.medplusindia.com:6826/oldprocurement/
+optival.transfers=https://marigold.medplusindia.com:6624
+optival.finance=https://marigold.medplusindia.com:6824/oldfinance/
+optival.grn=https://marigold.medplusindia.com:6822/oldgrn
+optival.marketing=https://marigold.medplusindia.com:6622
+#optival.warehouse=https://marigold.medplusindia.com:6626
+storesupervisor=http://marigold.medplusindia.com:6523/pos-web/
+
+ritemed.grn=https://marigold.medplusindia.com:6822/ritemed/
+ritemed.procurement=https://marigold.medplusindia.com:6826/ritemed/
+ritemed.transfers=https://marigold.medplusindia.com:6624/ritemed/
+
+com.medplus.cas.service.host=localhost:81
+com.medplus.cas.service.module=marketing
+com.medplus.cas.service.protocal=http
+com.medplus.cas.service.context=marketing
+
+com.medplus.posweb.service.url=http://192.168.1.60:9100/pos-web
+
+com.medplus.accounts.stores.service.url=http://192.168.1.60:9100/accounts/rest/stores/get-store-details.aims
+
+com.medplus.activemq.brokers.mq1.brokerURL=failover:(tcp://192.168.1.77:61616,tcp://192.168.1.81:61616)?maxReconnectAttempts=2
+com.medplus.activemq.brokers.mq1.username=activemq-pc
+com.medplus.activemq.brokers.mq1.password=L0cal_pc
+
+com.medplus.activemq.brokers.mq2.brokerURL=failover:(tcp://192.168.1.88:61616,tcp://192.168.1.89:61616)?maxReconnectAttempts=2
+com.medplus.activemq.brokers.mq2.username=activemq-pc
+com.medplus.activemq.brokers.mq2.password=L0cal_pc
+
+com.medplus.activemq.redeliveryPolicies.mq1.maximumRedeliveries=2
+com.medplus.activemq.redeliveryPolicies.mq1.initialRedeliveryDelay=1000
+com.medplus.activemq.redeliveryPolicies.mq1.maximumRedeliveryDelay=10000
+com.medplus.activemq.redeliveryPolicies.mq1.useExponentialBackOff=false
+com.medplus.activemq.redeliveryPolicies.mq1.backOffMultiplier=3
+com.medplus.activemq.redeliveryPolicies.mq1.queue=*
+
+#com.medplus.activemq.redeliveryPolicies.mq2.maximumRedeliveries=2
+#com.medplus.activemq.redeliveryPolicies.mq2.initialRedeliveryDelay=10000
+#com.medplus.activemq.redeliveryPolicies.mq2.maximumRedeliveryDelay=20000
+#com.medplus.activemq.redeliveryPolicies.mq2.useExponentialBackOff=false
+#com.medplus.activemq.redeliveryPolicies.mq2.backOffMultiplier=3
+#com.medplus.activemq.redeliveryPolicies.mq2.queue=*
+
+#com.medplus.activemq.jmsTemplate.sessionTransacted=true
