@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import customAXIOS from "./apis";
-import { CLASSES, TEACHERS } from "./urls";
+import { ALLCLASSES, ALLTEACHERS,CLASSES } from "./urls";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function CreateClasses() {
@@ -17,7 +17,7 @@ function CreateClasses() {
 
   // Fetch teachers + optionally class details (edit mode)
   useEffect(() => {
-    customAXIOS(TEACHERS, null, "get", null, navigator)
+    customAXIOS(ALLTEACHERS, null, "get", null, navigator)
       .then((res) => setTeachers(res))
       .catch((err) => alert("Failed to fetch teachers"));
 
@@ -53,7 +53,7 @@ function CreateClasses() {
         .then(() => alert("Class updated successfully"))
         .catch(() => alert("Error: class update failed"));
     }
-    navigator("/classTeachers");
+    navigator("/teachers/classes");
   };
 
   if (teachers.length === 0) return <p>Loading...</p>;
@@ -93,7 +93,7 @@ function CreateClasses() {
           >
             <option value="">Select Teacher</option>
             {teachers.length>0 && teachers.map((teacher) => (
-              <option key={teacher.user} value={teacher.user}>
+              <option key={teacher.user_id} value={teacher.user_id}>
                 {teacher.Name}
               </option>
             ))}

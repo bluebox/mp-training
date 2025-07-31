@@ -40,12 +40,13 @@ async function customAXIOS(url, params, method = 'get', body,navigate) {
         if (method.toLowerCase() === "get") {
             const res = await api.get(url, config);
             console.log("data-res:",res.data)
-            if(Object.keys(res.data).includes('results')){
-                console.log("in results:")
-                return res.data["results"]
-            }else{
-                return res.data
-            }
+            // if(Object.keys(res.data).includes('results')){
+            //     console.log("in results:")
+            //     return res.data["results"]
+            // }else{
+            //     return res.data
+            // }
+            return res.data
         } else if (method.toLowerCase() === "post") {
             const res = await api.post(url, body, config);
             return res.data;
@@ -69,7 +70,14 @@ async function customAXIOS(url, params, method = 'get', body,navigate) {
                 config.headers.Authorization = `Bearer ${newAccessToken}`;
                 if (method.toLowerCase() === "get") {
                     const res = await api.get(url, config);
-                    return res.data;
+                    console.log("data-res:",res.data)
+                    // if(Object.keys(res.data).includes('results')){
+                    //     console.log("in results:")
+                    //     return res.data["results"]
+                    // }else{
+                    //     return res.data
+                    // }
+                    return res.data
                 } else if (method.toLowerCase() === "post") {
                     const res = await api.post(url, body, config);
                     return res.data;
@@ -81,8 +89,12 @@ async function customAXIOS(url, params, method = 'get', body,navigate) {
                     return res.data;
                 }
             } catch (refreshError) {
-                console.error("Token refresh failed:", refreshError);
-                navigate("/logout")
+                if(refreshError.response.status === 401){
+                    console.error("Token refresh failed:", refreshError);
+                    navigate("/logout")
+                }else{
+                    window.location.href = '/unauthorized';
+                }
             }
         } else if(error.response && error.response.status === 403){
             console.log("Unauthorized request")

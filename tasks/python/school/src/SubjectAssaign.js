@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import customAXIOS from "./apis";
-import { CLASSES, SUBJECTS, SUBJECTTEACHERCLASS, TEACHERS } from "./urls";
+import { ALLCLASSES, ALLSUBJECTS, SUBJECTTEACHERCLASS, ALLTEACHERS } from "./urls";
 import { useNavigate } from "react-router-dom";
 
 function SubjectAssaign() {
@@ -16,7 +16,7 @@ function SubjectAssaign() {
     const navigator = useNavigate();
 
     useEffect(() => {
-        customAXIOS(CLASSES, null, 'get', null, navigator)
+        customAXIOS(ALLCLASSES, null, 'get', null, navigator)
             .then(res => setClasses(res))
             .catch(err => {
                 alert("Error in fetching classes");
@@ -25,7 +25,7 @@ function SubjectAssaign() {
     }, []);
 
     useEffect(() => {
-        customAXIOS(SUBJECTS, null, 'get', null, navigator)
+        customAXIOS(ALLSUBJECTS, null, 'get', null, navigator)
             .then(res => setSubjects(res))
             .catch(err => {
                 alert("Error in fetching subjects");
@@ -34,7 +34,7 @@ function SubjectAssaign() {
     }, []);
 
     useEffect(() => {
-        customAXIOS(TEACHERS, null, 'get', null, navigator)
+        customAXIOS(ALLTEACHERS, null, 'get', null, navigator)
             .then(res => setTeachers(res))
             .catch(err => {
                 alert("Error in fetching teachers");
@@ -44,7 +44,7 @@ function SubjectAssaign() {
 
     useEffect(() => {
         customAXIOS(SUBJECTTEACHERCLASS, null, 'get', null, navigator)
-            .then(res => setRelations(res))
+            .then(res => setRelations(res.results))
             .catch(err => {
                 alert("Error in fetching previous relations");
                 console.log("Error:", err);
@@ -54,9 +54,9 @@ function SubjectAssaign() {
 
     const getAvailableClasses = () => {
         const assigned = new Set(
-            relations.map(r => `${r.subject_id}_${r.class_id}`)
+            relations?.map(r => `${r.subject_id}_${r.class_id}`)
         );
-        return classes.filter(cls =>
+        return classes?.filter(cls =>
             !assigned.has(`${selectedSubject}_${cls.Class_id}`)
         );
     };
@@ -73,7 +73,7 @@ function SubjectAssaign() {
             teacher: selectedTeacher,
             rel_class: selectedClass
         };
-
+        console.log(postData)
         customAXIOS(SUBJECTTEACHERCLASS, null, 'post', postData, navigator)
             .then(() => {
                 alert("Subject assigned successfully!");
@@ -88,6 +88,7 @@ function SubjectAssaign() {
             .catch(err => {
                 alert("Failed to assign subject.");
                 console.log("POST Error:", err);
+                console.log("Error data:",postData)
             });
     };
 
@@ -103,7 +104,7 @@ function SubjectAssaign() {
                         required
                     >
                         <option value="">-- Select Subject --</option>
-                        {subjects.map(sub => (
+                        {subjects?.map(sub => (
                             <option key={sub.id} value={sub.id}>
                                 {sub.Name}
                             </option>
@@ -119,8 +120,8 @@ function SubjectAssaign() {
                         required
                     >
                         <option value="">-- Select Teacher --</option>
-                        {teachers.map(teacher => (
-                            <option key={teacher.user} value={teacher.user}>
+                        {teachers?.map(teacher => (
+                            <option key={teacher.user_id} value={teacher.user_id}>
                                 {teacher.Name}
                             </option>
                         ))}
@@ -131,7 +132,7 @@ function SubjectAssaign() {
                     <label>Class: </label>
                     <select value={selectedClass} onChange={e => setSelectedClass(e.target.value)} required>
                         <option value="">-- Select Class --</option>
-                        {getAvailableClasses().map(cls => (
+                        {getAvailableClasses()?.map(cls => (
                             <option key={cls.id} value={cls.id}>
                                 {cls.Class_id} - {cls.Section}
                             </option>

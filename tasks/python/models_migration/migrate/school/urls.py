@@ -11,7 +11,6 @@ router.register('results', ResultsViewSet, basename='results')
 
 urlpatterns = [
     path('Student/',StudentsView.as_view()),
-    path('',include(router.urls)),
     path('dashboard/',StudentResultsDashBoard.as_view()),
     path('studentDetails/',StudentDetails.as_view()),
     path('subjectsDashboard/',StudentSubjectsDashboard.as_view()),
@@ -21,4 +20,9 @@ urlpatterns = [
     path('subjectTeachers/',SubjectTeacher.as_view()),
     path('classTeachers/',TeacherClass.as_view()),
     path('subject/classes/',SubjectTeacherRelationView.as_view()),
+    path('Student/all/',ALLStudentsView.as_view()),
+    path('allTeachers/all/',AllTeachersWp.as_view()),
+    path('classes/all/',AllClassesView.as_view()),
+    path('subjects/all/',AllSubjectsView.as_view()),
+    path('',include(router.urls)),
 ]

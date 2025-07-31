@@ -50,7 +50,7 @@ function ClassTeachers(){
                                 </Link>
                                 {/* <Link to="/" state={{"id": u.id.toString()}}>Alter</Link> */}
 
-                                <button className="delete-btn" onClick={() => handleDelete(teacher.id)}>Delete</button>
+                                <button className="delete-btn" onClick={() => handleDelete(teacher.teacher_id)}>Delete</button>
                             </td>
                         </tr>
                         

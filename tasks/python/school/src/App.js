@@ -27,6 +27,8 @@ import Unauthorized from './Unauthorized';
 import TeacherRoleAuth from './teacherRoleAuth';
 import AdminRoleAuth from './adminRoleAuth';
 import AdminTeacherCombiAuth from './adminTeacherCombiAuth';
+import LoginRestrict from './loginRestrict';
+import HomePage from './HomePage';
 // import AdminTeacherDetails from './AdminTeacherDetails';
 
 function App() {
@@ -103,7 +105,7 @@ function App() {
         <Routes>
         
           <Route element={<PrivateRoute login={login} />}>
-
+            <Route path='/' element={<HomePage/>}/>
             <Route element={<StudentRoleAuth/>}>
               <Route path='/results' element={< StudentResultsDashboard userId={id}/>}/>
               <Route path='/studentDetails' element={<StudentDetails userId={id}/>}/>
@@ -115,7 +117,6 @@ function App() {
               <Route path='/teacherResults' element={<TeacherResultsView userId={id}/>}></Route>
               <Route path='/uploadResults' element={<ResultsUpload userId={id}/>}/>
               <Route path='/teacherDetails' element={<TeacherDetails userId={id}/>}/>
-              <Route path='/editTeacherDetails' element={<EditTeacherDetails userId={id}/>}/>
               <Route path='/teachers/subjects' element={<DisplayTeacherSubjects userId={id}/>}/>
             </Route>
 
@@ -133,6 +134,7 @@ function App() {
             
             <Route element={<AdminTeacherCombiAuth/>}>
               <Route path='/students' element={<Student/>}/>
+              <Route path='/editTeacherDetails' element={<EditTeacherDetails userId={id}/>}/>
             </Route>
             
             
@@ -143,17 +145,18 @@ function App() {
             
             
             
-            
           </Route>
-
-          <Route path="/login" element={
-            <Login
-              login={login}
-              setLogin={setLogin}
-              setId={setId}
-              setAccess={setAccess}
-            />
-          } />
+          <Route element={<LoginRestrict/>}>
+              <Route path="/login" element={
+                <Login
+                  login={login}
+                  setLogin={setLogin}
+                  setId={setId}
+                  setAccess={setAccess}
+                />
+              } />
+          </Route>
+          
           <Route path="/logout" element={<Logout setLogin={setLogin} />} />
           <Route path="/unauthorized" element={<Unauthorized/>}/>
         </Routes>

@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import customAXIOS from "./apis";
-import { ALLTEACHERS, TEACHERS } from "./urls";
+import { ALLTEACHERSP, TEACHERS } from "./urls";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Teachers(){
     const [teacher,setTeacher] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [count, setCount] = useState(0);
+    const [pageSize] = useState(5)
     const navigator = useNavigate()
     useEffect(()=>{
-        customAXIOS(ALLTEACHERS,null,'get',null,navigator)
-        .then(res=>setTeacher(res))
-    },[])
+        customAXIOS(ALLTEACHERSP,{page:currentPage},'get',null,navigator)
+        .then(res=>{
+            setTeacher(res.results||[])
+            setCount(res.count || 0)
+        })
+    },[currentPage])
 
 
     const level = {'l':'Lower-School','h':'High-School','p':'Primary-School'}
@@ -23,7 +29,7 @@ function Teachers(){
             console.log("Error:", err);
         }
     };
-
+    const totalPages = Math.ceil(count / pageSize);
 
     return(
         <div className="display-container">
@@ -39,7 +45,7 @@ function Teachers(){
                     </tr>
                 </thead>
                 <tbody>
-                    {teacher.map((u) => (
+                    {teacher?.map((u) => (
                         <tr key={u.user_id}>
                             <td>{u.Name}</td>
                             <td>{level[u.level]}</td>
@@ -65,6 +71,18 @@ function Teachers(){
                     )}
                 </tbody>
             </table>
+            {/* Pagination Buttons */}
+            <div className="pagination">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
+                <button
+                    key={pg}
+                    onClick={() => setCurrentPage(pg)}
+                    className={pg === currentPage ? "active" : ""}
+                >
+                    {pg}
+                </button>
+                ))}
+            </div>
         </div>
     )
 

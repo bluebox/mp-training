@@ -23,6 +23,7 @@ function Login({setLogin,setId,setAccess})
                 localStorage.setItem('id',response.id)
                 setAccess(response.role)
                 localStorage.setItem('access',response.role)
+                localStorage.setItem('username',response.user_name)
                 navigate("/");
             } else {
                 alert("Login failed. Please check your credentials.");

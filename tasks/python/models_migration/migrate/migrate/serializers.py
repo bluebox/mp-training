@@ -7,4 +7,5 @@ class CustomAuthSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
         data['role'] = self.user.role
         data['id'] = self.user.id
+        data['user_name'] = self.user.username
         return data

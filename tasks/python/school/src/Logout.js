@@ -7,6 +7,7 @@ function Logout({ setLogin }) {
   localStorage.removeItem('jwtAccessToken')
   localStorage.removeItem('jwtRefreshToken')
   localStorage.removeItem('access')
+  localStorage.removeItem('id')
   localStorage.setItem('isLogin','false')
   navigate('/login');
 }

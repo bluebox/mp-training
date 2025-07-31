@@ -41,7 +41,7 @@ class Student(models.Model):
 class Classes(models.Model):
     Class_id = models.IntegerField(null=False, unique=True)
     Section = models.CharField(max_length=3, null=False)
-    teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=False)
+    teacher = models.ForeignKey('Teacher', on_delete=models.SET_NULL,null=True)
     class Meta:
         db_table = 'classes'
         unique_together = ('Section', 'Class_id')
@@ -70,9 +70,9 @@ class Subject(models.Model):
 
 
 class subject_teacher(models.Model):
-    subject = models.ForeignKey('Subject', on_delete=models.CASCADE, null=False)
-    teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=False)
-    rel_class = models.ForeignKey('Classes', on_delete=models.CASCADE, null=False, related_name='subject_teacher_set')
+    subject = models.ForeignKey('Subject', on_delete=models.CASCADE,null=False)
+    teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE,null=False)
+    rel_class = models.ForeignKey('Classes', on_delete=models.SET_NULL,null=True ,related_name='subject_teacher_set')
     class Meta:
         db_table = 'subject_teacher'
 
