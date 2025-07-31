@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ViewBooksController"
+            prefHeight="400.0" prefWidth="750.0">
+    <children>
+        <Label layoutX="300.0" layoutY="20.0" text="All Books" textFill="#6c2bb2">
+            <font><Font name="System Bold Italic" size="20.0"/>
+            </font>
+        </Label>
+        <TableView fx:id="tableView" layoutX="25.0" layoutY="60.0" prefWidth="700.0" prefHeight="250.0">
+            <columns>
+                <TableColumn fx:id="book_id" prefWidth="60.0" text="Book ID"/>
+                <TableColumn fx:id="book_title" prefWidth="110.0" text="Title"/>
+                <TableColumn fx:id="author" prefWidth="110.0" text="Author"/>
+                <TableColumn fx:id="category" prefWidth="100.0" text="Category"/>
+                <TableColumn fx:id="status" prefWidth="85.0" text="Status"/>
+                <TableColumn fx:id="availability" prefWidth="85.0" text="Availability"/>
+                <TableColumn fx:id="updateCol" prefWidth="100.0" text="Update"/>
+                <TableColumn fx:id="updateAvailCol" prefWidth="150.0" text="Update Availability"/>
+            </columns>
+        </TableView>
+        <Button layoutX="320.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleBack" text="Go Back"/>
+    </children>
+</AnchorPane>
+

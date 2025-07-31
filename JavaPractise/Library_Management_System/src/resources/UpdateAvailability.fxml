@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.UpdateBookAvailabilityController"
+            prefHeight="300.0" prefWidth="400.0">
+
+    <children>
+        <Label layoutX="120.0" layoutY="30.0" text="Update Availability">
+            <font><Font size="20.0"/></font>
+        </Label>
+
+        <Label layoutX="80.0" layoutY="100.0" text="Book ID:"/>
+        <TextField fx:id="idField" layoutX="200.0" layoutY="95.0" prefWidth="120.0"/>
+
+        <Label layoutX="80.0" layoutY="150.0" text="Availability:"/>
+        <ComboBox fx:id="availabilityCombo" layoutX="200.0" layoutY="145.0" prefWidth="120.0"/>
+
+        <Button layoutX="80.0" layoutY="220.0" text="Update" onAction="#handleUpdateBook"/>
+        <Button layoutX="200.0" layoutY="220.0" text="Back" onAction="#handleBack"/>
+    </children>
+</AnchorPane>

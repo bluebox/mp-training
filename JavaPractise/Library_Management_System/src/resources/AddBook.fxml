@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AddBookController"
+            prefHeight="450.0" prefWidth="600.0">
+
+    <children>
+        <Label layoutX="200.0" layoutY="30.0" text="Add Book">
+            <font><Font size="20.0"/></font>
+        </Label>
+
+        <Label layoutX="150.0" layoutY="100.0" text="Title"/>
+        <TextField fx:id="titleField" layoutX="300.0" layoutY="95.0"/>
+
+        <Label layoutX="150.0" layoutY="140.0" text="Author"/>
+        <TextField fx:id="authorField" layoutX="300.0" layoutY="135.0"/>
+
+        <Label layoutX="150.0" layoutY="180.0" text="Category"/>
+        <ComboBox fx:id="categoryCombo" layoutX="300.0" layoutY="175.0" prefWidth="150.0"/>
+
+        <Label layoutX="150.0" layoutY="220.0" text="Status"/>
+        <ComboBox fx:id="statusCombo" layoutX="300.0" layoutY="215.0" prefWidth="150.0"/>
+
+        <Label layoutX="150.0" layoutY="260.0" text="Availability"/>
+        <ComboBox fx:id="availabilityCombo" layoutX="300.0" layoutY="255.0" prefWidth="150.0"/>
+
+        <Button layoutX="180.0" layoutY="320.0" text="Submit" onAction="#handleAddBook"/>
+        <Button layoutX="300.0" layoutY="320.0" text="Back" onAction="#handleBack"/>
+    </children>
+</AnchorPane>

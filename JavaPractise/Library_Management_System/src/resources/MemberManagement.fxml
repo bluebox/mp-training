@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="controller.MemberController"
+      prefWidth="400" prefHeight="400">
+    <Label text="MemberManagement" style="-fx-font-size: 16;" />
+    <Button text="Add Member" onAction="#handleAddMember"/>
+    <Button text="Update Members" onAction="#handleUpdateMember"/>
+    <Button text="View All Members" onAction="#handleViewMembers"/>
+    <Button text="Back to Main" onAction="#handleBack"/>
+</VBox>

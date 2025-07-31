@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.UpdateBookController"
+            prefHeight="450.0" prefWidth="600.0">
+
+   <children>
+      <Label layoutX="200.0" layoutY="20.0" text="Update Book">
+         <font><Font size="20.0"/></font>
+      </Label>
+
+      <Label layoutX="150.0" layoutY="70.0" text="Book ID"/>
+      <TextField fx:id="idField" layoutX="300.0" layoutY="65.0" prefWidth="150.0"/>
+
+      <Label layoutX="150.0" layoutY="120.0" text="Title"/>
+      <TextField fx:id="titleField" layoutX="300.0" layoutY="115.0"/>
+
+      <Label layoutX="150.0" layoutY="160.0" text="Author"/>
+      <TextField fx:id="authorField" layoutX="300.0" layoutY="155.0"/>
+
+      <Label layoutX="150.0" layoutY="200.0" text="Category"/>
+      <ComboBox fx:id="categoryCombo" layoutX="300.0" layoutY="195.0" prefWidth="150.0"/>
+
+      <Label layoutX="150.0" layoutY="240.0" text="Status"/>
+      <ComboBox fx:id="statusCombo" layoutX="300.0" layoutY="235.0" prefWidth="150.0"/>
+
+      <Button layoutX="180.0" layoutY="320.0" text="Submit" onAction="#handleUpdateBook"/>
+      <Button layoutX="320.0" layoutY="320.0" text="Back" onAction="#handleBack"/>
+   </children>
+</AnchorPane>
