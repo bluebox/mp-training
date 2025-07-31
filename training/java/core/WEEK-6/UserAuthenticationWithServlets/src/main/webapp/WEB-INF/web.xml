@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>SimpleUserAuthenticationWithServlets</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.xhtml</welcome-file>
+	</welcome-file-list>
+	
+	<context-param>
+		<param-name>dbUrl</param-name>
+		<param-value>jdbc:mysql://localhost:3306/auth</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbUser</param-name>
+		<param-value>root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbPassword</param-name>
+		<param-value>LiveClass@1603526</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>RegisterResponse</servlet-name>
+		<servlet-class>com.auth.servlets.RegisterResponse</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterResponse</servlet-name>
+		<url-pattern>/registerResponse</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginResponse</servlet-name>
+		<servlet-class>com.auth.servlets.LoginResponse</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginResponse</servlet-name>
+		<url-pattern>/loginResponse</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>HomeServlet</servlet-name>
+		<servlet-class>com.auth.servlets.HomeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomeServlet</servlet-name>
+		<url-pattern>/homeServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LogoutResponse</servlet-name>
+		<servlet-class>com.auth.servlets.LogoutResponse</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutResponse</servlet-name>
+		<url-pattern>/logoutResponse</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
