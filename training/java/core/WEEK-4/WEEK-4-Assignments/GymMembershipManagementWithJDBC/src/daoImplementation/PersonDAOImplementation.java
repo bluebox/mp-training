@@ -17,7 +17,7 @@ public class PersonDAOImplementation implements PersonDAO{
 			psInsert.setInt(3,age);
 			psInsert.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Invalid details Entered...");
 		}
 	}
 	
@@ -29,7 +29,7 @@ public class PersonDAOImplementation implements PersonDAO{
 			psUpdate.setString(2, phone);
 			psUpdate.executeUpdate();
 		}catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println("Invalid details Entered...");
 		}
 	}
 	
@@ -41,7 +41,7 @@ public class PersonDAOImplementation implements PersonDAO{
 			psUpdate.setString(2, phone);
 			psUpdate.executeUpdate();
 		}catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println("Invalid details Entered...");
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class PersonDAOImplementation implements PersonDAO{
 			psDelete.setString(1, phone);
 			psDelete.executeUpdate();
 		}catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println("Invalid details Entered...");
 		}
 	}
 }

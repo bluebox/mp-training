@@ -30,7 +30,7 @@ public class MembershipPlanDAOImplementation implements MembershipPlanDAO {
 			conn.setAutoCommit(true);
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Error Occured, while inserting all plans...");
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import daoImplementation.PersonDAOImplementation;
 import service.GymService;
+import utilities.InvalidInputException;
 
 public class GymServiceImplementation implements GymService {
     private List<MemberServiceImplementation> members = new ArrayList<>();
@@ -153,20 +154,20 @@ public class GymServiceImplementation implements GymService {
     		System.out.print("Choice : ");
     		int choice=Integer.parseInt(sc.nextLine());
     		if(choice<1 || choice>2) {
-    			System.out.println("Invalid choice, choice must be 1 or 2...");
-    			return;
+    			throw new InvalidInputException("Invalid choice, choice must be 1 or 2...");
     		}
     		switch(choice) {
     			case 1:{
     				System.out.println("Enter New Name : ");
     				String updatedName=sc.nextLine();
+    				if(updatedName.length()>50) {
+    					throw new InvalidInputException("Name length cannot be more than 50 characters...");
+    				}
     				if(updatedName.strip().length()==0) {
-    					System.out.println("Updaed name cannot be empty...");
-    					return;
+    					throw new InvalidInputException("Updaed name cannot be empty...");
     				}
     				else if(existing.getName()==updatedName) {
-    					System.out.println("Updated name cannot be equal to existing name...");
-    					return;
+    					throw new InvalidInputException("Updated name cannot be equal to existing name...");
     				}
     				existing.setName(updatedName);
     				new PersonDAOImplementation().updateName(existing.getPhone(), updatedName);
@@ -176,24 +177,23 @@ public class GymServiceImplementation implements GymService {
     			case 2:{
     				System.out.println("Enter New Age : ");
     				String input=sc.nextLine();
-    				try {
-    					int updatedAge=Integer.parseInt(input);
-    					if(existing.getAge()==updatedAge) {
-        					System.out.println("Updated Age cannot be equal to existing age...");
-        					return;
-        				}
-        				existing.setAge(updatedAge);
-        				new PersonDAOImplementation().updateAge(existing.getPhone(), updatedAge);
-        				System.out.println("Age updated succesfully...");
-    				}catch(NumberFormatException e) {
-    					System.out.println("Age must an integer...");
+    				int updatedAge=Integer.parseInt(input);
+    				if (updatedAge > 0 && updatedAge<=100) {
+    					throw new InvalidInputException("Age must be positive and must below 100, Enter valid Age...");
     				}
+					if(existing.getAge()==updatedAge) {
+    					throw new InvalidInputException("Updated Age cannot be equal to existing age...");
+    				}
+    				existing.setAge(updatedAge);
+    				new PersonDAOImplementation().updateAge(existing.getPhone(), updatedAge);
+    				System.out.println("Age updated succesfully...");
     				break;
     			}
     		}
     		
-    	}catch(NumberFormatException e) {
-    		System.out.println("Choice must be an integer between 1 and 2...");
+    	}catch(NumberFormatException|InvalidInputException e) {
+    		System.out.println(e.getMessage());
+    		return;
     	}
     }
     

@@ -38,21 +38,31 @@ public class GymController {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter Name: ");
-                    String name = scanner.nextLine();
-                    String phone = PersonController.inputPhone(gym,scanner);
-                    MemberServiceImplementation existingMember=gym.getMemberByPhone(phone);
-                    if(existingMember!=null) {
-                    	throw new InvalidInputException("Phone number already exists give different one...");
+                    try {
+                    	System.out.print("Enter Name: ");
+                        String name = scanner.nextLine();
+                        if(name.length()>50) {
+                        	throw new InvalidInputException("Name cannot be greater than 50 chracters...");
+                        }
+                        if(name.equals("") || name.strip().equals("")) {
+                        	throw new InvalidInputException("Name must be given...");
+                        }
+                        String phone = PersonController.inputPhone(gym,scanner);
+                        MemberServiceImplementation existingMember=gym.getMemberByPhone(phone);
+                        if(existingMember!=null) {
+                        	throw new InvalidInputException("Phone number already exists give different one...");
+                        }
+                        int age=PersonController.inputAge(scanner);
+                        int planChoice=MembershipPlanController.inputMembershipPlan(gym,scanner);
+                        MembershipPlanServiceImplementation selectedPlan = gym.getPlans().get(planChoice - 1);
+                        new PersonDAOImplementation().addPerson(phone, name, age);
+                        int memberId=new MemberDAOImplementation().addMember(phone, planChoice, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                        MemberServiceImplementation m = new MemberServiceImplementation(phone, name, age, memberId, selectedPlan, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                        gym.addNewMember(m);
+                        System.out.println("Member added with plan successfully!");
+                    }catch(InvalidInputException e) {
+                    	System.out.println(e.getMessage());
                     }
-                    int age=PersonController.inputAge(scanner);
-                    int planChoice=MembershipPlanController.inputMembershipPlan(gym,scanner);
-                    MembershipPlanServiceImplementation selectedPlan = gym.getPlans().get(planChoice - 1);
-                    new PersonDAOImplementation().addPerson(phone, name, age);
-                    int memberId=new MemberDAOImplementation().addMember(phone, planChoice, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-                    MemberServiceImplementation m = new MemberServiceImplementation(phone, name, age, memberId, selectedPlan, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-                    gym.addNewMember(m);
-                    System.out.println("Member added with plan successfully!");
                     break;
 
                 case 2:
@@ -64,7 +74,6 @@ public class GymController {
                         }
                     }
                     break;
-
                 case 3:
                 	MembershipPlanController.inputExistingMembershipPlan(gym,scanner);
                     break;
