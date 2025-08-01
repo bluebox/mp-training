@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<!--addition servlet -->
+	
+	<servlet>
+	<servlet-name>abc</servlet-name>
+	<servlet-class>com.servlet.AddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>abc</servlet-name>
+	<url-pattern>/add</url-pattern>
+	</servlet-mapping>
+	
+	<!-- user registration-->
+	<servlet>
+	<servlet-name>add</servlet-name>
+	<servlet-class>com.servlet.DbConnection</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>add</servlet-name>
+	<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+	<!-- delete user-->
+	<servlet>
+	<servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>com.servlet.DeleteUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <!-- servlet dispacher-->
+    
+    <servlet>
+        <servlet-name>FirstServlet</servlet-name>
+        <servlet-class>com.servlet.FirstServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirstServlet</servlet-name>
+        <url-pattern>/first</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SecondServlet</servlet-name>
+        <servlet-class>com.servlet.SecondServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SecondServlet</servlet-name>
+        <url-pattern>/second</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+   
+<!-- pre initilasation of servlet-->
+    <servlet>
+        <servlet-name>PreInitServlet</servlet-name>
+        <servlet-class>com.servlet.PreInitServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PreInitServlet</servlet-name>
+        <url-pattern>/preinit</url-pattern>
+    </servlet-mapping>
+
+<!-- Initparams example-->
+<servlet>
+    <servlet-name>InitParamExample</servlet-name>
+    <servlet-class>com.servlet.InitParams</servlet-class>
+    <init-param>
+        <param-name>appUser</param-name>
+        <param-value>Gopi Lakshmi Nadh</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>InitParamExample</servlet-name>
+    <url-pattern>/InitParams</url-pattern>
+  </servlet-mapping>
+
+</web-app>
