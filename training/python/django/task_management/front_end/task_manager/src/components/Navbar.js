@@ -32,7 +32,7 @@ else if(JSON.parse(localStorage.getItem("user")).role === 'admin'){
         <Link to="/task-assign" style={{display:'inline', marginLeft:"10px", color:"white"}}>AssignTask</Link>
         <Link to="/view-all" style={{display:'inline', marginLeft:"10px", color:"white"}}>ViewAllPeople</Link>
         <Link to="/login" style={{display:'inline', marginLeft:"10px", color:"white"}} onClick={handleLogout}>Logout</Link>
-        <Link to="/my-profile" style={{display:'inline', marginLeft:"500px", marginRight:"10px", color:"white"}}>My Profile</Link>
+        <Link to="/my-profile" style={{display:'inline', marginLeft:"300px", marginRight:"10px", color:"white"}}>My Profile</Link>
       </nav>
   )
 }
@@ -41,7 +41,7 @@ else if(JSON.parse(localStorage.getItem("user")).role === 'lead'){
   return (
       <nav className="navbar">
         <Link to="/home" style={{display:'inline', marginLeft:"10px", color:"white"}}>Home</Link>
-        <Link to="/dashboard" style={{display:'inline', marginLeft:"10px", color:"white"}}>Dashboard</Link>
+        <Link to="/lead-dashboard" style={{display:'inline', marginLeft:"10px", color:"white"}}>Dashboard</Link>
         <Link to="/create-task" style={{display:'inline', marginLeft:"10px", color:"white"}}>create task</Link>
         <Link to="/task-assign" style={{display:'inline', marginLeft:"10px", color:"white"}}>AssignTask</Link>
         <Link to="/task-list" style={{display:'inline', marginLeft:"10px", color:"white"}}>TaskList</Link>

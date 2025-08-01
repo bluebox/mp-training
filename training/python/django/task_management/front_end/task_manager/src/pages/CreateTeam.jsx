@@ -33,7 +33,7 @@ export default function CreateTeam(){
         <div>
             <form>
                 <div>
-                    <label>name</label>
+                    <label>Team name</label>
                     <input name="name" value={formData.name} onChange={handleChange} required/>
                 </div>
                 

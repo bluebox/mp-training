@@ -2,16 +2,24 @@ import api from '../api/axios';
 import { useEffect, useState } from "react"
 
 export default function ViewAll(){
-
-    const [users, setUsers] =useState([]);
     const [count, setCount] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [role, setRole] = useState("");
+    const [isFilter, setIsFilter] = useState(false);
+    const [filteredUsers, setFilteredUsers] = useState([]);
 
     useEffect(() => {
     const fetchData = async () => {
       try{
-        const response = await api.get('all/profiles/?page='+currentPage);
-        setUsers(response.data.results);
+        if(username==="" && email==="" && role===""){
+          setIsFilter(false);
+        }
+        const response = isFilter? await api.get("all/profiles/?page="+currentPage+'&'+(username===""?"":"username="+username)+'&'+(email===""?"":"email="+email)
+                                      +'&'+(role===""?"":"role="+role)) :await api.get('all/profiles/?page='+currentPage);
+
+        setFilteredUsers(response.data.results);
         if(currentPage===1){
           if(response.data.results.length){
             setCount(Math.ceil(response.data.count/response.data.results.length));
@@ -26,7 +34,24 @@ export default function ViewAll(){
       }
     }
     fetchData();
+    // eslint-disable-next-line
   }, [currentPage]);
+
+  const handleFilter = async () => {
+    setCurrentPage(1);
+    setIsFilter(true);
+    const response = await api.get("all/profiles/?page="+currentPage+'&'+(username===""?"":"username="+username)+'&'+(email===""?"":"email="+email)
+                                      +'&'+(role===""?"":"role="+role));
+    setFilteredUsers(response.data.results);
+    if(currentPage===1){
+      if(response.data.results.length){
+        setCount(Math.ceil(response.data.count/response.data.results.length));
+      }
+      else{
+        setCount(1);
+      }
+    }
+  }
 
   const handleNextPage =() => {
     if(currentPage <= count){
@@ -40,8 +65,37 @@ export default function ViewAll(){
     }
   };
 
+  const handleChange = (e) => {
+
+    if(e.target.name === "username"){
+      setUsername(e.target.value);
+    }
+    else if(e.target.name === "email"){
+      setEmail(e.target.value);
+    }
+    else{
+      setRole(e.target.value);
+    }
+  }
+
   return (
       <div>
+        <div>
+          <input type="text" value={username} placeholder=" username" name="username" onChange={handleChange} />
+        
+          <input type="text" value={email} placeholder="email" name="email" onChange={handleChange} />
+
+          <select value={role} name="role" onChange={handleChange} >
+            <option value="">select </option>
+            <option name="role" value="lead">lead</option>
+            <option name="role" value="admin">admin</option>
+            <option name="role" value="member">member</option>
+          </select>
+
+          <button onClick={handleFilter}>filter</button>
+        </div>
+
+
           <table>
               <tr>
                   <th>Username</th>
@@ -50,7 +104,7 @@ export default function ViewAll(){
                   <th>Last Name</th>
                   <th>Role</th>
               </tr>
-              {users.map((user) =>(
+              {filteredUsers.map((user) =>(
               <tr key={user.id}>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
@@ -66,5 +120,5 @@ export default function ViewAll(){
             <button onClick={handleNextPage} disabled={currentPage === count}>Next</button>
           </div>
       </div>
-  )
+  );
 }

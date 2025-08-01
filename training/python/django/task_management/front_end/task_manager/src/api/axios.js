@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+const navigate = useNavigate;
 const api = axios.create({
   baseURL: "http://localhost:8000/api/",
   headers: {
@@ -35,6 +36,7 @@ api.interceptors.response.use(
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
         localStorage.removeItem("user");
+        navigate('/login');
         return Promise.reject(error);
       }
     }

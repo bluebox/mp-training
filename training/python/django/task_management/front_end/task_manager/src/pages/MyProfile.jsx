@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from '../api/axios';
+import '../MyProfile.css';
 
 export default function MyProfile() {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -29,65 +30,59 @@ export default function MyProfile() {
 
     return (
         <div className="MyProfile">
-            <form>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>username</th>
-                        <td>
-                            {formData.username}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>first_name</th>
-                        <td>
-                            {isEditing ? (
-                                <input
-                                    name="first_name"
-                                    value={formData.first_name}
-                                    onChange={handleChange}
-                                />
-                            ) : (
-                                formData.first_name
-                            )}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>last_name</th>
-                        <td>
-                            {isEditing ? (
-                                <input
-                                    name="last_name"
-                                    value={formData.last_name}
-                                    onChange={handleChange}
-                                />
-                            ) : (
-                                formData.last_name
-                            )}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>email</th>
-                        <td>
-                            {formData.email}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>role</th>
-                        <td>{formData.role}</td> 
-                    </tr>
-                    <tr>
-                        <td colSpan="2">
-                            {isEditing ? (
-                                <button onClick={handleSave}>Save</button>
-                            ) : (
-                                <button onClick={handleEdit}>Edit</button>
-                            )}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </form>
+            <>
+
+            <div>
+                <div>
+                    <div>
+                        <h2>My Profile</h2>
+                    </div>
+                    <div>
+                        <strong>username:  </strong>   {formData.username}
+                    </div>
+                    <div>
+                        <strong>first_name:  </strong>  
+                                
+                        {isEditing ? (
+                            <input
+                                name="first_name"
+                                value={formData.first_name}
+                                onChange={handleChange}
+                            />
+                        ) : (
+                            formData.first_name
+                        )}
+                    </div>
+                    <div>
+                        <strong>last_name: </strong>
+                        {isEditing ? (
+                            <input
+                                name="last_name"
+                                value={formData.last_name}
+                                onChange={handleChange}
+                            />
+                        ) : (
+                            formData.last_name
+                        )}
+                    </div>
+                    <div>
+                        <strong>email: </strong>
+                        {formData.email}
+                    </div>
+                    <div>
+                        <strong>role: </strong>
+                        {formData.role}
+                    </div>
+                    <div>
+                        {isEditing ? (
+                            <button onClick={handleSave}>Save</button>
+                        ) : (
+                            <button onClick={handleEdit}>Edit</button>
+                        )}
+                    </div>
+                </div>
+            </div>
+            </>
         </div>
     );
 }

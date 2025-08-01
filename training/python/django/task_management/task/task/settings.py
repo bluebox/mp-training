@@ -139,6 +139,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPageNumberPagination',
+
 }
 
 AUTH_USER_MODEL = 'core.User'

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -54,10 +55,25 @@ class LeadTaskView(APIView):
         if request.user.role != 'lead':
             return Response({"error": "Only team leads can access this."}, status=403)
 
+        title = request.query_params.get("title")
+        status1 = request.query_params.get("status")
+        priority = request.query_params.get("priority")
+
+        filters = Q()
+        if title:
+            filters &= Q(title__icontains=title)
+        if status1:
+            filters &= Q(status=status1)
+        if priority:
+            filters &= Q(priority=priority)
+
         team_ids = TeamMember.objects.filter(user=request.user).values('team_id')
         team_members = User.objects.filter(teams__in=team_ids).distinct()
         tasks = Task.objects.filter(assign__user__in=team_members).distinct()
-        return Response(TaskSerializer(tasks, many=True).data)
+        paginator = CustomPageNumberPagination()
+        paginated_queryset = paginator.paginate_queryset(tasks.filter(filters), request, view=self)
+        return paginator.get_paginated_response(TaskSerializer(paginated_queryset, many=True).data)
+
 
 
 # Admin can view all tasks
@@ -256,7 +272,21 @@ class CustomAllTasksView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        queryset = Task.objects.all()
+        status1 = request.query_params.get("status")
+        priority = request.query_params.get("priority")
+        project = request.query_params.get("project")
+        created_by = request.query_params.get("created_by")
+
+        filters = Q()
+        if status1:
+            filters &=Q(status=status1)
+        if priority:
+            filters &=Q(priority=priority)
+        if project:
+            filters &=Q(project__name__icontains=project)
+        if created_by:
+            filters &=Q(created_by__username__icontains=created_by)
+        queryset = Task.objects.filter(filters)
         paginator = CustomPageNumberPagination()
         paginated_queryset = paginator.paginate_queryset(queryset, request, view=self)
         return paginator.get_paginated_response(AllTaskViewSerializer(paginated_queryset, many=True).data)
@@ -265,7 +295,19 @@ class CustomAllTasksView(APIView):
 class CustomAllUserProfiles(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request):
-        queryset = User.objects.exclude(id=request.user.id).order_by("role")
+        username = request.query_params.get("username")
+        email = request.query_params.get("email")
+        role = request.query_params.get("role")
+
+        filters = Q()
+        if username:
+            filters &= Q(username__icontains=username)
+        if email:
+            filters &= Q(email__icontains=email)
+        if role:
+            filters &= Q(role=role)
+
+        queryset = User.objects.exclude(id=request.user.id).filter(filters)
         paginator = CustomPageNumberPagination()
         paginated_queryset = paginator.paginate_queryset(queryset, request, view=self)
         return paginator.get_paginated_response(UserSerializer(paginated_queryset, many=True).data)
