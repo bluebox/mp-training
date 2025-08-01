@@ -24,5 +24,6 @@ urlpatterns = [
     path('allTeachers/all/',AllTeachersWp.as_view()),
     path('classes/all/',AllClassesView.as_view()),
     path('subjects/all/',AllSubjectsView.as_view()),
+    path('classes/subjects/',ClassSubjects.as_view()),
     path('',include(router.urls)),
 ]

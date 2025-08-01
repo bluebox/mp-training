@@ -29,6 +29,8 @@ import AdminRoleAuth from './adminRoleAuth';
 import AdminTeacherCombiAuth from './adminTeacherCombiAuth';
 import LoginRestrict from './loginRestrict';
 import HomePage from './HomePage';
+import AdminStudentCombiAuth from './adminStudentCombiAuth';
+import ClassSubjects from './ClassSubjects';
 // import AdminTeacherDetails from './AdminTeacherDetails';
 
 function App() {
@@ -86,6 +88,7 @@ function App() {
                       <NavLink to="/teachers/classes" className={({ isActive }) => (isActive ? 'active' : '')}>Class Teachers</NavLink>
                       <NavLink to="/teachers/subjects/assaign" className={({ isActive }) => (isActive ? 'active' : '')}>Assign Subjects</NavLink>
                       <NavLink to="/subjects/teachers/classes" className={({ isActive }) => (isActive ? 'active' : '')}>Teacher Subjects</NavLink>
+                      <NavLink to="/classes/subjects" className={({ isActive }) => (isActive ? 'active' : '')}>Class Subjects</NavLink>
                     </div>
                   </div>
                 </div>
@@ -107,13 +110,14 @@ function App() {
           <Route element={<PrivateRoute login={login} />}>
             <Route path='/' element={<HomePage/>}/>
             <Route element={<StudentRoleAuth/>}>
+              <Route path='/editDetails' element={<EditDetails userId={id}/>}/>
               <Route path='/results' element={< StudentResultsDashboard userId={id}/>}/>
               <Route path='/studentDetails' element={<StudentDetails userId={id}/>}/>
               <Route path='/subjects' element={<ViewClasses userId={id}/>}/>
             </Route>
 
             <Route element={<TeacherRoleAuth/>}>
-              <Route path='/editDetails' element={<EditDetails userId={id}/>}/>
+              
               <Route path='/teacherResults' element={<TeacherResultsView userId={id}/>}></Route>
               <Route path='/uploadResults' element={<ResultsUpload userId={id}/>}/>
               <Route path='/teacherDetails' element={<TeacherDetails userId={id}/>}/>
@@ -121,8 +125,8 @@ function App() {
             </Route>
 
             <Route element={<AdminRoleAuth/>}>
-              <Route path='/studentRegister' element={<StudentRegister userId={id} />} />
               
+              <Route path='/studentRegister' element={<StudentRegister userId={id} />} />
               <Route path='/allTeachers' element={<Teachers/>}/>
               <Route path='/subjectTeachers' element={<SubjectTeachers/>}/>
               <Route path='/createClass' element={<CreateClasses/>}/>
@@ -130,13 +134,16 @@ function App() {
               <Route path='/teachers/classes' element={<ClassTeachers/>}/>   
               <Route path='/teachers/subjects/assaign' element={<SubjectAssaign/>}/>
               <Route path='/subjects/teachers/classes' element={<ClassSubjectsTeachers/>}/>
+              <Route path='/classes/subjects' element={<ClassSubjects/>}/>
             </Route>
             
             <Route element={<AdminTeacherCombiAuth/>}>
               <Route path='/students' element={<Student/>}/>
               <Route path='/editTeacherDetails' element={<EditTeacherDetails userId={id}/>}/>
             </Route>
-            
+              {/* <Route element={<AdminStudentCombiAuth/>}>
+              
+            </Route> */}
             
             
             

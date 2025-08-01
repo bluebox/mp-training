@@ -8,6 +8,14 @@ class TeacherSerializer(serializers.ModelSerializer):
         model = Teacher
         fields = '__all__'
         read_only_fields = ['user']
+    def validate_Name(self, value):
+        if len(value) <3:
+            raise serializers.ValidationError("Name must be atleast 3 characters long")
+        return value
+    def validate_experience(self,value):
+        if value<0:
+            raise serializers.ValidationError("Experience must be positive number")
+        return value
 
     def create(self, validated_data):
         user = BaseUser.objects.create_user(
@@ -23,6 +31,7 @@ class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
         fields = '__all__'
+
 
 class ResultsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,6 +65,15 @@ class StudentSerializer(serializers.ModelSerializer):
         )
         validated_data['user'] = user
         return Student.objects.create(**validated_data)
+    def validate_Name(self,value):
+        if len(value)<3:
+            raise serializers.ValidationError("Name must be atleast 3 characters long")
+        return value
+    def validate_attendance(self,value):
+        if value<0:
+            raise serializers.ValidationError("attendance must be a positive number")
+        return value
+    # def validate_(self, value):
 
 
 class SubjectClassTeacherSerializer(serializers.ModelSerializer):
@@ -67,6 +85,22 @@ class StudentProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProfile
         fields = '__all__'
+    def validate_FatherName(self,value):
+        if len(value)<3:
+            raise serializers.ValidationError("Father Name must be atleast 3 characters long")
+        return value
+    def validate_MotherName(self,value):
+        if len(value)<3:
+            raise serializers.ValidationError("Mother Name must be atleast 3 characters long")
+        return value
+    def validate_FatherAge(self,value):
+        if value<0:
+            raise serializers.ValidationError("Fathers age must be a positive number")
+        return value
+    def validate_MotherAge(self,value):
+        if value<0:
+            raise serializers.ValidationError("Mothers age must be a positive number")
+        return value
 
 class StudentResultsDashboard(serializers.ModelSerializer):
     results_set = ResultsSerializer(many=True, read_only=True)

@@ -13,12 +13,12 @@ function StudentDetails({userId}){
             setData(res)
             console.log(data);
         }).catch(err=>{
-            alert("User Account deactivated");
+            alert("User details not found");
             console.log("Error",err);
         })
     },[userId]
     )
-    if (!data) return <p>Loading...</p>;
+    // if (!data) return <p>Loading...</p>;
     return(
         <div className="display-container">
             <h1>Details</h1>
@@ -31,7 +31,7 @@ function StudentDetails({userId}){
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(data).map(key=>(
+                    {Object.keys(data||{}).map(key=>(
                         <tr>
                             <td>{key}</td>
                             <td>{data[key]}</td>

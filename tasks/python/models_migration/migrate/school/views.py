@@ -166,6 +166,14 @@ class StudentDetails(APIView):
             return Response({"message": "Profile updated successfully", "data": serializer.data})
         else:
             return Response(serializer.errors, status=400)
+    def post(self,request):
+        print(request.data)
+        serializer = StudentProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Profile created successfully", "data": serializer.data})
+        else:
+            return Response(serializer.errors, status=400)
 class ALLStudentsView(APIView):
     permission_classes = [CustomStudentTablePermissions]
     authentication_classes = [JWTAuthentication]
@@ -355,6 +363,7 @@ class TeacherSubjectsStudents(APIView):
                 subject_ids = list(subject_teacher.objects.select_related('teacher','subject').filter(teacher__user_id = params['id']).values_list('subject_id',flat=True))
                 if not subject_ids:
                     return Response({},status=200)
+                print("sunject ids:",subject_ids)
                 students = Student.objects.filter(
                     Class__subject_teacher_set__subject_id__in=subject_ids,
                     Class__subject_teacher_set__teacher__user_id=params['id']
@@ -514,7 +523,30 @@ class SubjectTeacherRelationView(APIView):
         else:
             return Response(data={"message":"Did not receive id in params"}, status=400)
 
-
+class ClassSubjects(APIView):
+    permission_classes = [IsAdmin]
+    def get(self,request):
+        try:
+            subject_class_details = subject_teacher.objects.select_related('rel_class','teacher','subject').values('rel_class_id','rel_class__Class_id','rel_class__Section','teacher__user_id','teacher__Name','subject_id','subject__Name')
+            print(subject_class_details)
+            data = []
+            for item in subject_class_details:
+                data_item = {
+                    "class":item['rel_class_id'],
+                    "class_id":item['rel_class__Class_id'],
+                    "section":item['rel_class__Section'],
+                    "teacher_id":item['teacher__user_id'],
+                    "teacher_name":item['teacher__Name'],
+                    'subject_id':item['subject_id'],
+                    'subject_name':item['subject__Name'],
+                }
+                data.append(data_item)
+            paginator = PageNumberPagination()
+            page_set = paginator.paginate_queryset(data,request)
+            return paginator.get_paginated_response(page_set)
+        except Expression as ex:
+            print("Exception occured:",ex)
+            return Response({"message":"Error in fetching"},status=400)
 
 
 
