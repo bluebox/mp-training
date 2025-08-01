@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Registration form</h1>
+<form action="register" method="post">
+Id:<input type="text" name="id"><br><br>
+Name:<input type="text" name="name"><br><br>
+Age:<input type="text" name="age"><br><br>
+<input type="submit">
+
+</form>
+
+<br>
+<br>
+<h1>See All Users</h1>
+<form action="getAllUsers">
+<input type="submit" value="get all Users">
+</form>
+
+<br>
+
+<h1>Update User</h1>
+<form action="update">
+Enter id of the User:<input type="text" name="id">
+Enter new Name:<input type="text" name="name">
+Enter new Age:<input type="text" name="age">
+<input type="submit" value="update">
+</form>
+
+<br>
+
+<h1>Delete User</h1>
+<form action="delete">
+Enter user_id to update:<input type="text" name="id">
+<input type="submit" value="delete">
+</form>
+
+</body>
+</html>
