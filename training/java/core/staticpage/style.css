@@ -1,0 +1,97 @@
+body {
+  font-family: sans-serif;
+  background: #f0f4f8;
+  margin: 0;
+  padding: 20px;
+  color: #340ede;
+}
+
+.container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  color: #250aad;
+  margin-bottom: 30px;
+}
+
+input, select, button {
+ 
+  width: 60%  50%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #3134fa;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+.branch, .languages {
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+button {
+  background-color: #59ff00;
+  color: rgb(14, 9, 9);
+  border: none;
+  cursor: pointer;
+}
+
+button:hover:enabled {
+  background-color: #2724ef;
+  color: #ddd;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+}
+
+thead {
+  background-color: #31ee73;
+  color: rgb(5, 3, 3);
+}
+
+thead input {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+  border: black 1px solid;
+  border-radius: 4px;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.hidden {
+  display: none;
+  text-align: center;
+  color: #cc0000;
+  margin-top: 10px;
+}
