@@ -1,0 +1,74 @@
+.root {
+    -fx-background-color: linear-gradient(to right, #f2f6ff, #e6f0ff);
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Main App Title */
+.main-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a3f5f;
+}
+
+/* Subsection Title */
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-style: italic;
+    -fx-text-fill: #34495e;
+}
+
+/* Labels for Form */
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Error message style */
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Buttons */
+.nav-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.submit-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 16;
+}
+
+/* ComboBoxes */
+.combo-box {
+    -fx-border-color: #5dade2;
+    -fx-background-radius: 5;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 640px) {
+    .main-title {
+        -fx-font-size: 16px;
+    }
+    .form-label {
+        -fx-font-size: 12px;
+    }
+    .submit-button {
+        -fx-padding: 6 10;
+        -fx-font-size: 12px;
+    }
+    .nav-button {
+        -fx-font-size: 12px;
+        -fx-padding: 4 8;
+    }
+}

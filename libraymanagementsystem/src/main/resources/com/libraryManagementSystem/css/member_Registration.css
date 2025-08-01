@@ -1,0 +1,35 @@
+.form-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+
+.form-field {
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #81d4fa;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10;
+}
+
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.submit-button, .nav-button {
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-background-color: #039be5;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+.title-label {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e7d32;
+    -fx-font-family: "Segoe UI", sans-serif;
+}

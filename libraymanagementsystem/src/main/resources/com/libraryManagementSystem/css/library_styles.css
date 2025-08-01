@@ -1,0 +1,29 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #f0f8ff, #e6f2ff);
+}
+
+.title-label {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e8b57;
+    -fx-alignment: center;
+    -fx-padding: 20 0 10 0;
+}
+
+.button {
+    -fx-background-color: #4682b4;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 8px;
+}
+
+/* Media-like responsiveness (scaling for smaller screens) */
+@media screen and (max-width: 600px) {
+    .button {
+        -fx-pref-width: 140px;
+        -fx-font-size: 12px;
+    }
+}

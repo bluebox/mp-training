@@ -1,0 +1,64 @@
+.stack-pane {
+    -fx-background-color: linear-gradient(to bottom right, #f2faff, #ffffff);
+    -fx-padding: 30;
+}
+
+.form-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-size: 16px;
+}
+
+.input-label {
+    -fx-text-fill: #34495e;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.input-field {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 32px;
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #b2bec3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 4 8;
+    -fx-font-size: 14px;
+}
+
+.input-field:focused {
+    -fx-border-color: #0984e3;
+    -fx-background-color: #ffffff;
+}
+
+.primary-button {
+    -fx-background-color: #00cec9;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120px;
+    -fx-padding: 8 12;
+    -fx-background-radius: 8;
+}
+
+.primary-button:hover {
+    -fx-background-color: #00b894;
+}
+
+.nav-button {
+    -fx-background-color: #74b9ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 6 14;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #0984e3;
+}
