@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="556.0" prefWidth="776.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #e3f2fd, #ffffff);"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.library_management.controllers.CategoryCountController">
+
+    <children>
+
+        <Label alignment="CENTER" contentDisplay="CENTER"
+               layoutX="223.0" layoutY="14.0" prefHeight="46.0" prefWidth="311.0"
+               text="ALL BOOKS" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="System Bold Italic" size="30.0"/>
+            </font>
+        </Label>
+
+        <Text fx:id="message" layoutX="14.0" layoutY="100.0"
+              wrappingWidth="731.0" text="" textAlignment="CENTER">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+
+        <TableView fx:id="categoryCountTable"
+                   layoutX="4.0" layoutY="140.0" prefHeight="400.0" prefWidth="767.0"
+                   style="-fx-background-radius: 10; -fx-border-color: #90caf9; -fx-border-radius: 10;">
+            <columns>
+                <TableColumn fx:id="categoryColumn" prefWidth="64.0" text="Category"/>
+                <TableColumn fx:id="countColumn" prefWidth="109.0" text="Count"/>
+            </columns>
+        </TableView>
+
+        <Button layoutX="20.0" layoutY="20.0"
+                onAction="#backButton" prefHeight="30.0" prefWidth="80.0"
+                style="-fx-background-color: #bbdefb; -fx-text-fill: #0d47a1; -fx-font-weight: bold; -fx-background-radius: 8;"
+                text="← Back"/>
+
+        <Button layoutX="670.0" layoutY="20.0"
+                onAction="#homeButton" prefHeight="30.0" prefWidth="80.0"
+                style="-fx-background-color: #c8e6c9; -fx-text-fill: #1b5e20; -fx-font-weight: bold; -fx-background-radius: 8;"
+                text="Home 🏠"/>
+
+    </children>
+</AnchorPane>
