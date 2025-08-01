@@ -39,3 +39,11 @@
 .body-body{
   background-color: pink;
 }
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #282c34;
+}
+

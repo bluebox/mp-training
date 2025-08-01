@@ -9,7 +9,7 @@ urlpatterns = [
     # path("form/",views.get_form,name='form'),
     # path("ModelForm/",views.get_example,name='ModelForm'),
     # path("rest/",views.getData),
-# urls.py
+
     path("customers/", views.customers.as_view()),  # For query params like ?username=
     path("customers/<str:id>", views.customers.as_view()),  # For path-based retrieval
     path("orders/",views.orders.as_view()),
@@ -17,7 +17,7 @@ urlpatterns = [
     path("books/",views.books.as_view()),
     path("books/<int:id>",views.books.as_view()),
 
-
+    path('getUserRole/<str:user_name>', views.getUserRole.as_view()),
     path("authors/",views.authors),
     path("authors/<int:id>",views.authors),
     path("book_authors/",views.book_authors.as_view()),

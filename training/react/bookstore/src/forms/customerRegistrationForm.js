@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useRef, use  } from 'react';
 
 import {  useLocation,useNavigate } from 'react-router-dom';
-
+import './forms.css'
 
 
 function CustomerRegisterPage(){
@@ -50,6 +50,14 @@ useEffect(() => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    } 
+
+
+
+
     const method = (username)? 'PATCH' :"POST"
     // const tempHeader=(username)? 'Bearer ' + localStorage.getItem('access') :""
     const url= (username)? 'http://127.0.0.1:8000/bookStore/customers/'+String(id) :'http://127.0.0.1:8000/bookStore/customers/' ;
@@ -93,23 +101,31 @@ useEffect(() => {
 
 
 
-return( <div className='registration-border'>
+return( <><nav className="nav-link">
+      <button className='nav-button' onClick={() => navigate('/')}>HOME </button>
+</nav>
+
+
+
+<div className='registration-border'>
 <h1 style={{color:'red',textAlign:'center'}}>{ username ? 'Editing the details':'Customer Registration'}</h1>
 <form className='form' onSubmit={handleSubmit}>
-      <label>Name:<input className="inputs-gap" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name"  required /> </label><br />
-      <label> Username: <input className="inputs-gap" type="text" name="username" value={formData.username} onChange={handleChange}  required /> </label><br />
-    <label> Age: <input className="inputs-gap" type="number" name="age"  value={formData.age} onChange={handleChange}  placeholder="An integer"  required /> </label><br />
+      <label  htmlFor="name" >Name:<h className="red-star">*</h></label><input className="inputs-gap" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name"  required /> <br />
+      <label  htmlFor="username"> Username:<h className="red-star">*</h></label> <input className="inputs-gap" type="text" name="username" value={formData.username} onChange={handleChange}  required /> <br />
+    <label> Age:<h className="red-star">*</h> </label><input className="inputs-gap" type="number" name="age"  value={formData.age} onChange={handleChange}  placeholder="An integer"  required /> <br />
 
-    <label required> Gender: <input className="inputs-gap" type="radio" onChange={handleChange} name="gender" value="Male" checked={formData.gender === 'Male'} /> male
-                                <input className="inputs-gap" type="radio" onChange={handleChange}  name="gender" value="Female" checked={formData.gender === 'Female'}  /> Female</label><br />
-       <label> Email: <input className="inputs-gap" type="email" name="email" value={formData.email} onChange={handleChange}  required /> </label><br />
-       <label> Address: <input className="inputs-gap" type="text" name="address" value={formData.address} onChange={handleChange}  required /> </label><br />
-        <label> Password: <input className="inputs-gap" type="password" name="password" value={formData.password} onChange={handleChange}  required /> </label><br />
-        <label> Confrom Password: <input className="inputs-gap" type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}  required /> </label><br />
+    <label > Gender:<h className="red-star">*</h>
+    <lable htmlFor='Male'><input  type="radio" onChange={handleChange} name="gender" value="Male" checked={formData.gender === 'Male'} /> male </lable>
+    <lable htmlFor='Female'> <input  type="radio" onChange={handleChange}  name="gender" value="Female" checked={formData.gender === 'Female'}  /> Female</lable><br />
+      </label>
+       <label > Email:<h className="red-star">*</h></label> <input className="inputs-gap" type="email" name="email" value={formData.email} onChange={handleChange}  required /> <br />
+       <label> Address: <h className="red-star">*</h></label><input className="inputs-gap" type="text" name="address" value={formData.address} onChange={handleChange}  required /> <br />
+        <label> Password:<h className="red-star">*</h></label> <input className="inputs-gap" type="password" name="password" value={formData.password} onChange={handleChange}  required /> <br />
+        <label> Confrom Password: <h className="red-star">*</h></label><input className="inputs-gap" type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange}  required /><br />
       <button className='submit-button' type="submit" >Save</button>
       </form>
 
-</div>);
+</div></>);
 
 
 }

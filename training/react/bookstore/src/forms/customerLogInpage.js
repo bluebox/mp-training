@@ -44,7 +44,7 @@ function CustomerLogInpage(){
       <button className='nav-button' onClick={() => navigate('/')}>HOME </button>
 </nav>
    <h1 style={{color:'red',textAlign:'center'}}>Customer Login </h1>
-    <div className="login-box">
+    <div className="registration-border">
 
 
         <form className='form' onSubmit={handleSubmit} >

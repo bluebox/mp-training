@@ -1,4 +1,5 @@
 from MySQLdb.constants.FLAG import NOT_NULL
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -6,6 +7,7 @@ from django.db import models
 
 
 class  Customers(models.Model):
+    role=models.CharField(max_length=20,default='customer')
     name=models.CharField(max_length=50,db_index=True)
     age = models.IntegerField()
     username = models.CharField(max_length=50,unique=True)
@@ -31,6 +33,7 @@ class Orders(models.Model):
 
 
 class Authors(models.Model):
+    role = models.CharField(max_length=20, default='author')
     name=models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
     age = models.IntegerField()
@@ -46,7 +49,5 @@ class BookAuthors(models.Model):
     author=models.ForeignKey(Authors,on_delete=models.CASCADE)
     class Meta:
         models.Index(fields=['book',"author"])
-
-
 
 

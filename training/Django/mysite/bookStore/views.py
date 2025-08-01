@@ -1,7 +1,7 @@
 from django.template.context_processors import request
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import IsAuthenticated, BasePermission, SAFE_METHODS, IsAdminUser, \
-    IsAuthenticatedOrReadOnly
+    IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import  generics
@@ -312,5 +312,16 @@ class  book_authors(generics.ListCreateAPIView):
 
 def index(request):
     return render(request, 'Web_World/index.html')
+
+
+
+class getUserRole(APIView):
+    permission_classes=[AllowAny]
+    def get(self,request,user_name):
+        if Customers.objects.filter(username=user_name).exists():
+            return Response('customer')
+        if Authors.objects.filter(username=user_name).exists():
+            return Response('author')
+        return Response('admin')
 
 

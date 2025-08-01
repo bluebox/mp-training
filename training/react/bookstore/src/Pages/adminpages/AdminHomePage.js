@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import {useNavigate } from 'react-router-dom';
+import {useNavigate ,useLocation} from 'react-router-dom';
 import './adminpages.css'
 
 
@@ -14,6 +14,8 @@ function AdminHomePage(){
  const [Books_Count,setBooks_Count]=useState(0);
  const [Authors_Count,setAuthors_Count]=useState(0);
  const [Orders_Count,setOrders_Count]=useState(0);
+ const location = useLocation();
+const { username="", from = "" } = location.state || {};
 
 
 
@@ -95,7 +97,9 @@ return (
 </nav>
 
 
-<h1 style={{textAlign:'center'}}>Welcome Prasad have a good day</h1>
+<h1 style={{textAlign:'center'}}>Welcome {username} have a good day</h1>
+
+{OrdersList.length ===0 ?
 <table border="2" cellPadding="20" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '300px' ,position:'left'}}>
     <thead>
         <tr key="head">
@@ -116,22 +120,18 @@ return (
         </tr>
 
 </table>
-{OrdersList.length ===0 ? <></> :
+:
  (<table border="5" cellPadding="20" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '300px' }}>
    <thead> <tr>{columns.map( (i) => (<td key={i}> <b>{i}</b></td>))}<td><b>Action</b></td></tr>
         </thead>
         <tbody>
        { OrdersList.map(( order) => <tr key={order}> <td key={order.id}>{order.id}</td><td key={order.order_date}>{order.order_date}</td><td key={order.quantity}>{order.quantity}</td><td key={order.customer}>{order.customer}</td><td key={order.book}>{order.book}</td>
-       <button className='nav-button' onClick={() => handleDelete(order.id)}>Delete</button>
+       <td><button className='nav-button' onClick={() => handleDelete(order.id)}>Delete</button></td>
        
                             </tr>)}
         </tbody>
     </table>)
 }   
-
-
-
-
 </div>)
 
 

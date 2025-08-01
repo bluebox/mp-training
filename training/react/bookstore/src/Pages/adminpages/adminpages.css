@@ -21,3 +21,9 @@
   display: inline-block;      
   white-space: nowrap;        
 }
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #c5c0c1;
+}

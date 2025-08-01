@@ -1,26 +1,30 @@
 .login-box {
-  width: 300px;
+  width: 600px;
   margin: 100px auto;
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: rgb(86, 37, 143);
+  box-shadow: 0 0 10px rgb(117, 5, 117);
+  background-color: rgb(120, 15, 180);
   text-align: center;
 }
 
-.login-box h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
+/* .login-box h3 {
+  font-size: 14px;
+  margin-bottom: 2px;
+  color: #300606;
+} */
 
 .login-box input {
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 15px;  
+  width: 70%;
+  height: 30px;
+  position: relative;
+  top: 0px;
+  left: 10PX;
+  font-size: 5;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .login-box button {
@@ -50,16 +54,38 @@
 
 }
 .inputs-gap{
-    margin: 100px auto;
-    margin: 5px auto;
+    position: relative;
+    left: 100px;
+    margin: 8px auto;
     border-radius: 5px;
-    text-align:center;
+    text-align:left;
 }
-.form{
+/* .form{
     background-color: #6f3292;
-}
+} */
 
 .nav-link {
   color: #a6b8bd;
   display: flex;
+}
+
+     
+.red-star {
+  color: red;
+  position: relative;
+  margin-left: 5px;
+ top: 0px;
+  font-size: 10px;
+  font-weight: bold;
+  
+}
+
+
+.submit-button{
+
+font-size: 24PX;
+  position: relative;
+  left: 200px;
+  color: red;
+   background-color: #675274;
 }

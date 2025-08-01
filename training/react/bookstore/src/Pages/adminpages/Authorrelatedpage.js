@@ -33,7 +33,9 @@ const columns = ['id','name','username','age','gender','email','address','books'
 
 const handleDelete =async (id) =>{ 
   try{
-            const response=await fetch("http://127.0.0.1:8000/bookStore/authors/"+String(id),{method:'DELETE'});
+            const response=await fetch("http://127.0.0.1:8000/bookStore/authors/"+String(id),{method:'DELETE',
+              headers: {'Content-Type': 'application/json','Authorization': 'Bearer ' + localStorage.getItem('access') }
+            });
             if (!response.ok) {
       throw new Error("Failed to fetch");
     }

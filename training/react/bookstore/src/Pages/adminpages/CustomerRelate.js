@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import { getCSRFToken } from './csrf';
 function CustomerRelated(){
   const navigate=useNavigate()
 console.log("came into customerView")
 const [customerList,setcustomerList]=useState([])
 
-
+const getAccessToken = async () => {
+  const response = await fetch("http://127.0.0.1:8000/bookStore/api/token/refresh/",{
+      method:'POST',headers: {'Content-Type': 'application/json', },body: JSON.stringify({refresh: localStorage.getItem('refresh')})});
+     if (response.status === 401 ||
+      response.status === 403 ){
+      alert("your session was expired")
+      localStorage.removeItem('access')
+      localStorage.removeItem('refresh')
+      navigate('/')
+      }
+    const data = await response.json();
+    localStorage.setItem('access', data.access);
+    handleClick()   
+  }
 
 const handleClick = async () => {
   try {
@@ -15,14 +28,11 @@ const handleClick = async () => {
     
     if (response.status === 401 ||
       response.status === 403 ){
-          alert("your session was expired")
-      localStorage.removeItem('access')
-      localStorage.removeItem('refresh')
-      navigate('/')
+         getAccessToken()
       }
-      const data = await response.json()
-      
-      
+
+
+      const data = await response.json()  
          if (!response.ok) {
       throw new Error("Failed to fetch");
     }

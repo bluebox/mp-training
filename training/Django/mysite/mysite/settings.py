@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'Web_World',
     'blog',
     'bookStore',
-    'corsheaders',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'debug_toolbar',
+    'corsheaders',
 ]
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -190,7 +191,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+# AUTH_USER_MODEL='bookStore.Person'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
