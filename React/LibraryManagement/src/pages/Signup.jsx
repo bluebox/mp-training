@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Formik,Form,Field,ErrorMessage } from 'formik';
 import * as Yup from 'yup'
+import Axios from '../utils/Axios';
 const Signup = () => {
   const {isLoggined } = useContext(AuthContext);
   const navigate=useNavigate()
@@ -15,7 +15,7 @@ const Signup = () => {
   const handleSubmit = async(values,{setSubmitting,resetForm,setErrors}) => {
       setSubmitting(true)
        try{
-            await axios.post('http://127.0.0.1:8000/api/member/crud/',values)
+            await Axios.post('member/crud/',values)
             alert('signup successful')
             resetForm()
             navigate('/login')
@@ -34,8 +34,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-gray-100 flex items-center justify-center min-h-screen">
-      <div className="bg-white p-8 rounded-lg shadow-lg md:w-full md:max-w-2xl">
+    <div className="bg-white flex items-center justify-center min-h-screen">
+      <div className="bg-white p-8 rounded-lg shadow-lg md:w-full md:max-w-2xl border border-gray-300">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Create an Account</h2>
         
         {/* <form onSubmit={handleSubmit}>

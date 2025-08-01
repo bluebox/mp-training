@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+import Axios from '../utils/Axios';
 
 const ViewBooks = () => {
   const token = localStorage.getItem('access_token');
@@ -9,7 +9,7 @@ const ViewBooks = () => {
 
   const fetchBooks = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/api/book/viewbooksavailable/', {
+      const res = await Axios.get('book/viewbooksavailable/', {
         withCredentials: true,
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -31,7 +31,7 @@ const ViewBooks = () => {
       return 
     }
     try {
-      await axios.post('http://127.0.0.1:8000/api/issue/issuebook/', {
+      await Axios.post('issue/issuebook/', {
         book: id,
         member: user?.id,
       }, {
@@ -58,6 +58,7 @@ const ViewBooks = () => {
       <h1 className="text-2xl font-bold mb-4 text-center">Books Available</h1>
 
       {books.length > 0 ? (
+        <div className='mb-10 overflow-x-auto'>
         <table className="min-w-full table-auto border-collapse border border-gray-200">
           <thead className="text-left">
             <tr>
@@ -91,6 +92,7 @@ const ViewBooks = () => {
             ))}
           </tbody>
         </table>
+        </div>
       ) : (
         <p>No books available.</p>
       )}

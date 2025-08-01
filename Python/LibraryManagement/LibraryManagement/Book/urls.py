@@ -8,5 +8,5 @@ router.register(r'crud',BookViewSet,basename='books')
 urlpatterns=[
     path('',include(router.urls)),
     path('alluserborrowers/<int:id>/',getAlluserOfBookWithId,name='getAlluserOfBookWithId'),
-    path('viewbooksavailable/',viewBooksAvailable,name='viewBooksAvailable')
+    path('viewbooksavailable/',viewBooksAvailable,name='viewBooksAvailable'),
 ]

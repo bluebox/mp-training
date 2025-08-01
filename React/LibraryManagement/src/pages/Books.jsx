@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {Formik,Form,Field, ErrorMessage} from 'formik'
 import * as Yup from 'yup';
+import Axios from '../utils/Axios';
+
 const Books = () => {
   const navigate=useNavigate()
   const location=useLocation()
@@ -21,7 +22,7 @@ const Books = () => {
   const token=localStorage.getItem('access_token')
   const fetchBooks = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/api/book/crud/',{
+      const res = await Axios.get('book/crud/',{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -42,7 +43,7 @@ const Books = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/book/crud/${id}/`,{
+      await Axios.delete(`book/crud/${id}/`,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -78,7 +79,7 @@ const Books = () => {
         alert('Nothing updated')
         return 
       }
-      await axios.patch(`http://127.0.0.1:8000/api/book/crud/${currentBookId}/`, values,{
+      await Axios.patch(`book/crud/${currentBookId}/`, values,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -108,7 +109,7 @@ const Books = () => {
         return 
       }
       try{
-           const res = await axios.post('http://127.0.0.1:8000/api/book/crud/', values,{
+           const res = await Axios.post('book/crud/', values,{
             withCredentials:true,
             headers: {
             'Authorization': `Bearer ${token}`
@@ -139,7 +140,7 @@ const Books = () => {
   if (loading) return <div className="text-center mt-10 text-gray-600">Loading books...</div>;
 
   return (
-    <div className="p-6 overflow-x-auto">
+    <div className="p-6">
       <div className='flex justify-between items-center mb-4'>
         <h1 className="text-2xl font-bold text-gray-800">Books List</h1>
         <button className='px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600' onClick={OpenDialog}>
@@ -150,6 +151,7 @@ const Books = () => {
       {books.length === 0 ? (
         <p className="text-gray-500">No books found.</p>
       ) : (
+        <div className='mb-10 overflow-x-auto'>
         <table className="min-w-full bg-white border border-gray-300 rounded-md shadow">
           <thead className="bg-gray-200">
             <tr>
@@ -178,19 +180,19 @@ const Books = () => {
                 <td className="py-2 px-4 border-b space-x-2">
                   <button
                     onClick={() => openEditDialog(book)}
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 m-2"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => deleteBook(book.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 m-1"
                   >
                     Delete
                   </button>
                    <button
                     onClick={() => handleDetails(book.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 m-1"
                   >
                     Details
                   </button>
@@ -199,11 +201,12 @@ const Books = () => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {showDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
-          <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6">
+          <div className="bg-white w-auto md:w-full md:max-w-2xl rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-700">Add New Book</h2>
            <Formik 
             initialValues={{
@@ -272,7 +275,7 @@ const Books = () => {
 
       {editDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
-          <div className="bg-white w-full max-w-2xl rounded-lg shadow-lg p-6">
+          <div className="bg-white w-auto md:w-full md:max-w-2xl rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-700">Edit Book</h2>
              <Formik
                 initialValues={{

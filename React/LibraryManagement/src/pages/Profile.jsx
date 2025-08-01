@@ -1,12 +1,16 @@
 import { useContext, useState } from 'react';
 import { UserContext } from '../context/UserContext';
-import axios from 'axios';
 import { Formik,Form,Field,ErrorMessage } from 'formik';
 import * as Yup from 'yup'
+import Axios from '../utils/Axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAuthenticated } from '../store/slices/AuthSlice';
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
+  const isAuthenticated=useSelector((state)=>state.auth.isAuthenticated)
+  console.log(isAuthenticated);
   if(!user){
     <div>Loading...</div>
     return
@@ -28,14 +32,14 @@ const Profile = () => {
             alert('Nothing to update')
             return 
           }
-          await axios.patch(`http://127.0.0.1:8000/api/member/crud/${user.id}/`,values,{
+          await Axios.patch(`member/crud/${user.id}/`,values,{
             withCredentials:true,
             headers:{
                'Authorization':`Bearer ${token}`
             }
           })
           setUser({ ...user, ...values });
-          alert('Profile updated successfully!');
+          alert('Profile updated successfully!')
           resetForm()
       }
       catch(err){
@@ -81,6 +85,7 @@ const Profile = () => {
 
       {isEditing && (
         <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
+
           <Formik
             initialValues={{
               email:user?.email,
@@ -96,7 +101,7 @@ const Profile = () => {
             })}
             onSubmit={HandleEdit}
           >
-          <Form className="bg-white p-8 rounded-lg w-96 shadow-lg md:w-full md:max-w-2xl">
+          <Form className="bg-white p-8 rounded-lg shadow-lg w-auto md:w-full md:max-w-2xl">
              <h3 className="text-2xl font-semibold mb-4 text-blue-600 text-center">Edit Profile</h3>
             <div className="space-y-4">
               <div>

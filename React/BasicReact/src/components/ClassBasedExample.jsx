@@ -1,4 +1,4 @@
-import React, { Component, createContext, useContext,useContext } from 'react'
+import React, { Component, createContext,useContext } from 'react'
 
 export default class ClassBasedExample extends Component {
   constructor(props){

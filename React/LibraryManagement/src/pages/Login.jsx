@@ -1,5 +1,5 @@
 import React, { useState,useContext} from 'react';
-import axios from 'axios';
+import Axios from '../utils/Axios';
 import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext'
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ const Login = () => {
   const HandleSubmit = async (values,{setSubmitting,resetForm}) => {
     setSubmitting(true)
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/member/login/', values)
+      const response = await Axios.post('member/login/', values)
 
       const { access, refresh } = response.data;
 
@@ -45,7 +45,7 @@ const Login = () => {
           }}
           validationSchema={Yup.object({
               email:Yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,'Invalid email address').required('Email is required'),
-              password:Yup.string().required('Password is required').min(6,'password must have atleast 8 digits')
+              password:Yup.string().required('Password is required').min(6,'password must have atleast 6 characters')
           })}
           onSubmit={HandleSubmit}
         >

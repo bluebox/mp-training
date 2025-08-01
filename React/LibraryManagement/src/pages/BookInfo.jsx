@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-
+import Axios from '../utils/Axios';
 const BookInfo = () => {
   const { id } = useParams();
   const [bookDetails, setBookDetails] = useState(null);
@@ -10,7 +9,7 @@ const BookInfo = () => {
   const token=localStorage.getItem('access_token')
   const fetchBookDetails = async () => {
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/api/book/crud/${id}/`,{
+      const res = await Axios.get(`book/crud/${id}/`,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -24,7 +23,7 @@ const BookInfo = () => {
 
   const fetchUsersBorrowers = async () => {
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/api/book/alluserborrowers/${id}`,{
+      const res = await Axios.get(`book/alluserborrowers/${id}`,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -46,7 +45,7 @@ const BookInfo = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg border ">
+    <div className="max-w-4xl mx-auto mt-5 mb-5 p-6 bg-white shadow-lg rounded-lg border ">
       <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-blue-600">Book Details</h2>
       <ul className="mb-8 text-gray-700 space-y-2">
         <li><strong>ID:</strong> {bookDetails.id}</li>

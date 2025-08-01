@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import Axios from '../utils/Axios';
 import { Formik,Form,Field,ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 
@@ -9,7 +9,7 @@ const Issues = () => {
   const token=localStorage.getItem('access_token')
   const fetchIssues = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/api/issue/allrecords/',{
+      const res = await Axios.get('issue/allrecords/',{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -35,7 +35,7 @@ const Issues = () => {
     }
     setSubmitting(true)
     try {
-      await axios.post('http://127.0.0.1:8000/api/issue/issuebook/', values,{
+      await Axios.post('issue/issuebook/', values,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -62,7 +62,7 @@ const Issues = () => {
     const today = new Date().toISOString().split('T')[0];
     console.log(today);
     try {
-      await axios.patch(`http://127.0.0.1:8000/api/issue/returnbook/${id}/`,{},{
+      await Axios.patch(`issue/returnbook/${id}/`,{},{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -131,7 +131,7 @@ const Issues = () => {
 
       {showDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
-          <div className="bg-white w-full max-w-xl rounded-lg shadow-lg p-6">
+          <div className="bg-white w-auto md:w-full md:max-w-xl rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-bold mb-4 text-gray-700">Add Issue Record</h2>
             <Formik
             initialValues={{

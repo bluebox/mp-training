@@ -23,7 +23,7 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     permission_classes = [CustomAdminPermission,IsAuthenticated]
     def update(self, request, *args, **kwargs):
-        book = self.get_object()
+        book=Book.objects.get(id=kwargs['pk'])
         is_issued = Issue.objects.filter(book=book, status='I').exists()
         if is_issued:
             return Response({'error':"this book is already issued can't update"},status=status.HTTP_400_BAD_REQUEST)

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../context/UserContext'
-import axios from 'axios'
+import Axios from '../utils/Axios'
 
 const BorrowedBooks = () => {
   const { user } = useContext(UserContext)
@@ -10,7 +10,7 @@ const BorrowedBooks = () => {
 
   const fetchAllBookOfUser = async () => {
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/api/issue/allBooksWithMemberId/${user?.id}/`, {
+      const res = await Axios.get(`issue/allBooksWithMemberId/${user?.id}/`, {
         withCredentials: true,
         headers: {
           'Authorization': `Bearer ${token}`
@@ -38,7 +38,7 @@ const BorrowedBooks = () => {
       return 
     }
     try {
-      await axios.patch(`http://127.0.0.1:8000/api/issue/returnbook/${id}/`,{},{
+      await Axios.patch(`issue/returnbook/${id}/`,{},{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
@@ -59,6 +59,7 @@ const BorrowedBooks = () => {
     <div className="container mx-auto p-6 overflow-x-auto">
       <h1 className="text-2xl font-bold mb-4 text-center">Borrowed Books</h1>
       {books.length > 0 ? (
+        <div className='mb-10 overflow-x-auto'>
         <table className="min-w-full table-auto border-collapse border border-gray-200">
           <thead className="text-left">
             <tr>
@@ -91,6 +92,7 @@ const BorrowedBooks = () => {
             ))}
           </tbody>
         </table>
+        </div>
       ) : (
         <p className="text-center">Not Borrowed Yet.</p>
       )}

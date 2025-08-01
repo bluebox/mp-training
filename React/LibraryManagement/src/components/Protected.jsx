@@ -1,57 +1,57 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
-import { jwtDecode } from "jwt-decode";
-import axios from "axios";
-
+import Axios from "../utils/Axios.jsx";
 const ProtectedRoute = ({ children }) => {
   const { isLoggined, setIsLoggined } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const verifyToken = async () => {
     const access = localStorage.getItem("access_token");
     const refresh = localStorage.getItem("refresh_token");
 
-    if (!access) {
+    if (!access || !refresh) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
       setIsLoggined(false);
       setLoading(false);
       return;
     }
 
     try {
-      const decoded = jwtDecode(access); 
-      const now = Date.now() / 1000;
-
-      if (decoded.exp < now) {
-        if (!refresh) {
-          setIsLoggined(false);
-          setLoading(false);
-          return;
-        }
-
-        const res = await axios.post("http://127.0.0.1:8000/api/member/token/refresh/", {
-          refresh,
-        });
-
-        localStorage.setItem("access_token", res.data.access);
-        setIsLoggined(true);
-      } else {
-        setIsLoggined(true);
-      }
-    } catch (err) {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      setIsLoggined(false);
-    } finally {
+      await Axios.post('member/verify_access_token/', {
+        access_token: access,
+      });
+      setIsLoggined(true);
       setLoading(false);
+    } catch (err) {
+      // setIsLoggined(false)
+      try {
+        const res = await Axios.post('member/token/refresh/', {
+          refresh: refresh,
+        });
+        localStorage.setItem('access_token', res.data.access);
+        setIsLoggined(true);
+        setLoading(false);
+      } catch (err) {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        setIsLoggined(false);
+        setLoading(false);
+        alert('Token expired. Please log in again.');
+        navigate('/login');
+      }
     }
   };
 
   useEffect(() => {
     verifyToken();
-  }, [isLoggined,setIsLoggined]);
+  }, [isLoggined]);
 
-  if (loading) return <div className="text-center p-4">Checking authentication...</div>;
+  if (loading) {
+    return <div className="text-center p-4">Checking authentication...</div>;
+  }
 
   return isLoggined ? children : <Navigate to="/login" />;
 };
