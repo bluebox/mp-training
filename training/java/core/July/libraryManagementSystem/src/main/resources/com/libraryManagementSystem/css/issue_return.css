@@ -1,0 +1,35 @@
+.stack-pane {
+    -fx-background-color: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+    -fx-padding: 40;
+}
+
+.label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 18px;
+}
+
+.nav-button {
+    -fx-background-color: #74b9ff;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 6 12;
+}
+
+.nav-button:hover {
+    -fx-background-color: #0984e3;
+}
+
+.action-button {
+    -fx-background-color: #00cec9;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #00b894;
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.libraryManagementSystem.controller.MembersViewAllController"
+            stylesheets="@css/viewallmembers.css">
+
+    <!-- Header -->
+    <Label  
+           text="View All Members"
+           alignment="CENTER"
+           AnchorPane.topAnchor="15.0"
+           AnchorPane.leftAnchor="0.0"
+           AnchorPane.rightAnchor="0.0"
+           prefHeight="30.0">
+        <font>
+            <Font name="System Bold Italic" size="20.0"/>
+        </font>
+    </Label>
+
+    <!-- Error Label -->
+    <Label fx:id="error"
+           
+           textFill="red" 
+           
+           alignment="CENTER"
+           AnchorPane.topAnchor="50.0"
+           AnchorPane.leftAnchor="0.0"
+           AnchorPane.rightAnchor="0.0"
+           prefHeight="25.0">
+        <font>
+            <Font name="System Bold Italic" size="16.0"/>
+        </font>
+    </Label>
+
+    <!-- Back Button -->
+    <Button text="Back"
+            onAction="#switchToMembers"
+            AnchorPane.topAnchor="10.0"
+            AnchorPane.leftAnchor="10.0"/>
+
+    <!-- Home Button -->
+    <Button text="Home"
+            onAction="#switchToPrimary"
+            AnchorPane.topAnchor="10.0"
+            AnchorPane.rightAnchor="10.0"/>
+
+    <!-- TableView -->
+    <TableView fx:id="memberTableView"
+               AnchorPane.topAnchor="90.0"
+               AnchorPane.leftAnchor="10.0"
+               AnchorPane.rightAnchor="10.0"
+               AnchorPane.bottomAnchor="10.0"
+               >
+
+        <columns>
+            <TableColumn text="ID" fx:id="memberID" />
+            <TableColumn text="Name" fx:id="name"/>
+            <TableColumn text="Email" fx:id="email"/>
+            <TableColumn text="Mobile" fx:id="mobile"/>
+            <TableColumn text="Gender" fx:id="gender"/>
+            <TableColumn text="Address" fx:id="address"/>
+            <TableColumn text="Actions" fx:id="actions"/>
+        </columns>
+    </TableView>
+
+</AnchorPane>

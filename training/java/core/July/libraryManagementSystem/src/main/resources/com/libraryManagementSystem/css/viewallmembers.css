@@ -1,0 +1,23 @@
+.table-view {
+    -fx-font-size: 13px;
+}
+
+.button {
+    -fx-padding: 5 15;
+    -fx-background-color: #1976d2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: #1565c0;
+}
+
+.label {
+    -fx-text-fill: #333;
+}
+
+#header {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
