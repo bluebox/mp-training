@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="562.0" prefWidth="756.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #e3f2fd, #ffffff);"
+            xmlns="http://javafx.com/javafx/"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.library_management.controllers.ViewAllIssuesController">
+    
+    <children>
+
+        <Label layoutX="223.0" layoutY="14.0" prefHeight="46.0" prefWidth="311.0"
+               text="All Issues" textAlignment="CENTER" underline="true" alignment="CENTER">
+            <font>
+                <Font name="System Bold Italic" size="30.0"/>
+            </font>
+        </Label>
+
+        <Text fx:id="message" layoutX="13.0" layoutY="82.0"
+              wrappingWidth="731.0" text="" textAlignment="CENTER">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+
+        <TableView fx:id="viewIssuesTable" layoutX="5.0" layoutY="120.0"
+                   prefHeight="420.0" prefWidth="746.0"
+                   style="-fx-background-radius: 10; -fx-border-color: #90caf9; -fx-border-radius: 10;">
+            <columns>
+                <TableColumn fx:id="issueIdColumn" prefWidth="53.0" text="Issue Id"/>
+                <TableColumn fx:id="bookIdColumn" prefWidth="100.0" text="Book Id"/>
+                <TableColumn fx:id="memberIdColumn" prefWidth="100.0" text="Member Id"/>
+                <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status"/>
+                <TableColumn fx:id="issueDateColumn" prefWidth="79.0" text="Issue Date"/>
+                <TableColumn fx:id="returnDateColumn" prefWidth="100.0" text="Return Date"/>
+            </columns>
+        </TableView>
+
+        <Button layoutX="20.0" layoutY="20.0"
+                onAction="#backButton" prefHeight="30.0" prefWidth="80.0"
+                style="-fx-background-color: #bbdefb; -fx-text-fill: #0d47a1; -fx-font-weight: bold; -fx-background-radius: 8;"
+                text="← Back"/>
+
+        <Button layoutX="650.0" layoutY="20.0"
+                onAction="#homeButton" prefHeight="30.0" prefWidth="80.0"
+                style="-fx-background-color: #c8e6c9; -fx-text-fill: #1b5e20; -fx-font-weight: bold; -fx-background-radius: 8;"
+                text="Home 🏠"/>
+
+    </children>
+</AnchorPane>

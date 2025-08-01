@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<VBox alignment="CENTER_LEFT" prefHeight="260.0" prefWidth="372.0" spacing="7.0"  xmlns:fx="http://javafx.com/fxml/1">
+	<!-- TODO Add Nodes -->
+	<Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="372.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Issue / Return Book">
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font></Label>
+
+	<HBox alignment="CENTER" spacing="20">
+	<Button alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="98.0" text="Issue Book" />
+	<Button alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="98.0" text="Return Book" />
+	</HBox>
+	
+</VBox>
+
