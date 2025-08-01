@@ -150,6 +150,7 @@ const ManageEmployees = () => {
     role: "employee",
     is_active: "True",
   });
+  console.log(employees)
 
   const canManage = user?.role === "hr" || user?.role === "ceo";
 
@@ -288,7 +289,7 @@ const ManageEmployees = () => {
         columns={columns}
         dataSource={employees}
         rowKey="emp_id"
-        pagination={{ pageSize: 5 }}
+        pagination={{ pageSize: 2 }}
         bordered
       />
     </div>

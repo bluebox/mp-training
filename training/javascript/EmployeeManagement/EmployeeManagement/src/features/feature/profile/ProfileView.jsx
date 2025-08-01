@@ -247,7 +247,7 @@ const ProfileView = () => {
           </div> */}
           <div>
           <label className="block">Department ID</label>
-          <input
+          <input disabled
             type="number"
             value={form.dept.id}
             onChange={(e) =>
@@ -265,7 +265,7 @@ const ProfileView = () => {
 
           <div>
             <label className="block">Department Name</label>
-            <input
+            <input disabled
               type="text"
               value={form.dept.dept_name}
               onChange={(e) =>

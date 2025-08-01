@@ -75,7 +75,7 @@ class TeamUpdateView(APIView):
             return Response({"result": "Failure", "message": str(e)}, status=500)
 
 class UpdateSalaryView(APIView):
-    permission_classes = [IsAuthenticated & IsHR | IsCEO]
+    permission_classes = [IsAuthenticated & (IsHR | IsCEO)]
 
     def post(self, request):
         emp_id = request.data.get("emp_id")

@@ -27,6 +27,7 @@ class EmployeeDetailSerializer(serializers.ModelSerializer):
     pay_scales = PayScaleSerializer(many=True, read_only=True)
     dept = DepartmentSerializer(read_only=True)
     is_active = serializers.SerializerMethodField()
+    role = serializers.CharField(source='user.role', read_only=True)
     class Meta:
         model = Employees
         fields = '__all__'

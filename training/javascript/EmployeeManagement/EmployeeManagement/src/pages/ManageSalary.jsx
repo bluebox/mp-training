@@ -12,7 +12,7 @@ const ManageSalary = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/hr/update-salary/",
+        "http://127.0.0.1:8000/employee/update-salary/",
         {
           emp_id: empId,
           salary: salary,

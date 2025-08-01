@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import * as yup from "yup";
 
 export const refreshToken = createAsyncThunk(
   "auth/refreshToken",
@@ -71,6 +72,15 @@ export const selectUser = (state) => ({
   role: state.auth.role,
   username: state.auth.username,
 });
+const PasswordFormat=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+const LoginSchema=yup.object().shape(
+  {
+    username:yup.string().required("Required"),
+    password:yup.string().min(8,"Minimum length must be 8").matches(PasswordFormat,"Please enter atleast 1 Upper Case,1 LowerCase,1 Special,1 Number").required("Required")
+
+  }
+
+);
 export const { loginSuccess, logout } = authSlice.actions;
 export default authSlice.reducer;
-
+export {LoginSchema}
