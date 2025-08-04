@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<StackPane styleClass="add-book-form"
+	stylesheets="@../../application/css/addbook.css"
+	xmlns="http://javafx.com/javafx/24.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.LibraryManagement.controller.AddBookController">
+
+	<VBox alignment="CENTER" spacing="25" maxWidth="400"
+		style="-fx-padding: 20;">
+		<children>
+
+			<Label text="Add A New Book" styleClass="form-title"
+				textAlignment="CENTER">
+				<font>
+					<Font name="Arial Bold" size="20.0" />
+				</font>
+			</Label>
+
+			<HBox spacing="10" alignment="TOP_LEFT">
+				<children>
+					<Label text="Title:" minWidth="80" />
+					<VBox spacing="3" alignment="TOP_LEFT">
+						<TextField fx:id="title"
+							promptText="Enter the Title of the Book" />
+						<Label fx:id="titleErrorLabel" style="-fx-font-size: 10;"
+							textFill="red" />
+					</VBox>
+				</children>
+			</HBox>
+
+			<HBox spacing="10" alignment="TOP_LEFT">
+				<children>
+					<Label text="Author:" minWidth="80" />
+					<VBox spacing="3" alignment="TOP_LEFT">
+						<TextField fx:id="author"
+							promptText="Enter the Author Name" />
+						<Label fx:id="authorErrorLabel" style="-fx-font-size: 10;"
+							textFill="red" />
+					</VBox>
+				</children>
+			</HBox>
+
+			<HBox spacing="10" alignment="TOP_LEFT">
+				<children>
+					<Label text="Category:" minWidth="80" />
+					<VBox spacing="3" alignment="TOP_LEFT">
+						<ComboBox fx:id="category" promptText="Select Category" />
+						<Label fx:id="categoryErrorLabel" style="-fx-font-size: 10;"
+							textFill="red" />
+					</VBox>
+				</children>
+			</HBox>
+
+			<HBox spacing="20" alignment="CENTER">
+				<children>
+					<Button text="Submit" onAction="#AddBook"
+						styleClass="book-button" />
+					<Button text="Back" onAction="#Back"
+						styleClass="book-buttons" textFill="RED" />
+				</children>
+			</HBox>
+
+		</children>
+	</VBox>
+</StackPane>

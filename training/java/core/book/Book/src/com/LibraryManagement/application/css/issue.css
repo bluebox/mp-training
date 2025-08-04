@@ -1,0 +1,48 @@
+
+.issue-form {
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.form-title {
+    -fx-text-fill: #333333;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 18px;
+}
+
+.text-field, .date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 13px;
+}
+
+.label-error {
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+}
+
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+        -fx-font-size: 14px;
+    
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}

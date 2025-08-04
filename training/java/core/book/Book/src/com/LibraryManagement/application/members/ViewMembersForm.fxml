@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	stylesheets="@../../application/css/viewmember.css"
+	fx:controller="com.LibraryManagement.controller.ViewMemberController"
+	styleClass="root" prefWidth="750.0" prefHeight="400.0">
+
+	<VBox alignment="CENTER" spacing="10.0" maxWidth="800.0"
+		style="-fx-padding: 20;">
+		<children>
+			<TableView fx:id="membersTable" layoutX="10.0"
+				layoutY="10.0" AnchorPane.rightAnchor="0.0"
+				AnchorPane.topAnchor="0.0" prefWidth="800.0" prefHeight="400.0">
+
+				<columns>
+					<TableColumn fx:id="memberIdColumn" text="Member ID" />
+					<TableColumn fx:id="nameColumn" text="Name" />
+					<TableColumn fx:id="emailCol" text="Email" />
+					<TableColumn fx:id="mobileCol" text="Mobile" />
+					<TableColumn fx:id="genderCol" text="Gender" />
+					<TableColumn fx:id="addressCol" prefWidth="150.0"
+						text="Address" />
+					<TableColumn fx:id="actionCol" text="Action" />
+				</columns>
+			</TableView>
+
+			<Button text="Back" onAction="#Back" styleClass="book-buttons"
+				textFill="RED" />
+		</children>
+	</VBox>
+</AnchorPane>
