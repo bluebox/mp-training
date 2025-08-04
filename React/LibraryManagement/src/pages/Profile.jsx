@@ -10,11 +10,9 @@ const Profile = () => {
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
   const isAuthenticated=useSelector((state)=>state.auth.isAuthenticated)
-  // console.log(isAuthenticated);
-  // const dispatch=useDispatch()
-  // dispatch(setuser(user))
-  // const User=useSelector((state)=>state.auth.user)
-  // console.log(User);
+  const [file,setFile]=useState(null)
+  console.log(isAuthenticated);
+  const dispatch=useDispatch()
   if(!user){
     <div>Loading...</div>
     return
@@ -55,7 +53,31 @@ const Profile = () => {
   const shortAddress=(s)=>{
     return s.length>20?s.slice(0,20)+"...":s;
   }
+  const HandleFileSubmit=async(e)=>{
+    e.preventDefault()
+     if(!window.confirm('Do you want to continue')){
+        return
+      }
+    if(!file){
+      alert('select a file to upload')
+      return 
+    }
+    const formdata=new FormData()
+    formdata.append('file',file)
+    formdata.append('member',user.id)
+    try{
+           await Axios.post('member/upload_file/',formdata)
+           alert('file uploaded')
+    }
+    catch(err){
+        const error=err.response.data
+        const msg=Object.values(error).flat().join('\n')
+        alert(msg)
+    }
+  }
   return (
+    <>
+    <form onSubmit={HandleFileSubmit}>
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg border">
       <h2 className="text-center text-2xl font-bold mb-6 border-b pb-2 text-blue-600">Profile</h2>
       
@@ -79,9 +101,12 @@ const Profile = () => {
           >
             Edit Details
           </button>
+           <input type="file" onChange={(e)=>setFile(e.target.files[0])}/>
+           <button type='submit' className='px-3 py-2 bg-blue-600 rounded-lg text-white'>submit</button>
         </div>
       </div>
-
+      </div>
+      </form>
       {isEditing && (
         <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
 
@@ -169,8 +194,8 @@ const Profile = () => {
           </Formik>
         </div>
       )}
-    </div>
-  );
+      </>
+  )
 };
 
 export default Profile;

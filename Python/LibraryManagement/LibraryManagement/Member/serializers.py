@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Member
+from .models import Member, Document
 from django.contrib.auth.hashers import make_password
 
 class MemberSerializer(serializers.ModelSerializer):
@@ -15,3 +15,8 @@ class MemberSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class DocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Document
+        fields='__all__'

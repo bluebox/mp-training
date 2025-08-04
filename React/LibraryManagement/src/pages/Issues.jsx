@@ -16,12 +16,7 @@ const Issues = () => {
   })
   const fetchIssues = async (page) => {
     try {
-      const res = await Axios.get(`issue/allrecords/?page=${page}`,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      const res = await Axios.get(`issue/allrecords/?page=${page}`);
       setIssues(res.data.results);
       setPagination(prevPagination => ({
       count: res.data.count,
@@ -46,12 +41,7 @@ const Issues = () => {
     }
     setSubmitting(true)
     try {
-      await Axios.post('issue/issuebook/', values,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      await Axios.post('issue/issuebook/', values);
       fetchIssues(page);
       resetForm()
       alert('issued Added')
@@ -73,12 +63,7 @@ const Issues = () => {
     const today = new Date().toISOString().split('T')[0];
     console.log(today);
     try {
-      await Axios.patch(`issue/returnbook/${id}/`,{},{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      await Axios.patch(`issue/returnbook/${id}/`,{});
       fetchIssues(page);
       alert('Book returned')
     } catch (err) {

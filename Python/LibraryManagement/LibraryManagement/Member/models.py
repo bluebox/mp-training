@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
+from django.db.models import CASCADE
 
 
 class MemberManager(BaseUserManager):
@@ -52,3 +53,11 @@ class Member(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class Document(models.Model):
+    member=models.ForeignKey(Member,on_delete=CASCADE)
+    file = models.FileField(upload_to='documents/')
+
+    def __str__(self):
+        return self.member.username

@@ -1,4 +1,6 @@
+from django.core.paginator import Paginator
 from django.db.models import Q
+from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -55,3 +57,14 @@ def viewBooksAvailable(request):
     book=Book.objects.filter(query)
     serializer=BookSerializer(book,many=True)
     return Response(serializer.data,status=HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([CustomAdminPermission,IsAuthenticated])
+def viewBookSearchField(request,title):
+    book = Book.objects.filter(title__istartswith=title)
+    paginator=CustomPagination()
+    page_number=request.GET.get('page',1)
+    paginated_book=paginator.paginate_queryset(book,request)
+    serializer=BookSerializer(paginated_book,many=True)
+    return paginator.get_paginated_response(serializer.data)
+

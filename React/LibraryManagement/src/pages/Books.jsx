@@ -26,15 +26,17 @@ const Books = () => {
     next:null,
     prev:null
   })
+  const [text,setText]=useState('')
   const token=localStorage.getItem('access_token')
   const fetchBooks = async (page) => {
     try {
-      const res = await Axios.get(`book/crud/?page=${page}`,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      var res=null
+      if(text.length==0){
+         res =await Axios.get(`book/crud/?page=${page}`);
+      }
+      else{
+         res=await Axios.get(`book/${text}/?page=${page}`)
+      }
       setBooks(res.data.results);
       setPagination(prevPagination => ({
         count: res.data.count,
@@ -56,12 +58,7 @@ const Books = () => {
     if (!confirm) return;
 
     try {
-      await Axios.delete(`book/crud/${id}/`,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      await Axios.delete(`book/crud/${id}/`);
       setBooks(books.filter((book) => book.id !== id));
     } catch (err) {
         const errors = err.response.data;
@@ -92,12 +89,7 @@ const Books = () => {
         alert('Nothing updated')
         return 
       }
-      await Axios.patch(`book/crud/${currentBookId}/`, values,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      await Axios.patch(`book/crud/${currentBookId}/`, values);
       fetchBooks(page);
       alert('successfully updated')
       resetForm()
@@ -122,13 +114,7 @@ const Books = () => {
         return 
       }
       try{
-           const res = await Axios.post('book/crud/', values,{
-            withCredentials:true,
-            headers: {
-            'Authorization': `Bearer ${token}`
-            }
-          }
-          );
+           const res = await Axios.post('book/crud/', values);
           // setBooks([...books, res.data]);
           setShowDialog(false);
           resetForm()
@@ -148,7 +134,7 @@ const Books = () => {
   }
   useEffect(() => {
     fetchBooks(page);
-  }, [page]);
+  }, [page,text]);
   
   if (loading) return <div className="text-center mt-10 text-gray-600">Loading books...</div>;
 
@@ -156,9 +142,14 @@ const Books = () => {
     <div className="p-6">
       <div className='flex justify-between items-center mb-4'>
         <h1 className="text-2xl font-bold text-gray-800">Books List</h1>
-        <button className='px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600' onClick={OpenDialog}>
-          Add Book
-        </button>
+        <div className='space-x-3'>
+          <input type="text" className='border border-gray-300 py-2 px-3 rounded-2xl' placeholder='Search' value={text} onChange={(e)=>{
+            setText(e.target.value)
+          }}/>
+          <button className='px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600' onClick={OpenDialog}>
+            Add Book
+          </button>
+        </div>      
       </div>
 
       {books.length === 0 ? (

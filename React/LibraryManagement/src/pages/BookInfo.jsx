@@ -9,12 +9,7 @@ const BookInfo = () => {
   const token=localStorage.getItem('access_token')
   const fetchBookDetails = async () => {
     try {
-      const res = await Axios.get(`book/crud/${id}/`,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      const res = await Axios.get(`book/crud/${id}/`);
       setBookDetails(res.data);
     } catch (err) {
       alert(err.response?.data);
@@ -23,12 +18,7 @@ const BookInfo = () => {
 
   const fetchUsersBorrowers = async () => {
     try {
-      const res = await Axios.get(`book/alluserborrowers/${id}`,{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      const res = await Axios.get(`book/alluserborrowers/${id}`);
       setUsers(res.data);
     } catch (err) {
       alert(err.response?.data);

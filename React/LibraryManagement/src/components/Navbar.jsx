@@ -2,10 +2,13 @@ import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext.jsx';
 import { UserContext } from '../context/UserContext.jsx';
+import { useDispatch } from 'react-redux';
+import { setIsAuthenticated } from '../store/slices/AuthSlice.jsx';
 
 const Navbar = () => {
   const { isLoggined, setIsLoggined } = useContext(AuthContext);
   const { user, setUser } = useContext(UserContext);
+  const dispatch=useDispatch()
   const navigate = useNavigate();
 
   const navClass = ({ isActive }) =>
@@ -20,6 +23,7 @@ const Navbar = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     setIsLoggined(false);
+    dispatch(setIsAuthenticated(false))
     setUser(null);
     navigate('/login');
   };

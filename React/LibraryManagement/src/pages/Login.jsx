@@ -1,18 +1,23 @@
-import React, { useState,useContext} from 'react';
+import React, { useState,useContext,useEffect} from 'react';
 import Axios from '../utils/Axios';
 import { useNavigate } from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext'
 import { Link } from 'react-router-dom';
 import { Formik,Form,Field,ErrorMessage} from 'formik';
 import * as Yup from 'yup'
-const Login = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsAuthenticated} from '../store/slices/AuthSlice';
 
+const Login = () => {
+  const isAuthenticated=useSelector((state)=>state.auth.isAuthenticated)
+  const dispatch=useDispatch()
   const {isLoggined,setIsLoggined } = useContext(AuthContext);
   const navigate = useNavigate();
-  if(isLoggined){
-    navigate('/')
-    return 
+  useEffect(() => {
+  if (isAuthenticated || isLoggined) {
+    navigate('/');
   }
+  }, [isAuthenticated, isLoggined]);
   const HandleSubmit = async (values,{setSubmitting,resetForm}) => {
     setSubmitting(true)
     try {
@@ -23,6 +28,7 @@ const Login = () => {
       localStorage.setItem('access_token', access);
       localStorage.setItem('refresh_token', refresh);
       setIsLoggined(true)
+      dispatch(setIsAuthenticated(true))
       resetForm()
       navigate('/');
     } catch (error) {
