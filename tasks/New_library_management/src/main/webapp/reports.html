@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 60px 20px;
+            background-image: url('images/download.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            padding: 40px 60px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin: 15px 0;
+        }
+
+        button {
+            width: 250px;
+            padding: 12px 0;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reports</h1>
+
+        <form action="overduebooks" method="get">
+            <button type="submit">Overdue Books</button>
+        </form>
+
+        <form action="bookspercategory" method="get">
+            <button type="submit">Books Per Category</button>
+        </form>
+
+        <form action="memberwithissuedbooks" method="get">
+            <button type="submit">Members with Issued Books</button>
+        </form>
+    </div>
+</body>
+</html>
