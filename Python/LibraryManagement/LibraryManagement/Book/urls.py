@@ -6,7 +6,7 @@ from .views import BookViewSet, getAlluserOfBookWithId, viewBooksAvailable
 router=DefaultRouter()
 router.register(r'crud',BookViewSet,basename='books')
 urlpatterns=[
-    path('',include(router.urls)),
+    path('',include(router.urls),name='books'),
     path('alluserborrowers/<int:id>/',getAlluserOfBookWithId,name='getAlluserOfBookWithId'),
     path('viewbooksavailable/',viewBooksAvailable,name='viewBooksAvailable'),
 ]

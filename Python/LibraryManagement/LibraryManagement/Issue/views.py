@@ -1,6 +1,3 @@
-from datetime import date
-
-from django.core.serializers import serialize
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -13,6 +10,8 @@ from .serializers import IssueSerializer
 from django.utils import timezone
 
 from Book.CustomPermission import CustomAdminPermission
+
+from Book.CustomPagination import CustomPagination
 
 
 @api_view(['POST'])
@@ -55,8 +54,11 @@ def ReturnBook(request, issue_id):
 @permission_classes([CustomAdminPermission,IsAuthenticated])
 def AllIsssue(request):
     issue=Issue.objects.all()
-    serializer=IssueSerializer(issue,many=True)
-    return Response(serializer.data,status=HTTP_200_OK)
+    paginator=CustomPagination()
+    page_number=request.GET.get('page',1),
+    paginated_issue=paginator.paginate_queryset(issue,request)
+    serializer=IssueSerializer(paginated_issue,many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['GET'])

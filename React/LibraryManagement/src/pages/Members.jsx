@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { FcPrevious,FcNext } from "react-icons/fc";
 
 const Members = () => {
   const { user } = useContext(UserContext);
@@ -20,16 +21,21 @@ const Members = () => {
     password: 123123
   });
   const token = localStorage.getItem('access_token');
-
-  const fetchMembers = () => {
-    Axios.get('member/crud/', {
-      withCredentials: true,
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+  const [page,setPage]=useState(1)
+  const [pagination,setPagination]=useState({
+    count:'',
+    next:null,
+    prev:null
+  })
+  const fetchMembers = (page) => {
+    Axios.get(`member/crud/?page=${page}`)
       .then(res => {
-        setMembers(res.data);
+        setMembers(res.data.results);
+        setPagination({
+          count:res.data.count,
+          next:res.data.next,
+          prev:res.data.previous
+        })
       })
       .catch(err => {
         alert("Error fetching members.");
@@ -41,17 +47,12 @@ const Members = () => {
   };
 
   useEffect(() => {
-    fetchMembers();
-  }, []);
+    fetchMembers(page);
+  }, [page]);
 
   const deleteMember = (id) => {
     if (!window.confirm("Are you sure you want to delete this member?")) return;
-    Axios.delete(`member/crud/${id}/`, {
-      withCredentials: true,
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+    Axios.delete(`member/crud/${id}/`)
       .then(() => {
         setMembers(members.filter((m) => m.id !== id));
       })
@@ -84,13 +85,8 @@ const Members = () => {
         alert('Nothing to update');
         return;
       }
-      await Axios.patch(`member/crud/${currentMemberId}/`, values, {
-        withCredentials: true,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      fetchMembers();
+      await Axios.patch(`member/crud/${currentMemberId}/`, values);
+      fetchMembers(page);
       resetForm();
       alert('Data updated');
     } catch (err) {
@@ -113,12 +109,7 @@ const Members = () => {
     }
     setSubmitting(true);
     try {
-      const res = await Axios.post('member/crud/', values, {
-        withCredentials: true,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const res = await Axios.post('member/crud/', values);
       setMembers([...members, res.data]);
       alert('User added successfully');
       resetForm();
@@ -190,6 +181,12 @@ const Members = () => {
               ))}
             </tbody>
           </table>
+            <div className='flex justify-end m-3 space-x-2'>
+                <h1 className='mt-1 font-bold'>Total Records {pagination.count}</h1>
+                <button onClick={()=>{setPage(page-1)}} disabled={!pagination.prev}className={`text-2xl ${pagination.prev?null:'cursor-not-allowed'}`}><FcPrevious /></button>
+                <h1 className='text-2xl'>{page}</h1>
+                <button onClick={()=>setPage(page+1)} disabled={!pagination.next} className={`text-2xl ${pagination.next?null:'cursor-not-allowed'}`}><FcNext /></button>
+            </div>
         </div>
       )}
 

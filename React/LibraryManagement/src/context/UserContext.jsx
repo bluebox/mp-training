@@ -11,15 +11,9 @@ export const UserProvider = ({ children }) => {
   const fetchUser = async () => {
       const token = localStorage.getItem('access_token');
       if (token) {
-        const res = await Axios.get('member/fetchParicularUser/', {
-          withCredentials: true,
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
+        const res = await Axios.get('member/fetchParicularUser/');
         setUser(res.data);
       }
-
   };
 
   useEffect(() => {

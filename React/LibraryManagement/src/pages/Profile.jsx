@@ -4,13 +4,17 @@ import { Formik,Form,Field,ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import Axios from '../utils/Axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsAuthenticated } from '../store/slices/AuthSlice';
+import { setIsAuthenticated,setuser} from '../store/slices/AuthSlice';
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
   const isAuthenticated=useSelector((state)=>state.auth.isAuthenticated)
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
+  // const dispatch=useDispatch()
+  // dispatch(setuser(user))
+  // const User=useSelector((state)=>state.auth.user)
+  // console.log(User);
   if(!user){
     <div>Loading...</div>
     return
@@ -22,7 +26,7 @@ const Profile = () => {
       }
       setSubmitting(true)
       try{
-          const val={
+          const val={ 
             email:user?.email,
             address:user?.address,
             gender:user?.gender,
@@ -32,12 +36,7 @@ const Profile = () => {
             alert('Nothing to update')
             return 
           }
-          await Axios.patch(`member/crud/${user.id}/`,values,{
-            withCredentials:true,
-            headers:{
-               'Authorization':`Bearer ${token}`
-            }
-          })
+          await Axios.patch(`member/crud/${user.id}/`,values)
           setUser({ ...user, ...values });
           alert('Profile updated successfully!')
           resetForm()

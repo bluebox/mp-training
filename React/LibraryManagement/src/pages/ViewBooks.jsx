@@ -9,12 +9,7 @@ const ViewBooks = () => {
 
   const fetchBooks = async () => {
     try {
-      const res = await Axios.get('book/viewbooksavailable/', {
-        withCredentials: true,
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const res = await Axios.get('book/viewbooksavailable/');
       setBooks(res.data);
       console.log(res.data);
       
@@ -34,11 +29,6 @@ const ViewBooks = () => {
       await Axios.post('issue/issuebook/', {
         book: id,
         member: user?.id,
-      }, {
-        withCredentials: true,
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
       });
       alert('Book is borrowed Successfullly')
       fetchBooks();

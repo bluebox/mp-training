@@ -27,6 +27,9 @@ const Login = () => {
       navigate('/');
     } catch (error) {
       alert('Login failed. Check credentials.');
+      const err=error.response.data
+      const msg=Object.values(err).flat().join('\n')
+      alert(msg)
       console.error('Login error:', error);
     }
     finally{  

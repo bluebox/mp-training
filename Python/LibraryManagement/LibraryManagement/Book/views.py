@@ -1,4 +1,3 @@
-from django.core.serializers import serialize
 from django.db.models import Q
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
@@ -6,28 +5,34 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
+from .CustomPagination import CustomPagination
 from .CustomPermission import CustomAdminPermission
 from .models import Book
 from .serializers import BookSerializer
-from Issue.models import Issue
+from  Issue.models import Issue
 
-from Issue.serializers import IssueSerializer
 
 from Member.serializers import MemberSerializer
-
-from Member.models import Member
 
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [CustomAdminPermission,IsAuthenticated]
+    pagination_class = CustomPagination
     def update(self, request, *args, **kwargs):
         book=Book.objects.get(id=kwargs['pk'])
         is_issued = Issue.objects.filter(book=book, status='I').exists()
         if is_issued:
             return Response({'error':"this book is already issued can't update"},status=status.HTTP_400_BAD_REQUEST)
         return super().update(request, *args, **kwargs)
+    def destroy(self,request,*args,**kwargs):
+        book=Book.objects.get(id=kwargs['pk'])
+        is_issued = Issue.objects.filter(book=book, status='I').exists()
+        if is_issued:
+            return Response({'error':"this book is already issued can't delete"},status=status.HTTP_400_BAD_REQUEST)
+        return super().destroy(request,*args,**kwargs)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated,CustomAdminPermission])
@@ -49,5 +54,4 @@ def viewBooksAvailable(request):
     query &=Q(availablity=True)
     book=Book.objects.filter(query)
     serializer=BookSerializer(book,many=True)
-    print(book)
     return Response(serializer.data,status=HTTP_200_OK)

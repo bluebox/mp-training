@@ -10,12 +10,7 @@ const BorrowedBooks = () => {
 
   const fetchAllBookOfUser = async () => {
     try {
-      const res = await Axios.get(`issue/allBooksWithMemberId/${user?.id}/`, {
-        withCredentials: true,
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      const res = await Axios.get(`issue/allBooksWithMemberId/${user?.id}/`)
       setBooks(res.data)
     } catch (err) {
       const error = err.response?.data
@@ -38,12 +33,7 @@ const BorrowedBooks = () => {
       return 
     }
     try {
-      await Axios.patch(`issue/returnbook/${id}/`,{},{
-        withCredentials:true,
-         headers: {
-         'Authorization': `Bearer ${token}`
-         }
-      });
+      await Axios.patch(`issue/returnbook/${id}/`,{});
       fetchAllBookOfUser();
     } catch (err) {
         const errors = err.response.data;

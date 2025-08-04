@@ -2,20 +2,32 @@ import React, { useEffect, useState } from 'react';
 import Axios from '../utils/Axios';
 import { Formik,Form,Field,ErrorMessage } from 'formik';
 import * as Yup from 'yup'
+import { FcPrevious,FcNext } from "react-icons/fc";
 
 const Issues = () => {
   const [issues, setIssues] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
   const token=localStorage.getItem('access_token')
-  const fetchIssues = async () => {
+  const [page,setPage]=useState(1)
+  const [pagination,setPagination]=useState({
+    count:'',
+    next:null,
+    prev:null
+  })
+  const fetchIssues = async (page) => {
     try {
-      const res = await Axios.get('issue/allrecords/',{
+      const res = await Axios.get(`issue/allrecords/?page=${page}`,{
         withCredentials:true,
          headers: {
          'Authorization': `Bearer ${token}`
          }
       });
-      setIssues(res.data);
+      setIssues(res.data.results);
+      setPagination(prevPagination => ({
+      count: res.data.count,
+      next: res.data.next,
+      prev: res.data.previous
+    }));
     } catch (err) {
        const errors = err.response.data;
         const messages = Object.values(errors).flat().join('\n');
@@ -24,9 +36,8 @@ const Issues = () => {
   };
 
   useEffect(() => {
-    fetchIssues();
-    console.log(issues);
-  }, []);
+    fetchIssues(page);
+  }, [page]);
 
  
   const handleSubmit = async (values,{setSubmitting,resetForm}) => {
@@ -41,7 +52,7 @@ const Issues = () => {
          'Authorization': `Bearer ${token}`
          }
       });
-      fetchIssues();
+      fetchIssues(page);
       resetForm()
       alert('issued Added')
     } catch (err) {
@@ -68,7 +79,7 @@ const Issues = () => {
          'Authorization': `Bearer ${token}`
          }
       });
-      fetchIssues();
+      fetchIssues(page);
       alert('Book returned')
     } catch (err) {
         const errors = err.response.data;
@@ -127,6 +138,12 @@ const Issues = () => {
             ))}
           </tbody>
         </table>
+          <div className='flex justify-end m-3 space-x-2'>
+            <h1 className='mt-1 font-bold'>Total Records {pagination.count}</h1>
+            <button onClick={()=>{setPage(page-1)}} disabled={!pagination.prev}className={`text-2xl ${pagination.prev?null:'cursor-not-allowed'}`}><FcPrevious /></button>
+            <h1 className='text-2xl'>{page}</h1>
+            <button onClick={()=>setPage(page+1)} disabled={!pagination.next} className={`text-2xl ${pagination.next?null:'cursor-not-allowed'}`}><FcNext /></button>
+        </div>
       </div>
 
       {showDialog && (
