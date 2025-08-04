@@ -1,0 +1,18 @@
+<taglib>
+<tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+	<shortname>cTag</shortname>
+	<uri>/custom</uri>
+	<tag>
+		<name>customTag</name>
+		<tagclass>com.JspIntro.customTags.User</tagclass>
+		<info>Custom</info>
+		<attribute>
+			<name>UserDetails</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.JspIntro.model.UserDetails</type>
+
+		</attribute>
+	</tag>
+</taglib>
