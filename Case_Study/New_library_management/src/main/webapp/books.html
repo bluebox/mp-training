@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('images/download.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.5);
+            display: inline-block;
+            padding: 25px 40px;
+            margin: 60px auto;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        form, a {
+            display: block;
+            margin: 10px auto;
+        }
+
+        button, input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="content">
+            <h2>Books</h2>
+
+            <form action="viewbooks" method="get">
+                <input type="submit" value="View Book Table" />
+            </form>
+
+            <form action="addbook" method="get">
+                <input type="submit" value="Add Book"/>
+            </form>
+
+            <form action="/LMS/updatebook.jsp">
+                <input type="submit" value="Update Book"/>
+            </form>
+            </form>
+        </div>
+    </center>
+</body>
+</html>
