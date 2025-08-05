@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefWidth="900.0" spacing="20.0"
+      xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="library.ui.ViewMembersScreen">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="View All Members" />
+
+    <TableView fx:id="membersTable" VBox.vgrow="ALWAYS" prefWidth="860.0">
+        <columns>
+            <TableColumn fx:id="selectColumn" text="Select" prefWidth="50.0" /> <TableColumn fx:id="memberIDColumn" text="Member ID" prefWidth="80.0" />
+            <TableColumn fx:id="nameColumn" text="Name" prefWidth="120.0" />
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="180.0" />
+            <TableColumn fx:id="phoneNumberColumn" text="Phone Number" prefWidth="120.0" />
+            <TableColumn fx:id="genderColumn" text="Gender" prefWidth="80.0" />
+            <TableColumn fx:id="addressColumn" text="Address" prefWidth="150.0" />
+            <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="180.0" />
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+
+    <HBox alignment="CENTER" spacing="10.0">
+        <Button onAction="#handleRefresh" text="Refresh" />
+        <Button onAction="#handleDeleteSelectedMembers" text="Delete Selected" /> <Button onAction="#handleBackToMainMenu" text="Back to Main Menu" />
+    </HBox>
+
+    <Label fx:id="statusLabel" textFill="RED" />
+</VBox>
