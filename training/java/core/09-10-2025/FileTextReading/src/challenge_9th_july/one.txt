@@ -1,7 +1,0 @@
-The issue lies in the way you're trying to initialize the ArrayList 
-
-with count.entrySet(). The entrySet() method of a Map (like HashMap or TreeMa
-p) returns a Set<Map.Entry<K, V>>, not directly an ArrayList. Yo
-u cannot directly pass a Set to the ArrayList c
-
-onstructor without explicitly converting it.
