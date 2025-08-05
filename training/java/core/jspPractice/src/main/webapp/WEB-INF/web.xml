@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>jspPractice</display-name>
+	
+	<servlet>
+
+	<servlet-name>Addition</servlet-name>
+	<servlet-class>com.saketh.practice.servlets.Addition</servlet-class>
+	
+	<init-param>
+	<param-name>name</param-name>
+	<param-value>saketh</param-value>
+	</init-param>
+	
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>Addition</servlet-name>
+	<url-pattern>/Addition</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>Square</servlet-name>
+	<servlet-class>com.saketh.practice.servlets.Square</servlet-class>
+	
+	<init-param>
+	<param-name>name</param-name>
+	<param-value>saketh</param-value>
+	</init-param>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>Square</servlet-name>
+	<url-pattern>/Square</url-pattern>
+	</servlet-mapping>
+	
+	<context-param>
+	<param-name>name</param-name>
+	<param-value>saketh</param-value>
+	</context-param>
+	
+</web-app>
