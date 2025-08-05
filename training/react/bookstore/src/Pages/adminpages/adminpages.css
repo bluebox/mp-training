@@ -23,7 +23,46 @@
 }
 .table {
   border-collapse: collapse;
-  width: 100%;
+  width: 100%;  
   margin-top: 20px;
   background-color: #c5c0c1;
+}
+
+.prev-button{
+  padding: 0.5em 1em; 
+  margin: 10px;       
+  font-size: 1rem;           
+  border-radius: 4px;         
+  background-color: rgb(109, 25, 121);
+  color: white;              
+  cursor: pointer;           
+  display: inline-block;      
+  white-space: nowrap;
+}
+
+.edit-button{
+  padding: 0.5em 1em; 
+  margin: 10px;       
+  font-size: 1rem;           
+  border-radius: 4px;         
+  background-color: rgb(109, 25, 121);
+  color: white;              
+  cursor: pointer;           
+  display: inline-block;      
+  white-space: nowrap;
+}
+
+
+.filter-box {
+  position: relative;
+  left: 250px ;
+  padding: 0.5em 1em; 
+  margin: 10px;       
+  font-size: 1rem;           
+  border-radius: 4px;         
+  background-color: rgb(109, 25, 121);
+  color: white;              
+  cursor: pointer;           
+  display: inline-block;      
+  white-space: nowrap;
 }

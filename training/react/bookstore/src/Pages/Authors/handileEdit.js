@@ -44,6 +44,10 @@ export default function Handlebookedit(){
     }
 
     return (<>
+    <nav className="nav-link">
+     <button className='nav-button' onClick={() => navigate('/AuthorsPage',{state:username})}>Home</button>
+</nav>
+
     <input className="inputs-gap-handleEdit" type="text" value={book_content} name="content" placeholder="content" onChange={(e) => setDescription(e.target.value)}/> <br/>
     <button className='edit-button-handleEdit' onClick={handleSave} >save</button>
     

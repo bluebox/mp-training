@@ -82,7 +82,16 @@ const handleSubmit = async (e) => {
 
 
 
-return( <div className='registration-border'>
+return( <>
+<nav className="nav-link">
+
+  <button className='nav-button' onClick={() => navigate('/AdminHomePage')}>Home</button>
+<button className="nav-button" onClick={() => navigate('/BooksPage')}>Back</button>
+
+</nav>
+<div className='registration-border'>
+
+
 <h1 style={{color:'red',textAlign:'center'}}>{ book ? 'Editing the details':'Registration'}</h1>
 <form className='form' onSubmit={handleSubmit}>
       <label>Title:<input className="inputs-gap" type="text" name="title" value={formData.title} onChange={handleChange} placeholder="title"  required /> </label><br />
@@ -94,7 +103,7 @@ return( <div className='registration-border'>
       <button className='submit-button' type="submit" >Submit</button>}
       </form>
 
-</div>);
+</div></>);
 
 
 }

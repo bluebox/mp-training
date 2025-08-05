@@ -42,6 +42,8 @@ function App() {
           <Route path='/CustomerRegisterPage' element={<CustomerRegisterPage />} />
           <Route path="/AuthorRegisterPage" element={<AuthorRegisterPage  />}/>
           
+
+          <Route path="/*" element={<Adminlogin  />}/>
           
         
           

@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import {useNavigate ,useLocation} from 'react-router-dom';
+import {useNavigate ,useLocation, Link} from 'react-router-dom';
 import './adminpages.css'
 
 
@@ -15,11 +15,13 @@ function AdminHomePage(){
  const [Authors_Count,setAuthors_Count]=useState(0);
  const [Orders_Count,setOrders_Count]=useState(0);
  const location = useLocation();
+ const [loading, setLoading] = useState(true);
 const { username="", from = "" } = location.state || {};
 
 
 
 const adminpage=async ()=>{
+
     const response = await fetch("http://127.0.0.1:8000/bookStore/customers/")
     // if (response.status === 401 ||
     //   response.status === 403 ){
@@ -29,7 +31,8 @@ const adminpage=async ()=>{
     //   navigate('/')
     //   }
         const data=await response.json()
-    setCustomers_Count(data.length) 
+        setLoading(false)
+    setCustomers_Count(data.count) 
 
     const response1=await fetch("http://127.0.0.1:8000/bookStore/books/")    
     const data1=await response1.json()
@@ -65,6 +68,10 @@ const handleOrderButton = async(e) => {
 const columns=['id','order_date','quantity','customer','book']
 
 const handleDelete =async (id) =>{
+    const confirmDelete = window.confirm("Are you sure you want to delete this order?");
+    if (!confirmDelete) {
+      return;
+    }
     const response=await fetch("http://127.0.0.1:8000/bookStore/orders/"+String(id),{method:'DELETE',
        headers:{ 'Authorization':'Bearer ' + localStorage.getItem('access') }
     })
@@ -87,6 +94,7 @@ const handleLogOut = (e) => {
  
 return (
 <div className='home-body'>
+    {(loading) ? <h1>Loading...</h1> : null}
      <nav className="nav-link">
      <button className='nav-button' onClick={() => navigate('/AdminHomePage')}>Home</button>
       <button className='nav-button' onClick={() => navigate('/CustomerRelated')}>customers</button>
@@ -107,21 +115,21 @@ return (
         </tr>
     </thead>
     <tr key="Customers">
-            <td>1</td><td>Customers</td><td>{Customers_Count}</td>
+            <td>1</td><td><b><Link to='/CustomerRelated '>Customers</Link></b></td><td>{Customers_Count}</td>
         </tr>
         <tr key="Books">
-            <td>2</td><td>Books</td><td>{Books_Count}</td>
+            <td>2</td><td><b><Link to='/BooksPage '>Books</Link></b></td><td>{Books_Count}</td>
         </tr>
         <tr key="Orders">
-            <td>3</td><td>Orders</td><td>{Orders_Count}</td>
+            <td>3</td><td><b><button onClick={handleOrderButton}>Orders</button></b></td><td>{Orders_Count}</td>
         </tr>
         <tr key="Authors">
-            <td>4</td><td>Authors</td><td>{Authors_Count}</td>
+            <td>4</td><td><b><Link to='/Authorrelatedpage '>Authors</Link></b></td><td>{Authors_Count}</td>
         </tr>
 
 </table>
 :
- (<table border="5" cellPadding="20" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '300px' }}>
+ (<table border="5" cellPadding="10" className="table" style={{  borderCollapse: 'collapse',textAlign:'center', marginTop: '10px',marginLeft: '10px',marginRight: '10px',position:'center',backgroundColor:'gainsboro'}}>
    <thead> <tr>{columns.map( (i) => (<td key={i}> <b>{i}</b></td>))}<td><b>Action</b></td></tr>
         </thead>
         <tbody>

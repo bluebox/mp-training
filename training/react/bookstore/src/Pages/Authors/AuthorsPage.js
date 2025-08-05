@@ -58,8 +58,8 @@ const navigate=useNavigate();
 </nav>
    
     {(booksList.length ===0 ? <p>Sorry,No Books are mapped to you!!!</p> :
-  // <h1 style={{textAlign:'center'}}>YOu have the access to following books</h1>
- (<table border="5" cellPadding="20" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '50px' ,position:'center'}}>
+ (<> <h1 style={{textAlign:'center'}}>You have the access to following books</h1>
+ <table border="5" cellPadding="20" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '50px' ,position:'center'}}>
            <thead> <tr>{columns.map( (i) => (<td key={i}> <b>{i}</b></td>))}<td><b>ACTION</b></td></tr>
         </thead>
         <tbody>
@@ -68,7 +68,7 @@ const navigate=useNavigate();
         <button className='edit-button' onClick={() =>navigate('/Handlebookedit',{state: {'book':book,'username':username}})} >Edit content</button></td>}
                             </tr>)}
         </tbody>
-    </table>)
+    </table></>)
   )} 
 </>)
 }export default AuthorsPage;

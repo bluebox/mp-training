@@ -148,6 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK={
+
     'DEFAULT_PERMISSION_CLASSES':[
         'rest_framework.permissions.AllowAny',
         'rest_framework.permissions.IsAuthenticated',
@@ -164,7 +165,7 @@ REST_FRAMEWORK={
         'user': '200/mi'
     },
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 1,
+    'PAGE_SIZE': 3,
 
 }
 
@@ -191,7 +192,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-# AUTH_USER_MODEL='bookStore.Person'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

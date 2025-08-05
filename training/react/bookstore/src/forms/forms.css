@@ -15,17 +15,7 @@
   color: #300606;
 } */
 
-.login-box input {
-  width: 70%;
-  height: 30px;
-  position: relative;
-  top: 0px;
-  left: 10PX;
-  font-size: 5;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-}
+
 
 .login-box button {
   width: 50%;
@@ -42,7 +32,20 @@
 }
 
 
+
+
+
 .registration-border{
+  width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: rgb(221, 191, 238);
+  text-align: left;
+}
+
+/* .registration-border{
      width: 500px;
   margin: 10px auto;
   padding: 30px;
@@ -52,16 +55,18 @@
   background-color: #5d3774;
   text-align: left;
 
-}
+} */
 .inputs-gap{
-    position: relative;
-    left: 100px;
-    margin: 8px auto;
+  display: flow-root;
+  
+  margin: 5px;
+   width: 90%;
+    height: 30px;
     border-radius: 5px;
-    text-align:left;
+    text-align:left ;
 }
 /* .form{
-    background-color: #6f3292;
+   display: flex;
 } */
 
 .nav-link {
@@ -85,7 +90,14 @@
 
 font-size: 24PX;
   position: relative;
-  left: 200px;
+  left: 250px;
   color: red;
    background-color: #675274;
+}
+
+.error-message{
+  color: red;
+  font-size: 14px;
+  margin-top: 0px;
+  text-align: center ; 
 }

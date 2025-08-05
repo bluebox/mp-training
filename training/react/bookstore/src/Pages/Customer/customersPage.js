@@ -56,7 +56,8 @@ function CustomerPage(){
         'Content-Type': 'application/json','Authorization':'Bearer ' + localStorage.getItem('access')
       },body: JSON.stringify({'quantity':book.quantity,'customer':data.id,'book':book.id,})})
       
-      
+      alert("your order was successfully placed")
+      window.location.reload()
       handleGetBooks()
     }
 

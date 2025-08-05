@@ -1,5 +1,6 @@
 from django.template.context_processors import request
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, BasePermission, SAFE_METHODS, IsAdminUser, \
     IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework.response import Response
@@ -18,8 +19,12 @@ from . serializer import  *
 
 
 class customers(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [AllowAny()]
+        return [IsAuthenticatedOrReadOnly()]
     def get(self,request,id=None,):
+        paginator = PageNumberPagination()
         if request.GET.get('username'):
             query_set = Customers.objects.get(username=request.GET.get('username'))
             serialized_query_set = CustomerSerializer(query_set)
@@ -35,9 +40,19 @@ class customers(APIView):
             return Response(serialized_query_set.data)
         else:
             query_set = Customers.objects.all()
-            serialized_query_set = CustomerSerializer(query_set, many=True)
-            return Response(serialized_query_set.data)
+            a=paginator.paginate_queryset(query_set,request)
+            serialized_query_set = CustomerSerializer(a, many=True)
+            # return Response(serialized_query_set.data)
+
+            return paginator.get_paginated_response(serialized_query_set.data)
+
+            # query_set = Customers.objects.all()
+            # serialized_query_set = CustomerSerializer(query_set, many=True)
+            # return Response(serialized_query_set.data)
+
+
     def post(self,request):
+
         serialized_data=CustomerSerializer(data=request.data)
         if serialized_data.is_valid():
 
@@ -91,14 +106,13 @@ class orders(APIView):
             return Response(serialized_query_set.data)
 
         if not id:
-            query_set = Orders.objects.all()
+            query_set = Orders.objects.all().order_by('-order_date')
             serialized_query_set = OrdersSerializer(query_set, many=True)
             return Response(serialized_query_set.data)
         else:
             query_set = Orders.objects.get(id=id)
             serialized_query_set = OrdersSerializer(query_set)
             return Response(serialized_query_set.data)
-
     def post(self,request):
         serialized_data=OrdersSerializer(data=request.data)
         a="out"

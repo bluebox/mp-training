@@ -90,7 +90,7 @@ if (username ){
         navigate('/Authorspage',{state:username})
       }
       else{
-      navigate('/AuthorLogInpage');
+      navigate('/');
       }
       
   };
@@ -105,7 +105,7 @@ return( <><nav className="nav-link">
 
 
 <div className='registration-border'>
-<h1 style={{color:'red',textAlign:'center'}}>{ username ? 'Editing the details':'Author Registration'}</h1>
+<h1 style={{color:'black',textAlign:'center'}}>{ username ? 'Editing the details':'Author Registration'}</h1>
 <form className='form' onSubmit={handleSubmit}>
       <label  htmlFor="name" >Name:<h className="red-star">*</h></label><input className="inputs-gap" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name"  required /> <br />
       <label  htmlFor="username"> Username:<h className="red-star">*</h></label> <input className="inputs-gap" type="text" name="username" value={formData.username} onChange={handleChange}  required /> <br />

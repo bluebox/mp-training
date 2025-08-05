@@ -7,6 +7,8 @@ export default function Adminlogin(){
     const [Credentials ,setCredentials]=useState({'username':"",'password':""});
     const location=useLocation()
     const [id,setId]=useState(0)
+    const [AAlert_username,setusername_alert]=useState(false)
+    const [AAlert_password,setpassword_alert]=useState(false)
     // const [data,setData]=useState({})
    
 useEffect(()=> {
@@ -38,7 +40,7 @@ useEffect(()=> {
 
 
         if (localStorage.getItem('role') === "admin") {
-        navigate('/AdminHomePage')
+        navigate('/AdminHomePage',{state:username})
         }
         else if (localStorage.getItem('role')=== "author") {
           navigate('/AuthorsPage',{state:username})}
@@ -52,13 +54,32 @@ useEffect(()=> {
 
       }
     }
-    const handleChange  = (e) => {
+    const handleChange_username = (e) => {
+      console.log(e.target.value)
+      if (e.target.value.length < 3) {
+        setusername_alert(true)}
+      else{
+        setusername_alert(false)
+      
+    setCredentials(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));}
+  };
+
+
+  const handleChange_password  = (e) => {
+      console.log(e.target.value)
+      if (e.target.value.length < 3) {
+        setpassword_alert(true)}
+      else{
+        setpassword_alert(false)
+      }
     setCredentials(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
-
 
     return (<>
         
@@ -71,9 +92,10 @@ useEffect(()=> {
 
 <div className="login-box">
         <form className='form' onSubmit={handleSubmit} >
-      <label htmlFor="username" style={{display:'flex', margin:'15px' }}>Username:<h className="red-star">*</h>   <input className="inputs-gap" type="text" name="username" onChange={handleChange}   placeholder="username"  required /> </label><br />
-
-    <label htmlFor="password" style={{display:'flex'}}> Password: <h className="red-star">*</h><input className="inputs-gap" type="password" name="password" onChange={handleChange}  placeholder="password"  required /></label> <br />
+      <label htmlFor="username" style={{display:'flex'}}>Username:<h5 className="red-star">*</h5>   <input className="inputs-gap" type="text" name="username" onChange={handleChange_username}   placeholder="username"  required /> </label>
+      { AAlert_username&& <p className="error-message">Username must be at least 3 characters long</p>} <br />
+    <label htmlFor="password" style={{display:'flex'}}> Password: <h5 className="red-star">*</h5><input className="inputs-gap" type="password" name="password" onChange={handleChange_password}  placeholder="password"  required /></label>
+    { AAlert_password && <p className="error-message">Password must be at least 3 characters long</p>} <br />
     <button  type="submit" >Login</button>
 
 
