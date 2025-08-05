@@ -276,6 +276,7 @@ class CustomAllTasksView(APIView):
         priority = request.query_params.get("priority")
         project = request.query_params.get("project")
         created_by = request.query_params.get("created_by")
+        title = request.query_params.get("title")
 
         filters = Q()
         if status1:
@@ -286,6 +287,8 @@ class CustomAllTasksView(APIView):
             filters &=Q(project__name__icontains=project)
         if created_by:
             filters &=Q(created_by__username__icontains=created_by)
+        if title:
+            filters &=Q(title__icontains=title)
         queryset = Task.objects.filter(filters)
         paginator = CustomPageNumberPagination()
         paginated_queryset = paginator.paginate_queryset(queryset, request, view=self)

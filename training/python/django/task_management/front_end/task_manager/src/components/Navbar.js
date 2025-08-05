@@ -22,7 +22,7 @@ else if(JSON.parse(localStorage.getItem("user")).role === 'admin'){
   return (
       <nav className="navbar">
         <Link to="/home" style={{display:'inline', marginLeft:"20px", color:"white"}}>Home</Link>
-        <Link to="/dashboard" style={{display:'inline', marginLeft:"10px", color:"white"}}>Dashboard</Link>
+        <Link to="/admin-dashboard" style={{display:'inline', marginLeft:"10px", color:"white"}}>Dashboard</Link>
         <Link to="/register"><p style={{display:'inline', color:"white", marginLeft:"10px"}}>Register</p></Link>
         <Link to="/create-team" style={{display:'inline', marginLeft:"10px", color:"white"}}>create team</Link>
         <Link to="/team-assign"><p style={{display:'inline', color:"white", marginLeft:"10px"}}>AssignToTeam</p></Link>

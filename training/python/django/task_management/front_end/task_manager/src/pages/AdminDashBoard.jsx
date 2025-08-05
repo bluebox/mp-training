@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/axios";
 
-const LeadDashboard = () => {
+const AdminDashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [count, setCount] = useState(1);
@@ -59,8 +59,8 @@ const LeadDashboard = () => {
         if(status==="" && priority === "" && title === ""){
           setIsFilter(false);
         }
-        const response =isFilter? await api.get("lead/tasks/?page="+currentPage+'&'+(status===""?"":"status="+status)+'&'+(priority===""?"":"priority="+priority)
-                                      +'&'+(title===""?"":"title="+title)) :await api.get("lead/tasks/?page="+currentPage);
+        const response =isFilter? await api.get("tasks/all/?page="+currentPage+'&'+(status===""?"":"status="+status)+'&'+(priority===""?"":"priority="+priority)
+                                      +'&'+(title===""?"":"title="+title)) :await api.get("tasks/all/?page="+currentPage);
         setTasks(response.data.results);
         if(currentPage===1){
           if(response.data.results.length){
@@ -95,7 +95,7 @@ const LeadDashboard = () => {
   const handleFilter = async () => {
     setCurrentPage(1);
     setIsFilter(true);
-    const response = await api.get("lead/tasks/?page="+currentPage+(status===""?"":"&status="+status)+(priority===""?"":"&priority="+priority)
+    const response = await api.get("tasks/all/?page="+currentPage+(status===""?"":"&status="+status)+(priority===""?"":"&priority="+priority)
                                       +(title===""?"":"&title="+title));
     setTasks(response.data.results);
     if(currentPage===1){
@@ -168,8 +168,18 @@ const LeadDashboard = () => {
 
             return (
               <tr key={taskData.id}>
-                <td>{taskData.title}</td>
-                <td>{taskData.description || "no description available"}</td>
+
+                <td>{isEdit && updateTask.id === taskData.id ? (
+                  <input type="text" name="title" value={updateTask.title} onChange={handleChange}/>):
+                  (taskData.title)}
+                </td>
+
+
+                <td>{isEdit && updateTask.id === taskData.id ? (
+                  <input type="text" name="description" value={updateTask.description} onChange={handleChange}/>)
+                  :taskData.description || "no description available"}
+                </td>
+
                 <td>
                   {isEdit && updateTask.id === taskData.id ? (
                     <select name="status" value={updateTask.status} onChange={handleChange}>
@@ -181,8 +191,22 @@ const LeadDashboard = () => {
                     taskData.status
                   )}
                 </td>
-                <td>{taskData.priority}</td>
-                <td>{taskData.due_date || "N/A"}</td>
+                <td>
+                  {isEdit && updateTask.id === taskData.id ? (
+                    <select name="priority" value={updateTask.priority} onChange={handleChange}>
+                      <option value="low">low</option>
+                      <option value="medium">medium</option>
+                      <option value="high">high</option>
+                    </select>
+                  )
+                  :taskData.priority}
+                </td>
+
+
+                <td>{isEdit && updateTask.id === taskData.id ? (
+                    <input type="date" name="due_date" value={updateTask.due_date} onChange={handleChange}/>)
+                    :taskData.due_date || "N/A"}</td>
+                    
                 <td>
                   {isEdit && updateTask.id === taskData.id ? (
                     <>
@@ -222,4 +246,4 @@ const LeadDashboard = () => {
 
 
 
-export default LeadDashboard;
+export default AdminDashboard;

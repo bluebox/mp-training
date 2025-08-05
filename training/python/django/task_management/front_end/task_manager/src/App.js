@@ -15,6 +15,7 @@ import AssignToTeam from './pages/AssignToTeam';
 import CreateTeam from './pages/CreateTeam';
 import NewProject from './pages/NewProject';
 import LeadDashboard from './pages/LeadDashboard';
+import AdminDashboard from './pages/AdminDashBoard';
 
 export default function App(){
 
@@ -37,6 +38,7 @@ export default function App(){
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/lead-dashboard" element={<LeadDashboard />} />
         <Route path="/create-task" element={<TaskCreate />} />
         <Route path="/task-list" element={<TaskList />} />
