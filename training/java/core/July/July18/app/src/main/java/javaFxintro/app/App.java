@@ -19,15 +19,18 @@ public class App extends Application {
 	@SuppressWarnings("exports")
 	@Override
 	public void start(Stage stage) throws IOException {
-//		scene = new Scene(loadFXML("gridPaneexample"), 640, 480);
-//		scene = new Scene(loadFXML("hboxExample"), 640, 480); 
-//		scene = new Scene(loadFXML("borderPaneExample"), 640, 480); 
-//		scene = new Scene(loadFXML("flowPaneExample"), 640, 480); 
-//		scene = new Scene(loadFXML("vboxExample"), 640, 480);
-//		scene = new Scene(loadFXML("tilePaneExample"), 640, 480);
+
 		scene = new Scene(loadFXML("stackPaneExample"), 640, 480);
+
 		stage.setScene(scene);
 		stage.show();
+//		
+//		scene = new Scene(loadFXML("gridPaneexample"), 640, 480);
+//		scene = new Scene(loadFXML("hboxExample"), 640, 480);
+//		scene = new Scene(loadFXML("borderPaneExample"), 640, 480);
+//		scene = new Scene(loadFXML("flowPaneExample"), 640, 480);
+//		scene = new Scene(loadFXML("vboxExample"), 640, 480);
+//		scene = new Scene(loadFXML("tilePaneExample"), 640, 480);
 	}
 
 	static void setRoot(String fxml) throws IOException {

@@ -25,6 +25,10 @@ public class Book {
 		this.availability = availability;
 	}
 
+	public Book(String title, String author, BookCategory category, BookStatus status, BookAvailability availability) {
+		this(-1, title, author, category, status, availability);
+	}
+
 	public int getBookId() {
 		return bookId;
 	}

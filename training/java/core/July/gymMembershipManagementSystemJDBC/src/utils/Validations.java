@@ -8,7 +8,7 @@ public class Validations {
 
 	public static boolean isValidName(String name) {
 
-		return name.matches("^[A-Za-z]{2,30}$");
+		return name.matches("^[A-Za-z]{2,50}$");
 
 	}
 

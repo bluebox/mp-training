@@ -87,7 +87,7 @@ public class ReturnController implements Initializable {
 
 				issueService.returnBook(book, member.getMemberId(), date);
 
-				error.setText(book.getTitle() + " Book is Issued to " + member.getName());
+				error.setText(book.getTitle() + " Book is return by " + member.getName());
 
 				error.setStyle("-fx-text-fill: green");
 
