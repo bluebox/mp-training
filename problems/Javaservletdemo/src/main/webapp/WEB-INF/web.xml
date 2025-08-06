@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<servlet>
+         <servlet-name>AdditionServlet</servlet-name>
+         <servlet-class>servletpackage.ServletClass</servlet-class>
+    </servlet>
+    <servlet-mapping>
+         <servlet-name>AdditionServlet</servlet-name>
+         <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+         <servlet-name>AccountCreate</servlet-name>
+         <servlet-class>servletpackage.AddAccount</servlet-class>
+    </servlet>
+    <servlet-mapping>
+         <servlet-name>AccountCreate</servlet-name>
+         <url-pattern>/CreateAccount</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+         <servlet-name>accountdelete</servlet-name>
+         <servlet-class>servletpackage.deleteAccount</servlet-class>
+    </servlet>
+    <servlet-mapping>
+         <servlet-name>accountdelete</servlet-name>
+         <url-pattern>/deleteAccount</url-pattern>
+    </servlet-mapping>
+    
+       <servlet>
+         <servlet-name>checkbalance</servlet-name>
+         <servlet-class>servletpackage.viewBalance</servlet-class>
+    </servlet>
+    <servlet-mapping>
+         <servlet-name>checkbalance</servlet-name>
+         <url-pattern>/viewBalance</url-pattern>
+    </servlet-mapping>
+    
+    
+        <servlet>
+         <servlet-name>depositamt</servlet-name>
+         <servlet-class>servletpackage.deposit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+         <servlet-name>depositamt</servlet-name>
+         <url-pattern>/deposit</url-pattern>
+    </servlet-mapping>
+    
+    
+        <servlet>
+         <servlet-name>withdrawamt</servlet-name>
+         <servlet-class>servletpackage.withdraw</servlet-class>
+    </servlet>
+    <servlet-mapping>
+         <servlet-name>withdrawamt</servlet-name>
+         <url-pattern>/WithdrawAmount</url-pattern>
+    </servlet-mapping>
+    
+    <context-param>
+            <param-name>jdbcDriver</param-name>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
+        </context-param>
+        <context-param>
+            <param-name>dbUrl</param-name>
+            <param-value>jdbc:mysql://127.0.0.1:3306/accounts</param-value>
+        </context-param>
+        <context-param>
+            <param-name>dbUser</param-name>
+            <param-value>root</param-value>
+        </context-param>
+        <context-param>
+            <param-name>dbPassword</param-name>
+            <param-value>root</param-value>
+        </context-param>
+</web-app>
