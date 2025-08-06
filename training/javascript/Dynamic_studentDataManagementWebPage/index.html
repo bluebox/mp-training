@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Form</title>
+
+  <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+    <div class="background-blur"></div>
+
+<div class="container">
+  <h2>Student Registration</h2>
+  <form id="dataForm" class="form-grid">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" required />
+      <div class="error" id="nameError"></div>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" id="age" required />
+      <div class="error" id="ageError"></div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+      <div class="error" id="emailError"></div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" required />
+      <div class="error" id="phoneError"></div>
+    </div>
+    <div class="form-group">
+      <label>Branch</label>
+      <div class="options">
+        <label><input type="radio" name="branch" value="CSE"> CSE</label>
+        <label><input type="radio" name="branch" value="ECE"> ECE</label>
+        <label><input type="radio" name="branch" value="EEE"> EEE</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Languages</label>
+      <div class="options">
+        <label><input type="checkbox" value="English"> English</label>
+        <label><input type="checkbox" value="Hindi"> Hindi</label>
+        <label><input type="checkbox" value="French"> French</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="state">State</label>
+      <select id="state" required><option value="">Select State</option></select>
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <select id="city" required><option value="">Select City</option></select>
+    </div>
+    <div class="form-group full-width">
+      <button type="submit" id="addBtn" disabled>Add Student</button>
+    </div>
+  </form>
+
+
+    <h3> Table View of Registered Students</h3>
+
+<div class="table-container">
+  <div class="table-wrapper">
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th><input type="text" class="column-search" data-col="0" placeholder="Search Name"></th>
+          <th><input type="text" class="column-search" data-col="1" placeholder="Search Age"></th>
+          <th><input type="text" class="column-search" data-col="2" placeholder="Search Email"></th>
+          <th><input type="text" class="column-search" data-col="3" placeholder="Search Phone"></th>
+          <th><input type="text" class="column-search" data-col="4" placeholder="Search Branch"></th>
+          <th><input type="text" class="column-search" data-col="5" placeholder="Search Languages"></th>
+          <th><input type="text" class="column-search" data-col="6" placeholder="Search State"></th>
+          <th><input type="text" class="column-search" data-col="7" placeholder="Search City"></th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+
+
+  <p id="entryCount">Total Entries: 0</p>
+</div>
+</body>
+</html>
