@@ -44,6 +44,31 @@ public class Member {
 	public String getAddress() {
 		return address;
 	}
+	
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
+	}
+
+	public void setGender(MemberGender gender) {
+		this.gender = gender;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	@Override
 	public String toString() {

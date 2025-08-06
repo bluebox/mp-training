@@ -18,10 +18,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int RegisterMember(Member member) throws InvalidException {
-		Connection con;
-		try {
-			con = ConnectionPoolingServlet.getDataSource().getConnection();
-			PreparedStatement stmt = con.prepareStatement(SQLQueries.MEMBER_INSERT);
+
+		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
+				PreparedStatement stmt = con.prepareStatement(SQLQueries.MEMBER_INSERT);) {
 
 			stmt.setString(1, member.getName());
 			stmt.setString(2, member.getEmail());
@@ -44,11 +43,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public boolean getMemberByMobile(Long mobile) throws InvalidException {
-		PreparedStatement stmt;
-		Connection con;
-		try {
-			con = ConnectionPoolingServlet.getDataSource().getConnection();
-			stmt = con.prepareStatement(SQLQueries.MEMBER_SELECT_BY_MOBILE);
+		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
+				PreparedStatement stmt = con.prepareStatement(SQLQueries.MEMBER_SELECT_BY_MOBILE);) {
+
 			stmt.setLong(1, mobile);
 
 			ResultSet rs = stmt.executeQuery();
@@ -67,11 +64,10 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public boolean getMemberByEmail(String email) throws InvalidException {
-		PreparedStatement stmt;
-		Connection con;
-		try {
-			con = ConnectionPoolingServlet.getDataSource().getConnection();
-			stmt = con.prepareStatement(SQLQueries.MEMBER_SELECT_BY_EMAIL);
+
+		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
+				PreparedStatement stmt = con.prepareStatement(SQLQueries.MEMBER_SELECT_BY_EMAIL);) {
+
 			stmt.setString(1, email);
 
 			ResultSet rs = stmt.executeQuery();
@@ -90,10 +86,13 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int UpdateMember(Member member, Member oldMember) throws InvalidException {
-		Connection con;
+		Connection con = null;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt1 = null;
 		try {
 			con = ConnectionPoolingServlet.getDataSource().getConnection();
-			PreparedStatement stmt = con.prepareStatement(SQLQueries.MEMBER_UPDATE);
+			stmt = con.prepareStatement(SQLQueries.MEMBER_UPDATE);
+			stmt1 = con.prepareStatement(SQLQueries.MEMBERS_LOG_INSERT);
 
 			stmt.setString(1, member.getName());
 			stmt.setString(2, member.getEmail());
@@ -102,18 +101,36 @@ public class MemberDaoImpl implements MemberDao {
 			stmt.setString(5, member.getAddress());
 			stmt.setLong(6, member.getMemberId());
 
+			con.setAutoCommit(false);
 			int rowsUpdated = stmt.executeUpdate();
 
 			if (rowsUpdated < 0) {
 				throw new InvalidException("Member not added to server");
 			}
 
-			memberLog(oldMember);
+			memberLog(oldMember, con, stmt1);
+
+			con.commit();
+			con.setAutoCommit(true);
 
 			return rowsUpdated;
 
 		} catch (SQLException e) {
+			try {
+				con.rollback();
+				con.setAutoCommit(true);
+			} catch (SQLException e1) {
+				throw new InvalidException("Error in Server" + e.getMessage());
+			}
 			throw new InvalidException("Error in Server" + e.getMessage());
+		} finally {
+			try {
+				con.close();
+				stmt.close();
+				stmt1.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -121,10 +138,10 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Member> getAllMembers() throws InvalidException {
 
 		List<Member> members = new ArrayList<>();
-		Connection con;
-		try {
-			con = ConnectionPoolingServlet.getDataSource().getConnection();
-			PreparedStatement stmt = con.prepareStatement(SQLQueries.SELECT_ALL_MEMBERS);
+
+		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
+				PreparedStatement stmt = con.prepareStatement(SQLQueries.SELECT_ALL_MEMBERS);) {
+
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -144,12 +161,16 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int deleteMember(Member memberData) throws InvalidException {
-		Connection con;
+		Connection con = null;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt1 = null;
 		try {
 			con = ConnectionPoolingServlet.getDataSource().getConnection();
-			PreparedStatement stmt = con.prepareStatement(SQLQueries.MEMBER_DELETE);
-			stmt.setInt(1, memberData.getMemberId());
+			stmt = con.prepareStatement(SQLQueries.MEMBER_DELETE);
+			stmt1 = con.prepareStatement(SQLQueries.MEMBERS_LOG_INSERT);
 
+			stmt.setInt(1, memberData.getMemberId());
+			con.setAutoCommit(false);
 			int rowsDeleted = stmt.executeUpdate();
 
 			if (rowsDeleted <= 0) {
@@ -157,23 +178,37 @@ public class MemberDaoImpl implements MemberDao {
 				throw new InvalidException("No Member found with Name: " + memberData.getName());
 			}
 
-			memberLog(memberData);
+			memberLog(memberData, con, stmt1);
+
+			con.commit();
+			con.setAutoCommit(true);
 
 			return rowsDeleted;
 
 		} catch (SQLException e) {
+			try {
+				con.rollback();
+				con.setAutoCommit(true);
+			} catch (SQLException e1) {
+				throw new InvalidException("Error in Server" + e.getMessage());
+			}
 			throw new InvalidException("Error in Server" + e.getMessage());
+		} finally {
+			try {
+				con.close();
+				stmt.close();
+				stmt1.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
 
 	@Override
-	public void memberLog(Member member) throws InvalidException {
-		PreparedStatement stmt;
-		Connection con;
+	public void memberLog(Member member, Connection con, PreparedStatement stmt) throws InvalidException {
+
 		try {
-			con = ConnectionPoolingServlet.getDataSource().getConnection();
-			stmt = con.prepareStatement(SQLQueries.MEMBERS_LOG_INSERT);
 			stmt.setInt(1, member.getMemberId());
 			stmt.setString(2, member.getName());
 			stmt.setString(3, member.getEmail());
@@ -192,5 +227,30 @@ public class MemberDaoImpl implements MemberDao {
 			throw new InvalidException("Error in Server" + e.getMessage());
 		}
 
+	}
+
+	@Override
+	public Member getMemberId(int memberId) throws InvalidException {
+		Member member = null;
+
+		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
+				PreparedStatement stmt = con.prepareStatement(SQLQueries.MEMBER_SELECT_BY_ID);) {
+
+			stmt.setInt(1, memberId);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				MemberGender gender = rs.getString("gender").equalsIgnoreCase("F") ? MemberGender.FEMALE
+						: MemberGender.MALE;
+				member = new Member(rs.getInt("member_id"), rs.getString("name"), rs.getString("email"),
+						rs.getLong("mobile"), gender, rs.getString("address"));
+
+			}
+
+		} catch (SQLException e) {
+			throw new InvalidException("Error in Server" + e.getMessage());
+		}
+
+		return member;
 	}
 }

@@ -7,6 +7,11 @@ body
 	
     width: min(900px,100% - 3rem);
     margin-inline:auto;
+    background-color: #fff;
+    opacity:0.9;
+	padding: 30px 40px;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 table{
     width: 100%;

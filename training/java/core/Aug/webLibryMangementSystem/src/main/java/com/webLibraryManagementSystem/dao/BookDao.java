@@ -1,5 +1,7 @@
 package com.webLibraryManagementSystem.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public interface BookDao {
 
 	void deleteBook(Book book) throws InvalidException;
 
-	void bookLog(Book book) throws InvalidException;
+	void bookLog(Book book, Connection con, PreparedStatement stmt) throws InvalidException;
 
 	Book getBookById(int id) throws InvalidException;
 

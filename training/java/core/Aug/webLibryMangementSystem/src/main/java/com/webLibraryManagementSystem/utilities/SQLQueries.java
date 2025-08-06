@@ -18,6 +18,8 @@ public class SQLQueries {
 
 	public static final String MEMBER_SELECT_BY_EMAIL = "SELECT * FROM members WHERE email = ?";
 
+	public static final String MEMBER_SELECT_BY_ID = "SELECT * FROM members WHERE member_id = ?";
+
 	// book
 
 	public static final String BOOK_INSERT = "INSERT INTO books (title, author, category, status, availability) VALUES (?, ?, ?, ?, ?)";

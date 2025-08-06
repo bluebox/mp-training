@@ -30,9 +30,9 @@
 				<span class="arrow">▶</span> 👤 Member
 			</div>
 			<div class="submenu" id="memberMenu">
-				<a href="registerMember.jsp" target="contentFrame">📝 Register
-					Member</a> <a href="updateMember.jsp" target="contentFrame">✏️
-					Update Member</a> <a href="viewMembers.jsp" target="contentFrame">👥
+				<a href="RegisterMemberServlet" target="contentFrame">📝 Register
+					Member</a> <a href="MemberUpdateServlet" target="contentFrame">✏️
+					Update Member</a> <a href="MembersViewAllServlet" target="contentFrame">👥
 					View All Members</a>
 			</div>
 		</div>
@@ -43,8 +43,8 @@
 				<span class="arrow">▶</span> 🔁Issue and Return
 			</div>
 			<div class="submenu" id="issueReturnMenu">
-				<a href="issueBook.jsp" target="contentFrame">📤 Issue Book</a> <a
-					href="returnBook.jsp" target="contentFrame">📥 Return Book</a>
+				<a href="IssueBookServlet" target="contentFrame">📤 Issue Book</a> <a
+					href="ReturnBookServlet" target="contentFrame">📥 Return Book</a>
 			</div>
 		</div>
 
@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="content">
-		<iframe name="contentFrame"></iframe>
+		<iframe name="contentFrame" src="defaultPage.jsp"></iframe>
 	</div>
 
 	<script src="scripts/dashboard.js">

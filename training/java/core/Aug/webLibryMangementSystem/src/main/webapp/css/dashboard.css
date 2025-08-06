@@ -9,6 +9,11 @@ body {
     display: flex;
     height: 100vh;
     overflow-x: hidden;  
+    background-image:url(../image/libraryHome.jpg);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+ 
 }
 * {
     box-sizing: border-box;
@@ -68,4 +73,9 @@ iframe {
     box-sizing: border-box;
     border: none;
     overflow-x: hidden;
+    background-image:url(../image/libraryHome.jpg);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    
 }

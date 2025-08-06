@@ -14,4 +14,6 @@ public interface MemberService {
 	int updateMember(Member newMember, Member oldMember) throws InvalidException;
 
 	int deleteMember(Member memberData) throws InvalidException;
+
+	Member getMemberId(int memberId) throws InvalidException;
 }

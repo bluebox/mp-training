@@ -48,9 +48,13 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public void updateBook(Book book, Book oldBook) throws InvalidException {
-
-		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
-				PreparedStatement stmt = con.prepareStatement(SQLQueries.BOOK_UPDATE);) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt1 = null;
+		try {
+			con = ConnectionPoolingServlet.getDataSource().getConnection();
+			stmt = con.prepareStatement(SQLQueries.BOOK_UPDATE);
+			stmt1 = con.prepareStatement(SQLQueries.BOOKS_LOG_INSERT);
 
 			stmt.setString(1, book.getTitle());
 			stmt.setString(2, book.getAuthor());
@@ -59,40 +63,77 @@ public class BookDaoImpl implements BookDao {
 			stmt.setString(5, String.valueOf(book.getAvailability().toString().charAt(0)));
 			stmt.setInt(6, book.getBookId());
 
+			con.setAutoCommit(false);
 			int rowsUpdated = stmt.executeUpdate();
 
 			if (rowsUpdated < 0) {
 				throw new InvalidException("Book not added to server");
 			}
-			bookLog(oldBook);
+			bookLog(oldBook, con, stmt1);
+
+			con.commit();
+			con.setAutoCommit(true);
 
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
+			try {
+				con.rollback();
+				con.setAutoCommit(true);
+			} catch (SQLException e1) {
+				throw new InvalidException("Error in Server" + e.getMessage());
+			}
 			throw new InvalidException("Error in Server" + e.getMessage());
+		} finally {
+			try {
+				con.close();
+				stmt.close();
+				stmt1.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	@Override
 	public void updateBookAvalability(Book book, BookAvailability avalability) throws InvalidException {
-		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
-				PreparedStatement stmt = con.prepareStatement(SQLQueries.BOOK_UPDATE_AVAILABILITY);) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt1 = null;
+		try {
+			con = ConnectionPoolingServlet.getDataSource().getConnection();
+			stmt = con.prepareStatement(SQLQueries.BOOK_UPDATE_AVAILABILITY);
+			stmt1 = con.prepareStatement(SQLQueries.BOOKS_LOG_INSERT);
 
 			stmt.setString(1, String.valueOf(avalability.toString().charAt(0)));
 			stmt.setInt(2, book.getBookId());
 
+			con.setAutoCommit(false);
 			int rowsUpdated = stmt.executeUpdate();
 
 			if (rowsUpdated <= 0) {
 
 				throw new InvalidException("Book Avalability not updated.");
 			}
-			bookLog(book);
+
+			bookLog(book, con, stmt1);
+			con.commit();
+			con.setAutoCommit(true);
 
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
+			try {
+				con.rollback();
+				con.setAutoCommit(true);
+			} catch (SQLException e1) {
+				throw new InvalidException("Error in Server" + e.getMessage());
+			}
 			throw new InvalidException("Error in Server" + e.getMessage());
+		} finally {
+			try {
+				con.close();
+				stmt.close();
+				stmt1.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -188,12 +229,17 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public void deleteBook(Book book) throws InvalidException {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt1 = null;
 
-		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
-				PreparedStatement stmt = con.prepareStatement(SQLQueries.BOOK_DELETE);) {
+		try {
+			con = ConnectionPoolingServlet.getDataSource().getConnection();
+			stmt = con.prepareStatement(SQLQueries.BOOK_DELETE);
+			stmt1 = con.prepareStatement(SQLQueries.BOOKS_LOG_INSERT);
 
 			stmt.setInt(1, book.getBookId());
-
+			con.setAutoCommit(false);
 			int rowsDeleted = stmt.executeUpdate();
 
 			if (rowsDeleted <= 0) {
@@ -201,19 +247,32 @@ public class BookDaoImpl implements BookDao {
 				throw new InvalidException("No Book found with Title: " + book.getTitle());
 			}
 
-			bookLog(book);
-
+			bookLog(book, con, stmt1);
+			con.commit();
+			con.setAutoCommit(true);
 		} catch (SQLException e) {
+			try {
+				con.rollback();
+				con.setAutoCommit(true);
+			} catch (SQLException e1) {
+				throw new InvalidException("Error in Server" + e.getMessage());
+			}
 			throw new InvalidException("Error in Server" + e.getMessage());
+		} finally {
+			try {
+				con.close();
+				stmt.close();
+				stmt1.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
 
 	@Override
-	public void bookLog(Book book) throws InvalidException {
+	public void bookLog(Book book, Connection con, PreparedStatement stmt) throws InvalidException {
 
-		try (Connection con = ConnectionPoolingServlet.getDataSource().getConnection();
-				PreparedStatement stmt = con.prepareStatement(SQLQueries.BOOKS_LOG_INSERT);) {
+		try {
 
 			stmt.setInt(1, book.getBookId());
 			stmt.setString(2, book.getTitle());

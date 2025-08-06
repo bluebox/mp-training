@@ -23,11 +23,12 @@
     	 
     	 	 <label for="book">Book </label>
     	 	 <select id="book" name="book" required onchange="location.href='updateBook?book=' + this.value" >
-                <option value="">Select Book</option>
+                <option value="" disabled selected>Select Book</option>
                 <c:forEach var="bookTitles" items="${books}">
-        			<option value="${bookTitles}" ${bookTitles == book ? 'selected' : ''} >${bookTitles}</option>
-    			</c:forEach>
-            </select>
+					<option value="${bookTitles}"
+						${bookTitles == book ? 'selected' : ''}>${bookTitles}</option>
+				</c:forEach>
+				</select>
             
             <c:if test= "${not empty book}">
 	            <label for="bookId">Book Id </label>

@@ -89,4 +89,9 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public Member getMemberId(int memberId) throws InvalidException {
+		return memberDao.getMemberId(memberId);
+	}
+
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.webLibraryManagementSystem.domain.Book;
 import com.webLibraryManagementSystem.services.impl.BookServicesImpl;
+import com.webLibraryManagementSystem.utilities.BookAvailability;
 import com.webLibraryManagementSystemexceptions.InvalidException;
 
 import jakarta.servlet.RequestDispatcher;
@@ -28,8 +29,12 @@ public class DeleteBookServlet extends HttpServlet {
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		try {
 			Book book = bookService.getBookById(bookId);
-			bookService.deleteBook(book);
-			request.setAttribute("message", book.getTitle() + "deleted Successfully");
+			if (book.getAvailability().equals(BookAvailability.ISSUED)) {
+				request.setAttribute("message", "Book Availability is Issed Please Collect Book before delete");
+			} else {
+				bookService.deleteBook(book);
+				request.setAttribute("message", book.getTitle() + " deleted Successfully");
+			}
 
 		} catch (InvalidException e) {
 			request.setAttribute("message", e.getMessage());

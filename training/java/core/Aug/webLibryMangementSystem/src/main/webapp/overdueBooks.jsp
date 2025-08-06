@@ -36,7 +36,7 @@
                       <td data-cell="Book Title" >${book.getBookTitle()} </td>
                        <td data-cell="Member Id">${book.getMemberId()}</td>
                       <td data-cell="Member Name">${book.getMemberName() }</td>
-                       <td data-cell="Book Id" >   ${book.getIssueDate()}) </td>
+                       <td data-cell="Book Id" >   ${book.getIssueDate()} </td>
                   </tr>
   			</c:forEach>
                    
