@@ -11,21 +11,16 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet Filter implementation class filterExample
  */
 @WebFilter("/PreIntializationServlet")
 public class filterExample extends HttpFilter implements Filter {
-       
-    /**
-     * @see HttpFilter#HttpFilter()
-     */
-    public filterExample() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
+	private final String name="Vejas";
 	/**
 	 * @see Filter#destroy()
 	 */
@@ -36,20 +31,20 @@ public class filterExample extends HttpFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		response.setContentType("text/html");
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		PrintWriter out = response.getWriter();
-		out.println("Before the filter");
-		// pass the request along the filter chain
+		out.println("In the filter has access to the request parameters , checking the parameter and passing to the servlet: ");
+		if(!request.getParameter("name").equals(name)) {
+			out.println("the entered username is wrong");
+			 HttpServletResponse httpResponse = (HttpServletResponse) response;
+			 httpResponse.sendRedirect("index.html");
+		}
 		chain.doFilter(request, response);
-		out.println("after the filter");
+		out.println("after the servlet ");
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
+	
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}

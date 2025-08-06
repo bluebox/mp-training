@@ -1,0 +1,11 @@
+<taglib>
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>2.0</jsp-version>
+   <short-name>Body Custom Tag</short-name>
+   
+   <tag>
+      <name>V</name>
+      <tag-class>com.vejas.examples.jsp.CustomTag</tag-class>
+      <body-content>scriptless</body-content>
+   </tag>
+</taglib>

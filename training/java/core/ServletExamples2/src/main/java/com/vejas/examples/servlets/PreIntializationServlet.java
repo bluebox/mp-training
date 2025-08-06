@@ -28,7 +28,7 @@ public class PreIntializationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setHeader("content-type", "text/html");
 		PrintWriter out = response.getWriter();
-		out.println("<br> Inside the do post method <br>");
+		out.println("<br> Inside the servlet : "+request.getParameter("name")+" <br>");
 	}
 
 }

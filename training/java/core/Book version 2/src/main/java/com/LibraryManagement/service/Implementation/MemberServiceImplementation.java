@@ -1,0 +1,49 @@
+package com.LibraryManagement.service.Implementation;
+
+import java.util.List;
+
+import com.LibraryManagement.DAO.Implementation.MemberDAOImplementation;
+import com.LibraryManagement.exception.MemberDAOException;
+import com.LibraryManagement.models.Member;
+import com.LibraryManagement.service.Interfaces.MemberService;
+
+public class MemberServiceImplementation implements MemberService {
+
+	MemberDAOImplementation memberService = new MemberDAOImplementation();
+
+	@Override
+	public int registerMember(Member member) {
+		if (member == null || member.getName() == null || member.getEmail() == null || member.getAddress() == null) {
+			throw new MemberDAOException("Invalid , Member Data can't be null");
+		}
+		return memberService.registerMember(member);
+	}
+
+	@Override
+	public void updateMember(Member member) {
+		if (member == null || member.getMemberId() <= 0) {
+			throw new MemberDAOException("Invalid book ID for update.");
+		}
+		memberService.updateMember(member);
+	}
+
+	@Override
+	public List<Member> getAllMembers() {
+		return memberService.getAllMembers();
+	}
+
+	@Override
+
+	public Member fetchMemberById(int id) throws Exception {
+
+		if (id <= 0)
+			throw new Exception("Invalid Member ID");
+
+		Member member = memberService.getMemberById(id);
+		if (member == null)
+			throw new Exception("Member not found");
+
+		return member;
+	}
+
+}

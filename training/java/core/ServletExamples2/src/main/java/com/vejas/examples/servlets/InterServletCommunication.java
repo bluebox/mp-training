@@ -32,19 +32,19 @@ public class InterServletCommunication extends HttpServlet {
     }
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String email = request.getParameter("email");
 		String password=request.getParameter("password");
 		try {
 			ResultSet result = statement.executeQuery("select * from user where email='"+email+"'and password='"+password+"'");
-			while(result.next()) {
+			if(result.next()) {
 				if(result.getString("email").equals(email) && result.getString("password").equals(password)) {
 			
 				RequestDispatcher requestDispatcher=request.getRequestDispatcher("/successServlet");
 				requestDispatcher.forward(request, response);
 			}
 			else {
-				RequestDispatcher requestDispatcher=request.getRequestDispatcher("/validateUser");
+				response.getWriter().println("invalid inputs");
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("loginUser.html");
 				requestDispatcher.include(request, response);
 				}
 			}
