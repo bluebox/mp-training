@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans/"
+        xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans/
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context/
+        http://www.springframework.org/schema/context/spring-context.xsd"
+        xmlns:context="http://www.springframework.org/schema/context/"
+        >
+
+    <context:annotation-config/>
+
+    <bean class="com.springcore.springcore.Student" name="student1">
+        <property name="studentId" value="1" />
+        <property name="studentName" value="krishna" />
+        <property name="studentAddress" value="unknown" />
+    </bean>
+
+</beans>

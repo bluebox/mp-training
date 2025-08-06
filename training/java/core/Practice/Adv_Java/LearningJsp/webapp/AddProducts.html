@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Products</title>
+</head>
+<body>
+	<form action="session.jsp" method="post">
+		<label for="name">Product Name: </label> <input id="name" type="text"
+			name="name" required /><br>
+		<br> <label for="price">Price: </label> <input id="price"
+			type="text" name="price" pattern="^\d+(\.\d{1,2})?$" required /><br>
+		<br> <input type="submit" />
+	</form>
+</body>
+</html>
