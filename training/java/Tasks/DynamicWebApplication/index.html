@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Data Management</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Student Details</h1>
+
+  <form id="dataForm">
+    <input type="text" id="name" placeholder="Name" required />
+    <input type="number" id="age" placeholder="Age" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="text" id="phone" placeholder="Phone Number" required />
+
+    <div class="branch">
+      <label><input type="radio" name="branch" value="CSE" /> CSE</label>
+      <label><input type="radio" name="branch" value="ECE" /> ECE</label>
+      <label><input type="radio" name="branch" value="EEE" /> EEE</label>
+    </div>
+
+    <div class="languages">
+      <label><input type="checkbox" value="English" /> English</label>
+      <label><input type="checkbox" value="Telugu" /> Telugu</label>
+      <label><input type="checkbox" value="Hindi" /> Hindi</label>
+    </div>
+
+    <select id="stateSelect">
+      <option value="">Select State</option>
+    </select>
+    <select id="citySelect">
+      <option value="">Select City</option>
+    </select>
+
+    <button type="submit" id="addBtn" disabled>Add</button>
+  </form>
+
+  <input type="text" id="searchBox" placeholder="Search..." />
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Name</th><th>Age</th><th>Email</th><th>Phone</th>
+        <th>Branch</th><th>Languages</th><th>State</th><th>City</th><th>Delete</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p id="entryCount">Total Entries: 0</p>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+
+context.xml
+
+# Compiled class files and build artifacts
+target/
+*.class
+/build/
+/bin/
