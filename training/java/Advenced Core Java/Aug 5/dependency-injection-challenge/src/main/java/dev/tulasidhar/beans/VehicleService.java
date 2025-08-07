@@ -10,7 +10,7 @@ public class VehicleService {
 	@Autowired
 	Tyres tyres;
 	
-	@Autowired
+	@Autowired(req=false)
 	Speaker speaker;
 		
 	public void playMusic() {

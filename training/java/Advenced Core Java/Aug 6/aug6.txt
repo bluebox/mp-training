@@ -1,0 +1,4 @@
+August 6th Topics:
+> AOP core concepts
+
+> Spring Boot basic setup

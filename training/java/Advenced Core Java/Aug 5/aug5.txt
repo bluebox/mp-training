@@ -1,0 +1,8 @@
+> Spring Boot basic application
+> AutoWiring
+> @Qualifier annotation
+> Circular Dependency
+> Using @Primary annotation
+> Bean Scopes 
+> Race Condition in singleton Beans
+> Lazy instantiation of a bean

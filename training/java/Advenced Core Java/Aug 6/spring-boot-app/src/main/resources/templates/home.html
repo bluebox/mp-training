@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<h1 th:text=" 'Hello ' + ${name} + ', this is a dynamic page'"> </h1>
+		<form method="POST" action='/register' >
+			<input name="name" type="text"/>
+			<input name="submit" type="submit"/>
+
+		</form>
+	</body>
+</html>
