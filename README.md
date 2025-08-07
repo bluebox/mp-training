@@ -7,7 +7,7 @@ A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically
 ## ⚙️ **Functionalities**
 
 - ✅ **Add New Member / Add New Book**  
-   → Automatically generates a unique **ID** for each member (auto-incremented).
+   → Automatically generates a unique **ID** for each member (auto-incremented). <br/>
    → Input validation both at UI/Controller Level and also at service level.
 
 - ✅ **Issue Book to Member**  
@@ -20,10 +20,12 @@ A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically
 - ✅ **Library Reports**  
    → Added Insightful Reports like **Total overdue book, Books by category, Each member's current books**.
   
-- ✅ **Integrated Additional features**  
-   → **Member's books** View all the selected member's current and previously borrowed books.
-   → **Book's members** View all previous and current members that borrowed that selected book.
+
 ## 🌟 **Additional Features**
+
+- ➕ **Integrated Additional features**  
+   → **Member's books** View all the selected member's current and previously borrowed books. <br/>
+   → **Book's members** View all previous and current members that borrowed that selected book. <br/>
 
 - 🔥 **Graceful Exception handling**  
    → Where ever the exception occurs its propagated up to the controller and it is handled there properly. 
