@@ -140,6 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const visible = Array.from(tableBody.rows).filter(row => row.style.display !== 'none' && row.id !== 'noResult');
         countDisplay.textContent = `Total Entries: ${visible.length}`;
     }
-
+    
     loadStates();
 });
