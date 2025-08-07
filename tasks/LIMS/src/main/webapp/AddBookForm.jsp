@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="library.model.enums.BookCategory" %>
+<%@ page import="library.model.enums.BookStatus" %>
+<%@ page import="library.model.enums.BookAvailability" %>
+<%@ page import="java.util.stream.Collectors" %>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +32,9 @@
                 <select id="categoryComboBox" name="category" style="width: 200px;">
                     <option value="">Select category</option>
                     <%
-                        List<String> categories = (List<String>) request.getAttribute("bookCategories");
+                        List<String> categories =  Arrays.stream(BookCategory.values())
+					                                .map(BookCategory::getDisplayName)
+					                                .collect(Collectors.toList());
                         if (categories != null) {
                             for (String category : categories) {
                                 out.println("<option value="+ category +">" + category + "</option>");
@@ -37,8 +47,12 @@
                 <select id="statusComboBox" name="status" style="width: 200px;">
                     <option value="">Select status</option>
                     <%
-                        List<String> statuses = (List<String>) request.getAttribute("bookStatuses");
-                        if (statuses != null) {
+                        List<String> statuses = Arrays.stream(BookStatus.values())
+				                                .map(Enum::toString)
+				                                .collect(Collectors.toList());
+/*                         		List<String>) request.getAttribute("bookStatuses");
+ */                        
+ 							if (statuses != null) {
                             for (String status : statuses) {
                                 out.println("<option value=\"" + status + "\">" + status + "</option>");
                             }
@@ -50,7 +64,11 @@
                 <select id="availabilityComboBox" name="availability" style="width: 200px;">
                     <option value="">Select availability</option>
                     <%
-                        List<String> availabilities = (List<String>) request.getAttribute("bookAvailabilities");
+                        List<String> availabilities = Arrays.stream(BookAvailability.values())
+						                                .map(Enum::toString) 
+						                                .collect(Collectors.toList());
+/*                         (List<String>) request.getAttribute("bookAvailabilities");
+ */                    
                         if (availabilities != null) {
                             for (String availability : availabilities) {
                                 out.println("<option value=\"" + availability + "\">" + availability + "</option>");
@@ -61,7 +79,7 @@
             </div>
 
             <p id="messageLabel" style="color: <%= (request.getAttribute("messageType") != null && request.getAttribute("messageType").equals("error")) ? "red" : "green" %>;">
-                <%
+                <% 
                     String message = (String) request.getAttribute("message");
                     if (message != null) {
                         out.println(message);

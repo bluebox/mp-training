@@ -21,7 +21,6 @@ import library.service.interfaces.MemberService;
 
 @WebServlet("/viewMembers") 
 public class ViewMembersServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
     private MemberService memberService;
 

@@ -17,7 +17,6 @@ import library.service.interfaces.MemberService;
 
 @WebServlet("/addMember") 
 public class AddMemberServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
     private MemberService memberService; 
 
@@ -101,7 +100,7 @@ public class AddMemberServlet extends HttpServlet {
         }
 
         try {
-            Member newMember = new Member(0, name, email, phoneNumber, gender, address);
+            Member newMember = new Member(0,name, email, phoneNumber, gender, address);
             
             String resultMessage = memberService.addMember(newMember); 
 

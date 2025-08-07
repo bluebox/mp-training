@@ -1,9 +1,11 @@
 package library.model;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 import library.model.enums.BookAvailability;
 import library.model.enums.BookCategory;
 import library.model.enums.BookStatus;
-import java.time.LocalDateTime;
 
 public class Book {
 	private int bookId;
@@ -16,30 +18,34 @@ public class Book {
 	private String createdBy;
 	private LocalDateTime updatedAt;
 	private String updatedBy;
+	
+	public Book() {
+		
+	}
 
 	
-	public Book(String title, String author, BookCategory category, BookStatus status, BookAvailability availability) {
-		this.title = title;
-		this.author = author;
-		this.category = category;
-		this.status = status;
-		this.availability = availability;
-	}
-
-	public Book(int bookId, String title, String author, BookCategory category, BookStatus status,
-			BookAvailability availability, LocalDateTime createdAt, String createdBy, LocalDateTime updatedAt,
-			String updatedBy) {
-		this.bookId = bookId;
-		this.title = title;
-		this.author = author;
-		this.category = category;
-		this.status = status;
-		this.availability = availability;
-		this.createdAt = createdAt;
-		this.createdBy = createdBy;
-		this.updatedAt = updatedAt;
-		this.updatedBy = updatedBy;
-	}
+//	public Book(String title, String author, BookCategory category, BookStatus status, BookAvailability availability) {
+//		this.title = title;
+//		this.author = author;
+//		this.category = category;
+//		this.status = status;
+//		this.availability = availability;
+//	}
+//
+//	public Book(int bookId, String title, String author, BookCategory category, BookStatus status,
+//			BookAvailability availability, LocalDateTime createdAt, String createdBy, LocalDateTime updatedAt,
+//			String updatedBy) {
+//		this.bookId = bookId;
+//		this.title = title;
+//		this.author = author;
+//		this.category = category;
+//		this.status = status;
+//		this.availability = availability;
+//		this.createdAt = createdAt;
+//		this.createdBy = createdBy;
+//		this.updatedAt = updatedAt;
+//		this.updatedBy = updatedBy;
+//	}
 
 	public int getBookId() {
 		return bookId;
@@ -128,4 +134,10 @@ public class Book {
 				+ availability.getCode() + ", createdAt=" + createdAt + ", createdBy='" + createdBy + '\''
 				+ ", updatedAt=" + updatedAt + ", updatedBy='" + updatedBy + '\'' + '}';
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookId,title,author,category,status,availability ,createdAt, createdBy,updatedAt, updatedBy);
+	}
+	
 }

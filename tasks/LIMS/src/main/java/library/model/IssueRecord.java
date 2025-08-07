@@ -1,7 +1,8 @@
 package library.model;
 
-import library.model.enums.IssueStatus;
 import java.time.LocalDateTime;
+
+import library.model.enums.IssueStatus;
 
 public class IssueRecord {
 	private int issueId;

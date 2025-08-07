@@ -66,48 +66,12 @@ public class BookServiceImpl implements BookService {
         }
     }
 
-//    @Override
-//    public List<Book> getAllBooks() {
-//        return findBooks(Collections.emptyMap());
-//    }
-//
-//    @Override
-//    public Book getBookById(int bookId) {
-//        BookValidator.validateNumericId(bookId, "Book ID");
-//        Map<String, Object> criteria = new HashMap<>();
-//        criteria.put("bookId", bookId);
-//        List<Book> books = findBooks(criteria);
-//        return books.isEmpty() ? null : books.get(0);
-//    }
-//
-//    public List<Book> getBooksByTitle(String title) {
-//        Map<String, Object> criteria = new HashMap<>();
-//        criteria.put("title", title);
-//        return findBooks(criteria);
-//    }
-//
-//    public List<Book> getBooksByAuthor(String author) {
-//        Map<String, Object> criteria = new HashMap<>();
-//        criteria.put("author", author);
-//        return findBooks(criteria);
-//    }
-//
-//    public List<Book> getBooksByCategory(String category) {
-//        Map<String, Object> criteria = new HashMap<>();
-//        criteria.put("category", category);
-//        return findBooks(criteria);
-//    }
-//
-//    @Override
-//    public Map<String, Long> getBooksCountByCategory(){
-//        List<Book> allBooks = findBooks(Collections.emptyMap());
-//        return allBooks.stream()
-//                .collect(Collectors.groupingBy(book -> book.getCategory().getDisplayName(), Collectors.counting()));
-//    }
 
     @Override
     public boolean updateBook(Book book, String updatedBy) {
-        if (book == null) { throw new LibraryException("Book object for update cannot be null."); }
+        if (book == null) { 
+        	throw new LibraryException("Book object for update cannot be null."); 
+        }
         BookValidator.validateNumericId(book.getBookId(), "Book ID");
         BookValidator.validateBookTitle(book.getTitle());
         BookValidator.validateBookAuthor(book.getAuthor());
@@ -163,12 +127,8 @@ public class BookServiceImpl implements BookService {
     public boolean deleteBook(int bookId){
         BookValidator.validateNumericId(bookId, "Book ID");
         try {
+        	
             boolean deleted = bookDAO.deleteBook(bookId);
-            if (deleted) {
-                System.out.println("BookService: Book with ID " + bookId + " deleted.");
-            } else {
-                System.out.println("BookService: No book with ID " + bookId + " found for deletion.");
-            }
             return deleted;
         } catch (LibraryException e) {
             System.err.println("BookService: Database error during delete book: " + e.getMessage());
@@ -181,7 +141,6 @@ public class BookServiceImpl implements BookService {
     }
     
     
-    //transaction
     @Override
     public boolean deleteBooksBatch(List<Integer> bookIds) {
         if (bookIds == null || bookIds.isEmpty()) {

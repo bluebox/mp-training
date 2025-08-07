@@ -2,7 +2,6 @@ package library.controllers;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,6 @@ import library.validation.BookValidator;
 
 @WebServlet("/issueBook")
 public class IssueBookServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
     private BookService bookService;
     private IssueService issueService;
@@ -62,6 +60,7 @@ public class IssueBookServlet extends HttpServlet {
         request.removeAttribute("messageType");
         
         String bookIdText = request.getParameter("bookId");
+        
         String memberIdText = request.getParameter("memberId");
         request.setAttribute("bookId", bookIdText);
         request.setAttribute("memberId", memberIdText);
@@ -91,10 +90,6 @@ public class IssueBookServlet extends HttpServlet {
                     request.setAttribute("messageType", "error");
                     break;
             }
-        } catch (NumberFormatException e) {
-            request.setAttribute("message", "Invalid ID format. Please enter numeric IDs.");
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
         } catch (LibraryException e) {
             request.setAttribute("message", e.getMessage());
             request.setAttribute("messageType", "error");
@@ -119,7 +114,7 @@ public class IssueBookServlet extends HttpServlet {
     private void handleShowBooks(HttpServletRequest request) {
         request.setAttribute("displayListLabel", "Available Books");
         try {
-            List<Book> books = bookService.findBooks(Collections.emptyMap());
+            List<Book> books = bookService.findBooks(null);
             StringBuilder sb = new StringBuilder();
             if (books.isEmpty()) {
                 sb.append("No books in the library.");

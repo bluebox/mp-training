@@ -2,7 +2,6 @@ package library.controllers;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,6 @@ import library.service.interfaces.BookService;
 
 @WebServlet("/viewBooks")
 public class ViewBooksServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private BookService bookService;
     private final String CURRENT_USER = "ADMIN";
 
@@ -61,9 +59,12 @@ public class ViewBooksServlet extends HttpServlet {
         try {
             if (action.equals("refreshBooks")) {
             	loadBooks(request);
+            	request.setAttribute("message", "Books refreshed");
+                request.setAttribute("messageType", null);
             } else if (action.startsWith("deleteBook:")) {
                 int bookId = Integer.parseInt(action.split(":")[1]);
                 handleDeleteBookRow(bookId, request);
+               
             } else if (action.startsWith("toggleAvailability:")) {
                 String[] parts = action.split(":");
                 int bookId = Integer.parseInt(parts[1]);
@@ -98,12 +99,11 @@ public class ViewBooksServlet extends HttpServlet {
 
     private void loadBooks(HttpServletRequest request) throws LibraryException {
         try {
-            List<Book> books = bookService.findBooks(Collections.emptyMap());
+            List<Book> books = bookService.findBooks(null);
             request.setAttribute("books", books);
         } catch (LibraryException e) {
             request.setAttribute("message", "Database error: " + e.getMessage());
             request.setAttribute("messageType", "error");
-            throw e;
         }
     }
 
@@ -120,7 +120,6 @@ public class ViewBooksServlet extends HttpServlet {
         } catch (LibraryException e) {
             request.setAttribute("message", e.getMessage());
             request.setAttribute("messageType", "error");
-            throw e;
         }
     }
 
@@ -139,7 +138,6 @@ public class ViewBooksServlet extends HttpServlet {
         } catch (LibraryException e) {
             request.setAttribute("message", e.getMessage());
             request.setAttribute("messageType", "error");
-            throw e;
         }
     }
 
@@ -168,7 +166,6 @@ public class ViewBooksServlet extends HttpServlet {
         } catch (LibraryException e) {
             request.setAttribute("message", e.getMessage());
             request.setAttribute("messageType", "error");
-            throw e;
         }
     }
 
@@ -197,7 +194,6 @@ public class ViewBooksServlet extends HttpServlet {
         } catch (LibraryException e) {
             request.setAttribute("message", e.getMessage());
             request.setAttribute("messageType", "error");
-            throw e;
         }
     }
 }

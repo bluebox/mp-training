@@ -1,6 +1,6 @@
 package library.model;
 
-import java.time.LocalDateTime; // Import for DATETIME fields
+import java.time.LocalDateTime;
 
 import library.model.enums.Gender;
 
@@ -11,17 +11,15 @@ public class Member {
     private long phoneNumber;
     private Gender gender;
     private String address;
-    private LocalDateTime createdAt; // Maps to created_at DATETIME
-    private String createdBy;      // Maps to created_by VARCHAR
-    private LocalDateTime updatedAt; // Maps to updated_at DATETIME
-    private String updatedBy;      // Maps to updated_by VARCHAR
+    private LocalDateTime createdAt; 
+    private String createdBy;      
+    private LocalDateTime updatedAt; 
+    private String updatedBy;     
 
     public Member() {
-        // Default constructor
     }
 
-    // Constructor for adding a new member (excluding auto-generated/default fields like created_at, updated_at)
-    // You might typically pass 'createdBy' here.
+    
     public Member(int memberID, String name, String email, long phoneNumber, Gender gender, String address) {
         this.memberID = memberID;
         this.name = name;
@@ -29,11 +27,9 @@ public class Member {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.address = address;
-        // createdBy could default to "SYSTEM" or be passed as an argument if desired for new records
-        this.createdBy = "SYSTEM"; // Default for new members if not explicitly set
+        this.createdBy = "SYSTEM"; 
     }
 
-    // Full constructor including all database fields, useful for retrieving data
     public Member(int memberID, String name, String email, long phoneNumber, Gender gender, String address,
                   LocalDateTime createdAt, String createdBy, LocalDateTime updatedAt, String updatedBy) {
         this.memberID = memberID;
@@ -48,7 +44,6 @@ public class Member {
         this.updatedBy = updatedBy;
     }
 
-    // Getters and Setters for all fields
 
     public int getMemberID() {
         return memberID;

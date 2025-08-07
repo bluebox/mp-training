@@ -16,5 +16,15 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/karthik-malasani/Downloads/apache-tomcat-9.0.107/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mysql-connector-j-9.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/karthik-malasani/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" sourcepath="/home/karthik-malasani/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="javadoc_location" value="jar:file:/home/karthik-malasani/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36-javadoc.jar!/"/>
+			<attribute name="maven.groupId" value="org.projectlombok"/>
+			<attribute name="maven.artifactId" value="lombok"/>
+			<attribute name="maven.version" value="1.18.36"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

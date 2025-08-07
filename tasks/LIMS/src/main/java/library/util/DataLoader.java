@@ -78,7 +78,13 @@ public class DataLoader {
                         BookStatus status = BookStatus.fromCode(statusCode);
                         BookAvailability availability = BookAvailability.fromCode(availabilityCode);
 
-                        Book book = new Book(title, author, category, status, availability);
+//                        Book book = new Book(title, author, category, status, availability);
+                        Book book =new Book();
+                        book.setTitle(title);
+                        book.setAuthor(author);
+                        book.setCategory(category);
+                        book.setStatus(status);
+                        book.setAvailability(availability);
 
                         bookService.addBook(book, SYSTEM_USER);
                     } catch (IllegalArgumentException | LibraryException e) {

@@ -27,7 +27,6 @@ import library.validation.BookValidator;
 
 @WebServlet("/returnBook") 
 public class ReturnBookServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
     private IssueService issueService;
     private BookService bookService;
@@ -85,10 +84,6 @@ public class ReturnBookServlet extends HttpServlet {
                     request.setAttribute("messageType", "error");
                     break;
             }
-        } catch (NumberFormatException e) {
-            request.setAttribute("message", "Invalid Book ID format. Please enter a numeric ID.");
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
         } catch (LibraryException e) {
             request.setAttribute("message", e.getMessage());
             request.setAttribute("messageType", "error");

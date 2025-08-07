@@ -27,7 +27,6 @@ import library.validation.BookValidator;
 
 @WebServlet("/issuedRecords")
 public class IssuedRecordsServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
     private IssueService issueService;
     private BookService bookService;

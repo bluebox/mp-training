@@ -9,18 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/Main") 
+@WebServlet("/") 
 public class Main extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-  
+         
     public Main() {
         super();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println(request.getContextPath());
 		response.sendRedirect(request.getContextPath() + "/main");
 	}
 
