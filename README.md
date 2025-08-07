@@ -29,3 +29,7 @@ A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically
 
 - 🔥 **Graceful Exception handling**  
    → Where ever the exception occurs its propagated up to the controller and it is handled there properly. 
+
+<img width="1902" height="969" alt="image" src="https://github.com/user-attachments/assets/35fb261a-a801-4f96-a81f-a21aa6b9bfa7" />
+<img width="1902" height="969" alt="image" src="https://github.com/user-attachments/assets/631a2154-d67b-4362-abf7-bd6cf9a9128b" />
+
