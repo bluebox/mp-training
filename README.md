@@ -1,51 +1,29 @@
-# 🏋️ Gym Membership Management System
-**Case Study 1 - Object Oriented Programming (OOP) Project**
+# 📖 Lms Management System (Most recent case study)
+**Library Management System using JSP and servlets**
 
 ## 📜 Description
-A Java-based **Gym Membership Management System** designed to demonstrate core **OOP concepts** while providing practical functionalities like managing members, assigning membership plans, deleting members, and persisting data using file storage.
-
-## 🎯 **OOP Concepts Implemented**
-
-- ### 🔥 **Polymorphism**  
-   → The `Member` class **overrides** the abstract `showDetails()` method from the `Person` class to provide customized member details.
-
-- ### 🔒 **Abstraction**  
-   → The `Person` class is declared as an **abstract class**, hiding common details and forcing subclasses to implement specific behaviors like `showDetails()`.
-
-- ### 🛡️ **Encapsulation**  
-   → The `Member` class properties are **private**, and are accessed or modified strictly via **getters and setters**. Only the `Gym` class interacts with it securely.
-
-- ### 🧬 **Inheritance**  
-   → The `Member` class **inherits** from the `Person` abstract class, gaining all common attributes like `name`, `age`, `height`, and `weight`.
+A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically show data and create a interractive UI for users. Allows the user to manage members , manage book, and manage issueing and returning of books 
 
 ## ⚙️ **Functionalities**
 
-- ✅ **Add New Member**  
+- ✅ **Add New Member / Add New Book**  
    → Automatically generates a unique **ID** for each member (auto-incremented).
+   → Input validation both at UI/Controller Level and also at service level.
 
-- ✅ **Assign Membership Plan**  
-   → Select from available plans like **Basic, Premium, or Gold**.
+- ✅ **Issue Book to Member**  
+   → Select avaliable books and assign to any one member through UI without any hassle.
 
-- ✅ **View All Members**  
-   → Displays all members in a **neatly formatted table**, including their membership plan.
+- ✅ **View/Update Members and Books**  
+   → Displays all members and books in a **neatly formatted table**, and allowed the user to update any single record through UI.
 
-- ✅ **Delete Member**  
-   → Delete any member by selecting their ID.
 
-- ✅ **Data Persistence**  
-   → Member data and membership plans are saved in a file (`members.txt`) and automatically loaded when the program starts.
+- ✅ **Library Reports**  
+   → Added Insightful Reports like **Total overdue book, Books by category, Each member's current books**.
   
-- ✅ **Upgrade membership with discount (Suggested feature by Mentor)**  
-   → If the user wants to upgrade his plan and he still has remaining days those days will be converted into a discount after calculation.
-
-- ✅ **Fail safe for downgrading (Suggested feature by Mentor)**  
-   → The user cannot downgrade to a lower Membership plan.
-
+- ✅ **Integrated Additional features**  
+   → **Member's books** View all the selected member's current and previously borrowed books.
+   → **Book's members** View all previous and current members that borrowed that selected book.
 ## 🌟 **Additional Features**
 
-- 🔥 **Graceful Input Error Handling**  
-   → Includes input validation (e.g., valid age, weight, and height ranges) and protects against invalid inputs.
-
-- 🔥 **Persistent Data Storage**  
-   → Data remains intact between different runs of the application due to the implementation of **file-based storage**.
-
+- 🔥 **Graceful Exception handling**  
+   → Where ever the exception occurs its propagated up to the controller and it is handled there properly. 
