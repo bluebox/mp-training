@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Member Form</title>
+</head>
+<body>
+<h1>Create Member</h1>
+
+<form th:action="@{/members/form}" th:object="${member}" method="post">
+    <p>
+        ID: <input type="number" th:field="*{id}"/>
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+    </p>
+    <p>
+        Name: <input type="text" th:field="*{name}"/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </p>
+    <p>
+        Username: <input type="text" th:field="*{username}"/>
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    </p>
+    <p>
+        Age: <input type="number" th:field="*{age}"/>
+        <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+    </p>
+    <p>
+        Mobile: <input type="text" th:field="*{mobile}"/>
+        <span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></span>
+    </p>
+    <p>
+        Email: <input type="email" th:field="*{email}"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </p>
+    <p>
+        Salary: <input type="number" step="0.01" th:field="*{salary}"/>
+        <span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></span>
+    </p>
+    <p>
+        DOB: <input type="date" th:field="*{dob}"/>
+        <span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+    </p>
+    <p>
+        Subscription End: <input type="date" th:field="*{subscriptionend}"/>
+        <span th:if="${#fields.hasErrors('subscriptionend')}" th:errors="*{subscriptionend}"></span>
+    </p>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

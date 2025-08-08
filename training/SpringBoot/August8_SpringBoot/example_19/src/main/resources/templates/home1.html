@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+<div th:replace="~{fragments/header::header}"></div>
+
+
+<h1>Welcome, <span th:text="${username}">User</span>!</h1>
+<h2>Your role: <span th:text="${role}">Role</span></h2>
+
+<p th:if="${role == 'Software Developer'}">You have developer access.</p>
+<p th:unless="${role == 'Software Developer'}">You have limited access.</p>
+
+<h2>yes done!!!!</h2>
+<h3>Your Skills:</h3>
+
+<ul>
+    <li th:each="skill : ${skills}" th:text="${skill}"></li>
+</ul>
+
+
+<p>You are logged in as [[${username}]] and your role is [[${role}]].</p>
+
+<div th:replace="~{fragments/footer::footer}"></div>
+
+</body>
+</html>

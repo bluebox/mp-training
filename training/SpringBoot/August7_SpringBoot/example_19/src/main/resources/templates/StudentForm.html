@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Student details</title>
+</head>
+<body>
+<h1>Student Details Form</h1>
+<form th:action="@{/submit}" th:object="${student}"method="post">
+<label for="name">Name:</label>
+
+<input th:field="*{name}" id="name" name="name">
+<br>
+<label for="name">Age:</label>
+
+<input th:field="*{age}" id="age" name="age">
+<br>
+<label for="name">Email:</label>
+
+<input th:field="*{email}" id="email" name="email">
+
+<label for="name">MobileNumber:</label>
+
+<input th:field="*{mobile}" id="mobile" name="mobile">
+
+<button type="submit">Submit</button>
+
+</form>
+
+
+
+
+</body>
+</html>
