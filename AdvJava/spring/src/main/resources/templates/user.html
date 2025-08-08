@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User Form</title>
+</head>
+<body>
+ <!-- <form action="/saveMsg" method="post" >
+
+Name : <input type="text" name="username" > <br> <br>
+
+Age : <input type="number" name="age" > <br><br>
+
+Phone Number : <input type="text" name="pnum" > <br> <br>
+
+Email : <input type="email" name="email" > <br><br>
+
+<input type="submit" name="submit" value="Submit"> 
+
+</form>  -->
+
+
+<form action="/saveMsg" method="post" th:object="${user}">
+    Name : <input type="text" th:field="*{name}"> 
+    <span th:if="${#fields.hasErrors('name')}" 
+          th:errors="*{name}"></span>
+    <br><br>
+
+    Age : <input type="number" th:field="*{age}"> 
+    <span th:if="${#fields.hasErrors('age')}" 
+          th:errors="*{age}"></span>
+    <br><br>
+
+    Phone Number : <input type="text" th:field="*{pnum}">
+    <span th:if="${#fields.hasErrors('pnum')}" 
+          th:errors="*{pnum}"></span>
+    <br><br>
+
+    Email : <input type="email" th:field="*{email}">
+    <span th:if="${#fields.hasErrors('email')}" 
+          th:errors="*{email}"></span>
+    <br><br>
+
+    <input type="submit" value="Submit"> 
+</form>
+ 
+
+
+<!-- <br>
+
+<h1> The Data Received from user</h1>
+
+<h1>Name -------- Age -------- PNum -------- Email</h1>
+
+<div th:each="u : ${users}">
+
+<div >
+    <h2 th:text="${u.name + ' -------- ' + u.age + ' -------- ' + u.pnum + ' -------- ' + u.email }"></h2>
+</div> -->
+
+<!--  <h2 th:unless="${u.name == null or u.age != null or u.pnum == null or u.email == null}">
+        Please enter the data
+        th:if="${u.name != null and u.age!= null and u.pnum != null and u.email != null}
+</h2> -->
+ 
+
+</div> 
+
+</body>
+</html>

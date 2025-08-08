@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Person data</title>
+</head>
+<body>
+   
+<h1>
+The Persons data
+</h1>
+
+<h1>Name -------- Age -------- Address</h1>
+
+<div th:each="p : ${person}">
+    <h2 th:text="${p.name + ' -------- ' + p.age + ' -------- ' + p.address}"></h2>
+</div>
+
+<h1>Name -------- Age -------- Address : Only state AP</h1>
+
+<div th:each="p : ${person}"  
+     th:if="${p.address.name() == 'AP'}">
+		
+    <h2 th:text="${p.name + ' -------- ' + p.age + ' -------- ' + p.address}"></h2>
+
+</div>
+
+<div th:replace="~{footer :: footer}">...</div>
+
+</body>
+</html>

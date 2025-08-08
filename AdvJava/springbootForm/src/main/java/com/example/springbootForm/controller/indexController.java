@@ -1,26 +1,17 @@
-package com.example.springbootForm;
+package com.example.springbootForm.controller;
 
 import java.net.Authenticator.RequestorType;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class indexController {
 	
-	@GetMapping("/")
+	@RequestMapping("/index")
 	public String index(){
-		return "HTML files are in resources/static ... try /index.html to see";
-		
+		return "index.html";
 	}
 	
-	@GetMapping("/data")
-	public String getdata() {
-		String name = "Karthik";
-		
-		return name;
-	}
-	
-	
-
 }

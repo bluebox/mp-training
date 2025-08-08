@@ -1,5 +1,6 @@
 package library.service;
 
+import java.sql.BatchUpdateException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.List;
@@ -132,7 +133,12 @@ public class BookServiceImpl implements BookService {
             return deleted;
         } catch (LibraryException e) {
             System.err.println("BookService: Database error during delete book: " + e.getMessage());
-            throw new LibraryException("An error occurred during book deletion data access: " + e.getMessage(), e);
+//            e.printStackTrace();
+            if(e.getCause() instanceof SQLIntegrityConstraintViolationException) {
+                throw new LibraryException("The Book is Issued so it cannot be deleted. ", e);
+            }else {
+            	throw new LibraryException("An error occurred during book deletion data access: " + e.getMessage(), e);            	            	
+            }
         } catch (Exception e) {
             System.err.println("BookService: An unexpected error occurred during delete book: " + e.getMessage());
             e.printStackTrace();
@@ -155,7 +161,12 @@ public class BookServiceImpl implements BookService {
             return results;
         } catch (LibraryException e) {
             System.err.println("BookService: Database error during batch delete books: " + e.getMessage());
-            throw new LibraryException("An error occurred during batch book deletion data access: " + e.getMessage(), e);
+            e.printStackTrace();
+            if(e.getCause() instanceof BatchUpdateException) {
+                throw new LibraryException("The Book is Issued so it cannot be deleted. ", e);
+            }else {
+            	throw new LibraryException("An error occurred during book deletion data access: " + e.getMessage(), e);            	            	
+            }
         } catch (Exception e) {
             System.err.println("BookService: An unexpected error occurred during batch delete books: " + e.getMessage());
             e.printStackTrace();

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+</head>
+<body>
+
+<h1>Hello </h1>
+
+
+<h2 th:text="'Hey hello ' + ${username} +'.'"></h2>
+
+<h3>
+<a th:href="@{/data}">Persons Data</a> <br>
+</h3>
+<h3>
+<a th:href="@{/user}">User Form</a>
+</h3>
+
+</body>
+</html>
