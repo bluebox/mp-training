@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Spicy Restaurant</title>
+<style>
+	#btn{
+		display: flex;
+		flex-direction: column;
+		align-content: space-between;
+		align-items: center;
+		justify-content: center;
+		height: 70vh;
+	}
+</style>
+</head>
+<body>
+	
+	<div id="btn">
+		<h1 style="text-align: center;">Welcome to Spicy Restaurant.</h1>
+		<a th:href="@{menu}"><button>Menu</button></a><br>
+		<a th:href="@{reserve}"><button>Reserve</button></a><br>
+		<a th:href="@{/home/about}"><button>About</button></a>
+	</div>
+</body>
+</html>

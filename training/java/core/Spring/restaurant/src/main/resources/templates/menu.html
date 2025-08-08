@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Restaurant Menu</title>
+	<style>
+		.tab{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 50vh;
+		}
+		table{
+			border-spacing: 15px 10px;
+		}
+	</style>
+</head>
+
+<body>
+<div class="tab">
+	<h2>Menu Card</h2>
+	<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="menu :${menuList}">
+				<td th:text="${menu.name}"></td>
+				<td th:text="${menu.price}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{home}" class="tab1"><button>Back</button></a>
+</div>
+
+</body>
+
+</html>

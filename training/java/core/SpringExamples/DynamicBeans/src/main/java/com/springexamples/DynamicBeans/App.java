@@ -1,5 +1,6 @@
 package com.springexamples.DynamicBeans;
 
+import java.util.Scanner;
 import java.util.function.Supplier;
 
 import org.springframework.context.ApplicationContext;
@@ -11,27 +12,15 @@ public class App {
     public static void main(String[] args) {
     	
     	AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext(Food.class);
-    	Supplier Biryani=()->{
+    	Scanner sc=new Scanner(System.in);
+    	String name=sc.nextLine();
+    	Supplier foodu=()->{
     		Food food=new Food();
-    		food.setName("Biryani");
-			return food;
-    	};
-    	
-    	Supplier Pasta=()->{
-    		Food food=new Food();
-    		food.setName("Chicken Pasta");
+    		food.setName(name);
     		return food;
     	};
-    	
-    	int num=(int)Math.random();
-    	if((100%10)<5) {
-    		context.registerBean("Biryani",Food.class,Biryani);
-    	}
-    	else {
-    		context.registerBean("Pasta",Food.class,Pasta);
-    	}
-    	
-    	Food food=context.getBean("Biryani",Food.class);
+    	context.registerBean(name,Food.class,foodu);
+    	Food food=context.getBean(name,Food.class);
     	System.out.println(food.getName());
     }
 }

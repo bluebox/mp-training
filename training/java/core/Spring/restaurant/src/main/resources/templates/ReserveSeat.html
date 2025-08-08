@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Reservation</title>
+	<style>
+		.container{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 50vh;
+			flex-direction: column;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h3>Reserve Seat</h3>
+		<form>
+			Enter your Name : <input type="text" name="name" required><br><br>
+			Select the date : <input type="date" id="myDateInput" required><br><br>
+			Select the timmings : <input type="time" id="meeting-time" name="time" step="1800" required><br><br>
+			<input type="submit" value="Reserve">
+		</form>
+	</div>
+
+	<script>
+		const today = new Date();
+		const year = today.getFullYear();
+		const month = String(today.getMonth() + 1).padStart(2, '0');
+		const day = String(today.getDate()).padStart(2, '0');
+
+		const formattedDate = `${year}-${month}-${day}`;
+
+		const dateInput = document.getElementById('myDateInput');
+		dateInput.value = formattedDate;
+		dateInput.min = formattedDate;   
+	</script>
+</body>
+
+</html>
