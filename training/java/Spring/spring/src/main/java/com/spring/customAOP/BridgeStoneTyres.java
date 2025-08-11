@@ -16,5 +16,4 @@ public class BridgeStoneTyres implements Tyres {
 	public String stop() {
 		return "Vehicle stopped with the help of BridgeStone tyres";
 	}
-
 }

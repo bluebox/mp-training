@@ -1,7 +1,6 @@
 package com.spring.customAOP;
 
 public class Song {
-
 	private String title;
 	private String singerName;
 
