@@ -16,7 +16,7 @@ public class HomeController {
     }
 	
 	@GetMapping("/{about}")
-    public String handleDynamicSection(@PathVariable("about") String about, Model model) {
+    public String handleDynamicSection(@PathVariable String about, Model model) {
         model.addAttribute("about", about);
         return "about"; 
     }

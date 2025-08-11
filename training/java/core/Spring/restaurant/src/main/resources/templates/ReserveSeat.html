@@ -1,43 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Reservation</title>
-	<style>
-		.container{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 50vh;
-			flex-direction: column;
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            flex-direction: column;
+        }
+		.error{
+			color: red;
 		}
-	</style>
+    </style>
 </head>
 
 <body>
-	<div class="container">
-		<h3>Reserve Seat</h3>
-		<form>
-			Enter your Name : <input type="text" name="name" required><br><br>
-			Select the date : <input type="date" id="myDateInput" required><br><br>
-			Select the timmings : <input type="time" id="meeting-time" name="time" step="1800" required><br><br>
-			<input type="submit" value="Reserve">
-		</form>
-	</div>
+    <div class="container">
+        <h3>Reserve Seat</h3>
+        <form th:action="@{/saveReserve}" method="post" th:object="${reserve}">
+            Enter your Name: <input type="text" th:field="*{name}" /><br>
+            <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
 
-	<script>
-		const today = new Date();
-		const year = today.getFullYear();
-		const month = String(today.getMonth() + 1).padStart(2, '0');
-		const day = String(today.getDate()).padStart(2, '0');
+            Select the date:
+            <input type="date" th:field="*{date}" id="myDateInput"/><br>
+            <div class="error" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div><br>
 
-		const formattedDate = `${year}-${month}-${day}`;
+            Select the timings:
+            <select th:field="*{time}">
+                <option value="">Time</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:00">20:00</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+            </select><br>
+            <div class="error" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div><br>
 
-		const dateInput = document.getElementById('myDateInput');
-		dateInput.value = formattedDate;
-		dateInput.min = formattedDate;   
-	</script>
+            <input type="submit" value="Reserve">
+			<button type="button" onclick="window.location.href='/home'">Home</button>
+        </form>
+    </div>
+
+    <script>
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        const dateInput = document.getElementById('myDateInput');
+        dateInput.value = "";
+        dateInput.min = formattedDate;
+
+        today.setDate(today.getDate() + 20);
+        const maxDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        dateInput.max = maxDate;
+		
+		document.querySelector('form').addEventListener('submit', function (e) {
+		        const name = document.querySelector('[name="name"]').value;
+		        const date = document.querySelector('[name="date"]').value;
+		        const time = document.querySelector('[name="time"]').value;
+
+		        if (name && date && time) {
+		            const confirmed = confirm(`Please confirm your reservation:\n\nName: ${name}\nDate: ${date}\nTime: ${time}`);
+		            if (!confirmed) {
+		                e.preventDefault();
+		            }
+		        }
+		    });
+    </script>
 </body>
 
 </html>
