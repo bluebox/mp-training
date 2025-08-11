@@ -52,8 +52,14 @@ public class UserController {
         if (result.hasErrors()) {
             return "user"; 
         }
+        model.addAttribute("user", new User()); 
+        
         model.addAttribute("users", user); 
-        return "UserData"; 
+
+        
+        return "user";
+        
+//        return "UserData"; 
     }
 	
 

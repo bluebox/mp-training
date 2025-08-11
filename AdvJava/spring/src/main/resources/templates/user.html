@@ -43,6 +43,8 @@ Email : <input type="email" name="email" > <br><br>
 
     <input type="submit" value="Submit"> 
 </form>
+
+
  
 
 
@@ -61,10 +63,19 @@ Email : <input type="email" name="email" > <br><br>
 <!--  <h2 th:unless="${u.name == null or u.age != null or u.pnum == null or u.email == null}">
         Please enter the data
         th:if="${u.name != null and u.age!= null and u.pnum != null and u.email != null}
-</h2> -->
+</h2> 
  
 
-</div> 
+</div> -->
+
+<div th:if="${users!=null}">
+
+<h1>Data Entered: </h1>
+<p th:text="'Name: ' + ${users.name}"></p>
+<p th:text="'Age: ' + ${users.age}"></p>
+<p th:text="'Phone: ' + ${users.pnum}"></p>
+<p th:text="'Email: ' + ${users.email}"></p>
+</div>
 
 </body>
 </html>

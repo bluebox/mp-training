@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class User {
 
 	@NotBlank(message="Name must not be blank")

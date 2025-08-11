@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action="/login" method="post" >
+     
+         <p  role="alert" th:if="${!#strings.isEmpty(errorMessge)}"  th:text="${errorMessge}" /> <br>
+         <input type="text" name="username" id="username" placeholder="Username" /><br>
+         <input type="password" name="password" id="password" placeholder="Password" /> <br>
+    
+        <input type= "submit" value="Log In">
+ </form>
+
+</body>
+</html>
