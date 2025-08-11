@@ -7,7 +7,6 @@ const ManageSalary = () => {
   const [salary, setSalary] = useState("");
   const [message, setMessage] = useState(null);
   const accessToken = useSelector((state) => state.auth.access);
-
   const handleSalaryUpdate = async (e) => {
     e.preventDefault();
     try {

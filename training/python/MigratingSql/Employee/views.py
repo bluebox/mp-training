@@ -20,7 +20,6 @@ from .models import Employees, EmployeeJobDetails, EmployeeOfficeAddressDetails,
 
 class EmployeeProfileView(APIView):
     permission_classes = [IsAuthenticated]
-
     def get(self, request):
         try:
             emp = DatabaseOperationManager.get_employee_full_data(request.user)
@@ -198,7 +197,6 @@ class CreateEmployeeView(APIView):
 
 class DeleteEmployeeView(APIView):
     permission_classes = [IsAuthenticated & IsHR | IsCEO]
-
     def delete(self, request):
         emp_id = request.data.get("emp_id")
         print(emp_id)

@@ -51,7 +51,6 @@ const authSlice = createSlice({
       state.role = null;
       state.username = null;
       state.isAuthenticated = false;
-
       localStorage.clear();
     },
   },
@@ -79,8 +78,8 @@ const LoginSchema=yup.object().shape(
     password:yup.string().min(8,"Minimum length must be 8").matches(PasswordFormat,"Please enter atleast 1 Upper Case,1 LowerCase,1 Special,1 Number").required("Required")
 
   }
-
 );
+
 export const { loginSuccess, logout } = authSlice.actions;
 export default authSlice.reducer;
 export {LoginSchema}
