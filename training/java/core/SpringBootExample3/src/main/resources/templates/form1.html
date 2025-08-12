@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="#" th:action="@{/home}" th:object="${employee}" method="post">
+Enter Your Name:<input type="text" th:field="*{name}">
+<h1 th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</h1>
+Enter Your Email:<input type="text" th:field="*{email}">
+<h1 th:if="${#fields.hasErrors('email')}" th:errors="*{age}">Email Error</h1>
+Enter Your Mobile Number:<input type="text" th:field="*{mobileNo}">
+<h1 th:if="${#fields.hasErrors('mobileNo')}" th:errors="*{mobileNo}">Invalid Mobile Number</h1>
+<button type="submit">Submit</button>
+
+</form>
+
+</body>
+</html>
