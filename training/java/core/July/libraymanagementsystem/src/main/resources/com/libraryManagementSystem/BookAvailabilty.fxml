@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="400.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/24.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.libraryManagementSystem.controller.BookAvailabilityController"
+      stylesheets="@css/book_availability.css">
+
+    <children>
+
+        <!-- App Title -->
+        <Label layoutX="170.0" layoutY="20.0" text="Library Management System" styleClass="main-title"/>
+
+        <!-- Section Title -->
+        <Label layoutX="230.0" layoutY="55.0" text="Book Availability" styleClass="section-title"/>
+
+        <!-- Navigation Buttons -->
+        <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" text="Back" onAction="#switchToBookOptions" styleClass="nav-button"/>
+        <Button layoutX="520.0" layoutY="14.0" mnemonicParsing="false" text="Home" onAction="#switchToPrimary" styleClass="nav-button"/>
+
+        <!-- Error Label -->
+        <Label layoutX="160.0" layoutY="85.0" fx:id="error" text="" styleClass="error-label">
+            <font>
+                <Font name="Times New Roman" size="16.0"/>
+            </font>
+        </Label>
+
+        <!-- Form Labels -->
+        <Label layoutX="140.0" layoutY="130.0" prefHeight="17.0" text="Select Book" styleClass="form-label"/>
+        <Label layoutX="140.0" layoutY="180.0" prefHeight="19.0" text="Availability" styleClass="form-label"/>
+
+        <!-- ComboBoxes -->
+        <ComboBox layoutX="270.0" layoutY="125.0" prefWidth="180.0" fx:id="books" styleClass="combo-box"/>
+        <ComboBox layoutX="270.0" layoutY="175.0" prefWidth="180.0" fx:id="availability" disable="true" styleClass="combo-box"/>
+
+        <!-- Submit Button -->
+        <Button layoutX="250.0" layoutY="250.0" mnemonicParsing="false" text="SUBMIT" onAction="#updateBook" styleClass="submit-button">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Button>
+    </children>
+</Pane>

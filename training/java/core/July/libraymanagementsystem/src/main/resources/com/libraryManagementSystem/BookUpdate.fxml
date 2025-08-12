@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.libraryManagementSystem.controller.BookUpdateController"
+            stylesheets="@css/update_book.css">
+
+    <children>
+        <!-- Heading -->
+        <Label text="UPDATE BOOK" layoutX="175.0" layoutY="10.0" styleClass="title-label">
+            <font>
+                <Font size="22.0"/>
+            </font>
+        </Label>
+
+        <!-- Navigation Buttons -->
+        <Button text="Back" layoutX="14.0" layoutY="20.0" onAction="#switchToBookOptions" styleClass="nav-button"/>
+        <Button text="Home" layoutX="520.0" layoutY="20.0" onAction="#switchToPrimary" styleClass="nav-button"/>
+
+        <!-- Error Label -->
+        <Label fx:id="error" text="" layoutX="170.0" layoutY="50.0" styleClass="error-label"/>
+
+ 
+
+        <!-- Select Book -->
+        <Label text="Select Book" layoutX="120.0" layoutY="130" styleClass="form-label"/>
+       <TextField fx:id="bookSearchField" layoutX="270.0" layoutY="130" prefWidth="200" styleClass="text-field"/>
+
+        <!-- Book Fields -->
+        <Label text="Book ID" layoutX="120.0" layoutY="170.0" styleClass="form-label"/>
+        <Label fx:id="bookId" layoutX="270.0" layoutY="165.0" prefHeight="25.0" prefWidth="200.0" styleClass="info-label"/>
+
+        <Label text="Book Title" layoutX="120.0" layoutY="210.0" styleClass="form-label"/>
+        <TextField fx:id="title" layoutX="270.0" layoutY="205.0" disable="true" prefWidth="200" styleClass="text-field"/>
+
+        <Label text="Author" layoutX="120.0" layoutY="250.0" styleClass="form-label"/>
+        <TextField fx:id="author" layoutX="270.0" layoutY="245.0" disable="true" styleClass="text-field" prefWidth="200"/>
+
+        <Label text="Category" layoutX="120.0" layoutY="290.0" styleClass="form-label"/>
+        <ComboBox fx:id="category" layoutX="270.0" layoutY="285.0" prefWidth="200.0" disable="true" styleClass="combo-box"/>
+
+        <!-- Update Button -->
+        <Button text="Update Book" layoutX="250.0" layoutY="400.0" onAction="#updateBook" styleClass="submit-button"/>
+    </children>
+
+    <cursor>
+        <Cursor fx:constant="OPEN_HAND"/>
+    </cursor>
+</AnchorPane>

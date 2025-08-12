@@ -1,0 +1,31 @@
+/* Main Pane Background */
+.main-pane {
+    -fx-background-color: linear-gradient(to right, #e1f5fe, #b3e5fc);
+    -fx-padding: 20;
+}
+
+/* Button Styling (Shared) */
+.action-button, .nav-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #039be5;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.3, 0, 2);
+}
+
+/* Hover Effects */
+.action-button:hover, .nav-button:hover {
+    -fx-background-color: #0277bd;
+}
+
+/* Optional Responsive */
+@media screen and (max-width: 700px) {
+    .action-button, .nav-button {
+        -fx-font-size: 14px;
+        -fx-padding: 8 16;
+    }
+}

@@ -1,0 +1,64 @@
+.background-pane {
+    -fx-background-color: #f3f8ff;
+}
+
+.title-label {
+    -fx-text-fill: #2b4d7f;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+
+.form-label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.text-field, .combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4px;
+    -fx-padding: 4px;
+    -fx-font-size: 13px;
+}
+
+.info-label {
+    -fx-text-fill: #444;
+    -fx-font-size: 14px;
+}
+
+.submit-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5;
+    -fx-padding: 6px 12px;
+}
+
+.nav-button {
+    -fx-background-color: #3f51b5;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5;
+}
+
+/* Media queries via screen resizing (optional scaling) */
+@media screen and (max-width: 600px) {
+    .title-label {
+        -fx-font-size: 18px;
+    }
+
+    .form-label, .text-field, .combo-box {
+        -fx-font-size: 12px;
+    }
+
+    .submit-button, .nav-button {
+        -fx-font-size: 12px;
+    }
+}
