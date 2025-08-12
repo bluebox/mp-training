@@ -236,6 +236,7 @@ const ProfileView = () => {
             />
           </div>
 
+
           {/* <div>
             <label className="block">Department ID</label>
             <input
@@ -245,6 +246,7 @@ const ProfileView = () => {
               className="w-full border px-3 py-2 rounded"
             />
           </div> */}
+
 
           <div>
           <label className="block">Department ID</label>
@@ -304,7 +306,6 @@ const ProfileView = () => {
           </div>
         </form>
       )}
-
       {updateMessage && (
         <p className="text-green-600 text-center">{updateMessage}</p>
       )}

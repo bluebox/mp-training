@@ -113,7 +113,6 @@ class EmployeeOfficeAddressDetails(models.Model):
 	state = models.CharField(max_length=20, blank=False)
 
 
-
 class ReportingManagers(models.Model):
 	emp = models.ForeignKey(Employees, on_delete=models.CASCADE, blank=False, related_name='reporting_managers')
 	manager_since = models.DateField(blank=False)
