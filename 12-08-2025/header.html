@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="container">
+			<h1 class="logo">My Company</h1>
+
+			<nav class="navbar">
+				<a th:href="@{/Main}">Home</a>
+				<a th:href="@{/about}">About</a>
+				<a th:href="@{/services}">Services</a>
+				<a th:href="@{/contact}" >Contact</a>
+				<a th:href="@{/login}" sec:authorize="isAnonymous()" class="nav-link">LogIn</a>
+				<a th:href="@{/dashboard}" sec:authorize="isAuthenticated()" class="nav-link">Dashboard</a>
+				<a th:href="@{/logout}" sec:authorize="isAuthenticated()" class="nav-link">Logout</a>
+
+			</nav>
+
+			<!-- Theme Toggle Switch -->
+			<div class="theme-toggle">
+				<label class="switch">
+					<input type="checkbox" id="themeSwitch">
+					<span class="slider round">
+						<span class="icon sun">☀️</span>
+						<span class="icon moon">🌙</span>
+					</span>
+				</label>
+			</div>
+		</div>
+	</header>
+	<script>
+		const switchToggle = document.getElementById('themeSwitch');
+
+		if (localStorage.getItem('theme') === 'dark') {
+			document.body.classList.add('dark-theme');
+			switchToggle.checked = true;
+		}
+
+		switchToggle.addEventListener('change', function () {
+			document.body.classList.toggle('dark-theme');
+			if (document.body.classList.contains('dark-theme')) {
+				localStorage.setItem('theme', 'dark');
+			} else {
+				localStorage.setItem('theme', 'light');
+			}
+		});
+	</script>
+</body>
+
+</html>

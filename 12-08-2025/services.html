@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> 
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Company</title>
+	<link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+	<div th:replace="~{header :: header}">...</div>
+	<section id="services" class="services">
+		<div class="w3l-breadcrumb py-lg-5">
+        <div class="container pt-4 pb-sm-4">
+            <ul class="breadcrumbs-custom-path">
+                <li><a th:href="@{/Main}">Home</a></li>
+                <li class="active"><i class="fas fa-angle-right"></i>Services</li>
+            </ul>
+        </div>
+    </div>
+		<div class="container">
+			<h2>Our Services</h2>
+			<div class="service-grid">
+				<div class="service-item">
+					<h3>Web Design</h3>
+					<p>Crafting visually stunning and user-friendly websites that captivate audiences.</p>
+				</div>
+				<div class="service-item">
+					<h3>Development</h3>
+					<p>Building robust and scalable applications to meet your business goals.</p>
+				</div>
+				<div class="service-item">
+					<h3>SEO Optimization</h3>
+					<p>Optimizing your website to rank higher on search engines and attract more traffic.</p>
+				</div>
+			</div><br>
+			<div class="service-grid">
+				<div class="service-item">
+					<h3>Mobile Application Development</h3>
+					<p>Creating native and cross-platform mobile applications for iOS and Android devices. </p>
+				</div>
+				<div class="service-item">
+					<h3>Cloud Computing</h3>
+					<p>Providing services related to cloud infrastructure, including cloud migration, cloud-native
+						application development, and cloud consulting. </p>
+				</div>
+				<div class="service-item">
+					<h3>DevOps and Automation</h3>
+					<p>Implementing DevOps practices and automating software development processes, including continuous
+						integration and continuous delivery (CI/CD). </p>
+				</div>
+			</div><br>
+			
+				<div class="service-grid">
+				<div class="service-item">
+					<h3>AI and Machine Learning</h3>
+					<p>Developing applications that utilize artificial intelligence and machine learning algorithms for
+						various purposes.</p>
+				</div>
+				<div class="service-item">
+					<h3>Blockchain Development</h3>
+					<p>Developing solutions based on blockchain technology.</p>
+				</div>
+				<div class="service-item">
+					<h3>IT Consulting</h3>
+					<p>Providing expert advice on software development strategies, technology choices, and project
+						management. </p>
+				</div>
+		
+		</div>
+	</section>
+	<div th:replace="~{footer :: footer}">...</div>
+</body>
+
+</html>

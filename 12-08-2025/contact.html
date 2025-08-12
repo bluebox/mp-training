@@ -1,0 +1,106 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Company</title>
+    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+	<div th:replace="~{header :: header}">...</div>
+    <section class="w3l-contact py-5" id="contact">
+		<div class="w3l-breadcrumb py-lg-5">
+        <div class="container pt-4 pb-sm-4">
+            <ul class="breadcrumbs-custom-path">
+                <li><a th:href="@{/Main}">Home</a></li>
+                <li class="active"><i class="fas fa-angle-right"></i>Contact</li>
+            </ul>
+        </div>
+    </div>
+        <div class="container py-md-5 py-4">
+            <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+                <h2 class="title-style">Contact Us</h2>
+            </div>
+            <div class="row contact-block">
+                <div class="col-md-7 contact-right">
+                    <form th:action="@{/saveMsg}" method="post" class="signin-form">
+                        <div class="input-grids">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" name="name" id="name" placeholder="Your Name"
+                                        class="contact-input" required/>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="mobileNum" id="mobileNum" placeholder="Your Mobile Number"
+                                        class="contact-input" required/>
+                                </div>
+                            </div>
+                            <input type="text" name="email" id="email" placeholder="Your Email"
+                                class="contact-input" required/>
+                            <input type="text" name="subject" id="subject" placeholder="Subject"
+                                class="contact-input" required/>
+                        </div>
+                        <div class="form-input">
+                            <textarea name="message" id="message" placeholder="Type your message here" required></textarea>
+                        </div>
+                        <div class="text-start">
+                            <button class="btn btn-style btn-style-3">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-5 ps-lg-5 mt-md-0 mt-5">
+                    <div class="contact-left">
+                        <div class="cont-details">
+                            <div class="d-flex contact-grid">
+                                <div class="cont-left text-center me-3">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="cont-right">
+                                    <h2>Company Address</h2>
+                                    <p>My Company , Building No - 12B , 5th Floor , MindSpace ,Hyderabad , India - 10017.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex contact-grid mt-4 pt-lg-2">
+                                <div class="cont-left text-center me-3">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="cont-right">
+                                    <h2>Call Us</h2>
+                                    <p><a href="tel:+1(21) 234 4567">+1 234 567 890</a></p>
+                                </div>
+                            </div>
+                            <div class="d-flex contact-grid mt-4 pt-lg-2">
+                                <div class="cont-left text-center me-3">
+                                    <i class="fas fa-envelope-open-text"></i>
+                                </div>
+                                <div class="cont-right">
+                                    <h2>Email Us</h2>
+                                    <p><a href="mailto:info@mycompany.com" class="mail">info@mycompany.com</a></p>
+                                </div>
+                            </div>
+                            <div class="d-flex contact-grid mt-4 pt-lg-2">
+                                <div class="cont-left text-center me-3">
+                                    <i class="fas fa-headphones-alt"></i>
+                                </div>
+                                <div class="cont-right">
+                                    <h2>Customer Support</h2>
+                                    <p><a href="support@mycompany.com" class="mail">support@mycompany.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830921454!2d-74.11976369744556!3d40.69766374856529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1639587930884!5m2!1sen!2sin"
+            width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen=""></iframe>
+    </div>
+    <div th:replace="~{footer :: footer}">...</div>
+</body>
+</html>
