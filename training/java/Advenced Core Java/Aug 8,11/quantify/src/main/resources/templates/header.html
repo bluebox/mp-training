@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="/styles/home.css"/>
+	</head>
+	
+	<body>
+		<nav>
+			<h1>Quantify</h1>
+			<ul>
+				<li><a href="/home">Home</a></li>
+				<li sec:authorize="!isAuthenticated()"><a href="signup">Sign up</a></li>
+				<li sec:authorize="!isAuthenticated()"> <a href="/login">Login</a> </li>
+				
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">Admin Dashboard</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/track">Track Calories</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
+				
+			</ul>
+		</nav>
+	</body>
+</html>

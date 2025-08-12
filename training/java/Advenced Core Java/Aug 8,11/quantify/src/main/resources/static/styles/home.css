@@ -1,0 +1,45 @@
+body{
+	margin:0px;
+	padding:0px;
+}
+
+nav{
+	padding:0px 30px;
+	display:flex;
+	justify-content:space-between;
+	background-color:black;
+	color:white;
+}
+
+ul{
+	display:flex;
+	list-style: none;
+}
+
+li{
+	padding: 10px;
+}
+
+a{
+	text-decoration: none;
+	color:white;
+}
+
+a:hover{
+	cursor:pointer;
+}
+
+
+form{
+	display:flex;
+	flex-direction:column;
+
+}
+
+.inputGroup{
+	padding:20px;
+}
+
+
+
+
