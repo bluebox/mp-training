@@ -29,13 +29,20 @@ public class ProjectSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    
 		http.csrf(csrf -> csrf.disable())
-	        .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+	        .authorizeHttpRequests(auth -> auth
+	        		.requestMatchers("/usersdata").permitAll()
+	        		.anyRequest().authenticated())
 	        .formLogin(form -> form.defaultSuccessUrl("/index",true));
 		
 		//.permitAll());
 
 //		http.csrf(csrf -> csrf.disable())
 //        .authorizeHttpRequests(auth -> auth.anyRequest().denyAll());
+		
+		http.headers(headersConfigurer -> headersConfigurer
+                .frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()));
+
+
     
 	    return http.build();
 	}

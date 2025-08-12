@@ -1,12 +1,17 @@
 package com.example.spring.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.spring.model.User;
+import com.example.spring.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +45,13 @@ public class UserController {
 //		
 //        return "user";
 //	}
+	
+	private final UserService userService;
+	
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService=userService;
+	}
     
     @GetMapping("/user")
     public String userForm(Model model) {
@@ -53,13 +65,26 @@ public class UserController {
             return "user"; 
         }
         model.addAttribute("user", new User()); 
-        
+        userService.saveUsers(user);
         model.addAttribute("users", user); 
 
         
         return "user";
         
 //        return "UserData"; 
+    }
+    
+//    @RequestMapping("/usersdata")
+//    public List<User> displayMessages() {
+//        List<User> usersdata = userService.findUsers();
+//        return usersdata;
+//    }
+    
+    @GetMapping("/usersdata") 
+    @ResponseBody
+    public List<User> displayMessages() {
+        List<User> usersdata = userService.findUsers();
+        return usersdata;
     }
 	
 
