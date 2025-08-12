@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Items</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<h2 th:text="'Items in category: ' + ${category}"></h2>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Name</th><th>Price</th><th>Category</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.category}"></td>
+    </tr>
+</table>
+<a href="/">Back to Home</a>
+</body>
+</html>

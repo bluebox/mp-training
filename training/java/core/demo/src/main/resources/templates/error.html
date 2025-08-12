@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h1>Error redirecting page</h1>
+    <p th:text="${message}">Error occurred and its redirected here</p>
+    <p><a th:href="@{/}">Home</a></p>
+</div>
+</body>
+</html>

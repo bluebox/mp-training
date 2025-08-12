@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Food Item</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<h2>Add Food Item</h2>
+<form th:action="@{/add}" th:object="${foodItem}" method="post">
+    ID: <input type="number" th:field="*{id}"/>
+    <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+    <br/>
+
+    Name: <input type="text" th:field="*{itemName}"/>
+    <span th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}"></span>
+    <br/>
+
+    Price: <input type="number" step="10" th:field="*{price}"/>
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    <br/>
+
+    Category:
+    <select th:field="*{category}">
+        <option value="">-- Select --</option>
+        <option value="veg">Veg</option>
+        <option value="nonveg">Non-Veg</option>
+        <option value="drink">Soft Drink</option>
+    </select>
+    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+    <br/>
+
+    <button type="submit">Add</button>
+</form>
+<a href="/">Back to Home</a>
+</body>
+</html>

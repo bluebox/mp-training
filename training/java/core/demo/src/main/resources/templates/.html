@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Buttons</title>
+</head>
+<body>
+    <h1>Choose an Action</h1>
+    <form th:action="@{/handleButton}" method="get">
+        <button type="submit" name="action" value="additem">Add Item</button>
+        <button type="submit" name="action" value="vegitem">View Veg Items</button>
+        <button type="submit" name="action" value="nonveg">View Non-veg Items</button>
+        <button type="submit" name="action" value="softdrinks"> View Soft Drinks</button>
+    </form> 
+ 
+</body>
+</html>
