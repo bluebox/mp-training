@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<div th:replace="header :: header"></div>
+	<main>
+		<h1>Hello User Welcome to Survey Application</h1>
+		<a th:href="@{/survey}">Survey</a>
+		<a href="/about">About</a>
+		<a th:href="@{/holidays}">Holidays</a>
+		
+	</main>
+	<div th:replace="footer :: footer"></div>
+</body>
+</html>

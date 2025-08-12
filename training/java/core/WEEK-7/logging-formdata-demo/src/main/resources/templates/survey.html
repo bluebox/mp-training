@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Survey</title>
+</head>
+<body>
+	<div th:replace="header :: header"></div>
+	<main>
+		<h1>This is Survey Page</h1>
+		<form th:action="@{/saveSurveyDetails}" method="post">
+			<label>Name : </label><input name="name"> 
+			<label>Age : </label><input name="age">
+			<label>Gmail : </label><input name="gmail" type="email">
+			<label>Phone : </label><input name="phone">
+			<label>Favourite Programming Languages : </label>
+			<input type="checkbox" name="favpls" value="Java"> <label>Java</label>
+			<input type="checkbox" name="favpls" value="Python"> <label>Python</label>
+			<input type="checkbox" name="favpls" value="JavaScript"> <label>JavaScript</label>
+			<input type="checkbox" name="favpls" value="C++"> <label>C++</label>
+			<input type="submit" value="Submit">
+		</form>
+	</main>
+	<div th:replace="footer :: footer"></div>
+</body>
+</html>
