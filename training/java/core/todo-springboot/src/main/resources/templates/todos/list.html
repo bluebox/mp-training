@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+	
+<head>
+<title>Todos</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div class="container">
+		<h1>Todos</h1>
+		<p>
+			<a th:href="@{/}">Home</a> | <a th:href="@{/todos/new}">New Todo</a>
+			 | <span sec:authorize="hasRole('ADMIN')"> <a
+				th:href="@{/todos/admin}">Admin Panel</a> 
+			</span> 
+		<!-- 	
+			 <span sec:authorize="isAuthenticated()"> <a
+				th:href="@{/logout}">Logout</a>
+			</span> -->
+			|
+			       <span> <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+           <!--  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
+        </form></span>
+		</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Completed</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="t : ${todos}">
+					<td th:text="${t.id}">1</td>
+					<td th:text="${t.title}">Sample</td>
+					<td th:text="${t.completed}">false</td>
+					<td><a th:href="@{'/todos/' + ${t.id} + '/edit'}">Edit</a>
+						<form th:action="@{'/todos/' + ${t.id} + '/delete'}" method="post"
+							style="display: inline">
+							<button type="submit" onclick="return confirm('Delete?')">Delete</button>
+						</form></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

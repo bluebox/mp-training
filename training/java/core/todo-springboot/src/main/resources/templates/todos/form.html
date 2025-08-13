@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${todo.id} == null ? 'Create Todo' : 'Edit Todo'">Form</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${todo.id} == null ? 'Create Todo' : 'Edit Todo'">Form</h1>
+    <form th:action="${todo.id} == null ? @{/todos} : @{'/todos/' + ${todo.id}}" th:object="${todo}" method="post">
+        <div>
+            <label>Title</label><br/>
+            <input type="text" th:field="*{title}"/>
+            <div class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+        </div>
+        <div>
+            <label>Description</label><br/>
+            <textarea th:field="*{description}"></textarea>
+            <div class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+        </div>
+        <div>
+            <label><input type="checkbox" th:field="*{completed}"/> Completed</label>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+            <a th:href="@{/todos}">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

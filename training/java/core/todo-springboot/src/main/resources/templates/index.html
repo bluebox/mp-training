@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Todo App</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome to Simple Todo App</h1>
+		<p>
+			<a th:href="@{/todos}">View Todos</a> | <a th:href="@{/todos/new}">Create
+				Todo</a>  |<span
+				sec:authorize="hasRole('ADMIN')"> <a
+				th:href="@{/todos/admin}">Admin Panel</a>
+			</span>
+		</p>
+		<p>
+			<a th:href="@{/login}">Login</a>
+		</p>
+	</div>
+</body>
+</html>
