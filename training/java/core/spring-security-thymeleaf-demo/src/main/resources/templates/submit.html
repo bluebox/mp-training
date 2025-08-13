@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Submit Form</title></head>
+<body>
+<h1>Submit Data</h1>
+<form th:action="@{/submit}" method="post">
+    <input type="text" name="data" placeholder="Enter some text"/>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <button type="submit">Submit</button>
+</form>
+<p><a th:href="@{/}">Home</a></p>
+</body>
+</html>

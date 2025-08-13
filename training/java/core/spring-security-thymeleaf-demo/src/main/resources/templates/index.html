@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Home</title></head>
+<body>
+<h1>Welcome to Spring Security Demo</h1>
+<ul>
+    <li><a th:href="@{/public}">Public Page (permitAll)</a></li>
+    <li><a th:href="@{/user}">User Page (authenticated)</a></li>
+    <li><a th:href="@{/admin}">Admin Page (denyAll)</a></li>
+    <!-- <li><a th:href="@{/submit-form}">Submit Form with CSRF</a></li> -->
+    <li><a th:href="@{/cause-error}">Cause Error (ExceptionHandler)</a></li>
+</ul>
+</body>
+</html>
