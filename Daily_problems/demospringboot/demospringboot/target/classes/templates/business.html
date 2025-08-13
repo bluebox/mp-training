@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+ <form th:action="@{/formbusiness}" th:object="${business}" method="post">
+	<div>
+	businessname=<input type="text"  th:field="*{businessname}"/>
+	</div>
+	<div>
+	phoneno=<input type="number"  th:field="*{phoneno}"/>
+	</div>
+	<div>
+	email=<input type="text" th:field="*{email}"/>
+	</div>
+	<div>
+	<input type="submit"/>
+	</div>
+	
+	
+	
+	
+	</form>
+</body>
+</html>

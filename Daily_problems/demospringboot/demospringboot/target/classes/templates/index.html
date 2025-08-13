@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    
+    <h1>Hi This From Hell u are about to DIE.....</h1>
+    <form th:action="@{/formproduct}" th:object="${product}" method="post" >
+    <div>
+    product name<input type="text" th:field="*{productname}"/>
+    </div>
+    <div>
+    product price <input type="number" th:field="*{price}"/>
+    </div>
+    <input type="submit" />
+    
+    
+    </form>
+    <p th:if="${issale}">
+		<span th:text="'the sale id is'+${sale}"></span>
+		
+		</p>
+		
+	
+</body>
+</html>

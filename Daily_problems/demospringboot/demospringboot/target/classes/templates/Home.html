@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+		<h1 th:text="'Hi,'+${username}+' Welocome to this Earth'">  </h1>
+		<h3 th:each="item:${items}" th:text="${item}+ 'u are so lucky to get into earth'"></h3>
+		<h4 th:if="${(isgod).equals('true')}" th:text="'u are god?'"></h4>
+		
+		<h4 th:switch="${isgod}">
+		<span th:case="'true'">GOD of Earth</span>
+		<span th:case="'false'">Slave of Earth</span>
+		</h4>
+		<p th:text="'product name is '+${productname}"></p>
+		<p th:text="'product price is '+${price}"></p>
+		<a th:href="@{/index}">this is to fill form</a>
+		<a th:href="@{/business}">this is to fill business form</a>
+		
+		<p th:text="${name}"></p>
+		
+		
+</body>
+</html>
