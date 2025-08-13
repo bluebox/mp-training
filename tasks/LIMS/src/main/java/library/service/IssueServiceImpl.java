@@ -95,7 +95,7 @@ public class IssueServiceImpl implements IssueService {
 					System.err.println("Error during rollback: " + rollbackEx.getMessage());
 				}
 			}
-			System.err.println("IssueService: Database error during issue book: " + e.getMessage());
+			System.err.println(" Database error during issue book: " + e.getMessage());
 			throw new LibraryException("Database error during book issue: " + e.getMessage(), e);
 		} catch (Exception e) {
 			if (connection != null) {
@@ -105,7 +105,7 @@ public class IssueServiceImpl implements IssueService {
 					System.err.println("Error during rollback: " + rollbackEx.getMessage());
 				}
 			}
-			System.err.println("IssueService: An unexpected error occurred: " + e.getMessage());
+			System.err.println(" An unexpected error occurred: " + e.getMessage());
 			e.printStackTrace();
 			throw new LibraryException("An unexpected error occurred during book issue.", e);
 		} finally {
@@ -164,7 +164,7 @@ public class IssueServiceImpl implements IssueService {
 					System.err.println("Error during rollback: " + rollbackEx.getMessage());
 				}
 			}
-			System.err.println("IssueService: Database error during return book: " + e.getMessage());
+			System.err.println(" Database error during return book: " + e.getMessage());
 			throw new LibraryException("Database error during book return: " + e.getMessage(), e);
 		} catch (Exception e) {
 			if (connection != null) {
@@ -174,7 +174,7 @@ public class IssueServiceImpl implements IssueService {
 					System.err.println("Error during rollback: " + rollbackEx.getMessage());
 				}
 			}
-			System.err.println("IssueService: An unexpected error occurred: " + e.getMessage());
+			System.err.println(" An unexpected error occurred: " + e.getMessage());
 			e.printStackTrace();
 			throw new LibraryException("An unexpected error occurred during book return.", e);
 		} finally {
@@ -194,7 +194,7 @@ public class IssueServiceImpl implements IssueService {
 		try {
 			return issueRecordDAO.getAllIssuedRecords();
 		} catch (LibraryException e) {
-			System.err.println("IssueService: Error getting all issued records: " + e.getMessage());
+			System.err.println(" Error getting all issued records: " + e.getMessage());
             throw new LibraryException("An error occurred during Issue Record data access: " + e.getMessage(), e); 
 		}
 	}

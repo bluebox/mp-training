@@ -195,8 +195,7 @@ public class BookDAOImpl implements BookDAO {
 					connection.setAutoCommit(true);
 					connection.close();
 				} catch (Exception e) {
-					System.err
-							.println("Error closing connection for availability update transaction: " + e.getMessage());
+					System.err.println("Error closing connection for availability update transaction: " + e.getMessage());
 				}
 			}
 		}
@@ -523,8 +522,7 @@ public class BookDAOImpl implements BookDAO {
 					connection.rollback();
 					System.err.println("Batch update availability rolled back: " + e.getMessage());
 				} catch (Exception rollbackEx) {
-					System.err.println(
-							"Error during rollback after Batch update availability error: " + rollbackEx.getMessage());
+					System.err.println("Error during rollback after Batch update availability error: " + rollbackEx.getMessage());
 				}
 			}
 			System.err.println("Database error during Batch update availability books: " + e.getMessage());
@@ -535,8 +533,7 @@ public class BookDAOImpl implements BookDAO {
 					connection.setAutoCommit(true);
 					connection.close();
 				} catch (Exception e) {
-					System.err.println(
-							"Error closing connection for Batch update availability transaction: " + e.getMessage());
+					System.err.println("Error closing connection for Batch update availability transaction: " + e.getMessage());
 				}
 			}
 		}

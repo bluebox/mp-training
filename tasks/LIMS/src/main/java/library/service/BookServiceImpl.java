@@ -36,16 +36,16 @@ public class BookServiceImpl implements BookService {
 
         try {
             bookDAO.addBook(book, createdBy);
-            System.out.println("BookService: Book '" + book.getTitle() + "' successfully processed for addition.");
+            System.out.println(" Book '" + book.getTitle() + "' successfully processed for addition.");
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                System.err.println("BookService: Attempted to add duplicate book (Title, Category): " + book.getTitle() + " - " + book.getCategory());
+                System.err.println(" Attempted to add duplicate book (Title, Category): " + book.getTitle() + " - " + book.getCategory());
                 throw new LibraryException("A book with the same title and category already exists.", e.getCause());
             }
-            System.err.println("BookService: Database error during book addition: " + e.getMessage());
+            System.err.println(" Database error during book addition: " + e.getMessage());
             throw new LibraryException("An error occurred during book data access: " + e.getMessage(), e);
         } catch (Exception e) {
-            System.err.println("BookService: An unexpected error occurred during book addition: " + e.getMessage());
+            System.err.println(" An unexpected error occurred during book addition: " + e.getMessage());
             e.printStackTrace();
             throw new LibraryException("An unexpected error occurred during book addition.", e);
         }
@@ -55,13 +55,13 @@ public class BookServiceImpl implements BookService {
     public List<Book> findBooks(Map<String, Object> criteria) {
         try {
             List<Book> books = bookDAO.findBooks(criteria);
-            System.out.println("BookService: Found " + books.size() + " books with criteria.");
+            System.out.println(" Found " + books.size() + " books with criteria.");
             return books;
         } catch (LibraryException e) {
-            System.err.println("BookService: Database error during book search: " + e.getMessage());
+            System.err.println(" Database error during book search: " + e.getMessage());
             throw new LibraryException("An error occurred during book search data access: " + e.getMessage(), e);
         } catch (Exception e) {
-            System.err.println("BookService: An unexpected error occurred while searching for books: " + e.getMessage());
+            System.err.println(" An unexpected error occurred while searching for books: " + e.getMessage());
             e.printStackTrace();
             throw new LibraryException("An unexpected error occurred during book search.", e);
         }
@@ -83,20 +83,20 @@ public class BookServiceImpl implements BookService {
         try {
             boolean success = bookDAO.updateBook(book, updatedBy);
             if (success) {
-                System.out.println("BookService: Book with ID " + book.getBookId() + " successfully processed for update.");
+                System.out.println(" Book with ID " + book.getBookId() + " successfully processed for update.");
             } else {
-                System.out.println("BookService: Book with ID " + book.getBookId() + " not found for update.");
+                System.out.println(" Book with ID " + book.getBookId() + " not found for update.");
             }
             return success;
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                System.err.println("BookService: Attempted to update book to duplicate (Title, Category): " + book.getTitle() + " - " + book.getCategory());
+                System.err.println(" Attempted to update book to duplicate (Title, Category): " + book.getTitle() + " - " + book.getCategory());
                 throw new LibraryException("Cannot update: A book with the same title and category already exists.", e.getCause());
             }
-            System.err.println("BookService: Database error during book update: " + e.getMessage());
+            System.err.println(" Database error during book update: " + e.getMessage());
             throw new LibraryException("An error occurred during book update data access: " + e.getMessage(), e);
         } catch (Exception e) {
-            System.err.println("BookService: An unexpected error occurred during book update: " + e.getMessage());
+            System.err.println(" An unexpected error occurred during book update: " + e.getMessage());
             e.printStackTrace();
             throw new LibraryException("An unexpected error occurred during book update.", e);
         }
@@ -115,10 +115,10 @@ public class BookServiceImpl implements BookService {
         try {
             return bookDAO.updateBookAvailability(bookId, newAvailabilityCode, updatedBy);
         } catch (LibraryException e) {
-            System.err.println("BookService: Database error during update book availability: " + e.getMessage());
+            System.err.println(" Database error during update book availability: " + e.getMessage());
             throw new LibraryException("An error occurred during book availability update data access: " + e.getMessage(), e);
         } catch (Exception e) {
-            System.err.println("BookService: An unexpected error occurred during update book availability: " + e.getMessage());
+            System.err.println(" An unexpected error occurred during update book availability: " + e.getMessage());
             e.printStackTrace();
             throw new LibraryException("An unexpected error occurred during book availability update.", e);
         }
@@ -132,7 +132,7 @@ public class BookServiceImpl implements BookService {
             boolean deleted = bookDAO.deleteBook(bookId);
             return deleted;
         } catch (LibraryException e) {
-            System.err.println("BookService: Database error during delete book: " + e.getMessage());
+            System.err.println(" Database error during delete book: " + e.getMessage());
 //            e.printStackTrace();
             if(e.getCause() instanceof SQLIntegrityConstraintViolationException) {
                 throw new LibraryException("The Book is Issued so it cannot be deleted. ", e);
@@ -140,7 +140,7 @@ public class BookServiceImpl implements BookService {
             	throw new LibraryException("An error occurred during book deletion data access: " + e.getMessage(), e);            	            	
             }
         } catch (Exception e) {
-            System.err.println("BookService: An unexpected error occurred during delete book: " + e.getMessage());
+            System.err.println(" An unexpected error occurred during delete book: " + e.getMessage());
             e.printStackTrace();
             throw new LibraryException("An unexpected error occurred during book deletion.", e);
         }
@@ -157,10 +157,10 @@ public class BookServiceImpl implements BookService {
         }
         try {
             boolean results = bookDAO.deleteBooksBatch(bookIds);
-            System.out.println("BookService: Batch delete operation completed.");
+            System.out.println(" Batch delete operation completed.");
             return results;
         } catch (LibraryException e) {
-            System.err.println("BookService: Database error during batch delete books: " + e.getMessage());
+            System.err.println(" Database error during batch delete books: " + e.getMessage());
             e.printStackTrace();
             if(e.getCause() instanceof BatchUpdateException) {
                 throw new LibraryException("The Book is Issued so it cannot be deleted. ", e);
@@ -168,7 +168,7 @@ public class BookServiceImpl implements BookService {
             	throw new LibraryException("An error occurred during book deletion data access: " + e.getMessage(), e);            	            	
             }
         } catch (Exception e) {
-            System.err.println("BookService: An unexpected error occurred during batch delete books: " + e.getMessage());
+            System.err.println(" An unexpected error occurred during batch delete books: " + e.getMessage());
             e.printStackTrace();
             throw new LibraryException("An unexpected error occurred during batch book deletion.", e);
         }
@@ -206,13 +206,13 @@ public class BookServiceImpl implements BookService {
 			
 	        try {
 	            boolean results = bookDAO.updateBookAvailabilityBatch(bookIds,updatedBy);
-	            System.out.println("BookService: Batch update availability operation completed.");
+	            System.out.println(" Batch update availability operation completed.");
 	            return results;
 	        } catch (LibraryException e) {
-	            System.err.println("BookService: Database error during batch update availability books: " + e.getMessage());
+	            System.err.println(" Database error during batch update availability books: " + e.getMessage());
 	            throw new LibraryException("An error occurred during batch book update availability data access: " + e.getMessage(), e);
 	        } catch (Exception e) {
-	            System.err.println("BookService: An unexpected error occurred during batch update availability  books: " + e.getMessage());
+	            System.err.println(" An unexpected error occurred during batch update availability  books: " + e.getMessage());
 	            e.printStackTrace();
 	            throw new LibraryException("An unexpected error occurred during batch book update availability .", e);
 	        }

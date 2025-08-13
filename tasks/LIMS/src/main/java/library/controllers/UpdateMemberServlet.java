@@ -138,7 +138,7 @@ public class UpdateMemberServlet extends HttpServlet {
             
             Member originalMember = memberService.getMemberById(memberID);
             if (originalMember == null) {
-                request.setAttribute("message", "Error: Member with ID " + memberID + " not found for update.");
+                request.setAttribute("message", " Member with ID " + memberID + " not found for update.");
                 request.setAttribute("messageType", "error");
                 request.getRequestDispatcher("/UpdateMemberForm.jsp").forward(request, response);
                 return;
@@ -159,7 +159,7 @@ public class UpdateMemberServlet extends HttpServlet {
 
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                request.setAttribute("message", "Error: Member with this email or phone number already exists.");
+                request.setAttribute("message", " Member with this email or phone number already exists.");
             } else {
                 request.setAttribute("message", e.getMessage());
             }

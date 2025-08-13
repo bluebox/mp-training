@@ -18,7 +18,8 @@ CREATE TABLE books (
     CONSTRAINT UQ_Title_Category UNIQUE (Title, Category)
 );
 
-insert into books(BookId, Title,Author,Category,Status,Availablity) values(37,"k","kk","Comedy","A","A");
+insert into books(BookId, Title,Author,Category,Status,Availablity)
+values(37,"k","kk","Comedy","A","A");
 
 DESCRIBE books;
 

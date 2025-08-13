@@ -2,7 +2,9 @@ package library.controllers;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -37,6 +39,17 @@ public class ViewBooksServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         loadBooks(request);
+        
+        Map<String, Object> criteria1 = new HashMap<String, Object>();
+        criteria1.put("bookId", 11);
+        Book b1 = bookService.findBooks(criteria1).get(0);
+
+        Map<String, Object> criteria2 = new HashMap<String, Object>();
+        criteria2.put("bookId", 24);
+        Book b2 = bookService.findBooks(criteria2).get(0);
+        	
+        System.out.println(b1.hashCode()==b2.hashCode());
+        
         request.getRequestDispatcher("/ViewBooksScreen.jsp").forward(request, response);
     }
 

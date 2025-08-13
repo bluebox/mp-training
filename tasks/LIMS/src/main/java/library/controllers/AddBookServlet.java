@@ -104,7 +104,7 @@ public class AddBookServlet extends HttpServlet {
 
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                request.setAttribute("message", "Error: A book with the same title and category already exists.");
+                request.setAttribute("message", "A book with the same title and category already exists.");
             } else {
                 request.setAttribute("message", e.getMessage());
             }

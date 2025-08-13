@@ -115,7 +115,7 @@ public class AddMemberServlet extends HttpServlet {
 
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                request.setAttribute("message", "Error: Member with this email or phone number already exists.");
+                request.setAttribute("message", "Member with this email or phone number already exists.");
             } else {
                 request.setAttribute("message", e.getMessage());
             }

@@ -126,7 +126,7 @@ public class UpdateBookServlet extends HttpServlet {
 	        Book currentBook  = books.isEmpty() ? null : books.get(0);
 
             if (currentBook == null) {
-                request.setAttribute("message", "Error: Book with ID " + bookId + " not found for update.");
+                request.setAttribute("message", " Book with ID " + bookId + " not found for update.");
                 request.setAttribute("messageType", "error");
                 request.getRequestDispatcher("/UpdateBookForm.jsp").forward(request, response);
                 return;
@@ -156,7 +156,7 @@ public class UpdateBookServlet extends HttpServlet {
                }
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) { 
-                request.setAttribute("message", "Error: A book with the same title and category already exists.");
+                request.setAttribute("message", " A book with the same title and category already exists.");
             } else {
                 request.setAttribute("message", e.getMessage());
             }

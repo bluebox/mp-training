@@ -189,17 +189,17 @@ public class IssueBookServlet extends HttpServlet {
             Book bookToIssue = books.isEmpty() ? null : books.get(0);
 
             if (bookToIssue == null) {
-                request.setAttribute("message", "Error: Book with ID " + bookId + " not found.");
+                request.setAttribute("message", " Book with ID " + bookId + " not found.");
                 request.setAttribute("messageType", "error");
                 return;
             }
             if (bookToIssue.getAvailability() == BookAvailability.ISSUED) {
-                request.setAttribute("message", "Error: Book '" + bookToIssue.getTitle() + "' is already issued.");
+                request.setAttribute("message", " Book '" + bookToIssue.getTitle() + "' is already issued.");
                 request.setAttribute("messageType", "error");
                 return;
             }
             if (bookToIssue.getStatus() == BookStatus.INACTIVE) {
-                request.setAttribute("message", "Error: Book '" + bookToIssue.getTitle() + "' is inactive and cannot be issued.");
+                request.setAttribute("message", " Book '" + bookToIssue.getTitle() + "' is inactive and cannot be issued.");
                 request.setAttribute("messageType", "error");
                 return;
             }
@@ -207,7 +207,7 @@ public class IssueBookServlet extends HttpServlet {
             String memberName = "Unknown Member";
             Member member = memberService.getMemberById(memberId);
             if (member == null) {
-                request.setAttribute("message", "Error: Member with ID " + memberId + " not found.");
+                request.setAttribute("message", " Member with ID " + memberId + " not found.");
                 request.setAttribute("messageType", "error");
                 return;
             }

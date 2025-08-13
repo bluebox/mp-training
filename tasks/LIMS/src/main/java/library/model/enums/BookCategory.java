@@ -1,26 +1,33 @@
 package library.model.enums;
 
 public enum BookCategory {
-    FICTION("Fiction"),
-    SCIENCE("Science"),
-    HISTORY("History"),
-    BIOGRAPHY("Biography"),
-    TECHNOLOGY("Technology"),
-    FANTASY("Fantasy"),
-    MYSTERY("Mystery"),
-    THRILLER("Thriller"),
-    ROMANCE("Romance"),
-    OTHER("Other");
+    FICTION("Fiction","A"),
+    SCIENCE("Science","I"),
+    HISTORY("History","A"),
+    BIOGRAPHY("Biography","A"),
+    TECHNOLOGY("Technology","A"),
+    FANTASY("Fantasy","A"),
+    MYSTERY("Mystery","A"),
+    THRILLER("Thriller","I"),
+    ROMANCE("Romance","A"),
+    OTHER("Other","I");
 
     private final String displayName;
+    private final String code;
 
-    BookCategory(String displayName) {
+    BookCategory(String displayName,String code) {
         this.displayName = displayName;
+        this.code=code;
     }
 
     public String getDisplayName() {
         return displayName;
     }
+    
+    public String getCode() {
+        return code;
+    }
+    
 
     public static BookCategory fromDisplayName(String displayName) {
         for (BookCategory category : BookCategory.values()) {

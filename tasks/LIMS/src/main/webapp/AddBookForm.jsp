@@ -32,12 +32,17 @@
                 <select id="categoryComboBox" name="category" style="width: 200px;">
                     <option value="">Select category</option>
                     <%
-                        List<String> categories =  Arrays.stream(BookCategory.values())
+                        List<String> categories =  Arrays.stream(BookCategory.values()).filter(book -> book.getCode()=="A")
 					                                .map(BookCategory::getDisplayName)
 					                                .collect(Collectors.toList());
                         if (categories != null) {
                             for (String category : categories) {
-                                out.println("<option value="+ category +">" + category + "</option>");
+                            	/* if(category==){ */
+                                    out.println("<option value="+ category +" >" + category + "</option>");
+                            	/* }else{
+                                    out.println("<option value="+ category +" >" + category + "</option>");
+                            	}  */
+                            	
                             }
                         }
                     %>
