@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+  <html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+</head>
+<body>
+<p th:text="'hi this is ,'+${user}"></p>
+<a th:href="@{/56}">get rout</a>
+<a th:href="@{/}">click me</a>
+<p th:if="${type}">Prabhas</p>
+<p th:unless="${type}">Hero</p>
+<p th:each="vowel:${list}" th:text="${vowel}"></p>
+
+<form th:action="@{/form}" th:object="${Student}" method="post">
+<input type="text" th:field="*{name}" required >
+<input type="text" th:field="*{rollno}" required>
+<input type="text" th:field="*{Standard}" required>
+<input type="submit" value="studentadd">
+</form>
+
+
+<form th:action="@{/addTeacher}" th:object="${Teacher}" method="post">
+<input type="text" th:field="*{Name}" required >
+<input type="text" th:field="*{Email}" required>
+<!--
+<input type="Number" th:field="*{ID}" required>
+<input type="Number" th:field="*{experience}" required>
+<input type="text" th:field="*{subjects}" required>
+
+-->
+<input type="submit" value="addTeacher">
+</form>
+
+<p th:if="${error}!=null">error</p>
+
+<form th:action="@{/add}" method="post">
+<input type="text" id="name" name="name" required >
+<input type="text" id="last" name="last" required>
+<input type="submit" value="studentadd">
+</form>
+
+
+<form th:action="@{/add}" method="get">
+<input type="text" id="name" name="name" required >
+<input type="text" id="last" name="last" required>
+<input type="submit" value="studentadd">
+</form>
+<p th:text="${studentobj}"></p>
+</body>
+</html>
