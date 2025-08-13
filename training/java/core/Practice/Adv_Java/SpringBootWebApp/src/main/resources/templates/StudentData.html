@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h1>Registered Student:</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Student ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>DoB</th>
+					<th>Gender</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student:${students}">
+					<td th:text="${student.id}"></td>
+					<td th:text="${student.fname}"></td>
+					<td th:text="${student.lname}"></td>
+					<td th:text="${student.email}"></td>
+					<td th:text="${student.dob}"></td>
+					<td th:text="${student.gender}"></td>
+					<td>
+						<form th:action="@{/get/{id}(id=${student.id})}" method="post">
+        					<button type="submit">Update</button>
+   						</form>
+					</td>
+					<td>
+						<form th:action="@{/delete/{id}(id=${student.id})}" method="post">
+        					<button type="submit">Delete</button>
+   						</form>
+   					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

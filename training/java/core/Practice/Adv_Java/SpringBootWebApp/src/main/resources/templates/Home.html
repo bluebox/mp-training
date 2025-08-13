@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Home</title>
+	</head>
+	<body>
+		<h1>Student Registration Form</h1>
+		<div>
+			<form th:action="@{/data}" method="post">
+				<div>
+					<ul th:if="${errors != null}">
+        				<li th:each="err : ${errors}" th:text="${err.value}"></li>
+    				</ul>
+				</div>
+				<div>
+					<label for="fname">First Name: </label>
+					<input type="text" id="fname" name="fname"/>
+				</div><br/>
+				<div>
+					<label for="lname">Last Name: </label>
+					<input type="text" id="lname" name="lname"/>
+				</div><br/>
+				<div>
+					<label for="email">Email: </label>
+					<input type="email" id="email" name="email"/>
+				</div><br/>
+				<div>
+					<label for="dob">DoB: </label>
+					<input type="date" id="dob" name="dob"/>
+				</div><br/>
+				<div>
+					<label for="gender">Gender</label>
+					<select id="gender" name="gender">
+						<option value="" disabled selected>Select Your Gender</option>
+						<option value="M">Male</option>
+						<option value="F">Female</option>
+					</select>
+				</div><br/>
+				<div>
+					<input type="submit" value="Submit"/>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
