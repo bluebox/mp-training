@@ -92,14 +92,12 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
   const [error, setError] = useState(null);
-
   const {values,handleChange,handleBlur}=useFormik({
     initialValues:{
       username:"",
       password:"",
     },
     validationSchema:LoginSchema,
-
   });
 
 

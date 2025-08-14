@@ -37,7 +37,6 @@ const Dashboard = () => {
           </div>
         </>
       )}
-
       {role === ROLES.CEO && (
         <>
           <div className="my-4">
