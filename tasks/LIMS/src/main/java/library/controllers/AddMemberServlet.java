@@ -102,7 +102,14 @@ public class AddMemberServlet extends HttpServlet {
         try {
             Member newMember = new Member(0,name, email, phoneNumber, gender, address);
             
-            String resultMessage = memberService.addMember(newMember); 
+            String resultMessage;
+            
+            if (memberService.addMember(newMember)) {
+            	resultMessage = "Member added sucessfully";            	
+            }
+            else {
+            	resultMessage = "Member added failed";            	
+            }
 
             request.setAttribute("message", resultMessage);
             request.setAttribute("messageType", "success");
@@ -120,7 +127,6 @@ public class AddMemberServlet extends HttpServlet {
                 request.setAttribute("message", e.getMessage());
             }
             request.setAttribute("messageType", "error");
-            System.err.println("LibraryException adding member: " + e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
             request.setAttribute("message", "An unexpected error occurred: " + e.getMessage());

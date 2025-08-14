@@ -2,9 +2,7 @@ package library.controllers;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -40,22 +38,21 @@ public class ViewBooksServlet extends HttpServlet {
             throws ServletException, IOException {
         loadBooks(request);
         
-        Map<String, Object> criteria1 = new HashMap<String, Object>();
-        criteria1.put("bookId", 11);
-        Book b1 = bookService.findBooks(criteria1).get(0);
-
-        Map<String, Object> criteria2 = new HashMap<String, Object>();
-        criteria2.put("bookId", 24);
-        Book b2 = bookService.findBooks(criteria2).get(0);
-        	
-        System.out.println(b1.hashCode()==b2.hashCode());
+//        Map<String, Object> criteria1 = new HashMap<String, Object>();
+//        criteria1.put("bookId", 11);
+//        Book b1 = bookService.findBooks(criteria1).get(0);
+//
+//        Map<String, Object> criteria2 = new HashMap<String, Object>();
+//        criteria2.put("bookId", 24);
+//        Book b2 = bookService.findBooks(criteria2).get(0);
+//        	
+//        System.out.println(b1.hashCode()==b2.hashCode());
         
         request.getRequestDispatcher("/ViewBooksScreen.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.removeAttribute("message");
         request.removeAttribute("messageType");
 
@@ -74,37 +71,33 @@ public class ViewBooksServlet extends HttpServlet {
             	loadBooks(request);
             	request.setAttribute("message", "Books refreshed");
                 request.setAttribute("messageType", null);
+                
             } else if (action.startsWith("deleteBook:")) {
                 int bookId = Integer.parseInt(action.split(":")[1]);
                 handleDeleteBookRow(bookId, request);
                
-            } else if (action.startsWith("toggleAvailability:")) {
+            } else if (action.startsWith("changeAvailability:")) {
                 String[] parts = action.split(":");
                 int bookId = Integer.parseInt(parts[1]);
                 String newAvailabilityCode = parts[2];
                 BookAvailability newAvailability = BookAvailability.fromCode(newAvailabilityCode);
                 updateBookAvailabilityRow(bookId, newAvailability, request);
+                
             } else if (action.equals("deleteBatch")) {
-                handleDeleteSelectedBatch(request);
+                handleDeleteSelectedBooks(request);
+                
             } else if (action.equals("updateAvailabilityBatch")) {
-                handleUpdateAvailSelectedBatch(request);
+                handleUpdateAvailSelectedBooks(request);
+                
             } else {
                 request.setAttribute("message", "Unknown action: " + action);
                 request.setAttribute("messageType", "error");
             }
-        } catch (NumberFormatException e) {
-            request.setAttribute("message", "Invalid ID format for action.");
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
-        } catch (LibraryException e) {
+        } catch (Exception e) {
             request.setAttribute("message", e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
-        } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred during action: " + e.getMessage());
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
-        }
+        } 
 
         loadBooks(request);
         request.getRequestDispatcher("/ViewBooksScreen.jsp").forward(request, response);
@@ -115,14 +108,14 @@ public class ViewBooksServlet extends HttpServlet {
             List<Book> books = bookService.findBooks(null);
             request.setAttribute("books", books);
         } catch (LibraryException e) {
-            request.setAttribute("message", "Database error: " + e.getMessage());
+            request.setAttribute("message", "error: " + e.getMessage());
             request.setAttribute("messageType", "error");
         }
     }
 
     private void handleDeleteBookRow(int bookId, HttpServletRequest request) throws LibraryException {
         try {
-            boolean deleted = bookService.deleteBook(bookId);
+            boolean deleted = bookService.deleteBooks(Arrays.asList(bookId));
             if (deleted) {
                 request.setAttribute("message", "Book ID " + bookId + " deleted successfully.");
                 request.setAttribute("messageType", "success");
@@ -140,7 +133,7 @@ public class ViewBooksServlet extends HttpServlet {
         
     	String statusText = newAvailability.toString().toLowerCase();
         try {
-            boolean updated = bookService.updateBookAvailability(bookId, newAvailability.getCode(), CURRENT_USER);
+            boolean updated = bookService.updateBookAvailability(Arrays.asList(bookId), CURRENT_USER);
             if (updated) {
                 request.setAttribute("message", "Book ID " + bookId + " marked as " + statusText + ".");
                 request.setAttribute("messageType", "success");
@@ -154,7 +147,7 @@ public class ViewBooksServlet extends HttpServlet {
         }
     }
 
-    private void handleDeleteSelectedBatch(HttpServletRequest request) throws LibraryException {
+    private void handleDeleteSelectedBooks(HttpServletRequest request) throws LibraryException {
         String[] selectedIds = request.getParameterValues("selectedBookIds");
         if (selectedIds == null || selectedIds.length == 0) {
             request.setAttribute("message", "Please select books to delete.");
@@ -168,9 +161,9 @@ public class ViewBooksServlet extends HttpServlet {
 
         try {
         	
-            boolean results = bookService.deleteBooksBatch(bookIdsToDelete);
+            boolean results = bookService.deleteBooks(bookIdsToDelete);
             if (results) {
-                request.setAttribute("message", bookIdsToDelete.size() + " books deleted successfully.");
+                request.setAttribute("message", " books with ids -> " + bookIdsToDelete +" deleted successfully.");
                 request.setAttribute("messageType", "success");
             } else {
                  request.setAttribute("message", "Some books could not be deleted.");
@@ -182,7 +175,7 @@ public class ViewBooksServlet extends HttpServlet {
         }
     }
 
-    private void handleUpdateAvailSelectedBatch(HttpServletRequest request) throws LibraryException {
+    private void handleUpdateAvailSelectedBooks(HttpServletRequest request) throws LibraryException {
         String[] selectedIds = request.getParameterValues("selectedBookIds");
         if (selectedIds == null || selectedIds.length == 0) {
             request.setAttribute("message", "Please select books to update availability.");
@@ -195,7 +188,7 @@ public class ViewBooksServlet extends HttpServlet {
                                             .collect(Collectors.toList());
 
         try {
-            boolean results = bookService.updateBookAvailabilityBatch(bookIdsToUpdate, CURRENT_USER);
+            boolean results = bookService.updateBookAvailability(bookIdsToUpdate, CURRENT_USER);
 
             if(results) {
                 request.setAttribute("message", bookIdsToUpdate.size() + " books' availability updated successfully.");

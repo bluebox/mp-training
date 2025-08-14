@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import library.exception.LibraryException;
 import library.model.Book;
 import library.model.Member;
 import library.model.enums.BookAvailability;
@@ -90,12 +89,8 @@ public class IssueBookServlet extends HttpServlet {
                     request.setAttribute("messageType", "error");
                     break;
             }
-        } catch (LibraryException e) {
-            request.setAttribute("message", e.getMessage());
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
         } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred: " + e.getMessage());
+            request.setAttribute("message", "An error occurred: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }
@@ -127,11 +122,8 @@ public class IssueBookServlet extends HttpServlet {
                 }
             }
             request.setAttribute("displayContent", sb.toString());
-        } catch (LibraryException e) {
-            request.setAttribute("message", "Database error loading books: " + e.getMessage());
-            request.setAttribute("messageType", "error");
         } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred loading books: " + e.getMessage());
+            request.setAttribute("message", "An error occurred loading books: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }
@@ -152,7 +144,7 @@ public class IssueBookServlet extends HttpServlet {
             }
             request.setAttribute("displayContent", sb.toString());
         } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred loading members: " + e.getMessage());
+            request.setAttribute("message", "An error occurred loading members: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }
@@ -223,12 +215,8 @@ public class IssueBookServlet extends HttpServlet {
 
             handleShowBooks(request);
 
-        } catch (LibraryException e) {
-            request.setAttribute("message", e.getMessage());
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
-        } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred: " + e.getMessage());
+        }  catch (Exception e) {
+            request.setAttribute("message", "An error occurred: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }

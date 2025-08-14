@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +36,17 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
 			if (issueRecord.getReturnDate() != null) {
 				preparedStatement.setTimestamp(paramIndex++, Timestamp.valueOf(issueRecord.getReturnDate()));
 			} else {
-				preparedStatement.setNull(paramIndex++, java.sql.Types.TIMESTAMP);
+				preparedStatement.setNull(paramIndex++, Types.TIMESTAMP);
 			}
 			if (issueRecord.getReturnedBy() != null) {
 				preparedStatement.setString(paramIndex++, issueRecord.getReturnedBy());
 			} else {
-				preparedStatement.setNull(paramIndex++, java.sql.Types.VARCHAR);
+				preparedStatement.setNull(paramIndex++, Types.VARCHAR);
 			}
 
 			preparedStatement.executeUpdate();
-			System.out.println("Issue record added successfully for Book ID: " + issueRecord.getBookId());
 
-		} catch (SQLException e) {
-			System.err.println("Database error while adding issue record: " + e.getMessage());
+		} catch (Exception e) {
 			throw new LibraryException("Failed to add issue record: " + e.getMessage(), e);
 		}
 	}
@@ -56,7 +55,6 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
     public boolean updateIssueRecord(IssueRecord issueRecord) throws LibraryException {
         IssueRecord existingIssueRecord = getIssuedRecordById(issueRecord.getIssueId());
         if (existingIssueRecord == null) {
-            System.out.println("Issue record with ID " + issueRecord.getIssueId() + " not found for update.");
             return false;
         }
 
@@ -81,36 +79,33 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
                 if (issueRecord.getReturnDate() != null) {
                     preparedStatement.setTimestamp(paramIndex++, Timestamp.valueOf(issueRecord.getReturnDate()));
                 } else {
-                    preparedStatement.setNull(paramIndex++, java.sql.Types.TIMESTAMP);
+                    preparedStatement.setNull(paramIndex++, Types.TIMESTAMP);
                 }
                 if (issueRecord.getReturnedBy() != null) {
                     preparedStatement.setString(paramIndex++, issueRecord.getReturnedBy());
                 } else {
-                    preparedStatement.setNull(paramIndex++, java.sql.Types.VARCHAR);
+                    preparedStatement.setNull(paramIndex++, Types.VARCHAR);
                 }
                 preparedStatement.setInt(paramIndex++, issueRecord.getIssueId());
 
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
-                    System.out.println("Issue record ID " + issueRecord.getIssueId() + " updated successfully.");
                     connection.commit();
                     return true;
                 } else {
                     connection.rollback();
-                    System.out.println("No issue record found with ID " + issueRecord.getIssueId() + " to update.");
                     return false;
                 }
 
             }
-        }catch (SQLException e) {
+        }catch (Exception e) {
                 if (connection != null) {
                     try { 
                     	connection.rollback();
-                    } catch (SQLException rollbackEx) {
-                    	System.err.println("Error during rollback: " + rollbackEx.getMessage()); 
+                    } catch (SQLException rolle) {
+                    	rolle.printStackTrace();
                     }
                 }
-                System.err.println("Database error while updating issue record: " + e.getMessage());
                 throw new LibraryException("Failed to update issue record: " + e.getMessage(), e);
             } finally {
                 if (connection != null) {
@@ -118,7 +113,7 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
                         connection.setAutoCommit(true);
                         connection.close();
                     } catch (SQLException e) { 
-                        System.err.println("Error during final connection cleanup: " + e.getMessage()); 
+                    	e.printStackTrace();
                     }
                 }
             }
@@ -142,8 +137,7 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
 						resultSet.getString("returned_by"));
 				issueRecords.add(record);
 			}
-		} catch (SQLException e) {
-			System.err.println("Database error while retrieving all issue records: " + e.getMessage());
+		} catch (Exception e) {
 			throw new LibraryException("Failed to retrieve all issue records: " + e.getMessage(), e);
 		}
 		return issueRecords;
@@ -170,8 +164,7 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
 							resultSet.getString("returned_by"));
 				}
 			}
-		} catch (SQLException e) {
-			System.err.println("Database error while retrieving issue record by IDs: " + e.getMessage());
+		} catch (Exception e) {
 			throw new LibraryException("Failed to retrieve issue record by IDs: " + e.getMessage(), e);
 		}
 		return issueRecord;
@@ -194,10 +187,8 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
 							null, null);
 				}
 			}
-		} catch (SQLException e) {
-			System.err.println("Database error while retrieving active issue record by Book ID: " + e.getMessage());
-			throw new LibraryException("Failed to retrieve active issue record by Book ID: " + e.getMessage(),
-					e);
+		} catch (Exception e) {
+			throw new LibraryException("Failed to retrieve active issue record by Book ID: " + e.getMessage(),e);
 		}
 		return issueRecord;
 	}
@@ -220,11 +211,8 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
 							resultSet.getString("returned_by"));
 				}
 			}
-		} catch (SQLException e) {
-			System.err
-					.println("Database error while retrieving issue record by ID for internal use: " + e.getMessage());
-			throw new LibraryException("Failed to retrieve issue record for internal use: " + e.getMessage(),
-					e);
+		} catch (Exception e) {
+			throw new LibraryException("Failed to retrieve issue record for internal use: " + e.getMessage(),e);
 		}
 		return null;
 	}
@@ -243,16 +231,15 @@ public class IssueRecordDAOImpl implements IssueRecordDAO {
 			if (issueRecord.getReturnDate() != null) {
 				preparedStatement.setTimestamp(paramIndex++, Timestamp.valueOf(issueRecord.getReturnDate()));
 			} else {
-				preparedStatement.setNull(paramIndex++, java.sql.Types.TIMESTAMP);
+				preparedStatement.setNull(paramIndex++, Types.TIMESTAMP);
 			}
 			if (issueRecord.getReturnedBy() != null) {
 				preparedStatement.setString(paramIndex++, issueRecord.getReturnedBy());
 			} else {
-				preparedStatement.setNull(paramIndex++, java.sql.Types.VARCHAR);
+				preparedStatement.setNull(paramIndex++, Types.VARCHAR);
 			}
 			preparedStatement.setTimestamp(paramIndex++, Timestamp.valueOf(LocalDateTime.now())); 
 			preparedStatement.executeUpdate();
-			System.out.println("Logged issue record change for Issue ID " + issueRecord.getIssueId());
 		}
 	}
 }

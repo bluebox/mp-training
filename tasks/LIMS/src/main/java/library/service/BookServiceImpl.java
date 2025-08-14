@@ -1,6 +1,5 @@
 package library.service;
 
-import java.sql.BatchUpdateException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +17,6 @@ public class BookServiceImpl implements BookService {
 
     private BookDAO bookDAO;
 
-   
-
     public BookServiceImpl() {
         this.bookDAO = new BookDAOImpl();
     }
@@ -36,18 +33,14 @@ public class BookServiceImpl implements BookService {
 
         try {
             bookDAO.addBook(book, createdBy);
-            System.out.println(" Book '" + book.getTitle() + "' successfully processed for addition.");
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                System.err.println(" Attempted to add duplicate book (Title, Category): " + book.getTitle() + " - " + book.getCategory());
                 throw new LibraryException("A book with the same title and category already exists.", e.getCause());
             }
-            System.err.println(" Database error during book addition: " + e.getMessage());
-            throw new LibraryException("An error occurred during book data access: " + e.getMessage(), e);
+            throw new LibraryException("An error occurred while adding a book: " + e.getMessage(), e);
         } catch (Exception e) {
-            System.err.println(" An unexpected error occurred during book addition: " + e.getMessage());
             e.printStackTrace();
-            throw new LibraryException("An unexpected error occurred during book addition.", e);
+            throw new LibraryException("An  error occurred while adding a book.", e);
         }
     }
 
@@ -55,15 +48,12 @@ public class BookServiceImpl implements BookService {
     public List<Book> findBooks(Map<String, Object> criteria) {
         try {
             List<Book> books = bookDAO.findBooks(criteria);
-            System.out.println(" Found " + books.size() + " books with criteria.");
             return books;
         } catch (LibraryException e) {
-            System.err.println(" Database error during book search: " + e.getMessage());
-            throw new LibraryException("An error occurred during book search data access: " + e.getMessage(), e);
+            throw new LibraryException("An error occurred while finding book: " + e.getMessage(), e);
         } catch (Exception e) {
-            System.err.println(" An unexpected error occurred while searching for books: " + e.getMessage());
             e.printStackTrace();
-            throw new LibraryException("An unexpected error occurred during book search.", e);
+            throw new LibraryException("An  error occurred while finding book.", e);
         }
     }
 
@@ -82,103 +72,46 @@ public class BookServiceImpl implements BookService {
 
         try {
             boolean success = bookDAO.updateBook(book, updatedBy);
-            if (success) {
-                System.out.println(" Book with ID " + book.getBookId() + " successfully processed for update.");
-            } else {
-                System.out.println(" Book with ID " + book.getBookId() + " not found for update.");
-            }
             return success;
         } catch (LibraryException e) {
             if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                System.err.println(" Attempted to update book to duplicate (Title, Category): " + book.getTitle() + " - " + book.getCategory());
-                throw new LibraryException("Cannot update: A book with the same title and category already exists.", e.getCause());
+                throw new LibraryException("A book with the same title and category already exists.", e.getCause());
             }
-            System.err.println(" Database error during book update: " + e.getMessage());
-            throw new LibraryException("An error occurred during book update data access: " + e.getMessage(), e);
+            throw new LibraryException("An error occurred while updating book: " + e.getMessage(), e);
         } catch (Exception e) {
-            System.err.println(" An unexpected error occurred during book update: " + e.getMessage());
             e.printStackTrace();
-            throw new LibraryException("An unexpected error occurred during book update.", e);
+            throw new LibraryException("An  error occurred while updating book.", e);
         }
     }
 
-    @Override
-    public boolean updateBookAvailability(int bookId, String newAvailabilityCode, String updatedBy) {
-        BookValidator.validateNumericId(bookId, "Book ID");
-        try {
-            BookAvailability.fromCode(newAvailabilityCode);
-        } catch (IllegalArgumentException e) {
-            throw new LibraryException("Invalid Availability status code: " + newAvailabilityCode + ". Must be 'A' or 'I'.", e);
-        }
-        BookValidator.validateUser(updatedBy, "Updated By User");
-
-        try {
-            return bookDAO.updateBookAvailability(bookId, newAvailabilityCode, updatedBy);
-        } catch (LibraryException e) {
-            System.err.println(" Database error during update book availability: " + e.getMessage());
-            throw new LibraryException("An error occurred during book availability update data access: " + e.getMessage(), e);
-        } catch (Exception e) {
-            System.err.println(" An unexpected error occurred during update book availability: " + e.getMessage());
-            e.printStackTrace();
-            throw new LibraryException("An unexpected error occurred during book availability update.", e);
-        }
-    }
-
-    @Override
-    public boolean deleteBook(int bookId){
-        BookValidator.validateNumericId(bookId, "Book ID");
-        try {
-        	
-            boolean deleted = bookDAO.deleteBook(bookId);
-            return deleted;
-        } catch (LibraryException e) {
-            System.err.println(" Database error during delete book: " + e.getMessage());
-//            e.printStackTrace();
-            if(e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-                throw new LibraryException("The Book is Issued so it cannot be deleted. ", e);
-            }else {
-            	throw new LibraryException("An error occurred during book deletion data access: " + e.getMessage(), e);            	            	
-            }
-        } catch (Exception e) {
-            System.err.println(" An unexpected error occurred during delete book: " + e.getMessage());
-            e.printStackTrace();
-            throw new LibraryException("An unexpected error occurred during book deletion.", e);
-        }
-    }
-    
     
     @Override
-    public boolean deleteBooksBatch(List<Integer> bookIds) {
+    public boolean deleteBooks(List<Integer> bookIds) {
         if (bookIds == null || bookIds.isEmpty()) {
-            throw new LibraryException("List of book IDs for batch delete cannot be null or empty.");
+            throw new LibraryException("Please select some books to delete.");
         }
         for (Integer bookId : bookIds) {
-            BookValidator.validateNumericId(bookId, "Book ID in batch");
+            BookValidator.validateNumericId(bookId, "Book ID");
         }
         try {
-            boolean results = bookDAO.deleteBooksBatch(bookIds);
-            System.out.println(" Batch delete operation completed.");
+            boolean results = bookDAO.deleteBooks(bookIds);
             return results;
         } catch (LibraryException e) {
-            System.err.println(" Database error during batch delete books: " + e.getMessage());
-            e.printStackTrace();
-            if(e.getCause() instanceof BatchUpdateException) {
-                throw new LibraryException("The Book is Issued so it cannot be deleted. ", e);
+            if(e.getCause() instanceof SQLIntegrityConstraintViolationException) {
+                throw new LibraryException("The Issued Books cannot be deleted. ", e);
             }else {
-            	throw new LibraryException("An error occurred during book deletion data access: " + e.getMessage(), e);            	            	
+            	throw new LibraryException("An error occurred while deleting book: " + e.getMessage(), e);            	            	
             }
         } catch (Exception e) {
-            System.err.println(" An unexpected error occurred during batch delete books: " + e.getMessage());
-            e.printStackTrace();
-            throw new LibraryException("An unexpected error occurred during batch book deletion.", e);
+            throw new LibraryException("An  error occurred while deleting book.", e);
         }
     }
 
 
 	@Override
-	public boolean updateBookAvailabilityBatch(List<Integer> bookIds,String updatedBy) {
+	public boolean updateBookAvailability(List<Integer> bookIds,String updatedBy) {
 	      if (bookIds == null || bookIds.isEmpty()) {
-	            throw new LibraryException("List of book IDs for update batch cannot be null or empty.");
+	            throw new LibraryException("Please Select books to update availability.");
 	        }
 	        for (Integer bookId : bookIds) {
 	            BookValidator.validateNumericId(bookId, "Book ID in batch");
@@ -205,16 +138,11 @@ public class BookServiceImpl implements BookService {
 			}
 			
 	        try {
-	            boolean results = bookDAO.updateBookAvailabilityBatch(bookIds,updatedBy);
-	            System.out.println(" Batch update availability operation completed.");
+	            boolean results = bookDAO.updateBookAvailability(bookIds,updatedBy);
 	            return results;
-	        } catch (LibraryException e) {
-	            System.err.println(" Database error during batch update availability books: " + e.getMessage());
-	            throw new LibraryException("An error occurred during batch book update availability data access: " + e.getMessage(), e);
-	        } catch (Exception e) {
-	            System.err.println(" An unexpected error occurred during batch update availability  books: " + e.getMessage());
+	        }  catch (Exception e) {
 	            e.printStackTrace();
-	            throw new LibraryException("An unexpected error occurred during batch book update availability .", e);
+	            throw new LibraryException("An  error occurred while updating book availability .", e);
 	        }
 		
 	}

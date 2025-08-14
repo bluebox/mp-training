@@ -1,0 +1,14 @@
+package com.LMS.LibMS.service.interfaces;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.LMS.LibMS.model.Book;
+
+@Service
+public interface BookService {
+		
+	List<Book> findBooks();
+
+}

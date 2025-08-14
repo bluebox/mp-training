@@ -3,9 +3,11 @@ package library.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -59,7 +61,6 @@ public class IssueServiceImpl implements IssueService {
 	        List<Book> books = bookService.findBooks(criteria);
 	        Book book = books.isEmpty() ? null : books.get(0);
 	        
-//			Book book = bookService.getBookById(bookId);
 			if (book == null) {
 				throw new LibraryException("Book with ID " + bookId + " not found.");
 			}
@@ -74,47 +75,26 @@ public class IssueServiceImpl implements IssueService {
 			IssueRecord newIssue = new IssueRecord(bookId, memberId, IssueStatus.ISSUED, issueDate, issuedBy);
 			issueRecordDAO.addIssueRecord(newIssue);
 
-			bookDAO.updateBookAvailability(bookId, BookAvailability.ISSUED.getCode(), issuedBy);
+			bookDAO.updateBookAvailability(Arrays.asList(bookId),  issuedBy);
 
 			connection.commit();
-			System.out.println("Transaction committed: Book ID " + bookId + " issued to Member ID " + memberId);
 
-		} catch (LibraryException e) {
-			if (connection != null) {
-				try {
-					connection.rollback();
-				} catch (SQLException rollbackEx) {
-					System.err.println("Error during rollback: " + rollbackEx.getMessage());
-				}
-			}
-		} catch (SQLException e) {
-			if (connection != null) {
-				try {
-					connection.rollback();
-				} catch (SQLException rollbackEx) {
-					System.err.println("Error during rollback: " + rollbackEx.getMessage());
-				}
-			}
-			System.err.println(" Database error during issue book: " + e.getMessage());
-			throw new LibraryException("Database error during book issue: " + e.getMessage(), e);
 		} catch (Exception e) {
 			if (connection != null) {
 				try {
 					connection.rollback();
-				} catch (SQLException rollbackEx) {
-					System.err.println("Error during rollback: " + rollbackEx.getMessage());
+				} catch (SQLException rolle) {
+					rolle.printStackTrace();
 				}
 			}
-			System.err.println(" An unexpected error occurred: " + e.getMessage());
-			e.printStackTrace();
-			throw new LibraryException("An unexpected error occurred during book issue.", e);
+			throw new LibraryException("Error occured while issueing book:", e);
 		} finally {
 			if (connection != null) {
 				try {
 					connection.setAutoCommit(true);
 					connection.close();
 				} catch (SQLException e) {
-					System.err.println("Error closing transaction connection: " + e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		}
@@ -141,49 +121,27 @@ public class IssueServiceImpl implements IssueService {
 
 			issueRecordDAO.updateIssueRecord(activeIssue);
 
-			bookDAO.updateBookAvailability(bookId, BookAvailability.AVAILABLE.getCode(), returnedBy); 
+			bookDAO.updateBookAvailability(Arrays.asList(bookId), returnedBy); 
 																								
 
 			connection.commit();
-			System.out.println("Transaction committed: Book ID " + bookId + " returned successfully.");
 
-		} catch (LibraryException e) {
-			if (connection != null) {
-				try {
-					connection.rollback();
-				} catch (SQLException rollbackEx) {
-					System.err.println("Error during rollback: " + rollbackEx.getMessage());
-				}
-			}
-            throw new LibraryException("An error occurred during Issue Record data access: " + e.getMessage(), e); 
-		} catch (SQLException e) {
-			if (connection != null) {
-				try {
-					connection.rollback();
-				} catch (SQLException rollbackEx) {
-					System.err.println("Error during rollback: " + rollbackEx.getMessage());
-				}
-			}
-			System.err.println(" Database error during return book: " + e.getMessage());
-			throw new LibraryException("Database error during book return: " + e.getMessage(), e);
 		} catch (Exception e) {
 			if (connection != null) {
 				try {
 					connection.rollback();
-				} catch (SQLException rollbackEx) {
-					System.err.println("Error during rollback: " + rollbackEx.getMessage());
+				} catch (SQLException rolle) {
+					rolle.printStackTrace();
 				}
 			}
-			System.err.println(" An unexpected error occurred: " + e.getMessage());
-			e.printStackTrace();
-			throw new LibraryException("An unexpected error occurred during book return.", e);
+			throw new LibraryException("Error occured while returning book.", e);
 		} finally {
 			if (connection != null) {
 				try {
 					connection.setAutoCommit(true);
 					connection.close();
 				} catch (SQLException e) {
-					System.err.println("Error closing transaction connection: " + e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		}
@@ -194,8 +152,7 @@ public class IssueServiceImpl implements IssueService {
 		try {
 			return issueRecordDAO.getAllIssuedRecords();
 		} catch (LibraryException e) {
-			System.err.println(" Error getting all issued records: " + e.getMessage());
-            throw new LibraryException("An error occurred during Issue Record data access: " + e.getMessage(), e); 
+            throw new LibraryException("Error occured while getting issued records: " + e.getMessage(), e); 
 		}
 	}
 
@@ -220,15 +177,9 @@ public class IssueServiceImpl implements IssueService {
 		return memberIdsWithActiveBooks.stream().map(memberId -> {
 			try {
 				return memberService.getMemberById(memberId);
-			} catch (LibraryException e) {
-				System.err.println(
-						"Error fetching member ID " + memberId + " for active books report: " + e.getMessage());
-				return null;
-			} catch (Exception e) {
-				System.err.println("Unexpected error fetching member ID " + memberId + " for active books report: "
-						+ e.getMessage());
+			}catch (Exception e) {
 				return null;
 			}
-		}).filter(java.util.Objects::nonNull).collect(Collectors.toList());
+		}).filter(Objects::nonNull).collect(Collectors.toList());
 	}
 }

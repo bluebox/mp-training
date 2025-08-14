@@ -84,12 +84,8 @@ public class ReportsServlet extends HttpServlet {
                         request.setAttribute("messageType", "error");
                         break;
                 }
-            } catch (LibraryException e) {
-                request.setAttribute("message", "Database error generating report: " + e.getMessage());
-                request.setAttribute("messageType", "error");
-                e.printStackTrace();
             } catch (Exception e) {
-                request.setAttribute("message", "An unexpected error occurred generating report: " + e.getMessage());
+                request.setAttribute("message", "Error generating report: " + e.getMessage());
                 request.setAttribute("messageType", "error");
                 e.printStackTrace();
             }
@@ -120,11 +116,7 @@ public class ReportsServlet extends HttpServlet {
                         if (book != null) {
                             bookTitle = book.getTitle();
                         }
-                    } catch (LibraryException | IllegalArgumentException e) {
-                        System.err.println("Error fetching book for overdue report: " + e.getMessage());
-                        bookTitle = "Error";
                     } catch (Exception e) {
-                        System.err.println("Unexpected error fetching book for overdue report: " + e.getMessage());
                         bookTitle = "Error";
                     }
 
@@ -133,11 +125,7 @@ public class ReportsServlet extends HttpServlet {
                         if (member != null) {
                             memberName = member.getName();
                         }
-                    } catch (LibraryException | IllegalArgumentException e) {
-                        System.err.println("Error fetching member for overdue report: " + e.getMessage());
-                        memberName = "Error";
-                    } catch (Exception e) {
-                        System.err.println("Unexpected error fetching member for overdue report: " + e.getMessage());
+                    }  catch (Exception e) {
                         memberName = "Error";
                     }
 
@@ -151,12 +139,8 @@ public class ReportsServlet extends HttpServlet {
             }
             request.setAttribute("reportContent", sb.toString());
             request.setAttribute("message", ""); 
-        } catch (LibraryException e) {
-            request.setAttribute("reportContent", "");
-            throw e; 
         } catch (Exception e) {
             request.setAttribute("reportContent", "");
-            throw e;
         }
     }
 
@@ -178,12 +162,8 @@ public class ReportsServlet extends HttpServlet {
             }
             request.setAttribute("reportContent", sb.toString());
             request.setAttribute("message", "");
-        } catch (LibraryException e) {
+        }  catch (Exception e) {
             request.setAttribute("reportContent", "");
-            throw e;
-        } catch (Exception e) {
-            request.setAttribute("reportContent", "");
-            throw e;
         }
     }
 
@@ -203,12 +183,8 @@ public class ReportsServlet extends HttpServlet {
             }
             request.setAttribute("reportContent", sb.toString());
             request.setAttribute("message", "");
-        } catch (LibraryException e) {
+        }  catch (Exception e) {
             request.setAttribute("reportContent", "");
-            throw e;
-        } catch (Exception e) {
-            request.setAttribute("reportContent", "");
-            throw e;
         }
     }
 }

@@ -109,13 +109,10 @@ public class AddBookServlet extends HttpServlet {
                 request.setAttribute("message", e.getMessage());
             }
             request.setAttribute("messageType", "error");
-            System.err.println("LibraryException: " + e.getMessage());
-            e.printStackTrace();
             request.getRequestDispatcher("/AddBookForm.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("message", "An unexpected error occurred: " + e.getMessage());
             request.setAttribute("messageType", "error");
-            e.printStackTrace();
             request.getRequestDispatcher("/AddBookForm.jsp").forward(request, response);
         }
     }

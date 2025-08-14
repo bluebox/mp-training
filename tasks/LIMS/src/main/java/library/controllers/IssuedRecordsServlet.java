@@ -98,10 +98,8 @@ public class IssuedRecordsServlet extends HttpServlet {
                             bookTitle = book.getTitle();
                         }
                     } catch (LibraryException | IllegalArgumentException e) {
-                        System.err.println("Error fetching book title for record ID " + record.getIssueId() + ": " + e.getMessage());
                         bookTitle = "Error Fetching";
                     } catch (Exception e) {
-                        System.err.println("Unexpected error fetching book title for record ID " + record.getIssueId() + ": " + e.getMessage());
                         bookTitle = "Error Fetching";
                     }
 
@@ -111,10 +109,8 @@ public class IssuedRecordsServlet extends HttpServlet {
                             memberName = member.getName();
                         }
                     } catch (LibraryException | IllegalArgumentException e) {
-                        System.err.println("Error fetching member name for record ID " + record.getMemberId() + ": " + e.getMessage());
                         memberName = "Error Fetching";
                     } catch (Exception e) {
-                        System.err.println("Unexpected error fetching member name for record ID " + record.getMemberId() + ": " + e.getMessage());
                         memberName = "Error Fetching";
                     }
 
@@ -137,12 +133,8 @@ public class IssuedRecordsServlet extends HttpServlet {
             if (request.getAttribute("message") == null) {
                 request.setAttribute("message", "");
             }
-        } catch (LibraryException e) {
-            request.setAttribute("message", "Database error loading records: " + e.getMessage());
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
         } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred loading records: " + e.getMessage());
+            request.setAttribute("message", "Error  loading records: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }

@@ -54,7 +54,7 @@ public class ViewMembersServlet extends HttpServlet {
             request.setAttribute("message", "No action specified.");
             request.setAttribute("messageType", "error");
         } else if (action.equals("refreshMembers")) {
-            loadMembers(request);
+//            loadMembers(request);
         } else if (action.startsWith("deleteMember:")) {
             try {
                 int memberId = Integer.parseInt(action.split(":")[1]);
@@ -101,7 +101,7 @@ public class ViewMembersServlet extends HttpServlet {
             }
 
         } catch (LibraryException e) {
-            request.setAttribute("message", "Error loading members: " + e.getMessage());
+            request.setAttribute("message", " " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         } catch (Exception e) {
@@ -113,22 +113,15 @@ public class ViewMembersServlet extends HttpServlet {
 
     private void handleDeleteMember(int memberId, HttpServletRequest request) {
         try {
-            Member memberToDelete = memberService.getMemberById(memberId);
-            if (memberToDelete == null) {
-                request.setAttribute("message", "Failed to delete member ID " + memberId + ". Member not found.");
-                request.setAttribute("messageType", "error");
-                return;
-            }
-
-            memberService.deleteMember(memberToDelete); 
-            request.setAttribute("message", "Member deleted successfully: " + memberToDelete.getName());
+            memberService.deleteMembers(Arrays.asList(memberId)); 
+            request.setAttribute("message", "Member with id "+ memberId+" deleted successfully");
             request.setAttribute("messageType", "success");
         } catch (LibraryException e) {
-            request.setAttribute("message", "Error deleting member: " + e.getMessage());
+            request.setAttribute("message", "" + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred while deleting member: " + e.getMessage());
+            request.setAttribute("message", "An  error occurred while deleting member: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }
@@ -156,7 +149,7 @@ public class ViewMembersServlet extends HttpServlet {
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred while deleting selected members: " + e.getMessage());
+            request.setAttribute("message", "An error occurred while deleting selected members: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }

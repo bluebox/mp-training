@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import library.exception.LibraryException;
 import library.model.Book;
 import library.model.IssueRecord;
 import library.model.Member;
@@ -84,12 +83,8 @@ public class ReturnBookServlet extends HttpServlet {
                     request.setAttribute("messageType", "error");
                     break;
             }
-        } catch (LibraryException e) {
-            request.setAttribute("message", e.getMessage());
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
         } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred: " + e.getMessage());
+            request.setAttribute("message", "An error occurred: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }
@@ -119,10 +114,8 @@ public class ReturnBookServlet extends HttpServlet {
                         if (book != null) {
                             bookTitle = book.getTitle();
                         }
-                    } catch (LibraryException e) {
-                        System.err.println("DB error getting book title for record " + record.getIssueId() + ": " + e.getMessage());
                     } catch (Exception e) {
-                        System.err.println("Unexpected error getting book title for record " + record.getIssueId() + ": " + e.getMessage());
+                    	e.printStackTrace();
                     }
 
                     try {
@@ -131,7 +124,7 @@ public class ReturnBookServlet extends HttpServlet {
                             memberName = member.getName();
                         }
                     } catch (Exception e) {
-                        System.err.println("Unexpected error getting member name for record " + record.getIssueId() + ": " + e.getMessage());
+                    	e.printStackTrace();
                     }
 
                     sb.append(record.getBookId()).append(" - ").append(bookTitle).append(" (Issued to: ")
@@ -145,11 +138,8 @@ public class ReturnBookServlet extends HttpServlet {
             } else {
                 request.setAttribute("displayContent", sb.toString());
             }
-        } catch (LibraryException e) {
-            request.setAttribute("message", "Database error loading issued records: " + e.getMessage());
-            request.setAttribute("messageType", "error");
-        } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred loading issued records: " + e.getMessage());
+        }  catch (Exception e) {
+            request.setAttribute("message", "An error occurred loading issued records: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }
@@ -186,12 +176,8 @@ public class ReturnBookServlet extends HttpServlet {
             request.removeAttribute("bookId");
             
             handleShowIssuedBooks(request);
-        } catch (LibraryException e) {
-            request.setAttribute("message", e.getMessage());
-            request.setAttribute("messageType", "error");
-            e.printStackTrace();
-        } catch (Exception e) {
-            request.setAttribute("message", "An unexpected error occurred: " + e.getMessage());
+        }  catch (Exception e) {
+            request.setAttribute("message", "An error occurred: " + e.getMessage());
             request.setAttribute("messageType", "error");
             e.printStackTrace();
         }

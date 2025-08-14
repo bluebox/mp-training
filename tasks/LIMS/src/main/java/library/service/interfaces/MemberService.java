@@ -6,7 +6,7 @@ import java.util.Map;
 import library.model.Member;
 
 public interface MemberService {
-	String addMember(Member member);
+	boolean addMember(Member member);
 
 	Member getMemberById(int id);
 
@@ -17,8 +17,6 @@ public interface MemberService {
 	List<Member> findMembers(Map<String, Object> criteriaMap);
 
 	void updateMember(Member member);
-
-	void deleteMember(Member member);
 
 	void deleteMembers(List<Integer> memberIds);
 }

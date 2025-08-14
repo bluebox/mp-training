@@ -161,7 +161,6 @@ public class UpdateBookServlet extends HttpServlet {
                 request.setAttribute("message", e.getMessage());
             }
             request.setAttribute("messageType", "error");
-            System.err.println("LibraryException during update: " + e.getMessage());
             e.printStackTrace();
         } catch (Exception e) { 
             request.setAttribute("message", "An unexpected error occurred: " + e.getMessage());

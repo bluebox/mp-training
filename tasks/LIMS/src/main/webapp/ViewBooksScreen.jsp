@@ -66,7 +66,7 @@
                 <tbody>
                     <%
                         List<Book> books = (List<Book>) request.getAttribute("books");
-                        DateTimeFormatter auditFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
                         if (books != null && !books.isEmpty()) {
                             for (Book book : books) {
@@ -96,13 +96,13 @@
                                             String buttonText = (book.getAvailability() == BookAvailability.AVAILABLE) ? "Mark Issued" : "Mark Available";
                                             String disableAttr = (book.getStatus() == BookStatus.INACTIVE) ? "disabled" : "";
                                         %>
-                                        <button type="submit" name="action" value="toggleAvailability:<%= book.getBookId() %>:<%= newAvailability.getCode() %>" <%= disableAttr %>>
+                                        <button type="submit" name="action" value="changeAvailability:<%= book.getBookId() %>:<%= newAvailability.getCode() %>" <%= disableAttr %>>
                                             <%= buttonText %>
                                         </button>
                                     </td>
-                                    <td><%= book.getCreatedAt() != null ? book.getCreatedAt().format(auditFormatter) : "N/A" %></td>
+                                    <td><%= book.getCreatedAt() != null ? book.getCreatedAt().format(dateFormatter) : "N/A" %></td>
                                     <td><%= book.getCreatedBy() != null ? book.getCreatedBy() : "N/A" %></td>
-                                    <td><%= book.getUpdatedAt() != null ? book.getUpdatedAt().format(auditFormatter) : "N/A" %></td>
+                                    <td><%= book.getUpdatedAt() != null ? book.getUpdatedAt().format(dateFormatter) : "N/A" %></td>
                                     <td><%= book.getUpdatedBy() != null ? book.getUpdatedBy() : "N/A" %></td>
                                 </tr>
                     <%

@@ -1,0 +1,20 @@
+package com.LMS.LibMS.model.enums;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public enum BookStatus {
+    ACTIVE("A"),
+    INACTIVE("I");
+
+    private final String code;
+
+    public static BookStatus fromCode(String code) { 
+        for (BookStatus status : BookStatus.values()) {
+            if (status.code.equalsIgnoreCase(code)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("No book status with code: " + code);
+    }
+}

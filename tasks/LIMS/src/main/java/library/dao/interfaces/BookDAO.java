@@ -10,19 +10,12 @@ public interface BookDAO {
 
     void addBook(Book book, String createdBy) throws LibraryException;
 
-    boolean updateBook(Book book, String updatedBy) throws LibraryException;
-
-    boolean updateBookAvailability(int bookId, String newAvailabilityCode, String updatedBy) throws LibraryException;
-
-    boolean deleteBook(int bookId) throws LibraryException;
-
-//    boolean[] deleteBooksBatch(List<Integer> bookIds) throws LibraryException;
-    
-    boolean deleteBooksBatch(List<Integer> bookIds) throws LibraryException;
-
-
     List<Book> findBooks(Map<String, Object> criteria) throws LibraryException;
-
-	boolean updateBookAvailabilityBatch(List<Integer> bookIds,String updatedBy);
+    
+    boolean updateBook(Book book, String updatedBy) throws LibraryException;
+    
+    boolean updateBookAvailability(List<Integer> bookIds,String updatedBy) throws LibraryException;
+    
+    boolean deleteBooks(List<Integer> bookIds) throws LibraryException;
 
 }

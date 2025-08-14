@@ -144,7 +144,7 @@ public class DataLoader {
 
                         Member member = new Member(0, name, email, phoneNumber, gender, address);
 
-                        String message = memberService.addMember(member);
+                        boolean message = memberService.addMember(member);
                         System.out.println("DataLoader: " + message);
                     } catch (NumberFormatException e) {
                         System.err.println("DataLoader: Skipping malformed member CSV line (invalid number format): " + line + " - " + e.getMessage());

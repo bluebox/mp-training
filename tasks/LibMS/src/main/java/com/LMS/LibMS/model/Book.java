@@ -1,0 +1,57 @@
+package com.LMS.LibMS.model;
+
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.LMS.LibMS.model.enums.BookAvailability;
+import com.LMS.LibMS.model.enums.BookCategory;
+import com.LMS.LibMS.model.enums.BookStatus;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Book {
+	
+	@Id
+	private Integer bookId;
+	
+	@NotBlank(message="Title must not be blank")
+	@Size(min=5,max=20, message="Title must be at least 5 and at most 20 characters long")
+	private String title;
+	
+	@NotBlank(message="Author must not be blank")
+	@Size(min=5,max=20, message="Author must be at least 5 and at most 20 characters long")
+	private String author;
+	
+	@NotBlank(message="Category must not be blank")
+	private BookCategory category;
+	
+	@NotBlank(message="Status must not be blank")
+	private BookStatus status;
+	
+	@NotBlank(message="Availability must not be blank")
+	private BookAvailability availability;
+	
+	@CreatedDate
+	private LocalDateTime createdAt;
+	
+	@CreatedBy
+	private String createdBy;
+	
+	@LastModifiedDate
+	private LocalDateTime updatedAt;
+	
+	@LastModifiedBy
+	private String updatedBy;
+}

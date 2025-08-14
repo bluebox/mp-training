@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public String addMember(Member member) {
+    public boolean addMember(Member member) {
         MemberValidator.validateMember(member);
 
         Member emailCriteria = new Member();
@@ -122,25 +122,15 @@ public class MemberServiceImpl implements MemberService {
         memberDAO.updateMember(member);
     }
 
-    @Override
-    public void deleteMember(Member member) {
-        if (member == null || member.getMemberID() <= 0) { 
-            throw new LibraryException("Invalid member data for deletion.");
-        }
-        
-        Member existingMember = getMemberById(member.getMemberID());
-        if (existingMember == null) {
-            throw new LibraryException("Member with ID " + member.getMemberID() + " not found.");
-        }
-        memberDAO.deleteMember(member);
-    }
 
     @Override
     public void deleteMembers(List<Integer> memberIds) {
         if (memberIds == null || memberIds.isEmpty()) {
             throw new LibraryException("No member IDs provided for batch deletion.");
         }
-
-        memberDAO.deleteMembersInBatch(memberIds);
-    }
+        
+        memberDAO.deleteMembers(memberIds);
+			
+		
+     }
 }
