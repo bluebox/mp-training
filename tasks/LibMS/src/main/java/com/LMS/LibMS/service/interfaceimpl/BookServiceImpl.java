@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LMS.LibMS.model.Book;
-import com.LMS.LibMS.repository.BookRepository;
+import com.LMS.LibMS.repository.interfaceImpl.BookRepositoryImpl;
 import com.LMS.LibMS.service.interfaces.BookService;
 
 @Service
 public class BookServiceImpl implements BookService {
 	
-	private BookRepository bookRepository;
+	private BookRepositoryImpl bookRepository;
 	
 	@Autowired
-	public BookServiceImpl(BookRepository bookRepository) {
+	public BookServiceImpl(BookRepositoryImpl bookRepository) {
 		this.bookRepository = bookRepository;
 	}
 	

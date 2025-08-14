@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.LMS.LibMS.model.IssueRecord;
-import com.LMS.LibMS.repository.IssueRepository;
+import com.LMS.LibMS.repository.interfaceImpl.IssueRepositoryImpl;
 import com.LMS.LibMS.service.interfaces.IssueService;
 
 @Service
 public class IssueServiceImpl implements IssueService{
 	
-	private IssueRepository issueRepository;
+	private IssueRepositoryImpl issueRepository;
 	
 	@Autowired
-	public IssueServiceImpl(IssueRepository issueRepository) {
+	public IssueServiceImpl(IssueRepositoryImpl issueRepository) {
 		this.issueRepository=issueRepository;
 	}
 	
