@@ -1,0 +1,166 @@
+/* 🌟 Global Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #f0f8ff);
+  color: #2a2a2a;
+  line-height: 1.6;
+}
+
+/* 🌟 Container (Card Style) */
+.container {
+  width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.container:hover {
+  transform: translateY(-4px);
+}
+
+/* 🌟 Headings */
+h1, h2, h3 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+h2 {
+  font-size: 26px;
+  color: #00695c;
+}
+
+/* 🌟 Labels & Inputs */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #444;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 6px rgba(76,175,80,0.3);
+  outline: none;
+}
+
+/* 🌟 Buttons */
+input[type="submit"],
+button {
+  background: linear-gradient(90deg, #4CAF50, #2e7d32);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-right: 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+input[type="submit"]:hover,
+button:hover {
+  background: linear-gradient(90deg, #45a049, #1b5e20);
+  transform: scale(1.05);
+}
+
+/* 🌟 Messages */
+.message {
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.message.success {
+  color: #2e7d32;
+}
+.message.error {
+  color: #c62828;
+}
+
+/* 🌟 Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 15px;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr:hover {
+  background-color: #e8f5e9;
+}
+
+/* 🌟 Sidebar Layout */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: linear-gradient(180deg, #f4f4f4, #e0f2f1);
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+.sidebar a {
+  display: block;
+  margin: 12px 0;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.sidebar a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* 🌟 Divider */
+hr {
+  margin: 25px 0;
+  border: none;
+  height: 1px;
+  background: #ddd;
+}
