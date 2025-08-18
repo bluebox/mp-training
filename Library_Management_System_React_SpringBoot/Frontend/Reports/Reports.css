@@ -1,0 +1,91 @@
+.Reports {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.Reports-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 5px #00000060;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.main-button {
+  background: #ffffff20;
+  border: 2px solid white;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 130px;
+}
+
+.main-button:hover {
+  background: white;
+  color: #2575fc;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffffff80;
+}
+
+.back-button {
+  background: #ffffff20;
+  border: 2px solid white;
+  padding: 12px 28px;
+  font-size: 1rem;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background: white;
+  color: #2575fc;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ffffff80;
+}
+
+/* Report Table Styling */
+.report-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px 15px;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.report-table th {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.report-table tr:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
