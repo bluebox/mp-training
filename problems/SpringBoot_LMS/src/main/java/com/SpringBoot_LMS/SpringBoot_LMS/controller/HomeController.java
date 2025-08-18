@@ -3,7 +3,9 @@ package com.SpringBoot_LMS.SpringBoot_LMS.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -13,12 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 	
 	@Value("${spring.security.user.name}")
-    private String username;
+    private String Username;
 	
+	@Value("${spring.security.user.password}")
+    private String pass;
+	
+
 	
 	@GetMapping("/")
 	public ResponseEntity<String> home() {
-		return  ResponseEntity.ok().body(username);
+		System.out.println("reached me"+Username);
+		return  ResponseEntity.ok().body(Username);
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> function(@RequestParam("username")  String username,@RequestParam("password")  String password){
+		if(pass.equals(password) && Username.equals(username) ) {
+			System.out.println("reached me");
+			return  ResponseEntity.ok().body("login successful");
+		}
+		return ResponseEntity.badRequest().body("error while log in");
 	}
 	
 	
