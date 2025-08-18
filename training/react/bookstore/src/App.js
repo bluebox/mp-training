@@ -15,6 +15,10 @@ import Adminlogin from './forms/adminloginform';
 import CustomerRelated from './Pages/adminpages/CustomerRelate'
 import Authorrelatedpage from './Pages/adminpages/Authorrelatedpage'
 import Protect from './protectedroots'
+import MyProfile from './Pages/Customer/myprofile';
+import Practice from './practice';
+import MyProfileAuthors from './Pages/Authors/myprofile';
+import OldPracice from './s';
 function App() {
   return (
     <BrowserRouter>
@@ -30,19 +34,26 @@ function App() {
           <Route path='/Authorrelatedpage' element={<Protect><Authorrelatedpage /></Protect>} />
 
 
-          <Route path="/CustomerPage" element={<Protect><CustomerPage  /></Protect>}/>
+          {/* <Route path="/CustomerPage" element={<Protect><CustomerPage  /></Protect>}/>
           <Route path="/MyOrders" element={<Protect><MyOrders  /></Protect>}/>
+          <Route path="/MyProfile" element={<Protect><MyProfile  /></Protect>}/> */}
+          <Route path="/CustomerPage" element={<CustomerPage  />}/>
+          <Route path="/MyOrders" element={<MyOrders  />}/>
+          <Route path="/MyProfile" element={<MyProfile  />}/>
+          
 
           
 
           <Route path="/AuthorsPage" element={<Protect><AuthorsPage  /></Protect>}/>
           <Route path="/Handlebookedit" element={<Protect><Handlebookedit  /></Protect>}/>
+          <Route path="/MyProfileAuthors" element={<Protect><MyProfileAuthors  /></Protect>}/>
 
           <Route path="/BookAddingForm" element={<BookAddingForm  />}/>
           <Route path='/CustomerRegisterPage' element={<CustomerRegisterPage />} />
           <Route path="/AuthorRegisterPage" element={<AuthorRegisterPage  />}/>
           
-
+          <Route path="/Practice" element={<Practice  />}/>
+          <Route path="/s" element={<OldPracice  />}/>
           <Route path="/*" element={<Adminlogin  />}/>
           
         

@@ -10,7 +10,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('Web_World/', include('Web_World.urls'),),
     path('bookStore/', include('bookStore.urls'),),
-    path("",views.welcome,name='index'),
+    path('store/', include('store.urls'),),
     # path('explore/', views.explore_view, name='explore'),
     # include app's URLs
 ]

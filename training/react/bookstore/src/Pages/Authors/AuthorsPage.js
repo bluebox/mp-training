@@ -42,18 +42,19 @@ useEffect(()=>{
   localStorage.removeItem('role')
   navigate("/")
 }
-   
-
+ 
 
 const navigate=useNavigate();
-
+const handleMyProfile = async (e) => {
+  navigate('/MyProfileAuthors', { state: username });
+}
 
     return (<>
 
             <nav className="nav-link">
      <button className='nav-button' onClick={() => navigate('/AuthorsPage',{state:username})}>Home</button>
-      <button className='nav-button' onClick={() => navigate('/AuthorRegisterPage',{state:{'username':username}})}>Edit profile</button>
       {/* <button className='nav-button' onClick={() => handleGetBooks()}>my Books</button> */}
+     <button className='nav-button' onClick={() => handleMyProfile()}>My Profile</button>
       <button className='nav-button'  onClick={handleLogOut}>LogOut</button>
 </nav>
    

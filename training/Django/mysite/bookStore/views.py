@@ -1,3 +1,6 @@
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+import redis
 from django.template.context_processors import request
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.pagination import PageNumberPagination
@@ -6,11 +9,10 @@ from rest_framework.permissions import IsAuthenticated, BasePermission, SAFE_MET
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import  generics
-# from django.db.models import  Q
 from django.shortcuts import render
 from rest_framework.views import APIView
-# from typing_extensions import ReadOnly, override
 import rest_framework
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from . models import *
 
@@ -337,5 +339,59 @@ class getUserRole(APIView):
         if Authors.objects.filter(username=user_name).exists():
             return Response('author')
         return Response('admin')
+
+
+class LogInView(APIView):
+    permission_classes = [AllowAny]
+    def post(self,request):
+        redis_client = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
+        username = request.data['username']
+        password = request.data['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+            refresh_token = str(refresh)
+
+            redis_client.set(f"access:{user.id}", access_token, ex=300)
+            redis_client.set(f"refresh:{user.id}", refresh_token, ex=86400)
+
+            return Response("login suceess")
+        return Response("failed")
+
+class GetAccessToken(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self,request,id):
+        redis_client = redis.StrictRedis(host='localhost', port=6379, db=0, decode_responses=True)
+        if (redis_client.get(f"access:{id}")):
+            access_token=redis_client.get("access:{id}")
+            return Response(access_token)
+
+        if (redis_client.get(f"refresh:{id}")):
+            refresh_token = redis_client.get("access:{id}")
+            refresh = RefreshToken(refresh_token)
+            new_access_token = str(refresh.access_token)
+            redis_client.set(f"access:{id}", new_access_token, ex=86400)
+            return Response(new_access_token)
+        return Response("Session expired !!! please login again")
+
+
+class CustomUser(APIView):
+    permission_classes = [AllowAny]
+    def get(self,request,name):
+        quesry_set= Response(User.objects.get(username=name))
+        serialized_quesry_set=UserSerializer(quesry_set)
+        return Response(serialized_quesry_set.data)
+    def patch(self, request, id=None):
+        if not id:
+            return Response("ERROR!! need an id.")
+        customUser = User.objects.get(id=id)
+        serializer_data = UserSerializer(instance=customUser, data=request.data, partial=True)
+        if serializer_data.is_valid():
+            serializer_data.save()
+            return Response("SUCCUSS")
+        return Response("GOT ERROR")
+
 
 

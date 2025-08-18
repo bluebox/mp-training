@@ -24,5 +24,11 @@ urlpatterns = [
 
     path("login/", TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+
+
+    path("loginPractice/",views.LogInView.as_view()),
+    path("GetAccessToken/<int:id>",views.GetAccessToken.as_view()),
+    path("CustomUser/<str:name>", views.CustomUser.as_view()),
 ]# Home page at root of this app

@@ -32,10 +32,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3000","http://localhost:3001"
 ]
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
+    "http://localhost:3000","http://localhost:3001"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -47,6 +47,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 # Application definition
 
 INSTALLED_APPS = [
+    'store',
     'mysite',
     'Web_World',
     'blog',
@@ -116,7 +117,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bookStore',            # Your MySQL database name
+        'NAME': 'store',            # Your MySQL database name
         'USER': 'root',                 # Your MySQL username
         'PASSWORD': 'Prasad123#',       # Your MySQL password
         'HOST': 'localhost',            # Or your DB server address
@@ -146,7 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+AUTH_USER_MODEL = 'store.CustomUser'
 REST_FRAMEWORK={
 
     'DEFAULT_PERMISSION_CLASSES':[

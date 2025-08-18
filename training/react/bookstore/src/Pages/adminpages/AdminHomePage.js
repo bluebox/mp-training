@@ -105,7 +105,7 @@ return (
 </nav>
 
 
-<h1 style={{textAlign:'center'}}>Welcome {username} have a good day</h1>
+<h1 className="welcome-message " >Welcome {username} have a good day</h1>
 
 {OrdersList.length ===0 ?
 <table border="2" cellPadding="20" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '300px' ,position:'left'}}>

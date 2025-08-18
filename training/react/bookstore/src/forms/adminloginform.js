@@ -40,7 +40,7 @@ useEffect(()=> {
 
 
         if (localStorage.getItem('role') === "admin") {
-        navigate('/AdminHomePage',{state:username})
+        navigate('/AdminHomePage',{state:{'username':username}})
         }
         else if (localStorage.getItem('role')=== "author") {
           navigate('/AuthorsPage',{state:username})}

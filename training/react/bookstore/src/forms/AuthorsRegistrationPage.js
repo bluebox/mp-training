@@ -99,7 +99,7 @@ if (username ){
 
 
 return( <><nav className="nav-link">
-      <button className='nav-button' onClick={() => navigate('/')}>HOME </button>
+      <button className='nav-button' onClick={() => navigate('/AuthorsPage',{state:username})}>HOME </button>
 </nav>
 
 

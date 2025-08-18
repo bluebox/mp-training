@@ -101,7 +101,7 @@ useEffect(() => {
 
 
 return( <><nav className="nav-link">
-      <button className='nav-button' onClick={() => navigate('/')}>HOME </button>
+      <button className='nav-button' onClick={() => navigate('/CustomerPage' ,{state:username})}>HOME </button>
 </nav>
 
 
