@@ -23,12 +23,12 @@ public class ControllerErrorHandler {
 	 @ExceptionHandler(MethodArgumentNotValidException.class)
 	    public ResponseEntity<String> handleValidateExceptions(MethodArgumentNotValidException ex) {
 	        
-	        return  ResponseEntity.badRequest().body(ex.getMessage());
+	        return  ResponseEntity.badRequest().body("validation error occured please enter correct details");
 	    }
 	 @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	    public ResponseEntity<String> handleValidateExceptions(SQLIntegrityConstraintViolationException ex) {
 	        
-	        return  ResponseEntity.badRequest().body(ex.getMessage());
+	        return  ResponseEntity.badRequest().body("duplicate entry please enter another values");
 	    }
 	 
 	 
@@ -40,13 +40,3 @@ public class ControllerErrorHandler {
  }
 }
 
-class ErrorResponse {
-	 private String field;
-	 private String message;
-	 public ErrorResponse(String field,String message) {
-		 field=field;
-		 message=message;
-		 
-	 }
-
-	}
