@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-const BooksPerCategory = () => {
-  const [Data, setData] = useState({});
+import { useCookies } from 'react-cookie';
+
+
+function BooksPerCategory() {
+  const [Data, setData] = useState([]);
   const [message,setMessage]=useState('');
+  const [cookies, setCookie] = useCookies(['name']);
   useEffect(() => {
     fetch('/http://localhost:8070/Reports/BooksperCategory') 
-      .then((response) => {
-        return response.json()
-      })
-      .then(data=>setData(data))
+      .then(response => response.json())
+      .then(data => setData(data))
       .catch(error=>{
         console.error(error);
         setMessage(error);
@@ -32,15 +33,16 @@ console.log(Data);
     </tr>
   </thead>
   <tbody>
-   {Object.entries(Data).map(([category, count]) => (
-      <tr>
-        <td>{category}</td>
-        <td>{count}</td>
+   {Object.Keys(Data).map((key) => (
+      <tr key={key}>
+        <td>{key}</td>
+        <td>{Data[key]}</td>
       </tr>
     ))}
   </tbody>
 </table>
       )}
+      <p>@ {cookies.name}</p>
     </div>
   );
 };

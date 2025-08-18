@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
+ import { useCookies } from 'react-cookie';
 
 function BookHome() {
   const [message, setMessage] = useState('');
-
+    const [cookies, setCookie] = useCookies(['name']);
   useEffect(() => {
     fetch('http://localhost:8070/Book')
       .then(response => response.text()) 
@@ -24,6 +25,7 @@ function BookHome() {
       <Link to="/Bookhome/UpdateBook">Update the Book Details</Link>
       <br />
       <p>{message}</p>
+      <p>@ {cookies.name}</p>
     </div>
   );
 }

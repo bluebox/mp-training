@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
+ import { useCookies } from 'react-cookie';
 
 function ActiveBookMembers() {
   const [members, setMembers] = useState([]);
   const [message,setMessage] =useState('');
+  const [cookies, setCookie] = useCookies(['name']);
 
   useEffect(() => {
     fetch('http://localhost:8070/Reports/ActiveMemberswithbooks')
@@ -51,12 +53,10 @@ console.log(members);
     ))}
   </tbody>
 </table>
-    
+   
       )}
-       <Link to="/Memberhome/AddMember">Add New Member</Link>
-            <br />
-            <Link to="/Memberhome/UpdateMember">Update the Member Details</Link>
-            <br />
+
+      <p>@ {cookies.name}</p>
     </div>
   );
 }

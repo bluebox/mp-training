@@ -12,11 +12,15 @@ function Home() {
     fetch('http://localhost:8070/')
       .then(response => response.text()) 
       .then(data => {
+        console.log(data);
         setMessage(data);
-        setCookie(message);
+        setCookie('name',data);
       })
       .catch(error => console.error(error));
   }, []);
+
+console.log(cookies.name);
+
 
   return (
     <div className="Container">
@@ -28,7 +32,8 @@ function Home() {
       <Link to="/IssueRecordshome">Issues Home</Link>
       <br />
       <Link to="/Reportshome">Reports Home</Link>
-      <p>@ {message}</p>
+      <p>@ {cookies.name}</p>
+      
     </div>
   );
 }

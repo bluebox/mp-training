@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
+ import { useCookies } from 'react-cookie';
 
 function RepotsHome() {
   const [message, setMessage] = useState('');
-
+    const [cookies, setCookie] = useCookies(['name']);
   useEffect(() => {
     fetch('http://localhost:8070/Reports')
       .then(response => response.text()) 
@@ -24,6 +25,7 @@ function RepotsHome() {
       <Link to="/Reportshome/ActiveBookMembers">View Active Book Members</Link>
       <br />
       <p>{message}</p>
+      <p>@ {cookies.name}</p>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+ import { useCookies } from 'react-cookie';
 
 function AddMember() {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ function AddMember() {
     gender: 'Select Below',
     Address: '',
   });
-
+    const [cookies, setCookie] = useCookies(['name']);
   const [message,setMessage]=useState("");
 
    const handleChange = (e) => {
@@ -99,7 +100,7 @@ function AddMember() {
 
         <button type="submit">Add Member</button>
       </form>
-
+      <p>{cookies.name}</p>
       {message && <p>{message}</p>}
     </div>
   );
