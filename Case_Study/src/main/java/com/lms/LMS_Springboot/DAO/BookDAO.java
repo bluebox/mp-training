@@ -44,9 +44,23 @@ public class BookDAO {
 		String query="update books set category=?,status=? where bookid=?";
 //		int bookid=getBookidwithbook(book.getTitle());
 		Book oldbook=getBookwithId(book.getBookid());
-		int b=jdbctemplate.update(querylog,oldbook.getBookid(), oldbook.getTitle(), oldbook.getAuthor(),oldbook.getCategory(),oldbook.getStatus().getType(),oldbook.getAvailability().getType());
+		if(oldbook.getAvailability()!=null)
+		jdbctemplate.update(querylog,oldbook.getBookid(), oldbook.getTitle(), oldbook.getAuthor(),oldbook.getCategory(),oldbook.getStatus().getType(),oldbook.getAvailability().getType());
+		else
+			jdbctemplate.update(querylog,oldbook.getBookid(), oldbook.getTitle(), oldbook.getAuthor(),oldbook.getCategory(),oldbook.getStatus().getType(),null);
+
+		int res=0;
+		if(book.getStatus()==Status.INACTIVE) {
+			updateavailability(null,book.getBookid());
+			
+		}
+		else {
+			
+				updateavailability(Availability.AVAILABLE,book.getBookid());
+
+		}
 		
-		int res=jdbctemplate.update(query,book.getCategory(),book.getStatus().getType(),book.getBookid());
+		res=jdbctemplate.update(query,book.getCategory(),book.getStatus().getType(),book.getBookid());
 	return res;
 	
 	}
@@ -91,4 +105,5 @@ class BookRowMapper implements RowMapper<Book> {
         return book;
     	
 }
+
 }
