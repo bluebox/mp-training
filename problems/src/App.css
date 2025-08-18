@@ -1,0 +1,12 @@
+.Container{
+  display:flex;
+  flex-direction: column;
+  align-items: Center;
+}
+
+.Container Link,a{
+  display:block;
+  padding:20px;
+  height:15px;
+  border:10px 5px black solid;
+}
