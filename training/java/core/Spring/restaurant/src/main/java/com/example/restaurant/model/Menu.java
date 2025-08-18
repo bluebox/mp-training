@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Menu {
-	
-	private final String name;
-	private final double price;
-	
+
+	private String name;
+	private double price;
+
 }

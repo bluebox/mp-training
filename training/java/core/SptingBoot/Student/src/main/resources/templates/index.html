@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Student Registeration</title>
+	<style>
+		.error {
+			color: red;
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			flex-direction: column;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h3>Student Registeration Form</h3>
+		<form th:action="@{/home/save}" method="get" th:object="${student}">
+			Enter your first name: <input type="text" th:field="*{firstName}" /><br>
+			<div class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div><br>
+
+			Enter your last name: <input type="text" th:field="*{lastName}" /><br>
+			<div class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div><br>
+
+			Enter your gender: <input type="text" th:field="*{gender}" /><br>
+			<div class="error" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div><br>
+
+			Enter your age: <input type="text" th:field="*{age}" /><br>
+			<div class="error" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br>
+
+			Enter your address: <input type="text" th:field="*{address}" /><br>
+			<div class="error" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div><br>
+
+			Enter your email: <input type="email" th:field="*{email}" /><br>
+			<div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div><br>
+
+			Enter your password: <input type="password" th:field="*{password}" /><br>
+			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br>
+
+			<input type="submit" value="Register">
+
+		</form>
+	</div>
+</body>
+
+</html>

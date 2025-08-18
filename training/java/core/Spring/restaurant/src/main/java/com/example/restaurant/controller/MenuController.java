@@ -17,6 +17,6 @@ public class MenuController {
 	public String displayMenu(Model model) {
 
 		model.addAttribute("menuList", menuService.getMenu());
-		return "menu.html";
+		return "menu";
 	}
 }

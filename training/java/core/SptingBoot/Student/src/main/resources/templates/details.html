@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Details</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Reservation Confirmed</h2>
+        <p><strong>First Name:</strong> <span th:text="${student.firstName}"></span></p>
+        <p><strong>Last Name:</strong> <span th:text="${student.lastName}"></span></p>
+        <p><strong>Gender:</strong> <span th:text="${student.gender}"></span></p>
+        <p><strong>Age:</strong> <span th:text="${student.age}"></span></p>
+        <p><strong>Address:</strong> <span th:text="${student.address}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${student.email}"></span></p>
+        <p><strong>Password:</strong> <span th:text="${student.password}"></span></p>
+        <a href="/home">Back</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Details</title>
+	<style>
+		.tab {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 50vh;
+		}
+
+		table {
+			border-spacing: 15px 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="tab">
+		<table>
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Gender</th>
+					<th>Age</th>
+					<th>Address</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student :${studentList}">
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.Gender}"></td>
+					<td th:text="${student.Age}"></td>
+					<td th:text="${student.Address}"></td>
+					<td th:text="${student.Email}"></td>
+
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/home}" class="tab1"><button>Back</button></a>
+	</div>
+</body>
+
+</html>

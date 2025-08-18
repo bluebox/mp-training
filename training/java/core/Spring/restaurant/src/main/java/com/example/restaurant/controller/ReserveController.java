@@ -1,5 +1,6 @@
 package com.example.restaurant.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.restaurant.model.Reserve;
+import com.example.restaurant.service.ReserveService;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class ReserveController {
-
+	
+	@Autowired
+	ReserveService reserveService;
+	
     @RequestMapping("/reserve")
     public String reserve(Model model) {
         model.addAttribute("reserve", new Reserve());
@@ -36,7 +41,7 @@ public class ReserveController {
             reserve.getDate(),
             reserve.getTime()
         );
-
+        reserveService.saveReserve(reserve);
         return redirectUrl;
     }
     

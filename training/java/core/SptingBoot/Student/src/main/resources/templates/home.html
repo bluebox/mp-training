@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 70vh;
+			flex-direction: column;
+		}
+		.buton{
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h3>Student Registeration</h3>
+		<a th:href="@{/home/index}"><button>Register</button></a><br>
+		<a th:href="@{/home/view}"><button>View All members</button></a>
+	</div>
+</body>
+
+</html>
