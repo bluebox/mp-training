@@ -1,0 +1,39 @@
+.home-container {
+    font-family: Arial, sans-serif;
+    background-image: url('/public/images/download.jpg'); /* put your image in public/images */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 40px 60px;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.button-group button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-group button:hover {
+    background-color: #45a049;
+}
