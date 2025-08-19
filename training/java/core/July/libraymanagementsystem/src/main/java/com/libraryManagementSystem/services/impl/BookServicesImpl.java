@@ -113,7 +113,7 @@ public class BookServicesImpl implements BookServices {
 		if (book.getCategory() == null) {
 			throw new InvalidBookDataException("Please select a category.");
 		}
-		if (oldbook != null) {
+		if (oldbook != null && bookDao.existsByTitleAndAuthor(book.getTitle(), book.getAuthor())) {
 			if (!(oldbook.getTitle().equals(book.getTitle()) || oldbook.getAuthor().equals(book.getAuthor()))) {
 				throw new DuplicateBookException("This book already exists.");
 			}
