@@ -1,8 +1,12 @@
-# 📖 Lms Management System (Most recent case study)
-**Library Management System using JSP and servlets**
+# 📖 Lms Management System (Spring Backend (Rest APIs) + React Frontend)
+**Library Management System**
 
 ## 📜 Description
 A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically show data and create a interractive UI for users. Allows the user to manage members , manage book, and manage issueing and returning of books 
+
+<img width="1906" height="962" alt="image" src="https://github.com/user-attachments/assets/d1230ef7-dc25-46b4-8426-1923e4fe2a19" />
+<img width="1906" height="962" alt="image" src="https://github.com/user-attachments/assets/f2bebf8a-edb0-491e-b975-969c0cbb7f0e" />
+<img width="1906" height="962" alt="image" src="https://github.com/user-attachments/assets/f207b53c-eb78-4c45-af31-ac38cb27f500" />
 
 ## ⚙️ **Functionalities**
 
@@ -14,7 +18,8 @@ A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically
    → Select avaliable books and assign to any one member through UI without any hassle.
 
 - ✅ **View/Update Members and Books**  
-   → Displays all members and books in a **neatly formatted table**, and allowed the user to update any single record through UI.
+   → Displays all members and books in a **neatly formatted table**, and allowed the user to update any single record through UI.<br/>
+   → Filter books data and members data with simple search filters.
 
 
 - ✅ **Library Reports**  
@@ -28,8 +33,5 @@ A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically
    → **Book's members** View all previous and current members that borrowed that selected book. <br/>
 
 - 🔥 **Graceful Exception handling**  
-   → Where ever the exception occurs its propagated up to the controller and it is handled there properly. 
-
-<img width="1902" height="969" alt="image" src="https://github.com/user-attachments/assets/35fb261a-a801-4f96-a81f-a21aa6b9bfa7" />
-<img width="1902" height="969" alt="image" src="https://github.com/user-attachments/assets/631a2154-d67b-4362-abf7-bd6cf9a9128b" />
+   → Where ever the exception occurs its propagated up to the controller and it is handled there properly with Controller Advice.
 
