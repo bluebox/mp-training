@@ -56,7 +56,7 @@ const handleMyProfile =  (e) => {
      <button className='nav-button' onClick={() => navigate('/AuthorsPage',{state:username})}>Home</button>
       {/* <button className='nav-button' onClick={() => handleGetBooks()}>my Books</button> */}
      <button className='nav-button' onClick={() => handleMyProfile()}>My Profile</button>
-      <button className='nav-button'  onClick={handleLogOut}>LogOut</button>
+      <button className='nav-button' style={{marginLeft: 'auto' }}  onClick={handleLogOut}>LogOut</button>
 </nav>
    
     {(booksList.length ===0 ? <p>Sorry,No Books are mapped to you!!!</p> :

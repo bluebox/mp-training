@@ -49,7 +49,7 @@ function MyProfileAuthors() {
     <button className='nav-button' onClick={() => navigate('/AuthorsPage', { state: username })}>Home</button>
     
       <button className='nav-button' onClick={() => navigate('/AuthorRegisterPage',{state:{'username':username}})}>Edit profile</button>
-      <button className='nav-button' onClick={handleLogOut}>LogOut</button>
+      <button className='nav-button' style={{marginLeft: 'auto' }}  onClick={handleLogOut}>LogOut</button>
   </nav>
       <div className="my-profile" id="test_requests">
         <div>
@@ -66,7 +66,7 @@ function MyProfileAuthors() {
           <p><strong>Address:</strong> {data.address}</p>
 
         </div >
-        <button title="Edit" className="edit-profile-button" onClick={() => navigate('/AuthorRegisterPage', { state: { 'username': username } })}>✏️
+        <button title="Edit" className="edit-profile-button" onClick={() => navigate('/AuthorRegisterPage', { state: { 'username': username ,'from':'author' } })}>✏️
           
         </button>
 

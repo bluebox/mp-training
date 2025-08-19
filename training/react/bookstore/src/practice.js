@@ -29,7 +29,8 @@ function Pracice(){
 console.log("form errors",formik.errors)
 console.log("visited  Fields",formik.touched)
 
-  const notify = () => {toast("Hello, this is a toast!");
+  const notify = () => {
+toast("Hello, this is a toast!");
 toast.success("Success message!");
 toast.error("Something went wrong!");
 toast.info("Just some info.");
@@ -61,7 +62,7 @@ return (<>
 
 	 <div>
       <button onClick={notify}>Show warn</button>
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </div>
 
 		</>

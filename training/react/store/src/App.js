@@ -27,26 +27,26 @@ function App() {
           <Route path="/CustomerLogInpage" element={<CustomerLogInpage  />}/>
           <Route path="/AuthorLogInpage" element={<AuthorLogInpage  />}/>
 
-          <Route path="/AdminHomePage" element={< AdminHomePage  />} />
-          <Route path='/CustomerRelated' element={<CustomerRelated />} />
-          <Route path='/BooksPage' element={<BooksPage />} />
-          <Route path='/Authorrelatedpage' element={<Authorrelatedpage />} />
+          <Route path="/AdminHomePage" element={<Protect>< AdminHomePage  /></Protect>} />
+          <Route path='/CustomerRelated' element={<Protect><CustomerRelated /></Protect>} />
+          <Route path='/BooksPage' element={<Protect><BooksPage /></Protect>} />
+          <Route path='/Authorrelatedpage' element={<Protect><Authorrelatedpage /></Protect>} />
 
 
-          {/* <Route path="/CustomerPage" element={<Protect><CustomerPage  /></Protect>}/>
+          <Route path="/CustomerPage" element={<Protect><CustomerPage  /></Protect>}/>
           <Route path="/MyOrders" element={<Protect><MyOrders  /></Protect>}/>
-          <Route path="/MyProfile" element={<Protect><MyProfile  /></Protect>}/> */}
+          <Route path="/MyProfile" element={<Protect><MyProfile  /></Protect>}/>
           
-          <Route path="/CustomerPage" element={<CustomerPage  />}/>
+          {/* <Route path="/CustomerPage" element={<CustomerPage  />}/>
           <Route path="/MyOrders" element={<MyOrders  />}/>
-          <Route path="/MyProfile" element={<MyProfile  />}/>
+          <Route path="/MyProfile" element={<MyProfile  />}/> */}
           
 
           
 
-          <Route path="/AuthorsPage" element={<AuthorsPage  />}/>
-          <Route path="/Handlebookedit" element={<Handlebookedit  />}/>
-          <Route path="/MyProfileAuthors" element={<MyProfileAuthors  />}/>
+          <Route path="/AuthorsPage" element={<Protect><AuthorsPage  /></Protect>}/>
+          <Route path="/Handlebookedit" element={<Protect><Handlebookedit  /></Protect>}/>
+          <Route path="/MyProfileAuthors" element={<Protect><MyProfileAuthors  /></Protect>}/>
 
           <Route path="/BookAddingForm" element={<BookAddingForm  />}/>
           <Route path='/CustomerRegisterPage' element={<CustomerRegisterPage />} />

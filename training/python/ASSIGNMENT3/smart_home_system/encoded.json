@@ -1,0 +1,503 @@
+[
+    {
+        "__type__": "SmartLight",
+        "device_id": "L101",
+        "state": {
+            "_brightness": 66,
+            "_is_on": false
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L102",
+        "state": {
+            "_brightness": 22,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L103",
+        "state": {
+            "_brightness": 12,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L104",
+        "state": {
+            "_brightness": 70,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T201",
+        "state": {
+            "_tempreature": 96,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T202",
+        "state": {
+            "_tempreature": 32.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T203",
+        "state": {
+            "_tempreature": 33.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T204",
+        "state": {
+            "_tempreature": 25.05,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D301",
+        "state": {
+            "_passcode": [
+                "Abcd@123#",
+                "pRasad"
+            ],
+            "_lock_state": "UnLocked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D302",
+        "state": {
+            "_passcode": "Welcme!23##",
+            "_lock_state": "Locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D303",
+        "state": {
+            "_passcode": "Haha123@",
+            "_lock_state": "Un locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D304",
+        "state": {
+            "_passcode": "pRASAD123#",
+            "_lock_state": "Locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C401",
+        "state": {
+            "_resolution": 96,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C402",
+        "state": {
+            "_resolution": 12,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C403",
+        "state": {
+            "_resolution": 12.36,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C404",
+        "state": {
+            "_resolution": 4.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S501",
+        "state": {
+            "_volume": 98,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S502",
+        "state": {
+            "_volume": 10,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S503",
+        "state": {
+            "_volume": 110,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S504",
+        "state": {
+            "_volume": 70,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L101",
+        "state": {
+            "_brightness": 66,
+            "_is_on": false
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L102",
+        "state": {
+            "_brightness": 22,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L103",
+        "state": {
+            "_brightness": 12,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L104",
+        "state": {
+            "_brightness": 70,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T201",
+        "state": {
+            "_tempreature": 96,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T202",
+        "state": {
+            "_tempreature": 32.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T203",
+        "state": {
+            "_tempreature": 33.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T204",
+        "state": {
+            "_tempreature": 25.05,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D301",
+        "state": {
+            "_passcode": [
+                "Abcd@123#",
+                "pRasad"
+            ],
+            "_lock_state": "UnLocked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D302",
+        "state": {
+            "_passcode": "Welcme!23##",
+            "_lock_state": "Locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D303",
+        "state": {
+            "_passcode": "Haha123@",
+            "_lock_state": "Un locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D304",
+        "state": {
+            "_passcode": "pRASAD123#",
+            "_lock_state": "Locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C401",
+        "state": {
+            "_resolution": 96,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C402",
+        "state": {
+            "_resolution": 12,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C403",
+        "state": {
+            "_resolution": 12.36,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C404",
+        "state": {
+            "_resolution": 4.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S501",
+        "state": {
+            "_volume": 98,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S502",
+        "state": {
+            "_volume": 10,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S503",
+        "state": {
+            "_volume": 110,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S504",
+        "state": {
+            "_volume": 70,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L101",
+        "state": {
+            "_brightness": 66,
+            "_is_on": false
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L102",
+        "state": {
+            "_brightness": 22,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L103",
+        "state": {
+            "_brightness": 12,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartLight",
+        "device_id": "L104",
+        "state": {
+            "_brightness": 70,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T201",
+        "state": {
+            "_tempreature": 96,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T202",
+        "state": {
+            "_tempreature": 32.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T203",
+        "state": {
+            "_tempreature": 33.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartThermostat",
+        "device_id": "T204",
+        "state": {
+            "_tempreature": 25.05,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D301",
+        "state": {
+            "_passcode": [
+                "Abcd@123#",
+                "pRasad"
+            ],
+            "_lock_state": "UnLocked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D302",
+        "state": {
+            "_passcode": "Welcme!23##",
+            "_lock_state": "Locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D303",
+        "state": {
+            "_passcode": "Haha123@",
+            "_lock_state": "Un locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartDoorLock",
+        "device_id": "D304",
+        "state": {
+            "_passcode": "pRASAD123#",
+            "_lock_state": "Locked",
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C401",
+        "state": {
+            "_resolution": 96,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C402",
+        "state": {
+            "_resolution": 12,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C403",
+        "state": {
+            "_resolution": 12.36,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartCamera",
+        "device_id": "C404",
+        "state": {
+            "_resolution": 4.5,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S501",
+        "state": {
+            "_volume": 98,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S502",
+        "state": {
+            "_volume": 10,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S503",
+        "state": {
+            "_volume": 110,
+            "_is_on": true
+        }
+    },
+    {
+        "__type__": "SmartSpeaker",
+        "device_id": "S504",
+        "state": {
+            "_volume": 70,
+            "_is_on": true
+        }
+    }
+]

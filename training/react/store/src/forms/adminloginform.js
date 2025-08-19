@@ -1,6 +1,11 @@
 import React ,{useEffect, useState} from "react";
 import { useNavigate ,useLocation} from "react-router-dom";
 import './forms.css'
+  import {ToastContainer ,toast}  from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 
 export default function Adminlogin(){
     const navigate=useNavigate()
@@ -10,8 +15,9 @@ export default function Adminlogin(){
     const [AAlert_username,setusername_alert]=useState(false)
     const [AAlert_password,setpassword_alert]=useState(false)
     // const [data,setData]=useState({})
-   
-
+    const handleToast =() => {
+      toast.error("invalid credentials!")
+    }
     useEffect(() => {
       localStorage.clear();},[])
 
@@ -22,6 +28,7 @@ export default function Adminlogin(){
         body: JSON.stringify({ username, password }),
 });
         if (!response.ok) {
+           handleToast();
           alert("invalid credentials!!!!!!")
         }
 
@@ -34,7 +41,8 @@ export default function Adminlogin(){
           localStorage.setItem('role',data[1])
 
         if (data === "failed") {
-          alert("invalid credentials!")}
+          handleToast();}
+          // alert("invalid credentials!")}
         else if (data[1]=== "admin") {
         navigate('/AdminHomePage',{state:{'username':username}})
         }
@@ -96,6 +104,7 @@ export default function Adminlogin(){
 
 
 </form>
+<ToastContainer position="top-center"/>
     </div>
         
         

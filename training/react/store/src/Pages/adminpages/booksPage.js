@@ -47,7 +47,7 @@ handleGetBooks()
 },[])
 
 
-const handleSeaerch = (e)  => {
+const handleSearch = (e)  => {
   e.preventDefault();
   try {
     if (e.target.value === "") {
@@ -67,7 +67,7 @@ return (
     <button className='nav-button' onClick={() => navigate('/AdminHomePage')}>Home</button>
     <button className='nav-button'  onClick={handleAddBook} >add book</button>
     </nav>
-    <input className='filter-box' type="text" placeholder="Search by title" onChange={handleSeaerch}/>
+    <input className='filter-box' type="text" placeholder="Search by title" onChange={handleSearch}/>
     {get_book? 
     (booksList.length ===0 ? <p>No data available to show</p> :
  (<table border="5" cellPadding="10" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '100px' ,position:'center'}}>

@@ -102,7 +102,7 @@ return (
       <button className='nav-button' onClick={() => navigate('/BooksPage')}>books</button>
       <button className='nav-button' onClick={handleOrderButton}>Orders</button>
       <button className='nav-button' onClick={() => navigate('/Authorrelatedpage')}>Authors</button>
-      <button className='nav-button'  onClick={handleLogOut}>LogOut</button>
+      <button className='nav-button' style={{marginLeft: 'auto' }} onClick={handleLogOut}>LogOut</button>
 </nav>
 
 
