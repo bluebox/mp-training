@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import BookModal from "../components/BookModal";
 import Swal from "sweetalert2";
 import {
@@ -87,8 +87,7 @@ function Books() {
     setError(null);
   };
 
-  const handleChange = (data) =>
-    setFormData({ ...formData, ...data});
+  const handleChange = (data) => setFormData({ ...formData, ...data});
 
   const handleSave = async (data) => {
     try {
@@ -104,7 +103,7 @@ function Books() {
         res = await addBook(data);
       }
 
-      if (res.success) {
+      if (res?.success) {
         successShow(res.message);
         fetchBooks();
         closeModal();
