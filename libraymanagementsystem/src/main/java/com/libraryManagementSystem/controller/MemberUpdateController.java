@@ -12,11 +12,15 @@ import com.libraryManagementSystem.services.MemberService;
 import com.libraryManagementSystem.services.impl.MemberServiceImpl;
 import com.libraryManagementSystem.utilities.MemberGender;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 
 public class MemberUpdateController implements Initializable {
 
@@ -51,28 +55,89 @@ public class MemberUpdateController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-		List<Member> membersList;
+		List<Member> membersList = null;
 		try {
 			membersList = memberService.getMembers();
-			members.getItems().addAll(membersList);
-			gender.getItems().addAll(MemberGender.values());
-
-			members.setOnAction(event -> {
-
-				if (!members.getSelectionModel().isEmpty()) {
-					memberPropertySetting();
-				}
-			});
-
 		} catch (InvalidException e) {
-			error.setText(e.getMessage());
+			e.printStackTrace();
 		}
+		ObservableList<Member> observableMembers = FXCollections.observableArrayList(membersList);
 
-		members.setValue(MembersViewAllController.getMemberIdSelected());
-		if (!members.getSelectionModel().isEmpty()) {
-			memberPropertySetting();
-		}
+		FilteredList<Member> filteredMembers = new FilteredList<>(observableMembers, p -> true);
+		members.setItems(filteredMembers);
+
+		members.setConverter(new StringConverter<Member>() {
+			@Override
+			public String toString(Member member) {
+				return member != null ? member.getName() : "";
+			}
+
+			@Override
+			public Member fromString(String string) {
+				return members.getItems().stream().filter(m -> m.getName().equals(string)).findFirst().orElse(null);
+			}
+		});
+
+		members.setEditable(true);
+		TextField editor = members.getEditor();
+
+		editor.textProperty().addListener((obs, oldValue, newValue) -> {
+			String filter = (newValue == null) ? "" : newValue.toLowerCase();
+			filteredMembers.setPredicate(member -> filter.isEmpty() || member.getName().toLowerCase().contains(filter));
+			members.show();
+		});
+
+		members.setOnAction(event -> {
+			if (!members.getSelectionModel().isEmpty()) {
+				memberPropertySetting();
+			}
+		});
+
+		name.textProperty().addListener((obs, oldValue, newValue) -> {
+			if (!newValue.matches("[a-zA-Z ]{0,50}")) {
+				error.setText("Enter alphabets only");
+				error.setStyle("-fx-text-fill: red;");
+				name.setText(oldValue);
+			} else {
+				error.setText("");
+			}
+		});
+		email.textProperty().addListener((obs, oldValue, newValue) -> {
+			String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
+			if (!newValue.isEmpty() && !newValue.matches(emailPattern)) {
+				error.setText("Enter a valid email address");
+				error.setStyle("-fx-text-fill: red;");
+			} else {
+				error.setText("");
+			}
+		});
+
+		gender.getItems().addAll(MemberGender.values());
+
+		mobile.textProperty().addListener((obs, oldValue, newValue) -> {
+			if (!newValue.matches("\\d{0,10}")) {
+				mobile.setText(oldValue);
+				return;
+			}
+
+			if (!newValue.isEmpty() && !newValue.matches("^[6-9]\\d{0,9}$")) {
+				error.setText("Enter a valid 10-digit mobile number");
+				error.setStyle("-fx-text-fill: red;");
+			} else {
+				error.setText("");
+			}
+		});
+		address.textProperty().addListener((obs, oldValue, newValue) -> {
+			if (!newValue.matches("[a-zA-Z0-9 ,./-]{0,100}")) {
+				error.setText("Enter a valid address (letters, numbers, , . / - allowed)");
+				error.setStyle("-fx-text-fill: red;");
+				address.setText(oldValue);
+			} else {
+				error.setText("");
+			}
+		});
+
 	}
 
 	@FXML
@@ -124,6 +189,7 @@ public class MemberUpdateController implements Initializable {
 			error.setText("Please Select Member Frist");
 			error.setStyle("-fx-text-fill: red");
 		}
+		
 	}
 
 	private void memberPropertySetting() {

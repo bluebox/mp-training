@@ -26,6 +26,11 @@
              text=""
              styleClass="error-label"/>
    </children>
+   <children>
+      <Label layoutX="160.0" layoutY="40.0" fx:id="successerror"
+             text=""
+             styleClass="error-label"/>
+   </children>
 
    <!-- Labels and Fields -->
    <children>
@@ -46,7 +51,6 @@
       <TextField layoutX="250.0" layoutY="236.0" fx:id="adress" styleClass="form-field" prefWidth="200"/>
    </children>
 
-   <!-- Buttons -->
    <children>
       <Button layoutX="20.0" layoutY="14.0" text="Back" onAction="#switchToMembers" styleClass="nav-button"/>
       <Button layoutX="520.0" layoutY="14.0" text="Home" onAction="#switchToPrimary" styleClass="nav-button"/>

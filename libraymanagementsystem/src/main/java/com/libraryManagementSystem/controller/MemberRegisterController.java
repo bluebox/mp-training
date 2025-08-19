@@ -34,8 +34,12 @@ public class MemberRegisterController implements Initializable {
 
 	@FXML
 	private TextField adress;
+
 	@FXML
 	private Label error;
+
+	@FXML
+	private Label successerror;
 
 	public void switchToMembers() throws Exception {
 		App.setRoot("Members");
@@ -48,7 +52,51 @@ public class MemberRegisterController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		name.textProperty().addListener((obs, oldValue, newValue) -> {
+			if (!newValue.matches("[a-zA-Z ]{0,50}")) {
+				error.setText("Enter alphabets only");
+				error.setStyle("-fx-text-fill: red;");
+				name.setText(oldValue);
+			} else {
+				error.setText("");
+			}
+		});
+		email.textProperty().addListener((obs, oldValue, newValue) -> {
+			String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
+			if (!newValue.isEmpty() && !newValue.matches(emailPattern)) {
+				error.setText("Enter a valid email address");
+				error.setStyle("-fx-text-fill: red;");
+			} else {
+				error.setText("");
+			}
+		});
+
 		gender.getItems().addAll(MemberGender.values());
+
+		mobile.textProperty().addListener((obs, oldValue, newValue) -> {
+			if (!newValue.matches("\\d{0,10}")) {
+				mobile.setText(oldValue);
+				return;
+			}
+
+			if (!newValue.isEmpty() && !newValue.matches("^[6-9]\\d{0,9}$")) {
+				error.setText("Enter a valid 10-digit mobile number");
+				error.setStyle("-fx-text-fill: red;");
+			} else {
+				error.setText("");
+			}
+		});
+		adress.textProperty().addListener((obs, oldValue, newValue) -> {
+			if (!newValue.matches("[a-zA-Z0-9 ,./-]{0,100}")) {
+				error.setText("Enter a valid address (letters, numbers, , . / - allowed)");
+				error.setStyle("-fx-text-fill: red;");
+				adress.setText(oldValue);
+			} else {
+				error.setText("");
+			}
+		});
+
 	}
 
 	@FXML
@@ -71,9 +119,9 @@ public class MemberRegisterController implements Initializable {
 		try {
 			memberService.registerMember(newMember);
 
-			error.setText(newMember.getName() + " Member added Successfully");
+			successerror.setText(newMember.getName() + " Member added Successfully");
 
-			error.setStyle("-fx-text-fill: green");
+			successerror.setStyle("-fx-text-fill: Black");
 
 			name.clear();
 			email.clear();
@@ -85,8 +133,8 @@ public class MemberRegisterController implements Initializable {
 			gender.setPromptText("Select Gender");
 
 		} catch (InvalidException e) {
-			error.setText(e.getMessage());
-			error.setStyle("-fx-text-fill: red");
+			successerror.setText(e.getMessage());
+			successerror.setStyle("-fx-text-fill: red");
 		}
 	}
 

@@ -11,6 +11,7 @@ import com.libraryManagementSystem.domain.Member;
 import com.libraryManagementSystem.exceptions.InvalidException;
 import com.libraryManagementSystem.services.MemberService;
 import com.libraryManagementSystem.services.impl.MemberServiceImpl;
+import com.libraryManagementSystem.utilities.MemberGender;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +40,7 @@ public class MembersViewAllController implements Initializable {
 	@FXML
 	private TableColumn<Member, Long> mobile;
 	@FXML
-	private TableColumn<Member, String> gender;
+	private TableColumn<Member, MemberGender> gender;
 	@FXML
 	private TableColumn<Member, String> address;
 	@FXML
@@ -163,6 +164,7 @@ public class MembersViewAllController implements Initializable {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+
 				});
 
 			}

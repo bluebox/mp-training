@@ -7,7 +7,7 @@ import com.libraryManagementSystem.exceptions.InvalidException;
 
 public interface MemberDao {
 
-	int RegisterMember(Member member) throws InvalidException;
+	int RegisterMember(Member member) throws  ;
 
 	int UpdateMember(Member newMember, Member oldMember) throws InvalidException;
 
