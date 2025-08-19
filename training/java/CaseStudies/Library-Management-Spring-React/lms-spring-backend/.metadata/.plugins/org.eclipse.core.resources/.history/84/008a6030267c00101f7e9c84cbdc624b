@@ -1,7 +1,0 @@
-package dev.tulasidhar.lms.Exceptions;
-
-public class NoRowsEffectedException extends Exception{
-	public IdNotExistException(String message) {
-		super(message);
-	}
-}

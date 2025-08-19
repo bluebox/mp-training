@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;dev.tulasidhar.lms.controller.ControllerAdvice&apos; to &apos;AllControllerAdvice&apos;&#x0A;- Original project: &apos;lms&apos;&#x0A;- Original element: &apos;dev.tulasidhar.lms.controller.ControllerAdvice&apos;&#x0A;- Renamed element: &apos;dev.tulasidhar.lms.controller.AllControllerAdvice&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ControllerAdvice&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;dev.tulasidhar.lms.controller{ControllerAdvice.java[ControllerAdvice" matchStrategy="1" name="AllControllerAdvice" qualified="false" references="true" similarDeclarations="false" stamp="1755174156790" textual="false" version="1.0"/>
-</session>

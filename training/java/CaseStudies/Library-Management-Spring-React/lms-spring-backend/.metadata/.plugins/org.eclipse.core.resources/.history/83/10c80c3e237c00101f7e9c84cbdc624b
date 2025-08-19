@@ -1,5 +1,0 @@
-package dev.tulasidhar.lms.Exceptions;
-
-public class ValidationException {
-
-}

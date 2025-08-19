@@ -1,9 +1,0 @@
-package dev.tulasidhar.lms.DAO.mappers;
-
-import org.springframework.jdbc.core.RowMapper;
-
-import dev.tulasidhar.lms.model.Book;
-
-public class MemberRowMapper implements RowMapper<Book>{
-
-}

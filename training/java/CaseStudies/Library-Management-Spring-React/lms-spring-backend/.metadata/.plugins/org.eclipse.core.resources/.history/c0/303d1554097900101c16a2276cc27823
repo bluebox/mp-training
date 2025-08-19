@@ -1,5 +1,0 @@
-package dev.tulasidhar.lms.controller;
-
-public class ControllerAdvice {
-
-}
