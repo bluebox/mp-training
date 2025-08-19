@@ -2,7 +2,7 @@
 **Library Management System**
 
 ## 📜 Description
-A Java-based **Lirbary Managament System** using Java Sever Pages to dynamically show data and create a interractive UI for users. Allows the user to manage members , manage book, and manage issueing and returning of books 
+A Java-based **Lirbary Managament System** using Spring Boot for building RESTful API's and React Frontend to dynamically show data and create a interractive UI for users. Allows the user to manage members , manage book, and manage issueing and returning of books 
 
 <img width="1906" height="962" alt="image" src="https://github.com/user-attachments/assets/d1230ef7-dc25-46b4-8426-1923e4fe2a19" />
 <img width="1906" height="962" alt="image" src="https://github.com/user-attachments/assets/f2bebf8a-edb0-491e-b975-969c0cbb7f0e" />
