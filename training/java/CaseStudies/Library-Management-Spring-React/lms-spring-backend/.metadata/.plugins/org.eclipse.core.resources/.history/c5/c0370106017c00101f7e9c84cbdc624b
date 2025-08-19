@@ -1,0 +1,7 @@
+package dev.tulasidhar.lms.DAO;
+
+import javax.swing.tree.RowMapper;
+
+public class StudentRowMapper implements RowMapper<Book>{
+
+}

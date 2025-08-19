@@ -1,0 +1,17 @@
+package dev.tulasidhar.lms.DAO;
+
+
+import java.util.List;
+import dev.tulasidhar.lms.model.Book;
+
+public interface BookDao {
+	
+	int addBook(Book newBook);
+	List<Book> getAllBooks();
+	
+	//TODO: Same here return affected rows
+	int updateBook(Book book);
+	void updateBookAvailability(int bookId,boolean isavalable);
+	public void addBookLogs(Book book);
+	Book getBookById(int bookId);
+}

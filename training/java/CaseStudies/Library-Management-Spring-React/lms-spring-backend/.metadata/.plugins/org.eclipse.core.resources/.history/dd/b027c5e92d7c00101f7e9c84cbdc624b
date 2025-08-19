@@ -1,0 +1,28 @@
+package dev.tulasidhar.lms.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import dev.tulasidhar.lms.Exceptions.DBConstrainsException;
+import dev.tulasidhar.lms.Exceptions.ValidationException;
+
+@ControllerAdvice
+public class AllControllerAdvice {
+	
+	@ExceptionHandler(DBConstrainsException.class)
+	public ResponseEntity<Object> handleException(DBConstrainsException e) {
+		Map<String,String> response = new HashMap<String,String>();
+		response.put("message", e.getMessage());
+		return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+	}
+	
+	@ExceptionHandler(ValidationException.class)
+	public ResponseEntity<String> handleException(ValidationException e) {
+		return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+	}
+}

@@ -1,0 +1,5 @@
+package dev.tulasidhar.lms.DAO.mappers;
+
+public class IssueRecordRowMapper {
+
+}

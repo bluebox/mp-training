@@ -1,0 +1,15 @@
+package dev.tulasidhar.lms.DAO;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.tree.RowMapper;
+
+import dev.tulasidhar.lms.model.Book;
+
+public class StudentRowMapper implements org.springframework.jdbc.core.RowMapper<Book>{
+	@Override
+	public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return null;
+	}
+}

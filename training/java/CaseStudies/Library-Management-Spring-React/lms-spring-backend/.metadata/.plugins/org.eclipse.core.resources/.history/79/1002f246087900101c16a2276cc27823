@@ -1,0 +1,42 @@
+package dev.tulasidhar.lms.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import dev.tulasidhar.lms.model.Book;
+import dev.tulasidhar.lms.service.BookService;
+
+@RestController
+public class BookController {
+	@Autowired
+	BookService bookService;
+	
+	public BookController() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@GetMapping(value="/getallbooks",produces = "application/json")
+	public List<Book> getAllBooks(){
+		List<Book> books = bookService.getAllBooks();
+		return books;
+	}
+	
+	@PostMapping(value="/addbook")
+	public int addBook(@RequestBody Book book){
+		var response = new HashMap<String, Integer>();
+		
+	}
+}

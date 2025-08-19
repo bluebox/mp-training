@@ -1,0 +1,24 @@
+package dev.tulasidhar.lms.DAO.mappers;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import dev.tulasidhar.lms.model.Book;
+import dev.tulasidhar.lms.model.Member;
+
+public class MemberRowMapper implements RowMapper<Member>{
+	
+	public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Member member = new Member();
+		member.set
+		member.setid rs.getInt("MemberId");
+        String name = membersList.getString("Name");
+        String phone = membersList.getString("Mobile");
+        String email = membersList.getString("Email");
+        String address = membersList.getString("Address");
+        char gender = membersList.getString("Gender").charAt(0);
+		return null;
+	}
+}

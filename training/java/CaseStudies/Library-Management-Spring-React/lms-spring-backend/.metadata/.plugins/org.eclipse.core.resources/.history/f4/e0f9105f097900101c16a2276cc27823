@@ -1,0 +1,7 @@
+package dev.tulasidhar.lms.controller;
+
+
+@org.springframework.web.bind.annotation.ControllerAdvice
+public class AllControllerAdvice {
+
+}
