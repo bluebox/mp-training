@@ -40,7 +40,7 @@ public class HolidaysController {
 		}
 		
 		model.addAttribute("filteredHolidays",filteredHolidays);
-		return 
+		return "holidays";
 		
 	}
 	
