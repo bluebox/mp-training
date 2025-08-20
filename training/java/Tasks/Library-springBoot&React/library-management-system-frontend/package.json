@@ -1,0 +1,27 @@
+{
+  "name": "react-hello-world",
+  "version": "1.0.0",
+  "description": "React Hello World",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "author": "CodeMix",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.8.1",
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
