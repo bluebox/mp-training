@@ -24,7 +24,8 @@ public class ReturnBookController {
     @GetMapping("/{mobile}")
     public ResponseEntity<?> fetchBooks(@PathVariable String mobile) {
         try {
-            String memberName = Validator.validateAndFetchMemberNameByMobile(mobile, returnBookService);
+             Validator.validateAndFetchMemberNameByMobile(mobile);
+             String memberName =returnBookService.getMemberNameByMobile(mobile);
             List<String> books = returnBookService.getIssuedBooksByMobile(mobile);
             if (books == null) books = new ArrayList<>();
 

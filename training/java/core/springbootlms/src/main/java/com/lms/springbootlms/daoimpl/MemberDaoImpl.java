@@ -1,6 +1,7 @@
 package com.lms.springbootlms.daoimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -72,8 +73,8 @@ public class MemberDaoImpl implements MemberDao {
         String sql = "SELECT member_id, name, email, mobile, gender, address FROM members WHERE email = ?";
         try {
             return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Member.class), email);
-        } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-            return null; // ✅ return null if no match found
+        } catch (EmptyResultDataAccessException e) {
+            return null; 
         } catch (Exception e) {
             throw new DaoException("Error fetching member by email: " + e.getMessage(), e);
         }
@@ -85,7 +86,7 @@ public class MemberDaoImpl implements MemberDao {
         try {
             return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Member.class), mobile);
         } catch (org.springframework.dao.EmptyResultDataAccessException e) {
-            return null; // ✅ return null if no match found
+            return null;
         } catch (Exception e) {
             throw new DaoException("Error fetching member by mobile: " + e.getMessage(), e);
         }

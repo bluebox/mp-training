@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 export default function ViewBooks() {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState("");
@@ -46,6 +45,7 @@ export default function ViewBooks() {
               ))}
             </tbody>
           </table>
+         
         </div>
       ) : (
         !error && <p>No books found.</p>

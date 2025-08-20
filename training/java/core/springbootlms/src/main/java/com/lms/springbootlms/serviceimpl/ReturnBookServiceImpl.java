@@ -12,13 +12,11 @@ import com.lms.springbootlms.service.ReturnBookServiceInterface;
 
 @Service
 public class ReturnBookServiceImpl implements ReturnBookServiceInterface {
+	@Autowired
+    private ReturnBookDao dao;
 
-    private final ReturnBookDao dao;
-
-    @Autowired
-    public ReturnBookServiceImpl(ReturnBookDao dao) {
-        this.dao = dao;
-    }
+    
+    
 
     @Override
     public String getMemberNameByMobile(String mobile) throws ServiceException {

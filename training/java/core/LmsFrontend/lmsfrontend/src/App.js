@@ -8,6 +8,7 @@ import ReturnBooks from "./pages/ReturnBooks";
 import UpdateMember from "./pages/UpdateMember";
 import ViewBooks from "./pages/ViewBooks";
 import ViewMembers from "./pages/ViewMembers";
+import UpdateBook from "./pages/UpdateBook";
 
 function Home() {
   return (
@@ -24,21 +25,23 @@ function App() {
       <div>
         {/* Navigation Bar */}
         <nav style={{ padding: "10px", backgroundColor: "#f2f2f2" }}>
-          <Link to="/" style={{ marginRight: "10px" }}>Home</Link>
-          <Link to="/add-book" style={{ marginRight: "10px" }}>Add Book</Link>
-          <Link to="/view-books" style={{ marginRight: "10px" }}>View Books</Link>
-          <Link to="/add-member" style={{ marginRight: "10px" }}>Add Member</Link>
-          <Link to="/view-members" style={{ marginRight: "10px" }}>View Members</Link>
-          <Link to="/issue-book" style={{ marginRight: "10px" }}>Issue Book</Link>
-          <Link to="/return-books" style={{ marginRight: "10px" }}>Return Books</Link>
-          <Link to="/update-member" style={{ marginRight: "10px" }}>Update Member</Link>
-          <Link to="/reports" style={{ marginRight: "10px" }}>Reports</Link>
+          <Link to="/" style={{ marginRight: "10px" }} className="btn btn-secondary">Home</Link>
+          <Link to="/add-book" style={{ marginRight: "10px" }} className="btn btn-secondary">Add Book</Link>
+          <Link to="/update-book" style={{ marginRight: "10px" }} className="btn btn-secondary">Update Book</Link>
+          <Link to="/view-books" style={{ marginRight: "10px" }} className="btn btn-secondary">View Books</Link>
+          <Link to="/add-member" style={{ marginRight: "10px" }} className="btn btn-secondary">Add Member</Link>
+          <Link to="/view-members" style={{ marginRight: "10px" }} className="btn btn-secondary">View Members</Link>
+          <Link to="/issue-book" style={{ marginRight: "10px" }} className="btn btn-secondary">Issue Book</Link>
+          <Link to="/return-books" style={{ marginRight: "10px" }} className="btn btn-secondary">Return Books</Link>
+          <Link to="/update-member" style={{ marginRight: "10px" }} className="btn btn-secondary">Update Member</Link>
+          <Link to="/reports" style={{ marginRight: "10px" }} className="btn btn-secondary">Reports</Link>
         </nav>
 
         {/* Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-book" element={<AddBook />} />
+          <Route path="/update-book" element={<UpdateBook />} />
           <Route path="/view-books" element={<ViewBooks />} />
           <Route path="/add-member" element={<AddMember />} />
           <Route path="/view-members" element={<ViewMembers />} />

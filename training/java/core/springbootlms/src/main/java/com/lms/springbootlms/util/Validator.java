@@ -37,25 +37,19 @@ public class Validator {
             throw new InvalidInputException("Member cannot be null.");
         }
 
-        String name = member.getName();
-        String email = member.getEmail();
-        String mobile = member.getMobile();
-        String gender = member.getGender();
-        String address = member.getAddress();
-
-        if (name == null || !name.matches("[A-Za-z ]{2,50}")) {
+        if (member.getName() == null || !member.getName().matches("[A-Za-z ]{2,50}")) {
             errorMessage.append("Invalid name: Must be 2-50 characters long and contain only letters and spaces.\n");
         }
-        if (email == null || !email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+        if (member.getEmail() == null || !member.getEmail().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             errorMessage.append("Invalid email format.\n");
         }
-        if (mobile == null || !mobile.matches("\\d{10}")) {
+        if (member.getMobile() == null || !member.getMobile().matches("\\d{10}")) {
             errorMessage.append("Mobile number must be exactly 10 digits.\n");
         }
-        if (gender == null || !(gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("Female") || gender.equalsIgnoreCase("Other"))) {
+        if (member.getGender() == null || !(member.getGender().equalsIgnoreCase("Male") || member.getGender().equalsIgnoreCase("Female") || member.getGender().equalsIgnoreCase("Other"))) {
             errorMessage.append("Please select Gender from the dropdown.\n");
         }
-        if (address == null || address.trim().isEmpty()) {
+        if (member.getAddress() == null || member.getAddress().trim().isEmpty()) {
             errorMessage.append("Address cannot be empty.\n");
         }
 
@@ -99,30 +93,21 @@ public class Validator {
         }
     }
 
-    public static String validateAndFetchMemberNameByMobile(String mobile, ReturnBookServiceInterface returnBookService)
+    public static void validateAndFetchMemberNameByMobile(String mobile)
             throws InvalidInputException, SQLException, ServiceException {
         validateMobileNumber(mobile);
-
-        String memberName = returnBookService.getMemberNameByMobile(mobile);
-        if (memberName == null || memberName.trim().isEmpty()) {
-            throw new InvalidInputException("Member not found with the provided mobile number.");
-        }
-        return memberName;
+        
     }
 
-    public static Member validateAndFetchMemberByMobile(String mobile, IssueBookServiceImpl issueBookService)
-            throws InvalidInputException, SQLException, ServiceException {
+    public static void validateAndFetchMemberByMobile(String mobile)
+            throws InvalidInputException, SQLException {
         if (mobile == null || mobile.isEmpty()) {
             throw new InvalidInputException("Mobile number is required.");
         }
 
         validateMobileNumber(mobile);
 
-        Member member = issueBookService.getMemberByMobile(mobile);
-        if (member == null) {
-            throw new InvalidInputException("Member not found.");
-        }
-        return member;
+        
     }
 
     public static void validateReturnBookInputs(String mobile, String bookName, String status) throws InvalidInputException {

@@ -10,19 +10,54 @@ const AddMember = () => {
     address: "",
   });
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateInputs = () => {
+    if (!/^[A-Za-z\s]{3,}$/.test(formData.name)) {
+      setError("❌ Name must be at least 3 characters (letters & spaces only).");
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError("❌ Please enter a valid email address.");
+      return false;
+    }
+    if (!/^[0-9]{10}$/.test(formData.mobile)) {
+      setError("❌ Mobile number must be 10 digits.");
+      return false;
+    }
+    if (!formData.gender) {
+      setError("❌ Please select your gender.");
+      return false;
+    }
+    if (formData.address.trim().length < 5) {
+      setError("❌ Address must be at least 5 characters long.");
+      return false;
+    }
+    setError(""); // clear old errors
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
+    setError("");
+
+    if (!validateInputs()) return;
+
     try {
       await axios.post("http://localhost:8080/api/members", formData);
       setMessage("✅ Member added successfully!");
       setFormData({ name: "", email: "", mobile: "", gender: "", address: "" });
     } catch (error) {
-      setMessage(error.response?.data?.message || "❌ Error adding member!");
+      if (error.response) {
+        setMessage("❌ " + error.response.data);
+      } else {
+        setMessage("❌ Something went wrong!");
+      }
     }
   };
 
@@ -31,7 +66,8 @@ const AddMember = () => {
       <div className="card shadow p-4">
         <h2 className="card-title mb-3">Add Member</h2>
 
-        {message && <div className="alert alert-info">{message}</div>}
+        {message && <div className="alert alert-success">{message}</div>}
+        {error && <div className="alert alert-danger">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

@@ -55,7 +55,6 @@ public class ReportDaoImpl implements ReportDao {
             ORDER BY b.title
         """;
 
-        // ⚡ Let DataAccessException bubble up (no try-catch here)
         return jdbcTemplate.query(sql, bookRowMapper)
                 .stream()
                 .sorted(Comparator.comparing(Book::getBookTitle))

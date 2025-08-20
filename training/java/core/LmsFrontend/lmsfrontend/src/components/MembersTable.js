@@ -14,13 +14,14 @@ const MembersTable = ({ members }) => {
 
   return (
     <div className="card shadow p-3">
-      <h2 className="card-title text-center mb-3">📋 Members List</h2>
+      <h2 className="card-title text-center mb-3"> Members List</h2>
 
       <button
         onClick={fetchMembers}
         className="btn btn-primary mb-3"
+        style={{ width: "100px" }}
       >
-        🔄 Refresh
+         Refresh
       </button>
 
       {members.length === 0 ? (

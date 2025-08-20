@@ -16,15 +16,33 @@ export default function AddBook() {
       .catch(() => setError("Failed to load categories"));
   }, []);
 
+  const validateInputs = () => {
+    if (title.trim().length < 3) {
+      setError("❌ Title must be at least 3 characters long.");
+      return false;
+    }
+    if (!/^[A-Za-z\s]+$/.test(author) || author.trim().length < 3) {
+      setError("❌ Author name must contain only letters & spaces (min 3 chars).");
+      return false;
+    }
+    if (!category) {
+      setError("❌ Please select a category.");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
     setError("");
 
+    if (!validateInputs()) return; // stop if invalid
+
     try {
-      const response = await axios.post("http://localhost:8080/api/books", {
-        bookTitle: title,
-        bookAuthor: author,
+      await axios.post("http://localhost:8080/api/books", {
+        bookTitle: title.trim(),
+        bookAuthor: author.trim(),
         bookCategory: category
       });
 
@@ -33,8 +51,12 @@ export default function AddBook() {
       setAuthor("");
       setCategory("");
 
-    } catch (err) {
-      setError(err.response?.data?.message || err.response?.data || "❌ Failed to add book");
+    } catch (error) {
+      if (error.response) {
+        setMessage("❌ " + error.response.data);
+      } else {
+        setMessage("❌ Something went wrong!");
+      }
     }
   };
 
@@ -96,6 +118,7 @@ export default function AddBook() {
               >
                 Clear
               </button>
+              
             </div>
           </form>
         </div>

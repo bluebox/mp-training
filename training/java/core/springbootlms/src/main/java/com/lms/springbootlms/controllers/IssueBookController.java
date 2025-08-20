@@ -63,7 +63,8 @@ public class IssueBookController {
             @RequestParam String dueDate) {
 
         try {
-            Member currentMember = Validator.validateAndFetchMemberByMobile(mobile, issueBookService);
+             Validator.validateAndFetchMemberByMobile(mobile);
+             Member currentMember =issueBookService.getMemberByMobile(mobile);
             LocalDate dueDateObj = LocalDate.parse(dueDate);
 
             if (dueDateObj.isBefore(LocalDate.now())) {
