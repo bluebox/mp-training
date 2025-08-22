@@ -54,6 +54,12 @@ export default function MembersPage() {
   }
 
   const handleChange = (e) => {
+    if(e.target.name=="mobile"){
+      e.target.value=e.target.value.replaceAll(/[^0-9]/g, "").substring(0, 10);
+    }
+    else if(e.target.name=="name"){
+      e.target.value=e.target.value.replaceAll(/[^a-zA-Z ]/g, "");
+    }
     if (e.target.value==="default") {
       setForm({ ...form, [e.target.name]: null })
     } else {
@@ -142,7 +148,6 @@ export default function MembersPage() {
           </table>
         </div>
 
-        {/* Modal */}
         {modalOpen && (
           <div className="fixed inset-0 bg-black/35 bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-xl w-96 p-6 relative">

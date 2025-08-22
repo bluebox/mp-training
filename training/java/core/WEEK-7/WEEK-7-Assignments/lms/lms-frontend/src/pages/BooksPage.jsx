@@ -48,11 +48,16 @@ export default function BooksPage() {
   }
 
   const handleChange = (e) => {
+    e.target.value=e.target.value.replaceAll(/[^a-zA-Z0-9 ]/g, "");
+    if(e.target.name=="author"){
+      e.target.value=e.target.value.replaceAll(/[^a-zA-Z ]/g, "");
+    }
     if (e.target.value==="default") {
       setForm({ ...form, [e.target.name]: null })
     } else {
       setForm({ ...form, [e.target.name]: e.target.value })
     }
+    console.log(form);
   }
 
   const handleSubmit = async (e) => {
