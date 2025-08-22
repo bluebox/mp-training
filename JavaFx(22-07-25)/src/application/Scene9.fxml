@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller6">
+   <children>
+      <DatePicker fx:id="mydatePicker" layoutX="204.0" layoutY="150.0" onAction="#getDate" promptText="Enter a Date" />
+      <Label fx:id="myLabel" alignment="CENTER" layoutX="1.0" layoutY="63.0" prefHeight="18.0" prefWidth="600.0" text="Label">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

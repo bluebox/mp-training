@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller4">
+   <children>
+      <CheckBox fx:id="myCheckBox" layoutX="249.0" layoutY="296.0" mnemonicParsing="false" onAction="#change" text="ON/OFF">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </CheckBox>
+      <Label fx:id="myLabel" layoutX="257.0" layoutY="192.0" text="OFF">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="myImageView" fitHeight="150.0" fitWidth="200.0" layoutX="206.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@BulbOff.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

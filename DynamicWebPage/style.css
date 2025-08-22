@@ -1,0 +1,137 @@
+/* Base styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox layout */
+.form-table-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Form section */
+.form-section {
+  flex: 1;
+  max-width: 400px;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.radio-group label,
+.checkbox-group label {
+  font-weight: normal;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Search and info */
+#searchInput {
+  margin-top: 20px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#entryCount,
+#noResults {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Table section */
+.table-section {
+  flex: 2;
+  overflow-x: auto;
+}
+
+.table-section h2 {
+  margin-bottom: 10px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+table th {
+  background-color: #e0e0e0;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .form-table-wrapper {
+    flex-direction: column;
+  }
+
+  .form-section,
+  .table-section {
+    max-width: 100%;
+  }
+}

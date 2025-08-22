@@ -1,0 +1,51 @@
+EmployeeId,Name,Department,ProjectId,Date,TaskCategory,HoursWorked,Remarks
+E1017,Rachel,Devops,P200,2025-05-23,Code Review,7.30,Blocked
+E1006,Grace,Research & Development,P208,2025-04-18,Documentation,3.70,Completed
+E1017,Rachel,Backend,P205,2025-06-14,Code Review,6.20,Blocked
+E1016,Quinn,QA,P209,2025-05-28,Documentation,3.10,Completed
+E1009,Judy,UI/UX,P207,2025-05-20,Code Review,4.00,Completed
+E1017,Rachel,Backend,P209,2025-05-23,Bug Fixing,1.30,Pending Review
+E1003,David,UI/UX,P201,2025-04-22,Code Review,3.80,Pending Review
+E1019,Trudy,UI/UX,P202,2025-05-21,Bug Fixing,5.90,Pending Review
+E1008,Ian,Frontend,P201,2025-04-27,Development,4.60,Blocked
+E1008,Ian,Devops,P200,2025-04-24,Bug Fixing,3.50,Pending Review
+E1015,Pam,Frontend,P201,2025-05-09,Code Review,4.00,Completed
+E1002,Charlie,QA,P202,2025-06-25,Development,3.70,Blocked
+E1014,Oscar,Devops,P201,2025-05-11,Testing,3.70,Blocked
+E1015,Pam,Frontend,P202,2025-01-01,Documentation,2.20,Blocked
+E1017,Rachel,Research & Development,P202,2025-04-21,Code Review,1.70,Completed
+E1007,Hannah,Frontend,P200,2025-06-17,Development,3.80,Completed
+E1003,David,Backend,P209,2025-02-21,Bug Fixing,2.90,Pending Review
+E1000,Alice,QA,P206,2025-01-19,Testing,1.50,Blocked
+E1011,Laura,Research & Development,P205,2025-03-06,Code Review,7.50,In Progress
+E1003,David,QA,P200,2025-02-18,Code Review,7.90,Blocked
+E1013,Nina,Research & Development,P207,2025-01-15,Bug Fixing,3.70,In Progress
+E1000,Alice,Frontend,P202,2025-03-31,Testing,2.90,Blocked
+E1017,Rachel,Backend,P200,2025-05-02,Bug Fixing,4.50,In Progress
+E1006,Grace,UI/UX,P207,2025-02-07,Documentation,2.80,Completed
+E1013,Nina,QA,P204,2025-04-29,Bug Fixing,2.70,Blocked
+E1001,Bob,Research & Development,P202,2025-01-22,Development,4.40,Blocked
+E1004,Eve,Backend,P207,2025-05-14,Code Review,5.90,In Progress
+E1006,Grace,Frontend,P204,2025-06-05,Bug Fixing,2.60,Completed
+E1001,Bob,QA,P206,2025-04-30,Bug Fixing,5.50,Completed
+E1005,Frank,UI/UX,P202,2025-04-03,Testing,3.20,Pending Review
+E1018,Steve,Research & Development,P207,2025-05-25,Development,2.10,Pending Review
+E1005,Frank,QA,P205,2025-04-07,Development,4.20,In Progress
+E1004,Eve,Backend,P202,2025-02-03,Testing,7.80,Blocked
+E1016,Quinn,UI/UX,P201,2025-06-08,Bug Fixing,1.90,In Progress
+E1001,Bob,UI/UX,P205,2025-02-24,Development,3.40,Completed
+E1013,Nina,UI/UX,P200,2025-05-11,Code Review,6.10,Completed
+E1018,Steve,UI/UX,P208,2025-04-22,Development,3.50,Pending Review
+E1017,Rachel,Backend,P208,2025-02-15,Development,1.10,Completed
+E1017,Rachel,Research & Development,P207,2025-02-19,Development,5.20,Pending Review
+E1017,Rachel,UI/UX,P208,2025-01-04,Testing,1.60,In Progress
+E1004,Eve,Research & Development,P205,2025-03-15,Documentation,7.40,In Progress
+E1005,Frank,QA,P208,2025-02-23,Code Review,6.00,Pending Review
+E1009,Judy,UI/UX,P205,2025-03-21,Testing,5.80,Blocked
+E1000,Alice,Backend,P201,2025-05-13,Testing,1.00,Pending Review
+E1017,Rachel,QA,P209,2025-04-14,Testing,7.10,Completed
+E1009,Judy,Backend,P207,2025-01-28,Code Review,1.40,Blocked
+E1001,Bob,Frontend,P209,2025-05-27,Code Review,2.50,Blocked
+E1012,Mallory,QA,P207,2025-05-12,Bug Fixing,1.20,In Progress
+E1002,Charlie,QA,P206,2025-01-21,Testing,5.70,Completed
+E1005,Frank,Devops,P207,2025-03-14,Documentation,7.00,In Progress
