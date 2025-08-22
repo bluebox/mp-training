@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="application.Controller"
+      alignment="TOP_LEFT">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <Label text="Name:" />
+    <TextField fx:id="nameField" />
+
+    <Label text="Gender:" />
+    <HBox spacing="10">
+        <RadioButton fx:id="maleButton" text="Male" toggleGroup="$genderGroup"/>
+        <RadioButton fx:id="femaleButton" text="Female" toggleGroup="$genderGroup"/>
+    </HBox>
+
+    <Label text="Date of Birth:" />
+    <DatePicker fx:id="datePicker" />
+
+    <Button text="Submit" onAction="#handleSubmit" />
+</VBox>

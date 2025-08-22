@@ -1,0 +1,331 @@
+@charset "ISO-8859-1";
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header Section */
+.header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ff6f61;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(to right, #ff6f61, #ff9068);
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    text-decoration: none;
+    color: #fff;
+    background: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: #ff6f61;
+}
+
+/* About Section */
+.about {
+    background: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.about h2 {
+    margin-bottom: 20px;
+}
+
+/* Services Section */
+.services {
+    background: #f4f4f4;
+    padding: 50px 0;
+}
+
+.services h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.service-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.service-item h3 {
+    margin-bottom: 10px;
+}
+
+/* Footer Section */
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+/* About Section Enhancements */
+.about-section {
+    background: #fff;
+    padding: 60px 0;
+}
+
+.about-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about-section p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.about-section img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Mission & Values Section */
+.mission-values {
+    background: #f9f9f9;
+    padding: 60px 0;
+}
+
+.mission-values h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.mission-values h4 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: #ff6f61;
+}
+
+.mission-values p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Team Section */
+.team-intro {
+    background: #fff;
+    padding: 60px 0;
+}
+
+.team-intro h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.team-intro img {
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.team-intro h5 {
+    font-size: 1.2em;
+    margin-top: 15px;
+    color: #333;
+}
+
+.team-intro p {
+    font-size: 1em;
+    color: #777;
+}
+
+/* Responsive Grid for Team */
+@media (max-width: 768px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-intro .row > div {
+        margin-bottom: 30px;
+    }
+}
+/* Contact Form Container */
+.contact-block {
+    background: #fff;
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Input Fields */
+.contact-input,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus Effects */
+.contact-input:focus,
+textarea:focus {
+    border-color: #ff6f61;
+    box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+    outline: none;
+}
+
+/* Textarea Styling */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Button Styling */
+.btn-style {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-style:hover {
+    background-color: #ff9068;
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .contact-block {
+        padding: 30px 20px;
+    }
+
+    .contact-right {
+        margin-top: 20px;
+    }
+}
+/* Toggle Switch */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 26px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; width: 20px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #333;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #f4f4f4;
+}
+
+body.dark-theme .header {
+    background-color: #1f1f1f;
+}
+
+body.dark-theme .navbar a {
+    color: #f4f4f4;
+}
+
+body.dark-theme .navbar a:hover {
+    color: #ff6f61;
+}

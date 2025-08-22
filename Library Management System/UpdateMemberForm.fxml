@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox spacing="12" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+ fx:controller="com.LibraryManagement.controller.UpdateMemberController" 
+style="-fx-padding: 30;" styleClass="root">
+
+    <Label text="Update Member Details" styleClass="form-title"/>
+
+    <Label text="Member ID" styleClass="label"/>
+    <TextField fx:id="memberIdField" promptText="Auto-filled ID" editable="false"/>
+    
+    <Label text="Name" styleClass="label"/>
+    <TextField fx:id="nameField" promptText="Enter full name"/>
+    <Label fx:id="nameErrorLabel" text="" style="-fx-text-fill: red;"/>
+
+    <Label text="Email" styleClass="label"/>
+    <TextField fx:id="emailField" promptText="Enter email"/>
+    <Label fx:id="emailErrorLabel" text="" style="-fx-text-fill: red;"/>
+
+    <Label text="Mobile" styleClass="label"/>
+    <TextField fx:id="mobileField" promptText="Enter mobile number"/>
+    <Label fx:id="mobileErrorLabel" text="" style="-fx-text-fill: red;"/>
+
+    <Label text="Gender" styleClass="label"/>
+    <ComboBox fx:id="genderCombo" promptText="Select gender" maxWidth="400">
+    <items>
+        <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Male"/>
+            <String fx:value="Female"/>
+        </FXCollections>
+    </items>
+    </ComboBox>
+    <Label fx:id="genderErrorLabel" text="" style="-fx-text-fill: red;"/>
+
+    <Label text="Address" styleClass="label"/>
+    <TextArea fx:id="addressArea" promptText="Enter address" prefRowCount="3" wrapText="true"/>
+    <Label fx:id="addressErrorLabel" text="" style="-fx-text-fill: red;"/>
+    
+
+    <Button fx:id="updateButton" text="Update" onAction="#handleUpdate" styleClass="button"/>
+</VBox>

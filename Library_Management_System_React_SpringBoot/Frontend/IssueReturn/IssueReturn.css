@@ -1,0 +1,107 @@
+/* IssueReturn.css */
+.IssueReturn {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.IssueReturn h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px #00000060;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.main-button {
+  background: #ffffff20;
+  border: 2px solid white;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.main-button:hover {
+  background: white;
+  color: #2575fc;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffffff80;
+}
+
+/* Forms */
+.IssueBook, .ReturnBook {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.IssueBook form, .ReturnBook form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.IssueBook select, .ReturnBook select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 1rem;
+}
+
+.IssueBook select option, .ReturnBook select option {
+  color: black;
+}
+
+/* Tables */
+.record-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.record-table th, .record-table td {
+  padding: 12px 15px;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.record-table th {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.record-table tr:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.content-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

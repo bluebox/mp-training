@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div th:replace="~{header :: header}">...</div>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to Our Website!</h2>
+            <p>Your success begins here. Explore what we have to offer and grow with us.</p>
+            <a th:href="services" class="cta-btn">Get Started</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>We are a team of passionate developers committed to delivering high-quality solutions tailored to your needs. Our mission is to bring your vision to life with innovative and user-friendly designs.</p>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Web Design</h3>
+                    <p>Crafting visually stunning and user-friendly websites that captivate audiences.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Development</h3>
+                    <p>Building robust and scalable applications to meet your business goals.</p>
+                </div>
+                <div class="service-item">
+                    <h3>SEO Optimization</h3>
+                    <p>Optimizing your website to rank higher on search engines and attract more traffic.</p>
+                </div>
+                <div class="text-center mt-sm-5 mt-4 pt-sm-0 pt-1">
+                <a th:href="@{/services}" class="btn btn-style btn-style-secondary mt-sm-3">
+                    Browse more services</a>
+            </div>
+            </div>
+        </div>
+    </section>
+    <div th:replace="~{footer :: footer}">...</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="rootPane" stylesheets="@../../application/css/book.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LibraryManagement.controller.BooksController">
+	<VBox alignment="CENTER"  spacing="15.0">
+		<children>
+
+			<Label styleClass="title-label" text="Library Management System">
+				<font>
+					<Font name="Arial Bold" size="20.0" />
+				</font>
+			</Label>
+
+			<Button styleClass="book-button" mnemonicParsing="false" onAction="#switchToAddBookForm" text="Add a Book">
+            <VBox.margin>
+               <Insets top="50.0" />
+            </VBox.margin></Button>
+			<Button styleClass="book-button" mnemonicParsing="false" onAction="#switchToViewBooks" text="View All Books" />
+		</children>
+	</VBox>
+</StackPane>

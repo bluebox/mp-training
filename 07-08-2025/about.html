@@ -1,0 +1,38 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Company</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div th:replace="~{header :: header}">...</div>
+    <section class="inner-banner py-5">
+        <div class="w3l-breadcrumb py-lg-5">
+            <div class="container pt-4 pb-sm-4">
+                <ul class="breadcrumbs-custom-path">
+                    <li class="breadcrumb"><a th:href="@{/Main}">Home</a></li>
+                    <li class="active"><i class="fas fa-angle-right"></i>About Us</li>
+                </ul>
+                <h3 class="inner-text-title pt-5">About Us</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="w3l-team-13 py-5" id="team">
+        <div class="container py-md-5 py-4">
+            <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+                <p class="text-uppercase">We design, build, manage, and modernize the world's critical technology systems</p>
+                <h3 class="title-style"></h3>
+            </div>
+        </div>
+    </section>
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+	<div th:replace="~{footer :: footer}">...</div>
+</body>
+</html>

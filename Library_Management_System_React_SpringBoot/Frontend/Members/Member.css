@@ -1,0 +1,151 @@
+/* ---------- Container ---------- */
+.Members {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* ---------- Header ---------- */
+.Members-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+}
+
+/* ---------- Form Container ---------- */
+.Members-header form,
+.modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* stretch inputs */
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+}
+
+/* ---------- Inputs & Selects ---------- */
+.Members-update input,
+.Members-update select,
+.modal input,
+.modal select {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.Members-update input::placeholder,
+.Members-update select::placeholder,
+.modal input::placeholder,
+.modal select::placeholder {
+  color: #e0e0e0;
+}
+
+/* ---------- Buttons ---------- */
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.main-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.main-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.back-button {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+/* ---------- Member Table ---------- */
+.member-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.member-table th,
+.member-table td {
+  padding: 12px 15px;
+  border: 1px solid rgba(255,255,255,0.4);
+  text-align: center;
+}
+
+.member-table th {
+  background: rgba(255,255,255,0.2);
+}
+
+.member-table tr:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ---------- Modal Overlay ---------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ---------- Modal Box ---------- */
+.modal {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  padding: 30px;
+  border-radius: 12px;
+  min-width: 350px;
+  max-width: 450px;
+  width: 90%;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+}

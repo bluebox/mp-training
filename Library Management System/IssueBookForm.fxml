@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefWidth="450.0" prefHeight="400.0" xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.LibraryManagement.controller.IssueBookController"
+            stylesheets="@../../application/css/member.css">
+
+    <children>
+        <Label layoutX="120.0" layoutY="20.0" text="Issue Book" styleClass="form-title">
+            <font>
+                <Font name="Arial Bold" size="18.0"/>
+            </font>
+        </Label>
+
+        <Label layoutX="60.0" layoutY="80.0" text="Book ID:"/>
+        <TextField fx:id="bookIdField" layoutX="160.0" layoutY="75.0" prefWidth="200.0" promptText="Enter Book ID"/>
+        <Label fx:id="bookIdError" layoutX="160.0" layoutY="100.0" textFill="red" style="-fx-font-size: 10;"/>
+
+        <Label layoutX="60.0" layoutY="130.0" text="Member ID:"/>
+        <TextField fx:id="memberIdField" layoutX="160.0" layoutY="125.0" prefWidth="200.0" promptText="Enter Member ID"/>
+        <Label fx:id="memberIdError" layoutX="160.0" layoutY="150.0" textFill="red" style="-fx-font-size: 10;"/>
+
+        <Label layoutX="60.0" layoutY="180.0" text="Issue Date:"/>
+        <DatePicker fx:id="issueDatePicker" layoutX="160.0" layoutY="175.0" prefWidth="200.0"/>
+        <Label fx:id="issueDateError" layoutX="160.0" layoutY="200.0" textFill="red" style="-fx-font-size: 10;"/>
+
+        <Button text="Issue Book" layoutX="160.0" layoutY="250.0" prefWidth="120.0" onAction="#handleIssueBook"/>
+    </children>
+</AnchorPane>

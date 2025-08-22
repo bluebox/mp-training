@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane  xmlns="http://javafx.com/javafx/24.0.1" stylesheets="@../../application/css/viewbook.css"
+xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LibraryManagement.controller.ViewBooksController">
+    <TableView fx:id="bookTable" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="650.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+            <TableColumn fx:id="bookIdCol" prefWidth="45.0" text="Book ID" />
+            <TableColumn fx:id="titleCol" prefWidth="80.0" text="Title" />
+            <TableColumn fx:id="authorCol" prefWidth="100.0" text="Author" />
+            <TableColumn fx:id="categoryCol" prefWidth="80.0" text="Category" />
+            <TableColumn fx:id="statusCol" prefWidth="50.0" text="Status" />
+            <TableColumn fx:id="availabilityCol" prefWidth="70.0" text="Availability" />
+            <TableColumn fx:id="actionsCol" prefWidth="150.0" text="Actions" />
+            
+        </columns>
+    </TableView>
+</AnchorPane>

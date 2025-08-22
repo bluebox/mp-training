@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<AnchorPane prefHeight="500.0" prefWidth="450.0" 
+            xmlns="http://javafx.com/javafx/24.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.LibraryManagement.controller.MemberController"
+            stylesheets="@../../application/css/addMember.css"
+            styleClass="member-form" >
+    <children>
+        <Label layoutX="120.0" layoutY="30.0" text="Register Member" styleClass="form-title">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="60.0" layoutY="80.0" text="Name:"/>
+        <TextField fx:id="nameField" layoutX="140.0" layoutY="75.0" prefWidth="200.0" promptText="Enter full name"/>
+        <Label fx:id="nameErrorLabel" layoutX="140.0" layoutY="100.0" textFill="red" style="-fx-font-size: 10;" />
+
+        <Label layoutX="60.0" layoutY="130.0" text="Email:"/>
+        <TextField fx:id="emailField" layoutX="140.0" layoutY="125.0" prefWidth="200.0" promptText="Enter email"/>
+        <Label fx:id="emailErrorLabel" layoutX="140.0" layoutY="150.0" textFill="red" style="-fx-font-size: 10;" />
+
+        <Label layoutX="60.0" layoutY="180.0" text="Mobile:"/>
+        <TextField fx:id="mobileField" layoutX="140.0" layoutY="175.0" prefWidth="200.0" promptText="Enter mobile number"/>
+        <Label fx:id="mobileErrorLabel" layoutX="140.0" layoutY="200.0" textFill="red" style="-fx-font-size: 10;" />
+
+        <Label layoutX="60.0" layoutY="230.0" text="Gender:"/>
+        <ComboBox fx:id="genderCombo" layoutX="140.0" layoutY="225.0" prefWidth="200.0" promptText="Select gender">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Male" />
+                    <String fx:value="Female" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Label fx:id="genderErrorLabel" layoutX="140.0" layoutY="250.0" textFill="red" style="-fx-font-size: 10;" />
+
+        <Label layoutX="60.0" layoutY="280.0" text="Address:"/>
+        <TextArea fx:id="addressArea" layoutX="140.0" layoutY="275.0" prefWidth="200.0" prefHeight="60.0" wrapText="true" promptText="Enter address"/>
+        <Label fx:id="addressErrorLabel" layoutX="140.0" layoutY="340.0" textFill="red" style="-fx-font-size: 10;" />
+
+        <Button text="Register" layoutX="90.0" layoutY="380.0" onAction="#handleRegister" prefWidth="120.0"/>
+    </children>
+</AnchorPane>

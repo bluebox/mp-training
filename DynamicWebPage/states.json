@@ -1,0 +1,34 @@
+{
+  "IN": [
+    {
+      "code": "TG",
+      "name": "Telangana",
+      "cities": ["Hyderabad", "Warangal", "Karimnagar", "Nizamabad", "Khammam", "Adilabad"]
+    },
+    {
+      "code": "AP",
+      "name": "Andhra Pradesh",
+      "cities": ["Vijayawada", "Visakhapatnam", "Guntur", "Nellore", "Kurnool", "Rajahmundry"]
+    },
+    {
+      "code": "MH",
+      "name": "Maharashtra",
+      "cities": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Kolhapur"]
+    },
+    {
+      "code": "KA",
+      "name": "Karnataka",
+      "cities": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli", "Belagavi", "Ballari"]
+    },
+    {
+      "code": "TN",
+      "name": "Tamil Nadu",
+      "cities": ["Chennai", "Coimbatore", "Madurai", "Salem", "Tiruchirappalli", "Erode"]
+    },
+    {
+      "code": "WB",
+      "name": "West Bengal",
+      "cities": ["Kolkata", "Asansol", "Siliguri", "Durgapur", "Howrah", "Kharagpur"]
+    }
+  ]
+}
