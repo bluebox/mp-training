@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+.table-column {
+    -fx-alignment: CENTER_LEFT;
+}

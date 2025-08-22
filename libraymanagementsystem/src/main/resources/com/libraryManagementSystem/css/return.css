@@ -1,0 +1,65 @@
+/* Root styling */
+.stack-pane {
+    -fx-background-color: linear-gradient(to bottom right, #f0f8ff, #ffffff);
+}
+
+/* Title label */
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-family: "System Bold Italic";
+    -fx-text-fill: #2c3e50;
+}
+
+/* Error label */
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-size: 16px;
+    -fx-font-family: "Times New Roman Bold";
+}
+
+/* Form label */
+.form-label {
+    -fx-pref-width: 100px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+/* Input fields: ComboBox and DatePicker */
+.form-input {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #90a4ae;
+    -fx-border-radius: 5;
+    -fx-padding: 5px;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+/* Navigation buttons */
+.nav-button {
+    -fx-background-color: #81c784;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 4 12;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #388e3c;
+}
+
+/* Submit button */
+.submit-button {
+    -fx-background-color: #42a5f5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-padding: 6 18;
+}
+
+.submit-button:hover {
+    -fx-background-color: #1e88e5;
+}

@@ -1,0 +1,38 @@
+.report-pane {
+    -fx-background-color: linear-gradient(to bottom right, #f7f8fc, #e0e5ec);
+}
+
+.heading-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+.action-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0.5, 0.0, 1.0);
+    -fx-pref-width: 300px;
+}
+
+.action-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.back-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 20;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-width: 100px;
+}
+
+.back-button:hover {
+    -fx-background-color: #c0392b;
+}

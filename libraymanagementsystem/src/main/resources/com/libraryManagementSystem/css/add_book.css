@@ -1,0 +1,75 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #fefefe, #e6f7ff);
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Title */
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e88e5;
+    -fx-alignment: center;
+}
+
+/* Labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Error message */
+#error {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* TextFields */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b0bec5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 13px;
+}
+
+/* ComboBoxes */
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #90a4ae;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 13px;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #00796b;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+/* Button hover effect */
+.button:hover {
+    -fx-background-color: #004d40;
+}
+
+/* Responsive-like adaptation (simulated media query) */
+@font-face {
+    font-family: "Segoe UI";
+}
+
+@media screen and (max-width: 600px) {
+    .title-label {
+        -fx-font-size: 20px;
+    }
+
+    .label, .text-field, .combo-box, .button {
+        -fx-font-size: 12px;
+    }
+}

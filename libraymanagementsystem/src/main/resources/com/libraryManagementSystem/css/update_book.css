@@ -1,0 +1,70 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f2f2f2, #d0e6f6);
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a3f5f;
+}
+
+.nav-button {
+    -fx-background-color: #5DADE2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.form-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495e;
+    -fx-font-weight: 600;
+}
+
+.info-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2e86c1;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #5DADE2;
+    -fx-border-radius: 4;
+    -fx-padding: 4 8 4 8;
+}
+
+.combo-box {
+    -fx-border-color: #5DADE2;
+    -fx-background-radius: 4;
+}
+
+.submit-button {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+}
+
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    .title-label {
+        -fx-font-size: 18px;
+    }
+
+    .form-label {
+        -fx-font-size: 12px;
+    }
+
+    .submit-button {
+        -fx-padding: 6 12;
+    }
+}
