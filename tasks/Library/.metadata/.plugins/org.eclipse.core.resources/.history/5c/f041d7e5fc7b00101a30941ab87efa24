@@ -1,0 +1,22 @@
+package com.LMS.LibMS.controllers;
+
+public class ErrorController {
+	
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
+			HttpStatus status, WebRequest request) {
+		FieldErrorResponse fieldErrorResponse = new FieldErrorResponse();
+
+		List<CustomFieldError> fieldErrors = new ArrayList<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			CustomFieldError fieldError = new CustomFieldError();
+			fieldError.setField(((FieldError) error).getField());
+			fieldError.setMessage(error.getDefaultMessage());
+			fieldErrors.add(fieldError);
+		});
+
+		fieldErrorResponse.setFieldErrors(fieldErrors);
+		return new ResponseEntity<>(fieldErrorResponse, status);
+	}
+	
+}

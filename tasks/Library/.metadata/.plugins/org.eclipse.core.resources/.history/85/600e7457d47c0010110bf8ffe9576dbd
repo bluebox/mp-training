@@ -1,0 +1,13 @@
+package com.users.Users.service;
+
+import com.users.Users.repository.RoleRepository;
+
+public class RoleService {
+	
+	private RoleRepository roleRepository;
+	
+	public RoleService(RoleRepository roleRepository) {
+		this.roleRepository=roleRepository;
+	}
+
+}

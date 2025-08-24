@@ -1,0 +1,179 @@
+import React, { useState, useEffect } from 'react';
+import './ViewMembers.css';
+
+const ViewMembers = ({ onUpdateClick }) => {
+    const [members, setMembers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [selectedMembers, setSelectedMembers] = useState([]);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('success');
+
+    const renderGender = (code) => {
+        if (code === 'M') return 'Male';
+        if (code === 'F') return 'Female';
+        if (code === 'O') return 'Other';
+        return code;
+    };
+
+    const fetchMembers = async () => {
+        setIsLoading(true);
+        setError(null);
+        setMessage('');
+        try {
+            const response = await fetch('/members/getmembers');
+            if (response.ok) {
+                const data = await response.json();
+                setMembers(data);
+            } else {
+                setError('Failed to fetch members.');
+                setMessage('Failed to fetch members.');
+                setMessageType('error');
+            }
+        } catch (err) {
+            setError('Failed to fetch members.');
+            setMessage('Failed to fetch members.');
+            setMessageType('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchMembers();
+    }, []);
+
+    const handleSelectMember = (memberId) => {
+        setSelectedMembers(prev => prev.includes(memberId) ? prev.filter(id => id !== memberId) : [...prev, memberId]);
+    };
+
+    const handleSelectAll = (event) => {
+        if (event.target.checked) {
+            setSelectedMembers(members.map(m => m.memberID));
+        } else {
+            setSelectedMembers([]);
+        }
+    };
+
+    const handleDelete = async (memberId) => {
+        if (!window.confirm(`Are you sure you want to delete member ID ${memberId}?`)) return;
+        try {
+            const response = await fetch(`/members/delete/${memberId}`, { method: 'DELETE' });
+            if (response.ok) {
+                setMessage(`Member ID ${memberId} deleted.`);
+                setMessageType('success');
+                fetchMembers();
+                setSelectedMembers(prev => prev.filter(id => id !== memberId));
+            } else {
+                setMessage(`Failed to delete member ID ${memberId}.`);
+                setMessageType('error');
+            }
+        } catch (err) {
+            setMessage(`Error deleting member ID ${memberId}.`);
+            setMessageType('error');
+        }
+    };
+
+    const handleBatchDelete = async () => {
+        if (selectedMembers.length === 0) {
+            alert("Please select members to delete.");
+            return;
+        }
+        if (!window.confirm(`Are you sure you want to delete ${selectedMembers.length} selected members?`)) return;
+
+        try {
+            const response = await fetch('/members/deleteBatch', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(selectedMembers),
+            });
+            if (response.ok) {
+                setMessage(`Deleted selected members: ${selectedMembers.join(', ')}`);
+                setMessageType('success');
+                setSelectedMembers([]);
+                fetchMembers();
+            } else {
+                setMessage('Failed to delete selected members.');
+                setMessageType('error');
+            }
+        } catch (err) {
+            setMessage('Error deleting selected members.');
+            setMessageType('error');
+        }
+    };
+
+    const handleUpdate = (memberId) => {
+        onUpdateClick(memberId);
+    };
+	
+	const formatDate = (dateString) => {
+	  if (!dateString) return 'N/A';
+	  const date = new Date(dateString);
+	  return date.toLocaleString();
+	};
+
+    if (isLoading) return <div>Loading members...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    return (
+        <div className="members-container">
+            <h1 className="members-header">All Members</h1>
+            <p className="message-label" style={{ color: messageType === 'error' ? 'red' : 'green' }}>
+                {message}
+            </p>
+            <div className="table-wrapper">
+                <table className="members-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" onChange={handleSelectAll} checked={selectedMembers.length === members.length && members.length > 0} /></th>
+                            <th>Member ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+							<th>Created_At</th>
+							<th>Created_By</th>
+							<th>Updated_At</th>
+							<th>Updated_By</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {members.length > 0 ? (
+                            members.map(member => (
+                                <tr key={member.memberID}>
+                                    <td><input type="checkbox" checked={selectedMembers.includes(member.memberID)} onChange={() => handleSelectMember(member.memberID)} /></td>
+                                    <td>{member.memberID}</td>
+                                    <td>{member.name}</td>
+                                    <td>{member.email}</td>
+                                    <td>{member.phoneNumber}</td>
+                                    <td>{renderGender(member.gender)}</td>
+                                    <td>{member.address}</td>
+                                    <td className="view-members-actions-column">
+                                        <button onClick={() => handleUpdate(member.memberID)} className="update-btn">Update</button>
+                                        <button onClick={() => handleDelete(member.memberID)} className="delete-btn">Delete</button>
+                                    </td>
+									<td>{formatDate(member.createdAt)} </td>
+									<td>{member.createdBy}</td> 
+									<td>{formatDate(member.updatedAt)}</td>
+									<td>{member.updatedBy}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr><td colSpan="8" className="no-members">No members found.</td></tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+            <div className="button-group">
+                <button onClick={handleBatchDelete} disabled={selectedMembers.length === 0} className="delete-batch-btn">Delete Selected Members</button>
+                <button onClick={fetchMembers} className="refresh-btn">Refresh Members</button>
+                <button onClick={() => window.location.href = 'main'} className="back-btn">Back to Main Menu</button>
+            </div>
+        </div>
+    );
+};
+
+export default ViewMembers;

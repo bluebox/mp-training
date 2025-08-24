@@ -1,0 +1,18 @@
+package com.LMS.LibMS.exceptions;
+
+public class Errors {
+	
+	private List<CustomFieldError> fieldErrors;
+
+	public Errors() {
+	}
+
+	public List<CustomFieldError> getFieldErrors() {
+		return fieldErrors;
+	}
+
+	public void setFieldErrors(List<CustomFieldError> fieldErrors) {
+		this.fieldErrors = fieldErrors;
+	}
+
+}

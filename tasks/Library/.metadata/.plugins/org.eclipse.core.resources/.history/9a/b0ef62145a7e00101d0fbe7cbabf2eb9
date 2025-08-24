@@ -1,0 +1,31 @@
+package com.users.Users.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.users.Users.model.User;
+import com.users.Users.repository.MainUserRepository;
+import com.users.Users.service.interfaces.MainUserService;
+
+@Service
+public class MainUserServiceImpl implements MainUserService{
+	
+	private MainUserRepository mainUserRepository;
+	
+	@Autowired
+	public MainUserServiceImpl(MainUserRepository mainUserRepository) {
+		this.mainUserRepository=mainUserRepository;
+	}
+
+	public void addUserToMain(User user) {
+		mainUserRepository.addUserToMain(user);
+	}
+
+	public List<User> getMainUsers() {
+		return mainUserRepository.getMainUsers();
+	}
+
+
+}

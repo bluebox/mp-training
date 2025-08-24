@@ -1,0 +1,17 @@
+package com.LMS.LibMS.service.interfaces;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.LMS.LibMS.model.Book;
+
+public interface BookService {
+    List<Book> findBooks();
+    Book addBook(Book book);
+    boolean deleteBook(Integer bookId);
+    boolean changeAvailability(Integer bookId, String newAvailabilityCode);
+    boolean deleteBooks(List<Integer> bookIds);
+    boolean updateAvailabilities(List<Integer> bookIds);
+    boolean updateBook(Book book);
+    Optional<Book> findBookById(Integer bookId); // The return type is now Optional<Book>
+}

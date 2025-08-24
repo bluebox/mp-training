@@ -1,0 +1,300 @@
+import React, { useState, useEffect } from 'react';
+import './Role.css';
+import $ from 'jquery';
+
+
+const RoleManagement = ({ userId }) => {
+  const [availableRoles, setAvailableRoles] = useState([]);
+  const [selectedAvailableRoles, setSelectedAvailableRoles] = useState([]);
+  const [assignedRoles, setAssignedRoles] = useState([]);
+  const [selectedAssignedRoles, setSelectedAssignedRoles] = useState([]);
+  
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  
+   
+   const[userRole, setuserRole] = useState({
+	userId: `${userId}`,
+	roleId: [],
+	country: '',
+	state:'',
+	city:''
+   });
+   
+  const API_KEY = 'ME95TTJOZERmVG9nb3hKNFNtcEJIWHRNMmNqNzdqVFRNclFnTHhRNw==';
+  
+	  useEffect(() => {
+	     fetchroles();
+	   }, []);
+	   
+	   
+	   const fetchroles = async () => {
+	     try {
+	       const response = await fetch('/role/getroles');
+	       if (response.ok) {
+	         const data = await response.json();
+	         setAvailableRoles(data);
+	       } else {
+			   	const errorData = await response.json();
+			   	console.log(`Error: ${errorData.message}`);
+	       }
+	     } catch (err) {
+	       console.log(err)
+	     }
+	   };
+  
+
+      useEffect(() => {
+          fetchCountries();
+      }, []);
+
+      useEffect(() => {
+          if (userRole.country) {
+              fetchStates(userRole.country);
+          } else {
+              setStates([]);
+              setCities([]);
+          }
+      }, [userRole.country]);
+
+      useEffect(() => {
+          if (userRole.country && userRole.state) {
+              fetchCities(userRole.country, userRole.state);
+          } else {
+              setCities([]);
+          }
+      }, [userRole.state,userRole.country]);
+
+      const fetchCountries = () => {
+          $.ajax({
+              url: "https://api.countrystatecity.in/v1/countries",
+              method: "GET",
+              headers: {
+                  "X-CSCAPI-KEY": API_KEY
+              },
+              success: (data) => {
+                  setCountries(data);
+              },
+              error: (jqXHR, textStatus, errorThrown) => {
+                  console.error("Error fetching countries:", textStatus, errorThrown);
+              }
+          });
+      };
+
+      const fetchStates = (countryIso2) => {
+          $.ajax({
+              url: `https://api.countrystatecity.in/v1/countries/${countryIso2}/states`,
+              method: "GET",
+              headers: {
+                  "X-CSCAPI-KEY": API_KEY
+              },
+              success: (data) => {
+                  setStates(data);
+              },
+              error: (jqXHR, textStatus, errorThrown) => {
+                  console.error("Error fetching states:", textStatus, errorThrown);
+              }
+          });
+      };
+
+      const fetchCities = (countryIso2, stateIso2) => {
+          $.ajax({
+              url: `https://api.countrystatecity.in/v1/countries/${countryIso2}/states/${stateIso2}/cities`,
+              method: "GET",
+              headers: {
+                  "X-CSCAPI-KEY": API_KEY
+              },
+              success: (data) => {
+                  setCities(data);
+              },
+              error: (jqXHR, textStatus, errorThrown) => {
+                  console.error("Error fetching cities:", textStatus, errorThrown);
+              }
+          });
+      };
+
+
+  const handleAvailableRoleSelect = (roleId) => {
+    setSelectedAvailableRoles((prevSelected) =>
+      prevSelected.includes(roleId)
+        ? prevSelected.filter((id) => id !== roleId)
+        : [...prevSelected, roleId]
+    );
+  };
+
+  const handleAssignedRoleSelect = (roleId) => {
+    setSelectedAssignedRoles((prevSelected) =>
+      prevSelected.includes(roleId)
+        ? prevSelected.filter((id) => id !== roleId)
+        : [...prevSelected, roleId]
+    );
+  };
+
+  const assignRoles = () => {
+    const rolesToAssign = availableRoles.filter((role) =>
+      selectedAvailableRoles.includes(role.roleId)
+    );
+    setAssignedRoles((prevAssigned) => [...prevAssigned, ...rolesToAssign]);
+    setAvailableRoles((prevAvailable) =>
+      prevAvailable.filter((role) => !selectedAvailableRoles.includes(role.roleId))
+    );
+    setSelectedAvailableRoles([]);
+  };
+
+  const unassignRoles = () => {
+    const rolesToUnassign = assignedRoles.filter((role) =>
+      selectedAssignedRoles.includes(role.roleId)
+    );
+    setAvailableRoles((prevAvailable) => [...prevAvailable, ...rolesToUnassign]);
+    setAssignedRoles((prevAssigned) =>
+      prevAssigned.filter((role) => !selectedAssignedRoles.includes(role.roleId))
+    );
+    setSelectedAssignedRoles([]);
+  };
+  
+  const handleChange = (e) => {
+      setuserRole({
+        ...userRole,
+        [e.target.name]: e.target.value,
+      });
+    };
+
+  const handleSubmit = async(e) => {
+	
+	
+	 
+	e.preventDefault();
+	try{
+	const payload ={
+		...userRole,
+		roleId: assignedRoles.map(r => r.roleId),
+	};
+	
+	console.log(`User ID: `, userRole.userId);
+	 console.log('Assigned Roles:', userRole.roleId);
+	 console.log('Geographical Coverage:', {
+	   country: userRole.country,
+	   state: userRole.state,
+	   city: userRole.city,
+	 });
+	
+	const response = await fetch('role/addUserRole', {
+		method: "POST",
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify(payload),
+	});
+	
+	if (!response.ok) {
+	      const text = await response.text(); 
+	      throw new Error(`HTTP ${response.status}: ${text}`);
+	  }
+		
+	 const result = await response.json();
+	 console.log('Success:', result);
+	 
+	 setuserRole({
+		userId: '',
+		roleId: '',
+		country: '',
+		state:'',
+		city:''
+	 	});
+		
+	 } catch (error){
+		console.log(error)
+	 }
+	
+  };
+  
+  
+
+  return (
+    <div className="role-management-container">
+      <div className="navbar">
+        <h1>Role Management</h1>
+      </div>
+
+      <div className="middle-section">
+        <div className="roles-panel available-roles">
+          <h2>Available Roles</h2>
+          <div className="roles-list">
+            {availableRoles.map((role) => (
+              <button
+                key={role.roleId}
+                className={`role-button ${selectedAvailableRoles.includes(role.roleId) ? 'selected' : ''}`}
+                onClick={() => handleAvailableRoleSelect(role.roleId)}
+              >
+                {role.roleName}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="transfer-buttons">
+          <button onClick={assignRoles} disabled={selectedAvailableRoles.length === 0}>
+            &gt;
+          </button>
+          <button onClick={unassignRoles} disabled={selectedAssignedRoles.length === 0}>
+            &lt;
+          </button>
+        </div>
+
+        <div className="roles-panel assigned-roles">
+          <h2>Assigned Roles</h2>
+          <div className="roles-list">
+            {assignedRoles.map((role) => (
+              <button
+                key={role.roleId}
+                className={`role-button ${selectedAssignedRoles.includes(role.roleId) ? 'selected' : ''}`}
+                onClick={() => handleAssignedRoleSelect(role.roleId)}
+              >
+                {role.roleName}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="geographical-coverage">
+        <h2>Assign Location</h2>
+        <div className="dropdown-group">
+		
+          <label htmlFor="country">Country:</label>
+		  <select name="country" id="country" value={userRole.country} onChange={handleChange} required>
+              <option value="">Select Country</option>
+              {countries.map(country => (
+                  <option key={country.iso2} value={country.iso2}>{country.name}</option>
+              ))}
+          </select>
+		  
+		  <label htmlFor="state">State:</label>
+		  <select name="state" id="state" value={userRole.state} onChange={handleChange}  required>
+              <option value="">Select State</option>
+              {states.map(state => (
+                  <option key={state.iso2} value={state.iso2}>{state.name}</option>
+              ))}
+          </select>
+
+
+          <label htmlFor="city">City:</label>
+		  <select name="city" id="city" value={userRole.city} onChange={handleChange} required>
+              <option value="">Select City</option>
+              {cities.map(city => (
+                  <option key={city.name} value={city.name}>{city.name}</option>
+              ))}
+          </select>
+		  
+        </div>
+      </div>
+
+      <button className="submit-button" onClick={handleSubmit}>
+        Assign Roles
+      </button>
+	  <button onClick={() => onNavigate('mainUsers')} className="back-button">Back to Main Menu</button>
+
+    </div>
+  );
+};
+
+export default RoleManagement;

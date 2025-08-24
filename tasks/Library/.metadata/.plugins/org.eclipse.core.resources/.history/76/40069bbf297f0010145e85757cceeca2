@@ -1,0 +1,42 @@
+package com.users.Users.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.users.Users.model.Role;
+import com.users.Users.model.UserRole;
+import com.users.Users.repository.interfaces.RoleRepository;
+import com.users.Users.service.interfaces.RoleService;
+
+@Service
+public class RoleServiceImpl implements RoleService{
+	
+	private RoleRepository roleRepository;
+	
+	@Autowired
+	public RoleServiceImpl(RoleRepository roleRepository) {
+		this.roleRepository=roleRepository;
+	}
+	
+	public  List<Role> getRoles() {
+		return  roleRepository.getUsers();
+	}
+
+	public void addUserRole(UserRole userRole) {
+		roleRepository.addUserRole(userRole);
+	}
+
+	public List<UserRole> getUserAssignedRoles(Integer userId) {
+		
+		return roleRepository.getUserAssignedRoles(userId);
+	}
+
+	@Override
+	public List<String>  getRoleName(Integer userId) {
+		return roleRepository.getRoleName(userId);
+	}
+	
+
+}

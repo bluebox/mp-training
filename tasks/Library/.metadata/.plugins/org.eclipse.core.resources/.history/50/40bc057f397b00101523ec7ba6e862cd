@@ -1,0 +1,13 @@
+package com.LMS.LibMS.repository.interfaces;
+
+import com.LMS.LibMS.model.Member;
+import java.util.List;
+import java.util.Optional;
+
+public interface MemberRepository {
+    boolean addMember(Member member);
+    Optional<Member> findMemberById(Integer id);
+    List<Member> findAllMembers();
+    boolean deleteMember(Integer memberId);
+    boolean deleteMembers(List<Integer> memberIds);
+}

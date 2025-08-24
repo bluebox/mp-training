@@ -1,0 +1,329 @@
+import React, { useState, useEffect } from 'react';
+import './ViewBooks.css';
+
+const ViewBooks = ({ onUpdateClick }) => {
+  const [books, setBooks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedBooks, setSelectedBooks] = useState([]);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('success');
+
+  const getDisplayName = (code, type) => {
+    if (type === 'status') {
+      if (code === 'A') return 'ACTIVE';
+      if (code === 'I') return 'INACTIVE';
+    }
+    if (type === 'availability') {
+      if (code === 'A') return 'AVAILABLE';
+      if (code === 'I') return 'ISSUED';
+    }
+    return code;
+  };
+
+  const renderEnum = (val, type) => {
+    if (!val) return '';
+    if (typeof val === 'object') {
+      if (val.displayName) return val.displayName;
+      if (val.code) return getDisplayName(val.code, type);
+    }
+    if (typeof val === 'string') {
+      return getDisplayName(val, type);
+    }
+    return val;
+  };
+
+  const isStatusInactive = (status) => {
+    if (!status) return false;
+    if (typeof status === 'string') return status.toUpperCase() === 'I';
+    if (typeof status === 'object') {
+      return (status.code || '').toString().toUpperCase() === 'I';
+    }
+    return false;
+  };
+
+  const isAvailabilityAvailable = (availability) => {
+    if (!availability) return false;
+    if (typeof availability === 'string') return availability.toUpperCase() === 'A';
+    if (typeof availability === 'object') {
+      return (availability.code || '').toString().toUpperCase() === 'A';
+    }
+    return false;
+  };
+
+  const fetchBooks = async () => {
+    setIsLoading(true);
+    setError(null);
+    setMessage('');
+    try {
+      const response = await fetch('/books/getbooks');
+      if (response.ok) {
+        const data = await response.json();
+        setBooks(data);
+      } else {
+		const errorData = await response.json();
+		setMessage(`Error: ${errorData.message}`);
+		setMessageType('error');
+      }
+    } catch (err) {
+      setError('Failed to fetch books.');
+      setMessage('Failed to fetch books.');
+      setMessageType('error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const handleSelectBook = (bookId) => {
+    setSelectedBooks((prev) =>
+      prev.includes(bookId) ? prev.filter((id) => id !== bookId) : [...prev, bookId]
+    );
+  };
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      setSelectedBooks(books.map((b) => b.bookId));
+    } else {
+      setSelectedBooks([]);
+    }
+  };
+
+  const handleUpdate = (bookId) => {
+    onUpdateClick(bookId);
+  };
+
+  const handleDelete = async (bookId) => {
+    if (!window.confirm(`Are you sure you want to delete book ID ${bookId}?`)) return;
+
+    try {
+      const response = await fetch(`/books/delete/${bookId}`, { method: 'DELETE' });
+      if (response.ok) {
+        setMessage(`Book ID ${bookId} deleted.`);
+        setMessageType('success');
+        fetchBooks();
+        setSelectedBooks((prev) => prev.filter((id) => id !== bookId));
+      } else {
+		
+		const errorData = await response.json();
+		setMessage(`Error: ${bookId} -> ${errorData.message}`);
+	      setMessageType('error');
+      }
+    } catch (err) {
+      setMessage(`Error deleting book ID ${bookId}.`);
+      setMessageType('error');
+    }
+  };
+
+  const toggleAvailabilityForBook = async (book) => {
+    if (isStatusInactive(book.status)) {
+      setMessage(`Cannot update availability for an inactive book.`);
+      setMessageType('error');
+      return;
+    }
+
+    const currentlyAvailable = isAvailabilityAvailable(book.availability);
+    const newAvailabilityCode = currentlyAvailable ? 'I' : 'A';
+
+    try {
+      const response = await fetch('/books/changeAvailability', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bookId: book.bookId, newAvailability: newAvailabilityCode })
+      });
+
+      if (response.ok) {
+        setMessage(`Updated availability for book ID ${book.bookId} to ${newAvailabilityCode}`);
+        setMessageType('success');
+        fetchBooks();
+      } else {
+        setMessage(`Failed to update availability for book ID ${book.bookId}.`);
+        setMessageType('error');
+      }
+    } catch (err) {
+      setMessage(`Error updating availability for book ID ${book.bookId}.`);
+      setMessageType('error');
+    }
+  };
+
+  const handleBooks = async () => {
+    if (selectedBooks.length === 0) {
+      alert('Please select books to delete.');
+      return;
+    }
+    if (!window.confirm(`Are you sure you want to delete ${selectedBooks} selected books?`)) return;
+
+    try {
+      const response = await fetch('/books/deleteBooks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedBooks })
+      });
+      if (response.ok) {
+        setMessage(`Deleted selected books: ${selectedBooks.join(', ')}`);
+        setMessageType('success');
+        setSelectedBooks([]);
+        fetchBooks();
+      } else {
+        setMessage('Failed to delete selected books.');
+        setMessageType('error');
+      }
+    } catch (err) {
+      setMessage('Error deleting selected books.');
+      setMessageType('error');
+    }
+  };
+
+  const updateAvailabilities = async () => {
+    if (selectedBooks.length === 0) {
+      alert('Please select books to update availability.');
+      return;
+    }
+    if (!window.confirm(`Are you sure you want to update availability for ${selectedBooks.length} selected books?`)) return;
+
+    try {
+      const response = await fetch('/books/updateAvailabilities', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedBooks })
+      });
+      if (response.ok) {
+        setMessage(`Updated availability for selected books: ${selectedBooks.join(', ')}`);
+        setMessageType('success');
+        setSelectedBooks([]);
+        fetchBooks();
+      } else {
+        setMessage('Failed to update availability for selected books.');
+        setMessageType('error');
+      }
+    } catch (err) {
+      setMessage('Error updating availability for selected books.');
+      setMessageType('error');
+    }
+  };
+
+  const handleBackToMain = () => {
+    window.location.href = 'main';
+  };
+  
+  const renderAvailActionButton = (book) => {
+    const currentlyAvailable = isAvailabilityAvailable(book.availability);
+    const newAvailabilityLabel = currentlyAvailable ? 'Mark Issued' : 'Mark Available';
+    const disabledForStatus = isStatusInactive(book.status);
+
+    return (
+      <button 
+        onClick={() => toggleAvailabilityForBook(book)}
+        className="avail-action-button"
+        disabled={disabledForStatus}
+      >
+        {newAvailabilityLabel}
+      </button>
+    );
+  };
+  
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleString();
+  };
+
+  if (isLoading) return <div className="loading-message">Loading books...</div>;
+  if (error) return <div className="error-message">Error: {error}</div>;
+
+  return (
+    <div className="view-books-container">
+      <h1 className="view-books-header">All Books</h1>
+
+      <div className="view-books-table-wrapper">
+        <table className="view-books-table">
+          <thead>
+            <tr>
+              <th className="view-books-checkbox-column">
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={books.length > 0 && selectedBooks.length === books.length}
+                />
+              </th>
+              <th>Book ID</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Avail.</th>
+              <th>Actions</th>
+              <th>Avail. Action</th>
+              <th>Created At</th>
+              <th>Created By</th>
+              <th>Updated At</th>
+              <th>Updated By</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.length > 0 ? (
+              books.map((book) => (
+                <tr key={book.bookId}>
+                  <td className="view-books-checkbox-column">
+                    <input
+                      type="checkbox"
+                      checked={selectedBooks.includes(book.bookId)}
+                      onChange={() => handleSelectBook(book.bookId)}
+                    />
+                  </td>
+                  <td>{book.bookId}</td>
+                  <td>{book.title}</td>
+                  <td>{book.author}</td>
+                  <td>{renderEnum(book.category, 'category')}</td>
+                  <td>{renderEnum(book.status, 'status')}</td>
+                  <td>{renderEnum(book.availability, 'availability')}</td>
+                  <td className="view-books-actions-column">
+                    <button onClick={() => handleUpdate(book.bookId)} className="view-books-action-button view-books-update-button">Update</button>
+                    <button onClick={() => handleDelete(book.bookId)} className="view-books-action-button view-books-delete-button">Delete</button>
+                  </td>
+                  <td className="view-books-actions-column">
+                    {renderAvailActionButton(book)}
+                  </td>
+                  <td>{formatDate(book.createdAt)}</td>
+                  <td>{book.createdBy}</td>
+                  <td>{formatDate(book.updatedAt)}</td>
+                  <td>{book.updatedBy}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="13" className="view-books-no-books-message">
+                  No books found in the library.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+	  <p className="view-books-message" style={{ color: messageType === 'error' ? 'red' : 'green' }}>
+	         {message}
+	  </p>
+	  
+      <div className="view-books-button-group">
+        <button onClick={updateAvailabilities} disabled={selectedBooks.length === 0} className="view-books-batch-update-button">
+          Update Availability - Selected Books
+        </button>
+        <button onClick={handleBooks} disabled={selectedBooks.length === 0} className="view-books-batch-delete-button">
+          Delete Selected Books
+        </button>
+        <button className="view-books-refresh-button" onClick={fetchBooks}>
+          Refresh Books
+        </button>
+		<button className="view-books-refresh-button" onClick={handleBackToMain}>
+		          Back to Main Menu
+		 </button>
+		      </div>
+		    </div>
+		  );
+		};
+
+export default ViewBooks;

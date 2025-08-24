@@ -1,0 +1,192 @@
+import React, { useState, useEffect } from 'react';
+import './UpdateBook.css';
+
+const UpdateBook = ({ bookId, onNavigate }) => { // onNavigate is passed as a prop
+  const [bookData, setBookData] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [statuses, setStatuses] = useState([]);
+  const [availabilities, setAvailabilities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('success');
+  const [titleError, setTitleError] = useState(''); 
+  const [authorError, setAuthorError] = useState('');
+
+
+  useEffect(() => {
+    const fetchBookAndEnums = async () => {
+      setIsLoading(true);
+      try {
+        const [catRes, statusRes, availRes, bookRes] = await Promise.all([
+          fetch('/books/bookcategories'),
+          fetch('/books/bookstatuses'),
+          fetch('/books/bookavailabilities'),
+          fetch(`/books/getbook/${bookId}`)
+        ]);
+        const [catData, statusData, availData, bookToEdit] = await Promise.all([
+          catRes.json(),
+          statusRes.json(),
+          availRes.json(),
+          bookRes.json()
+        ]);
+
+        setCategories(catData || []);
+        setStatuses(statusData || []);
+        setAvailabilities(availData || []);
+
+        if (bookToEdit) {
+          setBookData({
+            bookId: bookToEdit.bookId,
+            title: bookToEdit.title,
+            author: bookToEdit.author,
+            category: typeof bookToEdit.category === 'object' ? bookToEdit.category.code : bookToEdit.category,
+            status: typeof bookToEdit.status === 'object' ? bookToEdit.status.code : bookToEdit.status,
+            availability: typeof bookToEdit.availability === 'object' ? bookToEdit.availability.code : bookToEdit.availability,
+          });
+        } else {
+          setMessage('Error: Book not found.');
+          setMessageType('error');
+        }
+
+      } catch (err) {
+        setMessage('Error fetching data.');
+        setMessageType('error');
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (bookId) {
+      fetchBookAndEnums();
+    }
+  }, [bookId]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBookData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+	
+	if (!bookData.title || bookData.title.length < 5) {
+      setTitleError('Title must be at least 5 characters');
+      return;
+    }
+	
+	if(!/^[A-Za-z]+$/.test(bookData.title)){
+		setTitleError('Title must be only characters');
+	    return;
+	}
+	
+    if (!bookData.author || bookData.author.length < 5) {
+      setAuthorError('Author must be at least 5 characters');
+      return;
+    }
+	
+	if(!/^[A-Za-z]+$/.test(bookData.author)){
+		setTitleError('Author must be only characters');
+	    return;
+	}
+	
+    setMessage('Updating book...');
+    setMessageType('success');
+
+    try {
+      const url = `/books/update/${bookId}`;
+      const payload = {
+        bookId: bookData.bookId,
+        title: bookData.title,
+        author: bookData.author,
+        category: bookData.category,
+        status: bookData.status,
+        availability: bookData.availability
+      };
+
+      const res = await fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        setMessage('Book updated successfully!');
+        setMessageType('success');
+        onNavigate('viewBooks'); 
+      } else {
+        const txt = await res.text();
+        setMessage(`Server error: ${res.status} ${txt}`);
+        setMessageType('error');
+      }
+    } catch (err) {
+      console.error('Update error', err);
+      setMessage('Error to Update book');
+      setMessageType('error');
+    }
+  };
+
+  if (isLoading || !bookData) return <div className="loading-message">{message || 'Loading book for update...'}</div>;
+
+  return (
+	<div className="add-book__container">
+	      <div className="add-book__form-container">
+	        <h2 className="add-book__form-heading">Add a New Book</h2>
+	        <form onSubmit={handleSubmit} className="add-book__form">
+	          <div className="add-book__form-group">
+	            <label htmlFor="title" className="add-book__label">Title</label>
+	            <input name="title" id="title" value={bookData.title} onChange={handleChange} required className="add-book__input" />
+				{ titleError && <span style={{ color: 'red', fontSize: '12px' }}>{titleError}</span> }
+
+	          </div>
+
+	          <div className="add-book__form-group">
+	            <label htmlFor="author" className="add-book__label">Author</label>
+	            <input name="author" id="author" value={bookData.author} onChange={handleChange} required className="add-book__input" />
+				{ authorError && <span style={{ color: 'red', fontSize: '12px' }}>{authorError}</span> }
+
+	          </div>
+
+	          <div className="add-book__form-group">
+	            <label htmlFor="category" className="add-book__label">Category</label>
+	            <select name="category" id="category" value={bookData.category} onChange={handleChange} required className="add-book__select">
+	              <option value="" disabled>Select category</option>
+	              {categories.map(cat => (
+	                <option key={cat.code} value={cat.code}>{cat.displayName}</option>
+	              ))}
+	            </select>
+	          </div>
+
+	          <div className="add-book__form-group">
+	            <label htmlFor="status" className="add-book__label">Status</label>
+	            <select name="status" id="status" value={bookData.status} onChange={handleChange} required className="add-book__select">
+	              <option value="" disabled>Select status</option>
+	              {statuses.map(s => (
+	                <option key={s.code} value={s.code}>{s.displayName}</option>
+	              ))}
+	            </select>
+	          </div>
+
+	          <div className="add-book__form-group">
+	            <label htmlFor="availability" className="add-book__label">Availability</label>
+	            <select name="availability" id="availability" value={bookData.availability} onChange={handleChange} required className="add-book__select">
+	              <option value="" disabled>Select availability</option>
+	              {availabilities.map(a => (
+	                <option key={a.code} value={a.code}>{a.displayName}</option>
+	              ))}
+	            </select>
+	          </div>
+
+			  <button type="submit" className="add-book__submit-btn" disabled={loading}>
+			    {loading ? 'Adding...' : 'Add Book'}
+			  </button>
+
+	        </form>
+
+	        {message && <p className="add-book__message">{message}</p>}
+	      </div>
+	    </div>
+	);
+};
+
+export default UpdateBook;

@@ -1,0 +1,41 @@
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+import UpdateBook from './components/UpdateBook';
+import HomePage from './components/Home';
+import './App.css';
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home'); // Set the default page to 'home'
+  const [bookToUpdateId, setBookToUpdateId] = useState(null);
+
+  const handleNavigate = (page, bookId = null) => {
+    setCurrentPage(page);
+    setBookToUpdateId(bookId);
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <HomePage />;
+      case 'add':
+        return <AddBook />;
+      case 'update':
+        return <UpdateBook bookId={bookToUpdateId} />;
+      case 'view':
+        return <ViewBooks onUpdateClick={(bookId) => handleNavigate('update', bookId)} />;
+      default:
+        return <HomePage />;
+    }
+  };
+
+  return (
+    <div>
+      <Navbar onNavigate={handleNavigate} />
+      {renderPage()}
+    </div>
+  );
+};
+
+export default App;

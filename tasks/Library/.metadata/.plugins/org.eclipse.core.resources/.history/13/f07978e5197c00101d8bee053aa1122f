@@ -1,0 +1,37 @@
+package com.LMS.LibMS.controllers;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
+
+import lombok.extern.slf4j.Slf4j;
+
+//@Slf4j
+//@ControllerAdvice
+//public class GlobalExceptionController {
+//   
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView exceptionHandler(Exception exception){
+//        ModelAndView errorPage = new ModelAndView();
+//        errorPage.setViewName("error");
+//        errorPage.addObject("errormsg", exception.getMessage());
+//        return errorPage;
+//    }
+//
+//}
+
+@ControllerAdvice
+public class GlobalExceptionController {
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return new ResponseEntity<>(Map.of("message", ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> handleGenericException(Exception ex) {
+        return new ResponseEntity<>(Map.of("message", "An unexpected error occurred: " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}

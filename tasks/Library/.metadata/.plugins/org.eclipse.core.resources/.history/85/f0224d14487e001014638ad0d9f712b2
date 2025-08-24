@@ -1,0 +1,43 @@
+package com.users.Users.model;
+
+import java.time.LocalDateTime;
+
+import com.users.Users.enums.UserStatus;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+	
+    private Integer userId;
+    
+    @NotBlank(message = "user Name cannot be blank")
+	@Size(min = 5, max = 15, message = "Username should be contain atleast 5 chars and atmost 15 chars")
+    private String username;
+    
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 8, max = 20, message = "Password should be between 8 and 20 characters")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,20}$",
+    message = "Password should be 8-20 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.")
+    private String password;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String country;
+    private String state;
+    private String city;
+    private String postalCode;
+    private UserStatus status;
+    private String aprovedStatus;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
+    
+}

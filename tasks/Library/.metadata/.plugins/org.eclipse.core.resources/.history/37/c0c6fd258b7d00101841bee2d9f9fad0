@@ -1,0 +1,30 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Occupy full viewport height */
+}
+
+.role-management-container {
+  display: flex;
+  flex: 1; /* Take remaining space */
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #ccc; /* For visualization */
+  padding: 20px;
+}
+
+.available-roles,
+.assigned-roles {
+  border: 1px solid #eee;
+  padding: 15px;
+  min-width: 200px;
+}
+
+.transfer-button {
+  margin: 0 20px;
+}
+
+.geographical-coverage-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+}

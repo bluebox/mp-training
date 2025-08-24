@@ -1,0 +1,80 @@
+/* Container for the entire page, centers the form */
+.add-book-container {
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container for the form itself, adds shadow and rounded corners */
+.add-book-form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Heading style */
+.add-book-form-container h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form layout with spacing between elements */
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Individual form group for label and input */
+.add-book-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label style */
+.add-book-form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Input and select box style */
+.add-book-form-group input,
+.add-book-form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Submit button style */
+.add-book-submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.add-book-submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Message style */
+.add-book-message {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}

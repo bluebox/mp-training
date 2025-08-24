@@ -1,0 +1,72 @@
+package com.users.Users.config;
+
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+
+@Configuration
+@EnableWebSecurity
+public class ProjectSecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .requestMatchers("/user/**").permitAll()
+                .requestMatchers("/main/**").permitAll()
+                .anyRequest().authenticated())
+                .formLogin(form -> form.defaultSuccessUrl("/home",true));
+        
+        return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration cfg = new CorsConfiguration();
+        cfg.setAllowedOrigins(List.of("http://localhost:3000")); 
+        cfg.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH","OPTIONS"));
+        cfg.setAllowedHeaders(List.of("*"));
+        cfg.setAllowCredentials(false);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", cfg);
+        return source;
+    }
+    
+    @Bean
+  public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+      UserDetails employee = User.builder()
+              .username("employee")
+              .password(passwordEncoder.encode("emp123"))
+              .roles("EMPLOYEE")
+              .build();
+
+      UserDetails manager = User.builder()
+              .username("manager")
+              .password(passwordEncoder.encode("man123"))
+              .roles("MANAGER")
+              .build();
+
+      UserDetails admin = User.builder()
+              .username("admin")
+              .password(passwordEncoder.encode("12345"))
+              .roles("ADMIN")
+              .build();
+
+      return new InMemoryUserDetailsManager(employee, manager, admin);
+  }
+}

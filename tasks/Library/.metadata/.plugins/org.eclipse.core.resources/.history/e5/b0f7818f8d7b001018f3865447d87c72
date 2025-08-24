@@ -1,0 +1,83 @@
+import React, { useState } from 'react';
+import './Reports.css';
+
+const Reports = ({ onNavigate }) => {
+    const [reportContent, setReportContent] = useState('');
+    const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleReport = async (reportType) => {
+        setIsLoading(true);
+        setMessage('');
+        try {
+            let url = `/reports/${reportType}`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            let content = '';
+            if (response.ok) {
+                if (reportType === 'overdueBooks') {
+                    if (data.length === 0) {
+                        content = 'No overdue books found.';
+                    } else {
+                        content = '--- Overdue Books (Issued for >14 days) ---\n\n';
+                        data.forEach(record => {
+                            content += `Book ID: ${record.bookId}\n`;
+                            content += `  Issued to Member ID: ${record.memberId}\n`;
+                            content += `  Issue Date: ${new Date(record.issueDate).toLocaleString()}\n`;
+                            content += '-------------------------------------------\n';
+                        });
+                    }
+                } else if (reportType === 'booksByCategory') {
+                    if (Object.keys(data).length === 0) {
+                        content = 'No books found to categorize.';
+                    } else {
+                        content = '--- Books Per Category ---\n\n';
+                        for (const category in data) {
+                            content += `${category}: ${data[category]} books\n`;
+                        }
+                    }
+                } else if (reportType === 'membersWithActiveBooks') {
+                    if (data.length === 0) {
+                        content = 'No members currently have active issued books.';
+                    } else {
+                        content = '--- Members with Active Issued Books ---\n\n';
+                        data.forEach(member => {
+                            content += `Member ID: ${member.memberID} - Name: ${member.name}\n`;
+                        });
+                    }
+                }
+            } else {
+                content = `Error generating report: ${data.message}`;
+            }
+
+            setReportContent(content);
+            setMessage(response.ok ? '' : content);
+        } catch (err) {
+            setMessage('An unexpected error occurred while generating the report.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return (
+        <div className="reports-container">
+            <h1>Library Reports</h1>
+            <div className="button-row">
+                <button onClick={() => handleReport('overdueBooks')} disabled={isLoading}>Overdue Books</button>
+                <button onClick={() => handleReport('booksByCategory')} disabled={isLoading}>Books Per Category</button>
+                <button onClick={() => handleReport('membersWithActiveBooks')} disabled={isLoading}>Members with Active Books</button>
+            </div>
+            
+            <textarea value={reportContent} readOnly></textarea>
+            
+            {message && <p className="message-label" style={{ color: 'red' }}>{message}</p>}
+
+            <div className="back-button-group">
+                <button onClick={() => onNavigate('home')}>Back to Main Menu</button>
+            </div>
+        </div>
+    );
+};
+
+export default Reports;

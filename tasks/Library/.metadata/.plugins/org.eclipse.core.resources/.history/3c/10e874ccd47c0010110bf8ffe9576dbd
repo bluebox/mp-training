@@ -1,0 +1,22 @@
+package com.users.Users.service;
+
+import java.util.List;
+
+import com.users.Users.model.Role;
+import com.users.Users.repository.RoleRepository;
+
+public class RoleService {
+	
+	private RoleRepository roleRepository;
+	
+	public RoleService(RoleRepository roleRepository) {
+		this.roleRepository=roleRepository;
+	}
+	
+	public  List<Role> getUsers() {
+		return  roleRepository.getUsers();
+		
+	}
+	
+
+}

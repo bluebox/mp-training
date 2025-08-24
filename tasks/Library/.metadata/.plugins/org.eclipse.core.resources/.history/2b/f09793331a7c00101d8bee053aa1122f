@@ -1,0 +1,202 @@
+import React, { useState, useEffect } from 'react';
+import './AddBook.css';
+
+const AddBook = () => {
+  const [categories, setCategories] = useState([]);
+  const [statuses, setStatuses] = useState([]);
+  const [availabilities, setAvailabilities] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [titleError, setTitleError] = useState(''); 
+  const [authorError, setAuthorError] = useState('');
+
+  const [bookData, setBookData] = useState({
+    bookId: null,
+    title: '',
+    author: '',
+    category: '',
+    status: '',
+    availability: ''
+  });
+
+  const [message, setMessage] = useState('');
+  
+  useEffect(() => {
+    const init = async () => {
+      try {
+        const [catRes, statusRes, availRes] = await Promise.all([
+          fetch('/books/bookcategories'),
+          fetch('/books/bookstatuses'),
+          fetch('/books/bookavailabilities')
+        ]);
+        const [catData, statusData, availData] = await Promise.all([
+          catRes.json(),
+          statusRes.json(),
+          availRes.json()
+        ]);
+
+        setCategories(catData || []);
+        setStatuses(statusData || []);
+        setAvailabilities(availData || []);
+
+        setBookData(prev => ({
+          ...prev,
+          category: prev.category || (catData && catData[0] && catData[0].code) || '',
+          status: prev.status || (statusData && statusData[0] && statusData[0].code) || '',
+          availability: prev.availability || (availData && availData[0] && availData[0].code) || ''
+        }));
+      } catch (err) {
+        console.error('Error loading dropdowns', err);
+        setMessage('Error loading dropdowns');
+      }
+    };
+
+    init();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBookData(prev => ({ ...prev, [name]: value }));
+  };
+  
+    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+	
+	setMessage('');
+	setTitleError('');
+    setAuthorError('');
+    setLoading(true);
+
+	    
+	    if (!bookData.title || bookData.title.length < 5) {
+	      setTitleError('Title must be at least 5 characters');
+	      setLoading(false);
+	      return;
+	    }
+		
+		if(!/^[A-Za-z\s]+$/.test(bookData.title)){
+			setTitleError('Title must be only characters');
+		 	setLoading(false);
+		    return;
+		}
+		
+	    if (!bookData.author || bookData.author.length < 5) {
+	      setAuthorError('Author must be at least 5 characters');
+	      setLoading(false);
+	      return;
+	    }
+		
+		if(!/^[A-Za-z\s]+$/.test(bookData.author)){
+			setTitleError('Author must be only characters');
+		 	setLoading(false);
+		    return;
+		}
+		
+
+    setMessage('Adding book...');
+
+    try {
+      const url = '/books/add';
+      const payload = {
+        title: bookData.title,
+        author: bookData.author,
+        category: bookData.category,
+        status: bookData.status,
+        availability: bookData.availability
+      };
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+							
+  if (res.ok) {
+			
+		
+        setMessage('Book added successfully!');
+        setBookData({
+          bookId: null,
+          title: '',
+          author: '',
+          category: categories[0]?.code || '',
+          status: statuses[0]?.code || '',
+          availability: availabilities[0]?.code || ''
+        });
+      } else {
+        /*const txt = await res.text();
+        setMessage(`Server error: ${res.status} ${txt}`);*/
+		const errorData = await response.json();
+		        setMessage(`Error: ${errorData.message}`);
+		        setMessageType('error');
+      }
+    } catch (err) {
+      console.error('Submit error', err);
+      setMessage('Submit error');
+    }finally {
+	    setLoading(false);
+	  }
+  };
+
+  return (
+    <div className="add-book__container">
+      <div className="add-book__form-container">
+        <h2 className="add-book__form-heading">Add a New Book</h2>
+        <form onSubmit={handleSubmit} className="add-book__form">
+          <div className="add-book__form-group">
+            <label htmlFor="title" className="add-book__label">Title</label>
+            <input name="title" id="title" value={bookData.title} onChange={handleChange} required className="add-book__input" placeholder="Enter Title..." />
+			{ titleError && <span style={{ color: 'red', fontSize: '12px' }}>{titleError}</span> }
+
+          </div>
+
+          <div className="add-book__form-group">
+            <label htmlFor="author" className="add-book__label">Author</label>
+            <input name="author" id="author" value={bookData.author} onChange={handleChange} required className="add-book__input" placeholder="Enter Author..." />
+			{ authorError && <span style={{ color: 'red', fontSize: '12px' }}>{authorError}</span> }
+
+          </div>
+
+          <div className="add-book__form-group">
+            <label htmlFor="category" className="add-book__label">Category</label>
+            <select name="category" id="category" value={bookData.category} onChange={handleChange} required className="add-book__select">
+              <option value="" disabled>Select category</option>
+              {categories.map(cat => (
+                <option key={cat.code} value={cat.code}>{cat.displayName}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="add-book__form-group">
+            <label htmlFor="status" className="add-book__label">Status</label>
+            <select name="status" id="status" value={bookData.status} onChange={handleChange} required className="add-book__select">
+              <option value="" disabled>Select status</option>
+              {statuses.map(s => (
+                <option key={s.code} value={s.code}>{s.displayName}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="add-book__form-group">
+            <label htmlFor="availability" className="add-book__label">Availability</label>
+            <select name="availability" id="availability" value={bookData.availability} onChange={handleChange} required className="add-book__select">
+              <option value="" disabled>Select availability</option>
+              {availabilities.map(a => (
+                <option key={a.code} value={a.code}>{a.displayName}</option>
+              ))}
+            </select>
+          </div>
+
+		  <button type="submit" className="add-book__submit-btn" disabled={loading}>
+		    Add Book
+		  </button>
+
+        </form>
+
+        {message && <p className="add-book__message">{message}</p>}
+      </div>
+    </div>
+  );
+};
+
+export default AddBook;

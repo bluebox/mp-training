@@ -1,0 +1,215 @@
+/* .navbar-container {
+	display: flex;
+	flex-direction: column;
+    padding: 16px 24px;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar-button {
+    font-size: 16px;
+    padding: 10px 16px;
+    color: #fff;
+    background: none;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #555;
+    border-color: #888;
+}
+
+.navbar-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.navbar-button:active {
+    background-color: #444;
+} */
+
+/* Layout constants */
+/* :root {
+  --appnav-sidebar-w: 240px;
+  --appnav-header-h: 64px;
+  --appnav-bg: #111827;       
+  --appnav-bg-hover: #1f2937;  
+  --appnav-border: #374151;     
+  --appnav-text: black;       
+  --appnav-muted: #9ca3af;      
+  --appnav-accent: #60a5fa;     
+  --appnav-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+ */
+/* Fixed left sidebar */
+.appnav-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--appnav-sidebar-w);
+  height: 100vh;
+  background: var(--appnav-bg);
+  color: var(--appnav-text);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--appnav-border);
+  z-index: 1000;
+}
+
+.appnav-brand {
+  height: var(--appnav-header-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--appnav-border);
+  cursor: pointer;
+  user-select: none;
+}
+.appnav-brand:focus { outline: 2px solid var(--appnav-accent); outline-offset: 2px; }
+.appnav-brand-logo { font-size: 20px; }
+.appnav-brand-text { font-weight: 600; letter-spacing: 0.2px; }
+
+/* Nav items in sidebar */
+.appnav-nav {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: auto;
+}
+.appnav-item {
+  text-align: left;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--appnav-text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.05s ease;
+}
+.appnav-item:hover {
+  background: var(--appnav-bg-hover);
+  border-color: var(--appnav-border);
+}
+.appnav-item:active { transform: translateY(1px); }
+.appnav-item:focus { outline: 2px solid var(--appnav-accent); outline-offset: 2px; }
+
+/* Fixed top header (spans full width) */
+.appnav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: var(--appnav-header-h);
+  width: 100%;
+  padding-left: var(--appnav-sidebar-w); /* make room for sidebar */
+  background: #0b1220; /* slightly different to separate layers */
+  color: var(--appnav-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--appnav-border);
+  box-shadow: var(--appnav-shadow);
+  z-index: 1100;
+}
+
+.appnav-header-left { /* reserved for breadcrumbs/search later */ }
+.appnav-header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.appnav-username {
+  font-size: 14px;
+  color: var(--appnav-muted);
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Avatar button + image/initials */
+.appnav-avatar-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: 1px solid var(--appnav-border);
+  background: var(--appnav-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.appnav-avatar-btn:hover { background: var(--appnav-bg-hover); }
+.appnav-avatar-btn:focus { outline: 2px solid var(--appnav-accent); outline-offset: 2px; }
+
+.appnav-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+.appnav-avatar-fallback {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Dropdown menu */
+.appnav-menu {
+  position: absolute;
+  top: calc(var(--appnav-header-h) + 8px);
+  right: 16px;
+  background: #0f172a; /* slate-950-ish */
+  border: 1px solid var(--appnav-border);
+  border-radius: 12px;
+  box-shadow: var(--appnav-shadow);
+  min-width: 160px;
+  padding: 6px;
+  z-index: 1200;
+}
+.appnav-menu-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--appnav-text);
+  font-size: 14px;
+  cursor: pointer;
+}
+.appnav-menu-item:hover { background: var(--appnav-bg-hover); }
+
+/* Helper class: apply to your page/content root to avoid being overlapped */
+.appnav-content {
+  padding-top: var(--appnav-header-h);
+  margin-left: var(--appnav-sidebar-w);
+  min-height: 100vh;
+  background: #0b0f1a; /* optional content bg */
+  color: #e5e7eb;
+}
+
+/* Basic responsive tweak: collapse sidebar on very small widths */
+@media (max-width: 640px) {
+  :root { --appnav-sidebar-w: 200px; }
+  .appnav-username { display: none; }
+}

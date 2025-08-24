@@ -1,0 +1,44 @@
+import React from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate, onLogout }) => {
+  const token = localStorage.getItem("jwtToken");
+  const role = localStorage.getItem("userRole");
+
+  if (!token) {
+    return null;
+  }
+
+  return (
+    <nav className="navbar-container">
+      <ul className="navbar-list">
+        <li>
+          <button onClick={() => onNavigate('addUser')} className="navbar-button">
+            Add User
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('viewUserRequests')} className="navbar-button">
+            View User Requests
+          </button>
+        </li>
+
+        {role === "ROLE_ADMIN" && (
+          <li>
+            <button onClick={() => onNavigate('mainUsers')} className="navbar-button">
+              View Main Users
+            </button>
+          </li>
+        )}
+
+        <li>
+          <button onClick={onLogout} className="navbar-button">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;

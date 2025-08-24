@@ -1,0 +1,171 @@
+import React, { useState, useEffect } from 'react';
+import './UpdateMember.css';
+
+const UpdateMember = ({ memberId, onNavigate }) => {
+    const [memberData, setMemberData] = useState(null);
+    const [genders, setGenders] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('success');
+	const [nameError, setNameError] = useState(''); 
+	const [emailError, setEmailError] = useState('');
+	const [phoneNumberError, setPhoneNumberError] = useState('');
+
+	
+
+    useEffect(() => {
+        const fetchMemberData = async () => {
+            setIsLoading(true);
+            try {
+                const memberRes = await fetch(`/members/getmember/${memberId}`);
+                const member = await memberRes.json();
+                setMemberData(member);
+
+                const gendersRes = await fetch('/members/genders');
+                const gendersData = await gendersRes.json();
+                setGenders(gendersData);
+            } catch (error) {
+                setMessage('Error loading member data.');
+                setMessageType('error');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        if (memberId) {
+            fetchMemberData();
+        }
+    }, [memberId]);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setMemberData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+		
+		setNameError('')
+		setEmailError('')
+		setPhoneNumberError('')
+		
+		if (!memberData.name || memberData.name.length < 5) {
+				      setNameError('name must be at least 5 characters');
+				      return;
+	    }
+		
+		if(!/^[A-Za-z\s]+$/.test(memberData.name)){
+			setNameError('name must be only characters');
+		    return;
+		}
+		
+	    if (!memberData.email || memberData.email.length < 5) {
+	      setEmailError('Enter a Email address');
+	      return;
+	    }
+		
+		if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(memberData.email)){
+			setEmailError('Enter a valid email');
+		    return;
+		}
+		
+		if (!memberData.phoneNumber || memberData.phoneNumber.length < 10) {
+	       setPhoneNumberError('Enter a phonenumber');
+	      return;
+	    }
+		
+		if(!/^[6-9][0-9]{9}$/.test(memberData.phoneNumber)){
+			setPhoneNumberError('Enter a valid phoneNumber');
+		    return;
+		}
+
+		
+		
+        setMessage('Updating member...');
+        setMessageType('success');
+
+        try {
+            const response = await fetch(`/members/update/${memberId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...memberData,
+                    phoneNumber: parseInt(memberData.phoneNumber, 10),
+                }),
+            });
+
+            if (response.ok) {
+                setMessage('Member updated successfully!');
+                setMessageType('success');
+            } else {
+                setMessage('Error updating member.');
+                setMessageType('error');
+            }
+        } catch (error) {
+            setMessage('Error updating member.');
+            setMessageType('error');
+        }
+    };
+
+    if (isLoading || !memberData) return <div>Loading member data...</div>;
+
+    return (
+        <div className="update-member-container">
+            <div className="update-member-form-container">
+                <h2>Update Member</h2>
+                <form onSubmit={handleSubmit} className="update-member-form">
+                    <div className="update-member-form-group">
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" id="name" name="name" value={memberData.name} onChange={handleChange} required placeholder="Enter Name..." />
+					</div>
+					
+					<div>
+						{ nameError && <span style={{ color: 'red', fontSize: '12px' }}>{nameError}</span> }
+					</div>
+                    <div className="update-member-form-group">
+                        <label htmlFor="email">Email:</label>
+                        <input type="text" id="email" name="email" value={memberData.email} onChange={handleChange} required placeholder="Enter Email..."/>
+						{ emailError && <span style={{ color: 'red', fontSize: '12px' }}>{emailError}</span> }
+
+						</div>
+                    <div className="update-member-form-group">
+                        <label htmlFor="phoneNumber">Phone Number:</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" value={memberData.phoneNumber} onChange={handleChange} required />
+						{ phoneNumberError && <span style={{ color: 'red', fontSize: '12px' }}>{phoneNumberError}</span> }
+
+						</div>
+                    <div className="update-member-form-group">
+                        <label>Gender:</label>
+                        <div className="gender-options">
+                            {genders.map(g => (
+                                <React.Fragment key={g.code}>
+                                    <input
+                                        type="radio"
+                                        id={g.code}
+                                        name="gender"
+                                        value={g.code}
+                                        checked={memberData.gender === g.code}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <label htmlFor={g.code}>{g.displayName}</label>
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="update-member-form-group">
+                        <label htmlFor="address">Address:</label>
+                        <input type="text" id="address" name="address" value={memberData.address} onChange={handleChange} required />
+                    </div>
+                    <div className="update-member-button-group">
+                        <button type="submit" className="update-member-submit-btn">Update Member</button>
+                        <button type="button" onClick={() => onNavigate('viewMembers')} className="update-member-back-btn">Back</button>
+                    </div>
+                </form>
+                {message && <p className={`update-member-message ${messageType}`}>{message}</p>}
+            </div>
+        </div>
+    );
+};
+
+export default UpdateMember;

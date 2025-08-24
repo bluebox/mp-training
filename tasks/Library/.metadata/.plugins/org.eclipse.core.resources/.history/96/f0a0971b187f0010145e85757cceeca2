@@ -1,0 +1,123 @@
+/*import React from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate, onLogout }) => {
+  const token = localStorage.getItem("jwtToken");
+  const role = localStorage.getItem("userRole");
+
+  if (!token) {
+    return null;
+  }
+
+  return (
+    <nav className="navbar-container">
+      <ul className="navbar-list">
+	  	<li>
+           <button onClick={() => onNavigate('home')} className="navbar-button">
+             Home
+           </button>
+	   </li>
+        <li>
+          <button onClick={() => onNavigate('addUser')} className="navbar-button">
+            Add User
+          </button>
+        </li>
+		{role === "ROLE_ADMIN" && (
+        <li>
+          <button onClick={() => onNavigate('viewUserRequests')} className="navbar-button">
+            View User Requests
+          </button>
+        </li>)}
+		{role === "ROLE_ADMIN" && (
+         <li>
+            <button onClick={() => onNavigate('mainUsers')} className="navbar-button">
+              View Main Users
+            </button>
+          </li>
+        )}
+
+        <li>
+          <button onClick={onLogout} className="navbar-button">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;
+*/
+
+import React, { useState } from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate, onLogout }) => {
+  const token = localStorage.getItem("jwtToken");
+  const role = localStorage.getItem("userRole");
+  const username = localStorage.getItem("username"); // assuming you stored this
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  if (!token) {
+    return null;
+  }
+
+  return (
+    <div className="custom-navbar-wrapper">
+      {/* Left Side Navbar */}
+      <nav className="custom-navbar-container">
+        <ul className="custom-navbar-list">
+          <li>
+            <button onClick={() => onNavigate('home')} className="custom-navbar-button">
+              Home
+            </button>
+          </li>
+          <li>
+            <button onClick={() => onNavigate('addUser')} className="custom-navbar-button">
+              Add User
+            </button>
+          </li>
+          {role === "ROLE_ADMIN" && (
+            <li>
+              <button onClick={() => onNavigate('viewUserRequests')} className="custom-navbar-button">
+                View User Requests
+              </button>
+            </li>
+          )}
+          {role === "ROLE_ADMIN" && (
+            <li>
+              <button onClick={() => onNavigate('mainUsers')} className="custom-navbar-button">
+                View Main Users
+              </button>
+            </li>
+          )}
+        </ul>
+      </nav>
+
+      {/* Profile Section on Top Right */}
+      <div className="custom-navbar-profile">
+        <div 
+          className="custom-profile-info" 
+          onClick={() => setShowDropdown(!showDropdown)}
+        >
+          <img 
+            src="/profile-icon.png"  // replace with actual profile logo
+            alt="Profile"
+            className="custom-profile-logo"
+          />
+          <span className="custom-username">{username || "User"}</span>
+        </div>
+
+        {showDropdown && (
+          <div className="custom-profile-dropdown">
+            <button onClick={onLogout} className="custom-logout-btn">
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

@@ -1,0 +1,24 @@
+import React from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate }) => {
+  return (
+    <nav className="navbar-container">
+      <ul className="navbar-list">
+        
+        <li>
+          <button onClick={() => onNavigate('addBook')} className="navbar-button">
+            Add User
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('viewBooks')} className="navbar-button">
+            View UserRequests
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;

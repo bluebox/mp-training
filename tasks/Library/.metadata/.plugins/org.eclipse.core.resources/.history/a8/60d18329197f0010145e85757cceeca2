@@ -1,0 +1,330 @@
+/* .members-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.members-header {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.message-label {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.members-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.members-table th, .members-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.members-table thead tr {
+    background-color: #e9e9e9;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.members-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.members-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.view-members-actions-column {
+  white-space: nowrap;
+}
+
+.update-btn:disabled{
+	cursor : not-allowed;
+}
+
+.delete-btn:disabled{
+	cursor : not-allowed;
+}
+
+.delete-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    background-color: #dc3545;
+    margin-right: 5px;
+}
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.update-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    margin-right: 5px;
+}
+.update-btn:hover {
+    background-color: #0056b3;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.delete-batch-btn {
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.delete-batch-btn:hover {
+    background-color: #5a6268;
+}
+
+.delete-batch-btn:disabled {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: not-allowed;
+  font-size: 14px;
+  background-color: #6c757d;
+  color: white;
+}
+
+.refresh-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #6c757d;
+  color: white;
+}
+
+.refresh-btn:hover {
+    background-color: #5a6268;
+}
+
+.back-btn {
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    border-color: #6c757d;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+} */
+
+/* -------------------------
+  Layout shim to fit a fixed
+  left sidebar (220px) and
+  a top header (64px) without
+  changing any JS logic.
+  ------------------------- */
+
+/* Adjust these if your sidebar/header sizes differ */
+:root {
+  --app-sidebar-width: 220px;
+  --app-header-height: 64px;
+  --card-max-width: 1400px;
+}
+
+/* Ensure the members container sits to the right of sidebar and below header */
+.members-container {
+  box-sizing: border-box;
+  margin-left: var(--app-sidebar-width);      /* leaves space for fixed sidebar */
+  padding-top: calc(var(--app-header-height) + 16px); /* clears a fixed top bar */
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 32px;
+  min-height: calc(100vh - var(--app-header-height));
+  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Center card and cap width so UI looks tidy */
+.members-card {
+  max-width: var(--card-max-width);
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+}
+
+/* Title + search area: align nicely and remain compact */
+.members-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.members-header {
+  font-size: 20px;
+  color: #111827;
+  margin: 0;
+}
+
+/* Search input styling (keeps previous class names) */
+.search-container { display:flex; align-items:center; gap:8px; }
+.form-label { font-weight:600; color:#374151; font-size:14px; }
+.form-input {
+  width: 260px;
+  max-width: 40vw;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  box-sizing: border-box;
+}
+.form-input:focus { outline: none; border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(96,165,250,.15); }
+
+/* Message alert (use your existing classes) */
+.members-alert { margin: 8px 0 12px; padding: 10px 12px; border-radius: 8px; font-weight:600; }
+.members-alert-success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.members-alert-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+/* Table wrapper: scrolls within the available viewport space */
+.table-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+  overflow: auto;
+  /* Height calculation ensures the wrapper fits the viewport under header and above action buttons */
+  max-height: calc(100vh - var(--app-header-height) - 240px);
+}
+
+/* Table refinements */
+.members-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px; /* you can reduce this if you want columns to wrap earlier */
+}
+
+/* Make the header sticky so column labels are always visible */
+.members-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f3f4f6;
+  z-index: 2;
+  padding: 10px 12px;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.members-table th, .members-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Zebra rows + hover */
+.members-table tbody tr:nth-child(even) { background: #fafafa; }
+.members-table tbody tr:hover { background: #f1f5f9; }
+
+/* Actions column keep buttons compact */
+.view-members-actions-column { white-space: nowrap; }
+
+/* Button styles — keep your names, just make them tidy/consistent */
+.update-btn, .delete-btn, .delete-batch-btn, .refresh-btn, .back-btn {
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.update-btn { background:#3b82f6; color:#fff; margin-right:6px; }
+.update-btn:disabled { opacity:0.6; cursor:not-allowed; }
+
+.delete-btn { background:#ef4444; color:#fff; }
+.delete-btn:disabled { opacity:0.6; cursor:not-allowed; }
+
+.delete-batch-btn, .refresh-btn, .back-btn {
+  background:#111827; color:#fff;
+}
+.delete-batch-btn:disabled { opacity:0.65; cursor:not-allowed; }
+
+/* Button group aligned to right inside card */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* Message label under table */
+.message-label {
+  margin-top: 8px;
+  text-align: right;
+  font-weight: 700;
+}
+
+/* No members row */
+.no-members {
+  text-align: center;
+  padding: 24px;
+  color: #6b7280;
+}
+
+/* Small screens: make layout responsive but still respect sidebar/header
+   Sidebar collapse is handled in your navbar CSS; this simply reduces spacing here. */
+@media (max-width: 880px) {
+  :root { --app-sidebar-width: 190px; }
+  .form-input { width: 180px; max-width: 40vw; }
+  .table-wrapper { max-height: calc(100vh - var(--app-header-height) - 260px); }
+}
+
+@media (max-width: 520px) {
+  /* On very small screens we allow full width (sidebar likely becomes top bar) */
+  :root { --app-sidebar-width: 0px; }
+  .members-container { margin-left: 0; padding-top: calc(var(--app-header-height) + 8px); padding-left: 12px; padding-right: 12px; }
+  .form-input { width: 100%; max-width: 100%; }
+  .table-wrapper { max-height: calc(100vh - var(--app-header-height) - 300px); }
+  .members-table { min-width: 680px; }
+}

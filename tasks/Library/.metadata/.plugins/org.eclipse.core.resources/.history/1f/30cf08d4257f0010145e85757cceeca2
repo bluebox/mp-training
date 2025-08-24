@@ -1,0 +1,103 @@
+package com.users.Users.repositoryImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.users.Users.model.Role;
+import com.users.Users.model.UserRole;
+import com.users.Users.repository.interfaces.RoleRepository;
+import com.users.Users.rowmapper.RoleMapper;
+import com.users.Users.rowmapper.UserRoleMapper;
+
+@Repository
+public class RoleRepositoryImpl implements RoleRepository {
+	
+	private  JdbcTemplate jdbcTemplate;
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public RoleRepositoryImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate,JdbcTemplate jdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+		this.jdbcTemplate =jdbcTemplate;
+	}
+
+
+	public  List<Role> getUsers() {
+		
+		String sqlString ="Select * from Roles";
+		
+		try {
+			return jdbcTemplate.query(sqlString, new RoleMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	public void addUserRole(UserRole userRole) {
+		
+		for(int roleid :userRole.getRoleId()) {
+			String sqlString = "INSERT INTO userroles (user_id,role_id,country,state,city) VALUES "
+					+ "(:user_id, :role_id, :country, :state, :city)";
+			
+			MapSqlParameterSource param = new MapSqlParameterSource();
+			
+			param.addValue("user_id", userRole.getUserId());
+			param.addValue("role_id", roleid);
+			param.addValue("country", userRole.getCountry());
+			param.addValue("state", userRole.getState());
+			param.addValue("city", userRole.getCity());
+			
+			namedParameterJdbcTemplate.update(sqlString, param);
+			
+		}
+			
+	}
+
+
+	public List<UserRole> getUserAssignedRoles(Integer userId) {
+		
+		String sqlString ="Select ur.user_id, CONCAT(us.first_name,' ',us.last_name) AS username, ur.role_id, ro.role_name ,ur.country,ur.state,ur.city from userroles AS ur"
+				+ " JOIN Users AS us ON ur.user_id = us.user_id "
+				+ " JOIN Roles AS ro ON ur.role_id = ro.id "
+				+ " where ur.user_id =:user_id";
+
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+
+		param.addValue("user_id", userId);
+		
+        return namedParameterJdbcTemplate.query(sqlString, param, new UserRoleMapper());
+
+	}
+
+
+	@Override
+	public List<String> getRoleName(Integer userId) {
+	    String sql = "SELECT ro.role_name " +
+	                 "FROM Roles ro " +
+	                 "WHERE ro.id IN (SELECT role_id FROM userroles WHERE user_id = :user_id)";
+
+	    MapSqlParameterSource param = new MapSqlParameterSource();
+	    param.addValue("user_id", userId);
+	    
+
+	    List<String> lStrings = namedParameterJdbcTemplate.query(sql, param, (rs, rowNum) -> rs.getString("role_name"));
+	    if(lStrings.size()!=0) {
+	    	return lStrings;
+	    }
+	    else {
+	    	return null;
+	    }
+	}
+
+	
+
+}

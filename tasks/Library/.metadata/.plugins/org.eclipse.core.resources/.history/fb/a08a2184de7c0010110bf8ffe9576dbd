@@ -1,0 +1,38 @@
+package com.users.Users.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.users.Users.model.User;
+import com.users.Users.service.UserService;
+
+@Controller
+@RequestMapping("user")
+public class UserController {
+	
+	private UserService userService;
+	
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService=userService;
+	}
+	
+	@PostMapping("/admin/adduser")
+	public void adduser(@RequestBody User user) {
+		userService.addUser(user);
+	}
+	
+	@GetMapping("/all/getusers")
+	@ResponseBody
+	public List<User> getUsers(){
+		return userService.getUsers();
+	}
+	
+}

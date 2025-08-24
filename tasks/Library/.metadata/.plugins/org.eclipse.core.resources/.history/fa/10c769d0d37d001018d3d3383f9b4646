@@ -1,0 +1,36 @@
+package com.users.Users.model;
+
+import java.time.LocalDateTime;
+
+import com.users.Users.enums.UserStatus;
+
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+	
+    private Integer userId;
+    @NotBlank(message = "First Name cannot be blank")
+	@Size(min = 2, max = 50, message = "First Name must be between 2 and 10 chars")
+    private String username; 
+    private String password;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String country;
+    private String state;
+    private String city;
+    private String postalCode;
+    private UserStatus status;
+    private String aprovedStatus;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
+    
+}

@@ -1,0 +1,54 @@
+package com.LMS.LibMS.service.interfaceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.LMS.LibMS.model.Book;
+import com.LMS.LibMS.repository.interfaceImpl.BookRepositoryImpl;
+import com.LMS.LibMS.service.interfaces.BookService;
+
+@Service
+public class BookServiceImpl implements BookService {
+	
+	private BookRepositoryImpl bookRepository;
+	
+	@Autowired
+	public BookServiceImpl(BookRepositoryImpl bookRepository) {
+		this.bookRepository = bookRepository;
+	}
+	
+	@Override
+	public List<Book> findBooks(){
+		return bookRepository.findBooks();
+	}
+	
+	@Override
+	public Book addBook(Book book) {
+		return bookRepository.addBook(book);
+	}
+
+	@Override
+    public boolean deleteBook(Long bookId) {
+        return bookRepository.deleteBook(bookId);
+    }
+
+    @Override
+    public boolean changeAvailability(Long bookId, String newAvailabilityCode) {
+        return bookRepository.changeAvailability(bookId, newAvailabilityCode);
+    }
+
+    @Override
+    public boolean deleteBooks(List<Long> bookIds) {
+        return bookRepository.deleteBooks(bookIds);
+    }
+
+    @Override
+    public boolean updateAvailabilities(List<Long> bookIds) {
+        return bookRepository.updateAvailabilities(bookIds);
+    }
+	
+	
+	
+}

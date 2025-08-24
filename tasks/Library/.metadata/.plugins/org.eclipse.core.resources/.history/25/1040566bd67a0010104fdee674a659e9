@@ -1,0 +1,94 @@
+/*import React, { useState } from 'react';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+import Navbar from './components/Navbar';
+import './App.css'; 
+
+function App() {
+  const [currentPage, setCurrentPage] = useState('add');
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'add':
+        return <AddBook />;
+      case 'view':
+        return <ViewBooks />;
+      default:
+        return <AddBook />;
+    }
+  };
+
+  return (
+    <div className="App">
+      <Navbar onNavigate={handleNavigate} />
+      {renderPage()}
+    </div>
+  );
+}
+
+export default App;
+*/
+
+
+import React, { useState } from 'react';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+import Navbar from './components/Navbar';
+import './App.css';
+
+function App() {
+  // which page: 'add' or 'view'
+  const [currentPage, setCurrentPage] = useState('view');
+
+  // shared form data for AddBook (used for edit as well)
+  const [formData, setFormData] = useState({
+    bookId: null,
+    title: '',
+    author: '',
+    category: '',
+    status: '',
+    availability: ''
+  });
+
+  // navigation handler — resets form when going to add page
+  const handleNavigate = (page) => {
+    if (page === 'add') {
+      setFormData({
+        bookId: null,
+        title: '',
+        author: '',
+        category: '',
+        status: '',
+        availability: ''
+      });
+    }
+    setCurrentPage(page);
+  };
+
+  // called by ViewBooks when user clicks Update
+  const handleEdit = (book) => {
+    setFormData({
+      bookId: book.bookId ?? null,
+      title: book.title ?? '',
+      author: book.author ?? '',
+      category: typeof book.category === 'object' ? book.category.code : (book.category || ''),
+      status: typeof book.status === 'object' ? book.status.code : (book.status || ''),
+      availability: typeof book.availability === 'object' ? book.availability.code : (book.availability || '')
+    });
+    setCurrentPage('add');
+  };
+
+  return (
+    <div className="App">
+      <Navbar onNavigate={handleNavigate} />
+      {currentPage === 'view' && <ViewBooks onEdit={handleEdit} />}
+      {currentPage === 'add' && <AddBook formData={formData} setFormData={setFormData} onNavigate={handleNavigate} />}
+    </div>
+  );
+}
+
+export default App;

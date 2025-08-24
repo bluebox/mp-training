@@ -1,0 +1,93 @@
+package com.LMS.LibMS.controllers;
+
+import com.LMS.LibMS.model.Book;
+import com.LMS.LibMS.model.IssueRecord;
+import com.LMS.LibMS.model.Member;
+import com.LMS.LibMS.service.interfaces.BookService;
+import com.LMS.LibMS.service.interfaces.IssueService;
+import com.LMS.LibMS.service.interfaces.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.time.LocalDateTime;
+
+@RestController
+@RequestMapping("/issues")
+public class IssueController {
+
+    private final IssueService issueService;
+    private final BookService bookService;
+    private final MemberService memberService;
+    private final String CURRENT_USER = "ADMIN";
+
+    @Autowired
+    public IssueController(IssueService issueService, BookService bookService, MemberService memberService) {
+        this.issueService = issueService;
+        this.bookService = bookService;
+        this.memberService = memberService;
+    }
+
+    @GetMapping("/issuedRecords")
+    public List<Map<String, Object>> displayIssuedRecords() {
+        return issueService.getAllIssuedRecords().stream()
+                .map(record -> {
+                    Map<String, Object> recordData = new java.util.HashMap<>();
+                    recordData.put("issueId", record.getIssueId());
+                    recordData.put("bookId", record.getBookId());
+                    recordData.put("memberId", record.getMemberId());
+                    recordData.put("status", record.getStatus().getCode());
+                    recordData.put("issueDate", record.getIssueDate());
+                    recordData.put("issuedBy", record.getIssuedBy());
+                    recordData.put("returnDate", record.getReturnDate());
+                    recordData.put("returnedBy", record.getReturnedBy());
+
+                    Book book = bookService.findBookById(record.getBookId());
+                    if (book != null) {
+                        recordData.put("bookTitle", book.getTitle());
+                    } else {
+                        recordData.put("bookTitle", "N/A");
+                    }
+
+                    Member member = memberService.getMemberById(record.getMemberId());
+                    if (member != null) {
+                        recordData.put("memberName", member.getName());
+                    } else {
+                        recordData.put("memberName", "N/A");
+                    }
+                    return recordData;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @PostMapping("/issueBook")
+    public ResponseEntity<Map<String, Object>> issueBook(@RequestBody Map<String, Object> payload) {
+        try {
+            Integer bookId = Integer.valueOf(payload.get("bookId").toString());
+            Integer memberId = Integer.valueOf(payload.get("memberId").toString());
+
+            issueService.issueBook(bookId, memberId, LocalDateTime.now(), CURRENT_USER);
+
+            return new ResponseEntity<>(Map.of("message", "Book issued successfully!"), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(Map.of("message", e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/returnBook")
+    public ResponseEntity<Map<String, Object>> returnBook(@RequestBody Map<String, Object> payload) {
+        try {
+            Integer bookId = Integer.valueOf(payload.get("bookId").toString());
+
+            issueService.returnBook(bookId, CURRENT_USER);
+
+            return new ResponseEntity<>(Map.of("message", "Book returned successfully!"), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(Map.of("message", e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+}

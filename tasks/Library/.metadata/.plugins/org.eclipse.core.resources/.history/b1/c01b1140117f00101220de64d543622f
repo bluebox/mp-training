@@ -1,0 +1,132 @@
+/*import React, { useEffect, useState } from 'react';
+import './App.css';
+import AddUser from './components/AddUser';
+import ViewUserRequests from './components/ViewUserRequests';
+import Navbar from './components/Navbar';
+import MainUsers from './components/MainUsers';
+import RoleManagement from './components/RoleManagement';
+import Login from './components/Login'; 
+import UserAssignedRoles from './components/UserAssignedRoles';
+import Home from './components/Home';
+import Main from './components/Main'; 
+
+*/
+/*
+const App = () => {
+	
+  const [currentPage, setCurrentPage] = useState(''); 
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwtToken');
+    setIsAuthenticated(!!token);
+    if (token) setCurrentPage((prev) => prev || 'addUser');
+  }, []);
+
+  const handleNavigate = (page, id = null) => {
+    setCurrentPage(page);
+    setSelectedUserId(id);
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setCurrentPage('home');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwtToken');
+	localStorage.removeItem('username')
+	localStorage.removeItem('userPassword')
+	localStorage.removeItem('userRole')
+
+    setIsAuthenticated(false);
+    setCurrentPage('');
+    setSelectedUserId(null);
+  };
+
+  const renderPage = () => {
+	
+    if (!isAuthenticated) {
+      return <Login onNavigate={handleNavigate} onLoginSuccess={handleLoginSuccess} />;
+    }
+	
+	if (!isAuthenticated) {
+	   return (
+	     <Main 
+	       onNavigate={handleNavigate} 
+	       onLoginSuccess={handleLoginSuccess} 
+	     />
+	   ); 
+	 }
+
+    switch (currentPage) {
+	  case 'home':
+		  return <Home />;
+      case 'addUser':
+        return <AddUser />;
+      case 'viewUserRequests':
+        return <ViewUserRequests onNavigate={handleNavigate}/>;
+      case 'mainUsers':
+        return <MainUsers onUpdateClick={(userId) => handleNavigate('roleManagement', userId)} 
+				onViewAssignedRoles={(userId) => handleNavigate('viewAssignedRoles', userId)}
+				onNavigate={handleNavigate}/>;
+      case 'roleManagement':
+        return <RoleManagement userId={selectedUserId} onNavigate={handleNavigate}/>;
+	  case 'viewAssignedRoles':
+	     return <UserAssignedRoles userId={selectedUserId}  onNavigate={handleNavigate} />;
+      default:
+        return <Home />;
+    }
+  };
+
+  return (
+    <div>
+      {isAuthenticated && <Navbar onNavigate={handleNavigate} onLogout={handleLogout} />}
+      {renderPage()}
+    </div>
+  );
+};
+*/
+
+import React, { useEffect, useState } from 'react';
+import Navbar from './components/Navbar'; 
+
+
+const App = () => {
+  const [activeKey, setActiveKey] = React.useState('1');
+  const [openKeys, setOpenKeys] = React.useState(['3', '4']);
+  const [expanded, setExpand] = React.useState(true);
+
+  return (
+    <>
+      <Navbar
+        activeKey={activeKey}
+        openKeys={openKeys}
+        onSelect={setActiveKey}
+        onOpenChange={setOpenKeys}
+        expanded={expanded}
+        onExpand={setExpand}
+      />
+      <Navbar
+        activeKey={activeKey}
+        openKeys={openKeys}
+        onOpenChange={setOpenKeys}
+        onSelect={setActiveKey}
+        expanded={expanded}
+        onExpand={setExpand}
+        appearance="inverse"
+      />
+      <Navbar
+        activeKey={activeKey}
+        openKeys={openKeys}
+        onOpenChange={setOpenKeys}
+        onSelect={setActiveKey}
+        expanded={expanded}
+        onExpand={setExpand}
+        appearance="subtle"
+      />
+    </>
+  );
+};
+export default App;

@@ -1,0 +1,116 @@
+package com.LMS.LibMS.service.interfaceimpl;
+
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.LMS.LibMS.model.Book;
+import com.LMS.LibMS.model.IssueRecord;
+import com.LMS.LibMS.model.Member;
+import com.LMS.LibMS.model.enums.BookAvailability;
+import com.LMS.LibMS.model.enums.BookStatus;
+import com.LMS.LibMS.model.enums.IssueStatus;
+import com.LMS.LibMS.repository.interfaces.BookRepository;
+import com.LMS.LibMS.repository.interfaces.IssueRecordRepository;
+import com.LMS.LibMS.repository.interfaces.MemberRepository;
+import com.LMS.LibMS.service.interfaces.IssueService;
+
+@Service
+public class IssueServiceImpl implements IssueService {
+
+    private final BookRepository bookRepository;
+    private final IssueRecordRepository issueRecordRepository;
+    private final MemberRepository memberRepository;
+    private final String CURRENT_USER = "ADMIN";
+
+    @Autowired
+    public IssueServiceImpl(BookRepository bookRepository, IssueRecordRepository issueRecordRepository, MemberRepository memberRepository) {
+        this.bookRepository = bookRepository;
+        this.issueRecordRepository = issueRecordRepository;
+        this.memberRepository = memberRepository;
+    }
+
+    @Override
+    @Transactional
+    public void issueBook(int bookId, int memberId, LocalDateTime issueDate, String issuedBy) {
+        Book book = bookRepository.findBookById(bookId);
+        if (book == null) {
+            throw new IllegalArgumentException("Book with ID " + bookId + " not found.");
+        }
+        
+        if (book.getAvailability() == BookAvailability.ISSUED) {
+            throw new IllegalArgumentException("Book '" + book.getTitle() + "' is already issued.");
+        }
+        if (book.getStatus() == BookStatus.INACTIVE) {
+            throw new IllegalArgumentException("Book '" + book.getTitle() + "' is inactive and cannot be issued.");
+        }
+
+        Member member = memberRepository.findMemberById(memberId);
+        if (member == null) {
+            throw new IllegalArgumentException("Member with ID " + memberId + " not found.");
+        }
+        
+        IssueRecord newIssue = new IssueRecord();
+        newIssue.setBookId(bookId);
+        newIssue.setMemberId(memberId);
+        newIssue.setStatus(IssueStatus.ISSUED);
+        newIssue.setIssueDate(issueDate);
+        newIssue.setIssuedBy(issuedBy);
+        
+        issueRecordRepository.addIssueRecord(newIssue);
+
+        book.setAvailability(BookAvailability.ISSUED);
+        bookRepository.updateAvailabilities(Arrays.asList(book.getBookId()));
+    }
+
+    @Override
+    @Transactional
+    public void returnBook(int bookId, String returnedBy) {
+        IssueRecord activeIssue = issueRecordRepository.getActiveIssueRecordByBookId(bookId);
+        if (activeIssue == null) {
+            throw new IllegalArgumentException("Book ID " + bookId + " is not currently issued.");
+        }
+        
+        activeIssue.setStatus(IssueStatus.RETURNED);
+        activeIssue.setReturnDate(LocalDateTime.now());
+        activeIssue.setReturnedBy(returnedBy);
+
+        issueRecordRepository.updateIssueRecord(activeIssue);
+        
+        Book book = bookRepository.findBookById(bookId);
+        if (book == null) {
+            throw new IllegalArgumentException("Book with ID " + bookId + " not found.");
+        }
+        book.setAvailability(BookAvailability.AVAILABLE);
+        bookRepository.updateAvailabilities(Arrays.asList(book.getBookId()));
+    }
+
+    @Override
+    public List<IssueRecord> getAllIssuedRecords() {
+        return issueRecordRepository.getAllIssuedRecords();
+    }
+
+//    @Override
+//    public List<IssueRecord> getOverdueBooks(int dueDays) {
+//        List<IssueRecord> allIssued = getAllIssuedRecords();
+//        LocalDateTime now = LocalDateTime.now();
+//        return allIssued.stream()
+//                .filter(record -> record.getStatus() == IssueStatus.ISSUED && record.getReturnDate() == null)
+//                .filter(record -> record.getIssueDate().plusDays(dueDays).isBefore(now))
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public List<Member> getMembersWithActiveBooks() {
+//        List<IssueRecord> allIssued = getAllIssuedRecords();
+//        return allIssued.stream()
+//                .filter(record -> record.getStatus() == IssueStatus.ISSUED && record.getReturnDate() == null)
+//                .map(record -> memberRepository.findMemberById(record.getMemberId()))
+//                .filter(Objects::nonNull)
+//                .collect(Collectors.toList());
+//    }
+}

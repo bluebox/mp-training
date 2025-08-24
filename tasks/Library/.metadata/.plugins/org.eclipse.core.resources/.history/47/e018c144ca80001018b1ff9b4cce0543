@@ -1,0 +1,8 @@
+package com.users.Users.enums;
+
+public enum UserStatus {
+    ACTIVE,
+    INACTIVE,
+    REJECTED
+}
+

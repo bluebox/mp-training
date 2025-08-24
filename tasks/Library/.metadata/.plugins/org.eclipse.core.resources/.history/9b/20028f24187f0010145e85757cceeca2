@@ -1,0 +1,145 @@
+/* .navbar-container {
+	display: flex;
+	flex-direction: column;
+    padding: 16px 24px;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar-button {
+    font-size: 16px;
+    padding: 10px 16px;
+    color: #fff;
+    background: none;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #555;
+    border-color: #888;
+}
+
+.navbar-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.navbar-button:active {
+    background-color: #444;
+} */
+
+/* Wrapper so left nav + top-right profile align correctly */
+.custom-navbar-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #f4f4f4;
+  position: relative;
+}
+
+/* Left vertical nav */
+.custom-navbar-container {
+  width: 220px;
+  background-color: #333;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.custom-navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.custom-navbar-button {
+  font-size: 16px;
+  padding: 10px 16px;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  background: none;
+  border: 1px solid #555;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-navbar-button:hover {
+  background-color: #555;
+  border-color: #888;
+}
+
+/* Profile section at top right */
+.custom-navbar-profile {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.custom-profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.custom-profile-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.custom-username {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Dropdown */
+.custom-profile-dropdown {
+  margin-top: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  padding: 6px 0;
+  min-width: 120px;
+}
+
+.custom-logout-btn {
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+}
+
+.custom-logout-btn:hover {
+  background-color: #f2f2f2;
+}

@@ -1,0 +1,51 @@
+import React from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate }) => {
+  return (
+    <nav className="navbar-container">
+      <ul className="navbar-list">
+        <li>
+          <button onClick={() => onNavigate('home')} className="navbar-button">
+            Home
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('addBook')} className="navbar-button">
+            Add Book
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('viewBooks')} className="navbar-button">
+            View Books
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('addMember')} className="navbar-button">
+            Add Member
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('viewMembers')} className="navbar-button">
+            View Members
+          </button>
+        </li>
+        {/* You can uncomment these once you implement their pages */}
+        {/*
+        <li>
+          <button onClick={() => onNavigate('issueBook')} className="navbar-button">
+            Issue Book
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('returnBook')} className="navbar-button">
+            Return Book
+          </button>
+        </li>
+        */}
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;

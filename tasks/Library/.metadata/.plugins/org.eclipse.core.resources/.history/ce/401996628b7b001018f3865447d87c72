@@ -1,0 +1,124 @@
+import React, { useState, useEffect } from 'react';
+import './IssueBook.css';
+
+const IssueBook = () => {
+    const [bookId, setBookId] = useState('');
+    const [memberId, setMemberId] = useState('');
+    const [displayContent, setDisplayContent] = useState('Available Items List');
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('success');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchBooks = async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetch('/books/getbooks');
+            const books = await response.json();
+            
+            let content = 'Books (ID - Title - Availability - Status):\n';
+            if (books.length === 0) {
+                content = 'No books in the library.';
+            } else {
+                books.forEach(book => {
+                    content += `${book.bookId} - ${book.title} (Avail: ${book.availability.displayName}, Status: ${book.status.displayName})\n`;
+                });
+            }
+            setDisplayContent(content);
+        } catch (error) {
+            setMessage('Error fetching books.');
+            setMessageType('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchMembers = async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetch('/members/getmembers');
+            const members = await response.json();
+            
+            let content = 'Registered Members (ID - Name):\n';
+            if (members.length === 0) {
+                content = 'No members registered.';
+            } else {
+                members.forEach(member => {
+                    content += `${member.memberID} - ${member.name}\n`;
+                });
+            }
+            setDisplayContent(content);
+        } catch (error) {
+            setMessage('Error fetching members.');
+            setMessageType('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleIssueBook = async () => {
+        if (!bookId || !memberId) {
+            setMessage('Please enter both Book ID and Member ID.');
+            setMessageType('error');
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const response = await fetch('/issues/issueBook', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ bookId: parseInt(bookId, 10), memberId: parseInt(memberId, 10) }),
+            });
+            const result = await response.json();
+
+            if (response.ok) {
+                setMessage(result.message);
+                setMessageType('success');
+            } else {
+                setMessage(result.message);
+                setMessageType('error');
+            }
+        } catch (error) {
+            setMessage('An unexpected error occurred.');
+            setMessageType('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleBack = () => {
+        window.location.href = '/main'; 
+    };
+
+    return (
+        <div className="issue-container">
+            <h1>Issue Book</h1>
+            <div className="main-content">
+                <div className="input-grid">
+                    <label htmlFor="bookIdField">Book ID:</label>
+                    <input type="text" id="bookIdField" value={bookId} onChange={(e) => setBookId(e.target.value)} placeholder="Enter Book ID" />
+                    
+                    <label htmlFor="memberIdField">Member ID:</label>
+                    <input type="text" id="memberIdField" value={memberId} onChange={(e) => setMemberId(e.target.value)} placeholder="Enter Member ID" />
+                </div>
+                <div className="display-panel">
+                    <h2>Available Items List</h2>
+                    <textarea value={displayContent} readOnly></textarea>
+                    <div className="button-group">
+                        <button type="button" onClick={fetchBooks}>Show Books</button>
+                        <button type="button" onClick={fetchMembers}>Show Members</button>
+                    </div>
+                </div>
+            </div>
+            <p className="message-label" style={{ color: messageType === 'error' ? 'red' : 'green' }}>
+                {message}
+            </p>
+            <div className="button-group">
+                <button onClick={handleIssueBook} disabled={isLoading}>Issue Book</button>
+                <button onClick={handleBack} disabled={isLoading}>Back to Main Menu</button>
+            </div>
+        </div>
+    );
+};
+
+export default IssueBook;

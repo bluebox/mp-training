@@ -1,0 +1,39 @@
+package com.users.Users.rowmapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.users.Users.enums.UserStatus;
+import com.users.Users.model.User;
+
+
+public class MainUserRowMapper implements RowMapper<User>{
+
+	@Override
+	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+		User user = new User(); 
+		
+		user.setUserId(rs.getInt("user_id"));
+	    user.setUserCode(rs.getString("user_code"));
+		user.setUsername(rs.getString("username"));
+		user.setPassword(rs.getString("password"));
+		user.setEmail(rs.getString("email"));
+		user.setFirstName(rs.getString("first_name"));
+		user.setLastName(rs.getString("last_name"));
+		user.setPhoneNumber(rs.getString("phone_number"));
+		user.setCountry(rs.getString("country"));
+		user.setState(rs.getString("state"));
+		user.setCity(rs.getString("city"));
+		user.setPostalCode(rs.getString("postal_code"));
+		user.setStatus(UserStatus.valueOf(rs.getString("status")));
+		user.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
+		user.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
+		
+		return user;
+	}
+	
+	
+
+}

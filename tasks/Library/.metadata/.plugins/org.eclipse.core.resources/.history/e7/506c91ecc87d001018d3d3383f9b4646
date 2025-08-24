@@ -1,0 +1,7 @@
+package com.users.Users.rowmapper;
+
+import org.springframework.jdbc.core.RowMapper;
+
+public class ViewUserRoleMapper implements RowMapper<T>{
+
+}

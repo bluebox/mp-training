@@ -1,0 +1,52 @@
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+import UpdateBook from './components/UpdateBook';
+import Home from './components/Home';
+import AddMember from './components/AddMember';
+import ViewMembers from './components/ViewMembers';
+import UpdateMember from './components/UpdateMember'; // Import the new component
+import './App.css';
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [bookToUpdateId, setBookToUpdateId] = useState(null);
+  const [memberToUpdateId, setMemberToUpdateId] = useState(null); // Define the state variable
+
+  const handleNavigate = (page, id = null) => {
+    setCurrentPage(page);
+    setBookToUpdateId(page === 'updateBook' ? id : null);
+    setMemberToUpdateId(page === 'updateMember' ? id : null);
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <Home />;
+      case 'addBook':
+        return <AddBook />;
+      case 'viewBooks':
+        return <ViewBooks onUpdateClick={(bookId) => handleNavigate('updateBook', bookId)} />;
+      case 'updateBook':
+        return <UpdateBook bookId={bookToUpdateId} />;
+      case 'addMember':
+        return <AddMember />;
+      case 'viewMembers':
+        return <ViewMembers onUpdateClick={(memberId) => handleNavigate('updateMember', memberId)} />;
+      case 'updateMember':
+        return <UpdateMember memberId={memberToUpdateId} />;
+      default:
+        return <Home />;
+    }
+  };
+
+  return (
+    <div>
+      <Navbar onNavigate={handleNavigate} />
+      {renderPage()}
+    </div>
+  );
+};
+
+export default App;

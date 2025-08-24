@@ -1,0 +1,15 @@
+import './App.css';
+import AddUser from './components/AddUser';
+import viewUserRequests from './components/viewUserRequests';
+
+
+function App() {
+  return (
+    <div className="App">
+      <AddUser />
+	  
+    </div>
+  );
+}
+
+export default App;

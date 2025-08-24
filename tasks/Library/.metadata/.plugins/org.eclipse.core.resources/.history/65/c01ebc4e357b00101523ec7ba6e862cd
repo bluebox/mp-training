@@ -1,0 +1,18 @@
+import React from 'react';
+import './Home.css'; // Assuming you create this CSS file for styling
+
+const Home = () => {
+    return (
+        <div className="home-container">
+            <div className="content-box">
+                <h1 className="main-heading">Welcome to the Library Management System</h1>
+                <p className="sub-heading">Your one-stop solution for managing books, members, and records.</p>
+                <div className="navigation-message">
+                    <p>Use the navigation bar above to get started.</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Home;

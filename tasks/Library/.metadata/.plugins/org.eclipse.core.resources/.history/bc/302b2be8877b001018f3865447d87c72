@@ -1,0 +1,62 @@
+package com.LMS.LibMS.controllers;
+
+import com.LMS.LibMS.model.Member;
+import com.LMS.LibMS.model.enums.Gender;
+import com.LMS.LibMS.service.interfaces.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/members")
+public class MemberController {
+
+    private final MemberService memberService;
+
+    @Autowired
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
+    @PostMapping("/add")
+    public boolean addMember(@RequestBody Member member) {
+        return memberService.addMember(member);
+    }
+
+    @GetMapping("/getmembers")
+    public List<Member> displayMembers() {
+        return memberService.getAllMembers();
+    }
+    
+    @GetMapping("/getmember/{memberId}")
+    public Member getMemberById(@PathVariable Integer memberId) {
+        return memberService.getMemberById(memberId).orElse(null);
+    }
+    
+    @PutMapping("/update/{memberId}")
+    public boolean updateMember(@PathVariable Integer memberId, @RequestBody Member member) {
+        member.setMemberID(memberId);
+        return memberService.updateMember(member);
+    }
+    
+    @DeleteMapping("/delete/{memberId}")
+    public boolean deleteMember(@PathVariable Integer memberId) {
+        return memberService.deleteMember(memberId);
+    }
+    
+    @PostMapping("/deleteBatch")
+    public boolean deleteSelectedMembers(@RequestBody List<Integer> memberIds) {
+        return memberService.deleteMembers(memberIds);
+    }
+
+    @GetMapping("/genders")
+    public List<Map<String, String>> getGenders() {
+        return Arrays.stream(Gender.values())
+                .map(gender -> Map.of("displayName", gender.name(), "code", String.valueOf(gender.getCode())))
+                .collect(Collectors.toList());
+    }
+}

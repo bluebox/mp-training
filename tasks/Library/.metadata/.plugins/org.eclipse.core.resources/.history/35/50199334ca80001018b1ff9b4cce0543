@@ -1,0 +1,9 @@
+package com.users.Users.enums;
+
+public enum UserStatus {
+    PENDING_APPROVAL,
+    ACTIVE,
+    INACTIVE,
+    REJECTED
+}
+

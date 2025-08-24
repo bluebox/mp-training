@@ -1,0 +1,174 @@
+/*import React from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate, onLogout }) => {
+  const token = localStorage.getItem("jwtToken");
+  const role = localStorage.getItem("userRole");
+
+  if (!token) {
+    return null;
+  }
+
+  return (
+    <nav className="navbar-container">
+      <ul className="navbar-list">
+	  	<li>
+           <button onClick={() => onNavigate('home')} className="navbar-button">
+             Home
+           </button>
+	   </li>
+        <li>
+          <button onClick={() => onNavigate('addUser')} className="navbar-button">
+            Add User
+          </button>
+        </li>
+		{role === "ROLE_ADMIN" && (
+        <li>
+          <button onClick={() => onNavigate('viewUserRequests')} className="navbar-button">
+            View User Requests
+          </button>
+        </li>)}
+		{role === "ROLE_ADMIN" && (
+         <li>
+            <button onClick={() => onNavigate('mainUsers')} className="navbar-button">
+              View Main Users
+            </button>
+          </li>
+        )}
+
+        <li>
+          <button onClick={onLogout} className="navbar-button">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;
+*/
+
+import React, { useEffect, useRef, useState } from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate, onLogout }) => {
+  const token = localStorage.getItem('jwtToken');
+  const role = localStorage.getItem('userRole');
+  const storedUsername = localStorage.getItem('username') || localStorage.getItem('userName') || 'User';
+  const avatarUrl = localStorage.getItem('avatarUrl') || '';
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const avatarBtnRef = useRef(null);
+
+  // Close dropdown on outside click or Esc
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        avatarBtnRef.current &&
+        !avatarBtnRef.current.contains(e.target)
+      ) {
+        setMenuOpen(false);
+      }
+    }
+    function handleEsc(e) {
+      if (e.key === 'Escape') setMenuOpen(false);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEsc);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
+  if (!token) return null;
+
+  const initials = storedUsername
+    .split(' ')
+    .map(s => s[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+
+  return (
+    <>
+      {/* Fixed left vertical sidebar */}
+      <aside className="appnav-sidebar" aria-label="Primary">
+        <div className="appnav-brand" onClick={() => onNavigate('home')} role="button" tabIndex={0}>
+          <span className="appnav-brand-logo" aria-hidden>📚</span>
+          <span className="appnav-brand-text">Library Admin</span>
+        </div>
+
+        <nav className="appnav-nav">
+          <button onClick={() => onNavigate('home')} className="appnav-item" type="button">
+            Home
+          </button>
+
+          <button onClick={() => onNavigate('addUser')} className="appnav-item" type="button">
+            Add User
+          </button>
+
+          {role === 'ROLE_ADMIN' && (
+            <button onClick={() => onNavigate('viewUserRequests')} className="appnav-item" type="button">
+              View User Requests
+            </button>
+          )}
+
+          {role === 'ROLE_ADMIN' && (
+            <button onClick={() => onNavigate('mainUsers')} className="appnav-item" type="button">
+              View Main Users
+            </button>
+          )}
+        </nav>
+      </aside>
+
+      {/* Fixed top header with profile on the right */}
+      <header className="appnav-header" aria-label="Top Bar">
+        <div className="appnav-header-left" />
+        <div className="appnav-header-right">
+          <span className="appnav-username" title={storedUsername}>{storedUsername}</span>
+
+          <button
+            ref={avatarBtnRef}
+            className="appnav-avatar-btn"
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(v => !v)}
+          >
+            {avatarUrl ? (
+              <img src={avatarUrl} alt="Profile" className="appnav-avatar-img" />
+            ) : (
+              <span className="appnav-avatar-fallback" aria-hidden>{initials}</span>
+            )}
+          </button>
+
+          {menuOpen && (
+            <div className="appnav-menu" ref={menuRef} role="menu">
+              <button
+                className="appnav-menu-item"
+                role="menuitem"
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  onLogout();
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Optional helper spacer: apply these classes to your main page content container */}
+      {/* <main className="appnav-content">Your routed content here…</main> */}
+    </>
+  );
+};
+
+export default Navbar;

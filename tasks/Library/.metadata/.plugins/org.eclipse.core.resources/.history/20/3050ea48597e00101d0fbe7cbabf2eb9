@@ -1,0 +1,33 @@
+package com.users.Users.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.users.Users.model.User;
+import com.users.Users.serviceImpl.MainUserService;
+import com.users.Users.serviceImpl.MainUserServiceImpl;
+
+@Controller
+@RequestMapping("/main")
+public class MainUserController {
+	
+	private MainUserService mainUserService;
+	
+	@Autowired
+	public MainUserController(MainUserServiceImpl mainUserServiceImpl) {
+		this.mainUserService=mainUserServiceImpl;
+	}
+	
+	@GetMapping("/getMainUsers")
+	@ResponseBody
+	public List<User> getMainUsers(){
+		return mainUserService.getMainUsers();
+	}
+	
+
+}

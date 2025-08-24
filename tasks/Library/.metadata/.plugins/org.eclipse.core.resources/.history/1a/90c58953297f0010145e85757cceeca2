@@ -1,0 +1,107 @@
+package com.users.Users.repositoryImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.users.Users.model.Role;
+import com.users.Users.model.UserRole;
+import com.users.Users.repository.interfaces.RoleRepository;
+import com.users.Users.rowmapper.RoleMapper;
+import com.users.Users.rowmapper.UserRoleMapper;
+
+@Repository
+public class RoleRepositoryImpl implements RoleRepository {
+
+    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public RoleRepositoryImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<Role> getUsers() {
+        String sqlString = "SELECT * FROM Roles";
+        try {
+            return jdbcTemplate.query(sqlString, new RoleMapper());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void addUserRole(UserRole userRole) {
+
+        String getUserIdSql = "SELECT user_id FROM Users WHERE user_code = :user_code";
+        MapSqlParameterSource userParam = new MapSqlParameterSource();
+        userParam.addValue("user_code", userRole.getUsername()); 
+        Integer userId = namedParameterJdbcTemplate.queryForObject(getUserIdSql, userParam, Integer.class);
+
+        String getRoleIdSql = "SELECT id FROM Roles WHERE role_code = :role_code";
+        for (String roleCode : userRole.getRoleCodeList()) { 
+            MapSqlParameterSource roleParam = new MapSqlParameterSource();
+            roleParam.addValue("role_code", roleCode);
+            Integer roleId = namedParameterJdbcTemplate.queryForObject(getRoleIdSql, roleParam, Integer.class);
+
+            String getLocationIdSql = "SELECT location_id FROM Locations WHERE country = :country AND state = :state AND city = :city";
+            MapSqlParameterSource locParam = new MapSqlParameterSource();
+            locParam.addValue("country", userRole.getCountry());
+            locParam.addValue("state", userRole.getState());
+            locParam.addValue("city", userRole.getCity());
+
+            List<Integer> locIds = namedParameterJdbcTemplate.query(getLocationIdSql, locParam, (rs, rowNum) -> rs.getInt("location_id"));
+            Integer locationId;
+            if (locIds.isEmpty()) {
+                String insertLocationSql = "INSERT INTO Locations (country, state, city) VALUES (:country, :state, :city)";
+                namedParameterJdbcTemplate.update(insertLocationSql, locParam);
+                locationId = namedParameterJdbcTemplate.queryForObject(getLocationIdSql, locParam, Integer.class);
+            } else {
+                locationId = locIds.get(0);
+            }
+
+            String insertUserRoleSql = "INSERT INTO UserRoles (user_id, role_id, location_id) VALUES (:user_id, :role_id, :location_id)";
+            MapSqlParameterSource param = new MapSqlParameterSource();
+            param.addValue("user_id", userId);
+            param.addValue("role_id", roleId);
+            param.addValue("location_id", locationId);
+            namedParameterJdbcTemplate.update(insertUserRoleSql, param);
+        }
+    }
+
+    @Override
+    public List<UserRole> getUserAssignedRoles(String userCode) {
+
+        String sqlString = "SELECT us.user_code, ur.role_id, ro.role_code, ro.role_name, l.country, l.state, l.city "
+                + "FROM UserRoles AS ur "
+                + "JOIN Users AS us ON ur.user_id = us.user_id "
+                + "JOIN Roles AS ro ON ur.role_id = ro.id "
+                + "JOIN Locations AS l ON ur.location_id = l.location_id "
+                + "WHERE us.user_code = :user_code";
+
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_code", userCode);
+
+        return namedParameterJdbcTemplate.query(sqlString, param, new UserRoleMapper());
+    }
+
+    @Override
+    public List<String> getRoleName(String userCode) {
+        String sql = "SELECT ro.role_name "
+                   + "FROM Roles ro "
+                   + "WHERE ro.id IN (SELECT ur.role_id FROM UserRoles ur "
+                   + "JOIN Users u ON ur.user_id = u.user_id "
+                   + "WHERE u.user_code = :user_code)";
+
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("user_code", userCode);
+
+        List<String> roleNames = namedParameterJdbcTemplate.query(sql, param, (rs, rowNum) -> rs.getString("role_name"));
+        return roleNames.isEmpty() ? null : roleNames;
+    }
+}

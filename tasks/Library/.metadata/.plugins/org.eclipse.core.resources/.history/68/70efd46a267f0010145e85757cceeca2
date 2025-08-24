@@ -1,0 +1,19 @@
+package com.users.Users.repository.interfaces;
+
+import java.util.List;
+
+import com.users.Users.model.User;
+
+public interface MainUserRepository {
+
+	void addUserToMain(User user);
+
+	List<User> getMainUsers();
+
+	List<User> getMainUserById(int uid);
+
+	boolean updateMainUser(User user);
+	
+	User getPassword(String username);
+
+}

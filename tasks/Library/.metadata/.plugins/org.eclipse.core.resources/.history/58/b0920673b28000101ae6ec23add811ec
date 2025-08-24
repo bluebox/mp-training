@@ -1,0 +1,199 @@
+/*import React, { useState } from 'react';
+import axios from 'axios';
+import './Login.css';
+
+function Login({ onLoginSuccess ,onNavigate }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/auth/login', { username, password });
+      localStorage.setItem('jwtToken', response.data.jwt);
+      localStorage.setItem('userRole', response.data.role);
+	  
+	  localStorage.setItem('userId', username);
+      localStorage.setItem('userPassword', password);
+	  
+      setError(null);
+      if (onLoginSuccess) onLoginSuccess();
+    } catch (err) {
+      console.error('Login failed:', err.response?.data || err.message);
+      setError('Invalid username or password');
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2 className="login-title">Login</h2>
+
+        <input
+          type="text"
+          placeholder="Username"
+          className="login-input"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          className="login-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit" className="login-button">Login</button>
+
+        {error && <div className="login-error">{error}</div>}
+      </form>
+    </div>
+  );
+}
+
+export default Login;
+*/
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Login.css';
+
+function Login({ onLoginSuccess, onNavigate }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [changing, setChanging] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [changeMsg, setChangeMsg] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/auth/login', { username, password });
+
+      localStorage.setItem('jwtToken', response.data.jwt);
+      localStorage.setItem('userRole', response.data.role);
+      localStorage.setItem('userId', username); // if user_code is your “username”
+
+      setError(null);
+      if (onLoginSuccess) onLoginSuccess();
+    } catch (err) {
+      console.error('Login failed:', err.response?.data || err.message);
+      setError(err.response?.data || 'Invalid username or password');
+    }
+  };
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    setChangeMsg('');
+    setError(null);
+
+    if (!username.trim()) {
+      setError('Enter your User ID first.');
+      return;
+    }
+    if (!currentPassword || !newPassword) {
+      setError('Please fill all password fields.');
+      return;
+    }
+    if (newPassword !== confirmNewPassword) {
+      setError('New password and confirm password do not match.');
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('jwtToken'); // optional if you secure this endpoint
+      await axios.post(
+        'http://localhost:8080/auth/change-password',
+        { username, currentPassword, newPassword },
+        token ? { headers: { Authorization: `Bearer ${token}` } } : undefined
+      );
+      setChangeMsg('Password changed successfully. You can now log in with your new password.');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmNewPassword('');
+      setChanging(false);
+    } catch (err) {
+      console.error('Change password failed:', err.response?.data || err.message);
+      setError(err.response?.data || 'Failed to change password');
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2 className="login-title">Login</h2>
+
+        <input
+          type="text"
+          placeholder="User ID"
+          className="login-input"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          className="login-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit" className="login-button">Login</button>
+
+        <div className="login-links">
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => { setChanging(!changing); setError(null); setChangeMsg(''); }}
+          >
+            {changing ? 'Close change password' : 'Change password'}
+          </button>
+        </div>
+
+        {error && <div className="login-error">{error}</div>}
+        {changeMsg && <div className="login-success">{changeMsg}</div>}
+      </form>
+
+      {changing && (
+        <form className="change-password-form" onSubmit={handleChangePassword}>
+          <h3>Change Password</h3>
+
+          <input
+            type="password"
+            placeholder="Current password"
+            className="login-input"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+          />
+
+          <input
+            type="password"
+            placeholder="New password"
+            className="login-input"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+
+          <input
+            type="password"
+            placeholder="Confirm new password"
+            className="login-input"
+            value={confirmNewPassword}
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
+          />
+
+          <button type="submit" className="login-button">Update Password</button>
+        </form>
+      )}
+    </div>
+  );
+}
+
+export default Login;

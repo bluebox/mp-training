@@ -1,0 +1,64 @@
+import React from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate }) => {
+  return (
+    <nav className="navbar-container">
+      <ul className="navbar-list">
+        <li>
+          <button onClick={() => onNavigate('home')} className="navbar-button">
+            Home
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('addBook')} className="navbar-button">
+            Add Book
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('viewBooks')} className="navbar-button">
+            View Books
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('addMember')} className="navbar-button">
+            Add Member
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('viewMembers')} className="navbar-button">
+            View Members
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('issueBook')} className="navbar-button">
+            Issue Book
+          </button>
+        </li>
+        <li>
+          <button onClick={() => onNavigate('returnBook')} className="navbar-button">
+            Return Book
+          </button>
+        </li>
+		<li>
+		          <button
+		            onClick={() => onNavigate('issuedRecords')}
+		            style={{
+		              fontSize: '16px',
+		              padding: '10px 16px',
+		              color: '#fff',
+		              background: 'none',
+		              border: '1px solid #555',
+		              borderRadius: '6px',
+		              cursor: 'pointer'
+		            }}
+		          >
+		            Issued Records
+		          </button>
+		        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;

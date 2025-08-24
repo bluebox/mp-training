@@ -1,0 +1,216 @@
+/* .navbar-container {
+	display: flex;
+	flex-direction: column;
+    padding: 16px 24px;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar-button {
+    font-size: 16px;
+    padding: 10px 16px;
+    color: #fff;
+    background: none;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #555;
+    border-color: #888;
+}
+
+.navbar-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.navbar-button:active {
+    background-color: #444;
+} */
+
+/* Scoped Navbar styles: left vertical sidebar + top-right profile dropdown */
+
+/* Root wrapper that holds sidebar and top-right profile */
+.nav-root {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Sidebar (left vertical) --- */
+.nav-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: #111827; /* dark slate */
+  color: #e5e7eb;
+  padding: 18px 12px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-right: 1px solid rgba(255,255,255,0.03);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.nav-brand:focus { outline: 2px solid rgba(96,165,250,0.6); outline-offset: 2px; }
+.nav-brand-icon { font-size: 18px; }
+.nav-brand-text { font-weight: 700; color: #f8fafc; }
+
+/* nav list */
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* nav buttons */
+.nav-btn {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: transparent;
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color .18s ease, transform .06s ease;
+}
+.nav-btn:hover,
+.nav-btn:focus {
+  background: rgba(255,255,255,0.03);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* --- Ensure main content leaves space for sidebar --- */
+/* Add this class to main content wrapper: .appnav-content or your main content root */
+.appnav-content,
+.main-content,
+.content-root {
+  margin-left: 220px;   /* same as sidebar width */
+  padding-top: 64px;    /* adjust if you have a fixed top header; remove if not */
+  box-sizing: border-box;
+}
+
+/* --- Top-right profile area --- */
+.nav-top-right {
+  position: fixed;
+  top: 12px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1200;
+}
+
+/* username pill */
+.nav-username {
+  display: inline-block;
+  font-size: 14px;
+  color: #111827;
+  background: #ffffff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(2,6,23,0.08);
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* avatar button */
+.nav-avatar-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,24,39,0.06);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-avatar-btn:focus { outline: 2px solid rgba(96,165,250,0.6); outline-offset: 2px; }
+
+.nav-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.nav-avatar-initials {
+  font-weight: 700;
+  color: #111827;
+  font-size: 13px;
+}
+
+/* dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  min-width: 140px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(17,24,39,0.06);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+  padding: 6px;
+}
+
+/* dropdown item */
+.nav-dropdown-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: #111827;
+  border-radius: 6px;
+}
+.nav-dropdown-item:hover { background: #f3f4f6; }
+
+/* responsive tweaks */
+@media (max-width: 880px) {
+  .nav-sidebar { width: 190px; }
+  .appnav-content, .main-content, .content-root { margin-left: 190px; }
+  .nav-username { display: none; }
+}
+@media (max-width: 520px) {
+  .nav-sidebar { position: static; width: 100%; height: auto; display: flex; flex-direction: row; gap: 8px; padding: 8px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .nav-list { flex-direction: row; gap: 8px; overflow-x: auto; }
+  .appnav-content, .main-content, .content-root { margin-left: 0; padding-top: 84px; }
+  .nav-top-right { right: 8px; top: 8px; }
+}

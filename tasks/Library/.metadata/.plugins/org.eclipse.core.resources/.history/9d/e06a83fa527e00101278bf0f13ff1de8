@@ -1,0 +1,250 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import './ViewUserRequests.css';
+
+const ViewUserRequests = ({ onUpdateClick,onNavigate }) => {
+  const [members, setMembers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedMembers, setSelectedMembers] = useState([]);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('success');
+  const [searchText, setSearchText] = useState('');
+
+  const fetchMembers = async () => {
+    setIsLoading(true);
+    setError(null);
+    setMessage('');
+    try {
+      const response = await fetch('/user/getusers');
+      if (response.ok) {
+        const data = await response.json();
+        setMembers(Array.isArray(data) ? data : []);
+      } else {
+        setError('Failed to fetch members.');
+        setMessage('Failed to fetch members.');
+        setMessageType('error');
+      }
+    } catch (err) {
+      setError('Failed to fetch members.');
+      setMessage('Failed to fetch members.');
+      setMessageType('error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  const handleSelectMember = (userId) => {
+    setSelectedMembers(prev =>
+      prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]
+    );
+  };
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      setSelectedMembers(members.map(m => m.userId));
+    } else {
+      setSelectedMembers([]);
+    }
+  };
+
+  const handleDelete = async (userId) => {
+    if (!window.confirm(`Are you sure you want to Reject User ${userId}?`)) return;
+    try {
+      const response = await fetch(`/user/update/${userId}`);
+      if (response.ok) {
+        setMessage(`Member ID ${userId} deleted.`);
+        setMessageType('success');
+        await fetchMembers();
+        setSelectedMembers(prev => prev.filter(id => id !== userId));
+      } else {
+        setMessage(`Failed to delete member ID ${userId}.`);
+        setMessageType('error');
+      }
+    } catch (err) {
+      setMessage(`Error deleting member ID ${userId}.`);
+      setMessageType('error');
+    }
+  };
+
+  const handleBatchDelete = async () => {
+    if (selectedMembers.length === 0) {
+      alert("Please select members to delete.");
+      return;
+    }
+    if (!window.confirm(`Are you sure you want to delete ${selectedMembers.length} selected members?`)) return;
+
+    try {
+      const response = await fetch('/user/deleteBatch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(selectedMembers),
+      });
+      if (response.ok) {
+        setMessage(`Deleted selected members: ${selectedMembers.join(', ')}`);
+        setMessageType('success');
+        setSelectedMembers([]);
+        await fetchMembers();
+      } else {
+        setMessage('Failed to delete selected members.');
+        setMessageType('error');
+      }
+    } catch (err) {
+      setMessage('Error deleting selected members.');
+      setMessageType('error');
+    }
+  };
+
+  const handleUpdate = async (userId) => {
+    if (!window.confirm(`Are you sure you want to Approve User ${userId}?`)) return;
+    try {
+      const response = await fetch(`/user/approve/${userId}`);
+      if (response.ok) {
+        setMessage(`User ID ${userId} approved.`);
+        setMessageType('success');
+        await fetchMembers();
+        setSelectedMembers(prev => prev.filter(id => id !== userId));
+      } else {
+        setMessage(`Failed to Approve User ID ${userId}.`);
+        setMessageType('error');
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage(`Error Approving User ID ${userId}.`);
+      setMessageType('error');
+    }
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleString();
+  };
+
+  const filteredMembers = useMemo(() => {
+    const txt = searchText.trim().toLowerCase();
+    if (!txt) return members;
+    return members.filter(m => {
+      const row = `${m.userId} ${m.username} ${m.email} ${m.firstName} ${m.lastName} ${m.phoneNumber} ${m.country} ${m.state} ${m.city} ${m.postalCode} ${m.status} ${m.aprovedStatus}`.toLowerCase();
+      return row.includes(txt);
+    });
+  }, [members, searchText]);
+
+  if (isLoading) return <div>Loading members...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="members-container">
+      <h1 className="members-header">All Users Requests</h1>
+
+      <div className="right-section">
+        <div className="search-container">
+          <label htmlFor="search" className="form-label">Search:</label>
+          <input
+            type="text"
+            id="search"
+            placeholder="Search by any field..."
+            className="form-input"
+            value={searchText}
+            onChange={e => setSearchText(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="table-wrapper">
+        <table className="members-table" id="dataTable">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={selectedMembers.length === members.length && members.length > 0}
+                />
+              </th>
+              <th>User ID</th>
+              <th>USER NAME</th>
+              <th>Password</th>
+              <th>Email</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Country</th>
+              <th>State</th>
+              <th>City</th>
+              <th>Postal Code</th>
+              <th>Status</th>
+              <th>User Status</th>
+              <th>Actions</th>
+              <th>Created At</th>
+              <th>Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredMembers.length > 0 ? (
+              filteredMembers.map(member => (
+                <tr key={member.userId}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedMembers.includes(member.userId)}
+                      onChange={() => handleSelectMember(member.userId)}
+                    />
+                  </td>
+                  <td>{member.userId}</td>
+                  <td>{member.username}</td>
+                  <td>*********</td>
+                  <td>{member.email}</td>
+                  <td>{member.firstName}</td>
+                  <td>{member.lastName}</td>
+                  <td>{member.phoneNumber}</td>
+                  <td>{member.country}</td>
+                  <td>{member.state}</td>
+                  <td>{member.city}</td>
+                  <td>{member.postalCode}</td>
+                  <td>{member.status}</td>
+                  <td>{member.aprovedStatus}</td>
+                  <td className="view-members-actions-column">
+                    <button
+                      onClick={() => handleUpdate(member.userId)}
+                      disabled={member.aprovedStatus === "Aproved" || member.aprovedStatus === "Rejected"}
+                      className="update-btn"
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => handleDelete(member.userId)}
+                      disabled={member.aprovedStatus === "Aproved" || member.aprovedStatus === "Rejected"}
+                      className="delete-btn"
+                    >
+                      Reject
+                    </button>
+                  </td>
+                  <td>{formatDate(member.created_at)}</td>
+                  <td>{formatDate(member.updated_at)}</td>
+                </tr>
+              ))
+            ) : (
+              <tr><td colSpan="17" className="no-members">No User Requests found.</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="message-label" style={{ color: messageType === 'error' ? 'red' : 'green' }}>
+        {message}
+      </p>
+
+      <div className="button-group">
+        <button onClick={handleBatchDelete} disabled={selectedMembers.length === 0} className="delete-batch-btn">Delete Selected Members</button>
+        <button onClick={fetchMembers} className="refresh-btn">Refresh Members</button>
+        <button onClick={() => onNavigate('home')} className="back-btn">Back to Main Menu</button>
+      </div>
+    </div>
+  );
+};
+
+export default ViewUserRequests;

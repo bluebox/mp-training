@@ -1,0 +1,139 @@
+/* Container for the entire page */
+.container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
+/* Page title */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Message display area */
+.message-label {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.message-label.success {
+  color: green;
+}
+.message-label.error {
+  color: red;
+}
+
+/* Wrapper for the table to handle responsiveness */
+.table-wrapper {
+  overflow-x: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Main table styles */
+.books-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.books-table th, .books-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.books-table thead {
+  background-color: #ddd;
+}
+
+.books-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Column specific styles */
+.checkbox-column {
+  width: 30px;
+  text-align: center;
+}
+.actions-column {
+  white-space: nowrap;
+}
+
+/* Button group at the bottom */
+.button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
+/* Styles for all buttons */
+.button-group button, .action-button, .action-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+  
+}
+.button-group button:disabled, .action-buttons button:disabled {
+  background-color:blue;
+  cursor: not-allowed;
+  color: white;
+}
+
+/* Specific button colors */
+.action-button.update-button {
+  background-color: #007bff;
+  color: white;
+}
+.action-button.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+.refresh-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+  /* background-color: #17a2b8;
+  color: white; */
+}
+.batch-update-button {
+  background-color: #28a745;
+  color: white;
+}
+.batch-delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+.back-button {
+  background-color: #6c757d;
+  color: white;
+}
+.action-buttons button {
+  padding: 6px 10px;
+}
+
+/* Message styles for loading and errors */
+.loading-message, .error-message, .no-books-message {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+}
+.error-message {
+  color: red;
+}
+.no-books-message {
+  color: #888;
+  font-style: italic;
+}

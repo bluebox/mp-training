@@ -1,0 +1,12 @@
+package com.LMS.LibMS.repository.interfaces;
+
+import com.LMS.LibMS.model.IssueRecord;
+import java.util.List;
+import java.util.Optional;
+
+public interface IssueRecordRepository {
+    void addIssueRecord(IssueRecord issueRecord);
+    boolean updateIssueRecord(IssueRecord issueRecord);
+    List<IssueRecord> getAllIssuedRecords();
+    Optional<IssueRecord> getActiveIssueRecordByBookId(int bookId);
+}

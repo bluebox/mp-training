@@ -1,0 +1,72 @@
+package com.users.Users.repository;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.users.Users.model.User;
+import com.users.Users.rowmapper.UserRowMapper;
+
+@Repository
+public class UserRepository {
+	
+	private  JdbcTemplate jdbcTemplate;
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public UserRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,JdbcTemplate jdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+		this.jdbcTemplate =jdbcTemplate;
+	}
+
+
+	public List<User> getUsers() {
+		
+		String sqlString ="Select * from UserRequests";
+		
+		try {
+			return jdbcTemplate.query(sqlString, new UserRowMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	public void addUser(User user) {
+		
+		String sqlString = "Insert to UserRequests values(:username,:password,"
+				+ ":email,:first_name,:last_name,:phone_number,:country,:state,"
+				+ ":city,:postal_code,:status,:created_at,:updated_at)";
+		
+		
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		
+		param.addValue("username", user.getUsername());
+		param.addValue("password", user.getPassword());
+		param.addValue("email", user.getEmail());
+		param.addValue("first_name", user.getFirstName());
+		param.addValue("last_name", user.getLastName());
+		param.addValue("phone_number", user.getPhoneNumber());
+		param.addValue("country", user.getCountry());
+		param.addValue("state", user.getState());
+		param.addValue("city", user.getCity());
+		param.addValue("postal_code", user.getPostalCode());
+		param.addValue("status", user.getStatus());
+		param.addValue("created_at", user.getCreated_at());
+		param.addValue("updated_at", user.getUpdated_at());
+		
+		namedParameterJdbcTemplate.update(sqlString, param);
+		
+
+		
+	}
+	
+	
+
+}

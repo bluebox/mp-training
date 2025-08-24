@@ -1,0 +1,263 @@
+import React, { useState } from 'react';
+import './AddUser.css'; 
+import $ from 'jquery';
+
+
+const AddUser = () => {
+    const [UserData, setUserData] = useState({ 
+        username: '',
+        password: '', 
+        email: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        country: '',
+        state: '',
+        city: '',
+        postalCode: '',
+        status: '',
+        created_at: '',
+        updated_at: ''
+    });
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] =  useState('');
+
+    
+    const handleChange = (e) => {
+           const { name, value } = e.target;
+           setUserData(prev => ({ ...prev, [name]: value }));
+     };    
+     
+    const handleSubmit = async (e) => { 
+        e.preventDefault();
+        try {
+            const response = await fetch('/user/adduser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(UserData),
+            });
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const result = await response.json();
+            console.log('Success:', result);
+            setMessage('User added successfully!');
+            setMessageType('success');
+            setUserData({ 
+                username: '',
+                password: '', 
+                email: '',
+                firstName: '',
+                lastName: '',
+                phoneNumber: '',
+                country: '',
+                state: '',
+                city: '',
+                postalCode: '',
+                status: '',
+                created_at: '',
+                updated_at: ''
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            setMessage('Error adding user.');
+            setMessageType('error');
+        }
+    };
+	
+	const API_KEY = 'ME95TTJOZERmVG9nb3hKNFNtcEJIWHRNMmNqNzdqVFRNclFnTHhRNw==';
+
+	    let rowBeingEdited = null;
+
+	    // Function to fetch and populate countries
+	    function fetchCountries() {
+	        $.ajax({
+	            url: "https://api.countrystatecity.in/v1/countries",
+	            method: "GET",
+	            headers: {
+	                "X-CSCAPI-KEY": API_KEY
+	            },
+	            success: function(data) {
+	                const $countrySelect = $('#country');
+	                $countrySelect.empty().append('<option value="">Select Country</option>');
+
+	                data.forEach(country => {
+	                    $countrySelect.append(`<option value="${country.iso2}">${country.name}</option>`);
+	                });
+
+	                // // Pre-select India if it exists
+	                // const indiaOption = $countrySelect.find('option[value="IN"]');
+	                // if (indiaOption.length) {
+	                //     $countrySelect.val('IN').trigger('change'); 
+	                // }
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                console.error("Error fetching countries:", textStatus, errorThrown);
+	                $('#formMessage').text('Error loading countries. Please check your API key and network connection.').show();
+	            }
+	        });
+	    }
+
+	    // Function to fetch states based on country ISO2 code
+	    function fetchStates(countryIso2) {
+	        if (!countryIso2) {
+	            $('#state').empty().append('<option value="">Select State</option>');
+	            $('#city').empty().append('<option value="">Select City</option>');
+	            return;
+	        }
+
+	        $.ajax({
+	            url: `https://api.countrystatecity.in/v1/countries/${countryIso2}/states`,
+	            method: "GET",
+	            headers: {
+	                "X-CSCAPI-KEY": API_KEY
+	            },
+	            success: function(data) {
+	                const $stateSelect = $('#state');
+	                $stateSelect.empty().append('<option value="">Select State</option>');
+
+	                data.forEach(state => {
+	                    $stateSelect.append(`<option value="${state.iso2}">${state.name}</option>`);
+	                });
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                console.error("Error fetching states:", textStatus, errorThrown);
+	                $('#formMessage').text('Error loading states.').show();
+	            }
+	        });
+	    }
+
+	    // Function to fetch cities based on country and state ISO2 codes
+	    function fetchCities(countryIso2, stateIso2) {
+	        if (!countryIso2 || !stateIso2) { 
+	            $('#city').empty().append('<option value="">Select City</option>');
+	            return;
+	        }
+
+	        $.ajax({
+	            url: `https://api.countrystatecity.in/v1/countries/${countryIso2}/states/${stateIso2}/cities`,
+	            method: "GET",
+	            headers: {
+	                "X-CSCAPI-KEY": API_KEY
+	            },
+	            success: function(data) {
+	                const $citySelect = $('#city');
+	                $citySelect.empty().append('<option value="">Select City</option>');
+
+	                data.forEach(city => {
+	                    $citySelect.append(`<option value="${city.name}">${city.name}</option>`);
+	                });
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                console.error("Error fetching cities:", textStatus, errorThrown);
+	                $('#formMessage').text('Error loading cities.').show();
+	            }
+	        });
+	    }
+
+	    // Initial fetch for countries when the page loads
+	    fetchCountries();
+
+	    // Event listener for country dropdown change
+	    $('#country').on('change', function() {
+	        const selectedCountryIso2 = $(this).val();
+	        fetchStates(selectedCountryIso2);
+	        $('#city').empty().append('<option value="">Select City</option>'); 
+	    });
+
+	    // Event listener for state dropdown change
+	    $('#state').on('change', function() {
+	        const selectedStateIso2 = $(this).val();
+	        const selectedCountryIso2 = $('#country').val();
+	        if (selectedStateIso2 && selectedCountryIso2) {
+	            fetchCities(selectedCountryIso2, selectedStateIso2);
+	        } else {
+	            $('#city').empty().append('<option value="">Select City</option>'); 
+	        }
+	    });
+
+
+     
+    return (
+        <div className="container">
+            <div className="form-container">
+                <h2>Add New User</h2>
+                <form onSubmit={handleSubmit} className="form">
+                    <div className="form-group">
+                        <label htmlFor="username">Username:</label>
+                        <input type="text" id="username" name="username" value={UserData.username} onChange={handleChange} required placeholder="Enter Username..."/>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" id="password" name="password" value={UserData.password} onChange={handleChange} required placeholder="Enter password..."/>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" id="email" name="email" value={UserData.email} onChange={handleChange} required placeholder="Enter Email..." />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" value={UserData.firstName} onChange={handleChange} required placeholder="Enter firstName..."/>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" value={UserData.lastName} onChange={handleChange} required placeholder="Enter lastName..."/>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="phoneNumber">Phone Number:</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" value={UserData.phoneNumber} onChange={handleChange} required placeholder="Enter Phone number..."/>
+                    </div>
+                    
+                    <div className="form-row">
+                        <label htmlFor="country" className="form-label">Country:</label>
+                        <select name="country" id="country" value={UserData.country} onChange={handleChange} required>
+                            <option value="">Select Country</option>
+                        </select>
+                    </div>
+
+                    <div className="form-row">
+                        <label htmlFor="state" className="form-label">State:</label>
+                        <select name="state" id="state" value={UserData.state} onChange={handleChange} required>
+                            <option value="">Select State</option>
+                        </select>
+                    </div>
+
+                    <div className="form-row">
+                        <label htmlFor="city" className="form-label">City:</label>
+                        <select name="city" id="city" value={UserData.city} onChange={handleChange} required>
+                            <option value="">Select City</option>
+                        </select>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="postalCode">Postal Code:</label>
+                        <input type="text" id="postalCode" name="postalCode" value={UserData.postalCode} onChange={handleChange} required placeholder="Enter postal code..."/>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="status">Status:</label>
+                        <select name="status" id="status" value={UserData.status} onChange={handleChange} required>
+                             <option value="">Select Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>                       
+                    </div>
+                
+                    <button type="submit" className="submit-btn">Add User</button>
+                </form>
+                {message && <p className="message" style={{ color: messageType === 'error' ? 'red' : 'green' }}>{message}</p>}
+            </div>
+        </div>
+    );
+
+};
+export default AddUser;

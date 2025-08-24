@@ -1,0 +1,21 @@
+package com.LMS.LibMS.repository.interfaces;
+
+import java.util.List;
+
+import com.LMS.LibMS.model.Book;
+
+public interface BookRepository {
+	
+	Book addBook(Book book);
+
+	List<Book> findBooks();
+
+	Book findBookById(Integer bookId);
+
+	boolean updateBook(Book book) throws Exception;
+
+	boolean updateAvailabilities(List<Integer> bookIds);
+
+	boolean deleteBooks(List<Integer> bookIds);
+
+}

@@ -1,0 +1,108 @@
+import React, { useState, useEffect } from 'react';
+import './ReturnBook.css';
+
+const ReturnBook = () => {
+    const [bookId, setBookId] = useState('');
+    const [displayContent, setDisplayContent] = useState('Currently Issued Books');
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('success');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchIssuedBooks = async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetch('/issues/issuedRecords');
+            const records = await response.json();
+
+            let content = 'Issued Books (Book ID - Title - Issued To):\n';
+            let foundIssuedBooks = false;
+            if (records.length === 0) {
+                content = 'No books currently marked as Issued.';
+            } else {
+                records.forEach(record => {
+                    if (record.status === 'I' && !record.returnDate) {
+                        foundIssuedBooks = true;
+                        content += `${record.bookId} - ${record.bookTitle} (Issued to: ${record.memberName} on ${new Date(record.issueDate).toLocaleString()})\n`;
+                    }
+                });
+            }
+            if (!foundIssuedBooks) {
+                 content = 'No books currently marked as Issued.';
+            }
+            setDisplayContent(content);
+        } catch (error) {
+            setMessage('Error fetching issued records.');
+            setMessageType('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchIssuedBooks();
+    }, []);
+
+    const handleReturnBook = async () => {
+        if (!bookId) {
+            setMessage('Please enter the Book ID to return.');
+            setMessageType('error');
+            return;
+        }
+        setIsLoading(true);
+        try {
+            const response = await fetch('/issues/returnBook', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ bookId: parseInt(bookId, 10) }),
+            });
+            const result = await response.json();
+            if (response.ok) {
+                setMessage(result.message);
+                setMessageType('success');
+                setBookId('');
+                fetchIssuedBooks();
+            } else {				
+				const errorData = await res.json();
+				setMessage(`Error: ${errorData.message}`);
+				setMessageType('error');
+            }
+        } catch (error) {
+            setMessage('An error occurred.');
+            setMessageType('error');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleBack = () => {
+        window.location.href = 'main';
+    };
+
+    return (
+        <div className="return-container">
+            <h1>Return Book</h1>
+            <div className="main-content">
+                <div className="input-grid">
+                    <label htmlFor="bookIdField">Book ID:</label>
+                    <input type="text" id="bookIdField" value={bookId} onChange={(e) => setBookId(e.target.value)} placeholder="Enter Book ID to Return" />
+                </div>
+                <div className="display-panel">
+                    <h2>Currently Issued Books</h2>
+                    <textarea value={displayContent} readOnly></textarea>
+                    <div className="button-group">
+                        <button type="button" onClick={fetchIssuedBooks}>Show Issued Books</button>
+                    </div>
+                </div>
+            </div>
+            <p className="message-label" style={{ color: messageType === 'error' ? 'red' : 'green' }}>
+                {message}
+            </p>
+            <div className="button-group">
+                <button onClick={handleReturnBook} disabled={isLoading}>Return Book</button>
+                <button onClick={handleBack} disabled={isLoading}>Back to Main Menu</button>
+            </div>
+        </div>
+    );
+};
+
+export default ReturnBook;

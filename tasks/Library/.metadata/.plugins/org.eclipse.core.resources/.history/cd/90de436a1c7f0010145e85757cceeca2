@@ -1,0 +1,124 @@
+import React, { useEffect, useRef, useState } from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate, onLogout }) => {
+  const token = localStorage.getItem('jwtToken');
+  const role = localStorage.getItem('userRole');
+  const storedUsername = localStorage.getItem('username') || localStorage.getItem('userName') || 'User';
+  const avatarUrl = localStorage.getItem('avatarUrl') || '';
+
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const avatarBtnRef = useRef(null);
+
+  // Close dropdown on outside click or Escape
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target) &&
+        avatarBtnRef.current &&
+        !avatarBtnRef.current.contains(e.target)
+      ) {
+        setOpen(false);
+      }
+    }
+    function handleEsc(e) {
+      if (e.key === 'Escape') setOpen(false);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEsc);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
+  if (!token) return null;
+
+  const initials = storedUsername
+    .split(' ')
+    .map(s => s[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+
+  return (
+    <div className="nav-root">
+      <nav className="nav-sidebar">
+        <div
+          className="nav-brand"
+          onClick={() => onNavigate && onNavigate('home')}
+          role="button"
+          tabIndex={0}
+        >
+          <span className="nav-brand-icon" aria-hidden>📚</span>
+          <span className="nav-brand-text">Library Admin</span>
+        </div>
+
+        <ul className="nav-list">
+          <li>
+            <button className="nav-btn" onClick={() => onNavigate && onNavigate('home')}>Home</button>
+          </li>
+
+          <li>
+            <button className="nav-btn" onClick={() => onNavigate && onNavigate('addUser')}>Add User</button>
+          </li>
+
+          {role === 'ROLE_ADMIN' && (
+            <li>
+              <button className="nav-btn" onClick={() => onNavigate && onNavigate('viewUserRequests')}>
+                View User Requests
+              </button>
+            </li>
+          )}
+
+          {role === 'ROLE_ADMIN' && (
+            <li>
+              <button className="nav-btn" onClick={() => onNavigate && onNavigate('mainUsers')}>
+                View Main Users
+              </button>
+            </li>
+          )}
+        </ul>
+      </nav>
+
+      {/* Top-right profile */}
+      <div className="nav-top-right">
+        <div className="nav-username" title={storedUsername}>{storedUsername}</div>
+
+        <button
+          ref={avatarBtnRef}
+          className="nav-avatar-btn"
+          aria-haspopup="true"
+          aria-expanded={open}
+          onClick={() => setOpen(v => !v)}
+          type="button"
+        >
+          {avatarUrl ? (
+            <img src={avatarUrl} alt="Profile" className="nav-avatar-img" />
+          ) : (
+            <span className="nav-avatar-initials" aria-hidden>{initials}</span>
+          )}
+        </button>
+
+        {open && (
+          <div className="nav-dropdown" ref={dropdownRef} role="menu">
+            <button
+              className="nav-dropdown-item"
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                onLogout && onLogout();
+              }}
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

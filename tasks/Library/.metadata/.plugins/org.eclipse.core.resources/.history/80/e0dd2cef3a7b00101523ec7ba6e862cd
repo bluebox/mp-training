@@ -1,0 +1,141 @@
+import React from 'react';
+
+const Navbar = ({ onNavigate }) => {
+  return (
+    <nav
+      style={{
+        padding: '16px 24px',        
+        backgroundColor: '#333',
+        color: '#fff',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.25)'
+      }}
+    >
+      <ul
+        style={{
+          listStyle: 'none',
+          margin: 0,
+          padding: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '28px'
+        }}
+      >
+        <li>
+          <button
+            onClick={() => onNavigate('home')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            Home
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => onNavigate('addBook')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            Add Book
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => onNavigate('viewBooks')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            View Books
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => onNavigate('addMember')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            Add Member
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => onNavigate('viewMembers')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            View Members
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => onNavigate('issueBook')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            Issue Book
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => onNavigate('returnBook')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            Return Book
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;

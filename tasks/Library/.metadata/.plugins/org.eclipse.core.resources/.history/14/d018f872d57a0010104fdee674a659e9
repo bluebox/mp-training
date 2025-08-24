@@ -1,0 +1,21 @@
+import React from 'react';
+
+
+// Navbar Component
+const Navbar = ({ onNavigate }) => {
+  return (
+    <nav style={{ padding: '10px', backgroundColor: '#333', color: 'white' }}>
+      <button
+        onClick={() => onNavigate('add')}
+        style={{ marginRight: '10px' }}
+      >
+        Add Book
+      </button>
+      <button onClick={() => onNavigate('view')}>
+        View Books
+      </button>
+    </nav>
+  );
+};
+
+export default Navbar;

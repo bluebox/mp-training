@@ -1,0 +1,47 @@
+package com.users.Users.service.interfaces;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.users.Users.model.User;
+import com.users.Users.repository.UserRepository;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+@Service
+public class UserService {
+	
+	private UserRepository userRepository;
+	
+	@Autowired
+	public UserService(UserRepository userRepository) {
+		this.userRepository=userRepository;
+	}
+
+	public List<User> getUsers(){
+		return userRepository.getUsers();
+	}
+	
+	public List<User> getUserById(int uid){
+		return userRepository.getUserById(uid);
+	}
+
+	public void addUser(@NotNull @Valid User user) {
+		userRepository.addUser(user);
+	}
+
+	public boolean updateUser(User user) {
+		return userRepository.updateUser(user);
+	}
+
+//	public void addUserToMain(User user) {
+//			userRepository.addUserToMain(user);
+//	}
+//
+//	public List<User> getMainUsers() {
+//		return userRepository.getMainUsers();
+//	}
+}

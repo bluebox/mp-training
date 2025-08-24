@@ -1,0 +1,21 @@
+package com.LMS.LibMS.service.interfaces;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.LMS.LibMS.model.Book;
+
+@Service
+public interface BookService {
+		
+	List<Book> findBooks();
+
+	Book addBook(Book book);
+	
+	boolean deleteBook(Long bookId);
+    boolean changeAvailability(Long bookId, String newAvailabilityCode);
+    boolean deleteBooks(List<Long> bookIds);
+    boolean updateAvailabilityBatch(List<Long> bookIds);
+
+}

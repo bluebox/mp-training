@@ -1,0 +1,53 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Login.css';
+
+function Login({ onLoginSuccess }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/auth/login', { username, password });
+      localStorage.setItem('jwtToken', response.data.jwt);
+      localStorage.setItem('userRole', response.data.role);
+      setError(null);
+      if (onLoginSuccess) onLoginSuccess();
+    } catch (err) {
+      console.error('Login failed:', err.response?.data || err.message);
+      setError('Invalid username or password');
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2 className="login-title">Login</h2>
+
+        <input
+          type="text"
+          placeholder="Username"
+          className="login-input"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          className="login-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit" className="login-button">Login</button>
+
+        {error && <div className="login-error">{error}</div>}
+      </form>
+    </div>
+  );
+}
+
+export default Login;

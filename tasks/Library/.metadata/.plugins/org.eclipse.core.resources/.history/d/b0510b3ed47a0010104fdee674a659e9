@@ -1,0 +1,78 @@
+import React from 'react';
+
+const Navbar = ({ onNavigate }) => {
+  // helper: try onNavigate first, otherwise do full page navigation
+  const go = (route) => {
+    if (typeof onNavigate === 'function') {
+      onNavigate(route);
+    } else {
+      // simple fallback paths used in your app earlier
+      // adjust these strings if your routes differ (e.g. '/add' or '/books/add')
+      if (route === 'add') window.location.href = '/addBook' ;
+      else if (route === 'view') window.location.href = '/viewBooks';
+      else window.location.href = '/';
+    }
+  };
+
+  return (
+    <nav
+      style={{
+        padding: '16px 24px',
+        backgroundColor: '#333',
+        color: '#fff',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.25)'
+      }}
+    >
+      <ul
+        style={{
+          listStyle: 'none',
+          margin: 0,
+          padding: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '28px'
+        }}
+      >
+        <li>
+          <button
+            onClick={() => go('add')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+            aria-label="Add Book"
+            type="button"
+          >
+            Add Book
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => go('view')}
+            style={{
+              fontSize: '16px',
+              padding: '10px 16px',
+              color: '#fff',
+              background: 'none',
+              border: '1px solid #555',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+            aria-label="View Books"
+            type="button"
+          >
+            View Books
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;

@@ -1,0 +1,9 @@
+package com.users.Users.rowmapper;
+
+import javax.swing.tree.RowMapper;
+
+public class UserRowMapper implements RowMapper<User>{
+	
+	
+
+}

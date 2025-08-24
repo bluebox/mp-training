@@ -1,0 +1,38 @@
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+import './App.css';
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('view');
+  const initialBookData = {
+    bookId: null,
+    title: '',
+    author: '',
+    category: '',
+    status: '',
+    availability: '',
+  };
+  const [bookData, setBookData] = useState(initialBookData);
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+    if (page === 'add') {
+      setBookData(initialBookData); // Reset form when navigating to "Add Book"
+    }
+  };
+
+  return (
+    <div>
+      <Navbar onNavigate={handleNavigate} />
+      {currentPage === 'add' ? (
+        <AddBook bookData={bookData} setBookData={setBookData} />
+      ) : (
+        <ViewBooks />
+      )}
+    </div>
+  );
+};
+
+export default App;

@@ -1,0 +1,10 @@
+package com.users.Users.model;
+
+public class UserRole {
+    private Integer userId;
+	private Integer roleId;
+	private String country;
+    private String state;
+    private String city;
+
+}

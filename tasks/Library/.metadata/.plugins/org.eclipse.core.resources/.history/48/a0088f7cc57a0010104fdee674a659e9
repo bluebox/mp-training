@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+import Navbar from './components/Navbar';
+import './App.css'; // Make sure this CSS file exists
+
+function App() {
+  const [currentPage, setCurrentPage] = useState('add');
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'add':
+        return <AddBook />;
+      case 'view':
+        return <ViewBooks />;
+      default:
+        return <AddBook />;
+    }
+  };
+
+  return (
+    <div className="App">
+      <Navbar onNavigate={handleNavigate} />
+      {renderPage()}
+    </div>
+  );
+}
+
+export default App;

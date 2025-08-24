@@ -1,0 +1,14 @@
+import React from 'react';
+import './Home.css'; // Assuming you create this CSS file for styling
+
+const Home = () => {
+    return (
+        <div className="home-container">
+            <div className="content-box">
+                <h1 className="main-heading">Library Management System</h1>
+            </div>
+        </div>
+    );
+};
+
+export default Home;

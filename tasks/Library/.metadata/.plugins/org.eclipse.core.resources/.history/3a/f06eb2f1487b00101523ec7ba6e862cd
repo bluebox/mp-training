@@ -1,0 +1,131 @@
+package com.LMS.LibMS.repository.interfaceImpl;
+
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.LMS.LibMS.model.Member;
+import com.LMS.LibMS.repository.interfaces.MemberRepository;
+import com.LMS.LibMS.rowmapper.MemberRowMapper;
+
+@Repository
+public class MemberRepositoryImpl implements MemberRepository {
+
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public MemberRepositoryImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
+    @Override
+    public boolean addMember(Member member) {
+        String sql = "INSERT INTO members (name, email, phoneNumber, gender, address, created_at, created_by) " +
+                     "VALUES (:name, :email, :phoneNumber, :gender, :address, :createdAt, :createdBy)";
+
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("name", member.getName());
+        params.addValue("email", member.getEmail());
+        params.addValue("phoneNumber", member.getPhoneNumber());
+        params.addValue("gender", String.valueOf(member.getGender().getCode()));
+        params.addValue("address", member.getAddress());
+        params.addValue("createdAt", member.getCreatedAt());
+        params.addValue("createdBy", member.getCreatedBy());
+
+        int rows = namedParameterJdbcTemplate.update(sql, params);
+        return rows > 0;
+    }
+    
+    @Override
+    public Optional<Member> findMemberById(Integer id) {
+        String sql = "SELECT * FROM members WHERE memberID = :id";
+        List<Member> members = namedParameterJdbcTemplate.query(sql, Map.of("id", id), new MemberRowMapper());
+        return members.stream().findFirst();
+    }
+
+    @Override
+    public List<Member> findAllMembers() {
+        String sql = "SELECT * FROM members";
+        return namedParameterJdbcTemplate.query(sql, new MemberRowMapper());
+    }
+    
+    @Override
+    public boolean updateMember(Member member) {
+        logMember(member.getMemberID()); // Log the old data before updating
+
+        String sql = "UPDATE members SET name = :name, email = :email, phoneNumber = :phoneNumber, " +
+                     "gender = :gender, address = :address, updated_at = :updatedAt, updated_by = :updatedBy " +
+                     "WHERE memberID = :memberID";
+        
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("memberID", member.getMemberID());
+        params.addValue("name", member.getName());
+        params.addValue("email", member.getEmail());
+        params.addValue("phoneNumber", member.getPhoneNumber());
+        params.addValue("gender", String.valueOf(member.getGender().getCode()));
+        params.addValue("address", member.getAddress());
+        params.addValue("updatedAt", member.getUpdatedAt());
+        params.addValue("updatedBy", member.getUpdatedBy());
+
+        int rows = namedParameterJdbcTemplate.update(sql, params);
+        return rows > 0;
+    }
+
+    @Override
+    public boolean deleteMember(Integer memberId) {
+        logMember(memberId); // Log the member before deleting
+        String sql = "DELETE FROM members WHERE memberID = :memberId";
+        int rows = namedParameterJdbcTemplate.update(sql, Map.of("memberId", memberId));
+        return rows > 0;
+    }
+
+    @Override
+    public boolean deleteMembers(List<Integer> memberIds) {
+        if (memberIds == null || memberIds.isEmpty()) return false;
+        
+        memberIds.forEach(this::logMember); // Log each member before batch deletion
+        
+        String sql = "DELETE FROM members WHERE memberID IN (:ids)";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("ids", memberIds);
+        int rows = namedParameterJdbcTemplate.update(sql, params);
+        return rows > 0;
+    }
+
+    /**
+     * Logs a member's data to the members_log table before a change is made.
+     * @param memberId The ID of the member to log.
+     */
+    private boolean logMember(Integer memberId) {
+        Optional<Member> memberToLog = findMemberById(memberId);
+        if (memberToLog.isEmpty()) {
+            return false;
+        }
+
+        Member member = memberToLog.get();
+        String insertSql = "INSERT INTO members_log (MemberId, Name, Email, PhoneNumber, Gender, Address, created_at, created_by, updated_at, updated_by, LogDate) "
+                         + "VALUES (:memberId, :name, :email, :phoneNumber, :gender, :address, :createdAt, :createdBy, :updatedAt, :updatedBy, :logDate)";
+        
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("memberId", member.getMemberID());
+        params.addValue("name", member.getName());
+        params.addValue("email", member.getEmail());
+        params.addValue("phoneNumber", member.getPhoneNumber());
+        params.addValue("gender", String.valueOf(member.getGender().getCode()));
+        params.addValue("address", member.getAddress());
+        params.addValue("createdAt", member.getCreatedAt());
+        params.addValue("createdBy", member.getCreatedBy());
+        params.addValue("updatedAt", member.getUpdatedAt());
+        params.addValue("updatedBy", member.getUpdatedBy());
+        params.addValue("logDate", new Timestamp(System.currentTimeMillis()));
+
+        int rowsInserted = namedParameterJdbcTemplate.update(insertSql, params);
+        return rowsInserted > 0;
+    }
+}

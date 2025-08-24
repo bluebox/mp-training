@@ -1,0 +1,187 @@
+package com.LMS.LibMS.repository.interfaceImpl;
+
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.LMS.LibMS.model.Book;
+import com.LMS.LibMS.model.enums.BookAvailability;
+import com.LMS.LibMS.repository.interfaces.BookRepository;
+import com.LMS.LibMS.rowmapper.BookRowMapper;
+
+@Repository
+public class BookRepositoryImpl implements BookRepository{
+	
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	
+	@Autowired
+	public BookRepositoryImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate=namedParameterJdbcTemplate;
+	}
+	
+	@Override
+	public List<Book> findBooks(){
+		
+		String sqlString = "SELECT * FROM books";
+		
+		return namedParameterJdbcTemplate.query(sqlString, new BookRowMapper());
+	}
+	
+	@Override
+	public Book addBook(Book book) {
+	    String sql = "INSERT INTO books (title, author, category, status, availablity) " +
+	                 "VALUES (:title, :author, :category, :status, :availablity)";
+
+	    MapSqlParameterSource params = new MapSqlParameterSource();
+	    params.addValue("title", book.getTitle());
+	    params.addValue("author", book.getAuthor());
+	    params.addValue("category", book.getCategory().name());
+	    params.addValue("status", book.getStatus().getCode());
+	    params.addValue("availablity", book.getAvailability().getCode());
+
+	    namedParameterJdbcTemplate.update(sql, params);
+	    return book;
+	}
+
+	
+	@Override
+	public Book updateBook(Book book) {
+	    // Log the current state of the book before the update
+	    logBook(Arrays.asList(book.getBookId()));
+
+	    String sql = "UPDATE books SET title = :title, author = :author, category = :category, "
+	               + "status = :status, availablity = :availablity, updated_at = :updatedAt "
+	               + "WHERE bookId = :bookId";
+
+	    MapSqlParameterSource params = new MapSqlParameterSource();
+	    params.addValue("bookId", book.getBookId());
+	    params.addValue("title", book.getTitle());
+	    params.addValue("author", book.getAuthor());
+	    params.addValue("category", book.getCategory().name());
+	    params.addValue("status", book.getStatus().getCode());
+	    params.addValue("availablity", book.getAvailability().getCode());
+        params.addValue("updatedAt", new Timestamp(System.currentTimeMillis()));
+	    
+	    namedParameterJdbcTemplate.update(sql, params);
+	    return book;
+	}
+	
+    @Override
+    public boolean deleteBook(Integer bookId) {
+        String sql = "DELETE FROM books WHERE bookId = :bookId";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("bookId", bookId);
+        int rows = namedParameterJdbcTemplate.update(sql, params);
+        return rows > 0;
+    }
+
+    @Override
+    public boolean changeAvailability(Integer bookId, String newAvailabilityCode) {
+        String sql = "UPDATE books SET availablity = :availability WHERE bookId = :bookId";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("availability", newAvailabilityCode);
+        params.addValue("bookId", bookId);
+        int rows = namedParameterJdbcTemplate.update(sql, params);
+        return rows > 0;
+    }
+
+    @Override
+    public boolean deleteBooks(List<Integer> bookIds) {
+        if (bookIds == null || bookIds.isEmpty()) return false;
+
+        logBook(bookIds);
+
+        String sql = "DELETE FROM books WHERE bookId IN (:ids)";
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("ids", bookIds);
+
+        int rows = namedParameterJdbcTemplate.update(sql, params);
+        return rows > 0;
+    }
+
+    
+    @Override
+    public boolean updateAvailabilities(List<Integer> bookIds) {
+        if (bookIds == null || bookIds.isEmpty()) return false;
+
+        logBook(bookIds);
+
+        String AvailBooks = "SELECT bookId, availability FROM books WHERE bookId IN (:ids)";
+        MapSqlParameterSource AvailBooksParams = new MapSqlParameterSource();
+        AvailBooksParams.addValue("ids", bookIds);
+
+        List<Map<String, Object>> existingBooks = namedParameterJdbcTemplate.queryForList(AvailBooks, AvailBooksParams);
+
+        for (Map<String, Object> row : existingBooks) {
+            Integer bookId = ((Number) row.get("bookId")).intValue();
+            String currentCode = (String) row.get("availability");
+
+            String newCode = BookAvailability.fromCode(currentCode) == BookAvailability.AVAILABLE
+                    ? BookAvailability.ISSUED.getCode()
+                    : BookAvailability.AVAILABLE.getCode();
+
+            String sqlUpdate = "UPDATE books SET availability = :availability WHERE bookId = :id";
+            MapSqlParameterSource updateParams = new MapSqlParameterSource();
+            updateParams.addValue("availability", newCode);
+            updateParams.addValue("id", bookId);
+
+            namedParameterJdbcTemplate.update(sqlUpdate, updateParams);
+        }
+
+        return true;
+    }
+    
+    
+
+ private boolean logBook(List<Integer> bookIds) {
+     if (bookIds == null || bookIds.isEmpty()) return false;
+
+     String fetchSql = "SELECT BookId, Title, Author, Category, Status, Availablity, created_at, created_by, updated_at, updated_by "
+                     + "FROM books WHERE BookId IN (:ids)";
+     
+     MapSqlParameterSource fetchParams = new MapSqlParameterSource();
+     fetchParams.addValue("ids", bookIds);
+
+     List<Map<String, Object>> rows = namedParameterJdbcTemplate.queryForList(fetchSql, fetchParams);
+     if (rows == null || rows.isEmpty()) return false;
+
+     String insertSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availablity, "
+                      + "created_at, created_by, updated_at, updated_by, LogDate) "
+                      + "VALUES (:bookId, :title, :author, :category, :status, :availablity, "
+                      + ":CreatedAt, :CreatedBy, :UpdatedAt, :UpdatedBy, :logDate)";
+
+     int totalInserted = 0;
+     for (Map<String, Object> row : rows) {
+         MapSqlParameterSource params = new MapSqlParameterSource();
+         params.addValue("bookId", row.get("BookId"));
+         params.addValue("title", row.get("Title"));
+         params.addValue("author", row.get("Author"));
+         params.addValue("category", row.get("Category"));
+         params.addValue("status", row.get("Status"));
+         params.addValue("availablity", row.get("Availablity"));
+
+         params.addValue("CreatedAt", row.get("created_at"));
+         params.addValue("CreatedBy", row.get("created_by"));
+         params.addValue("UpdatedAt", row.get("updated_at"));
+         params.addValue("UpdatedBy", row.get("updated_by"));
+
+         params.addValue("logDate", new Timestamp(System.currentTimeMillis()));
+
+         totalInserted += namedParameterJdbcTemplate.update(insertSql, params);
+     }
+
+     return totalInserted > 0;
+ }
+
+
+
+
+
+}

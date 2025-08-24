@@ -1,0 +1,76 @@
+/*import React, { useState } from 'react';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+import Navbar from './components/Navbar';
+import './App.css'; 
+
+function App() {
+  const [currentPage, setCurrentPage] = useState('add');
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'add':
+        return <AddBook />;
+      case 'view':
+        return <ViewBooks />;
+      default:
+        return <AddBook />;
+    }
+  };
+
+  return (
+    <div className="App">
+      <Navbar onNavigate={handleNavigate} />
+      {renderPage()}
+    </div>
+  );
+}
+
+export default App;
+*/
+
+// In your parent component (e.g., App.js)
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import AddBook from './components/AddBook';
+import ViewBooks from './components/ViewBooks';
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('view');
+
+  // Initial state for your form data
+  const initialBookData = {
+    title: '',
+    author: '',
+    category: '',
+    status: '',
+    availability: '',
+  };
+
+  const [bookData, setBookData] = useState(initialBookData);
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+    // If navigating to the 'add' page, reset the book data
+    if (page === 'add') {
+      setBookData(initialBookData);
+    }
+  };
+
+  return (
+    <div>
+      <Navbar onNavigate={handleNavigate} />
+      {currentPage === 'add' ? (
+        <AddBook bookData={bookData} setBookData={setBookData} />
+      ) : (
+        <div><ViewBooks /></div>
+      )}
+    </div>
+  );
+};
+
+export default App;

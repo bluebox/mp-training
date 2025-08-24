@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+import Login from './Login';
+import AddUser from './AddUser';
+
+const Main = ({ onNavigate, onLoginSuccess }) => {
+  const [showLogin, setShowLogin] = useState(true); // Initially show the Login component
+
+  const handleShowLogin = () => {
+    setShowLogin(true);
+  };
+
+  const handleShowAddUser = () => {
+    setShowLogin(false);
+  };
+
+  return (
+    <div>
+      <h2>Please Login or Register</h2>
+      <div>
+        <button onClick={handleShowLogin}>Login</button>
+        <button onClick={handleShowAddUser}>Register</button>
+      </div>
+
+      {showLogin ? (
+        <Login onNavigate={onNavigate} onLoginSuccess={onLoginSuccess} />
+      ) : (
+        <AddUser onNavigate={onNavigate} />
+      )}
+    </div>
+  );
+};
+
+export default Main;

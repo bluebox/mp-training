@@ -1,0 +1,5 @@
+package com.users.Users;
+
+public class UserRepository {
+
+}

@@ -1,0 +1,61 @@
+
+
+package com.LMS.LibMS.service.interfaces;
+
+
+
+import java.time.LocalDateTime;
+
+import java.util.List;
+
+
+
+import com.LMS.LibMS.model.IssueRecord;
+
+import com.LMS.LibMS.model.Member;
+
+
+
+public interface IssueService {
+
+void issueBook(int bookId, int memberId, LocalDateTime issueDate, String issuedBy);
+
+void returnBook(int bookId, String returnedBy);
+
+List<IssueRecord> getAllIssuedRecords();
+
+List<IssueRecord> getOverdueBooks(int dueDays);
+
+List<Member> getMembersWithActiveBooks();
+
+}
+
+
+
+package com.LMS.LibMS.service.interfaces;
+
+
+
+import java.util.List;
+
+
+
+import com.LMS.LibMS.model.Member;
+
+
+
+public interface MemberService {
+
+boolean addMember(Member member);
+
+List<Member> getAllMembers();
+
+Member getMemberById(Integer id);
+
+boolean updateMember(Member member);
+
+boolean deleteMember(Integer memberId);
+
+boolean deleteMembers(List<Integer> memberIds);
+
+}

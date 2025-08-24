@@ -1,0 +1,5 @@
+package com.users.Users.rowmapper;
+
+public class UserRowMapper {
+
+}

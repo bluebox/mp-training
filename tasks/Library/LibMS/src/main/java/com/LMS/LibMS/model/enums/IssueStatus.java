@@ -1,0 +1,29 @@
+package com.LMS.LibMS.model.enums;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public enum IssueStatus {
+    ISSUED("I"),
+    RETURNED("R");
+
+    private final String code;
+
+    @JsonValue
+    public String getCode() {
+		return code;
+	}
+   
+    @JsonCreator
+    public static IssueStatus fromCode(String code) { 
+        for (IssueStatus status : IssueStatus.values()) {
+            if (status.code.equalsIgnoreCase(code)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("No issue status with code: " + code);
+    }
+}

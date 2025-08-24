@@ -1,0 +1,242 @@
+import React, { useState, useEffect } from 'react';
+import './AddUser.css';
+import $ from 'jquery';
+
+const AddUser = () => {
+    const [userData, setUserData] = useState({
+        username: '',
+        password: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        country: '',
+        state: '',
+        city: '',
+        postalCode: '',
+        status: ''
+    });
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('');
+    const [countries, setCountries] = useState([]);
+    const [states, setStates] = useState([]);
+    const [cities, setCities] = useState([]);
+    const API_KEY = 'ME95TTJOZERmVG9nb3hKNFNtcEJIWHRNMmNqNzdqVFRNclFnTHhRNw==';
+	
+
+    useEffect(() => {
+        fetchCountries();
+    }, []);
+
+    useEffect(() => {
+        if (userData.country) {
+            fetchStates(userData.country);
+        } else {
+            setStates([]);
+            setCities([]);
+        }
+    }, [userData.country]);
+
+    useEffect(() => {
+        if (userData.country && userData.state) {
+            fetchCities(userData.country, userData.state);
+        } else {
+            setCities([]);
+        }
+    }, [userData.state,userData.country]);
+
+    const fetchCountries = () => {
+        $.ajax({
+            url: "https://api.countrystatecity.in/v1/countries",
+            method: "GET",
+            headers: {
+                "X-CSCAPI-KEY": API_KEY
+            },
+            success: (data) => {
+                setCountries(data);
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                console.error("Error fetching countries:", textStatus, errorThrown);
+                setMessage('Error loading countries.');
+                setMessageType('error');
+            }
+        });
+    };
+
+    const fetchStates = (countryIso2) => {
+        $.ajax({
+            url: `https://api.countrystatecity.in/v1/countries/${countryIso2}/states`,
+            method: "GET",
+            headers: {
+                "X-CSCAPI-KEY": API_KEY
+            },
+            success: (data) => {
+                setStates(data);
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                console.error("Error fetching states:", textStatus, errorThrown);
+                setMessage('Error loading states.');
+                setMessageType('error');
+            }
+        });
+    };
+
+    const fetchCities = (countryIso2, stateIso2) => {
+        $.ajax({
+            url: `https://api.countrystatecity.in/v1/countries/${countryIso2}/states/${stateIso2}/cities`,
+            method: "GET",
+            headers: {
+                "X-CSCAPI-KEY": API_KEY
+            },
+            success: (data) => {
+                setCities(data);
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                console.error("Error fetching cities:", textStatus, errorThrown);
+                setMessage('Error loading cities.');
+                setMessageType('error');
+            }
+        });
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUserData(prev => ({ ...prev, [name]: value }));
+    };
+
+	const handleSubmit = async (e) => {
+	  e.preventDefault();
+	  try {
+	    const payload = {
+	      ...userData,
+	      status: userData.status ? userData.status.toUpperCase() : null
+	    };
+
+		const response = await fetch('/user/adduser', {
+		  method: 'POST',
+		  headers: { 'Content-Type': 'application/json' },
+		  body: JSON.stringify(payload),
+		});
+
+
+	    if (!response.ok) {
+        const error = await response.text();
+        /*alert('User failed: ' + error);*/
+	     throw new Error(`${error}`);
+	    }
+
+	    const result = await response.json();
+	    console.log('Success:', result);
+	    setMessage('User added successfully!');
+	    setMessageType('success');
+	    setUserData({
+	      username: '',
+	      password: '',
+	      email: '',
+	      firstName: '',
+	      lastName: '',
+	      phoneNumber: '',
+	      country: '',
+	      state: '',
+	      city: '',
+	      postalCode: '',
+	      status: ''
+	    });
+	  } catch (error) {
+	    console.error('Error:', error);
+		const errorMessageParts = error.message.split(';');
+		const formattedErrorMessage = errorMessageParts.join('\n');
+	    setMessage(`${formattedErrorMessage}`);
+	    setMessageType('error');
+	  }
+	};
+
+    return (
+        <div className="container">
+            <div className="form-container">
+                <h2>Add New User</h2>
+                <form onSubmit={handleSubmit} className="form">
+                    <div className="form-group">
+                        <label htmlFor="username">Username:</label>
+                        <input type="text" id="username" name="username" value={userData.username} onChange={handleChange} required placeholder="Enter Username..." />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" id="password" name="password" value={userData.password} onChange={handleChange} required placeholder="Enter password..." />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" id="email" name="email" value={userData.email} onChange={handleChange} required placeholder="Enter Email..." />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" value={userData.firstName} onChange={handleChange} required placeholder="Enter firstName..." />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" value={userData.lastName} onChange={handleChange} required placeholder="Enter lastName..." />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="phoneNumber">Phone Number:</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" value={userData.phoneNumber} onChange={handleChange} required placeholder="Enter Phone number..." />
+                    </div>
+
+                    <div className="form-row">
+                        <label htmlFor="country" className="form-label">Country:</label>
+                        <select name="country" id="country" value={userData.country} onChange={handleChange} required>
+                            <option value="">Select Country</option>
+                            {countries.map(country => (
+                                <option key={country.iso2} value={country.iso2}>{country.name}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="form-row">
+                        <label htmlFor="state" className="form-label">State:</label>
+                        <select name="state" id="state" value={userData.state} onChange={handleChange} required>
+                            <option value="">Select State</option>
+                            {states.map(state => (
+                                <option key={state.iso2} value={state.iso2}>{state.name}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="form-row">
+                        <label htmlFor="city" className="form-label">City:</label>
+                        <select name="city" id="city" value={userData.city} onChange={handleChange} required>
+                            <option value="">Select City</option>
+                            {cities.map(city => (
+                                <option key={city.name} value={city.name}>{city.name}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="postalCode">Postal Code:</label>
+                        <input type="text" id="postalCode" name="postalCode" value={userData.postalCode} onChange={handleChange} required placeholder="Enter postal code..." />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="status">Status:</label>
+                        <select name="status" id="status" value={userData.status} onChange={handleChange} required>
+						<option value="">Select Status</option>
+						<option value="ACTIVE">ACTIVE</option>
+						<option value="INACTIVE">INACTIVE</option>
+
+                        </select>
+                    </div>
+
+                    <button type="submit" className="submit-btn">Add User</button>
+                </form>
+                {message && <p className="message" style={{ color: messageType === 'error' ? 'red' : 'green' }}>{message}</p>}
+            </div>
+        </div>
+    );
+};
+
+export default AddUser;

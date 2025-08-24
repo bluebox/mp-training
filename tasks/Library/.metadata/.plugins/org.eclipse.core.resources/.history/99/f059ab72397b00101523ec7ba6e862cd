@@ -1,0 +1,43 @@
+package com.LMS.LibMS.service.interfaceImpl;
+
+import com.LMS.LibMS.model.Member;
+import com.LMS.LibMS.repository.interfaces.MemberRepository;
+import com.LMS.LibMS.service.interfaces.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class MemberServiceImpl implements MemberService {
+
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    @Override
+    public boolean addMember(Member member) {
+        member.setCreatedAt(LocalDateTime.now());
+        member.setCreatedBy("SYSTEM");
+        return memberRepository.addMember(member);
+    }
+
+    @Override
+    public List<Member> getAllMembers() {
+        return memberRepository.findAllMembers();
+    }
+    
+    @Override
+    public boolean deleteMember(Integer memberId) {
+        return memberRepository.deleteMember(memberId);
+    }
+    
+    @Override
+    public boolean deleteMembers(List<Integer> memberIds) {
+        return memberRepository.deleteMembers(memberIds);
+    }
+}

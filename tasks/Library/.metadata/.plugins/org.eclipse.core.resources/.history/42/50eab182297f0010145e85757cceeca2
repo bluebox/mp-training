@@ -1,0 +1,29 @@
+package com.users.Users.rowmapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.users.Users.model.UserRole;
+
+public class UserRoleMapper implements RowMapper<UserRole>{
+
+	@Override
+	public UserRole mapRow(ResultSet rs, int rowNum) throws SQLException {
+		UserRole userRole = new UserRole();
+		
+		userRole.setUserId(rs.getInt("user_id"));
+		userRole.setRoleId(Arrays.asList(rs.getInt("role_id")));
+		userRole.setCountry(rs.getString("country"));
+		userRole.setState(rs.getString("state"));
+		userRole.setCity(rs.getString("city"));
+		userRole.setUsername(rs.getString("username"));
+		userRole.setRolename(rs.getString("role_name"));
+		
+		return userRole;
+	}
+	
+
+}

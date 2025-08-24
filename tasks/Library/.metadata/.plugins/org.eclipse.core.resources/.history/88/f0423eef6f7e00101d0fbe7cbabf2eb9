@@ -1,0 +1,19 @@
+package com.users.Users.repository.interfaces;
+
+import java.util.List;
+
+import com.users.Users.model.User;
+
+public interface UserRepository {
+
+	List<User> getUsers();
+
+	List<User> getUserById(int uid);
+
+	void addUser(User user);
+
+	boolean updateUser(User user);
+
+	String getPassword(String username);
+
+}

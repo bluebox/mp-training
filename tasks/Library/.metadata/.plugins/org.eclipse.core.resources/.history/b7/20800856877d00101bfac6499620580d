@@ -1,0 +1,60 @@
+import React, { useState } from 'react';
+
+function RoleManagement() {
+  const [availableRoles, setAvailableRoles] = useState([
+    'Developer',
+    'Tester',
+    'Designer',
+  ]);
+  const [selectedRoles, setSelectedRoles] = useState([]);
+  const [assignedRoles, setAssignedRoles] = useState([]);
+
+  const handleSelectRole = (role) => {
+    setSelectedRoles((prevSelected) => [...prevSelected, role]);
+    setAvailableRoles((prevAvailable) =>
+      prevAvailable.filter((r) => r !== role)
+    );
+  };
+
+  const handleAssignRoles = () => {
+    setAssignedRoles((prevAssigned) => [...prevAssigned, ...selectedRoles]);
+    setSelectedRoles([]);
+  };
+
+  const handleRemoveAssignedRole = (role) => {
+    setAssignedRoles((prevAssigned) => prevAssigned.filter((r) => r !== role));
+    setAvailableRoles((prevAvailable) => [...prevAvailable, role]);
+  };
+
+  return (
+    <div className="role-management-container">
+      <div className="available-roles">
+        <h2>Available Roles</h2>
+        <ul>
+          {availableRoles.map((role) => (
+            <li key={role} onClick={() => handleSelectRole(role)}>
+              {role}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="transfer-button">
+        <button onClick={handleAssignRoles}>&gt;&gt;</button>
+      </div>
+
+      <div className="assigned-roles">
+        <h2>Assigned Roles</h2>
+        <ul>
+          {assignedRoles.map((role) => (
+            <li key={role} onClick={() => handleRemoveAssignedRole(role)}>
+              {role}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default RoleManagement;

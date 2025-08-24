@@ -1,0 +1,114 @@
+package com.LMS.LibMS.repository.interfaceImpl;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.LMS.LibMS.model.IssueRecord;
+import com.LMS.LibMS.model.enums.IssueStatus;
+import com.LMS.LibMS.repository.interfaces.IssueRecordRepository;
+import com.LMS.LibMS.rowmapper.IssueRecordRowMapper;
+
+@Repository
+public class IssueRecordRepositoryImpl implements IssueRecordRepository {
+
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public IssueRecordRepositoryImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
+    @Override
+    public void addIssueRecord(IssueRecord issueRecord) {
+        String sql = "INSERT INTO issue_records (bookId, memberId, status, issueDate, issued_by) " +
+                     "VALUES (:bookId, :memberId, :status, :issueDate, :issuedBy)";
+
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("bookId", issueRecord.getBookId());
+        params.addValue("memberId", issueRecord.getMemberId());
+        params.addValue("status", issueRecord.getStatus().getCode());
+        params.addValue("issueDate", issueRecord.getIssueDate() == null ? null
+                        : Timestamp.valueOf(issueRecord.getIssueDate()))
+                .addValue("issuedBy", issueRecord.getIssuedBy());
+
+        namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    @Override
+    public boolean updateIssueRecord(IssueRecord issueRecord) {
+        logIssueRecord(issueRecord.getIssueId()); 
+
+        String sql = "UPDATE issue_records SET " +
+                     "Status = :status, " +
+                     "ReturnDate = :returnDate, " +
+                     "returned_by = :returnedBy " +
+                     "WHERE IssueId = :issueId";
+
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("issueId", issueRecord.getIssueId());
+        params.addValue("status", issueRecord.getStatus().getCode());
+        params.addValue("returnDate", issueRecord.getReturnDate() == null ? null
+                        : Timestamp.valueOf(issueRecord.getReturnDate()))
+                .addValue("returnedBy", issueRecord.getReturnedBy());
+
+        int rows = namedParameterJdbcTemplate.update(sql, params);
+        return rows > 0;
+    }
+
+    @Override
+    public List<IssueRecord> getAllIssuedRecords() {
+        String sql = "SELECT * FROM issue_records";
+        return namedParameterJdbcTemplate.query(sql, new IssueRecordRowMapper());
+    }
+
+    @Override
+    public Optional<IssueRecord> getActiveIssueRecordByBookId(int bookId) {
+        String sql = "SELECT * FROM issue_records " +
+                     "WHERE BookId = :bookId AND Status = :status AND ReturnDate IS NULL";
+
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("bookId", bookId)
+                .addValue("status", IssueStatus.ISSUED.getCode());
+
+        List<IssueRecord> records = namedParameterJdbcTemplate.query(sql, params, new IssueRecordRowMapper());
+        return records.stream().findFirst();
+    }
+
+    
+    private void logIssueRecord(Integer issueId) {
+        String fetchSql = "SELECT IssueId, BookId, MemberId, Status, IssueDate, issued_by, ReturnDate, returned_by "
+                        + "FROM issue_records WHERE IssueId = :issueId";
+        
+        List<IssueRecord> recordsToLog = namedParameterJdbcTemplate.query(fetchSql, Map.of("issueId", issueId), new IssueRecordRowMapper());
+        
+        if (!recordsToLog.isEmpty()) {
+            IssueRecord record = recordsToLog.get(0);
+
+            String insertSql = "INSERT INTO issue_records_log (IssueId, BookId, MemberId, Status, IssueDate, issued_by, "
+                             + "ReturnDate, returned_by, LogDate) "
+                             + "VALUES (:issueId, :bookId, :memberId, :status, :issueDate, :issuedBy, :returnDate, "
+                             + ":returnedBy, :logDate)";
+
+            MapSqlParameterSource params = new MapSqlParameterSource();
+            params.addValue("issueId", record.getIssueId());
+            params.addValue("bookId", record.getBookId());
+            params.addValue("memberId", record.getMemberId());
+            params.addValue("status", record.getStatus().getCode());
+            params.addValue("issueDate", record.getIssueDate());
+            params.addValue("issuedBy", record.getIssuedBy());
+            params.addValue("returnDate", record.getReturnDate());
+            params.addValue("returnedBy", record.getReturnedBy());
+            params.addValue("logDate", Timestamp.valueOf(LocalDateTime.now()));
+
+            namedParameterJdbcTemplate.update(insertSql, params);
+        }
+    }
+}

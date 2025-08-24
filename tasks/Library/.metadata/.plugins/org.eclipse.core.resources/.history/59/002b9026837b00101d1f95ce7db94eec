@@ -1,0 +1,102 @@
+
+package com.LMS.LibMS.repository.interfaceImpl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.LMS.LibMS.model.IssueRecord;
+import com.LMS.LibMS.repository.interfaces.IssueRecordRepository;
+import com.LMS.LibMS.rowmapper.IssueRecordRowMapper;
+
+@Repository
+
+public class IssueRecordRepositoryImpl implements IssueRecordRepository {
+
+	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+
+	public IssueRecordRepositoryImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+
+	}
+
+	@Override
+
+	public void addIssueRecord(IssueRecord issueRecord) {
+
+		String sql = "INSERT INTO issue_records (bookId, memberId, status, issueDate, issued_by) " +
+
+				"VALUES (:bookId, :memberId, :status, :issueDate, :issuedBy)";
+
+		MapSqlParameterSource params = new MapSqlParameterSource();
+
+		params.addValue("bookId", issueRecord.getBookId());
+
+		params.addValue("memberId", issueRecord.getMemberId());
+
+		params.addValue("status", issueRecord.getStatus().getCode());
+
+		params.addValue("issueDate", issueRecord.getIssueDate());
+
+		params.addValue("issuedBy", issueRecord.getIssuedBy());
+
+		namedParameterJdbcTemplate.update(sql, params);
+
+	}
+
+	@Override
+
+	public boolean updateIssueRecord(IssueRecord issueRecord) {
+
+		String sql = "UPDATE issue_records SET status = :status, returnDate = :returnDate, returned_by = :returnedBy WHERE issueId = :issueId";
+
+		MapSqlParameterSource params = new MapSqlParameterSource();
+
+		params.addValue("issueId", issueRecord.getIssueId());
+
+		params.addValue("status", issueRecord.getStatus().getCode());
+
+		params.addValue("returnDate", issueRecord.getReturnDate());
+
+		params.addValue("returnedBy", issueRecord.getReturnedBy());
+
+		int rows = namedParameterJdbcTemplate.update(sql, params);
+
+		return rows > 0;
+
+	}
+
+	@Override
+
+	public List<IssueRecord> getAllIssuedRecords() {
+
+		String sql = "SELECT * FROM issue_records";
+
+		return namedParameterJdbcTemplate.query(sql, new IssueRecordRowMapper());
+
+	}
+
+	@Override
+
+	public Optional<IssueRecord> getActiveIssueRecordByBookId(int bookId) {
+
+		String sql = "SELECT * FROM issue_records WHERE bookId = :bookId AND status = 'I' AND returnDate IS NULL";
+
+		MapSqlParameterSource params = new MapSqlParameterSource();
+
+		params.addValue("bookId", bookId);
+
+		List<IssueRecord> records = namedParameterJdbcTemplate.query(sql, params, new IssueRecordRowMapper());
+
+		return records.stream().findFirst();
+
+	}
+
+}

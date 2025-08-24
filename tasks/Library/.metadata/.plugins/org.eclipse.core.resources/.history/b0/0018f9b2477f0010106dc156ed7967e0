@@ -1,0 +1,496 @@
+/*import React, { useState, useEffect, useMemo } from 'react';
+import './ViewUserRequests.css';
+
+
+const MainUsers = ({ onUpdateClick , onViewAssignedRoles ,onNavigate }) => {
+  const [members, setMembers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedMembers, setSelectedMembers] = useState([]);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('success');
+  const [searchText, setSearchText] = useState('');
+
+  const fetchMembers = async () => {
+    setIsLoading(true);
+    setError(null);
+    setMessage('');
+    try {
+      const response = await fetch('/main/getMainUsers');
+      if (response.ok) {
+        const data = await response.json();
+        setMembers(Array.isArray(data) ? data : []);
+      } else {
+        setError('Failed to fetch members.');
+        setMessage('Failed to fetch members.');
+        setMessageType('error');
+      }
+    } catch (err) {
+      setError('Failed to fetch members.');
+      setMessage('Failed to fetch members.');
+      setMessageType('error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  const handleSelectMember = (userId) => {
+    setSelectedMembers(prev =>
+      prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]
+    );
+  };
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      setSelectedMembers(members.map(m => m.userId));
+    } else {
+      setSelectedMembers([]);
+    }
+  };
+
+
+   const handleUpdate = async (userId) => {
+	   onUpdateClick(userId);
+  };
+  
+ const handleViewRoles = async (userId) => {
+	onViewAssignedRoles(userId);
+ };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleString();
+  };
+
+  const filteredMembers = useMemo(() => {
+    const txt = searchText.trim().toLowerCase();
+    if (!txt) return members;
+    return members.filter(m => {
+      const row = `${m.userId} ${m.username} ${m.email} ${m.firstName} ${m.lastName} ${m.phoneNumber} ${m.country} ${m.state} ${m.city} ${m.postalCode} ${m.status} ${m.aprovedStatus}`.toLowerCase();
+      return row.includes(txt);
+    });
+  }, [members, searchText]);
+  
+
+  if (isLoading) return <div>Loading members...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="members-container">
+      <h1 className="members-header">All Users</h1>
+
+      <div className="right-section">
+        <div className="search-container">
+          <label htmlFor="search" className="form-label">Search:</label>
+          <input
+            type="text"
+            id="search"
+            placeholder="Search by any field..."
+            className="form-input"
+            value={searchText}
+            onChange={e => setSearchText(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="table-wrapper">
+        <table className="members-table" id="dataTable">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={selectedMembers.length === members.length && members.length > 0}
+                />
+              </th>
+              <th>User ID</th>
+              <th>USER NAME</th>
+              <th>Password</th>
+              <th>Email</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Country</th>
+              <th>State</th>
+              <th>City</th>
+              <th>Postal Code</th>
+              <th>Status</th>
+              <th>Actions</th>
+              <th>Created At</th>
+              <th>Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredMembers.length > 0 ? (
+              filteredMembers.map(member => (
+                <tr key={member.userId}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedMembers.includes(member.userId)}
+                      onChange={() => handleSelectMember(member.userId)}
+                    />
+                  </td>
+                  <td>{member.userCode}</td>
+                  <td>{member.username}</td>
+                  <td>*********</td>
+                  <td>{member.email}</td>
+                  <td>{member.firstName}</td>
+                  <td>{member.lastName}</td>
+                  <td>{member.phoneNumber}</td>
+                  <td>{member.country}</td>
+                  <td>{member.state}</td>
+                  <td>{member.city}</td>
+                  <td>{member.postalCode}</td>
+                  <td>{member.status}</td>
+                  <td className="view-members-actions-column">
+                    <button
+                      onClick={() => handleUpdate(member.userCode)}
+                      className="update-btn"
+                    >
+                      Assign Roles
+                    </button>
+					<button
+                      onClick={() => handleViewRoles(member.userCode)}
+                      className="update-btn"
+                    >
+                      View Assign Roles
+                    </button>
+                  </td>
+                  <td>{formatDate(member.created_at)}</td>
+                  <td>{formatDate(member.updated_at)}</td>
+                </tr>
+              ))
+            ) : (
+              <tr><td colSpan="17" className="no-members">No members found.</td></tr>
+            )}
+          </tbody>
+        </table>
+        {filteredMembers.length === 0 && <p id="noResultsMessage">No results found.</p>}
+      </div>
+
+      <p className="message-label" style={{ color: messageType === 'error' ? 'red' : 'green' }}>
+        {message}
+      </p>
+
+      <div className="button-group">
+        <button onClick={fetchMembers} className="refresh-btn">Refresh Members</button>
+      </div>
+    </div>
+  );
+};
+
+export default MainUsers;
+*/
+
+import React, { useState, useEffect, useMemo } from 'react';
+import './ViewUserRequests.css';
+
+
+const MainUsers = ({ onUpdateClick , onViewAssignedRoles ,onNavigate }) => {
+  const [members, setMembers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedMembers, setSelectedMembers] = useState([]);
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('success');
+  const [searchText, setSearchText] = useState('');
+
+  // NEW: filter states
+  const [filterCountry, setFilterCountry] = useState('');
+  const [filterState, setFilterState] = useState('');
+  const [filterCity, setFilterCity] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
+  const [filterUserStatus, setFilterUserStatus] = useState('');
+
+  const fetchMembers = async () => {
+    setIsLoading(true);
+    setError(null);
+    setMessage('');
+    try {
+      const response = await fetch('/main/getMainUsers');
+      if (response.ok) {
+        const data = await response.json();
+        setMembers(Array.isArray(data) ? data : []);
+      } else {
+        setError('Failed to fetch members.');
+        setMessage('Failed to fetch members.');
+        setMessageType('error');
+      }
+    } catch (err) {
+      setError('Failed to fetch members.');
+      setMessage('Failed to fetch members.');
+      setMessageType('error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  const handleSelectMember = (userId) => {
+    setSelectedMembers(prev =>
+      prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]
+    );
+  };
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      setSelectedMembers(members.map(m => m.userId));
+    } else {
+      setSelectedMembers([]);
+    }
+  };
+
+
+   const handleUpdate = async (userId) => {
+	   onUpdateClick(userId);
+  };
+  
+ const handleViewRoles = async (userId) => {
+	onViewAssignedRoles(userId);
+ };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return date.toLocaleString();
+  };
+
+  // NEW: unique lists for dropdowns (memoized)
+  const uniqueCountries = useMemo(() => {
+    return [...new Set(members.map(m => m.country).filter(Boolean))].sort();
+  }, [members]);
+
+  const uniqueStates = useMemo(() => {
+    const states = members
+      .filter(m => (filterCountry ? m.country === filterCountry : true))
+      .map(m => m.state)
+      .filter(Boolean);
+    return [...new Set(states)].sort();
+  }, [members, filterCountry]);
+
+  const uniqueCities = useMemo(() => {
+    const cities = members
+      .filter(m => (filterCountry ? m.country === filterCountry : true))
+      .filter(m => (filterState ? m.state === filterState : true))
+      .map(m => m.city)
+      .filter(Boolean);
+    return [...new Set(cities)].sort();
+  }, [members, filterCountry, filterState]);
+
+  const uniqueStatuses = useMemo(() => {
+    return [...new Set(members.map(m => m.status).filter(Boolean))].sort();
+  }, [members]);
+
+  const uniqueUserStatuses = useMemo(() => {
+    return [...new Set(members.map(m => m.aprovedStatus).filter(Boolean))].sort();
+  }, [members]);
+
+  // UPDATED filteredMembers: respects searchText and the filters.
+  // NOTE: If there's no search text AND no filters, returns members (preserves original behavior).
+  const filteredMembers = useMemo(() => {
+    const txt = searchText.trim().toLowerCase();
+    const anyFilter = filterCountry || filterState || filterCity || filterStatus || filterUserStatus;
+
+    if (!txt && !anyFilter) return members;
+
+    return members.filter(m => {
+      const row = `${m.userId} ${m.username} ${m.email} ${m.firstName} ${m.lastName} ${m.phoneNumber} ${m.country} ${m.state} ${m.city} ${m.postalCode} ${m.status} ${m.aprovedStatus}`.toLowerCase();
+
+      const matchesSearch = !txt || row.includes(txt);
+      const matchesCountry = !filterCountry || m.country === filterCountry;
+      const matchesState = !filterState || m.state === filterState;
+      const matchesCity = !filterCity || m.city === filterCity;
+      const matchesStatus = !filterStatus || m.status === filterStatus;
+      const matchesUserStatus = !filterUserStatus || m.aprovedStatus === filterUserStatus;
+
+      return matchesSearch && matchesCountry && matchesState && matchesCity && matchesStatus && matchesUserStatus;
+    });
+  }, [members, searchText, filterCountry, filterState, filterCity, filterStatus, filterUserStatus]);
+
+
+  if (isLoading) return <div>Loading members...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="members-container">
+      <h1 className="members-header">All Users</h1>
+
+      <div className="right-section">
+        <div className="search-container">
+          <label htmlFor="search" className="form-label">Search:</label>
+          <input
+            type="text"
+            id="search"
+            placeholder="Search by any field..."
+            className="form-input"
+            value={searchText}
+            onChange={e => setSearchText(e.target.value)}
+          />
+        </div>
+
+        {/* NEW: Filters placed below the search input */}
+        <div className="filter-row" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '12px' }}>
+          <div className="filter-item">
+            <label>Country:</label>
+            <select
+              value={filterCountry}
+              onChange={(e) => {
+                setFilterCountry(e.target.value);
+                setFilterState('');
+                setFilterCity('');
+              }}
+            >
+              <option value="">All</option>
+              {uniqueCountries.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label>State:</label>
+            <select
+              value={filterState}
+              onChange={(e) => {
+                setFilterState(e.target.value);
+                setFilterCity('');
+              }}
+            >
+              <option value="">All</option>
+              {uniqueStates.map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label>City:</label>
+            <select
+              value={filterCity}
+              onChange={(e) => setFilterCity(e.target.value)}
+            >
+              <option value="">All</option>
+              {uniqueCities.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label>Status:</label>
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+            >
+              <option value="">All</option>
+              {uniqueStatuses.map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
+            <button onClick={() => {
+              setFilterCountry('');
+              setFilterState('');
+              setFilterCity('');
+              setFilterStatus('');
+              setFilterUserStatus('');
+            }}>
+              Reset Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="table-wrapper">
+        <table className="members-table" id="dataTable">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={selectedMembers.length === members.length && members.length > 0}
+                />
+              </th>
+              <th>User ID</th>
+              <th>USER NAME</th>
+              <th>Password</th>
+              <th>Email</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Country</th>
+              <th>State</th>
+              <th>City</th>
+              <th>Postal Code</th>
+              <th>Status</th>
+              <th>Actions</th>
+              <th>Created At</th>
+              <th>Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredMembers.length > 0 ? (
+              filteredMembers.map(member => (
+                <tr key={member.userId}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedMembers.includes(member.userId)}
+                      onChange={() => handleSelectMember(member.userId)}
+                    />
+                  </td>
+                  <td>{member.userCode}</td>
+                  <td>{member.username}</td>
+                  <td>*********</td>
+                  <td>{member.email}</td>
+                  <td>{member.firstName}</td>
+                  <td>{member.lastName}</td>
+                  <td>{member.phoneNumber}</td>
+                  <td>{member.country}</td>
+                  <td>{member.state}</td>
+                  <td>{member.city}</td>
+                  <td>{member.postalCode}</td>
+                  <td>{member.status}</td>
+                  <td className="view-members-actions-column">
+                    <button
+                      onClick={() => handleUpdate(member.userCode)}
+                      className="update-btn"
+                    >
+                      Assign Roles
+                    </button>
+					<button
+                      onClick={() => handleViewRoles(member.userCode)}
+                      className="update-btn"
+                    >
+                      View Assign Roles
+                    </button>
+                  </td>
+                  <td>{formatDate(member.created_at)}</td>
+                  <td>{formatDate(member.updated_at)}</td>
+                </tr>
+              ))
+            ) : (
+              <tr><td colSpan="17" className="no-members">No members found.</td></tr>
+            )}
+          </tbody>
+        </table>
+        {filteredMembers.length === 0 && <p id="noResultsMessage">No results found.</p>}
+      </div>
+
+      <p className="message-label" style={{ color: messageType === 'error' ? 'red' : 'green' }}>
+        {message}
+      </p>
+
+      <div className="button-group">
+        <button onClick={fetchMembers} className="refresh-btn">Refresh Members</button>
+      </div>
+    </div>
+  );
+};
+
+export default MainUsers;

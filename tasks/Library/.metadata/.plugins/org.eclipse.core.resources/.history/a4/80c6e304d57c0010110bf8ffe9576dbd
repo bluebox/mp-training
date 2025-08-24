@@ -1,0 +1,27 @@
+package com.users.Users.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.users.Users.model.Role;
+import com.users.Users.service.RoleService;
+
+@Controller
+@RequestMapping
+public class RoleController {
+	
+	private RoleService roleService;
+	
+	@Autowired
+	public RoleController(RoleService roleService) {
+		this.roleService=roleService;
+	}
+	
+	public  List<Role> getUsers() {
+		return  roleService.getUsers();
+	}
+
+}

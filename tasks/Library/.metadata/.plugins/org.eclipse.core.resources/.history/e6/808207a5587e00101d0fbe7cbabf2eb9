@@ -1,0 +1,22 @@
+package com.users.Users.service.interfaces;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.users.Users.model.User;
+import com.users.Users.repository.MainUserRepository;
+
+public interface MainUserService {
+
+	
+
+ void addUserToMain(User user);
+	
+
+	 List<User> getMainUsers();
+	
+
+
+}

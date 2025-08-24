@@ -1,0 +1,41 @@
+import React, { useState } from 'react';
+import './App.css';
+import AddUser from './components/AddUser';
+import ViewUserRequests from './components/ViewUserRequests';
+import Navbar from './components/Navbar';
+import MainUsers from './components/MainUsers';
+import RoleManagement from './components/RoleManagement';
+import GeographicalCoverage from './components/GeographicalCoverage';
+
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('');
+
+  const handleNavigate = (page) => {
+     setCurrentPage(page);
+   };
+  
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'addUser':
+        return <AddUser />;
+      case 'viewUserRequests':
+        return <ViewUserRequests />;
+	  case 'MainUsers':
+	     return <MainUsers onUpdateClick={(userId) => handleNavigate('RoleManagement')}/>;
+	  case 'RoleManagement':
+	        return <RoleManagement />;	
+      default:
+        return <AddUser />;
+    }
+  };
+
+  return (
+    <div>
+      <Navbar onNavigate={handleNavigate} />
+      {renderPage()}
+    </div>
+  );
+};
+
+export default App;

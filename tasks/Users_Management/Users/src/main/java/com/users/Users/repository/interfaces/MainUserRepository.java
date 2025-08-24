@@ -1,0 +1,24 @@
+package com.users.Users.repository.interfaces;
+
+import java.util.List;
+
+import com.users.Users.model.User;
+
+public interface MainUserRepository {
+
+	boolean addUserToMain(User user);
+
+	List<User> getMainUsers();
+
+	List<User> getMainUserById(String userCode);
+	
+	User getMainUserByEmail(String email);
+
+	boolean updateMainUser(User user);
+	
+	User getPassword(String username);
+	
+	boolean updatePassword(String userCode, String encodedPassword);
+
+
+}

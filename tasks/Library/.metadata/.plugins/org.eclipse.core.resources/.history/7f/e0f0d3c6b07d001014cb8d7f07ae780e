@@ -1,0 +1,21 @@
+package com.users.Users.model;
+
+import java.time.LocalDateTime;
+
+import com.users.Users.enums.UserStatus;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserRole {
+    private Integer userId;
+	private Integer roleId;
+	private String country;
+    private String state;
+    private String city;
+
+}

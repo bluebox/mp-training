@@ -1,0 +1,117 @@
+import React, { useState, useEffect } from 'react';
+import './AddMember.css'; // Assuming you create this CSS file
+
+const AddMember = () => {
+    const [genders, setGenders] = useState([]);
+    const [memberData, setMemberData] = useState({
+        name: '',
+        email: '',
+        phoneNumber: '',
+        gender: '',
+        address: ''
+    });
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        const fetchGenders = async () => {
+            try {
+                const response = await fetch('/members/genders');
+                const data = await response.json();
+                setGenders(data);
+                if (data.length > 0) {
+                    setMemberData(prev => ({ ...prev, gender: data[0].code }));
+                }
+            } catch (error) {
+                setMessage('Failed to fetch gender options.');
+            }
+        };
+        fetchGenders();
+    }, []);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setMemberData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setMessage('Adding member...');
+
+        const memberDataToSend = {
+            ...memberData,
+            phoneNumber: parseInt(memberData.phoneNumber, 10),
+        };
+
+        try {
+            const response = await fetch('/members/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(memberDataToSend),
+            });
+
+            if (response.ok) {
+                setMessage('Member added successfully!');
+                setMemberData({
+                    name: '',
+                    email: '',
+                    phoneNumber: '',
+                    gender: genders[0]?.code || '',
+                    address: ''
+                });
+            } else {
+                setMessage('Error adding member.');
+            }
+        } catch (error) {
+            setMessage('Error adding member.');
+        }
+    };
+
+    return (
+        <div className="container">
+            <div className="form-container">
+                <h2>Add New Member</h2>
+                <form onSubmit={handleSubmit} className="form">
+                    <div className="form-group">
+                        <label htmlFor="name">Name:</label>
+                        <input type="text" id="name" name="name" value={memberData.name} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email:</label>
+                        <input type="text" id="email" name="email" value={memberData.email} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="phoneNumber">Phone Number:</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" value={memberData.phoneNumber} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label>Gender:</label>
+                        <div className="gender-options">
+                            {genders.map(g => (
+                                <React.Fragment key={g.code}>
+                                    <input
+                                        type="radio"
+                                        id={g.code}
+                                        name="gender"
+                                        value={g.code}
+                                        checked={memberData.gender === g.code}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <label htmlFor={g.code}>{g.displayName}</label>
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="address">Address:</label>
+                        <input type="text" id="address" name="address" value={memberData.address} onChange={handleChange} required />
+                    </div>
+                    <button type="submit" className="submit-btn">Add Member</button>
+                </form>
+                {message && <p className="message">{message}</p>}
+            </div>
+        </div>
+    );
+};
+
+export default AddMember;

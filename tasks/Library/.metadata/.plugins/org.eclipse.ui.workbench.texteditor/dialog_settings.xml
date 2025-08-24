@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="true"/>
+		<list key="findhistory">
+			<item value="avatarUrl"/>
+			<item value="dropdownRef"/>
+			<item value="profilelogo"/>
+			<item value="avatarBtnRef"/>
+			<item value="role.roleId"/>
+			<item value="passwordtype"/>
+			<item value="userId"/>
+			<item value="role.roleid"/>
+			<item value="role."/>
+			<item value="An unexpected error occurred."/>
+		</list>
+		<list key="replacehistory">
+			<item value="profile"/>
+			<item value="dropdown"/>
+			<item value="profilelogo"/>
+			<item value="role.rolecode"/>
+			<item value="role.roleId"/>
+		</list>
+	</section>
+</section>

@@ -1,0 +1,131 @@
+package com.users.Users.repository;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.users.Users.model.User;
+import com.users.Users.rowmapper.UserRowMapper;
+
+@Repository
+public class UserRepository {
+	
+	private  JdbcTemplate jdbcTemplate;
+	
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@Autowired
+	public UserRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,JdbcTemplate jdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+		this.jdbcTemplate =jdbcTemplate;
+	}
+
+
+	public List<User> getUsers() {
+		
+		String sqlString ="Select * from UserRequests";
+		
+		try {
+			return jdbcTemplate.query(sqlString, new UserRowMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<User> getUserById(int uid) {
+	    String sqlString = "SELECT * FROM UserRequests WHERE userId = :uid";
+	    MapSqlParameterSource param = new MapSqlParameterSource();
+	    param.addValue("uid", uid);
+	    try {
+	        return namedParameterJdbcTemplate.query(sqlString, param, new UserRowMapper());
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+
+	
+
+	public void addUser(User user) {
+
+	    String sqlString = "INSERT INTO UserRequests (username, password, email, first_name, last_name, phone_number, country, state, city, postal_code, status, created_at, updated_at) "
+	            + "VALUES (:username, :password, :email, :first_name, :last_name, :phone_number, :country, :state, :city, :postal_code, :status, :created_at, :updated_at)";
+
+	    MapSqlParameterSource param = new MapSqlParameterSource();
+
+	    param.addValue("username", user.getUsername());
+	    param.addValue("password", user.getPassword());
+	    param.addValue("email", user.getEmail());
+	    param.addValue("first_name", user.getFirstName());
+	    param.addValue("last_name", user.getLastName());
+	    param.addValue("phone_number", user.getPhoneNumber());
+	    param.addValue("country", user.getCountry());
+	    param.addValue("state", user.getState());
+	    param.addValue("city", user.getCity());
+	    param.addValue("postal_code", user.getPostalCode());
+
+	    if (user.getStatus() != null) {
+	        param.addValue("status", user.getStatus().name());
+	    } else {
+	        param.addValue("status", null);
+	    }
+
+	    LocalDateTime created = user.getCreated_at();
+	    LocalDateTime updated = user.getUpdated_at();
+	    param.addValue("created_at", created != null ? Timestamp.valueOf(created) : null);
+	    param.addValue("updated_at", updated != null ? Timestamp.valueOf(updated) : null);
+
+	    namedParameterJdbcTemplate.update(sqlString, param);
+	}
+
+
+	public boolean updateUser(User user) {
+
+	    String sqlString = "UPDATE UserRequests SET "
+	            + "username = :username, password = :password, email = :email, first_name = :first_name, "
+	            + "last_name = :last_name, phone_number = :phone_number, country = :country, state = :state, "
+	            + "city = :city, postal_code = :postal_code, status = :status, aprovedStatus = :aprovedStatus, "
+	            + "created_at = :created_at, updated_at = :updated_at "
+	            + "WHERE userId = :userId";
+
+	    MapSqlParameterSource param = new MapSqlParameterSource();
+
+	    param.addValue("userId", user.getUserId());
+	    param.addValue("username", user.getUsername());
+	    param.addValue("password", user.getPassword());
+	    param.addValue("email", user.getEmail());
+	    param.addValue("first_name", user.getFirstName());
+	    param.addValue("last_name", user.getLastName());
+	    param.addValue("phone_number", user.getPhoneNumber());
+	    param.addValue("country", user.getCountry());
+	    param.addValue("state", user.getState());
+	    param.addValue("city", user.getCity());
+	    param.addValue("postal_code", user.getPostalCode());
+
+	    if (user.getStatus() != null) {
+	        param.addValue("status", user.getStatus().name());
+	    } else {
+	        param.addValue("status", null);
+	    }
+
+	    param.addValue("aprovedStatus", user.getAprovedStatus());
+
+	    LocalDateTime created = user.getCreated_at();
+	    LocalDateTime updated = user.getUpdated_at();
+	    param.addValue("created_at", created != null ? Timestamp.valueOf(created) : null);
+	    param.addValue("updated_at", updated != null ? Timestamp.valueOf(updated) : null);
+
+	    int rowsAffected = namedParameterJdbcTemplate.update(sqlString, param);
+	    return rowsAffected > 0;
+	}
+
+	
+
+}

@@ -1,0 +1,95 @@
+.issue-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.issue-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 800px;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    text-align: right;
+}
+
+.input-grid label {
+    line-height: 25px;
+    font-weight: bold;
+}
+
+.input-grid input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.display-panel {
+    flex-grow: 1;
+    max-width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.display-panel h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.display-panel textarea {
+    width: 100%;
+    height: 200px;
+    resize: vertical;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button-group button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+}
+
+.button-group button:disabled {
+    background-color: blue;
+    cursor: not-allowed;
+}
+
+.message-label {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}

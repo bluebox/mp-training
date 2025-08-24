@@ -1,0 +1,89 @@
+import React, { useState, useEffect } from 'react';
+import './IssuedRecords.css';
+
+const IssuedRecords = () => {
+    const [records, setRecords] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [message, setMessage] = useState('');
+
+    const fetchRecords = async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetch('/issues/issuedRecords');
+            if (response.ok) {
+                const data = await response.json();
+                setRecords(data);
+            } else {
+                setError('Failed to fetch issued records.');
+            }
+        } catch (err) {
+            setError('An error occurred. Check the server connection.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchRecords();
+    }, []);
+
+    const handleRefresh = () => {
+        fetchRecords();
+        setMessage('Records refreshed.');
+    };
+
+    if (isLoading) return <div className="loading-message">Loading records...</div>;
+    if (error) return <div className="error-message">Error: {error}</div>;
+
+    return (
+        <div className="issued-records-container">
+            <h1>All Issue Records</h1>
+            <p className="message-label">{message}</p>
+            <div className="table-wrapper">
+                <table className="issued-records-table">
+                    <thead>
+                        <tr>
+                            <th>Issue ID</th>
+                            <th>Book ID</th>
+                            <th>Book Title</th>
+                            <th>Member ID</th>
+                            <th>Member Name</th>
+                            <th>Status</th>
+                            <th>Issue Date</th>
+                            <th>Issued By</th>
+                            <th>Return Date</th>
+                            <th>Returned By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {records.length > 0 ? (
+                            records.map(record => (
+                                <tr key={record.issueId}>
+                                    <td>{record.issueId}</td>
+                                    <td>{record.bookId}</td>
+                                    <td>{record.bookTitle}</td>
+                                    <td>{record.memberId}</td>
+                                    <td>{record.memberName}</td>
+                                    <td>{record.status}</td>
+                                    <td>{record.issueDate}</td>
+                                    <td>{record.issuedBy}</td>
+                                    <td>{record.returnDate}</td>
+                                    <td>{record.returnedBy}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr><td colSpan="10" className="no-records-message">No Issued records found.</td></tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+            <div className="button-group">
+                <button onClick={handleRefresh} className="refresh-btn">Refresh Records</button>
+                <button onClick={() => window.location.href = 'main'} className="back-btn">Back to Main Menu</button>
+            </div>
+        </div>
+    );
+};
+
+export default IssuedRecords;

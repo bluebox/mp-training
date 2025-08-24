@@ -1,0 +1,113 @@
+package com.users.Users.controllers;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.users.Users.model.User;
+import com.users.Users.service.interfaces.MainUserService;
+import com.users.Users.service.interfaces.RoleService;
+
+@RestController
+@RequestMapping("/auth")
+public class AuthController {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    
+    @Autowired
+    private MainUserService mainUserService;
+    
+    @Autowired
+    private RoleService roleService;
+    
+    @Autowired
+	 private PasswordEncoder passwordEncoder;
+    
+
+//    @PostMapping("/login")
+//    public Map<String, Object> login(@RequestBody Map<String, String> loginData) throws Exception {
+//        String username = loginData.get("username");
+//        String password = loginData.get("password");
+//        
+//        
+//        
+//        try {
+//          Authentication auth = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(username, password)
+//           );
+//
+//            String role = auth.getAuthorities().iterator().next().getAuthority();
+//
+//        	
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("jwt", username);
+//            response.put("role", "ROLE_"+role);
+//            return response;
+//
+//        } catch (AuthenticationException e) {
+//            throw new RuntimeException("Invalid username or password");
+//        }
+//    }
+    
+    @PostMapping("/login")
+    public Map<String, Object> login(@RequestBody Map<String, String> loginData) throws Exception {
+        String username = loginData.get("username");
+        String password = loginData.get("password");
+        
+        System.out.println(username+" "+password);
+
+        if (username == null || username.trim().isEmpty()) {
+            throw new RuntimeException("UserId is required");
+        }
+
+        User user = mainUserService.getPassword(username);
+        if (user == null) {
+            throw new RuntimeException("Invalid UserId or Password");
+        }
+
+//        passwordEncoder.matches(user.getPassword(), password);
+//        if (!user.getPassword().equals(password)) {
+        if(passwordEncoder.matches(user.getPassword(), password)) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        List<String> roleNames = roleService.getRoleName(user.getUserCode()); 
+        
+        List<String> prefixed =null;
+        
+        if(roleNames!=null) {
+        	 prefixed = roleNames.stream()
+        			.map(r -> "ROLE_" + r.toUpperCase())
+        			.collect(Collectors.toList());
+        	
+        }
+        System.out.println(prefixed);        	
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("jwt", username);
+//        response.put("password", password);
+        if(prefixed!=null) {
+        	response.put("role", prefixed.get(0));        	
+        }
+        else {
+        	response.put("role", "ROLE_USER");        	
+        }
+        return response;
+    }
+
+
+    
+    
+
+
+}

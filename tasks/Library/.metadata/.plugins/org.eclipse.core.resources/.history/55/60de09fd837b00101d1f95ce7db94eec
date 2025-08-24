@@ -1,0 +1,15 @@
+package com.LMS.LibMS.service.interfaces;
+
+import java.util.List;
+import com.LMS.LibMS.model.Book;
+
+public interface BookService {
+    List<Book> findBooks();
+    Book addBook(Book book);
+    boolean deleteBook(Integer bookId);
+    boolean changeAvailability(Integer bookId, String newAvailabilityCode);
+    boolean deleteBooks(List<Integer> bookIds);
+    boolean updateAvailabilities(List<Integer> bookIds);
+    boolean updateBook(Book book);
+    Book findBookById(Integer bookId);
+}

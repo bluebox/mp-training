@@ -1,0 +1,12 @@
+package com.LMS.LibMS.service.interfaces;
+
+import java.util.List;
+
+import com.LMS.LibMS.model.Member;
+
+public interface MemberService {
+    boolean addMember(Member member);
+    List<Member> getAllMembers();
+    boolean deleteMember(Integer memberId);
+    boolean deleteMembers(List<Integer> memberIds);
+}

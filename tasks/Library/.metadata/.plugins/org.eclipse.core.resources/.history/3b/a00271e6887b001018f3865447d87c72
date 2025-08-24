@@ -1,0 +1,108 @@
+package com.LMS.LibMS.service.interfaceimpl;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.LMS.LibMS.model.Book;
+import com.LMS.LibMS.model.enums.BookAvailability;
+import com.LMS.LibMS.model.enums.BookStatus;
+import com.LMS.LibMS.repository.interfaces.BookRepository;
+import com.LMS.LibMS.service.interfaces.BookService;
+
+@Service
+public class BookServiceImpl implements BookService {
+	
+	private final BookRepository bookRepository;
+	
+	@Autowired
+	public BookServiceImpl(BookRepository bookRepository) {
+		this.bookRepository = bookRepository;
+	}
+	
+	@Override
+	public List<Book> findBooks(){
+		return bookRepository.findBooks();
+	}
+
+	@Override
+	public Book addBook(Book book) {
+		book.setCreatedAt(LocalDateTime.now());
+		book.setCreatedBy("SYSTEM");
+		return bookRepository.addBook(book);
+	}
+
+	@Override
+	public Book findBookById(Integer bookId) {
+		return bookRepository.findBookById(bookId).orElse(null);
+	}
+	
+	@Override
+	@Transactional
+    public boolean deleteBook(Integer bookId) {
+        return bookRepository.deleteBook(bookId);
+    }
+
+    @Override
+    @Transactional
+    public boolean changeAvailability(Integer bookId, String newAvailabilityCode) {
+    	Book book = bookRepository.findBookById(bookId).orElse(null);
+		if (book != null) {
+			if (book.getStatus() == BookStatus.INACTIVE) {
+				return false;
+			}
+			BookAvailability newAvailability = BookAvailability.fromCode(newAvailabilityCode);
+			book.setAvailability(newAvailability);
+			book.setUpdatedAt(LocalDateTime.now());
+			book.setUpdatedBy("ADMIN");
+			bookRepository.updateBookAvailability(book);
+			return true;
+		}
+		return false;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteBooks(List<Integer> bookIds) {
+    	return bookRepository.deleteBooks(bookIds);
+    }
+
+    @Override
+    @Transactional
+    public boolean updateAvailabilities(List<Integer> bookIds) {
+    	List<Book> booksToUpdate = bookIds.stream()
+			.map(bookRepository::findBookById)
+			.collect(Collectors.toList());
+
+		boolean success = true;
+		for (Book book : booksToUpdate) {
+			if (book.getStatus() != BookStatus.INACTIVE) {
+				BookAvailability newAvailability = (book.getAvailability() == BookAvailability.AVAILABLE) ? BookAvailability.ISSUED : BookAvailability.AVAILABLE;
+				book.setAvailability(newAvailability);
+				book.setUpdatedAt(LocalDateTime.now());
+				book.setUpdatedBy("ADMIN");
+				if (!bookRepository.updateBookAvailability(book)) {
+					success = false;
+				}
+			}
+		}
+		return success;
+    }
+
+	@Override
+	public boolean updateBook(Book book) {
+		book.setUpdatedAt(LocalDateTime.now());
+		book.setUpdatedBy("ADMIN");
+        return bookRepository.updateBook(book);
+	}
+    
+    @Override
+    public boolean updateBookAvailability(Book book) {
+        return bookRepository.updateBookAvailability(book);
+    }
+}

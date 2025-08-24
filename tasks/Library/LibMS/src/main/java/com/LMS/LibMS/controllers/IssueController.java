@@ -1,0 +1,79 @@
+package com.LMS.LibMS.controllers;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.LMS.LibMS.model.Book;
+import com.LMS.LibMS.model.Member;
+import com.LMS.LibMS.service.interfaces.BookService;
+import com.LMS.LibMS.service.interfaces.IssueService;
+import com.LMS.LibMS.service.interfaces.MemberService;
+
+@RestController
+@RequestMapping("/issues")
+public class IssueController {
+
+    private final IssueService issueService;
+    private final BookService bookService;
+    private final MemberService memberService;
+    private static final String CURRENT_USER = "ADMIN";
+
+    @Autowired
+    public IssueController(IssueService issueService, BookService bookService, MemberService memberService) {
+        this.issueService = issueService;
+        this.bookService = bookService;
+        this.memberService = memberService;
+    }
+
+    @GetMapping("/issuedRecords")
+    @ResponseBody
+    public List<Map<String, Object>> displayIssuedRecords() {
+        return issueService.getAllIssuedRecords().stream().map(record -> {
+        	
+            Map<String, Object> recordData = new HashMap<>();
+            recordData.put("issueId", record.getIssueId());
+            recordData.put("bookId", record.getBookId());
+            recordData.put("memberId", record.getMemberId());
+            recordData.put("status", record.getStatus().getCode());
+            recordData.put("issueDate", record.getIssueDate());
+            recordData.put("issuedBy", record.getIssuedBy());
+            recordData.put("returnDate", record.getReturnDate());
+            recordData.put("returnedBy", record.getReturnedBy());
+
+            Book book = bookService.findBookById(record.getBookId());
+            recordData.put("bookTitle", book != null ? book.getTitle() : "N/A");
+
+            Member member = memberService.getMemberById(record.getMemberId());
+            recordData.put("memberName", member != null ? member.getName() : "N/A");
+            return recordData;
+        }).collect(Collectors.toList());
+    }
+
+    @PostMapping("/issueBook")
+    public Map<String, Object> issueBook(@RequestBody Map<String, Object> data) {
+            Integer bookId = Integer.valueOf(data.get("bookId").toString());
+            Integer memberId = Integer.valueOf(data.get("memberId").toString());
+
+            issueService.issueBook(bookId, memberId, LocalDateTime.now(), CURRENT_USER);
+            return Map.of("message", "Book issued successfully!");
+       
+    }
+
+    @PostMapping("/returnBook")
+    public Map<String, Object> returnBook(@RequestBody Map<String, Object> data) {
+            Integer bookId = Integer.valueOf(data.get("bookId").toString());
+            issueService.returnBook(bookId, CURRENT_USER);
+            return Map.of("message", "Book returned successfully!");
+    }
+}

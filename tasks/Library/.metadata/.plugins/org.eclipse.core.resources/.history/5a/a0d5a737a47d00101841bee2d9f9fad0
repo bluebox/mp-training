@@ -1,0 +1,77 @@
+import React, { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom'
+import './App.css';
+import AddUser from './components/AddUser';
+import ViewUserRequests from './components/ViewUserRequests';
+import Navbar from './components/Navbar';
+import MainUsers from './components/MainUsers';
+import RoleManagement from './components/RoleManagement';
+import Login from './components/Login'; 
+
+const App = () => {
+	
+	<Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/adduser" element={<AddUser />} />
+      <Route path="/userrequests" element={<ViewUserRequests />} />
+	  <Route path="/rolemanage" element={<RoleManagement />} />
+
+      <Route path="*" element={<div>404 - Page Not Found</div>} />
+    </Routes>
+	
+	
+  const [currentPage, setCurrentPage] = useState(''); 
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwtToken');
+    setIsAuthenticated(!!token);
+    if (token) setCurrentPage((prev) => prev || 'addUser');
+  }, []);
+
+  const handleNavigate = (page, id = null) => {
+    setCurrentPage(page);
+    setSelectedUserId(id);
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setCurrentPage('addUser');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwtToken');
+    setIsAuthenticated(false);
+    setCurrentPage('');
+    setSelectedUserId(null);
+  };
+
+  const renderPage = () => {
+    if (!isAuthenticated) {
+      return <Login onLoginSuccess={handleLoginSuccess} />;
+    }
+
+    switch (currentPage) {
+      case 'addUser':
+        return <AddUser />;
+      case 'viewUserRequests':
+        return <ViewUserRequests />;
+      case 'mainUsers':
+        return <MainUsers onUpdateClick={(userId) => handleNavigate('roleManagement', userId)} />;
+      case 'roleManagement':
+        return <RoleManagement userId={selectedUserId} />;
+      default:
+        return <AddUser />;
+    }
+  };
+
+  return (
+    <div>
+      {isAuthenticated && <Navbar onNavigate={handleNavigate} onLogout={handleLogout} />}
+      {renderPage()}
+    </div>
+  );
+};
+
+export default App;

@@ -1,0 +1,14 @@
+spring.application.name=Users
+spring.security.user.name = karthik
+spring.security.user.password = 12345
+
+spring.security.admin.name = admin
+spring.security.admin.password = a12345
+
+spring.datasource.url=jdbc:mysql://localhost:3306/org
+spring.datasource.username=devuser
+spring.datasource.password=211Fa@4223
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true

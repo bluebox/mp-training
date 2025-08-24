@@ -1,0 +1,33 @@
+import './App.css';
+import AddUser from './components/AddUser';
+import viewUserRequests from './components/viewUserRequests';
+import Navbar from './components/Navbar';
+
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const handleNavigate = (page, id) => {
+     setCurrentPage(page);
+   };
+  
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'addUser':
+        return <AddUser />;
+      case 'viewUserRequests':
+        return <viewUserRequests />;
+      default:
+        return <AddUser />;
+    }
+  };
+
+  return (
+    <div>
+      <Navbar onNavigate={handleNavigate} />
+      {renderPage()}
+    </div>
+  );
+};
+
+export default App;

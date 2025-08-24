@@ -1,0 +1,161 @@
+.view-books-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
+.view-books-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.view-books-message {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.view-books-message.success {
+  color: green;
+}
+.view-books-message.error {
+  color: red;
+}
+
+.view-books-table-wrapper {
+  overflow-x: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.view-books-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.view-books-table th, .view-books-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.view-books-table thead {
+  background-color: #ddd;
+}
+
+.view-books-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.view-books-checkbox-column {
+  width: 30px;
+  text-align: center;
+}
+.view-books-actions-column {
+  white-space: nowrap;
+}
+
+.view-books-button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
+.view-books-button-group button, .view-books-action-button, .view-books-avail-action-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
+
+.view-books-button-group button:disabled, .view-books-action-button:disabled, .view-books-avail-action-button:disabled {
+   padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: not-allowed;
+  font-size: 14px;
+  background-color: #ccc ;
+  color: white;
+}
+
+.view-books-action-button.view-books-update-button {
+  background-color: #007bff;
+  color: white;
+}
+.view-books-action-button.view-books-delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+.view-books-refresh-button, .view-books-back-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #6c757d;
+  color: white;
+}
+
+.view-books-batch-update-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #6c757d;
+  color: white;
+}
+.view-books-batch-delete-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #6c757d;
+  color: white;
+}
+
+.view-books-avail-action-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.view-books-loading-message, .view-books-error-message, .view-books-no-books-message {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+}
+.view-books-error-message {
+  color: red;
+}
+.view-books-no-books-message {
+  color: #888;
+  font-style: italic;
+}
+
+/* Styles for Search Container */
+.search-container {
+    margin-left: 30px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.search-container .form-label {
+    width: 120px;
+}
+
+.search-container .form-input {
+    flex: 1;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

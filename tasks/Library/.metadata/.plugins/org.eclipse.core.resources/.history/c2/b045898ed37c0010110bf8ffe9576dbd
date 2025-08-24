@@ -1,0 +1,7 @@
+package com.users.Users.model;
+
+public class Role {
+	private Integer roleId;
+	private String roleName;
+
+}

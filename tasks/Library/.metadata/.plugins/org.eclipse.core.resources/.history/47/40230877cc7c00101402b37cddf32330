@@ -1,0 +1,38 @@
+package com.users.Users.model;
+
+import java.time.LocalDateTime;
+import java.util.Set;
+
+import com.users.Users.enums.UserStatus;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+    private String userId;
+    private String username; 
+    private String password;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String country;
+    private String state;
+    private String city;
+    private String postalCode;
+    private UserStatus status;
+    private String requestedByUserId;
+    private String approvedByUserId;
+    private LocalDateTime requestTimestamp;
+    private LocalDateTime approvalTimestamp;
+
+    private Set<String> roles;
+
+   
+    private String zipCode;
+
+}

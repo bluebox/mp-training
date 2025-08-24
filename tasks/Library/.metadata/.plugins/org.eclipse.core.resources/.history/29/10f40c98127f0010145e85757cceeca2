@@ -1,0 +1,104 @@
+/*import React from 'react';
+import './Navbar.css';
+
+const Navbar = ({ onNavigate, onLogout }) => {
+  const token = localStorage.getItem("jwtToken");
+  const role = localStorage.getItem("userRole");
+
+  if (!token) {
+    return null;
+  }
+
+  return (
+    <nav className="navbar-container">
+      <ul className="navbar-list">
+	  	<li>
+           <button onClick={() => onNavigate('home')} className="navbar-button">
+             Home
+           </button>
+	   </li>
+        <li>
+          <button onClick={() => onNavigate('addUser')} className="navbar-button">
+            Add User
+          </button>
+        </li>
+		{role === "ROLE_ADMIN" && (
+        <li>
+          <button onClick={() => onNavigate('viewUserRequests')} className="navbar-button">
+            View User Requests
+          </button>
+        </li>)}
+		{role === "ROLE_ADMIN" && (
+         <li>
+            <button onClick={() => onNavigate('mainUsers')} className="navbar-button">
+              View Main Users
+            </button>
+          </li>
+        )}
+
+        <li>
+          <button onClick={onLogout} className="navbar-button">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;
+*/
+
+import { Sidenav, Nav } from 'rsuite';
+import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
+import GroupIcon from '@rsuite/icons/legacy/Group';
+import MagicIcon from '@rsuite/icons/legacy/Magic';
+import GearCircleIcon from '@rsuite/icons/legacy/GearCircle';
+
+const styles = {
+  width: 240,
+  display: 'inline-table',
+  marginRight: 10
+};
+
+const Navbar = ({ appearance, openKeys, expanded, onOpenChange, onExpand, ...navProps }) => {
+  return (
+    <div style={styles}>
+      <Sidenav
+        appearance={appearance}
+        expanded={expanded}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
+      >
+        <Sidenav.Body>
+          <Nav {...navProps}>
+            <Nav.Item eventKey="1" active icon={<DashboardIcon />}>
+              Dashboard
+            </Nav.Item>
+            <Nav.Item eventKey="2" icon={<GroupIcon />}>
+              User Group
+            </Nav.Item>
+            <Nav.Menu eventKey="3" title="Advanced" icon={<MagicIcon />}>
+              <Nav.Item eventKey="3-1">Geo</Nav.Item>
+              <Nav.Item eventKey="3-2">Devices</Nav.Item>
+              <Nav.Item eventKey="3-3">Loyalty</Nav.Item>
+              <Nav.Item eventKey="3-4">Visit Depth</Nav.Item>
+            </Nav.Menu>
+            <Nav.Menu eventKey="4" title="Settings" icon={<GearCircleIcon />}>
+              <Nav.Item eventKey="4-1">Applications</Nav.Item>
+              <Nav.Item eventKey="4-2">Channels</Nav.Item>
+              <Nav.Item eventKey="4-3">Versions</Nav.Item>
+              <Nav.Menu eventKey="4-5" title="Custom Action">
+                <Nav.Item eventKey="4-5-1">Action Name</Nav.Item>
+                <Nav.Item eventKey="4-5-2">Action Params</Nav.Item>
+              </Nav.Menu>
+            </Nav.Menu>
+          </Nav>
+        </Sidenav.Body>
+        <Sidenav.Toggle onToggle={onExpand} />
+      </Sidenav>
+    </div>
+  );
+};
+
+export default Navbar;

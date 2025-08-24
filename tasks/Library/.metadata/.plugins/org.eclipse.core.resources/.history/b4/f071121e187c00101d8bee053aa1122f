@@ -1,0 +1,80 @@
+package com.LMS.LibMS.controllers;
+
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.LMS.LibMS.model.Member;
+import com.LMS.LibMS.model.enums.Gender;
+import com.LMS.LibMS.service.interfaces.MemberService;
+
+@RestController
+@RequestMapping("/members")
+public class MemberController {
+
+    private final MemberService memberService;
+
+    @Autowired
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
+    @PostMapping("/add")
+    public boolean addMember(@RequestBody Member member) throws Exception {
+    	try {
+    		return memberService.addMember(member);
+		} catch (Exception e) {
+			if(e.getCause() instanceof SQLIntegrityConstraintViolationException)
+			throw new Exception("");
+		}
+    }
+
+    @GetMapping("/getmembers")
+    @ResponseBody
+    public List<Member> displayMembers() {
+        return memberService.getAllMembers();
+    }
+    
+    @GetMapping("/getmember/{memberId}")
+    @ResponseBody
+    public Member getMemberById(@PathVariable Integer memberId) {
+        return memberService.getMemberById(memberId);
+    }
+    
+    @PutMapping("/update/{memberId}")
+    public boolean updateMember(@PathVariable Integer memberId, @RequestBody Member member) {
+        member.setMemberID(memberId);
+        return memberService.updateMember(member);
+    }
+    
+    @DeleteMapping("/delete/{memberId}")
+    public boolean deleteMember(@PathVariable Integer memberId) {
+        return memberService.deleteMember(memberId);
+    }
+    
+    @PostMapping("/deleteBatch")
+    public boolean deleteSelectedMembers(@RequestBody List<Integer> memberIds) {
+        return memberService.deleteMembers(memberIds);
+    }
+
+    @GetMapping("/genders")
+    @ResponseBody
+    public List<Map<String, String>> getGenders() {
+        return Arrays.stream(Gender.values())
+                .map(gender -> Map.of("displayName", gender.name(), "code", String.valueOf(gender.getCode())))
+                .collect(Collectors.toList());
+    }
+}

@@ -1,0 +1,73 @@
+import React, { useEffect, useState } from 'react';
+import './App.css';
+import AddUser from './components/AddUser';
+import ViewUserRequests from './components/ViewUserRequests';
+import Navbar from './components/Navbar';
+import MainUsers from './components/MainUsers';
+import RoleManagement from './components/RoleManagement';
+import Login from './components/Login'; // make sure this exists
+
+const App = () => {
+  const [currentPage, setCurrentPage] = useState(''); 
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // On mount, set auth from localStorage token
+  useEffect(() => {
+    const token = localStorage.getItem('jwtToken');
+    setIsAuthenticated(!!token);
+    // set a sensible default page when logged in
+    if (token) setCurrentPage((prev) => prev || 'addUser');
+  }, []);
+
+  // unified navigation - optional id param for passing to pages
+  const handleNavigate = (page, id = null) => {
+    setCurrentPage(page);
+    setSelectedUserId(id);
+  };
+
+  // handler to call when login succeeds (from Login component)
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setCurrentPage('addUser');
+  };
+
+  // handler to logout
+  const handleLogout = () => {
+    localStorage.removeItem('jwtToken');
+    setIsAuthenticated(false);
+    setCurrentPage('');
+    setSelectedUserId(null);
+  };
+
+  const renderPage = () => {
+    if (!isAuthenticated) {
+      // show login page if not authenticated
+      return <Login onLoginSuccess={handleLoginSuccess} />;
+    }
+
+    switch (currentPage) {
+      case 'addUser':
+        return <AddUser />;
+      case 'viewUserRequests':
+        return <ViewUserRequests />;
+      case 'mainUsers': // prefer lower-case key
+        // Pass a callback to MainUsers so it can call onUpdateClick(userId)
+        return <MainUsers onUpdateClick={(userId) => handleNavigate('roleManagement', userId)} />;
+      case 'roleManagement':
+        // RoleManagement receives the selected user id
+        return <RoleManagement userId={selectedUserId} />;
+      default:
+        return <AddUser />;
+    }
+  };
+
+  return (
+    <div>
+      {isAuthenticated && <Navbar onNavigate={handleNavigate} onLogout={handleLogout} />}
+      {renderPage()}
+    </div>
+  );
+};
+
+export default App;

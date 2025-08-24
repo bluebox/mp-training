@@ -1,0 +1,106 @@
+package com.LMS.LibMS.controllers;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.LMS.LibMS.model.Book;
+import com.LMS.LibMS.model.enums.BookAvailability;
+import com.LMS.LibMS.model.enums.BookCategory;
+import com.LMS.LibMS.model.enums.BookStatus;
+import com.LMS.LibMS.service.interfaces.BookService;
+
+@RestController
+@RequestMapping("/books")
+public class BookController {
+
+    private final BookService bookService;
+
+    @Autowired
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
+    @PostMapping("/add")
+    public void addBook(@RequestBody Book book) {
+            Book newBook = bookService.addBook(book);
+    }
+
+    @GetMapping("/getbooks")
+    @ResponseBody
+    public List<Book> displayBooks() {
+        return bookService.findBooks();
+    }
+
+    @GetMapping("/getbook/{bookId}")
+    @ResponseBody
+    public Book getBookById(@PathVariable("bookId") Integer bookId) {
+        return bookService.findBookById(bookId);
+    }
+
+    @GetMapping("/bookcategories")
+    @ResponseBody
+    public List<Map<String, String>> getBookCategories() {
+        return Arrays.stream(BookCategory.values())
+                .map(category -> Map.of("displayName", category.getDisplayName(), "code", category.name()))
+                .collect(Collectors.toList());
+    }
+    
+    @GetMapping("/bookstatuses")
+    @ResponseBody
+    public List<Map<String, String>> getBookStatuses() {
+        return Arrays.stream(BookStatus.values())
+                .map(status -> Map.of("displayName", status.name(), "code", status.getCode()))
+                .collect(Collectors.toList());
+    }
+    
+    @GetMapping("/bookavailabilities")
+    @ResponseBody
+    public List<Map<String, String>> getBookAvailabilities() {
+        return Arrays.stream(BookAvailability.values())
+                .map(availability -> Map.of("displayName", availability.name(), "code", availability.getCode()))
+                .collect(Collectors.toList());
+    }
+
+    @PutMapping("/update/{bookId}")
+    public boolean updateBook(@PathVariable("bookId") Integer bookId, @RequestBody Book book) {
+        book.setBookId(bookId);
+        return bookService.updateBook(book);
+    }
+
+    @DeleteMapping("/delete/{bookId}")
+    public boolean deleteBook(@PathVariable("bookId") Integer bookId) {
+        return bookService.deleteBook(bookId);
+    }
+
+    @PostMapping("/changeAvailability")
+    public boolean changeAvailability(@RequestBody Map<String, Object> data) {
+        Integer bookId = Integer.valueOf(data.get("bookId").toString());
+        String newAvailability = data.get("newAvailability").toString();
+        return bookService.changeAvailability(bookId, newAvailability);
+    }
+
+    @PostMapping("/deleteBooks")
+    public boolean deleteBooks(@RequestBody Map<String, Object> data) {
+        List<Integer> ids = (List<Integer>) data.get("ids");
+        return bookService.deleteBooks(ids);
+    }
+
+    @PostMapping("/updateAvailabilities")
+    public boolean updateAvailabilities(@RequestBody Map<String, Object> data) {
+        List<Integer> ids = (List<Integer>) data.get("ids");
+        return bookService.updateAvailabilities(ids);
+    }
+}

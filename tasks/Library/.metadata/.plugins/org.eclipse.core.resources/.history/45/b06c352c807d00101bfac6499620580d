@@ -1,0 +1,8 @@
+package com.users.Users.repository;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MainUserRepository {
+
+}

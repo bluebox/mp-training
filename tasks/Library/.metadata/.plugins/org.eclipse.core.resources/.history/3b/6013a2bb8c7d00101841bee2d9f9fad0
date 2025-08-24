@@ -1,0 +1,55 @@
+import React, { useState } from 'react';
+import './Role.css';
+
+function GeographicalCoverage() {
+  const [selectedCounty, setSelectedCounty] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+
+  const counties = ['County A', 'County B'];
+  const states = ['State X', 'State Y'];
+  const cities = ['City 1', 'City 2', 'City 3'];
+
+  return (
+    <div className="geographical-coverage-container">
+      <h2>Assign Geographical Coverage</h2>
+      <select
+        value={selectedCounty}
+        onChange={(e) => setSelectedCounty(e.target.value)}
+      >
+        <option value="">Select County</option>
+        {counties.map((county) => (
+          <option key={county} value={county}>
+            {county}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={selectedState}
+        onChange={(e) => setSelectedState(e.target.value)}
+      >
+        <option value="">Select State</option>
+        {states.map((state) => (
+          <option key={state} value={state}>
+            {state}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={selectedCity}
+        onChange={(e) => setSelectedCity(e.target.value)}
+      >
+        <option value="">Select City</option>
+        {cities.map((city) => (
+          <option key={city} value={city}>
+            {city}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+export default GeographicalCoverage;

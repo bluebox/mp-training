@@ -1,0 +1,61 @@
+package com.users.Users.controllers;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.users.Users.model.User;
+import com.users.Users.model.UserRole;
+import com.users.Users.service.interfaces.MainUserService;
+import com.users.Users.service.interfaces.RoleService;
+
+@RestController
+@RequestMapping("/auth")
+public class AuthController {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    
+    @Autowired
+    private MainUserService mainUserService;
+    
+    @Autowired
+    private RoleService roleService;
+    
+
+    @PostMapping("/login")
+    public Map<String, Object> login(@RequestBody Map<String, String> loginData) {
+        String username = loginData.get("username");
+        String password = loginData.get("password");
+        
+        User user = mainUserService.getPassword(username);
+        
+        UserRole userRole = roleService.getRoleName(user.getUserId());
+        
+        
+        try {
+//            Authentication auth = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(username, password)
+//            );
+//
+//            String role = auth.getAuthorities().iterator().next().getAuthority();
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("jwt", username);
+            response.put("role", role);
+            return response;
+
+        } catch (AuthenticationException e) {
+            throw new RuntimeException("Invalid username or password");
+        }
+    }
+
+
+}
