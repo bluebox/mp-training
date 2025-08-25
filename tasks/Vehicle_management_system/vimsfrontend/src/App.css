@@ -1,0 +1,123 @@
+.App {
+  text-align: center;
+  margin:0;
+}
+
+.Navbar{
+  background-color: cornflowerblue;
+  height:70px;
+  width:100vw;
+  position:relative;
+  margin:0;
+}
+
+#Container div{
+ display:inline-block;
+ height: 200px;
+ width:250px;
+  border:4px black solid ;
+   border-radius: 10px;
+   margin:10px;
+}
+
+.Contacts{
+     z-index:2;
+     position:absolute;
+     top:60px;
+     right:90px;
+     height:200px;
+     width:340px;
+     background-color: aliceblue;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     border-radius: 10px;
+}
+
+#Contacts p{
+font-size: 1rem;
+     font-family:'Times New Roman', Times, serif;
+     width:140px;
+     height:18px;
+} 
+
+
+.view{
+     display:flex;
+     flex-direction: column;
+     align-items:center; 
+     justify-content: flex-start;
+     background-color: beige;
+     height:100vh;
+     border-spacing: 5px; 
+}
+
+.view th,td{
+  padding: 10px; /* Adds 10 pixels of padding to all sides of header and data cells */
+}
+
+.adminDiv{
+position:relative;
+top:10vh;
+left:34vw;
+display:flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+background-color:  cornflowerblue;
+border:3px black solid;
+border-radius: 10px;
+padding: 50px;
+width: 400px;
+}
+
+.adminDiv button{
+     display: inline-block;
+    background-color: azure;
+    border-radius:10px ;
+    border:2px solid black;
+    height:5vh;
+    width:10vw;
+}
+
+.Navbar span.logo{
+     font-size: 2rem;
+     font-family:'Times New Roman', Times, serif;
+     font-weight: bold;
+     position: absolute;
+     left:0;
+     margin: 0;
+     padding:15px;
+     color:aliceblue;
+}
+
+.Navbar .right1{
+     font-size: 18px;
+     font-family:'Times New Roman', Times, serif;
+     margin:0;
+     padding:15px;
+     color:white;
+     text-decoration: none;
+     cursor:pointer;
+}
+
+.Navbar .right2{
+     position: absolute;
+     right:0;
+     margin-top:20px;
+     margin-right: 35px;
+}
+
+
+.ViewInsurancePolicy img{
+   height:200px;
+   width:250px;
+   border:4px black solid ;
+   border-radius: 10px;
+   margin:10px;
+}
+
+.UserReviews div{
+     padding:20px;
+}

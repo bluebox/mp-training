@@ -1,0 +1,83 @@
+
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+.select {
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+.button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: cornflowerblue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.addButton {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Forms */
+.form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Submit button */
+.submitButton {
+  padding: 12px;
+  background-color: cornflowerblue;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
