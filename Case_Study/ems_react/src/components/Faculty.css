@@ -1,0 +1,65 @@
+.faculty {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: #f4faff;
+}
+
+.faculty-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #004080;
+  padding: 15px 30px;
+  color: white;
+}
+
+.faculty-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.faculty-navbar li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.faculty-navbar li:hover {
+  color: #ffcc00;
+}
+
+.faculty-content {
+  padding: 30px;
+}
+
+.faculty-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.faculty-form input,
+.faculty-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.faculty-form button {
+  padding: 12px;
+  background: #004080;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.faculty-form button:hover {
+  background: #0059b3;
+}

@@ -1,0 +1,89 @@
+.student {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: #f9fbff;
+}
+
+.student-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #006400;
+  padding: 15px 30px;
+  color: white;
+}
+
+.student-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.student-navbar li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.student-navbar li:hover {
+  color: #ffcc00;
+}
+
+.student-content {
+  padding: 30px;
+}
+
+.student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.student-form input,
+.student-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.student-form button {
+  padding: 12px;
+  background: #006400;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.student-form button:hover {
+  background: #008000;
+}
+
+.cancel-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+.cancel-card button {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-card button:hover {
+  background: #c9302c;
+}

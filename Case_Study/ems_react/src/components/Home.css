@@ -1,0 +1,396 @@
+/* Background Gradient */
+.home-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(131,58,180,0.9), rgba(253,29,29,0.9), rgba(252,176,69,0.9));
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: yellow;
+  transform: scale(1.1);
+}
+
+.login-btn {
+  padding: 6px 14px;
+  border: 2px solid white;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: white;
+  color: #000;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Events Section */
+.events {
+  padding: 50px;
+  text-align: center;
+}
+
+.event-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  width: 300px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeIn 2s ease;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card span {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 10px;
+  color: #ffe082;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Background Gradient */
+.home-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(131,58,180,0.9), rgba(253,29,29,0.9), rgba(252,176,69,0.9));
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: yellow;
+  transform: scale(1.1);
+}
+
+.login-btn {
+  padding: 6px 14px;
+  border: 2px solid white;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: white;
+  color: #000;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Events Section */
+.events {
+  padding: 50px;
+  text-align: center;
+}
+
+.event-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  width: 300px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeIn 2s ease;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card span {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 10px;
+  color: #ffe082;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.home-container {
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(63,94,251,0.8), rgba(252,70,107,0.8));
+  min-height: 100vh;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: bold;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.event-card {
+  width: 300px;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
+}
+
+.event-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0px 12px 20px rgba(0,0,0,0.3);
+}
+
+.event-img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.event-card {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  border-radius: 15px;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  background: url("https://www.shutterstock.com/image-photo/diverse-school-children-students-build-260nw-2036186204.jpg")
+    no-repeat center center/cover;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+}
+
+.event-content {
+  position: relative;
+  padding: 15px;
+  z-index: 1;
+}
+
+.event-content h3 {
+  margin: 0 0 5px;
+  font-size: 1.3rem;
+  color: #ffcc00; /* highlight text color */
+}
+
+.event-content p,
+.event-content span {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.event-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.event-card {
+  position: relative;
+  height: 250px;
+  border-radius: 15px;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); /* semi-transparent overlay */
+}
+
+.event-content {
+  position: relative;
+  padding: 15px;
+  z-index: 1;
+}
+
+.event-content h3 {
+  margin: 0 0 5px;
+  font-size: 1.3rem;
+  color: #ffcc00; /* highlight heading */
+}
+
+.event-content p {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+
+.event-content span {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}

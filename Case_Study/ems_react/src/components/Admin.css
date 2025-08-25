@@ -1,0 +1,89 @@
+.admin {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: #f4f7fc;
+}
+
+.admin-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #004d80;
+  padding: 15px 30px;
+  color: white;
+}
+
+.admin-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.admin-navbar li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-navbar li:hover {
+  color: #ffcc00;
+}
+
+.admin-content {
+  padding: 30px;
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.event-form input,
+.event-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.event-form button {
+  padding: 12px;
+  background: #004d80;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.event-form button:hover {
+  background: #006bb3;
+}
+
+.cancel-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+.cancel-card button {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-card button:hover {
+  background: #c9302c;
+}

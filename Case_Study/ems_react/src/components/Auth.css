@@ -1,0 +1,96 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(131,58,180,0.9), rgba(253,29,29,0.9), rgba(252,176,69,0.9));
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  font-family: "Poppins", sans-serif;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  width: 350px;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+.auth-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 1rem;
+}
+
+.auth-form input::placeholder {
+  color: #eee;
+}
+
+.auth-form select {
+  color: #000;
+  background: rgba(255,255,255,0.8);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: yellow;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+.switch-text {
+  margin-top: 15px;
+  color: #fff;
+}
+
+.switch-link {
+  color: yellow;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.switch-link:hover {
+  text-decoration: underline;
+}
+
+/* Background animation */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
