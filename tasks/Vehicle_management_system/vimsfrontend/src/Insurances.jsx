@@ -49,7 +49,7 @@ function Insurance() {
       }
     };
     fetchData();
-  }, [cookies.userData.token]);
+  }, []);
 
   // Handle input change
   const handleChange = (e) => {
@@ -361,5 +361,6 @@ const styles = {
 };
 
 export default Insurance;
+
 
 
