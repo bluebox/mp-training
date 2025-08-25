@@ -121,7 +121,7 @@ function Insurance() {
         headers: { 'Authorization': `Bearer ${cookies.userData.token}` }
       });
       setData(Array.isArray(refreshed.data) ? refreshed.data : []);
-      setAdd(false); 
+      setAdd(false);  // to remove form
     } catch (err) {
       console.error(err);
       alert("Failed to add insurance");
@@ -164,7 +164,7 @@ function Insurance() {
         headers: { 'Authorization': `Bearer ${cookies.userData.token}` }
       });
       setData(Array.isArray(refreshed.data) ? refreshed.data : []);
-      setUpdate(false);
+      setUpdate(false);  // to remove form
     } catch (err) {
       console.error(err);
       alert("Failed to update insurance");
@@ -361,4 +361,5 @@ const styles = {
 };
 
 export default Insurance;
+
 
