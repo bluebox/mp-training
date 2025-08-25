@@ -229,17 +229,11 @@ function Insurance() {
                 <td>{i.validPeriod} years</td>
                 <td>{i.vehicleType}</td>
                 <td>
-                  <select
-                    style={styles.select}
-                    value={i.insuranceStatus}
-                    attr={i.insuranceId}
-                    onChange={handleInactive}
-                  >
-                    <option value="">-- select --</option>
-                    {i.insuranceStatus === "INACTIVE"
-                      ? <option value="INACTIVE">Inactive</option>
-                      : <option value="ACTIVE">Active</option>}
-                  </select>
+                 <select style={styles.select} value={i.insuranceStatus} attr={i.insuranceId} onChange={handleInactive}>
+        <option value={i.insuranceStatus}>{i.insuranceStatus}</option> 
+       {i.insuranceStatus==="ACTIVE"? <option value="INACTIVE">Inactive</option>:
+        <option value="ACTIVE">Active</option>}
+      </select>
                 </td>
                 <td>{i.insuranceAmount}</td>
                 <td>{i.monthlyEMI}</td>
@@ -361,6 +355,7 @@ const styles = {
 };
 
 export default Insurance;
+
 
 
 
