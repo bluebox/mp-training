@@ -49,7 +49,7 @@ function Insurance() {
       }
     };
     fetchData();
-  }, []);
+  }, [update,add]);
 
   // Handle input change
   const handleChange = (e) => {
@@ -355,6 +355,7 @@ const styles = {
 };
 
 export default Insurance;
+
 
 
 
