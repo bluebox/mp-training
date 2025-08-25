@@ -21,7 +21,7 @@ import com.VIMS.VIMSBackend.Service.InsuranceServiceImplementation;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping(path="/api/insurance")
 public class InsuranceController {
@@ -29,6 +29,7 @@ public class InsuranceController {
     @Autowired
     private InsuranceServiceImplementation service;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/getInsurances")
     public ResponseEntity<List<InsuranceModel>> getAllInsurances() throws Exception {
         System.out.println("reached me");
@@ -47,13 +48,14 @@ public class InsuranceController {
         return ResponseEntity.ok().body(typeInsurances);
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping("/getInsurance/{id}")
     public ResponseEntity<InsuranceModel> getInsuranceById(@PathVariable int id) {
         InsuranceModel insurance = service.getInsuranceById(id);
         return ResponseEntity.ok().body(insurance);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/Createinsurance")
     public ResponseEntity<String> CreateInsurance(@Valid @RequestBody InsuranceModel insurance) throws Exception {
         int value = service.CreateInsurance(insurance);
@@ -64,6 +66,7 @@ public class InsuranceController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/UpdatePolicy")
     public ResponseEntity<String> updateInsurance(@Valid @RequestBody InsuranceModel insurance) throws Exception {
         int value = service.updateInsurance(insurance);
@@ -74,6 +77,7 @@ public class InsuranceController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/DeactivateInsurancePolicy/{id}")
     public ResponseEntity<String> inactiveInsurance(@PathVariable int id) throws Exception {
         InsuranceModel insurance = service.getInsuranceById(id);
@@ -90,3 +94,4 @@ public class InsuranceController {
         }
     }
 }
+
