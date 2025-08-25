@@ -115,12 +115,6 @@ function Insurance() {
         }
       );
       alert(response.data);
-
-      // Refresh data
-      const refreshed = await axios.get("http://localhost:8080/api/insurance/getInsurances", {
-        headers: { 'Authorization': `Bearer ${cookies.userData.token}` }
-      });
-      setData(Array.isArray(refreshed.data) ? refreshed.data : []);
       setAdd(false);  // to remove form
     } catch (err) {
       console.error(err);
@@ -159,11 +153,6 @@ function Insurance() {
         }
       );
       alert(response.data);
-
-      const refreshed = await axios.get("http://localhost:8080/api/insurance/getInsurances", {
-        headers: { 'Authorization': `Bearer ${cookies.userData.token}` }
-      });
-      setData(Array.isArray(refreshed.data) ? refreshed.data : []);
       setUpdate(false);  // to remove form
     } catch (err) {
       console.error(err);
@@ -190,11 +179,7 @@ function Insurance() {
         }
       );
       alert(response.data);
-
-      const refreshed = await axios.get("http://localhost:8080/api/insurance/getInsurances", {
-        headers: { 'Authorization': `Bearer ${cookies.userData.token}` }
-      });
-      setData(Array.isArray(refreshed.data) ? refreshed.data : []);
+      
     } catch (err) {
       console.error(err);
       alert("Failed to deactivate insurance");
@@ -355,6 +340,7 @@ const styles = {
 };
 
 export default Insurance;
+
 
 
 
