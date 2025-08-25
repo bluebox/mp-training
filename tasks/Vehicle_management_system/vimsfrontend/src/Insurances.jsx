@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from "axios";
+import { useNavigate ,useParams } from 'react-router-dom';
 
 function Insurance() {
   const [Data, setData] = useState([]); 
@@ -8,6 +9,7 @@ function Insurance() {
   const [cookies] = useCookies(['userData']);
   const [add, setAdd] = useState(false);
   const [update, setUpdate] = useState(false);
+  const [refresh,setRefresh]=useState(false);
 
   const now = new Date();
   const isoDate = now.toISOString().slice(0, 10);
@@ -33,7 +35,7 @@ function Insurance() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:8080/api/insurance/getInsurances',
+          'http://localhost:8071/api/insurance/Admin/getInsurances',
           {
             headers: {
               'Authorization': `Bearer ${cookies.userData.token}`
@@ -49,7 +51,7 @@ function Insurance() {
       }
     };
     fetchData();
-  }, [update,add]);
+  }, [update,add,refresh]);
 
   // Handle input change
   const handleChange = (e) => {
@@ -80,7 +82,7 @@ function Insurance() {
       createdBy: rowData.createdBy,
       createdDate: rowData.createdDate,
     });
-    setUpdate(true); 
+    setUpdate(!update); 
     setAdd(false);
   }
 
@@ -105,7 +107,7 @@ function Insurance() {
 
        try {
       const response = await axios.post(
-        'http://localhost:8080/api/insurance/Createinsurance',
+        'http://localhost:8071/api/insurance/Admin/Createinsurance',
         insurance,
         {
           headers: {
@@ -143,7 +145,7 @@ function Insurance() {
     };
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/insurance/UpdatePolicy',
+        'http://localhost:8071/api/insurance/Admin/UpdatePolicy',
         insurance,
         {
           headers: {
@@ -169,7 +171,7 @@ function Insurance() {
 
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/insurance/DeactivateInsurancePolicy/${sentid}`,
+        `http://localhost:8071/api/insurance/Admin/DeactivateInsurancePolicy/${sentid}`,
         {},
         {
           headers: {
@@ -179,7 +181,7 @@ function Insurance() {
         }
       );
       alert(response.data);
-      
+      setRefresh(!refresh);
     } catch (err) {
       console.error(err);
       alert("Failed to deactivate insurance");
@@ -238,6 +240,7 @@ function Insurance() {
 
       {(add || update) && (
         <form
+        onMouseLeave={add?handleAdd:handleUpdate}
           style={styles.form}
           onSubmit={add ? handleAddSubmit : handleUpdateSubmit}
         >
@@ -340,11 +343,3 @@ const styles = {
 };
 
 export default Insurance;
-
-
-
-
-
-
-
-
