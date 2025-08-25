@@ -88,7 +88,7 @@ function Insurance() {
   async function handleAddSubmit(e) {
     e.preventDefault();
 
-    const payload = {
+    const insurance = {
       insuranceId: 0, // new record
       periodLength: Number(form.periodLength),
       insuranceAmount: Number(form.insuranceAmount),
@@ -103,9 +103,7 @@ function Insurance() {
       createdDate: form.createdDate
     };
 
-    console.log("Submitting payload:", payload);
-
-    try {
+       try {
       const response = await axios.post(
         'http://localhost:8080/api/insurance/Createinsurance',
         payload,
@@ -123,9 +121,9 @@ function Insurance() {
         headers: { 'Authorization': `Bearer ${cookies.userData.token}` }
       });
       setData(Array.isArray(refreshed.data) ? refreshed.data : []);
-      setAdd(false); // hide form
+      setAdd(false); 
     } catch (err) {
-      console.error("Add error:", err);
+      console.error(err);
       alert("Failed to add insurance");
       setmessage(err.message);
     }
@@ -135,7 +133,7 @@ function Insurance() {
   async function handleUpdateSubmit(e) {
     e.preventDefault();
 
-    const payload = {
+    const insurance = {
       insuranceId: Number(form.insuranceId),
       periodLength: Number(form.periodLength),
       insuranceAmount: Number(form.insuranceAmount),
@@ -149,9 +147,6 @@ function Insurance() {
       createdBy: Number(form.createdBy),
       createdDate: form.createdDate
     };
-
-    console.log("Submitting update payload:", payload);
-
     try {
       const response = await axios.post(
         'http://localhost:8080/api/insurance/UpdatePolicy',
@@ -171,7 +166,7 @@ function Insurance() {
       setData(Array.isArray(refreshed.data) ? refreshed.data : []);
       setUpdate(false);
     } catch (err) {
-      console.error("Update error:", err);
+      console.error(err);
       alert("Failed to update insurance");
       setmessage(err.message);
     }
@@ -201,7 +196,7 @@ function Insurance() {
       });
       setData(Array.isArray(refreshed.data) ? refreshed.data : []);
     } catch (err) {
-      console.error("Deactivate error:", err);
+      console.error(err);
       alert("Failed to deactivate insurance");
       setmessage(err.message);
     }
@@ -366,3 +361,4 @@ const styles = {
 };
 
 export default Insurance;
+
