@@ -36,7 +36,7 @@ public class UserService implements UserServiceInterface,UserDetailsService{
         
         System.out.println("Loaded user: " + user.getUserId() + ", Role: " + user.getRole());
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(String.valueOf(user.getRole())));
+        authorities.add(new SimpleGrantedAuthority("ROLE_"+String.valueOf(user.getRole())));
        System.out.println(authorities);
         return new org.springframework.security.core.userdetails.User(
                 String.valueOf(user.getUserId()),
@@ -80,3 +80,4 @@ public class UserService implements UserServiceInterface,UserDetailsService{
 	}
     
 }
+
