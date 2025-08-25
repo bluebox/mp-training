@@ -106,7 +106,7 @@ function Insurance() {
        try {
       const response = await axios.post(
         'http://localhost:8080/api/insurance/Createinsurance',
-        payload,
+        insurance,
         {
           headers: {
             'Authorization': `Bearer ${cookies.userData.token}`,
@@ -150,7 +150,7 @@ function Insurance() {
     try {
       const response = await axios.post(
         'http://localhost:8080/api/insurance/UpdatePolicy',
-        payload,
+        insurance,
         {
           headers: {
             'Authorization': `Bearer ${cookies.userData.token}`,
@@ -355,6 +355,7 @@ const styles = {
 };
 
 export default Insurance;
+
 
 
 
