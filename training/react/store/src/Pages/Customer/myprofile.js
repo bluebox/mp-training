@@ -118,13 +118,13 @@ function MyProfile() {
 
 <div id="expandable-content" hidden={!isExpanded} >
   <br/>
-  <p>the content is shown only when it is extended
-  the content is shown only when it is extended
-  the content is shown only when it is extended
-  the content is shown only when it is extended
-  the content is shown only when it is extended
-  the content is shown only when it is extended
-  the content is shown only when it is extended
+  <p>the content is shown only when it is extended<br/>
+  the content is shown only when it is extended<br/>
+  the content is shown only when it is extended<br/>
+  the content is shown only when it is extended<br/>
+  the content is shown only when it is extended<br/>
+  the content is shown only when it is extended<br/>
+  the content is shown only when it is extended<br/>
   the content is shown only when it is extended</p>
 </div>
     </div> 
