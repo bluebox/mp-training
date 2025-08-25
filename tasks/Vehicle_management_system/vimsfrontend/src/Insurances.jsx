@@ -40,10 +40,10 @@ function Insurance() {
             }
           }
         );
-        console.log("Fetched data:", response.data); 
+        console.log(response.data); 
         setData(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
-        console.error("Fetch error:", err);
+        console.error(err);
         alert("Failed to load insurances");
         setmessage(err.message);
       }
@@ -355,6 +355,7 @@ const styles = {
 };
 
 export default Insurance;
+
 
 
 
