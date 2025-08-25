@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3000") 
+
 @RestController
 @RequestMapping("/api/issueInsurance")
 public class IssueInsuranceController {
@@ -89,3 +89,4 @@ public class IssueInsuranceController {
     }
 
 }
+
