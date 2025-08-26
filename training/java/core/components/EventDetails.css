@@ -1,0 +1,42 @@
+.event-details {
+  min-height: 100vh;
+  padding: 40px;
+  background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.detail-img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.event-details h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.desc {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
