@@ -34,62 +34,24 @@ public class AdminController {
 	private AdminService adminservice;
 	
 	@RequestMapping(value="/addevent",method=RequestMethod.POST)
+	 public ResponseEntity<String> addEvent(@Valid @RequestBody ModelEvent event) {
+	        if (adminservice.addEvent(event.getUserid(),event) != 0) {
+	            return ResponseEntity.status(201).body("Event added");
+	        } else {
+	            return ResponseEntity.badRequest().body("Event not added");
+	        }
+	    }
 	
-	public ResponseEntity<String> addevent(@Valid @RequestBody ObjectNode json) {
-        ObjectMapper objectMapper = new ObjectMapper();
+	
+@RequestMapping(value="/updateevent",method=RequestMethod.POST)
+public ResponseEntity<String> updateEvent(@Valid @RequestBody ModelEvent event) {
+       if (adminservice.updateEvent(event.getUserid(),event) != 0) {
+           return ResponseEntity.status(201).body("Event updated");
+       } else {
+           return ResponseEntity.badRequest().body("Event not updated");
+       }
+   }
 
-		String userid=json.get("userid").asText();
-		ModelEvent event=null;
-		try {
-			
-			event = objectMapper.treeToValue(json.get("event"), ModelEvent.class);
-		System.out.println("event "+event);
-		
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("event "+event);
-		if(adminservice.addEvent(userid,event)!=0){
-			return ResponseEntity.ok("event added");
-		}
-		else {
-			//return new ResponseEntity<>("book not added",HttpStatus.BAD_REQUEST);
-		
-		return ResponseEntity.badRequest().body("event not added");
-		}
-	}
-	
-	
-	@RequestMapping(value="/updateevent",method=RequestMethod.POST)
-	
-	public ResponseEntity<String> updateevent(@Valid @RequestBody ObjectNode json) {
-		  ObjectMapper objectMapper = new ObjectMapper();
-
-			String userid=json.get("userid").asText();
-			ModelEvent event=null;
-			try {
-				event = objectMapper.treeToValue(json.get("event"), ModelEvent.class);
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("event "+event);
-			if(adminservice.updateEvent(userid,event)!=0){
-				return ResponseEntity.ok("event updated");
-			}
-			else {
-				//return new ResponseEntity<>("book not added",HttpStatus.BAD_REQUEST);
-			
-			return ResponseEntity.badRequest().body("event not added");
-			}
-		}
 	@RequestMapping(value="/viewevents",method=RequestMethod.GET)
 	
 	public ResponseEntity<List<ModelEvent>> viewallbookcontroller() {
@@ -98,11 +60,10 @@ public class AdminController {
 		return  ResponseEntity.ok(adminservice.Viewllevents());
 		//return ""+bookdao.viewallBooks();
 	}
-	
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
-	
-	public ResponseEntity<String> deleteevent(@RequestBody int eventid) {
+	public ResponseEntity<String> deleteevent(@RequestBody ObjectNode json) {
 		int res=0;
+		int eventid=json.get("eventid").asInt();
 		System.out.println("eventid"+eventid);
 		res=adminservice.deleteEvent(eventid);
 		if(res==1) {
@@ -113,8 +74,8 @@ public class AdminController {
 		
 	}
 	
-	
 		
 	
 
 }
+
