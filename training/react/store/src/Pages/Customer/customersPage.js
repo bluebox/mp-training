@@ -81,14 +81,7 @@ const navigate=useNavigate();
       <button className='nav-button'  onClick={handleLogOut}>LogOut</button>
 </nav>  
 <h1 style={{textAlign:'center'}}>Welcome {username} have a good day</h1>
-{/* <div className="customer-page-container">
-<img src="/image2.avif"  style={{margin:'10px',width:'1199px',height:'380px'}}  alt="Profile" /></div>
- <img src="/image.jpg" onClick={()=>setShowProfilePic(true)} alt="Profile"  className="profile-image2" />
-  {showProfilePic && <div className="Clicked-outside" style={{zIndex: '1000'}}>
-   <div >
-    <img src="/image.jpg" alt="Profile" />
-    <button title='Close' onClick={() => setShowProfilePic(false)} className="Close-button-onImage" >X</button>
-    </div></div>} */}
+
     {get_book? 
     (booksList.length ===0 ? <p>No data available to show</p> :
  (<table border="5" cellPadding="20" style={{ borderCollapse: 'collapse', marginTop: '10px',marginLeft: '300px' ,position:'center'}}>

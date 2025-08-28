@@ -97,11 +97,11 @@ return (
 <div className='home-body'>
     {(loading) ? <h1>Loading...</h1> : null}
      <nav className="nav-link">
-     <button className='nav-button' onClick={() => navigate('/AdminHomePage')}>Home</button>
-      <button className='nav-button' onClick={() => navigate('/CustomerRelated')}>customers</button>
-      <button className='nav-button' onClick={() => navigate('/BooksPage')}>books</button>
+     <button className='nav-button' onClick={() => navigate('/AdminHomePage',{state:{'username':username}})}>Home</button>
+      <button className='nav-button' onClick={() => navigate('/CustomerRelated',{state:{'username':username}})}>customers</button>
+      <button className='nav-button' onClick={() => navigate('/BooksPage',{state:{'username':username}})}>books</button>
       <button className='nav-button' onClick={handleOrderButton}>Orders</button>
-      <button className='nav-button' onClick={() => navigate('/Authorrelatedpage')}>Authors</button>
+      <button className='nav-button' onClick={() => navigate('/Authorrelatedpage',{state:{'username':username}})}>Authors</button>
       <button className='nav-button' style={{marginLeft: 'auto' }} onClick={handleLogOut}>LogOut</button>
 </nav>
 

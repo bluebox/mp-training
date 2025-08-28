@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { data, useNavigate } from "react-router-dom";
+import { data, useNavigate,useLocation } from "react-router-dom";
 import { getCSRFToken } from './csrf';
 // import './adminpages.css';
 
@@ -7,8 +7,11 @@ import { getCSRFToken } from './csrf';
 function CustomerRelated(){
 
 const navigate=useNavigate()
+const location=useLocation();
 const [customerList,setcustomerList]=useState([])
 const [pageCount, setPageCount] = useState(0);
+const { username="", from = "" } = location.state || {};
+
 // const [loading, setLoading] = useState(true);
 
 
@@ -74,7 +77,7 @@ const handleEdit =(username) =>{
  return (<>
  <nav className="nav-link">
 
-  <button className='nav-button' onClick={() => navigate('/AdminHomePage')}>Home</button>
+  <button className='nav-button' onClick={() => navigate('/AdminHomePage',{state:{'username':username}})}>Home</button>
 <button className="nav-button" onClick={() => navigate('/CustomerRegisterPage', {state: {  from: "admin" }})}>Add customer</button>
 
 </nav>
