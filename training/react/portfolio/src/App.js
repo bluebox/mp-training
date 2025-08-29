@@ -50,7 +50,7 @@ function App() {
       setHeadBarLemgth(String((window.scrollY *1150 )/2450) + 'px')
       console.log("values", headBarLength)
       if (window.scrollY < 300) {
-        setBgColor("#d1d1d1ff");
+        setBgColor("#a8a2a2ff");
         setFontcolor('black')
 
       } else if (window.scrollY > 300 && window.scrollY < 1050) {
