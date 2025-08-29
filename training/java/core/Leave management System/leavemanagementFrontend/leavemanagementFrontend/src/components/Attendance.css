@@ -1,0 +1,70 @@
+
+.attendance-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.attendance-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #1e40af;
+}
+
+.attendance-info {
+  margin-top: 10px;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.attendance-info p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.status-message {
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.status-message.success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+.status-message.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #ef4444;
+}
+
+.attendance-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.attendance-button:hover:not(:disabled) {
+  background-color: #1e40af;
+}
+
+.attendance-button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
