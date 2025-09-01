@@ -189,7 +189,7 @@ If you're looking for a reliable developer to turn your ideas into powerful web 
             </div>
 
             <div>
-              <img style={{ width: '350px', height: '350px', borderRadius: '10%', margin: '10px' }} src='/MyPic.jpeg' alt='profile Pic' />
+              <img style={{ width: '350px', height: '350px', borderRadius: '10%', margin: '10px' }} src='MyPic.jpeg' alt='profile Pic' />
             </div></div>
 
           <div id='experience' style={{ marginLeft: '50px', marginTop: '150px' }}>
