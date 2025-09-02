@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Form, Col, Row, Button, Card, Container, Alert } from "react-bootstrap";
 
 const AddBook = ({ onBookAdded }) => {
 	const [title, setTitle] = useState("");
@@ -18,8 +19,15 @@ const AddBook = ({ onBookAdded }) => {
 		"Science Fiction",
 		"Fantasy",
 		"Horror",
-		"Thriller"
+		"Thriller",
 	];
+
+	const validateInput = (value, type) => {
+		let clean = value.replace(/\s+/g, " ");
+		if (type === "title") clean = clean.replace(/[^a-zA-Z0-9 ]/g, "");
+		if (type === "author") clean = clean.replace(/[^a-zA-Z ]/g, "");
+		return clean.substring(0, 60);
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -36,156 +44,86 @@ const AddBook = ({ onBookAdded }) => {
 				setTitle("");
 				setAuthor("");
 				setCategory("");
-				navigate("/library/books/view");
+				setTimeout(() => {
+					navigate("/library/books/view");
+				}, 2000);
 			})
 			.catch((err) => {
 				console.error(err);
 				if (err.response && err.response.data && err.response.data.errors) {
 					const messages = err.response.data.errors
-						.map(e => `${e.field}: ${e.defaultMessage}`)
+						.map((e) => `${e.field}: ${e.defaultMessage}`)
 						.join("\n");
 					setMessage(`❌ ${messages}`);
 				} else {
-					setMessage("❌ Failed to add member. Please try again.");
+					setMessage("❌ Failed to add book. Please try again.");
 				}
-				setMessageType("error");
+				setMessageType("danger");
 			});
 	};
 
 	return (
-		<div style={styles.page}>
-			<div style={styles.card}>
-				<h2 style={styles.heading}> Add a New Book</h2>
+		<Container className="d-flex justify-content-center align-items-center">
+			<Card className="shadow-lg p-4" style={{ maxWidth: "500px", width: "100%" }}>
+				<h2 className="mb-3"> Add a New Book</h2>
+
 				{message && (
-					<div
-						style={{
-							marginBottom: "15px",
-							padding: "10px",
-							borderRadius: "8px",
-							fontWeight: "bold",
-							color: "white",
-							backgroundColor: messageType === "success" ? "#2ecc71" : "#e74c3c",
-						}}
-					>
+					<Alert variant={messageType} className="fw-bold text-center">
 						{message}
-					</div>
+					</Alert>
 				)}
 
-				<form onSubmit={handleSubmit} style={styles.form}>
-					<label style={styles.label}>Title:</label>
-					<input
-						placeholder="Enter title"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						required
-						style={styles.input}
-					/>
+				<Form onSubmit={handleSubmit}>
+					<Form.Group className="mb-3" controlId="formBookTitle">
+						<Form.Label>Book Title</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder="Enter book title"
+							value={title}
+							onChange={(e) => setTitle(validateInput(e.target.value,"title"))}
+							required
+						/>
+					</Form.Group>
 
-					<label style={styles.label}>Author:</label>
-					<input
-						placeholder="Enter author"
-						value={author}
-						onChange={(e) => setAuthor(e.target.value)}
-						required
-						style={styles.input}
-					/>
+					<Form.Group className="mb-3" controlId="formBookAuthor">
+						<Form.Label>Author</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder="Enter author name"
+							value={author}
+							onChange={(e) => setAuthor(validateInput(e.target.value, "author"))}
+							required
+						/>
+					</Form.Group>
 
-					<label style={styles.label}>Category:</label>
-					<select
-						value={category}
-						onChange={(e) => setCategory(e.target.value)}
-						required
-						style={styles.input}
-					>
-						<option value="">Select Category</option>
-						{categories.map((cat, i) => (
-							<option key={i} value={cat}>
-								{cat}
-							</option>
-						))}
-					</select>
+					<Form.Group className="mb-3" as={Col} controlId="formGridCategory">
+						<Form.Label>Category</Form.Label>
+						<Form.Control
+							as="select"
+							value={category}
+							onChange={(e) => setCategory(e.target.value)}
+							required
+						>
+							<option value="">Select Category</option>
+							{categories.map((cat, i) => (
+								<option key={i} value={cat}>
+									{cat}
+								</option>
+							))}
+						</Form.Control>
+					</Form.Group>
 
-					<button type="submit" style={styles.button}>
-						Add Book
-					</button>
-				</form>
-
-			</div>
-		</div>
+					<Row>
+						<Col className="d-grid">
+							<Button variant="outline-primary" type="submit">
+								Add Book
+							</Button>
+						</Col>
+					</Row>
+				</Form>
+			</Card>
+		</Container>
 	);
-};
-
-const styles = {
-	page: {
-		height: "100vh",
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-		padding: "20px",
-	},
-	card: {
-		backgroundColor: "rgba(255, 255, 255, 0.95)",
-		padding: "30px",
-		borderRadius: "16px",
-		boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-		maxWidth: "400px",
-		width: "100%",
-		textAlign: "center",
-	},
-	heading: {
-		marginBottom: "20px",
-		fontSize: "22px",
-		fontWeight: "bold",
-		color: "#2c3e50",
-	},
-	form: {
-		display: "flex",
-		flexDirection: "column",
-		gap: "15px",
-	},
-	label: {
-		textAlign: "left",
-		fontSize: "14px",
-		fontWeight: "bold",
-		color: "#2c3e50",
-	},
-	input: {
-		padding: "12px",
-		borderRadius: "8px",
-		border: "1px solid #ccc",
-		fontSize: "15px",
-		outline: "none",
-	},
-	button: {
-		marginTop: "20px",
-				padding: "10px",
-				width: "100%",
-				fontSize: "14px",
-				borderRadius: "6px",
-				border: "none",
-				cursor: "pointer",
-				backgroundColor: "#64b5f6",
-				color: "white",
-				transition: "background-color 0.3s ease",
-				fontWeight: "bold",
-	},
-	secondaryButton: {
-		padding: "10px 15px",
-		border: "none",
-		borderRadius: "8px",
-		backgroundColor: "#2980b9",
-		color: "white",
-		cursor: "pointer",
-		fontSize: "14px",
-		transition: "0.3s",
-	},
-	buttonGroup: {
-		marginTop: "15px",
-		display: "flex",
-		justifyContent: "space-between",
-	},
 };
 
 export default AddBook;

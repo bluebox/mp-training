@@ -17,6 +17,7 @@ public class Member {
 
 	@NotBlank(message = "Name must not be blank")
 	@Size(min = 3, max = 60, message = "Name must be between 3 and 60 characters")
+	@Pattern(regexp = "^[A-Za-z ]+$", message = "Member name must contain only letters and spaces")
 	private String memberName;
 
 	@NotBlank(message = "Email must not be blank")

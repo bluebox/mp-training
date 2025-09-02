@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { Form, Col, Row, Button, Card, Container, Alert } from "react-bootstrap";
 
 const UpdateBook = () => {
 	const navigate = useNavigate();
-	const { id } = useParams(); 
+	const { id } = useParams();
 	const [title, setTitle] = useState("");
 	const [author, setAuthor] = useState("");
 	const [category, setCategory] = useState("");
@@ -23,7 +24,6 @@ const UpdateBook = () => {
 	];
 
 	useEffect(() => {
-		// Fetch book details by ID
 		axios
 			.get(`http://localhost:8080/library/books/${id}`)
 			.then((res) => {
@@ -61,143 +61,87 @@ const UpdateBook = () => {
 				category,
 			})
 			.then((res) => {
-				if (res && res.data) {
-					setMessage(`✅ Book "${res.data.title}" updated successfully!`);
-					setMessageType("success");
+				setMessage(`✅ Book "${res.data.title}" updated successfully!`);
+				setMessageType("success");
+				setTimeout(() => {
 					navigate("/library/books/view");
-				} else {
-					setMessage("✅ Book updated successfully!");
-					setMessageType("success");
-				}
+				}, 2000);
 			})
 			.catch((err) => {
-				console.error(err);
-				const backendMessage =
-					err.response?.data?.message || "Failed to update book. Please try again.";
-				setMessage(`❌ ${backendMessage}`);
-				setMessageType("error");
+				if (err.response && err.response.data && err.response.data.errors) {
+					const messages = err.response.data.errors
+						.map((e) => `${e.field}: ${e.defaultMessage}`)
+						.join("\n");
+					setMessage(`❌ ${messages}`);
+				} else {
+					setMessage("❌ Failed to update book. Please try again.");
+				}
+				setMessageType("danger");
 			});
 	};
 
 	return (
-		<div style={styles.page}>
-			{message && (
-				<div
-					style={{
-						position: "absolute",
-						top: "10%",
-						backgroundColor: messageType === "success" ? "#c8e6c9" : "#ffcdd2",
-						color: messageType === "success" ? "#2e7d32" : "#c62828",
-						padding: "10px 20px",
-						borderRadius: "8px",
-						boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-					}}
-				>
-					{message}
-				</div>
-			)}
+		<Container className="d-flex justify-content-center align-items-center">
+			<Card className="shadow-lg p-4" style={{ maxWidth: "500px", width: "100%" }}>
+				<h2 className="mb-3">Update Book</h2>
 
-			<div style={styles.card}>
-				<h2 style={styles.heading}>Update Book</h2>
+				{message && (
+					<Alert variant={messageType} className="fw-bold text-center">
+						{message}
+					</Alert>
+				)}
 
-				<form onSubmit={handleSubmit} style={styles.form}>
-					<label style={styles.label}>Title:</label>
-					<input
-						type="text"
-						value={title}
-						onChange={(e) => setTitle(validateInput(e.target.value, "title"))}
-						required
-						style={styles.input}
-					/>
+				<Form onSubmit={handleSubmit}>
+					<Form.Group className="mb-3" controlId="formBookTitle">
+						<Form.Label>Book Title</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder="Enter book title"
+							value={title}
+							onChange={(e) => setTitle(validateInput(e.target.value, "title"))}
+							required
+						/>
+					</Form.Group>
 
-					<label style={styles.label}>Author:</label>
-					<input
-						type="text"
-						value={author}
-						onChange={(e) => setAuthor(validateInput(e.target.value, "author"))}
-						required
-						style={styles.input}
-					/>
+					<Form.Group className="mb-3" controlId="formBookAuthor">
+						<Form.Label>Author</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder="Enter author name"
+							value={author}
+							onChange={(e) => setAuthor(validateInput(e.target.value, "author"))}
+							required
+						/>
+					</Form.Group>
 
-					<label style={styles.label}>Category:</label>
-					<select
-						value={category}
-						onChange={(e) => setCategory(e.target.value)}
-						required
-						style={styles.input}
-					>
-						<option value="">Select Category</option>
-						{categories.map((cat, i) => (
-							<option key={i} value={cat}>
-								{cat}
-							</option>
-						))}
-					</select>
+					<Form.Group className="mb-3" as={Col} controlId="formGridCategory">
+						<Form.Label>Category</Form.Label>
+						<Form.Control
+							as="select"
+							value={category}
+							onChange={(e) => setCategory(e.target.value)}
+							required
+						>
+							<option value="">Select Category</option>
+							{categories.map((cat, i) => (
+								<option key={i} value={cat}>
+									{cat}
+								</option>
+							))}
+						</Form.Control>
+					</Form.Group>
 
-					<button type="submit" style={styles.button}>
-						Update Book
-					</button>
-				</form>
-
-				
-			</div>
-		</div>
+					<Row>
+						<Col className="d-grid">
+							<Button variant="outline-primary" type="submit">
+								Update Book
+							</Button>
+						</Col>
+					</Row>
+				</Form>
+			</Card>
+		</Container>
 	);
-};
-
-const styles = {
-	page: {
-		minHeight: "100vh",
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-		padding: "20px",
-		position: "relative",
-	},
-	card: {
-		backgroundColor: "rgba(255, 255, 255, 0.95)",
-		padding: "30px",
-		borderRadius: "16px",
-		boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-		maxWidth: "400px",
-		width: "100%",
-		textAlign: "center",
-	},
-	heading: { marginBottom: "20px", fontSize: "22px", fontWeight: "bold" },
-	form: { display: "flex", flexDirection: "column", gap: "15px" },
-	label: { textAlign: "left", fontSize: "14px", fontWeight: "bold" },
-	input: {
-		padding: "12px",
-		borderRadius: "8px",
-		border: "1px solid #ccc",
-		fontSize: "15px",
-		outline: "none",
-	},
-	button: {
-		marginTop: "20px",
-		padding: "10px",
-		width: "100%",
-		fontSize: "14px",
-		borderRadius: "6px",
-		border: "none",
-		cursor: "pointer",
-		backgroundColor: "#64b5f6",
-		color: "white",
-		transition: "background-color 0.3s ease",
-		fontWeight: "bold",
-	},
-	secondaryButton: {
-		padding: "10px 15px",
-		border: "none",
-		borderRadius: "8px",
-		backgroundColor: "#2980b9",
-		color: "white",
-		cursor: "pointer",
-		fontSize: "14px",
-	},
-	buttonGroup: { marginTop: "15px", display: "flex", justifyContent: "space-between" },
 };
 
 export default UpdateBook;

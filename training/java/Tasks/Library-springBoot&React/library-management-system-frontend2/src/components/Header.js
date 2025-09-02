@@ -1,48 +1,24 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Header = () => {
-  const linkStyle = {
-    padding: "12px 20px",
-    fontSize: "16px",
-    fontWeight: "bold",
-    borderRadius: "8px",
-    border: "none",
-    textDecoration: "none",
-    color: "white",
-    backgroundColor: "#3498db",
-    marginRight: "10px",
-    transition: "0.3s",
-  };
-
-  const activeStyle = {
-    backgroundColor: "#2c3e50",
-  };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "15px",
-        backgroundColor: "#ecf0f1",
-        boxShadow: "0px 4px 15px rgba(0,0,0,0.2)",
-      }}
-    >
-      <NavLink to="/library/books/view" style={({ isActive }) => isActive ? { ...linkStyle, ...activeStyle } : linkStyle}>
-        Books
-      </NavLink>
-      <NavLink to="/library/members/view" style={({ isActive }) => isActive ? { ...linkStyle, ...activeStyle } : linkStyle}>
-        Members
-      </NavLink>
-      <NavLink to="/library/issues/allIssues" style={({ isActive }) => isActive ? { ...linkStyle, ...activeStyle } : linkStyle}>
-        Issues
-      </NavLink>
-      <NavLink to="/library/reports" style={({ isActive }) => isActive ? { ...linkStyle, ...activeStyle } : linkStyle}>
-        Reports
-      </NavLink>
-    </div>
+    <>
+    <Navbar  bg="dark" expand="lg" variant="dark">
+  <Navbar.Brand href="/library">Library Management System</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="justify-content-end w-100">
+      <Nav.Link href="/library/books/view">Books</Nav.Link>
+      <Nav.Link href="/library/members/view">Members</Nav.Link>
+      <Nav.Link href="/library/issues/allIssues">Issue/Return</Nav.Link>
+      <Nav.Link href="/library/reports">Reports</Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+  </>
   );
 };
 

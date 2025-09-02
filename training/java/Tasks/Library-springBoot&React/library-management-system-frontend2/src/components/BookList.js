@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 const BookList = () => {
 	const navigate = useNavigate();
@@ -22,163 +24,50 @@ const BookList = () => {
 		}
 	};
 
-
 	useEffect(() => {
 		fetchBooks();
 	}, []);
 
 	return (
-		<div style={styles.page}>
-			<div style={styles.card}>
-				<h2 style={styles.heading}> Book Management</h2>
-
-				<button
-					style={styles.addButton}
-					onClick={() => navigate("/library/books/add")}
-				>
-					Add Book
-				</button>
-
-				<table style={styles.table}>
-					<thead>
-						<tr>
-							<th style={styles.th}>ID</th>
-							<th style={styles.th}>Title</th>
-							<th style={styles.th}>Author</th>
-							<th style={styles.th}>Category</th>
-							<th style={styles.th}>Status</th>
-							<th style={styles.th}>Availability</th>
-							<th style={styles.th}>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						{books.map((book, index) => (
-							<tr
-								key={book.bookId}
-								style={{
-									backgroundColor: index % 2 === 0 ? "#f9f9f9" : "white",
-								}}
-							>
-								<td style={styles.td}>{book.bookId}</td>
-								<td style={styles.td}>{book.title}</td>
-								<td style={styles.td}>{book.author}</td>
-								<td style={styles.td}>{book.category}</td>
-								<td style={styles.td}>Active</td>
-								<td style={styles.td}>
-									{book.availability === "I" ? "Issued" : book.availability === "A" ? "Available" : book.availability}
-								</td>
-								<td style={styles.td}>
-								  <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-								    <button
-								      style={styles.updateButton}
-								      onClick={() => navigate(`/library/books/update/${book.bookId}`)}
-								    >
-								      Update
-								    </button>
-								    <button
-								      style={styles.deleteButton}
-								      onClick={() => deleteBook(book.bookId)}
-								    >
-								      Delete
-								    </button>
-								  </div>
-								</td>
-
-							</tr>
-						))}
-					</tbody>
-				</table>
-
-
+		<div class="container text-center">
+			<h2 className="mb-3"> Book Management</h2>
+			<div className="mb-2">
+			<Button variant="outline-success" onClick={() => navigate("/library/books/add")}>Add Book</Button>{' '}
 			</div>
+			<Table striped bordered hover size="sm">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Author</th>
+						<th>Category</th>
+						<th>Status</th>
+						<th>Availability</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{books.map((book, index) => (
+						<tr key={book.bookId}>
+							<td>{book.bookId}</td>
+							<td>{book.title}</td>
+							<td>{book.author}</td>
+							<td>{book.category}</td>
+							<td>Active</td>
+							<td>
+								{book.availability === "I" ? "Issued" : book.availability === "A" ? "Available" : book.availability}
+							</td>
+							<td>
+								<Button variant="outline-primary" onClick={() => navigate(`/library/books/update/${book.bookId}`)}>Update</Button>{' '}
+								<Button variant="outline-danger" disabled={book.availability === "I"} onClick={() => deleteBook(book.bookId)}>Delete</Button>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</Table>
 		</div>
 	);
 };
 
-const styles = {
-	page: {
-	    display: "flex",
-	    justifyContent: "center",
-	    alignItems: "flex-start",
-	    backgroundSize: "cover",
-	    backgroundPosition: "center",
-	    padding: "20px",
-	    position: "relative",
-	},
-
-	card: {
-		backgroundColor: "rgba(255, 255, 255, 0.95)",
-		padding: "30px",
-		borderRadius: "16px",
-		boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-		maxWidth: "900px",
-		width: "100%",
-		textAlign: "center",
-		overflowX: "auto",
-	},
-	heading: {
-		marginBottom: "20px",
-		fontSize: "22px",
-		fontWeight: "bold",
-		color: "#2c3e50",
-	},
-	table: {
-		width: "100%",
-		borderCollapse: "collapse",
-		marginBottom: "20px",
-	},
-	th: {
-		border: "1px solid #ccc",
-		padding: "10px",
-		backgroundColor: "#f2f2f2",
-		fontWeight: "bold",
-	},
-	td: {
-		border: "1px solid #ccc",
-		padding: "10px",
-	},
-	deleteButton: {
-		padding: "6px 12px",
-		border: "none",
-		borderRadius: "6px",
-		backgroundColor: "#e74c3c",
-		color: "white",
-		cursor: "pointer",
-		fontSize: "14px",
-	},
-	buttonGroup: {
-		display: "flex",
-		justifyContent: "space-between",
-	},
-	secondaryButton: {
-		padding: "10px 15px",
-		border: "none",
-		borderRadius: "8px",
-		backgroundColor: "#2980b9",
-		color: "white",
-		cursor: "pointer",
-		fontSize: "14px",
-		transition: "0.3s",
-	},
-	addButton: {
-		padding: "8px 16px",
-		border: "none",
-		borderRadius: "8px",
-		backgroundColor: "#2ecc71",
-		color: "white",
-		cursor: "pointer",
-		fontSize: "14px",
-		marginBottom: "20px",
-	},
-	updateButton: {
-		padding: "6px 12px",
-		border: "none",
-		borderRadius: "6px",
-		backgroundColor: "#3498db",
-		color: "white",
-		cursor: "pointer",
-		fontSize: "14px",
-	},
-};
 
 export default BookList;

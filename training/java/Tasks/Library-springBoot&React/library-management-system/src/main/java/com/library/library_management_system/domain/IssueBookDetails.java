@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IssueBookDetails {
-		private int memberId;
-		private String memberName;
-		private int bookId;
-		private String bookTitle;
-		private String issueStatus;
-		private LocalDate issueDate;
-		private LocalDate returnDate;
-		private String bookStatus;
+	private int memberId;
+	private String memberName;
+	private int bookId;
+	private String bookTitle;
+	private String issueStatus;
+	private LocalDate issueDate;
+	private LocalDate returnDate;
+	private String bookStatus;
 }

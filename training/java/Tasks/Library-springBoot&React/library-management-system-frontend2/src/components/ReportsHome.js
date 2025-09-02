@@ -4,10 +4,10 @@ import ReportsHeader from "./ReportsHeader";
 
 const ReportsHome = () => {
   return (
-    <div style={{ padding: "20px" }}>
-      <ReportsHeader /> {/* Always visible */}
+    <div>
+      <ReportsHeader /> 
       <div style={{ marginTop: 0 }}>
-        <Outlet /> {/* renders the selected report */}
+        <Outlet /> 
       </div>
     </div>
   );

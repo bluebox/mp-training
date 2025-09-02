@@ -1,55 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 const ReportsHeader = () => {
-  const linkStyle = {
-    padding: "10px 16px",
-    fontSize: "15px",
-    fontWeight: "bold",
-    borderRadius: "6px",
-    border: "none",
-    textDecoration: "none",
-	backgroundColor: "#2ecc71",
-			color: "white",
-    marginRight: "10px",
-    transition: "0.3s",
-  };
-
-  const activeStyle = {
-	backgroundColor: "#2c3e50",
-  };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "10px",
-		
-        boxShadow: "0 3px 8px rgba(0,0,0,0.2)",
-        marginBottom: "20px",
-      }}
-    >
-      <NavLink
-        to="overdueRecords"
-        style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}
-      >
-        Overdue Books
-      </NavLink>
-      <NavLink
-        to="categoryCount"
-        style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}
-      >
-        Category Count
-      </NavLink>
-      <NavLink
-        to="activeIssuedRecords"
-        style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}
-      >
-        Active Issued
-      </NavLink>
-    </div>
+    <>
+      <Navbar bg="dark" expand="lg" variant="dark">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="justify-content-end w-100">
+            <Nav.Link href="/library/reports/overdueRecords">Overdue Books</Nav.Link>
+            <Nav.Link href="/library/reports/categoryCount">Category Count</Nav.Link>
+            <Nav.Link href="/library/reports/activeIssuedRecords">Active Issued</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </>
   );
 };
 

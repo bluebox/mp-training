@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Form, Col, Row, Button, Card, Container, Alert } from "react-bootstrap";
 
 const ReturnRecord = () => {
 	const navigate = useNavigate();
@@ -9,7 +10,7 @@ const ReturnRecord = () => {
 	const [selectedMemberId, setSelectedMemberId] = useState("");
 	const [selectedBookId, setSelectedBookId] = useState("");
 	const [message, setMessage] = useState(null);
-	const [status, setStatus] = useState("");
+	const [messageType, setMessageType] = useState("");
 
 	useEffect(() => {
 		axios
@@ -25,13 +26,6 @@ const ReturnRecord = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		if (!selectedMemberId || !selectedBookId) {
-			setMessage("❌ Please select both member and book!");
-			setStatus("error");
-			return;
-		}
-
 		axios
 			.post("http://localhost:8080/library/issues/return", {
 				memberId: selectedMemberId,
@@ -39,164 +33,82 @@ const ReturnRecord = () => {
 			})
 			.then((res) => {
 				setMessage("✅ Book returned successfully!");
-				setStatus("success");
+				setMessageType("success");
 				setSelectedMemberId("");
 				setSelectedBookId("");
-				navigate("/library/issues/allIssues");
+				setTimeout(() => {
+					navigate("/library/issues/allIssues");
+				}, 2000);
 			})
 			.catch((err) => {
 				console.error(err);
-				const backendMessage =
-					err.response?.data?.message || "❌ Failed to return book. Please try again.";
-				setMessage(backendMessage);
-				setStatus("error");
+				if (err.response && err.response.data && err.response.data.errors) {
+					const messages = err.response.data.errors
+						.map((e) => `${e.field}: ${e.defaultMessage}`)
+						.join("\n");
+					setMessage(`❌ ${messages}`);
+				} else {
+					setMessage("❌ Failed to issue book. Please try again.");
+				}
+				setMessageType("danger");
 			});
 	};
 
 	return (
-		<div style={styles.page}>
-			<div style={styles.card}>
-				{message && (
-					<div
-						style={{
-							...styles.popup,
-							backgroundColor: status === "success" ? "#c8e6c9" : "#ffcdd2",
-							color: status === "success" ? "#2e7d32" : "#c62828",
-							display: "block",
-						}}
-					>
-						{message}
-					</div>
-				)}
-
-				<h2 style={styles.heading}> Return Book</h2>
-
-				<form onSubmit={handleSubmit}>
-					<label style={styles.label}>Select Member:</label>
-					<select
-						value={selectedMemberId}
-						onChange={(e) => setSelectedMemberId(e.target.value)}
-						required
-						style={styles.select}
-					>
-						<option value=""> Select Member </option>
-						{members.map((m) => (
-							<option key={m.memberId} value={m.memberId}>
-								{m.memberName}
-							</option>
-						))}
-					</select>
-
-					<label style={styles.label}>Select Book:</label>
-					<select
-						value={selectedBookId}
-						onChange={(e) => setSelectedBookId(e.target.value)}
-						required
-						style={styles.select}
-					>
-						<option value=""> Select Book </option>
-						{books.map((b) => (
-							<option key={b.bookId} value={b.bookId}>
-								{b.title} - {b.author}
-							</option>
-						))}
-					</select>
-
-					<button type="submit" style={styles.btn}>
-						 Return Book
-					</button>
-				</form>
-
-				
-			</div>
-		</div>
+		<Container className="d-flex justify-content-center align-items-center">
+					<Card className="shadow-lg p-4" style={{ maxWidth: "500px", width: "100%" }}>
+						<h2 className="mb-3"> Return Book</h2>
+		
+						{message && (
+							<Alert variant={messageType} className="fw-bold text-center">
+								{message}
+							</Alert>
+						)}
+						<Form onSubmit={handleSubmit}>
+							<Form.Group className="mb-3" as={Col} controlId="formSelectMember">
+								<Form.Label>Select Member</Form.Label>
+								<Form.Control
+									as="select"
+									value={selectedMemberId}
+									onChange={(e) => setSelectedMemberId(e.target.value)}
+									required
+								>
+									<option value="">Select Member</option>
+									{members.map((m) => (
+										<option key={m.memberId} value={m.memberId}>
+											{m.memberName}
+										</option>
+									))}
+								</Form.Control>
+							</Form.Group>
+		
+							<Form.Group className="mb-3" as={Col} controlId="formSelectBook">
+								<Form.Label>Select Book</Form.Label>
+								<Form.Control
+									as="select"
+									value={selectedBookId}
+									onChange={(e) => setSelectedBookId(e.target.value)}
+									required
+								>
+									<option value="">Select Book</option>
+									{books.map((b) => (
+										<option key={b.bookId} value={b.bookId}>
+											{b.title} - {b.author}
+										</option>
+									))}
+								</Form.Control>
+							</Form.Group>
+							<Row>
+								<Col className="d-grid">
+									<Button variant="outline-primary" type="submit">
+										Return Book
+									</Button>
+								</Col>
+							</Row>
+						</Form>
+					</Card>
+				</Container>
 	);
-};
-
-const styles = {
-	page: {
-		minHeight: "100vh",
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-		backgroundSize: "cover",
-		backgroundPosition: "center",
-		padding: "20px",
-		position: "relative",
-	},
-	card: {
-		backgroundColor: "rgba(255, 255, 255, 0.95)",
-		padding: "30px",
-		borderRadius: "16px",
-		boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-		maxWidth: "600px",
-		width: "100%",
-		textAlign: "center",
-	},
-	heading: {
-		marginBottom: "20px",
-		fontSize: "22px",
-		fontWeight: "bold",
-		color: "#2c3e50",
-	},
-	label: {
-		display: "block",
-		marginTop: "12px",
-		fontSize: "14px",
-		fontWeight: "bold",
-		color: "#333",
-		textAlign: "left",
-	},
-	select: {
-		width: "100%",
-		padding: "8px",
-		marginTop: "4px",
-		fontSize: "14px",
-		border: "1px solid #ccc",
-		borderRadius: "6px",
-		outline: "none",
-		fontFamily: "inherit",
-	},
-	btn: {
-		marginTop: "20px",
-		padding: "10px",
-		width: "100%",
-		fontSize: "14px",
-		borderRadius: "6px",
-		border: "none",
-		cursor: "pointer",
-		backgroundColor: "#64b5f6",
-		color: "white",
-		transition: "background-color 0.3s ease",
-		fontWeight: "bold",
-	},
-	secondaryButton: {
-		padding: "10px 15px",
-		border: "none",
-		borderRadius: "8px",
-		backgroundColor: "#2980b9",
-		color: "white",
-		cursor: "pointer",
-		fontSize: "14px",
-		transition: "0.3s",
-	},
-	buttonGroup: {
-		display: "flex",
-		justifyContent: "space-between",
-		marginTop: "15px",
-	},
-	popup: {
-		position: "fixed",
-		top: "30px",
-		left: "50%",
-		transform: "translateX(-50%)",
-		padding: "12px 25px",
-		fontSize: "13px",
-		fontWeight: "bold",
-		borderRadius: "8px",
-		boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-		zIndex: 9999,
-	},
 };
 
 export default ReturnRecord;
