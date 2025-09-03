@@ -7,8 +7,8 @@ import { setLoading } from "../utilities/redux/slices/loadingSlice";
 export function LoginForm() {
   const dispatch = useDispatch();
   const [userDetails, setUserDetails] = useState({
-    username: "",
-    password: "",
+    username: null,
+    password: null,
   });
   const [errorName, setErrorName] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
@@ -29,7 +29,7 @@ export function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!errorName && !errorPass) {
+    if (!errorName && !errorPass && userDetails.username && userDetails.password) {
       localStorage.clear();
       dispatch(setLoading(true));
       await login(userDetails);

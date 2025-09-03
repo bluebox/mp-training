@@ -22,17 +22,19 @@ export default function AdminDashboard() {
   const isStaff = userContext?.user?.role === "ROLE_STAFF";
 
   const logoutHandler = () => {
-    dispatch(setLoading(true));
-    logout();
-    dispatch(setLoading(false));
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "User Logged out successfully.",
-      timer: 2000,
-      showConfirmButton: false,
-    });
-    navigate("/");
+    if(confirm("Are you sure you want to logout?")) {
+      dispatch(setLoading(true));
+      logout();
+      dispatch(setLoading(false));
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "User Logged out successfully.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+      navigate("/");
+    }
   };
 
   useEffect(() => {

@@ -53,7 +53,7 @@ function Employee() {
     try {
       if (editingEmployee) {
         dispatch(setLoading(true));
-        const res = await api.put(
+        await api.put(
           `/api/employees/update/${editingEmployee.empId}`,
           payload
         );
@@ -84,8 +84,7 @@ function Employee() {
       setEditingEmployee(null);
       resetForm();
     } catch (err) {
-      console.log(err);
-      Swal.fire("Error!", "Something went wrong", "error");
+      Swal.fire("Error!", err.response.data.message[0], "error");
       dispatch(setLoading(false));
     }
   };
