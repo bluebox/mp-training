@@ -1,0 +1,111 @@
+@charset "UTF-8";
+.apply-leave-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.apply-leave-container h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+form label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+form input:disabled,
+form select:disabled,
+form textarea:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+form button {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+form button:hover {
+  background-color: #1d4ed8;
+}
+
+form button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.status-message {
+  text-align: center;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.status-message.success {
+  color: #16a34a;
+}
+
+.status-message.error {
+  color: #dc2626;
+}
+.form-buttons {
+  display: flex;
+  gap: 10px; 
+  margin-top: 10px;
+}
+
+.form-buttons button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.form-buttons button:hover {
+  opacity: 0.9;
+}
+
+.form-buttons .bg-blue-600 {
+  background-color: #2563eb;
+}
+
+.form-buttons .bg-blue-600:hover {
+  background-color: #1d4ed8;
+}
+
+.form-buttons .bg-red-600 {
+  background-color: #dc2626;
+}
+
+.form-buttons .bg-red-600:hover {
+  background-color: #b91c1c;
+}
+
+.form-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

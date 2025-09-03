@@ -1,0 +1,139 @@
+.exit-request-tabs-container { 
+  max-width: 1000px; 
+  margin: 20px auto;
+  padding: 15px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow-x: auto; 
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.tab-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e5e7eb;
+  font-weight: 500;
+}
+
+.tab-buttons button.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+.status-message {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.status-message.idle {
+  display: none;
+}
+
+.status-message.loading {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-message.success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-message.error {
+  background-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.exit-form .form-group {
+  margin-bottom: 12px;
+}
+
+.exit-form label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.exit-form input, 
+.exit-form textarea {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+}
+
+.submit-button,
+.cancel-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #2563eb;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #dc2626;
+}
+
+
+.exit-request-table-wrapper {
+  max-height: 400px; 
+  overflow-y: auto;
+}
+
+.exit-request-table {
+  width: 100%;
+  min-width: 900px; 
+  border-collapse: collapse;
+}
+
+.exit-request-table th,
+.exit-request-table td {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  text-align: center;
+  white-space: nowrap; 
+}
+
+.exit-request-table th {
+  background-color: #2563eb;
+  color: white;
+  position: sticky; 
+  top: 0;
+  z-index: 1;
+}
+
+.exit-request-table-container input[type="text"],
+.exit-request-table-container select {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #d1d5db;
+}
+
+.exit-request-table-container .pagination-button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.exit-request-table-container .pagination-button.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+.exit-request-table-container .pagination-button:not(.active) {
+  background-color: #e5e7eb;
+  color: black;
+}

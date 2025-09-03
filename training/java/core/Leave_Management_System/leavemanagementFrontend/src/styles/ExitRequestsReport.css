@@ -1,0 +1,115 @@
+.container {
+    padding: 1rem;
+}
+
+.text-center {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.table-responsive {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table thead tr th {
+    background-color: #1e40af;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.buttoncss {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.buttoncss:first-of-type {
+    background-color: #10b981;
+    color: #fff;
+}
+
+.buttoncss:first-of-type:hover {
+    background-color: #0d9a6b;
+}
+
+.buttoncss:last-of-type {
+    background-color: #ef4444;
+    color: #fff;
+}
+
+.buttoncss:last-of-type:hover {
+    background-color: #d82c2c;
+}
+
+.status-pending {
+    color: #f59e0b;
+    font-weight: 600;
+}
+.status-cancelled{
+    color:#bc5907;
+     font-weight: 600;
+}
+
+.status-accepted {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.status-rejected {
+    color: #ef4444;
+    font-weight: 600;
+}
