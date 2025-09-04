@@ -1,0 +1,41 @@
+.dashboard-header {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 1.5rem 1rem;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  margin-bottom: 2rem;
+}
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.dashboard-subtitle {
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.stat-card {
+  background: #fff;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  text-align: center;
+}
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.stat-label {
+  color: #666;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}
+.stat-change.positive { color: var(--success-color);}
+.stat-change.negative { color: var(--danger-color);}

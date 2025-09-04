@@ -1,0 +1,82 @@
+.card {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.card-header {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  padding: 1rem;
+}
+.card-body {
+  padding: 1rem;
+}
+
+.stats-card {
+  background: #fff;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  padding: 1rem;
+}
+
+.btn, .btn-group-enhanced .btn {
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+}
+
+.btn-primary { background: var(--primary-color); color: #fff; }
+.btn-success { background: var(--success-color); color: #fff; }
+.btn-warning { background: var(--warning-color); color: #fff; }
+.btn-danger  { background: var(--danger-color); color: #fff; }
+.btn-info    { background: var(--secondary-color); color: #fff; }
+
+.form-control, .form-select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+}
+.form-label {
+  font-weight: bold;
+  margin-bottom: .5em;
+  color: var(--dark-color);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  background: #fff;
+  border-radius: var(--border-radius);
+}
+.table th, .table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+.table th {
+  background: var(--light-color);
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  font-size: 0.9em;
+  border-radius: 4px;
+  color: #fff;
+}
+.badge.bg-success { background: var(--success-color); }
+.badge.bg-primary { background: var(--primary-color);}
+.badge.bg-warning { background: var(--warning-color); color: var(--dark-color);}
+.badge.bg-danger  { background: var(--danger-color);}
+.badge.bg-info    { background: #17a2b8;}
+.badge.bg-light   { background: #fff; color: var(--dark-color); border: 1px solid #ccc; }
+.badge.bg-secondary { background: var(--secondary-color);}
