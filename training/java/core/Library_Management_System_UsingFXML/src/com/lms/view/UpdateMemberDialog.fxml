@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.*?>
+
+<GridPane fx:id="updateDialogPane" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+          style="-fx-background-color: #f5f5f5;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Name:" style="-fx-font-weight: bold;" 
+           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="nameField" 
+               style="-fx-pref-height: 30; -fx-background-radius: 5;"
+               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+    <Label text="Email:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="emailField" 
+               style="-fx-pref-height: 30; -fx-background-radius: 5;"
+               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label text="Mobile:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="mobileField" 
+               style="-fx-pref-height: 30; -fx-background-radius: 5;"
+               GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <Label text="Gender:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <ComboBox fx:id="genderComboBox" 
+              style="-fx-pref-height: 30; -fx-background-radius: 5;"
+              GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Label text="Address:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextArea fx:id="addressField" 
+              style="-fx-pref-height: 60; -fx-background-radius: 5;"
+              wrapText="true"
+              GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+</GridPane>

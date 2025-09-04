@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:controller="com.lms.controller.IssueBookController"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      alignment="CENTER"
+      prefHeight="800"
+      prefWidth="1000"
+      spacing="30"
+      style="-fx-background-color: linear-gradient(to bottom right, #ffffff, #f0f0f0);">
+
+    <padding>
+        <Insets top="40" right="60" bottom="40" left="60"/>
+    </padding>
+
+    <Label text="Issue Book"
+           style="-fx-text-fill: #2c3e50;">
+        <font>
+            <Font name="System Bold" size="32.0"/>
+        </font>
+        <VBox.margin>
+            <Insets bottom="40"/>
+        </VBox.margin>
+    </Label>
+
+    <GridPane vgap="25" hgap="20" alignment="CENTER" maxWidth="900">
+        <padding>
+            <Insets left="100" right="100"/>
+        </padding>
+
+        <columnConstraints>
+            <ColumnConstraints minWidth="120" prefWidth="150"/>
+            <ColumnConstraints minWidth="300" prefWidth="400"/>
+        </columnConstraints>
+
+        <Label text="Select Member:"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"
+               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <ComboBox fx:id="memberIdComboBox"
+                  promptText="Select Member"
+                  style="-fx-pref-height: 45; -fx-font-size: 15px; -fx-background-radius: 8; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"
+                  maxWidth="Infinity"
+                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                  
+		<Label text="Or Email of Member" 
+                   style="-fx-font-size: 14px; -fx-font-weight: bold"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField promptText="Enter member's email" fx:id="emailField"  
+        			style="-fx-pref-height: 45; -fx-font-size: 15px; -fx-background-radius: 8; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"
+        			GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+		<Button onAction="#searchMemberByEmail" text="Search" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5;"
+		 			GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+        <Label text="Select Book:"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"
+               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <ComboBox fx:id="bookIdComboBox"
+                  promptText="Select Book"
+                  style="-fx-pref-height: 45; -fx-font-size: 15px; -fx-background-radius: 8; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);"
+                  maxWidth="Infinity"
+                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    </GridPane>
+
+    <VBox alignment="CENTER" spacing="20">
+        <Label fx:id="errorLabel"
+               style="-fx-text-fill: #e74c3c; -fx-font-size: 14px;"/>
+        <HBox spacing="30" alignment="CENTER">
+            <Button onAction="#issueButtonClick"
+                    text="Issue"
+                    style="-fx-min-width: 150; -fx-min-height: 45; -fx-background-color: #34495e; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 8; -fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); -fx-cursor: hand;"/>
+            
+            <Button onAction="#cancleButtonClick"
+                    text="Cancel"
+                    style="-fx-min-width: 150; -fx-min-height: 45; -fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 8; -fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); -fx-cursor: hand;"/>
+        </HBox>
+    </VBox>
+</VBox>

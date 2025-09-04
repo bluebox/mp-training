@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" VBox.vgrow="ALWAYS" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controller.ViewAllMembersController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <TableView fx:id="membersTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="id" text="Member ID" prefWidth="70"/>
+            <TableColumn fx:id="name" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="email" text="Email Id" prefWidth="150"/>
+            <TableColumn fx:id="mobile" text="Mobile_Number" prefWidth="150"/>
+            <TableColumn fx:id="gender" text="Gender" prefWidth="100"/>
+            <TableColumn fx:id="address" text="Address" prefWidth="100"/>
+            <TableColumn fx:id="actionColumn" text="Action" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Button fx:id="backButton" onAction="#handleBackButton" text="Back"  prefWidth="100"/>
+</VBox>

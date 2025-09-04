@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.*?>
+
+<GridPane fx:id="updateDialogPane" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+          style="-fx-background-color: #f5f5f5;">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Title:" style="-fx-font-weight: bold;" 
+           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="titleField" 
+               style="-fx-pref-height: 30; -fx-background-radius: 5;"
+               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+    <Label text="Author:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="authorField" 
+               style="-fx-pref-height: 30; -fx-background-radius: 5;"
+               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label text="Category:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <ComboBox fx:id="categoryComboBox" 
+              promptText="Select Category"
+              style="-fx-pref-height: 30; -fx-background-radius: 5;"
+              GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Label text="Status:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <HBox spacing="20" alignment="CENTER_LEFT"
+          GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <fx:define>
+            <ToggleGroup fx:id="statusGroup"/>
+        </fx:define>
+        <RadioButton fx:id="availableRadio" 
+                    text="Active (A)" 
+                    toggleGroup="$statusGroup"
+                    style="-fx-font-size: 13px;"/>
+        <RadioButton fx:id="issuedRadio" 
+                    text="Inactive (I)" 
+                    toggleGroup="$statusGroup"
+                    style="-fx-font-size: 13px;"/>
+    </HBox>
+
+    <Label text="Availability:" style="-fx-font-weight: bold;"
+           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextField fx:id="availabilityField" 
+               style="-fx-pref-height: 30; -fx-background-radius: 5;"
+               disable="true"
+               GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+</GridPane>

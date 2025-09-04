@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" VBox.vgrow="ALWAYS" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controller.ViewIssuedRecordsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <TableView fx:id="issueRecordsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="id" text="Issued Id" prefWidth="70"/>
+            <TableColumn fx:id="book_id" text="Book Id" prefWidth="200"/>
+            <TableColumn fx:id="member_id" text="Member Id" prefWidth="150"/>
+            <TableColumn fx:id="issue_status" text="Status" prefWidth="150"/>
+            <TableColumn fx:id="issued_date" text="Issued Date" prefWidth="100"/>
+            <TableColumn fx:id="returned_date" text="Return Date" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Button fx:id="backButton" onAction="#handleBackButton" text="Back"  prefWidth="100"/>
+</VBox>

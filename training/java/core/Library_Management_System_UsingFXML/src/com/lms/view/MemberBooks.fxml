@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+
+<VBox fx:controller="com.lms.controller.MemberBooksController"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      alignment="CENTER"
+      spacing="20">
+
+    <padding>
+        <Insets top="20" right="40" bottom="20" left="40"/>
+    </padding>
+
+    <Label text="Member Books"
+           style="-fx-text-fill: #2c3e50;">
+        <font>
+            <Font name="System Bold" size="24.0"/>
+        </font>
+    </Label>
+
+    <HBox spacing="10" alignment="CENTER">
+        <VBox spacing="5">
+            <Label text="Select Member:" 
+                   style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <ComboBox fx:id="memberComboBox"
+                      promptText="Select Member"
+                      style="-fx-pref-width: 250; -fx-pref-height: 35; -fx-font-size: 14px; -fx-background-radius: 5;"
+                      onAction="#onMemberSelected"/>
+        </VBox>
+        
+        <VBox spacing="5">
+            <Label text="Or Enter Email:" 
+                   style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <HBox spacing="10">
+                <TextField fx:id="emailField"
+                          promptText="Enter member email"
+                          style="-fx-pref-width: 250; -fx-pref-height: 35; -fx-font-size: 14px; -fx-background-radius: 5;"/>
+                <Button text="Search"
+                        onAction="#searchByEmail"
+                        style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5;"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <TableView fx:id="booksTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="bookId" text="Book ID" prefWidth="100"/>
+            <TableColumn fx:id="bookTitle" text="Title" prefWidth="200"/>
+            <TableColumn fx:id="author" text="Author" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label fx:id="errorLabel"
+               style="-fx-text-fill: #e74c3c; -fx-font-size: 14px;"/>
+	</HBox>
+</VBox>

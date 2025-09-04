@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox fx:controller="com.lms.controller.ReportsController" spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+	 <VBox spacing="10">
+	     <Label text="Overdue Books" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+	     <TableView fx:id="OverDue_BooksListTABLE" VBox.vgrow="ALWAYS" prefHeight="200">
+	         <columns>
+	         	<TableColumn fx:id="issueId" text="Issue ID" prefWidth="100" />
+	             <TableColumn fx:id="bookId" text="Book ID" prefWidth="100"/>
+	             <TableColumn fx:id="Title" text="Title" prefWidth="200"/>
+	             <TableColumn fx:id="member" text="Member" prefWidth="150"/>
+	             <TableColumn fx:id="dueDate" text="Due Date" prefWidth="120"/>
+	         </columns>
+	     </TableView>
+	 </VBox>
+
+     <VBox spacing="10">
+         <Label text="Books by Category" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+         <TableView fx:id="categoryTable" VBox.vgrow="ALWAYS" prefHeight="150">
+             <columns>
+                 <TableColumn text="Category" fx:id="categoryColumn" prefWidth="300"/>
+                 <TableColumn text="Total Books"  fx:id="totalBooksColumn" prefWidth="150"/>
+             </columns>
+         </TableView>
+     </VBox>
+           
+      <VBox spacing="10">
+        <Label text="Members with Active Books" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+		<TableView fx:id="memberBooksTable" VBox.vgrow="ALWAYS" prefHeight="200">
+		    <columns>
+		        <TableColumn text="Member ID" fx:id="memberIdColumn" prefWidth="100"/>
+		        <TableColumn text="Name" fx:id="nameColumn" prefWidth="200"/>
+		        <TableColumn text="Books Issued" fx:id="booksIssuedColumn" prefWidth="1000"/>
+		    </columns>
+		</TableView>
+      </VBox>  
+</VBox>
