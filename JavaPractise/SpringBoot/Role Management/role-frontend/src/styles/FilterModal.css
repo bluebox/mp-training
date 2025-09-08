@@ -1,0 +1,46 @@
+.field-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.chip {
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 4px 10px;
+  background: #f0f0f0;
+  transition: all 0.2s ease;
+}
+.chip:hover {
+  background: #d9d9d9;
+}
+.chip.active {
+  background: #1890ff;
+  color: white;
+}
+.field-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.filter-item span {
+  min-width: 130px;
+  font-weight: 500;
+}
+.clear-icon {
+  color: #888;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
