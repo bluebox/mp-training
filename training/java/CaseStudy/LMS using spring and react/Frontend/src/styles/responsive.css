@@ -1,0 +1,25 @@
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .stats-grid,
+  .dashboard-content {
+    grid-template-columns: 1fr;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .dashboard-title {
+    font-size: 1.2rem;
+  }
+  .stat-value {
+    font-size: 1.2rem;
+  }
+  .card-header,
+  .dashboard-header {
+    padding: 0.7rem;
+  }
+}

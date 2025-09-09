@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="750.0" prefWidth="664.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controller.ViewMemberController">
+   <children>
+      <TableView fx:id="memberTable" layoutY="52.0" prefHeight="698.0" prefWidth="751.0" style="-fx-background-color: #83C5BE;">
+        <columns>
+          <TableColumn fx:id="memberIdColumn" prefWidth="81.0" text="Member id" />
+          <TableColumn fx:id="nameColumn" prefWidth="114.0" text="Name" />
+          <TableColumn fx:id="genderColumn" prefWidth="68.0" text="Gender" />
+          <TableColumn fx:id="mobileNumberColumn" prefWidth="124.0" text="Mobile Number" />
+          <TableColumn fx:id="addressColumn" prefWidth="178.0" text="Address" />
+          <TableColumn fx:id="mailColumn" prefWidth="185.0" text="Mail Id" />
+        </columns>
+      </TableView>
+      <Label layoutX="294.0" layoutY="9.0" text="All Members ">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

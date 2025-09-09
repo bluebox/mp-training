@@ -1,0 +1,26 @@
+package TerminalOperations;
+
+import java.util.*;
+
+public class MainCollect {
+    public static void main(String[] args) {
+        Course java = new Course("JMC", "Java Masterclass");
+        Course python = new Course("PYMC", "Python Masterclass");
+
+        List<Student> students = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            students.add(Student.getRandomStudent(java, python));
+        }
+
+        int ausCount = 0;
+        int youngCount = 0;
+        for (Student s : students) {
+            if (s.getCountry().equals("IN")) ausCount++;
+            if (s.getEnrolledAge() < 30) youngCount++;
+        }
+
+        System.out.println("Indian Students: " + ausCount);
+        System.out.println("Under 30 Students: " + youngCount);
+    }
+}
+

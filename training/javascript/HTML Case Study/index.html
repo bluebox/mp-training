@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Student Data Management</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Data Management</h1>
+
+        <form id="data-form" novalidate>
+            <input type="hidden" id="edit-row-index">
+            <h2>Add New Entry</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Branch</label>
+                    <div class="input-grid">
+                        <div class="input-item"><input type="radio" id="cse" name="branch" value="CSE"><label for="cse">CSE</label></div>
+                        <div class="input-item"><input type="radio" id="ece" name="branch" value="ECE"><label for="ece">ECE</label></div>
+                        <div class="input-item"><input type="radio" id="eee" name="branch" value="EEE"><label for="eee">EEE</label></div>
+                        <div class="input-item"><input type="radio" id="it" name="branch" value="IT"><label for="it">IT</label></div>
+                        <div class="input-item"><input type="radio" id="mech" name="branch" value="Mechanical"><label for="mech">Mechanical</label></div>
+                        <div class="input-item"><input type="radio" id="civil" name="branch" value="Civil"><label for="civil">Civil</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Languages Known</label>
+                    <div class="input-grid">
+                        <div class="input-item"><input type="checkbox" id="english" name="language" value="English"><label for="english">English</label></div>
+                        <div class="input-item"><input type="checkbox" id="hindi" name="language" value="Hindi"><label for="hindi">Hindi</label></div>
+                        <div class="input-item"><input type="checkbox" id="telugu" name="language" value="Telugu"><label for="telugu">Telugu</label></div>
+                        <div class="input-item"><input type="checkbox" id="tamil" name="language" value="Tamil"><label for="tamil">Tamil</label></div>
+                        <div class="input-item"><input type="checkbox" id="kannada" name="language" value="Kannada"><label for="kannada">Kannada</label></div>
+                        <div class="input-item"><input type="checkbox" id="marathi" name="language" value="Marathi"><label for="marathi">Marathi</label></div>
+                        <div class="input-item"><input type="checkbox" id="bengali" name="language" value="Bengali"><label for="bengali">Bengali</label></div>
+                        <div class="input-item"><input type="checkbox" id="urdu" name="language" value="Urdu"><label for="urdu">Urdu</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select id="state" required><option value="">-- Select State --</option></select>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <select id="city" required><option value="">-- Select City --</option></select>
+                </div>
+            </div>
+            <button type="submit" id="add-btn">Add Entry</button>
+        </form>
+
+        <div class="data-section">
+            <h2>Entries</h2>
+            <p id="entry-count"></p>
+
+            <div class="table-wrapper">
+                <div class="scroll-body">
+                    <table id="data-table">
+                        <thead>
+                            <tr>
+                                <th><div>Name</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>Age</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>Email</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>Phone</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>Branch</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>Languages</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>State</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>City</div><input type="text" class="column-search" placeholder="Search..."></th>
+                                <th><div>Action</div></th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+            <p id="no-results" class="hidden">No results found.</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
