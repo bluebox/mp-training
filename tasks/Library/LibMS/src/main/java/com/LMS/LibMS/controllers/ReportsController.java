@@ -38,7 +38,7 @@ public class ReportsController {
     @GetMapping("/booksByCategory")
     @ResponseBody
     public Map<String, Long> getBooksByCategory() {
-        return bookService.findBooks().stream()
+        return bookService.getAllBooks().stream()
                 .collect(Collectors.groupingBy(
                         book -> book.getCategory().getDisplayName(),
                         Collectors.counting()

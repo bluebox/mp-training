@@ -1,0 +1,63 @@
+
+		        
+		        <div className="filter-row">
+		<div className="filter-item">
+          <label>Gender:</label>
+          <select value={filterGender} onChange={(e) => setFilterGender(e.target.value)}>
+            <option value="">All</option>
+            {uniqueGenders.map(g => <option key={g} value={g}>{g.charAt(0).toUpperCase() + g.slice(1).toLowerCase()}</option>)}
+          </select>
+        </div>
+
+          <div className="filter-item">
+            <label>Country:</label>
+            <select value={filterCountry} onChange={(e) => { setFilterCountry(e.target.value); setFilterState(''); setFilterCity(''); }}>
+              <option value="">All</option>
+              {uniqueCountries.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label>State:</label>
+            <select value={filterState} onChange={(e) => { setFilterState(e.target.value); setFilterCity(''); }}>
+              <option value="">All</option>
+              {uniqueStates.map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label>City:</label>
+            <select value={filterCity} onChange={(e) => setFilterCity(e.target.value)}>
+              <option value="">All</option>
+              {uniqueCities.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label>Status:</label>
+            <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+              <option value="">All</option>
+              {uniqueStatuses.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-item">
+            <label>Request Status:</label>
+            <select value={filterUserStatus} onChange={(e) => setFilterUserStatus(e.target.value)}>
+              <option value="">All</option>
+              {uniqueUserStatuses.map(us => <option key={us} value={us}>{us.charAt(0).toUpperCase() + us.slice(1).toLowerCase()}</option>)}
+            </select>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
+            <button onClick={() => {
+              setFilterCountry('');
+              setFilterState('');
+              setFilterCity('');
+              setFilterStatus('');
+              setFilterUserStatus('');
+            }}>Reset Filters</button>
+          </div>
+        </div>
+		        
+		        

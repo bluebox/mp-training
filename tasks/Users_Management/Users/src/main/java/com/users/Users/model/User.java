@@ -2,35 +2,24 @@ package com.users.Users.model;
 
 import java.time.LocalDateTime;
 
+import com.users.Users.enums.Gender;
 import com.users.Users.enums.UserStatus;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class User {
 	
-    private Integer userId;
     
-    private String userCode;
-
-    
-    @NotBlank(message = "Username cannot be blank")
-	@Size(min = 5, max = 15, message = "Username should contain atleast 5 chars and atmost 15 chars")
+//    @NotBlank(message = "Username cannot be blank")
+//	@Size(min = 5, max = 15, message = "Username should contain atleast 5 chars and atmost 15 chars")
     private String username;
     
-    @NotBlank(message = "Password cannot be blank")
-    @Size(min = 8, max = 20, message = "Password should be between 8 and 20 characters")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,20}$",
-    message = "Password should be 8-20 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.")
-    private String password;
-    
+
     @NotBlank(message = "Email cannot be empty")
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", 
              message = "Invalid email format")
@@ -43,6 +32,8 @@ public class User {
     @NotBlank(message = "Lastname cannot be blank")
     @Pattern(regexp = "^[a-zA-Z]+(?:[\\s-'][a-zA-Z]+)*$", message = "Lastname should contain only chars")
     private String lastName;
+    
+    private Gender gender;
     
     @NotBlank(message = "Phonenumber cannot be blank")
     @Pattern(regexp = "^[1-9][0-9]{9}$", message = "Phone number should be a 10 digits.")
@@ -61,9 +52,7 @@ public class User {
     @Pattern(regexp = "^[0-9]{6}$", message = "Postal code should be a 6 digits number.")
     private String postalCode;
     
-//    @NotBlank(message = "Please Select a User Status.")
     private UserStatus status;
-    private String aprovedStatus;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
     

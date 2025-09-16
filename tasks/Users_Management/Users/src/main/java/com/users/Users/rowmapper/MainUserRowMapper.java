@@ -5,23 +5,28 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.users.Users.enums.Gender;
 import com.users.Users.enums.UserStatus;
-import com.users.Users.model.User;
+import com.users.Users.model.MainUser;
 
 
-public class MainUserRowMapper implements RowMapper<User>{
+public class MainUserRowMapper implements RowMapper<MainUser>{
 
 	@Override
-	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-		User user = new User(); 
+	public MainUser mapRow(ResultSet rs, int rowNum) throws SQLException {
+		MainUser user = new MainUser(); 
 		
-//		user.setUserId(rs.getInt("user_id"));
 	    user.setUserCode(rs.getString("user_code"));
 		user.setUsername(rs.getString("username"));
 		user.setPassword(rs.getString("password"));
 		user.setEmail(rs.getString("email"));
 		user.setFirstName(rs.getString("first_name"));
 		user.setLastName(rs.getString("last_name"));
+		if(rs.getString("gender")!=null) {
+			user.setGender(Gender.valueOf(rs.getString("gender").toUpperCase()));			
+		}else {
+			user.setGender(null);
+		}
 		user.setPhoneNumber(rs.getString("phone_number"));
 		user.setCountry(rs.getString("country"));
 		user.setState(rs.getString("state"));

@@ -1,6 +1,5 @@
 package com.LMS.LibMS.controllers;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +38,8 @@ public class IssueController {
     @GetMapping("/issuedRecords")
     @ResponseBody
     public List<Map<String, Object>> displayIssuedRecords() {
-        return issueService.getAllIssuedRecords().stream().map(record -> {
+        return issueService.getAllIssuedRecords()
+        		.stream().map(record -> {
         	
             Map<String, Object> recordData = new HashMap<>();
             recordData.put("issueId", record.getIssueId());
@@ -61,19 +61,25 @@ public class IssueController {
     }
 
     @PostMapping("/issueBook")
-    public Map<String, Object> issueBook(@RequestBody Map<String, Object> data) {
-            Integer bookId = Integer.valueOf(data.get("bookId").toString());
-            Integer memberId = Integer.valueOf(data.get("memberId").toString());
-
-            issueService.issueBook(bookId, memberId, LocalDateTime.now(), CURRENT_USER);
-            return Map.of("message", "Book issued successfully!");
-       
+    public Map<String, String> issueBook(@RequestBody Map<String, Integer> data) {
+        try {
+            int bookId =data.get("bookId");
+            int memberId = data.get("memberId");
+            issueService.issueBook(bookId, memberId, CURRENT_USER);
+            return Map.of("message", "Book issued successfully");
+        } catch (Exception e) {
+            return Map.of("message", e.getMessage());
+        }
     }
 
     @PostMapping("/returnBook")
-    public Map<String, Object> returnBook(@RequestBody Map<String, Object> data) {
-            Integer bookId = Integer.valueOf(data.get("bookId").toString());
+    public Map<String, String> returnBook(@RequestBody Map<String, Integer> data) {
+        try {
+            int bookId = data.get("bookId");
             issueService.returnBook(bookId, CURRENT_USER);
-            return Map.of("message", "Book returned successfully!");
+            return Map.of("message", "Book returned successfully");
+        } catch (Exception e) {
+            return Map.of("message", e.getMessage());
+        }
     }
 }

@@ -6,16 +6,20 @@ import com.LMS.LibMS.model.Book;
 
 public interface BookRepository {
 	
-	Book addBook(Book book);
+	void addBook(Book book);
 
-	List<Book> findBooks();
+	List<Book> getAllBooks();
 
-	Book findBookById(Integer bookId);
+	List<Book> findBookById(List<Integer> bookIds);
 
-	boolean updateBook(Book book);
+	int updateBook(Book book);
 
-	boolean updateAvailabilities(List<Integer> bookIds);
+	int updateAvailabilitiesById(List<Integer> bookIds, String updatedBy);
 
-	boolean deleteBooks(List<Integer> bookIds);
+	int deleteBooksById(List<Integer> bookIds);
+
+	int makeBookInactiveById(Integer bookId);
+
+	boolean logBook(List<Book> books);
 
 }

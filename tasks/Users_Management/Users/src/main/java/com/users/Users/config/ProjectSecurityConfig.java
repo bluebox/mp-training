@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -31,13 +32,12 @@ public class ProjectSecurityConfig {
 	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 	            .requestMatchers("/auth/**").permitAll()
 	            .requestMatchers("/user/**").permitAll()
-	            .requestMatchers("/main/**").permitAll()
-	            .requestMatchers("/role/**").permitAll()
+	            .requestMatchers("/main/**").hasRole("ADMIN")
+	            .requestMatchers("/role/**").hasRole("ADMIN")
 
 	            .anyRequest().authenticated()
 	        )
 	        .formLogin(AbstractHttpConfigurer::disable).httpBasic(Customizer.withDefaults());
-//	        .formLogin(form -> form.disable()); 
 
 	    return http.build();
 	}
@@ -49,7 +49,8 @@ public class ProjectSecurityConfig {
         cfg.setAllowedOrigins(List.of("http://localhost:3000")); 
         cfg.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH","OPTIONS"));
         cfg.setAllowedHeaders(List.of("*"));
-        cfg.setAllowCredentials(false);
+        cfg.setAllowCredentials(true);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", cfg);
         return source;
@@ -63,20 +64,14 @@ public class ProjectSecurityConfig {
 //              .roles("EMPLOYEE")
 //              .build();
 //
-//      UserDetails manager = User.builder()
-//              .username("manager")
-//              .password(passwordEncoder.encode("man123"))
-//              .roles("MANAGER")
-//              .build();
-//
-//      UserDetails admin = User.builder()
-//              .username("admin")
-//              .password(passwordEncoder.encode("12345"))
-//              .roles("ADMIN")
-//              .build();
-//
-//      return new InMemoryUserDetailsManager(employee, manager,admin);
+//      return new InMemoryUserDetailsManager(employee);
 //  }
+    
+    @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+        return new InMemoryUserDetailsManager();
+    }
+
     
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -2,21 +2,19 @@ package com.users.Users.repository.interfaces;
 
 import java.util.List;
 
-import com.users.Users.model.User;
+import com.users.Users.model.UserRequest;
 
 public interface UserRepository {
 
-	List<User> getUsers();
+	List<UserRequest> getAllUserRequests();
 
-//	List<User> getUserById(String userCode);
+	void addUserRequest(UserRequest user);
 
-	void addUser(User user);
-
-	boolean updateUser(User user);
+	boolean updateUserRequest(UserRequest user);
 	
-    boolean updateUserStatus(int userId, String status);
+    boolean updateUserRequestStatus(int requestid, String status);
 
 	
-	List<User> getUserById(int userCode);
+	List<UserRequest> getUserRequestById(int requestid);
 
 }

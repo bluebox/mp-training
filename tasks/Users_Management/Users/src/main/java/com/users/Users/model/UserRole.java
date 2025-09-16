@@ -1,22 +1,26 @@
 package com.users.Users.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
+import com.users.Users.enums.UserAssignedRoleStatus;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserRole {
-    
-    private String username;        // stores user_code
+public class UserRole extends Role {    
+    private String usercode;        
     private String usernameString;
-    private List<String> roleId;
-    private String roleName;       
+    private List<String> rolecodes;
     private String country;
     private String state;
     private String city;
+    
+    private UserAssignedRoleStatus statusString;
+    
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
 
 }

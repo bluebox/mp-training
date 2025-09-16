@@ -1,38 +1,37 @@
 package com.LMS.LibMS.model.enums;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public enum BookCategory {
-    FICTION("Fiction"),
-    SCIENCE("Science"),
-    HISTORY("History"),
-    BIOGRAPHY("Biography"),
-    TECHNOLOGY("Technology"),
-    FANTASY("Fantasy"),
-    MYSTERY("Mystery"),
-    THRILLER("Thriller"),
-    ROMANCE("Romance"),
-    OTHER("Other");
+    FICTION("Fiction","F1"),
+    SCIENCE("Science","S2"),
+    HISTORY("History","H3"),
+    BIOGRAPHY("Biography","B4"),
+    TECHNOLOGY("Technology","T5"),
+    FANTASY("Fantasy","F6"),
+    MYSTERY("Mystery","M7"),
+    THRILLER("Thriller","T8"),
+    OTHER("Other","O9");
 
     private final String displayName;
+    private final String code;
     
-    @JsonValue
+    public String getCode() {
+    	return code;
+    }
+    
     public String getDisplayName() {
 		return displayName;
 	}
 
-    @JsonCreator
-    public static BookCategory fromDisplayName(String displayName) {
+    public static BookCategory fromDisplayName(String code) {
         for (BookCategory category : BookCategory.values()) {
-            if (category.displayName.equalsIgnoreCase(displayName)) {
+            if (category.code.equalsIgnoreCase(code)) {
                 return category;
             }
         }
-        throw new IllegalArgumentException("No category with display name: " + displayName);
+		return null;
     }
 
 }

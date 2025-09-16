@@ -2,23 +2,21 @@ package com.users.Users.service.interfaces;
 
 import java.util.List;
 
-import com.users.Users.model.User;
+import com.users.Users.model.UserRequest;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 public interface UserService {
 
-	List<User> getUsers();
+	List<UserRequest> getAllUserRequests();
 
-//	List<User> getUserById(String userCode);
+	void addUserRequest(@NotNull @Valid UserRequest user) throws Exception;
 
-	void addUser(@NotNull @Valid User user);
+	boolean updateUserRequest(UserRequest user) throws Exception;
 
-	boolean updateUser(User user);
+	List<UserRequest> getUserRequestById(int requestId) throws Exception;
 
-	List<User> getUserById(int userId);
-
-	boolean updateUserStatus(int userId, String newStatus);
+	boolean updateUserRequestStatus(int requestId, String newStatus) throws Exception;
 
 }

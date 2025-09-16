@@ -34,31 +34,33 @@ public class RoleController {
 		return  roleService.getRoles();
 	}
 	
-	@PostMapping(value="/addUserRole")
+	@PostMapping("/addUserRole")
     public ResponseEntity<UserRole> addUserRole(@RequestBody UserRole userRole) throws Exception {
-		try {
 			roleService.addUserRole(userRole);			
-		} catch (Exception e) {
-			throw new Exception("The User is assigned with the selected roles in selected locations");
-		}
+		
         return ResponseEntity.status(HttpStatus.CREATED).body(userRole);
 	}
 	
-	@GetMapping("/getUserAssignedRoles/{userId}")
+	
+	
+	@GetMapping("/getUserAssignedRoles/{userCode}")
 	@ResponseBody
-	public List<UserRole> getUserAssignedRoles(@PathVariable("userId") String userId){
-		return roleService.getUserAssignedRoles(userId);
+	public List<UserRole> getUserAssignedRoles(@PathVariable("userCode") String userCode) throws Exception{
+		return roleService.getUserAssignedRoles(userCode);
 	}
 	
-	@GetMapping("/changeStatus/{roleId}")
-	@ResponseBody
-	public ResponseEntity<String> toggleRoleStatus(@PathVariable("roleId") String roleId) {
-	    try {
-	        roleService.changeRoleStatus(roleId);
+	@PostMapping("/changeStatus/{roleCode}")
+	public ResponseEntity<String> changeRoleStatus(@PathVariable("roleCode") String roleCode) throws Exception {
+	        roleService.changeRoleStatus(roleCode);
 	        return ResponseEntity.ok("Status change successfully");
-	    } catch (Exception e) {
-	        return ResponseEntity.status(500).body("Failed to chnage status");
-	    }
+	    
+	}
+	
+	@PostMapping("/changeUserRoleStatus")
+	public ResponseEntity<UserRole> changeUserRoleStatus(@RequestBody UserRole userRole) throws Exception {
+	      roleService.changeUserRoleStatus(userRole);
+	    
+		return ResponseEntity.status(HttpStatus.CREATED).body(userRole);
 	}
 	
 }

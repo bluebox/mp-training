@@ -2,7 +2,6 @@
 package com.LMS.LibMS.repository.interfaceImpl;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -12,12 +11,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.LMS.LibMS.model.Book;
-import com.LMS.LibMS.model.enums.BookAvailability;
 import com.LMS.LibMS.repository.interfaces.BookRepository;
 import com.LMS.LibMS.rowmapper.BookRowMapper;
 
 @Repository
-
 public class BookRepositoryImpl implements BookRepository {
 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -28,7 +25,7 @@ public class BookRepositoryImpl implements BookRepository {
 	}
 
 	@Override
-	public List<Book> findBooks() {
+	public List<Book> getAllBooks() {
 
 		String sqlString = "SELECT BookId, Title, Author, Category, Status, Availablity, created_at, created_by, updated_at, updated_by FROM books";
 
@@ -37,79 +34,44 @@ public class BookRepositoryImpl implements BookRepository {
 	}
 
 	@Override
-	public Book addBook(Book book) {
+	public void addBook(Book book) {
 
-		String sql = "INSERT INTO books (title, author, category, status, availablity, created_at, created_by) "
+		String sql = "INSERT INTO books (Title, Author, Category, Status, Availablity, created_at, created_by) "
 
 				+ "VALUES (:title, :author, :category, :status, :availablity, :createdAt, :createdBy)";
 
-		MapSqlParameterSource params = new MapSqlParameterSource();
-
-		params.addValue("title", book.getTitle());
-		params.addValue("author", book.getAuthor());
-		params.addValue("category", book.getCategory().name());
-		params.addValue("status", book.getStatus().getCode());
-		params.addValue("availablity", book.getAvailability().getCode());
-		params.addValue("createdAt", book.getCreatedAt());
-		params.addValue("createdBy", book.getCreatedBy());
-
+		MapSqlParameterSource params = bookparams(book, "add");
+				
 		namedParameterJdbcTemplate.update(sql, params);
-
-		return book;
-
 	}
 
 	@Override
-	public boolean updateBook(Book book) {
-		
-		Book existingBook = findBookById(book.getBookId());
-		
-		if (existingBook.hashCode()==book.hashCode()) {
-			return false;
-		}
+	public int updateBook(Book book) {
 
-		logBook(Arrays.asList(book.getBookId()));
+		String sql = "UPDATE books SET Title = :title, Author = :author, Category = :category, "
 
-		String sql = "UPDATE books SET title = :title, author = :author, category = :category, "
-
-				+ "status = :status, availablity = :availablity, updated_at = :updatedAt, updated_by = :updatedBy "
+				+ "Status = :status, Availablity = :availablity, updated_at = :updatedAt, updated_by = :updatedBy "
 
 				+ "WHERE bookId = :bookId";
 
-		MapSqlParameterSource params = new MapSqlParameterSource();
+		MapSqlParameterSource params = bookparams(book, "update");
 
-		params.addValue("bookId", book.getBookId());
-		params.addValue("title", book.getTitle());
-		params.addValue("author", book.getAuthor());
-		params.addValue("category", book.getCategory().name());
-		params.addValue("status", book.getStatus().getCode());
-		params.addValue("availablity", book.getAvailability().getCode());
-		params.addValue("updatedAt", book.getUpdatedAt());
-		params.addValue("updatedBy", book.getUpdatedBy());
-
-		int rowsAffected = namedParameterJdbcTemplate.update(sql, params);
-
-		return rowsAffected > 0;
+		return namedParameterJdbcTemplate.update(sql, params);
 
 	}
 
 	@Override
-	public Book findBookById(Integer bookId) {
+	public List<Book> findBookById(List<Integer> bookIds) {
 
-		String sql = "SELECT * FROM books WHERE BookId = :bookId";
+		String sql = "SELECT BookId, Title, Author, Category, Status, Availablity, created_at, created_by, updated_at, updated_by FROM books WHERE BookId IN( :bookId)";
 
-		List<Book> books = namedParameterJdbcTemplate.query(sql, Map.of("bookId", bookId), new BookRowMapper());
+		List<Book> books = namedParameterJdbcTemplate.query(sql, Map.of("bookId", bookIds), new BookRowMapper());
 
-		return books.isEmpty() ? null : books.get(0);
+		return books.isEmpty() ? null : books;
 	}
 
 	@Override
-	public boolean deleteBooks(List<Integer> bookIds) {
-
-		if (bookIds == null || bookIds.isEmpty())
-			return false;
-
-		logBook(bookIds);
+	public int deleteBooksById(List<Integer> bookIds) {
 
 		String sql = "DELETE FROM books WHERE bookId IN (:ids)";
 
@@ -117,109 +79,98 @@ public class BookRepositoryImpl implements BookRepository {
 
 		params.addValue("ids", bookIds);
 
-		int rows = namedParameterJdbcTemplate.update(sql, params);
+		return  namedParameterJdbcTemplate.update(sql, params);
 
-		return rows > 0;
 
 	}
 
 	@Override
-
-	public boolean updateAvailabilities(List<Integer> bookIds) {
-
-		if (bookIds == null || bookIds.isEmpty())
-			return false;
-
-		logBook(bookIds);
-
-		String AvailBooks = "SELECT bookId, availablity FROM books WHERE bookId IN (:ids)";
-
-		MapSqlParameterSource AvailBooksParams = new MapSqlParameterSource();
-
-		AvailBooksParams.addValue("ids", bookIds);
-
-		List<Map<String, Object>> existingBooks = namedParameterJdbcTemplate.queryForList(AvailBooks, AvailBooksParams);
-
-		int rowsAffected = 0;
-
-		for (Map<String, Object> row : existingBooks) {
-
-			Integer bookId = (Integer) row.get("bookId");
-
-			String currentCode = (String) row.get("availablity");
-
-			String newCode = BookAvailability.fromCode(currentCode) == BookAvailability.AVAILABLE
-
-					? BookAvailability.ISSUED.getCode()
-
-					: BookAvailability.AVAILABLE.getCode();
-
-			String sqlUpdate = "UPDATE books SET availablity = :availability, updated_at = :updatedAt, updated_by = :updatedBy WHERE bookId = :id";
+	public int updateAvailabilitiesById(List<Integer> bookIds, String updatedBy) {
+		
+			String sqlUpdate = "UPDATE books " +
+	               		"SET Availablity = CASE WHEN Availablity = 'A' THEN 'I' ELSE 'A' END, " +
+	                    "updated_at = :updatedAt, updated_by = :updatedBy " +
+	                     "WHERE bookId IN (:ids)";
 
 			MapSqlParameterSource updateParams = new MapSqlParameterSource();
-
-			updateParams.addValue("availability", newCode);
-			updateParams.addValue("id", bookId);
+			updateParams.addValue("ids", bookIds);
 			updateParams.addValue("updatedAt", new Timestamp(System.currentTimeMillis()));
-			updateParams.addValue("updatedBy", "ADMIN");
+			updateParams.addValue("updatedBy", updatedBy);
 
-			rowsAffected += namedParameterJdbcTemplate.update(sqlUpdate, updateParams);
 
-		}
-
-		return rowsAffected > 0;
+			return namedParameterJdbcTemplate.update(sqlUpdate, updateParams);
 
 	}
 
-	private boolean logBook(List<Integer> bookIds) {
+	@Override
+	public boolean logBook(List<Book> books) {
+		
+        String sql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availablity, " +
+                     "created_at, created_by, updated_at, updated_by, LogDate) " +
+                     "VALUES (:bookId, :title, :author, :category, :status, :availablity, " +
+                     ":createdAt, :createdBy, :updatedAt, :updatedBy, :logDate)";
 
-		if (bookIds == null || bookIds.isEmpty())
-			return false;
+        int totalInserted = 0;
+        for (Book b : books) {
+            MapSqlParameterSource params = bookparams(b, "logs");
 
-		String fetchSql = "SELECT BookId, Title, Author, Category, Status, Availablity, created_at, created_by, updated_at, updated_by "
+            params.addValue("logDate", new Timestamp(System.currentTimeMillis()));
 
-				+ "FROM books WHERE BookId IN (:ids)";
+            totalInserted += namedParameterJdbcTemplate.update(sql, params);
+        }
+        return totalInserted == books.size();
+	}
 
-		MapSqlParameterSource fetchParams = new MapSqlParameterSource();
+	@Override
+	public int makeBookInactiveById(Integer bookId) {
 
-		fetchParams.addValue("ids", bookIds);
+//		String sql = "UPDATE books b JOIN issue_records ir ON b.BookId = ir.BookId "
+//				+ " SET b.Status = CASE WHEN b.Status = 'A' THEN 'I' ELSE 'A' END "
+//				+ "WHERE ir.Status = 'R' AND b.BookId = :bookId";
+			
+			String sql = """
+					UPDATE books b
+					SET b.Status = CASE
+					    WHEN b.Status = 'A' THEN 'I'
+					    ELSE 'A'
+					END
+					WHERE b.BookId = :bookId;
 
-		List<Map<String, Object>> rows = namedParameterJdbcTemplate.queryForList(fetchSql, fetchParams);
+					""";
+		
+		
 
-		if (rows == null || rows.isEmpty())
-			return false;
+		MapSqlParameterSource params = new MapSqlParameterSource();
 
-		String insertSql = "INSERT INTO books_log (BookId, Title, Author, Category, Status, Availablity, "
+		params.addValue("bookId", bookId);
 
-				+ "created_at, created_by, updated_at, updated_by, LogDate) "
-
-				+ "VALUES (:bookId, :title, :author, :category, :status, :availablity, "
-
-				+ ":CreatedAt, :CreatedBy, :UpdatedAt, :UpdatedBy, :logDate)";
-
-		int totalInserted = 0;
-
-		for (Map<String, Object> row : rows) {
-
-			MapSqlParameterSource params = new MapSqlParameterSource();
-
-			params.addValue("bookId", row.get("BookId"));
-			params.addValue("title", row.get("Title"));
-			params.addValue("author", row.get("Author"));
-			params.addValue("category", row.get("Category"));
-			params.addValue("status", row.get("Status"));
-			params.addValue("availablity", row.get("Availablity"));
-			params.addValue("CreatedAt", row.get("created_at"));
-			params.addValue("CreatedBy", row.get("created_by"));
-			params.addValue("UpdatedAt", row.get("updated_at"));
-			params.addValue("UpdatedBy", row.get("updated_by"));
-			params.addValue("logDate", new Timestamp(System.currentTimeMillis()));
-
-			totalInserted += namedParameterJdbcTemplate.update(insertSql, params);
-
+		return namedParameterJdbcTemplate.update(sql, params);
+		
+	}
+	
+	
+	private MapSqlParameterSource bookparams(Book book, String flag) {
+		
+        MapSqlParameterSource params = new MapSqlParameterSource();
+   
+        params.addValue("title", book.getTitle());
+		params.addValue("author", book.getAuthor());
+		params.addValue("category", book.getCategory().getCode());
+		params.addValue("status", book.getStatus().getCode());
+		params.addValue("availablity", book.getAvailability().getCode());
+		
+		if(flag.equals("add") || flag.equals("logs")) {
+			params.addValue("createdAt", book.getCreatedAt());
+			params.addValue("createdBy", book.getCreatedBy());			
 		}
-
-		return totalInserted > 0;
+		
+		if(flag.equals("update") || flag.equals("logs")) {
+			params.addValue("bookId", book.getBookId());
+			params.addValue("updatedAt", book.getUpdatedAt());
+			params.addValue("updatedBy", book.getUpdatedBy());
+		}
+		
+        return params;
 
 	}
 

@@ -1,8 +1,5 @@
 package com.LMS.LibMS.model.enums;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import lombok.AllArgsConstructor;
 
 
@@ -13,19 +10,17 @@ public enum BookAvailability {
 
     private final String code;
 
-    @JsonValue
     public String getCode() {
 		return code;
 	}
     
-    @JsonCreator
     public static BookAvailability fromCode(String code) { 
         for (BookAvailability availability : BookAvailability.values()) {
             if (availability.code.equalsIgnoreCase(code)) {
                 return availability;
             }
         }
-        throw new IllegalArgumentException("No book availability with code: " + code);
+		return null;
     }
     
 }

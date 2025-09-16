@@ -15,6 +15,8 @@ public interface RoleRepository {
 
 	List<String>  getRoleName(String userCode);
 	
-	void changeRoleStatus(String roleId);
+	boolean changeRoleStatus(String roleCode);
+
+	boolean changeUserRoleStatus(UserRole userRole);
 
 }

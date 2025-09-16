@@ -2,20 +2,20 @@ package com.users.Users.service.interfaces;
 
 import java.util.List;
 
-import com.users.Users.model.User;
+import com.users.Users.model.MainUser;
+import com.users.Users.model.UserRequest;
 
 public interface MainUserService {
 
-	boolean addUserToMain(User user);
+	boolean addUserToMain(UserRequest user) throws Exception;
 
-	List<User> getMainUsers();
+	List<MainUser> getMainUsers();
 	
-	User getMainUserByEmail(String email);
+	MainUser getMainUserByEmail(String email) throws Exception;
 
-	
-	User getPassword(String username);
-	
-	boolean updatePassword(String userCode, String encodedPassword);
+	MainUser getMainUserById(String usercode) throws Exception;
+		
+	boolean updatePassword(String userCode, String encodedPassword) throws Exception;
 
 
 }

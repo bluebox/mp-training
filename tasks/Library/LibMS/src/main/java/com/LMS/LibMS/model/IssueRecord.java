@@ -2,8 +2,6 @@ package com.LMS.LibMS.model;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-
 import com.LMS.LibMS.model.enums.IssueStatus;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class IssueRecord {
 
-	@Id
 	private Integer issueId;
 	
 	private Integer bookId;

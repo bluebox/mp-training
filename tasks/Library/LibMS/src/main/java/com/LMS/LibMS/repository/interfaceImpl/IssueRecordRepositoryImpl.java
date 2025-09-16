@@ -27,7 +27,7 @@ public class IssueRecordRepositoryImpl implements IssueRecordRepository {
 
     @Override
     public void addIssueRecord(IssueRecord issueRecord) {
-        String sql = "INSERT INTO issue_records (bookId, memberId, status, issueDate, issued_by) " +
+        String sql = "INSERT INTO issue_records (BookId, MemberId, Status, IssueDate, issued_by) " +
                      "VALUES (:bookId, :memberId, :status, :issueDate, :issuedBy)";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
@@ -42,9 +42,8 @@ public class IssueRecordRepositoryImpl implements IssueRecordRepository {
     }
 
     @Override
-    public boolean updateIssueRecord(IssueRecord issueRecord) {
-        logIssueRecord(issueRecord.getIssueId()); 
-
+    public boolean updateIssueRecord(IssueRecord issueRecord) throws Exception {
+    	
         String sql = "UPDATE issue_records SET " +
                      "Status = :status, " +
                      "ReturnDate = :returnDate, " +
@@ -64,13 +63,13 @@ public class IssueRecordRepositoryImpl implements IssueRecordRepository {
 
     @Override
     public List<IssueRecord> getAllIssuedRecords() {
-        String sql = "SELECT * FROM issue_records";
+        String sql = "SELECT IssueId, BookId, MemberId, Status, IssueDate, issued_by, ReturnDate, returned_by FROM issue_records";
         return namedParameterJdbcTemplate.query(sql, new IssueRecordRowMapper());
     }
 
     @Override
     public IssueRecord getActiveIssueRecordByBookId(int bookId) {
-        String sql = "SELECT * FROM issue_records " +
+        String sql = "SELECT IssueId, BookId, MemberId, Status, IssueDate, issued_by, ReturnDate, returned_by FROM issue_records " +
                      "WHERE BookId = :bookId AND Status = :status AND ReturnDate IS NULL";
 
         MapSqlParameterSource params = new MapSqlParameterSource()
@@ -78,15 +77,19 @@ public class IssueRecordRepositoryImpl implements IssueRecordRepository {
                 .addValue("status", IssueStatus.ISSUED.getCode());
 
         List<IssueRecord> records = namedParameterJdbcTemplate.query(sql, params, new IssueRecordRowMapper());
+        if (records.isEmpty()) {
+            return null;
+        }
         return records.get(0);
     }
 
-    
-    private void logIssueRecord(Integer issueId) {
+    @Override
+    public boolean logIssueRecord(Integer issueId) {
         String fetchSql = "SELECT IssueId, BookId, MemberId, Status, IssueDate, issued_by, ReturnDate, returned_by "
                         + "FROM issue_records WHERE IssueId = :issueId";
         
         List<IssueRecord> recordsToLog = namedParameterJdbcTemplate.query(fetchSql, Map.of("issueId", issueId), new IssueRecordRowMapper());
+        int res=0;
         
         if (!recordsToLog.isEmpty()) {
             IssueRecord record = recordsToLog.get(0);
@@ -107,7 +110,19 @@ public class IssueRecordRepositoryImpl implements IssueRecordRepository {
             params.addValue("returnedBy", record.getReturnedBy());
             params.addValue("logDate", Timestamp.valueOf(LocalDateTime.now()));
 
-            namedParameterJdbcTemplate.update(insertSql, params);
+             res = namedParameterJdbcTemplate.update(insertSql, params);
+            
         }
+        return res>0;
     }
+
+	@Override
+	public List<IssueRecord> getIssuedRecordsWithBookIds(List<Integer> bookIds) {
+		String sql = "SELECT IssueId, BookId, MemberId, Status, IssueDate, issued_by, ReturnDate, returned_by FROM issue_records WHERE BookId IN (:bookIds)";
+		
+		 MapSqlParameterSource params = new MapSqlParameterSource();
+         params.addValue("bookIds", bookIds);
+         
+        return namedParameterJdbcTemplate.query(sql, params, new IssueRecordRowMapper());
+	}
 }

@@ -1,10 +1,10 @@
 package com.users.Users.enums;
 
-public enum UserStatus {
+public enum UserAssignedRoleStatus {
     ACTIVE,
     INACTIVE;
 	
-    public static UserStatus fromString(String status) {
+    public static UserAssignedRoleStatus fromString(String status) {
         if (status == null) return null;
         return switch(status.toLowerCase()) {
             case "active" -> ACTIVE;

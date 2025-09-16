@@ -1,8 +1,5 @@
 package com.LMS.LibMS.model.enums;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -12,19 +9,18 @@ public enum BookStatus {
 
     private final String code;
     
-    @JsonValue
     public String getCode() {
 		return code;
 	}
 
-    @JsonCreator
+    
     public static BookStatus fromCode(String code) { 
         for (BookStatus status : BookStatus.values()) {
             if (status.code.equalsIgnoreCase(code)) {
                 return status;
             }
         }
-        throw new IllegalArgumentException("No book status with code: " + code);
+		return null;
     }
 
 	

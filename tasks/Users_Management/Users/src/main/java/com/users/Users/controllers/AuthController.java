@@ -3,17 +3,21 @@ package com.users.Users.controllers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.users.Users.model.User;
+import com.users.Users.model.MainUser;
 import com.users.Users.service.interfaces.MainUserService;
 import com.users.Users.service.interfaces.RoleService;
 
@@ -21,9 +25,7 @@ import com.users.Users.service.interfaces.RoleService;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    
+  
     @Autowired
     private MainUserService mainUserService;
     
@@ -33,105 +35,47 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-
-//    @PostMapping("/login")
-//    public Map<String, Object> login(@RequestBody Map<String, String> loginData) throws Exception {
-//        String username = loginData.get("username");
-//        String password = loginData.get("password");
-//        
-//        
-//        
-//        try {
-//          Authentication auth = authenticationManager.authenticate(
-//                    new UsernamePasswordAuthenticationToken(username, password)
-//           );
-//
-//            String role = auth.getAuthorities().iterator().next().getAuthority();
-//
-//        	
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("jwt", username);
-//            response.put("role", "ROLE_"+role);
-//            return response;
-//
-//        } catch (AuthenticationException e) {
-//            throw new RuntimeException("Invalid username or password");
-//        }
-//    }
+    @Autowired
+    private final InMemoryUserDetailsManager inMemoryUserDetailsManager;  
     
-    @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody Map<String, String> loginData) throws Exception {
-        String username = loginData.get("username");
-        String password = loginData.get("password");
-        
-        if (username == null || username.trim().isEmpty()) {
-            throw new RuntimeException("UserId is required");
-        }
 
-        User user = mainUserService.getPassword(username);
-        if (user == null) {
-            throw new RuntimeException("Invalid UserId or Password");
-        }
-
-        
-//        passwordEncoder.matches(user.getPassword(), password);
-//        if (!user.getPassword().equals(password)) {
-        if(!passwordEncoder.matches(password.trim(), user.getPassword())) {
-            throw new RuntimeException("Invalid password");
-        }
-
-        
-
-        List<String> roleNames = roleService.getRoleName(user.getUserCode()); 
-        
-        List<String> prefixed =null;
-        
-        if(roleNames!=null) {
-        	 prefixed = roleNames.stream()
-        			.map(r -> "ROLE_" + r.toUpperCase())
-        			.collect(Collectors.toList());
-        	
-        }
-        System.out.println(prefixed);        	
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("jwt", user.getUsername());
-//        response.put("password", password);
-        if(prefixed!=null) {
-        	response.put("role", prefixed.get(0));        	
-        }
-        else {
-        	response.put("role", "ROLE_USER");        	
-        }
-        return response;
-    }
-    
+    public AuthController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
+        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
+    }    
     
     @PostMapping("/change-password")
-    public Map<String, Object> changePassword(@RequestBody Map<String, String> body) {
-        String username = body.get("username");   
+    public Map<String, Object> changePassword(@RequestBody Map<String, String> body) throws Exception {
+        String userCode = body.get("username");   
         String currentPassword = body.get("currentPassword");
         String newPassword = body.get("newPassword");
         
-        if (username == null || username.trim().isEmpty()) {
+        if (userCode == null || userCode.trim().isEmpty()) {
             throw new RuntimeException("UserId is required");
         }
+        
         if (currentPassword == null || newPassword == null || newPassword.trim().isEmpty()) {
             throw new RuntimeException("Current and new passwords are required");
         }
 
-        User user = mainUserService.getPassword(username);
+        MainUser user = mainUserService.getMainUserById(userCode);
         if (user == null) {
             throw new RuntimeException("Invalid UserId");
         }
-
-        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
-            throw new RuntimeException("Current password is incorrect");
+        
+        if(user.getPassword().startsWith("$2a$")) {
+        	if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+        		throw new RuntimeException("Current password is incorrect");
+        	}
+        	
+        }else {
+        	if (!currentPassword.equals(user.getPassword())) {
+                throw new RuntimeException("Current password is incorrect");
+        	}
         }
 
-        String encoded = passwordEncoder.encode(newPassword);
+        String encodedpassword = passwordEncoder.encode(newPassword);
 
-        boolean updated = mainUserService.updatePassword(username, encoded);
+        boolean updated = mainUserService.updatePassword(userCode, encodedpassword);
         if (!updated) {
             throw new RuntimeException("Failed to update password");
         }
@@ -140,11 +84,68 @@ public class AuthController {
         res.put("message", "Password updated");
         return res;
     }
-
-
-
     
     
+    @PostMapping("/login")
+    public Map<String,Object> login(@RequestBody Map<String,String> body) throws Exception {
+        String userCode = body.get("username");
+        String rawPassword = body.get("password");
+
+        MainUser user = mainUserService.getMainUserById(userCode);
+        if (user == null) throw new RuntimeException("Invalid credentials");
+
+        if(!user.getPassword().startsWith("$2a$")) {
+        	if (!rawPassword.matches(user.getPassword())) {
+                throw new RuntimeException("Password is incorrect");
+        	}
+        }else {
+        	if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
+        		throw new RuntimeException("Password is incorrect");
+        	}
+        }
+
+        List<String> roleNames = roleService.getRoleName(user.getUserCode());
+        
+        
+        if (roleNames == null) {
+        	roleNames = List.of();        	
+        }
+
+        List<SimpleGrantedAuthority> authorities = roleNames.stream()
+                .filter(r -> r != null && !r.isBlank())
+                .map(r -> r.toUpperCase())
+                .map(r -> "ROLE_" + r)
+                .map(SimpleGrantedAuthority::new)
+                .toList();
+
+        if (authorities.isEmpty()) {
+            authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+
+        UserDetails userDetails = org.springframework.security.core.userdetails.User
+                .withUsername(user.getUserCode())
+                .password(user.getPassword())
+                .authorities(authorities)
+                .build();
+
+        if (inMemoryUserDetailsManager.userExists(userDetails.getUsername())) {
+            inMemoryUserDetailsManager.updateUser(userDetails);
+        } else {
+            inMemoryUserDetailsManager.createUser(userDetails);
+        }
+
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(auth);
 
 
+        
+        Map<String,Object> res = new HashMap<>();
+        
+        res.put("username", user.getUsername());
+        res.put("role", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
+        res.put("password", user.getPassword());
+        return res;
+    }
+    
+ 
 }

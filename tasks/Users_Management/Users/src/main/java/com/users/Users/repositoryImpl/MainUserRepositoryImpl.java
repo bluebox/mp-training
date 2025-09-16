@@ -11,7 +11,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import com.users.Users.model.User;
+import com.users.Users.model.MainUser;
+import com.users.Users.model.UserRequest;
 import com.users.Users.repository.interfaces.MainUserRepository;
 import com.users.Users.rowmapper.MainUserRowMapper;
 import com.users.Users.rowmapper.UserPasswordRowMapper;
@@ -31,18 +32,16 @@ public class MainUserRepositoryImpl implements MainUserRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public boolean addUserToMain(User user) {
-        String sqlString = "INSERT INTO Users (username, password, email, first_name, last_name, phone_number, country, state, city, postal_code, status, created_at, updated_at) "
-                + "VALUES (:username, :password, :email, :first_name, :last_name, :phone_number, :country, :state, :city, :postal_code, :status, :created_at, :updated_at)";
+    public boolean addUserToMain(UserRequest user) {
+        String sqlString = "INSERT INTO Users (username, email, first_name, last_name, phone_number, country, state, city, postal_code, status, created_at, updated_at ,gender) "
+                + "VALUES (:username, :email, :first_name, :last_name,:phone_number, :country, :state, :city, :postal_code, :status, :created_at, :updated_at, :gender)";
 
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("username", user.getUsername());
-//        param.addValue("password", passwordEncoder.encode(user.getPassword()));
-
-        param.addValue("password", user.getPassword());
         param.addValue("email", user.getEmail());
         param.addValue("first_name", user.getFirstName());
         param.addValue("last_name", user.getLastName());
+        param.addValue("gender", user.getGender().name());
         param.addValue("phone_number", user.getPhoneNumber());
         param.addValue("country", user.getCountry());
         param.addValue("state", user.getState());
@@ -59,34 +58,30 @@ public class MainUserRepositoryImpl implements MainUserRepository {
         return res>0;
     }
 
-    public List<User> getMainUsers() {
-        String sqlString = "SELECT * FROM Users";
-        try {
-            return jdbcTemplate.query(sqlString, new MainUserRowMapper());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public List<MainUser> getMainUsers() {
+        String sqlString = "SELECT user_id,user_code,username,password,email,first_name,last_name,gender,phone_number,country,state,city,postal_code,status,created_at,updated_at FROM Users";
+        return jdbcTemplate.query(sqlString, new MainUserRowMapper());
+       
     }
 
-    public List<User> getMainUserById(String userCode) {
-        String sqlString = "SELECT * FROM Users WHERE user_code = :user_code";
+    public MainUser getMainUserById(String userCode) {
+        String sqlString = "SELECT user_id,user_code,username,password,email,first_name,last_name,gender,phone_number,country,state,city,postal_code,status,created_at,updated_at FROM Users WHERE user_code = :user_code";
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("user_code", userCode);
-        try {
-            return namedParameterJdbcTemplate.query(sqlString, param, new MainUserRowMapper());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        
+        List<MainUser> users = namedParameterJdbcTemplate.query(sqlString, param, new UserPasswordRowMapper());
+        if (users == null || users.isEmpty()) 
+        	return null;
+        
+        return users.get(0);       
     }
 
-    public boolean updateMainUser(User user) {
+    public boolean updateMainUser(MainUser user) {
         String sqlString = "UPDATE Users SET "
                 + "username = :username, password = :password, email = :email, first_name = :first_name, "
                 + "last_name = :last_name, phone_number = :phone_number, country = :country, state = :state, "
                 + "city = :city, postal_code = :postal_code, status = :status, "
-                + "created_at = :created_at, updated_at = :updated_at "
+                + "created_at = :created_at, updated_at = :updated_at, gender =:gender "
                 + "WHERE user_code = :user_code";
 
         MapSqlParameterSource param = new MapSqlParameterSource();
@@ -104,26 +99,12 @@ public class MainUserRepositoryImpl implements MainUserRepository {
         param.addValue("status", user.getStatus() != null ? user.getStatus().name() : null);
         param.addValue("created_at", user.getCreated_at() != null ? Timestamp.valueOf(user.getCreated_at()) : null);
         param.addValue("updated_at", user.getUpdated_at() != null ? Timestamp.valueOf(user.getUpdated_at()) : null);
-
+        param.addValue("gender", user.getGender().name());
+        
         int rowsAffected = namedParameterJdbcTemplate.update(sqlString, param);
         return rowsAffected > 0;
     }
 
-    @Override
-    public User getPassword(String userCode) {
-        String sqlString = "SELECT user_code, password,username FROM Users WHERE user_code = :user_code";
-        MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("user_code", userCode);
-
-        try {
-            List<User> users = namedParameterJdbcTemplate.query(sqlString, param, new UserPasswordRowMapper());
-            if (users == null || users.isEmpty()) return null;
-            return users.get(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
     
     public boolean updatePassword(String userCode, String encodedPassword) {
         String sql = "UPDATE Users SET password = :password, updated_at = :updated_at WHERE user_code = :user_code";
@@ -137,19 +118,17 @@ public class MainUserRepositoryImpl implements MainUserRepository {
     }
 
 	@Override
-	public User getMainUserByEmail(String email) {
-		 String sqlString = "SELECT * FROM Users WHERE email = :email";
+	public MainUser getMainUserByEmail(String email) {
+		 String sqlString = "SELECT user_id,user_code,username,password,email,first_name,last_name,gender,phone_number,country,state,city,postal_code,status,created_at,updated_at FROM Users WHERE email = :email";
 	        MapSqlParameterSource param = new MapSqlParameterSource();
 	        param.addValue("email", email);
-	        try {
-	            return namedParameterJdbcTemplate.query(sqlString, param, new MainUserRowMapper()).get(0);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	        return null;	
-	        
+	       
+	        List<MainUser> users = namedParameterJdbcTemplate.query(sqlString, param, new UserPasswordRowMapper());
+	        if (users == null || users.isEmpty()) 
+	        	return null;
+	        	        
+	        return users.get(0);        
 	}
-
-
+	
 
 }

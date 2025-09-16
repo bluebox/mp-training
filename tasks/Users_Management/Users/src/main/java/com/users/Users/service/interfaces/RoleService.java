@@ -9,13 +9,14 @@ public interface RoleService {
 
 	List<Role> getRoles();
 
-	void addUserRole(UserRole userRole);
+	List<String> getRoleName(String usercode) throws Exception;
 
-	List<UserRole> getUserAssignedRoles(String usercode);
-	
-    void changeRoleStatus(String roleId);
+	List<UserRole> getUserAssignedRoles(String usercode) throws Exception;
 
+	void addUserRole(UserRole userRole) throws Exception;
 
-	List<String>  getRoleName(String usercode);
+	boolean changeRoleStatus(String roleCode) throws Exception;
+
+	boolean changeUserRoleStatus(UserRole userRole) throws Exception;
 
 }

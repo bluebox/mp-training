@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.users.Users.model.User;
+import com.users.Users.model.MainUser;
 import com.users.Users.service.interfaces.MainUserService;
 
 @Controller
@@ -24,7 +24,7 @@ public class MainUserController {
 	
 	@GetMapping("/getMainUsers")
 	@ResponseBody
-	public List<User> getMainUsers(){
+	public List<MainUser> getMainUsers(){
 		return mainUserService.getMainUsers();
 	}
 	

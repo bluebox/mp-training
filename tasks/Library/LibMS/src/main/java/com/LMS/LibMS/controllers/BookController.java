@@ -1,7 +1,7 @@
 package com.LMS.LibMS.controllers;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,6 +23,8 @@ import com.LMS.LibMS.model.enums.BookCategory;
 import com.LMS.LibMS.model.enums.BookStatus;
 import com.LMS.LibMS.service.interfaces.BookService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -35,19 +37,20 @@ public class BookController {
 	}
 
 	@PostMapping("/add")
-	public void addBook(@RequestBody Book book) throws Exception {
-		try {
-			bookService.addBook(book);
-		} catch (Exception e) {
-			if(e.getCause() instanceof SQLIntegrityConstraintViolationException)
-			throw new Exception("Book already exists. Please check details");
-		}
+	public void addBook(@Valid @RequestBody Book book) throws Exception  {
+//			try {
+				System.out.println(book);
+				bookService.addBook(book);
+//				return "Book added successfully";
+//			} catch (Exception e) {
+//				return e.getMessage();
+//			}
 	}
 
 	@GetMapping("/getbooks")
 	@ResponseBody
 	public List<Book> displayBooks() {
-		return bookService.findBooks();
+		return bookService.getAllBooks();
 	}
 
 	@GetMapping("/getbook/{bookId}")
@@ -55,74 +58,62 @@ public class BookController {
 	public Book getBookById(@PathVariable("bookId") Integer bookId) {
 		return bookService.findBookById(bookId);
 	}
-
-	@GetMapping("/bookcategories")
+	
+	@GetMapping("/dropdowns")
 	@ResponseBody
-	public List<Map<String, String>> getBookCategories() {
-		return Arrays.stream(BookCategory.values())
-				.map(category -> Map.of("displayName", category.getDisplayName(), "code", category.name()))
-				.collect(Collectors.toList());
+	public Map<String, List<Map<String, String>>> getDropdowns() {
+	    Map<String, List<Map<String, String>>> response = new HashMap<>();
+
+	    List<Map<String, String>> categories = Arrays.stream(BookCategory.values())
+	            .map(category -> Map.of("displayName", category.name(), "code", category.name()))
+	            .collect(Collectors.toList());
+
+	    List<Map<String, String>> statuses = Arrays.stream(BookStatus.values())
+	            .map(status -> Map.of("displayName", status.name(), "code", status.name()))
+	            .collect(Collectors.toList());
+
+	    List<Map<String, String>> availabilities = Arrays.stream(BookAvailability.values())
+	            .map(availability -> Map.of("displayName", availability.name(), "code", availability.name()))
+	            .collect(Collectors.toList());
+
+	    response.put("categories", categories);
+	    response.put("statuses", statuses);
+	    response.put("availabilities", availabilities);
+
+	    return response;
 	}
 
-	@GetMapping("/bookstatuses")
-	@ResponseBody
-	public List<Map<String, String>> getBookStatuses() {
-		return Arrays.stream(BookStatus.values())
-				.map(status -> Map.of("displayName", status.name(), "code", status.getCode()))
-				.collect(Collectors.toList());
-	}
-
-	@GetMapping("/bookavailabilities")
-	@ResponseBody
-	public List<Map<String, String>> getBookAvailabilities() {
-		return Arrays.stream(BookAvailability.values())
-				.map(availability -> Map.of("displayName", availability.name(), "code", availability.getCode()))
-				.collect(Collectors.toList());
-	}
 
 	@PutMapping("/update/{bookId}")
-	public boolean updateBook(@PathVariable("bookId") Integer bookId, @RequestBody Book book) throws Exception {
+	public boolean updateBook(@PathVariable("bookId") Integer bookId,@Valid @RequestBody Book book) throws Exception  {
 		book.setBookId(bookId);
-			
-		if(!bookService.updateBook(book)) {
-			throw new Exception("No Changes Found");
-		}
-		return true;
-		
-	}
-
-	@DeleteMapping("/delete/{bookId}")
-	public boolean deleteBook(@PathVariable("bookId") Integer bookId) throws Exception {
-		try {
-			return bookService.deleteBooks(Arrays.asList(bookId));
-		} catch (Exception e) {
-			if(e.getCause() instanceof SQLIntegrityConstraintViolationException)
-			throw new Exception("Book is issued so it can't deleted.");
-		}
-		return false;
+			return bookService.updateBook(book);
 	}
 
 	@PostMapping("/changeAvailability")
-	public boolean changeAvailability(@RequestBody Map<String, Object> data) {
-		Integer bookId = Integer.valueOf(data.get("bookId").toString());
-		return bookService.updateAvailabilities(Arrays.asList(bookId));
+	public boolean changeAvailability(@RequestBody Map<String, Integer> data) throws Exception {
+		Integer bookId = data.get("bookId");
+			return bookService.updateAvailabilitiesById(Arrays.asList(bookId));
+	}
+	
+	@PostMapping("/updateAvailabilities")
+	public boolean updateAvailabilities(@RequestBody Map<String, List<Integer>> data) throws Exception {
+		List<Integer> ids = data.get("ids");
+
+		return	bookService.updateAvailabilitiesById(ids);
+
+	}
+	
+	@DeleteMapping("/delete/{bookId}")
+	public boolean deleteBook(@PathVariable("bookId") Integer bookId) throws Exception {
+			return bookService.makeBookInactiveById(bookId);
 	}
 
 	@PostMapping("/deleteBooks")
-	public boolean deleteBooks(@RequestBody Map<String, Object> data) throws Exception {
-		List<Integer> ids = (List<Integer>) data.get("ids");
-		try {
-			return bookService.deleteBooks(ids);
-		} catch (Exception e) {
-			if(e.getCause() instanceof SQLIntegrityConstraintViolationException)
-			throw new Exception("Book is issued so it can't deleted.");
-		}
-		return false;
+	public boolean deleteBooks(@RequestBody Map<String, List<Integer>> data) throws Exception {
+		List<Integer> ids = data.get("ids");
+		return	bookService.deleteBooksById(ids);
+
 	}
 
-	@PostMapping("/updateAvailabilities")
-	public boolean updateAvailabilities(@RequestBody Map<String, Object> data) {
-		List<Integer> ids = (List<Integer>) data.get("ids");
-		return bookService.updateAvailabilities(ids);
-	}
 }

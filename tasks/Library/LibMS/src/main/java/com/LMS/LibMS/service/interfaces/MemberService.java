@@ -5,13 +5,13 @@ import java.util.List;
 import com.LMS.LibMS.model.Member;
 
 public interface MemberService {
-	boolean addMember(Member member);
+	void addMember(Member member) throws Exception;
 
 	List<Member> getAllMembers();
 
 	Member getMemberById(Integer id);
 
-	boolean updateMember(Member member);
+	boolean updateMember(Member member) throws Exception;
 
-	boolean deleteMembers(List<Integer> memberIds);
+	boolean deleteMembersById(List<Integer> memberIds) throws Exception;
 }

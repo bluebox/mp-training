@@ -1,15 +1,14 @@
 package com.LMS.LibMS.service.interfaces;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.LMS.LibMS.model.IssueRecord;
 import com.LMS.LibMS.model.Member;
 
 public interface IssueService {
-	void issueBook(int bookId, int memberId, LocalDateTime issueDate, String issuedBy);
+	void issueBook(int bookId, int memberId, String issuedBy) throws Exception;
 
-	void returnBook(int bookId, String returnedBy);
+	void returnBook(int bookId, String returnedBy) throws Exception;
 
 	List<IssueRecord> getAllIssuedRecords();
 
