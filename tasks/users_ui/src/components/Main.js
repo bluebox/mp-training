@@ -1,0 +1,60 @@
+
+
+import React, { useState } from 'react';
+import Login from './Login';
+import AddUser from './AddUser';
+
+const Main = ({ onNavigate, onLoginSuccess }) => {
+  const [showLogin, setShowLogin] = useState(true); 
+  
+  const handleShowLogin = () => {
+    setShowLogin(true); 
+  };
+
+  const handleShowAddUser = () => {
+    setShowLogin(false); 
+  };
+
+  const buttonStyle = {
+    padding: '10px 20px',
+    margin: '10px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontSize: '16px'
+  };
+
+  const activeButton = {
+    backgroundColor: '#0056b3'
+  };
+
+  return (
+    <div style={{ textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
+      <h2>Please Login or Register</h2>
+      <div>
+        <button 
+          onClick={handleShowLogin} 
+          style={showLogin ? {...buttonStyle, ...activeButton} : buttonStyle}
+        >
+          Login
+        </button>
+        <button 
+          onClick={handleShowAddUser} 
+          style={!showLogin ? {...buttonStyle, ...activeButton} : buttonStyle}
+        >
+          Register
+        </button>
+      </div>
+
+      {showLogin ? (
+        <Login onNavigate={onNavigate} onLoginSuccess={onLoginSuccess} />
+      ) : (
+        <AddUser onNavigate={onNavigate} />
+      )}
+    </div>
+  );
+};
+
+export default Main;
